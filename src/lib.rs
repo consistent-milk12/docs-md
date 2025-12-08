@@ -23,7 +23,7 @@ pub mod parser;
 pub mod source;
 pub mod types;
 
-pub use crate::generator::{Generator, MarkdownCapture};
+pub use crate::generator::{Generator, MarkdownCapture, RenderConfig, SourceConfig};
 pub use crate::linker::{LinkRegistry, slugify_anchor};
 #[cfg(feature = "trace")]
 use crate::logger::LogLevel;

@@ -4,6 +4,45 @@
 
 # Module `common`
 
+## Contents
+
+- [Enums](#enums)
+  - [`Architecture`](#architecture)
+  - [`SubArchitecture`](#subarchitecture)
+  - [`AddressSize`](#addresssize)
+  - [`BinaryFormat`](#binaryformat)
+  - [`SectionKind`](#sectionkind)
+  - [`ComdatKind`](#comdatkind)
+  - [`SymbolKind`](#symbolkind)
+  - [`SymbolScope`](#symbolscope)
+  - [`RelocationKind`](#relocationkind)
+  - [`RelocationEncoding`](#relocationencoding)
+  - [`FileFlags`](#fileflags)
+  - [`SegmentFlags`](#segmentflags)
+  - [`SectionFlags`](#sectionflags)
+  - [`SymbolFlags`](#symbolflags)
+  - [`RelocationFlags`](#relocationflags)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Architecture`](#architecture) | enum | A CPU architecture. |
+| [`SubArchitecture`](#subarchitecture) | enum | A CPU sub-architecture. |
+| [`AddressSize`](#addresssize) | enum | The size of an address value for an architecture. |
+| [`BinaryFormat`](#binaryformat) | enum | A binary file format. |
+| [`SectionKind`](#sectionkind) | enum | The kind of a section. |
+| [`ComdatKind`](#comdatkind) | enum | The selection kind for a COMDAT section group. |
+| [`SymbolKind`](#symbolkind) | enum | The kind of a symbol. |
+| [`SymbolScope`](#symbolscope) | enum | A symbol scope. |
+| [`RelocationKind`](#relocationkind) | enum | The operation used to calculate the result of the relocation. |
+| [`RelocationEncoding`](#relocationencoding) | enum | Information about how the result of the relocation operation is encoded in the place. |
+| [`FileFlags`](#fileflags) | enum | File flags that are specific to each file format. |
+| [`SegmentFlags`](#segmentflags) | enum | Segment flags that are specific to each file format. |
+| [`SectionFlags`](#sectionflags) | enum | Section flags that are specific to each file format. |
+| [`SymbolFlags`](#symbolflags) | enum | Symbol flags that are specific to each file format. |
+| [`RelocationFlags`](#relocationflags) | enum | Relocation fields that are specific to each file format and architecture. |
+
 ## Enums
 
 ### `Architecture`
@@ -53,29 +92,29 @@ A CPU architecture.
 
 #### Implementations
 
-- `fn address_size(self: Self) -> Option<AddressSize>` — [`AddressSize`](../index.md)
+- <span id="architecture-address-size"></span>`fn address_size(self) -> Option<AddressSize>` — [`AddressSize`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Architecture`
 
-- `fn clone(self: &Self) -> Architecture` — [`Architecture`](../index.md)
+- <span id="architecture-clone"></span>`fn clone(&self) -> Architecture` — [`Architecture`](../index.md)
 
 ##### `impl Copy for Architecture`
 
 ##### `impl Debug for Architecture`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="architecture-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Architecture`
 
 ##### `impl Hash for Architecture`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="architecture-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Architecture`
 
-- `fn eq(self: &Self, other: &Architecture) -> bool` — [`Architecture`](../index.md)
+- <span id="architecture-eq"></span>`fn eq(&self, other: &Architecture) -> bool` — [`Architecture`](../index.md)
 
 ##### `impl StructuralPartialEq for Architecture`
 
@@ -94,23 +133,23 @@ A CPU sub-architecture.
 
 ##### `impl Clone for SubArchitecture`
 
-- `fn clone(self: &Self) -> SubArchitecture` — [`SubArchitecture`](../index.md)
+- <span id="subarchitecture-clone"></span>`fn clone(&self) -> SubArchitecture` — [`SubArchitecture`](../index.md)
 
 ##### `impl Copy for SubArchitecture`
 
 ##### `impl Debug for SubArchitecture`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="subarchitecture-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for SubArchitecture`
 
 ##### `impl Hash for SubArchitecture`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="subarchitecture-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for SubArchitecture`
 
-- `fn eq(self: &Self, other: &SubArchitecture) -> bool` — [`SubArchitecture`](../index.md)
+- <span id="subarchitecture-eq"></span>`fn eq(&self, other: &SubArchitecture) -> bool` — [`SubArchitecture`](../index.md)
 
 ##### `impl StructuralPartialEq for SubArchitecture`
 
@@ -131,29 +170,29 @@ This may differ from the address size supported by the file format (such as for 
 
 #### Implementations
 
-- `fn bytes(self: Self) -> u8`
+- <span id="addresssize-bytes"></span>`fn bytes(self) -> u8`
 
 #### Trait Implementations
 
 ##### `impl Clone for AddressSize`
 
-- `fn clone(self: &Self) -> AddressSize` — [`AddressSize`](../index.md)
+- <span id="addresssize-clone"></span>`fn clone(&self) -> AddressSize` — [`AddressSize`](../index.md)
 
 ##### `impl Copy for AddressSize`
 
 ##### `impl Debug for AddressSize`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="addresssize-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for AddressSize`
 
 ##### `impl Hash for AddressSize`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="addresssize-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for AddressSize`
 
-- `fn eq(self: &Self, other: &AddressSize) -> bool` — [`AddressSize`](../index.md)
+- <span id="addresssize-eq"></span>`fn eq(&self, other: &AddressSize) -> bool` — [`AddressSize`](../index.md)
 
 ##### `impl StructuralPartialEq for AddressSize`
 
@@ -174,29 +213,29 @@ A binary file format.
 
 #### Implementations
 
-- `fn native_object() -> BinaryFormat` — [`BinaryFormat`](../index.md)
+- <span id="binaryformat-native-object"></span>`fn native_object() -> BinaryFormat` — [`BinaryFormat`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for BinaryFormat`
 
-- `fn clone(self: &Self) -> BinaryFormat` — [`BinaryFormat`](../index.md)
+- <span id="binaryformat-clone"></span>`fn clone(&self) -> BinaryFormat` — [`BinaryFormat`](../index.md)
 
 ##### `impl Copy for BinaryFormat`
 
 ##### `impl Debug for BinaryFormat`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="binaryformat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for BinaryFormat`
 
 ##### `impl Hash for BinaryFormat`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="binaryformat-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for BinaryFormat`
 
-- `fn eq(self: &Self, other: &BinaryFormat) -> bool` — [`BinaryFormat`](../index.md)
+- <span id="binaryformat-eq"></span>`fn eq(&self, other: &BinaryFormat) -> bool` — [`BinaryFormat`](../index.md)
 
 ##### `impl StructuralPartialEq for BinaryFormat`
 
@@ -361,29 +400,29 @@ The kind of a section.
 
 #### Implementations
 
-- `fn is_bss(self: Self) -> bool`
+- <span id="sectionkind-is-bss"></span>`fn is_bss(self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for SectionKind`
 
-- `fn clone(self: &Self) -> SectionKind` — [`SectionKind`](../index.md)
+- <span id="sectionkind-clone"></span>`fn clone(&self) -> SectionKind` — [`SectionKind`](../index.md)
 
 ##### `impl Copy for SectionKind`
 
 ##### `impl Debug for SectionKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sectionkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for SectionKind`
 
 ##### `impl Hash for SectionKind`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="sectionkind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for SectionKind`
 
-- `fn eq(self: &Self, other: &SectionKind) -> bool` — [`SectionKind`](../index.md)
+- <span id="sectionkind-eq"></span>`fn eq(&self, other: &SectionKind) -> bool` — [`SectionKind`](../index.md)
 
 ##### `impl StructuralPartialEq for SectionKind`
 
@@ -452,23 +491,23 @@ sections.
 
 ##### `impl Clone for ComdatKind`
 
-- `fn clone(self: &Self) -> ComdatKind` — [`ComdatKind`](../index.md)
+- <span id="comdatkind-clone"></span>`fn clone(&self) -> ComdatKind` — [`ComdatKind`](../index.md)
 
 ##### `impl Copy for ComdatKind`
 
 ##### `impl Debug for ComdatKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="comdatkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ComdatKind`
 
 ##### `impl Hash for ComdatKind`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="comdatkind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for ComdatKind`
 
-- `fn eq(self: &Self, other: &ComdatKind) -> bool` — [`ComdatKind`](../index.md)
+- <span id="comdatkind-eq"></span>`fn eq(&self, other: &ComdatKind) -> bool` — [`ComdatKind`](../index.md)
 
 ##### `impl StructuralPartialEq for ComdatKind`
 
@@ -522,23 +561,23 @@ The kind of a symbol.
 
 ##### `impl Clone for SymbolKind`
 
-- `fn clone(self: &Self) -> SymbolKind` — [`SymbolKind`](../index.md)
+- <span id="symbolkind-clone"></span>`fn clone(&self) -> SymbolKind` — [`SymbolKind`](../index.md)
 
 ##### `impl Copy for SymbolKind`
 
 ##### `impl Debug for SymbolKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="symbolkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for SymbolKind`
 
 ##### `impl Hash for SymbolKind`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="symbolkind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for SymbolKind`
 
-- `fn eq(self: &Self, other: &SymbolKind) -> bool` — [`SymbolKind`](../index.md)
+- <span id="symbolkind-eq"></span>`fn eq(&self, other: &SymbolKind) -> bool` — [`SymbolKind`](../index.md)
 
 ##### `impl StructuralPartialEq for SymbolKind`
 
@@ -577,23 +616,23 @@ A symbol scope.
 
 ##### `impl Clone for SymbolScope`
 
-- `fn clone(self: &Self) -> SymbolScope` — [`SymbolScope`](../index.md)
+- <span id="symbolscope-clone"></span>`fn clone(&self) -> SymbolScope` — [`SymbolScope`](../index.md)
 
 ##### `impl Copy for SymbolScope`
 
 ##### `impl Debug for SymbolScope`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="symbolscope-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for SymbolScope`
 
 ##### `impl Hash for SymbolScope`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="symbolscope-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for SymbolScope`
 
-- `fn eq(self: &Self, other: &SymbolScope) -> bool` — [`SymbolScope`](../index.md)
+- <span id="symbolscope-eq"></span>`fn eq(&self, other: &SymbolScope) -> bool` — [`SymbolScope`](../index.md)
 
 ##### `impl StructuralPartialEq for SymbolScope`
 
@@ -681,23 +720,23 @@ these definitions probably don't match any ELF ABI.
 
 ##### `impl Clone for RelocationKind`
 
-- `fn clone(self: &Self) -> RelocationKind` — [`RelocationKind`](../index.md)
+- <span id="relocationkind-clone"></span>`fn clone(&self) -> RelocationKind` — [`RelocationKind`](../index.md)
 
 ##### `impl Copy for RelocationKind`
 
 ##### `impl Debug for RelocationKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="relocationkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for RelocationKind`
 
 ##### `impl Hash for RelocationKind`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="relocationkind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for RelocationKind`
 
-- `fn eq(self: &Self, other: &RelocationKind) -> bool` — [`RelocationKind`](../index.md)
+- <span id="relocationkind-eq"></span>`fn eq(&self, other: &RelocationKind) -> bool` — [`RelocationKind`](../index.md)
 
 ##### `impl StructuralPartialEq for RelocationKind`
 
@@ -822,23 +861,23 @@ a specific instruction.
 
 ##### `impl Clone for RelocationEncoding`
 
-- `fn clone(self: &Self) -> RelocationEncoding` — [`RelocationEncoding`](../index.md)
+- <span id="relocationencoding-clone"></span>`fn clone(&self) -> RelocationEncoding` — [`RelocationEncoding`](../index.md)
 
 ##### `impl Copy for RelocationEncoding`
 
 ##### `impl Debug for RelocationEncoding`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="relocationencoding-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for RelocationEncoding`
 
 ##### `impl Hash for RelocationEncoding`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="relocationencoding-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for RelocationEncoding`
 
-- `fn eq(self: &Self, other: &RelocationEncoding) -> bool` — [`RelocationEncoding`](../index.md)
+- <span id="relocationencoding-eq"></span>`fn eq(&self, other: &RelocationEncoding) -> bool` — [`RelocationEncoding`](../index.md)
 
 ##### `impl StructuralPartialEq for RelocationEncoding`
 
@@ -892,23 +931,23 @@ File flags that are specific to each file format.
 
 ##### `impl Clone for FileFlags`
 
-- `fn clone(self: &Self) -> FileFlags` — [`FileFlags`](../index.md)
+- <span id="fileflags-clone"></span>`fn clone(&self) -> FileFlags` — [`FileFlags`](../index.md)
 
 ##### `impl Copy for FileFlags`
 
 ##### `impl Debug for FileFlags`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="fileflags-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for FileFlags`
 
 ##### `impl Hash for FileFlags`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="fileflags-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for FileFlags`
 
-- `fn eq(self: &Self, other: &FileFlags) -> bool` — [`FileFlags`](../index.md)
+- <span id="fileflags-eq"></span>`fn eq(&self, other: &FileFlags) -> bool` — [`FileFlags`](../index.md)
 
 ##### `impl StructuralPartialEq for FileFlags`
 
@@ -955,23 +994,23 @@ Segment flags that are specific to each file format.
 
 ##### `impl Clone for SegmentFlags`
 
-- `fn clone(self: &Self) -> SegmentFlags` — [`SegmentFlags`](../index.md)
+- <span id="segmentflags-clone"></span>`fn clone(&self) -> SegmentFlags` — [`SegmentFlags`](../index.md)
 
 ##### `impl Copy for SegmentFlags`
 
 ##### `impl Debug for SegmentFlags`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="segmentflags-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for SegmentFlags`
 
 ##### `impl Hash for SegmentFlags`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="segmentflags-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for SegmentFlags`
 
-- `fn eq(self: &Self, other: &SegmentFlags) -> bool` — [`SegmentFlags`](../index.md)
+- <span id="segmentflags-eq"></span>`fn eq(&self, other: &SegmentFlags) -> bool` — [`SegmentFlags`](../index.md)
 
 ##### `impl StructuralPartialEq for SegmentFlags`
 
@@ -1023,23 +1062,23 @@ Section flags that are specific to each file format.
 
 ##### `impl Clone for SectionFlags`
 
-- `fn clone(self: &Self) -> SectionFlags` — [`SectionFlags`](../index.md)
+- <span id="sectionflags-clone"></span>`fn clone(&self) -> SectionFlags` — [`SectionFlags`](../index.md)
 
 ##### `impl Copy for SectionFlags`
 
 ##### `impl Debug for SectionFlags`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sectionflags-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for SectionFlags`
 
 ##### `impl Hash for SectionFlags`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="sectionflags-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for SectionFlags`
 
-- `fn eq(self: &Self, other: &SectionFlags) -> bool` — [`SectionFlags`](../index.md)
+- <span id="sectionflags-eq"></span>`fn eq(&self, other: &SectionFlags) -> bool` — [`SectionFlags`](../index.md)
 
 ##### `impl StructuralPartialEq for SectionFlags`
 
@@ -1094,25 +1133,25 @@ Symbol flags that are specific to each file format.
 
 #### Trait Implementations
 
-##### `impl<Section: $crate::clone::Clone, Symbol: $crate::clone::Clone> Clone for SymbolFlags<Section, Symbol>`
+##### `impl<Section: clone::Clone, Symbol: clone::Clone> Clone for SymbolFlags<Section, Symbol>`
 
-- `fn clone(self: &Self) -> SymbolFlags<Section, Symbol>` — [`SymbolFlags`](../index.md)
+- <span id="symbolflags-clone"></span>`fn clone(&self) -> SymbolFlags<Section, Symbol>` — [`SymbolFlags`](../index.md)
 
-##### `impl<Section: $crate::marker::Copy, Symbol: $crate::marker::Copy> Copy for SymbolFlags<Section, Symbol>`
+##### `impl<Section: marker::Copy, Symbol: marker::Copy> Copy for SymbolFlags<Section, Symbol>`
 
-##### `impl<Section: $crate::fmt::Debug, Symbol: $crate::fmt::Debug> Debug for SymbolFlags<Section, Symbol>`
+##### `impl<Section: fmt::Debug, Symbol: fmt::Debug> Debug for SymbolFlags<Section, Symbol>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="symbolflags-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<Section: $crate::cmp::Eq, Symbol: $crate::cmp::Eq> Eq for SymbolFlags<Section, Symbol>`
+##### `impl<Section: cmp::Eq, Symbol: cmp::Eq> Eq for SymbolFlags<Section, Symbol>`
 
-##### `impl<Section: $crate::hash::Hash, Symbol: $crate::hash::Hash> Hash for SymbolFlags<Section, Symbol>`
+##### `impl<Section: hash::Hash, Symbol: hash::Hash> Hash for SymbolFlags<Section, Symbol>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="symbolflags-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<Section: $crate::cmp::PartialEq, Symbol: $crate::cmp::PartialEq> PartialEq for SymbolFlags<Section, Symbol>`
+##### `impl<Section: cmp::PartialEq, Symbol: cmp::PartialEq> PartialEq for SymbolFlags<Section, Symbol>`
 
-- `fn eq(self: &Self, other: &SymbolFlags<Section, Symbol>) -> bool` — [`SymbolFlags`](../index.md)
+- <span id="symbolflags-eq"></span>`fn eq(&self, other: &SymbolFlags<Section, Symbol>) -> bool` — [`SymbolFlags`](../index.md)
 
 ##### `impl<Section, Symbol> StructuralPartialEq for SymbolFlags<Section, Symbol>`
 
@@ -1171,23 +1210,23 @@ Relocation fields that are specific to each file format and architecture.
 
 ##### `impl Clone for RelocationFlags`
 
-- `fn clone(self: &Self) -> RelocationFlags` — [`RelocationFlags`](../index.md)
+- <span id="relocationflags-clone"></span>`fn clone(&self) -> RelocationFlags` — [`RelocationFlags`](../index.md)
 
 ##### `impl Copy for RelocationFlags`
 
 ##### `impl Debug for RelocationFlags`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="relocationflags-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for RelocationFlags`
 
 ##### `impl Hash for RelocationFlags`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="relocationflags-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for RelocationFlags`
 
-- `fn eq(self: &Self, other: &RelocationFlags) -> bool` — [`RelocationFlags`](../index.md)
+- <span id="relocationflags-eq"></span>`fn eq(&self, other: &RelocationFlags) -> bool` — [`RelocationFlags`](../index.md)
 
 ##### `impl StructuralPartialEq for RelocationFlags`
 

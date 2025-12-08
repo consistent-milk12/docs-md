@@ -4,6 +4,12 @@
 
 # Module `unique`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Unique`](#unique) | struct | A wrapper around a raw non-null `*mut T` that indicates that the possessor |
+
 ## Structs
 
 ### `Unique<T: ?Sized>`
@@ -38,21 +44,21 @@ for any type which upholds Unique's aliasing requirements.
 
 #### Implementations
 
-- `const unsafe fn new_unchecked(ptr: *mut T) -> Self`
+- <span id="unique-new-unchecked"></span>`const unsafe fn new_unchecked(ptr: *mut T) -> Self`
 
-- `const fn as_ptr(self: Self) -> *mut T`
+- <span id="unique-as-ptr"></span>`const fn as_ptr(self) -> *mut T`
 
-- `const fn as_non_null_ptr(self: Self) -> NonNull<T>`
+- <span id="unique-as-non-null-ptr"></span>`const fn as_non_null_ptr(self) -> NonNull<T>`
 
-- `const unsafe fn as_ref(self: &Self) -> &T`
+- <span id="unique-as-ref"></span>`const unsafe fn as_ref(&self) -> &T`
 
-- `unsafe fn as_mut(self: &mut Self) -> &mut T`
+- <span id="unique-as-mut"></span>`unsafe fn as_mut(&mut self) -> &mut T`
 
 #### Trait Implementations
 
 ##### `impl<T: ?Sized> Clone for Unique<T>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="unique-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T: ?Sized> Copy for Unique<T>`
 

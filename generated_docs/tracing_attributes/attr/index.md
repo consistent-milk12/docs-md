@@ -4,6 +4,43 @@
 
 # Module `attr`
 
+## Contents
+
+- [Modules](#modules)
+  - [`kw`](#kw)
+- [Structs](#structs)
+  - [`EventArgs`](#eventargs)
+  - [`InstrumentArgs`](#instrumentargs)
+  - [`StrArg`](#strarg)
+  - [`ExprArg`](#exprarg)
+  - [`Skips`](#skips)
+  - [`Fields`](#fields)
+  - [`Field`](#field)
+- [Enums](#enums)
+  - [`LitStrOrIdent`](#litstrorident)
+  - [`FormatMode`](#formatmode)
+  - [`FieldKind`](#fieldkind)
+  - [`FieldName`](#fieldname)
+  - [`Level`](#level)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`kw`](#kw) | mod |  |
+| [`EventArgs`](#eventargs) | struct | Arguments to `#[instrument(err(...))]` and `#[instrument(ret(...))]` which describe how the |
+| [`InstrumentArgs`](#instrumentargs) | struct |  |
+| [`StrArg`](#strarg) | struct |  |
+| [`ExprArg`](#exprarg) | struct |  |
+| [`Skips`](#skips) | struct |  |
+| [`Fields`](#fields) | struct |  |
+| [`Field`](#field) | struct |  |
+| [`LitStrOrIdent`](#litstrorident) | enum |  |
+| [`FormatMode`](#formatmode) | enum |  |
+| [`FieldKind`](#fieldkind) | enum |  |
+| [`FieldName`](#fieldname) | enum |  |
+| [`Level`](#level) | enum |  |
+
 ## Modules
 
 - [`kw`](kw/index.md) - 
@@ -24,25 +61,25 @@ return value event should be emitted.
 
 #### Implementations
 
-- `fn level(self: &Self, default: Level) -> Level` — [`Level`](#level)
+- <span id="eventargs-level"></span>`fn level(&self, default: Level) -> Level` — [`Level`](#level)
 
 #### Trait Implementations
 
 ##### `impl Clone for EventArgs`
 
-- `fn clone(self: &Self) -> EventArgs` — [`EventArgs`](#eventargs)
+- <span id="eventargs-clone"></span>`fn clone(&self) -> EventArgs` — [`EventArgs`](#eventargs)
 
 ##### `impl Debug for EventArgs`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="eventargs-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for EventArgs`
 
-- `fn default() -> EventArgs` — [`EventArgs`](#eventargs)
+- <span id="eventargs-default"></span>`fn default() -> EventArgs` — [`EventArgs`](#eventargs)
 
 ##### `impl Parse for EventArgs`
 
-- `fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
+- <span id="eventargs-parse"></span>`fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
 
 ### `InstrumentArgs`
 
@@ -70,29 +107,29 @@ struct InstrumentArgs {
 
 #### Implementations
 
-- `fn level(self: &Self) -> Level` — [`Level`](#level)
+- <span id="instrumentargs-level"></span>`fn level(&self) -> Level` — [`Level`](#level)
 
-- `fn target(self: &Self) -> impl ToTokens`
+- <span id="instrumentargs-target"></span>`fn target(&self) -> impl ToTokens`
 
-- `fn warnings(self: &Self) -> impl ToTokens`
+- <span id="instrumentargs-warnings"></span>`fn warnings(&self) -> impl ToTokens`
 
 #### Trait Implementations
 
 ##### `impl Clone for InstrumentArgs`
 
-- `fn clone(self: &Self) -> InstrumentArgs` — [`InstrumentArgs`](#instrumentargs)
+- <span id="instrumentargs-clone"></span>`fn clone(&self) -> InstrumentArgs` — [`InstrumentArgs`](#instrumentargs)
 
 ##### `impl Debug for InstrumentArgs`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="instrumentargs-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for InstrumentArgs`
 
-- `fn default() -> InstrumentArgs` — [`InstrumentArgs`](#instrumentargs)
+- <span id="instrumentargs-default"></span>`fn default() -> InstrumentArgs` — [`InstrumentArgs`](#instrumentargs)
 
 ##### `impl Parse for InstrumentArgs`
 
-- `fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
+- <span id="instrumentargs-parse"></span>`fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
 
 ### `StrArg<T>`
 
@@ -107,7 +144,7 @@ struct StrArg<T> {
 
 ##### `impl<T: Parse> Parse for StrArg<T>`
 
-- `fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
+- <span id="strarg-parse"></span>`fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
 
 ### `ExprArg<T>`
 
@@ -122,7 +159,7 @@ struct ExprArg<T> {
 
 ##### `impl<T: Parse> Parse for ExprArg<T>`
 
-- `fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
+- <span id="exprarg-parse"></span>`fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
 
 ### `Skips`
 
@@ -134,35 +171,35 @@ struct Skips(std::collections::HashSet<syn::Ident>);
 
 ##### `impl Parse for Skips`
 
-- `fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
+- <span id="skips-parse"></span>`fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
 
 ### `Fields`
 
 ```rust
-struct Fields(syn::punctuated::Punctuated<Field, $crate::token::Comma>);
+struct Fields(syn::punctuated::Punctuated<Field, token::Comma>);
 ```
 
 #### Trait Implementations
 
 ##### `impl Clone for Fields`
 
-- `fn clone(self: &Self) -> Fields` — [`Fields`](#fields)
+- <span id="fields-clone"></span>`fn clone(&self) -> Fields` — [`Fields`](#fields)
 
 ##### `impl Debug for Fields`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="fields-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Parse for Fields`
 
-- `fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
+- <span id="fields-parse"></span>`fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
 
 ##### `impl<T> Spanned for Fields`
 
-- `fn span(self: &Self) -> Span`
+- <span id="fields-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Fields`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="fields-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `Field`
 
@@ -178,23 +215,23 @@ struct Field {
 
 ##### `impl Clone for Field`
 
-- `fn clone(self: &Self) -> Field` — [`Field`](#field)
+- <span id="field-clone"></span>`fn clone(&self) -> Field` — [`Field`](#field)
 
 ##### `impl Debug for Field`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="field-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Parse for Field`
 
-- `fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
+- <span id="field-parse"></span>`fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
 
 ##### `impl<T> Spanned for Field`
 
-- `fn span(self: &Self) -> Span`
+- <span id="field-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Field`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="field-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ## Enums
 
@@ -211,23 +248,23 @@ enum LitStrOrIdent {
 
 ##### `impl Clone for LitStrOrIdent`
 
-- `fn clone(self: &Self) -> LitStrOrIdent` — [`LitStrOrIdent`](#litstrorident)
+- <span id="litstrorident-clone"></span>`fn clone(&self) -> LitStrOrIdent` — [`LitStrOrIdent`](#litstrorident)
 
 ##### `impl Debug for LitStrOrIdent`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="litstrorident-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Parse for LitStrOrIdent`
 
-- `fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
+- <span id="litstrorident-parse"></span>`fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
 
 ##### `impl<T> Spanned for LitStrOrIdent`
 
-- `fn span(self: &Self) -> Span`
+- <span id="litstrorident-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for LitStrOrIdent`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="litstrorident-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `FormatMode`
 
@@ -243,25 +280,25 @@ enum FormatMode {
 
 ##### `impl Clone for FormatMode`
 
-- `fn clone(self: &Self) -> FormatMode` — [`FormatMode`](#formatmode)
+- <span id="formatmode-clone"></span>`fn clone(&self) -> FormatMode` — [`FormatMode`](#formatmode)
 
 ##### `impl Debug for FormatMode`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="formatmode-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for FormatMode`
 
-- `fn default() -> FormatMode` — [`FormatMode`](#formatmode)
+- <span id="formatmode-default"></span>`fn default() -> FormatMode` — [`FormatMode`](#formatmode)
 
 ##### `impl Eq for FormatMode`
 
 ##### `impl Hash for FormatMode`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="formatmode-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for FormatMode`
 
-- `fn eq(self: &Self, other: &FormatMode) -> bool` — [`FormatMode`](#formatmode)
+- <span id="formatmode-eq"></span>`fn eq(&self, other: &FormatMode) -> bool` — [`FormatMode`](#formatmode)
 
 ##### `impl StructuralPartialEq for FormatMode`
 
@@ -279,34 +316,34 @@ enum FieldKind {
 
 ##### `impl Clone for FieldKind`
 
-- `fn clone(self: &Self) -> FieldKind` — [`FieldKind`](#fieldkind)
+- <span id="fieldkind-clone"></span>`fn clone(&self) -> FieldKind` — [`FieldKind`](#fieldkind)
 
 ##### `impl Debug for FieldKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="fieldkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for FieldKind`
 
 ##### `impl PartialEq for FieldKind`
 
-- `fn eq(self: &Self, other: &FieldKind) -> bool` — [`FieldKind`](#fieldkind)
+- <span id="fieldkind-eq"></span>`fn eq(&self, other: &FieldKind) -> bool` — [`FieldKind`](#fieldkind)
 
 ##### `impl<T> Spanned for FieldKind`
 
-- `fn span(self: &Self) -> Span`
+- <span id="fieldkind-span"></span>`fn span(&self) -> Span`
 
 ##### `impl StructuralPartialEq for FieldKind`
 
 ##### `impl ToTokens for FieldKind`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="fieldkind-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `FieldName`
 
 ```rust
 enum FieldName {
     Expr(syn::Expr),
-    Punctuated(syn::punctuated::Punctuated<syn::Ident, $crate::token::Dot>),
+    Punctuated(syn::punctuated::Punctuated<syn::Ident, token::Dot>),
 }
 ```
 
@@ -314,19 +351,19 @@ enum FieldName {
 
 ##### `impl Clone for FieldName`
 
-- `fn clone(self: &Self) -> FieldName` — [`FieldName`](#fieldname)
+- <span id="fieldname-clone"></span>`fn clone(&self) -> FieldName` — [`FieldName`](#fieldname)
 
 ##### `impl Debug for FieldName`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="fieldname-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> Spanned for FieldName`
 
-- `fn span(self: &Self) -> Span`
+- <span id="fieldname-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for FieldName`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="fieldname-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `Level`
 
@@ -345,21 +382,21 @@ enum Level {
 
 ##### `impl Clone for Level`
 
-- `fn clone(self: &Self) -> Level` — [`Level`](#level)
+- <span id="level-clone"></span>`fn clone(&self) -> Level` — [`Level`](#level)
 
 ##### `impl Debug for Level`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="level-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Parse for Level`
 
-- `fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
+- <span id="level-parse"></span>`fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
 
 ##### `impl<T> Spanned for Level`
 
-- `fn span(self: &Self) -> Span`
+- <span id="level-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Level`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="level-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 

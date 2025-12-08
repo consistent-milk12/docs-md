@@ -4,6 +4,12 @@
 
 # Module `util`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`device_num`](#device_num) | fn |  |
+
 ## Functions
 
 ### `device_num`

@@ -83,6 +83,16 @@ fn find_task<T>(
 
 
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`deque`](#deque) | mod |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | enum |  |
+
 ## Modules
 
 - [`deque`](deque/index.md) - 
@@ -134,51 +144,51 @@ assert_eq!(q.steal(), Steal::Empty);
 
 #### Implementations
 
-- `fn new() -> Injector<T>` — [`Injector`](#injector)
+- <span id="injector-new"></span>`fn new() -> Injector<T>` — [`Injector`](#injector)
 
-- `fn push(self: &Self, task: T)`
+- <span id="injector-push"></span>`fn push(&self, task: T)`
 
-- `fn steal(self: &Self) -> Steal<T>` — [`Steal`](#steal)
+- <span id="injector-steal"></span>`fn steal(&self) -> Steal<T>` — [`Steal`](#steal)
 
-- `fn steal_batch(self: &Self, dest: &Worker<T>) -> Steal<()>` — [`Worker`](#worker), [`Steal`](#steal)
+- <span id="injector-steal-batch"></span>`fn steal_batch(&self, dest: &Worker<T>) -> Steal<()>` — [`Worker`](#worker), [`Steal`](#steal)
 
-- `fn steal_batch_with_limit(self: &Self, dest: &Worker<T>, limit: usize) -> Steal<()>` — [`Worker`](#worker), [`Steal`](#steal)
+- <span id="injector-steal-batch-with-limit"></span>`fn steal_batch_with_limit(&self, dest: &Worker<T>, limit: usize) -> Steal<()>` — [`Worker`](#worker), [`Steal`](#steal)
 
-- `fn steal_batch_and_pop(self: &Self, dest: &Worker<T>) -> Steal<T>` — [`Worker`](#worker), [`Steal`](#steal)
+- <span id="injector-steal-batch-and-pop"></span>`fn steal_batch_and_pop(&self, dest: &Worker<T>) -> Steal<T>` — [`Worker`](#worker), [`Steal`](#steal)
 
-- `fn steal_batch_with_limit_and_pop(self: &Self, dest: &Worker<T>, limit: usize) -> Steal<T>` — [`Worker`](#worker), [`Steal`](#steal)
+- <span id="injector-steal-batch-with-limit-and-pop"></span>`fn steal_batch_with_limit_and_pop(&self, dest: &Worker<T>, limit: usize) -> Steal<T>` — [`Worker`](#worker), [`Steal`](#steal)
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="injector-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn len(self: &Self) -> usize`
+- <span id="injector-len"></span>`fn len(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl<T> Debug for Injector<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="injector-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> Default for Injector<T>`
 
-- `fn default() -> Self`
+- <span id="injector-default"></span>`fn default() -> Self`
 
 ##### `impl<T> Drop for Injector<T>`
 
-- `fn drop(self: &mut Self)`
+- <span id="injector-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<T> Pointable for Injector<T>`
 
-- `const ALIGN: usize`
+- <span id="injector-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="injector-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="injector-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="injector-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="injector-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="injector-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T: Send> Send for Injector<T>`
 
@@ -226,43 +236,43 @@ assert_eq!(s.steal(), Steal::Empty);
 
 #### Implementations
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="stealer-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn len(self: &Self) -> usize`
+- <span id="stealer-len"></span>`fn len(&self) -> usize`
 
-- `fn steal(self: &Self) -> Steal<T>` — [`Steal`](#steal)
+- <span id="stealer-steal"></span>`fn steal(&self) -> Steal<T>` — [`Steal`](#steal)
 
-- `fn steal_batch(self: &Self, dest: &Worker<T>) -> Steal<()>` — [`Worker`](#worker), [`Steal`](#steal)
+- <span id="stealer-steal-batch"></span>`fn steal_batch(&self, dest: &Worker<T>) -> Steal<()>` — [`Worker`](#worker), [`Steal`](#steal)
 
-- `fn steal_batch_with_limit(self: &Self, dest: &Worker<T>, limit: usize) -> Steal<()>` — [`Worker`](#worker), [`Steal`](#steal)
+- <span id="stealer-steal-batch-with-limit"></span>`fn steal_batch_with_limit(&self, dest: &Worker<T>, limit: usize) -> Steal<()>` — [`Worker`](#worker), [`Steal`](#steal)
 
-- `fn steal_batch_and_pop(self: &Self, dest: &Worker<T>) -> Steal<T>` — [`Worker`](#worker), [`Steal`](#steal)
+- <span id="stealer-steal-batch-and-pop"></span>`fn steal_batch_and_pop(&self, dest: &Worker<T>) -> Steal<T>` — [`Worker`](#worker), [`Steal`](#steal)
 
-- `fn steal_batch_with_limit_and_pop(self: &Self, dest: &Worker<T>, limit: usize) -> Steal<T>` — [`Worker`](#worker), [`Steal`](#steal)
+- <span id="stealer-steal-batch-with-limit-and-pop"></span>`fn steal_batch_with_limit_and_pop(&self, dest: &Worker<T>, limit: usize) -> Steal<T>` — [`Worker`](#worker), [`Steal`](#steal)
 
 #### Trait Implementations
 
 ##### `impl<T> Clone for Stealer<T>`
 
-- `fn clone(self: &Self) -> Stealer<T>` — [`Stealer`](#stealer)
+- <span id="stealer-clone"></span>`fn clone(&self) -> Stealer<T>` — [`Stealer`](#stealer)
 
 ##### `impl<T> Debug for Stealer<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="stealer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> Pointable for Stealer<T>`
 
-- `const ALIGN: usize`
+- <span id="stealer-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="stealer-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="stealer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="stealer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="stealer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="stealer-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T: Send> Send for Stealer<T>`
 
@@ -340,43 +350,43 @@ assert_eq!(w.pop(), Some(2));
 
 #### Implementations
 
-- `fn new_fifo() -> Worker<T>` — [`Worker`](#worker)
+- <span id="worker-new-fifo"></span>`fn new_fifo() -> Worker<T>` — [`Worker`](#worker)
 
-- `fn new_lifo() -> Worker<T>` — [`Worker`](#worker)
+- <span id="worker-new-lifo"></span>`fn new_lifo() -> Worker<T>` — [`Worker`](#worker)
 
-- `fn stealer(self: &Self) -> Stealer<T>` — [`Stealer`](#stealer)
+- <span id="worker-stealer"></span>`fn stealer(&self) -> Stealer<T>` — [`Stealer`](#stealer)
 
-- `unsafe fn resize(self: &Self, new_cap: usize)`
+- <span id="worker-resize"></span>`unsafe fn resize(&self, new_cap: usize)`
 
-- `fn reserve(self: &Self, reserve_cap: usize)`
+- <span id="worker-reserve"></span>`fn reserve(&self, reserve_cap: usize)`
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="worker-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn len(self: &Self) -> usize`
+- <span id="worker-len"></span>`fn len(&self) -> usize`
 
-- `fn push(self: &Self, task: T)`
+- <span id="worker-push"></span>`fn push(&self, task: T)`
 
-- `fn pop(self: &Self) -> Option<T>`
+- <span id="worker-pop"></span>`fn pop(&self) -> Option<T>`
 
 #### Trait Implementations
 
 ##### `impl<T> Debug for Worker<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="worker-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> Pointable for Worker<T>`
 
-- `const ALIGN: usize`
+- <span id="worker-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="worker-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="worker-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="worker-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="worker-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="worker-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T: Send> Send for Worker<T>`
 
@@ -427,51 +437,51 @@ assert_eq!(collect(vec![Retry, Empty]).or_else(|| Success(1)), Success(1));
 
 #### Implementations
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="steal-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn is_success(self: &Self) -> bool`
+- <span id="steal-is-success"></span>`fn is_success(&self) -> bool`
 
-- `fn is_retry(self: &Self) -> bool`
+- <span id="steal-is-retry"></span>`fn is_retry(&self) -> bool`
 
-- `fn success(self: Self) -> Option<T>`
+- <span id="steal-success"></span>`fn success(self) -> Option<T>`
 
-- `fn or_else<F>(self: Self, f: F) -> Steal<T>` — [`Steal`](#steal)
+- <span id="steal-or-else"></span>`fn or_else<F>(self, f: F) -> Steal<T>` — [`Steal`](#steal)
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for Steal<T>`
+##### `impl<T: clone::Clone> Clone for Steal<T>`
 
-- `fn clone(self: &Self) -> Steal<T>` — [`Steal`](#steal)
+- <span id="steal-clone"></span>`fn clone(&self) -> Steal<T>` — [`Steal`](#steal)
 
-##### `impl<T: $crate::marker::Copy> Copy for Steal<T>`
+##### `impl<T: marker::Copy> Copy for Steal<T>`
 
 ##### `impl<T> Debug for Steal<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="steal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq> Eq for Steal<T>`
+##### `impl<T: cmp::Eq> Eq for Steal<T>`
 
 ##### `impl<T> FromIterator for Steal<T>`
 
-- `fn from_iter<I>(iter: I) -> Steal<T>` — [`Steal`](#steal)
+- <span id="steal-from-iter"></span>`fn from_iter<I>(iter: I) -> Steal<T>` — [`Steal`](#steal)
 
-##### `impl<T: $crate::cmp::PartialEq> PartialEq for Steal<T>`
+##### `impl<T: cmp::PartialEq> PartialEq for Steal<T>`
 
-- `fn eq(self: &Self, other: &Steal<T>) -> bool` — [`Steal`](#steal)
+- <span id="steal-eq"></span>`fn eq(&self, other: &Steal<T>) -> bool` — [`Steal`](#steal)
 
 ##### `impl<T> Pointable for Steal<T>`
 
-- `const ALIGN: usize`
+- <span id="steal-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="steal-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="steal-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="steal-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="steal-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="steal-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T> StructuralPartialEq for Steal<T>`
 

@@ -4,6 +4,12 @@
 
 # Module `mmap`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Mmap`](#mmap) | struct |  |
+
 ## Structs
 
 ### `Mmap`
@@ -17,21 +23,21 @@ struct Mmap {
 
 #### Implementations
 
-- `unsafe fn map(file: &File, len: usize, offset: u64) -> Option<Mmap>` — [`Mmap`](#mmap)
+- <span id="mmap-map"></span>`unsafe fn map(file: &File, len: usize, offset: u64) -> Option<Mmap>` — [`Mmap`](#mmap)
 
 #### Trait Implementations
 
 ##### `impl Deref for Mmap`
 
-- `type Target = [u8]`
+- <span id="mmap-target"></span>`type Target = [u8]`
 
-- `fn deref(self: &Self) -> &[u8]`
+- <span id="mmap-deref"></span>`fn deref(&self) -> &[u8]`
 
 ##### `impl Drop for Mmap`
 
-- `fn drop(self: &mut Self)`
+- <span id="mmap-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<P, T> Receiver for Mmap`
 
-- `type Target = T`
+- <span id="mmap-target"></span>`type Target = T`
 

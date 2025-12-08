@@ -4,6 +4,46 @@
 
 # Module `atomic`
 
+## Contents
+
+- [Structs](#structs)
+  - [`CompareExchangeError`](#compareexchangeerror)
+  - [`Array`](#array)
+  - [`Atomic`](#atomic)
+  - [`Owned`](#owned)
+  - [`Shared`](#shared)
+- [Traits](#traits)
+  - [`CompareAndSetOrdering`](#compareandsetordering)
+  - [`Pointable`](#pointable)
+  - [`Pointer`](#pointer)
+- [Functions](#functions)
+  - [`strongest_failure_ordering`](#strongest_failure_ordering)
+  - [`low_bits`](#low_bits)
+  - [`ensure_aligned`](#ensure_aligned)
+  - [`compose_tag`](#compose_tag)
+  - [`decompose_tag`](#decompose_tag)
+- [Type Aliases](#type-aliases)
+  - [`CompareAndSetError`](#compareandseterror)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`CompareExchangeError`](#compareexchangeerror) | struct | The error returned on failed compare-and-swap operation. |
+| [`Array`](#array) | struct | Array with size. |
+| [`Atomic`](#atomic) | struct | An atomic pointer that can be safely shared between threads. |
+| [`Owned`](#owned) | struct | An owned heap-allocated object. |
+| [`Shared`](#shared) | struct | A pointer to an object protected by the epoch GC. |
+| [`CompareAndSetOrdering`](#compareandsetordering) | trait | Memory orderings for compare-and-set operations. |
+| [`Pointable`](#pointable) | trait | Types that are pointed to by a single word. |
+| [`Pointer`](#pointer) | trait | A trait for either `Owned` or `Shared` pointers. |
+| [`strongest_failure_ordering`](#strongest_failure_ordering) | fn | Given ordering for the success case in a compare-exchange operation, returns the strongest |
+| [`low_bits`](#low_bits) | fn | Returns a bitmask containing the unused least significant bits of an aligned pointer to `T`. |
+| [`ensure_aligned`](#ensure_aligned) | fn | Panics if the pointer is not properly unaligned. |
+| [`compose_tag`](#compose_tag) | fn | Given a tagged pointer `data`, returns the same pointer, but tagged with `tag`. |
+| [`decompose_tag`](#decompose_tag) | fn | Decomposes a tagged pointer `data` into the pointer and the tag. |
+| [`CompareAndSetError`](#compareandseterror) | type | The error returned on failed compare-and-set operation. |
+
 ## Structs
 
 ### `CompareExchangeError<'g, T: ?Sized + Pointable, P: Pointer<T>>`
@@ -31,21 +71,21 @@ The error returned on failed compare-and-swap operation.
 
 ##### `impl<T, P: Pointer<T> + fmt::Debug> Debug for CompareExchangeError<'_, T, P>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="compareexchangeerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> Pointable for CompareExchangeError<'g, T, P>`
 
-- `const ALIGN: usize`
+- <span id="compareexchangeerror-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="compareexchangeerror-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
+- <span id="compareexchangeerror-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="compareexchangeerror-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="compareexchangeerror-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="compareexchangeerror-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `Array<T>`
 
@@ -85,23 +125,23 @@ Elements are not present in the type, but they will be in the allocation.
 
 #### Implementations
 
-- `fn layout(len: usize) -> Layout`
+- <span id="array-layout"></span>`fn layout(len: usize) -> Layout`
 
 #### Trait Implementations
 
 ##### `impl<T> Pointable for Array<T>`
 
-- `const ALIGN: usize`
+- <span id="array-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="array-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
+- <span id="array-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="array-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="array-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="array-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `Atomic<T: ?Sized + Pointable>`
 
@@ -124,71 +164,39 @@ Crossbeam supports dynamically sized types.  See [`Pointable`](../index.md) for 
 
 #### Implementations
 
-- `fn init(init: <T as >::Init) -> Atomic<T>` — [`Pointable`](../index.md), [`Atomic`](../index.md)
-
-- `fn from_usize(data: usize) -> Self`
-
-- `const fn null() -> Atomic<T>` — [`Atomic`](../index.md)
-
-- `fn load<'g>(self: &Self, ord: Ordering, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](../index.md), [`Shared`](../index.md)
-
-- `fn load_consume<'g>(self: &Self, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](../index.md), [`Shared`](../index.md)
-
-- `fn store<P: Pointer<T>>(self: &Self, new: P, ord: Ordering)`
-
-- `fn swap<'g, P: Pointer<T>>(self: &Self, new: P, ord: Ordering, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](../index.md), [`Shared`](../index.md)
-
-- `fn compare_exchange<'g, P>(self: &Self, current: Shared<'_, T>, new: P, success: Ordering, failure: Ordering, _: &'g Guard) -> Result<Shared<'g, T>, CompareExchangeError<'g, T, P>>` — [`Shared`](../index.md), [`Guard`](../index.md), [`CompareExchangeError`](../index.md)
-
-- `fn compare_exchange_weak<'g, P>(self: &Self, current: Shared<'_, T>, new: P, success: Ordering, failure: Ordering, _: &'g Guard) -> Result<Shared<'g, T>, CompareExchangeError<'g, T, P>>` — [`Shared`](../index.md), [`Guard`](../index.md), [`CompareExchangeError`](../index.md)
-
-- `fn fetch_update<'g, F>(self: &Self, set_order: Ordering, fail_order: Ordering, guard: &'g Guard, func: F) -> Result<Shared<'g, T>, Shared<'g, T>>` — [`Guard`](../index.md), [`Shared`](../index.md)
-
-- `fn compare_and_set<'g, O, P>(self: &Self, current: Shared<'_, T>, new: P, ord: O, guard: &'g Guard) -> Result<Shared<'g, T>, CompareAndSetError<'g, T, P>>` — [`Shared`](../index.md), [`Guard`](../index.md), [`CompareAndSetError`](../index.md)
-
-- `fn compare_and_set_weak<'g, O, P>(self: &Self, current: Shared<'_, T>, new: P, ord: O, guard: &'g Guard) -> Result<Shared<'g, T>, CompareAndSetError<'g, T, P>>` — [`Shared`](../index.md), [`Guard`](../index.md), [`CompareAndSetError`](../index.md)
-
-- `fn fetch_and<'g>(self: &Self, val: usize, ord: Ordering, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](../index.md), [`Shared`](../index.md)
-
-- `fn fetch_or<'g>(self: &Self, val: usize, ord: Ordering, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](../index.md), [`Shared`](../index.md)
-
-- `fn fetch_xor<'g>(self: &Self, val: usize, ord: Ordering, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](../index.md), [`Shared`](../index.md)
-
-- `unsafe fn into_owned(self: Self) -> Owned<T>` — [`Owned`](../index.md)
-
-- `unsafe fn try_into_owned(self: Self) -> Option<Owned<T>>` — [`Owned`](../index.md)
+- <span id="atomic-new"></span>`fn new(init: T) -> Atomic<T>` — [`Atomic`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<T: ?Sized + Pointable> Clone for Atomic<T>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="atomic-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T: ?Sized + Pointable> Debug for Atomic<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="atomic-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + Pointable> Default for Atomic<T>`
 
-- `fn default() -> Self`
+- <span id="atomic-default"></span>`fn default() -> Self`
 
 ##### `impl<T> Pointable for Atomic<T>`
 
-- `const ALIGN: usize`
+- <span id="atomic-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="atomic-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
+- <span id="atomic-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="atomic-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="atomic-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="atomic-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T: ?Sized + Pointable> Pointer for Atomic<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="atomic-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + Pointable + Send + Sync> Send for Atomic<T>`
 
@@ -212,69 +220,69 @@ least significant bits of the address.
 
 #### Implementations
 
-- `fn init(init: <T as >::Init) -> Owned<T>` — [`Pointable`](../index.md), [`Owned`](../index.md)
+- <span id="owned-init"></span>`fn init(init: <T as >::Init) -> Owned<T>` — [`Pointable`](../index.md), [`Owned`](../index.md)
 
-- `fn into_shared<'g>(self: Self, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](../index.md), [`Shared`](../index.md)
+- <span id="owned-into-shared"></span>`fn into_shared<'g>(self, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](../index.md), [`Shared`](../index.md)
 
-- `fn tag(self: &Self) -> usize`
+- <span id="owned-tag"></span>`fn tag(&self) -> usize`
 
-- `fn with_tag(self: Self, tag: usize) -> Owned<T>` — [`Owned`](../index.md)
+- <span id="owned-with-tag"></span>`fn with_tag(self, tag: usize) -> Owned<T>` — [`Owned`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<T: ?Sized + Pointable> AsMut for Owned<T>`
 
-- `fn as_mut(self: &mut Self) -> &mut T`
+- <span id="owned-as-mut"></span>`fn as_mut(&mut self) -> &mut T`
 
 ##### `impl<T: ?Sized + Pointable> AsRef for Owned<T>`
 
-- `fn as_ref(self: &Self) -> &T`
+- <span id="owned-as-ref"></span>`fn as_ref(&self) -> &T`
 
 ##### `impl<T: Clone> Clone for Owned<T>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="owned-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T: ?Sized + Pointable> Debug for Owned<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="owned-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + Pointable> Deref for Owned<T>`
 
-- `type Target = T`
+- <span id="owned-target"></span>`type Target = T`
 
-- `fn deref(self: &Self) -> &T`
+- <span id="owned-deref"></span>`fn deref(&self) -> &T`
 
 ##### `impl<T: ?Sized + Pointable> DerefMut for Owned<T>`
 
-- `fn deref_mut(self: &mut Self) -> &mut T`
+- <span id="owned-deref-mut"></span>`fn deref_mut(&mut self) -> &mut T`
 
 ##### `impl<T: ?Sized + Pointable> Drop for Owned<T>`
 
-- `fn drop(self: &mut Self)`
+- <span id="owned-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<T> Pointable for Owned<T>`
 
-- `const ALIGN: usize`
+- <span id="owned-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="owned-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
+- <span id="owned-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="owned-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="owned-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="owned-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T: ?Sized + Pointable> Pointer for Owned<T>`
 
-- `fn into_usize(self: Self) -> usize`
+- <span id="owned-into-usize"></span>`fn into_usize(self) -> usize`
 
-- `unsafe fn from_usize(data: usize) -> Self`
+- <span id="owned-from-usize"></span>`unsafe fn from_usize(data: usize) -> Self`
 
 ##### `impl<P, T> Receiver for Owned<T>`
 
-- `type Target = T`
+- <span id="owned-target"></span>`type Target = T`
 
 ### `Shared<'g, T: 'g + ?Sized + Pointable>`
 
@@ -294,55 +302,73 @@ least significant bits of the address.
 
 #### Implementations
 
-- `fn as_raw(self: &Self) -> *const T`
+- <span id="shared-null"></span>`fn null() -> Shared<'g, T>` — [`Shared`](../index.md)
+
+- <span id="shared-is-null"></span>`fn is_null(&self) -> bool`
+
+- <span id="shared-deref"></span>`unsafe fn deref(&self) -> &'g T`
+
+- <span id="shared-deref-mut"></span>`unsafe fn deref_mut(&mut self) -> &'g mut T`
+
+- <span id="shared-as-ref"></span>`unsafe fn as_ref(&self) -> Option<&'g T>`
+
+- <span id="shared-into-owned"></span>`unsafe fn into_owned(self) -> Owned<T>` — [`Owned`](../index.md)
+
+- <span id="shared-try-into-owned"></span>`unsafe fn try_into_owned(self) -> Option<Owned<T>>` — [`Owned`](../index.md)
+
+- <span id="shared-tag"></span>`fn tag(&self) -> usize`
+
+- <span id="shared-with-tag"></span>`fn with_tag(&self, tag: usize) -> Shared<'g, T>` — [`Shared`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<T: ?Sized + Pointable> Clone for Shared<'_, T>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="shared-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T: ?Sized + Pointable> Copy for Shared<'_, T>`
 
 ##### `impl<T: ?Sized + Pointable> Debug for Shared<'_, T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="shared-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + Pointable> Default for Shared<'_, T>`
 
-- `fn default() -> Self`
+- <span id="shared-default"></span>`fn default() -> Self`
 
 ##### `impl<T: ?Sized + Pointable> Eq for Shared<'_, T>`
 
 ##### `impl<T: ?Sized + Pointable> Ord for Shared<'_, T>`
 
-- `fn cmp(self: &Self, other: &Self) -> cmp::Ordering`
+- <span id="shared-cmp"></span>`fn cmp(&self, other: &Self) -> cmp::Ordering`
 
 ##### `impl<'g, T: ?Sized + Pointable> PartialEq for Shared<'g, T>`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="shared-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<'g, T: ?Sized + Pointable> PartialOrd for Shared<'g, T>`
 
-- `fn partial_cmp(self: &Self, other: &Self) -> Option<cmp::Ordering>`
+- <span id="shared-partial-cmp"></span>`fn partial_cmp(&self, other: &Self) -> Option<cmp::Ordering>`
 
 ##### `impl<T> Pointable for Shared<'g, T>`
 
-- `const ALIGN: usize`
+- <span id="shared-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="shared-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
+- <span id="shared-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="shared-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="shared-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="shared-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T: ?Sized + Pointable> Pointer for Shared<'_, T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="shared-into-usize"></span>`fn into_usize(self) -> usize`
+
+- <span id="shared-from-usize"></span>`unsafe fn from_usize(data: usize) -> Self`
 
 ## Traits
 
@@ -366,11 +392,11 @@ The two ways of specifying orderings for compare-and-set are:
 
 #### Required Methods
 
-- `fn success(self: &Self) -> Ordering`
+- `fn success(&self) -> Ordering`
 
   The ordering of the operation when it succeeds.
 
-- `fn failure(self: &Self) -> Ordering`
+- `fn failure(&self) -> Ordering`
 
   The ordering of the operation when it fails.
 
@@ -433,7 +459,7 @@ A trait for either `Owned` or `Shared` pointers.
 
 #### Required Methods
 
-- `fn into_usize(self: Self) -> usize`
+- `fn into_usize(self) -> usize`
 
   Returns the machine representation of the pointer.
 

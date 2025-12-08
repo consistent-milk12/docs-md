@@ -4,6 +4,18 @@
 
 # Module `attributes`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`AttributesSection`](#attributessection) | struct | An ELF attributes section. |
+| [`AttributesSubsectionIterator`](#attributessubsectioniterator) | struct | An iterator for the subsections in an [`AttributesSection`]. |
+| [`AttributesSubsection`](#attributessubsection) | struct | A subsection in an [`AttributesSection`]. |
+| [`AttributesSubsubsectionIterator`](#attributessubsubsectioniterator) | struct | An iterator for the sub-subsections in an [`AttributesSubsection`]. |
+| [`AttributesSubsubsection`](#attributessubsubsection) | struct | A sub-subsection in an [`AttributesSubsection`]. |
+| [`AttributeIndexIterator`](#attributeindexiterator) | struct | An iterator over the indices in an [`AttributesSubsubsection`]. |
+| [`AttributeReader`](#attributereader) | struct | A parser for the attributes in an [`AttributesSubsubsection`]. |
+
 ## Structs
 
 ### `AttributesSection<'data, Elf: FileHeader>`
@@ -27,21 +39,21 @@ and [`SectionHeader::gnu_attributes`](super::SectionHeader::gnu_attributes).
 
 #### Implementations
 
-- `fn new(endian: <Elf as >::Endian, data: &'data [u8]) -> Result<Self>` — [`FileHeader`](../index.md), [`Result`](../../../index.md)
+- <span id="attributessection-new"></span>`fn new(endian: <Elf as >::Endian, data: &'data [u8]) -> Result<Self>` — [`FileHeader`](../index.md), [`Result`](../../../index.md)
 
-- `fn version(self: &Self) -> u8`
+- <span id="attributessection-version"></span>`fn version(&self) -> u8`
 
-- `fn subsections(self: &Self) -> Result<AttributesSubsectionIterator<'data, Elf>>` — [`Result`](../../../index.md), [`AttributesSubsectionIterator`](../index.md)
+- <span id="attributessection-subsections"></span>`fn subsections(&self) -> Result<AttributesSubsectionIterator<'data, Elf>>` — [`Result`](../../../index.md), [`AttributesSubsectionIterator`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<'data, Elf: $crate::clone::Clone + FileHeader> Clone for AttributesSection<'data, Elf>`
+##### `impl<'data, Elf: clone::Clone + FileHeader> Clone for AttributesSection<'data, Elf>`
 
-- `fn clone(self: &Self) -> AttributesSection<'data, Elf>` — [`AttributesSection`](../index.md)
+- <span id="attributessection-clone"></span>`fn clone(&self) -> AttributesSection<'data, Elf>` — [`AttributesSection`](../index.md)
 
-##### `impl<'data, Elf: $crate::fmt::Debug + FileHeader> Debug for AttributesSection<'data, Elf>`
+##### `impl<'data, Elf: fmt::Debug + FileHeader> Debug for AttributesSection<'data, Elf>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="attributessection-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `AttributesSubsectionIterator<'data, Elf: FileHeader>`
 
@@ -56,33 +68,33 @@ An iterator for the subsections in an [`AttributesSection`](../index.md).
 
 #### Implementations
 
-- `fn next(self: &mut Self) -> Result<Option<AttributesSubsection<'data, Elf>>>` — [`Result`](../../../index.md), [`AttributesSubsection`](../index.md)
+- <span id="attributessubsectioniterator-next"></span>`fn next(&mut self) -> Result<Option<AttributesSubsection<'data, Elf>>>` — [`Result`](../../../index.md), [`AttributesSubsection`](../index.md)
 
-- `fn parse(self: &mut Self) -> Result<AttributesSubsection<'data, Elf>>` — [`Result`](../../../index.md), [`AttributesSubsection`](../index.md)
+- <span id="attributessubsectioniterator-parse"></span>`fn parse(&mut self) -> Result<AttributesSubsection<'data, Elf>>` — [`Result`](../../../index.md), [`AttributesSubsection`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<'data, Elf: $crate::clone::Clone + FileHeader> Clone for AttributesSubsectionIterator<'data, Elf>`
+##### `impl<'data, Elf: clone::Clone + FileHeader> Clone for AttributesSubsectionIterator<'data, Elf>`
 
-- `fn clone(self: &Self) -> AttributesSubsectionIterator<'data, Elf>` — [`AttributesSubsectionIterator`](../index.md)
+- <span id="attributessubsectioniterator-clone"></span>`fn clone(&self) -> AttributesSubsectionIterator<'data, Elf>` — [`AttributesSubsectionIterator`](../index.md)
 
-##### `impl<'data, Elf: $crate::fmt::Debug + FileHeader> Debug for AttributesSubsectionIterator<'data, Elf>`
+##### `impl<'data, Elf: fmt::Debug + FileHeader> Debug for AttributesSubsectionIterator<'data, Elf>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="attributessubsectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for AttributesSubsectionIterator<'data, Elf>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="attributessubsectioniterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="attributessubsectioniterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="attributessubsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, Elf: FileHeader> Iterator for AttributesSubsectionIterator<'data, Elf>`
 
-- `type Item = Result<AttributesSubsection<'data, Elf>, Error>`
+- <span id="attributessubsectioniterator-item"></span>`type Item = Result<AttributesSubsection<'data, Elf>, Error>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="attributessubsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `AttributesSubsection<'data, Elf: FileHeader>`
 
@@ -102,21 +114,21 @@ A subsection is identified by a vendor name.  It contains a series of
 
 #### Implementations
 
-- `fn length(self: &Self) -> u32`
+- <span id="attributessubsection-length"></span>`fn length(&self) -> u32`
 
-- `fn vendor(self: &Self) -> &'data [u8]`
+- <span id="attributessubsection-vendor"></span>`fn vendor(&self) -> &'data [u8]`
 
-- `fn subsubsections(self: &Self) -> AttributesSubsubsectionIterator<'data, Elf>` — [`AttributesSubsubsectionIterator`](../index.md)
+- <span id="attributessubsection-subsubsections"></span>`fn subsubsections(&self) -> AttributesSubsubsectionIterator<'data, Elf>` — [`AttributesSubsubsectionIterator`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<'data, Elf: $crate::clone::Clone + FileHeader> Clone for AttributesSubsection<'data, Elf>`
+##### `impl<'data, Elf: clone::Clone + FileHeader> Clone for AttributesSubsection<'data, Elf>`
 
-- `fn clone(self: &Self) -> AttributesSubsection<'data, Elf>` — [`AttributesSubsection`](../index.md)
+- <span id="attributessubsection-clone"></span>`fn clone(&self) -> AttributesSubsection<'data, Elf>` — [`AttributesSubsection`](../index.md)
 
-##### `impl<'data, Elf: $crate::fmt::Debug + FileHeader> Debug for AttributesSubsection<'data, Elf>`
+##### `impl<'data, Elf: fmt::Debug + FileHeader> Debug for AttributesSubsection<'data, Elf>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="attributessubsection-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `AttributesSubsubsectionIterator<'data, Elf: FileHeader>`
 
@@ -131,33 +143,33 @@ An iterator for the sub-subsections in an [`AttributesSubsection`](../index.md).
 
 #### Implementations
 
-- `fn next(self: &mut Self) -> Result<Option<AttributesSubsubsection<'data>>>` — [`Result`](../../../index.md), [`AttributesSubsubsection`](../index.md)
+- <span id="attributessubsubsectioniterator-next"></span>`fn next(&mut self) -> Result<Option<AttributesSubsubsection<'data>>>` — [`Result`](../../../index.md), [`AttributesSubsubsection`](../index.md)
 
-- `fn parse(self: &mut Self) -> Result<AttributesSubsubsection<'data>>` — [`Result`](../../../index.md), [`AttributesSubsubsection`](../index.md)
+- <span id="attributessubsubsectioniterator-parse"></span>`fn parse(&mut self) -> Result<AttributesSubsubsection<'data>>` — [`Result`](../../../index.md), [`AttributesSubsubsection`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<'data, Elf: $crate::clone::Clone + FileHeader> Clone for AttributesSubsubsectionIterator<'data, Elf>`
+##### `impl<'data, Elf: clone::Clone + FileHeader> Clone for AttributesSubsubsectionIterator<'data, Elf>`
 
-- `fn clone(self: &Self) -> AttributesSubsubsectionIterator<'data, Elf>` — [`AttributesSubsubsectionIterator`](../index.md)
+- <span id="attributessubsubsectioniterator-clone"></span>`fn clone(&self) -> AttributesSubsubsectionIterator<'data, Elf>` — [`AttributesSubsubsectionIterator`](../index.md)
 
-##### `impl<'data, Elf: $crate::fmt::Debug + FileHeader> Debug for AttributesSubsubsectionIterator<'data, Elf>`
+##### `impl<'data, Elf: fmt::Debug + FileHeader> Debug for AttributesSubsubsectionIterator<'data, Elf>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="attributessubsubsectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for AttributesSubsubsectionIterator<'data, Elf>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="attributessubsubsectioniterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="attributessubsubsectioniterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="attributessubsubsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, Elf: FileHeader> Iterator for AttributesSubsubsectionIterator<'data, Elf>`
 
-- `type Item = Result<AttributesSubsubsection<'data>, Error>`
+- <span id="attributessubsubsectioniterator-item"></span>`type Item = Result<AttributesSubsubsection<'data>, Error>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="attributessubsubsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `AttributesSubsubsection<'data>`
 
@@ -177,27 +189,27 @@ followed by a series of attributes.
 
 #### Implementations
 
-- `fn tag(self: &Self) -> u8`
+- <span id="attributessubsubsection-tag"></span>`fn tag(&self) -> u8`
 
-- `fn length(self: &Self) -> u32`
+- <span id="attributessubsubsection-length"></span>`fn length(&self) -> u32`
 
-- `fn indices_data(self: &Self) -> &'data [u8]`
+- <span id="attributessubsubsection-indices-data"></span>`fn indices_data(&self) -> &'data [u8]`
 
-- `fn indices(self: &Self) -> AttributeIndexIterator<'data>` — [`AttributeIndexIterator`](../index.md)
+- <span id="attributessubsubsection-indices"></span>`fn indices(&self) -> AttributeIndexIterator<'data>` — [`AttributeIndexIterator`](../index.md)
 
-- `fn attributes_data(self: &Self) -> &'data [u8]`
+- <span id="attributessubsubsection-attributes-data"></span>`fn attributes_data(&self) -> &'data [u8]`
 
-- `fn attributes(self: &Self) -> AttributeReader<'data>` — [`AttributeReader`](../index.md)
+- <span id="attributessubsubsection-attributes"></span>`fn attributes(&self) -> AttributeReader<'data>` — [`AttributeReader`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'data> Clone for AttributesSubsubsection<'data>`
 
-- `fn clone(self: &Self) -> AttributesSubsubsection<'data>` — [`AttributesSubsubsection`](../index.md)
+- <span id="attributessubsubsection-clone"></span>`fn clone(&self) -> AttributesSubsubsection<'data>` — [`AttributesSubsubsection`](../index.md)
 
 ##### `impl<'data> Debug for AttributesSubsubsection<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="attributessubsubsection-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `AttributeIndexIterator<'data>`
 
@@ -211,33 +223,33 @@ An iterator over the indices in an [`AttributesSubsubsection`](../index.md).
 
 #### Implementations
 
-- `fn next(self: &mut Self) -> Result<Option<u32>>` — [`Result`](../../../index.md)
+- <span id="attributeindexiterator-next"></span>`fn next(&mut self) -> Result<Option<u32>>` — [`Result`](../../../index.md)
 
-- `fn parse(self: &mut Self) -> Result<u32>` — [`Result`](../../../index.md)
+- <span id="attributeindexiterator-parse"></span>`fn parse(&mut self) -> Result<u32>` — [`Result`](../../../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'data> Clone for AttributeIndexIterator<'data>`
 
-- `fn clone(self: &Self) -> AttributeIndexIterator<'data>` — [`AttributeIndexIterator`](../index.md)
+- <span id="attributeindexiterator-clone"></span>`fn clone(&self) -> AttributeIndexIterator<'data>` — [`AttributeIndexIterator`](../index.md)
 
 ##### `impl<'data> Debug for AttributeIndexIterator<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="attributeindexiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for AttributeIndexIterator<'data>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="attributeindexiterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="attributeindexiterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="attributeindexiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data> Iterator for AttributeIndexIterator<'data>`
 
-- `type Item = Result<u32, Error>`
+- <span id="attributeindexiterator-item"></span>`type Item = Result<u32, Error>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="attributeindexiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `AttributeReader<'data>`
 
@@ -253,19 +265,19 @@ The parser relies on the caller to know the format of the data for each attribut
 
 #### Implementations
 
-- `fn read_tag(self: &mut Self) -> Result<Option<u64>>` — [`Result`](../../../index.md)
+- <span id="attributereader-read-tag"></span>`fn read_tag(&mut self) -> Result<Option<u64>>` — [`Result`](../../../index.md)
 
-- `fn read_integer(self: &mut Self) -> Result<u64>` — [`Result`](../../../index.md)
+- <span id="attributereader-read-integer"></span>`fn read_integer(&mut self) -> Result<u64>` — [`Result`](../../../index.md)
 
-- `fn read_string(self: &mut Self) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
+- <span id="attributereader-read-string"></span>`fn read_string(&mut self) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'data> Clone for AttributeReader<'data>`
 
-- `fn clone(self: &Self) -> AttributeReader<'data>` — [`AttributeReader`](../index.md)
+- <span id="attributereader-clone"></span>`fn clone(&self) -> AttributeReader<'data>` — [`AttributeReader`](../index.md)
 
 ##### `impl<'data> Debug for AttributeReader<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="attributereader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

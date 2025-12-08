@@ -4,6 +4,17 @@
 
 # Module `fragment`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Expr`](#expr) | struct | Interpolate a fragment in place of an expression. |
+| [`Stmts`](#stmts) | struct | Interpolate a fragment as the statements of a block. |
+| [`Match`](#match) | struct | Interpolate a fragment as the value part of a `match` expression. |
+| [`Fragment`](#fragment) | enum |  |
+| [`quote_expr!`](#quote_expr) | macro |  |
+| [`quote_block!`](#quote_block) | macro |  |
+
 ## Structs
 
 ### `Expr`
@@ -19,11 +30,11 @@ Block fragments in curly braces.
 
 ##### `impl<T> Spanned for Expr`
 
-- `fn span(self: &Self) -> Span`
+- <span id="expr-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Expr`
 
-- `fn to_tokens(self: &Self, out: &mut TokenStream)`
+- <span id="expr-to-tokens"></span>`fn to_tokens(&self, out: &mut TokenStream)`
 
 ### `Stmts`
 
@@ -37,11 +48,11 @@ Interpolate a fragment as the statements of a block.
 
 ##### `impl<T> Spanned for Stmts`
 
-- `fn span(self: &Self) -> Span`
+- <span id="stmts-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Stmts`
 
-- `fn to_tokens(self: &Self, out: &mut TokenStream)`
+- <span id="stmts-to-tokens"></span>`fn to_tokens(&self, out: &mut TokenStream)`
 
 ### `Match`
 
@@ -56,11 +67,11 @@ involves putting a comma after expressions and curly braces around blocks.
 
 ##### `impl<T> Spanned for Match`
 
-- `fn span(self: &Self) -> Span`
+- <span id="match-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Match`
 
-- `fn to_tokens(self: &Self, out: &mut TokenStream)`
+- <span id="match-to-tokens"></span>`fn to_tokens(&self, out: &mut TokenStream)`
 
 ## Enums
 
@@ -88,7 +99,7 @@ enum Fragment {
 
 ##### `impl AsRef for Fragment`
 
-- `fn as_ref(self: &Self) -> &TokenStream`
+- <span id="fragment-as-ref"></span>`fn as_ref(&self) -> &TokenStream`
 
 ## Macros
 

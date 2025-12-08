@@ -4,6 +4,14 @@
 
 # Module `join`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`join`](#join) | fn | Takes two closures and *potentially* runs them in parallel. |
+| [`join_context`](#join_context) | fn | Identical to `join`, except that the closures have a parameter |
+| [`join_recover_from_panic`](#join_recover_from_panic) | fn | If job A panics, we still cannot return until we are sure that job |
+
 ## Functions
 
 ### `join`

@@ -28,6 +28,32 @@ Two-Way can be found in the `memmem` implementations in at least [GNU libc] and
 
 
 
+## Contents
+
+- [Structs](#structs)
+  - [`Finder`](#finder)
+  - [`FinderRev`](#finderrev)
+  - [`TwoWay`](#twoway)
+  - [`Suffix`](#suffix)
+  - [`ApproximateByteSet`](#approximatebyteset)
+- [Enums](#enums)
+  - [`Shift`](#shift)
+  - [`SuffixKind`](#suffixkind)
+  - [`SuffixOrdering`](#suffixordering)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Finder`](#finder) | struct | A forward substring searcher that uses the Two-Way algorithm. |
+| [`FinderRev`](#finderrev) | struct | A reverse substring searcher that uses the Two-Way algorithm. |
+| [`TwoWay`](#twoway) | struct | An implementation of the TwoWay substring search algorithm. |
+| [`Suffix`](#suffix) | struct | A suffix extracted from a needle along with its period. |
+| [`ApproximateByteSet`](#approximatebyteset) | struct | A bitset used to track whether a particular byte exists in a needle or not. |
+| [`Shift`](#shift) | enum | A representation of the amount we're allowed to shift by during Two-Way |
+| [`SuffixKind`](#suffixkind) | enum | The kind of suffix to extract. |
+| [`SuffixOrdering`](#suffixordering) | enum | The result of comparing corresponding bytes between two suffixes. |
+
 ## Structs
 
 ### `Finder`
@@ -40,27 +66,27 @@ A forward substring searcher that uses the Two-Way algorithm.
 
 #### Implementations
 
-- `fn new(needle: &[u8]) -> Finder` — [`Finder`](#finder)
+- <span id="finder-new"></span>`fn new(needle: &[u8]) -> Finder` — [`Finder`](#finder)
 
-- `fn find(self: &Self, haystack: &[u8], needle: &[u8]) -> Option<usize>`
+- <span id="finder-find"></span>`fn find(&self, haystack: &[u8], needle: &[u8]) -> Option<usize>`
 
-- `fn find_with_prefilter(self: &Self, pre: Option<Pre<'_>>, haystack: &[u8], needle: &[u8]) -> Option<usize>` — [`Pre`](../../../memmem/searcher/index.md)
+- <span id="finder-find-with-prefilter"></span>`fn find_with_prefilter(&self, pre: Option<Pre<'_>>, haystack: &[u8], needle: &[u8]) -> Option<usize>` — [`Pre`](../../../memmem/searcher/index.md)
 
-- `fn find_small_imp(self: &Self, pre: Option<Pre<'_>>, haystack: &[u8], needle: &[u8], period: usize) -> Option<usize>` — [`Pre`](../../../memmem/searcher/index.md)
+- <span id="finder-find-small-imp"></span>`fn find_small_imp(&self, pre: Option<Pre<'_>>, haystack: &[u8], needle: &[u8], period: usize) -> Option<usize>` — [`Pre`](../../../memmem/searcher/index.md)
 
-- `fn find_large_imp(self: &Self, pre: Option<Pre<'_>>, haystack: &[u8], needle: &[u8], shift: usize) -> Option<usize>` — [`Pre`](../../../memmem/searcher/index.md)
+- <span id="finder-find-large-imp"></span>`fn find_large_imp(&self, pre: Option<Pre<'_>>, haystack: &[u8], needle: &[u8], shift: usize) -> Option<usize>` — [`Pre`](../../../memmem/searcher/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Finder`
 
-- `fn clone(self: &Self) -> Finder` — [`Finder`](#finder)
+- <span id="finder-clone"></span>`fn clone(&self) -> Finder` — [`Finder`](#finder)
 
 ##### `impl Copy for Finder`
 
 ##### `impl Debug for Finder`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="finder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `FinderRev`
 
@@ -72,25 +98,25 @@ A reverse substring searcher that uses the Two-Way algorithm.
 
 #### Implementations
 
-- `fn new(needle: &[u8]) -> FinderRev` — [`FinderRev`](#finderrev)
+- <span id="finderrev-new"></span>`fn new(needle: &[u8]) -> FinderRev` — [`FinderRev`](#finderrev)
 
-- `fn rfind(self: &Self, haystack: &[u8], needle: &[u8]) -> Option<usize>`
+- <span id="finderrev-rfind"></span>`fn rfind(&self, haystack: &[u8], needle: &[u8]) -> Option<usize>`
 
-- `fn rfind_small_imp(self: &Self, haystack: &[u8], needle: &[u8], period: usize) -> Option<usize>`
+- <span id="finderrev-rfind-small-imp"></span>`fn rfind_small_imp(&self, haystack: &[u8], needle: &[u8], period: usize) -> Option<usize>`
 
-- `fn rfind_large_imp(self: &Self, haystack: &[u8], needle: &[u8], shift: usize) -> Option<usize>`
+- <span id="finderrev-rfind-large-imp"></span>`fn rfind_large_imp(&self, haystack: &[u8], needle: &[u8], shift: usize) -> Option<usize>`
 
 #### Trait Implementations
 
 ##### `impl Clone for FinderRev`
 
-- `fn clone(self: &Self) -> FinderRev` — [`FinderRev`](#finderrev)
+- <span id="finderrev-clone"></span>`fn clone(&self) -> FinderRev` — [`FinderRev`](#finderrev)
 
 ##### `impl Copy for FinderRev`
 
 ##### `impl Debug for FinderRev`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="finderrev-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `TwoWay`
 
@@ -176,13 +202,13 @@ consistent forward or reverse APIs.
 
 ##### `impl Clone for TwoWay`
 
-- `fn clone(self: &Self) -> TwoWay` — [`TwoWay`](#twoway)
+- <span id="twoway-clone"></span>`fn clone(&self) -> TwoWay` — [`TwoWay`](#twoway)
 
 ##### `impl Copy for TwoWay`
 
 ##### `impl Debug for TwoWay`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="twoway-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Suffix`
 
@@ -216,15 +242,15 @@ A suffix extracted from a needle along with its period.
 
 #### Implementations
 
-- `fn forward(needle: &[u8], kind: SuffixKind) -> Suffix` — [`SuffixKind`](#suffixkind), [`Suffix`](#suffix)
+- <span id="suffix-forward"></span>`fn forward(needle: &[u8], kind: SuffixKind) -> Suffix` — [`SuffixKind`](#suffixkind), [`Suffix`](#suffix)
 
-- `fn reverse(needle: &[u8], kind: SuffixKind) -> Suffix` — [`SuffixKind`](#suffixkind), [`Suffix`](#suffix)
+- <span id="suffix-reverse"></span>`fn reverse(needle: &[u8], kind: SuffixKind) -> Suffix` — [`SuffixKind`](#suffixkind), [`Suffix`](#suffix)
 
 #### Trait Implementations
 
 ##### `impl Debug for Suffix`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="suffix-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ApproximateByteSet`
 
@@ -241,21 +267,21 @@ in the haystack by needle.len() bytes.
 
 #### Implementations
 
-- `fn new(needle: &[u8]) -> ApproximateByteSet` — [`ApproximateByteSet`](#approximatebyteset)
+- <span id="approximatebyteset-new"></span>`fn new(needle: &[u8]) -> ApproximateByteSet` — [`ApproximateByteSet`](#approximatebyteset)
 
-- `fn contains(self: &Self, byte: u8) -> bool`
+- <span id="approximatebyteset-contains"></span>`fn contains(&self, byte: u8) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for ApproximateByteSet`
 
-- `fn clone(self: &Self) -> ApproximateByteSet` — [`ApproximateByteSet`](#approximatebyteset)
+- <span id="approximatebyteset-clone"></span>`fn clone(&self) -> ApproximateByteSet` — [`ApproximateByteSet`](#approximatebyteset)
 
 ##### `impl Copy for ApproximateByteSet`
 
 ##### `impl Debug for ApproximateByteSet`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="approximatebyteset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Enums
 
@@ -305,21 +331,21 @@ grok why the authors didn't pursue that path.
 
 #### Implementations
 
-- `fn forward(needle: &[u8], period_lower_bound: usize, critical_pos: usize) -> Shift` — [`Shift`](#shift)
+- <span id="shift-forward"></span>`fn forward(needle: &[u8], period_lower_bound: usize, critical_pos: usize) -> Shift` — [`Shift`](#shift)
 
-- `fn reverse(needle: &[u8], period_lower_bound: usize, critical_pos: usize) -> Shift` — [`Shift`](#shift)
+- <span id="shift-reverse"></span>`fn reverse(needle: &[u8], period_lower_bound: usize, critical_pos: usize) -> Shift` — [`Shift`](#shift)
 
 #### Trait Implementations
 
 ##### `impl Clone for Shift`
 
-- `fn clone(self: &Self) -> Shift` — [`Shift`](#shift)
+- <span id="shift-clone"></span>`fn clone(&self) -> Shift` — [`Shift`](#shift)
 
 ##### `impl Copy for Shift`
 
 ##### `impl Debug for Shift`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="shift-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `SuffixKind`
 
@@ -354,19 +380,19 @@ The kind of suffix to extract.
 
 #### Implementations
 
-- `fn cmp(self: Self, current: u8, candidate: u8) -> SuffixOrdering` — [`SuffixOrdering`](#suffixordering)
+- <span id="suffixkind-cmp"></span>`fn cmp(self, current: u8, candidate: u8) -> SuffixOrdering` — [`SuffixOrdering`](#suffixordering)
 
 #### Trait Implementations
 
 ##### `impl Clone for SuffixKind`
 
-- `fn clone(self: &Self) -> SuffixKind` — [`SuffixKind`](#suffixkind)
+- <span id="suffixkind-clone"></span>`fn clone(&self) -> SuffixKind` — [`SuffixKind`](#suffixkind)
 
 ##### `impl Copy for SuffixKind`
 
 ##### `impl Debug for SuffixKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="suffixkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `SuffixOrdering`
 
@@ -406,11 +432,11 @@ The result of comparing corresponding bytes between two suffixes.
 
 ##### `impl Clone for SuffixOrdering`
 
-- `fn clone(self: &Self) -> SuffixOrdering` — [`SuffixOrdering`](#suffixordering)
+- <span id="suffixordering-clone"></span>`fn clone(&self) -> SuffixOrdering` — [`SuffixOrdering`](#suffixordering)
 
 ##### `impl Copy for SuffixOrdering`
 
 ##### `impl Debug for SuffixOrdering`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="suffixordering-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

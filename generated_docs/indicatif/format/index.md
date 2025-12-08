@@ -4,6 +4,44 @@
 
 # Module `format`
 
+## Contents
+
+- [Structs](#structs)
+  - [`FormattedDuration`](#formattedduration)
+  - [`HumanDuration`](#humanduration)
+  - [`HumanBytes`](#humanbytes)
+  - [`DecimalBytes`](#decimalbytes)
+  - [`BinaryBytes`](#binarybytes)
+  - [`HumanCount`](#humancount)
+  - [`HumanFloatCount`](#humanfloatcount)
+- [Constants](#constants)
+  - [`SECOND`](#second)
+  - [`MINUTE`](#minute)
+  - [`HOUR`](#hour)
+  - [`DAY`](#day)
+  - [`WEEK`](#week)
+  - [`YEAR`](#year)
+  - [`UNITS`](#units)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`FormattedDuration`](#formattedduration) | struct | Wraps an std duration for human basic formatting. |
+| [`HumanDuration`](#humanduration) | struct | Wraps an std duration for human readable formatting. |
+| [`HumanBytes`](#humanbytes) | struct | Formats bytes for human readability |
+| [`DecimalBytes`](#decimalbytes) | struct | Formats bytes for human readability using SI prefixes |
+| [`BinaryBytes`](#binarybytes) | struct | Formats bytes for human readability using ISO/IEC prefixes |
+| [`HumanCount`](#humancount) | struct | Formats counts for human readability using commas |
+| [`HumanFloatCount`](#humanfloatcount) | struct | Formats counts for human readability using commas for floats |
+| [`SECOND`](#second) | const |  |
+| [`MINUTE`](#minute) | const |  |
+| [`HOUR`](#hour) | const |  |
+| [`DAY`](#day) | const |  |
+| [`WEEK`](#week) | const |  |
+| [`YEAR`](#year) | const |  |
+| [`UNITS`](#units) | const |  |
+
 ## Structs
 
 ### `FormattedDuration`
@@ -18,15 +56,15 @@ Wraps an std duration for human basic formatting.
 
 ##### `impl Debug for FormattedDuration`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="formattedduration-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for FormattedDuration`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="formattedduration-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for FormattedDuration`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="formattedduration-to-string"></span>`fn to_string(&self) -> String`
 
 ### `HumanDuration`
 
@@ -40,15 +78,15 @@ Wraps an std duration for human readable formatting.
 
 ##### `impl Debug for HumanDuration`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="humanduration-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for HumanDuration`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="humanduration-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for HumanDuration`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="humanduration-to-string"></span>`fn to_string(&self) -> String`
 
 ### `HumanBytes`
 
@@ -73,15 +111,15 @@ assert_eq!("1.33 PiB", format!("{}", HumanBytes(1_500_000_000_000_000)));
 
 ##### `impl Debug for HumanBytes`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="humanbytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for HumanBytes`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="humanbytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for HumanBytes`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="humanbytes-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DecimalBytes`
 
@@ -106,15 +144,15 @@ assert_eq!("1.50 PB", format!("{}", DecimalBytes(1_500_000_000_000_000)));
 
 ##### `impl Debug for DecimalBytes`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="decimalbytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DecimalBytes`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="decimalbytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for DecimalBytes`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="decimalbytes-to-string"></span>`fn to_string(&self) -> String`
 
 ### `BinaryBytes`
 
@@ -139,15 +177,15 @@ assert_eq!("1.33 PiB", format!("{}", BinaryBytes(1_500_000_000_000_000)));
 
 ##### `impl Debug for BinaryBytes`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="binarybytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for BinaryBytes`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="binarybytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for BinaryBytes`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="binarybytes-to-string"></span>`fn to_string(&self) -> String`
 
 ### `HumanCount`
 
@@ -161,15 +199,15 @@ Formats counts for human readability using commas
 
 ##### `impl Debug for HumanCount`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="humancount-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for HumanCount`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="humancount-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for HumanCount`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="humancount-to-string"></span>`fn to_string(&self) -> String`
 
 ### `HumanFloatCount`
 
@@ -183,15 +221,15 @@ Formats counts for human readability using commas for floats
 
 ##### `impl Debug for HumanFloatCount`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="humanfloatcount-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for HumanFloatCount`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="humanfloatcount-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for HumanFloatCount`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="humanfloatcount-to-string"></span>`fn to_string(&self) -> String`
 
 ## Constants
 

@@ -4,6 +4,13 @@
 
 # Module `cow`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`CowBytes`](#cowbytes) | struct | A specialized copy-on-write byte string. |
+| [`Imp`](#imp) | enum |  |
+
 ## Structs
 
 ### `CowBytes<'a>`
@@ -22,33 +29,33 @@ core.
 
 #### Implementations
 
-- `fn new<B: ?Sized + AsRef<[u8]>>(bytes: &'a B) -> CowBytes<'a>` — [`CowBytes`](#cowbytes)
+- <span id="cowbytes-new"></span>`fn new<B: ?Sized + AsRef<[u8]>>(bytes: &'a B) -> CowBytes<'a>` — [`CowBytes`](#cowbytes)
 
-- `fn new_owned(bytes: alloc::boxed::Box<[u8]>) -> CowBytes<'static>` — [`CowBytes`](#cowbytes)
+- <span id="cowbytes-new-owned"></span>`fn new_owned(bytes: alloc::boxed::Box<[u8]>) -> CowBytes<'static>` — [`CowBytes`](#cowbytes)
 
-- `fn as_slice(self: &Self) -> &[u8]`
+- <span id="cowbytes-as-slice"></span>`fn as_slice(&self) -> &[u8]`
 
-- `fn into_owned(self: Self) -> CowBytes<'static>` — [`CowBytes`](#cowbytes)
+- <span id="cowbytes-into-owned"></span>`fn into_owned(self) -> CowBytes<'static>` — [`CowBytes`](#cowbytes)
 
 #### Trait Implementations
 
 ##### `impl<'a> Clone for CowBytes<'a>`
 
-- `fn clone(self: &Self) -> CowBytes<'a>` — [`CowBytes`](#cowbytes)
+- <span id="cowbytes-clone"></span>`fn clone(&self) -> CowBytes<'a>` — [`CowBytes`](#cowbytes)
 
 ##### `impl<'a> Debug for CowBytes<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="cowbytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'a> Deref for CowBytes<'a>`
 
-- `type Target = [u8]`
+- <span id="cowbytes-target"></span>`type Target = [u8]`
 
-- `fn deref(self: &Self) -> &[u8]`
+- <span id="cowbytes-deref"></span>`fn deref(&self) -> &[u8]`
 
 ##### `impl<P, T> Receiver for CowBytes<'a>`
 
-- `type Target = T`
+- <span id="cowbytes-target"></span>`type Target = T`
 
 ## Enums
 
@@ -63,17 +70,17 @@ enum Imp<'a> {
 
 #### Implementations
 
-- `fn new(bytes: &'a [u8]) -> Imp<'a>` — [`Imp`](#imp)
+- <span id="imp-new"></span>`fn new(bytes: &'a [u8]) -> Imp<'a>` — [`Imp`](#imp)
 
-- `fn as_slice(self: &Self) -> &[u8]`
+- <span id="imp-as-slice"></span>`fn as_slice(&self) -> &[u8]`
 
 #### Trait Implementations
 
 ##### `impl<'a> Clone for Imp<'a>`
 
-- `fn clone(self: &Self) -> Imp<'a>` — [`Imp`](#imp)
+- <span id="imp-clone"></span>`fn clone(&self) -> Imp<'a>` — [`Imp`](#imp)
 
 ##### `impl<'a> Debug for Imp<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="imp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

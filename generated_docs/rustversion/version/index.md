@@ -4,6 +4,13 @@
 
 # Module `version`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Version`](#version) | struct |  |
+| [`Channel`](#channel) | enum |  |
+
 ## Structs
 
 ### `Version`
@@ -20,21 +27,21 @@ struct Version {
 
 ##### `impl Clone for Version`
 
-- `fn clone(self: &Self) -> Version` — [`Version`](#version)
+- <span id="version-clone"></span>`fn clone(&self) -> Version` — [`Version`](#version)
 
 ##### `impl Copy for Version`
 
 ##### `impl Debug for Version`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="version-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl PartialEq for crate::version::Version`
+##### `impl PartialEq for Version`
 
-- `fn eq(self: &Self, rhs: &Bound) -> bool` — [`Bound`](../bound/index.md)
+- <span id="version-eq"></span>`fn eq(&self, other: &Version) -> bool` — [`Version`](#version)
 
 ##### `impl PartialOrd for crate::version::Version`
 
-- `fn partial_cmp(self: &Self, rhs: &Bound) -> Option<Ordering>` — [`Bound`](../bound/index.md)
+- <span id="crateversionversion-partial-cmp"></span>`fn partial_cmp(&self, rhs: &Bound) -> Option<Ordering>` — [`Bound`](../bound/index.md)
 
 ##### `impl StructuralPartialEq for Version`
 
@@ -55,17 +62,17 @@ enum Channel {
 
 ##### `impl Clone for Channel`
 
-- `fn clone(self: &Self) -> Channel` — [`Channel`](#channel)
+- <span id="channel-clone"></span>`fn clone(&self) -> Channel` — [`Channel`](#channel)
 
 ##### `impl Copy for Channel`
 
 ##### `impl Debug for Channel`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="channel-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl PartialEq for Channel`
 
-- `fn eq(self: &Self, other: &Channel) -> bool` — [`Channel`](#channel)
+- <span id="channel-eq"></span>`fn eq(&self, other: &Channel) -> bool` — [`Channel`](#channel)
 
 ##### `impl StructuralPartialEq for Channel`
 

@@ -4,6 +4,13 @@
 
 # Module `whitespace`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`skip`](#skip) | fn |  |
+| [`is_whitespace`](#is_whitespace) | fn |  |
+
 ## Functions
 
 ### `skip`

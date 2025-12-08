@@ -28,6 +28,53 @@ There are also corresponding wrappers for the various `Cache` types for each
 regex engine that needs them. If an engine is unavailable or not used, then a
 cache for it will *not* actually be allocated.
 
+## Contents
+
+- [Structs](#structs)
+  - [`PikeVM`](#pikevm)
+  - [`PikeVMEngine`](#pikevmengine)
+  - [`PikeVMCache`](#pikevmcache)
+  - [`BoundedBacktracker`](#boundedbacktracker)
+  - [`BoundedBacktrackerEngine`](#boundedbacktrackerengine)
+  - [`BoundedBacktrackerCache`](#boundedbacktrackercache)
+  - [`OnePass`](#onepass)
+  - [`OnePassEngine`](#onepassengine)
+  - [`OnePassCache`](#onepasscache)
+  - [`Hybrid`](#hybrid)
+  - [`HybridEngine`](#hybridengine)
+  - [`HybridCache`](#hybridcache)
+  - [`DFA`](#dfa)
+  - [`DFAEngine`](#dfaengine)
+  - [`ReverseHybrid`](#reversehybrid)
+  - [`ReverseHybridEngine`](#reversehybridengine)
+  - [`ReverseHybridCache`](#reversehybridcache)
+  - [`ReverseDFA`](#reversedfa)
+  - [`ReverseDFAEngine`](#reversedfaengine)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`PikeVM`](#pikevm) | struct |  |
+| [`PikeVMEngine`](#pikevmengine) | struct |  |
+| [`PikeVMCache`](#pikevmcache) | struct |  |
+| [`BoundedBacktracker`](#boundedbacktracker) | struct |  |
+| [`BoundedBacktrackerEngine`](#boundedbacktrackerengine) | struct |  |
+| [`BoundedBacktrackerCache`](#boundedbacktrackercache) | struct |  |
+| [`OnePass`](#onepass) | struct |  |
+| [`OnePassEngine`](#onepassengine) | struct |  |
+| [`OnePassCache`](#onepasscache) | struct |  |
+| [`Hybrid`](#hybrid) | struct |  |
+| [`HybridEngine`](#hybridengine) | struct |  |
+| [`HybridCache`](#hybridcache) | struct |  |
+| [`DFA`](#dfa) | struct |  |
+| [`DFAEngine`](#dfaengine) | struct |  |
+| [`ReverseHybrid`](#reversehybrid) | struct |  |
+| [`ReverseHybridEngine`](#reversehybridengine) | struct |  |
+| [`ReverseHybridCache`](#reversehybridcache) | struct |  |
+| [`ReverseDFA`](#reversedfa) | struct |  |
+| [`ReverseDFAEngine`](#reversedfaengine) | struct |  |
+
 ## Structs
 
 ### `PikeVM`
@@ -38,17 +85,17 @@ struct PikeVM(PikeVMEngine);
 
 #### Implementations
 
-- `fn new(info: &RegexInfo, pre: Option<Prefilter>, nfa: &NFA) -> Result<PikeVM, BuildError>` — [`RegexInfo`](../regex/index.md), [`Prefilter`](../../util/prefilter/index.md), [`NFA`](../../nfa/thompson/index.md), [`PikeVM`](#pikevm), [`BuildError`](../index.md)
+- <span id="pikevm-new"></span>`fn new(info: &RegexInfo, pre: Option<Prefilter>, nfa: &NFA) -> Result<PikeVM, BuildError>` — [`RegexInfo`](../regex/index.md), [`Prefilter`](../../util/prefilter/index.md), [`NFA`](../../nfa/thompson/index.md), [`PikeVM`](#pikevm), [`BuildError`](../index.md)
 
-- `fn create_cache(self: &Self) -> PikeVMCache` — [`PikeVMCache`](#pikevmcache)
+- <span id="pikevm-create-cache"></span>`fn create_cache(&self) -> PikeVMCache` — [`PikeVMCache`](#pikevmcache)
 
-- `fn get(self: &Self) -> &PikeVMEngine` — [`PikeVMEngine`](#pikevmengine)
+- <span id="pikevm-get"></span>`fn get(&self) -> &PikeVMEngine` — [`PikeVMEngine`](#pikevmengine)
 
 #### Trait Implementations
 
 ##### `impl Debug for PikeVM`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pikevm-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `PikeVMEngine`
 
@@ -58,19 +105,19 @@ struct PikeVMEngine(pikevm::PikeVM);
 
 #### Implementations
 
-- `fn new(info: &RegexInfo, pre: Option<Prefilter>, nfa: &NFA) -> Result<PikeVMEngine, BuildError>` — [`RegexInfo`](../regex/index.md), [`Prefilter`](../../util/prefilter/index.md), [`NFA`](../../nfa/thompson/index.md), [`PikeVMEngine`](#pikevmengine), [`BuildError`](../index.md)
+- <span id="pikevmengine-new"></span>`fn new(info: &RegexInfo, pre: Option<Prefilter>, nfa: &NFA) -> Result<PikeVMEngine, BuildError>` — [`RegexInfo`](../regex/index.md), [`Prefilter`](../../util/prefilter/index.md), [`NFA`](../../nfa/thompson/index.md), [`PikeVMEngine`](#pikevmengine), [`BuildError`](../index.md)
 
-- `fn is_match(self: &Self, cache: &mut PikeVMCache, input: &Input<'_>) -> bool` — [`PikeVMCache`](#pikevmcache), [`Input`](../../index.md)
+- <span id="pikevmengine-is-match"></span>`fn is_match(&self, cache: &mut PikeVMCache, input: &Input<'_>) -> bool` — [`PikeVMCache`](#pikevmcache), [`Input`](../../index.md)
 
-- `fn search_slots(self: &Self, cache: &mut PikeVMCache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`PikeVMCache`](#pikevmcache), [`Input`](../../index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../index.md)
+- <span id="pikevmengine-search-slots"></span>`fn search_slots(&self, cache: &mut PikeVMCache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`PikeVMCache`](#pikevmcache), [`Input`](../../index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../index.md)
 
-- `fn which_overlapping_matches(self: &Self, cache: &mut PikeVMCache, input: &Input<'_>, patset: &mut PatternSet)` — [`PikeVMCache`](#pikevmcache), [`Input`](../../index.md), [`PatternSet`](../../index.md)
+- <span id="pikevmengine-which-overlapping-matches"></span>`fn which_overlapping_matches(&self, cache: &mut PikeVMCache, input: &Input<'_>, patset: &mut PatternSet)` — [`PikeVMCache`](#pikevmcache), [`Input`](../../index.md), [`PatternSet`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl Debug for PikeVMEngine`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pikevmengine-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `PikeVMCache`
 
@@ -80,23 +127,23 @@ struct PikeVMCache(Option<pikevm::Cache>);
 
 #### Implementations
 
-- `fn none() -> PikeVMCache` — [`PikeVMCache`](#pikevmcache)
+- <span id="pikevmcache-none"></span>`fn none() -> PikeVMCache` — [`PikeVMCache`](#pikevmcache)
 
-- `fn reset(self: &mut Self, builder: &PikeVM)` — [`PikeVM`](#pikevm)
+- <span id="pikevmcache-reset"></span>`fn reset(&mut self, builder: &PikeVM)` — [`PikeVM`](#pikevm)
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="pikevmcache-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- `fn get(self: &mut Self, vm: &pikevm::PikeVM) -> &mut pikevm::Cache` — [`PikeVM`](../../nfa/thompson/pikevm/index.md), [`Cache`](../../nfa/thompson/pikevm/index.md)
+- <span id="pikevmcache-get"></span>`fn get(&mut self, vm: &pikevm::PikeVM) -> &mut pikevm::Cache` — [`PikeVM`](../../nfa/thompson/pikevm/index.md), [`Cache`](../../nfa/thompson/pikevm/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for PikeVMCache`
 
-- `fn clone(self: &Self) -> PikeVMCache` — [`PikeVMCache`](#pikevmcache)
+- <span id="pikevmcache-clone"></span>`fn clone(&self) -> PikeVMCache` — [`PikeVMCache`](#pikevmcache)
 
 ##### `impl Debug for PikeVMCache`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pikevmcache-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `BoundedBacktracker`
 
@@ -106,17 +153,17 @@ struct BoundedBacktracker(Option<BoundedBacktrackerEngine>);
 
 #### Implementations
 
-- `fn new(info: &RegexInfo, pre: Option<Prefilter>, nfa: &NFA) -> Result<BoundedBacktracker, BuildError>` — [`RegexInfo`](../regex/index.md), [`Prefilter`](../../util/prefilter/index.md), [`NFA`](../../nfa/thompson/index.md), [`BoundedBacktracker`](#boundedbacktracker), [`BuildError`](../index.md)
+- <span id="boundedbacktracker-new"></span>`fn new(info: &RegexInfo, pre: Option<Prefilter>, nfa: &NFA) -> Result<BoundedBacktracker, BuildError>` — [`RegexInfo`](../regex/index.md), [`Prefilter`](../../util/prefilter/index.md), [`NFA`](../../nfa/thompson/index.md), [`BoundedBacktracker`](#boundedbacktracker), [`BuildError`](../index.md)
 
-- `fn create_cache(self: &Self) -> BoundedBacktrackerCache` — [`BoundedBacktrackerCache`](#boundedbacktrackercache)
+- <span id="boundedbacktracker-create-cache"></span>`fn create_cache(&self) -> BoundedBacktrackerCache` — [`BoundedBacktrackerCache`](#boundedbacktrackercache)
 
-- `fn get(self: &Self, input: &Input<'_>) -> Option<&BoundedBacktrackerEngine>` — [`Input`](../../index.md), [`BoundedBacktrackerEngine`](#boundedbacktrackerengine)
+- <span id="boundedbacktracker-get"></span>`fn get(&self, input: &Input<'_>) -> Option<&BoundedBacktrackerEngine>` — [`Input`](../../index.md), [`BoundedBacktrackerEngine`](#boundedbacktrackerengine)
 
 #### Trait Implementations
 
 ##### `impl Debug for BoundedBacktracker`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="boundedbacktracker-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `BoundedBacktrackerEngine`
 
@@ -126,19 +173,19 @@ struct BoundedBacktrackerEngine(backtrack::BoundedBacktracker);
 
 #### Implementations
 
-- `fn new(info: &RegexInfo, pre: Option<Prefilter>, nfa: &NFA) -> Result<Option<BoundedBacktrackerEngine>, BuildError>` — [`RegexInfo`](../regex/index.md), [`Prefilter`](../../util/prefilter/index.md), [`NFA`](../../nfa/thompson/index.md), [`BoundedBacktrackerEngine`](#boundedbacktrackerengine), [`BuildError`](../index.md)
+- <span id="boundedbacktrackerengine-new"></span>`fn new(info: &RegexInfo, pre: Option<Prefilter>, nfa: &NFA) -> Result<Option<BoundedBacktrackerEngine>, BuildError>` — [`RegexInfo`](../regex/index.md), [`Prefilter`](../../util/prefilter/index.md), [`NFA`](../../nfa/thompson/index.md), [`BoundedBacktrackerEngine`](#boundedbacktrackerengine), [`BuildError`](../index.md)
 
-- `fn is_match(self: &Self, cache: &mut BoundedBacktrackerCache, input: &Input<'_>) -> bool` — [`BoundedBacktrackerCache`](#boundedbacktrackercache), [`Input`](../../index.md)
+- <span id="boundedbacktrackerengine-is-match"></span>`fn is_match(&self, cache: &mut BoundedBacktrackerCache, input: &Input<'_>) -> bool` — [`BoundedBacktrackerCache`](#boundedbacktrackercache), [`Input`](../../index.md)
 
-- `fn search_slots(self: &Self, cache: &mut BoundedBacktrackerCache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`BoundedBacktrackerCache`](#boundedbacktrackercache), [`Input`](../../index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../index.md)
+- <span id="boundedbacktrackerengine-search-slots"></span>`fn search_slots(&self, cache: &mut BoundedBacktrackerCache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`BoundedBacktrackerCache`](#boundedbacktrackercache), [`Input`](../../index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../index.md)
 
-- `fn max_haystack_len(self: &Self) -> usize`
+- <span id="boundedbacktrackerengine-max-haystack-len"></span>`fn max_haystack_len(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Debug for BoundedBacktrackerEngine`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="boundedbacktrackerengine-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `BoundedBacktrackerCache`
 
@@ -148,23 +195,23 @@ struct BoundedBacktrackerCache(Option<backtrack::Cache>);
 
 #### Implementations
 
-- `fn none() -> BoundedBacktrackerCache` — [`BoundedBacktrackerCache`](#boundedbacktrackercache)
+- <span id="boundedbacktrackercache-none"></span>`fn none() -> BoundedBacktrackerCache` — [`BoundedBacktrackerCache`](#boundedbacktrackercache)
 
-- `fn reset(self: &mut Self, builder: &BoundedBacktracker)` — [`BoundedBacktracker`](#boundedbacktracker)
+- <span id="boundedbacktrackercache-reset"></span>`fn reset(&mut self, builder: &BoundedBacktracker)` — [`BoundedBacktracker`](#boundedbacktracker)
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="boundedbacktrackercache-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- `fn get(self: &mut Self, bb: &backtrack::BoundedBacktracker) -> &mut backtrack::Cache` — [`BoundedBacktracker`](../../nfa/thompson/backtrack/index.md), [`Cache`](../../nfa/thompson/backtrack/index.md)
+- <span id="boundedbacktrackercache-get"></span>`fn get(&mut self, bb: &backtrack::BoundedBacktracker) -> &mut backtrack::Cache` — [`BoundedBacktracker`](../../nfa/thompson/backtrack/index.md), [`Cache`](../../nfa/thompson/backtrack/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for BoundedBacktrackerCache`
 
-- `fn clone(self: &Self) -> BoundedBacktrackerCache` — [`BoundedBacktrackerCache`](#boundedbacktrackercache)
+- <span id="boundedbacktrackercache-clone"></span>`fn clone(&self) -> BoundedBacktrackerCache` — [`BoundedBacktrackerCache`](#boundedbacktrackercache)
 
 ##### `impl Debug for BoundedBacktrackerCache`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="boundedbacktrackercache-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `OnePass`
 
@@ -174,19 +221,19 @@ struct OnePass(Option<OnePassEngine>);
 
 #### Implementations
 
-- `fn new(info: &RegexInfo, nfa: &NFA) -> OnePass` — [`RegexInfo`](../regex/index.md), [`NFA`](../../nfa/thompson/index.md), [`OnePass`](#onepass)
+- <span id="onepass-new"></span>`fn new(info: &RegexInfo, nfa: &NFA) -> OnePass` — [`RegexInfo`](../regex/index.md), [`NFA`](../../nfa/thompson/index.md), [`OnePass`](#onepass)
 
-- `fn create_cache(self: &Self) -> OnePassCache` — [`OnePassCache`](#onepasscache)
+- <span id="onepass-create-cache"></span>`fn create_cache(&self) -> OnePassCache` — [`OnePassCache`](#onepasscache)
 
-- `fn get(self: &Self, input: &Input<'_>) -> Option<&OnePassEngine>` — [`Input`](../../index.md), [`OnePassEngine`](#onepassengine)
+- <span id="onepass-get"></span>`fn get(&self, input: &Input<'_>) -> Option<&OnePassEngine>` — [`Input`](../../index.md), [`OnePassEngine`](#onepassengine)
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="onepass-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Debug for OnePass`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="onepass-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `OnePassEngine`
 
@@ -196,19 +243,19 @@ struct OnePassEngine(onepass::DFA);
 
 #### Implementations
 
-- `fn new(info: &RegexInfo, nfa: &NFA) -> Option<OnePassEngine>` — [`RegexInfo`](../regex/index.md), [`NFA`](../../nfa/thompson/index.md), [`OnePassEngine`](#onepassengine)
+- <span id="onepassengine-new"></span>`fn new(info: &RegexInfo, nfa: &NFA) -> Option<OnePassEngine>` — [`RegexInfo`](../regex/index.md), [`NFA`](../../nfa/thompson/index.md), [`OnePassEngine`](#onepassengine)
 
-- `fn search_slots(self: &Self, cache: &mut OnePassCache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`OnePassCache`](#onepasscache), [`Input`](../../index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../index.md)
+- <span id="onepassengine-search-slots"></span>`fn search_slots(&self, cache: &mut OnePassCache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`OnePassCache`](#onepasscache), [`Input`](../../index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../index.md)
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="onepassengine-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- `fn get_nfa(self: &Self) -> &NFA` — [`NFA`](../../nfa/thompson/index.md)
+- <span id="onepassengine-get-nfa"></span>`fn get_nfa(&self) -> &NFA` — [`NFA`](../../nfa/thompson/index.md)
 
 #### Trait Implementations
 
 ##### `impl Debug for OnePassEngine`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="onepassengine-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `OnePassCache`
 
@@ -218,23 +265,23 @@ struct OnePassCache(Option<onepass::Cache>);
 
 #### Implementations
 
-- `fn none() -> OnePassCache` — [`OnePassCache`](#onepasscache)
+- <span id="onepasscache-none"></span>`fn none() -> OnePassCache` — [`OnePassCache`](#onepasscache)
 
-- `fn new(builder: &OnePass) -> OnePassCache` — [`OnePass`](#onepass), [`OnePassCache`](#onepasscache)
+- <span id="onepasscache-new"></span>`fn new(builder: &OnePass) -> OnePassCache` — [`OnePass`](#onepass), [`OnePassCache`](#onepasscache)
 
-- `fn reset(self: &mut Self, builder: &OnePass)` — [`OnePass`](#onepass)
+- <span id="onepasscache-reset"></span>`fn reset(&mut self, builder: &OnePass)` — [`OnePass`](#onepass)
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="onepasscache-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Clone for OnePassCache`
 
-- `fn clone(self: &Self) -> OnePassCache` — [`OnePassCache`](#onepasscache)
+- <span id="onepasscache-clone"></span>`fn clone(&self) -> OnePassCache` — [`OnePassCache`](#onepasscache)
 
 ##### `impl Debug for OnePassCache`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="onepasscache-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Hybrid`
 
@@ -244,21 +291,21 @@ struct Hybrid(Option<HybridEngine>);
 
 #### Implementations
 
-- `fn none() -> Hybrid` — [`Hybrid`](#hybrid)
+- <span id="hybrid-none"></span>`fn none() -> Hybrid` — [`Hybrid`](#hybrid)
 
-- `fn new(info: &RegexInfo, pre: Option<Prefilter>, nfa: &NFA, nfarev: &NFA) -> Hybrid` — [`RegexInfo`](../regex/index.md), [`Prefilter`](../../util/prefilter/index.md), [`NFA`](../../nfa/thompson/index.md), [`Hybrid`](#hybrid)
+- <span id="hybrid-new"></span>`fn new(info: &RegexInfo, pre: Option<Prefilter>, nfa: &NFA, nfarev: &NFA) -> Hybrid` — [`RegexInfo`](../regex/index.md), [`Prefilter`](../../util/prefilter/index.md), [`NFA`](../../nfa/thompson/index.md), [`Hybrid`](#hybrid)
 
-- `fn create_cache(self: &Self) -> HybridCache` — [`HybridCache`](#hybridcache)
+- <span id="hybrid-create-cache"></span>`fn create_cache(&self) -> HybridCache` — [`HybridCache`](#hybridcache)
 
-- `fn get(self: &Self, _input: &Input<'_>) -> Option<&HybridEngine>` — [`Input`](../../index.md), [`HybridEngine`](#hybridengine)
+- <span id="hybrid-get"></span>`fn get(&self, _input: &Input<'_>) -> Option<&HybridEngine>` — [`Input`](../../index.md), [`HybridEngine`](#hybridengine)
 
-- `fn is_some(self: &Self) -> bool`
+- <span id="hybrid-is-some"></span>`fn is_some(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Debug for Hybrid`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="hybrid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `HybridEngine`
 
@@ -268,25 +315,25 @@ struct HybridEngine(hybrid::regex::Regex);
 
 #### Implementations
 
-- `fn new(info: &RegexInfo, pre: Option<Prefilter>, nfa: &NFA, nfarev: &NFA) -> Option<HybridEngine>` — [`RegexInfo`](../regex/index.md), [`Prefilter`](../../util/prefilter/index.md), [`NFA`](../../nfa/thompson/index.md), [`HybridEngine`](#hybridengine)
+- <span id="hybridengine-new"></span>`fn new(info: &RegexInfo, pre: Option<Prefilter>, nfa: &NFA, nfarev: &NFA) -> Option<HybridEngine>` — [`RegexInfo`](../regex/index.md), [`Prefilter`](../../util/prefilter/index.md), [`NFA`](../../nfa/thompson/index.md), [`HybridEngine`](#hybridengine)
 
-- `fn try_search(self: &Self, cache: &mut HybridCache, input: &Input<'_>) -> Result<Option<Match>, RetryFailError>` — [`HybridCache`](#hybridcache), [`Input`](../../index.md), [`Match`](../../index.md), [`RetryFailError`](../error/index.md)
+- <span id="hybridengine-try-search"></span>`fn try_search(&self, cache: &mut HybridCache, input: &Input<'_>) -> Result<Option<Match>, RetryFailError>` — [`HybridCache`](#hybridcache), [`Input`](../../index.md), [`Match`](../../index.md), [`RetryFailError`](../error/index.md)
 
-- `fn try_search_half_fwd(self: &Self, cache: &mut HybridCache, input: &Input<'_>) -> Result<Option<HalfMatch>, RetryFailError>` — [`HybridCache`](#hybridcache), [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`RetryFailError`](../error/index.md)
+- <span id="hybridengine-try-search-half-fwd"></span>`fn try_search_half_fwd(&self, cache: &mut HybridCache, input: &Input<'_>) -> Result<Option<HalfMatch>, RetryFailError>` — [`HybridCache`](#hybridcache), [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`RetryFailError`](../error/index.md)
 
-- `fn try_search_half_fwd_stopat(self: &Self, cache: &mut HybridCache, input: &Input<'_>) -> Result<Result<HalfMatch, usize>, RetryFailError>` — [`HybridCache`](#hybridcache), [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`RetryFailError`](../error/index.md)
+- <span id="hybridengine-try-search-half-fwd-stopat"></span>`fn try_search_half_fwd_stopat(&self, cache: &mut HybridCache, input: &Input<'_>) -> Result<Result<HalfMatch, usize>, RetryFailError>` — [`HybridCache`](#hybridcache), [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`RetryFailError`](../error/index.md)
 
-- `fn try_search_half_rev(self: &Self, cache: &mut HybridCache, input: &Input<'_>) -> Result<Option<HalfMatch>, RetryFailError>` — [`HybridCache`](#hybridcache), [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`RetryFailError`](../error/index.md)
+- <span id="hybridengine-try-search-half-rev"></span>`fn try_search_half_rev(&self, cache: &mut HybridCache, input: &Input<'_>) -> Result<Option<HalfMatch>, RetryFailError>` — [`HybridCache`](#hybridcache), [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`RetryFailError`](../error/index.md)
 
-- `fn try_search_half_rev_limited(self: &Self, cache: &mut HybridCache, input: &Input<'_>, min_start: usize) -> Result<Option<HalfMatch>, RetryError>` — [`HybridCache`](#hybridcache), [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`RetryError`](../error/index.md)
+- <span id="hybridengine-try-search-half-rev-limited"></span>`fn try_search_half_rev_limited(&self, cache: &mut HybridCache, input: &Input<'_>, min_start: usize) -> Result<Option<HalfMatch>, RetryError>` — [`HybridCache`](#hybridcache), [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`RetryError`](../error/index.md)
 
-- `fn try_which_overlapping_matches(self: &Self, cache: &mut HybridCache, input: &Input<'_>, patset: &mut PatternSet) -> Result<(), RetryFailError>` — [`HybridCache`](#hybridcache), [`Input`](../../index.md), [`PatternSet`](../../index.md), [`RetryFailError`](../error/index.md)
+- <span id="hybridengine-try-which-overlapping-matches"></span>`fn try_which_overlapping_matches(&self, cache: &mut HybridCache, input: &Input<'_>, patset: &mut PatternSet) -> Result<(), RetryFailError>` — [`HybridCache`](#hybridcache), [`Input`](../../index.md), [`PatternSet`](../../index.md), [`RetryFailError`](../error/index.md)
 
 #### Trait Implementations
 
 ##### `impl Debug for HybridEngine`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="hybridengine-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `HybridCache`
 
@@ -296,23 +343,23 @@ struct HybridCache(Option<hybrid::regex::Cache>);
 
 #### Implementations
 
-- `fn none() -> HybridCache` — [`HybridCache`](#hybridcache)
+- <span id="hybridcache-none"></span>`fn none() -> HybridCache` — [`HybridCache`](#hybridcache)
 
-- `fn new(builder: &Hybrid) -> HybridCache` — [`Hybrid`](#hybrid), [`HybridCache`](#hybridcache)
+- <span id="hybridcache-new"></span>`fn new(builder: &Hybrid) -> HybridCache` — [`Hybrid`](#hybrid), [`HybridCache`](#hybridcache)
 
-- `fn reset(self: &mut Self, builder: &Hybrid)` — [`Hybrid`](#hybrid)
+- <span id="hybridcache-reset"></span>`fn reset(&mut self, builder: &Hybrid)` — [`Hybrid`](#hybrid)
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="hybridcache-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Clone for HybridCache`
 
-- `fn clone(self: &Self) -> HybridCache` — [`HybridCache`](#hybridcache)
+- <span id="hybridcache-clone"></span>`fn clone(&self) -> HybridCache` — [`HybridCache`](#hybridcache)
 
 ##### `impl Debug for HybridCache`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="hybridcache-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `DFA`
 
@@ -322,21 +369,21 @@ struct DFA(Option<DFAEngine>);
 
 #### Implementations
 
-- `fn none() -> DFA` — [`DFA`](#dfa)
+- <span id="dfa-none"></span>`fn none() -> DFA` — [`DFA`](#dfa)
 
-- `fn new(info: &RegexInfo, pre: Option<Prefilter>, nfa: &NFA, nfarev: &NFA) -> DFA` — [`RegexInfo`](../regex/index.md), [`Prefilter`](../../util/prefilter/index.md), [`NFA`](../../nfa/thompson/index.md), [`DFA`](#dfa)
+- <span id="dfa-new"></span>`fn new(info: &RegexInfo, pre: Option<Prefilter>, nfa: &NFA, nfarev: &NFA) -> DFA` — [`RegexInfo`](../regex/index.md), [`Prefilter`](../../util/prefilter/index.md), [`NFA`](../../nfa/thompson/index.md), [`DFA`](#dfa)
 
-- `fn get(self: &Self, _input: &Input<'_>) -> Option<&DFAEngine>` — [`Input`](../../index.md), [`DFAEngine`](#dfaengine)
+- <span id="dfa-get"></span>`fn get(&self, _input: &Input<'_>) -> Option<&DFAEngine>` — [`Input`](../../index.md), [`DFAEngine`](#dfaengine)
 
-- `fn is_some(self: &Self) -> bool`
+- <span id="dfa-is-some"></span>`fn is_some(&self) -> bool`
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="dfa-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Debug for DFA`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dfa-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `DFAEngine`
 
@@ -346,27 +393,27 @@ struct DFAEngine(());
 
 #### Implementations
 
-- `fn new(info: &RegexInfo, pre: Option<Prefilter>, nfa: &NFA, nfarev: &NFA) -> Option<DFAEngine>` — [`RegexInfo`](../regex/index.md), [`Prefilter`](../../util/prefilter/index.md), [`NFA`](../../nfa/thompson/index.md), [`DFAEngine`](#dfaengine)
+- <span id="dfaengine-new"></span>`fn new(info: &RegexInfo, pre: Option<Prefilter>, nfa: &NFA, nfarev: &NFA) -> Option<DFAEngine>` — [`RegexInfo`](../regex/index.md), [`Prefilter`](../../util/prefilter/index.md), [`NFA`](../../nfa/thompson/index.md), [`DFAEngine`](#dfaengine)
 
-- `fn try_search(self: &Self, input: &Input<'_>) -> Result<Option<Match>, RetryFailError>` — [`Input`](../../index.md), [`Match`](../../index.md), [`RetryFailError`](../error/index.md)
+- <span id="dfaengine-try-search"></span>`fn try_search(&self, input: &Input<'_>) -> Result<Option<Match>, RetryFailError>` — [`Input`](../../index.md), [`Match`](../../index.md), [`RetryFailError`](../error/index.md)
 
-- `fn try_search_half_fwd(self: &Self, input: &Input<'_>) -> Result<Option<HalfMatch>, RetryFailError>` — [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`RetryFailError`](../error/index.md)
+- <span id="dfaengine-try-search-half-fwd"></span>`fn try_search_half_fwd(&self, input: &Input<'_>) -> Result<Option<HalfMatch>, RetryFailError>` — [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`RetryFailError`](../error/index.md)
 
-- `fn try_search_half_fwd_stopat(self: &Self, input: &Input<'_>) -> Result<Result<HalfMatch, usize>, RetryFailError>` — [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`RetryFailError`](../error/index.md)
+- <span id="dfaengine-try-search-half-fwd-stopat"></span>`fn try_search_half_fwd_stopat(&self, input: &Input<'_>) -> Result<Result<HalfMatch, usize>, RetryFailError>` — [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`RetryFailError`](../error/index.md)
 
-- `fn try_search_half_rev(self: &Self, input: &Input<'_>) -> Result<Option<HalfMatch>, RetryFailError>` — [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`RetryFailError`](../error/index.md)
+- <span id="dfaengine-try-search-half-rev"></span>`fn try_search_half_rev(&self, input: &Input<'_>) -> Result<Option<HalfMatch>, RetryFailError>` — [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`RetryFailError`](../error/index.md)
 
-- `fn try_search_half_rev_limited(self: &Self, input: &Input<'_>, min_start: usize) -> Result<Option<HalfMatch>, RetryError>` — [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`RetryError`](../error/index.md)
+- <span id="dfaengine-try-search-half-rev-limited"></span>`fn try_search_half_rev_limited(&self, input: &Input<'_>, min_start: usize) -> Result<Option<HalfMatch>, RetryError>` — [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`RetryError`](../error/index.md)
 
-- `fn try_which_overlapping_matches(self: &Self, input: &Input<'_>, patset: &mut PatternSet) -> Result<(), RetryFailError>` — [`Input`](../../index.md), [`PatternSet`](../../index.md), [`RetryFailError`](../error/index.md)
+- <span id="dfaengine-try-which-overlapping-matches"></span>`fn try_which_overlapping_matches(&self, input: &Input<'_>, patset: &mut PatternSet) -> Result<(), RetryFailError>` — [`Input`](../../index.md), [`PatternSet`](../../index.md), [`RetryFailError`](../error/index.md)
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="dfaengine-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Debug for DFAEngine`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dfaengine-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ReverseHybrid`
 
@@ -376,19 +423,19 @@ struct ReverseHybrid(Option<ReverseHybridEngine>);
 
 #### Implementations
 
-- `fn none() -> ReverseHybrid` — [`ReverseHybrid`](#reversehybrid)
+- <span id="reversehybrid-none"></span>`fn none() -> ReverseHybrid` — [`ReverseHybrid`](#reversehybrid)
 
-- `fn new(info: &RegexInfo, nfarev: &NFA) -> ReverseHybrid` — [`RegexInfo`](../regex/index.md), [`NFA`](../../nfa/thompson/index.md), [`ReverseHybrid`](#reversehybrid)
+- <span id="reversehybrid-new"></span>`fn new(info: &RegexInfo, nfarev: &NFA) -> ReverseHybrid` — [`RegexInfo`](../regex/index.md), [`NFA`](../../nfa/thompson/index.md), [`ReverseHybrid`](#reversehybrid)
 
-- `fn create_cache(self: &Self) -> ReverseHybridCache` — [`ReverseHybridCache`](#reversehybridcache)
+- <span id="reversehybrid-create-cache"></span>`fn create_cache(&self) -> ReverseHybridCache` — [`ReverseHybridCache`](#reversehybridcache)
 
-- `fn get(self: &Self, _input: &Input<'_>) -> Option<&ReverseHybridEngine>` — [`Input`](../../index.md), [`ReverseHybridEngine`](#reversehybridengine)
+- <span id="reversehybrid-get"></span>`fn get(&self, _input: &Input<'_>) -> Option<&ReverseHybridEngine>` — [`Input`](../../index.md), [`ReverseHybridEngine`](#reversehybridengine)
 
 #### Trait Implementations
 
 ##### `impl Debug for ReverseHybrid`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="reversehybrid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ReverseHybridEngine`
 
@@ -398,15 +445,15 @@ struct ReverseHybridEngine(hybrid::dfa::DFA);
 
 #### Implementations
 
-- `fn new(info: &RegexInfo, nfarev: &NFA) -> Option<ReverseHybridEngine>` — [`RegexInfo`](../regex/index.md), [`NFA`](../../nfa/thompson/index.md), [`ReverseHybridEngine`](#reversehybridengine)
+- <span id="reversehybridengine-new"></span>`fn new(info: &RegexInfo, nfarev: &NFA) -> Option<ReverseHybridEngine>` — [`RegexInfo`](../regex/index.md), [`NFA`](../../nfa/thompson/index.md), [`ReverseHybridEngine`](#reversehybridengine)
 
-- `fn try_search_half_rev_limited(self: &Self, cache: &mut ReverseHybridCache, input: &Input<'_>, min_start: usize) -> Result<Option<HalfMatch>, RetryError>` — [`ReverseHybridCache`](#reversehybridcache), [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`RetryError`](../error/index.md)
+- <span id="reversehybridengine-try-search-half-rev-limited"></span>`fn try_search_half_rev_limited(&self, cache: &mut ReverseHybridCache, input: &Input<'_>, min_start: usize) -> Result<Option<HalfMatch>, RetryError>` — [`ReverseHybridCache`](#reversehybridcache), [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`RetryError`](../error/index.md)
 
 #### Trait Implementations
 
 ##### `impl Debug for ReverseHybridEngine`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="reversehybridengine-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ReverseHybridCache`
 
@@ -416,23 +463,23 @@ struct ReverseHybridCache(Option<hybrid::dfa::Cache>);
 
 #### Implementations
 
-- `fn none() -> ReverseHybridCache` — [`ReverseHybridCache`](#reversehybridcache)
+- <span id="reversehybridcache-none"></span>`fn none() -> ReverseHybridCache` — [`ReverseHybridCache`](#reversehybridcache)
 
-- `fn new(builder: &ReverseHybrid) -> ReverseHybridCache` — [`ReverseHybrid`](#reversehybrid), [`ReverseHybridCache`](#reversehybridcache)
+- <span id="reversehybridcache-new"></span>`fn new(builder: &ReverseHybrid) -> ReverseHybridCache` — [`ReverseHybrid`](#reversehybrid), [`ReverseHybridCache`](#reversehybridcache)
 
-- `fn reset(self: &mut Self, builder: &ReverseHybrid)` — [`ReverseHybrid`](#reversehybrid)
+- <span id="reversehybridcache-reset"></span>`fn reset(&mut self, builder: &ReverseHybrid)` — [`ReverseHybrid`](#reversehybrid)
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="reversehybridcache-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Clone for ReverseHybridCache`
 
-- `fn clone(self: &Self) -> ReverseHybridCache` — [`ReverseHybridCache`](#reversehybridcache)
+- <span id="reversehybridcache-clone"></span>`fn clone(&self) -> ReverseHybridCache` — [`ReverseHybridCache`](#reversehybridcache)
 
 ##### `impl Debug for ReverseHybridCache`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="reversehybridcache-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ReverseDFA`
 
@@ -442,21 +489,21 @@ struct ReverseDFA(Option<ReverseDFAEngine>);
 
 #### Implementations
 
-- `fn none() -> ReverseDFA` — [`ReverseDFA`](#reversedfa)
+- <span id="reversedfa-none"></span>`fn none() -> ReverseDFA` — [`ReverseDFA`](#reversedfa)
 
-- `fn new(info: &RegexInfo, nfarev: &NFA) -> ReverseDFA` — [`RegexInfo`](../regex/index.md), [`NFA`](../../nfa/thompson/index.md), [`ReverseDFA`](#reversedfa)
+- <span id="reversedfa-new"></span>`fn new(info: &RegexInfo, nfarev: &NFA) -> ReverseDFA` — [`RegexInfo`](../regex/index.md), [`NFA`](../../nfa/thompson/index.md), [`ReverseDFA`](#reversedfa)
 
-- `fn get(self: &Self, _input: &Input<'_>) -> Option<&ReverseDFAEngine>` — [`Input`](../../index.md), [`ReverseDFAEngine`](#reversedfaengine)
+- <span id="reversedfa-get"></span>`fn get(&self, _input: &Input<'_>) -> Option<&ReverseDFAEngine>` — [`Input`](../../index.md), [`ReverseDFAEngine`](#reversedfaengine)
 
-- `fn is_some(self: &Self) -> bool`
+- <span id="reversedfa-is-some"></span>`fn is_some(&self) -> bool`
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="reversedfa-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Debug for ReverseDFA`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="reversedfa-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ReverseDFAEngine`
 
@@ -466,15 +513,15 @@ struct ReverseDFAEngine(());
 
 #### Implementations
 
-- `fn new(info: &RegexInfo, nfarev: &NFA) -> Option<ReverseDFAEngine>` — [`RegexInfo`](../regex/index.md), [`NFA`](../../nfa/thompson/index.md), [`ReverseDFAEngine`](#reversedfaengine)
+- <span id="reversedfaengine-new"></span>`fn new(info: &RegexInfo, nfarev: &NFA) -> Option<ReverseDFAEngine>` — [`RegexInfo`](../regex/index.md), [`NFA`](../../nfa/thompson/index.md), [`ReverseDFAEngine`](#reversedfaengine)
 
-- `fn try_search_half_rev_limited(self: &Self, input: &Input<'_>, min_start: usize) -> Result<Option<HalfMatch>, RetryError>` — [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`RetryError`](../error/index.md)
+- <span id="reversedfaengine-try-search-half-rev-limited"></span>`fn try_search_half_rev_limited(&self, input: &Input<'_>, min_start: usize) -> Result<Option<HalfMatch>, RetryError>` — [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`RetryError`](../error/index.md)
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="reversedfaengine-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Debug for ReverseDFAEngine`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="reversedfaengine-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

@@ -148,6 +148,13 @@ is not allowed. For more guidance on working with box from unsafe code, see
 
 
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Box`](#box) | struct | A pointer type for heap allocation. |
+| [`BoxIter`](#boxiter) | trait |  |
+
 ## Structs
 
 ### `Box<T: ?Sized, A: Allocator>`
@@ -162,187 +169,171 @@ See the [module-level documentation](../../std/boxed/index.html) for more.
 
 #### Implementations
 
-- `fn new_in(x: T, alloc: A) -> Self`
+- <span id="box-downcast"></span>`fn downcast<T: Any>(self) -> Result<Box<T, A>, Self>` — [`Box`](#box)
 
-- `fn try_new_in(x: T, alloc: A) -> Result<Self, AllocError>` — [`AllocError`](../alloc/index.md)
-
-- `fn new_uninit_in(alloc: A) -> Box<mem::MaybeUninit<T>, A>` — [`Box`](#box)
-
-- `fn try_new_uninit_in(alloc: A) -> Result<Box<mem::MaybeUninit<T>, A>, AllocError>` — [`Box`](#box), [`AllocError`](../alloc/index.md)
-
-- `fn new_zeroed_in(alloc: A) -> Box<mem::MaybeUninit<T>, A>` — [`Box`](#box)
-
-- `fn try_new_zeroed_in(alloc: A) -> Result<Box<mem::MaybeUninit<T>, A>, AllocError>` — [`Box`](#box), [`AllocError`](../alloc/index.md)
-
-- `fn pin_in(x: T, alloc: A) -> Pin<Self>`
-
-- `fn into_boxed_slice(boxed: Self) -> Box<[T], A>` — [`Box`](#box)
-
-- `fn into_inner(boxed: Self) -> T`
+- <span id="box-downcast-unchecked"></span>`unsafe fn downcast_unchecked<T: Any>(self) -> Box<T, A>` — [`Box`](#box)
 
 #### Trait Implementations
 
 ##### `impl<T: ?Sized, A: Allocator> AsMut for Box<T, A>`
 
-- `fn as_mut(self: &mut Self) -> &mut T`
+- <span id="box-as-mut"></span>`fn as_mut(&mut self) -> &mut T`
 
 ##### `impl<T: ?Sized, A: Allocator> AsRef for Box<T, A>`
 
-- `fn as_ref(self: &Self) -> &T`
+- <span id="box-as-ref"></span>`fn as_ref(&self) -> &T`
 
 ##### `impl<I: Iterator + ?Sized, A: Allocator> BoxIter for Box<I, A>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="box-item"></span>`type Item = <I as Iterator>::Item`
 
-- `fn last(self: Self) -> Option<<I as >::Item>`
+- <span id="box-last"></span>`fn last(self) -> Option<<I as >::Item>`
 
-##### `impl<T: Clone, A: Allocator + Clone> Clone for Box<T, A>`
+##### `impl Clone for Box<str>`
 
-- `fn clone(self: &Self) -> Self`
-
-- `fn clone_from(self: &mut Self, source: &Self)`
+- <span id="box-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T: fmt::Debug + ?Sized, A: Allocator> Debug for Box<T, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="box-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: Default> Default for Box<T>`
+##### `impl<A: Allocator + Default> Default for Box<str, A>`
 
-- `fn default() -> Self`
+- <span id="box-default"></span>`fn default() -> Self`
 
 ##### `impl<T: ?Sized, A: Allocator> Deref for Box<T, A>`
 
-- `type Target = T`
+- <span id="box-target"></span>`type Target = T`
 
-- `fn deref(self: &Self) -> &T`
+- <span id="box-deref"></span>`fn deref(&self) -> &T`
 
 ##### `impl<T: ?Sized, A: Allocator> DerefMut for Box<T, A>`
 
-- `fn deref_mut(self: &mut Self) -> &mut T`
+- <span id="box-deref-mut"></span>`fn deref_mut(&mut self) -> &mut T`
 
 ##### `impl<T: fmt::Display + ?Sized, A: Allocator> Display for Box<T, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="box-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I: DoubleEndedIterator + ?Sized, A: Allocator> DoubleEndedIterator for Box<I, A>`
 
-- `fn next_back(self: &mut Self) -> Option<<I as >::Item>`
+- <span id="box-next-back"></span>`fn next_back(&mut self) -> Option<<I as >::Item>`
 
-- `fn nth_back(self: &mut Self, n: usize) -> Option<<I as >::Item>`
+- <span id="box-nth-back"></span>`fn nth_back(&mut self, n: usize) -> Option<<I as >::Item>`
 
 ##### `impl<T: ?Sized, A: Allocator> Drop for Box<T, A>`
 
-- `fn drop(self: &mut Self)`
+- <span id="box-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<T: ?Sized + Eq, A: Allocator> Eq for Box<T, A>`
 
 ##### `impl<I: ExactSizeIterator + ?Sized, A: Allocator> ExactSizeIterator for Box<I, A>`
 
-- `fn len(self: &Self) -> usize`
+- <span id="box-len"></span>`fn len(&self) -> usize`
 
 ##### `impl<I> FromIterator for Box<[I]>`
 
-- `fn from_iter<T: IntoIterator<Item = I>>(iter: T) -> Self`
+- <span id="box-from-iter"></span>`fn from_iter<T: IntoIterator<Item = I>>(iter: T) -> Self`
 
 ##### `impl<I: FusedIterator + ?Sized, A: Allocator> FusedIterator for Box<I, A>`
 
 ##### `impl<F: ?Sized + Future + Unpin, A> Future for Box<F, A>`
 
-- `type Output = <F as Future>::Output`
+- <span id="box-output"></span>`type Output = <F as Future>::Output`
 
-- `fn poll(self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<<Self as >::Output>`
+- <span id="box-poll"></span>`fn poll(self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<<Self as >::Output>`
 
 ##### `impl<T: ?Sized + Hash, A: Allocator> Hash for Box<T, A>`
 
-- `fn hash<H: Hasher>(self: &Self, state: &mut H)`
+- <span id="box-hash"></span>`fn hash<H: Hasher>(&self, state: &mut H)`
 
 ##### `impl<T: ?Sized + Hasher, A: Allocator> Hasher for Box<T, A>`
 
-- `fn finish(self: &Self) -> u64`
+- <span id="box-finish"></span>`fn finish(&self) -> u64`
 
-- `fn write(self: &mut Self, bytes: &[u8])`
+- <span id="box-write"></span>`fn write(&mut self, bytes: &[u8])`
 
-- `fn write_u8(self: &mut Self, i: u8)`
+- <span id="box-write-u8"></span>`fn write_u8(&mut self, i: u8)`
 
-- `fn write_u16(self: &mut Self, i: u16)`
+- <span id="box-write-u16"></span>`fn write_u16(&mut self, i: u16)`
 
-- `fn write_u32(self: &mut Self, i: u32)`
+- <span id="box-write-u32"></span>`fn write_u32(&mut self, i: u32)`
 
-- `fn write_u64(self: &mut Self, i: u64)`
+- <span id="box-write-u64"></span>`fn write_u64(&mut self, i: u64)`
 
-- `fn write_u128(self: &mut Self, i: u128)`
+- <span id="box-write-u128"></span>`fn write_u128(&mut self, i: u128)`
 
-- `fn write_usize(self: &mut Self, i: usize)`
+- <span id="box-write-usize"></span>`fn write_usize(&mut self, i: usize)`
 
-- `fn write_i8(self: &mut Self, i: i8)`
+- <span id="box-write-i8"></span>`fn write_i8(&mut self, i: i8)`
 
-- `fn write_i16(self: &mut Self, i: i16)`
+- <span id="box-write-i16"></span>`fn write_i16(&mut self, i: i16)`
 
-- `fn write_i32(self: &mut Self, i: i32)`
+- <span id="box-write-i32"></span>`fn write_i32(&mut self, i: i32)`
 
-- `fn write_i64(self: &mut Self, i: i64)`
+- <span id="box-write-i64"></span>`fn write_i64(&mut self, i: i64)`
 
-- `fn write_i128(self: &mut Self, i: i128)`
+- <span id="box-write-i128"></span>`fn write_i128(&mut self, i: i128)`
 
-- `fn write_isize(self: &mut Self, i: isize)`
+- <span id="box-write-isize"></span>`fn write_isize(&mut self, i: isize)`
 
 ##### `impl<F> IntoFuture for Box<T, A>`
 
-- `type Output = <F as Future>::Output`
+- <span id="box-output"></span>`type Output = <F as Future>::Output`
 
-- `type IntoFuture = F`
+- <span id="box-intofuture"></span>`type IntoFuture = F`
 
-- `fn into_future(self: Self) -> <F as IntoFuture>::IntoFuture`
+- <span id="box-into-future"></span>`fn into_future(self) -> <F as IntoFuture>::IntoFuture`
 
 ##### `impl<I> IntoIterator for Box<T, A>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="box-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="box-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="box-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I: Iterator + ?Sized, A: Allocator> Iterator for Box<I, A>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="box-item"></span>`type Item = <I as Iterator>::Item`
 
-- `fn next(self: &mut Self) -> Option<<I as >::Item>`
+- <span id="box-next"></span>`fn next(&mut self) -> Option<<I as >::Item>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="box-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- `fn nth(self: &mut Self, n: usize) -> Option<<I as >::Item>`
+- <span id="box-nth"></span>`fn nth(&mut self, n: usize) -> Option<<I as >::Item>`
 
-- `fn last(self: Self) -> Option<<I as >::Item>`
+- <span id="box-last"></span>`fn last(self) -> Option<<I as >::Item>`
 
 ##### `impl<T: ?Sized + Ord, A: Allocator> Ord for Box<T, A>`
 
-- `fn cmp(self: &Self, other: &Self) -> Ordering`
+- <span id="box-cmp"></span>`fn cmp(&self, other: &Self) -> Ordering`
 
 ##### `impl<T: ?Sized + PartialEq, A: Allocator> PartialEq for Box<T, A>`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="box-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-- `fn ne(self: &Self, other: &Self) -> bool`
+- <span id="box-ne"></span>`fn ne(&self, other: &Self) -> bool`
 
 ##### `impl<T: ?Sized + PartialOrd, A: Allocator> PartialOrd for Box<T, A>`
 
-- `fn partial_cmp(self: &Self, other: &Self) -> Option<Ordering>`
+- <span id="box-partial-cmp"></span>`fn partial_cmp(&self, other: &Self) -> Option<Ordering>`
 
-- `fn lt(self: &Self, other: &Self) -> bool`
+- <span id="box-lt"></span>`fn lt(&self, other: &Self) -> bool`
 
-- `fn le(self: &Self, other: &Self) -> bool`
+- <span id="box-le"></span>`fn le(&self, other: &Self) -> bool`
 
-- `fn ge(self: &Self, other: &Self) -> bool`
+- <span id="box-ge"></span>`fn ge(&self, other: &Self) -> bool`
 
-- `fn gt(self: &Self, other: &Self) -> bool`
+- <span id="box-gt"></span>`fn gt(&self, other: &Self) -> bool`
 
 ##### `impl<T: ?Sized, A: Allocator> Pointer for Box<T, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="box-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<P, T> Receiver for Box<T, A>`
 
-- `type Target = T`
+- <span id="box-target"></span>`type Target = T`
 
 ##### `impl<T, A> Send for Box<T, A>`
 
@@ -350,7 +341,7 @@ See the [module-level documentation](../../std/boxed/index.html) for more.
 
 ##### `impl<T> ToString for Box<T, A>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="box-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl<T: ?Sized, A> Unpin for Box<T, A>`
 
@@ -366,5 +357,5 @@ trait BoxIter { ... }
 
 - `type Item`
 
-- `fn last(self: Self) -> Option<<Self as >::Item>`
+- `fn last(self) -> Option<<Self as >::Item>`
 

@@ -4,6 +4,13 @@
 
 # Module `into_app`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`gen_for_struct`](#gen_for_struct) | fn |  |
+| [`gen_for_enum`](#gen_for_enum) | fn |  |
+
 ## Functions
 
 ### `gen_for_struct`

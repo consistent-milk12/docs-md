@@ -9,6 +9,14 @@ that cannot be implemented outside of our own crate.  This way we
 can feel free to extend those traits without worrying about it
 being a breaking change for other implementations.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`PrivateMarker`](#privatemarker) | struct | If this type is pub but not publicly reachable, third parties |
+| [`private_decl!`](#private_decl) | macro |  |
+| [`private_impl!`](#private_impl) | macro |  |
+
 ## Structs
 
 ### `PrivateMarker`
@@ -24,17 +32,17 @@ can't name it and can't implement traits using it.
 
 ##### `impl<T> Pointable for PrivateMarker`
 
-- `const ALIGN: usize`
+- <span id="privatemarker-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="privatemarker-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="privatemarker-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="privatemarker-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="privatemarker-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="privatemarker-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ## Macros
 

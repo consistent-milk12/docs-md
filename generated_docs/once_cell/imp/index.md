@@ -4,6 +4,42 @@
 
 # Module `imp`
 
+## Contents
+
+- [Modules](#modules)
+  - [`strict`](#strict)
+- [Structs](#structs)
+  - [`OnceCell`](#oncecell)
+  - [`Waiter`](#waiter)
+  - [`Guard`](#guard)
+- [Functions](#functions)
+  - [`initialize_or_wait`](#initialize_or_wait)
+  - [`wait`](#wait)
+- [Constants](#constants)
+  - [`INCOMPLETE`](#incomplete)
+  - [`RUNNING`](#running)
+  - [`COMPLETE`](#complete)
+  - [`INCOMPLETE_PTR`](#incomplete_ptr)
+  - [`COMPLETE_PTR`](#complete_ptr)
+  - [`STATE_MASK`](#state_mask)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`strict`](#strict) | mod |  |
+| [`OnceCell`](#oncecell) | struct |  |
+| [`Waiter`](#waiter) | struct | Representation of a node in the linked list of waiters in the RUNNING state. |
+| [`Guard`](#guard) | struct | Drains and notifies the queue of waiters on drop. |
+| [`initialize_or_wait`](#initialize_or_wait) | fn |  |
+| [`wait`](#wait) | fn |  |
+| [`INCOMPLETE`](#incomplete) | const |  |
+| [`RUNNING`](#running) | const |  |
+| [`COMPLETE`](#complete) | const |  |
+| [`INCOMPLETE_PTR`](#incomplete_ptr) | const |  |
+| [`COMPLETE_PTR`](#complete_ptr) | const |  |
+| [`STATE_MASK`](#state_mask) | const |  |
+
 ## Modules
 
 - [`strict`](strict/index.md) - 
@@ -21,27 +57,27 @@ struct OnceCell<T> {
 
 #### Implementations
 
-- `const fn new() -> OnceCell<T>` — [`OnceCell`](#oncecell)
+- <span id="oncecell-new"></span>`const fn new() -> OnceCell<T>` — [`OnceCell`](#oncecell)
 
-- `const fn with_value(value: T) -> OnceCell<T>` — [`OnceCell`](#oncecell)
+- <span id="oncecell-with-value"></span>`const fn with_value(value: T) -> OnceCell<T>` — [`OnceCell`](#oncecell)
 
-- `fn is_initialized(self: &Self) -> bool`
+- <span id="oncecell-is-initialized"></span>`fn is_initialized(&self) -> bool`
 
-- `fn initialize<F, E>(self: &Self, f: F) -> Result<(), E>`
+- <span id="oncecell-initialize"></span>`fn initialize<F, E>(&self, f: F) -> Result<(), E>`
 
-- `fn wait(self: &Self)`
+- <span id="oncecell-wait"></span>`fn wait(&self)`
 
-- `unsafe fn get_unchecked(self: &Self) -> &T`
+- <span id="oncecell-get-unchecked"></span>`unsafe fn get_unchecked(&self) -> &T`
 
-- `fn get_mut(self: &mut Self) -> Option<&mut T>`
+- <span id="oncecell-get-mut"></span>`fn get_mut(&mut self) -> Option<&mut T>`
 
-- `fn into_inner(self: Self) -> Option<T>`
+- <span id="oncecell-into-inner"></span>`fn into_inner(self) -> Option<T>`
 
 #### Trait Implementations
 
-##### `impl<T: $crate::fmt::Debug> Debug for OnceCell<T>`
+##### `impl<T: fmt::Debug> Debug for OnceCell<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="oncecell-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: RefUnwindSafe + UnwindSafe> RefUnwindSafe for OnceCell<T>`
 
@@ -79,7 +115,7 @@ Drains and notifies the queue of waiters on drop.
 
 ##### `impl Drop for Guard<'_>`
 
-- `fn drop(self: &mut Self)`
+- <span id="guard-drop"></span>`fn drop(&mut self)`
 
 ## Functions
 

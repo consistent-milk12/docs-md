@@ -2,6 +2,1048 @@
 
 libc - Raw FFI bindings to platforms' system libraries
 
+## Contents
+
+- [Modules](#modules)
+  - [`macros`](#macros)
+  - [`new`](#new)
+  - [`primitives`](#primitives)
+  - [`unix`](#unix)
+  - [`types`](#types)
+  - [`prelude`](#prelude)
+  - [`common`](#common)
+  - [`linux_uapi`](#linux_uapi)
+  - [`glibc`](#glibc)
+  - [`linux_like`](#linux_like)
+- [Structs](#structs)
+  - [`group`](#group)
+  - [`utimbuf`](#utimbuf)
+  - [`timeval`](#timeval)
+  - [`rlimit`](#rlimit)
+  - [`rusage`](#rusage)
+  - [`ipv6_mreq`](#ipv6_mreq)
+  - [`hostent`](#hostent)
+  - [`iovec`](#iovec)
+  - [`pollfd`](#pollfd)
+  - [`winsize`](#winsize)
+  - [`linger`](#linger)
+  - [`sigval`](#sigval)
+  - [`itimerval`](#itimerval)
+  - [`tms`](#tms)
+  - [`servent`](#servent)
+  - [`protoent`](#protoent)
+  - [`in6_addr`](#in6_addr)
+- [Enums](#enums)
+  - [`DIR`](#dir)
+  - [`FILE`](#file)
+- [Functions](#functions)
+  - [`unnamed`](#unnamed)
+  - [`isalnum`](#isalnum)
+  - [`isalpha`](#isalpha)
+  - [`iscntrl`](#iscntrl)
+  - [`isdigit`](#isdigit)
+  - [`isgraph`](#isgraph)
+  - [`islower`](#islower)
+  - [`isprint`](#isprint)
+  - [`ispunct`](#ispunct)
+  - [`isspace`](#isspace)
+  - [`isupper`](#isupper)
+  - [`isxdigit`](#isxdigit)
+  - [`isblank`](#isblank)
+  - [`tolower`](#tolower)
+  - [`toupper`](#toupper)
+  - [`qsort`](#qsort)
+  - [`bsearch`](#bsearch)
+  - [`fopen`](#fopen)
+  - [`freopen`](#freopen)
+  - [`fflush`](#fflush)
+  - [`fclose`](#fclose)
+  - [`remove`](#remove)
+  - [`rename`](#rename)
+  - [`tmpfile`](#tmpfile)
+  - [`setvbuf`](#setvbuf)
+  - [`setbuf`](#setbuf)
+  - [`getchar`](#getchar)
+  - [`putchar`](#putchar)
+  - [`fgetc`](#fgetc)
+  - [`fgets`](#fgets)
+  - [`fputc`](#fputc)
+  - [`fputs`](#fputs)
+  - [`puts`](#puts)
+  - [`ungetc`](#ungetc)
+  - [`fread`](#fread)
+  - [`fwrite`](#fwrite)
+  - [`fseek`](#fseek)
+  - [`ftell`](#ftell)
+  - [`rewind`](#rewind)
+  - [`fgetpos`](#fgetpos)
+  - [`fsetpos`](#fsetpos)
+  - [`feof`](#feof)
+  - [`ferror`](#ferror)
+  - [`clearerr`](#clearerr)
+  - [`perror`](#perror)
+  - [`atof`](#atof)
+  - [`atoi`](#atoi)
+  - [`atol`](#atol)
+  - [`atoll`](#atoll)
+  - [`strtod`](#strtod)
+  - [`strtof`](#strtof)
+  - [`strtol`](#strtol)
+  - [`strtoll`](#strtoll)
+  - [`strtoul`](#strtoul)
+  - [`strtoull`](#strtoull)
+  - [`calloc`](#calloc)
+  - [`malloc`](#malloc)
+  - [`realloc`](#realloc)
+  - [`free`](#free)
+  - [`abort`](#abort)
+  - [`exit`](#exit)
+  - [`_exit`](#_exit)
+  - [`system`](#system)
+  - [`getenv`](#getenv)
+  - [`strcpy`](#strcpy)
+  - [`strncpy`](#strncpy)
+  - [`stpcpy`](#stpcpy)
+  - [`strcat`](#strcat)
+  - [`strncat`](#strncat)
+  - [`strcmp`](#strcmp)
+  - [`strncmp`](#strncmp)
+  - [`strcoll`](#strcoll)
+  - [`strchr`](#strchr)
+  - [`strrchr`](#strrchr)
+  - [`strspn`](#strspn)
+  - [`strcspn`](#strcspn)
+  - [`strdup`](#strdup)
+  - [`strndup`](#strndup)
+  - [`strpbrk`](#strpbrk)
+  - [`strstr`](#strstr)
+  - [`strcasecmp`](#strcasecmp)
+  - [`strncasecmp`](#strncasecmp)
+  - [`strlen`](#strlen)
+  - [`strnlen`](#strnlen)
+  - [`strerror`](#strerror)
+  - [`strtok`](#strtok)
+  - [`strtok_r`](#strtok_r)
+  - [`strxfrm`](#strxfrm)
+  - [`strsignal`](#strsignal)
+  - [`wcslen`](#wcslen)
+  - [`wcstombs`](#wcstombs)
+  - [`memchr`](#memchr)
+  - [`wmemchr`](#wmemchr)
+  - [`memcmp`](#memcmp)
+  - [`memcpy`](#memcpy)
+  - [`memmove`](#memmove)
+  - [`memset`](#memset)
+  - [`memccpy`](#memccpy)
+  - [`getpwnam`](#getpwnam)
+  - [`getpwuid`](#getpwuid)
+  - [`fprintf`](#fprintf)
+  - [`printf`](#printf)
+  - [`snprintf`](#snprintf)
+  - [`sprintf`](#sprintf)
+  - [`fscanf`](#fscanf)
+  - [`scanf`](#scanf)
+  - [`sscanf`](#sscanf)
+  - [`getchar_unlocked`](#getchar_unlocked)
+  - [`putchar_unlocked`](#putchar_unlocked)
+  - [`socket`](#socket)
+  - [`connect`](#connect)
+  - [`listen`](#listen)
+  - [`accept`](#accept)
+  - [`getpeername`](#getpeername)
+  - [`getsockname`](#getsockname)
+  - [`setsockopt`](#setsockopt)
+  - [`socketpair`](#socketpair)
+  - [`sendto`](#sendto)
+  - [`shutdown`](#shutdown)
+  - [`chmod`](#chmod)
+  - [`fchmod`](#fchmod)
+  - [`fstat`](#fstat)
+  - [`mkdir`](#mkdir)
+  - [`stat`](#stat)
+  - [`pclose`](#pclose)
+  - [`fdopen`](#fdopen)
+  - [`fileno`](#fileno)
+  - [`open`](#open)
+  - [`creat`](#creat)
+  - [`fcntl`](#fcntl)
+  - [`opendir`](#opendir)
+  - [`readdir`](#readdir)
+  - [`closedir`](#closedir)
+  - [`rewinddir`](#rewinddir)
+  - [`fchmodat`](#fchmodat)
+  - [`fchown`](#fchown)
+  - [`fchownat`](#fchownat)
+  - [`fstatat`](#fstatat)
+  - [`linkat`](#linkat)
+  - [`renameat`](#renameat)
+  - [`symlinkat`](#symlinkat)
+  - [`unlinkat`](#unlinkat)
+  - [`access`](#access)
+  - [`alarm`](#alarm)
+  - [`chdir`](#chdir)
+  - [`fchdir`](#fchdir)
+  - [`chown`](#chown)
+  - [`lchown`](#lchown)
+  - [`close`](#close)
+  - [`dup`](#dup)
+  - [`dup2`](#dup2)
+  - [`execl`](#execl)
+  - [`execle`](#execle)
+  - [`execlp`](#execlp)
+  - [`execv`](#execv)
+  - [`execve`](#execve)
+  - [`execvp`](#execvp)
+  - [`fork`](#fork)
+  - [`fpathconf`](#fpathconf)
+  - [`getcwd`](#getcwd)
+  - [`getegid`](#getegid)
+  - [`geteuid`](#geteuid)
+  - [`getgid`](#getgid)
+  - [`getgroups`](#getgroups)
+  - [`getlogin`](#getlogin)
+  - [`getopt`](#getopt)
+  - [`getpgid`](#getpgid)
+  - [`getpgrp`](#getpgrp)
+  - [`getpid`](#getpid)
+  - [`getppid`](#getppid)
+  - [`getuid`](#getuid)
+  - [`isatty`](#isatty)
+  - [`link`](#link)
+  - [`lseek`](#lseek)
+  - [`pathconf`](#pathconf)
+  - [`pipe`](#pipe)
+  - [`posix_memalign`](#posix_memalign)
+  - [`aligned_alloc`](#aligned_alloc)
+  - [`read`](#read)
+  - [`rmdir`](#rmdir)
+  - [`seteuid`](#seteuid)
+  - [`setegid`](#setegid)
+  - [`setgid`](#setgid)
+  - [`setpgid`](#setpgid)
+  - [`setsid`](#setsid)
+  - [`setuid`](#setuid)
+  - [`setreuid`](#setreuid)
+  - [`setregid`](#setregid)
+  - [`sleep`](#sleep)
+  - [`nanosleep`](#nanosleep)
+  - [`tcgetpgrp`](#tcgetpgrp)
+  - [`tcsetpgrp`](#tcsetpgrp)
+  - [`ttyname`](#ttyname)
+  - [`ttyname_r`](#ttyname_r)
+  - [`unlink`](#unlink)
+  - [`wait`](#wait)
+  - [`waitpid`](#waitpid)
+  - [`write`](#write)
+  - [`pread`](#pread)
+  - [`pwrite`](#pwrite)
+  - [`umask`](#umask)
+  - [`utime`](#utime)
+  - [`kill`](#kill)
+  - [`killpg`](#killpg)
+  - [`mlock`](#mlock)
+  - [`munlock`](#munlock)
+  - [`mlockall`](#mlockall)
+  - [`munlockall`](#munlockall)
+  - [`mmap`](#mmap)
+  - [`munmap`](#munmap)
+  - [`if_nametoindex`](#if_nametoindex)
+  - [`if_indextoname`](#if_indextoname)
+  - [`lstat`](#lstat)
+  - [`fsync`](#fsync)
+  - [`setenv`](#setenv)
+  - [`unsetenv`](#unsetenv)
+  - [`symlink`](#symlink)
+  - [`truncate`](#truncate)
+  - [`ftruncate`](#ftruncate)
+  - [`signal`](#signal)
+  - [`getrusage`](#getrusage)
+  - [`realpath`](#realpath)
+  - [`times`](#times)
+  - [`pthread_self`](#pthread_self)
+  - [`pthread_equal`](#pthread_equal)
+  - [`pthread_join`](#pthread_join)
+  - [`pthread_exit`](#pthread_exit)
+  - [`pthread_attr_init`](#pthread_attr_init)
+  - [`pthread_attr_destroy`](#pthread_attr_destroy)
+  - [`pthread_attr_getstacksize`](#pthread_attr_getstacksize)
+  - [`pthread_attr_setstacksize`](#pthread_attr_setstacksize)
+  - [`pthread_attr_setdetachstate`](#pthread_attr_setdetachstate)
+  - [`pthread_detach`](#pthread_detach)
+  - [`sched_yield`](#sched_yield)
+  - [`pthread_key_create`](#pthread_key_create)
+  - [`pthread_key_delete`](#pthread_key_delete)
+  - [`pthread_getspecific`](#pthread_getspecific)
+  - [`pthread_setspecific`](#pthread_setspecific)
+  - [`pthread_mutex_init`](#pthread_mutex_init)
+  - [`pthread_mutex_destroy`](#pthread_mutex_destroy)
+  - [`pthread_mutex_lock`](#pthread_mutex_lock)
+  - [`pthread_mutex_trylock`](#pthread_mutex_trylock)
+  - [`pthread_mutex_unlock`](#pthread_mutex_unlock)
+  - [`pthread_mutexattr_init`](#pthread_mutexattr_init)
+  - [`pthread_mutexattr_destroy`](#pthread_mutexattr_destroy)
+  - [`pthread_mutexattr_settype`](#pthread_mutexattr_settype)
+  - [`pthread_cond_init`](#pthread_cond_init)
+  - [`pthread_cond_wait`](#pthread_cond_wait)
+  - [`pthread_cond_timedwait`](#pthread_cond_timedwait)
+  - [`pthread_cond_signal`](#pthread_cond_signal)
+  - [`pthread_cond_broadcast`](#pthread_cond_broadcast)
+  - [`pthread_cond_destroy`](#pthread_cond_destroy)
+  - [`pthread_condattr_init`](#pthread_condattr_init)
+  - [`pthread_condattr_destroy`](#pthread_condattr_destroy)
+  - [`pthread_rwlock_init`](#pthread_rwlock_init)
+  - [`pthread_rwlock_destroy`](#pthread_rwlock_destroy)
+  - [`pthread_rwlock_rdlock`](#pthread_rwlock_rdlock)
+  - [`pthread_rwlock_tryrdlock`](#pthread_rwlock_tryrdlock)
+  - [`pthread_rwlock_wrlock`](#pthread_rwlock_wrlock)
+  - [`pthread_rwlock_trywrlock`](#pthread_rwlock_trywrlock)
+  - [`pthread_rwlock_unlock`](#pthread_rwlock_unlock)
+  - [`pthread_rwlockattr_init`](#pthread_rwlockattr_init)
+  - [`pthread_rwlockattr_destroy`](#pthread_rwlockattr_destroy)
+  - [`getsockopt`](#getsockopt)
+  - [`raise`](#raise)
+  - [`utimes`](#utimes)
+  - [`dlopen`](#dlopen)
+  - [`dlerror`](#dlerror)
+  - [`dlsym`](#dlsym)
+  - [`dlclose`](#dlclose)
+  - [`getaddrinfo`](#getaddrinfo)
+  - [`freeaddrinfo`](#freeaddrinfo)
+  - [`hstrerror`](#hstrerror)
+  - [`gai_strerror`](#gai_strerror)
+  - [`res_init`](#res_init)
+  - [`gmtime_r`](#gmtime_r)
+  - [`localtime_r`](#localtime_r)
+  - [`mktime`](#mktime)
+  - [`time`](#time)
+  - [`gmtime`](#gmtime)
+  - [`localtime`](#localtime)
+  - [`difftime`](#difftime)
+  - [`timegm`](#timegm)
+  - [`mknod`](#mknod)
+  - [`gethostname`](#gethostname)
+  - [`endservent`](#endservent)
+  - [`getservbyname`](#getservbyname)
+  - [`getservbyport`](#getservbyport)
+  - [`getservent`](#getservent)
+  - [`setservent`](#setservent)
+  - [`getprotobyname`](#getprotobyname)
+  - [`getprotobynumber`](#getprotobynumber)
+  - [`chroot`](#chroot)
+  - [`usleep`](#usleep)
+  - [`send`](#send)
+  - [`recv`](#recv)
+  - [`putenv`](#putenv)
+  - [`poll`](#poll)
+  - [`select`](#select)
+  - [`setlocale`](#setlocale)
+  - [`localeconv`](#localeconv)
+  - [`sem_wait`](#sem_wait)
+  - [`sem_trywait`](#sem_trywait)
+  - [`sem_post`](#sem_post)
+  - [`statvfs`](#statvfs)
+  - [`fstatvfs`](#fstatvfs)
+  - [`sigemptyset`](#sigemptyset)
+  - [`sigaddset`](#sigaddset)
+  - [`sigfillset`](#sigfillset)
+  - [`sigdelset`](#sigdelset)
+  - [`sigismember`](#sigismember)
+  - [`sigprocmask`](#sigprocmask)
+  - [`sigpending`](#sigpending)
+  - [`sysconf`](#sysconf)
+  - [`mkfifo`](#mkfifo)
+  - [`fseeko`](#fseeko)
+  - [`ftello`](#ftello)
+  - [`tcdrain`](#tcdrain)
+  - [`cfgetispeed`](#cfgetispeed)
+  - [`cfgetospeed`](#cfgetospeed)
+  - [`cfsetispeed`](#cfsetispeed)
+  - [`cfsetospeed`](#cfsetospeed)
+  - [`tcgetattr`](#tcgetattr)
+  - [`tcsetattr`](#tcsetattr)
+  - [`tcflow`](#tcflow)
+  - [`tcflush`](#tcflush)
+  - [`tcgetsid`](#tcgetsid)
+  - [`tcsendbreak`](#tcsendbreak)
+  - [`mkstemp`](#mkstemp)
+  - [`mkdtemp`](#mkdtemp)
+  - [`tmpnam`](#tmpnam)
+  - [`openlog`](#openlog)
+  - [`closelog`](#closelog)
+  - [`setlogmask`](#setlogmask)
+  - [`syslog`](#syslog)
+  - [`nice`](#nice)
+  - [`grantpt`](#grantpt)
+  - [`posix_openpt`](#posix_openpt)
+  - [`ptsname`](#ptsname)
+  - [`unlockpt`](#unlockpt)
+  - [`strcasestr`](#strcasestr)
+  - [`getline`](#getline)
+  - [`lockf`](#lockf)
+  - [`adjtime`](#adjtime)
+  - [`stpncpy`](#stpncpy)
+  - [`sigqueue`](#sigqueue)
+  - [`confstr`](#confstr)
+  - [`dladdr`](#dladdr)
+  - [`flock`](#flock)
+  - [`open_wmemstream`](#open_wmemstream)
+  - [`getsid`](#getsid)
+  - [`pause`](#pause)
+  - [`mkdirat`](#mkdirat)
+  - [`openat`](#openat)
+  - [`fdopendir`](#fdopendir)
+  - [`readdir_r`](#readdir_r)
+  - [`readlinkat`](#readlinkat)
+  - [`fmemopen`](#fmemopen)
+  - [`open_memstream`](#open_memstream)
+  - [`atexit`](#atexit)
+  - [`sigaction`](#sigaction)
+  - [`readlink`](#readlink)
+  - [`pselect`](#pselect)
+  - [`cfmakeraw`](#cfmakeraw)
+  - [`cfsetspeed`](#cfsetspeed)
+  - [`fnmatch`](#fnmatch)
+  - [`htonl`](#htonl)
+  - [`htons`](#htons)
+  - [`ntohl`](#ntohl)
+  - [`ntohs`](#ntohs)
+- [Type Aliases](#type-aliases)
+  - [`c_schar`](#c_schar)
+  - [`c_uchar`](#c_uchar)
+  - [`c_short`](#c_short)
+  - [`c_ushort`](#c_ushort)
+  - [`c_longlong`](#c_longlong)
+  - [`c_ulonglong`](#c_ulonglong)
+  - [`c_float`](#c_float)
+  - [`c_double`](#c_double)
+  - [`c_char`](#c_char)
+  - [`c_int`](#c_int)
+  - [`c_uint`](#c_uint)
+  - [`c_long`](#c_long)
+  - [`c_ulong`](#c_ulong)
+  - [`int8_t`](#int8_t)
+  - [`int16_t`](#int16_t)
+  - [`int32_t`](#int32_t)
+  - [`int64_t`](#int64_t)
+  - [`uint8_t`](#uint8_t)
+  - [`uint16_t`](#uint16_t)
+  - [`uint32_t`](#uint32_t)
+  - [`uint64_t`](#uint64_t)
+  - [`intmax_t`](#intmax_t)
+  - [`uintmax_t`](#uintmax_t)
+  - [`size_t`](#size_t)
+  - [`ptrdiff_t`](#ptrdiff_t)
+  - [`intptr_t`](#intptr_t)
+  - [`uintptr_t`](#uintptr_t)
+  - [`ssize_t`](#ssize_t)
+  - [`pid_t`](#pid_t)
+  - [`in_addr_t`](#in_addr_t)
+  - [`in_port_t`](#in_port_t)
+  - [`sighandler_t`](#sighandler_t)
+  - [`cc_t`](#cc_t)
+  - [`uid_t`](#uid_t)
+  - [`gid_t`](#gid_t)
+  - [`locale_t`](#locale_t)
+- [Constants](#constants)
+  - [`INT_MIN`](#int_min)
+  - [`INT_MAX`](#int_max)
+  - [`SIG_DFL`](#sig_dfl)
+  - [`SIG_IGN`](#sig_ign)
+  - [`SIG_ERR`](#sig_err)
+  - [`DT_UNKNOWN`](#dt_unknown)
+  - [`DT_FIFO`](#dt_fifo)
+  - [`DT_CHR`](#dt_chr)
+  - [`DT_DIR`](#dt_dir)
+  - [`DT_BLK`](#dt_blk)
+  - [`DT_REG`](#dt_reg)
+  - [`DT_LNK`](#dt_lnk)
+  - [`DT_SOCK`](#dt_sock)
+  - [`FD_CLOEXEC`](#fd_cloexec)
+  - [`USRQUOTA`](#usrquota)
+  - [`GRPQUOTA`](#grpquota)
+  - [`SIGIOT`](#sigiot)
+  - [`S_ISUID`](#s_isuid)
+  - [`S_ISGID`](#s_isgid)
+  - [`S_ISVTX`](#s_isvtx)
+  - [`IF_NAMESIZE`](#if_namesize)
+  - [`IFNAMSIZ`](#ifnamsiz)
+  - [`LOG_EMERG`](#log_emerg)
+  - [`LOG_ALERT`](#log_alert)
+  - [`LOG_CRIT`](#log_crit)
+  - [`LOG_ERR`](#log_err)
+  - [`LOG_WARNING`](#log_warning)
+  - [`LOG_NOTICE`](#log_notice)
+  - [`LOG_INFO`](#log_info)
+  - [`LOG_DEBUG`](#log_debug)
+  - [`LOG_KERN`](#log_kern)
+  - [`LOG_USER`](#log_user)
+  - [`LOG_MAIL`](#log_mail)
+  - [`LOG_DAEMON`](#log_daemon)
+  - [`LOG_AUTH`](#log_auth)
+  - [`LOG_SYSLOG`](#log_syslog)
+  - [`LOG_LPR`](#log_lpr)
+  - [`LOG_NEWS`](#log_news)
+  - [`LOG_UUCP`](#log_uucp)
+  - [`LOG_LOCAL0`](#log_local0)
+  - [`LOG_LOCAL1`](#log_local1)
+  - [`LOG_LOCAL2`](#log_local2)
+  - [`LOG_LOCAL3`](#log_local3)
+  - [`LOG_LOCAL4`](#log_local4)
+  - [`LOG_LOCAL5`](#log_local5)
+  - [`LOG_LOCAL6`](#log_local6)
+  - [`LOG_LOCAL7`](#log_local7)
+  - [`LOG_PID`](#log_pid)
+  - [`LOG_CONS`](#log_cons)
+  - [`LOG_ODELAY`](#log_odelay)
+  - [`LOG_NDELAY`](#log_ndelay)
+  - [`LOG_NOWAIT`](#log_nowait)
+  - [`LOG_PRIMASK`](#log_primask)
+  - [`LOG_FACMASK`](#log_facmask)
+  - [`PRIO_MIN`](#prio_min)
+  - [`PRIO_MAX`](#prio_max)
+  - [`IPPROTO_ICMP`](#ipproto_icmp)
+  - [`IPPROTO_ICMPV6`](#ipproto_icmpv6)
+  - [`IPPROTO_TCP`](#ipproto_tcp)
+  - [`IPPROTO_UDP`](#ipproto_udp)
+  - [`IPPROTO_IP`](#ipproto_ip)
+  - [`IPPROTO_IPV6`](#ipproto_ipv6)
+  - [`INADDR_LOOPBACK`](#inaddr_loopback)
+  - [`INADDR_ANY`](#inaddr_any)
+  - [`INADDR_BROADCAST`](#inaddr_broadcast)
+  - [`INADDR_NONE`](#inaddr_none)
+  - [`IN6ADDR_LOOPBACK_INIT`](#in6addr_loopback_init)
+  - [`IN6ADDR_ANY_INIT`](#in6addr_any_init)
+  - [`ARPOP_REQUEST`](#arpop_request)
+  - [`ARPOP_REPLY`](#arpop_reply)
+  - [`ATF_COM`](#atf_com)
+  - [`ATF_PERM`](#atf_perm)
+  - [`ATF_PUBL`](#atf_publ)
+  - [`ATF_USETRAILERS`](#atf_usetrailers)
+  - [`FNM_PERIOD`](#fnm_period)
+  - [`FNM_NOMATCH`](#fnm_nomatch)
+  - [`FNM_CASEFOLD`](#fnm_casefold)
+  - [`FNM_PATHNAME`](#fnm_pathname)
+  - [`FNM_NOESCAPE`](#fnm_noescape)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`macros`](#macros) | mod |  |
+| [`new`](#new) | mod | This module contains the future directory structure. |
+| [`primitives`](#primitives) | mod | This module contains type aliases for C's platform-specific types |
+| [`unix`](#unix) | mod | Definitions found commonly among almost all Unix derivatives |
+| [`types`](#types) | mod | Platform-agnostic support types. |
+| [`prelude`](#prelude) | mod | Frequently-used types that are available on all platforms |
+| [`common`](#common) | mod | Interfaces that are common across multiple platforms |
+| [`linux_uapi`](#linux_uapi) | mod | This directory maps to `include/uapi` in the Linux source tree. |
+| [`glibc`](#glibc) | mod | GNU libc. |
+| [`linux_like`](#linux_like) | mod |  |
+| [`group`](#group) | struct |  |
+| [`utimbuf`](#utimbuf) | struct |  |
+| [`timeval`](#timeval) | struct |  |
+| [`rlimit`](#rlimit) | struct |  |
+| [`rusage`](#rusage) | struct |  |
+| [`ipv6_mreq`](#ipv6_mreq) | struct |  |
+| [`hostent`](#hostent) | struct |  |
+| [`iovec`](#iovec) | struct |  |
+| [`pollfd`](#pollfd) | struct |  |
+| [`winsize`](#winsize) | struct |  |
+| [`linger`](#linger) | struct |  |
+| [`sigval`](#sigval) | struct |  |
+| [`itimerval`](#itimerval) | struct |  |
+| [`tms`](#tms) | struct |  |
+| [`servent`](#servent) | struct |  |
+| [`protoent`](#protoent) | struct |  |
+| [`in6_addr`](#in6_addr) | struct |  |
+| [`DIR`](#dir) | enum |  |
+| [`FILE`](#file) | enum |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`isalnum`](#isalnum) | fn |  |
+| [`isalpha`](#isalpha) | fn |  |
+| [`iscntrl`](#iscntrl) | fn |  |
+| [`isdigit`](#isdigit) | fn |  |
+| [`isgraph`](#isgraph) | fn |  |
+| [`islower`](#islower) | fn |  |
+| [`isprint`](#isprint) | fn |  |
+| [`ispunct`](#ispunct) | fn |  |
+| [`isspace`](#isspace) | fn |  |
+| [`isupper`](#isupper) | fn |  |
+| [`isxdigit`](#isxdigit) | fn |  |
+| [`isblank`](#isblank) | fn |  |
+| [`tolower`](#tolower) | fn |  |
+| [`toupper`](#toupper) | fn |  |
+| [`qsort`](#qsort) | fn |  |
+| [`bsearch`](#bsearch) | fn |  |
+| [`fopen`](#fopen) | fn |  |
+| [`freopen`](#freopen) | fn |  |
+| [`fflush`](#fflush) | fn |  |
+| [`fclose`](#fclose) | fn |  |
+| [`remove`](#remove) | fn |  |
+| [`rename`](#rename) | fn |  |
+| [`tmpfile`](#tmpfile) | fn |  |
+| [`setvbuf`](#setvbuf) | fn |  |
+| [`setbuf`](#setbuf) | fn |  |
+| [`getchar`](#getchar) | fn |  |
+| [`putchar`](#putchar) | fn |  |
+| [`fgetc`](#fgetc) | fn |  |
+| [`fgets`](#fgets) | fn |  |
+| [`fputc`](#fputc) | fn |  |
+| [`fputs`](#fputs) | fn |  |
+| [`puts`](#puts) | fn |  |
+| [`ungetc`](#ungetc) | fn |  |
+| [`fread`](#fread) | fn |  |
+| [`fwrite`](#fwrite) | fn |  |
+| [`fseek`](#fseek) | fn |  |
+| [`ftell`](#ftell) | fn |  |
+| [`rewind`](#rewind) | fn |  |
+| [`fgetpos`](#fgetpos) | fn |  |
+| [`fsetpos`](#fsetpos) | fn |  |
+| [`feof`](#feof) | fn |  |
+| [`ferror`](#ferror) | fn |  |
+| [`clearerr`](#clearerr) | fn |  |
+| [`perror`](#perror) | fn |  |
+| [`atof`](#atof) | fn |  |
+| [`atoi`](#atoi) | fn |  |
+| [`atol`](#atol) | fn |  |
+| [`atoll`](#atoll) | fn |  |
+| [`strtod`](#strtod) | fn |  |
+| [`strtof`](#strtof) | fn |  |
+| [`strtol`](#strtol) | fn |  |
+| [`strtoll`](#strtoll) | fn |  |
+| [`strtoul`](#strtoul) | fn |  |
+| [`strtoull`](#strtoull) | fn |  |
+| [`calloc`](#calloc) | fn |  |
+| [`malloc`](#malloc) | fn |  |
+| [`realloc`](#realloc) | fn |  |
+| [`free`](#free) | fn |  |
+| [`abort`](#abort) | fn |  |
+| [`exit`](#exit) | fn |  |
+| [`_exit`](#_exit) | fn |  |
+| [`system`](#system) | fn |  |
+| [`getenv`](#getenv) | fn |  |
+| [`strcpy`](#strcpy) | fn |  |
+| [`strncpy`](#strncpy) | fn |  |
+| [`stpcpy`](#stpcpy) | fn |  |
+| [`strcat`](#strcat) | fn |  |
+| [`strncat`](#strncat) | fn |  |
+| [`strcmp`](#strcmp) | fn |  |
+| [`strncmp`](#strncmp) | fn |  |
+| [`strcoll`](#strcoll) | fn |  |
+| [`strchr`](#strchr) | fn |  |
+| [`strrchr`](#strrchr) | fn |  |
+| [`strspn`](#strspn) | fn |  |
+| [`strcspn`](#strcspn) | fn |  |
+| [`strdup`](#strdup) | fn |  |
+| [`strndup`](#strndup) | fn |  |
+| [`strpbrk`](#strpbrk) | fn |  |
+| [`strstr`](#strstr) | fn |  |
+| [`strcasecmp`](#strcasecmp) | fn |  |
+| [`strncasecmp`](#strncasecmp) | fn |  |
+| [`strlen`](#strlen) | fn |  |
+| [`strnlen`](#strnlen) | fn |  |
+| [`strerror`](#strerror) | fn |  |
+| [`strtok`](#strtok) | fn |  |
+| [`strtok_r`](#strtok_r) | fn |  |
+| [`strxfrm`](#strxfrm) | fn |  |
+| [`strsignal`](#strsignal) | fn |  |
+| [`wcslen`](#wcslen) | fn |  |
+| [`wcstombs`](#wcstombs) | fn |  |
+| [`memchr`](#memchr) | fn |  |
+| [`wmemchr`](#wmemchr) | fn |  |
+| [`memcmp`](#memcmp) | fn |  |
+| [`memcpy`](#memcpy) | fn |  |
+| [`memmove`](#memmove) | fn |  |
+| [`memset`](#memset) | fn |  |
+| [`memccpy`](#memccpy) | fn |  |
+| [`getpwnam`](#getpwnam) | fn |  |
+| [`getpwuid`](#getpwuid) | fn |  |
+| [`fprintf`](#fprintf) | fn |  |
+| [`printf`](#printf) | fn |  |
+| [`snprintf`](#snprintf) | fn |  |
+| [`sprintf`](#sprintf) | fn |  |
+| [`fscanf`](#fscanf) | fn |  |
+| [`scanf`](#scanf) | fn |  |
+| [`sscanf`](#sscanf) | fn |  |
+| [`getchar_unlocked`](#getchar_unlocked) | fn |  |
+| [`putchar_unlocked`](#putchar_unlocked) | fn |  |
+| [`socket`](#socket) | fn |  |
+| [`connect`](#connect) | fn |  |
+| [`listen`](#listen) | fn |  |
+| [`accept`](#accept) | fn |  |
+| [`getpeername`](#getpeername) | fn |  |
+| [`getsockname`](#getsockname) | fn |  |
+| [`setsockopt`](#setsockopt) | fn |  |
+| [`socketpair`](#socketpair) | fn |  |
+| [`sendto`](#sendto) | fn |  |
+| [`shutdown`](#shutdown) | fn |  |
+| [`chmod`](#chmod) | fn |  |
+| [`fchmod`](#fchmod) | fn |  |
+| [`fstat`](#fstat) | fn |  |
+| [`mkdir`](#mkdir) | fn |  |
+| [`stat`](#stat) | fn |  |
+| [`pclose`](#pclose) | fn |  |
+| [`fdopen`](#fdopen) | fn |  |
+| [`fileno`](#fileno) | fn |  |
+| [`open`](#open) | fn |  |
+| [`creat`](#creat) | fn |  |
+| [`fcntl`](#fcntl) | fn |  |
+| [`opendir`](#opendir) | fn |  |
+| [`readdir`](#readdir) | fn |  |
+| [`closedir`](#closedir) | fn |  |
+| [`rewinddir`](#rewinddir) | fn |  |
+| [`fchmodat`](#fchmodat) | fn |  |
+| [`fchown`](#fchown) | fn |  |
+| [`fchownat`](#fchownat) | fn |  |
+| [`fstatat`](#fstatat) | fn |  |
+| [`linkat`](#linkat) | fn |  |
+| [`renameat`](#renameat) | fn |  |
+| [`symlinkat`](#symlinkat) | fn |  |
+| [`unlinkat`](#unlinkat) | fn |  |
+| [`access`](#access) | fn |  |
+| [`alarm`](#alarm) | fn |  |
+| [`chdir`](#chdir) | fn |  |
+| [`fchdir`](#fchdir) | fn |  |
+| [`chown`](#chown) | fn |  |
+| [`lchown`](#lchown) | fn |  |
+| [`close`](#close) | fn |  |
+| [`dup`](#dup) | fn |  |
+| [`dup2`](#dup2) | fn |  |
+| [`execl`](#execl) | fn |  |
+| [`execle`](#execle) | fn |  |
+| [`execlp`](#execlp) | fn |  |
+| [`execv`](#execv) | fn |  |
+| [`execve`](#execve) | fn |  |
+| [`execvp`](#execvp) | fn |  |
+| [`fork`](#fork) | fn |  |
+| [`fpathconf`](#fpathconf) | fn |  |
+| [`getcwd`](#getcwd) | fn |  |
+| [`getegid`](#getegid) | fn |  |
+| [`geteuid`](#geteuid) | fn |  |
+| [`getgid`](#getgid) | fn |  |
+| [`getgroups`](#getgroups) | fn |  |
+| [`getlogin`](#getlogin) | fn |  |
+| [`getopt`](#getopt) | fn |  |
+| [`getpgid`](#getpgid) | fn |  |
+| [`getpgrp`](#getpgrp) | fn |  |
+| [`getpid`](#getpid) | fn |  |
+| [`getppid`](#getppid) | fn |  |
+| [`getuid`](#getuid) | fn |  |
+| [`isatty`](#isatty) | fn |  |
+| [`link`](#link) | fn |  |
+| [`lseek`](#lseek) | fn |  |
+| [`pathconf`](#pathconf) | fn |  |
+| [`pipe`](#pipe) | fn |  |
+| [`posix_memalign`](#posix_memalign) | fn |  |
+| [`aligned_alloc`](#aligned_alloc) | fn |  |
+| [`read`](#read) | fn |  |
+| [`rmdir`](#rmdir) | fn |  |
+| [`seteuid`](#seteuid) | fn |  |
+| [`setegid`](#setegid) | fn |  |
+| [`setgid`](#setgid) | fn |  |
+| [`setpgid`](#setpgid) | fn |  |
+| [`setsid`](#setsid) | fn |  |
+| [`setuid`](#setuid) | fn |  |
+| [`setreuid`](#setreuid) | fn |  |
+| [`setregid`](#setregid) | fn |  |
+| [`sleep`](#sleep) | fn |  |
+| [`nanosleep`](#nanosleep) | fn |  |
+| [`tcgetpgrp`](#tcgetpgrp) | fn |  |
+| [`tcsetpgrp`](#tcsetpgrp) | fn |  |
+| [`ttyname`](#ttyname) | fn |  |
+| [`ttyname_r`](#ttyname_r) | fn |  |
+| [`unlink`](#unlink) | fn |  |
+| [`wait`](#wait) | fn |  |
+| [`waitpid`](#waitpid) | fn |  |
+| [`write`](#write) | fn |  |
+| [`pread`](#pread) | fn |  |
+| [`pwrite`](#pwrite) | fn |  |
+| [`umask`](#umask) | fn |  |
+| [`utime`](#utime) | fn |  |
+| [`kill`](#kill) | fn |  |
+| [`killpg`](#killpg) | fn |  |
+| [`mlock`](#mlock) | fn |  |
+| [`munlock`](#munlock) | fn |  |
+| [`mlockall`](#mlockall) | fn |  |
+| [`munlockall`](#munlockall) | fn |  |
+| [`mmap`](#mmap) | fn |  |
+| [`munmap`](#munmap) | fn |  |
+| [`if_nametoindex`](#if_nametoindex) | fn |  |
+| [`if_indextoname`](#if_indextoname) | fn |  |
+| [`lstat`](#lstat) | fn |  |
+| [`fsync`](#fsync) | fn |  |
+| [`setenv`](#setenv) | fn |  |
+| [`unsetenv`](#unsetenv) | fn |  |
+| [`symlink`](#symlink) | fn |  |
+| [`truncate`](#truncate) | fn |  |
+| [`ftruncate`](#ftruncate) | fn |  |
+| [`signal`](#signal) | fn |  |
+| [`getrusage`](#getrusage) | fn |  |
+| [`realpath`](#realpath) | fn |  |
+| [`times`](#times) | fn |  |
+| [`pthread_self`](#pthread_self) | fn |  |
+| [`pthread_equal`](#pthread_equal) | fn |  |
+| [`pthread_join`](#pthread_join) | fn |  |
+| [`pthread_exit`](#pthread_exit) | fn |  |
+| [`pthread_attr_init`](#pthread_attr_init) | fn |  |
+| [`pthread_attr_destroy`](#pthread_attr_destroy) | fn |  |
+| [`pthread_attr_getstacksize`](#pthread_attr_getstacksize) | fn |  |
+| [`pthread_attr_setstacksize`](#pthread_attr_setstacksize) | fn |  |
+| [`pthread_attr_setdetachstate`](#pthread_attr_setdetachstate) | fn |  |
+| [`pthread_detach`](#pthread_detach) | fn |  |
+| [`sched_yield`](#sched_yield) | fn |  |
+| [`pthread_key_create`](#pthread_key_create) | fn |  |
+| [`pthread_key_delete`](#pthread_key_delete) | fn |  |
+| [`pthread_getspecific`](#pthread_getspecific) | fn |  |
+| [`pthread_setspecific`](#pthread_setspecific) | fn |  |
+| [`pthread_mutex_init`](#pthread_mutex_init) | fn |  |
+| [`pthread_mutex_destroy`](#pthread_mutex_destroy) | fn |  |
+| [`pthread_mutex_lock`](#pthread_mutex_lock) | fn |  |
+| [`pthread_mutex_trylock`](#pthread_mutex_trylock) | fn |  |
+| [`pthread_mutex_unlock`](#pthread_mutex_unlock) | fn |  |
+| [`pthread_mutexattr_init`](#pthread_mutexattr_init) | fn |  |
+| [`pthread_mutexattr_destroy`](#pthread_mutexattr_destroy) | fn |  |
+| [`pthread_mutexattr_settype`](#pthread_mutexattr_settype) | fn |  |
+| [`pthread_cond_init`](#pthread_cond_init) | fn |  |
+| [`pthread_cond_wait`](#pthread_cond_wait) | fn |  |
+| [`pthread_cond_timedwait`](#pthread_cond_timedwait) | fn |  |
+| [`pthread_cond_signal`](#pthread_cond_signal) | fn |  |
+| [`pthread_cond_broadcast`](#pthread_cond_broadcast) | fn |  |
+| [`pthread_cond_destroy`](#pthread_cond_destroy) | fn |  |
+| [`pthread_condattr_init`](#pthread_condattr_init) | fn |  |
+| [`pthread_condattr_destroy`](#pthread_condattr_destroy) | fn |  |
+| [`pthread_rwlock_init`](#pthread_rwlock_init) | fn |  |
+| [`pthread_rwlock_destroy`](#pthread_rwlock_destroy) | fn |  |
+| [`pthread_rwlock_rdlock`](#pthread_rwlock_rdlock) | fn |  |
+| [`pthread_rwlock_tryrdlock`](#pthread_rwlock_tryrdlock) | fn |  |
+| [`pthread_rwlock_wrlock`](#pthread_rwlock_wrlock) | fn |  |
+| [`pthread_rwlock_trywrlock`](#pthread_rwlock_trywrlock) | fn |  |
+| [`pthread_rwlock_unlock`](#pthread_rwlock_unlock) | fn |  |
+| [`pthread_rwlockattr_init`](#pthread_rwlockattr_init) | fn |  |
+| [`pthread_rwlockattr_destroy`](#pthread_rwlockattr_destroy) | fn |  |
+| [`getsockopt`](#getsockopt) | fn |  |
+| [`raise`](#raise) | fn |  |
+| [`utimes`](#utimes) | fn |  |
+| [`dlopen`](#dlopen) | fn |  |
+| [`dlerror`](#dlerror) | fn |  |
+| [`dlsym`](#dlsym) | fn |  |
+| [`dlclose`](#dlclose) | fn |  |
+| [`getaddrinfo`](#getaddrinfo) | fn |  |
+| [`freeaddrinfo`](#freeaddrinfo) | fn |  |
+| [`hstrerror`](#hstrerror) | fn |  |
+| [`gai_strerror`](#gai_strerror) | fn |  |
+| [`res_init`](#res_init) | fn |  |
+| [`gmtime_r`](#gmtime_r) | fn |  |
+| [`localtime_r`](#localtime_r) | fn |  |
+| [`mktime`](#mktime) | fn |  |
+| [`time`](#time) | fn |  |
+| [`gmtime`](#gmtime) | fn |  |
+| [`localtime`](#localtime) | fn |  |
+| [`difftime`](#difftime) | fn |  |
+| [`timegm`](#timegm) | fn |  |
+| [`mknod`](#mknod) | fn |  |
+| [`gethostname`](#gethostname) | fn |  |
+| [`endservent`](#endservent) | fn |  |
+| [`getservbyname`](#getservbyname) | fn |  |
+| [`getservbyport`](#getservbyport) | fn |  |
+| [`getservent`](#getservent) | fn |  |
+| [`setservent`](#setservent) | fn |  |
+| [`getprotobyname`](#getprotobyname) | fn |  |
+| [`getprotobynumber`](#getprotobynumber) | fn |  |
+| [`chroot`](#chroot) | fn |  |
+| [`usleep`](#usleep) | fn |  |
+| [`send`](#send) | fn |  |
+| [`recv`](#recv) | fn |  |
+| [`putenv`](#putenv) | fn |  |
+| [`poll`](#poll) | fn |  |
+| [`select`](#select) | fn |  |
+| [`setlocale`](#setlocale) | fn |  |
+| [`localeconv`](#localeconv) | fn |  |
+| [`sem_wait`](#sem_wait) | fn |  |
+| [`sem_trywait`](#sem_trywait) | fn |  |
+| [`sem_post`](#sem_post) | fn |  |
+| [`statvfs`](#statvfs) | fn |  |
+| [`fstatvfs`](#fstatvfs) | fn |  |
+| [`sigemptyset`](#sigemptyset) | fn |  |
+| [`sigaddset`](#sigaddset) | fn |  |
+| [`sigfillset`](#sigfillset) | fn |  |
+| [`sigdelset`](#sigdelset) | fn |  |
+| [`sigismember`](#sigismember) | fn |  |
+| [`sigprocmask`](#sigprocmask) | fn |  |
+| [`sigpending`](#sigpending) | fn |  |
+| [`sysconf`](#sysconf) | fn |  |
+| [`mkfifo`](#mkfifo) | fn |  |
+| [`fseeko`](#fseeko) | fn |  |
+| [`ftello`](#ftello) | fn |  |
+| [`tcdrain`](#tcdrain) | fn |  |
+| [`cfgetispeed`](#cfgetispeed) | fn |  |
+| [`cfgetospeed`](#cfgetospeed) | fn |  |
+| [`cfsetispeed`](#cfsetispeed) | fn |  |
+| [`cfsetospeed`](#cfsetospeed) | fn |  |
+| [`tcgetattr`](#tcgetattr) | fn |  |
+| [`tcsetattr`](#tcsetattr) | fn |  |
+| [`tcflow`](#tcflow) | fn |  |
+| [`tcflush`](#tcflush) | fn |  |
+| [`tcgetsid`](#tcgetsid) | fn |  |
+| [`tcsendbreak`](#tcsendbreak) | fn |  |
+| [`mkstemp`](#mkstemp) | fn |  |
+| [`mkdtemp`](#mkdtemp) | fn |  |
+| [`tmpnam`](#tmpnam) | fn |  |
+| [`openlog`](#openlog) | fn |  |
+| [`closelog`](#closelog) | fn |  |
+| [`setlogmask`](#setlogmask) | fn |  |
+| [`syslog`](#syslog) | fn |  |
+| [`nice`](#nice) | fn |  |
+| [`grantpt`](#grantpt) | fn |  |
+| [`posix_openpt`](#posix_openpt) | fn |  |
+| [`ptsname`](#ptsname) | fn |  |
+| [`unlockpt`](#unlockpt) | fn |  |
+| [`strcasestr`](#strcasestr) | fn |  |
+| [`getline`](#getline) | fn |  |
+| [`lockf`](#lockf) | fn |  |
+| [`adjtime`](#adjtime) | fn |  |
+| [`stpncpy`](#stpncpy) | fn |  |
+| [`sigqueue`](#sigqueue) | fn |  |
+| [`confstr`](#confstr) | fn |  |
+| [`dladdr`](#dladdr) | fn |  |
+| [`flock`](#flock) | fn |  |
+| [`open_wmemstream`](#open_wmemstream) | fn |  |
+| [`getsid`](#getsid) | fn |  |
+| [`pause`](#pause) | fn |  |
+| [`mkdirat`](#mkdirat) | fn |  |
+| [`openat`](#openat) | fn |  |
+| [`fdopendir`](#fdopendir) | fn |  |
+| [`readdir_r`](#readdir_r) | fn | The 64-bit libc on Solaris and illumos only has readdir_r. |
+| [`readlinkat`](#readlinkat) | fn |  |
+| [`fmemopen`](#fmemopen) | fn |  |
+| [`open_memstream`](#open_memstream) | fn |  |
+| [`atexit`](#atexit) | fn |  |
+| [`sigaction`](#sigaction) | fn |  |
+| [`readlink`](#readlink) | fn |  |
+| [`pselect`](#pselect) | fn |  |
+| [`cfmakeraw`](#cfmakeraw) | fn |  |
+| [`cfsetspeed`](#cfsetspeed) | fn |  |
+| [`fnmatch`](#fnmatch) | fn |  |
+| [`htonl`](#htonl) | fn |  |
+| [`htons`](#htons) | fn |  |
+| [`ntohl`](#ntohl) | fn |  |
+| [`ntohs`](#ntohs) | fn |  |
+| [`c_schar`](#c_schar) | type |  |
+| [`c_uchar`](#c_uchar) | type |  |
+| [`c_short`](#c_short) | type |  |
+| [`c_ushort`](#c_ushort) | type |  |
+| [`c_longlong`](#c_longlong) | type |  |
+| [`c_ulonglong`](#c_ulonglong) | type |  |
+| [`c_float`](#c_float) | type |  |
+| [`c_double`](#c_double) | type |  |
+| [`c_char`](#c_char) | type |  |
+| [`c_int`](#c_int) | type |  |
+| [`c_uint`](#c_uint) | type |  |
+| [`c_long`](#c_long) | type |  |
+| [`c_ulong`](#c_ulong) | type |  |
+| [`int8_t`](#int8_t) | type |  |
+| [`int16_t`](#int16_t) | type |  |
+| [`int32_t`](#int32_t) | type |  |
+| [`int64_t`](#int64_t) | type |  |
+| [`uint8_t`](#uint8_t) | type |  |
+| [`uint16_t`](#uint16_t) | type |  |
+| [`uint32_t`](#uint32_t) | type |  |
+| [`uint64_t`](#uint64_t) | type |  |
+| [`intmax_t`](#intmax_t) | type |  |
+| [`uintmax_t`](#uintmax_t) | type |  |
+| [`size_t`](#size_t) | type |  |
+| [`ptrdiff_t`](#ptrdiff_t) | type |  |
+| [`intptr_t`](#intptr_t) | type |  |
+| [`uintptr_t`](#uintptr_t) | type |  |
+| [`ssize_t`](#ssize_t) | type |  |
+| [`pid_t`](#pid_t) | type |  |
+| [`in_addr_t`](#in_addr_t) | type |  |
+| [`in_port_t`](#in_port_t) | type |  |
+| [`sighandler_t`](#sighandler_t) | type |  |
+| [`cc_t`](#cc_t) | type |  |
+| [`uid_t`](#uid_t) | type |  |
+| [`gid_t`](#gid_t) | type |  |
+| [`locale_t`](#locale_t) | type |  |
+| [`INT_MIN`](#int_min) | const |  |
+| [`INT_MAX`](#int_max) | const |  |
+| [`SIG_DFL`](#sig_dfl) | const |  |
+| [`SIG_IGN`](#sig_ign) | const |  |
+| [`SIG_ERR`](#sig_err) | const |  |
+| [`DT_UNKNOWN`](#dt_unknown) | const |  |
+| [`DT_FIFO`](#dt_fifo) | const |  |
+| [`DT_CHR`](#dt_chr) | const |  |
+| [`DT_DIR`](#dt_dir) | const |  |
+| [`DT_BLK`](#dt_blk) | const |  |
+| [`DT_REG`](#dt_reg) | const |  |
+| [`DT_LNK`](#dt_lnk) | const |  |
+| [`DT_SOCK`](#dt_sock) | const |  |
+| [`FD_CLOEXEC`](#fd_cloexec) | const |  |
+| [`USRQUOTA`](#usrquota) | const |  |
+| [`GRPQUOTA`](#grpquota) | const |  |
+| [`SIGIOT`](#sigiot) | const |  |
+| [`S_ISUID`](#s_isuid) | const |  |
+| [`S_ISGID`](#s_isgid) | const |  |
+| [`S_ISVTX`](#s_isvtx) | const |  |
+| [`IF_NAMESIZE`](#if_namesize) | const |  |
+| [`IFNAMSIZ`](#ifnamsiz) | const |  |
+| [`LOG_EMERG`](#log_emerg) | const |  |
+| [`LOG_ALERT`](#log_alert) | const |  |
+| [`LOG_CRIT`](#log_crit) | const |  |
+| [`LOG_ERR`](#log_err) | const |  |
+| [`LOG_WARNING`](#log_warning) | const |  |
+| [`LOG_NOTICE`](#log_notice) | const |  |
+| [`LOG_INFO`](#log_info) | const |  |
+| [`LOG_DEBUG`](#log_debug) | const |  |
+| [`LOG_KERN`](#log_kern) | const |  |
+| [`LOG_USER`](#log_user) | const |  |
+| [`LOG_MAIL`](#log_mail) | const |  |
+| [`LOG_DAEMON`](#log_daemon) | const |  |
+| [`LOG_AUTH`](#log_auth) | const |  |
+| [`LOG_SYSLOG`](#log_syslog) | const |  |
+| [`LOG_LPR`](#log_lpr) | const |  |
+| [`LOG_NEWS`](#log_news) | const |  |
+| [`LOG_UUCP`](#log_uucp) | const |  |
+| [`LOG_LOCAL0`](#log_local0) | const |  |
+| [`LOG_LOCAL1`](#log_local1) | const |  |
+| [`LOG_LOCAL2`](#log_local2) | const |  |
+| [`LOG_LOCAL3`](#log_local3) | const |  |
+| [`LOG_LOCAL4`](#log_local4) | const |  |
+| [`LOG_LOCAL5`](#log_local5) | const |  |
+| [`LOG_LOCAL6`](#log_local6) | const |  |
+| [`LOG_LOCAL7`](#log_local7) | const |  |
+| [`LOG_PID`](#log_pid) | const |  |
+| [`LOG_CONS`](#log_cons) | const |  |
+| [`LOG_ODELAY`](#log_odelay) | const |  |
+| [`LOG_NDELAY`](#log_ndelay) | const |  |
+| [`LOG_NOWAIT`](#log_nowait) | const |  |
+| [`LOG_PRIMASK`](#log_primask) | const |  |
+| [`LOG_FACMASK`](#log_facmask) | const |  |
+| [`PRIO_MIN`](#prio_min) | const |  |
+| [`PRIO_MAX`](#prio_max) | const |  |
+| [`IPPROTO_ICMP`](#ipproto_icmp) | const |  |
+| [`IPPROTO_ICMPV6`](#ipproto_icmpv6) | const |  |
+| [`IPPROTO_TCP`](#ipproto_tcp) | const |  |
+| [`IPPROTO_UDP`](#ipproto_udp) | const |  |
+| [`IPPROTO_IP`](#ipproto_ip) | const |  |
+| [`IPPROTO_IPV6`](#ipproto_ipv6) | const |  |
+| [`INADDR_LOOPBACK`](#inaddr_loopback) | const |  |
+| [`INADDR_ANY`](#inaddr_any) | const |  |
+| [`INADDR_BROADCAST`](#inaddr_broadcast) | const |  |
+| [`INADDR_NONE`](#inaddr_none) | const |  |
+| [`IN6ADDR_LOOPBACK_INIT`](#in6addr_loopback_init) | const |  |
+| [`IN6ADDR_ANY_INIT`](#in6addr_any_init) | const |  |
+| [`ARPOP_REQUEST`](#arpop_request) | const |  |
+| [`ARPOP_REPLY`](#arpop_reply) | const |  |
+| [`ATF_COM`](#atf_com) | const |  |
+| [`ATF_PERM`](#atf_perm) | const |  |
+| [`ATF_PUBL`](#atf_publ) | const |  |
+| [`ATF_USETRAILERS`](#atf_usetrailers) | const |  |
+| [`FNM_PERIOD`](#fnm_period) | const |  |
+| [`FNM_NOMATCH`](#fnm_nomatch) | const |  |
+| [`FNM_CASEFOLD`](#fnm_casefold) | const |  |
+| [`FNM_PATHNAME`](#fnm_pathname) | const |  |
+| [`FNM_NOESCAPE`](#fnm_noescape) | const |  |
+
 ## Modules
 
 - [`macros`](macros/index.md) - 
@@ -32,13 +1074,13 @@ struct group {
 
 ##### `impl Clone for group`
 
-- `fn clone(self: &Self) -> group` — [`group`](#group)
+- <span id="group-clone"></span>`fn clone(&self) -> group` — [`group`](#group)
 
 ##### `impl Copy for group`
 
 ##### `impl Debug for group`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="group-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `utimbuf`
 
@@ -53,13 +1095,13 @@ struct utimbuf {
 
 ##### `impl Clone for utimbuf`
 
-- `fn clone(self: &Self) -> utimbuf` — [`utimbuf`](#utimbuf)
+- <span id="utimbuf-clone"></span>`fn clone(&self) -> utimbuf` — [`utimbuf`](#utimbuf)
 
 ##### `impl Copy for utimbuf`
 
 ##### `impl Debug for utimbuf`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="utimbuf-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `timeval`
 
@@ -74,13 +1116,13 @@ struct timeval {
 
 ##### `impl Clone for timeval`
 
-- `fn clone(self: &Self) -> timeval` — [`timeval`](#timeval)
+- <span id="timeval-clone"></span>`fn clone(&self) -> timeval` — [`timeval`](#timeval)
 
 ##### `impl Copy for timeval`
 
 ##### `impl Debug for timeval`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="timeval-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `rlimit`
 
@@ -95,13 +1137,13 @@ struct rlimit {
 
 ##### `impl Clone for rlimit`
 
-- `fn clone(self: &Self) -> rlimit` — [`rlimit`](#rlimit)
+- <span id="rlimit-clone"></span>`fn clone(&self) -> rlimit` — [`rlimit`](#rlimit)
 
 ##### `impl Copy for rlimit`
 
 ##### `impl Debug for rlimit`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rlimit-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `rusage`
 
@@ -130,13 +1172,13 @@ struct rusage {
 
 ##### `impl Clone for rusage`
 
-- `fn clone(self: &Self) -> rusage` — [`rusage`](#rusage)
+- <span id="rusage-clone"></span>`fn clone(&self) -> rusage` — [`rusage`](#rusage)
 
 ##### `impl Copy for rusage`
 
 ##### `impl Debug for rusage`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rusage-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ipv6_mreq`
 
@@ -151,13 +1193,13 @@ struct ipv6_mreq {
 
 ##### `impl Clone for ipv6_mreq`
 
-- `fn clone(self: &Self) -> ipv6_mreq` — [`ipv6_mreq`](#ipv6-mreq)
+- <span id="ipv6-mreq-clone"></span>`fn clone(&self) -> ipv6_mreq` — [`ipv6_mreq`](#ipv6-mreq)
 
 ##### `impl Copy for ipv6_mreq`
 
 ##### `impl Debug for ipv6_mreq`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="ipv6-mreq-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `hostent`
 
@@ -175,13 +1217,13 @@ struct hostent {
 
 ##### `impl Clone for hostent`
 
-- `fn clone(self: &Self) -> hostent` — [`hostent`](#hostent)
+- <span id="hostent-clone"></span>`fn clone(&self) -> hostent` — [`hostent`](#hostent)
 
 ##### `impl Copy for hostent`
 
 ##### `impl Debug for hostent`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="hostent-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `iovec`
 
@@ -196,13 +1238,13 @@ struct iovec {
 
 ##### `impl Clone for iovec`
 
-- `fn clone(self: &Self) -> iovec` — [`iovec`](#iovec)
+- <span id="iovec-clone"></span>`fn clone(&self) -> iovec` — [`iovec`](#iovec)
 
 ##### `impl Copy for iovec`
 
 ##### `impl Debug for iovec`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="iovec-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `pollfd`
 
@@ -218,13 +1260,13 @@ struct pollfd {
 
 ##### `impl Clone for pollfd`
 
-- `fn clone(self: &Self) -> pollfd` — [`pollfd`](#pollfd)
+- <span id="pollfd-clone"></span>`fn clone(&self) -> pollfd` — [`pollfd`](#pollfd)
 
 ##### `impl Copy for pollfd`
 
 ##### `impl Debug for pollfd`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pollfd-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `winsize`
 
@@ -241,13 +1283,13 @@ struct winsize {
 
 ##### `impl Clone for winsize`
 
-- `fn clone(self: &Self) -> winsize` — [`winsize`](#winsize)
+- <span id="winsize-clone"></span>`fn clone(&self) -> winsize` — [`winsize`](#winsize)
 
 ##### `impl Copy for winsize`
 
 ##### `impl Debug for winsize`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="winsize-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `linger`
 
@@ -262,13 +1304,13 @@ struct linger {
 
 ##### `impl Clone for linger`
 
-- `fn clone(self: &Self) -> linger` — [`linger`](#linger)
+- <span id="linger-clone"></span>`fn clone(&self) -> linger` — [`linger`](#linger)
 
 ##### `impl Copy for linger`
 
 ##### `impl Debug for linger`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="linger-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `sigval`
 
@@ -282,13 +1324,13 @@ struct sigval {
 
 ##### `impl Clone for sigval`
 
-- `fn clone(self: &Self) -> sigval` — [`sigval`](#sigval)
+- <span id="sigval-clone"></span>`fn clone(&self) -> sigval` — [`sigval`](#sigval)
 
 ##### `impl Copy for sigval`
 
 ##### `impl Debug for sigval`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sigval-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `itimerval`
 
@@ -303,13 +1345,13 @@ struct itimerval {
 
 ##### `impl Clone for itimerval`
 
-- `fn clone(self: &Self) -> itimerval` — [`itimerval`](#itimerval)
+- <span id="itimerval-clone"></span>`fn clone(&self) -> itimerval` — [`itimerval`](#itimerval)
 
 ##### `impl Copy for itimerval`
 
 ##### `impl Debug for itimerval`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="itimerval-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `tms`
 
@@ -326,13 +1368,13 @@ struct tms {
 
 ##### `impl Clone for tms`
 
-- `fn clone(self: &Self) -> tms` — [`tms`](#tms)
+- <span id="tms-clone"></span>`fn clone(&self) -> tms` — [`tms`](#tms)
 
 ##### `impl Copy for tms`
 
 ##### `impl Debug for tms`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="tms-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `servent`
 
@@ -349,13 +1391,13 @@ struct servent {
 
 ##### `impl Clone for servent`
 
-- `fn clone(self: &Self) -> servent` — [`servent`](#servent)
+- <span id="servent-clone"></span>`fn clone(&self) -> servent` — [`servent`](#servent)
 
 ##### `impl Copy for servent`
 
 ##### `impl Debug for servent`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="servent-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `protoent`
 
@@ -371,13 +1413,13 @@ struct protoent {
 
 ##### `impl Clone for protoent`
 
-- `fn clone(self: &Self) -> protoent` — [`protoent`](#protoent)
+- <span id="protoent-clone"></span>`fn clone(&self) -> protoent` — [`protoent`](#protoent)
 
 ##### `impl Copy for protoent`
 
 ##### `impl Debug for protoent`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="protoent-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `in6_addr`
 
@@ -391,13 +1433,13 @@ struct in6_addr {
 
 ##### `impl Clone for in6_addr`
 
-- `fn clone(self: &Self) -> in6_addr` — [`in6_addr`](#in6-addr)
+- <span id="in6-addr-clone"></span>`fn clone(&self) -> in6_addr` — [`in6_addr`](#in6-addr)
 
 ##### `impl Copy for in6_addr`
 
 ##### `impl Debug for in6_addr`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="in6-addr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Enums
 
@@ -412,13 +1454,13 @@ enum DIR {
 
 ##### `impl Clone for DIR`
 
-- `fn clone(self: &Self) -> DIR` — [`DIR`](#dir)
+- <span id="dir-clone"></span>`fn clone(&self) -> DIR` — [`DIR`](#dir)
 
 ##### `impl Copy for DIR`
 
 ##### `impl Debug for DIR`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dir-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `FILE`
 
@@ -431,13 +1473,13 @@ enum FILE {
 
 ##### `impl Clone for FILE`
 
-- `fn clone(self: &Self) -> FILE` — [`FILE`](#file)
+- <span id="file-clone"></span>`fn clone(&self) -> FILE` — [`FILE`](#file)
 
 ##### `impl Copy for FILE`
 
 ##### `impl Debug for FILE`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="file-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Functions
 

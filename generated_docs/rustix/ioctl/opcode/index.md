@@ -14,6 +14,16 @@ functions in this module correspond to those macros.
 If you're writing a driver and defining your own ioctl numbers, it's
 recommended to use these functions to compute them.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`from_components`](#from_components) | fn | Create a new opcode from a direction, group, number, and size. |
+| [`none`](#none) | fn | Create a new opcode from a group, a number, that uses no data. |
+| [`read`](#read) | fn | Create a new reading opcode from a group, a number and the type of |
+| [`write`](#write) | fn | Create a new writing opcode from a group, a number and the type of |
+| [`read_write`](#read_write) | fn | Create a new reading and writing opcode from a group, a number and the |
+
 ## Functions
 
 ### `from_components`

@@ -4,6 +4,33 @@
 
 # Module `section`
 
+## Contents
+
+- [Structs](#structs)
+  - [`MachOSectionIterator`](#machosectioniterator)
+  - [`MachOSection`](#machosection)
+  - [`MachOSectionInternal`](#machosectioninternal)
+- [Traits](#traits)
+  - [`Section`](#section)
+- [Type Aliases](#type-aliases)
+  - [`MachOSectionIterator32`](#machosectioniterator32)
+  - [`MachOSectionIterator64`](#machosectioniterator64)
+  - [`MachOSection32`](#machosection32)
+  - [`MachOSection64`](#machosection64)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`MachOSectionIterator`](#machosectioniterator) | struct | An iterator for the sections in a [`MachOFile`]. |
+| [`MachOSection`](#machosection) | struct | A section in a [`MachOFile`]. |
+| [`MachOSectionInternal`](#machosectioninternal) | struct |  |
+| [`Section`](#section) | trait | A trait for generic access to [`macho::Section32`] and [`macho::Section64`]. |
+| [`MachOSectionIterator32`](#machosectioniterator32) | type | An iterator for the sections in a [`MachOFile32`](super::MachOFile32). |
+| [`MachOSectionIterator64`](#machosectioniterator64) | type | An iterator for the sections in a [`MachOFile64`](super::MachOFile64). |
+| [`MachOSection32`](#machosection32) | type | A section in a [`MachOFile32`](super::MachOFile32). |
+| [`MachOSection64`](#machosection64) | type | A section in a [`MachOFile64`](super::MachOFile64). |
+
 ## Structs
 
 ### `MachOSectionIterator<'data, 'file, Mach, R>`
@@ -24,21 +51,21 @@ An iterator for the sections in a [`MachOFile`](../index.md).
 
 ##### `impl<'data, 'file, Mach, R> Debug for MachOSectionIterator<'data, 'file, Mach, R>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="machosectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for MachOSectionIterator<'data, 'file, Mach, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="machosectioniterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="machosectioniterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="machosectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Mach, R> Iterator for MachOSectionIterator<'data, 'file, Mach, R>`
 
-- `type Item = MachOSection<'data, 'file, Mach, R>`
+- <span id="machosectioniterator-item"></span>`type Item = MachOSection<'data, 'file, Mach, R>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="machosectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `MachOSection<'data, 'file, Mach, R>`
 
@@ -58,59 +85,59 @@ Most functionality is provided by the [`ObjectSection`](../../index.md) trait im
 
 #### Implementations
 
-- `fn macho_file(self: &Self) -> &'file MachOFile<'data, Mach, R>` — [`MachOFile`](../index.md)
+- <span id="machosection-macho-file"></span>`fn macho_file(&self) -> &'file MachOFile<'data, Mach, R>` — [`MachOFile`](../index.md)
 
-- `fn macho_section(self: &Self) -> &'data <Mach as >::Section` — [`MachHeader`](../index.md)
+- <span id="machosection-macho-section"></span>`fn macho_section(&self) -> &'data <Mach as >::Section` — [`MachHeader`](../index.md)
 
-- `fn macho_relocations(self: &Self) -> Result<&'data [macho::Relocation<<Mach as >::Endian>]>` — [`Result`](../../../index.md), [`Relocation`](../../../macho/index.md), [`MachHeader`](../index.md)
+- <span id="machosection-macho-relocations"></span>`fn macho_relocations(&self) -> Result<&'data [macho::Relocation<<Mach as >::Endian>]>` — [`Result`](../../../index.md), [`Relocation`](../../../macho/index.md), [`MachHeader`](../index.md)
 
-- `fn bytes(self: &Self) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
+- <span id="machosection-bytes"></span>`fn bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
 
-- `fn maybe_compressed_gnu(self: &Self) -> Result<Option<CompressedFileRange>>` — [`Result`](../../../index.md), [`CompressedFileRange`](../../../index.md)
+- <span id="machosection-maybe-compressed-gnu"></span>`fn maybe_compressed_gnu(&self) -> Result<Option<CompressedFileRange>>` — [`Result`](../../../index.md), [`CompressedFileRange`](../../../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'data, 'file, Mach, R> Debug for MachOSection<'data, 'file, Mach, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="machosection-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, 'file, Mach, R> ObjectSection for MachOSection<'data, 'file, Mach, R>`
 
-- `type RelocationIterator = MachORelocationIterator<'data, 'file, Mach, R>`
+- <span id="machosection-relocationiterator"></span>`type RelocationIterator = MachORelocationIterator<'data, 'file, Mach, R>`
 
-- `fn index(self: &Self) -> SectionIndex` — [`SectionIndex`](../../../index.md)
+- <span id="machosection-index"></span>`fn index(&self) -> SectionIndex` — [`SectionIndex`](../../../index.md)
 
-- `fn address(self: &Self) -> u64`
+- <span id="machosection-address"></span>`fn address(&self) -> u64`
 
-- `fn size(self: &Self) -> u64`
+- <span id="machosection-size"></span>`fn size(&self) -> u64`
 
-- `fn align(self: &Self) -> u64`
+- <span id="machosection-align"></span>`fn align(&self) -> u64`
 
-- `fn file_range(self: &Self) -> Option<(u64, u64)>`
+- <span id="machosection-file-range"></span>`fn file_range(&self) -> Option<(u64, u64)>`
 
-- `fn data(self: &Self) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
+- <span id="machosection-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
 
-- `fn data_range(self: &Self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../../index.md)
+- <span id="machosection-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../../index.md)
 
-- `fn compressed_file_range(self: &Self) -> Result<CompressedFileRange>` — [`Result`](../../../index.md), [`CompressedFileRange`](../../../index.md)
+- <span id="machosection-compressed-file-range"></span>`fn compressed_file_range(&self) -> Result<CompressedFileRange>` — [`Result`](../../../index.md), [`CompressedFileRange`](../../../index.md)
 
-- `fn compressed_data(self: &Self) -> read::Result<CompressedData<'data>>` — [`Result`](../../../index.md), [`CompressedData`](../../../index.md)
+- <span id="machosection-compressed-data"></span>`fn compressed_data(&self) -> read::Result<CompressedData<'data>>` — [`Result`](../../../index.md), [`CompressedData`](../../../index.md)
 
-- `fn name_bytes(self: &Self) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
+- <span id="machosection-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
 
-- `fn name(self: &Self) -> Result<&'data str>` — [`Result`](../../../index.md)
+- <span id="machosection-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../../index.md)
 
-- `fn segment_name_bytes(self: &Self) -> Result<Option<&[u8]>>` — [`Result`](../../../index.md)
+- <span id="machosection-segment-name-bytes"></span>`fn segment_name_bytes(&self) -> Result<Option<&[u8]>>` — [`Result`](../../../index.md)
 
-- `fn segment_name(self: &Self) -> Result<Option<&str>>` — [`Result`](../../../index.md)
+- <span id="machosection-segment-name"></span>`fn segment_name(&self) -> Result<Option<&str>>` — [`Result`](../../../index.md)
 
-- `fn kind(self: &Self) -> SectionKind` — [`SectionKind`](../../../index.md)
+- <span id="machosection-kind"></span>`fn kind(&self) -> SectionKind` — [`SectionKind`](../../../index.md)
 
-- `fn relocations(self: &Self) -> MachORelocationIterator<'data, 'file, Mach, R>` — [`MachORelocationIterator`](../index.md)
+- <span id="machosection-relocations"></span>`fn relocations(&self) -> MachORelocationIterator<'data, 'file, Mach, R>` — [`MachORelocationIterator`](../index.md)
 
-- `fn relocation_map(self: &Self) -> read::Result<RelocationMap>` — [`Result`](../../../index.md), [`RelocationMap`](../../../index.md)
+- <span id="machosection-relocation-map"></span>`fn relocation_map(&self) -> read::Result<RelocationMap>` — [`Result`](../../../index.md), [`RelocationMap`](../../../index.md)
 
-- `fn flags(self: &Self) -> SectionFlags` — [`SectionFlags`](../../../index.md)
+- <span id="machosection-flags"></span>`fn flags(&self) -> SectionFlags` — [`SectionFlags`](../../../index.md)
 
 ##### `impl<'data, 'file, Mach, R> Sealed for MachOSection<'data, 'file, Mach, R>`
 
@@ -136,19 +163,19 @@ struct MachOSectionInternal<'data, Mach: MachHeader, R: ReadRef<'data>> {
 
 #### Implementations
 
-- `fn parse(index: SectionIndex, section: &'data <Mach as >::Section, data: R) -> Self` — [`SectionIndex`](../../../index.md), [`MachHeader`](../index.md)
+- <span id="machosectioninternal-parse"></span>`fn parse(index: SectionIndex, section: &'data <Mach as >::Section, data: R) -> Self` — [`SectionIndex`](../../../index.md), [`MachHeader`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<'data, Mach: $crate::clone::Clone + MachHeader, R: $crate::clone::Clone + ReadRef<'data>> Clone for MachOSectionInternal<'data, Mach, R>`
+##### `impl<'data, Mach: clone::Clone + MachHeader, R: clone::Clone + ReadRef<'data>> Clone for MachOSectionInternal<'data, Mach, R>`
 
-- `fn clone(self: &Self) -> MachOSectionInternal<'data, Mach, R>` — [`MachOSectionInternal`](#machosectioninternal)
+- <span id="machosectioninternal-clone"></span>`fn clone(&self) -> MachOSectionInternal<'data, Mach, R>` — [`MachOSectionInternal`](#machosectioninternal)
 
-##### `impl<'data, Mach: $crate::marker::Copy + MachHeader, R: $crate::marker::Copy + ReadRef<'data>> Copy for MachOSectionInternal<'data, Mach, R>`
+##### `impl<'data, Mach: marker::Copy + MachHeader, R: marker::Copy + ReadRef<'data>> Copy for MachOSectionInternal<'data, Mach, R>`
 
-##### `impl<'data, Mach: $crate::fmt::Debug + MachHeader, R: $crate::fmt::Debug + ReadRef<'data>> Debug for MachOSectionInternal<'data, Mach, R>`
+##### `impl<'data, Mach: fmt::Debug + MachHeader, R: fmt::Debug + ReadRef<'data>> Debug for MachOSectionInternal<'data, Mach, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="machosectioninternal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Traits
 
@@ -166,41 +193,41 @@ A trait for generic access to [`macho::Section32`](../../../macho/index.md) and 
 
 - `type Endian: 1`
 
-- `fn sectname(self: &Self) -> &[u8; 16]`
+- `fn sectname(&self) -> &[u8; 16]`
 
-- `fn segname(self: &Self) -> &[u8; 16]`
+- `fn segname(&self) -> &[u8; 16]`
 
-- `fn addr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn addr(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn size(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn offset(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn offset(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn align(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn align(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn reloff(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn reloff(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn nreloc(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn nreloc(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn flags(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn flags(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn name(self: &Self) -> &[u8]`
+- `fn name(&self) -> &[u8]`
 
   Return the `sectname` bytes up until the null terminator.
 
-- `fn segment_name(self: &Self) -> &[u8]`
+- `fn segment_name(&self) -> &[u8]`
 
   Return the `segname` bytes up until the null terminator.
 
-- `fn file_range(self: &Self, endian: <Self as >::Endian) -> Option<(u64, u64)>`
+- `fn file_range(&self, endian: <Self as >::Endian) -> Option<(u64, u64)>`
 
   Return the offset and size of the section in the file.
 
-- `fn data<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> result::Result<&'data [u8], ()>`
+- `fn data<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> result::Result<&'data [u8], ()>`
 
   Return the section data.
 
-- `fn relocations<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> Result<&'data [macho::Relocation<<Self as >::Endian>]>`
+- `fn relocations<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> Result<&'data [macho::Relocation<<Self as >::Endian>]>`
 
   Return the relocation array.
 

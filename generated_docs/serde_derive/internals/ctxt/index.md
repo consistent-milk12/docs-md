@@ -4,6 +4,12 @@
 
 # Module `ctxt`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Ctxt`](#ctxt) | struct | A type to collect errors together and format them. |
+
 ## Structs
 
 ### `Ctxt`
@@ -22,21 +28,21 @@ References can be shared since this type uses run-time exclusive mut checking.
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="ctxt-new"></span>`fn new() -> Self`
 
-- `fn error_spanned_by<A: ToTokens, T: Display>(self: &Self, obj: A, msg: T)`
+- <span id="ctxt-error-spanned-by"></span>`fn error_spanned_by<A: ToTokens, T: Display>(&self, obj: A, msg: T)`
 
-- `fn syn_error(self: &Self, err: syn::Error)`
+- <span id="ctxt-syn-error"></span>`fn syn_error(&self, err: syn::Error)`
 
-- `fn check(self: Self) -> syn::Result<()>`
+- <span id="ctxt-check"></span>`fn check(self) -> syn::Result<()>`
 
 #### Trait Implementations
 
 ##### `impl Default for Ctxt`
 
-- `fn default() -> Ctxt` — [`Ctxt`](../index.md)
+- <span id="ctxt-default"></span>`fn default() -> Ctxt` — [`Ctxt`](../index.md)
 
 ##### `impl Drop for Ctxt`
 
-- `fn drop(self: &mut Self)`
+- <span id="ctxt-drop"></span>`fn drop(&mut self)`
 

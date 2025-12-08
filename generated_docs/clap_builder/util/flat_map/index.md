@@ -4,6 +4,17 @@
 
 # Module `flat_map`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`FlatMap`](#flatmap) | struct | Flat (Vec) backed map |
+| [`VacantEntry`](#vacantentry) | struct |  |
+| [`OccupiedEntry`](#occupiedentry) | struct |  |
+| [`Iter`](#iter) | struct |  |
+| [`IterMut`](#itermut) | struct |  |
+| [`Entry`](#entry) | enum |  |
+
 ## Structs
 
 ### `FlatMap<K, V>`
@@ -21,55 +32,55 @@ This preserves insertion order
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="flatmap-new"></span>`fn new() -> Self`
 
-- `fn insert(self: &mut Self, key: K, value: V) -> Option<V>`
+- <span id="flatmap-insert"></span>`fn insert(&mut self, key: K, value: V) -> Option<V>`
 
-- `fn insert_unchecked(self: &mut Self, key: K, value: V)`
+- <span id="flatmap-insert-unchecked"></span>`fn insert_unchecked(&mut self, key: K, value: V)`
 
-- `fn extend_unchecked(self: &mut Self, iter: impl IntoIterator<Item = (K, V)>)`
+- <span id="flatmap-extend-unchecked"></span>`fn extend_unchecked(&mut self, iter: impl IntoIterator<Item = (K, V)>)`
 
-- `fn contains_key<Q>(self: &Self, key: &Q) -> bool`
+- <span id="flatmap-contains-key"></span>`fn contains_key<Q>(&self, key: &Q) -> bool`
 
-- `fn remove<Q>(self: &mut Self, key: &Q) -> Option<V>`
+- <span id="flatmap-remove"></span>`fn remove<Q>(&mut self, key: &Q) -> Option<V>`
 
-- `fn remove_entry<Q>(self: &mut Self, key: &Q) -> Option<(K, V)>`
+- <span id="flatmap-remove-entry"></span>`fn remove_entry<Q>(&mut self, key: &Q) -> Option<(K, V)>`
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="flatmap-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn entry(self: &mut Self, key: K) -> Entry<'_, K, V>` — [`Entry`](#entry)
+- <span id="flatmap-entry"></span>`fn entry(&mut self, key: K) -> Entry<'_, K, V>` — [`Entry`](#entry)
 
-- `fn get<Q>(self: &Self, k: &Q) -> Option<&V>`
+- <span id="flatmap-get"></span>`fn get<Q>(&self, k: &Q) -> Option<&V>`
 
-- `fn get_mut<Q>(self: &mut Self, k: &Q) -> Option<&mut V>`
+- <span id="flatmap-get-mut"></span>`fn get_mut<Q>(&mut self, k: &Q) -> Option<&mut V>`
 
-- `fn keys(self: &Self) -> std::slice::Iter<'_, K>`
+- <span id="flatmap-keys"></span>`fn keys(&self) -> std::slice::Iter<'_, K>`
 
-- `fn values(self: &Self) -> std::slice::Iter<'_, V>`
+- <span id="flatmap-values"></span>`fn values(&self) -> std::slice::Iter<'_, V>`
 
-- `fn iter(self: &Self) -> Iter<'_, K, V>` — [`Iter`](#iter)
+- <span id="flatmap-iter"></span>`fn iter(&self) -> Iter<'_, K, V>` — [`Iter`](#iter)
 
-- `fn iter_mut(self: &mut Self) -> IterMut<'_, K, V>` — [`IterMut`](#itermut)
+- <span id="flatmap-iter-mut"></span>`fn iter_mut(&mut self) -> IterMut<'_, K, V>` — [`IterMut`](#itermut)
 
 #### Trait Implementations
 
-##### `impl<K: $crate::clone::Clone, V: $crate::clone::Clone> Clone for FlatMap<K, V>`
+##### `impl<K: clone::Clone, V: clone::Clone> Clone for FlatMap<K, V>`
 
-- `fn clone(self: &Self) -> FlatMap<K, V>` — [`FlatMap`](#flatmap)
+- <span id="flatmap-clone"></span>`fn clone(&self) -> FlatMap<K, V>` — [`FlatMap`](#flatmap)
 
-##### `impl<K: $crate::fmt::Debug, V: $crate::fmt::Debug> Debug for FlatMap<K, V>`
+##### `impl<K: fmt::Debug, V: fmt::Debug> Debug for FlatMap<K, V>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="flatmap-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<K: PartialEq + Eq, V> Default for FlatMap<K, V>`
 
-- `fn default() -> Self`
+- <span id="flatmap-default"></span>`fn default() -> Self`
 
-##### `impl<K: $crate::cmp::Eq, V: $crate::cmp::Eq> Eq for FlatMap<K, V>`
+##### `impl<K: cmp::Eq, V: cmp::Eq> Eq for FlatMap<K, V>`
 
-##### `impl<K: $crate::cmp::PartialEq, V: $crate::cmp::PartialEq> PartialEq for FlatMap<K, V>`
+##### `impl<K: cmp::PartialEq, V: cmp::PartialEq> PartialEq for FlatMap<K, V>`
 
-- `fn eq(self: &Self, other: &FlatMap<K, V>) -> bool` — [`FlatMap`](#flatmap)
+- <span id="flatmap-eq"></span>`fn eq(&self, other: &FlatMap<K, V>) -> bool` — [`FlatMap`](#flatmap)
 
 ##### `impl<K, V> StructuralPartialEq for FlatMap<K, V>`
 
@@ -104,25 +115,25 @@ struct Iter<'a, K, V> {
 
 ##### `impl<'a, K, V> DoubleEndedIterator for Iter<'a, K, V>`
 
-- `fn next_back(self: &mut Self) -> Option<(&'a K, &'a V)>`
+- <span id="iter-next-back"></span>`fn next_back(&mut self) -> Option<(&'a K, &'a V)>`
 
 ##### `impl<K, V> ExactSizeIterator for Iter<'_, K, V>`
 
 ##### `impl<I> IntoIterator for Iter<'a, K, V>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="iter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="iter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="iter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, K, V> Iterator for Iter<'a, K, V>`
 
-- `type Item = (&'a K, &'a V)`
+- <span id="iter-item"></span>`type Item = (&'a K, &'a V)`
 
-- `fn next(self: &mut Self) -> Option<(&'a K, &'a V)>`
+- <span id="iter-next"></span>`fn next(&mut self) -> Option<(&'a K, &'a V)>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="iter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ### `IterMut<'a, K, V>`
 
@@ -137,25 +148,25 @@ struct IterMut<'a, K, V> {
 
 ##### `impl<'a, K, V> DoubleEndedIterator for IterMut<'a, K, V>`
 
-- `fn next_back(self: &mut Self) -> Option<(&'a K, &'a mut V)>`
+- <span id="itermut-next-back"></span>`fn next_back(&mut self) -> Option<(&'a K, &'a mut V)>`
 
 ##### `impl<K, V> ExactSizeIterator for IterMut<'_, K, V>`
 
 ##### `impl<I> IntoIterator for IterMut<'a, K, V>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="itermut-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="itermut-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="itermut-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, K, V> Iterator for IterMut<'a, K, V>`
 
-- `type Item = (&'a K, &'a mut V)`
+- <span id="itermut-item"></span>`type Item = (&'a K, &'a mut V)`
 
-- `fn next(self: &mut Self) -> Option<(&'a K, &'a mut V)>`
+- <span id="itermut-next"></span>`fn next(&mut self) -> Option<(&'a K, &'a mut V)>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="itermut-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ## Enums
 
@@ -170,7 +181,7 @@ enum Entry<'a, K, V> {
 
 #### Implementations
 
-- `fn or_insert(self: Self, default: V) -> &'a mut V`
+- <span id="entry-or-insert"></span>`fn or_insert(self, default: V) -> &'a mut V`
 
-- `fn or_insert_with<F: FnOnce() -> V>(self: Self, default: F) -> &'a mut V`
+- <span id="entry-or-insert-with"></span>`fn or_insert_with<F: FnOnce() -> V>(self, default: F) -> &'a mut V`
 

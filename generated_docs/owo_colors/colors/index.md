@@ -6,6 +6,69 @@
 
 Color types for used for being generic over the color
 
+## Contents
+
+- [Modules](#modules)
+  - [`ansi_colors`](#ansi_colors)
+  - [`css`](#css)
+  - [`xterm`](#xterm)
+  - [`custom`](#custom)
+  - [`dynamic`](#dynamic)
+- [Structs](#structs)
+  - [`Black`](#black)
+  - [`Red`](#red)
+  - [`Green`](#green)
+  - [`Yellow`](#yellow)
+  - [`Blue`](#blue)
+  - [`Magenta`](#magenta)
+  - [`Cyan`](#cyan)
+  - [`White`](#white)
+  - [`Default`](#default)
+  - [`BrightBlack`](#brightblack)
+  - [`BrightRed`](#brightred)
+  - [`BrightGreen`](#brightgreen)
+  - [`BrightYellow`](#brightyellow)
+  - [`BrightBlue`](#brightblue)
+  - [`BrightMagenta`](#brightmagenta)
+  - [`BrightCyan`](#brightcyan)
+  - [`BrightWhite`](#brightwhite)
+  - [`unnamed`](#unnamed)
+- [Macros](#macros)
+  - [`colors!`](#colors)
+  - [`impl_fmt_for!`](#impl_fmt_for)
+  - [`impl_fmt_for_dyn!`](#impl_fmt_for_dyn)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ansi_colors`](#ansi_colors) | mod |  |
+| [`css`](#css) | mod | CSS named colors. |
+| [`xterm`](#xterm) | mod | XTerm 256-bit colors. |
+| [`custom`](#custom) | mod |  |
+| [`dynamic`](#dynamic) | mod |  |
+| [`Black`](#black) | struct | A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods. |
+| [`Red`](#red) | struct | A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods. |
+| [`Green`](#green) | struct | A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods. |
+| [`Yellow`](#yellow) | struct | A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods. |
+| [`Blue`](#blue) | struct | A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods. |
+| [`Magenta`](#magenta) | struct | A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods. |
+| [`Cyan`](#cyan) | struct | A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods. |
+| [`White`](#white) | struct | A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods. |
+| [`Default`](#default) | struct | A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods. |
+| [`BrightBlack`](#brightblack) | struct | A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods. |
+| [`BrightRed`](#brightred) | struct | A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods. |
+| [`BrightGreen`](#brightgreen) | struct | A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods. |
+| [`BrightYellow`](#brightyellow) | struct | A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods. |
+| [`BrightBlue`](#brightblue) | struct | A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods. |
+| [`BrightMagenta`](#brightmagenta) | struct | A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods. |
+| [`BrightCyan`](#brightcyan) | struct | A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods. |
+| [`BrightWhite`](#brightwhite) | struct | A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods. |
+| [`unnamed`](#unnamed) | struct |  |
+| [`colors!`](#colors) | macro |  |
+| [`impl_fmt_for!`](#impl_fmt_for) | macro |  |
+| [`impl_fmt_for_dyn!`](#impl_fmt_for_dyn) | macro |  |
+
 ## Modules
 
 - [`ansi_colors`](ansi_colors/index.md) - 
@@ -28,13 +91,13 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 ##### `impl Color for Black`
 
-- `const ANSI_FG: &'static str`
+- <span id="black-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="black-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="black-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="black-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
 ##### `impl<D> OwoColorize for Black`
 
@@ -50,13 +113,13 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 ##### `impl Color for Red`
 
-- `const ANSI_FG: &'static str`
+- <span id="red-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="red-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="red-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="red-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
 ##### `impl<D> OwoColorize for Red`
 
@@ -72,13 +135,13 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 ##### `impl Color for Green`
 
-- `const ANSI_FG: &'static str`
+- <span id="green-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="green-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="green-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="green-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
 ##### `impl<D> OwoColorize for Green`
 
@@ -94,13 +157,13 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 ##### `impl Color for Yellow`
 
-- `const ANSI_FG: &'static str`
+- <span id="yellow-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="yellow-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="yellow-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="yellow-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
 ##### `impl<D> OwoColorize for Yellow`
 
@@ -116,13 +179,13 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 ##### `impl Color for Blue`
 
-- `const ANSI_FG: &'static str`
+- <span id="blue-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="blue-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="blue-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="blue-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
 ##### `impl<D> OwoColorize for Blue`
 
@@ -138,13 +201,13 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 ##### `impl Color for Magenta`
 
-- `const ANSI_FG: &'static str`
+- <span id="magenta-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="magenta-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="magenta-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="magenta-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
 ##### `impl<D> OwoColorize for Magenta`
 
@@ -160,13 +223,13 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 ##### `impl Color for Cyan`
 
-- `const ANSI_FG: &'static str`
+- <span id="cyan-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="cyan-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="cyan-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="cyan-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
 ##### `impl<D> OwoColorize for Cyan`
 
@@ -182,13 +245,13 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 ##### `impl Color for White`
 
-- `const ANSI_FG: &'static str`
+- <span id="white-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="white-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="white-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="white-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
 ##### `impl<D> OwoColorize for White`
 
@@ -204,13 +267,13 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 ##### `impl Color for Default`
 
-- `const ANSI_FG: &'static str`
+- <span id="default-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="default-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="default-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="default-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
 ##### `impl<D> OwoColorize for Default`
 
@@ -226,13 +289,13 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 ##### `impl Color for BrightBlack`
 
-- `const ANSI_FG: &'static str`
+- <span id="brightblack-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="brightblack-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="brightblack-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="brightblack-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
 ##### `impl<D> OwoColorize for BrightBlack`
 
@@ -248,13 +311,13 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 ##### `impl Color for BrightRed`
 
-- `const ANSI_FG: &'static str`
+- <span id="brightred-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="brightred-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="brightred-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="brightred-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
 ##### `impl<D> OwoColorize for BrightRed`
 
@@ -270,13 +333,13 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 ##### `impl Color for BrightGreen`
 
-- `const ANSI_FG: &'static str`
+- <span id="brightgreen-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="brightgreen-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="brightgreen-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="brightgreen-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
 ##### `impl<D> OwoColorize for BrightGreen`
 
@@ -292,13 +355,13 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 ##### `impl Color for BrightYellow`
 
-- `const ANSI_FG: &'static str`
+- <span id="brightyellow-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="brightyellow-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="brightyellow-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="brightyellow-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
 ##### `impl<D> OwoColorize for BrightYellow`
 
@@ -314,13 +377,13 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 ##### `impl Color for BrightBlue`
 
-- `const ANSI_FG: &'static str`
+- <span id="brightblue-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="brightblue-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="brightblue-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="brightblue-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
 ##### `impl<D> OwoColorize for BrightBlue`
 
@@ -336,13 +399,13 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 ##### `impl Color for BrightMagenta`
 
-- `const ANSI_FG: &'static str`
+- <span id="brightmagenta-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="brightmagenta-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="brightmagenta-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="brightmagenta-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
 ##### `impl<D> OwoColorize for BrightMagenta`
 
@@ -358,13 +421,13 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 ##### `impl Color for BrightCyan`
 
-- `const ANSI_FG: &'static str`
+- <span id="brightcyan-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="brightcyan-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="brightcyan-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="brightcyan-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
 ##### `impl<D> OwoColorize for BrightCyan`
 
@@ -380,13 +443,13 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 ##### `impl Color for BrightWhite`
 
-- `const ANSI_FG: &'static str`
+- <span id="brightwhite-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="brightwhite-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="brightwhite-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="brightwhite-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
 ##### `impl<D> OwoColorize for BrightWhite`
 
@@ -400,25 +463,25 @@ A custom RGB color, determined at compile time
 
 #### Implementations
 
-- `const ANSI_FG_U8: [u8; 19]`
+- <span id="customcolor-ansi-fg-u8"></span>`const ANSI_FG_U8: [u8; 19]`
 
-- `const ANSI_BG_U8: [u8; 19]`
+- <span id="customcolor-ansi-bg-u8"></span>`const ANSI_BG_U8: [u8; 19]`
 
-- `const RAW_ANSI_FG_U8: [u8; 16]`
+- <span id="customcolor-raw-ansi-fg-u8"></span>`const RAW_ANSI_FG_U8: [u8; 16]`
 
-- `const RAW_ANSI_BG_U8: [u8; 16]`
+- <span id="customcolor-raw-ansi-bg-u8"></span>`const RAW_ANSI_BG_U8: [u8; 16]`
 
 #### Trait Implementations
 
 ##### `impl<const R: u8, const G: u8, const B: u8> Color for CustomColor<R, G, B>`
 
-- `const ANSI_FG: &'static str`
+- <span id="customcolor-ansi-fg"></span>`const ANSI_FG: &'static str`
 
-- `const ANSI_BG: &'static str`
+- <span id="customcolor-ansi-bg"></span>`const ANSI_BG: &'static str`
 
-- `const RAW_ANSI_FG: &'static str`
+- <span id="customcolor-raw-ansi-fg"></span>`const RAW_ANSI_FG: &'static str`
 
-- `const RAW_ANSI_BG: &'static str`
+- <span id="customcolor-raw-ansi-bg"></span>`const RAW_ANSI_BG: &'static str`
 
 ##### `impl<D> OwoColorize for CustomColor<R, G, B>`
 

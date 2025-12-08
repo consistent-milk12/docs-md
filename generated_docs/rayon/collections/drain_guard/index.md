@@ -4,6 +4,12 @@
 
 # Module `drain_guard`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`DrainGuard`](#drainguard) | struct | A proxy for draining a collection by converting to a `Vec` and back. |
+
 ## Structs
 
 ### `DrainGuard<'a, T, C: From<Vec<T>>>`
@@ -24,27 +30,27 @@ zero-allocation conversions to/from `Vec`, though not zero-cost:
 
 #### Implementations
 
-- `fn new(collection: &'a mut C) -> Self`
+- <span id="drainguard-new"></span>`fn new(collection: &'a mut C) -> Self`
 
 #### Trait Implementations
 
 ##### `impl<'a, T, C: From<Vec<T>>> Drop for DrainGuard<'a, T, C>`
 
-- `fn drop(self: &mut Self)`
+- <span id="drainguard-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<T> IntoEither for DrainGuard<'a, T, C>`
 
 ##### `impl<T> Pointable for DrainGuard<'a, T, C>`
 
-- `const ALIGN: usize`
+- <span id="drainguard-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="drainguard-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="drainguard-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="drainguard-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="drainguard-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="drainguard-drop"></span>`unsafe fn drop(ptr: usize)`
 

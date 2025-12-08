@@ -13,6 +13,63 @@ They could be implemented as a separate library built on top of rustix,
 rather than being part of rustix itself. This module contains an incomplete
 list of such functions.
 
+## Contents
+
+- [Functions](#functions)
+  - [`getpwent`](#getpwent)
+  - [`getpwuid`](#getpwuid)
+  - [`getpwnam`](#getpwnam)
+  - [`getpwuid_r`](#getpwuid_r)
+  - [`getpwnam_r`](#getpwnam_r)
+  - [`gethostbyname`](#gethostbyname)
+  - [`execv`](#execv)
+  - [`execvp`](#execvp)
+  - [`execvpe`](#execvpe)
+  - [`wordexp`](#wordexp)
+  - [`localtime`](#localtime)
+  - [`localtime_r`](#localtime_r)
+  - [`gmtime`](#gmtime)
+  - [`gmtime_r`](#gmtime_r)
+  - [`ctime`](#ctime)
+  - [`ctime_r`](#ctime_r)
+  - [`asctime`](#asctime)
+  - [`asctime_r`](#asctime_r)
+  - [`mktime`](#mktime)
+  - [`getifaddrs`](#getifaddrs)
+  - [`closefrom`](#closefrom)
+  - [`login_tty`](#login_tty)
+  - [`openpty`](#openpty)
+  - [`isatty`](#isatty)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`getpwent`](#getpwent) | fn | See the [module comment](self). |
+| [`getpwuid`](#getpwuid) | fn | See the [module comment](self). |
+| [`getpwnam`](#getpwnam) | fn | See the [module comment](self). |
+| [`getpwuid_r`](#getpwuid_r) | fn | See the [module comment](self). |
+| [`getpwnam_r`](#getpwnam_r) | fn | See the [module comment](self). |
+| [`gethostbyname`](#gethostbyname) | fn | See the [module comment](self). |
+| [`execv`](#execv) | fn | See the [module comment](self). |
+| [`execvp`](#execvp) | fn | See the [module comment](self). |
+| [`execvpe`](#execvpe) | fn | See the [module comment](self). |
+| [`wordexp`](#wordexp) | fn | See the [module comment](self). |
+| [`localtime`](#localtime) | fn | See the [module comment](self). |
+| [`localtime_r`](#localtime_r) | fn | See the [module comment](self). |
+| [`gmtime`](#gmtime) | fn | See the [module comment](self). |
+| [`gmtime_r`](#gmtime_r) | fn | See the [module comment](self). |
+| [`ctime`](#ctime) | fn | See the [module comment](self). |
+| [`ctime_r`](#ctime_r) | fn | See the [module comment](self). |
+| [`asctime`](#asctime) | fn | See the [module comment](self). |
+| [`asctime_r`](#asctime_r) | fn | See the [module comment](self). |
+| [`mktime`](#mktime) | fn | See the [module comment](self). |
+| [`getifaddrs`](#getifaddrs) | fn | See the [module comment](self). |
+| [`closefrom`](#closefrom) | fn | See [rustix-openpty](https://crates.io/crates/rustix-openpty). |
+| [`login_tty`](#login_tty) | fn | See [rustix-openpty](https://crates.io/crates/rustix-openpty). |
+| [`openpty`](#openpty) | fn | See [rustix-openpty](https://crates.io/crates/rustix-openpty). |
+| [`isatty`](#isatty) | fn | See [`std::io::IsTerminal`]. |
+
 ## Functions
 
 ### `getpwent`

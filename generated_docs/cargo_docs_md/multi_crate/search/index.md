@@ -36,6 +36,14 @@ let generator = SearchIndexGenerator::new(&crates);
 generator.write(Path::new("generated_docs/"))?;
 ```
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`SearchEntry`](#searchentry) | struct | A single searchable item in the index. |
+| [`SearchIndex`](#searchindex) | struct | The complete search index containing all searchable items. |
+| [`SearchIndexGenerator`](#searchindexgenerator) | struct | Generator for multi-crate search indices. |
+
 ## Structs
 
 ### `SearchEntry`
@@ -89,7 +97,7 @@ Contains all metadata needed for search and display in results.
 
 ##### `impl Debug for SearchEntry`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="searchentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> Instrument for SearchEntry`
 
@@ -99,21 +107,21 @@ Contains all metadata needed for search and display in results.
 
 ##### `impl<T> Pointable for SearchEntry`
 
-- `const ALIGN: usize`
+- <span id="searchentry-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="searchentry-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="searchentry-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="searchentry-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="searchentry-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="searchentry-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl Serialize for SearchEntry`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="searchentry-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl<T> WithSubscriber for SearchEntry`
 
@@ -139,7 +147,7 @@ Serialized to `search_index.json` for client-side consumption.
 
 ##### `impl Debug for SearchIndex`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="searchindex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> Instrument for SearchIndex`
 
@@ -149,21 +157,21 @@ Serialized to `search_index.json` for client-side consumption.
 
 ##### `impl<T> Pointable for SearchIndex`
 
-- `const ALIGN: usize`
+- <span id="searchindex-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="searchindex-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="searchindex-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="searchindex-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="searchindex-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="searchindex-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl Serialize for SearchIndex`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="searchindex-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl<T> WithSubscriber for SearchIndex`
 
@@ -213,17 +221,17 @@ generator.write(Path::new("generated_docs/"))?;
 
 #### Implementations
 
-- `const fn new(crates: &'a CrateCollection, include_private: bool, rendered_items: HashMap<String, HashSet<Id>>) -> Self` — [`CrateCollection`](../../index.md)
+- <span id="searchindexgenerator-new"></span>`const fn new(crates: &'a CrateCollection, include_private: bool, rendered_items: HashMap<String, HashSet<Id>>) -> Self` — [`CrateCollection`](../../index.md)
 
-- `fn generate(self: &Self) -> SearchIndex` — [`SearchIndex`](../../index.md)
+- <span id="searchindexgenerator-generate"></span>`fn generate(&self) -> SearchIndex` — [`SearchIndex`](../../index.md)
 
-- `fn write(self: &Self, output_dir: &Path) -> std::io::Result<()>`
+- <span id="searchindexgenerator-write"></span>`fn write(&self, output_dir: &Path) -> std::io::Result<()>`
 
-- `fn index_crate(self: &Self, items: &mut Vec<SearchEntry>, crate_name: &str, krate: &Crate)` — [`SearchEntry`](#searchentry)
+- <span id="searchindexgenerator-index-crate"></span>`fn index_crate(&self, items: &mut Vec<SearchEntry>, crate_name: &str, krate: &Crate)` — [`SearchEntry`](#searchentry)
 
-- `fn build_path_map(krate: &Crate) -> HashMap<Id, String>`
+- <span id="searchindexgenerator-build-path-map"></span>`fn build_path_map(krate: &Crate) -> HashMap<Id, String>`
 
-- `fn compute_file_path(crate_name: &str, module_path: &str, kind: &str) -> String`
+- <span id="searchindexgenerator-compute-file-path"></span>`fn compute_file_path(crate_name: &str, module_path: &str, kind: &str) -> String`
 
 #### Trait Implementations
 
@@ -235,17 +243,17 @@ generator.write(Path::new("generated_docs/"))?;
 
 ##### `impl<T> Pointable for SearchIndexGenerator<'a>`
 
-- `const ALIGN: usize`
+- <span id="searchindexgenerator-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="searchindexgenerator-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="searchindexgenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="searchindexgenerator-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="searchindexgenerator-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="searchindexgenerator-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T> WithSubscriber for SearchIndexGenerator<'a>`
 

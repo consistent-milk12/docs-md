@@ -4,6 +4,31 @@
 
 # Module `segment`
 
+## Contents
+
+- [Structs](#structs)
+  - [`ElfSegmentIterator`](#elfsegmentiterator)
+  - [`ElfSegment`](#elfsegment)
+- [Traits](#traits)
+  - [`ProgramHeader`](#programheader)
+- [Type Aliases](#type-aliases)
+  - [`ElfSegmentIterator32`](#elfsegmentiterator32)
+  - [`ElfSegmentIterator64`](#elfsegmentiterator64)
+  - [`ElfSegment32`](#elfsegment32)
+  - [`ElfSegment64`](#elfsegment64)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ElfSegmentIterator`](#elfsegmentiterator) | struct | An iterator for the segments in an [`ElfFile`]. |
+| [`ElfSegment`](#elfsegment) | struct | A segment in an [`ElfFile`]. |
+| [`ProgramHeader`](#programheader) | trait | A trait for generic access to [`elf::ProgramHeader32`] and [`elf::ProgramHeader64`]. |
+| [`ElfSegmentIterator32`](#elfsegmentiterator32) | type | An iterator for the segments in an [`ElfFile32`](super::ElfFile32). |
+| [`ElfSegmentIterator64`](#elfsegmentiterator64) | type | An iterator for the segments in an [`ElfFile64`](super::ElfFile64). |
+| [`ElfSegment32`](#elfsegment32) | type | A segment in an [`ElfFile32`](super::ElfFile32). |
+| [`ElfSegment64`](#elfsegment64) | type | A segment in an [`ElfFile64`](super::ElfFile64). |
+
 ## Structs
 
 ### `ElfSegmentIterator<'data, 'file, Elf, R>`
@@ -24,21 +49,21 @@ An iterator for the segments in an [`ElfFile`](../index.md).
 
 ##### `impl<'data, 'file, Elf, R> Debug for ElfSegmentIterator<'data, 'file, Elf, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="elfsegmentiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for ElfSegmentIterator<'data, 'file, Elf, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="elfsegmentiterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="elfsegmentiterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="elfsegmentiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Elf, R> Iterator for ElfSegmentIterator<'data, 'file, Elf, R>`
 
-- `type Item = ElfSegment<'data, 'file, Elf, R>`
+- <span id="elfsegmentiterator-item"></span>`type Item = ElfSegment<'data, 'file, Elf, R>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="elfsegmentiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `ElfSegment<'data, 'file, Elf, R>`
 
@@ -58,37 +83,37 @@ Most functionality is provided by the [`ObjectSegment`](../../index.md) trait im
 
 #### Implementations
 
-- `fn elf_file(self: &Self) -> &'file ElfFile<'data, Elf, R>` — [`ElfFile`](../index.md)
+- <span id="elfsegment-elf-file"></span>`fn elf_file(&self) -> &'file ElfFile<'data, Elf, R>` — [`ElfFile`](../index.md)
 
-- `fn elf_program_header(self: &Self) -> &'data <Elf as >::ProgramHeader` — [`FileHeader`](../index.md)
+- <span id="elfsegment-elf-program-header"></span>`fn elf_program_header(&self) -> &'data <Elf as >::ProgramHeader` — [`FileHeader`](../index.md)
 
-- `fn bytes(self: &Self) -> read::Result<&'data [u8]>` — [`Result`](../../../index.md)
+- <span id="elfsegment-bytes"></span>`fn bytes(&self) -> read::Result<&'data [u8]>` — [`Result`](../../../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'data, 'file, Elf, R> Debug for ElfSegment<'data, 'file, Elf, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="elfsegment-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, 'file, Elf, R> ObjectSegment for ElfSegment<'data, 'file, Elf, R>`
 
-- `fn address(self: &Self) -> u64`
+- <span id="elfsegment-address"></span>`fn address(&self) -> u64`
 
-- `fn size(self: &Self) -> u64`
+- <span id="elfsegment-size"></span>`fn size(&self) -> u64`
 
-- `fn align(self: &Self) -> u64`
+- <span id="elfsegment-align"></span>`fn align(&self) -> u64`
 
-- `fn file_range(self: &Self) -> (u64, u64)`
+- <span id="elfsegment-file-range"></span>`fn file_range(&self) -> (u64, u64)`
 
-- `fn data(self: &Self) -> read::Result<&'data [u8]>` — [`Result`](../../../index.md)
+- <span id="elfsegment-data"></span>`fn data(&self) -> read::Result<&'data [u8]>` — [`Result`](../../../index.md)
 
-- `fn data_range(self: &Self, address: u64, size: u64) -> read::Result<Option<&'data [u8]>>` — [`Result`](../../../index.md)
+- <span id="elfsegment-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> read::Result<Option<&'data [u8]>>` — [`Result`](../../../index.md)
 
-- `fn name_bytes(self: &Self) -> read::Result<Option<&[u8]>>` — [`Result`](../../../index.md)
+- <span id="elfsegment-name-bytes"></span>`fn name_bytes(&self) -> read::Result<Option<&[u8]>>` — [`Result`](../../../index.md)
 
-- `fn name(self: &Self) -> read::Result<Option<&str>>` — [`Result`](../../../index.md)
+- <span id="elfsegment-name"></span>`fn name(&self) -> read::Result<Option<&str>>` — [`Result`](../../../index.md)
 
-- `fn flags(self: &Self) -> SegmentFlags` — [`SegmentFlags`](../../../index.md)
+- <span id="elfsegment-flags"></span>`fn flags(&self) -> SegmentFlags` — [`SegmentFlags`](../../../index.md)
 
 ##### `impl<'data, 'file, Elf, R> Sealed for ElfSegment<'data, 'file, Elf, R>`
 
@@ -110,47 +135,47 @@ A trait for generic access to [`elf::ProgramHeader32`](../../../elf/index.md) an
 
 - `type Endian: 1`
 
-- `fn p_type(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn p_type(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn p_flags(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn p_flags(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn p_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn p_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn p_vaddr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn p_vaddr(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn p_paddr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn p_paddr(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn p_filesz(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn p_filesz(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn p_memsz(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn p_memsz(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn p_align(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn p_align(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn file_range(self: &Self, endian: <Self as >::Endian) -> (u64, u64)`
+- `fn file_range(&self, endian: <Self as >::Endian) -> (u64, u64)`
 
   Return the offset and size of the segment in the file.
 
-- `fn data<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> Result<&'data [u8], ()>`
+- `fn data<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> Result<&'data [u8], ()>`
 
   Return the segment data.
 
-- `fn data_as_array<'data, T: Pod, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> Result<&'data [T], ()>`
+- `fn data_as_array<'data, T: Pod, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> Result<&'data [T], ()>`
 
   Return the segment data as a slice of the given type.
 
-- `fn data_range<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R, address: u64, size: u64) -> Result<Option<&'data [u8]>, ()>`
+- `fn data_range<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R, address: u64, size: u64) -> Result<Option<&'data [u8]>, ()>`
 
   Return the segment data in the given virtual address range
 
-- `fn dynamic<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<&'data [<<Self as >::Elf as FileHeader>::Dyn]>>`
+- `fn dynamic<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<&'data [<<Self as >::Elf as FileHeader>::Dyn]>>`
 
   Return entries in a dynamic segment.
 
-- `fn interpreter<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<&'data [u8]>>`
+- `fn interpreter<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<&'data [u8]>>`
 
   Return the data in an interpreter segment.
 
-- `fn notes<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<NoteIterator<'data, <Self as >::Elf>>>`
+- `fn notes<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<NoteIterator<'data, <Self as >::Elf>>>`
 
   Return a note iterator for the segment data.
 

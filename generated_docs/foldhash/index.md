@@ -113,6 +113,62 @@ slightly using the nightly-only Rust feature
 - `std`, this enabled-by-default feature offers convenient aliases for `std`
 containers, but can be turned off for `#![no_std]` crates.
 
+## Contents
+
+- [Modules](#modules)
+  - [`fast`](#fast)
+  - [`quality`](#quality)
+  - [`seed`](#seed)
+- [Structs](#structs)
+  - [`unnamed`](#unnamed)
+- [Functions](#functions)
+  - [`folded_multiply`](#folded_multiply)
+  - [`rotate_right`](#rotate_right)
+  - [`cold_path`](#cold_path)
+  - [`hash_bytes_short`](#hash_bytes_short)
+  - [`load`](#load)
+  - [`hash_bytes_long`](#hash_bytes_long)
+- [Constants](#constants)
+  - [`ARBITRARY0`](#arbitrary0)
+  - [`ARBITRARY1`](#arbitrary1)
+  - [`ARBITRARY2`](#arbitrary2)
+  - [`ARBITRARY3`](#arbitrary3)
+  - [`ARBITRARY4`](#arbitrary4)
+  - [`ARBITRARY5`](#arbitrary5)
+  - [`ARBITRARY6`](#arbitrary6)
+  - [`ARBITRARY7`](#arbitrary7)
+  - [`ARBITRARY8`](#arbitrary8)
+  - [`ARBITRARY9`](#arbitrary9)
+  - [`ARBITRARY10`](#arbitrary10)
+  - [`ARBITRARY11`](#arbitrary11)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`fast`](#fast) | mod | The foldhash implementation optimized for speed. |
+| [`quality`](#quality) | mod | The foldhash implementation optimized for quality. |
+| [`seed`](#seed) | mod |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`folded_multiply`](#folded_multiply) | fn |  |
+| [`rotate_right`](#rotate_right) | fn |  |
+| [`cold_path`](#cold_path) | fn |  |
+| [`hash_bytes_short`](#hash_bytes_short) | fn | Hashes strings <= 16 bytes, has unspecified behavior when bytes.len() > 16. |
+| [`load`](#load) | fn | Load 8 bytes into a u64 word at the given offset. |
+| [`hash_bytes_long`](#hash_bytes_long) | fn | Hashes strings > 16 bytes. |
+| [`ARBITRARY0`](#arbitrary0) | const |  |
+| [`ARBITRARY1`](#arbitrary1) | const |  |
+| [`ARBITRARY2`](#arbitrary2) | const |  |
+| [`ARBITRARY3`](#arbitrary3) | const |  |
+| [`ARBITRARY4`](#arbitrary4) | const |  |
+| [`ARBITRARY5`](#arbitrary5) | const |  |
+| [`ARBITRARY6`](#arbitrary6) | const |  |
+| [`ARBITRARY7`](#arbitrary7) | const |  |
+| [`ARBITRARY8`](#arbitrary8) | const |  |
+| [`ARBITRARY9`](#arbitrary9) | const |  |
+| [`ARBITRARY10`](#arbitrary10) | const |  |
+| [`ARBITRARY11`](#arbitrary11) | const |  |
+
 ## Modules
 
 - [`fast`](fast/index.md) - The foldhash implementation optimized for speed.
@@ -136,21 +192,21 @@ and [`SeedableRandomState::with_seed`](crate::fast::SeedableRandomState::with_se
 
 #### Implementations
 
-- `fn global_random() -> &'static SharedSeed` — [`SharedSeed`](#sharedseed)
+- <span id="sharedseed-global-random"></span>`fn global_random() -> &'static SharedSeed` — [`SharedSeed`](#sharedseed)
 
-- `const fn global_fixed() -> &'static SharedSeed` — [`SharedSeed`](#sharedseed)
+- <span id="sharedseed-global-fixed"></span>`const fn global_fixed() -> &'static SharedSeed` — [`SharedSeed`](#sharedseed)
 
-- `const fn from_u64(seed: u64) -> Self`
+- <span id="sharedseed-from-u64"></span>`const fn from_u64(seed: u64) -> Self`
 
 #### Trait Implementations
 
 ##### `impl Clone for SharedSeed`
 
-- `fn clone(self: &Self) -> SharedSeed` — [`SharedSeed`](#sharedseed)
+- <span id="sharedseed-clone"></span>`fn clone(&self) -> SharedSeed` — [`SharedSeed`](#sharedseed)
 
 ##### `impl Debug for SharedSeed`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sharedseed-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Functions
 

@@ -10,6 +10,12 @@ This module provides the [`ItemRenderer`](#itemrenderer) struct which handles re
 individual Rust items (structs, enums, traits, functions, macros, constants,
 and type aliases) to markdown format.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ItemRenderer`](#itemrenderer) | struct | Renders individual Rust items to markdown. |
+
 ## Structs
 
 ### `ItemRenderer<'a>`
@@ -53,27 +59,27 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 #### Implementations
 
-- `fn new(ctx: &'a dyn RenderContext, current_file: &'a str) -> Self` — [`RenderContext`](../index.md)
+- <span id="itemrenderer-new"></span>`fn new(ctx: &'a dyn RenderContext, current_file: &'a str) -> Self` — [`RenderContext`](../index.md)
 
-- `fn process_docs(self: &Self, item: &Item) -> Option<String>`
+- <span id="itemrenderer-process-docs"></span>`fn process_docs(&self, item: &Item) -> Option<String>`
 
-- `fn resolve_use_target<'b>(self: &Self, item: &'b Item) -> Option<(&'b str, &'b Item)>`
+- <span id="itemrenderer-resolve-use-target"></span>`fn resolve_use_target<'b>(&self, item: &'b Item) -> Option<(&'b str, &'b Item)>`
 
-- `fn render_struct(self: &Self, md: &mut String, item_id: Id, item: &Item)`
+- <span id="itemrenderer-render-struct"></span>`fn render_struct(&self, md: &mut String, item_id: Id, item: &Item)`
 
-- `fn render_enum(self: &Self, md: &mut String, item_id: Id, item: &Item)`
+- <span id="itemrenderer-render-enum"></span>`fn render_enum(&self, md: &mut String, item_id: Id, item: &Item)`
 
-- `fn render_trait(self: &Self, md: &mut String, item: &Item)`
+- <span id="itemrenderer-render-trait"></span>`fn render_trait(&self, md: &mut String, item: &Item)`
 
-- `fn render_function(self: &Self, md: &mut String, item: &Item)`
+- <span id="itemrenderer-render-function"></span>`fn render_function(&self, md: &mut String, item: &Item)`
 
-- `fn render_function_type_links(self: &Self, md: &mut String, f: &rustdoc_types::Function)`
+- <span id="itemrenderer-render-function-type-links"></span>`fn render_function_type_links(&self, md: &mut String, f: &rustdoc_types::Function)`
 
-- `fn render_macro(self: &Self, md: &mut String, item: &Item)`
+- <span id="itemrenderer-render-macro"></span>`fn render_macro(&self, md: &mut String, item: &Item)`
 
-- `fn render_constant(self: &Self, md: &mut String, item: &Item)`
+- <span id="itemrenderer-render-constant"></span>`fn render_constant(&self, md: &mut String, item: &Item)`
 
-- `fn render_type_alias(self: &Self, md: &mut String, item: &Item)`
+- <span id="itemrenderer-render-type-alias"></span>`fn render_type_alias(&self, md: &mut String, item: &Item)`
 
 #### Trait Implementations
 
@@ -85,17 +91,17 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 ##### `impl<T> Pointable for ItemRenderer<'a>`
 
-- `const ALIGN: usize`
+- <span id="itemrenderer-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="itemrenderer-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="itemrenderer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="itemrenderer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="itemrenderer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="itemrenderer-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T> WithSubscriber for ItemRenderer<'a>`
 

@@ -4,6 +4,15 @@
 
 # Module `proc_macro_span_location`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`start`](#start) | fn |  |
+| [`end`](#end) | fn |  |
+| [`line`](#line) | fn |  |
+| [`column`](#column) | fn |  |
+
 ## Functions
 
 ### `start`

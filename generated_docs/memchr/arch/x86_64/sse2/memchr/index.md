@@ -24,6 +24,17 @@ probably (but not necessarily) better to just use a simple `[bool; 256]` array
 or similar. However, it depends mightily on the specific work-load and the
 expected match frequency.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`One`](#one) | struct | Finds all occurrences of a single byte in a haystack. |
+| [`OneIter`](#oneiter) | struct | An iterator over all occurrences of a single byte in a haystack. |
+| [`Two`](#two) | struct | Finds all occurrences of two bytes in a haystack. |
+| [`TwoIter`](#twoiter) | struct | An iterator over all occurrences of two possible bytes in a haystack. |
+| [`Three`](#three) | struct | Finds all occurrences of three bytes in a haystack. |
+| [`ThreeIter`](#threeiter) | struct | An iterator over all occurrences of three possible bytes in a haystack. |
+
 ## Structs
 
 ### `One`
@@ -36,43 +47,43 @@ Finds all occurrences of a single byte in a haystack.
 
 #### Implementations
 
-- `fn new(needle: u8) -> Option<One>` — [`One`](#one)
+- <span id="one-new"></span>`fn new(needle: u8) -> Option<One>` — [`One`](#one)
 
-- `unsafe fn new_unchecked(needle: u8) -> One` — [`One`](#one)
+- <span id="one-new-unchecked"></span>`unsafe fn new_unchecked(needle: u8) -> One` — [`One`](#one)
 
-- `fn is_available() -> bool`
+- <span id="one-is-available"></span>`fn is_available() -> bool`
 
-- `fn find(self: &Self, haystack: &[u8]) -> Option<usize>`
+- <span id="one-find"></span>`fn find(&self, haystack: &[u8]) -> Option<usize>`
 
-- `fn rfind(self: &Self, haystack: &[u8]) -> Option<usize>`
+- <span id="one-rfind"></span>`fn rfind(&self, haystack: &[u8]) -> Option<usize>`
 
-- `fn count(self: &Self, haystack: &[u8]) -> usize`
+- <span id="one-count"></span>`fn count(&self, haystack: &[u8]) -> usize`
 
-- `unsafe fn find_raw(self: &Self, start: *const u8, end: *const u8) -> Option<*const u8>`
+- <span id="one-find-raw"></span>`unsafe fn find_raw(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
-- `unsafe fn rfind_raw(self: &Self, start: *const u8, end: *const u8) -> Option<*const u8>`
+- <span id="one-rfind-raw"></span>`unsafe fn rfind_raw(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
-- `unsafe fn count_raw(self: &Self, start: *const u8, end: *const u8) -> usize`
+- <span id="one-count-raw"></span>`unsafe fn count_raw(&self, start: *const u8, end: *const u8) -> usize`
 
-- `unsafe fn find_raw_impl(self: &Self, start: *const u8, end: *const u8) -> Option<*const u8>`
+- <span id="one-find-raw-impl"></span>`unsafe fn find_raw_impl(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
-- `unsafe fn rfind_raw_impl(self: &Self, start: *const u8, end: *const u8) -> Option<*const u8>`
+- <span id="one-rfind-raw-impl"></span>`unsafe fn rfind_raw_impl(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
-- `unsafe fn count_raw_impl(self: &Self, start: *const u8, end: *const u8) -> usize`
+- <span id="one-count-raw-impl"></span>`unsafe fn count_raw_impl(&self, start: *const u8, end: *const u8) -> usize`
 
-- `fn iter<'a, 'h>(self: &'a Self, haystack: &'h [u8]) -> OneIter<'a, 'h>` — [`OneIter`](#oneiter)
+- <span id="one-iter"></span>`fn iter<'a, 'h>(self: &'a Self, haystack: &'h [u8]) -> OneIter<'a, 'h>` — [`OneIter`](#oneiter)
 
 #### Trait Implementations
 
 ##### `impl Clone for One`
 
-- `fn clone(self: &Self) -> One` — [`One`](#one)
+- <span id="one-clone"></span>`fn clone(&self) -> One` — [`One`](#one)
 
 ##### `impl Copy for One`
 
 ##### `impl Debug for One`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="one-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `OneIter<'a, 'h>`
 
@@ -99,35 +110,35 @@ The lifetime parameters are as follows:
 
 ##### `impl<'a, 'h> Clone for OneIter<'a, 'h>`
 
-- `fn clone(self: &Self) -> OneIter<'a, 'h>` — [`OneIter`](#oneiter)
+- <span id="oneiter-clone"></span>`fn clone(&self) -> OneIter<'a, 'h>` — [`OneIter`](#oneiter)
 
 ##### `impl<'a, 'h> Debug for OneIter<'a, 'h>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="oneiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'a, 'h> DoubleEndedIterator for OneIter<'a, 'h>`
 
-- `fn next_back(self: &mut Self) -> Option<usize>`
+- <span id="oneiter-next-back"></span>`fn next_back(&mut self) -> Option<usize>`
 
 ##### `impl<'a, 'h> FusedIterator for OneIter<'a, 'h>`
 
 ##### `impl<I> IntoIterator for OneIter<'a, 'h>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="oneiter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="oneiter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="oneiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, 'h> Iterator for OneIter<'a, 'h>`
 
-- `type Item = usize`
+- <span id="oneiter-item"></span>`type Item = usize`
 
-- `fn next(self: &mut Self) -> Option<usize>`
+- <span id="oneiter-next"></span>`fn next(&mut self) -> Option<usize>`
 
-- `fn count(self: Self) -> usize`
+- <span id="oneiter-count"></span>`fn count(self) -> usize`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="oneiter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ### `Two`
 
@@ -143,37 +154,37 @@ searching for `a` or `b` in `afoobar` would report matches at offsets `0`,
 
 #### Implementations
 
-- `fn new(needle1: u8, needle2: u8) -> Option<Two>` — [`Two`](#two)
+- <span id="two-new"></span>`fn new(needle1: u8, needle2: u8) -> Option<Two>` — [`Two`](#two)
 
-- `unsafe fn new_unchecked(needle1: u8, needle2: u8) -> Two` — [`Two`](#two)
+- <span id="two-new-unchecked"></span>`unsafe fn new_unchecked(needle1: u8, needle2: u8) -> Two` — [`Two`](#two)
 
-- `fn is_available() -> bool`
+- <span id="two-is-available"></span>`fn is_available() -> bool`
 
-- `fn find(self: &Self, haystack: &[u8]) -> Option<usize>`
+- <span id="two-find"></span>`fn find(&self, haystack: &[u8]) -> Option<usize>`
 
-- `fn rfind(self: &Self, haystack: &[u8]) -> Option<usize>`
+- <span id="two-rfind"></span>`fn rfind(&self, haystack: &[u8]) -> Option<usize>`
 
-- `unsafe fn find_raw(self: &Self, start: *const u8, end: *const u8) -> Option<*const u8>`
+- <span id="two-find-raw"></span>`unsafe fn find_raw(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
-- `unsafe fn rfind_raw(self: &Self, start: *const u8, end: *const u8) -> Option<*const u8>`
+- <span id="two-rfind-raw"></span>`unsafe fn rfind_raw(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
-- `unsafe fn find_raw_impl(self: &Self, start: *const u8, end: *const u8) -> Option<*const u8>`
+- <span id="two-find-raw-impl"></span>`unsafe fn find_raw_impl(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
-- `unsafe fn rfind_raw_impl(self: &Self, start: *const u8, end: *const u8) -> Option<*const u8>`
+- <span id="two-rfind-raw-impl"></span>`unsafe fn rfind_raw_impl(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
-- `fn iter<'a, 'h>(self: &'a Self, haystack: &'h [u8]) -> TwoIter<'a, 'h>` — [`TwoIter`](#twoiter)
+- <span id="two-iter"></span>`fn iter<'a, 'h>(self: &'a Self, haystack: &'h [u8]) -> TwoIter<'a, 'h>` — [`TwoIter`](#twoiter)
 
 #### Trait Implementations
 
 ##### `impl Clone for Two`
 
-- `fn clone(self: &Self) -> Two` — [`Two`](#two)
+- <span id="two-clone"></span>`fn clone(&self) -> Two` — [`Two`](#two)
 
 ##### `impl Copy for Two`
 
 ##### `impl Debug for Two`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="two-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `TwoIter<'a, 'h>`
 
@@ -200,33 +211,33 @@ The lifetime parameters are as follows:
 
 ##### `impl<'a, 'h> Clone for TwoIter<'a, 'h>`
 
-- `fn clone(self: &Self) -> TwoIter<'a, 'h>` — [`TwoIter`](#twoiter)
+- <span id="twoiter-clone"></span>`fn clone(&self) -> TwoIter<'a, 'h>` — [`TwoIter`](#twoiter)
 
 ##### `impl<'a, 'h> Debug for TwoIter<'a, 'h>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="twoiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'a, 'h> DoubleEndedIterator for TwoIter<'a, 'h>`
 
-- `fn next_back(self: &mut Self) -> Option<usize>`
+- <span id="twoiter-next-back"></span>`fn next_back(&mut self) -> Option<usize>`
 
 ##### `impl<'a, 'h> FusedIterator for TwoIter<'a, 'h>`
 
 ##### `impl<I> IntoIterator for TwoIter<'a, 'h>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="twoiter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="twoiter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="twoiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, 'h> Iterator for TwoIter<'a, 'h>`
 
-- `type Item = usize`
+- <span id="twoiter-item"></span>`type Item = usize`
 
-- `fn next(self: &mut Self) -> Option<usize>`
+- <span id="twoiter-next"></span>`fn next(&mut self) -> Option<usize>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="twoiter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ### `Three`
 
@@ -242,37 +253,37 @@ searching for `a`, `b` or `o` in `afoobar` would report matches at offsets
 
 #### Implementations
 
-- `fn new(needle1: u8, needle2: u8, needle3: u8) -> Option<Three>` — [`Three`](#three)
+- <span id="three-new"></span>`fn new(needle1: u8, needle2: u8, needle3: u8) -> Option<Three>` — [`Three`](#three)
 
-- `unsafe fn new_unchecked(needle1: u8, needle2: u8, needle3: u8) -> Three` — [`Three`](#three)
+- <span id="three-new-unchecked"></span>`unsafe fn new_unchecked(needle1: u8, needle2: u8, needle3: u8) -> Three` — [`Three`](#three)
 
-- `fn is_available() -> bool`
+- <span id="three-is-available"></span>`fn is_available() -> bool`
 
-- `fn find(self: &Self, haystack: &[u8]) -> Option<usize>`
+- <span id="three-find"></span>`fn find(&self, haystack: &[u8]) -> Option<usize>`
 
-- `fn rfind(self: &Self, haystack: &[u8]) -> Option<usize>`
+- <span id="three-rfind"></span>`fn rfind(&self, haystack: &[u8]) -> Option<usize>`
 
-- `unsafe fn find_raw(self: &Self, start: *const u8, end: *const u8) -> Option<*const u8>`
+- <span id="three-find-raw"></span>`unsafe fn find_raw(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
-- `unsafe fn rfind_raw(self: &Self, start: *const u8, end: *const u8) -> Option<*const u8>`
+- <span id="three-rfind-raw"></span>`unsafe fn rfind_raw(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
-- `unsafe fn find_raw_impl(self: &Self, start: *const u8, end: *const u8) -> Option<*const u8>`
+- <span id="three-find-raw-impl"></span>`unsafe fn find_raw_impl(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
-- `unsafe fn rfind_raw_impl(self: &Self, start: *const u8, end: *const u8) -> Option<*const u8>`
+- <span id="three-rfind-raw-impl"></span>`unsafe fn rfind_raw_impl(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
-- `fn iter<'a, 'h>(self: &'a Self, haystack: &'h [u8]) -> ThreeIter<'a, 'h>` — [`ThreeIter`](#threeiter)
+- <span id="three-iter"></span>`fn iter<'a, 'h>(self: &'a Self, haystack: &'h [u8]) -> ThreeIter<'a, 'h>` — [`ThreeIter`](#threeiter)
 
 #### Trait Implementations
 
 ##### `impl Clone for Three`
 
-- `fn clone(self: &Self) -> Three` — [`Three`](#three)
+- <span id="three-clone"></span>`fn clone(&self) -> Three` — [`Three`](#three)
 
 ##### `impl Copy for Three`
 
 ##### `impl Debug for Three`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="three-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ThreeIter<'a, 'h>`
 
@@ -299,31 +310,31 @@ The lifetime parameters are as follows:
 
 ##### `impl<'a, 'h> Clone for ThreeIter<'a, 'h>`
 
-- `fn clone(self: &Self) -> ThreeIter<'a, 'h>` — [`ThreeIter`](#threeiter)
+- <span id="threeiter-clone"></span>`fn clone(&self) -> ThreeIter<'a, 'h>` — [`ThreeIter`](#threeiter)
 
 ##### `impl<'a, 'h> Debug for ThreeIter<'a, 'h>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="threeiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'a, 'h> DoubleEndedIterator for ThreeIter<'a, 'h>`
 
-- `fn next_back(self: &mut Self) -> Option<usize>`
+- <span id="threeiter-next-back"></span>`fn next_back(&mut self) -> Option<usize>`
 
 ##### `impl<'a, 'h> FusedIterator for ThreeIter<'a, 'h>`
 
 ##### `impl<I> IntoIterator for ThreeIter<'a, 'h>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="threeiter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="threeiter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="threeiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, 'h> Iterator for ThreeIter<'a, 'h>`
 
-- `type Item = usize`
+- <span id="threeiter-item"></span>`type Item = usize`
 
-- `fn next(self: &mut Self) -> Option<usize>`
+- <span id="threeiter-next"></span>`fn next(&mut self) -> Option<usize>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="threeiter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 

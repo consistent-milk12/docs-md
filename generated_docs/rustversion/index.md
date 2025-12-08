@@ -169,6 +169,42 @@ extern crate alloc;
 
 <br>
 
+## Contents
+
+- [Modules](#modules)
+  - [`attr`](#attr)
+  - [`bound`](#bound)
+  - [`constfn`](#constfn)
+  - [`date`](#date)
+  - [`error`](#error)
+  - [`expand`](#expand)
+  - [`expr`](#expr)
+  - [`iter`](#iter)
+  - [`release`](#release)
+  - [`time`](#time)
+  - [`token`](#token)
+  - [`version`](#version)
+- [Constants](#constants)
+  - [`RUSTVERSION`](#rustversion)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`attr`](#attr) | mod |  |
+| [`bound`](#bound) | mod |  |
+| [`constfn`](#constfn) | mod |  |
+| [`date`](#date) | mod |  |
+| [`error`](#error) | mod |  |
+| [`expand`](#expand) | mod |  |
+| [`expr`](#expr) | mod |  |
+| [`iter`](#iter) | mod |  |
+| [`release`](#release) | mod |  |
+| [`time`](#time) | mod |  |
+| [`token`](#token) | mod |  |
+| [`version`](#version) | mod |  |
+| [`RUSTVERSION`](#rustversion) | const |  |
+
 ## Modules
 
 - [`attr`](attr/index.md) - 

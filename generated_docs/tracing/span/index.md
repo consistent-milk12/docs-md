@@ -321,6 +321,36 @@
 
 
 
+## Contents
+
+- [Structs](#structs)
+  - [`unnamed`](#unnamed)
+  - [`Span`](#span)
+  - [`Inner`](#inner)
+  - [`Entered`](#entered)
+  - [`EnteredSpan`](#enteredspan)
+  - [`PhantomNotSend`](#phantomnotsend)
+- [Traits](#traits)
+  - [`AsId`](#asid)
+- [Functions](#functions)
+  - [`unnamed`](#unnamed)
+- [Constants](#constants)
+  - [`PhantomNotSend`](#phantomnotsend)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`unnamed`](#unnamed) | struct |  |
+| [`Span`](#span) | struct | A handle representing a span, with the capability to enter the span if it |
+| [`Inner`](#inner) | struct | A handle representing the capacity to enter a span which is known to exist. |
+| [`Entered`](#entered) | struct | A guard representing a span which has been entered and is currently |
+| [`EnteredSpan`](#enteredspan) | struct | An owned version of [`Entered`], a guard representing a span which has been |
+| [`PhantomNotSend`](#phantomnotsend) | struct | Technically, `EnteredSpan` _can_ implement both `Send` *and* |
+| [`AsId`](#asid) | trait | Trait implemented by types which have a span `Id`. |
+| [`unnamed`](#unnamed) | fn |  |
+| [`PhantomNotSend`](#phantomnotsend) | const |  |
+
 ## Structs
 
 ### `Id<R: gimli::Reader>`
@@ -342,23 +372,23 @@ when performing lookups for many addresses in the same executable.
 
 #### Implementations
 
-- `fn find_unit(self: &Self, offset: gimli::DebugInfoOffset<<R as >::Offset>, file: DebugFile) -> Result<(&gimli::Unit<R>, gimli::UnitOffset<<R as >::Offset>), gimli::Error>` — [`Id`](#id), [`Record`](#record)
+- <span id="context-find-dwarf-and-unit"></span>`fn find_dwarf_and_unit(&self, probe: u64) -> LookupResult<impl LookupContinuation<Output = Option<gimli::UnitRef<'_, R>>, Buf = R>>` — [`DefaultGuard`](../subscriber/index.md)
 
-- `fn find_dwarf_and_unit(self: &Self, probe: u64) -> LookupResult<impl LookupContinuation<Output = Option<gimli::UnitRef<'_, R>>, Buf = R>>` — [`DefaultGuard`](../subscriber/index.md)
+- <span id="context-find-location"></span>`fn find_location(&self, probe: u64) -> Result<Option<Location<'_>>, gimli::Error>` — [`Record`](#record), [`DefaultGuard`](../subscriber/index.md), [`set_global_default`](../dispatcher/index.md)
 
-- `fn find_location(self: &Self, probe: u64) -> Result<Option<Location<'_>>, gimli::Error>` — [`Record`](#record), [`DefaultGuard`](../subscriber/index.md), [`set_global_default`](../dispatcher/index.md)
+- <span id="context-find-location-range"></span>`fn find_location_range(&self, probe_low: u64, probe_high: u64) -> Result<LocationRangeIter<'_, R>, gimli::Error>` — [`Record`](#record)
 
-- `fn find_location_range(self: &Self, probe_low: u64, probe_high: u64) -> Result<LocationRangeIter<'_, R>, gimli::Error>` — [`Record`](#record)
+- <span id="context-find-frames"></span>`fn find_frames(&self, probe: u64) -> LookupResult<impl LookupContinuation<Output = Result<FrameIter<'_, R>, gimli::Error>, Buf = R>>` — [`Record`](#record)
 
-- `fn find_frames(self: &Self, probe: u64) -> LookupResult<impl LookupContinuation<Output = Result<FrameIter<'_, R>, gimli::Error>, Buf = R>>` — [`Record`](#record)
+- <span id="context-preload-units"></span>`fn preload_units(&self, probe: u64) -> impl Iterator<Item = (SplitDwarfLoad<R>, impl FnOnce(Option<Arc<gimli::Dwarf<R>>>) -> Result<(), gimli::Error> + '_)>` — [`DefaultGuard`](../subscriber/index.md), [`DefaultGuard`](../subscriber/index.md), [`Record`](#record)
 
-- `fn preload_units(self: &Self, probe: u64) -> impl Iterator<Item = (SplitDwarfLoad<R>, impl FnOnce(Option<Arc<gimli::Dwarf<R>>>) -> Result<(), gimli::Error> + '_)>` — [`DefaultGuard`](../subscriber/index.md), [`DefaultGuard`](../subscriber/index.md), [`Record`](#record)
+- <span id="context-from-sections"></span>`fn from_sections(debug_abbrev: gimli::DebugAbbrev<R>, debug_addr: gimli::DebugAddr<R>, debug_aranges: gimli::DebugAranges<R>, debug_info: gimli::DebugInfo<R>, debug_line: gimli::DebugLine<R>, debug_line_str: gimli::DebugLineStr<R>, debug_ranges: gimli::DebugRanges<R>, debug_rnglists: gimli::DebugRngLists<R>, debug_str: gimli::DebugStr<R>, debug_str_offsets: gimli::DebugStrOffsets<R>, default_section: R) -> Result<Self, gimli::Error>` — [`Record`](#record)
 
-- `fn from_sections(debug_abbrev: gimli::DebugAbbrev<R>, debug_addr: gimli::DebugAddr<R>, debug_aranges: gimli::DebugAranges<R>, debug_info: gimli::DebugInfo<R>, debug_line: gimli::DebugLine<R>, debug_line_str: gimli::DebugLineStr<R>, debug_ranges: gimli::DebugRanges<R>, debug_rnglists: gimli::DebugRngLists<R>, debug_str: gimli::DebugStr<R>, debug_str_offsets: gimli::DebugStrOffsets<R>, default_section: R) -> Result<Self, gimli::Error>` — [`Record`](#record)
+- <span id="context-from-dwarf"></span>`fn from_dwarf(sections: gimli::Dwarf<R>) -> Result<Context<R>, gimli::Error>` — [`Record`](#record), [`Id`](#id)
 
-- `fn from_dwarf(sections: gimli::Dwarf<R>) -> Result<Context<R>, gimli::Error>` — [`Record`](#record), [`Id`](#id)
+- <span id="context-from-arc-dwarf"></span>`fn from_arc_dwarf(sections: Arc<gimli::Dwarf<R>>) -> Result<Context<R>, gimli::Error>` — [`Record`](#record), [`Id`](#id)
 
-- `fn from_arc_dwarf(sections: Arc<gimli::Dwarf<R>>) -> Result<Context<R>, gimli::Error>` — [`Record`](#record), [`Id`](#id)
+- <span id="context-find-unit"></span>`fn find_unit(&self, offset: gimli::DebugInfoOffset<<R as >::Offset>, file: DebugFile) -> Result<(&gimli::Unit<R>, gimli::UnitOffset<<R as >::Offset>), gimli::Error>` — [`Id`](#id), [`Record`](#record)
 
 ### `Span`
 
@@ -393,73 +423,73 @@ manner regardless of whether or not the trace is currently being collected.
 
 #### Implementations
 
-- `fn new(meta: &'static Metadata<'static>, values: &field::ValueSet<'_>) -> Span` — [`Metadata`](../index.md), [`Span`](../index.md)
+- <span id="span-new"></span>`fn new(meta: &'static Metadata<'static>, values: &field::ValueSet<'_>) -> Span` — [`Metadata`](../index.md), [`Span`](../index.md)
 
-- `fn new_root(meta: &'static Metadata<'static>, values: &field::ValueSet<'_>) -> Span` — [`Metadata`](../index.md), [`Span`](../index.md)
+- <span id="span-new-root"></span>`fn new_root(meta: &'static Metadata<'static>, values: &field::ValueSet<'_>) -> Span` — [`Metadata`](../index.md), [`Span`](../index.md)
 
-- `fn child_of(parent: impl Into<Option<Id>>, meta: &'static Metadata<'static>, values: &field::ValueSet<'_>) -> Span` — [`Id`](#id), [`Metadata`](../index.md), [`Span`](../index.md)
+- <span id="span-child-of"></span>`fn child_of(parent: impl Into<Option<Id>>, meta: &'static Metadata<'static>, values: &field::ValueSet<'_>) -> Span` — [`Id`](#id), [`Metadata`](../index.md), [`Span`](../index.md)
 
-- `fn new_disabled(meta: &'static Metadata<'static>) -> Span` — [`Metadata`](../index.md), [`Span`](../index.md)
+- <span id="span-new-disabled"></span>`fn new_disabled(meta: &'static Metadata<'static>) -> Span` — [`Metadata`](../index.md), [`Span`](../index.md)
 
-- `const fn none() -> Span` — [`Span`](../index.md)
+- <span id="span-none"></span>`const fn none() -> Span` — [`Span`](../index.md)
 
-- `fn current() -> Span` — [`Span`](../index.md)
+- <span id="span-current"></span>`fn current() -> Span` — [`Span`](../index.md)
 
-- `fn make_with(meta: &'static Metadata<'static>, new_span: Attributes<'_>, dispatch: &Dispatch) -> Span` — [`Metadata`](../index.md), [`Attributes`](#attributes), [`Dispatch`](../index.md), [`Span`](../index.md)
+- <span id="span-make-with"></span>`fn make_with(meta: &'static Metadata<'static>, new_span: Attributes<'_>, dispatch: &Dispatch) -> Span` — [`Metadata`](../index.md), [`Attributes`](#attributes), [`Dispatch`](../index.md), [`Span`](../index.md)
 
-- `fn enter(self: &Self) -> Entered<'_>` — [`Entered`](#entered)
+- <span id="span-enter"></span>`fn enter(&self) -> Entered<'_>` — [`Entered`](#entered)
 
-- `fn entered(self: Self) -> EnteredSpan` — [`EnteredSpan`](#enteredspan)
+- <span id="span-entered"></span>`fn entered(self) -> EnteredSpan` — [`EnteredSpan`](#enteredspan)
 
-- `fn or_current(self: Self) -> Self`
+- <span id="span-or-current"></span>`fn or_current(self) -> Self`
 
-- `fn do_enter(self: &Self)`
+- <span id="span-do-enter"></span>`fn do_enter(&self)`
 
-- `fn do_exit(self: &Self)`
+- <span id="span-do-exit"></span>`fn do_exit(&self)`
 
-- `fn in_scope<F: FnOnce() -> T, T>(self: &Self, f: F) -> T`
+- <span id="span-in-scope"></span>`fn in_scope<F: FnOnce() -> T, T>(&self, f: F) -> T`
 
-- `fn field<Q: field::AsField + ?Sized>(self: &Self, field: &Q) -> Option<field::Field>`
+- <span id="span-field"></span>`fn field<Q: field::AsField + ?Sized>(&self, field: &Q) -> Option<field::Field>`
 
-- `fn has_field<Q: field::AsField + ?Sized>(self: &Self, field: &Q) -> bool`
+- <span id="span-has-field"></span>`fn has_field<Q: field::AsField + ?Sized>(&self, field: &Q) -> bool`
 
-- `fn record<Q: field::AsField + ?Sized, V: field::Value>(self: &Self, field: &Q, value: V) -> &Self`
+- <span id="span-record"></span>`fn record<Q: field::AsField + ?Sized, V: field::Value>(&self, field: &Q, value: V) -> &Self`
 
-- `fn is_disabled(self: &Self) -> bool`
+- <span id="span-is-disabled"></span>`fn is_disabled(&self) -> bool`
 
-- `fn is_none(self: &Self) -> bool`
+- <span id="span-is-none"></span>`fn is_none(&self) -> bool`
 
-- `fn follows_from(self: &Self, from: impl Into<Option<Id>>) -> &Self` — [`Id`](#id)
+- <span id="span-follows-from"></span>`fn follows_from(&self, from: impl Into<Option<Id>>) -> &Self` — [`Id`](#id)
 
-- `fn id(self: &Self) -> Option<Id>` — [`Id`](#id)
+- <span id="span-id"></span>`fn id(&self) -> Option<Id>` — [`Id`](#id)
 
-- `fn metadata(self: &Self) -> Option<&'static Metadata<'static>>` — [`Metadata`](../index.md)
+- <span id="span-metadata"></span>`fn metadata(&self) -> Option<&'static Metadata<'static>>` — [`Metadata`](../index.md)
 
-- `fn with_subscriber<T>(self: &Self, f: impl FnOnce((&Id, &Dispatch)) -> T) -> Option<T>` — [`Id`](#id), [`Dispatch`](../index.md)
+- <span id="span-with-subscriber"></span>`fn with_subscriber<T>(&self, f: impl FnOnce((&Id, &Dispatch)) -> T) -> Option<T>` — [`Id`](#id), [`Dispatch`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Span`
 
-- `fn clone(self: &Self) -> Span` — [`Span`](../index.md)
+- <span id="span-clone"></span>`fn clone(&self) -> Span` — [`Span`](../index.md)
 
 ##### `impl Debug for Span`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="span-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Drop for Span`
 
-- `fn drop(self: &mut Self)`
+- <span id="span-drop"></span>`fn drop(&mut self)`
 
 ##### `impl Hash for Span`
 
-- `fn hash<H: Hasher>(self: &Self, hasher: &mut H)`
+- <span id="span-hash"></span>`fn hash<H: Hasher>(&self, hasher: &mut H)`
 
 ##### `impl<T> Instrument for Span`
 
 ##### `impl PartialEq for Span`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="span-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> WithSubscriber for Span`
 
@@ -493,33 +523,33 @@ span handles; users should typically not need to interact with it directly.
 
 #### Implementations
 
-- `fn follows_from(self: &Self, from: &Id)` — [`Id`](#id)
+- <span id="inner-follows-from"></span>`fn follows_from(&self, from: &Id)` — [`Id`](#id)
 
-- `fn id(self: &Self) -> Id` — [`Id`](#id)
+- <span id="inner-id"></span>`fn id(&self) -> Id` — [`Id`](#id)
 
-- `fn record(self: &Self, values: &Record<'_>)` — [`Record`](#record)
+- <span id="inner-record"></span>`fn record(&self, values: &Record<'_>)` — [`Record`](#record)
 
-- `fn new(id: Id, subscriber: &Dispatch) -> Self` — [`Id`](#id), [`Dispatch`](../index.md)
+- <span id="inner-new"></span>`fn new(id: Id, subscriber: &Dispatch) -> Self` — [`Id`](#id), [`Dispatch`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Inner`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="inner-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for Inner`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="inner-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Hash for Inner`
 
-- `fn hash<H: Hasher>(self: &Self, state: &mut H)`
+- <span id="inner-hash"></span>`fn hash<H: Hasher>(&self, state: &mut H)`
 
 ##### `impl<T> Instrument for Inner`
 
 ##### `impl PartialEq for Inner`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="inner-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> WithSubscriber for Inner`
 
@@ -543,11 +573,11 @@ This is returned by the `Span::enter` function.
 
 ##### `impl<'a> Debug for Entered<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="entered-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Drop for Entered<'_>`
 
-- `fn drop(self: &mut Self)`
+- <span id="entered-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<T> Instrument for Entered<'a>`
 
@@ -583,31 +613,31 @@ This is returned by the `Span::entered` function.
 
 #### Implementations
 
-- `fn id(self: &Self) -> Option<Id>` — [`Id`](#id)
+- <span id="enteredspan-id"></span>`fn id(&self) -> Option<Id>` — [`Id`](#id)
 
-- `fn exit(self: Self) -> Span` — [`Span`](../index.md)
+- <span id="enteredspan-exit"></span>`fn exit(self) -> Span` — [`Span`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Debug for EnteredSpan`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="enteredspan-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deref for EnteredSpan`
 
-- `type Target = Span`
+- <span id="enteredspan-target"></span>`type Target = Span`
 
-- `fn deref(self: &Self) -> &Span` — [`Span`](../index.md)
+- <span id="enteredspan-deref"></span>`fn deref(&self) -> &Span` — [`Span`](../index.md)
 
 ##### `impl Drop for EnteredSpan`
 
-- `fn drop(self: &mut Self)`
+- <span id="enteredspan-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<T> Instrument for EnteredSpan`
 
 ##### `impl<P, T> Receiver for EnteredSpan`
 
-- `type Target = T`
+- <span id="enteredspan-target"></span>`type Target = T`
 
 ##### `impl<T> WithSubscriber for EnteredSpan`
 
@@ -638,7 +668,7 @@ Thus, this is totally safe.
 
 ##### `impl Debug for PhantomNotSend`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="phantomnotsend-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> Instrument for PhantomNotSend`
 
@@ -658,7 +688,7 @@ Trait implemented by types which have a span `Id`.
 
 #### Required Methods
 
-- `fn as_id(self: &Self) -> Option<&Id>`
+- `fn as_id(&self) -> Option<&Id>`
 
   Returns the `Id` of the span that `self` corresponds to, or `None` if
 

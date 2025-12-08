@@ -4,6 +4,15 @@
 
 # Module `error`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Formatter`](#formatter) | struct | A helper type for formatting nice error messages. |
+| [`Spans`](#spans) | struct | This type represents an arbitrary number of error spans in a way that makes |
+| [`Error`](#error) | enum | This error type encompasses any error that can be returned by this crate. |
+| [`repeat_char`](#repeat_char) | fn |  |
+
 ## Structs
 
 ### `Formatter<'e, E>`
@@ -44,17 +53,17 @@ markers pointing out the position where an error occurred.
 
 #### Trait Implementations
 
-##### `impl<'e, E: $crate::fmt::Debug> Debug for Formatter<'e, E>`
+##### `impl<'e, E: fmt::Debug> Debug for Formatter<'e, E>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="formatter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'e, E: core::fmt::Display> Display for Formatter<'e, E>`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="formatter-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl<T> ToString for Formatter<'e, E>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="formatter-to-string"></span>`fn to_string(&self) -> String`
 
 ### `Spans<'p>`
 
@@ -105,17 +114,17 @@ number of spans was actually much simpler.
 
 #### Implementations
 
-- `fn from_formatter<'e, E: core::fmt::Display>(fmter: &'p Formatter<'e, E>) -> Spans<'p>` — [`Formatter`](#formatter), [`Spans`](#spans)
+- <span id="spans-from-formatter"></span>`fn from_formatter<'e, E: core::fmt::Display>(fmter: &'p Formatter<'e, E>) -> Spans<'p>` — [`Formatter`](#formatter), [`Spans`](#spans)
 
-- `fn add(self: &mut Self, span: ast::Span)` — [`Span`](../ast/index.md)
+- <span id="spans-add"></span>`fn add(&mut self, span: ast::Span)` — [`Span`](../ast/index.md)
 
-- `fn notate(self: &Self) -> String`
+- <span id="spans-notate"></span>`fn notate(&self) -> String`
 
-- `fn notate_line(self: &Self, i: usize) -> Option<String>`
+- <span id="spans-notate-line"></span>`fn notate_line(&self, i: usize) -> Option<String>`
 
-- `fn left_pad_line_number(self: &Self, n: usize) -> String`
+- <span id="spans-left-pad-line-number"></span>`fn left_pad_line_number(&self, n: usize) -> String`
 
-- `fn line_number_padding(self: &Self) -> usize`
+- <span id="spans-line-number-padding"></span>`fn line_number_padding(&self) -> usize`
 
 ## Enums
 
@@ -149,15 +158,15 @@ new variant is not considered a breaking change.
 
 ##### `impl Clone for Error`
 
-- `fn clone(self: &Self) -> Error` — [`Error`](../index.md)
+- <span id="error-clone"></span>`fn clone(&self) -> Error` — [`Error`](../index.md)
 
 ##### `impl Debug for Error`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="error-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Error`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="error-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq for Error`
 
@@ -165,13 +174,13 @@ new variant is not considered a breaking change.
 
 ##### `impl PartialEq for Error`
 
-- `fn eq(self: &Self, other: &Error) -> bool` — [`Error`](../index.md)
+- <span id="error-eq"></span>`fn eq(&self, other: &Error) -> bool` — [`Error`](../index.md)
 
 ##### `impl StructuralPartialEq for Error`
 
 ##### `impl<T> ToString for Error`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="error-to-string"></span>`fn to_string(&self) -> String`
 
 ## Functions
 

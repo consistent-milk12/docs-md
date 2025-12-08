@@ -4,6 +4,15 @@
 
 # Module `backtrace`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`libunwind`](#libunwind) | mod | Backtrace support using libunwind/gcc_s/etc APIs. |
+| [`Frame`](#frame) | struct | A trait representing one frame of a backtrace, yielded to the `trace` |
+| [`trace`](#trace) | fn | Inspects the current call-stack, passing all active frames into the closure |
+| [`trace_unsynchronized`](#trace_unsynchronized) | fn | Same as `trace`, only unsafe as it's unsynchronized. |
+
 ## Modules
 
 - [`libunwind`](libunwind/index.md) - Backtrace support using libunwind/gcc_s/etc APIs.
@@ -27,23 +36,23 @@ until runtime.
 
 #### Implementations
 
-- `fn ip(self: &Self) -> *mut c_void`
+- <span id="frame-ip"></span>`fn ip(&self) -> *mut c_void`
 
-- `fn sp(self: &Self) -> *mut c_void`
+- <span id="frame-sp"></span>`fn sp(&self) -> *mut c_void`
 
-- `fn symbol_address(self: &Self) -> *mut c_void`
+- <span id="frame-symbol-address"></span>`fn symbol_address(&self) -> *mut c_void`
 
-- `fn module_base_address(self: &Self) -> Option<*mut c_void>`
+- <span id="frame-module-base-address"></span>`fn module_base_address(&self) -> Option<*mut c_void>`
 
 #### Trait Implementations
 
 ##### `impl Clone for Frame`
 
-- `fn clone(self: &Self) -> Frame` — [`Frame`](../index.md)
+- <span id="frame-clone"></span>`fn clone(&self) -> Frame` — [`Frame`](../index.md)
 
 ##### `impl Debug for Frame`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="frame-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Functions
 

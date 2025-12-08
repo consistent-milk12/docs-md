@@ -6,6 +6,15 @@
 
 Attach a span to a `std::future::Future`.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`WithDispatch`](#withdispatch) | struct | A [`Future`] that has been instrumented with a `tracing` [`Subscriber`]. |
+| [`Instrumented`](#instrumented) | struct | A [`Future`] that has been instrumented with a `tracing` [`Span`]. |
+| [`Instrument`](#instrument) | trait | Attaches spans to a [`std::future::Future`]. |
+| [`WithSubscriber`](#withsubscriber) | trait | Extension trait allowing futures to be instrumented with |
+
 ## Structs
 
 ### `WithDispatch<T>`
@@ -26,43 +35,43 @@ trait's documentation for details.
 
 #### Implementations
 
-- `fn dispatcher(self: &Self) -> &Dispatch` — [`Dispatch`](../index.md)
+- <span id="withdispatch-dispatcher"></span>`fn dispatcher(&self) -> &Dispatch` — [`Dispatch`](../index.md)
 
-- `fn inner(self: &Self) -> &T`
+- <span id="withdispatch-inner"></span>`fn inner(&self) -> &T`
 
-- `fn inner_mut(self: &mut Self) -> &mut T`
+- <span id="withdispatch-inner-mut"></span>`fn inner_mut(&mut self) -> &mut T`
 
-- `fn inner_pin_ref(self: Pin<&Self>) -> Pin<&T>`
+- <span id="withdispatch-inner-pin-ref"></span>`fn inner_pin_ref(self: Pin<&Self>) -> Pin<&T>`
 
-- `fn inner_pin_mut(self: Pin<&mut Self>) -> Pin<&mut T>`
+- <span id="withdispatch-inner-pin-mut"></span>`fn inner_pin_mut(self: Pin<&mut Self>) -> Pin<&mut T>`
 
-- `fn into_inner(self: Self) -> T`
+- <span id="withdispatch-into-inner"></span>`fn into_inner(self) -> T`
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for WithDispatch<T>`
+##### `impl<T: clone::Clone> Clone for WithDispatch<T>`
 
-- `fn clone(self: &Self) -> WithDispatch<T>` — [`WithDispatch`](#withdispatch)
+- <span id="withdispatch-clone"></span>`fn clone(&self) -> WithDispatch<T>` — [`WithDispatch`](#withdispatch)
 
-##### `impl<T: $crate::fmt::Debug> Debug for WithDispatch<T>`
+##### `impl<T: fmt::Debug> Debug for WithDispatch<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="withdispatch-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: Future> Future for WithDispatch<T>`
 
-- `type Output = <T as Future>::Output`
+- <span id="withdispatch-output"></span>`type Output = <T as Future>::Output`
 
-- `fn poll(self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<<Self as >::Output>`
+- <span id="withdispatch-poll"></span>`fn poll(self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<<Self as >::Output>`
 
 ##### `impl<T> Instrument for WithDispatch<T>`
 
 ##### `impl<F> IntoFuture for WithDispatch<T>`
 
-- `type Output = <F as Future>::Output`
+- <span id="withdispatch-output"></span>`type Output = <F as Future>::Output`
 
-- `type IntoFuture = F`
+- <span id="withdispatch-intofuture"></span>`type IntoFuture = F`
 
-- `fn into_future(self: Self) -> <F as IntoFuture>::IntoFuture`
+- <span id="withdispatch-into-future"></span>`fn into_future(self) -> <F as IntoFuture>::IntoFuture`
 
 ##### `impl<'__pin, T> Unpin for WithDispatch<T>`
 
@@ -86,49 +95,49 @@ trait's documentation for details.
 
 #### Implementations
 
-- `fn span(self: &Self) -> &Span` — [`Span`](../index.md)
+- <span id="instrumented-span"></span>`fn span(&self) -> &Span` — [`Span`](../index.md)
 
-- `fn span_mut(self: &mut Self) -> &mut Span` — [`Span`](../index.md)
+- <span id="instrumented-span-mut"></span>`fn span_mut(&mut self) -> &mut Span` — [`Span`](../index.md)
 
-- `fn inner(self: &Self) -> &T`
+- <span id="instrumented-inner"></span>`fn inner(&self) -> &T`
 
-- `fn inner_mut(self: &mut Self) -> &mut T`
+- <span id="instrumented-inner-mut"></span>`fn inner_mut(&mut self) -> &mut T`
 
-- `fn inner_pin_ref(self: Pin<&Self>) -> Pin<&T>`
+- <span id="instrumented-inner-pin-ref"></span>`fn inner_pin_ref(self: Pin<&Self>) -> Pin<&T>`
 
-- `fn inner_pin_mut(self: Pin<&mut Self>) -> Pin<&mut T>`
+- <span id="instrumented-inner-pin-mut"></span>`fn inner_pin_mut(self: Pin<&mut Self>) -> Pin<&mut T>`
 
-- `fn into_inner(self: Self) -> T`
+- <span id="instrumented-into-inner"></span>`fn into_inner(self) -> T`
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for Instrumented<T>`
+##### `impl<T: clone::Clone> Clone for Instrumented<T>`
 
-- `fn clone(self: &Self) -> Instrumented<T>` — [`Instrumented`](#instrumented)
+- <span id="instrumented-clone"></span>`fn clone(&self) -> Instrumented<T>` — [`Instrumented`](#instrumented)
 
-##### `impl<T: $crate::fmt::Debug> Debug for Instrumented<T>`
+##### `impl<T: fmt::Debug> Debug for Instrumented<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="instrumented-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> Drop for Instrumented<T>`
 
-- `fn drop(self: &mut Self)`
+- <span id="instrumented-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<T: Future> Future for Instrumented<T>`
 
-- `type Output = <T as Future>::Output`
+- <span id="instrumented-output"></span>`type Output = <T as Future>::Output`
 
-- `fn poll(self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<<Self as >::Output>`
+- <span id="instrumented-poll"></span>`fn poll(self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<<Self as >::Output>`
 
 ##### `impl<T> Instrument for Instrumented<T>`
 
 ##### `impl<F> IntoFuture for Instrumented<T>`
 
-- `type Output = <F as Future>::Output`
+- <span id="instrumented-output"></span>`type Output = <F as Future>::Output`
 
-- `type IntoFuture = F`
+- <span id="instrumented-intofuture"></span>`type IntoFuture = F`
 
-- `fn into_future(self: Self) -> <F as IntoFuture>::IntoFuture`
+- <span id="instrumented-into-future"></span>`fn into_future(self) -> <F as IntoFuture>::IntoFuture`
 
 ##### `impl<'__pin, T> Unpin for Instrumented<T>`
 
@@ -150,11 +159,11 @@ instrumented with a `tracing` [`span`](../span/index.md).
 
 #### Required Methods
 
-- `fn instrument(self: Self, span: Span) -> Instrumented<Self>`
+- `fn instrument(self, span: Span) -> Instrumented<Self>`
 
   Instruments this type with the provided [`Span`](../index.md), returning an
 
-- `fn in_current_span(self: Self) -> Instrumented<Self>`
+- `fn in_current_span(self) -> Instrumented<Self>`
 
   Instruments this type with the [current] [`Span`](../index.md), returning an
 
@@ -169,11 +178,11 @@ a `tracing` [`Subscriber`](crate::Subscriber).
 
 #### Required Methods
 
-- `fn with_subscriber<S>(self: Self, subscriber: S) -> WithDispatch<Self>`
+- `fn with_subscriber<S>(self, subscriber: S) -> WithDispatch<Self>`
 
   Attaches the provided [`Subscriber`](../../tracing_core/index.md) to this type, returning a
 
-- `fn with_current_subscriber(self: Self) -> WithDispatch<Self>`
+- `fn with_current_subscriber(self) -> WithDispatch<Self>`
 
   Attaches the current [`default`](../../crossbeam_epoch/default/index.md) [`Subscriber`](../../tracing_core/index.md) to this type, returning a
 

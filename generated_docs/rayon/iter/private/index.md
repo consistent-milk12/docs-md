@@ -7,6 +7,12 @@
 We hide the `Try` trait in a private module, as it's only meant to be a
 stable clone of the standard library's `Try` trait, as yet unstable.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Try`](#try) | trait | Clone of `std::ops::Try`. |
+
 ## Traits
 
 ### `Try`
@@ -29,5 +35,5 @@ Implementing this trait is not permitted outside of `rayon`.
 
 - `fn from_residual(residual: <Self as >::Residual) -> Self`
 
-- `fn branch(self: Self) -> ControlFlow<<Self as >::Residual, <Self as >::Output>`
+- `fn branch(self) -> ControlFlow<<Self as >::Residual, <Self as >::Output>`
 

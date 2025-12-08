@@ -6,6 +6,33 @@
 
 A Serde ast, parsed from the Syn ast and ready to generate Rust code.
 
+## Contents
+
+- [Structs](#structs)
+  - [`Container`](#container)
+  - [`Variant`](#variant)
+  - [`Field`](#field)
+- [Enums](#enums)
+  - [`Data`](#data)
+  - [`Style`](#style)
+- [Functions](#functions)
+  - [`enum_from_ast`](#enum_from_ast)
+  - [`struct_from_ast`](#struct_from_ast)
+  - [`fields_from_ast`](#fields_from_ast)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Container`](#container) | struct | A source data structure annotated with `#[derive(Serialize)]` and/or `#[derive(Deserialize)]` |
+| [`Variant`](#variant) | struct | A variant of an enum. |
+| [`Field`](#field) | struct | A field of a struct. |
+| [`Data`](#data) | enum | The fields of a struct or enum. |
+| [`Style`](#style) | enum |  |
+| [`enum_from_ast`](#enum_from_ast) | fn |  |
+| [`struct_from_ast`](#struct_from_ast) | fn |  |
+| [`fields_from_ast`](#fields_from_ast) | fn |  |
+
 ## Structs
 
 ### `Container<'a>`
@@ -47,7 +74,7 @@ parsed into an internal representation.
 
 #### Implementations
 
-- `fn from_ast(cx: &Ctxt, item: &'a syn::DeriveInput, derive: Derive, private: &Ident) -> Option<Container<'a>>` — [`Ctxt`](../index.md), [`Derive`](../index.md), [`Container`](#container)
+- <span id="container-from-ast"></span>`fn from_ast(cx: &Ctxt, item: &'a syn::DeriveInput, derive: Derive, private: &Ident) -> Option<Container<'a>>` — [`Ctxt`](../index.md), [`Derive`](../index.md), [`Container`](#container)
 
 ### `Variant<'a>`
 
@@ -93,9 +120,9 @@ Analogous to `syn::Data`.
 
 #### Implementations
 
-- `fn all_fields(self: &'a Self) -> Box<dyn Iterator<Item = &'a Field<'a>>>` — [`Field`](#field)
+- <span id="data-all-fields"></span>`fn all_fields(self: &'a Self) -> Box<dyn Iterator<Item = &'a Field<'a>>>` — [`Field`](#field)
 
-- `fn has_getter(self: &Self) -> bool`
+- <span id="data-has-getter"></span>`fn has_getter(&self) -> bool`
 
 ### `Style`
 
@@ -130,7 +157,7 @@ enum Style {
 
 ##### `impl Clone for Style`
 
-- `fn clone(self: &Self) -> Style` — [`Style`](#style)
+- <span id="style-clone"></span>`fn clone(&self) -> Style` — [`Style`](#style)
 
 ##### `impl Copy for Style`
 
@@ -139,7 +166,7 @@ enum Style {
 ### `enum_from_ast`
 
 ```rust
-fn enum_from_ast<'a>(cx: &crate::internals::Ctxt, variants: &'a syn::punctuated::Punctuated<syn::Variant, $crate::token::Comma>, container_default: &attr::Default, private: &proc_macro2::Ident) -> Vec<Variant<'a>>
+fn enum_from_ast<'a>(cx: &crate::internals::Ctxt, variants: &'a syn::punctuated::Punctuated<syn::Variant, token::Comma>, container_default: &attr::Default, private: &proc_macro2::Ident) -> Vec<Variant<'a>>
 ```
 
 ### `struct_from_ast`
@@ -151,6 +178,6 @@ fn struct_from_ast<'a>(cx: &crate::internals::Ctxt, fields: &'a syn::Fields, att
 ### `fields_from_ast`
 
 ```rust
-fn fields_from_ast<'a>(cx: &crate::internals::Ctxt, fields: &'a syn::punctuated::Punctuated<syn::Field, $crate::token::Comma>, attrs: Option<&attr::Variant>, container_default: &attr::Default, private: &proc_macro2::Ident) -> Vec<Field<'a>>
+fn fields_from_ast<'a>(cx: &crate::internals::Ctxt, fields: &'a syn::punctuated::Punctuated<syn::Field, token::Comma>, attrs: Option<&attr::Variant>, container_default: &attr::Default, private: &proc_macro2::Ident) -> Vec<Field<'a>>
 ```
 

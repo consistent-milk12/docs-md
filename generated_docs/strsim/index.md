@@ -2,6 +2,66 @@
 
 This library implements string similarity metrics.
 
+## Contents
+
+- [Structs](#structs)
+  - [`StringWrapper`](#stringwrapper)
+  - [`RowId`](#rowid)
+  - [`GrowingHashmapMapElemChar`](#growinghashmapmapelemchar)
+  - [`GrowingHashmapChar`](#growinghashmapchar)
+  - [`HybridGrowingHashmapChar`](#hybridgrowinghashmapchar)
+- [Enums](#enums)
+  - [`StrSimError`](#strsimerror)
+- [Functions](#functions)
+  - [`generic_hamming`](#generic_hamming)
+  - [`hamming`](#hamming)
+  - [`generic_jaro`](#generic_jaro)
+  - [`jaro`](#jaro)
+  - [`generic_jaro_winkler`](#generic_jaro_winkler)
+  - [`jaro_winkler`](#jaro_winkler)
+  - [`generic_levenshtein`](#generic_levenshtein)
+  - [`levenshtein`](#levenshtein)
+  - [`normalized_levenshtein`](#normalized_levenshtein)
+  - [`osa_distance`](#osa_distance)
+  - [`flat_index`](#flat_index)
+  - [`generic_damerau_levenshtein`](#generic_damerau_levenshtein)
+  - [`damerau_levenshtein_impl`](#damerau_levenshtein_impl)
+  - [`damerau_levenshtein`](#damerau_levenshtein)
+  - [`normalized_damerau_levenshtein`](#normalized_damerau_levenshtein)
+  - [`bigrams`](#bigrams)
+  - [`sorensen_dice`](#sorensen_dice)
+- [Type Aliases](#type-aliases)
+  - [`HammingResult`](#hammingresult)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`StringWrapper`](#stringwrapper) | struct |  |
+| [`RowId`](#rowid) | struct |  |
+| [`GrowingHashmapMapElemChar`](#growinghashmapmapelemchar) | struct |  |
+| [`GrowingHashmapChar`](#growinghashmapchar) | struct | specialized hashmap to store user provided types |
+| [`HybridGrowingHashmapChar`](#hybridgrowinghashmapchar) | struct |  |
+| [`StrSimError`](#strsimerror) | enum |  |
+| [`generic_hamming`](#generic_hamming) | fn | Calculates the number of positions in the two sequences where the elements |
+| [`hamming`](#hamming) | fn | Calculates the number of positions in the two strings where the characters |
+| [`generic_jaro`](#generic_jaro) | fn | Calculates the Jaro similarity between two sequences. |
+| [`jaro`](#jaro) | fn | Calculates the Jaro similarity between two strings. |
+| [`generic_jaro_winkler`](#generic_jaro_winkler) | fn | Like Jaro but gives a boost to sequences that have a common prefix. |
+| [`jaro_winkler`](#jaro_winkler) | fn | Like Jaro but gives a boost to strings that have a common prefix. |
+| [`generic_levenshtein`](#generic_levenshtein) | fn | Calculates the minimum number of insertions, deletions, and substitutions |
+| [`levenshtein`](#levenshtein) | fn | Calculates the minimum number of insertions, deletions, and substitutions |
+| [`normalized_levenshtein`](#normalized_levenshtein) | fn | Calculates a normalized score of the Levenshtein algorithm between 0.0 and |
+| [`osa_distance`](#osa_distance) | fn | Like Levenshtein but allows for adjacent transpositions. |
+| [`flat_index`](#flat_index) | fn |  |
+| [`generic_damerau_levenshtein`](#generic_damerau_levenshtein) | fn | Like optimal string alignment, but substrings can be edited an unlimited |
+| [`damerau_levenshtein_impl`](#damerau_levenshtein_impl) | fn |  |
+| [`damerau_levenshtein`](#damerau_levenshtein) | fn | Like optimal string alignment, but substrings can be edited an unlimited |
+| [`normalized_damerau_levenshtein`](#normalized_damerau_levenshtein) | fn | Calculates a normalized score of the Damerau–Levenshtein algorithm between |
+| [`bigrams`](#bigrams) | fn | Returns an Iterator of char tuples. |
+| [`sorensen_dice`](#sorensen_dice) | fn | Calculates a Sørensen-Dice similarity distance using bigrams. |
+| [`HammingResult`](#hammingresult) | type |  |
+
 ## Structs
 
 ### `StringWrapper<'a>`
@@ -22,19 +82,19 @@ struct RowId {
 
 ##### `impl Clone for RowId`
 
-- `fn clone(self: &Self) -> RowId` — [`RowId`](#rowid)
+- <span id="rowid-clone"></span>`fn clone(&self) -> RowId` — [`RowId`](#rowid)
 
 ##### `impl Copy for RowId`
 
 ##### `impl Default for RowId`
 
-- `fn default() -> Self`
+- <span id="rowid-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for RowId`
 
 ##### `impl PartialEq for RowId`
 
-- `fn eq(self: &Self, other: &RowId) -> bool` — [`RowId`](#rowid)
+- <span id="rowid-eq"></span>`fn eq(&self, other: &RowId) -> bool` — [`RowId`](#rowid)
 
 ##### `impl StructuralPartialEq for RowId`
 
@@ -49,13 +109,13 @@ struct GrowingHashmapMapElemChar<ValueType> {
 
 #### Trait Implementations
 
-##### `impl<ValueType: $crate::clone::Clone> Clone for GrowingHashmapMapElemChar<ValueType>`
+##### `impl<ValueType: clone::Clone> Clone for GrowingHashmapMapElemChar<ValueType>`
 
-- `fn clone(self: &Self) -> GrowingHashmapMapElemChar<ValueType>` — [`GrowingHashmapMapElemChar`](#growinghashmapmapelemchar)
+- <span id="growinghashmapmapelemchar-clone"></span>`fn clone(&self) -> GrowingHashmapMapElemChar<ValueType>` — [`GrowingHashmapMapElemChar`](#growinghashmapmapelemchar)
 
-##### `impl<ValueType: $crate::default::Default> Default for GrowingHashmapMapElemChar<ValueType>`
+##### `impl<ValueType: default::Default> Default for GrowingHashmapMapElemChar<ValueType>`
 
-- `fn default() -> GrowingHashmapMapElemChar<ValueType>` — [`GrowingHashmapMapElemChar`](#growinghashmapmapelemchar)
+- <span id="growinghashmapmapelemchar-default"></span>`fn default() -> GrowingHashmapMapElemChar<ValueType>` — [`GrowingHashmapMapElemChar`](#growinghashmapmapelemchar)
 
 ### `GrowingHashmapChar<ValueType>`
 
@@ -78,21 +138,21 @@ this implementation relies on a couple of base assumptions in order to simplify 
 
 #### Implementations
 
-- `fn get(self: &Self, key: u32) -> ValueType`
+- <span id="growinghashmapchar-get"></span>`fn get(&self, key: u32) -> ValueType`
 
-- `fn get_mut(self: &mut Self, key: u32) -> &mut ValueType`
+- <span id="growinghashmapchar-get-mut"></span>`fn get_mut(&mut self, key: u32) -> &mut ValueType`
 
-- `fn allocate(self: &mut Self)`
+- <span id="growinghashmapchar-allocate"></span>`fn allocate(&mut self)`
 
-- `fn lookup(self: &Self, key: u32) -> usize`
+- <span id="growinghashmapchar-lookup"></span>`fn lookup(&self, key: u32) -> usize`
 
-- `fn grow(self: &mut Self, min_used: i32)`
+- <span id="growinghashmapchar-grow"></span>`fn grow(&mut self, min_used: i32)`
 
 #### Trait Implementations
 
 ##### `impl<ValueType> Default for GrowingHashmapChar<ValueType>`
 
-- `fn default() -> Self`
+- <span id="growinghashmapchar-default"></span>`fn default() -> Self`
 
 ### `HybridGrowingHashmapChar<ValueType>`
 
@@ -105,15 +165,15 @@ struct HybridGrowingHashmapChar<ValueType> {
 
 #### Implementations
 
-- `fn get(self: &Self, key: char) -> ValueType`
+- <span id="hybridgrowinghashmapchar-get"></span>`fn get(&self, key: char) -> ValueType`
 
-- `fn get_mut(self: &mut Self, key: char) -> &mut ValueType`
+- <span id="hybridgrowinghashmapchar-get-mut"></span>`fn get_mut(&mut self, key: char) -> &mut ValueType`
 
 #### Trait Implementations
 
 ##### `impl<ValueType> Default for HybridGrowingHashmapChar<ValueType>`
 
-- `fn default() -> Self`
+- <span id="hybridgrowinghashmapchar-default"></span>`fn default() -> Self`
 
 ## Enums
 
@@ -129,23 +189,23 @@ enum StrSimError {
 
 ##### `impl Debug for StrSimError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="strsimerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for StrSimError`
 
-- `fn fmt(self: &Self, fmt: &mut Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="strsimerror-fmt"></span>`fn fmt(&self, fmt: &mut Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Error for StrSimError`
 
 ##### `impl PartialEq for StrSimError`
 
-- `fn eq(self: &Self, other: &StrSimError) -> bool` — [`StrSimError`](#strsimerror)
+- <span id="strsimerror-eq"></span>`fn eq(&self, other: &StrSimError) -> bool` — [`StrSimError`](#strsimerror)
 
 ##### `impl StructuralPartialEq for StrSimError`
 
 ##### `impl<T> ToString for StrSimError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="strsimerror-to-string"></span>`fn to_string(&self) -> String`
 
 ## Functions
 

@@ -4,6 +4,13 @@
 
 # Module `lists`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ListsHeader`](#listsheader) | struct |  |
+| [`parse_header`](#parse_header) | fn |  |
+
 ## Structs
 
 ### `ListsHeader`
@@ -17,25 +24,25 @@ struct ListsHeader {
 
 #### Implementations
 
-- `fn size(self: Self) -> u8`
+- <span id="listsheader-size"></span>`fn size(self) -> u8`
 
-- `fn size_for_encoding(encoding: Encoding) -> u8` — [`Encoding`](../../index.md)
+- <span id="listsheader-size-for-encoding"></span>`fn size_for_encoding(encoding: Encoding) -> u8` — [`Encoding`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for ListsHeader`
 
-- `fn clone(self: &Self) -> ListsHeader` — [`ListsHeader`](#listsheader)
+- <span id="listsheader-clone"></span>`fn clone(&self) -> ListsHeader` — [`ListsHeader`](#listsheader)
 
 ##### `impl Copy for ListsHeader`
 
 ##### `impl Debug for ListsHeader`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="listsheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for ListsHeader`
 
-- `fn default() -> Self`
+- <span id="listsheader-default"></span>`fn default() -> Self`
 
 ## Functions
 

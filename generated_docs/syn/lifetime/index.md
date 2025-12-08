@@ -4,6 +4,14 @@
 
 # Module `lifetime`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`parsing`](#parsing) | mod |  |
+| [`printing`](#printing) | mod |  |
+| [`Lifetime`](#lifetime) | struct | A Rust lifetime: `'a`. |
+
 ## Modules
 
 - [`parsing`](parsing/index.md) - 
@@ -33,61 +41,61 @@ Lifetime names must conform to the following rules:
 
 #### Implementations
 
-- `fn new(symbol: &str, span: Span) -> Self`
+- <span id="lifetime-new"></span>`fn new(symbol: &str, span: Span) -> Self`
 
-- `fn span(self: &Self) -> Span`
+- <span id="lifetime-span"></span>`fn span(&self) -> Span`
 
-- `fn set_span(self: &mut Self, span: Span)`
+- <span id="lifetime-set-span"></span>`fn set_span(&mut self, span: Span)`
 
 #### Trait Implementations
 
 ##### `impl Clone for Lifetime`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="lifetime-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Lifetime`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratelifetime-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Lifetime`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="lifetime-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Lifetime`
 
 ##### `impl Hash for Lifetime`
 
-- `fn hash<H: Hasher>(self: &Self, h: &mut H)`
+- <span id="lifetime-hash"></span>`fn hash<H: Hasher>(&self, h: &mut H)`
 
 ##### `impl Ord for Lifetime`
 
-- `fn cmp(self: &Self, other: &Lifetime) -> Ordering` — [`Lifetime`](../index.md)
+- <span id="lifetime-cmp"></span>`fn cmp(&self, other: &Lifetime) -> Ordering` — [`Lifetime`](../index.md)
 
 ##### `impl Parse for crate::lifetime::Lifetime`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratelifetimelifetime-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Lifetime`
 
-- `fn eq(self: &Self, other: &Lifetime) -> bool` — [`Lifetime`](../index.md)
+- <span id="lifetime-eq"></span>`fn eq(&self, other: &Lifetime) -> bool` — [`Lifetime`](../index.md)
 
 ##### `impl PartialOrd for Lifetime`
 
-- `fn partial_cmp(self: &Self, other: &Lifetime) -> Option<Ordering>` — [`Lifetime`](../index.md)
+- <span id="lifetime-partial-cmp"></span>`fn partial_cmp(&self, other: &Lifetime) -> Option<Ordering>` — [`Lifetime`](../index.md)
 
-##### `impl<T> Sealed for Lifetime`
+##### `impl Sealed for crate::lifetime::Lifetime`
 
 ##### `impl<T> Spanned for Lifetime`
 
-- `fn span(self: &Self) -> Span`
+- <span id="lifetime-span"></span>`fn span(&self) -> Span`
 
 ##### `impl<T> ToString for Lifetime`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="lifetime-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl ToTokens for crate::lifetime::Lifetime`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratelifetimelifetime-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ##### `impl Token for crate::lifetime::Lifetime`
 

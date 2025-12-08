@@ -4,6 +4,14 @@
 
 # Module `valid`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`check_non_field_attrs`](#check_non_field_attrs) | fn |  |
+| [`check_field_attrs`](#check_field_attrs) | fn |  |
+| [`contains_non_static_lifetime`](#contains_non_static_lifetime) | fn |  |
+
 ## Functions
 
 ### `check_non_field_attrs`

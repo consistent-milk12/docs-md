@@ -7,6 +7,13 @@
 An implementation of the [Shift-Or substring search algorithm][shiftor](#shiftor).
 
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Finder`](#finder) | struct | A forward substring searcher using the Shift-Or algorithm. |
+| [`Mask`](#mask) | type | The type of our mask. |
+
 ## Structs
 
 ### `Finder`
@@ -22,17 +29,17 @@ A forward substring searcher using the Shift-Or algorithm.
 
 #### Implementations
 
-- `const MAX_NEEDLE_LEN: usize`
+- <span id="finder-max-needle-len"></span>`const MAX_NEEDLE_LEN: usize`
 
-- `fn new(needle: &[u8]) -> Option<Finder>` — [`Finder`](#finder)
+- <span id="finder-new"></span>`fn new(needle: &[u8]) -> Option<Finder>` — [`Finder`](#finder)
 
-- `fn find(self: &Self, haystack: &[u8]) -> Option<usize>`
+- <span id="finder-find"></span>`fn find(&self, haystack: &[u8]) -> Option<usize>`
 
 #### Trait Implementations
 
 ##### `impl Debug for Finder`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="finder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Type Aliases
 

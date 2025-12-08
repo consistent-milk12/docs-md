@@ -4,6 +4,12 @@
 
 # Module `inline`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`InlineBuffer`](#inlinebuffer) | struct | A buffer stored on the stack whose size is equal to the stack size of `String` |
+
 ## Structs
 
 ### `InlineBuffer`
@@ -16,11 +22,11 @@ A buffer stored on the stack whose size is equal to the stack size of `String`
 
 #### Implementations
 
-- `unsafe fn new(text: &str) -> Self`
+- <span id="inlinebuffer-new"></span>`unsafe fn new(text: &str) -> Self`
 
-- `const fn new_const(text: &str) -> Self`
+- <span id="inlinebuffer-new-const"></span>`const fn new_const(text: &str) -> Self`
 
-- `const fn empty() -> Self`
+- <span id="inlinebuffer-empty"></span>`const fn empty() -> Self`
 
-- `unsafe fn set_len(self: &mut Self, len: usize)`
+- <span id="inlinebuffer-set-len"></span>`unsafe fn set_len(&mut self, len: usize)`
 

@@ -4,6 +4,14 @@
 
 # Module `styled_list`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`sealed`](#sealed) | mod |  |
+| [`StyledList`](#styledlist) | struct | A collection of [`Styled`] items that are displayed in such a way as to minimize the amount of characters |
+| [`Transition`](#transition) | enum | How the transition between two styles should be printed |
+
 ## Modules
 
 - [`sealed`](sealed/index.md) - 
@@ -42,7 +50,7 @@ assert!(styled_length < normal_length);
 
 ##### `impl<T, U> Display for StyledList<T, U>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styledlist-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<D> OwoColorize for StyledList<T, U>`
 
@@ -64,7 +72,7 @@ How the transition between two styles should be printed
 
 ##### `impl Display for Transition<'_>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="transition-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<D> OwoColorize for Transition<'a>`
 

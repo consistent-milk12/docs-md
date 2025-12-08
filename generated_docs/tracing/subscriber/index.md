@@ -6,6 +6,15 @@
 
 Collects and records trace data.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`unnamed`](#unnamed) | trait |  |
+| [`with_default`](#with_default) | fn | Sets this [`Subscriber`] as the default for the current thread for the |
+| [`set_global_default`](#set_global_default) | fn | Sets this subscriber as the global default for the duration of the entire program. |
+| [`set_default`](#set_default) | fn | Sets the [`Subscriber`] as the default for the current thread for the |
+
 ## Traits
 
 ## Functions

@@ -4,6 +4,12 @@
 
 # Module `lazy`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Lazy`](#lazy) | struct | A non-std lazy initialized value. |
+
 ## Structs
 
 ### `Lazy<T, F>`
@@ -32,19 +38,19 @@ convenient I think.
 
 #### Implementations
 
-- `fn get(self: &Self) -> &T`
+- <span id="lazy-get"></span>`fn get(&self) -> &T`
 
-- `fn poll(self: &Self) -> Option<&T>`
+- <span id="lazy-poll"></span>`fn poll(&self) -> Option<&T>`
 
 #### Trait Implementations
 
 ##### `impl<T: fmt::Debug, F: Fn() -> T> Debug for Lazy<T, F>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="lazy-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T, F> Drop for Lazy<T, F>`
 
-- `fn drop(self: &mut Self)`
+- <span id="lazy-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<T: Send + Sync, F: Send + Sync> Sync for Lazy<T, F>`
 

@@ -39,6 +39,7 @@
 //! ```
 
 mod collector;
+mod integration;
 mod locator;
 mod parser;
 pub mod types;

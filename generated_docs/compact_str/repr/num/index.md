@@ -9,6 +9,15 @@ Implementations for efficiently converting a number into a [`Repr`](../index.md)
 Adapted from the implementation in the `std` library at
 <https://github.com/rust-lang/rust/blob/b8214dc6c6fc20d0a660fb5700dca9ebf51ebe89/src/libcore/fmt/num.rs#L188-L266>
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`NumChars`](#numchars) | trait | All of these `num_chars(...)` methods are kind of crazy, but they are necessary. |
+| [`DEC_DIGITS_LUT`](#dec_digits_lut) | const |  |
+| [`impl_IntoRepr!`](#impl_intorepr) | macro | Defines the implementation of [`IntoRepr`] for integer types |
+| [`impl_NonZero_IntoRepr!`](#impl_nonzero_intorepr) | macro | Defines the implementation of [`IntoRepr`] for NonZero integer types |
+
 ## Traits
 
 ### `NumChars`

@@ -13,5 +13,13 @@ the `core` crate is the `std::io::{Read, Write}` traits' reliance on
 `std::io::Error`, which may contain internally a heap-allocated `Box<Error>`
 and/or now relying on OS-specific `std::backtrace::Backtrace`.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+
 ## Functions
 

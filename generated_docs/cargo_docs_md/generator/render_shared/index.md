@@ -13,6 +13,54 @@ single-crate ([`ItemRenderer`](super::ItemRenderer)) and multi-crate
 These functions handle the core markdown generation logic without being tied
 to a specific rendering context, avoiding code duplication between the two modes.
 
+## Contents
+
+- [Traits](#traits)
+  - [`DocsProcessor`](#docsprocessor)
+- [Functions](#functions)
+  - [`sanitize_path`](#sanitize_path)
+  - [`sanitize_self_param`](#sanitize_self_param)
+  - [`render_struct_definition`](#render_struct_definition)
+  - [`render_struct_fields`](#render_struct_fields)
+  - [`render_enum_definition`](#render_enum_definition)
+  - [`render_enum_variant`](#render_enum_variant)
+  - [`render_enum_variants_docs`](#render_enum_variants_docs)
+  - [`render_trait_definition`](#render_trait_definition)
+  - [`render_trait_item`](#render_trait_item)
+  - [`render_function_definition`](#render_function_definition)
+  - [`render_constant_definition`](#render_constant_definition)
+  - [`render_type_alias_definition`](#render_type_alias_definition)
+  - [`render_macro_heading`](#render_macro_heading)
+  - [`render_impl_items`](#render_impl_items)
+  - [`render_function_type_links_inline`](#render_function_type_links_inline)
+  - [`render_impl_function`](#render_impl_function)
+  - [`append_docs`](#append_docs)
+  - [`impl_sort_key`](#impl_sort_key)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`DocsProcessor`](#docsprocessor) | trait | Check if a render context can resolve documentation. |
+| [`sanitize_path`](#sanitize_path) | fn | Sanitize trait paths by removing macro artifacts. |
+| [`sanitize_self_param`](#sanitize_self_param) | fn | Sanitize self parameter in function signatures. |
+| [`render_struct_definition`](#render_struct_definition) | fn | Render a struct definition code block to markdown. |
+| [`render_struct_fields`](#render_struct_fields) | fn | Render documented struct fields to markdown. |
+| [`render_enum_definition`](#render_enum_definition) | fn | Render an enum definition code block to markdown. |
+| [`render_enum_variant`](#render_enum_variant) | fn | Render a single enum variant within the definition code block. |
+| [`render_enum_variants_docs`](#render_enum_variants_docs) | fn | Render documented enum variants to markdown. |
+| [`render_trait_definition`](#render_trait_definition) | fn | Render a trait definition code block to markdown. |
+| [`render_trait_item`](#render_trait_item) | fn | Render a single trait item (method, associated type, or constant). |
+| [`render_function_definition`](#render_function_definition) | fn | Render a function definition to markdown. |
+| [`render_constant_definition`](#render_constant_definition) | fn | Render a constant definition to markdown. |
+| [`render_type_alias_definition`](#render_type_alias_definition) | fn | Render a type alias definition to markdown. |
+| [`render_macro_heading`](#render_macro_heading) | fn | Render a macro definition to markdown. |
+| [`render_impl_items`](#render_impl_items) | fn | Render the items within an impl block. |
+| [`render_function_type_links_inline`](#render_function_type_links_inline) | fn | Render type links for a function signature inline (for impl methods). |
+| [`render_impl_function`](#render_impl_function) | fn | Render a function signature within an impl block. |
+| [`append_docs`](#append_docs) | fn | Append processed documentation to markdown. |
+| [`impl_sort_key`](#impl_sort_key) | fn | Generate a sort key for an impl block for deterministic ordering. |
+
 ## Traits
 
 ### `DocsProcessor`
@@ -27,11 +75,60 @@ This trait provides a unified way to process docs from different contexts.
 
 #### Required Methods
 
-- `fn process_item_docs(self: &Self, item: &Item) -> Option<String>`
+- `fn process_item_docs(&self, item: &Item) -> Option<String>`
 
   Process documentation for an item, resolving intra-doc links.
 
 ## Functions
+
+### `sanitize_path`
+
+```rust
+fn sanitize_path(path: &str) -> std::borrow::Cow<'_, str>
+```
+
+Sanitize trait paths by removing macro artifacts.
+
+Rustdoc JSON can contain `$crate::` prefixes from macro expansions
+which leak implementation details into documentation. This function
+removes these artifacts for cleaner output.
+
+Uses `Cow<str>` to avoid allocation when no changes are needed.
+
+# Examples
+
+```rust
+use cargo_docs_md::generator::render_shared::sanitize_path;
+
+assert_eq!(sanitize_path("$crate::clone::Clone"), "clone::Clone");
+assert_eq!(sanitize_path("std::fmt::Debug"), "std::fmt::Debug");
+```
+
+### `sanitize_self_param`
+
+```rust
+fn sanitize_self_param(param: &str) -> std::borrow::Cow<'_, str>
+```
+
+Sanitize self parameter in function signatures.
+
+Converts verbose self type annotations to idiomatic Rust syntax:
+- `self: &Self` → `&self`
+- `self: &mut Self` → `&mut self`
+- `self: Self` → `self`
+
+Uses `Cow<str>` to avoid allocation when no changes are needed.
+
+# Examples
+
+```rust
+use cargo_docs_md::generator::render_shared::sanitize_self_param;
+
+assert_eq!(sanitize_self_param("self: &Self"), "&self");
+assert_eq!(sanitize_self_param("self: &mut Self"), "&mut self");
+assert_eq!(sanitize_self_param("self: Self"), "self");
+assert_eq!(sanitize_self_param("x: i32"), "x: i32");
+```
 
 ### `render_struct_definition`
 
@@ -233,7 +330,7 @@ Note: We don't show macro rules since rustdoc JSON doesn't provide them.
 ### `render_impl_items`
 
 ```rust
-fn render_impl_items<F, L>(md: &mut String, impl_block: &rustdoc_types::Impl, krate: &rustdoc_types::Crate, type_renderer: &crate::types::TypeRenderer<'_>, process_docs: &Option<F>, create_type_link: &Option<L>)
+fn render_impl_items<F, L>(md: &mut String, impl_block: &rustdoc_types::Impl, krate: &rustdoc_types::Crate, type_renderer: &crate::types::TypeRenderer<'_>, process_docs: &Option<F>, create_type_link: &Option<L>, parent_type_name: Option<&str>)
 where
     F: Fn(&rustdoc_types::Item) -> Option<String>,
     L: Fn(rustdoc_types::Id) -> Option<String>
@@ -252,6 +349,7 @@ within an impl block as bullet points.
 * `type_renderer` - Type renderer for types
 * `process_docs` - Optional closure to process documentation
 * `create_type_link` - Optional closure to create links for types `(id -> Option<markdown_link>)`
+* `parent_type_name` - Optional type name for generating method anchors
 
 ### `render_function_type_links_inline`
 
@@ -269,12 +367,13 @@ creates links for resolvable types, outputting them on the same line.
 ### `render_impl_function`
 
 ```rust
-fn render_impl_function(md: &mut String, name: &str, f: &rustdoc_types::Function, type_renderer: crate::types::TypeRenderer<'_>)
+fn render_impl_function(md: &mut String, name: &str, f: &rustdoc_types::Function, type_renderer: crate::types::TypeRenderer<'_>, parent_type_name: Option<&str>)
 ```
 
 Render a function signature within an impl block.
 
 Renders as a bullet point with the full signature including modifiers.
+If `parent_type_name` is provided, includes a hidden anchor for deep linking.
 
 ### `append_docs`
 

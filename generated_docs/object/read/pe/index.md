@@ -45,6 +45,142 @@ fn main() -> Result<(), Box<dyn Error>> {
 }
 ```
 
+## Contents
+
+- [Modules](#modules)
+  - [`file`](#file)
+  - [`section`](#section)
+  - [`data_directory`](#data_directory)
+  - [`export`](#export)
+  - [`import`](#import)
+  - [`relocation`](#relocation)
+  - [`resource`](#resource)
+  - [`rich`](#rich)
+- [Structs](#structs)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`PeFile`](#pefile)
+  - [`PeComdatIterator`](#pecomdatiterator)
+  - [`PeComdat`](#pecomdat)
+  - [`PeComdatSectionIterator`](#pecomdatsectioniterator)
+  - [`PeSegmentIterator`](#pesegmentiterator)
+  - [`PeSegment`](#pesegment)
+  - [`PeSectionIterator`](#pesectioniterator)
+  - [`PeSection`](#pesection)
+  - [`PeRelocationIterator`](#perelocationiterator)
+  - [`DataDirectories`](#datadirectories)
+  - [`Export`](#export)
+  - [`ExportTable`](#exporttable)
+  - [`ImportTable`](#importtable)
+  - [`ImportDescriptorIterator`](#importdescriptoriterator)
+  - [`ImportThunkList`](#importthunklist)
+  - [`DelayLoadImportTable`](#delayloadimporttable)
+  - [`DelayLoadDescriptorIterator`](#delayloaddescriptoriterator)
+  - [`RelocationBlockIterator`](#relocationblockiterator)
+  - [`RelocationIterator`](#relocationiterator)
+  - [`Relocation`](#relocation)
+  - [`ResourceDirectory`](#resourcedirectory)
+  - [`ResourceDirectoryTable`](#resourcedirectorytable)
+  - [`ResourceName`](#resourcename)
+  - [`RichHeaderInfo`](#richheaderinfo)
+  - [`RichHeaderEntry`](#richheaderentry)
+- [Enums](#enums)
+  - [`ExportTarget`](#exporttarget)
+  - [`Import`](#import)
+  - [`ResourceDirectoryEntryData`](#resourcedirectoryentrydata)
+  - [`ResourceNameOrId`](#resourcenameorid)
+- [Traits](#traits)
+  - [`ImageNtHeaders`](#imagentheaders)
+  - [`ImageOptionalHeader`](#imageoptionalheader)
+  - [`ImageThunkData`](#imagethunkdata)
+- [Functions](#functions)
+  - [`optional_header_magic`](#optional_header_magic)
+  - [`parse_ordinal`](#parse_ordinal)
+  - [`memmem`](#memmem)
+- [Type Aliases](#type-aliases)
+  - [`PeFile32`](#pefile32)
+  - [`PeFile64`](#pefile64)
+  - [`PeComdatIterator32`](#pecomdatiterator32)
+  - [`PeComdatIterator64`](#pecomdatiterator64)
+  - [`PeComdat32`](#pecomdat32)
+  - [`PeComdat64`](#pecomdat64)
+  - [`PeComdatSectionIterator32`](#pecomdatsectioniterator32)
+  - [`PeComdatSectionIterator64`](#pecomdatsectioniterator64)
+  - [`PeSegmentIterator32`](#pesegmentiterator32)
+  - [`PeSegmentIterator64`](#pesegmentiterator64)
+  - [`PeSegment32`](#pesegment32)
+  - [`PeSegment64`](#pesegment64)
+  - [`PeSectionIterator32`](#pesectioniterator32)
+  - [`PeSectionIterator64`](#pesectioniterator64)
+  - [`PeSection32`](#pesection32)
+  - [`PeSection64`](#pesection64)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`file`](#file) | mod |  |
+| [`section`](#section) | mod |  |
+| [`data_directory`](#data_directory) | mod |  |
+| [`export`](#export) | mod |  |
+| [`import`](#import) | mod |  |
+| [`relocation`](#relocation) | mod |  |
+| [`resource`](#resource) | mod |  |
+| [`rich`](#rich) | mod | PE rich header handling |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`PeFile`](#pefile) | struct | A PE image file. |
+| [`PeComdatIterator`](#pecomdatiterator) | struct | An iterator for the COMDAT section groups in a [`PeFile`]. |
+| [`PeComdat`](#pecomdat) | struct | A COMDAT section group in a [`PeFile`]. |
+| [`PeComdatSectionIterator`](#pecomdatsectioniterator) | struct | An iterator for the sections in a COMDAT section group in a [`PeFile`]. |
+| [`PeSegmentIterator`](#pesegmentiterator) | struct | An iterator for the loadable sections in a [`PeFile`]. |
+| [`PeSegment`](#pesegment) | struct | A loadable section in a [`PeFile`]. |
+| [`PeSectionIterator`](#pesectioniterator) | struct | An iterator for the sections in a [`PeFile`]. |
+| [`PeSection`](#pesection) | struct | A section in a [`PeFile`]. |
+| [`PeRelocationIterator`](#perelocationiterator) | struct | An iterator for the relocations in an [`PeSection`]. |
+| [`DataDirectories`](#datadirectories) | struct | The table of data directories in a PE file. |
+| [`Export`](#export) | struct | An export from a PE file. |
+| [`ExportTable`](#exporttable) | struct | A partially parsed PE export table. |
+| [`ImportTable`](#importtable) | struct | Information for parsing a PE import table. |
+| [`ImportDescriptorIterator`](#importdescriptoriterator) | struct | A fallible iterator for the descriptors in the import data directory. |
+| [`ImportThunkList`](#importthunklist) | struct | A list of import thunks. |
+| [`DelayLoadImportTable`](#delayloadimporttable) | struct | Information for parsing a PE delay-load import table. |
+| [`DelayLoadDescriptorIterator`](#delayloaddescriptoriterator) | struct | A fallible iterator for the descriptors in the delay-load data directory. |
+| [`RelocationBlockIterator`](#relocationblockiterator) | struct | An iterator over the relocation blocks in the `.reloc` section of a PE file. |
+| [`RelocationIterator`](#relocationiterator) | struct | An iterator of the relocations in a block in the `.reloc` section of a PE file. |
+| [`Relocation`](#relocation) | struct | A relocation in the `.reloc` section of a PE file. |
+| [`ResourceDirectory`](#resourcedirectory) | struct | The `.rsrc` section of a PE file. |
+| [`ResourceDirectoryTable`](#resourcedirectorytable) | struct | A table of resource entries. |
+| [`ResourceName`](#resourcename) | struct | A resource name. |
+| [`RichHeaderInfo`](#richheaderinfo) | struct | Parsed information about a Rich Header. |
+| [`RichHeaderEntry`](#richheaderentry) | struct | A PE rich header entry after it has been unmasked. |
+| [`ExportTarget`](#exporttarget) | enum | Where an export is pointing to. |
+| [`Import`](#import) | enum | A parsed import thunk. |
+| [`ResourceDirectoryEntryData`](#resourcedirectoryentrydata) | enum | Data associated with a resource directory entry. |
+| [`ResourceNameOrId`](#resourcenameorid) | enum | A resource name or ID. |
+| [`ImageNtHeaders`](#imagentheaders) | trait | A trait for generic access to [`pe::ImageNtHeaders32`] and [`pe::ImageNtHeaders64`]. |
+| [`ImageOptionalHeader`](#imageoptionalheader) | trait | A trait for generic access to [`pe::ImageOptionalHeader32`] and [`pe::ImageOptionalHeader64`]. |
+| [`ImageThunkData`](#imagethunkdata) | trait | A trait for generic access to [`pe::ImageThunkData32`] and [`pe::ImageThunkData64`]. |
+| [`optional_header_magic`](#optional_header_magic) | fn | Find the optional header and read its `magic` field. |
+| [`parse_ordinal`](#parse_ordinal) | fn |  |
+| [`memmem`](#memmem) | fn | Find the offset of the first occurrence of needle in the data. |
+| [`PeFile32`](#pefile32) | type | A PE32 (32-bit) image file. |
+| [`PeFile64`](#pefile64) | type | A PE32+ (64-bit) image file. |
+| [`PeComdatIterator32`](#pecomdatiterator32) | type | An iterator for the COMDAT section groups in a [`PeFile32`]. |
+| [`PeComdatIterator64`](#pecomdatiterator64) | type | An iterator for the COMDAT section groups in a [`PeFile64`]. |
+| [`PeComdat32`](#pecomdat32) | type | A COMDAT section group in a [`PeFile32`]. |
+| [`PeComdat64`](#pecomdat64) | type | A COMDAT section group in a [`PeFile64`]. |
+| [`PeComdatSectionIterator32`](#pecomdatsectioniterator32) | type | An iterator for the sections in a COMDAT section group in a [`PeFile32`]. |
+| [`PeComdatSectionIterator64`](#pecomdatsectioniterator64) | type | An iterator for the sections in a COMDAT section group in a [`PeFile64`]. |
+| [`PeSegmentIterator32`](#pesegmentiterator32) | type | An iterator for the loadable sections in a [`PeFile32`](super::PeFile32). |
+| [`PeSegmentIterator64`](#pesegmentiterator64) | type | An iterator for the loadable sections in a [`PeFile64`](super::PeFile64). |
+| [`PeSegment32`](#pesegment32) | type | A loadable section in a [`PeFile32`](super::PeFile32). |
+| [`PeSegment64`](#pesegment64) | type | A loadable section in a [`PeFile64`](super::PeFile64). |
+| [`PeSectionIterator32`](#pesectioniterator32) | type | An iterator for the sections in a [`PeFile32`](super::PeFile32). |
+| [`PeSectionIterator64`](#pesectioniterator64) | type | An iterator for the sections in a [`PeFile64`](super::PeFile64). |
+| [`PeSection32`](#pesection32) | type | A section in a [`PeFile32`](super::PeFile32). |
+| [`PeSection64`](#pesection64) | type | A section in a [`PeFile64`](super::PeFile64). |
+
 ## Modules
 
 - [`file`](file/index.md) - 
@@ -73,37 +209,37 @@ Returned by `CoffHeader::sections` and
 
 #### Implementations
 
-- `fn parse<Coff: CoffHeader, R: ReadRef<'data>>(header: &Coff, data: R, offset: u64) -> Result<Self>` — [`Result`](../../index.md)
+- <span id="sectiontable-parse"></span>`fn parse<Coff: CoffHeader, R: ReadRef<'data>>(header: &Coff, data: R, offset: u64) -> Result<Self>` — [`Result`](../../index.md)
 
-- `fn iter(self: &Self) -> slice::Iter<'data, pe::ImageSectionHeader>` — [`ImageSectionHeader`](../../pe/index.md)
+- <span id="sectiontable-iter"></span>`fn iter(&self) -> slice::Iter<'data, pe::ImageSectionHeader>` — [`ImageSectionHeader`](../../pe/index.md)
 
-- `fn enumerate(self: &Self) -> impl Iterator<Item = (SectionIndex, &'data pe::ImageSectionHeader)>` — [`SectionIndex`](../../index.md), [`ImageSectionHeader`](../../pe/index.md)
+- <span id="sectiontable-enumerate"></span>`fn enumerate(&self) -> impl Iterator<Item = (SectionIndex, &'data pe::ImageSectionHeader)>` — [`SectionIndex`](../../index.md), [`ImageSectionHeader`](../../pe/index.md)
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="sectiontable-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn len(self: &Self) -> usize`
+- <span id="sectiontable-len"></span>`fn len(&self) -> usize`
 
-- `fn section(self: &Self, index: SectionIndex) -> read::Result<&'data pe::ImageSectionHeader>` — [`SectionIndex`](../../index.md), [`Result`](../../index.md), [`ImageSectionHeader`](../../pe/index.md)
+- <span id="sectiontable-section"></span>`fn section(&self, index: SectionIndex) -> read::Result<&'data pe::ImageSectionHeader>` — [`SectionIndex`](../../index.md), [`Result`](../../index.md), [`ImageSectionHeader`](../../pe/index.md)
 
-- `fn section_by_name<R: ReadRef<'data>>(self: &Self, strings: StringTable<'data, R>, name: &[u8]) -> Option<(SectionIndex, &'data pe::ImageSectionHeader)>` — [`StringTable`](../index.md), [`SectionIndex`](../../index.md), [`ImageSectionHeader`](../../pe/index.md)
+- <span id="sectiontable-section-by-name"></span>`fn section_by_name<R: ReadRef<'data>>(&self, strings: StringTable<'data, R>, name: &[u8]) -> Option<(SectionIndex, &'data pe::ImageSectionHeader)>` — [`StringTable`](../index.md), [`SectionIndex`](../../index.md), [`ImageSectionHeader`](../../pe/index.md)
 
-- `fn max_section_file_offset(self: &Self) -> u64`
+- <span id="sectiontable-max-section-file-offset"></span>`fn max_section_file_offset(&self) -> u64`
 
 #### Trait Implementations
 
 ##### `impl<'data> Clone for SectionTable<'data>`
 
-- `fn clone(self: &Self) -> SectionTable<'data>` — [`SectionTable`](#sectiontable)
+- <span id="sectiontable-clone"></span>`fn clone(&self) -> SectionTable<'data>` — [`SectionTable`](#sectiontable)
 
 ##### `impl<'data> Copy for SectionTable<'data>`
 
 ##### `impl<'data> Debug for SectionTable<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sectiontable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data> Default for SectionTable<'data>`
 
-- `fn default() -> SectionTable<'data>` — [`SectionTable`](#sectiontable)
+- <span id="sectiontable-default"></span>`fn default() -> SectionTable<'data>` — [`SectionTable`](#sectiontable)
 
 ### `SymbolTable<'data, R, Coff>`
 
@@ -126,39 +262,39 @@ Returned by `CoffHeader::symbols` and
 
 #### Implementations
 
-- `fn parse(header: &Coff, data: R) -> Result<Self>` — [`Result`](../../index.md)
+- <span id="symboltable-parse"></span>`fn parse(header: &Coff, data: R) -> Result<Self>` — [`Result`](../../index.md)
 
-- `fn strings(self: &Self) -> StringTable<'data, R>` — [`StringTable`](../index.md)
+- <span id="symboltable-strings"></span>`fn strings(&self) -> StringTable<'data, R>` — [`StringTable`](../index.md)
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="symboltable-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn len(self: &Self) -> usize`
+- <span id="symboltable-len"></span>`fn len(&self) -> usize`
 
-- `fn iter<'table>(self: &'table Self) -> SymbolIterator<'data, 'table, R, Coff>` — [`SymbolIterator`](../coff/index.md)
+- <span id="symboltable-iter"></span>`fn iter<'table>(self: &'table Self) -> SymbolIterator<'data, 'table, R, Coff>` — [`SymbolIterator`](../coff/index.md)
 
-- `fn symbol(self: &Self, index: SymbolIndex) -> Result<&'data <Coff as >::ImageSymbol>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md), [`CoffHeader`](../coff/index.md)
+- <span id="symboltable-symbol"></span>`fn symbol(&self, index: SymbolIndex) -> Result<&'data <Coff as >::ImageSymbol>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md), [`CoffHeader`](../coff/index.md)
 
-- `fn aux_function(self: &Self, index: SymbolIndex) -> Result<&'data pe::ImageAuxSymbolFunction>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md), [`ImageAuxSymbolFunction`](../../pe/index.md)
+- <span id="symboltable-aux-function"></span>`fn aux_function(&self, index: SymbolIndex) -> Result<&'data pe::ImageAuxSymbolFunction>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md), [`ImageAuxSymbolFunction`](../../pe/index.md)
 
-- `fn aux_section(self: &Self, index: SymbolIndex) -> Result<&'data pe::ImageAuxSymbolSection>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md), [`ImageAuxSymbolSection`](../../pe/index.md)
+- <span id="symboltable-aux-section"></span>`fn aux_section(&self, index: SymbolIndex) -> Result<&'data pe::ImageAuxSymbolSection>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md), [`ImageAuxSymbolSection`](../../pe/index.md)
 
-- `fn aux_weak_external(self: &Self, index: SymbolIndex) -> Result<&'data pe::ImageAuxSymbolWeak>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md), [`ImageAuxSymbolWeak`](../../pe/index.md)
+- <span id="symboltable-aux-weak-external"></span>`fn aux_weak_external(&self, index: SymbolIndex) -> Result<&'data pe::ImageAuxSymbolWeak>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md), [`ImageAuxSymbolWeak`](../../pe/index.md)
 
-- `fn aux_file_name(self: &Self, index: SymbolIndex, aux_count: u8) -> Result<&'data [u8]>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md)
+- <span id="symboltable-aux-file-name"></span>`fn aux_file_name(&self, index: SymbolIndex, aux_count: u8) -> Result<&'data [u8]>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md)
 
-- `fn get<T: Pod>(self: &Self, index: SymbolIndex, offset: usize) -> Result<&'data T>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md)
+- <span id="symboltable-get"></span>`fn get<T: Pod>(&self, index: SymbolIndex, offset: usize) -> Result<&'data T>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md)
 
-- `fn map<Entry: SymbolMapEntry, F: Fn(&'data <Coff as >::ImageSymbol) -> Option<Entry>>(self: &Self, f: F) -> SymbolMap<Entry>` — [`SymbolMap`](../../index.md)
+- <span id="symboltable-map"></span>`fn map<Entry: SymbolMapEntry, F: Fn(&'data <Coff as >::ImageSymbol) -> Option<Entry>>(&self, f: F) -> SymbolMap<Entry>` — [`SymbolMap`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'data, R, Coff> Debug for SymbolTable<'data, R, Coff>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="symboltable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, R: ReadRef<'data>, Coff: CoffHeader> Default for SymbolTable<'data, R, Coff>`
 
-- `fn default() -> Self`
+- <span id="symboltable-default"></span>`fn default() -> Self`
 
 ### `PeFile<'data, Pe, R>`
 
@@ -181,101 +317,101 @@ Most functionality is provided by the [`Object`](../index.md) trait implementati
 
 #### Implementations
 
-- `fn parse(data: R) -> Result<Self>` — [`Result`](../../index.md)
+- <span id="pefile-parse"></span>`fn parse(data: R) -> Result<Self>` — [`Result`](../../index.md)
 
-- `fn data(self: &Self) -> R`
+- <span id="pefile-data"></span>`fn data(&self) -> R`
 
-- `fn dos_header(self: &Self) -> &'data pe::ImageDosHeader` — [`ImageDosHeader`](../../pe/index.md)
+- <span id="pefile-dos-header"></span>`fn dos_header(&self) -> &'data pe::ImageDosHeader` — [`ImageDosHeader`](../../pe/index.md)
 
-- `fn nt_headers(self: &Self) -> &'data Pe`
+- <span id="pefile-nt-headers"></span>`fn nt_headers(&self) -> &'data Pe`
 
-- `fn rich_header_info(self: &Self) -> Option<RichHeaderInfo<'_>>` — [`RichHeaderInfo`](#richheaderinfo)
+- <span id="pefile-rich-header-info"></span>`fn rich_header_info(&self) -> Option<RichHeaderInfo<'_>>` — [`RichHeaderInfo`](#richheaderinfo)
 
-- `fn section_table(self: &Self) -> SectionTable<'data>` — [`SectionTable`](#sectiontable)
+- <span id="pefile-section-table"></span>`fn section_table(&self) -> SectionTable<'data>` — [`SectionTable`](#sectiontable)
 
-- `fn data_directories(self: &Self) -> DataDirectories<'data>` — [`DataDirectories`](#datadirectories)
+- <span id="pefile-data-directories"></span>`fn data_directories(&self) -> DataDirectories<'data>` — [`DataDirectories`](#datadirectories)
 
-- `fn data_directory(self: &Self, id: usize) -> Option<&'data pe::ImageDataDirectory>` — [`ImageDataDirectory`](../../pe/index.md)
+- <span id="pefile-data-directory"></span>`fn data_directory(&self, id: usize) -> Option<&'data pe::ImageDataDirectory>` — [`ImageDataDirectory`](../../pe/index.md)
 
-- `fn export_table(self: &Self) -> Result<Option<ExportTable<'data>>>` — [`Result`](../../index.md), [`ExportTable`](#exporttable)
+- <span id="pefile-export-table"></span>`fn export_table(&self) -> Result<Option<ExportTable<'data>>>` — [`Result`](../../index.md), [`ExportTable`](#exporttable)
 
-- `fn import_table(self: &Self) -> Result<Option<ImportTable<'data>>>` — [`Result`](../../index.md), [`ImportTable`](#importtable)
+- <span id="pefile-import-table"></span>`fn import_table(&self) -> Result<Option<ImportTable<'data>>>` — [`Result`](../../index.md), [`ImportTable`](#importtable)
 
-- `fn section_alignment(self: &Self) -> u64`
+- <span id="pefile-section-alignment"></span>`fn section_alignment(&self) -> u64`
 
 #### Trait Implementations
 
 ##### `impl<'data, Pe, R> Debug for PeFile<'data, Pe, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pefile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, Pe, R> Object for PeFile<'data, Pe, R>`
 
-- `type Segment = PeSegment<'data, 'file, Pe, R>`
+- <span id="pefile-segment"></span>`type Segment = PeSegment<'data, 'file, Pe, R>`
 
-- `type SegmentIterator = PeSegmentIterator<'data, 'file, Pe, R>`
+- <span id="pefile-segmentiterator"></span>`type SegmentIterator = PeSegmentIterator<'data, 'file, Pe, R>`
 
-- `type Section = PeSection<'data, 'file, Pe, R>`
+- <span id="pefile-section"></span>`type Section = PeSection<'data, 'file, Pe, R>`
 
-- `type SectionIterator = PeSectionIterator<'data, 'file, Pe, R>`
+- <span id="pefile-sectioniterator"></span>`type SectionIterator = PeSectionIterator<'data, 'file, Pe, R>`
 
-- `type Comdat = PeComdat<'data, 'file, Pe, R>`
+- <span id="pefile-comdat"></span>`type Comdat = PeComdat<'data, 'file, Pe, R>`
 
-- `type ComdatIterator = PeComdatIterator<'data, 'file, Pe, R>`
+- <span id="pefile-comdatiterator"></span>`type ComdatIterator = PeComdatIterator<'data, 'file, Pe, R>`
 
-- `type Symbol = CoffSymbol<'data, 'file, R>`
+- <span id="pefile-symbol"></span>`type Symbol = CoffSymbol<'data, 'file, R>`
 
-- `type SymbolIterator = CoffSymbolIterator<'data, 'file, R>`
+- <span id="pefile-symboliterator"></span>`type SymbolIterator = CoffSymbolIterator<'data, 'file, R>`
 
-- `type SymbolTable = CoffSymbolTable<'data, 'file, R>`
+- <span id="pefile-symboltable"></span>`type SymbolTable = CoffSymbolTable<'data, 'file, R>`
 
-- `type DynamicRelocationIterator = NoDynamicRelocationIterator`
+- <span id="pefile-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = NoDynamicRelocationIterator`
 
-- `fn architecture(self: &Self) -> Architecture` — [`Architecture`](../../index.md)
+- <span id="pefile-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../index.md)
 
-- `fn sub_architecture(self: &Self) -> Option<SubArchitecture>` — [`SubArchitecture`](../../index.md)
+- <span id="pefile-sub-architecture"></span>`fn sub_architecture(&self) -> Option<SubArchitecture>` — [`SubArchitecture`](../../index.md)
 
-- `fn is_little_endian(self: &Self) -> bool`
+- <span id="pefile-is-little-endian"></span>`fn is_little_endian(&self) -> bool`
 
-- `fn is_64(self: &Self) -> bool`
+- <span id="pefile-is-64"></span>`fn is_64(&self) -> bool`
 
-- `fn kind(self: &Self) -> ObjectKind` — [`ObjectKind`](../../index.md)
+- <span id="pefile-kind"></span>`fn kind(&self) -> ObjectKind` — [`ObjectKind`](../../index.md)
 
-- `fn segments(self: &Self) -> PeSegmentIterator<'data, '_, Pe, R>` — [`PeSegmentIterator`](#pesegmentiterator)
+- <span id="pefile-segments"></span>`fn segments(&self) -> PeSegmentIterator<'data, '_, Pe, R>` — [`PeSegmentIterator`](#pesegmentiterator)
 
-- `fn section_by_name_bytes<'file>(self: &'file Self, section_name: &[u8]) -> Option<PeSection<'data, 'file, Pe, R>>` — [`PeSection`](#pesection)
+- <span id="pefile-section-by-name-bytes"></span>`fn section_by_name_bytes<'file>(self: &'file Self, section_name: &[u8]) -> Option<PeSection<'data, 'file, Pe, R>>` — [`PeSection`](#pesection)
 
-- `fn section_by_index(self: &Self, index: SectionIndex) -> Result<PeSection<'data, '_, Pe, R>>` — [`SectionIndex`](../../index.md), [`Result`](../../index.md), [`PeSection`](#pesection)
+- <span id="pefile-section-by-index"></span>`fn section_by_index(&self, index: SectionIndex) -> Result<PeSection<'data, '_, Pe, R>>` — [`SectionIndex`](../../index.md), [`Result`](../../index.md), [`PeSection`](#pesection)
 
-- `fn sections(self: &Self) -> PeSectionIterator<'data, '_, Pe, R>` — [`PeSectionIterator`](#pesectioniterator)
+- <span id="pefile-sections"></span>`fn sections(&self) -> PeSectionIterator<'data, '_, Pe, R>` — [`PeSectionIterator`](#pesectioniterator)
 
-- `fn comdats(self: &Self) -> PeComdatIterator<'data, '_, Pe, R>` — [`PeComdatIterator`](#pecomdatiterator)
+- <span id="pefile-comdats"></span>`fn comdats(&self) -> PeComdatIterator<'data, '_, Pe, R>` — [`PeComdatIterator`](#pecomdatiterator)
 
-- `fn symbol_by_index(self: &Self, index: SymbolIndex) -> Result<CoffSymbol<'data, '_, R>>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md), [`CoffSymbol`](../coff/index.md)
+- <span id="pefile-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> Result<CoffSymbol<'data, '_, R>>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md), [`CoffSymbol`](../coff/index.md)
 
-- `fn symbols(self: &Self) -> CoffSymbolIterator<'data, '_, R>` — [`CoffSymbolIterator`](../coff/index.md)
+- <span id="pefile-symbols"></span>`fn symbols(&self) -> CoffSymbolIterator<'data, '_, R>` — [`CoffSymbolIterator`](../coff/index.md)
 
-- `fn symbol_table(self: &Self) -> Option<CoffSymbolTable<'data, '_, R>>` — [`CoffSymbolTable`](../coff/index.md)
+- <span id="pefile-symbol-table"></span>`fn symbol_table(&self) -> Option<CoffSymbolTable<'data, '_, R>>` — [`CoffSymbolTable`](../coff/index.md)
 
-- `fn dynamic_symbols(self: &Self) -> CoffSymbolIterator<'data, '_, R>` — [`CoffSymbolIterator`](../coff/index.md)
+- <span id="pefile-dynamic-symbols"></span>`fn dynamic_symbols(&self) -> CoffSymbolIterator<'data, '_, R>` — [`CoffSymbolIterator`](../coff/index.md)
 
-- `fn dynamic_symbol_table(self: &Self) -> Option<CoffSymbolTable<'data, '_, R>>` — [`CoffSymbolTable`](../coff/index.md)
+- <span id="pefile-dynamic-symbol-table"></span>`fn dynamic_symbol_table(&self) -> Option<CoffSymbolTable<'data, '_, R>>` — [`CoffSymbolTable`](../coff/index.md)
 
-- `fn dynamic_relocations(self: &Self) -> Option<NoDynamicRelocationIterator>` — [`NoDynamicRelocationIterator`](../index.md)
+- <span id="pefile-dynamic-relocations"></span>`fn dynamic_relocations(&self) -> Option<NoDynamicRelocationIterator>` — [`NoDynamicRelocationIterator`](../index.md)
 
-- `fn imports(self: &Self) -> Result<Vec<Import<'data>>>` — [`Result`](../../index.md), [`Import`](../../index.md)
+- <span id="pefile-imports"></span>`fn imports(&self) -> Result<Vec<Import<'data>>>` — [`Result`](../../index.md), [`Import`](../../index.md)
 
-- `fn exports(self: &Self) -> Result<Vec<Export<'data>>>` — [`Result`](../../index.md), [`Export`](../../index.md)
+- <span id="pefile-exports"></span>`fn exports(&self) -> Result<Vec<Export<'data>>>` — [`Result`](../../index.md), [`Export`](../../index.md)
 
-- `fn pdb_info(self: &Self) -> Result<Option<CodeView<'_>>>` — [`Result`](../../index.md), [`CodeView`](../../index.md)
+- <span id="pefile-pdb-info"></span>`fn pdb_info(&self) -> Result<Option<CodeView<'_>>>` — [`Result`](../../index.md), [`CodeView`](../../index.md)
 
-- `fn has_debug_symbols(self: &Self) -> bool`
+- <span id="pefile-has-debug-symbols"></span>`fn has_debug_symbols(&self) -> bool`
 
-- `fn relative_address_base(self: &Self) -> u64`
+- <span id="pefile-relative-address-base"></span>`fn relative_address_base(&self) -> u64`
 
-- `fn entry(self: &Self) -> u64`
+- <span id="pefile-entry"></span>`fn entry(&self) -> u64`
 
-- `fn flags(self: &Self) -> FileFlags` — [`FileFlags`](../../index.md)
+- <span id="pefile-flags"></span>`fn flags(&self) -> FileFlags` — [`FileFlags`](../../index.md)
 
 ##### `impl<'data, Pe, R> Sealed for PeFile<'data, Pe, R>`
 
@@ -298,21 +434,21 @@ This is a stub that doesn't implement any functionality.
 
 ##### `impl<'data, 'file, Pe, R> Debug for PeComdatIterator<'data, 'file, Pe, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pecomdatiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for PeComdatIterator<'data, 'file, Pe, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="pecomdatiterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="pecomdatiterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="pecomdatiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Pe, R> Iterator for PeComdatIterator<'data, 'file, Pe, R>`
 
-- `type Item = PeComdat<'data, 'file, Pe, R>`
+- <span id="pecomdatiterator-item"></span>`type Item = PeComdat<'data, 'file, Pe, R>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="pecomdatiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `PeComdat<'data, 'file, Pe, R>`
 
@@ -333,21 +469,21 @@ This is a stub that doesn't implement any functionality.
 
 ##### `impl<'data, 'file, Pe, R> Debug for PeComdat<'data, 'file, Pe, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pecomdat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, 'file, Pe, R> ObjectComdat for PeComdat<'data, 'file, Pe, R>`
 
-- `type SectionIterator = PeComdatSectionIterator<'data, 'file, Pe, R>`
+- <span id="pecomdat-sectioniterator"></span>`type SectionIterator = PeComdatSectionIterator<'data, 'file, Pe, R>`
 
-- `fn kind(self: &Self) -> ComdatKind` — [`ComdatKind`](../../index.md)
+- <span id="pecomdat-kind"></span>`fn kind(&self) -> ComdatKind` — [`ComdatKind`](../../index.md)
 
-- `fn symbol(self: &Self) -> SymbolIndex` — [`SymbolIndex`](../../index.md)
+- <span id="pecomdat-symbol"></span>`fn symbol(&self) -> SymbolIndex` — [`SymbolIndex`](../../index.md)
 
-- `fn name_bytes(self: &Self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="pecomdat-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
 
-- `fn name(self: &Self) -> Result<&'data str>` — [`Result`](../../index.md)
+- <span id="pecomdat-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../index.md)
 
-- `fn sections(self: &Self) -> <Self as >::SectionIterator` — [`ObjectComdat`](../index.md)
+- <span id="pecomdat-sections"></span>`fn sections(&self) -> <Self as >::SectionIterator` — [`ObjectComdat`](../index.md)
 
 ##### `impl<'data, 'file, Pe, R> Sealed for PeComdat<'data, 'file, Pe, R>`
 
@@ -370,21 +506,21 @@ This is a stub that doesn't implement any functionality.
 
 ##### `impl<'data, 'file, Pe, R> Debug for PeComdatSectionIterator<'data, 'file, Pe, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pecomdatsectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for PeComdatSectionIterator<'data, 'file, Pe, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="pecomdatsectioniterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="pecomdatsectioniterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="pecomdatsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Pe, R> Iterator for PeComdatSectionIterator<'data, 'file, Pe, R>`
 
-- `type Item = SectionIndex`
+- <span id="pecomdatsectioniterator-item"></span>`type Item = SectionIndex`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="pecomdatsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `PeSegmentIterator<'data, 'file, Pe, R>`
 
@@ -404,21 +540,21 @@ An iterator for the loadable sections in a [`PeFile`](#pefile).
 
 ##### `impl<'data, 'file, Pe, R> Debug for PeSegmentIterator<'data, 'file, Pe, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pesegmentiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for PeSegmentIterator<'data, 'file, Pe, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="pesegmentiterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="pesegmentiterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="pesegmentiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Pe, R> Iterator for PeSegmentIterator<'data, 'file, Pe, R>`
 
-- `type Item = PeSegment<'data, 'file, Pe, R>`
+- <span id="pesegmentiterator-item"></span>`type Item = PeSegment<'data, 'file, Pe, R>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="pesegmentiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `PeSegment<'data, 'file, Pe, R>`
 
@@ -438,35 +574,35 @@ Most functionality is provided by the [`ObjectSegment`](../index.md) trait imple
 
 #### Implementations
 
-- `fn pe_file(self: &Self) -> &'file PeFile<'data, Pe, R>` — [`PeFile`](#pefile)
+- <span id="pesegment-pe-file"></span>`fn pe_file(&self) -> &'file PeFile<'data, Pe, R>` — [`PeFile`](#pefile)
 
-- `fn pe_section(self: &Self) -> &'data pe::ImageSectionHeader` — [`ImageSectionHeader`](../../pe/index.md)
+- <span id="pesegment-pe-section"></span>`fn pe_section(&self) -> &'data pe::ImageSectionHeader` — [`ImageSectionHeader`](../../pe/index.md)
 
 #### Trait Implementations
 
 ##### `impl<'data, 'file, Pe, R> Debug for PeSegment<'data, 'file, Pe, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pesegment-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, 'file, Pe, R> ObjectSegment for PeSegment<'data, 'file, Pe, R>`
 
-- `fn address(self: &Self) -> u64`
+- <span id="pesegment-address"></span>`fn address(&self) -> u64`
 
-- `fn size(self: &Self) -> u64`
+- <span id="pesegment-size"></span>`fn size(&self) -> u64`
 
-- `fn align(self: &Self) -> u64`
+- <span id="pesegment-align"></span>`fn align(&self) -> u64`
 
-- `fn file_range(self: &Self) -> (u64, u64)`
+- <span id="pesegment-file-range"></span>`fn file_range(&self) -> (u64, u64)`
 
-- `fn data(self: &Self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="pesegment-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
 
-- `fn data_range(self: &Self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../index.md)
+- <span id="pesegment-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../index.md)
 
-- `fn name_bytes(self: &Self) -> Result<Option<&[u8]>>` — [`Result`](../../index.md)
+- <span id="pesegment-name-bytes"></span>`fn name_bytes(&self) -> Result<Option<&[u8]>>` — [`Result`](../../index.md)
 
-- `fn name(self: &Self) -> Result<Option<&str>>` — [`Result`](../../index.md)
+- <span id="pesegment-name"></span>`fn name(&self) -> Result<Option<&str>>` — [`Result`](../../index.md)
 
-- `fn flags(self: &Self) -> SegmentFlags` — [`SegmentFlags`](../../index.md)
+- <span id="pesegment-flags"></span>`fn flags(&self) -> SegmentFlags` — [`SegmentFlags`](../../index.md)
 
 ##### `impl<'data, 'file, Pe, R> Sealed for PeSegment<'data, 'file, Pe, R>`
 
@@ -488,21 +624,21 @@ An iterator for the sections in a [`PeFile`](#pefile).
 
 ##### `impl<'data, 'file, Pe, R> Debug for PeSectionIterator<'data, 'file, Pe, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pesectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for PeSectionIterator<'data, 'file, Pe, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="pesectioniterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="pesectioniterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="pesectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Pe, R> Iterator for PeSectionIterator<'data, 'file, Pe, R>`
 
-- `type Item = PeSection<'data, 'file, Pe, R>`
+- <span id="pesectioniterator-item"></span>`type Item = PeSection<'data, 'file, Pe, R>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="pesectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `PeSection<'data, 'file, Pe, R>`
 
@@ -523,53 +659,53 @@ Most functionality is provided by the [`ObjectSection`](../index.md) trait imple
 
 #### Implementations
 
-- `fn pe_file(self: &Self) -> &'file PeFile<'data, Pe, R>` — [`PeFile`](#pefile)
+- <span id="pesection-pe-file"></span>`fn pe_file(&self) -> &'file PeFile<'data, Pe, R>` — [`PeFile`](#pefile)
 
-- `fn pe_section(self: &Self) -> &'data pe::ImageSectionHeader` — [`ImageSectionHeader`](../../pe/index.md)
+- <span id="pesection-pe-section"></span>`fn pe_section(&self) -> &'data pe::ImageSectionHeader` — [`ImageSectionHeader`](../../pe/index.md)
 
 #### Trait Implementations
 
 ##### `impl<'data, 'file, Pe, R> Debug for PeSection<'data, 'file, Pe, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pesection-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, 'file, Pe, R> ObjectSection for PeSection<'data, 'file, Pe, R>`
 
-- `type RelocationIterator = PeRelocationIterator<'data, 'file, R>`
+- <span id="pesection-relocationiterator"></span>`type RelocationIterator = PeRelocationIterator<'data, 'file, R>`
 
-- `fn index(self: &Self) -> SectionIndex` — [`SectionIndex`](../../index.md)
+- <span id="pesection-index"></span>`fn index(&self) -> SectionIndex` — [`SectionIndex`](../../index.md)
 
-- `fn address(self: &Self) -> u64`
+- <span id="pesection-address"></span>`fn address(&self) -> u64`
 
-- `fn size(self: &Self) -> u64`
+- <span id="pesection-size"></span>`fn size(&self) -> u64`
 
-- `fn align(self: &Self) -> u64`
+- <span id="pesection-align"></span>`fn align(&self) -> u64`
 
-- `fn file_range(self: &Self) -> Option<(u64, u64)>`
+- <span id="pesection-file-range"></span>`fn file_range(&self) -> Option<(u64, u64)>`
 
-- `fn data(self: &Self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="pesection-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
 
-- `fn data_range(self: &Self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../index.md)
+- <span id="pesection-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../index.md)
 
-- `fn compressed_file_range(self: &Self) -> Result<CompressedFileRange>` — [`Result`](../../index.md), [`CompressedFileRange`](../../index.md)
+- <span id="pesection-compressed-file-range"></span>`fn compressed_file_range(&self) -> Result<CompressedFileRange>` — [`Result`](../../index.md), [`CompressedFileRange`](../../index.md)
 
-- `fn compressed_data(self: &Self) -> Result<CompressedData<'data>>` — [`Result`](../../index.md), [`CompressedData`](../../index.md)
+- <span id="pesection-compressed-data"></span>`fn compressed_data(&self) -> Result<CompressedData<'data>>` — [`Result`](../../index.md), [`CompressedData`](../../index.md)
 
-- `fn name_bytes(self: &Self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="pesection-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
 
-- `fn name(self: &Self) -> Result<&'data str>` — [`Result`](../../index.md)
+- <span id="pesection-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../index.md)
 
-- `fn segment_name_bytes(self: &Self) -> Result<Option<&[u8]>>` — [`Result`](../../index.md)
+- <span id="pesection-segment-name-bytes"></span>`fn segment_name_bytes(&self) -> Result<Option<&[u8]>>` — [`Result`](../../index.md)
 
-- `fn segment_name(self: &Self) -> Result<Option<&str>>` — [`Result`](../../index.md)
+- <span id="pesection-segment-name"></span>`fn segment_name(&self) -> Result<Option<&str>>` — [`Result`](../../index.md)
 
-- `fn kind(self: &Self) -> SectionKind` — [`SectionKind`](../../index.md)
+- <span id="pesection-kind"></span>`fn kind(&self) -> SectionKind` — [`SectionKind`](../../index.md)
 
-- `fn relocations(self: &Self) -> PeRelocationIterator<'data, 'file, R>` — [`PeRelocationIterator`](#perelocationiterator)
+- <span id="pesection-relocations"></span>`fn relocations(&self) -> PeRelocationIterator<'data, 'file, R>` — [`PeRelocationIterator`](#perelocationiterator)
 
-- `fn relocation_map(self: &Self) -> read::Result<RelocationMap>` — [`Result`](../../index.md), [`RelocationMap`](../../index.md)
+- <span id="pesection-relocation-map"></span>`fn relocation_map(&self) -> read::Result<RelocationMap>` — [`Result`](../../index.md), [`RelocationMap`](../../index.md)
 
-- `fn flags(self: &Self) -> SectionFlags` — [`SectionFlags`](../../index.md)
+- <span id="pesection-flags"></span>`fn flags(&self) -> SectionFlags` — [`SectionFlags`](../../index.md)
 
 ##### `impl<'data, 'file, Pe, R> Sealed for PeSection<'data, 'file, Pe, R>`
 
@@ -585,23 +721,23 @@ This is a stub that doesn't implement any functionality.
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R: $crate::fmt::Debug> Debug for PeRelocationIterator<'data, 'file, R>`
+##### `impl<'data, 'file, R: fmt::Debug> Debug for PeRelocationIterator<'data, 'file, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="perelocationiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for PeRelocationIterator<'data, 'file, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="perelocationiterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="perelocationiterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="perelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, R> Iterator for PeRelocationIterator<'data, 'file, R>`
 
-- `type Item = (u64, Relocation)`
+- <span id="perelocationiterator-item"></span>`type Item = (u64, Relocation)`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="perelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `DataDirectories<'data>`
 
@@ -617,39 +753,39 @@ Returned by [`ImageNtHeaders::parse`](super::ImageNtHeaders::parse).
 
 #### Implementations
 
-- `fn parse(data: &'data [u8], number: u32) -> Result<Self>` — [`Result`](../../index.md)
+- <span id="datadirectories-parse"></span>`fn parse(data: &'data [u8], number: u32) -> Result<Self>` — [`Result`](../../index.md)
 
-- `fn len(self: &Self) -> usize`
+- <span id="datadirectories-len"></span>`fn len(&self) -> usize`
 
-- `fn iter(self: &Self) -> slice::Iter<'data, pe::ImageDataDirectory>` — [`ImageDataDirectory`](../../pe/index.md)
+- <span id="datadirectories-iter"></span>`fn iter(&self) -> slice::Iter<'data, pe::ImageDataDirectory>` — [`ImageDataDirectory`](../../pe/index.md)
 
-- `fn enumerate(self: &Self) -> core::iter::Enumerate<slice::Iter<'data, pe::ImageDataDirectory>>` — [`ImageDataDirectory`](../../pe/index.md)
+- <span id="datadirectories-enumerate"></span>`fn enumerate(&self) -> core::iter::Enumerate<slice::Iter<'data, pe::ImageDataDirectory>>` — [`ImageDataDirectory`](../../pe/index.md)
 
-- `fn get(self: &Self, index: usize) -> Option<&'data pe::ImageDataDirectory>` — [`ImageDataDirectory`](../../pe/index.md)
+- <span id="datadirectories-get"></span>`fn get(&self, index: usize) -> Option<&'data pe::ImageDataDirectory>` — [`ImageDataDirectory`](../../pe/index.md)
 
-- `fn export_directory<R: ReadRef<'data>>(self: &Self, data: R, sections: &SectionTable<'data>) -> Result<Option<&'data pe::ImageExportDirectory>>` — [`SectionTable`](#sectiontable), [`Result`](../../index.md), [`ImageExportDirectory`](../../pe/index.md)
+- <span id="datadirectories-export-directory"></span>`fn export_directory<R: ReadRef<'data>>(&self, data: R, sections: &SectionTable<'data>) -> Result<Option<&'data pe::ImageExportDirectory>>` — [`SectionTable`](#sectiontable), [`Result`](../../index.md), [`ImageExportDirectory`](../../pe/index.md)
 
-- `fn export_table<R: ReadRef<'data>>(self: &Self, data: R, sections: &SectionTable<'data>) -> Result<Option<ExportTable<'data>>>` — [`SectionTable`](#sectiontable), [`Result`](../../index.md), [`ExportTable`](#exporttable)
+- <span id="datadirectories-export-table"></span>`fn export_table<R: ReadRef<'data>>(&self, data: R, sections: &SectionTable<'data>) -> Result<Option<ExportTable<'data>>>` — [`SectionTable`](#sectiontable), [`Result`](../../index.md), [`ExportTable`](#exporttable)
 
-- `fn import_table<R: ReadRef<'data>>(self: &Self, data: R, sections: &SectionTable<'data>) -> Result<Option<ImportTable<'data>>>` — [`SectionTable`](#sectiontable), [`Result`](../../index.md), [`ImportTable`](#importtable)
+- <span id="datadirectories-import-table"></span>`fn import_table<R: ReadRef<'data>>(&self, data: R, sections: &SectionTable<'data>) -> Result<Option<ImportTable<'data>>>` — [`SectionTable`](#sectiontable), [`Result`](../../index.md), [`ImportTable`](#importtable)
 
-- `fn delay_load_import_table<R: ReadRef<'data>>(self: &Self, data: R, sections: &SectionTable<'data>) -> Result<Option<DelayLoadImportTable<'data>>>` — [`SectionTable`](#sectiontable), [`Result`](../../index.md), [`DelayLoadImportTable`](#delayloadimporttable)
+- <span id="datadirectories-delay-load-import-table"></span>`fn delay_load_import_table<R: ReadRef<'data>>(&self, data: R, sections: &SectionTable<'data>) -> Result<Option<DelayLoadImportTable<'data>>>` — [`SectionTable`](#sectiontable), [`Result`](../../index.md), [`DelayLoadImportTable`](#delayloadimporttable)
 
-- `fn relocation_blocks<R: ReadRef<'data>>(self: &Self, data: R, sections: &SectionTable<'data>) -> Result<Option<RelocationBlockIterator<'data>>>` — [`SectionTable`](#sectiontable), [`Result`](../../index.md), [`RelocationBlockIterator`](#relocationblockiterator)
+- <span id="datadirectories-relocation-blocks"></span>`fn relocation_blocks<R: ReadRef<'data>>(&self, data: R, sections: &SectionTable<'data>) -> Result<Option<RelocationBlockIterator<'data>>>` — [`SectionTable`](#sectiontable), [`Result`](../../index.md), [`RelocationBlockIterator`](#relocationblockiterator)
 
-- `fn resource_directory<R: ReadRef<'data>>(self: &Self, data: R, sections: &SectionTable<'data>) -> Result<Option<ResourceDirectory<'data>>>` — [`SectionTable`](#sectiontable), [`Result`](../../index.md), [`ResourceDirectory`](#resourcedirectory)
+- <span id="datadirectories-resource-directory"></span>`fn resource_directory<R: ReadRef<'data>>(&self, data: R, sections: &SectionTable<'data>) -> Result<Option<ResourceDirectory<'data>>>` — [`SectionTable`](#sectiontable), [`Result`](../../index.md), [`ResourceDirectory`](#resourcedirectory)
 
 #### Trait Implementations
 
 ##### `impl<'data> Clone for DataDirectories<'data>`
 
-- `fn clone(self: &Self) -> DataDirectories<'data>` — [`DataDirectories`](#datadirectories)
+- <span id="datadirectories-clone"></span>`fn clone(&self) -> DataDirectories<'data>` — [`DataDirectories`](#datadirectories)
 
 ##### `impl<'data> Copy for DataDirectories<'data>`
 
 ##### `impl<'data> Debug for DataDirectories<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="datadirectories-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Export<'data>`
 
@@ -685,13 +821,13 @@ There are multiple kinds of PE exports (with or without a name, and local or for
 
 ##### `impl<'data> Clone for Export<'data>`
 
-- `fn clone(self: &Self) -> Export<'data>` — [`Export`](#export)
+- <span id="export-clone"></span>`fn clone(&self) -> Export<'data>` — [`Export`](#export)
 
 ##### `impl<'data> Copy for Export<'data>`
 
 ##### `impl<'a> Debug for Export<'a>`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::result::Result<(), core::fmt::Error>`
+- <span id="export-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::result::Result<(), core::fmt::Error>`
 
 ### `ExportTable<'data>`
 
@@ -712,51 +848,51 @@ Returned by [`DataDirectories::export_table`](super::DataDirectories::export_tab
 
 #### Implementations
 
-- `fn parse(data: &'data [u8], virtual_address: u32) -> Result<Self>` — [`Result`](../../index.md)
+- <span id="exporttable-parse"></span>`fn parse(data: &'data [u8], virtual_address: u32) -> Result<Self>` — [`Result`](../../index.md)
 
-- `fn parse_directory(data: &'data [u8]) -> Result<&'data pe::ImageExportDirectory>` — [`Result`](../../index.md), [`ImageExportDirectory`](../../pe/index.md)
+- <span id="exporttable-parse-directory"></span>`fn parse_directory(data: &'data [u8]) -> Result<&'data pe::ImageExportDirectory>` — [`Result`](../../index.md), [`ImageExportDirectory`](../../pe/index.md)
 
-- `fn directory(self: &Self) -> &'data pe::ImageExportDirectory` — [`ImageExportDirectory`](../../pe/index.md)
+- <span id="exporttable-directory"></span>`fn directory(&self) -> &'data pe::ImageExportDirectory` — [`ImageExportDirectory`](../../pe/index.md)
 
-- `fn ordinal_base(self: &Self) -> u32`
+- <span id="exporttable-ordinal-base"></span>`fn ordinal_base(&self) -> u32`
 
-- `fn addresses(self: &Self) -> &'data [U32Bytes<LE>]` — [`U32Bytes`](../../index.md), [`LittleEndian`](../../index.md)
+- <span id="exporttable-addresses"></span>`fn addresses(&self) -> &'data [U32Bytes<LE>]` — [`U32Bytes`](../../index.md), [`LittleEndian`](../../index.md)
 
-- `fn name_pointers(self: &Self) -> &'data [U32Bytes<LE>]` — [`U32Bytes`](../../index.md), [`LittleEndian`](../../index.md)
+- <span id="exporttable-name-pointers"></span>`fn name_pointers(&self) -> &'data [U32Bytes<LE>]` — [`U32Bytes`](../../index.md), [`LittleEndian`](../../index.md)
 
-- `fn name_ordinals(self: &Self) -> &'data [U16Bytes<LE>]` — [`U16Bytes`](../../index.md), [`LittleEndian`](../../index.md)
+- <span id="exporttable-name-ordinals"></span>`fn name_ordinals(&self) -> &'data [U16Bytes<LE>]` — [`U16Bytes`](../../index.md), [`LittleEndian`](../../index.md)
 
-- `fn name_iter(self: &Self) -> impl Iterator<Item = (u32, u16)> + 'data`
+- <span id="exporttable-name-iter"></span>`fn name_iter(&self) -> impl Iterator<Item = (u32, u16)> + 'data`
 
-- `fn address_by_index(self: &Self, index: u32) -> Result<u32>` — [`Result`](../../index.md)
+- <span id="exporttable-address-by-index"></span>`fn address_by_index(&self, index: u32) -> Result<u32>` — [`Result`](../../index.md)
 
-- `fn address_by_ordinal(self: &Self, ordinal: u32) -> Result<u32>` — [`Result`](../../index.md)
+- <span id="exporttable-address-by-ordinal"></span>`fn address_by_ordinal(&self, ordinal: u32) -> Result<u32>` — [`Result`](../../index.md)
 
-- `fn target_by_index(self: &Self, index: u32) -> Result<ExportTarget<'data>>` — [`Result`](../../index.md), [`ExportTarget`](#exporttarget)
+- <span id="exporttable-target-by-index"></span>`fn target_by_index(&self, index: u32) -> Result<ExportTarget<'data>>` — [`Result`](../../index.md), [`ExportTarget`](#exporttarget)
 
-- `fn target_by_ordinal(self: &Self, ordinal: u32) -> Result<ExportTarget<'data>>` — [`Result`](../../index.md), [`ExportTarget`](#exporttarget)
+- <span id="exporttable-target-by-ordinal"></span>`fn target_by_ordinal(&self, ordinal: u32) -> Result<ExportTarget<'data>>` — [`Result`](../../index.md), [`ExportTarget`](#exporttarget)
 
-- `fn target_from_address(self: &Self, address: u32) -> Result<ExportTarget<'data>>` — [`Result`](../../index.md), [`ExportTarget`](#exporttarget)
+- <span id="exporttable-target-from-address"></span>`fn target_from_address(&self, address: u32) -> Result<ExportTarget<'data>>` — [`Result`](../../index.md), [`ExportTarget`](#exporttarget)
 
-- `fn forward_offset(self: &Self, address: u32) -> Option<usize>`
+- <span id="exporttable-forward-offset"></span>`fn forward_offset(&self, address: u32) -> Option<usize>`
 
-- `fn is_forward(self: &Self, address: u32) -> bool`
+- <span id="exporttable-is-forward"></span>`fn is_forward(&self, address: u32) -> bool`
 
-- `fn forward_string(self: &Self, address: u32) -> Result<Option<&'data [u8]>>` — [`Result`](../../index.md)
+- <span id="exporttable-forward-string"></span>`fn forward_string(&self, address: u32) -> Result<Option<&'data [u8]>>` — [`Result`](../../index.md)
 
-- `fn name_from_pointer(self: &Self, name_pointer: u32) -> Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="exporttable-name-from-pointer"></span>`fn name_from_pointer(&self, name_pointer: u32) -> Result<&'data [u8]>` — [`Result`](../../index.md)
 
-- `fn exports(self: &Self) -> Result<Vec<Export<'data>>>` — [`Result`](../../index.md), [`Export`](#export)
+- <span id="exporttable-exports"></span>`fn exports(&self) -> Result<Vec<Export<'data>>>` — [`Result`](../../index.md), [`Export`](#export)
 
 #### Trait Implementations
 
 ##### `impl<'data> Clone for ExportTable<'data>`
 
-- `fn clone(self: &Self) -> ExportTable<'data>` — [`ExportTable`](#exporttable)
+- <span id="exporttable-clone"></span>`fn clone(&self) -> ExportTable<'data>` — [`ExportTable`](#exporttable)
 
 ##### `impl<'data> Debug for ExportTable<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="exporttable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ImportTable<'data>`
 
@@ -774,27 +910,27 @@ Returned by [`DataDirectories::import_table`](super::DataDirectories::import_tab
 
 #### Implementations
 
-- `fn new(section_data: &'data [u8], section_address: u32, import_address: u32) -> Self`
+- <span id="importtable-new"></span>`fn new(section_data: &'data [u8], section_address: u32, import_address: u32) -> Self`
 
-- `fn descriptors(self: &Self) -> Result<ImportDescriptorIterator<'data>>` — [`Result`](../../index.md), [`ImportDescriptorIterator`](#importdescriptoriterator)
+- <span id="importtable-descriptors"></span>`fn descriptors(&self) -> Result<ImportDescriptorIterator<'data>>` — [`Result`](../../index.md), [`ImportDescriptorIterator`](#importdescriptoriterator)
 
-- `fn name(self: &Self, address: u32) -> Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="importtable-name"></span>`fn name(&self, address: u32) -> Result<&'data [u8]>` — [`Result`](../../index.md)
 
-- `fn thunks(self: &Self, address: u32) -> Result<ImportThunkList<'data>>` — [`Result`](../../index.md), [`ImportThunkList`](#importthunklist)
+- <span id="importtable-thunks"></span>`fn thunks(&self, address: u32) -> Result<ImportThunkList<'data>>` — [`Result`](../../index.md), [`ImportThunkList`](#importthunklist)
 
-- `fn import<Pe: ImageNtHeaders>(self: &Self, thunk: <Pe as >::ImageThunkData) -> Result<Import<'data>>` — [`ImageNtHeaders`](#imagentheaders), [`Result`](../../index.md), [`Import`](#import)
+- <span id="importtable-import"></span>`fn import<Pe: ImageNtHeaders>(&self, thunk: <Pe as >::ImageThunkData) -> Result<Import<'data>>` — [`ImageNtHeaders`](#imagentheaders), [`Result`](../../index.md), [`Import`](#import)
 
-- `fn hint_name(self: &Self, address: u32) -> Result<(u16, &'data [u8])>` — [`Result`](../../index.md)
+- <span id="importtable-hint-name"></span>`fn hint_name(&self, address: u32) -> Result<(u16, &'data [u8])>` — [`Result`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'data> Clone for ImportTable<'data>`
 
-- `fn clone(self: &Self) -> ImportTable<'data>` — [`ImportTable`](#importtable)
+- <span id="importtable-clone"></span>`fn clone(&self) -> ImportTable<'data>` — [`ImportTable`](#importtable)
 
 ##### `impl<'data> Debug for ImportTable<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="importtable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ImportDescriptorIterator<'data>`
 
@@ -809,31 +945,31 @@ A fallible iterator for the descriptors in the import data directory.
 
 #### Implementations
 
-- `fn next(self: &mut Self) -> Result<Option<&'data pe::ImageImportDescriptor>>` — [`Result`](../../index.md), [`ImageImportDescriptor`](../../pe/index.md)
+- <span id="importdescriptoriterator-next"></span>`fn next(&mut self) -> Result<Option<&'data pe::ImageImportDescriptor>>` — [`Result`](../../index.md), [`ImageImportDescriptor`](../../pe/index.md)
 
 #### Trait Implementations
 
 ##### `impl<'data> Clone for ImportDescriptorIterator<'data>`
 
-- `fn clone(self: &Self) -> ImportDescriptorIterator<'data>` — [`ImportDescriptorIterator`](#importdescriptoriterator)
+- <span id="importdescriptoriterator-clone"></span>`fn clone(&self) -> ImportDescriptorIterator<'data>` — [`ImportDescriptorIterator`](#importdescriptoriterator)
 
 ##### `impl<'data> Debug for ImportDescriptorIterator<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="importdescriptoriterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for ImportDescriptorIterator<'data>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="importdescriptoriterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="importdescriptoriterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="importdescriptoriterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data> Iterator for ImportDescriptorIterator<'data>`
 
-- `type Item = Result<&'data ImageImportDescriptor, Error>`
+- <span id="importdescriptoriterator-item"></span>`type Item = Result<&'data ImageImportDescriptor, Error>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="importdescriptoriterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `ImportThunkList<'data>`
 
@@ -849,19 +985,19 @@ These may be in the import lookup table, or the import address table.
 
 #### Implementations
 
-- `fn get<Pe: ImageNtHeaders>(self: &Self, index: usize) -> Result<<Pe as >::ImageThunkData>` — [`Result`](../../index.md), [`ImageNtHeaders`](#imagentheaders)
+- <span id="importthunklist-get"></span>`fn get<Pe: ImageNtHeaders>(&self, index: usize) -> Result<<Pe as >::ImageThunkData>` — [`Result`](../../index.md), [`ImageNtHeaders`](#imagentheaders)
 
-- `fn next<Pe: ImageNtHeaders>(self: &mut Self) -> Result<Option<<Pe as >::ImageThunkData>>` — [`Result`](../../index.md), [`ImageNtHeaders`](#imagentheaders)
+- <span id="importthunklist-next"></span>`fn next<Pe: ImageNtHeaders>(&mut self) -> Result<Option<<Pe as >::ImageThunkData>>` — [`Result`](../../index.md), [`ImageNtHeaders`](#imagentheaders)
 
 #### Trait Implementations
 
 ##### `impl<'data> Clone for ImportThunkList<'data>`
 
-- `fn clone(self: &Self) -> ImportThunkList<'data>` — [`ImportThunkList`](#importthunklist)
+- <span id="importthunklist-clone"></span>`fn clone(&self) -> ImportThunkList<'data>` — [`ImportThunkList`](#importthunklist)
 
 ##### `impl<'data> Debug for ImportThunkList<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="importthunklist-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `DelayLoadImportTable<'data>`
 
@@ -880,27 +1016,27 @@ Returned by
 
 #### Implementations
 
-- `fn new(section_data: &'data [u8], section_address: u32, import_address: u32) -> Self`
+- <span id="delayloadimporttable-new"></span>`fn new(section_data: &'data [u8], section_address: u32, import_address: u32) -> Self`
 
-- `fn descriptors(self: &Self) -> Result<DelayLoadDescriptorIterator<'data>>` — [`Result`](../../index.md), [`DelayLoadDescriptorIterator`](#delayloaddescriptoriterator)
+- <span id="delayloadimporttable-descriptors"></span>`fn descriptors(&self) -> Result<DelayLoadDescriptorIterator<'data>>` — [`Result`](../../index.md), [`DelayLoadDescriptorIterator`](#delayloaddescriptoriterator)
 
-- `fn name(self: &Self, address: u32) -> Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="delayloadimporttable-name"></span>`fn name(&self, address: u32) -> Result<&'data [u8]>` — [`Result`](../../index.md)
 
-- `fn thunks(self: &Self, address: u32) -> Result<ImportThunkList<'data>>` — [`Result`](../../index.md), [`ImportThunkList`](#importthunklist)
+- <span id="delayloadimporttable-thunks"></span>`fn thunks(&self, address: u32) -> Result<ImportThunkList<'data>>` — [`Result`](../../index.md), [`ImportThunkList`](#importthunklist)
 
-- `fn import<Pe: ImageNtHeaders>(self: &Self, thunk: <Pe as >::ImageThunkData) -> Result<Import<'data>>` — [`ImageNtHeaders`](#imagentheaders), [`Result`](../../index.md), [`Import`](#import)
+- <span id="delayloadimporttable-import"></span>`fn import<Pe: ImageNtHeaders>(&self, thunk: <Pe as >::ImageThunkData) -> Result<Import<'data>>` — [`ImageNtHeaders`](#imagentheaders), [`Result`](../../index.md), [`Import`](#import)
 
-- `fn hint_name(self: &Self, address: u32) -> Result<(u16, &'data [u8])>` — [`Result`](../../index.md)
+- <span id="delayloadimporttable-hint-name"></span>`fn hint_name(&self, address: u32) -> Result<(u16, &'data [u8])>` — [`Result`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'data> Clone for DelayLoadImportTable<'data>`
 
-- `fn clone(self: &Self) -> DelayLoadImportTable<'data>` — [`DelayLoadImportTable`](#delayloadimporttable)
+- <span id="delayloadimporttable-clone"></span>`fn clone(&self) -> DelayLoadImportTable<'data>` — [`DelayLoadImportTable`](#delayloadimporttable)
 
 ##### `impl<'data> Debug for DelayLoadImportTable<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="delayloadimporttable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `DelayLoadDescriptorIterator<'data>`
 
@@ -915,31 +1051,31 @@ A fallible iterator for the descriptors in the delay-load data directory.
 
 #### Implementations
 
-- `fn next(self: &mut Self) -> Result<Option<&'data pe::ImageDelayloadDescriptor>>` — [`Result`](../../index.md), [`ImageDelayloadDescriptor`](../../pe/index.md)
+- <span id="delayloaddescriptoriterator-next"></span>`fn next(&mut self) -> Result<Option<&'data pe::ImageDelayloadDescriptor>>` — [`Result`](../../index.md), [`ImageDelayloadDescriptor`](../../pe/index.md)
 
 #### Trait Implementations
 
 ##### `impl<'data> Clone for DelayLoadDescriptorIterator<'data>`
 
-- `fn clone(self: &Self) -> DelayLoadDescriptorIterator<'data>` — [`DelayLoadDescriptorIterator`](#delayloaddescriptoriterator)
+- <span id="delayloaddescriptoriterator-clone"></span>`fn clone(&self) -> DelayLoadDescriptorIterator<'data>` — [`DelayLoadDescriptorIterator`](#delayloaddescriptoriterator)
 
 ##### `impl<'data> Debug for DelayLoadDescriptorIterator<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="delayloaddescriptoriterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for DelayLoadDescriptorIterator<'data>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="delayloaddescriptoriterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="delayloaddescriptoriterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="delayloaddescriptoriterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data> Iterator for DelayLoadDescriptorIterator<'data>`
 
-- `type Item = Result<&'data ImageDelayloadDescriptor, Error>`
+- <span id="delayloaddescriptoriterator-item"></span>`type Item = Result<&'data ImageDelayloadDescriptor, Error>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="delayloaddescriptoriterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `RelocationBlockIterator<'data>`
 
@@ -955,41 +1091,41 @@ Returned by [`DataDirectories::relocation_blocks`](super::DataDirectories::reloc
 
 #### Implementations
 
-- `fn new(data: &'data [u8]) -> Self`
+- <span id="relocationblockiterator-new"></span>`fn new(data: &'data [u8]) -> Self`
 
-- `fn next(self: &mut Self) -> Result<Option<RelocationIterator<'data>>>` — [`Result`](../../index.md), [`RelocationIterator`](#relocationiterator)
+- <span id="relocationblockiterator-next"></span>`fn next(&mut self) -> Result<Option<RelocationIterator<'data>>>` — [`Result`](../../index.md), [`RelocationIterator`](#relocationiterator)
 
-- `fn parse(self: &mut Self) -> Result<RelocationIterator<'data>>` — [`Result`](../../index.md), [`RelocationIterator`](#relocationiterator)
+- <span id="relocationblockiterator-parse"></span>`fn parse(&mut self) -> Result<RelocationIterator<'data>>` — [`Result`](../../index.md), [`RelocationIterator`](#relocationiterator)
 
 #### Trait Implementations
 
 ##### `impl<'data> Clone for RelocationBlockIterator<'data>`
 
-- `fn clone(self: &Self) -> RelocationBlockIterator<'data>` — [`RelocationBlockIterator`](#relocationblockiterator)
+- <span id="relocationblockiterator-clone"></span>`fn clone(&self) -> RelocationBlockIterator<'data>` — [`RelocationBlockIterator`](#relocationblockiterator)
 
 ##### `impl<'data> Copy for RelocationBlockIterator<'data>`
 
 ##### `impl<'data> Debug for RelocationBlockIterator<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="relocationblockiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data> Default for RelocationBlockIterator<'data>`
 
-- `fn default() -> RelocationBlockIterator<'data>` — [`RelocationBlockIterator`](#relocationblockiterator)
+- <span id="relocationblockiterator-default"></span>`fn default() -> RelocationBlockIterator<'data>` — [`RelocationBlockIterator`](#relocationblockiterator)
 
 ##### `impl<I> IntoIterator for RelocationBlockIterator<'data>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="relocationblockiterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="relocationblockiterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="relocationblockiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data> Iterator for RelocationBlockIterator<'data>`
 
-- `type Item = Result<RelocationIterator<'data>, Error>`
+- <span id="relocationblockiterator-item"></span>`type Item = Result<RelocationIterator<'data>, Error>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="relocationblockiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `RelocationIterator<'data>`
 
@@ -1005,33 +1141,33 @@ An iterator of the relocations in a block in the `.reloc` section of a PE file.
 
 #### Implementations
 
-- `fn virtual_address(self: &Self) -> u32`
+- <span id="relocationiterator-virtual-address"></span>`fn virtual_address(&self) -> u32`
 
-- `fn size(self: &Self) -> u32`
+- <span id="relocationiterator-size"></span>`fn size(&self) -> u32`
 
 #### Trait Implementations
 
 ##### `impl<'data> Clone for RelocationIterator<'data>`
 
-- `fn clone(self: &Self) -> RelocationIterator<'data>` — [`RelocationIterator`](#relocationiterator)
+- <span id="relocationiterator-clone"></span>`fn clone(&self) -> RelocationIterator<'data>` — [`RelocationIterator`](#relocationiterator)
 
 ##### `impl<'data> Debug for RelocationIterator<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="relocationiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for RelocationIterator<'data>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="relocationiterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="relocationiterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="relocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data> Iterator for RelocationIterator<'data>`
 
-- `type Item = Relocation`
+- <span id="relocationiterator-item"></span>`type Item = Relocation`
 
-- `fn next(self: &mut Self) -> Option<Relocation>` — [`Relocation`](#relocation)
+- <span id="relocationiterator-next"></span>`fn next(&mut self) -> Option<Relocation>` — [`Relocation`](#relocation)
 
 ### `Relocation`
 
@@ -1058,17 +1194,17 @@ A relocation in the `.reloc` section of a PE file.
 
 ##### `impl Clone for Relocation`
 
-- `fn clone(self: &Self) -> Relocation` — [`Relocation`](#relocation)
+- <span id="relocation-clone"></span>`fn clone(&self) -> Relocation` — [`Relocation`](#relocation)
 
 ##### `impl Copy for Relocation`
 
 ##### `impl Debug for Relocation`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="relocation-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Relocation`
 
-- `fn default() -> Relocation` — [`Relocation`](#relocation)
+- <span id="relocation-default"></span>`fn default() -> Relocation` — [`Relocation`](#relocation)
 
 ### `ResourceDirectory<'data>`
 
@@ -1084,21 +1220,21 @@ Returned by [`DataDirectories::resource_directory`](super::DataDirectories::reso
 
 #### Implementations
 
-- `fn new(data: &'data [u8]) -> Self`
+- <span id="resourcedirectory-new"></span>`fn new(data: &'data [u8]) -> Self`
 
-- `fn root(self: &Self) -> Result<ResourceDirectoryTable<'data>>` — [`Result`](../../index.md), [`ResourceDirectoryTable`](#resourcedirectorytable)
+- <span id="resourcedirectory-root"></span>`fn root(&self) -> Result<ResourceDirectoryTable<'data>>` — [`Result`](../../index.md), [`ResourceDirectoryTable`](#resourcedirectorytable)
 
 #### Trait Implementations
 
 ##### `impl<'data> Clone for ResourceDirectory<'data>`
 
-- `fn clone(self: &Self) -> ResourceDirectory<'data>` — [`ResourceDirectory`](#resourcedirectory)
+- <span id="resourcedirectory-clone"></span>`fn clone(&self) -> ResourceDirectory<'data>` — [`ResourceDirectory`](#resourcedirectory)
 
 ##### `impl<'data> Copy for ResourceDirectory<'data>`
 
 ##### `impl<'data> Debug for ResourceDirectory<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="resourcedirectory-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ResourceDirectoryTable<'data>`
 
@@ -1123,17 +1259,17 @@ A table of resource entries.
 
 #### Implementations
 
-- `fn parse(data: &'data [u8], offset: u32) -> Result<Self>` — [`Result`](../../index.md)
+- <span id="resourcedirectorytable-parse"></span>`fn parse(data: &'data [u8], offset: u32) -> Result<Self>` — [`Result`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'data> Clone for ResourceDirectoryTable<'data>`
 
-- `fn clone(self: &Self) -> ResourceDirectoryTable<'data>` — [`ResourceDirectoryTable`](#resourcedirectorytable)
+- <span id="resourcedirectorytable-clone"></span>`fn clone(&self) -> ResourceDirectoryTable<'data>` — [`ResourceDirectoryTable`](#resourcedirectorytable)
 
 ##### `impl<'data> Debug for ResourceDirectoryTable<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="resourcedirectorytable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ResourceName`
 
@@ -1147,23 +1283,23 @@ A resource name.
 
 #### Implementations
 
-- `fn to_string_lossy(self: &Self, directory: ResourceDirectory<'_>) -> Result<String>` — [`ResourceDirectory`](#resourcedirectory), [`Result`](../../index.md)
+- <span id="resourcename-to-string-lossy"></span>`fn to_string_lossy(&self, directory: ResourceDirectory<'_>) -> Result<String>` — [`ResourceDirectory`](#resourcedirectory), [`Result`](../../index.md)
 
-- `fn data<'data>(self: &Self, directory: ResourceDirectory<'data>) -> Result<&'data [U16Bytes<LE>]>` — [`ResourceDirectory`](#resourcedirectory), [`Result`](../../index.md), [`U16Bytes`](../../index.md), [`LittleEndian`](../../index.md)
+- <span id="resourcename-data"></span>`fn data<'data>(&self, directory: ResourceDirectory<'data>) -> Result<&'data [U16Bytes<LE>]>` — [`ResourceDirectory`](#resourcedirectory), [`Result`](../../index.md), [`U16Bytes`](../../index.md), [`LittleEndian`](../../index.md)
 
-- `fn raw_data<'data>(self: &Self, directory: ResourceDirectory<'data>) -> Result<&'data [u8]>` — [`ResourceDirectory`](#resourcedirectory), [`Result`](../../index.md)
+- <span id="resourcename-raw-data"></span>`fn raw_data<'data>(&self, directory: ResourceDirectory<'data>) -> Result<&'data [u8]>` — [`ResourceDirectory`](#resourcedirectory), [`Result`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for ResourceName`
 
-- `fn clone(self: &Self) -> ResourceName` — [`ResourceName`](#resourcename)
+- <span id="resourcename-clone"></span>`fn clone(&self) -> ResourceName` — [`ResourceName`](#resourcename)
 
 ##### `impl Copy for ResourceName`
 
 ##### `impl Debug for ResourceName`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="resourcename-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `RichHeaderInfo<'data>`
 
@@ -1200,21 +1336,21 @@ Parsed information about a Rich Header.
 
 #### Implementations
 
-- `fn parse<R: ReadRef<'data>>(data: R, nt_header_offset: u64) -> Option<Self>`
+- <span id="richheaderinfo-parse"></span>`fn parse<R: ReadRef<'data>>(data: R, nt_header_offset: u64) -> Option<Self>`
 
-- `fn unmasked_entries(self: &Self) -> impl Iterator<Item = RichHeaderEntry> + 'data` — [`RichHeaderEntry`](#richheaderentry)
+- <span id="richheaderinfo-unmasked-entries"></span>`fn unmasked_entries(&self) -> impl Iterator<Item = RichHeaderEntry> + 'data` — [`RichHeaderEntry`](#richheaderentry)
 
 #### Trait Implementations
 
 ##### `impl<'data> Clone for RichHeaderInfo<'data>`
 
-- `fn clone(self: &Self) -> RichHeaderInfo<'data>` — [`RichHeaderInfo`](#richheaderinfo)
+- <span id="richheaderinfo-clone"></span>`fn clone(&self) -> RichHeaderInfo<'data>` — [`RichHeaderInfo`](#richheaderinfo)
 
 ##### `impl<'data> Copy for RichHeaderInfo<'data>`
 
 ##### `impl<'data> Debug for RichHeaderInfo<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="richheaderinfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `RichHeaderEntry`
 
@@ -1243,13 +1379,13 @@ See [`pe::MaskedRichHeaderEntry`](../../pe/index.md).
 
 ##### `impl Clone for RichHeaderEntry`
 
-- `fn clone(self: &Self) -> RichHeaderEntry` — [`RichHeaderEntry`](#richheaderentry)
+- <span id="richheaderentry-clone"></span>`fn clone(&self) -> RichHeaderEntry` — [`RichHeaderEntry`](#richheaderentry)
 
 ##### `impl Copy for RichHeaderEntry`
 
 ##### `impl Debug for RichHeaderEntry`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="richheaderentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Enums
 
@@ -1285,21 +1421,21 @@ Where an export is pointing to.
 
 #### Implementations
 
-- `fn is_address(self: &Self) -> bool`
+- <span id="exporttarget-is-address"></span>`fn is_address(&self) -> bool`
 
-- `fn is_forward(self: &Self) -> bool`
+- <span id="exporttarget-is-forward"></span>`fn is_forward(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl<'data> Clone for ExportTarget<'data>`
 
-- `fn clone(self: &Self) -> ExportTarget<'data>` — [`ExportTarget`](#exporttarget)
+- <span id="exporttarget-clone"></span>`fn clone(&self) -> ExportTarget<'data>` — [`ExportTarget`](#exporttarget)
 
 ##### `impl<'data> Copy for ExportTarget<'data>`
 
 ##### `impl<'a> Debug for ExportTarget<'a>`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::result::Result<(), core::fmt::Error>`
+- <span id="exporttarget-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::result::Result<(), core::fmt::Error>`
 
 ### `Import<'data>`
 
@@ -1328,13 +1464,13 @@ A parsed import thunk.
 
 ##### `impl<'data> Clone for Import<'data>`
 
-- `fn clone(self: &Self) -> Import<'data>` — [`Import`](#import)
+- <span id="import-clone"></span>`fn clone(&self) -> Import<'data>` — [`Import`](#import)
 
 ##### `impl<'data> Copy for Import<'data>`
 
 ##### `impl<'data> Debug for Import<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="import-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ResourceDirectoryEntryData<'data>`
 
@@ -1359,19 +1495,19 @@ Data associated with a resource directory entry.
 
 #### Implementations
 
-- `fn table(self: Self) -> Option<ResourceDirectoryTable<'data>>` — [`ResourceDirectoryTable`](#resourcedirectorytable)
+- <span id="resourcedirectoryentrydata-table"></span>`fn table(self) -> Option<ResourceDirectoryTable<'data>>` — [`ResourceDirectoryTable`](#resourcedirectorytable)
 
-- `fn data(self: Self) -> Option<&'data pe::ImageResourceDataEntry>` — [`ImageResourceDataEntry`](../../pe/index.md)
+- <span id="resourcedirectoryentrydata-data"></span>`fn data(self) -> Option<&'data pe::ImageResourceDataEntry>` — [`ImageResourceDataEntry`](../../pe/index.md)
 
 #### Trait Implementations
 
 ##### `impl<'data> Clone for ResourceDirectoryEntryData<'data>`
 
-- `fn clone(self: &Self) -> ResourceDirectoryEntryData<'data>` — [`ResourceDirectoryEntryData`](#resourcedirectoryentrydata)
+- <span id="resourcedirectoryentrydata-clone"></span>`fn clone(&self) -> ResourceDirectoryEntryData<'data>` — [`ResourceDirectoryEntryData`](#resourcedirectoryentrydata)
 
 ##### `impl<'data> Debug for ResourceDirectoryEntryData<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="resourcedirectoryentrydata-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ResourceNameOrId`
 
@@ -1398,15 +1534,15 @@ Can be either a string or a numeric ID.
 
 #### Implementations
 
-- `fn name(self: Self) -> Option<ResourceName>` — [`ResourceName`](#resourcename)
+- <span id="resourcenameorid-name"></span>`fn name(self) -> Option<ResourceName>` — [`ResourceName`](#resourcename)
 
-- `fn id(self: Self) -> Option<u16>`
+- <span id="resourcenameorid-id"></span>`fn id(self) -> Option<u16>`
 
 #### Trait Implementations
 
 ##### `impl Debug for ResourceNameOrId`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="resourcenameorid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Traits
 
@@ -1424,23 +1560,23 @@ A trait for generic access to [`pe::ImageNtHeaders32`](../../pe/index.md) and [`
 
 - `type ImageThunkData: 1`
 
-- `fn is_type_64(self: &Self) -> bool`
+- `fn is_type_64(&self) -> bool`
 
   Return true if this type is a 64-bit header.
 
-- `fn is_valid_optional_magic(self: &Self) -> bool`
+- `fn is_valid_optional_magic(&self) -> bool`
 
   Return true if the magic field in the optional header is valid.
 
-- `fn signature(self: &Self) -> u32`
+- `fn signature(&self) -> u32`
 
   Return the signature
 
-- `fn file_header(self: &Self) -> &pe::ImageFileHeader`
+- `fn file_header(&self) -> &pe::ImageFileHeader`
 
   Return the file header.
 
-- `fn optional_header(self: &Self) -> &<Self as >::ImageOptionalHeader`
+- `fn optional_header(&self) -> &<Self as >::ImageOptionalHeader`
 
   Return the optional header.
 
@@ -1448,11 +1584,11 @@ A trait for generic access to [`pe::ImageNtHeaders32`](../../pe/index.md) and [`
 
   Read the NT headers, including the data directories.
 
-- `fn sections<'data, R: ReadRef<'data>>(self: &Self, data: R, offset: u64) -> read::Result<SectionTable<'data>>`
+- `fn sections<'data, R: ReadRef<'data>>(&self, data: R, offset: u64) -> read::Result<SectionTable<'data>>`
 
   Read the section table.
 
-- `fn symbols<'data, R: ReadRef<'data>>(self: &Self, data: R) -> read::Result<SymbolTable<'data, R>>`
+- `fn symbols<'data, R: ReadRef<'data>>(&self, data: R) -> read::Result<SymbolTable<'data, R>>`
 
   Read the COFF symbol table and string table.
 
@@ -1466,65 +1602,65 @@ A trait for generic access to [`pe::ImageOptionalHeader32`](../../pe/index.md) a
 
 #### Required Methods
 
-- `fn magic(self: &Self) -> u16`
+- `fn magic(&self) -> u16`
 
-- `fn major_linker_version(self: &Self) -> u8`
+- `fn major_linker_version(&self) -> u8`
 
-- `fn minor_linker_version(self: &Self) -> u8`
+- `fn minor_linker_version(&self) -> u8`
 
-- `fn size_of_code(self: &Self) -> u32`
+- `fn size_of_code(&self) -> u32`
 
-- `fn size_of_initialized_data(self: &Self) -> u32`
+- `fn size_of_initialized_data(&self) -> u32`
 
-- `fn size_of_uninitialized_data(self: &Self) -> u32`
+- `fn size_of_uninitialized_data(&self) -> u32`
 
-- `fn address_of_entry_point(self: &Self) -> u32`
+- `fn address_of_entry_point(&self) -> u32`
 
-- `fn base_of_code(self: &Self) -> u32`
+- `fn base_of_code(&self) -> u32`
 
-- `fn base_of_data(self: &Self) -> Option<u32>`
+- `fn base_of_data(&self) -> Option<u32>`
 
-- `fn image_base(self: &Self) -> u64`
+- `fn image_base(&self) -> u64`
 
-- `fn section_alignment(self: &Self) -> u32`
+- `fn section_alignment(&self) -> u32`
 
-- `fn file_alignment(self: &Self) -> u32`
+- `fn file_alignment(&self) -> u32`
 
-- `fn major_operating_system_version(self: &Self) -> u16`
+- `fn major_operating_system_version(&self) -> u16`
 
-- `fn minor_operating_system_version(self: &Self) -> u16`
+- `fn minor_operating_system_version(&self) -> u16`
 
-- `fn major_image_version(self: &Self) -> u16`
+- `fn major_image_version(&self) -> u16`
 
-- `fn minor_image_version(self: &Self) -> u16`
+- `fn minor_image_version(&self) -> u16`
 
-- `fn major_subsystem_version(self: &Self) -> u16`
+- `fn major_subsystem_version(&self) -> u16`
 
-- `fn minor_subsystem_version(self: &Self) -> u16`
+- `fn minor_subsystem_version(&self) -> u16`
 
-- `fn win32_version_value(self: &Self) -> u32`
+- `fn win32_version_value(&self) -> u32`
 
-- `fn size_of_image(self: &Self) -> u32`
+- `fn size_of_image(&self) -> u32`
 
-- `fn size_of_headers(self: &Self) -> u32`
+- `fn size_of_headers(&self) -> u32`
 
-- `fn check_sum(self: &Self) -> u32`
+- `fn check_sum(&self) -> u32`
 
-- `fn subsystem(self: &Self) -> u16`
+- `fn subsystem(&self) -> u16`
 
-- `fn dll_characteristics(self: &Self) -> u16`
+- `fn dll_characteristics(&self) -> u16`
 
-- `fn size_of_stack_reserve(self: &Self) -> u64`
+- `fn size_of_stack_reserve(&self) -> u64`
 
-- `fn size_of_stack_commit(self: &Self) -> u64`
+- `fn size_of_stack_commit(&self) -> u64`
 
-- `fn size_of_heap_reserve(self: &Self) -> u64`
+- `fn size_of_heap_reserve(&self) -> u64`
 
-- `fn size_of_heap_commit(self: &Self) -> u64`
+- `fn size_of_heap_commit(&self) -> u64`
 
-- `fn loader_flags(self: &Self) -> u32`
+- `fn loader_flags(&self) -> u32`
 
-- `fn number_of_rva_and_sizes(self: &Self) -> u32`
+- `fn number_of_rva_and_sizes(&self) -> u32`
 
 ### `ImageThunkData`
 
@@ -1536,19 +1672,19 @@ A trait for generic access to [`pe::ImageThunkData32`](../../pe/index.md) and [`
 
 #### Required Methods
 
-- `fn raw(self: Self) -> u64`
+- `fn raw(self) -> u64`
 
   Return the raw thunk value.
 
-- `fn is_ordinal(self: Self) -> bool`
+- `fn is_ordinal(self) -> bool`
 
   Returns true if the ordinal flag is set.
 
-- `fn ordinal(self: Self) -> u16`
+- `fn ordinal(self) -> u16`
 
   Return the ordinal portion of the thunk.
 
-- `fn address(self: Self) -> u32`
+- `fn address(self) -> u32`
 
   Return the RVA portion of the thunk.
 

@@ -4,6 +4,14 @@
 
 # Module `scan_expr`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Input`](#input) | enum |  |
+| [`Action`](#action) | enum |  |
+| [`scan_expr`](#scan_expr) | fn |  |
+
 ## Enums
 
 ### `Input`

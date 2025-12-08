@@ -4,6 +4,58 @@
 
 # Module `utils`
 
+## Contents
+
+- [Modules](#modules)
+  - [`generated`](#generated)
+  - [`ptr`](#ptr)
+- [Structs](#structs)
+  - [`Pair`](#pair)
+- [Functions](#functions)
+  - [`_assert_is_bool`](#_assert_is_bool)
+  - [`assert_unchecked`](#assert_unchecked)
+  - [`assert_load_ordering`](#assert_load_ordering)
+  - [`assert_store_ordering`](#assert_store_ordering)
+  - [`assert_compare_exchange_ordering`](#assert_compare_exchange_ordering)
+  - [`upgrade_success_ordering`](#upgrade_success_ordering)
+- [Macros](#macros)
+  - [`static_assert!`](#static_assert)
+  - [`static_assert_layout!`](#static_assert_layout)
+  - [`doc_comment!`](#doc_comment)
+  - [`ifunc!`](#ifunc)
+  - [`fn_alias!`](#fn_alias)
+  - [`const_fn!`](#const_fn)
+  - [`impl_debug_and_serde!`](#impl_debug_and_serde)
+  - [`impl_debug!`](#impl_debug)
+  - [`impl_default_no_fetch_ops!`](#impl_default_no_fetch_ops)
+  - [`impl_default_bit_opts!`](#impl_default_bit_opts)
+  - [`items!`](#items)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`generated`](#generated) | mod |  |
+| [`ptr`](#ptr) | mod |  |
+| [`Pair`](#pair) | struct |  |
+| [`_assert_is_bool`](#_assert_is_bool) | fn |  |
+| [`assert_unchecked`](#assert_unchecked) | fn |  |
+| [`assert_load_ordering`](#assert_load_ordering) | fn |  |
+| [`assert_store_ordering`](#assert_store_ordering) | fn |  |
+| [`assert_compare_exchange_ordering`](#assert_compare_exchange_ordering) | fn |  |
+| [`upgrade_success_ordering`](#upgrade_success_ordering) | fn |  |
+| [`static_assert!`](#static_assert) | macro |  |
+| [`static_assert_layout!`](#static_assert_layout) | macro |  |
+| [`doc_comment!`](#doc_comment) | macro |  |
+| [`ifunc!`](#ifunc) | macro | # Safety |
+| [`fn_alias!`](#fn_alias) | macro |  |
+| [`const_fn!`](#const_fn) | macro | Make the given function const if the given condition is true. |
+| [`impl_debug_and_serde!`](#impl_debug_and_serde) | macro | Implements `core::fmt::Debug` and `serde::{Serialize, Deserialize}` (when serde |
+| [`impl_debug!`](#impl_debug) | macro |  |
+| [`impl_default_no_fetch_ops!`](#impl_default_no_fetch_ops) | macro |  |
+| [`impl_default_bit_opts!`](#impl_default_bit_opts) | macro |  |
+| [`items!`](#items) | macro |  |
+
 ## Modules
 
 - [`generated`](generated/index.md) - 
@@ -22,11 +74,11 @@ struct Pair<T: Copy> {
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone + Copy> Clone for Pair<T>`
+##### `impl<T: clone::Clone + Copy> Clone for Pair<T>`
 
-- `fn clone(self: &Self) -> Pair<T>` — [`Pair`](#pair)
+- <span id="pair-clone"></span>`fn clone(&self) -> Pair<T>` — [`Pair`](#pair)
 
-##### `impl<T: $crate::marker::Copy + Copy> Copy for Pair<T>`
+##### `impl<T: marker::Copy + Copy> Copy for Pair<T>`
 
 ## Functions
 

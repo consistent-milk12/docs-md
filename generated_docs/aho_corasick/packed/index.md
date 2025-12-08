@@ -112,6 +112,39 @@ implementation detail, here are some common reasons:
   heuristics) suggests that a packed searcher would perform very poorly, so
   no searcher is built.
 
+## Contents
+
+- [Modules](#modules)
+  - [`api`](#api)
+  - [`ext`](#ext)
+  - [`pattern`](#pattern)
+  - [`rabinkarp`](#rabinkarp)
+  - [`teddy`](#teddy)
+  - [`vector`](#vector)
+- [Structs](#structs)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+- [Enums](#enums)
+  - [`unnamed`](#unnamed)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`api`](#api) | mod |  |
+| [`ext`](#ext) | mod |  |
+| [`pattern`](#pattern) | mod |  |
+| [`rabinkarp`](#rabinkarp) | mod |  |
+| [`teddy`](#teddy) | mod |  |
+| [`vector`](#vector) | mod |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | enum |  |
+
 ## Modules
 
 - [`api`](api/index.md) - 
@@ -179,35 +212,35 @@ if cfg!(all(feature = "std", any(
 
 #### Implementations
 
-- `fn new() -> Builder` — [`Builder`](#builder)
+- <span id="builder-new"></span>`fn new() -> Builder` — [`Builder`](#builder)
 
-- `fn from_config(config: Config) -> Builder` — [`Config`](#config), [`Builder`](#builder)
+- <span id="builder-from-config"></span>`fn from_config(config: Config) -> Builder` — [`Config`](#config), [`Builder`](#builder)
 
-- `fn build(self: &Self) -> Option<Searcher>` — [`Searcher`](#searcher)
+- <span id="builder-build"></span>`fn build(&self) -> Option<Searcher>` — [`Searcher`](#searcher)
 
-- `fn build_teddy(self: &Self, patterns: Arc<Patterns>) -> Option<self::builder::Searcher>` — [`Patterns`](pattern/index.md), [`Searcher`](teddy/builder/index.md)
+- <span id="builder-build-teddy"></span>`fn build_teddy(&self, patterns: Arc<Patterns>) -> Option<self::builder::Searcher>` — [`Patterns`](pattern/index.md), [`Searcher`](teddy/builder/index.md)
 
-- `fn add<P: AsRef<[u8]>>(self: &mut Self, pattern: P) -> &mut Builder` — [`Builder`](#builder)
+- <span id="builder-add"></span>`fn add<P: AsRef<[u8]>>(&mut self, pattern: P) -> &mut Builder` — [`Builder`](#builder)
 
-- `fn extend<I, P>(self: &mut Self, patterns: I) -> &mut Builder` — [`Builder`](#builder)
+- <span id="builder-extend"></span>`fn extend<I, P>(&mut self, patterns: I) -> &mut Builder` — [`Builder`](#builder)
 
-- `fn len(self: &Self) -> usize`
+- <span id="builder-len"></span>`fn len(&self) -> usize`
 
-- `fn minimum_len(self: &Self) -> usize`
+- <span id="builder-minimum-len"></span>`fn minimum_len(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Clone for Builder`
 
-- `fn clone(self: &Self) -> Builder` — [`Builder`](#builder)
+- <span id="builder-clone"></span>`fn clone(&self) -> Builder` — [`Builder`](#builder)
 
 ##### `impl Debug for Builder`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="builder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Builder`
 
-- `fn default() -> Builder` — [`Builder`](#builder)
+- <span id="builder-default"></span>`fn default() -> Builder` — [`Builder`](#builder)
 
 ### `Config`
 
@@ -262,27 +295,27 @@ if cfg!(all(feature = "std", any(
 
 #### Implementations
 
-- `fn new() -> Config` — [`Config`](#config)
+- <span id="config-new"></span>`fn new() -> Config` — [`Config`](#config)
 
-- `fn builder(self: &Self) -> Builder` — [`Builder`](#builder)
+- <span id="config-builder"></span>`fn builder(&self) -> Builder` — [`Builder`](#builder)
 
-- `fn match_kind(self: &mut Self, kind: MatchKind) -> &mut Config` — [`MatchKind`](#matchkind), [`Config`](#config)
+- <span id="config-match-kind"></span>`fn match_kind(&mut self, kind: MatchKind) -> &mut Config` — [`MatchKind`](#matchkind), [`Config`](#config)
 
-- `fn heuristic_pattern_limits(self: &mut Self, yes: bool) -> &mut Config` — [`Config`](#config)
+- <span id="config-heuristic-pattern-limits"></span>`fn heuristic_pattern_limits(&mut self, yes: bool) -> &mut Config` — [`Config`](#config)
 
 #### Trait Implementations
 
 ##### `impl Clone for Config`
 
-- `fn clone(self: &Self) -> Config` — [`Config`](#config)
+- <span id="config-clone"></span>`fn clone(&self) -> Config` — [`Config`](#config)
 
 ##### `impl Debug for Config`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="config-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Config`
 
-- `fn default() -> Config` — [`Config`](#config)
+- <span id="config-default"></span>`fn default() -> Config` — [`Config`](#config)
 
 ### `FindIter<'s, 'h>`
 
@@ -304,21 +337,21 @@ searched.
 
 ##### `impl<'s, 'h> Debug for FindIter<'s, 'h>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="finditer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for FindIter<'s, 'h>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="finditer-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="finditer-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="finditer-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'s, 'h> Iterator for FindIter<'s, 'h>`
 
-- `type Item = Match`
+- <span id="finditer-item"></span>`type Item = Match`
 
-- `fn next(self: &mut Self) -> Option<Match>` — [`Match`](../index.md)
+- <span id="finditer-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../index.md)
 
 ### `Searcher`
 
@@ -364,35 +397,35 @@ if cfg!(all(feature = "std", any(
 
 #### Implementations
 
-- `fn new<I, P>(patterns: I) -> Option<Searcher>` — [`Searcher`](#searcher)
+- <span id="searcher-new"></span>`fn new<I, P>(patterns: I) -> Option<Searcher>` — [`Searcher`](#searcher)
 
-- `fn config() -> Config` — [`Config`](#config)
+- <span id="searcher-config"></span>`fn config() -> Config` — [`Config`](#config)
 
-- `fn builder() -> Builder` — [`Builder`](#builder)
+- <span id="searcher-builder"></span>`fn builder() -> Builder` — [`Builder`](#builder)
 
-- `fn find<B: AsRef<[u8]>>(self: &Self, haystack: B) -> Option<Match>` — [`Match`](../index.md)
+- <span id="searcher-find"></span>`fn find<B: AsRef<[u8]>>(&self, haystack: B) -> Option<Match>` — [`Match`](../index.md)
 
-- `fn find_in<B: AsRef<[u8]>>(self: &Self, haystack: B, span: Span) -> Option<Match>` — [`Span`](../index.md), [`Match`](../index.md)
+- <span id="searcher-find-in"></span>`fn find_in<B: AsRef<[u8]>>(&self, haystack: B, span: Span) -> Option<Match>` — [`Span`](../index.md), [`Match`](../index.md)
 
-- `fn find_iter<'a, 'b, B: ?Sized + AsRef<[u8]>>(self: &'a Self, haystack: &'b B) -> FindIter<'a, 'b>` — [`FindIter`](#finditer)
+- <span id="searcher-find-iter"></span>`fn find_iter<'a, 'b, B: ?Sized + AsRef<[u8]>>(self: &'a Self, haystack: &'b B) -> FindIter<'a, 'b>` — [`FindIter`](#finditer)
 
-- `fn match_kind(self: &Self) -> &MatchKind` — [`MatchKind`](#matchkind)
+- <span id="searcher-match-kind"></span>`fn match_kind(&self) -> &MatchKind` — [`MatchKind`](#matchkind)
 
-- `fn minimum_len(self: &Self) -> usize`
+- <span id="searcher-minimum-len"></span>`fn minimum_len(&self) -> usize`
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="searcher-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- `fn find_in_slow(self: &Self, haystack: &[u8], span: Span) -> Option<Match>` — [`Span`](../index.md), [`Match`](../index.md)
+- <span id="searcher-find-in-slow"></span>`fn find_in_slow(&self, haystack: &[u8], span: Span) -> Option<Match>` — [`Span`](../index.md), [`Match`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Searcher`
 
-- `fn clone(self: &Self) -> Searcher` — [`Searcher`](#searcher)
+- <span id="searcher-clone"></span>`fn clone(&self) -> Searcher` — [`Searcher`](#searcher)
 
 ##### `impl Debug for Searcher`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="searcher-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Enums
 
@@ -440,23 +473,23 @@ type are leftmost-first.
 
 ##### `impl Clone for MatchKind`
 
-- `fn clone(self: &Self) -> MatchKind` — [`MatchKind`](#matchkind)
+- <span id="matchkind-clone"></span>`fn clone(&self) -> MatchKind` — [`MatchKind`](#matchkind)
 
 ##### `impl Copy for MatchKind`
 
 ##### `impl Debug for MatchKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="matchkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for MatchKind`
 
-- `fn default() -> MatchKind` — [`MatchKind`](#matchkind)
+- <span id="matchkind-default"></span>`fn default() -> MatchKind` — [`MatchKind`](#matchkind)
 
 ##### `impl Eq for MatchKind`
 
 ##### `impl PartialEq for MatchKind`
 
-- `fn eq(self: &Self, other: &MatchKind) -> bool` — [`MatchKind`](#matchkind)
+- <span id="matchkind-eq"></span>`fn eq(&self, other: &MatchKind) -> bool` — [`MatchKind`](#matchkind)
 
 ##### `impl StructuralPartialEq for MatchKind`
 

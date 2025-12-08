@@ -6,6 +6,17 @@
 
 ANSI escape code parsing state machine
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`definitions`](#definitions) | mod |  |
+| [`table`](#table) | mod |  |
+| [`unnamed`](#unnamed) | enum |  |
+| [`unnamed`](#unnamed) | enum |  |
+| [`state_change`](#state_change) | fn | Transition to next [`State`] |
+| [`state_change_`](#state_change_) | fn |  |
+
 ## Modules
 
 - [`definitions`](definitions/index.md) - 
@@ -40,23 +51,23 @@ enum Action {
 
 ##### `impl Clone for Action`
 
-- `fn clone(self: &Self) -> Action` — [`Action`](#action)
+- <span id="action-clone"></span>`fn clone(&self) -> Action` — [`Action`](#action)
 
 ##### `impl Copy for Action`
 
 ##### `impl Debug for Action`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="action-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Action`
 
-- `fn default() -> Action` — [`Action`](#action)
+- <span id="action-default"></span>`fn default() -> Action` — [`Action`](#action)
 
 ##### `impl Eq for Action`
 
 ##### `impl PartialEq for Action`
 
-- `fn eq(self: &Self, other: &Action) -> bool` — [`Action`](#action)
+- <span id="action-eq"></span>`fn eq(&self, other: &Action) -> bool` — [`Action`](#action)
 
 ##### `impl StructuralPartialEq for Action`
 
@@ -87,23 +98,23 @@ enum State {
 
 ##### `impl Clone for State`
 
-- `fn clone(self: &Self) -> State` — [`State`](#state)
+- <span id="state-clone"></span>`fn clone(&self) -> State` — [`State`](#state)
 
 ##### `impl Copy for State`
 
 ##### `impl Debug for State`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="state-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for State`
 
-- `fn default() -> State` — [`State`](#state)
+- <span id="state-default"></span>`fn default() -> State` — [`State`](#state)
 
 ##### `impl Eq for State`
 
 ##### `impl PartialEq for State`
 
-- `fn eq(self: &Self, other: &State) -> bool` — [`State`](#state)
+- <span id="state-eq"></span>`fn eq(&self, other: &State) -> bool` — [`State`](#state)
 
 ##### `impl StructuralPartialEq for State`
 

@@ -9,6 +9,12 @@ Breadcrumb navigation generation for nested module pages.
 This module provides [`BreadcrumbGenerator`](../index.md) which creates navigation
 links showing the path from crate root to the current module.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`BreadcrumbGenerator`](#breadcrumbgenerator) | struct | Generates breadcrumb navigation for nested module pages. |
+
 ## Structs
 
 ### `BreadcrumbGenerator<'a>`
@@ -37,9 +43,9 @@ the current module, with each segment being a clickable link.
 
 #### Implementations
 
-- `const fn new(module_path: &'a [String], crate_name: &'a str) -> Self`
+- <span id="breadcrumbgenerator-new"></span>`const fn new(module_path: &'a [String], crate_name: &'a str) -> Self`
 
-- `fn generate(self: &Self) -> String`
+- <span id="breadcrumbgenerator-generate"></span>`fn generate(&self) -> String`
 
 #### Trait Implementations
 
@@ -51,17 +57,17 @@ the current module, with each segment being a clickable link.
 
 ##### `impl<T> Pointable for BreadcrumbGenerator<'a>`
 
-- `const ALIGN: usize`
+- <span id="breadcrumbgenerator-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="breadcrumbgenerator-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="breadcrumbgenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="breadcrumbgenerator-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="breadcrumbgenerator-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="breadcrumbgenerator-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T> WithSubscriber for BreadcrumbGenerator<'a>`
 

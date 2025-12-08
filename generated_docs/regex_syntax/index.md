@@ -164,6 +164,62 @@ The following features are available:
   crate. Namely, it implements the `Arbitrary` trait from that crate for the
   [`Ast`](crate::ast::Ast) type. This feature is disabled by default.
 
+## Contents
+
+- [Modules](#modules)
+  - [`ast`](#ast)
+  - [`debug`](#debug)
+  - [`either`](#either)
+  - [`error`](#error)
+  - [`hir`](#hir)
+  - [`parser`](#parser)
+  - [`rank`](#rank)
+  - [`unicode`](#unicode)
+  - [`unicode_tables`](#unicode_tables)
+  - [`utf8`](#utf8)
+- [Structs](#structs)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+- [Enums](#enums)
+  - [`unnamed`](#unnamed)
+- [Functions](#functions)
+  - [`unnamed`](#unnamed)
+  - [`escape`](#escape)
+  - [`escape_into`](#escape_into)
+  - [`is_meta_character`](#is_meta_character)
+  - [`is_escapeable_character`](#is_escapeable_character)
+  - [`is_word_character`](#is_word_character)
+  - [`try_is_word_character`](#try_is_word_character)
+  - [`is_word_byte`](#is_word_byte)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ast`](#ast) | mod | Defines an abstract syntax for regular expressions. |
+| [`debug`](#debug) | mod |  |
+| [`either`](#either) | mod |  |
+| [`error`](#error) | mod |  |
+| [`hir`](#hir) | mod | Defines a high-level intermediate (HIR) representation for regular expressions. |
+| [`parser`](#parser) | mod |  |
+| [`rank`](#rank) | mod |  |
+| [`unicode`](#unicode) | mod |  |
+| [`unicode_tables`](#unicode_tables) | mod |  |
+| [`utf8`](#utf8) | mod | Converts ranges of Unicode scalar values to equivalent ranges of UTF-8 bytes. |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | enum |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`escape`](#escape) | fn | Escapes all regular expression meta characters in `text`. |
+| [`escape_into`](#escape_into) | fn | Escapes all meta characters in `text` and writes the result into `buf`. |
+| [`is_meta_character`](#is_meta_character) | fn | Returns true if the given character has significance in a regex. |
+| [`is_escapeable_character`](#is_escapeable_character) | fn | Returns true if the given character can be escaped in a regex. |
+| [`is_word_character`](#is_word_character) | fn | Returns true if and only if the given character is a Unicode word |
+| [`try_is_word_character`](#try_is_word_character) | fn | Returns true if and only if the given character is a Unicode word |
+| [`is_word_byte`](#is_word_byte) | fn | Returns true if and only if the given character is an ASCII word character. |
+
 ## Modules
 
 - [`ast`](ast/index.md) - Defines an abstract syntax for regular expressions.
@@ -204,19 +260,19 @@ A `Parser` can be configured in more detail via a [`ParserBuilder`](#parserbuild
 
 #### Implementations
 
-- `fn new() -> Parser` — [`Parser`](#parser)
+- <span id="parser-new"></span>`fn new() -> Parser` — [`Parser`](#parser)
 
-- `fn parse(self: &mut Self, pattern: &str) -> Result<hir::Hir, Error>` — [`Hir`](hir/index.md), [`Error`](#error)
+- <span id="parser-parse"></span>`fn parse(&mut self, pattern: &str) -> Result<hir::Hir, Error>` — [`Hir`](hir/index.md), [`Error`](#error)
 
 #### Trait Implementations
 
 ##### `impl Clone for Parser`
 
-- `fn clone(self: &Self) -> Parser` — [`Parser`](#parser)
+- <span id="parser-clone"></span>`fn clone(&self) -> Parser` — [`Parser`](#parser)
 
 ##### `impl Debug for Parser`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="parser-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ParserBuilder`
 
@@ -237,45 +293,45 @@ This type combines the builder options for both the [AST
 
 #### Implementations
 
-- `fn new() -> ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- <span id="parserbuilder-new"></span>`fn new() -> ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- `fn build(self: &Self) -> Parser` — [`Parser`](#parser)
+- <span id="parserbuilder-build"></span>`fn build(&self) -> Parser` — [`Parser`](#parser)
 
-- `fn nest_limit(self: &mut Self, limit: u32) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- <span id="parserbuilder-nest-limit"></span>`fn nest_limit(&mut self, limit: u32) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- `fn octal(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- <span id="parserbuilder-octal"></span>`fn octal(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- `fn utf8(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- <span id="parserbuilder-utf8"></span>`fn utf8(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- `fn ignore_whitespace(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- <span id="parserbuilder-ignore-whitespace"></span>`fn ignore_whitespace(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- `fn case_insensitive(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- <span id="parserbuilder-case-insensitive"></span>`fn case_insensitive(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- `fn multi_line(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- <span id="parserbuilder-multi-line"></span>`fn multi_line(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- `fn dot_matches_new_line(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- <span id="parserbuilder-dot-matches-new-line"></span>`fn dot_matches_new_line(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- `fn crlf(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- <span id="parserbuilder-crlf"></span>`fn crlf(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- `fn line_terminator(self: &mut Self, byte: u8) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- <span id="parserbuilder-line-terminator"></span>`fn line_terminator(&mut self, byte: u8) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- `fn swap_greed(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- <span id="parserbuilder-swap-greed"></span>`fn swap_greed(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- `fn unicode(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- <span id="parserbuilder-unicode"></span>`fn unicode(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
 #### Trait Implementations
 
 ##### `impl Clone for ParserBuilder`
 
-- `fn clone(self: &Self) -> ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- <span id="parserbuilder-clone"></span>`fn clone(&self) -> ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
 ##### `impl Debug for ParserBuilder`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="parserbuilder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for ParserBuilder`
 
-- `fn default() -> ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- <span id="parserbuilder-default"></span>`fn default() -> ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
 ### `UnicodeWordError`
 
@@ -293,17 +349,17 @@ Perl character class `\w` are unavailable. This only occurs when the
 
 ##### `impl Debug for UnicodeWordError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="unicodeworderror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for UnicodeWordError`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="unicodeworderror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for UnicodeWordError`
 
 ##### `impl<T> ToString for UnicodeWordError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="unicodeworderror-to-string"></span>`fn to_string(&self) -> String`
 
 ## Enums
 
@@ -337,15 +393,15 @@ new variant is not considered a breaking change.
 
 ##### `impl Clone for Error`
 
-- `fn clone(self: &Self) -> Error` — [`Error`](#error)
+- <span id="error-clone"></span>`fn clone(&self) -> Error` — [`Error`](#error)
 
 ##### `impl Debug for Error`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="error-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Error`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="error-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq for Error`
 
@@ -353,13 +409,13 @@ new variant is not considered a breaking change.
 
 ##### `impl PartialEq for Error`
 
-- `fn eq(self: &Self, other: &Error) -> bool` — [`Error`](#error)
+- <span id="error-eq"></span>`fn eq(&self, other: &Error) -> bool` — [`Error`](#error)
 
 ##### `impl StructuralPartialEq for Error`
 
 ##### `impl<T> ToString for Error`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="error-to-string"></span>`fn to_string(&self) -> String`
 
 ## Functions
 

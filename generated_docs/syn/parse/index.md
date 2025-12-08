@@ -116,7 +116,7 @@ The `parse_quote!` macro also uses this approach.
 
 Some types can be parsed in several ways depending on context. For example
 an [`Attribute`](../index.md) can be either "outer" like `#[...]` or "inner" like
-`#![...]` and parsing the wrong one would be a bug. Similarly [`Punctuated`](../punctuated/index.md)
+`#![...]` and parsing the wrong one would be a bug. Similarly [`Punctuated`](../index.md)
 may or may not allow trailing punctuation, and parsing it the wrong way
 would either reject valid input or accept invalid input.
 
@@ -174,6 +174,64 @@ fn call_some_parser_methods(input: TokenStream) -> Result<()> {
     Ok(())
 }
 ```
+
+## Contents
+
+- [Modules](#modules)
+  - [`discouraged`](#discouraged)
+- [Structs](#structs)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`ParseBuffer`](#parsebuffer)
+  - [`StepCursor`](#stepcursor)
+  - [`Nothing`](#nothing)
+- [Enums](#enums)
+  - [`Unexpected`](#unexpected)
+- [Traits](#traits)
+  - [`unnamed`](#unnamed)
+  - [`Parse`](#parse)
+  - [`Parser`](#parser)
+- [Functions](#functions)
+  - [`advance_step_cursor`](#advance_step_cursor)
+  - [`new_parse_buffer`](#new_parse_buffer)
+  - [`cell_clone`](#cell_clone)
+  - [`inner_unexpected`](#inner_unexpected)
+  - [`get_unexpected`](#get_unexpected)
+  - [`span_of_unexpected_ignoring_nones`](#span_of_unexpected_ignoring_nones)
+  - [`tokens_to_parse_buffer`](#tokens_to_parse_buffer)
+  - [`parse_scoped`](#parse_scoped)
+  - [`err_unexpected_token`](#err_unexpected_token)
+- [Type Aliases](#type-aliases)
+  - [`unnamed`](#unnamed)
+  - [`ParseStream`](#parsestream)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`discouraged`](#discouraged) | mod | Extensions to the parsing API with niche applicability. |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`ParseBuffer`](#parsebuffer) | struct | Cursor position within a buffered token stream. |
+| [`StepCursor`](#stepcursor) | struct | Cursor state associated with speculative parsing. |
+| [`Nothing`](#nothing) | struct | An empty syntax tree node that consumes no tokens when parsed. |
+| [`Unexpected`](#unexpected) | enum |  |
+| [`unnamed`](#unnamed) | trait |  |
+| [`Parse`](#parse) | trait | Parsing interface implemented by all types that can be parsed in a default |
+| [`Parser`](#parser) | trait | Parser that can parse Rust tokens into a particular syntax tree node. |
+| [`advance_step_cursor`](#advance_step_cursor) | fn |  |
+| [`new_parse_buffer`](#new_parse_buffer) | fn |  |
+| [`cell_clone`](#cell_clone) | fn |  |
+| [`inner_unexpected`](#inner_unexpected) | fn |  |
+| [`get_unexpected`](#get_unexpected) | fn |  |
+| [`span_of_unexpected_ignoring_nones`](#span_of_unexpected_ignoring_nones) | fn |  |
+| [`tokens_to_parse_buffer`](#tokens_to_parse_buffer) | fn |  |
+| [`parse_scoped`](#parse_scoped) | fn |  |
+| [`err_unexpected_token`](#err_unexpected_token) | fn |  |
+| [`unnamed`](#unnamed) | type |  |
+| [`ParseStream`](#parsestream) | type | Input to a Syn parser function. |
 
 ## Modules
 
@@ -270,49 +328,49 @@ mod expand {
 
 #### Implementations
 
-- `fn new<T: Display>(span: Span, message: T) -> Self`
+- <span id="error-new"></span>`fn new<T: Display>(span: Span, message: T) -> Self`
 
-- `fn new_spanned<T: ToTokens, U: Display>(tokens: T, message: U) -> Self`
+- <span id="error-new-spanned"></span>`fn new_spanned<T: ToTokens, U: Display>(tokens: T, message: U) -> Self`
 
-- `fn span(self: &Self) -> Span`
+- <span id="error-span"></span>`fn span(&self) -> Span`
 
-- `fn to_compile_error(self: &Self) -> TokenStream`
+- <span id="error-to-compile-error"></span>`fn to_compile_error(&self) -> TokenStream`
 
-- `fn into_compile_error(self: Self) -> TokenStream`
+- <span id="error-into-compile-error"></span>`fn into_compile_error(self) -> TokenStream`
 
-- `fn combine(self: &mut Self, another: Error)` — [`Error`](../index.md)
+- <span id="error-combine"></span>`fn combine(&mut self, another: Error)` — [`Error`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Error`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="error-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for Error`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="error-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Error`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="error-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Error for Error`
 
 ##### `impl Extend for Error`
 
-- `fn extend<T: IntoIterator<Item = Error>>(self: &mut Self, iter: T)`
+- <span id="error-extend"></span>`fn extend<T: IntoIterator<Item = Error>>(&mut self, iter: T)`
 
 ##### `impl IntoIterator for Error`
 
-- `type Item = Error`
+- <span id="error-item"></span>`type Item = Error`
 
-- `type IntoIter = IntoIter`
+- <span id="error-intoiter"></span>`type IntoIter = IntoIter`
 
-- `fn into_iter(self: Self) -> <Self as >::IntoIter`
+- <span id="error-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
 ##### `impl<T> ToString for Error`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="error-to-string"></span>`fn to_string(&self) -> String`
 
 ### `End`
 
@@ -455,7 +513,7 @@ Ok(())
 
 ##### `impl Clone for End`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="end-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for End`
 
@@ -465,9 +523,9 @@ Ok(())
 
 ##### `impl<T> Token for End`
 
-- `fn peek(cursor: Cursor<'_>) -> bool` — [`Cursor`](../buffer/index.md)
+- <span id="end-peek"></span>`fn peek(cursor: Cursor<'_>) -> bool` — [`Cursor`](../buffer/index.md)
 
-- `fn display() -> &'static str`
+- <span id="end-display"></span>`fn display() -> &'static str`
 
 ### `Lookahead1<'a>`
 
@@ -533,9 +591,9 @@ impl Parse for GenericParam {
 
 #### Implementations
 
-- `fn peek<T: Peek>(self: &Self, token: T) -> bool`
+- <span id="lookahead1-peek"></span>`fn peek<T: Peek>(&self, token: T) -> bool`
 
-- `fn error(self: Self) -> Error` — [`Error`](../index.md)
+- <span id="lookahead1-error"></span>`fn error(self) -> Error` — [`Error`](../index.md)
 
 ### `ParseBuffer<'a>`
 
@@ -570,61 +628,61 @@ you will need to go through one of the public parsing entry points.
 
 #### Implementations
 
-- `fn parse<T: Parse>(self: &Self) -> Result<T>` — [`Result`](../index.md)
+- <span id="parsebuffer-parse"></span>`fn parse<T: Parse>(&self) -> Result<T>` — [`Result`](../index.md)
 
-- `fn call<T>(self: &'a Self, function: fn(ParseStream<'a>) -> Result<T>) -> Result<T>` — [`ParseStream`](#parsestream), [`Result`](../index.md)
+- <span id="parsebuffer-call"></span>`fn call<T>(self: &'a Self, function: fn(ParseStream<'a>) -> Result<T>) -> Result<T>` — [`ParseStream`](#parsestream), [`Result`](../index.md)
 
-- `fn peek<T: Peek>(self: &Self, token: T) -> bool`
+- <span id="parsebuffer-peek"></span>`fn peek<T: Peek>(&self, token: T) -> bool`
 
-- `fn peek2<T: Peek>(self: &Self, token: T) -> bool`
+- <span id="parsebuffer-peek2"></span>`fn peek2<T: Peek>(&self, token: T) -> bool`
 
-- `fn peek3<T: Peek>(self: &Self, token: T) -> bool`
+- <span id="parsebuffer-peek3"></span>`fn peek3<T: Peek>(&self, token: T) -> bool`
 
-- `fn parse_terminated<T, P>(self: &'a Self, parser: fn(ParseStream<'a>) -> Result<T>, separator: P) -> Result<Punctuated<T, <P as >::Token>>` — [`ParseStream`](#parsestream), [`Result`](../index.md), [`Punctuated`](../punctuated/index.md), [`Peek`](#peek)
+- <span id="parsebuffer-parse-terminated"></span>`fn parse_terminated<T, P>(self: &'a Self, parser: fn(ParseStream<'a>) -> Result<T>, separator: P) -> Result<Punctuated<T, <P as >::Token>>` — [`ParseStream`](#parsestream), [`Result`](../index.md), [`Punctuated`](../punctuated/index.md), [`Peek`](#peek)
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="parsebuffer-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn lookahead1(self: &Self) -> Lookahead1<'a>` — [`Lookahead1`](#lookahead1)
+- <span id="parsebuffer-lookahead1"></span>`fn lookahead1(&self) -> Lookahead1<'a>` — [`Lookahead1`](#lookahead1)
 
-- `fn fork(self: &Self) -> Self`
+- <span id="parsebuffer-fork"></span>`fn fork(&self) -> Self`
 
-- `fn error<T: Display>(self: &Self, message: T) -> Error` — [`Error`](../index.md)
+- <span id="parsebuffer-error"></span>`fn error<T: Display>(&self, message: T) -> Error` — [`Error`](../index.md)
 
-- `fn step<F, R>(self: &Self, function: F) -> Result<R>` — [`Result`](../index.md)
+- <span id="parsebuffer-step"></span>`fn step<F, R>(&self, function: F) -> Result<R>` — [`Result`](../index.md)
 
-- `fn span(self: &Self) -> Span`
+- <span id="parsebuffer-span"></span>`fn span(&self) -> Span`
 
-- `fn cursor(self: &Self) -> Cursor<'a>` — [`Cursor`](../buffer/index.md)
+- <span id="parsebuffer-cursor"></span>`fn cursor(&self) -> Cursor<'a>` — [`Cursor`](../buffer/index.md)
 
-- `fn check_unexpected(self: &Self) -> Result<()>` — [`Result`](../index.md)
+- <span id="parsebuffer-check-unexpected"></span>`fn check_unexpected(&self) -> Result<()>` — [`Result`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'a> AnyDelimiter for crate::parse::ParseBuffer<'a>`
 
-- `fn parse_any_delimiter(self: &Self) -> Result<(Delimiter, DelimSpan, ParseBuffer<'_>)>` — [`Result`](../index.md), [`ParseBuffer`](#parsebuffer)
+- <span id="crateparseparsebuffer-parse-any-delimiter"></span>`fn parse_any_delimiter(&self) -> Result<(Delimiter, DelimSpan, ParseBuffer<'_>)>` — [`Result`](../index.md), [`ParseBuffer`](#parsebuffer)
 
 ##### `impl<'a> Debug for ParseBuffer<'a>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="parsebuffer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'a> Display for ParseBuffer<'a>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="parsebuffer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'a> Drop for ParseBuffer<'a>`
 
-- `fn drop(self: &mut Self)`
+- <span id="parsebuffer-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<'a> RefUnwindSafe for ParseBuffer<'a>`
 
 ##### `impl<'a> Speculative for crate::parse::ParseBuffer<'a>`
 
-- `fn advance_to(self: &Self, fork: &Self)`
+- <span id="crateparseparsebuffer-advance-to"></span>`fn advance_to(&self, fork: &Self)`
 
 ##### `impl<T> ToString for ParseBuffer<'a>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="parsebuffer-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl<'a> UnwindSafe for ParseBuffer<'a>`
 
@@ -683,25 +741,25 @@ assert_eq!(remainder.to_string(), "b c");
 
 #### Implementations
 
-- `fn error<T: Display>(self: Self, message: T) -> Error` — [`Error`](../index.md)
+- <span id="stepcursor-error"></span>`fn error<T: Display>(self, message: T) -> Error` — [`Error`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'c, 'a> Clone for StepCursor<'c, 'a>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="stepcursor-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<'c, 'a> Copy for StepCursor<'c, 'a>`
 
 ##### `impl<'c, 'a> Deref for StepCursor<'c, 'a>`
 
-- `type Target = Cursor<'c>`
+- <span id="stepcursor-target"></span>`type Target = Cursor<'c>`
 
-- `fn deref(self: &Self) -> &<Self as >::Target`
+- <span id="stepcursor-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl<P, T> Receiver for StepCursor<'c, 'a>`
 
-- `type Target = T`
+- <span id="stepcursor-target"></span>`type Target = T`
 
 ### `Nothing`
 
@@ -744,37 +802,37 @@ error: unexpected token
 
 ##### `impl Clone for Nothing`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="nothing-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Nothing`
 
 ##### `impl Debug for Nothing`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="nothing-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Nothing`
 
 ##### `impl Hash for Nothing`
 
-- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+- <span id="nothing-hash"></span>`fn hash<H: Hasher>(&self, _state: &mut H)`
 
 ##### `impl Parse for Nothing`
 
-- `fn parse(_input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](#parsestream), [`Result`](../index.md)
+- <span id="nothing-parse"></span>`fn parse(_input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](#parsestream), [`Result`](../index.md)
 
 ##### `impl PartialEq for Nothing`
 
-- `fn eq(self: &Self, _other: &Self) -> bool`
+- <span id="nothing-eq"></span>`fn eq(&self, _other: &Self) -> bool`
 
 ##### `impl<T> Sealed for Nothing`
 
 ##### `impl<T> Spanned for Nothing`
 
-- `fn span(self: &Self) -> Span`
+- <span id="nothing-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Nothing`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="nothing-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ## Enums
 
@@ -792,11 +850,11 @@ enum Unexpected {
 
 ##### `impl Clone for Unexpected`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="unexpected-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Default for Unexpected`
 
-- `fn default() -> Self`
+- <span id="unexpected-default"></span>`fn default() -> Self`
 
 ## Traits
 
@@ -832,15 +890,15 @@ Refer to the [module documentation] for details about parsing in Syn.
 
 - `type Output`
 
-- `fn parse2(self: Self, tokens: TokenStream) -> Result<<Self as >::Output>`
+- `fn parse2(self, tokens: TokenStream) -> Result<<Self as >::Output>`
 
   Parse a proc-macro2 token stream into the chosen syntax tree node.
 
-- `fn parse(self: Self, tokens: proc_macro::TokenStream) -> Result<<Self as >::Output>`
+- `fn parse(self, tokens: proc_macro::TokenStream) -> Result<<Self as >::Output>`
 
   Parse tokens of source code into the chosen syntax tree node.
 
-- `fn parse_str(self: Self, s: &str) -> Result<<Self as >::Output>`
+- `fn parse_str(self, s: &str) -> Result<<Self as >::Output>`
 
   Parse a string of Rust code into the chosen syntax tree node.
 

@@ -4,6 +4,14 @@
 
 # Module `attr`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Args`](#args) | struct |  |
+| [`Then`](#then) | enum |  |
+| [`parse`](#parse) | fn |  |
+
 ## Structs
 
 ### `Args`

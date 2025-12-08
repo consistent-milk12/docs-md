@@ -25,6 +25,45 @@ assert_eq!(format!("{}", demangle("_ZN3foo17h05af221e174051e9E")), "foo::h05af22
 assert_eq!(format!("{:#}", demangle("_ZN3foo17h05af221e174051e9E")), "foo");
 ```
 
+## Contents
+
+- [Modules](#modules)
+  - [`legacy`](#legacy)
+  - [`v0`](#v0)
+- [Structs](#structs)
+  - [`Demangle`](#demangle)
+  - [`TryDemangleError`](#trydemangleerror)
+  - [`SizeLimitExhausted`](#sizelimitexhausted)
+  - [`SizeLimitedFmtAdapter`](#sizelimitedfmtadapter)
+- [Enums](#enums)
+  - [`DemangleStyle`](#demanglestyle)
+- [Functions](#functions)
+  - [`demangle`](#demangle)
+  - [`try_demangle`](#try_demangle)
+  - [`is_symbol_like`](#is_symbol_like)
+  - [`is_ascii_alphanumeric`](#is_ascii_alphanumeric)
+  - [`is_ascii_punctuation`](#is_ascii_punctuation)
+- [Constants](#constants)
+  - [`MAX_SIZE`](#max_size)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`legacy`](#legacy) | mod |  |
+| [`v0`](#v0) | mod |  |
+| [`Demangle`](#demangle) | struct | Representation of a demangled symbol name. |
+| [`TryDemangleError`](#trydemangleerror) | struct | Error returned from the `try_demangle` function below when demangling fails. |
+| [`SizeLimitExhausted`](#sizelimitexhausted) | struct |  |
+| [`SizeLimitedFmtAdapter`](#sizelimitedfmtadapter) | struct |  |
+| [`DemangleStyle`](#demanglestyle) | enum |  |
+| [`demangle`](#demangle) | fn | De-mangles a Rust symbol into a more readable version |
+| [`try_demangle`](#try_demangle) | fn | The same as `demangle`, except return an `Err` if the string does not appear |
+| [`is_symbol_like`](#is_symbol_like) | fn |  |
+| [`is_ascii_alphanumeric`](#is_ascii_alphanumeric) | fn |  |
+| [`is_ascii_punctuation`](#is_ascii_punctuation) | fn |  |
+| [`MAX_SIZE`](#max_size) | const |  |
+
 ## Modules
 
 - [`legacy`](legacy/index.md) - 
@@ -46,17 +85,17 @@ Representation of a demangled symbol name.
 
 #### Implementations
 
-- `fn as_str(self: &Self) -> &'a str`
+- <span id="demangle-as-str"></span>`fn as_str(&self) -> &'a str`
 
 #### Trait Implementations
 
 ##### `impl<'a> Debug for Demangle<'a>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="demangle-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'a> Display for Demangle<'a>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="demangle-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `TryDemangleError`
 
@@ -72,11 +111,11 @@ Error returned from the `try_demangle` function below when demangling fails.
 
 ##### `impl Clone for TryDemangleError`
 
-- `fn clone(self: &Self) -> TryDemangleError` — [`TryDemangleError`](#trydemangleerror)
+- <span id="trydemangleerror-clone"></span>`fn clone(&self) -> TryDemangleError` — [`TryDemangleError`](#trydemangleerror)
 
 ##### `impl Debug for TryDemangleError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="trydemangleerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `SizeLimitExhausted`
 
@@ -88,13 +127,13 @@ struct SizeLimitExhausted;
 
 ##### `impl Clone for SizeLimitExhausted`
 
-- `fn clone(self: &Self) -> SizeLimitExhausted` — [`SizeLimitExhausted`](#sizelimitexhausted)
+- <span id="sizelimitexhausted-clone"></span>`fn clone(&self) -> SizeLimitExhausted` — [`SizeLimitExhausted`](#sizelimitexhausted)
 
 ##### `impl Copy for SizeLimitExhausted`
 
 ##### `impl Debug for SizeLimitExhausted`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sizelimitexhausted-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `SizeLimitedFmtAdapter<F>`
 
@@ -109,7 +148,7 @@ struct SizeLimitedFmtAdapter<F> {
 
 ##### `impl<F: fmt::Write> Write for SizeLimitedFmtAdapter<F>`
 
-- `fn write_str(self: &mut Self, s: &str) -> fmt::Result`
+- <span id="sizelimitedfmtadapter-write-str"></span>`fn write_str(&mut self, s: &str) -> fmt::Result`
 
 ## Enums
 
@@ -126,7 +165,7 @@ enum DemangleStyle<'a> {
 
 ##### `impl<'a> Display for DemangleStyle<'a>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="demanglestyle-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Functions
 

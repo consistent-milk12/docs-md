@@ -4,6 +4,32 @@
 
 # Module `lookahead`
 
+## Contents
+
+- [Structs](#structs)
+  - [`Lookahead1`](#lookahead1)
+  - [`CommaSeparated`](#commaseparated)
+  - [`End`](#end)
+- [Enums](#enums)
+  - [`TokenMarker`](#tokenmarker)
+- [Traits](#traits)
+  - [`Peek`](#peek)
+- [Functions](#functions)
+  - [`new`](#new)
+  - [`peek_impl`](#peek_impl)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Lookahead1`](#lookahead1) | struct | Support for checking the next token in a stream to decide how to parse. |
+| [`CommaSeparated`](#commaseparated) | struct |  |
+| [`End`](#end) | struct | Pseudo-token used for peeking the end of a parse stream. |
+| [`TokenMarker`](#tokenmarker) | enum |  |
+| [`Peek`](#peek) | trait | Types that can be parsed by looking at just one token. |
+| [`new`](#new) | fn |  |
+| [`peek_impl`](#peek_impl) | fn |  |
+
 ## Structs
 
 ### `Lookahead1<'a>`
@@ -70,9 +96,9 @@ impl Parse for GenericParam {
 
 #### Implementations
 
-- `fn peek<T: Peek>(self: &Self, token: T) -> bool`
+- <span id="lookahead1-peek"></span>`fn peek<T: Peek>(&self, token: T) -> bool`
 
-- `fn error(self: Self) -> Error` — [`Error`](../index.md)
+- <span id="lookahead1-error"></span>`fn error(self) -> Error` — [`Error`](../index.md)
 
 ### `CommaSeparated<'a>`
 
@@ -84,11 +110,11 @@ struct CommaSeparated<'a>(&'a [&'a str]);
 
 ##### `impl<'a> Display for CommaSeparated<'a>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="commaseparated-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for CommaSeparated<'a>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="commaseparated-to-string"></span>`fn to_string(&self) -> String`
 
 ### `End`
 
@@ -231,7 +257,7 @@ Ok(())
 
 ##### `impl Clone for End`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="end-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for End`
 
@@ -241,9 +267,9 @@ Ok(())
 
 ##### `impl<T> Token for End`
 
-- `fn peek(cursor: Cursor<'_>) -> bool` — [`Cursor`](../buffer/index.md)
+- <span id="end-peek"></span>`fn peek(cursor: Cursor<'_>) -> bool` — [`Cursor`](../buffer/index.md)
 
-- `fn display() -> &'static str`
+- <span id="end-display"></span>`fn display() -> &'static str`
 
 ## Enums
 

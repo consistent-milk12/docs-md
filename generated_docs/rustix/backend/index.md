@@ -20,6 +20,18 @@ Some of this could be auto-generated from the Linux header file
 such as which pointers are array slices, out parameters, or in-out
 parameters, which integers are owned or borrowed file descriptors, etc.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`arch`](#arch) | mod | Architecture-specific syscall code. |
+| [`conv`](#conv) | mod | Convert values to [`ArgReg`] and from [`RetReg`]. |
+| [`reg`](#reg) | mod | Encapsulation for system call arguments and return values. |
+| [`io`](#io) | mod |  |
+| [`termios`](#termios) | mod |  |
+| [`c`](#c) | mod | Adapt the Linux API to resemble a POSIX-style libc API. |
+| [`MAX_IOV`](#max_iov) | const | The maximum number of buffers that can be passed into a vectored I/O system |
+
 ## Modules
 
 - [`arch`](arch/index.md) - Architecture-specific syscall code.

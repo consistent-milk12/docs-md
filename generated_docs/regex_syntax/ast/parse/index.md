@@ -6,6 +6,40 @@
 
 This module provides a regular expression parser.
 
+## Contents
+
+- [Structs](#structs)
+  - [`ParserBuilder`](#parserbuilder)
+  - [`Parser`](#parser)
+  - [`ParserI`](#parseri)
+  - [`NestLimiter`](#nestlimiter)
+- [Enums](#enums)
+  - [`Primitive`](#primitive)
+  - [`GroupState`](#groupstate)
+  - [`ClassState`](#classstate)
+- [Functions](#functions)
+  - [`is_hex`](#is_hex)
+  - [`is_capture_char`](#is_capture_char)
+  - [`specialize_err`](#specialize_err)
+- [Type Aliases](#type-aliases)
+  - [`Result`](#result)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ParserBuilder`](#parserbuilder) | struct | A builder for a regular expression parser. |
+| [`Parser`](#parser) | struct | A regular expression parser. |
+| [`ParserI`](#parseri) | struct | ParserI is the internal parser implementation. |
+| [`NestLimiter`](#nestlimiter) | struct | A type that traverses a fully parsed Ast and checks whether its depth |
+| [`Primitive`](#primitive) | enum | A primitive is an expression with no sub-expressions. |
+| [`GroupState`](#groupstate) | enum | GroupState represents a single stack frame while parsing nested groups |
+| [`ClassState`](#classstate) | enum | ClassState represents a single stack frame while parsing character classes. |
+| [`is_hex`](#is_hex) | fn | Returns true if the given character is a hexadecimal digit. |
+| [`is_capture_char`](#is_capture_char) | fn | Returns true if the given character is a valid in a capture group name. |
+| [`specialize_err`](#specialize_err) | fn | When the result is an error, transforms the ast::ErrorKind from the source |
+| [`Result`](#result) | type |  |
+
 ## Structs
 
 ### `ParserBuilder`
@@ -25,31 +59,31 @@ This builder permits modifying configuration options for the parser.
 
 #### Implementations
 
-- `fn new() -> ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- <span id="parserbuilder-new"></span>`fn new() -> ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- `fn build(self: &Self) -> Parser` — [`Parser`](#parser)
+- <span id="parserbuilder-build"></span>`fn build(&self) -> Parser` — [`Parser`](#parser)
 
-- `fn nest_limit(self: &mut Self, limit: u32) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- <span id="parserbuilder-nest-limit"></span>`fn nest_limit(&mut self, limit: u32) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- `fn octal(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- <span id="parserbuilder-octal"></span>`fn octal(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- `fn ignore_whitespace(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- <span id="parserbuilder-ignore-whitespace"></span>`fn ignore_whitespace(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- `fn empty_min_range(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- <span id="parserbuilder-empty-min-range"></span>`fn empty_min_range(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
 #### Trait Implementations
 
 ##### `impl Clone for ParserBuilder`
 
-- `fn clone(self: &Self) -> ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- <span id="parserbuilder-clone"></span>`fn clone(&self) -> ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
 ##### `impl Debug for ParserBuilder`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="parserbuilder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for ParserBuilder`
 
-- `fn default() -> ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- <span id="parserbuilder-default"></span>`fn default() -> ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
 ### `Parser`
 
@@ -139,23 +173,23 @@ A `Parser` can be configured in more detail via a [`ParserBuilder`](#parserbuild
 
 #### Implementations
 
-- `fn new() -> Parser` — [`Parser`](#parser)
+- <span id="parser-new"></span>`fn new() -> Parser` — [`Parser`](#parser)
 
-- `fn parse(self: &mut Self, pattern: &str) -> core::result::Result<Ast, ast::Error>` — [`Ast`](../index.md), [`Error`](../index.md)
+- <span id="parser-parse"></span>`fn parse(&mut self, pattern: &str) -> core::result::Result<Ast, ast::Error>` — [`Ast`](../index.md), [`Error`](../index.md)
 
-- `fn parse_with_comments(self: &mut Self, pattern: &str) -> core::result::Result<ast::WithComments, ast::Error>` — [`WithComments`](../index.md), [`Error`](../index.md)
+- <span id="parser-parse-with-comments"></span>`fn parse_with_comments(&mut self, pattern: &str) -> core::result::Result<ast::WithComments, ast::Error>` — [`WithComments`](../index.md), [`Error`](../index.md)
 
-- `fn reset(self: &Self)`
+- <span id="parser-reset"></span>`fn reset(&self)`
 
 #### Trait Implementations
 
 ##### `impl Clone for Parser`
 
-- `fn clone(self: &Self) -> Parser` — [`Parser`](#parser)
+- <span id="parser-clone"></span>`fn clone(&self) -> Parser` — [`Parser`](#parser)
 
 ##### `impl Debug for Parser`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="parser-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ParserI<'s, P>`
 
@@ -188,61 +222,61 @@ work against the internal interface of the parser.
 
 #### Implementations
 
-- `fn parse(self: &Self) -> core::result::Result<Ast, ast::Error>` — [`Ast`](../index.md), [`Error`](../index.md)
+- <span id="parseri-parse"></span>`fn parse(&self) -> core::result::Result<Ast, ast::Error>` — [`Ast`](../index.md), [`Error`](../index.md)
 
-- `fn parse_with_comments(self: &Self) -> core::result::Result<ast::WithComments, ast::Error>` — [`WithComments`](../index.md), [`Error`](../index.md)
+- <span id="parseri-parse-with-comments"></span>`fn parse_with_comments(&self) -> core::result::Result<ast::WithComments, ast::Error>` — [`WithComments`](../index.md), [`Error`](../index.md)
 
-- `fn parse_uncounted_repetition(self: &Self, concat: ast::Concat, kind: ast::RepetitionKind) -> core::result::Result<ast::Concat, ast::Error>` — [`Concat`](../index.md), [`RepetitionKind`](../index.md), [`Error`](../index.md)
+- <span id="parseri-parse-uncounted-repetition"></span>`fn parse_uncounted_repetition(&self, concat: ast::Concat, kind: ast::RepetitionKind) -> core::result::Result<ast::Concat, ast::Error>` — [`Concat`](../index.md), [`RepetitionKind`](../index.md), [`Error`](../index.md)
 
-- `fn parse_counted_repetition(self: &Self, concat: ast::Concat) -> core::result::Result<ast::Concat, ast::Error>` — [`Concat`](../index.md), [`Error`](../index.md)
+- <span id="parseri-parse-counted-repetition"></span>`fn parse_counted_repetition(&self, concat: ast::Concat) -> core::result::Result<ast::Concat, ast::Error>` — [`Concat`](../index.md), [`Error`](../index.md)
 
-- `fn parse_group(self: &Self) -> core::result::Result<Either<ast::SetFlags, ast::Group>, ast::Error>` — [`Either`](../../either/index.md), [`SetFlags`](../index.md), [`Group`](../index.md), [`Error`](../index.md)
+- <span id="parseri-parse-group"></span>`fn parse_group(&self) -> core::result::Result<Either<ast::SetFlags, ast::Group>, ast::Error>` — [`Either`](../../either/index.md), [`SetFlags`](../index.md), [`Group`](../index.md), [`Error`](../index.md)
 
-- `fn parse_capture_name(self: &Self, capture_index: u32) -> core::result::Result<ast::CaptureName, ast::Error>` — [`CaptureName`](../index.md), [`Error`](../index.md)
+- <span id="parseri-parse-capture-name"></span>`fn parse_capture_name(&self, capture_index: u32) -> core::result::Result<ast::CaptureName, ast::Error>` — [`CaptureName`](../index.md), [`Error`](../index.md)
 
-- `fn parse_flags(self: &Self) -> core::result::Result<ast::Flags, ast::Error>` — [`Flags`](../index.md), [`Error`](../index.md)
+- <span id="parseri-parse-flags"></span>`fn parse_flags(&self) -> core::result::Result<ast::Flags, ast::Error>` — [`Flags`](../index.md), [`Error`](../index.md)
 
-- `fn parse_flag(self: &Self) -> core::result::Result<ast::Flag, ast::Error>` — [`Flag`](../index.md), [`Error`](../index.md)
+- <span id="parseri-parse-flag"></span>`fn parse_flag(&self) -> core::result::Result<ast::Flag, ast::Error>` — [`Flag`](../index.md), [`Error`](../index.md)
 
-- `fn parse_primitive(self: &Self) -> core::result::Result<Primitive, ast::Error>` — [`Primitive`](#primitive), [`Error`](../index.md)
+- <span id="parseri-parse-primitive"></span>`fn parse_primitive(&self) -> core::result::Result<Primitive, ast::Error>` — [`Primitive`](#primitive), [`Error`](../index.md)
 
-- `fn parse_escape(self: &Self) -> core::result::Result<Primitive, ast::Error>` — [`Primitive`](#primitive), [`Error`](../index.md)
+- <span id="parseri-parse-escape"></span>`fn parse_escape(&self) -> core::result::Result<Primitive, ast::Error>` — [`Primitive`](#primitive), [`Error`](../index.md)
 
-- `fn maybe_parse_special_word_boundary(self: &Self, wb_start: Position) -> core::result::Result<Option<ast::AssertionKind>, ast::Error>` — [`Position`](../index.md), [`AssertionKind`](../index.md), [`Error`](../index.md)
+- <span id="parseri-maybe-parse-special-word-boundary"></span>`fn maybe_parse_special_word_boundary(&self, wb_start: Position) -> core::result::Result<Option<ast::AssertionKind>, ast::Error>` — [`Position`](../index.md), [`AssertionKind`](../index.md), [`Error`](../index.md)
 
-- `fn parse_octal(self: &Self) -> ast::Literal` — [`Literal`](../index.md)
+- <span id="parseri-parse-octal"></span>`fn parse_octal(&self) -> ast::Literal` — [`Literal`](../index.md)
 
-- `fn parse_hex(self: &Self) -> core::result::Result<ast::Literal, ast::Error>` — [`Literal`](../index.md), [`Error`](../index.md)
+- <span id="parseri-parse-hex"></span>`fn parse_hex(&self) -> core::result::Result<ast::Literal, ast::Error>` — [`Literal`](../index.md), [`Error`](../index.md)
 
-- `fn parse_hex_digits(self: &Self, kind: ast::HexLiteralKind) -> core::result::Result<ast::Literal, ast::Error>` — [`HexLiteralKind`](../index.md), [`Literal`](../index.md), [`Error`](../index.md)
+- <span id="parseri-parse-hex-digits"></span>`fn parse_hex_digits(&self, kind: ast::HexLiteralKind) -> core::result::Result<ast::Literal, ast::Error>` — [`HexLiteralKind`](../index.md), [`Literal`](../index.md), [`Error`](../index.md)
 
-- `fn parse_hex_brace(self: &Self, kind: ast::HexLiteralKind) -> core::result::Result<ast::Literal, ast::Error>` — [`HexLiteralKind`](../index.md), [`Literal`](../index.md), [`Error`](../index.md)
+- <span id="parseri-parse-hex-brace"></span>`fn parse_hex_brace(&self, kind: ast::HexLiteralKind) -> core::result::Result<ast::Literal, ast::Error>` — [`HexLiteralKind`](../index.md), [`Literal`](../index.md), [`Error`](../index.md)
 
-- `fn parse_decimal(self: &Self) -> core::result::Result<u32, ast::Error>` — [`Error`](../index.md)
+- <span id="parseri-parse-decimal"></span>`fn parse_decimal(&self) -> core::result::Result<u32, ast::Error>` — [`Error`](../index.md)
 
-- `fn parse_set_class(self: &Self) -> core::result::Result<ast::ClassBracketed, ast::Error>` — [`ClassBracketed`](../index.md), [`Error`](../index.md)
+- <span id="parseri-parse-set-class"></span>`fn parse_set_class(&self) -> core::result::Result<ast::ClassBracketed, ast::Error>` — [`ClassBracketed`](../index.md), [`Error`](../index.md)
 
-- `fn parse_set_class_range(self: &Self) -> core::result::Result<ast::ClassSetItem, ast::Error>` — [`ClassSetItem`](../index.md), [`Error`](../index.md)
+- <span id="parseri-parse-set-class-range"></span>`fn parse_set_class_range(&self) -> core::result::Result<ast::ClassSetItem, ast::Error>` — [`ClassSetItem`](../index.md), [`Error`](../index.md)
 
-- `fn parse_set_class_item(self: &Self) -> core::result::Result<Primitive, ast::Error>` — [`Primitive`](#primitive), [`Error`](../index.md)
+- <span id="parseri-parse-set-class-item"></span>`fn parse_set_class_item(&self) -> core::result::Result<Primitive, ast::Error>` — [`Primitive`](#primitive), [`Error`](../index.md)
 
-- `fn parse_set_class_open(self: &Self) -> core::result::Result<(ast::ClassBracketed, ast::ClassSetUnion), ast::Error>` — [`ClassBracketed`](../index.md), [`ClassSetUnion`](../index.md), [`Error`](../index.md)
+- <span id="parseri-parse-set-class-open"></span>`fn parse_set_class_open(&self) -> core::result::Result<(ast::ClassBracketed, ast::ClassSetUnion), ast::Error>` — [`ClassBracketed`](../index.md), [`ClassSetUnion`](../index.md), [`Error`](../index.md)
 
-- `fn maybe_parse_ascii_class(self: &Self) -> Option<ast::ClassAscii>` — [`ClassAscii`](../index.md)
+- <span id="parseri-maybe-parse-ascii-class"></span>`fn maybe_parse_ascii_class(&self) -> Option<ast::ClassAscii>` — [`ClassAscii`](../index.md)
 
-- `fn parse_unicode_class(self: &Self) -> core::result::Result<ast::ClassUnicode, ast::Error>` — [`ClassUnicode`](../index.md), [`Error`](../index.md)
+- <span id="parseri-parse-unicode-class"></span>`fn parse_unicode_class(&self) -> core::result::Result<ast::ClassUnicode, ast::Error>` — [`ClassUnicode`](../index.md), [`Error`](../index.md)
 
-- `fn parse_perl_class(self: &Self) -> ast::ClassPerl` — [`ClassPerl`](../index.md)
+- <span id="parseri-parse-perl-class"></span>`fn parse_perl_class(&self) -> ast::ClassPerl` — [`ClassPerl`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<'s, P: $crate::clone::Clone> Clone for ParserI<'s, P>`
+##### `impl<'s, P: clone::Clone> Clone for ParserI<'s, P>`
 
-- `fn clone(self: &Self) -> ParserI<'s, P>` — [`ParserI`](#parseri)
+- <span id="parseri-clone"></span>`fn clone(&self) -> ParserI<'s, P>` — [`ParserI`](#parseri)
 
-##### `impl<'s, P: $crate::fmt::Debug> Debug for ParserI<'s, P>`
+##### `impl<'s, P: fmt::Debug> Debug for ParserI<'s, P>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="parseri-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `NestLimiter<'p, 's, P>`
 
@@ -268,39 +302,39 @@ exceeds the specified nesting limit. If it does, then an error is returned.
 
 #### Implementations
 
-- `fn new(p: &'p ParserI<'s, P>) -> NestLimiter<'p, 's, P>` — [`ParserI`](#parseri), [`NestLimiter`](#nestlimiter)
+- <span id="nestlimiter-new"></span>`fn new(p: &'p ParserI<'s, P>) -> NestLimiter<'p, 's, P>` — [`ParserI`](#parseri), [`NestLimiter`](#nestlimiter)
 
-- `fn check(self: Self, ast: &Ast) -> core::result::Result<(), ast::Error>` — [`Ast`](../index.md), [`Error`](../index.md)
+- <span id="nestlimiter-check"></span>`fn check(self, ast: &Ast) -> core::result::Result<(), ast::Error>` — [`Ast`](../index.md), [`Error`](../index.md)
 
-- `fn increment_depth(self: &mut Self, span: &Span) -> core::result::Result<(), ast::Error>` — [`Span`](../index.md), [`Error`](../index.md)
+- <span id="nestlimiter-increment-depth"></span>`fn increment_depth(&mut self, span: &Span) -> core::result::Result<(), ast::Error>` — [`Span`](../index.md), [`Error`](../index.md)
 
-- `fn decrement_depth(self: &mut Self)`
+- <span id="nestlimiter-decrement-depth"></span>`fn decrement_depth(&mut self)`
 
 #### Trait Implementations
 
-##### `impl<'p, 's, P: $crate::fmt::Debug> Debug for NestLimiter<'p, 's, P>`
+##### `impl<'p, 's, P: fmt::Debug> Debug for NestLimiter<'p, 's, P>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="nestlimiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'p, 's, P: Borrow<Parser>> Visitor for NestLimiter<'p, 's, P>`
 
-- `type Output = ()`
+- <span id="nestlimiter-output"></span>`type Output = ()`
 
-- `type Err = Error`
+- <span id="nestlimiter-err"></span>`type Err = Error`
 
-- `fn finish(self: Self) -> core::result::Result<(), ast::Error>` — [`Error`](../index.md)
+- <span id="nestlimiter-finish"></span>`fn finish(self) -> core::result::Result<(), ast::Error>` — [`Error`](../index.md)
 
-- `fn visit_pre(self: &mut Self, ast: &Ast) -> core::result::Result<(), ast::Error>` — [`Ast`](../index.md), [`Error`](../index.md)
+- <span id="nestlimiter-visit-pre"></span>`fn visit_pre(&mut self, ast: &Ast) -> core::result::Result<(), ast::Error>` — [`Ast`](../index.md), [`Error`](../index.md)
 
-- `fn visit_post(self: &mut Self, ast: &Ast) -> core::result::Result<(), ast::Error>` — [`Ast`](../index.md), [`Error`](../index.md)
+- <span id="nestlimiter-visit-post"></span>`fn visit_post(&mut self, ast: &Ast) -> core::result::Result<(), ast::Error>` — [`Ast`](../index.md), [`Error`](../index.md)
 
-- `fn visit_class_set_item_pre(self: &mut Self, ast: &ast::ClassSetItem) -> core::result::Result<(), ast::Error>` — [`ClassSetItem`](../index.md), [`Error`](../index.md)
+- <span id="nestlimiter-visit-class-set-item-pre"></span>`fn visit_class_set_item_pre(&mut self, ast: &ast::ClassSetItem) -> core::result::Result<(), ast::Error>` — [`ClassSetItem`](../index.md), [`Error`](../index.md)
 
-- `fn visit_class_set_item_post(self: &mut Self, ast: &ast::ClassSetItem) -> core::result::Result<(), ast::Error>` — [`ClassSetItem`](../index.md), [`Error`](../index.md)
+- <span id="nestlimiter-visit-class-set-item-post"></span>`fn visit_class_set_item_post(&mut self, ast: &ast::ClassSetItem) -> core::result::Result<(), ast::Error>` — [`ClassSetItem`](../index.md), [`Error`](../index.md)
 
-- `fn visit_class_set_binary_op_pre(self: &mut Self, ast: &ast::ClassSetBinaryOp) -> core::result::Result<(), ast::Error>` — [`ClassSetBinaryOp`](../index.md), [`Error`](../index.md)
+- <span id="nestlimiter-visit-class-set-binary-op-pre"></span>`fn visit_class_set_binary_op_pre(&mut self, ast: &ast::ClassSetBinaryOp) -> core::result::Result<(), ast::Error>` — [`ClassSetBinaryOp`](../index.md), [`Error`](../index.md)
 
-- `fn visit_class_set_binary_op_post(self: &mut Self, _ast: &ast::ClassSetBinaryOp) -> core::result::Result<(), ast::Error>` — [`ClassSetBinaryOp`](../index.md), [`Error`](../index.md)
+- <span id="nestlimiter-visit-class-set-binary-op-post"></span>`fn visit_class_set_binary_op_post(&mut self, _ast: &ast::ClassSetBinaryOp) -> core::result::Result<(), ast::Error>` — [`ClassSetBinaryOp`](../index.md), [`Error`](../index.md)
 
 ## Enums
 
@@ -325,29 +359,29 @@ within a set character class.
 
 #### Implementations
 
-- `fn span(self: &Self) -> &Span` — [`Span`](../index.md)
+- <span id="primitive-span"></span>`fn span(&self) -> &Span` — [`Span`](../index.md)
 
-- `fn into_ast(self: Self) -> Ast` — [`Ast`](../index.md)
+- <span id="primitive-into-ast"></span>`fn into_ast(self) -> Ast` — [`Ast`](../index.md)
 
-- `fn into_class_set_item<P: Borrow<Parser>>(self: Self, p: &ParserI<'_, P>) -> core::result::Result<ast::ClassSetItem, ast::Error>` — [`ParserI`](#parseri), [`ClassSetItem`](../index.md), [`Error`](../index.md)
+- <span id="primitive-into-class-set-item"></span>`fn into_class_set_item<P: Borrow<Parser>>(self, p: &ParserI<'_, P>) -> core::result::Result<ast::ClassSetItem, ast::Error>` — [`ParserI`](#parseri), [`ClassSetItem`](../index.md), [`Error`](../index.md)
 
-- `fn into_class_literal<P: Borrow<Parser>>(self: Self, p: &ParserI<'_, P>) -> core::result::Result<ast::Literal, ast::Error>` — [`ParserI`](#parseri), [`Literal`](../index.md), [`Error`](../index.md)
+- <span id="primitive-into-class-literal"></span>`fn into_class_literal<P: Borrow<Parser>>(self, p: &ParserI<'_, P>) -> core::result::Result<ast::Literal, ast::Error>` — [`ParserI`](#parseri), [`Literal`](../index.md), [`Error`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Primitive`
 
-- `fn clone(self: &Self) -> Primitive` — [`Primitive`](#primitive)
+- <span id="primitive-clone"></span>`fn clone(&self) -> Primitive` — [`Primitive`](#primitive)
 
 ##### `impl Debug for Primitive`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="primitive-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Primitive`
 
 ##### `impl PartialEq for Primitive`
 
-- `fn eq(self: &Self, other: &Primitive) -> bool` — [`Primitive`](#primitive)
+- <span id="primitive-eq"></span>`fn eq(&self, other: &Primitive) -> bool` — [`Primitive`](#primitive)
 
 ##### `impl StructuralPartialEq for Primitive`
 
@@ -385,11 +419,11 @@ or a alternating bracket `|`.
 
 ##### `impl Clone for GroupState`
 
-- `fn clone(self: &Self) -> GroupState` — [`GroupState`](#groupstate)
+- <span id="groupstate-clone"></span>`fn clone(&self) -> GroupState` — [`GroupState`](#groupstate)
 
 ##### `impl Debug for GroupState`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="groupstate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ClassState`
 
@@ -428,11 +462,11 @@ a character class. In all other cases, it is empty.
 
 ##### `impl Clone for ClassState`
 
-- `fn clone(self: &Self) -> ClassState` — [`ClassState`](#classstate)
+- <span id="classstate-clone"></span>`fn clone(&self) -> ClassState` — [`ClassState`](#classstate)
 
 ##### `impl Debug for ClassState`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="classstate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Functions
 

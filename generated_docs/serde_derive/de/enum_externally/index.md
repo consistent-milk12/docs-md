@@ -10,6 +10,15 @@ Deserialization for externally tagged enums:
 enum Enum {}
 ```
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`deserialize`](#deserialize) | fn | Generates `Deserialize::deserialize` body for an `enum Enum {...}` without additional attributes |
+| [`deserialize_externally_tagged_variant`](#deserialize_externally_tagged_variant) | fn |  |
+| [`wrap_deserialize_variant_with`](#wrap_deserialize_variant_with) | fn |  |
+| [`deserialize_externally_tagged_newtype_variant`](#deserialize_externally_tagged_newtype_variant) | fn |  |
+
 ## Functions
 
 ### `deserialize`

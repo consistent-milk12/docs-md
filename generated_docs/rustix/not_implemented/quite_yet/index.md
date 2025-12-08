@@ -14,6 +14,19 @@ See [#1314] for more information, and please leave comments if there are
 specific functions you're interested in.
 
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`_exit`](#_exit) | fn | See the [module comment](self). |
+| [`_Exit`](#_exit) | fn | See the [module comment](self). |
+| [`exit_group`](#exit_group) | fn | See the [module comment](self). |
+| [`sigpending`](#sigpending) | fn | See the [module comment](self). |
+| [`sigsuspend`](#sigsuspend) | fn | See the [module comment](self). |
+| [`execveat`](#execveat) | fn | See the [module comment](self). |
+| [`execve`](#execve) | fn | See the [module comment](self). |
+| [`gethostname`](#gethostname) | fn | For now, use `rustix::process::uname().nodename()` instead. |
+
 ## Functions
 
 ### `_exit`

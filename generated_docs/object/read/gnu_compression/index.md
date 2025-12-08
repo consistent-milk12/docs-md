@@ -4,6 +4,12 @@
 
 # Module `gnu_compression`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`compressed_file_range`](#compressed_file_range) | fn |  |
+
 ## Functions
 
 ### `compressed_file_range`

@@ -4,6 +4,14 @@
 
 # Module `rabinkarp`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`RabinKarp`](#rabinkarp) | struct | An implementation of the Rabin-Karp algorithm. |
+| [`Hash`](#hash) | type | The type of the rolling hash used in the Rabin-Karp algorithm. |
+| [`NUM_BUCKETS`](#num_buckets) | const | The number of buckets to store our patterns in. |
+
 ## Structs
 
 ### `RabinKarp`
@@ -63,27 +71,27 @@ https://www-igm.univ-mlv.fr/~lecroq/string/node5.html
 
 #### Implementations
 
-- `fn new(patterns: &Arc<Patterns>) -> RabinKarp` — [`Patterns`](../pattern/index.md), [`RabinKarp`](#rabinkarp)
+- <span id="rabinkarp-new"></span>`fn new(patterns: &Arc<Patterns>) -> RabinKarp` — [`Patterns`](../pattern/index.md), [`RabinKarp`](#rabinkarp)
 
-- `fn find_at(self: &Self, haystack: &[u8], at: usize) -> Option<Match>` — [`Match`](../../index.md)
+- <span id="rabinkarp-find-at"></span>`fn find_at(&self, haystack: &[u8], at: usize) -> Option<Match>` — [`Match`](../../index.md)
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="rabinkarp-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- `fn verify(self: &Self, id: PatternID, haystack: &[u8], at: usize) -> Option<Match>` — [`PatternID`](../../index.md), [`Match`](../../index.md)
+- <span id="rabinkarp-verify"></span>`fn verify(&self, id: PatternID, haystack: &[u8], at: usize) -> Option<Match>` — [`PatternID`](../../index.md), [`Match`](../../index.md)
 
-- `fn hash(self: &Self, bytes: &[u8]) -> usize`
+- <span id="rabinkarp-hash"></span>`fn hash(&self, bytes: &[u8]) -> usize`
 
-- `fn update_hash(self: &Self, prev: usize, old_byte: u8, new_byte: u8) -> usize`
+- <span id="rabinkarp-update-hash"></span>`fn update_hash(&self, prev: usize, old_byte: u8, new_byte: u8) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Clone for RabinKarp`
 
-- `fn clone(self: &Self) -> RabinKarp` — [`RabinKarp`](#rabinkarp)
+- <span id="rabinkarp-clone"></span>`fn clone(&self) -> RabinKarp` — [`RabinKarp`](#rabinkarp)
 
 ##### `impl Debug for RabinKarp`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rabinkarp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Type Aliases
 

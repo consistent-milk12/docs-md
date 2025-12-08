@@ -6,6 +6,14 @@
 
 A module that looks for word codepoints using regex-syntax's data tables.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`check`](#check) | fn |  |
+| [`fwd`](#fwd) | fn |  |
+| [`rev`](#rev) | fn |  |
+
 ## Functions
 
 ### `check`

@@ -2,6 +2,34 @@
 
 Low level terminal capability lookups
 
+## Contents
+
+- [Modules](#modules)
+  - [`windows`](#windows)
+- [Functions](#functions)
+  - [`clicolor`](#clicolor)
+  - [`clicolor_force`](#clicolor_force)
+  - [`no_color`](#no_color)
+  - [`term_supports_color`](#term_supports_color)
+  - [`term_supports_ansi_color`](#term_supports_ansi_color)
+  - [`truecolor`](#truecolor)
+  - [`is_ci`](#is_ci)
+  - [`non_empty`](#non_empty)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`windows`](#windows) | mod | Windows-specific style queries |
+| [`clicolor`](#clicolor) | fn | Check [CLICOLOR] status |
+| [`clicolor_force`](#clicolor_force) | fn | Check [CLICOLOR_FORCE] status |
+| [`no_color`](#no_color) | fn | Check [NO_COLOR] status |
+| [`term_supports_color`](#term_supports_color) | fn | Check `TERM` for color support |
+| [`term_supports_ansi_color`](#term_supports_ansi_color) | fn | Check `TERM` for ANSI color support |
+| [`truecolor`](#truecolor) | fn | Check [COLORTERM] for truecolor support |
+| [`is_ci`](#is_ci) | fn | Report whether this is running in CI |
+| [`non_empty`](#non_empty) | fn |  |
+
 ## Modules
 
 - [`windows`](windows/index.md) - Windows-specific style queries

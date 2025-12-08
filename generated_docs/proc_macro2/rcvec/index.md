@@ -4,6 +4,15 @@
 
 # Module `rcvec`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`RcVec`](#rcvec) | struct |  |
+| [`RcVecBuilder`](#rcvecbuilder) | struct |  |
+| [`RcVecMut`](#rcvecmut) | struct |  |
+| [`RcVecIntoIter`](#rcvecintoiter) | struct |  |
+
 ## Structs
 
 ### `RcVec<T>`
@@ -16,23 +25,23 @@ struct RcVec<T> {
 
 #### Implementations
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="rcvec-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn len(self: &Self) -> usize`
+- <span id="rcvec-len"></span>`fn len(&self) -> usize`
 
-- `fn iter(self: &Self) -> slice::Iter<'_, T>`
+- <span id="rcvec-iter"></span>`fn iter(&self) -> slice::Iter<'_, T>`
 
-- `fn make_mut(self: &mut Self) -> RcVecMut<'_, T>` — [`RcVecMut`](#rcvecmut)
+- <span id="rcvec-make-mut"></span>`fn make_mut(&mut self) -> RcVecMut<'_, T>` — [`RcVecMut`](#rcvecmut)
 
-- `fn get_mut(self: &mut Self) -> Option<RcVecMut<'_, T>>` — [`RcVecMut`](#rcvecmut)
+- <span id="rcvec-get-mut"></span>`fn get_mut(&mut self) -> Option<RcVecMut<'_, T>>` — [`RcVecMut`](#rcvecmut)
 
-- `fn make_owned(self: Self) -> RcVecBuilder<T>` — [`RcVecBuilder`](#rcvecbuilder)
+- <span id="rcvec-make-owned"></span>`fn make_owned(self) -> RcVecBuilder<T>` — [`RcVecBuilder`](#rcvecbuilder)
 
 #### Trait Implementations
 
 ##### `impl<T> Clone for RcVec<T>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="rcvec-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T> RefUnwindSafe for RcVec<T>`
 
@@ -46,27 +55,27 @@ struct RcVecBuilder<T> {
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="rcvecbuilder-new"></span>`fn new() -> Self`
 
-- `fn with_capacity(cap: usize) -> Self`
+- <span id="rcvecbuilder-with-capacity"></span>`fn with_capacity(cap: usize) -> Self`
 
-- `fn push(self: &mut Self, element: T)`
+- <span id="rcvecbuilder-push"></span>`fn push(&mut self, element: T)`
 
-- `fn extend(self: &mut Self, iter: impl IntoIterator<Item = T>)`
+- <span id="rcvecbuilder-extend"></span>`fn extend(&mut self, iter: impl IntoIterator<Item = T>)`
 
-- `fn as_mut(self: &mut Self) -> RcVecMut<'_, T>` — [`RcVecMut`](#rcvecmut)
+- <span id="rcvecbuilder-as-mut"></span>`fn as_mut(&mut self) -> RcVecMut<'_, T>` — [`RcVecMut`](#rcvecmut)
 
-- `fn build(self: Self) -> RcVec<T>` — [`RcVec`](#rcvec)
+- <span id="rcvecbuilder-build"></span>`fn build(self) -> RcVec<T>` — [`RcVec`](#rcvec)
 
 #### Trait Implementations
 
 ##### `impl<T> IntoIterator for RcVecBuilder<T>`
 
-- `type Item = T`
+- <span id="rcvecbuilder-item"></span>`type Item = T`
 
-- `type IntoIter = RcVecIntoIter<T>`
+- <span id="rcvecbuilder-intoiter"></span>`type IntoIter = RcVecIntoIter<T>`
 
-- `fn into_iter(self: Self) -> <Self as >::IntoIter`
+- <span id="rcvecbuilder-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
 ### `RcVecMut<'a, T>`
 
@@ -78,13 +87,13 @@ struct RcVecMut<'a, T> {
 
 #### Implementations
 
-- `fn push(self: &mut Self, element: T)`
+- <span id="rcvecmut-push"></span>`fn push(&mut self, element: T)`
 
-- `fn extend(self: &mut Self, iter: impl IntoIterator<Item = T>)`
+- <span id="rcvecmut-extend"></span>`fn extend(&mut self, iter: impl IntoIterator<Item = T>)`
 
-- `fn as_mut(self: &mut Self) -> RcVecMut<'_, T>` — [`RcVecMut`](#rcvecmut)
+- <span id="rcvecmut-as-mut"></span>`fn as_mut(&mut self) -> RcVecMut<'_, T>` — [`RcVecMut`](#rcvecmut)
 
-- `fn take(self: Self) -> RcVecBuilder<T>` — [`RcVecBuilder`](#rcvecbuilder)
+- <span id="rcvecmut-take"></span>`fn take(self) -> RcVecBuilder<T>` — [`RcVecBuilder`](#rcvecbuilder)
 
 ### `RcVecIntoIter<T>`
 
@@ -96,23 +105,23 @@ struct RcVecIntoIter<T> {
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for RcVecIntoIter<T>`
+##### `impl<T: clone::Clone> Clone for RcVecIntoIter<T>`
 
-- `fn clone(self: &Self) -> RcVecIntoIter<T>` — [`RcVecIntoIter`](#rcvecintoiter)
+- <span id="rcvecintoiter-clone"></span>`fn clone(&self) -> RcVecIntoIter<T>` — [`RcVecIntoIter`](#rcvecintoiter)
 
 ##### `impl<I> IntoIterator for RcVecIntoIter<T>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="rcvecintoiter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="rcvecintoiter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="rcvecintoiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T> Iterator for RcVecIntoIter<T>`
 
-- `type Item = T`
+- <span id="rcvecintoiter-item"></span>`type Item = T`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="rcvecintoiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="rcvecintoiter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 

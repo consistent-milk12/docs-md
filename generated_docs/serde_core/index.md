@@ -32,6 +32,41 @@ as shown in the following build timings.
 <tr><td><img src="https://github.com/user-attachments/assets/6b6cff5e-3e45-4ac7-9db1-d99ee8b9f5f7"></td></tr>
 </table>
 
+## Contents
+
+- [Modules](#modules)
+  - [`crate_root`](#crate_root)
+  - [`macros`](#macros)
+  - [`lib`](#lib)
+  - [`de`](#de)
+  - [`ser`](#ser)
+  - [`format`](#format)
+- [Traits](#traits)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+- [Macros](#macros)
+  - [`tri!`](#tri)
+  - [`forward_to_deserialize_any!`](#forward_to_deserialize_any)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`crate_root`](#crate_root) | mod |  |
+| [`macros`](#macros) | mod |  |
+| [`lib`](#lib) | mod | A facade around all the types we need from the `std`, `core`, and `alloc` |
+| [`de`](#de) | mod | Generic data structure deserialization framework. |
+| [`ser`](#ser) | mod | Generic data structure serialization framework. |
+| [`format`](#format) | mod |  |
+| [`unnamed`](#unnamed) | trait |  |
+| [`unnamed`](#unnamed) | trait |  |
+| [`unnamed`](#unnamed) | trait |  |
+| [`unnamed`](#unnamed) | trait |  |
+| [`tri!`](#tri) | macro |  |
+| [`forward_to_deserialize_any!`](#forward_to_deserialize_any) | macro | Helper macro when implementing the `Deserializer` part of a new data format |
+
 ## Modules
 
 - [`crate_root`](crate_root/index.md) - 

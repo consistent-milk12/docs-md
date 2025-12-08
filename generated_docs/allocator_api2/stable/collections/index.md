@@ -4,6 +4,13 @@
 
 # Module `collections`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | enum |  |
+
 ## Structs
 
 ### `TryReserveError`
@@ -18,33 +25,33 @@ The error type for `try_reserve` methods.
 
 #### Implementations
 
-- `fn kind(self: &Self) -> TryReserveErrorKind` — [`TryReserveErrorKind`](#tryreserveerrorkind)
+- <span id="tryreserveerror-kind"></span>`fn kind(&self) -> TryReserveErrorKind` — [`TryReserveErrorKind`](#tryreserveerrorkind)
 
 #### Trait Implementations
 
 ##### `impl Clone for TryReserveError`
 
-- `fn clone(self: &Self) -> TryReserveError` — [`TryReserveError`](#tryreserveerror)
+- <span id="tryreserveerror-clone"></span>`fn clone(&self) -> TryReserveError` — [`TryReserveError`](#tryreserveerror)
 
 ##### `impl Debug for TryReserveError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="tryreserveerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for TryReserveError`
 
-- `fn fmt(self: &Self, fmt: &mut core::fmt::Formatter<'_>) -> core::result::Result<(), core::fmt::Error>`
+- <span id="tryreserveerror-fmt"></span>`fn fmt(&self, fmt: &mut core::fmt::Formatter<'_>) -> core::result::Result<(), core::fmt::Error>`
 
 ##### `impl Eq for TryReserveError`
 
 ##### `impl PartialEq for TryReserveError`
 
-- `fn eq(self: &Self, other: &TryReserveError) -> bool` — [`TryReserveError`](#tryreserveerror)
+- <span id="tryreserveerror-eq"></span>`fn eq(&self, other: &TryReserveError) -> bool` — [`TryReserveError`](#tryreserveerror)
 
 ##### `impl StructuralPartialEq for TryReserveError`
 
 ##### `impl<T> ToString for TryReserveError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="tryreserveerror-to-string"></span>`fn to_string(&self) -> String`
 
 ## Enums
 
@@ -76,17 +83,17 @@ Details of the allocation that caused a `TryReserveError`
 
 ##### `impl Clone for TryReserveErrorKind`
 
-- `fn clone(self: &Self) -> TryReserveErrorKind` — [`TryReserveErrorKind`](#tryreserveerrorkind)
+- <span id="tryreserveerrorkind-clone"></span>`fn clone(&self) -> TryReserveErrorKind` — [`TryReserveErrorKind`](#tryreserveerrorkind)
 
 ##### `impl Debug for TryReserveErrorKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="tryreserveerrorkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for TryReserveErrorKind`
 
 ##### `impl PartialEq for TryReserveErrorKind`
 
-- `fn eq(self: &Self, other: &TryReserveErrorKind) -> bool` — [`TryReserveErrorKind`](#tryreserveerrorkind)
+- <span id="tryreserveerrorkind-eq"></span>`fn eq(&self, other: &TryReserveErrorKind) -> bool` — [`TryReserveErrorKind`](#tryreserveerrorkind)
 
 ##### `impl StructuralPartialEq for TryReserveErrorKind`
 

@@ -4,6 +4,14 @@
 
 # Module `deprecated`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`allow_deprecated`](#allow_deprecated) | fn |  |
+| [`should_allow_deprecated`](#should_allow_deprecated) | fn | Determine if an `#[allow(deprecated)]` should be added to the derived impl. |
+| [`contains_deprecated`](#contains_deprecated) | fn | Check whether the given attributes contains one of |
+
 ## Functions
 
 ### `allow_deprecated`

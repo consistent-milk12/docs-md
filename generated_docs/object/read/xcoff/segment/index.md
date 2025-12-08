@@ -6,6 +6,17 @@
 
 TODO: Support the segment for XCOFF when auxiliary file header and loader section is ready.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`XcoffSegmentIterator`](#xcoffsegmentiterator) | struct | An iterator for the segments in an [`XcoffFile`]. |
+| [`XcoffSegment`](#xcoffsegment) | struct | A loadable section in an [`XcoffFile`]. |
+| [`XcoffSegmentIterator32`](#xcoffsegmentiterator32) | type | An iterator for the segments in an [`XcoffFile32`](super::XcoffFile32). |
+| [`XcoffSegmentIterator64`](#xcoffsegmentiterator64) | type | An iterator for the segments in an [`XcoffFile64`](super::XcoffFile64). |
+| [`XcoffSegment32`](#xcoffsegment32) | type | A segment in an [`XcoffFile32`](super::XcoffFile32). |
+| [`XcoffSegment64`](#xcoffsegment64) | type | A segment in an [`XcoffFile64`](super::XcoffFile64). |
+
 ## Structs
 
 ### `XcoffSegmentIterator<'data, 'file, Xcoff, R>`
@@ -27,21 +38,21 @@ This is a stub that doesn't implement any functionality.
 
 ##### `impl<'data, 'file, Xcoff, R> Debug for XcoffSegmentIterator<'data, 'file, Xcoff, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="xcoffsegmentiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for XcoffSegmentIterator<'data, 'file, Xcoff, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="xcoffsegmentiterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="xcoffsegmentiterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="xcoffsegmentiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Xcoff, R> Iterator for XcoffSegmentIterator<'data, 'file, Xcoff, R>`
 
-- `type Item = XcoffSegment<'data, 'file, Xcoff, R>`
+- <span id="xcoffsegmentiterator-item"></span>`type Item = XcoffSegment<'data, 'file, Xcoff, R>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="xcoffsegmentiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `XcoffSegment<'data, 'file, Xcoff, R>`
 
@@ -62,27 +73,27 @@ This is a stub that doesn't implement any functionality.
 
 ##### `impl<'data, 'file, Xcoff, R> Debug for XcoffSegment<'data, 'file, Xcoff, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="xcoffsegment-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, 'file, Xcoff, R> ObjectSegment for XcoffSegment<'data, 'file, Xcoff, R>`
 
-- `fn address(self: &Self) -> u64`
+- <span id="xcoffsegment-address"></span>`fn address(&self) -> u64`
 
-- `fn size(self: &Self) -> u64`
+- <span id="xcoffsegment-size"></span>`fn size(&self) -> u64`
 
-- `fn align(self: &Self) -> u64`
+- <span id="xcoffsegment-align"></span>`fn align(&self) -> u64`
 
-- `fn file_range(self: &Self) -> (u64, u64)`
+- <span id="xcoffsegment-file-range"></span>`fn file_range(&self) -> (u64, u64)`
 
-- `fn data(self: &Self) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
+- <span id="xcoffsegment-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
 
-- `fn data_range(self: &Self, _address: u64, _size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../../index.md)
+- <span id="xcoffsegment-data-range"></span>`fn data_range(&self, _address: u64, _size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../../index.md)
 
-- `fn name_bytes(self: &Self) -> Result<Option<&[u8]>>` — [`Result`](../../../index.md)
+- <span id="xcoffsegment-name-bytes"></span>`fn name_bytes(&self) -> Result<Option<&[u8]>>` — [`Result`](../../../index.md)
 
-- `fn name(self: &Self) -> Result<Option<&str>>` — [`Result`](../../../index.md)
+- <span id="xcoffsegment-name"></span>`fn name(&self) -> Result<Option<&str>>` — [`Result`](../../../index.md)
 
-- `fn flags(self: &Self) -> SegmentFlags` — [`SegmentFlags`](../../../index.md)
+- <span id="xcoffsegment-flags"></span>`fn flags(&self) -> SegmentFlags` — [`SegmentFlags`](../../../index.md)
 
 ##### `impl<'data, 'file, Xcoff, R> Sealed for XcoffSegment<'data, 'file, Xcoff, R>`
 

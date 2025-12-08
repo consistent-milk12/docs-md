@@ -4,6 +4,13 @@
 
 # Module `parsing`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`choose_generics_over_qpath`](#choose_generics_over_qpath) | fn |  |
+| [`choose_generics_over_qpath_after_keyword`](#choose_generics_over_qpath_after_keyword) | fn |  |
+
 ## Functions
 
 ### `choose_generics_over_qpath`

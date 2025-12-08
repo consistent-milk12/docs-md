@@ -4,6 +4,14 @@
 
 # Module `unix`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`terminal_size`](#terminal_size) | fn | Returns the size of the terminal. |
+| [`terminal_size_of`](#terminal_size_of) | fn | Returns the size of the terminal using the given file descriptor, if available. |
+| [`terminal_size_using_fd`](#terminal_size_using_fd) | fn | Returns the size of the terminal using the given raw file descriptor, if available. |
+
 ## Functions
 
 ### `terminal_size`

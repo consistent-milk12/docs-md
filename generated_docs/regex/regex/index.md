@@ -4,6 +4,13 @@
 
 # Module `regex`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`bytes`](#bytes) | mod |  |
+| [`string`](#string) | mod |  |
+
 ## Modules
 
 - [`bytes`](bytes/index.md) - 

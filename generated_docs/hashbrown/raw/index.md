@@ -4,6 +4,67 @@
 
 # Module `raw`
 
+## Contents
+
+- [Modules](#modules)
+  - [`alloc`](#alloc)
+- [Structs](#structs)
+  - [`ProbeSeq`](#probeseq)
+  - [`TableLayout`](#tablelayout)
+  - [`Bucket`](#bucket)
+  - [`RawTable`](#rawtable)
+  - [`RawTableInner`](#rawtableinner)
+  - [`RawIterRange`](#rawiterrange)
+  - [`RawIter`](#rawiter)
+  - [`FullBucketsIndices`](#fullbucketsindices)
+  - [`RawIntoIter`](#rawintoiter)
+  - [`RawDrain`](#rawdrain)
+  - [`RawIterHash`](#rawiterhash)
+  - [`RawIterHashIndices`](#rawiterhashindices)
+  - [`RawExtractIf`](#rawextractif)
+- [Enums](#enums)
+  - [`Fallibility`](#fallibility)
+- [Traits](#traits)
+  - [`SizedTypeProperties`](#sizedtypeproperties)
+  - [`RawTableClone`](#rawtableclone)
+- [Functions](#functions)
+  - [`offset_from`](#offset_from)
+  - [`h1`](#h1)
+  - [`capacity_to_buckets`](#capacity_to_buckets)
+  - [`ensure_bucket_bytes_at_least_ctrl_align`](#ensure_bucket_bytes_at_least_ctrl_align)
+  - [`bucket_mask_to_capacity`](#bucket_mask_to_capacity)
+  - [`prev_pow2`](#prev_pow2)
+  - [`maximum_buckets_in`](#maximum_buckets_in)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`alloc`](#alloc) | mod |  |
+| [`ProbeSeq`](#probeseq) | struct | Probe sequence based on triangular numbers, which is guaranteed (since our |
+| [`TableLayout`](#tablelayout) | struct | Helper which allows the max calculation for `ctrl_align` to be statically computed for each `T` |
+| [`Bucket`](#bucket) | struct | A reference to a hash table bucket containing a `T`. |
+| [`RawTable`](#rawtable) | struct | A raw hash table with an unsafe API. |
+| [`RawTableInner`](#rawtableinner) | struct | Non-generic part of `RawTable` which allows functions to be instantiated only once regardless |
+| [`RawIterRange`](#rawiterrange) | struct | Iterator over a sub-range of a table. |
+| [`RawIter`](#rawiter) | struct | Iterator which returns a raw pointer to every full bucket in the table. |
+| [`FullBucketsIndices`](#fullbucketsindices) | struct | Iterator which returns an index of every full bucket in the table. |
+| [`RawIntoIter`](#rawintoiter) | struct | Iterator which consumes a table and returns elements. |
+| [`RawDrain`](#rawdrain) | struct | Iterator which consumes elements without freeing the table storage. |
+| [`RawIterHash`](#rawiterhash) | struct | Iterator over occupied buckets that could match a given hash. |
+| [`RawIterHashIndices`](#rawiterhashindices) | struct |  |
+| [`RawExtractIf`](#rawextractif) | struct |  |
+| [`Fallibility`](#fallibility) | enum | Whether memory allocation errors should return an error or abort. |
+| [`SizedTypeProperties`](#sizedtypeproperties) | trait |  |
+| [`RawTableClone`](#rawtableclone) | trait | Specialization of `clone_from` for `Copy` types |
+| [`offset_from`](#offset_from) | fn |  |
+| [`h1`](#h1) | fn | Primary hash function, used to select the initial bucket to probe from. |
+| [`capacity_to_buckets`](#capacity_to_buckets) | fn | Returns the number of buckets needed to hold the given number of items |
+| [`ensure_bucket_bytes_at_least_ctrl_align`](#ensure_bucket_bytes_at_least_ctrl_align) | fn |  |
+| [`bucket_mask_to_capacity`](#bucket_mask_to_capacity) | fn | Returns the maximum effective capacity for the given bucket mask, taking |
+| [`prev_pow2`](#prev_pow2) | fn | Find the previous power of 2. |
+| [`maximum_buckets_in`](#maximum_buckets_in) | fn | Finds the largest number of buckets that can fit in `allocation_size` |
+
 ## Modules
 
 - [`alloc`](alloc/index.md) - 
@@ -31,13 +92,13 @@ Proof that the probe will visit every group in the table:
 
 #### Implementations
 
-- `fn move_next(self: &mut Self, bucket_mask: usize)`
+- <span id="probeseq-move-next"></span>`fn move_next(&mut self, bucket_mask: usize)`
 
 #### Trait Implementations
 
 ##### `impl Clone for ProbeSeq`
 
-- `fn clone(self: &Self) -> ProbeSeq` — [`ProbeSeq`](#probeseq)
+- <span id="probeseq-clone"></span>`fn clone(&self) -> ProbeSeq` — [`ProbeSeq`](#probeseq)
 
 ### `TableLayout`
 
@@ -53,15 +114,15 @@ while keeping the rest of `calculate_layout_for` independent of `T`
 
 #### Implementations
 
-- `const fn new<T>() -> Self`
+- <span id="tablelayout-new"></span>`const fn new<T>() -> Self`
 
-- `fn calculate_layout_for(self: Self, buckets: usize) -> Option<(Layout, usize)>`
+- <span id="tablelayout-calculate-layout-for"></span>`fn calculate_layout_for(self, buckets: usize) -> Option<(Layout, usize)>`
 
 #### Trait Implementations
 
 ##### `impl Clone for TableLayout`
 
-- `fn clone(self: &Self) -> TableLayout` — [`TableLayout`](#tablelayout)
+- <span id="tablelayout-clone"></span>`fn clone(&self) -> TableLayout` — [`TableLayout`](#tablelayout)
 
 ##### `impl Copy for TableLayout`
 
@@ -81,31 +142,31 @@ that `erase` works properly.
 
 #### Implementations
 
-- `unsafe fn from_base_index(base: NonNull<T>, index: usize) -> Self`
+- <span id="bucket-from-base-index"></span>`unsafe fn from_base_index(base: NonNull<T>, index: usize) -> Self`
 
-- `unsafe fn to_base_index(self: &Self, base: NonNull<T>) -> usize`
+- <span id="bucket-to-base-index"></span>`unsafe fn to_base_index(&self, base: NonNull<T>) -> usize`
 
-- `fn as_ptr(self: &Self) -> *mut T`
+- <span id="bucket-as-ptr"></span>`fn as_ptr(&self) -> *mut T`
 
-- `fn as_non_null(self: &Self) -> NonNull<T>`
+- <span id="bucket-as-non-null"></span>`fn as_non_null(&self) -> NonNull<T>`
 
-- `unsafe fn next_n(self: &Self, offset: usize) -> Self`
+- <span id="bucket-next-n"></span>`unsafe fn next_n(&self, offset: usize) -> Self`
 
-- `unsafe fn drop(self: &Self)`
+- <span id="bucket-drop"></span>`unsafe fn drop(&self)`
 
-- `unsafe fn read(self: &Self) -> T`
+- <span id="bucket-read"></span>`unsafe fn read(&self) -> T`
 
-- `unsafe fn write(self: &Self, val: T)`
+- <span id="bucket-write"></span>`unsafe fn write(&self, val: T)`
 
-- `unsafe fn as_ref<'a>(self: &Self) -> &'a T`
+- <span id="bucket-as-ref"></span>`unsafe fn as_ref<'a>(&self) -> &'a T`
 
-- `unsafe fn as_mut<'a>(self: &Self) -> &'a mut T`
+- <span id="bucket-as-mut"></span>`unsafe fn as_mut<'a>(&self) -> &'a mut T`
 
 #### Trait Implementations
 
 ##### `impl<T> Clone for Bucket<T>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="bucket-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T> Send for Bucket<T>`
 
@@ -123,131 +184,35 @@ A raw hash table with an unsafe API.
 
 #### Implementations
 
-- `const TABLE_LAYOUT: TableLayout`
-
-- `const fn new_in(alloc: A) -> Self`
-
-- `unsafe fn new_uninitialized(alloc: A, buckets: usize, fallibility: Fallibility) -> Result<Self, TryReserveError>` — [`Fallibility`](#fallibility), [`TryReserveError`](../index.md)
-
-- `fn with_capacity_in(capacity: usize, alloc: A) -> Self`
-
-- `fn allocator(self: &Self) -> &A`
-
-- `fn data_end(self: &Self) -> NonNull<T>`
-
-- `fn allocation_size(self: &Self) -> usize`
-
-- `unsafe fn bucket_index(self: &Self, bucket: &Bucket<T>) -> usize` — [`Bucket`](#bucket)
-
-- `unsafe fn bucket(self: &Self, index: usize) -> Bucket<T>` — [`Bucket`](#bucket)
-
-- `unsafe fn erase_no_drop(self: &mut Self, item: &Bucket<T>)` — [`Bucket`](#bucket)
-
-- `unsafe fn erase(self: &mut Self, item: Bucket<T>)` — [`Bucket`](#bucket)
-
-- `unsafe fn remove(self: &mut Self, item: Bucket<T>) -> (T, usize)` — [`Bucket`](#bucket)
-
-- `unsafe fn remove_tagged(self: &mut Self, item: Bucket<T>) -> (T, usize, Tag)` — [`Bucket`](#bucket), [`Tag`](../control/tag/index.md)
-
-- `fn remove_entry(self: &mut Self, hash: u64, eq: impl FnMut(&T) -> bool) -> Option<T>`
-
-- `fn clear_no_drop(self: &mut Self)`
-
-- `fn clear(self: &mut Self)`
-
-- `fn shrink_to(self: &mut Self, min_size: usize, hasher: impl Fn(&T) -> u64)`
-
-- `fn reserve(self: &mut Self, additional: usize, hasher: impl Fn(&T) -> u64)`
-
-- `fn try_reserve(self: &mut Self, additional: usize, hasher: impl Fn(&T) -> u64) -> Result<(), TryReserveError>` — [`TryReserveError`](../index.md)
-
-- `unsafe fn reserve_rehash(self: &mut Self, additional: usize, hasher: impl Fn(&T) -> u64, fallibility: Fallibility) -> Result<(), TryReserveError>` — [`Fallibility`](#fallibility), [`TryReserveError`](../index.md)
-
-- `unsafe fn resize(self: &mut Self, capacity: usize, hasher: impl Fn(&T) -> u64, fallibility: Fallibility) -> Result<(), TryReserveError>` — [`Fallibility`](#fallibility), [`TryReserveError`](../index.md)
-
-- `fn insert(self: &mut Self, hash: u64, value: T, hasher: impl Fn(&T) -> u64) -> Bucket<T>` — [`Bucket`](#bucket)
-
-- `fn insert_entry(self: &mut Self, hash: u64, value: T, hasher: impl Fn(&T) -> u64) -> &mut T`
-
-- `unsafe fn replace_bucket_with<F>(self: &mut Self, bucket: Bucket<T>, f: F) -> bool` — [`Bucket`](#bucket)
-
-- `fn find_or_find_insert_index(self: &mut Self, hash: u64, eq: impl FnMut(&T) -> bool, hasher: impl Fn(&T) -> u64) -> Result<Bucket<T>, usize>` — [`Bucket`](#bucket)
-
-- `unsafe fn insert_at_index(self: &mut Self, hash: u64, index: usize, value: T) -> Bucket<T>` — [`Bucket`](#bucket)
-
-- `unsafe fn insert_tagged_at_index(self: &mut Self, tag: Tag, index: usize, value: T) -> Bucket<T>` — [`Tag`](../control/tag/index.md), [`Bucket`](#bucket)
-
-- `fn find(self: &Self, hash: u64, eq: impl FnMut(&T) -> bool) -> Option<Bucket<T>>` — [`Bucket`](#bucket)
-
-- `fn get(self: &Self, hash: u64, eq: impl FnMut(&T) -> bool) -> Option<&T>`
-
-- `fn get_mut(self: &mut Self, hash: u64, eq: impl FnMut(&T) -> bool) -> Option<&mut T>`
-
-- `fn get_bucket(self: &Self, index: usize) -> Option<&T>`
-
-- `fn get_bucket_mut(self: &mut Self, index: usize) -> Option<&mut T>`
-
-- `fn checked_bucket(self: &Self, index: usize) -> Option<Bucket<T>>` — [`Bucket`](#bucket)
-
-- `fn get_disjoint_mut<const N: usize>(self: &mut Self, hashes: [u64; N], eq: impl FnMut(usize, &T) -> bool) -> [Option<&mut T>; N]`
-
-- `unsafe fn get_disjoint_unchecked_mut<const N: usize>(self: &mut Self, hashes: [u64; N], eq: impl FnMut(usize, &T) -> bool) -> [Option<&mut T>; N]`
-
-- `unsafe fn get_disjoint_mut_pointers<const N: usize>(self: &mut Self, hashes: [u64; N], eq: impl FnMut(usize, &T) -> bool) -> [Option<NonNull<T>>; N]`
-
-- `fn capacity(self: &Self) -> usize`
-
-- `fn len(self: &Self) -> usize`
-
-- `fn is_empty(self: &Self) -> bool`
-
-- `fn buckets(self: &Self) -> usize`
-
-- `unsafe fn is_bucket_full(self: &Self, index: usize) -> bool`
-
-- `unsafe fn iter(self: &Self) -> RawIter<T>` — [`RawIter`](#rawiter)
-
-- `unsafe fn iter_hash(self: &Self, hash: u64) -> RawIterHash<T>` — [`RawIterHash`](#rawiterhash)
-
-- `unsafe fn iter_hash_buckets(self: &Self, hash: u64) -> RawIterHashIndices` — [`RawIterHashIndices`](#rawiterhashindices)
-
-- `unsafe fn full_buckets_indices(self: &Self) -> FullBucketsIndices` — [`FullBucketsIndices`](#fullbucketsindices)
-
-- `fn drain(self: &mut Self) -> RawDrain<'_, T, A>` — [`RawDrain`](#rawdrain)
-
-- `unsafe fn drain_iter_from(self: &mut Self, iter: RawIter<T>) -> RawDrain<'_, T, A>` — [`RawIter`](#rawiter), [`RawDrain`](#rawdrain)
-
-- `unsafe fn into_iter_from(self: Self, iter: RawIter<T>) -> RawIntoIter<T, A>` — [`RawIter`](#rawiter), [`RawIntoIter`](#rawintoiter)
-
-- `fn into_allocation(self: Self) -> Option<(NonNull<u8>, Layout, A)>`
+- <span id="rawtable-clone-from-impl"></span>`unsafe fn clone_from_impl(&mut self, source: &Self)`
 
 #### Trait Implementations
 
 ##### `impl<T: Clone, A: Allocator + Clone> Clone for RawTable<T, A>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="rawtable-clone"></span>`fn clone(&self) -> Self`
 
-- `fn clone_from(self: &mut Self, source: &Self)`
+- <span id="rawtable-clone-from"></span>`fn clone_from(&mut self, source: &Self)`
 
 ##### `impl<T, A: Allocator + Default> Default for RawTable<T, A>`
 
-- `fn default() -> Self`
+- <span id="rawtable-default"></span>`fn default() -> Self`
 
 ##### `impl<T, A: Allocator> Drop for RawTable<T, A>`
 
-- `fn drop(self: &mut Self)`
+- <span id="rawtable-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<T, A: Allocator> IntoIterator for RawTable<T, A>`
 
-- `type Item = T`
+- <span id="rawtable-item"></span>`type Item = T`
 
-- `type IntoIter = RawIntoIter<T, A>`
+- <span id="rawtable-intoiter"></span>`type IntoIter = RawIntoIter<T, A>`
 
-- `fn into_iter(self: Self) -> RawIntoIter<T, A>` — [`RawIntoIter`](#rawintoiter)
+- <span id="rawtable-into-iter"></span>`fn into_iter(self) -> RawIntoIter<T, A>` — [`RawIntoIter`](#rawintoiter)
 
 ##### `impl<T: Clone, A: Allocator + Clone> RawTableClone for RawTable<T, A>`
 
-- `unsafe fn clone_from_spec(self: &mut Self, source: &Self)`
+- <span id="rawtable-clone-from-spec"></span>`unsafe fn clone_from_spec(&mut self, source: &Self)`
 
 ##### `impl<T, A> Send for RawTable<T, A>`
 
@@ -269,81 +234,81 @@ of how many different key-value types are used.
 
 #### Implementations
 
-- `unsafe fn new_uninitialized<A>(alloc: &A, table_layout: TableLayout, buckets: usize, fallibility: Fallibility) -> Result<Self, TryReserveError>` — [`TableLayout`](#tablelayout), [`Fallibility`](#fallibility), [`TryReserveError`](../index.md)
+- <span id="rawtableinner-new-uninitialized"></span>`unsafe fn new_uninitialized<A>(alloc: &A, table_layout: TableLayout, buckets: usize, fallibility: Fallibility) -> Result<Self, TryReserveError>` — [`TableLayout`](#tablelayout), [`Fallibility`](#fallibility), [`TryReserveError`](../index.md)
 
-- `fn fallible_with_capacity<A>(alloc: &A, table_layout: TableLayout, capacity: usize, fallibility: Fallibility) -> Result<Self, TryReserveError>` — [`TableLayout`](#tablelayout), [`Fallibility`](#fallibility), [`TryReserveError`](../index.md)
+- <span id="rawtableinner-fallible-with-capacity"></span>`fn fallible_with_capacity<A>(alloc: &A, table_layout: TableLayout, capacity: usize, fallibility: Fallibility) -> Result<Self, TryReserveError>` — [`TableLayout`](#tablelayout), [`Fallibility`](#fallibility), [`TryReserveError`](../index.md)
 
-- `fn with_capacity<A>(alloc: &A, table_layout: TableLayout, capacity: usize) -> Self` — [`TableLayout`](#tablelayout)
+- <span id="rawtableinner-with-capacity"></span>`fn with_capacity<A>(alloc: &A, table_layout: TableLayout, capacity: usize) -> Self` — [`TableLayout`](#tablelayout)
 
-- `unsafe fn fix_insert_index(self: &Self, index: usize) -> usize`
+- <span id="rawtableinner-fix-insert-index"></span>`unsafe fn fix_insert_index(&self, index: usize) -> usize`
 
-- `fn find_insert_index_in_group(self: &Self, group: &Group, probe_seq: &ProbeSeq) -> Option<usize>` — [`Group`](../control/group/sse2/index.md), [`ProbeSeq`](#probeseq)
+- <span id="rawtableinner-find-insert-index-in-group"></span>`fn find_insert_index_in_group(&self, group: &Group, probe_seq: &ProbeSeq) -> Option<usize>` — [`Group`](../control/group/sse2/index.md), [`ProbeSeq`](#probeseq)
 
-- `unsafe fn find_or_find_insert_index_inner(self: &Self, hash: u64, eq: &mut dyn FnMut(usize) -> bool) -> Result<usize, usize>`
+- <span id="rawtableinner-find-or-find-insert-index-inner"></span>`unsafe fn find_or_find_insert_index_inner(&self, hash: u64, eq: &mut dyn FnMut(usize) -> bool) -> Result<usize, usize>`
 
-- `unsafe fn prepare_insert_index(self: &mut Self, hash: u64) -> (usize, Tag)` — [`Tag`](../control/tag/index.md)
+- <span id="rawtableinner-prepare-insert-index"></span>`unsafe fn prepare_insert_index(&mut self, hash: u64) -> (usize, Tag)` — [`Tag`](../control/tag/index.md)
 
-- `unsafe fn find_insert_index(self: &Self, hash: u64) -> usize`
+- <span id="rawtableinner-find-insert-index"></span>`unsafe fn find_insert_index(&self, hash: u64) -> usize`
 
-- `unsafe fn find_inner(self: &Self, hash: u64, eq: &mut dyn FnMut(usize) -> bool) -> Option<usize>`
+- <span id="rawtableinner-find-inner"></span>`unsafe fn find_inner(&self, hash: u64, eq: &mut dyn FnMut(usize) -> bool) -> Option<usize>`
 
-- `unsafe fn prepare_rehash_in_place(self: &mut Self)`
+- <span id="rawtableinner-prepare-rehash-in-place"></span>`unsafe fn prepare_rehash_in_place(&mut self)`
 
-- `unsafe fn iter<T>(self: &Self) -> RawIter<T>` — [`RawIter`](#rawiter)
+- <span id="rawtableinner-iter"></span>`unsafe fn iter<T>(&self) -> RawIter<T>` — [`RawIter`](#rawiter)
 
-- `unsafe fn drop_elements<T>(self: &mut Self)`
+- <span id="rawtableinner-drop-elements"></span>`unsafe fn drop_elements<T>(&mut self)`
 
-- `unsafe fn drop_inner_table<T, A: Allocator>(self: &mut Self, alloc: &A, table_layout: TableLayout)` — [`TableLayout`](#tablelayout)
+- <span id="rawtableinner-drop-inner-table"></span>`unsafe fn drop_inner_table<T, A: Allocator>(&mut self, alloc: &A, table_layout: TableLayout)` — [`TableLayout`](#tablelayout)
 
-- `unsafe fn bucket<T>(self: &Self, index: usize) -> Bucket<T>` — [`Bucket`](#bucket)
+- <span id="rawtableinner-bucket"></span>`unsafe fn bucket<T>(&self, index: usize) -> Bucket<T>` — [`Bucket`](#bucket)
 
-- `unsafe fn bucket_ptr(self: &Self, index: usize, size_of: usize) -> *mut u8`
+- <span id="rawtableinner-bucket-ptr"></span>`unsafe fn bucket_ptr(&self, index: usize, size_of: usize) -> *mut u8`
 
-- `fn data_end<T>(self: &Self) -> NonNull<T>`
+- <span id="rawtableinner-data-end"></span>`fn data_end<T>(&self) -> NonNull<T>`
 
-- `fn probe_seq(self: &Self, hash: u64) -> ProbeSeq` — [`ProbeSeq`](#probeseq)
+- <span id="rawtableinner-probe-seq"></span>`fn probe_seq(&self, hash: u64) -> ProbeSeq` — [`ProbeSeq`](#probeseq)
 
-- `unsafe fn record_item_insert_at(self: &mut Self, index: usize, old_ctrl: Tag, new_ctrl: Tag)` — [`Tag`](../control/tag/index.md)
+- <span id="rawtableinner-record-item-insert-at"></span>`unsafe fn record_item_insert_at(&mut self, index: usize, old_ctrl: Tag, new_ctrl: Tag)` — [`Tag`](../control/tag/index.md)
 
-- `fn is_in_same_group(self: &Self, i: usize, new_i: usize, hash: u64) -> bool`
+- <span id="rawtableinner-is-in-same-group"></span>`fn is_in_same_group(&self, i: usize, new_i: usize, hash: u64) -> bool`
 
-- `unsafe fn set_ctrl_hash(self: &mut Self, index: usize, hash: u64)`
+- <span id="rawtableinner-set-ctrl-hash"></span>`unsafe fn set_ctrl_hash(&mut self, index: usize, hash: u64)`
 
-- `unsafe fn replace_ctrl_hash(self: &mut Self, index: usize, hash: u64) -> Tag` — [`Tag`](../control/tag/index.md)
+- <span id="rawtableinner-replace-ctrl-hash"></span>`unsafe fn replace_ctrl_hash(&mut self, index: usize, hash: u64) -> Tag` — [`Tag`](../control/tag/index.md)
 
-- `unsafe fn set_ctrl(self: &mut Self, index: usize, ctrl: Tag)` — [`Tag`](../control/tag/index.md)
+- <span id="rawtableinner-set-ctrl"></span>`unsafe fn set_ctrl(&mut self, index: usize, ctrl: Tag)` — [`Tag`](../control/tag/index.md)
 
-- `unsafe fn ctrl(self: &Self, index: usize) -> *mut Tag` — [`Tag`](../control/tag/index.md)
+- <span id="rawtableinner-ctrl"></span>`unsafe fn ctrl(&self, index: usize) -> *mut Tag` — [`Tag`](../control/tag/index.md)
 
-- `fn ctrl_slice(self: &mut Self) -> &mut [Tag]` — [`Tag`](../control/tag/index.md)
+- <span id="rawtableinner-ctrl-slice"></span>`fn ctrl_slice(&mut self) -> &mut [Tag]` — [`Tag`](../control/tag/index.md)
 
-- `fn buckets(self: &Self) -> usize`
+- <span id="rawtableinner-buckets"></span>`fn buckets(&self) -> usize`
 
-- `unsafe fn is_bucket_full(self: &Self, index: usize) -> bool`
+- <span id="rawtableinner-is-bucket-full"></span>`unsafe fn is_bucket_full(&self, index: usize) -> bool`
 
-- `fn num_ctrl_bytes(self: &Self) -> usize`
+- <span id="rawtableinner-num-ctrl-bytes"></span>`fn num_ctrl_bytes(&self) -> usize`
 
-- `fn is_empty_singleton(self: &Self) -> bool`
+- <span id="rawtableinner-is-empty-singleton"></span>`fn is_empty_singleton(&self) -> bool`
 
-- `fn prepare_resize<'a, A>(self: &Self, alloc: &'a A, table_layout: TableLayout, capacity: usize, fallibility: Fallibility) -> Result<crate::scopeguard::ScopeGuard<Self, impl FnMut(&mut Self) + 'a>, TryReserveError>` — [`TableLayout`](#tablelayout), [`Fallibility`](#fallibility), [`ScopeGuard`](../scopeguard/index.md), [`TryReserveError`](../index.md)
+- <span id="rawtableinner-prepare-resize"></span>`fn prepare_resize<'a, A>(&self, alloc: &'a A, table_layout: TableLayout, capacity: usize, fallibility: Fallibility) -> Result<crate::scopeguard::ScopeGuard<Self, impl FnMut(&mut Self) + 'a>, TryReserveError>` — [`TableLayout`](#tablelayout), [`Fallibility`](#fallibility), [`ScopeGuard`](../scopeguard/index.md), [`TryReserveError`](../index.md)
 
-- `unsafe fn reserve_rehash_inner<A>(self: &mut Self, alloc: &A, additional: usize, hasher: &dyn Fn(&mut Self, usize) -> u64, fallibility: Fallibility, layout: TableLayout, drop: Option<fn(*mut u8)>) -> Result<(), TryReserveError>` — [`Fallibility`](#fallibility), [`TableLayout`](#tablelayout), [`TryReserveError`](../index.md)
+- <span id="rawtableinner-reserve-rehash-inner"></span>`unsafe fn reserve_rehash_inner<A>(&mut self, alloc: &A, additional: usize, hasher: &dyn Fn(&mut Self, usize) -> u64, fallibility: Fallibility, layout: TableLayout, drop: Option<fn(*mut u8)>) -> Result<(), TryReserveError>` — [`Fallibility`](#fallibility), [`TableLayout`](#tablelayout), [`TryReserveError`](../index.md)
 
-- `unsafe fn full_buckets_indices(self: &Self) -> FullBucketsIndices` — [`FullBucketsIndices`](#fullbucketsindices)
+- <span id="rawtableinner-full-buckets-indices"></span>`unsafe fn full_buckets_indices(&self) -> FullBucketsIndices` — [`FullBucketsIndices`](#fullbucketsindices)
 
-- `unsafe fn resize_inner<A>(self: &mut Self, alloc: &A, capacity: usize, hasher: &dyn Fn(&mut Self, usize) -> u64, fallibility: Fallibility, layout: TableLayout) -> Result<(), TryReserveError>` — [`Fallibility`](#fallibility), [`TableLayout`](#tablelayout), [`TryReserveError`](../index.md)
+- <span id="rawtableinner-resize-inner"></span>`unsafe fn resize_inner<A>(&mut self, alloc: &A, capacity: usize, hasher: &dyn Fn(&mut Self, usize) -> u64, fallibility: Fallibility, layout: TableLayout) -> Result<(), TryReserveError>` — [`Fallibility`](#fallibility), [`TableLayout`](#tablelayout), [`TryReserveError`](../index.md)
 
-- `unsafe fn rehash_in_place(self: &mut Self, hasher: &dyn Fn(&mut Self, usize) -> u64, size_of: usize, drop: Option<fn(*mut u8)>)`
+- <span id="rawtableinner-rehash-in-place"></span>`unsafe fn rehash_in_place(&mut self, hasher: &dyn Fn(&mut Self, usize) -> u64, size_of: usize, drop: Option<fn(*mut u8)>)`
 
-- `unsafe fn free_buckets<A>(self: &mut Self, alloc: &A, table_layout: TableLayout)` — [`TableLayout`](#tablelayout)
+- <span id="rawtableinner-free-buckets"></span>`unsafe fn free_buckets<A>(&mut self, alloc: &A, table_layout: TableLayout)` — [`TableLayout`](#tablelayout)
 
-- `unsafe fn allocation_info(self: &Self, table_layout: TableLayout) -> (NonNull<u8>, Layout)` — [`TableLayout`](#tablelayout)
+- <span id="rawtableinner-allocation-info"></span>`unsafe fn allocation_info(&self, table_layout: TableLayout) -> (NonNull<u8>, Layout)` — [`TableLayout`](#tablelayout)
 
-- `unsafe fn allocation_size_or_zero(self: &Self, table_layout: TableLayout) -> usize` — [`TableLayout`](#tablelayout)
+- <span id="rawtableinner-allocation-size-or-zero"></span>`unsafe fn allocation_size_or_zero(&self, table_layout: TableLayout) -> usize` — [`TableLayout`](#tablelayout)
 
-- `fn clear_no_drop(self: &mut Self)`
+- <span id="rawtableinner-clear-no-drop"></span>`fn clear_no_drop(&mut self)`
 
-- `unsafe fn erase(self: &mut Self, index: usize)`
+- <span id="rawtableinner-erase"></span>`unsafe fn erase(&mut self, index: usize)`
 
 ### `RawIterRange<T>`
 
@@ -361,35 +326,35 @@ not track an item count.
 
 #### Implementations
 
-- `unsafe fn new(ctrl: *const u8, data: Bucket<T>, len: usize) -> Self` — [`Bucket`](#bucket)
+- <span id="rawiterrange-new"></span>`unsafe fn new(ctrl: *const u8, data: Bucket<T>, len: usize) -> Self` — [`Bucket`](#bucket)
 
-- `unsafe fn next_impl<const DO_CHECK_PTR_RANGE: bool>(self: &mut Self) -> Option<Bucket<T>>` — [`Bucket`](#bucket)
+- <span id="rawiterrange-next-impl"></span>`unsafe fn next_impl<const DO_CHECK_PTR_RANGE: bool>(&mut self) -> Option<Bucket<T>>` — [`Bucket`](#bucket)
 
-- `unsafe fn fold_impl<F, B>(self: Self, n: usize, acc: B, f: F) -> B`
+- <span id="rawiterrange-fold-impl"></span>`unsafe fn fold_impl<F, B>(self, n: usize, acc: B, f: F) -> B`
 
 #### Trait Implementations
 
 ##### `impl<T> Clone for RawIterRange<T>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="rawiterrange-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T> FusedIterator for RawIterRange<T>`
 
 ##### `impl<I> IntoIterator for RawIterRange<T>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="rawiterrange-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="rawiterrange-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="rawiterrange-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T> Iterator for RawIterRange<T>`
 
-- `type Item = Bucket<T>`
+- <span id="rawiterrange-item"></span>`type Item = Bucket<T>`
 
-- `fn next(self: &mut Self) -> Option<Bucket<T>>` — [`Bucket`](#bucket)
+- <span id="rawiterrange-next"></span>`fn next(&mut self) -> Option<Bucket<T>>` — [`Bucket`](#bucket)
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="rawiterrange-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ##### `impl<T> Send for RawIterRange<T>`
 
@@ -419,17 +384,17 @@ must observe several rules when using it:
 
 #### Implementations
 
-- `unsafe fn drop_elements(self: &mut Self)`
+- <span id="rawiter-drop-elements"></span>`unsafe fn drop_elements(&mut self)`
 
 #### Trait Implementations
 
 ##### `impl<T> Clone for RawIter<T>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="rawiter-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T> Default for RawIter<T>`
 
-- `fn default() -> Self`
+- <span id="rawiter-default"></span>`fn default() -> Self`
 
 ##### `impl<T> ExactSizeIterator for RawIter<T>`
 
@@ -437,21 +402,21 @@ must observe several rules when using it:
 
 ##### `impl<I> IntoIterator for RawIter<T>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="rawiter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="rawiter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="rawiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T> Iterator for RawIter<T>`
 
-- `type Item = Bucket<T>`
+- <span id="rawiter-item"></span>`type Item = Bucket<T>`
 
-- `fn next(self: &mut Self) -> Option<Bucket<T>>` — [`Bucket`](#bucket)
+- <span id="rawiter-next"></span>`fn next(&mut self) -> Option<Bucket<T>>` — [`Bucket`](#bucket)
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="rawiter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- `fn fold<B, F>(self: Self, init: B, f: F) -> B`
+- <span id="rawiter-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
 
 ### `FullBucketsIndices`
 
@@ -479,17 +444,17 @@ must observe several rules when using it:
 
 #### Implementations
 
-- `unsafe fn next_impl(self: &mut Self) -> Option<usize>`
+- <span id="fullbucketsindices-next-impl"></span>`unsafe fn next_impl(&mut self) -> Option<usize>`
 
 #### Trait Implementations
 
 ##### `impl Clone for FullBucketsIndices`
 
-- `fn clone(self: &Self) -> FullBucketsIndices` — [`FullBucketsIndices`](#fullbucketsindices)
+- <span id="fullbucketsindices-clone"></span>`fn clone(&self) -> FullBucketsIndices` — [`FullBucketsIndices`](#fullbucketsindices)
 
 ##### `impl Default for FullBucketsIndices`
 
-- `fn default() -> Self`
+- <span id="fullbucketsindices-default"></span>`fn default() -> Self`
 
 ##### `impl ExactSizeIterator for FullBucketsIndices`
 
@@ -497,19 +462,19 @@ must observe several rules when using it:
 
 ##### `impl<I> IntoIterator for FullBucketsIndices`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="fullbucketsindices-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="fullbucketsindices-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="fullbucketsindices-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for FullBucketsIndices`
 
-- `type Item = usize`
+- <span id="fullbucketsindices-item"></span>`type Item = usize`
 
-- `fn next(self: &mut Self) -> Option<usize>`
+- <span id="fullbucketsindices-next"></span>`fn next(&mut self) -> Option<usize>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="fullbucketsindices-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ### `RawIntoIter<T, A: Allocator>`
 
@@ -525,17 +490,17 @@ Iterator which consumes a table and returns elements.
 
 #### Implementations
 
-- `fn iter(self: &Self) -> RawIter<T>` — [`RawIter`](#rawiter)
+- <span id="rawintoiter-iter"></span>`fn iter(&self) -> RawIter<T>` — [`RawIter`](#rawiter)
 
 #### Trait Implementations
 
 ##### `impl<T, A: Allocator> Default for RawIntoIter<T, A>`
 
-- `fn default() -> Self`
+- <span id="rawintoiter-default"></span>`fn default() -> Self`
 
 ##### `impl<T, A: Allocator> Drop for RawIntoIter<T, A>`
 
-- `fn drop(self: &mut Self)`
+- <span id="rawintoiter-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<T, A: Allocator> ExactSizeIterator for RawIntoIter<T, A>`
 
@@ -543,19 +508,19 @@ Iterator which consumes a table and returns elements.
 
 ##### `impl<I> IntoIterator for RawIntoIter<T, A>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="rawintoiter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="rawintoiter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="rawintoiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T, A: Allocator> Iterator for RawIntoIter<T, A>`
 
-- `type Item = T`
+- <span id="rawintoiter-item"></span>`type Item = T`
 
-- `fn next(self: &mut Self) -> Option<T>`
+- <span id="rawintoiter-next"></span>`fn next(&mut self) -> Option<T>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="rawintoiter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ##### `impl<T, A> Send for RawIntoIter<T, A>`
 
@@ -576,13 +541,13 @@ Iterator which consumes elements without freeing the table storage.
 
 #### Implementations
 
-- `fn iter(self: &Self) -> RawIter<T>` — [`RawIter`](#rawiter)
+- <span id="rawdrain-iter"></span>`fn iter(&self) -> RawIter<T>` — [`RawIter`](#rawiter)
 
 #### Trait Implementations
 
 ##### `impl<T, A: Allocator> Drop for RawDrain<'_, T, A>`
 
-- `fn drop(self: &mut Self)`
+- <span id="rawdrain-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<T, A: Allocator> ExactSizeIterator for RawDrain<'_, T, A>`
 
@@ -590,19 +555,19 @@ Iterator which consumes elements without freeing the table storage.
 
 ##### `impl<I> IntoIterator for RawDrain<'a, T, A>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="rawdrain-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="rawdrain-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="rawdrain-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T, A: Allocator> Iterator for RawDrain<'_, T, A>`
 
-- `type Item = T`
+- <span id="rawdrain-item"></span>`type Item = T`
 
-- `fn next(self: &mut Self) -> Option<T>`
+- <span id="rawdrain-next"></span>`fn next(&mut self) -> Option<T>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="rawdrain-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ##### `impl<T, A> Send for RawDrain<'_, T, A>`
 
@@ -636,31 +601,31 @@ must observe several rules when using it:
 
 #### Implementations
 
-- `unsafe fn new<A: Allocator>(table: &RawTable<T, A>, hash: u64) -> Self` — [`RawTable`](#rawtable)
+- <span id="rawiterhash-new"></span>`unsafe fn new<A: Allocator>(table: &RawTable<T, A>, hash: u64) -> Self` — [`RawTable`](#rawtable)
 
 #### Trait Implementations
 
 ##### `impl<T> Clone for RawIterHash<T>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="rawiterhash-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T> Default for RawIterHash<T>`
 
-- `fn default() -> Self`
+- <span id="rawiterhash-default"></span>`fn default() -> Self`
 
 ##### `impl<I> IntoIterator for RawIterHash<T>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="rawiterhash-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="rawiterhash-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="rawiterhash-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T> Iterator for RawIterHash<T>`
 
-- `type Item = Bucket<T>`
+- <span id="rawiterhash-item"></span>`type Item = Bucket<T>`
 
-- `fn next(self: &mut Self) -> Option<Bucket<T>>` — [`Bucket`](#bucket)
+- <span id="rawiterhash-next"></span>`fn next(&mut self) -> Option<Bucket<T>>` — [`Bucket`](#bucket)
 
 ### `RawIterHashIndices`
 
@@ -677,31 +642,31 @@ struct RawIterHashIndices {
 
 #### Implementations
 
-- `unsafe fn new(table: &RawTableInner, hash: u64) -> Self` — [`RawTableInner`](#rawtableinner)
+- <span id="rawiterhashindices-new"></span>`unsafe fn new(table: &RawTableInner, hash: u64) -> Self` — [`RawTableInner`](#rawtableinner)
 
 #### Trait Implementations
 
 ##### `impl Clone for RawIterHashIndices`
 
-- `fn clone(self: &Self) -> RawIterHashIndices` — [`RawIterHashIndices`](#rawiterhashindices)
+- <span id="rawiterhashindices-clone"></span>`fn clone(&self) -> RawIterHashIndices` — [`RawIterHashIndices`](#rawiterhashindices)
 
 ##### `impl Default for RawIterHashIndices`
 
-- `fn default() -> Self`
+- <span id="rawiterhashindices-default"></span>`fn default() -> Self`
 
 ##### `impl<I> IntoIterator for RawIterHashIndices`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="rawiterhashindices-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="rawiterhashindices-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="rawiterhashindices-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for RawIterHashIndices`
 
-- `type Item = usize`
+- <span id="rawiterhashindices-item"></span>`type Item = usize`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="rawiterhashindices-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `RawExtractIf<'a, T, A: Allocator>`
 
@@ -714,7 +679,7 @@ struct RawExtractIf<'a, T, A: Allocator> {
 
 #### Implementations
 
-- `fn next<F>(self: &mut Self, f: F) -> Option<T>`
+- <span id="rawextractif-next"></span>`fn next<F>(&mut self, f: F) -> Option<T>`
 
 ## Enums
 
@@ -731,15 +696,15 @@ Whether memory allocation errors should return an error or abort.
 
 #### Implementations
 
-- `fn capacity_overflow(self: Self) -> TryReserveError` — [`TryReserveError`](../index.md)
+- <span id="fallibility-capacity-overflow"></span>`fn capacity_overflow(self) -> TryReserveError` — [`TryReserveError`](../index.md)
 
-- `fn alloc_err(self: Self, layout: Layout) -> TryReserveError` — [`TryReserveError`](../index.md)
+- <span id="fallibility-alloc-err"></span>`fn alloc_err(self, layout: Layout) -> TryReserveError` — [`TryReserveError`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Fallibility`
 
-- `fn clone(self: &Self) -> Fallibility` — [`Fallibility`](#fallibility)
+- <span id="fallibility-clone"></span>`fn clone(&self) -> Fallibility` — [`Fallibility`](#fallibility)
 
 ##### `impl Copy for Fallibility`
 
@@ -767,7 +732,7 @@ Specialization of `clone_from` for `Copy` types
 
 #### Required Methods
 
-- `fn clone_from_spec(self: &mut Self, source: &Self)`
+- `fn clone_from_spec(&mut self, source: &Self)`
 
 ## Functions
 

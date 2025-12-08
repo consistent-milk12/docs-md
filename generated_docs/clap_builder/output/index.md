@@ -4,6 +4,18 @@
 
 # Module `output`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`help`](#help) | mod |  |
+| [`help_template`](#help_template) | mod |  |
+| [`usage`](#usage) | mod |  |
+| [`fmt`](#fmt) | mod |  |
+| [`textwrap`](#textwrap) | mod | Fork of `textwrap` crate |
+| [`TAB`](#tab) | const |  |
+| [`TAB_WIDTH`](#tab_width) | const |  |
+
 ## Modules
 
 - [`help`](help/index.md) - 

@@ -90,6 +90,38 @@ Finally, the binary representation used by these states is, thankfully, not
 serialized anywhere. So any kind of change can be made with reckless abandon,
 as long as everything in this module agrees.
 
+## Contents
+
+- [Structs](#structs)
+  - [`State`](#state)
+  - [`StateBuilderEmpty`](#statebuilderempty)
+  - [`StateBuilderMatches`](#statebuildermatches)
+  - [`StateBuilderNFA`](#statebuildernfa)
+  - [`Repr`](#repr)
+  - [`ReprVec`](#reprvec)
+- [Functions](#functions)
+  - [`write_vari32`](#write_vari32)
+  - [`read_vari32`](#read_vari32)
+  - [`write_varu32`](#write_varu32)
+  - [`read_varu32`](#read_varu32)
+  - [`write_u32`](#write_u32)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`State`](#state) | struct | A DFA state that, at its core, is represented by an ordered set of NFA |
+| [`StateBuilderEmpty`](#statebuilderempty) | struct | A state builder that represents an empty state. |
+| [`StateBuilderMatches`](#statebuildermatches) | struct | A state builder that collects assertions and pattern IDs. |
+| [`StateBuilderNFA`](#statebuildernfa) | struct | A state builder that collects some assertions and NFA state IDs. |
+| [`Repr`](#repr) | struct | Repr is a read-only view into the representation of a DFA state. |
+| [`ReprVec`](#reprvec) | struct | ReprVec is a write-only view into the representation of a DFA state. |
+| [`write_vari32`](#write_vari32) | fn | Write a signed 32-bit integer using zig-zag encoding. |
+| [`read_vari32`](#read_vari32) | fn | Read a signed 32-bit integer using zig-zag encoding. |
+| [`write_varu32`](#write_varu32) | fn | Write an unsigned 32-bit integer as a varint. |
+| [`read_varu32`](#read_varu32) | fn | Read an unsigned 32-bit varint. |
+| [`write_u32`](#write_u32) | fn | Push a native-endian encoded `n` on to `dst`. |
+
 ## Structs
 
 ### `State`
@@ -109,57 +141,57 @@ simultaneously.
 
 #### Implementations
 
-- `fn dead() -> State` — [`State`](#state)
+- <span id="state-dead"></span>`fn dead() -> State` — [`State`](#state)
 
-- `fn is_match(self: &Self) -> bool`
+- <span id="state-is-match"></span>`fn is_match(&self) -> bool`
 
-- `fn is_from_word(self: &Self) -> bool`
+- <span id="state-is-from-word"></span>`fn is_from_word(&self) -> bool`
 
-- `fn is_half_crlf(self: &Self) -> bool`
+- <span id="state-is-half-crlf"></span>`fn is_half_crlf(&self) -> bool`
 
-- `fn look_have(self: &Self) -> LookSet` — [`LookSet`](../../look/index.md)
+- <span id="state-look-have"></span>`fn look_have(&self) -> LookSet` — [`LookSet`](../../look/index.md)
 
-- `fn look_need(self: &Self) -> LookSet` — [`LookSet`](../../look/index.md)
+- <span id="state-look-need"></span>`fn look_need(&self) -> LookSet` — [`LookSet`](../../look/index.md)
 
-- `fn match_len(self: &Self) -> usize`
+- <span id="state-match-len"></span>`fn match_len(&self) -> usize`
 
-- `fn match_pattern(self: &Self, index: usize) -> PatternID` — [`PatternID`](../../../index.md)
+- <span id="state-match-pattern"></span>`fn match_pattern(&self, index: usize) -> PatternID` — [`PatternID`](../../../index.md)
 
-- `fn match_pattern_ids(self: &Self) -> Option<Vec<PatternID>>` — [`PatternID`](../../../index.md)
+- <span id="state-match-pattern-ids"></span>`fn match_pattern_ids(&self) -> Option<Vec<PatternID>>` — [`PatternID`](../../../index.md)
 
-- `fn iter_nfa_state_ids<F: FnMut(StateID)>(self: &Self, f: F)`
+- <span id="state-iter-nfa-state-ids"></span>`fn iter_nfa_state_ids<F: FnMut(StateID)>(&self, f: F)`
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="state-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- `fn repr(self: &Self) -> Repr<'_>` — [`Repr`](#repr)
+- <span id="state-repr"></span>`fn repr(&self) -> Repr<'_>` — [`Repr`](#repr)
 
 #### Trait Implementations
 
 ##### `impl Clone for State`
 
-- `fn clone(self: &Self) -> State` — [`State`](#state)
+- <span id="state-clone"></span>`fn clone(&self) -> State` — [`State`](#state)
 
 ##### `impl Debug for State`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="state-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq for State`
 
 ##### `impl Hash for State`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="state-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for State`
 
-- `fn cmp(self: &Self, other: &State) -> $crate::cmp::Ordering` — [`State`](#state)
+- <span id="state-cmp"></span>`fn cmp(&self, other: &State) -> cmp::Ordering` — [`State`](#state)
 
 ##### `impl PartialEq for State`
 
-- `fn eq(self: &Self, other: &State) -> bool` — [`State`](#state)
+- <span id="state-eq"></span>`fn eq(&self, other: &State) -> bool` — [`State`](#state)
 
 ##### `impl PartialOrd for State`
 
-- `fn partial_cmp(self: &Self, other: &State) -> $crate::option::Option<$crate::cmp::Ordering>` — [`State`](#state)
+- <span id="state-partial-cmp"></span>`fn partial_cmp(&self, other: &State) -> option::Option<cmp::Ordering>` — [`State`](#state)
 
 ##### `impl StructuralPartialEq for State`
 
@@ -178,23 +210,23 @@ builder that can capture assertions and pattern IDs.
 
 #### Implementations
 
-- `fn new() -> StateBuilderEmpty` — [`StateBuilderEmpty`](#statebuilderempty)
+- <span id="statebuilderempty-new"></span>`fn new() -> StateBuilderEmpty` — [`StateBuilderEmpty`](#statebuilderempty)
 
-- `fn into_matches(self: Self) -> StateBuilderMatches` — [`StateBuilderMatches`](#statebuildermatches)
+- <span id="statebuilderempty-into-matches"></span>`fn into_matches(self) -> StateBuilderMatches` — [`StateBuilderMatches`](#statebuildermatches)
 
-- `fn clear(self: &mut Self)`
+- <span id="statebuilderempty-clear"></span>`fn clear(&mut self)`
 
-- `fn capacity(self: &Self) -> usize`
+- <span id="statebuilderempty-capacity"></span>`fn capacity(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Clone for StateBuilderEmpty`
 
-- `fn clone(self: &Self) -> StateBuilderEmpty` — [`StateBuilderEmpty`](#statebuilderempty)
+- <span id="statebuilderempty-clone"></span>`fn clone(&self) -> StateBuilderEmpty` — [`StateBuilderEmpty`](#statebuilderempty)
 
 ##### `impl Debug for StateBuilderEmpty`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="statebuilderempty-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `StateBuilderMatches`
 
@@ -209,31 +241,31 @@ builder that collects NFA state IDs.
 
 #### Implementations
 
-- `fn into_nfa(self: Self) -> StateBuilderNFA` — [`StateBuilderNFA`](#statebuildernfa)
+- <span id="statebuildermatches-into-nfa"></span>`fn into_nfa(self) -> StateBuilderNFA` — [`StateBuilderNFA`](#statebuildernfa)
 
-- `fn set_is_from_word(self: &mut Self)`
+- <span id="statebuildermatches-set-is-from-word"></span>`fn set_is_from_word(&mut self)`
 
-- `fn set_is_half_crlf(self: &mut Self)`
+- <span id="statebuildermatches-set-is-half-crlf"></span>`fn set_is_half_crlf(&mut self)`
 
-- `fn look_have(self: &Self) -> LookSet` — [`LookSet`](../../look/index.md)
+- <span id="statebuildermatches-look-have"></span>`fn look_have(&self) -> LookSet` — [`LookSet`](../../look/index.md)
 
-- `fn set_look_have(self: &mut Self, set: impl FnMut(LookSet) -> LookSet)` — [`LookSet`](../../look/index.md)
+- <span id="statebuildermatches-set-look-have"></span>`fn set_look_have(&mut self, set: impl FnMut(LookSet) -> LookSet)` — [`LookSet`](../../look/index.md)
 
-- `fn add_match_pattern_id(self: &mut Self, pid: PatternID)` — [`PatternID`](../../../index.md)
+- <span id="statebuildermatches-add-match-pattern-id"></span>`fn add_match_pattern_id(&mut self, pid: PatternID)` — [`PatternID`](../../../index.md)
 
-- `fn repr(self: &Self) -> Repr<'_>` — [`Repr`](#repr)
+- <span id="statebuildermatches-repr"></span>`fn repr(&self) -> Repr<'_>` — [`Repr`](#repr)
 
-- `fn repr_vec(self: &mut Self) -> ReprVec<'_>` — [`ReprVec`](#reprvec)
+- <span id="statebuildermatches-repr-vec"></span>`fn repr_vec(&mut self) -> ReprVec<'_>` — [`ReprVec`](#reprvec)
 
 #### Trait Implementations
 
 ##### `impl Clone for StateBuilderMatches`
 
-- `fn clone(self: &Self) -> StateBuilderMatches` — [`StateBuilderMatches`](#statebuildermatches)
+- <span id="statebuildermatches-clone"></span>`fn clone(&self) -> StateBuilderMatches` — [`StateBuilderMatches`](#statebuildermatches)
 
 ##### `impl Debug for StateBuilderMatches`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="statebuildermatches-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ### `StateBuilderNFA`
 
@@ -255,33 +287,33 @@ that it can be reused to build the next state.
 
 #### Implementations
 
-- `fn to_state(self: &Self) -> State` — [`State`](#state)
+- <span id="statebuildernfa-to-state"></span>`fn to_state(&self) -> State` — [`State`](#state)
 
-- `fn clear(self: Self) -> StateBuilderEmpty` — [`StateBuilderEmpty`](#statebuilderempty)
+- <span id="statebuildernfa-clear"></span>`fn clear(self) -> StateBuilderEmpty` — [`StateBuilderEmpty`](#statebuilderempty)
 
-- `fn look_need(self: &Self) -> LookSet` — [`LookSet`](../../look/index.md)
+- <span id="statebuildernfa-look-need"></span>`fn look_need(&self) -> LookSet` — [`LookSet`](../../look/index.md)
 
-- `fn set_look_have(self: &mut Self, set: impl FnMut(LookSet) -> LookSet)` — [`LookSet`](../../look/index.md)
+- <span id="statebuildernfa-set-look-have"></span>`fn set_look_have(&mut self, set: impl FnMut(LookSet) -> LookSet)` — [`LookSet`](../../look/index.md)
 
-- `fn set_look_need(self: &mut Self, set: impl FnMut(LookSet) -> LookSet)` — [`LookSet`](../../look/index.md)
+- <span id="statebuildernfa-set-look-need"></span>`fn set_look_need(&mut self, set: impl FnMut(LookSet) -> LookSet)` — [`LookSet`](../../look/index.md)
 
-- `fn add_nfa_state_id(self: &mut Self, sid: StateID)` — [`StateID`](../../primitives/index.md)
+- <span id="statebuildernfa-add-nfa-state-id"></span>`fn add_nfa_state_id(&mut self, sid: StateID)` — [`StateID`](../../primitives/index.md)
 
-- `fn as_bytes(self: &Self) -> &[u8]`
+- <span id="statebuildernfa-as-bytes"></span>`fn as_bytes(&self) -> &[u8]`
 
-- `fn repr(self: &Self) -> Repr<'_>` — [`Repr`](#repr)
+- <span id="statebuildernfa-repr"></span>`fn repr(&self) -> Repr<'_>` — [`Repr`](#repr)
 
-- `fn repr_vec(self: &mut Self) -> ReprVec<'_>` — [`ReprVec`](#reprvec)
+- <span id="statebuildernfa-repr-vec"></span>`fn repr_vec(&mut self) -> ReprVec<'_>` — [`ReprVec`](#reprvec)
 
 #### Trait Implementations
 
 ##### `impl Clone for StateBuilderNFA`
 
-- `fn clone(self: &Self) -> StateBuilderNFA` — [`StateBuilderNFA`](#statebuildernfa)
+- <span id="statebuildernfa-clone"></span>`fn clone(&self) -> StateBuilderNFA` — [`StateBuilderNFA`](#statebuildernfa)
 
 ##### `impl Debug for StateBuilderNFA`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="statebuildernfa-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ### `Repr<'a>`
 
@@ -345,37 +377,37 @@ previous NFA state ID.
 
 #### Implementations
 
-- `fn is_match(self: &Self) -> bool`
+- <span id="repr-is-match"></span>`fn is_match(&self) -> bool`
 
-- `fn has_pattern_ids(self: &Self) -> bool`
+- <span id="repr-has-pattern-ids"></span>`fn has_pattern_ids(&self) -> bool`
 
-- `fn is_from_word(self: &Self) -> bool`
+- <span id="repr-is-from-word"></span>`fn is_from_word(&self) -> bool`
 
-- `fn is_half_crlf(self: &Self) -> bool`
+- <span id="repr-is-half-crlf"></span>`fn is_half_crlf(&self) -> bool`
 
-- `fn look_have(self: &Self) -> LookSet` — [`LookSet`](../../look/index.md)
+- <span id="repr-look-have"></span>`fn look_have(&self) -> LookSet` — [`LookSet`](../../look/index.md)
 
-- `fn look_need(self: &Self) -> LookSet` — [`LookSet`](../../look/index.md)
+- <span id="repr-look-need"></span>`fn look_need(&self) -> LookSet` — [`LookSet`](../../look/index.md)
 
-- `fn match_len(self: &Self) -> usize`
+- <span id="repr-match-len"></span>`fn match_len(&self) -> usize`
 
-- `fn match_pattern(self: &Self, index: usize) -> PatternID` — [`PatternID`](../../../index.md)
+- <span id="repr-match-pattern"></span>`fn match_pattern(&self, index: usize) -> PatternID` — [`PatternID`](../../../index.md)
 
-- `fn match_pattern_ids(self: &Self) -> Option<Vec<PatternID>>` — [`PatternID`](../../../index.md)
+- <span id="repr-match-pattern-ids"></span>`fn match_pattern_ids(&self) -> Option<Vec<PatternID>>` — [`PatternID`](../../../index.md)
 
-- `fn iter_match_pattern_ids<F: FnMut(PatternID)>(self: &Self, f: F)`
+- <span id="repr-iter-match-pattern-ids"></span>`fn iter_match_pattern_ids<F: FnMut(PatternID)>(&self, f: F)`
 
-- `fn iter_nfa_state_ids<F: FnMut(StateID)>(self: &Self, f: F)`
+- <span id="repr-iter-nfa-state-ids"></span>`fn iter_nfa_state_ids<F: FnMut(StateID)>(&self, f: F)`
 
-- `fn pattern_offset_end(self: &Self) -> usize`
+- <span id="repr-pattern-offset-end"></span>`fn pattern_offset_end(&self) -> usize`
 
-- `fn encoded_pattern_len(self: &Self) -> usize`
+- <span id="repr-encoded-pattern-len"></span>`fn encoded_pattern_len(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl<'a> Debug for Repr<'a>`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="repr-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ### `ReprVec<'a>`
 
@@ -393,29 +425,29 @@ permit valid combinations via Rust's linear typing.
 
 #### Implementations
 
-- `fn set_is_match(self: &mut Self)`
+- <span id="reprvec-set-is-match"></span>`fn set_is_match(&mut self)`
 
-- `fn set_has_pattern_ids(self: &mut Self)`
+- <span id="reprvec-set-has-pattern-ids"></span>`fn set_has_pattern_ids(&mut self)`
 
-- `fn set_is_from_word(self: &mut Self)`
+- <span id="reprvec-set-is-from-word"></span>`fn set_is_from_word(&mut self)`
 
-- `fn set_is_half_crlf(self: &mut Self)`
+- <span id="reprvec-set-is-half-crlf"></span>`fn set_is_half_crlf(&mut self)`
 
-- `fn look_have(self: &Self) -> LookSet` — [`LookSet`](../../look/index.md)
+- <span id="reprvec-look-have"></span>`fn look_have(&self) -> LookSet` — [`LookSet`](../../look/index.md)
 
-- `fn look_need(self: &Self) -> LookSet` — [`LookSet`](../../look/index.md)
+- <span id="reprvec-look-need"></span>`fn look_need(&self) -> LookSet` — [`LookSet`](../../look/index.md)
 
-- `fn set_look_have(self: &mut Self, set: impl FnMut(LookSet) -> LookSet)` — [`LookSet`](../../look/index.md)
+- <span id="reprvec-set-look-have"></span>`fn set_look_have(&mut self, set: impl FnMut(LookSet) -> LookSet)` — [`LookSet`](../../look/index.md)
 
-- `fn set_look_need(self: &mut Self, set: impl FnMut(LookSet) -> LookSet)` — [`LookSet`](../../look/index.md)
+- <span id="reprvec-set-look-need"></span>`fn set_look_need(&mut self, set: impl FnMut(LookSet) -> LookSet)` — [`LookSet`](../../look/index.md)
 
-- `fn add_match_pattern_id(self: &mut Self, pid: PatternID)` — [`PatternID`](../../../index.md)
+- <span id="reprvec-add-match-pattern-id"></span>`fn add_match_pattern_id(&mut self, pid: PatternID)` — [`PatternID`](../../../index.md)
 
-- `fn close_match_pattern_ids(self: &mut Self)`
+- <span id="reprvec-close-match-pattern-ids"></span>`fn close_match_pattern_ids(&mut self)`
 
-- `fn add_nfa_state_id(self: &mut Self, prev: &mut StateID, sid: StateID)` — [`StateID`](../../primitives/index.md)
+- <span id="reprvec-add-nfa-state-id"></span>`fn add_nfa_state_id(&mut self, prev: &mut StateID, sid: StateID)` — [`StateID`](../../primitives/index.md)
 
-- `fn repr(self: &Self) -> Repr<'_>` — [`Repr`](#repr)
+- <span id="reprvec-repr"></span>`fn repr(&self) -> Repr<'_>` — [`Repr`](#repr)
 
 ## Functions
 

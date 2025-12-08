@@ -4,6 +4,14 @@
 
 # Module `parser`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`derive_parser`](#derive_parser) | fn |  |
+| [`gen_for_struct`](#gen_for_struct) | fn |  |
+| [`gen_for_enum`](#gen_for_enum) | fn |  |
+
 ## Functions
 
 ### `derive_parser`

@@ -3,13 +3,14 @@
 //! This module provides functionality to collect dependency source code
 //! from `~/.cargo/registry/src/` into a local `.source_{timestamp}/` directory.
 
-use std::collections::HashMap;
-use std::fs as StdFs;
+use std::collections::{HashMap, HashSet};
 use std::io::Write;
 use std::path::{Path, PathBuf};
 use std::time::{SystemTime, UNIX_EPOCH};
+use std::{env as StdEnv, fs as StdFs};
 
-use cargo_metadata::{Metadata, MetadataCommand};
+use cargo_metadata::{DependencyKind, Metadata, MetadataCommand, PackageId};
+use serde_json as SJSON;
 
 use crate::error::Error;
 
@@ -79,6 +80,7 @@ pub struct CollectOptions {
 pub struct SourceCollector {
     /// Cargo metadata for the workspace.
     metadata: Metadata,
+
     /// Path to cargo registry sources.
     registry_path: PathBuf,
 }
@@ -100,6 +102,7 @@ impl SourceCollector {
     /// Returns an error if cargo metadata cannot be loaded.
     pub fn from_manifest(manifest_path: Option<&Path>) -> Result<Self, Error> {
         let mut cmd = MetadataCommand::new();
+
         if let Some(path) = manifest_path {
             cmd.manifest_path(path);
         }
@@ -108,8 +111,8 @@ impl SourceCollector {
             .exec()
             .map_err(|e| Error::SourceCollector(format!("Failed to load cargo metadata: {e}")))?;
 
-        let home = std::env::var("HOME")
-            .or_else(|_| std::env::var("USERPROFILE"))
+        let home = StdEnv::var("HOME")
+            .or_else(|_| StdEnv::var("USERPROFILE"))
             .map_err(|_| Error::SourceCollector("Could not determine home directory".into()))?;
 
         let registry_path = PathBuf::from(home).join(".cargo/registry/src");
@@ -149,6 +152,13 @@ impl SourceCollector {
         let mut skipped = Vec::new();
         let mut collected_count = 0;
 
+        // Get dev-only packages if we need to filter them out
+        let dev_only = if options.include_dev {
+            HashSet::new()
+        } else {
+            self.get_dev_only_packages()
+        };
+
         // Collect each external dependency
         for pkg in &self.metadata.packages {
             // Skip workspace members
@@ -156,8 +166,8 @@ impl SourceCollector {
                 continue;
             }
 
-            // Skip dev-dependencies if not requested
-            if !options.include_dev && Self::is_dev_only_dependency(&pkg.name) {
+            // Skip dev-only dependencies if not requested
+            if dev_only.contains(&pkg.id) {
                 continue;
             }
 
@@ -195,7 +205,7 @@ impl SourceCollector {
 
         // Write manifest.json
         let manifest_path = output_dir.join("manifest.json");
-        let manifest_json = serde_json::to_string_pretty(&manifest)
+        let manifest_json = SJSON::to_string_pretty(&manifest)
             .map_err(|e| Error::SourceCollector(format!("Failed to serialize manifest: {e}")))?;
         StdFs::write(&manifest_path, manifest_json)
             .map_err(|e| Error::SourceCollector(format!("Failed to write manifest: {e}")))?;
@@ -222,6 +232,7 @@ impl SourceCollector {
         for i in 0..3 {
             let dir_name = format!(".source_{}", timestamp + i);
             let path = workspace_root.join(&dir_name);
+
             if !path.exists() {
                 return Ok(path);
             }
@@ -247,6 +258,7 @@ impl SourceCollector {
 
             if index_path.is_dir() {
                 let crate_path = index_path.join(&target_dir);
+
                 if crate_path.exists() && crate_path.is_dir() {
                     return Some(crate_path);
                 }
@@ -278,11 +290,50 @@ impl SourceCollector {
         Ok(())
     }
 
-    /// Check if a dependency is dev-only.
-    const fn is_dev_only_dependency(_name: &str) -> bool {
-        // TODO: Implement proper dev-dependency detection
-        // For now, include all dependencies
-        false
+    /// Get the set of package IDs that are dev-only dependencies.
+    ///
+    /// A package is considered dev-only if it is only reachable from workspace
+    /// members via dev-dependencies (not normal or build dependencies).
+    fn get_dev_only_packages(&self) -> HashSet<PackageId> {
+        let Some(resolve) = &self.metadata.resolve else {
+            return HashSet::new();
+        };
+
+        // Build a map of package ID to its node for quick lookup
+        let nodes: HashMap<&PackageId, _> =
+            resolve.nodes.iter().map(|node| (&node.id, node)).collect();
+
+        // Collect all packages reachable via non-dev dependencies from workspace members
+        let mut non_dev_reachable: HashSet<PackageId> = HashSet::new();
+        let mut to_visit: Vec<&PackageId> = self.metadata.workspace_members.iter().collect();
+
+        while let Some(pkg_id) = to_visit.pop() {
+            if let Some(node) = nodes.get(pkg_id) {
+                for dep in &node.deps {
+                    // Check if this dependency has any non-dev dependency kinds
+                    let has_non_dev = dep
+                        .dep_kinds
+                        .iter()
+                        .any(|dk| !matches!(dk.kind, DependencyKind::Development));
+
+                    if has_non_dev && non_dev_reachable.insert(dep.pkg.clone()) {
+                        to_visit.push(&dep.pkg);
+                    }
+                }
+            }
+        }
+
+        // Dev-only packages are those in metadata.packages but NOT in non_dev_reachable
+        // (excluding workspace members themselves)
+        self.metadata
+            .packages
+            .iter()
+            .filter(|pkg| {
+                !self.metadata.workspace_members.contains(&pkg.id)
+                    && !non_dev_reachable.contains(&pkg.id)
+            })
+            .map(|pkg| pkg.id.clone())
+            .collect()
     }
 
     /// Perform a dry run, returning what would be collected.
@@ -295,12 +346,20 @@ impl SourceCollector {
         let mut skipped = Vec::new();
         let mut collected_count = 0;
 
+        // Get dev-only packages if we need to filter them out
+        let dev_only = if options.include_dev {
+            HashSet::new()
+        } else {
+            self.get_dev_only_packages()
+        };
+
         for pkg in &self.metadata.packages {
             if self.metadata.workspace_members.contains(&pkg.id) {
                 continue;
             }
 
-            if !options.include_dev && Self::is_dev_only_dependency(&pkg.name) {
+            // Skip dev-only dependencies if not requested
+            if dev_only.contains(&pkg.id) {
                 continue;
             }
 
@@ -420,9 +479,11 @@ impl TimeUtils {
 
         loop {
             let days_in_year = if Self::is_leap_year(year) { 366 } else { 365 };
+
             if remaining_days < days_in_year {
                 break;
             }
+
             remaining_days -= days_in_year;
             year += 1;
         }
@@ -454,7 +515,7 @@ impl TimeUtils {
 
 #[cfg(test)]
 mod tests {
-    use super::TimeUtils;
+    use super::{SourceCollector, TimeUtils};
 
     #[test]
     fn test_chrono_lite_now() {
@@ -471,5 +532,99 @@ mod tests {
         assert!(TimeUtils::is_leap_year(2024));
         assert!(!TimeUtils::is_leap_year(1900));
         assert!(!TimeUtils::is_leap_year(2023));
+    }
+
+    #[test]
+    fn test_get_dev_only_packages_detects_dev_deps() {
+        // This test runs on the actual cargo-docs-md project
+        let collector = SourceCollector::new().expect("Failed to create collector");
+        let dev_only = collector.get_dev_only_packages();
+
+        // Convert to package names for easier assertion
+        let dev_only_names: Vec<&str> = collector
+            .metadata
+            .packages
+            .iter()
+            .filter(|pkg| dev_only.contains(&pkg.id))
+            .map(|pkg| pkg.name.as_str())
+            .collect();
+
+        // insta and divan are dev-only dependencies
+        assert!(
+            dev_only_names.contains(&"insta"),
+            "insta should be detected as dev-only, got: {dev_only_names:?}"
+        );
+        assert!(
+            dev_only_names.contains(&"divan"),
+            "divan should be detected as dev-only, got: {dev_only_names:?}"
+        );
+    }
+
+    #[test]
+    fn test_get_dev_only_packages_excludes_normal_deps() {
+        let collector = SourceCollector::new().expect("Failed to create collector");
+        let dev_only = collector.get_dev_only_packages();
+
+        // Convert to package names for easier assertion
+        let dev_only_names: Vec<&str> = collector
+            .metadata
+            .packages
+            .iter()
+            .filter(|pkg| dev_only.contains(&pkg.id))
+            .map(|pkg| pkg.name.as_str())
+            .collect();
+
+        // Normal dependencies should NOT be in dev-only
+        assert!(
+            !dev_only_names.contains(&"serde"),
+            "serde should NOT be dev-only"
+        );
+        assert!(
+            !dev_only_names.contains(&"clap"),
+            "clap should NOT be dev-only"
+        );
+        assert!(
+            !dev_only_names.contains(&"syn"),
+            "syn should NOT be dev-only"
+        );
+        // tracing is in both deps and dev-deps, but since it's a normal dep it shouldn't be dev-only
+        assert!(
+            !dev_only_names.contains(&"tracing"),
+            "tracing should NOT be dev-only (it's also a normal dependency)"
+        );
+    }
+
+    #[test]
+    fn test_get_dev_only_packages_with_no_resolve() {
+        // When there's no resolve graph, should return empty set
+        let mut collector = SourceCollector::new().expect("Failed to create collector");
+
+        // Clear the resolve to simulate metadata without resolve
+        collector.metadata.resolve = None;
+
+        let dev_only = collector.get_dev_only_packages();
+        assert!(
+            dev_only.is_empty(),
+            "Should return empty set when no resolve graph"
+        );
+    }
+
+    #[test]
+    fn test_list_dependencies_excludes_workspace_members() {
+        let collector = SourceCollector::new().expect("Failed to create collector");
+        let deps = collector.list_dependencies();
+
+        // Should not include the workspace member (cargo-docs-md itself)
+        let dep_names: Vec<&str> = deps.iter().map(|(name, _)| *name).collect();
+        assert!(
+            !dep_names.contains(&"cargo-docs-md"),
+            "Should not include workspace member"
+        );
+
+        // Should include actual dependencies
+        assert!(
+            dep_names.contains(&"serde"),
+            "Should include serde dependency"
+        );
     }
 }

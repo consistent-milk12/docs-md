@@ -21,6 +21,2017 @@ Cargo features that can be enabled with `gimli`:
 * `write`: Enabled by default. Enables the `write` module. Always uses
   the `std` library.
 
+## Contents
+
+- [Modules](#modules)
+  - [`common`](#common)
+  - [`arch`](#arch)
+  - [`constants`](#constants)
+  - [`endianity`](#endianity)
+  - [`leb128`](#leb128)
+  - [`read`](#read)
+  - [`util`](#util)
+  - [`addr`](#addr)
+  - [`cfi`](#cfi)
+  - [`dwarf`](#dwarf)
+  - [`endian_slice`](#endian_slice)
+  - [`reader`](#reader)
+  - [`relocate`](#relocate)
+  - [`abbrev`](#abbrev)
+  - [`aranges`](#aranges)
+  - [`index`](#index)
+  - [`line`](#line)
+  - [`lists`](#lists)
+  - [`loclists`](#loclists)
+  - [`lookup`](#lookup)
+  - [`macros`](#macros)
+  - [`op`](#op)
+  - [`pubnames`](#pubnames)
+  - [`pubtypes`](#pubtypes)
+  - [`rnglists`](#rnglists)
+  - [`str`](#str)
+  - [`unit`](#unit)
+  - [`value`](#value)
+- [Structs](#structs)
+  - [`Encoding`](#encoding)
+  - [`LineEncoding`](#lineencoding)
+  - [`Register`](#register)
+  - [`DebugAbbrevOffset`](#debugabbrevoffset)
+  - [`DebugAddrOffset`](#debugaddroffset)
+  - [`DebugAddrBase`](#debugaddrbase)
+  - [`DebugAddrIndex`](#debugaddrindex)
+  - [`DebugArangesOffset`](#debugarangesoffset)
+  - [`DebugInfoOffset`](#debuginfooffset)
+  - [`DebugLineOffset`](#debuglineoffset)
+  - [`DebugLineStrOffset`](#debuglinestroffset)
+  - [`LocationListsOffset`](#locationlistsoffset)
+  - [`DebugLocListsBase`](#debugloclistsbase)
+  - [`DebugLocListsIndex`](#debugloclistsindex)
+  - [`DebugMacinfoOffset`](#debugmacinfooffset)
+  - [`DebugMacroOffset`](#debugmacrooffset)
+  - [`RawRangeListsOffset`](#rawrangelistsoffset)
+  - [`RangeListsOffset`](#rangelistsoffset)
+  - [`DebugRngListsBase`](#debugrnglistsbase)
+  - [`DebugRngListsIndex`](#debugrnglistsindex)
+  - [`DebugStrOffset`](#debugstroffset)
+  - [`DebugStrOffsetsBase`](#debugstroffsetsbase)
+  - [`DebugStrOffsetsIndex`](#debugstroffsetsindex)
+  - [`DebugTypesOffset`](#debugtypesoffset)
+  - [`DebugTypeSignature`](#debugtypesignature)
+  - [`DebugFrameOffset`](#debugframeoffset)
+  - [`EhFrameOffset`](#ehframeoffset)
+  - [`DwoId`](#dwoid)
+  - [`Arm`](#arm)
+  - [`AArch64`](#aarch64)
+  - [`LoongArch`](#loongarch)
+  - [`MIPS`](#mips)
+  - [`RiscV`](#riscv)
+  - [`X86`](#x86)
+  - [`X86_64`](#x86_64)
+  - [`PowerPc64`](#powerpc64)
+  - [`DwSect`](#dwsect)
+  - [`DwSectV2`](#dwsectv2)
+  - [`DwUt`](#dwut)
+  - [`DwCfa`](#dwcfa)
+  - [`DwChildren`](#dwchildren)
+  - [`DwTag`](#dwtag)
+  - [`DwAt`](#dwat)
+  - [`DwForm`](#dwform)
+  - [`DwAte`](#dwate)
+  - [`DwLle`](#dwlle)
+  - [`DwDs`](#dwds)
+  - [`DwEnd`](#dwend)
+  - [`DwAccess`](#dwaccess)
+  - [`DwVis`](#dwvis)
+  - [`DwVirtuality`](#dwvirtuality)
+  - [`DwLang`](#dwlang)
+  - [`DwAddr`](#dwaddr)
+  - [`DwId`](#dwid)
+  - [`DwCc`](#dwcc)
+  - [`DwInl`](#dwinl)
+  - [`DwOrd`](#dword)
+  - [`DwDsc`](#dwdsc)
+  - [`DwIdx`](#dwidx)
+  - [`DwDefaulted`](#dwdefaulted)
+  - [`DwLns`](#dwlns)
+  - [`DwLne`](#dwlne)
+  - [`DwLnct`](#dwlnct)
+  - [`DwMacinfo`](#dwmacinfo)
+  - [`DwMacro`](#dwmacro)
+  - [`DwRle`](#dwrle)
+  - [`DwOp`](#dwop)
+  - [`DwEhPe`](#dwehpe)
+  - [`LittleEndian`](#littleendian)
+  - [`BigEndian`](#bigendian)
+  - [`UnitOffset`](#unitoffset)
+  - [`StoreOnHeap`](#storeonheap)
+- [Enums](#enums)
+  - [`Format`](#format)
+  - [`Vendor`](#vendor)
+  - [`UnitSectionOffset`](#unitsectionoffset)
+  - [`SectionId`](#sectionid)
+  - [`DwarfFileType`](#dwarffiletype)
+  - [`RunTimeEndian`](#runtimeendian)
+  - [`Error`](#error)
+- [Traits](#traits)
+  - [`Endianity`](#endianity)
+  - [`Section`](#section)
+- [Type Aliases](#type-aliases)
+  - [`NativeEndian`](#nativeendian)
+  - [`EndianBuf`](#endianbuf)
+  - [`Result`](#result)
+- [Constants](#constants)
+  - [`DW_SECT_INFO`](#dw_sect_info)
+  - [`DW_SECT_ABBREV`](#dw_sect_abbrev)
+  - [`DW_SECT_LINE`](#dw_sect_line)
+  - [`DW_SECT_LOCLISTS`](#dw_sect_loclists)
+  - [`DW_SECT_STR_OFFSETS`](#dw_sect_str_offsets)
+  - [`DW_SECT_MACRO`](#dw_sect_macro)
+  - [`DW_SECT_RNGLISTS`](#dw_sect_rnglists)
+  - [`DW_SECT_V2_INFO`](#dw_sect_v2_info)
+  - [`DW_SECT_V2_TYPES`](#dw_sect_v2_types)
+  - [`DW_SECT_V2_ABBREV`](#dw_sect_v2_abbrev)
+  - [`DW_SECT_V2_LINE`](#dw_sect_v2_line)
+  - [`DW_SECT_V2_LOC`](#dw_sect_v2_loc)
+  - [`DW_SECT_V2_STR_OFFSETS`](#dw_sect_v2_str_offsets)
+  - [`DW_SECT_V2_MACINFO`](#dw_sect_v2_macinfo)
+  - [`DW_SECT_V2_MACRO`](#dw_sect_v2_macro)
+  - [`DW_UT_compile`](#dw_ut_compile)
+  - [`DW_UT_type`](#dw_ut_type)
+  - [`DW_UT_partial`](#dw_ut_partial)
+  - [`DW_UT_skeleton`](#dw_ut_skeleton)
+  - [`DW_UT_split_compile`](#dw_ut_split_compile)
+  - [`DW_UT_split_type`](#dw_ut_split_type)
+  - [`DW_UT_lo_user`](#dw_ut_lo_user)
+  - [`DW_UT_hi_user`](#dw_ut_hi_user)
+  - [`DW_CFA_advance_loc`](#dw_cfa_advance_loc)
+  - [`DW_CFA_offset`](#dw_cfa_offset)
+  - [`DW_CFA_restore`](#dw_cfa_restore)
+  - [`DW_CFA_nop`](#dw_cfa_nop)
+  - [`DW_CFA_set_loc`](#dw_cfa_set_loc)
+  - [`DW_CFA_advance_loc1`](#dw_cfa_advance_loc1)
+  - [`DW_CFA_advance_loc2`](#dw_cfa_advance_loc2)
+  - [`DW_CFA_advance_loc4`](#dw_cfa_advance_loc4)
+  - [`DW_CFA_offset_extended`](#dw_cfa_offset_extended)
+  - [`DW_CFA_restore_extended`](#dw_cfa_restore_extended)
+  - [`DW_CFA_undefined`](#dw_cfa_undefined)
+  - [`DW_CFA_same_value`](#dw_cfa_same_value)
+  - [`DW_CFA_register`](#dw_cfa_register)
+  - [`DW_CFA_remember_state`](#dw_cfa_remember_state)
+  - [`DW_CFA_restore_state`](#dw_cfa_restore_state)
+  - [`DW_CFA_def_cfa`](#dw_cfa_def_cfa)
+  - [`DW_CFA_def_cfa_register`](#dw_cfa_def_cfa_register)
+  - [`DW_CFA_def_cfa_offset`](#dw_cfa_def_cfa_offset)
+  - [`DW_CFA_def_cfa_expression`](#dw_cfa_def_cfa_expression)
+  - [`DW_CFA_expression`](#dw_cfa_expression)
+  - [`DW_CFA_offset_extended_sf`](#dw_cfa_offset_extended_sf)
+  - [`DW_CFA_def_cfa_sf`](#dw_cfa_def_cfa_sf)
+  - [`DW_CFA_def_cfa_offset_sf`](#dw_cfa_def_cfa_offset_sf)
+  - [`DW_CFA_val_offset`](#dw_cfa_val_offset)
+  - [`DW_CFA_val_offset_sf`](#dw_cfa_val_offset_sf)
+  - [`DW_CFA_val_expression`](#dw_cfa_val_expression)
+  - [`DW_CFA_lo_user`](#dw_cfa_lo_user)
+  - [`DW_CFA_hi_user`](#dw_cfa_hi_user)
+  - [`DW_CFA_MIPS_advance_loc8`](#dw_cfa_mips_advance_loc8)
+  - [`DW_CFA_GNU_window_save`](#dw_cfa_gnu_window_save)
+  - [`DW_CFA_GNU_args_size`](#dw_cfa_gnu_args_size)
+  - [`DW_CFA_GNU_negative_offset_extended`](#dw_cfa_gnu_negative_offset_extended)
+  - [`DW_CFA_AARCH64_negate_ra_state`](#dw_cfa_aarch64_negate_ra_state)
+  - [`DW_CHILDREN_no`](#dw_children_no)
+  - [`DW_CHILDREN_yes`](#dw_children_yes)
+  - [`DW_TAG_null`](#dw_tag_null)
+  - [`DW_TAG_global_subroutine`](#dw_tag_global_subroutine)
+  - [`DW_TAG_global_variable`](#dw_tag_global_variable)
+  - [`DW_TAG_local_variable`](#dw_tag_local_variable)
+  - [`DW_TAG_subroutine`](#dw_tag_subroutine)
+  - [`DW_TAG_array_type`](#dw_tag_array_type)
+  - [`DW_TAG_class_type`](#dw_tag_class_type)
+  - [`DW_TAG_entry_point`](#dw_tag_entry_point)
+  - [`DW_TAG_enumeration_type`](#dw_tag_enumeration_type)
+  - [`DW_TAG_formal_parameter`](#dw_tag_formal_parameter)
+  - [`DW_TAG_imported_declaration`](#dw_tag_imported_declaration)
+  - [`DW_TAG_label`](#dw_tag_label)
+  - [`DW_TAG_lexical_block`](#dw_tag_lexical_block)
+  - [`DW_TAG_member`](#dw_tag_member)
+  - [`DW_TAG_pointer_type`](#dw_tag_pointer_type)
+  - [`DW_TAG_reference_type`](#dw_tag_reference_type)
+  - [`DW_TAG_compile_unit`](#dw_tag_compile_unit)
+  - [`DW_TAG_string_type`](#dw_tag_string_type)
+  - [`DW_TAG_structure_type`](#dw_tag_structure_type)
+  - [`DW_TAG_subroutine_type`](#dw_tag_subroutine_type)
+  - [`DW_TAG_typedef`](#dw_tag_typedef)
+  - [`DW_TAG_union_type`](#dw_tag_union_type)
+  - [`DW_TAG_unspecified_parameters`](#dw_tag_unspecified_parameters)
+  - [`DW_TAG_variant`](#dw_tag_variant)
+  - [`DW_TAG_common_block`](#dw_tag_common_block)
+  - [`DW_TAG_common_inclusion`](#dw_tag_common_inclusion)
+  - [`DW_TAG_inheritance`](#dw_tag_inheritance)
+  - [`DW_TAG_inlined_subroutine`](#dw_tag_inlined_subroutine)
+  - [`DW_TAG_module`](#dw_tag_module)
+  - [`DW_TAG_ptr_to_member_type`](#dw_tag_ptr_to_member_type)
+  - [`DW_TAG_set_type`](#dw_tag_set_type)
+  - [`DW_TAG_subrange_type`](#dw_tag_subrange_type)
+  - [`DW_TAG_with_stmt`](#dw_tag_with_stmt)
+  - [`DW_TAG_access_declaration`](#dw_tag_access_declaration)
+  - [`DW_TAG_base_type`](#dw_tag_base_type)
+  - [`DW_TAG_catch_block`](#dw_tag_catch_block)
+  - [`DW_TAG_const_type`](#dw_tag_const_type)
+  - [`DW_TAG_constant`](#dw_tag_constant)
+  - [`DW_TAG_enumerator`](#dw_tag_enumerator)
+  - [`DW_TAG_file_type`](#dw_tag_file_type)
+  - [`DW_TAG_friend`](#dw_tag_friend)
+  - [`DW_TAG_namelist`](#dw_tag_namelist)
+  - [`DW_TAG_namelist_item`](#dw_tag_namelist_item)
+  - [`DW_TAG_packed_type`](#dw_tag_packed_type)
+  - [`DW_TAG_subprogram`](#dw_tag_subprogram)
+  - [`DW_TAG_template_type_parameter`](#dw_tag_template_type_parameter)
+  - [`DW_TAG_template_value_parameter`](#dw_tag_template_value_parameter)
+  - [`DW_TAG_thrown_type`](#dw_tag_thrown_type)
+  - [`DW_TAG_try_block`](#dw_tag_try_block)
+  - [`DW_TAG_variant_part`](#dw_tag_variant_part)
+  - [`DW_TAG_variable`](#dw_tag_variable)
+  - [`DW_TAG_volatile_type`](#dw_tag_volatile_type)
+  - [`DW_TAG_dwarf_procedure`](#dw_tag_dwarf_procedure)
+  - [`DW_TAG_restrict_type`](#dw_tag_restrict_type)
+  - [`DW_TAG_interface_type`](#dw_tag_interface_type)
+  - [`DW_TAG_namespace`](#dw_tag_namespace)
+  - [`DW_TAG_imported_module`](#dw_tag_imported_module)
+  - [`DW_TAG_unspecified_type`](#dw_tag_unspecified_type)
+  - [`DW_TAG_partial_unit`](#dw_tag_partial_unit)
+  - [`DW_TAG_imported_unit`](#dw_tag_imported_unit)
+  - [`DW_TAG_condition`](#dw_tag_condition)
+  - [`DW_TAG_shared_type`](#dw_tag_shared_type)
+  - [`DW_TAG_type_unit`](#dw_tag_type_unit)
+  - [`DW_TAG_rvalue_reference_type`](#dw_tag_rvalue_reference_type)
+  - [`DW_TAG_template_alias`](#dw_tag_template_alias)
+  - [`DW_TAG_coarray_type`](#dw_tag_coarray_type)
+  - [`DW_TAG_generic_subrange`](#dw_tag_generic_subrange)
+  - [`DW_TAG_dynamic_type`](#dw_tag_dynamic_type)
+  - [`DW_TAG_atomic_type`](#dw_tag_atomic_type)
+  - [`DW_TAG_call_site`](#dw_tag_call_site)
+  - [`DW_TAG_call_site_parameter`](#dw_tag_call_site_parameter)
+  - [`DW_TAG_skeleton_unit`](#dw_tag_skeleton_unit)
+  - [`DW_TAG_immutable_type`](#dw_tag_immutable_type)
+  - [`DW_TAG_lo_user`](#dw_tag_lo_user)
+  - [`DW_TAG_hi_user`](#dw_tag_hi_user)
+  - [`DW_TAG_MIPS_loop`](#dw_tag_mips_loop)
+  - [`DW_TAG_HP_array_descriptor`](#dw_tag_hp_array_descriptor)
+  - [`DW_TAG_HP_Bliss_field`](#dw_tag_hp_bliss_field)
+  - [`DW_TAG_HP_Bliss_field_set`](#dw_tag_hp_bliss_field_set)
+  - [`DW_TAG_format_label`](#dw_tag_format_label)
+  - [`DW_TAG_function_template`](#dw_tag_function_template)
+  - [`DW_TAG_class_template`](#dw_tag_class_template)
+  - [`DW_TAG_GNU_BINCL`](#dw_tag_gnu_bincl)
+  - [`DW_TAG_GNU_EINCL`](#dw_tag_gnu_eincl)
+  - [`DW_TAG_GNU_template_template_param`](#dw_tag_gnu_template_template_param)
+  - [`DW_TAG_GNU_template_parameter_pack`](#dw_tag_gnu_template_parameter_pack)
+  - [`DW_TAG_GNU_formal_parameter_pack`](#dw_tag_gnu_formal_parameter_pack)
+  - [`DW_TAG_GNU_call_site`](#dw_tag_gnu_call_site)
+  - [`DW_TAG_GNU_call_site_parameter`](#dw_tag_gnu_call_site_parameter)
+  - [`DW_TAG_APPLE_property`](#dw_tag_apple_property)
+  - [`DW_TAG_SUN_function_template`](#dw_tag_sun_function_template)
+  - [`DW_TAG_SUN_class_template`](#dw_tag_sun_class_template)
+  - [`DW_TAG_SUN_struct_template`](#dw_tag_sun_struct_template)
+  - [`DW_TAG_SUN_union_template`](#dw_tag_sun_union_template)
+  - [`DW_TAG_SUN_indirect_inheritance`](#dw_tag_sun_indirect_inheritance)
+  - [`DW_TAG_SUN_codeflags`](#dw_tag_sun_codeflags)
+  - [`DW_TAG_SUN_memop_info`](#dw_tag_sun_memop_info)
+  - [`DW_TAG_SUN_omp_child_func`](#dw_tag_sun_omp_child_func)
+  - [`DW_TAG_SUN_rtti_descriptor`](#dw_tag_sun_rtti_descriptor)
+  - [`DW_TAG_SUN_dtor_info`](#dw_tag_sun_dtor_info)
+  - [`DW_TAG_SUN_dtor`](#dw_tag_sun_dtor)
+  - [`DW_TAG_SUN_f90_interface`](#dw_tag_sun_f90_interface)
+  - [`DW_TAG_SUN_fortran_vax_structure`](#dw_tag_sun_fortran_vax_structure)
+  - [`DW_TAG_ALTIUM_circ_type`](#dw_tag_altium_circ_type)
+  - [`DW_TAG_ALTIUM_mwa_circ_type`](#dw_tag_altium_mwa_circ_type)
+  - [`DW_TAG_ALTIUM_rev_carry_type`](#dw_tag_altium_rev_carry_type)
+  - [`DW_TAG_ALTIUM_rom`](#dw_tag_altium_rom)
+  - [`DW_TAG_upc_shared_type`](#dw_tag_upc_shared_type)
+  - [`DW_TAG_upc_strict_type`](#dw_tag_upc_strict_type)
+  - [`DW_TAG_upc_relaxed_type`](#dw_tag_upc_relaxed_type)
+  - [`DW_TAG_PGI_kanji_type`](#dw_tag_pgi_kanji_type)
+  - [`DW_TAG_PGI_interface_block`](#dw_tag_pgi_interface_block)
+  - [`DW_TAG_BORLAND_property`](#dw_tag_borland_property)
+  - [`DW_TAG_BORLAND_Delphi_string`](#dw_tag_borland_delphi_string)
+  - [`DW_TAG_BORLAND_Delphi_dynamic_array`](#dw_tag_borland_delphi_dynamic_array)
+  - [`DW_TAG_BORLAND_Delphi_set`](#dw_tag_borland_delphi_set)
+  - [`DW_TAG_BORLAND_Delphi_variant`](#dw_tag_borland_delphi_variant)
+  - [`DW_AT_null`](#dw_at_null)
+  - [`DW_AT_fund_type`](#dw_at_fund_type)
+  - [`DW_AT_mod_fund_type`](#dw_at_mod_fund_type)
+  - [`DW_AT_user_def_type`](#dw_at_user_def_type)
+  - [`DW_AT_mod_u_d_type`](#dw_at_mod_u_d_type)
+  - [`DW_AT_subscr_data`](#dw_at_subscr_data)
+  - [`DW_AT_element_list`](#dw_at_element_list)
+  - [`DW_AT_member`](#dw_at_member)
+  - [`DW_AT_friends`](#dw_at_friends)
+  - [`DW_AT_program`](#dw_at_program)
+  - [`DW_AT_private`](#dw_at_private)
+  - [`DW_AT_protected`](#dw_at_protected)
+  - [`DW_AT_public`](#dw_at_public)
+  - [`DW_AT_pure_virtual`](#dw_at_pure_virtual)
+  - [`DW_AT_virtual`](#dw_at_virtual)
+  - [`DW_AT_specification_v1`](#dw_at_specification_v1)
+  - [`DW_AT_sibling`](#dw_at_sibling)
+  - [`DW_AT_location`](#dw_at_location)
+  - [`DW_AT_name`](#dw_at_name)
+  - [`DW_AT_ordering`](#dw_at_ordering)
+  - [`DW_AT_byte_size`](#dw_at_byte_size)
+  - [`DW_AT_bit_offset`](#dw_at_bit_offset)
+  - [`DW_AT_bit_size`](#dw_at_bit_size)
+  - [`DW_AT_stmt_list`](#dw_at_stmt_list)
+  - [`DW_AT_low_pc`](#dw_at_low_pc)
+  - [`DW_AT_high_pc`](#dw_at_high_pc)
+  - [`DW_AT_language`](#dw_at_language)
+  - [`DW_AT_discr`](#dw_at_discr)
+  - [`DW_AT_discr_value`](#dw_at_discr_value)
+  - [`DW_AT_visibility`](#dw_at_visibility)
+  - [`DW_AT_import`](#dw_at_import)
+  - [`DW_AT_string_length`](#dw_at_string_length)
+  - [`DW_AT_common_reference`](#dw_at_common_reference)
+  - [`DW_AT_comp_dir`](#dw_at_comp_dir)
+  - [`DW_AT_const_value`](#dw_at_const_value)
+  - [`DW_AT_containing_type`](#dw_at_containing_type)
+  - [`DW_AT_default_value`](#dw_at_default_value)
+  - [`DW_AT_inline`](#dw_at_inline)
+  - [`DW_AT_is_optional`](#dw_at_is_optional)
+  - [`DW_AT_lower_bound`](#dw_at_lower_bound)
+  - [`DW_AT_producer`](#dw_at_producer)
+  - [`DW_AT_prototyped`](#dw_at_prototyped)
+  - [`DW_AT_return_addr`](#dw_at_return_addr)
+  - [`DW_AT_start_scope`](#dw_at_start_scope)
+  - [`DW_AT_bit_stride`](#dw_at_bit_stride)
+  - [`DW_AT_upper_bound`](#dw_at_upper_bound)
+  - [`DW_AT_abstract_origin`](#dw_at_abstract_origin)
+  - [`DW_AT_accessibility`](#dw_at_accessibility)
+  - [`DW_AT_address_class`](#dw_at_address_class)
+  - [`DW_AT_artificial`](#dw_at_artificial)
+  - [`DW_AT_base_types`](#dw_at_base_types)
+  - [`DW_AT_calling_convention`](#dw_at_calling_convention)
+  - [`DW_AT_count`](#dw_at_count)
+  - [`DW_AT_data_member_location`](#dw_at_data_member_location)
+  - [`DW_AT_decl_column`](#dw_at_decl_column)
+  - [`DW_AT_decl_file`](#dw_at_decl_file)
+  - [`DW_AT_decl_line`](#dw_at_decl_line)
+  - [`DW_AT_declaration`](#dw_at_declaration)
+  - [`DW_AT_discr_list`](#dw_at_discr_list)
+  - [`DW_AT_encoding`](#dw_at_encoding)
+  - [`DW_AT_external`](#dw_at_external)
+  - [`DW_AT_frame_base`](#dw_at_frame_base)
+  - [`DW_AT_friend`](#dw_at_friend)
+  - [`DW_AT_identifier_case`](#dw_at_identifier_case)
+  - [`DW_AT_macro_info`](#dw_at_macro_info)
+  - [`DW_AT_namelist_item`](#dw_at_namelist_item)
+  - [`DW_AT_priority`](#dw_at_priority)
+  - [`DW_AT_segment`](#dw_at_segment)
+  - [`DW_AT_specification`](#dw_at_specification)
+  - [`DW_AT_static_link`](#dw_at_static_link)
+  - [`DW_AT_type`](#dw_at_type)
+  - [`DW_AT_use_location`](#dw_at_use_location)
+  - [`DW_AT_variable_parameter`](#dw_at_variable_parameter)
+  - [`DW_AT_virtuality`](#dw_at_virtuality)
+  - [`DW_AT_vtable_elem_location`](#dw_at_vtable_elem_location)
+  - [`DW_AT_allocated`](#dw_at_allocated)
+  - [`DW_AT_associated`](#dw_at_associated)
+  - [`DW_AT_data_location`](#dw_at_data_location)
+  - [`DW_AT_byte_stride`](#dw_at_byte_stride)
+  - [`DW_AT_entry_pc`](#dw_at_entry_pc)
+  - [`DW_AT_use_UTF8`](#dw_at_use_utf8)
+  - [`DW_AT_extension`](#dw_at_extension)
+  - [`DW_AT_ranges`](#dw_at_ranges)
+  - [`DW_AT_trampoline`](#dw_at_trampoline)
+  - [`DW_AT_call_column`](#dw_at_call_column)
+  - [`DW_AT_call_file`](#dw_at_call_file)
+  - [`DW_AT_call_line`](#dw_at_call_line)
+  - [`DW_AT_description`](#dw_at_description)
+  - [`DW_AT_binary_scale`](#dw_at_binary_scale)
+  - [`DW_AT_decimal_scale`](#dw_at_decimal_scale)
+  - [`DW_AT_small`](#dw_at_small)
+  - [`DW_AT_decimal_sign`](#dw_at_decimal_sign)
+  - [`DW_AT_digit_count`](#dw_at_digit_count)
+  - [`DW_AT_picture_string`](#dw_at_picture_string)
+  - [`DW_AT_mutable`](#dw_at_mutable)
+  - [`DW_AT_threads_scaled`](#dw_at_threads_scaled)
+  - [`DW_AT_explicit`](#dw_at_explicit)
+  - [`DW_AT_object_pointer`](#dw_at_object_pointer)
+  - [`DW_AT_endianity`](#dw_at_endianity)
+  - [`DW_AT_elemental`](#dw_at_elemental)
+  - [`DW_AT_pure`](#dw_at_pure)
+  - [`DW_AT_recursive`](#dw_at_recursive)
+  - [`DW_AT_signature`](#dw_at_signature)
+  - [`DW_AT_main_subprogram`](#dw_at_main_subprogram)
+  - [`DW_AT_data_bit_offset`](#dw_at_data_bit_offset)
+  - [`DW_AT_const_expr`](#dw_at_const_expr)
+  - [`DW_AT_enum_class`](#dw_at_enum_class)
+  - [`DW_AT_linkage_name`](#dw_at_linkage_name)
+  - [`DW_AT_string_length_bit_size`](#dw_at_string_length_bit_size)
+  - [`DW_AT_string_length_byte_size`](#dw_at_string_length_byte_size)
+  - [`DW_AT_rank`](#dw_at_rank)
+  - [`DW_AT_str_offsets_base`](#dw_at_str_offsets_base)
+  - [`DW_AT_addr_base`](#dw_at_addr_base)
+  - [`DW_AT_rnglists_base`](#dw_at_rnglists_base)
+  - [`DW_AT_dwo_name`](#dw_at_dwo_name)
+  - [`DW_AT_reference`](#dw_at_reference)
+  - [`DW_AT_rvalue_reference`](#dw_at_rvalue_reference)
+  - [`DW_AT_macros`](#dw_at_macros)
+  - [`DW_AT_call_all_calls`](#dw_at_call_all_calls)
+  - [`DW_AT_call_all_source_calls`](#dw_at_call_all_source_calls)
+  - [`DW_AT_call_all_tail_calls`](#dw_at_call_all_tail_calls)
+  - [`DW_AT_call_return_pc`](#dw_at_call_return_pc)
+  - [`DW_AT_call_value`](#dw_at_call_value)
+  - [`DW_AT_call_origin`](#dw_at_call_origin)
+  - [`DW_AT_call_parameter`](#dw_at_call_parameter)
+  - [`DW_AT_call_pc`](#dw_at_call_pc)
+  - [`DW_AT_call_tail_call`](#dw_at_call_tail_call)
+  - [`DW_AT_call_target`](#dw_at_call_target)
+  - [`DW_AT_call_target_clobbered`](#dw_at_call_target_clobbered)
+  - [`DW_AT_call_data_location`](#dw_at_call_data_location)
+  - [`DW_AT_call_data_value`](#dw_at_call_data_value)
+  - [`DW_AT_noreturn`](#dw_at_noreturn)
+  - [`DW_AT_alignment`](#dw_at_alignment)
+  - [`DW_AT_export_symbols`](#dw_at_export_symbols)
+  - [`DW_AT_deleted`](#dw_at_deleted)
+  - [`DW_AT_defaulted`](#dw_at_defaulted)
+  - [`DW_AT_loclists_base`](#dw_at_loclists_base)
+  - [`DW_AT_lo_user`](#dw_at_lo_user)
+  - [`DW_AT_hi_user`](#dw_at_hi_user)
+  - [`DW_AT_MIPS_fde`](#dw_at_mips_fde)
+  - [`DW_AT_MIPS_loop_begin`](#dw_at_mips_loop_begin)
+  - [`DW_AT_MIPS_tail_loop_begin`](#dw_at_mips_tail_loop_begin)
+  - [`DW_AT_MIPS_epilog_begin`](#dw_at_mips_epilog_begin)
+  - [`DW_AT_MIPS_loop_unroll_factor`](#dw_at_mips_loop_unroll_factor)
+  - [`DW_AT_MIPS_software_pipeline_depth`](#dw_at_mips_software_pipeline_depth)
+  - [`DW_AT_MIPS_linkage_name`](#dw_at_mips_linkage_name)
+  - [`DW_AT_MIPS_stride`](#dw_at_mips_stride)
+  - [`DW_AT_MIPS_abstract_name`](#dw_at_mips_abstract_name)
+  - [`DW_AT_MIPS_clone_origin`](#dw_at_mips_clone_origin)
+  - [`DW_AT_MIPS_has_inlines`](#dw_at_mips_has_inlines)
+  - [`DW_AT_MIPS_stride_byte`](#dw_at_mips_stride_byte)
+  - [`DW_AT_MIPS_stride_elem`](#dw_at_mips_stride_elem)
+  - [`DW_AT_MIPS_ptr_dopetype`](#dw_at_mips_ptr_dopetype)
+  - [`DW_AT_MIPS_allocatable_dopetype`](#dw_at_mips_allocatable_dopetype)
+  - [`DW_AT_MIPS_assumed_shape_dopetype`](#dw_at_mips_assumed_shape_dopetype)
+  - [`DW_AT_MIPS_assumed_size`](#dw_at_mips_assumed_size)
+  - [`DW_AT_INTEL_other_endian`](#dw_at_intel_other_endian)
+  - [`DW_AT_sf_names`](#dw_at_sf_names)
+  - [`DW_AT_src_info`](#dw_at_src_info)
+  - [`DW_AT_mac_info`](#dw_at_mac_info)
+  - [`DW_AT_src_coords`](#dw_at_src_coords)
+  - [`DW_AT_body_begin`](#dw_at_body_begin)
+  - [`DW_AT_body_end`](#dw_at_body_end)
+  - [`DW_AT_GNU_vector`](#dw_at_gnu_vector)
+  - [`DW_AT_GNU_guarded_by`](#dw_at_gnu_guarded_by)
+  - [`DW_AT_GNU_pt_guarded_by`](#dw_at_gnu_pt_guarded_by)
+  - [`DW_AT_GNU_guarded`](#dw_at_gnu_guarded)
+  - [`DW_AT_GNU_pt_guarded`](#dw_at_gnu_pt_guarded)
+  - [`DW_AT_GNU_locks_excluded`](#dw_at_gnu_locks_excluded)
+  - [`DW_AT_GNU_exclusive_locks_required`](#dw_at_gnu_exclusive_locks_required)
+  - [`DW_AT_GNU_shared_locks_required`](#dw_at_gnu_shared_locks_required)
+  - [`DW_AT_GNU_odr_signature`](#dw_at_gnu_odr_signature)
+  - [`DW_AT_GNU_template_name`](#dw_at_gnu_template_name)
+  - [`DW_AT_GNU_call_site_value`](#dw_at_gnu_call_site_value)
+  - [`DW_AT_GNU_call_site_data_value`](#dw_at_gnu_call_site_data_value)
+  - [`DW_AT_GNU_call_site_target`](#dw_at_gnu_call_site_target)
+  - [`DW_AT_GNU_call_site_target_clobbered`](#dw_at_gnu_call_site_target_clobbered)
+  - [`DW_AT_GNU_tail_call`](#dw_at_gnu_tail_call)
+  - [`DW_AT_GNU_all_tail_call_sites`](#dw_at_gnu_all_tail_call_sites)
+  - [`DW_AT_GNU_all_call_sites`](#dw_at_gnu_all_call_sites)
+  - [`DW_AT_GNU_all_source_call_sites`](#dw_at_gnu_all_source_call_sites)
+  - [`DW_AT_GNU_macros`](#dw_at_gnu_macros)
+  - [`DW_AT_GNU_deleted`](#dw_at_gnu_deleted)
+  - [`DW_AT_GNU_dwo_name`](#dw_at_gnu_dwo_name)
+  - [`DW_AT_GNU_dwo_id`](#dw_at_gnu_dwo_id)
+  - [`DW_AT_GNU_ranges_base`](#dw_at_gnu_ranges_base)
+  - [`DW_AT_GNU_addr_base`](#dw_at_gnu_addr_base)
+  - [`DW_AT_GNU_pubnames`](#dw_at_gnu_pubnames)
+  - [`DW_AT_GNU_pubtypes`](#dw_at_gnu_pubtypes)
+  - [`DW_AT_GNU_discriminator`](#dw_at_gnu_discriminator)
+  - [`DW_AT_GNU_locviews`](#dw_at_gnu_locviews)
+  - [`DW_AT_GNU_entry_view`](#dw_at_gnu_entry_view)
+  - [`DW_AT_SUN_template`](#dw_at_sun_template)
+  - [`DW_AT_SUN_alignment`](#dw_at_sun_alignment)
+  - [`DW_AT_SUN_vtable`](#dw_at_sun_vtable)
+  - [`DW_AT_SUN_count_guarantee`](#dw_at_sun_count_guarantee)
+  - [`DW_AT_SUN_command_line`](#dw_at_sun_command_line)
+  - [`DW_AT_SUN_vbase`](#dw_at_sun_vbase)
+  - [`DW_AT_SUN_compile_options`](#dw_at_sun_compile_options)
+  - [`DW_AT_SUN_language`](#dw_at_sun_language)
+  - [`DW_AT_SUN_browser_file`](#dw_at_sun_browser_file)
+  - [`DW_AT_SUN_vtable_abi`](#dw_at_sun_vtable_abi)
+  - [`DW_AT_SUN_func_offsets`](#dw_at_sun_func_offsets)
+  - [`DW_AT_SUN_cf_kind`](#dw_at_sun_cf_kind)
+  - [`DW_AT_SUN_vtable_index`](#dw_at_sun_vtable_index)
+  - [`DW_AT_SUN_omp_tpriv_addr`](#dw_at_sun_omp_tpriv_addr)
+  - [`DW_AT_SUN_omp_child_func`](#dw_at_sun_omp_child_func)
+  - [`DW_AT_SUN_func_offset`](#dw_at_sun_func_offset)
+  - [`DW_AT_SUN_memop_type_ref`](#dw_at_sun_memop_type_ref)
+  - [`DW_AT_SUN_profile_id`](#dw_at_sun_profile_id)
+  - [`DW_AT_SUN_memop_signature`](#dw_at_sun_memop_signature)
+  - [`DW_AT_SUN_obj_dir`](#dw_at_sun_obj_dir)
+  - [`DW_AT_SUN_obj_file`](#dw_at_sun_obj_file)
+  - [`DW_AT_SUN_original_name`](#dw_at_sun_original_name)
+  - [`DW_AT_SUN_hwcprof_signature`](#dw_at_sun_hwcprof_signature)
+  - [`DW_AT_SUN_amd64_parmdump`](#dw_at_sun_amd64_parmdump)
+  - [`DW_AT_SUN_part_link_name`](#dw_at_sun_part_link_name)
+  - [`DW_AT_SUN_link_name`](#dw_at_sun_link_name)
+  - [`DW_AT_SUN_pass_with_const`](#dw_at_sun_pass_with_const)
+  - [`DW_AT_SUN_return_with_const`](#dw_at_sun_return_with_const)
+  - [`DW_AT_SUN_import_by_name`](#dw_at_sun_import_by_name)
+  - [`DW_AT_SUN_f90_pointer`](#dw_at_sun_f90_pointer)
+  - [`DW_AT_SUN_pass_by_ref`](#dw_at_sun_pass_by_ref)
+  - [`DW_AT_SUN_f90_allocatable`](#dw_at_sun_f90_allocatable)
+  - [`DW_AT_SUN_f90_assumed_shape_array`](#dw_at_sun_f90_assumed_shape_array)
+  - [`DW_AT_SUN_c_vla`](#dw_at_sun_c_vla)
+  - [`DW_AT_SUN_return_value_ptr`](#dw_at_sun_return_value_ptr)
+  - [`DW_AT_SUN_dtor_start`](#dw_at_sun_dtor_start)
+  - [`DW_AT_SUN_dtor_length`](#dw_at_sun_dtor_length)
+  - [`DW_AT_SUN_dtor_state_initial`](#dw_at_sun_dtor_state_initial)
+  - [`DW_AT_SUN_dtor_state_final`](#dw_at_sun_dtor_state_final)
+  - [`DW_AT_SUN_dtor_state_deltas`](#dw_at_sun_dtor_state_deltas)
+  - [`DW_AT_SUN_import_by_lname`](#dw_at_sun_import_by_lname)
+  - [`DW_AT_SUN_f90_use_only`](#dw_at_sun_f90_use_only)
+  - [`DW_AT_SUN_namelist_spec`](#dw_at_sun_namelist_spec)
+  - [`DW_AT_SUN_is_omp_child_func`](#dw_at_sun_is_omp_child_func)
+  - [`DW_AT_SUN_fortran_main_alias`](#dw_at_sun_fortran_main_alias)
+  - [`DW_AT_SUN_fortran_based`](#dw_at_sun_fortran_based)
+  - [`DW_AT_ALTIUM_loclist`](#dw_at_altium_loclist)
+  - [`DW_AT_use_GNAT_descriptive_type`](#dw_at_use_gnat_descriptive_type)
+  - [`DW_AT_GNAT_descriptive_type`](#dw_at_gnat_descriptive_type)
+  - [`DW_AT_GNU_numerator`](#dw_at_gnu_numerator)
+  - [`DW_AT_GNU_denominator`](#dw_at_gnu_denominator)
+  - [`DW_AT_GNU_bias`](#dw_at_gnu_bias)
+  - [`DW_AT_upc_threads_scaled`](#dw_at_upc_threads_scaled)
+  - [`DW_AT_PGI_lbase`](#dw_at_pgi_lbase)
+  - [`DW_AT_PGI_soffset`](#dw_at_pgi_soffset)
+  - [`DW_AT_PGI_lstride`](#dw_at_pgi_lstride)
+  - [`DW_AT_BORLAND_property_read`](#dw_at_borland_property_read)
+  - [`DW_AT_BORLAND_property_write`](#dw_at_borland_property_write)
+  - [`DW_AT_BORLAND_property_implements`](#dw_at_borland_property_implements)
+  - [`DW_AT_BORLAND_property_index`](#dw_at_borland_property_index)
+  - [`DW_AT_BORLAND_property_default`](#dw_at_borland_property_default)
+  - [`DW_AT_BORLAND_Delphi_unit`](#dw_at_borland_delphi_unit)
+  - [`DW_AT_BORLAND_Delphi_class`](#dw_at_borland_delphi_class)
+  - [`DW_AT_BORLAND_Delphi_record`](#dw_at_borland_delphi_record)
+  - [`DW_AT_BORLAND_Delphi_metaclass`](#dw_at_borland_delphi_metaclass)
+  - [`DW_AT_BORLAND_Delphi_constructor`](#dw_at_borland_delphi_constructor)
+  - [`DW_AT_BORLAND_Delphi_destructor`](#dw_at_borland_delphi_destructor)
+  - [`DW_AT_BORLAND_Delphi_anonymous_method`](#dw_at_borland_delphi_anonymous_method)
+  - [`DW_AT_BORLAND_Delphi_interface`](#dw_at_borland_delphi_interface)
+  - [`DW_AT_BORLAND_Delphi_ABI`](#dw_at_borland_delphi_abi)
+  - [`DW_AT_BORLAND_Delphi_return`](#dw_at_borland_delphi_return)
+  - [`DW_AT_BORLAND_Delphi_frameptr`](#dw_at_borland_delphi_frameptr)
+  - [`DW_AT_BORLAND_closure`](#dw_at_borland_closure)
+  - [`DW_AT_LLVM_include_path`](#dw_at_llvm_include_path)
+  - [`DW_AT_LLVM_config_macros`](#dw_at_llvm_config_macros)
+  - [`DW_AT_LLVM_isysroot`](#dw_at_llvm_isysroot)
+  - [`DW_AT_APPLE_optimized`](#dw_at_apple_optimized)
+  - [`DW_AT_APPLE_flags`](#dw_at_apple_flags)
+  - [`DW_AT_APPLE_isa`](#dw_at_apple_isa)
+  - [`DW_AT_APPLE_block`](#dw_at_apple_block)
+  - [`DW_AT_APPLE_major_runtime_vers`](#dw_at_apple_major_runtime_vers)
+  - [`DW_AT_APPLE_runtime_class`](#dw_at_apple_runtime_class)
+  - [`DW_AT_APPLE_omit_frame_ptr`](#dw_at_apple_omit_frame_ptr)
+  - [`DW_AT_APPLE_property_name`](#dw_at_apple_property_name)
+  - [`DW_AT_APPLE_property_getter`](#dw_at_apple_property_getter)
+  - [`DW_AT_APPLE_property_setter`](#dw_at_apple_property_setter)
+  - [`DW_AT_APPLE_property_attribute`](#dw_at_apple_property_attribute)
+  - [`DW_AT_APPLE_objc_complete_type`](#dw_at_apple_objc_complete_type)
+  - [`DW_AT_APPLE_property`](#dw_at_apple_property)
+  - [`DW_FORM_null`](#dw_form_null)
+  - [`DW_FORM_ref`](#dw_form_ref)
+  - [`DW_FORM_addr`](#dw_form_addr)
+  - [`DW_FORM_block2`](#dw_form_block2)
+  - [`DW_FORM_block4`](#dw_form_block4)
+  - [`DW_FORM_data2`](#dw_form_data2)
+  - [`DW_FORM_data4`](#dw_form_data4)
+  - [`DW_FORM_data8`](#dw_form_data8)
+  - [`DW_FORM_string`](#dw_form_string)
+  - [`DW_FORM_block`](#dw_form_block)
+  - [`DW_FORM_block1`](#dw_form_block1)
+  - [`DW_FORM_data1`](#dw_form_data1)
+  - [`DW_FORM_flag`](#dw_form_flag)
+  - [`DW_FORM_sdata`](#dw_form_sdata)
+  - [`DW_FORM_strp`](#dw_form_strp)
+  - [`DW_FORM_udata`](#dw_form_udata)
+  - [`DW_FORM_ref_addr`](#dw_form_ref_addr)
+  - [`DW_FORM_ref1`](#dw_form_ref1)
+  - [`DW_FORM_ref2`](#dw_form_ref2)
+  - [`DW_FORM_ref4`](#dw_form_ref4)
+  - [`DW_FORM_ref8`](#dw_form_ref8)
+  - [`DW_FORM_ref_udata`](#dw_form_ref_udata)
+  - [`DW_FORM_indirect`](#dw_form_indirect)
+  - [`DW_FORM_sec_offset`](#dw_form_sec_offset)
+  - [`DW_FORM_exprloc`](#dw_form_exprloc)
+  - [`DW_FORM_flag_present`](#dw_form_flag_present)
+  - [`DW_FORM_ref_sig8`](#dw_form_ref_sig8)
+  - [`DW_FORM_strx`](#dw_form_strx)
+  - [`DW_FORM_addrx`](#dw_form_addrx)
+  - [`DW_FORM_ref_sup4`](#dw_form_ref_sup4)
+  - [`DW_FORM_strp_sup`](#dw_form_strp_sup)
+  - [`DW_FORM_data16`](#dw_form_data16)
+  - [`DW_FORM_line_strp`](#dw_form_line_strp)
+  - [`DW_FORM_implicit_const`](#dw_form_implicit_const)
+  - [`DW_FORM_loclistx`](#dw_form_loclistx)
+  - [`DW_FORM_rnglistx`](#dw_form_rnglistx)
+  - [`DW_FORM_ref_sup8`](#dw_form_ref_sup8)
+  - [`DW_FORM_strx1`](#dw_form_strx1)
+  - [`DW_FORM_strx2`](#dw_form_strx2)
+  - [`DW_FORM_strx3`](#dw_form_strx3)
+  - [`DW_FORM_strx4`](#dw_form_strx4)
+  - [`DW_FORM_addrx1`](#dw_form_addrx1)
+  - [`DW_FORM_addrx2`](#dw_form_addrx2)
+  - [`DW_FORM_addrx3`](#dw_form_addrx3)
+  - [`DW_FORM_addrx4`](#dw_form_addrx4)
+  - [`DW_FORM_GNU_addr_index`](#dw_form_gnu_addr_index)
+  - [`DW_FORM_GNU_str_index`](#dw_form_gnu_str_index)
+  - [`DW_FORM_GNU_ref_alt`](#dw_form_gnu_ref_alt)
+  - [`DW_FORM_GNU_strp_alt`](#dw_form_gnu_strp_alt)
+  - [`DW_ATE_address`](#dw_ate_address)
+  - [`DW_ATE_boolean`](#dw_ate_boolean)
+  - [`DW_ATE_complex_float`](#dw_ate_complex_float)
+  - [`DW_ATE_float`](#dw_ate_float)
+  - [`DW_ATE_signed`](#dw_ate_signed)
+  - [`DW_ATE_signed_char`](#dw_ate_signed_char)
+  - [`DW_ATE_unsigned`](#dw_ate_unsigned)
+  - [`DW_ATE_unsigned_char`](#dw_ate_unsigned_char)
+  - [`DW_ATE_imaginary_float`](#dw_ate_imaginary_float)
+  - [`DW_ATE_packed_decimal`](#dw_ate_packed_decimal)
+  - [`DW_ATE_numeric_string`](#dw_ate_numeric_string)
+  - [`DW_ATE_edited`](#dw_ate_edited)
+  - [`DW_ATE_signed_fixed`](#dw_ate_signed_fixed)
+  - [`DW_ATE_unsigned_fixed`](#dw_ate_unsigned_fixed)
+  - [`DW_ATE_decimal_float`](#dw_ate_decimal_float)
+  - [`DW_ATE_UTF`](#dw_ate_utf)
+  - [`DW_ATE_UCS`](#dw_ate_ucs)
+  - [`DW_ATE_ASCII`](#dw_ate_ascii)
+  - [`DW_ATE_lo_user`](#dw_ate_lo_user)
+  - [`DW_ATE_hi_user`](#dw_ate_hi_user)
+  - [`DW_LLE_end_of_list`](#dw_lle_end_of_list)
+  - [`DW_LLE_base_addressx`](#dw_lle_base_addressx)
+  - [`DW_LLE_startx_endx`](#dw_lle_startx_endx)
+  - [`DW_LLE_startx_length`](#dw_lle_startx_length)
+  - [`DW_LLE_offset_pair`](#dw_lle_offset_pair)
+  - [`DW_LLE_default_location`](#dw_lle_default_location)
+  - [`DW_LLE_base_address`](#dw_lle_base_address)
+  - [`DW_LLE_start_end`](#dw_lle_start_end)
+  - [`DW_LLE_start_length`](#dw_lle_start_length)
+  - [`DW_LLE_GNU_view_pair`](#dw_lle_gnu_view_pair)
+  - [`DW_DS_unsigned`](#dw_ds_unsigned)
+  - [`DW_DS_leading_overpunch`](#dw_ds_leading_overpunch)
+  - [`DW_DS_trailing_overpunch`](#dw_ds_trailing_overpunch)
+  - [`DW_DS_leading_separate`](#dw_ds_leading_separate)
+  - [`DW_DS_trailing_separate`](#dw_ds_trailing_separate)
+  - [`DW_END_default`](#dw_end_default)
+  - [`DW_END_big`](#dw_end_big)
+  - [`DW_END_little`](#dw_end_little)
+  - [`DW_END_lo_user`](#dw_end_lo_user)
+  - [`DW_END_hi_user`](#dw_end_hi_user)
+  - [`DW_ACCESS_public`](#dw_access_public)
+  - [`DW_ACCESS_protected`](#dw_access_protected)
+  - [`DW_ACCESS_private`](#dw_access_private)
+  - [`DW_VIS_local`](#dw_vis_local)
+  - [`DW_VIS_exported`](#dw_vis_exported)
+  - [`DW_VIS_qualified`](#dw_vis_qualified)
+  - [`DW_VIRTUALITY_none`](#dw_virtuality_none)
+  - [`DW_VIRTUALITY_virtual`](#dw_virtuality_virtual)
+  - [`DW_VIRTUALITY_pure_virtual`](#dw_virtuality_pure_virtual)
+  - [`DW_LANG_C89`](#dw_lang_c89)
+  - [`DW_LANG_C`](#dw_lang_c)
+  - [`DW_LANG_Ada83`](#dw_lang_ada83)
+  - [`DW_LANG_C_plus_plus`](#dw_lang_c_plus_plus)
+  - [`DW_LANG_Cobol74`](#dw_lang_cobol74)
+  - [`DW_LANG_Cobol85`](#dw_lang_cobol85)
+  - [`DW_LANG_Fortran77`](#dw_lang_fortran77)
+  - [`DW_LANG_Fortran90`](#dw_lang_fortran90)
+  - [`DW_LANG_Pascal83`](#dw_lang_pascal83)
+  - [`DW_LANG_Modula2`](#dw_lang_modula2)
+  - [`DW_LANG_Java`](#dw_lang_java)
+  - [`DW_LANG_C99`](#dw_lang_c99)
+  - [`DW_LANG_Ada95`](#dw_lang_ada95)
+  - [`DW_LANG_Fortran95`](#dw_lang_fortran95)
+  - [`DW_LANG_PLI`](#dw_lang_pli)
+  - [`DW_LANG_ObjC`](#dw_lang_objc)
+  - [`DW_LANG_ObjC_plus_plus`](#dw_lang_objc_plus_plus)
+  - [`DW_LANG_UPC`](#dw_lang_upc)
+  - [`DW_LANG_D`](#dw_lang_d)
+  - [`DW_LANG_Python`](#dw_lang_python)
+  - [`DW_LANG_OpenCL`](#dw_lang_opencl)
+  - [`DW_LANG_Go`](#dw_lang_go)
+  - [`DW_LANG_Modula3`](#dw_lang_modula3)
+  - [`DW_LANG_Haskell`](#dw_lang_haskell)
+  - [`DW_LANG_C_plus_plus_03`](#dw_lang_c_plus_plus_03)
+  - [`DW_LANG_C_plus_plus_11`](#dw_lang_c_plus_plus_11)
+  - [`DW_LANG_OCaml`](#dw_lang_ocaml)
+  - [`DW_LANG_Rust`](#dw_lang_rust)
+  - [`DW_LANG_C11`](#dw_lang_c11)
+  - [`DW_LANG_Swift`](#dw_lang_swift)
+  - [`DW_LANG_Julia`](#dw_lang_julia)
+  - [`DW_LANG_Dylan`](#dw_lang_dylan)
+  - [`DW_LANG_C_plus_plus_14`](#dw_lang_c_plus_plus_14)
+  - [`DW_LANG_Fortran03`](#dw_lang_fortran03)
+  - [`DW_LANG_Fortran08`](#dw_lang_fortran08)
+  - [`DW_LANG_RenderScript`](#dw_lang_renderscript)
+  - [`DW_LANG_BLISS`](#dw_lang_bliss)
+  - [`DW_LANG_Kotlin`](#dw_lang_kotlin)
+  - [`DW_LANG_Zig`](#dw_lang_zig)
+  - [`DW_LANG_Crystal`](#dw_lang_crystal)
+  - [`DW_LANG_C_plus_plus_17`](#dw_lang_c_plus_plus_17)
+  - [`DW_LANG_C_plus_plus_20`](#dw_lang_c_plus_plus_20)
+  - [`DW_LANG_C17`](#dw_lang_c17)
+  - [`DW_LANG_Fortran18`](#dw_lang_fortran18)
+  - [`DW_LANG_Ada2005`](#dw_lang_ada2005)
+  - [`DW_LANG_Ada2012`](#dw_lang_ada2012)
+  - [`DW_LANG_lo_user`](#dw_lang_lo_user)
+  - [`DW_LANG_hi_user`](#dw_lang_hi_user)
+  - [`DW_LANG_Mips_Assembler`](#dw_lang_mips_assembler)
+  - [`DW_LANG_GOOGLE_RenderScript`](#dw_lang_google_renderscript)
+  - [`DW_LANG_SUN_Assembler`](#dw_lang_sun_assembler)
+  - [`DW_LANG_ALTIUM_Assembler`](#dw_lang_altium_assembler)
+  - [`DW_LANG_BORLAND_Delphi`](#dw_lang_borland_delphi)
+  - [`DW_ADDR_none`](#dw_addr_none)
+  - [`DW_ID_case_sensitive`](#dw_id_case_sensitive)
+  - [`DW_ID_up_case`](#dw_id_up_case)
+  - [`DW_ID_down_case`](#dw_id_down_case)
+  - [`DW_ID_case_insensitive`](#dw_id_case_insensitive)
+  - [`DW_CC_normal`](#dw_cc_normal)
+  - [`DW_CC_program`](#dw_cc_program)
+  - [`DW_CC_nocall`](#dw_cc_nocall)
+  - [`DW_CC_pass_by_reference`](#dw_cc_pass_by_reference)
+  - [`DW_CC_pass_by_value`](#dw_cc_pass_by_value)
+  - [`DW_CC_lo_user`](#dw_cc_lo_user)
+  - [`DW_CC_hi_user`](#dw_cc_hi_user)
+  - [`DW_INL_not_inlined`](#dw_inl_not_inlined)
+  - [`DW_INL_inlined`](#dw_inl_inlined)
+  - [`DW_INL_declared_not_inlined`](#dw_inl_declared_not_inlined)
+  - [`DW_INL_declared_inlined`](#dw_inl_declared_inlined)
+  - [`DW_ORD_row_major`](#dw_ord_row_major)
+  - [`DW_ORD_col_major`](#dw_ord_col_major)
+  - [`DW_DSC_label`](#dw_dsc_label)
+  - [`DW_DSC_range`](#dw_dsc_range)
+  - [`DW_IDX_compile_unit`](#dw_idx_compile_unit)
+  - [`DW_IDX_type_unit`](#dw_idx_type_unit)
+  - [`DW_IDX_die_offset`](#dw_idx_die_offset)
+  - [`DW_IDX_parent`](#dw_idx_parent)
+  - [`DW_IDX_type_hash`](#dw_idx_type_hash)
+  - [`DW_IDX_lo_user`](#dw_idx_lo_user)
+  - [`DW_IDX_hi_user`](#dw_idx_hi_user)
+  - [`DW_DEFAULTED_no`](#dw_defaulted_no)
+  - [`DW_DEFAULTED_in_class`](#dw_defaulted_in_class)
+  - [`DW_DEFAULTED_out_of_class`](#dw_defaulted_out_of_class)
+  - [`DW_LNS_copy`](#dw_lns_copy)
+  - [`DW_LNS_advance_pc`](#dw_lns_advance_pc)
+  - [`DW_LNS_advance_line`](#dw_lns_advance_line)
+  - [`DW_LNS_set_file`](#dw_lns_set_file)
+  - [`DW_LNS_set_column`](#dw_lns_set_column)
+  - [`DW_LNS_negate_stmt`](#dw_lns_negate_stmt)
+  - [`DW_LNS_set_basic_block`](#dw_lns_set_basic_block)
+  - [`DW_LNS_const_add_pc`](#dw_lns_const_add_pc)
+  - [`DW_LNS_fixed_advance_pc`](#dw_lns_fixed_advance_pc)
+  - [`DW_LNS_set_prologue_end`](#dw_lns_set_prologue_end)
+  - [`DW_LNS_set_epilogue_begin`](#dw_lns_set_epilogue_begin)
+  - [`DW_LNS_set_isa`](#dw_lns_set_isa)
+  - [`DW_LNE_end_sequence`](#dw_lne_end_sequence)
+  - [`DW_LNE_set_address`](#dw_lne_set_address)
+  - [`DW_LNE_define_file`](#dw_lne_define_file)
+  - [`DW_LNE_set_discriminator`](#dw_lne_set_discriminator)
+  - [`DW_LNE_lo_user`](#dw_lne_lo_user)
+  - [`DW_LNE_hi_user`](#dw_lne_hi_user)
+  - [`DW_LNCT_path`](#dw_lnct_path)
+  - [`DW_LNCT_directory_index`](#dw_lnct_directory_index)
+  - [`DW_LNCT_timestamp`](#dw_lnct_timestamp)
+  - [`DW_LNCT_size`](#dw_lnct_size)
+  - [`DW_LNCT_MD5`](#dw_lnct_md5)
+  - [`DW_LNCT_lo_user`](#dw_lnct_lo_user)
+  - [`DW_LNCT_LLVM_source`](#dw_lnct_llvm_source)
+  - [`DW_LNCT_hi_user`](#dw_lnct_hi_user)
+  - [`DW_MACINFO_define`](#dw_macinfo_define)
+  - [`DW_MACINFO_undef`](#dw_macinfo_undef)
+  - [`DW_MACINFO_start_file`](#dw_macinfo_start_file)
+  - [`DW_MACINFO_end_file`](#dw_macinfo_end_file)
+  - [`DW_MACINFO_vendor_ext`](#dw_macinfo_vendor_ext)
+  - [`DW_MACRO_define`](#dw_macro_define)
+  - [`DW_MACRO_undef`](#dw_macro_undef)
+  - [`DW_MACRO_start_file`](#dw_macro_start_file)
+  - [`DW_MACRO_end_file`](#dw_macro_end_file)
+  - [`DW_MACRO_define_strp`](#dw_macro_define_strp)
+  - [`DW_MACRO_undef_strp`](#dw_macro_undef_strp)
+  - [`DW_MACRO_import`](#dw_macro_import)
+  - [`DW_MACRO_define_sup`](#dw_macro_define_sup)
+  - [`DW_MACRO_undef_sup`](#dw_macro_undef_sup)
+  - [`DW_MACRO_import_sup`](#dw_macro_import_sup)
+  - [`DW_MACRO_define_strx`](#dw_macro_define_strx)
+  - [`DW_MACRO_undef_strx`](#dw_macro_undef_strx)
+  - [`DW_MACRO_lo_user`](#dw_macro_lo_user)
+  - [`DW_MACRO_hi_user`](#dw_macro_hi_user)
+  - [`DW_RLE_end_of_list`](#dw_rle_end_of_list)
+  - [`DW_RLE_base_addressx`](#dw_rle_base_addressx)
+  - [`DW_RLE_startx_endx`](#dw_rle_startx_endx)
+  - [`DW_RLE_startx_length`](#dw_rle_startx_length)
+  - [`DW_RLE_offset_pair`](#dw_rle_offset_pair)
+  - [`DW_RLE_base_address`](#dw_rle_base_address)
+  - [`DW_RLE_start_end`](#dw_rle_start_end)
+  - [`DW_RLE_start_length`](#dw_rle_start_length)
+  - [`DW_OP_addr`](#dw_op_addr)
+  - [`DW_OP_deref`](#dw_op_deref)
+  - [`DW_OP_const1u`](#dw_op_const1u)
+  - [`DW_OP_const1s`](#dw_op_const1s)
+  - [`DW_OP_const2u`](#dw_op_const2u)
+  - [`DW_OP_const2s`](#dw_op_const2s)
+  - [`DW_OP_const4u`](#dw_op_const4u)
+  - [`DW_OP_const4s`](#dw_op_const4s)
+  - [`DW_OP_const8u`](#dw_op_const8u)
+  - [`DW_OP_const8s`](#dw_op_const8s)
+  - [`DW_OP_constu`](#dw_op_constu)
+  - [`DW_OP_consts`](#dw_op_consts)
+  - [`DW_OP_dup`](#dw_op_dup)
+  - [`DW_OP_drop`](#dw_op_drop)
+  - [`DW_OP_over`](#dw_op_over)
+  - [`DW_OP_pick`](#dw_op_pick)
+  - [`DW_OP_swap`](#dw_op_swap)
+  - [`DW_OP_rot`](#dw_op_rot)
+  - [`DW_OP_xderef`](#dw_op_xderef)
+  - [`DW_OP_abs`](#dw_op_abs)
+  - [`DW_OP_and`](#dw_op_and)
+  - [`DW_OP_div`](#dw_op_div)
+  - [`DW_OP_minus`](#dw_op_minus)
+  - [`DW_OP_mod`](#dw_op_mod)
+  - [`DW_OP_mul`](#dw_op_mul)
+  - [`DW_OP_neg`](#dw_op_neg)
+  - [`DW_OP_not`](#dw_op_not)
+  - [`DW_OP_or`](#dw_op_or)
+  - [`DW_OP_plus`](#dw_op_plus)
+  - [`DW_OP_plus_uconst`](#dw_op_plus_uconst)
+  - [`DW_OP_shl`](#dw_op_shl)
+  - [`DW_OP_shr`](#dw_op_shr)
+  - [`DW_OP_shra`](#dw_op_shra)
+  - [`DW_OP_xor`](#dw_op_xor)
+  - [`DW_OP_bra`](#dw_op_bra)
+  - [`DW_OP_eq`](#dw_op_eq)
+  - [`DW_OP_ge`](#dw_op_ge)
+  - [`DW_OP_gt`](#dw_op_gt)
+  - [`DW_OP_le`](#dw_op_le)
+  - [`DW_OP_lt`](#dw_op_lt)
+  - [`DW_OP_ne`](#dw_op_ne)
+  - [`DW_OP_skip`](#dw_op_skip)
+  - [`DW_OP_lit0`](#dw_op_lit0)
+  - [`DW_OP_lit1`](#dw_op_lit1)
+  - [`DW_OP_lit2`](#dw_op_lit2)
+  - [`DW_OP_lit3`](#dw_op_lit3)
+  - [`DW_OP_lit4`](#dw_op_lit4)
+  - [`DW_OP_lit5`](#dw_op_lit5)
+  - [`DW_OP_lit6`](#dw_op_lit6)
+  - [`DW_OP_lit7`](#dw_op_lit7)
+  - [`DW_OP_lit8`](#dw_op_lit8)
+  - [`DW_OP_lit9`](#dw_op_lit9)
+  - [`DW_OP_lit10`](#dw_op_lit10)
+  - [`DW_OP_lit11`](#dw_op_lit11)
+  - [`DW_OP_lit12`](#dw_op_lit12)
+  - [`DW_OP_lit13`](#dw_op_lit13)
+  - [`DW_OP_lit14`](#dw_op_lit14)
+  - [`DW_OP_lit15`](#dw_op_lit15)
+  - [`DW_OP_lit16`](#dw_op_lit16)
+  - [`DW_OP_lit17`](#dw_op_lit17)
+  - [`DW_OP_lit18`](#dw_op_lit18)
+  - [`DW_OP_lit19`](#dw_op_lit19)
+  - [`DW_OP_lit20`](#dw_op_lit20)
+  - [`DW_OP_lit21`](#dw_op_lit21)
+  - [`DW_OP_lit22`](#dw_op_lit22)
+  - [`DW_OP_lit23`](#dw_op_lit23)
+  - [`DW_OP_lit24`](#dw_op_lit24)
+  - [`DW_OP_lit25`](#dw_op_lit25)
+  - [`DW_OP_lit26`](#dw_op_lit26)
+  - [`DW_OP_lit27`](#dw_op_lit27)
+  - [`DW_OP_lit28`](#dw_op_lit28)
+  - [`DW_OP_lit29`](#dw_op_lit29)
+  - [`DW_OP_lit30`](#dw_op_lit30)
+  - [`DW_OP_lit31`](#dw_op_lit31)
+  - [`DW_OP_reg0`](#dw_op_reg0)
+  - [`DW_OP_reg1`](#dw_op_reg1)
+  - [`DW_OP_reg2`](#dw_op_reg2)
+  - [`DW_OP_reg3`](#dw_op_reg3)
+  - [`DW_OP_reg4`](#dw_op_reg4)
+  - [`DW_OP_reg5`](#dw_op_reg5)
+  - [`DW_OP_reg6`](#dw_op_reg6)
+  - [`DW_OP_reg7`](#dw_op_reg7)
+  - [`DW_OP_reg8`](#dw_op_reg8)
+  - [`DW_OP_reg9`](#dw_op_reg9)
+  - [`DW_OP_reg10`](#dw_op_reg10)
+  - [`DW_OP_reg11`](#dw_op_reg11)
+  - [`DW_OP_reg12`](#dw_op_reg12)
+  - [`DW_OP_reg13`](#dw_op_reg13)
+  - [`DW_OP_reg14`](#dw_op_reg14)
+  - [`DW_OP_reg15`](#dw_op_reg15)
+  - [`DW_OP_reg16`](#dw_op_reg16)
+  - [`DW_OP_reg17`](#dw_op_reg17)
+  - [`DW_OP_reg18`](#dw_op_reg18)
+  - [`DW_OP_reg19`](#dw_op_reg19)
+  - [`DW_OP_reg20`](#dw_op_reg20)
+  - [`DW_OP_reg21`](#dw_op_reg21)
+  - [`DW_OP_reg22`](#dw_op_reg22)
+  - [`DW_OP_reg23`](#dw_op_reg23)
+  - [`DW_OP_reg24`](#dw_op_reg24)
+  - [`DW_OP_reg25`](#dw_op_reg25)
+  - [`DW_OP_reg26`](#dw_op_reg26)
+  - [`DW_OP_reg27`](#dw_op_reg27)
+  - [`DW_OP_reg28`](#dw_op_reg28)
+  - [`DW_OP_reg29`](#dw_op_reg29)
+  - [`DW_OP_reg30`](#dw_op_reg30)
+  - [`DW_OP_reg31`](#dw_op_reg31)
+  - [`DW_OP_breg0`](#dw_op_breg0)
+  - [`DW_OP_breg1`](#dw_op_breg1)
+  - [`DW_OP_breg2`](#dw_op_breg2)
+  - [`DW_OP_breg3`](#dw_op_breg3)
+  - [`DW_OP_breg4`](#dw_op_breg4)
+  - [`DW_OP_breg5`](#dw_op_breg5)
+  - [`DW_OP_breg6`](#dw_op_breg6)
+  - [`DW_OP_breg7`](#dw_op_breg7)
+  - [`DW_OP_breg8`](#dw_op_breg8)
+  - [`DW_OP_breg9`](#dw_op_breg9)
+  - [`DW_OP_breg10`](#dw_op_breg10)
+  - [`DW_OP_breg11`](#dw_op_breg11)
+  - [`DW_OP_breg12`](#dw_op_breg12)
+  - [`DW_OP_breg13`](#dw_op_breg13)
+  - [`DW_OP_breg14`](#dw_op_breg14)
+  - [`DW_OP_breg15`](#dw_op_breg15)
+  - [`DW_OP_breg16`](#dw_op_breg16)
+  - [`DW_OP_breg17`](#dw_op_breg17)
+  - [`DW_OP_breg18`](#dw_op_breg18)
+  - [`DW_OP_breg19`](#dw_op_breg19)
+  - [`DW_OP_breg20`](#dw_op_breg20)
+  - [`DW_OP_breg21`](#dw_op_breg21)
+  - [`DW_OP_breg22`](#dw_op_breg22)
+  - [`DW_OP_breg23`](#dw_op_breg23)
+  - [`DW_OP_breg24`](#dw_op_breg24)
+  - [`DW_OP_breg25`](#dw_op_breg25)
+  - [`DW_OP_breg26`](#dw_op_breg26)
+  - [`DW_OP_breg27`](#dw_op_breg27)
+  - [`DW_OP_breg28`](#dw_op_breg28)
+  - [`DW_OP_breg29`](#dw_op_breg29)
+  - [`DW_OP_breg30`](#dw_op_breg30)
+  - [`DW_OP_breg31`](#dw_op_breg31)
+  - [`DW_OP_regx`](#dw_op_regx)
+  - [`DW_OP_fbreg`](#dw_op_fbreg)
+  - [`DW_OP_bregx`](#dw_op_bregx)
+  - [`DW_OP_piece`](#dw_op_piece)
+  - [`DW_OP_deref_size`](#dw_op_deref_size)
+  - [`DW_OP_xderef_size`](#dw_op_xderef_size)
+  - [`DW_OP_nop`](#dw_op_nop)
+  - [`DW_OP_push_object_address`](#dw_op_push_object_address)
+  - [`DW_OP_call2`](#dw_op_call2)
+  - [`DW_OP_call4`](#dw_op_call4)
+  - [`DW_OP_call_ref`](#dw_op_call_ref)
+  - [`DW_OP_form_tls_address`](#dw_op_form_tls_address)
+  - [`DW_OP_call_frame_cfa`](#dw_op_call_frame_cfa)
+  - [`DW_OP_bit_piece`](#dw_op_bit_piece)
+  - [`DW_OP_implicit_value`](#dw_op_implicit_value)
+  - [`DW_OP_stack_value`](#dw_op_stack_value)
+  - [`DW_OP_implicit_pointer`](#dw_op_implicit_pointer)
+  - [`DW_OP_addrx`](#dw_op_addrx)
+  - [`DW_OP_constx`](#dw_op_constx)
+  - [`DW_OP_entry_value`](#dw_op_entry_value)
+  - [`DW_OP_const_type`](#dw_op_const_type)
+  - [`DW_OP_regval_type`](#dw_op_regval_type)
+  - [`DW_OP_deref_type`](#dw_op_deref_type)
+  - [`DW_OP_xderef_type`](#dw_op_xderef_type)
+  - [`DW_OP_convert`](#dw_op_convert)
+  - [`DW_OP_reinterpret`](#dw_op_reinterpret)
+  - [`DW_OP_GNU_push_tls_address`](#dw_op_gnu_push_tls_address)
+  - [`DW_OP_GNU_implicit_pointer`](#dw_op_gnu_implicit_pointer)
+  - [`DW_OP_GNU_entry_value`](#dw_op_gnu_entry_value)
+  - [`DW_OP_GNU_const_type`](#dw_op_gnu_const_type)
+  - [`DW_OP_GNU_regval_type`](#dw_op_gnu_regval_type)
+  - [`DW_OP_GNU_deref_type`](#dw_op_gnu_deref_type)
+  - [`DW_OP_GNU_convert`](#dw_op_gnu_convert)
+  - [`DW_OP_GNU_reinterpret`](#dw_op_gnu_reinterpret)
+  - [`DW_OP_GNU_parameter_ref`](#dw_op_gnu_parameter_ref)
+  - [`DW_OP_GNU_addr_index`](#dw_op_gnu_addr_index)
+  - [`DW_OP_GNU_const_index`](#dw_op_gnu_const_index)
+  - [`DW_OP_WASM_location`](#dw_op_wasm_location)
+  - [`DW_EH_PE_uleb128`](#dw_eh_pe_uleb128)
+  - [`DW_EH_PE_udata2`](#dw_eh_pe_udata2)
+  - [`DW_EH_PE_udata4`](#dw_eh_pe_udata4)
+  - [`DW_EH_PE_udata8`](#dw_eh_pe_udata8)
+  - [`DW_EH_PE_sleb128`](#dw_eh_pe_sleb128)
+  - [`DW_EH_PE_sdata2`](#dw_eh_pe_sdata2)
+  - [`DW_EH_PE_sdata4`](#dw_eh_pe_sdata4)
+  - [`DW_EH_PE_sdata8`](#dw_eh_pe_sdata8)
+  - [`DW_EH_PE_pcrel`](#dw_eh_pe_pcrel)
+  - [`DW_EH_PE_textrel`](#dw_eh_pe_textrel)
+  - [`DW_EH_PE_datarel`](#dw_eh_pe_datarel)
+  - [`DW_EH_PE_funcrel`](#dw_eh_pe_funcrel)
+  - [`DW_EH_PE_aligned`](#dw_eh_pe_aligned)
+  - [`DW_EH_PE_indirect`](#dw_eh_pe_indirect)
+  - [`DW_EH_PE_absptr`](#dw_eh_pe_absptr)
+  - [`DW_EH_PE_omit`](#dw_eh_pe_omit)
+  - [`DW_EH_PE_FORMAT_MASK`](#dw_eh_pe_format_mask)
+  - [`DW_EH_PE_APPLICATION_MASK`](#dw_eh_pe_application_mask)
+- [Macros](#macros)
+  - [`registers!`](#registers)
+  - [`dw!`](#dw)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`common`](#common) | mod |  |
+| [`arch`](#arch) | mod |  |
+| [`constants`](#constants) | mod | Constant definitions. |
+| [`endianity`](#endianity) | mod | Types for compile-time and run-time endianity. |
+| [`leb128`](#leb128) | mod | Read and write DWARF's "Little Endian Base 128" (LEB128) variable length |
+| [`read`](#read) | mod | Read DWARF debugging information. |
+| [`util`](#util) | mod |  |
+| [`addr`](#addr) | mod |  |
+| [`cfi`](#cfi) | mod |  |
+| [`dwarf`](#dwarf) | mod |  |
+| [`endian_slice`](#endian_slice) | mod | Working with byte slices that have an associated endianity. |
+| [`reader`](#reader) | mod |  |
+| [`relocate`](#relocate) | mod |  |
+| [`abbrev`](#abbrev) | mod | Functions for parsing DWARF debugging abbreviations. |
+| [`aranges`](#aranges) | mod |  |
+| [`index`](#index) | mod |  |
+| [`line`](#line) | mod |  |
+| [`lists`](#lists) | mod |  |
+| [`loclists`](#loclists) | mod |  |
+| [`lookup`](#lookup) | mod |  |
+| [`macros`](#macros) | mod |  |
+| [`op`](#op) | mod | Functions for parsing and evaluating DWARF expressions. |
+| [`pubnames`](#pubnames) | mod |  |
+| [`pubtypes`](#pubtypes) | mod |  |
+| [`rnglists`](#rnglists) | mod |  |
+| [`str`](#str) | mod |  |
+| [`unit`](#unit) | mod | Functions for parsing DWARF `.debug_info` and `.debug_types` sections. |
+| [`value`](#value) | mod | Definitions for values used in DWARF expressions. |
+| [`Encoding`](#encoding) | struct | Encoding parameters that are commonly used for multiple DWARF sections. |
+| [`LineEncoding`](#lineencoding) | struct | Encoding parameters for a line number program. |
+| [`Register`](#register) | struct | A DWARF register number. |
+| [`DebugAbbrevOffset`](#debugabbrevoffset) | struct | An offset into the `.debug_abbrev` section. |
+| [`DebugAddrOffset`](#debugaddroffset) | struct | An offset into the `.debug_addr` section. |
+| [`DebugAddrBase`](#debugaddrbase) | struct | An offset to a set of entries in the `.debug_addr` section. |
+| [`DebugAddrIndex`](#debugaddrindex) | struct | An index into a set of addresses in the `.debug_addr` section. |
+| [`DebugArangesOffset`](#debugarangesoffset) | struct | An offset into the `.debug_aranges` section. |
+| [`DebugInfoOffset`](#debuginfooffset) | struct | An offset into the `.debug_info` section. |
+| [`DebugLineOffset`](#debuglineoffset) | struct | An offset into the `.debug_line` section. |
+| [`DebugLineStrOffset`](#debuglinestroffset) | struct | An offset into the `.debug_line_str` section. |
+| [`LocationListsOffset`](#locationlistsoffset) | struct | An offset into either the `.debug_loc` section or the `.debug_loclists` section |
+| [`DebugLocListsBase`](#debugloclistsbase) | struct | An offset to a set of location list offsets in the `.debug_loclists` section. |
+| [`DebugLocListsIndex`](#debugloclistsindex) | struct | An index into a set of location list offsets in the `.debug_loclists` section. |
+| [`DebugMacinfoOffset`](#debugmacinfooffset) | struct | An offset into the `.debug_macinfo` section. |
+| [`DebugMacroOffset`](#debugmacrooffset) | struct | An offset into the `.debug_macro` section. |
+| [`RawRangeListsOffset`](#rawrangelistsoffset) | struct | An offset into either the `.debug_ranges` section or the `.debug_rnglists` section |
+| [`RangeListsOffset`](#rangelistsoffset) | struct | An offset into either the `.debug_ranges` section or the `.debug_rnglists` section |
+| [`DebugRngListsBase`](#debugrnglistsbase) | struct | An offset to a set of range list offsets in the `.debug_rnglists` section. |
+| [`DebugRngListsIndex`](#debugrnglistsindex) | struct | An index into a set of range list offsets in the `.debug_rnglists` section. |
+| [`DebugStrOffset`](#debugstroffset) | struct | An offset into the `.debug_str` section. |
+| [`DebugStrOffsetsBase`](#debugstroffsetsbase) | struct | An offset to a set of entries in the `.debug_str_offsets` section. |
+| [`DebugStrOffsetsIndex`](#debugstroffsetsindex) | struct | An index into a set of entries in the `.debug_str_offsets` section. |
+| [`DebugTypesOffset`](#debugtypesoffset) | struct | An offset into the `.debug_types` section. |
+| [`DebugTypeSignature`](#debugtypesignature) | struct | A type signature as used in the `.debug_types` section. |
+| [`DebugFrameOffset`](#debugframeoffset) | struct | An offset into the `.debug_frame` section. |
+| [`EhFrameOffset`](#ehframeoffset) | struct | An offset into the `.eh_frame` section. |
+| [`DwoId`](#dwoid) | struct | An optionally-provided implementation-defined compilation unit ID to enable |
+| [`Arm`](#arm) | struct | ARM architecture specific definitions. |
+| [`AArch64`](#aarch64) | struct | ARM 64-bit (AArch64) architecture specific definitions. |
+| [`LoongArch`](#loongarch) | struct | LoongArch architecture specific definitions. |
+| [`MIPS`](#mips) | struct | MIPS architecture specific definitions. |
+| [`RiscV`](#riscv) | struct | RISC-V architecture specific definitions. |
+| [`X86`](#x86) | struct | Intel i386 architecture specific definitions. |
+| [`X86_64`](#x86_64) | struct | AMD64 architecture specific definitions. |
+| [`PowerPc64`](#powerpc64) | struct | PowerPC 64bit |
+| [`DwSect`](#dwsect) | struct | The section type field in a `.dwp` unit index. |
+| [`DwSectV2`](#dwsectv2) | struct | The section type field in a `.dwp` unit index with version 2. |
+| [`DwUt`](#dwut) | struct | The unit type field in a unit header. |
+| [`DwCfa`](#dwcfa) | struct | The opcode for a call frame instruction. |
+| [`DwChildren`](#dwchildren) | struct | The child determination encodings for DIE attributes. |
+| [`DwTag`](#dwtag) | struct | The tag encodings for DIE attributes. |
+| [`DwAt`](#dwat) | struct | The attribute encodings for DIE attributes. |
+| [`DwForm`](#dwform) | struct | The attribute form encodings for DIE attributes. |
+| [`DwAte`](#dwate) | struct | The encodings of the constants used in the `DW_AT_encoding` attribute. |
+| [`DwLle`](#dwlle) | struct | The encodings of the constants used in location list entries. |
+| [`DwDs`](#dwds) | struct | The encodings of the constants used in the `DW_AT_decimal_sign` attribute. |
+| [`DwEnd`](#dwend) | struct | The encodings of the constants used in the `DW_AT_endianity` attribute. |
+| [`DwAccess`](#dwaccess) | struct | The encodings of the constants used in the `DW_AT_accessibility` attribute. |
+| [`DwVis`](#dwvis) | struct | The encodings of the constants used in the `DW_AT_visibility` attribute. |
+| [`DwVirtuality`](#dwvirtuality) | struct | The encodings of the constants used in the `DW_AT_virtuality` attribute. |
+| [`DwLang`](#dwlang) | struct | The encodings of the constants used in the `DW_AT_language` attribute. |
+| [`DwAddr`](#dwaddr) | struct | The encodings of the constants used in the `DW_AT_address_class` attribute. |
+| [`DwId`](#dwid) | struct | The encodings of the constants used in the `DW_AT_identifier_case` attribute. |
+| [`DwCc`](#dwcc) | struct | The encodings of the constants used in the `DW_AT_calling_convention` attribute. |
+| [`DwInl`](#dwinl) | struct | The encodings of the constants used in the `DW_AT_inline` attribute. |
+| [`DwOrd`](#dword) | struct | The encodings of the constants used in the `DW_AT_ordering` attribute. |
+| [`DwDsc`](#dwdsc) | struct | The encodings of the constants used in the `DW_AT_discr_list` attribute. |
+| [`DwIdx`](#dwidx) | struct | Name index attribute encodings. |
+| [`DwDefaulted`](#dwdefaulted) | struct | The encodings of the constants used in the `DW_AT_defaulted` attribute. |
+| [`DwLns`](#dwlns) | struct | The encodings for the standard opcodes for line number information. |
+| [`DwLne`](#dwlne) | struct | The encodings for the extended opcodes for line number information. |
+| [`DwLnct`](#dwlnct) | struct | The encodings for the line number header entry formats. |
+| [`DwMacinfo`](#dwmacinfo) | struct | Type codes for macro definitions in the `.debug_macinfo` section. |
+| [`DwMacro`](#dwmacro) | struct | The encodings for macro information entry types. |
+| [`DwRle`](#dwrle) | struct | Range list entry encoding values. |
+| [`DwOp`](#dwop) | struct | The encodings for DWARF expression operations. |
+| [`DwEhPe`](#dwehpe) | struct | Pointer encoding used by `.eh_frame`. |
+| [`LittleEndian`](#littleendian) | struct | Little endian byte order. |
+| [`BigEndian`](#bigendian) | struct | Big endian byte order. |
+| [`UnitOffset`](#unitoffset) | struct | An offset into the current compilation or type unit. |
+| [`StoreOnHeap`](#storeonheap) | struct | Indicates that storage should be allocated on heap. |
+| [`Format`](#format) | enum | Whether the format of a compilation unit is 32- or 64-bit. |
+| [`Vendor`](#vendor) | enum | Which vendor extensions to support. |
+| [`UnitSectionOffset`](#unitsectionoffset) | enum | An offset into the `.debug_info` or `.debug_types` sections. |
+| [`SectionId`](#sectionid) | enum | An identifier for a DWARF section. |
+| [`DwarfFileType`](#dwarffiletype) | enum | The "type" of file with DWARF debugging information. |
+| [`RunTimeEndian`](#runtimeendian) | enum | Byte order that is selectable at runtime. |
+| [`Error`](#error) | enum | An error that occurred when parsing. |
+| [`Endianity`](#endianity) | trait | A trait describing the endianity of some buffer. |
+| [`Section`](#section) | trait | A convenience trait for loading DWARF sections from object files. |
+| [`NativeEndian`](#nativeendian) | type | The native endianity for the target platform. |
+| [`EndianBuf`](#endianbuf) | type | `EndianBuf` has been renamed to `EndianSlice`. |
+| [`Result`](#result) | type | The result of a parse. |
+| [`DW_SECT_INFO`](#dw_sect_info) | const |  |
+| [`DW_SECT_ABBREV`](#dw_sect_abbrev) | const |  |
+| [`DW_SECT_LINE`](#dw_sect_line) | const |  |
+| [`DW_SECT_LOCLISTS`](#dw_sect_loclists) | const |  |
+| [`DW_SECT_STR_OFFSETS`](#dw_sect_str_offsets) | const |  |
+| [`DW_SECT_MACRO`](#dw_sect_macro) | const |  |
+| [`DW_SECT_RNGLISTS`](#dw_sect_rnglists) | const |  |
+| [`DW_SECT_V2_INFO`](#dw_sect_v2_info) | const |  |
+| [`DW_SECT_V2_TYPES`](#dw_sect_v2_types) | const |  |
+| [`DW_SECT_V2_ABBREV`](#dw_sect_v2_abbrev) | const |  |
+| [`DW_SECT_V2_LINE`](#dw_sect_v2_line) | const |  |
+| [`DW_SECT_V2_LOC`](#dw_sect_v2_loc) | const |  |
+| [`DW_SECT_V2_STR_OFFSETS`](#dw_sect_v2_str_offsets) | const |  |
+| [`DW_SECT_V2_MACINFO`](#dw_sect_v2_macinfo) | const |  |
+| [`DW_SECT_V2_MACRO`](#dw_sect_v2_macro) | const |  |
+| [`DW_UT_compile`](#dw_ut_compile) | const |  |
+| [`DW_UT_type`](#dw_ut_type) | const |  |
+| [`DW_UT_partial`](#dw_ut_partial) | const |  |
+| [`DW_UT_skeleton`](#dw_ut_skeleton) | const |  |
+| [`DW_UT_split_compile`](#dw_ut_split_compile) | const |  |
+| [`DW_UT_split_type`](#dw_ut_split_type) | const |  |
+| [`DW_UT_lo_user`](#dw_ut_lo_user) | const |  |
+| [`DW_UT_hi_user`](#dw_ut_hi_user) | const |  |
+| [`DW_CFA_advance_loc`](#dw_cfa_advance_loc) | const |  |
+| [`DW_CFA_offset`](#dw_cfa_offset) | const |  |
+| [`DW_CFA_restore`](#dw_cfa_restore) | const |  |
+| [`DW_CFA_nop`](#dw_cfa_nop) | const |  |
+| [`DW_CFA_set_loc`](#dw_cfa_set_loc) | const |  |
+| [`DW_CFA_advance_loc1`](#dw_cfa_advance_loc1) | const |  |
+| [`DW_CFA_advance_loc2`](#dw_cfa_advance_loc2) | const |  |
+| [`DW_CFA_advance_loc4`](#dw_cfa_advance_loc4) | const |  |
+| [`DW_CFA_offset_extended`](#dw_cfa_offset_extended) | const |  |
+| [`DW_CFA_restore_extended`](#dw_cfa_restore_extended) | const |  |
+| [`DW_CFA_undefined`](#dw_cfa_undefined) | const |  |
+| [`DW_CFA_same_value`](#dw_cfa_same_value) | const |  |
+| [`DW_CFA_register`](#dw_cfa_register) | const |  |
+| [`DW_CFA_remember_state`](#dw_cfa_remember_state) | const |  |
+| [`DW_CFA_restore_state`](#dw_cfa_restore_state) | const |  |
+| [`DW_CFA_def_cfa`](#dw_cfa_def_cfa) | const |  |
+| [`DW_CFA_def_cfa_register`](#dw_cfa_def_cfa_register) | const |  |
+| [`DW_CFA_def_cfa_offset`](#dw_cfa_def_cfa_offset) | const |  |
+| [`DW_CFA_def_cfa_expression`](#dw_cfa_def_cfa_expression) | const |  |
+| [`DW_CFA_expression`](#dw_cfa_expression) | const |  |
+| [`DW_CFA_offset_extended_sf`](#dw_cfa_offset_extended_sf) | const |  |
+| [`DW_CFA_def_cfa_sf`](#dw_cfa_def_cfa_sf) | const |  |
+| [`DW_CFA_def_cfa_offset_sf`](#dw_cfa_def_cfa_offset_sf) | const |  |
+| [`DW_CFA_val_offset`](#dw_cfa_val_offset) | const |  |
+| [`DW_CFA_val_offset_sf`](#dw_cfa_val_offset_sf) | const |  |
+| [`DW_CFA_val_expression`](#dw_cfa_val_expression) | const |  |
+| [`DW_CFA_lo_user`](#dw_cfa_lo_user) | const |  |
+| [`DW_CFA_hi_user`](#dw_cfa_hi_user) | const |  |
+| [`DW_CFA_MIPS_advance_loc8`](#dw_cfa_mips_advance_loc8) | const |  |
+| [`DW_CFA_GNU_window_save`](#dw_cfa_gnu_window_save) | const |  |
+| [`DW_CFA_GNU_args_size`](#dw_cfa_gnu_args_size) | const |  |
+| [`DW_CFA_GNU_negative_offset_extended`](#dw_cfa_gnu_negative_offset_extended) | const |  |
+| [`DW_CFA_AARCH64_negate_ra_state`](#dw_cfa_aarch64_negate_ra_state) | const |  |
+| [`DW_CHILDREN_no`](#dw_children_no) | const |  |
+| [`DW_CHILDREN_yes`](#dw_children_yes) | const |  |
+| [`DW_TAG_null`](#dw_tag_null) | const |  |
+| [`DW_TAG_global_subroutine`](#dw_tag_global_subroutine) | const |  |
+| [`DW_TAG_global_variable`](#dw_tag_global_variable) | const |  |
+| [`DW_TAG_local_variable`](#dw_tag_local_variable) | const |  |
+| [`DW_TAG_subroutine`](#dw_tag_subroutine) | const |  |
+| [`DW_TAG_array_type`](#dw_tag_array_type) | const |  |
+| [`DW_TAG_class_type`](#dw_tag_class_type) | const |  |
+| [`DW_TAG_entry_point`](#dw_tag_entry_point) | const |  |
+| [`DW_TAG_enumeration_type`](#dw_tag_enumeration_type) | const |  |
+| [`DW_TAG_formal_parameter`](#dw_tag_formal_parameter) | const |  |
+| [`DW_TAG_imported_declaration`](#dw_tag_imported_declaration) | const |  |
+| [`DW_TAG_label`](#dw_tag_label) | const |  |
+| [`DW_TAG_lexical_block`](#dw_tag_lexical_block) | const |  |
+| [`DW_TAG_member`](#dw_tag_member) | const |  |
+| [`DW_TAG_pointer_type`](#dw_tag_pointer_type) | const |  |
+| [`DW_TAG_reference_type`](#dw_tag_reference_type) | const |  |
+| [`DW_TAG_compile_unit`](#dw_tag_compile_unit) | const |  |
+| [`DW_TAG_string_type`](#dw_tag_string_type) | const |  |
+| [`DW_TAG_structure_type`](#dw_tag_structure_type) | const |  |
+| [`DW_TAG_subroutine_type`](#dw_tag_subroutine_type) | const |  |
+| [`DW_TAG_typedef`](#dw_tag_typedef) | const |  |
+| [`DW_TAG_union_type`](#dw_tag_union_type) | const |  |
+| [`DW_TAG_unspecified_parameters`](#dw_tag_unspecified_parameters) | const |  |
+| [`DW_TAG_variant`](#dw_tag_variant) | const |  |
+| [`DW_TAG_common_block`](#dw_tag_common_block) | const |  |
+| [`DW_TAG_common_inclusion`](#dw_tag_common_inclusion) | const |  |
+| [`DW_TAG_inheritance`](#dw_tag_inheritance) | const |  |
+| [`DW_TAG_inlined_subroutine`](#dw_tag_inlined_subroutine) | const |  |
+| [`DW_TAG_module`](#dw_tag_module) | const |  |
+| [`DW_TAG_ptr_to_member_type`](#dw_tag_ptr_to_member_type) | const |  |
+| [`DW_TAG_set_type`](#dw_tag_set_type) | const |  |
+| [`DW_TAG_subrange_type`](#dw_tag_subrange_type) | const |  |
+| [`DW_TAG_with_stmt`](#dw_tag_with_stmt) | const |  |
+| [`DW_TAG_access_declaration`](#dw_tag_access_declaration) | const |  |
+| [`DW_TAG_base_type`](#dw_tag_base_type) | const |  |
+| [`DW_TAG_catch_block`](#dw_tag_catch_block) | const |  |
+| [`DW_TAG_const_type`](#dw_tag_const_type) | const |  |
+| [`DW_TAG_constant`](#dw_tag_constant) | const |  |
+| [`DW_TAG_enumerator`](#dw_tag_enumerator) | const |  |
+| [`DW_TAG_file_type`](#dw_tag_file_type) | const |  |
+| [`DW_TAG_friend`](#dw_tag_friend) | const |  |
+| [`DW_TAG_namelist`](#dw_tag_namelist) | const |  |
+| [`DW_TAG_namelist_item`](#dw_tag_namelist_item) | const |  |
+| [`DW_TAG_packed_type`](#dw_tag_packed_type) | const |  |
+| [`DW_TAG_subprogram`](#dw_tag_subprogram) | const |  |
+| [`DW_TAG_template_type_parameter`](#dw_tag_template_type_parameter) | const |  |
+| [`DW_TAG_template_value_parameter`](#dw_tag_template_value_parameter) | const |  |
+| [`DW_TAG_thrown_type`](#dw_tag_thrown_type) | const |  |
+| [`DW_TAG_try_block`](#dw_tag_try_block) | const |  |
+| [`DW_TAG_variant_part`](#dw_tag_variant_part) | const |  |
+| [`DW_TAG_variable`](#dw_tag_variable) | const |  |
+| [`DW_TAG_volatile_type`](#dw_tag_volatile_type) | const |  |
+| [`DW_TAG_dwarf_procedure`](#dw_tag_dwarf_procedure) | const |  |
+| [`DW_TAG_restrict_type`](#dw_tag_restrict_type) | const |  |
+| [`DW_TAG_interface_type`](#dw_tag_interface_type) | const |  |
+| [`DW_TAG_namespace`](#dw_tag_namespace) | const |  |
+| [`DW_TAG_imported_module`](#dw_tag_imported_module) | const |  |
+| [`DW_TAG_unspecified_type`](#dw_tag_unspecified_type) | const |  |
+| [`DW_TAG_partial_unit`](#dw_tag_partial_unit) | const |  |
+| [`DW_TAG_imported_unit`](#dw_tag_imported_unit) | const |  |
+| [`DW_TAG_condition`](#dw_tag_condition) | const |  |
+| [`DW_TAG_shared_type`](#dw_tag_shared_type) | const |  |
+| [`DW_TAG_type_unit`](#dw_tag_type_unit) | const |  |
+| [`DW_TAG_rvalue_reference_type`](#dw_tag_rvalue_reference_type) | const |  |
+| [`DW_TAG_template_alias`](#dw_tag_template_alias) | const |  |
+| [`DW_TAG_coarray_type`](#dw_tag_coarray_type) | const |  |
+| [`DW_TAG_generic_subrange`](#dw_tag_generic_subrange) | const |  |
+| [`DW_TAG_dynamic_type`](#dw_tag_dynamic_type) | const |  |
+| [`DW_TAG_atomic_type`](#dw_tag_atomic_type) | const |  |
+| [`DW_TAG_call_site`](#dw_tag_call_site) | const |  |
+| [`DW_TAG_call_site_parameter`](#dw_tag_call_site_parameter) | const |  |
+| [`DW_TAG_skeleton_unit`](#dw_tag_skeleton_unit) | const |  |
+| [`DW_TAG_immutable_type`](#dw_tag_immutable_type) | const |  |
+| [`DW_TAG_lo_user`](#dw_tag_lo_user) | const |  |
+| [`DW_TAG_hi_user`](#dw_tag_hi_user) | const |  |
+| [`DW_TAG_MIPS_loop`](#dw_tag_mips_loop) | const |  |
+| [`DW_TAG_HP_array_descriptor`](#dw_tag_hp_array_descriptor) | const |  |
+| [`DW_TAG_HP_Bliss_field`](#dw_tag_hp_bliss_field) | const |  |
+| [`DW_TAG_HP_Bliss_field_set`](#dw_tag_hp_bliss_field_set) | const |  |
+| [`DW_TAG_format_label`](#dw_tag_format_label) | const |  |
+| [`DW_TAG_function_template`](#dw_tag_function_template) | const |  |
+| [`DW_TAG_class_template`](#dw_tag_class_template) | const |  |
+| [`DW_TAG_GNU_BINCL`](#dw_tag_gnu_bincl) | const |  |
+| [`DW_TAG_GNU_EINCL`](#dw_tag_gnu_eincl) | const |  |
+| [`DW_TAG_GNU_template_template_param`](#dw_tag_gnu_template_template_param) | const |  |
+| [`DW_TAG_GNU_template_parameter_pack`](#dw_tag_gnu_template_parameter_pack) | const |  |
+| [`DW_TAG_GNU_formal_parameter_pack`](#dw_tag_gnu_formal_parameter_pack) | const |  |
+| [`DW_TAG_GNU_call_site`](#dw_tag_gnu_call_site) | const |  |
+| [`DW_TAG_GNU_call_site_parameter`](#dw_tag_gnu_call_site_parameter) | const |  |
+| [`DW_TAG_APPLE_property`](#dw_tag_apple_property) | const |  |
+| [`DW_TAG_SUN_function_template`](#dw_tag_sun_function_template) | const |  |
+| [`DW_TAG_SUN_class_template`](#dw_tag_sun_class_template) | const |  |
+| [`DW_TAG_SUN_struct_template`](#dw_tag_sun_struct_template) | const |  |
+| [`DW_TAG_SUN_union_template`](#dw_tag_sun_union_template) | const |  |
+| [`DW_TAG_SUN_indirect_inheritance`](#dw_tag_sun_indirect_inheritance) | const |  |
+| [`DW_TAG_SUN_codeflags`](#dw_tag_sun_codeflags) | const |  |
+| [`DW_TAG_SUN_memop_info`](#dw_tag_sun_memop_info) | const |  |
+| [`DW_TAG_SUN_omp_child_func`](#dw_tag_sun_omp_child_func) | const |  |
+| [`DW_TAG_SUN_rtti_descriptor`](#dw_tag_sun_rtti_descriptor) | const |  |
+| [`DW_TAG_SUN_dtor_info`](#dw_tag_sun_dtor_info) | const |  |
+| [`DW_TAG_SUN_dtor`](#dw_tag_sun_dtor) | const |  |
+| [`DW_TAG_SUN_f90_interface`](#dw_tag_sun_f90_interface) | const |  |
+| [`DW_TAG_SUN_fortran_vax_structure`](#dw_tag_sun_fortran_vax_structure) | const |  |
+| [`DW_TAG_ALTIUM_circ_type`](#dw_tag_altium_circ_type) | const |  |
+| [`DW_TAG_ALTIUM_mwa_circ_type`](#dw_tag_altium_mwa_circ_type) | const |  |
+| [`DW_TAG_ALTIUM_rev_carry_type`](#dw_tag_altium_rev_carry_type) | const |  |
+| [`DW_TAG_ALTIUM_rom`](#dw_tag_altium_rom) | const |  |
+| [`DW_TAG_upc_shared_type`](#dw_tag_upc_shared_type) | const |  |
+| [`DW_TAG_upc_strict_type`](#dw_tag_upc_strict_type) | const |  |
+| [`DW_TAG_upc_relaxed_type`](#dw_tag_upc_relaxed_type) | const |  |
+| [`DW_TAG_PGI_kanji_type`](#dw_tag_pgi_kanji_type) | const |  |
+| [`DW_TAG_PGI_interface_block`](#dw_tag_pgi_interface_block) | const |  |
+| [`DW_TAG_BORLAND_property`](#dw_tag_borland_property) | const |  |
+| [`DW_TAG_BORLAND_Delphi_string`](#dw_tag_borland_delphi_string) | const |  |
+| [`DW_TAG_BORLAND_Delphi_dynamic_array`](#dw_tag_borland_delphi_dynamic_array) | const |  |
+| [`DW_TAG_BORLAND_Delphi_set`](#dw_tag_borland_delphi_set) | const |  |
+| [`DW_TAG_BORLAND_Delphi_variant`](#dw_tag_borland_delphi_variant) | const |  |
+| [`DW_AT_null`](#dw_at_null) | const |  |
+| [`DW_AT_fund_type`](#dw_at_fund_type) | const |  |
+| [`DW_AT_mod_fund_type`](#dw_at_mod_fund_type) | const |  |
+| [`DW_AT_user_def_type`](#dw_at_user_def_type) | const |  |
+| [`DW_AT_mod_u_d_type`](#dw_at_mod_u_d_type) | const |  |
+| [`DW_AT_subscr_data`](#dw_at_subscr_data) | const |  |
+| [`DW_AT_element_list`](#dw_at_element_list) | const |  |
+| [`DW_AT_member`](#dw_at_member) | const |  |
+| [`DW_AT_friends`](#dw_at_friends) | const |  |
+| [`DW_AT_program`](#dw_at_program) | const |  |
+| [`DW_AT_private`](#dw_at_private) | const |  |
+| [`DW_AT_protected`](#dw_at_protected) | const |  |
+| [`DW_AT_public`](#dw_at_public) | const |  |
+| [`DW_AT_pure_virtual`](#dw_at_pure_virtual) | const |  |
+| [`DW_AT_virtual`](#dw_at_virtual) | const |  |
+| [`DW_AT_specification_v1`](#dw_at_specification_v1) | const |  |
+| [`DW_AT_sibling`](#dw_at_sibling) | const |  |
+| [`DW_AT_location`](#dw_at_location) | const |  |
+| [`DW_AT_name`](#dw_at_name) | const |  |
+| [`DW_AT_ordering`](#dw_at_ordering) | const |  |
+| [`DW_AT_byte_size`](#dw_at_byte_size) | const |  |
+| [`DW_AT_bit_offset`](#dw_at_bit_offset) | const |  |
+| [`DW_AT_bit_size`](#dw_at_bit_size) | const |  |
+| [`DW_AT_stmt_list`](#dw_at_stmt_list) | const |  |
+| [`DW_AT_low_pc`](#dw_at_low_pc) | const |  |
+| [`DW_AT_high_pc`](#dw_at_high_pc) | const |  |
+| [`DW_AT_language`](#dw_at_language) | const |  |
+| [`DW_AT_discr`](#dw_at_discr) | const |  |
+| [`DW_AT_discr_value`](#dw_at_discr_value) | const |  |
+| [`DW_AT_visibility`](#dw_at_visibility) | const |  |
+| [`DW_AT_import`](#dw_at_import) | const |  |
+| [`DW_AT_string_length`](#dw_at_string_length) | const |  |
+| [`DW_AT_common_reference`](#dw_at_common_reference) | const |  |
+| [`DW_AT_comp_dir`](#dw_at_comp_dir) | const |  |
+| [`DW_AT_const_value`](#dw_at_const_value) | const |  |
+| [`DW_AT_containing_type`](#dw_at_containing_type) | const |  |
+| [`DW_AT_default_value`](#dw_at_default_value) | const |  |
+| [`DW_AT_inline`](#dw_at_inline) | const |  |
+| [`DW_AT_is_optional`](#dw_at_is_optional) | const |  |
+| [`DW_AT_lower_bound`](#dw_at_lower_bound) | const |  |
+| [`DW_AT_producer`](#dw_at_producer) | const |  |
+| [`DW_AT_prototyped`](#dw_at_prototyped) | const |  |
+| [`DW_AT_return_addr`](#dw_at_return_addr) | const |  |
+| [`DW_AT_start_scope`](#dw_at_start_scope) | const |  |
+| [`DW_AT_bit_stride`](#dw_at_bit_stride) | const |  |
+| [`DW_AT_upper_bound`](#dw_at_upper_bound) | const |  |
+| [`DW_AT_abstract_origin`](#dw_at_abstract_origin) | const |  |
+| [`DW_AT_accessibility`](#dw_at_accessibility) | const |  |
+| [`DW_AT_address_class`](#dw_at_address_class) | const |  |
+| [`DW_AT_artificial`](#dw_at_artificial) | const |  |
+| [`DW_AT_base_types`](#dw_at_base_types) | const |  |
+| [`DW_AT_calling_convention`](#dw_at_calling_convention) | const |  |
+| [`DW_AT_count`](#dw_at_count) | const |  |
+| [`DW_AT_data_member_location`](#dw_at_data_member_location) | const |  |
+| [`DW_AT_decl_column`](#dw_at_decl_column) | const |  |
+| [`DW_AT_decl_file`](#dw_at_decl_file) | const |  |
+| [`DW_AT_decl_line`](#dw_at_decl_line) | const |  |
+| [`DW_AT_declaration`](#dw_at_declaration) | const |  |
+| [`DW_AT_discr_list`](#dw_at_discr_list) | const |  |
+| [`DW_AT_encoding`](#dw_at_encoding) | const |  |
+| [`DW_AT_external`](#dw_at_external) | const |  |
+| [`DW_AT_frame_base`](#dw_at_frame_base) | const |  |
+| [`DW_AT_friend`](#dw_at_friend) | const |  |
+| [`DW_AT_identifier_case`](#dw_at_identifier_case) | const |  |
+| [`DW_AT_macro_info`](#dw_at_macro_info) | const |  |
+| [`DW_AT_namelist_item`](#dw_at_namelist_item) | const |  |
+| [`DW_AT_priority`](#dw_at_priority) | const |  |
+| [`DW_AT_segment`](#dw_at_segment) | const |  |
+| [`DW_AT_specification`](#dw_at_specification) | const |  |
+| [`DW_AT_static_link`](#dw_at_static_link) | const |  |
+| [`DW_AT_type`](#dw_at_type) | const |  |
+| [`DW_AT_use_location`](#dw_at_use_location) | const |  |
+| [`DW_AT_variable_parameter`](#dw_at_variable_parameter) | const |  |
+| [`DW_AT_virtuality`](#dw_at_virtuality) | const |  |
+| [`DW_AT_vtable_elem_location`](#dw_at_vtable_elem_location) | const |  |
+| [`DW_AT_allocated`](#dw_at_allocated) | const |  |
+| [`DW_AT_associated`](#dw_at_associated) | const |  |
+| [`DW_AT_data_location`](#dw_at_data_location) | const |  |
+| [`DW_AT_byte_stride`](#dw_at_byte_stride) | const |  |
+| [`DW_AT_entry_pc`](#dw_at_entry_pc) | const |  |
+| [`DW_AT_use_UTF8`](#dw_at_use_utf8) | const |  |
+| [`DW_AT_extension`](#dw_at_extension) | const |  |
+| [`DW_AT_ranges`](#dw_at_ranges) | const |  |
+| [`DW_AT_trampoline`](#dw_at_trampoline) | const |  |
+| [`DW_AT_call_column`](#dw_at_call_column) | const |  |
+| [`DW_AT_call_file`](#dw_at_call_file) | const |  |
+| [`DW_AT_call_line`](#dw_at_call_line) | const |  |
+| [`DW_AT_description`](#dw_at_description) | const |  |
+| [`DW_AT_binary_scale`](#dw_at_binary_scale) | const |  |
+| [`DW_AT_decimal_scale`](#dw_at_decimal_scale) | const |  |
+| [`DW_AT_small`](#dw_at_small) | const |  |
+| [`DW_AT_decimal_sign`](#dw_at_decimal_sign) | const |  |
+| [`DW_AT_digit_count`](#dw_at_digit_count) | const |  |
+| [`DW_AT_picture_string`](#dw_at_picture_string) | const |  |
+| [`DW_AT_mutable`](#dw_at_mutable) | const |  |
+| [`DW_AT_threads_scaled`](#dw_at_threads_scaled) | const |  |
+| [`DW_AT_explicit`](#dw_at_explicit) | const |  |
+| [`DW_AT_object_pointer`](#dw_at_object_pointer) | const |  |
+| [`DW_AT_endianity`](#dw_at_endianity) | const |  |
+| [`DW_AT_elemental`](#dw_at_elemental) | const |  |
+| [`DW_AT_pure`](#dw_at_pure) | const |  |
+| [`DW_AT_recursive`](#dw_at_recursive) | const |  |
+| [`DW_AT_signature`](#dw_at_signature) | const |  |
+| [`DW_AT_main_subprogram`](#dw_at_main_subprogram) | const |  |
+| [`DW_AT_data_bit_offset`](#dw_at_data_bit_offset) | const |  |
+| [`DW_AT_const_expr`](#dw_at_const_expr) | const |  |
+| [`DW_AT_enum_class`](#dw_at_enum_class) | const |  |
+| [`DW_AT_linkage_name`](#dw_at_linkage_name) | const |  |
+| [`DW_AT_string_length_bit_size`](#dw_at_string_length_bit_size) | const |  |
+| [`DW_AT_string_length_byte_size`](#dw_at_string_length_byte_size) | const |  |
+| [`DW_AT_rank`](#dw_at_rank) | const |  |
+| [`DW_AT_str_offsets_base`](#dw_at_str_offsets_base) | const |  |
+| [`DW_AT_addr_base`](#dw_at_addr_base) | const |  |
+| [`DW_AT_rnglists_base`](#dw_at_rnglists_base) | const |  |
+| [`DW_AT_dwo_name`](#dw_at_dwo_name) | const |  |
+| [`DW_AT_reference`](#dw_at_reference) | const |  |
+| [`DW_AT_rvalue_reference`](#dw_at_rvalue_reference) | const |  |
+| [`DW_AT_macros`](#dw_at_macros) | const |  |
+| [`DW_AT_call_all_calls`](#dw_at_call_all_calls) | const |  |
+| [`DW_AT_call_all_source_calls`](#dw_at_call_all_source_calls) | const |  |
+| [`DW_AT_call_all_tail_calls`](#dw_at_call_all_tail_calls) | const |  |
+| [`DW_AT_call_return_pc`](#dw_at_call_return_pc) | const |  |
+| [`DW_AT_call_value`](#dw_at_call_value) | const |  |
+| [`DW_AT_call_origin`](#dw_at_call_origin) | const |  |
+| [`DW_AT_call_parameter`](#dw_at_call_parameter) | const |  |
+| [`DW_AT_call_pc`](#dw_at_call_pc) | const |  |
+| [`DW_AT_call_tail_call`](#dw_at_call_tail_call) | const |  |
+| [`DW_AT_call_target`](#dw_at_call_target) | const |  |
+| [`DW_AT_call_target_clobbered`](#dw_at_call_target_clobbered) | const |  |
+| [`DW_AT_call_data_location`](#dw_at_call_data_location) | const |  |
+| [`DW_AT_call_data_value`](#dw_at_call_data_value) | const |  |
+| [`DW_AT_noreturn`](#dw_at_noreturn) | const |  |
+| [`DW_AT_alignment`](#dw_at_alignment) | const |  |
+| [`DW_AT_export_symbols`](#dw_at_export_symbols) | const |  |
+| [`DW_AT_deleted`](#dw_at_deleted) | const |  |
+| [`DW_AT_defaulted`](#dw_at_defaulted) | const |  |
+| [`DW_AT_loclists_base`](#dw_at_loclists_base) | const |  |
+| [`DW_AT_lo_user`](#dw_at_lo_user) | const |  |
+| [`DW_AT_hi_user`](#dw_at_hi_user) | const |  |
+| [`DW_AT_MIPS_fde`](#dw_at_mips_fde) | const |  |
+| [`DW_AT_MIPS_loop_begin`](#dw_at_mips_loop_begin) | const |  |
+| [`DW_AT_MIPS_tail_loop_begin`](#dw_at_mips_tail_loop_begin) | const |  |
+| [`DW_AT_MIPS_epilog_begin`](#dw_at_mips_epilog_begin) | const |  |
+| [`DW_AT_MIPS_loop_unroll_factor`](#dw_at_mips_loop_unroll_factor) | const |  |
+| [`DW_AT_MIPS_software_pipeline_depth`](#dw_at_mips_software_pipeline_depth) | const |  |
+| [`DW_AT_MIPS_linkage_name`](#dw_at_mips_linkage_name) | const |  |
+| [`DW_AT_MIPS_stride`](#dw_at_mips_stride) | const |  |
+| [`DW_AT_MIPS_abstract_name`](#dw_at_mips_abstract_name) | const |  |
+| [`DW_AT_MIPS_clone_origin`](#dw_at_mips_clone_origin) | const |  |
+| [`DW_AT_MIPS_has_inlines`](#dw_at_mips_has_inlines) | const |  |
+| [`DW_AT_MIPS_stride_byte`](#dw_at_mips_stride_byte) | const |  |
+| [`DW_AT_MIPS_stride_elem`](#dw_at_mips_stride_elem) | const |  |
+| [`DW_AT_MIPS_ptr_dopetype`](#dw_at_mips_ptr_dopetype) | const |  |
+| [`DW_AT_MIPS_allocatable_dopetype`](#dw_at_mips_allocatable_dopetype) | const |  |
+| [`DW_AT_MIPS_assumed_shape_dopetype`](#dw_at_mips_assumed_shape_dopetype) | const |  |
+| [`DW_AT_MIPS_assumed_size`](#dw_at_mips_assumed_size) | const |  |
+| [`DW_AT_INTEL_other_endian`](#dw_at_intel_other_endian) | const |  |
+| [`DW_AT_sf_names`](#dw_at_sf_names) | const |  |
+| [`DW_AT_src_info`](#dw_at_src_info) | const |  |
+| [`DW_AT_mac_info`](#dw_at_mac_info) | const |  |
+| [`DW_AT_src_coords`](#dw_at_src_coords) | const |  |
+| [`DW_AT_body_begin`](#dw_at_body_begin) | const |  |
+| [`DW_AT_body_end`](#dw_at_body_end) | const |  |
+| [`DW_AT_GNU_vector`](#dw_at_gnu_vector) | const |  |
+| [`DW_AT_GNU_guarded_by`](#dw_at_gnu_guarded_by) | const |  |
+| [`DW_AT_GNU_pt_guarded_by`](#dw_at_gnu_pt_guarded_by) | const |  |
+| [`DW_AT_GNU_guarded`](#dw_at_gnu_guarded) | const |  |
+| [`DW_AT_GNU_pt_guarded`](#dw_at_gnu_pt_guarded) | const |  |
+| [`DW_AT_GNU_locks_excluded`](#dw_at_gnu_locks_excluded) | const |  |
+| [`DW_AT_GNU_exclusive_locks_required`](#dw_at_gnu_exclusive_locks_required) | const |  |
+| [`DW_AT_GNU_shared_locks_required`](#dw_at_gnu_shared_locks_required) | const |  |
+| [`DW_AT_GNU_odr_signature`](#dw_at_gnu_odr_signature) | const |  |
+| [`DW_AT_GNU_template_name`](#dw_at_gnu_template_name) | const |  |
+| [`DW_AT_GNU_call_site_value`](#dw_at_gnu_call_site_value) | const |  |
+| [`DW_AT_GNU_call_site_data_value`](#dw_at_gnu_call_site_data_value) | const |  |
+| [`DW_AT_GNU_call_site_target`](#dw_at_gnu_call_site_target) | const |  |
+| [`DW_AT_GNU_call_site_target_clobbered`](#dw_at_gnu_call_site_target_clobbered) | const |  |
+| [`DW_AT_GNU_tail_call`](#dw_at_gnu_tail_call) | const |  |
+| [`DW_AT_GNU_all_tail_call_sites`](#dw_at_gnu_all_tail_call_sites) | const |  |
+| [`DW_AT_GNU_all_call_sites`](#dw_at_gnu_all_call_sites) | const |  |
+| [`DW_AT_GNU_all_source_call_sites`](#dw_at_gnu_all_source_call_sites) | const |  |
+| [`DW_AT_GNU_macros`](#dw_at_gnu_macros) | const |  |
+| [`DW_AT_GNU_deleted`](#dw_at_gnu_deleted) | const |  |
+| [`DW_AT_GNU_dwo_name`](#dw_at_gnu_dwo_name) | const |  |
+| [`DW_AT_GNU_dwo_id`](#dw_at_gnu_dwo_id) | const |  |
+| [`DW_AT_GNU_ranges_base`](#dw_at_gnu_ranges_base) | const |  |
+| [`DW_AT_GNU_addr_base`](#dw_at_gnu_addr_base) | const |  |
+| [`DW_AT_GNU_pubnames`](#dw_at_gnu_pubnames) | const |  |
+| [`DW_AT_GNU_pubtypes`](#dw_at_gnu_pubtypes) | const |  |
+| [`DW_AT_GNU_discriminator`](#dw_at_gnu_discriminator) | const |  |
+| [`DW_AT_GNU_locviews`](#dw_at_gnu_locviews) | const |  |
+| [`DW_AT_GNU_entry_view`](#dw_at_gnu_entry_view) | const |  |
+| [`DW_AT_SUN_template`](#dw_at_sun_template) | const |  |
+| [`DW_AT_SUN_alignment`](#dw_at_sun_alignment) | const |  |
+| [`DW_AT_SUN_vtable`](#dw_at_sun_vtable) | const |  |
+| [`DW_AT_SUN_count_guarantee`](#dw_at_sun_count_guarantee) | const |  |
+| [`DW_AT_SUN_command_line`](#dw_at_sun_command_line) | const |  |
+| [`DW_AT_SUN_vbase`](#dw_at_sun_vbase) | const |  |
+| [`DW_AT_SUN_compile_options`](#dw_at_sun_compile_options) | const |  |
+| [`DW_AT_SUN_language`](#dw_at_sun_language) | const |  |
+| [`DW_AT_SUN_browser_file`](#dw_at_sun_browser_file) | const |  |
+| [`DW_AT_SUN_vtable_abi`](#dw_at_sun_vtable_abi) | const |  |
+| [`DW_AT_SUN_func_offsets`](#dw_at_sun_func_offsets) | const |  |
+| [`DW_AT_SUN_cf_kind`](#dw_at_sun_cf_kind) | const |  |
+| [`DW_AT_SUN_vtable_index`](#dw_at_sun_vtable_index) | const |  |
+| [`DW_AT_SUN_omp_tpriv_addr`](#dw_at_sun_omp_tpriv_addr) | const |  |
+| [`DW_AT_SUN_omp_child_func`](#dw_at_sun_omp_child_func) | const |  |
+| [`DW_AT_SUN_func_offset`](#dw_at_sun_func_offset) | const |  |
+| [`DW_AT_SUN_memop_type_ref`](#dw_at_sun_memop_type_ref) | const |  |
+| [`DW_AT_SUN_profile_id`](#dw_at_sun_profile_id) | const |  |
+| [`DW_AT_SUN_memop_signature`](#dw_at_sun_memop_signature) | const |  |
+| [`DW_AT_SUN_obj_dir`](#dw_at_sun_obj_dir) | const |  |
+| [`DW_AT_SUN_obj_file`](#dw_at_sun_obj_file) | const |  |
+| [`DW_AT_SUN_original_name`](#dw_at_sun_original_name) | const |  |
+| [`DW_AT_SUN_hwcprof_signature`](#dw_at_sun_hwcprof_signature) | const |  |
+| [`DW_AT_SUN_amd64_parmdump`](#dw_at_sun_amd64_parmdump) | const |  |
+| [`DW_AT_SUN_part_link_name`](#dw_at_sun_part_link_name) | const |  |
+| [`DW_AT_SUN_link_name`](#dw_at_sun_link_name) | const |  |
+| [`DW_AT_SUN_pass_with_const`](#dw_at_sun_pass_with_const) | const |  |
+| [`DW_AT_SUN_return_with_const`](#dw_at_sun_return_with_const) | const |  |
+| [`DW_AT_SUN_import_by_name`](#dw_at_sun_import_by_name) | const |  |
+| [`DW_AT_SUN_f90_pointer`](#dw_at_sun_f90_pointer) | const |  |
+| [`DW_AT_SUN_pass_by_ref`](#dw_at_sun_pass_by_ref) | const |  |
+| [`DW_AT_SUN_f90_allocatable`](#dw_at_sun_f90_allocatable) | const |  |
+| [`DW_AT_SUN_f90_assumed_shape_array`](#dw_at_sun_f90_assumed_shape_array) | const |  |
+| [`DW_AT_SUN_c_vla`](#dw_at_sun_c_vla) | const |  |
+| [`DW_AT_SUN_return_value_ptr`](#dw_at_sun_return_value_ptr) | const |  |
+| [`DW_AT_SUN_dtor_start`](#dw_at_sun_dtor_start) | const |  |
+| [`DW_AT_SUN_dtor_length`](#dw_at_sun_dtor_length) | const |  |
+| [`DW_AT_SUN_dtor_state_initial`](#dw_at_sun_dtor_state_initial) | const |  |
+| [`DW_AT_SUN_dtor_state_final`](#dw_at_sun_dtor_state_final) | const |  |
+| [`DW_AT_SUN_dtor_state_deltas`](#dw_at_sun_dtor_state_deltas) | const |  |
+| [`DW_AT_SUN_import_by_lname`](#dw_at_sun_import_by_lname) | const |  |
+| [`DW_AT_SUN_f90_use_only`](#dw_at_sun_f90_use_only) | const |  |
+| [`DW_AT_SUN_namelist_spec`](#dw_at_sun_namelist_spec) | const |  |
+| [`DW_AT_SUN_is_omp_child_func`](#dw_at_sun_is_omp_child_func) | const |  |
+| [`DW_AT_SUN_fortran_main_alias`](#dw_at_sun_fortran_main_alias) | const |  |
+| [`DW_AT_SUN_fortran_based`](#dw_at_sun_fortran_based) | const |  |
+| [`DW_AT_ALTIUM_loclist`](#dw_at_altium_loclist) | const |  |
+| [`DW_AT_use_GNAT_descriptive_type`](#dw_at_use_gnat_descriptive_type) | const |  |
+| [`DW_AT_GNAT_descriptive_type`](#dw_at_gnat_descriptive_type) | const |  |
+| [`DW_AT_GNU_numerator`](#dw_at_gnu_numerator) | const |  |
+| [`DW_AT_GNU_denominator`](#dw_at_gnu_denominator) | const |  |
+| [`DW_AT_GNU_bias`](#dw_at_gnu_bias) | const |  |
+| [`DW_AT_upc_threads_scaled`](#dw_at_upc_threads_scaled) | const |  |
+| [`DW_AT_PGI_lbase`](#dw_at_pgi_lbase) | const |  |
+| [`DW_AT_PGI_soffset`](#dw_at_pgi_soffset) | const |  |
+| [`DW_AT_PGI_lstride`](#dw_at_pgi_lstride) | const |  |
+| [`DW_AT_BORLAND_property_read`](#dw_at_borland_property_read) | const |  |
+| [`DW_AT_BORLAND_property_write`](#dw_at_borland_property_write) | const |  |
+| [`DW_AT_BORLAND_property_implements`](#dw_at_borland_property_implements) | const |  |
+| [`DW_AT_BORLAND_property_index`](#dw_at_borland_property_index) | const |  |
+| [`DW_AT_BORLAND_property_default`](#dw_at_borland_property_default) | const |  |
+| [`DW_AT_BORLAND_Delphi_unit`](#dw_at_borland_delphi_unit) | const |  |
+| [`DW_AT_BORLAND_Delphi_class`](#dw_at_borland_delphi_class) | const |  |
+| [`DW_AT_BORLAND_Delphi_record`](#dw_at_borland_delphi_record) | const |  |
+| [`DW_AT_BORLAND_Delphi_metaclass`](#dw_at_borland_delphi_metaclass) | const |  |
+| [`DW_AT_BORLAND_Delphi_constructor`](#dw_at_borland_delphi_constructor) | const |  |
+| [`DW_AT_BORLAND_Delphi_destructor`](#dw_at_borland_delphi_destructor) | const |  |
+| [`DW_AT_BORLAND_Delphi_anonymous_method`](#dw_at_borland_delphi_anonymous_method) | const |  |
+| [`DW_AT_BORLAND_Delphi_interface`](#dw_at_borland_delphi_interface) | const |  |
+| [`DW_AT_BORLAND_Delphi_ABI`](#dw_at_borland_delphi_abi) | const |  |
+| [`DW_AT_BORLAND_Delphi_return`](#dw_at_borland_delphi_return) | const |  |
+| [`DW_AT_BORLAND_Delphi_frameptr`](#dw_at_borland_delphi_frameptr) | const |  |
+| [`DW_AT_BORLAND_closure`](#dw_at_borland_closure) | const |  |
+| [`DW_AT_LLVM_include_path`](#dw_at_llvm_include_path) | const |  |
+| [`DW_AT_LLVM_config_macros`](#dw_at_llvm_config_macros) | const |  |
+| [`DW_AT_LLVM_isysroot`](#dw_at_llvm_isysroot) | const |  |
+| [`DW_AT_APPLE_optimized`](#dw_at_apple_optimized) | const |  |
+| [`DW_AT_APPLE_flags`](#dw_at_apple_flags) | const |  |
+| [`DW_AT_APPLE_isa`](#dw_at_apple_isa) | const |  |
+| [`DW_AT_APPLE_block`](#dw_at_apple_block) | const |  |
+| [`DW_AT_APPLE_major_runtime_vers`](#dw_at_apple_major_runtime_vers) | const |  |
+| [`DW_AT_APPLE_runtime_class`](#dw_at_apple_runtime_class) | const |  |
+| [`DW_AT_APPLE_omit_frame_ptr`](#dw_at_apple_omit_frame_ptr) | const |  |
+| [`DW_AT_APPLE_property_name`](#dw_at_apple_property_name) | const |  |
+| [`DW_AT_APPLE_property_getter`](#dw_at_apple_property_getter) | const |  |
+| [`DW_AT_APPLE_property_setter`](#dw_at_apple_property_setter) | const |  |
+| [`DW_AT_APPLE_property_attribute`](#dw_at_apple_property_attribute) | const |  |
+| [`DW_AT_APPLE_objc_complete_type`](#dw_at_apple_objc_complete_type) | const |  |
+| [`DW_AT_APPLE_property`](#dw_at_apple_property) | const |  |
+| [`DW_FORM_null`](#dw_form_null) | const |  |
+| [`DW_FORM_ref`](#dw_form_ref) | const |  |
+| [`DW_FORM_addr`](#dw_form_addr) | const |  |
+| [`DW_FORM_block2`](#dw_form_block2) | const |  |
+| [`DW_FORM_block4`](#dw_form_block4) | const |  |
+| [`DW_FORM_data2`](#dw_form_data2) | const |  |
+| [`DW_FORM_data4`](#dw_form_data4) | const |  |
+| [`DW_FORM_data8`](#dw_form_data8) | const |  |
+| [`DW_FORM_string`](#dw_form_string) | const |  |
+| [`DW_FORM_block`](#dw_form_block) | const |  |
+| [`DW_FORM_block1`](#dw_form_block1) | const |  |
+| [`DW_FORM_data1`](#dw_form_data1) | const |  |
+| [`DW_FORM_flag`](#dw_form_flag) | const |  |
+| [`DW_FORM_sdata`](#dw_form_sdata) | const |  |
+| [`DW_FORM_strp`](#dw_form_strp) | const |  |
+| [`DW_FORM_udata`](#dw_form_udata) | const |  |
+| [`DW_FORM_ref_addr`](#dw_form_ref_addr) | const |  |
+| [`DW_FORM_ref1`](#dw_form_ref1) | const |  |
+| [`DW_FORM_ref2`](#dw_form_ref2) | const |  |
+| [`DW_FORM_ref4`](#dw_form_ref4) | const |  |
+| [`DW_FORM_ref8`](#dw_form_ref8) | const |  |
+| [`DW_FORM_ref_udata`](#dw_form_ref_udata) | const |  |
+| [`DW_FORM_indirect`](#dw_form_indirect) | const |  |
+| [`DW_FORM_sec_offset`](#dw_form_sec_offset) | const |  |
+| [`DW_FORM_exprloc`](#dw_form_exprloc) | const |  |
+| [`DW_FORM_flag_present`](#dw_form_flag_present) | const |  |
+| [`DW_FORM_ref_sig8`](#dw_form_ref_sig8) | const |  |
+| [`DW_FORM_strx`](#dw_form_strx) | const |  |
+| [`DW_FORM_addrx`](#dw_form_addrx) | const |  |
+| [`DW_FORM_ref_sup4`](#dw_form_ref_sup4) | const |  |
+| [`DW_FORM_strp_sup`](#dw_form_strp_sup) | const |  |
+| [`DW_FORM_data16`](#dw_form_data16) | const |  |
+| [`DW_FORM_line_strp`](#dw_form_line_strp) | const |  |
+| [`DW_FORM_implicit_const`](#dw_form_implicit_const) | const |  |
+| [`DW_FORM_loclistx`](#dw_form_loclistx) | const |  |
+| [`DW_FORM_rnglistx`](#dw_form_rnglistx) | const |  |
+| [`DW_FORM_ref_sup8`](#dw_form_ref_sup8) | const |  |
+| [`DW_FORM_strx1`](#dw_form_strx1) | const |  |
+| [`DW_FORM_strx2`](#dw_form_strx2) | const |  |
+| [`DW_FORM_strx3`](#dw_form_strx3) | const |  |
+| [`DW_FORM_strx4`](#dw_form_strx4) | const |  |
+| [`DW_FORM_addrx1`](#dw_form_addrx1) | const |  |
+| [`DW_FORM_addrx2`](#dw_form_addrx2) | const |  |
+| [`DW_FORM_addrx3`](#dw_form_addrx3) | const |  |
+| [`DW_FORM_addrx4`](#dw_form_addrx4) | const |  |
+| [`DW_FORM_GNU_addr_index`](#dw_form_gnu_addr_index) | const |  |
+| [`DW_FORM_GNU_str_index`](#dw_form_gnu_str_index) | const |  |
+| [`DW_FORM_GNU_ref_alt`](#dw_form_gnu_ref_alt) | const |  |
+| [`DW_FORM_GNU_strp_alt`](#dw_form_gnu_strp_alt) | const |  |
+| [`DW_ATE_address`](#dw_ate_address) | const |  |
+| [`DW_ATE_boolean`](#dw_ate_boolean) | const |  |
+| [`DW_ATE_complex_float`](#dw_ate_complex_float) | const |  |
+| [`DW_ATE_float`](#dw_ate_float) | const |  |
+| [`DW_ATE_signed`](#dw_ate_signed) | const |  |
+| [`DW_ATE_signed_char`](#dw_ate_signed_char) | const |  |
+| [`DW_ATE_unsigned`](#dw_ate_unsigned) | const |  |
+| [`DW_ATE_unsigned_char`](#dw_ate_unsigned_char) | const |  |
+| [`DW_ATE_imaginary_float`](#dw_ate_imaginary_float) | const |  |
+| [`DW_ATE_packed_decimal`](#dw_ate_packed_decimal) | const |  |
+| [`DW_ATE_numeric_string`](#dw_ate_numeric_string) | const |  |
+| [`DW_ATE_edited`](#dw_ate_edited) | const |  |
+| [`DW_ATE_signed_fixed`](#dw_ate_signed_fixed) | const |  |
+| [`DW_ATE_unsigned_fixed`](#dw_ate_unsigned_fixed) | const |  |
+| [`DW_ATE_decimal_float`](#dw_ate_decimal_float) | const |  |
+| [`DW_ATE_UTF`](#dw_ate_utf) | const |  |
+| [`DW_ATE_UCS`](#dw_ate_ucs) | const |  |
+| [`DW_ATE_ASCII`](#dw_ate_ascii) | const |  |
+| [`DW_ATE_lo_user`](#dw_ate_lo_user) | const |  |
+| [`DW_ATE_hi_user`](#dw_ate_hi_user) | const |  |
+| [`DW_LLE_end_of_list`](#dw_lle_end_of_list) | const |  |
+| [`DW_LLE_base_addressx`](#dw_lle_base_addressx) | const |  |
+| [`DW_LLE_startx_endx`](#dw_lle_startx_endx) | const |  |
+| [`DW_LLE_startx_length`](#dw_lle_startx_length) | const |  |
+| [`DW_LLE_offset_pair`](#dw_lle_offset_pair) | const |  |
+| [`DW_LLE_default_location`](#dw_lle_default_location) | const |  |
+| [`DW_LLE_base_address`](#dw_lle_base_address) | const |  |
+| [`DW_LLE_start_end`](#dw_lle_start_end) | const |  |
+| [`DW_LLE_start_length`](#dw_lle_start_length) | const |  |
+| [`DW_LLE_GNU_view_pair`](#dw_lle_gnu_view_pair) | const |  |
+| [`DW_DS_unsigned`](#dw_ds_unsigned) | const |  |
+| [`DW_DS_leading_overpunch`](#dw_ds_leading_overpunch) | const |  |
+| [`DW_DS_trailing_overpunch`](#dw_ds_trailing_overpunch) | const |  |
+| [`DW_DS_leading_separate`](#dw_ds_leading_separate) | const |  |
+| [`DW_DS_trailing_separate`](#dw_ds_trailing_separate) | const |  |
+| [`DW_END_default`](#dw_end_default) | const |  |
+| [`DW_END_big`](#dw_end_big) | const |  |
+| [`DW_END_little`](#dw_end_little) | const |  |
+| [`DW_END_lo_user`](#dw_end_lo_user) | const |  |
+| [`DW_END_hi_user`](#dw_end_hi_user) | const |  |
+| [`DW_ACCESS_public`](#dw_access_public) | const |  |
+| [`DW_ACCESS_protected`](#dw_access_protected) | const |  |
+| [`DW_ACCESS_private`](#dw_access_private) | const |  |
+| [`DW_VIS_local`](#dw_vis_local) | const |  |
+| [`DW_VIS_exported`](#dw_vis_exported) | const |  |
+| [`DW_VIS_qualified`](#dw_vis_qualified) | const |  |
+| [`DW_VIRTUALITY_none`](#dw_virtuality_none) | const |  |
+| [`DW_VIRTUALITY_virtual`](#dw_virtuality_virtual) | const |  |
+| [`DW_VIRTUALITY_pure_virtual`](#dw_virtuality_pure_virtual) | const |  |
+| [`DW_LANG_C89`](#dw_lang_c89) | const |  |
+| [`DW_LANG_C`](#dw_lang_c) | const |  |
+| [`DW_LANG_Ada83`](#dw_lang_ada83) | const |  |
+| [`DW_LANG_C_plus_plus`](#dw_lang_c_plus_plus) | const |  |
+| [`DW_LANG_Cobol74`](#dw_lang_cobol74) | const |  |
+| [`DW_LANG_Cobol85`](#dw_lang_cobol85) | const |  |
+| [`DW_LANG_Fortran77`](#dw_lang_fortran77) | const |  |
+| [`DW_LANG_Fortran90`](#dw_lang_fortran90) | const |  |
+| [`DW_LANG_Pascal83`](#dw_lang_pascal83) | const |  |
+| [`DW_LANG_Modula2`](#dw_lang_modula2) | const |  |
+| [`DW_LANG_Java`](#dw_lang_java) | const |  |
+| [`DW_LANG_C99`](#dw_lang_c99) | const |  |
+| [`DW_LANG_Ada95`](#dw_lang_ada95) | const |  |
+| [`DW_LANG_Fortran95`](#dw_lang_fortran95) | const |  |
+| [`DW_LANG_PLI`](#dw_lang_pli) | const |  |
+| [`DW_LANG_ObjC`](#dw_lang_objc) | const |  |
+| [`DW_LANG_ObjC_plus_plus`](#dw_lang_objc_plus_plus) | const |  |
+| [`DW_LANG_UPC`](#dw_lang_upc) | const |  |
+| [`DW_LANG_D`](#dw_lang_d) | const |  |
+| [`DW_LANG_Python`](#dw_lang_python) | const |  |
+| [`DW_LANG_OpenCL`](#dw_lang_opencl) | const |  |
+| [`DW_LANG_Go`](#dw_lang_go) | const |  |
+| [`DW_LANG_Modula3`](#dw_lang_modula3) | const |  |
+| [`DW_LANG_Haskell`](#dw_lang_haskell) | const |  |
+| [`DW_LANG_C_plus_plus_03`](#dw_lang_c_plus_plus_03) | const |  |
+| [`DW_LANG_C_plus_plus_11`](#dw_lang_c_plus_plus_11) | const |  |
+| [`DW_LANG_OCaml`](#dw_lang_ocaml) | const |  |
+| [`DW_LANG_Rust`](#dw_lang_rust) | const |  |
+| [`DW_LANG_C11`](#dw_lang_c11) | const |  |
+| [`DW_LANG_Swift`](#dw_lang_swift) | const |  |
+| [`DW_LANG_Julia`](#dw_lang_julia) | const |  |
+| [`DW_LANG_Dylan`](#dw_lang_dylan) | const |  |
+| [`DW_LANG_C_plus_plus_14`](#dw_lang_c_plus_plus_14) | const |  |
+| [`DW_LANG_Fortran03`](#dw_lang_fortran03) | const |  |
+| [`DW_LANG_Fortran08`](#dw_lang_fortran08) | const |  |
+| [`DW_LANG_RenderScript`](#dw_lang_renderscript) | const |  |
+| [`DW_LANG_BLISS`](#dw_lang_bliss) | const |  |
+| [`DW_LANG_Kotlin`](#dw_lang_kotlin) | const |  |
+| [`DW_LANG_Zig`](#dw_lang_zig) | const |  |
+| [`DW_LANG_Crystal`](#dw_lang_crystal) | const |  |
+| [`DW_LANG_C_plus_plus_17`](#dw_lang_c_plus_plus_17) | const |  |
+| [`DW_LANG_C_plus_plus_20`](#dw_lang_c_plus_plus_20) | const |  |
+| [`DW_LANG_C17`](#dw_lang_c17) | const |  |
+| [`DW_LANG_Fortran18`](#dw_lang_fortran18) | const |  |
+| [`DW_LANG_Ada2005`](#dw_lang_ada2005) | const |  |
+| [`DW_LANG_Ada2012`](#dw_lang_ada2012) | const |  |
+| [`DW_LANG_lo_user`](#dw_lang_lo_user) | const |  |
+| [`DW_LANG_hi_user`](#dw_lang_hi_user) | const |  |
+| [`DW_LANG_Mips_Assembler`](#dw_lang_mips_assembler) | const |  |
+| [`DW_LANG_GOOGLE_RenderScript`](#dw_lang_google_renderscript) | const |  |
+| [`DW_LANG_SUN_Assembler`](#dw_lang_sun_assembler) | const |  |
+| [`DW_LANG_ALTIUM_Assembler`](#dw_lang_altium_assembler) | const |  |
+| [`DW_LANG_BORLAND_Delphi`](#dw_lang_borland_delphi) | const |  |
+| [`DW_ADDR_none`](#dw_addr_none) | const |  |
+| [`DW_ID_case_sensitive`](#dw_id_case_sensitive) | const |  |
+| [`DW_ID_up_case`](#dw_id_up_case) | const |  |
+| [`DW_ID_down_case`](#dw_id_down_case) | const |  |
+| [`DW_ID_case_insensitive`](#dw_id_case_insensitive) | const |  |
+| [`DW_CC_normal`](#dw_cc_normal) | const |  |
+| [`DW_CC_program`](#dw_cc_program) | const |  |
+| [`DW_CC_nocall`](#dw_cc_nocall) | const |  |
+| [`DW_CC_pass_by_reference`](#dw_cc_pass_by_reference) | const |  |
+| [`DW_CC_pass_by_value`](#dw_cc_pass_by_value) | const |  |
+| [`DW_CC_lo_user`](#dw_cc_lo_user) | const |  |
+| [`DW_CC_hi_user`](#dw_cc_hi_user) | const |  |
+| [`DW_INL_not_inlined`](#dw_inl_not_inlined) | const |  |
+| [`DW_INL_inlined`](#dw_inl_inlined) | const |  |
+| [`DW_INL_declared_not_inlined`](#dw_inl_declared_not_inlined) | const |  |
+| [`DW_INL_declared_inlined`](#dw_inl_declared_inlined) | const |  |
+| [`DW_ORD_row_major`](#dw_ord_row_major) | const |  |
+| [`DW_ORD_col_major`](#dw_ord_col_major) | const |  |
+| [`DW_DSC_label`](#dw_dsc_label) | const |  |
+| [`DW_DSC_range`](#dw_dsc_range) | const |  |
+| [`DW_IDX_compile_unit`](#dw_idx_compile_unit) | const |  |
+| [`DW_IDX_type_unit`](#dw_idx_type_unit) | const |  |
+| [`DW_IDX_die_offset`](#dw_idx_die_offset) | const |  |
+| [`DW_IDX_parent`](#dw_idx_parent) | const |  |
+| [`DW_IDX_type_hash`](#dw_idx_type_hash) | const |  |
+| [`DW_IDX_lo_user`](#dw_idx_lo_user) | const |  |
+| [`DW_IDX_hi_user`](#dw_idx_hi_user) | const |  |
+| [`DW_DEFAULTED_no`](#dw_defaulted_no) | const |  |
+| [`DW_DEFAULTED_in_class`](#dw_defaulted_in_class) | const |  |
+| [`DW_DEFAULTED_out_of_class`](#dw_defaulted_out_of_class) | const |  |
+| [`DW_LNS_copy`](#dw_lns_copy) | const |  |
+| [`DW_LNS_advance_pc`](#dw_lns_advance_pc) | const |  |
+| [`DW_LNS_advance_line`](#dw_lns_advance_line) | const |  |
+| [`DW_LNS_set_file`](#dw_lns_set_file) | const |  |
+| [`DW_LNS_set_column`](#dw_lns_set_column) | const |  |
+| [`DW_LNS_negate_stmt`](#dw_lns_negate_stmt) | const |  |
+| [`DW_LNS_set_basic_block`](#dw_lns_set_basic_block) | const |  |
+| [`DW_LNS_const_add_pc`](#dw_lns_const_add_pc) | const |  |
+| [`DW_LNS_fixed_advance_pc`](#dw_lns_fixed_advance_pc) | const |  |
+| [`DW_LNS_set_prologue_end`](#dw_lns_set_prologue_end) | const |  |
+| [`DW_LNS_set_epilogue_begin`](#dw_lns_set_epilogue_begin) | const |  |
+| [`DW_LNS_set_isa`](#dw_lns_set_isa) | const |  |
+| [`DW_LNE_end_sequence`](#dw_lne_end_sequence) | const |  |
+| [`DW_LNE_set_address`](#dw_lne_set_address) | const |  |
+| [`DW_LNE_define_file`](#dw_lne_define_file) | const |  |
+| [`DW_LNE_set_discriminator`](#dw_lne_set_discriminator) | const |  |
+| [`DW_LNE_lo_user`](#dw_lne_lo_user) | const |  |
+| [`DW_LNE_hi_user`](#dw_lne_hi_user) | const |  |
+| [`DW_LNCT_path`](#dw_lnct_path) | const |  |
+| [`DW_LNCT_directory_index`](#dw_lnct_directory_index) | const |  |
+| [`DW_LNCT_timestamp`](#dw_lnct_timestamp) | const |  |
+| [`DW_LNCT_size`](#dw_lnct_size) | const |  |
+| [`DW_LNCT_MD5`](#dw_lnct_md5) | const |  |
+| [`DW_LNCT_lo_user`](#dw_lnct_lo_user) | const |  |
+| [`DW_LNCT_LLVM_source`](#dw_lnct_llvm_source) | const |  |
+| [`DW_LNCT_hi_user`](#dw_lnct_hi_user) | const |  |
+| [`DW_MACINFO_define`](#dw_macinfo_define) | const |  |
+| [`DW_MACINFO_undef`](#dw_macinfo_undef) | const |  |
+| [`DW_MACINFO_start_file`](#dw_macinfo_start_file) | const |  |
+| [`DW_MACINFO_end_file`](#dw_macinfo_end_file) | const |  |
+| [`DW_MACINFO_vendor_ext`](#dw_macinfo_vendor_ext) | const |  |
+| [`DW_MACRO_define`](#dw_macro_define) | const |  |
+| [`DW_MACRO_undef`](#dw_macro_undef) | const |  |
+| [`DW_MACRO_start_file`](#dw_macro_start_file) | const |  |
+| [`DW_MACRO_end_file`](#dw_macro_end_file) | const |  |
+| [`DW_MACRO_define_strp`](#dw_macro_define_strp) | const |  |
+| [`DW_MACRO_undef_strp`](#dw_macro_undef_strp) | const |  |
+| [`DW_MACRO_import`](#dw_macro_import) | const |  |
+| [`DW_MACRO_define_sup`](#dw_macro_define_sup) | const |  |
+| [`DW_MACRO_undef_sup`](#dw_macro_undef_sup) | const |  |
+| [`DW_MACRO_import_sup`](#dw_macro_import_sup) | const |  |
+| [`DW_MACRO_define_strx`](#dw_macro_define_strx) | const |  |
+| [`DW_MACRO_undef_strx`](#dw_macro_undef_strx) | const |  |
+| [`DW_MACRO_lo_user`](#dw_macro_lo_user) | const |  |
+| [`DW_MACRO_hi_user`](#dw_macro_hi_user) | const |  |
+| [`DW_RLE_end_of_list`](#dw_rle_end_of_list) | const |  |
+| [`DW_RLE_base_addressx`](#dw_rle_base_addressx) | const |  |
+| [`DW_RLE_startx_endx`](#dw_rle_startx_endx) | const |  |
+| [`DW_RLE_startx_length`](#dw_rle_startx_length) | const |  |
+| [`DW_RLE_offset_pair`](#dw_rle_offset_pair) | const |  |
+| [`DW_RLE_base_address`](#dw_rle_base_address) | const |  |
+| [`DW_RLE_start_end`](#dw_rle_start_end) | const |  |
+| [`DW_RLE_start_length`](#dw_rle_start_length) | const |  |
+| [`DW_OP_addr`](#dw_op_addr) | const |  |
+| [`DW_OP_deref`](#dw_op_deref) | const |  |
+| [`DW_OP_const1u`](#dw_op_const1u) | const |  |
+| [`DW_OP_const1s`](#dw_op_const1s) | const |  |
+| [`DW_OP_const2u`](#dw_op_const2u) | const |  |
+| [`DW_OP_const2s`](#dw_op_const2s) | const |  |
+| [`DW_OP_const4u`](#dw_op_const4u) | const |  |
+| [`DW_OP_const4s`](#dw_op_const4s) | const |  |
+| [`DW_OP_const8u`](#dw_op_const8u) | const |  |
+| [`DW_OP_const8s`](#dw_op_const8s) | const |  |
+| [`DW_OP_constu`](#dw_op_constu) | const |  |
+| [`DW_OP_consts`](#dw_op_consts) | const |  |
+| [`DW_OP_dup`](#dw_op_dup) | const |  |
+| [`DW_OP_drop`](#dw_op_drop) | const |  |
+| [`DW_OP_over`](#dw_op_over) | const |  |
+| [`DW_OP_pick`](#dw_op_pick) | const |  |
+| [`DW_OP_swap`](#dw_op_swap) | const |  |
+| [`DW_OP_rot`](#dw_op_rot) | const |  |
+| [`DW_OP_xderef`](#dw_op_xderef) | const |  |
+| [`DW_OP_abs`](#dw_op_abs) | const |  |
+| [`DW_OP_and`](#dw_op_and) | const |  |
+| [`DW_OP_div`](#dw_op_div) | const |  |
+| [`DW_OP_minus`](#dw_op_minus) | const |  |
+| [`DW_OP_mod`](#dw_op_mod) | const |  |
+| [`DW_OP_mul`](#dw_op_mul) | const |  |
+| [`DW_OP_neg`](#dw_op_neg) | const |  |
+| [`DW_OP_not`](#dw_op_not) | const |  |
+| [`DW_OP_or`](#dw_op_or) | const |  |
+| [`DW_OP_plus`](#dw_op_plus) | const |  |
+| [`DW_OP_plus_uconst`](#dw_op_plus_uconst) | const |  |
+| [`DW_OP_shl`](#dw_op_shl) | const |  |
+| [`DW_OP_shr`](#dw_op_shr) | const |  |
+| [`DW_OP_shra`](#dw_op_shra) | const |  |
+| [`DW_OP_xor`](#dw_op_xor) | const |  |
+| [`DW_OP_bra`](#dw_op_bra) | const |  |
+| [`DW_OP_eq`](#dw_op_eq) | const |  |
+| [`DW_OP_ge`](#dw_op_ge) | const |  |
+| [`DW_OP_gt`](#dw_op_gt) | const |  |
+| [`DW_OP_le`](#dw_op_le) | const |  |
+| [`DW_OP_lt`](#dw_op_lt) | const |  |
+| [`DW_OP_ne`](#dw_op_ne) | const |  |
+| [`DW_OP_skip`](#dw_op_skip) | const |  |
+| [`DW_OP_lit0`](#dw_op_lit0) | const |  |
+| [`DW_OP_lit1`](#dw_op_lit1) | const |  |
+| [`DW_OP_lit2`](#dw_op_lit2) | const |  |
+| [`DW_OP_lit3`](#dw_op_lit3) | const |  |
+| [`DW_OP_lit4`](#dw_op_lit4) | const |  |
+| [`DW_OP_lit5`](#dw_op_lit5) | const |  |
+| [`DW_OP_lit6`](#dw_op_lit6) | const |  |
+| [`DW_OP_lit7`](#dw_op_lit7) | const |  |
+| [`DW_OP_lit8`](#dw_op_lit8) | const |  |
+| [`DW_OP_lit9`](#dw_op_lit9) | const |  |
+| [`DW_OP_lit10`](#dw_op_lit10) | const |  |
+| [`DW_OP_lit11`](#dw_op_lit11) | const |  |
+| [`DW_OP_lit12`](#dw_op_lit12) | const |  |
+| [`DW_OP_lit13`](#dw_op_lit13) | const |  |
+| [`DW_OP_lit14`](#dw_op_lit14) | const |  |
+| [`DW_OP_lit15`](#dw_op_lit15) | const |  |
+| [`DW_OP_lit16`](#dw_op_lit16) | const |  |
+| [`DW_OP_lit17`](#dw_op_lit17) | const |  |
+| [`DW_OP_lit18`](#dw_op_lit18) | const |  |
+| [`DW_OP_lit19`](#dw_op_lit19) | const |  |
+| [`DW_OP_lit20`](#dw_op_lit20) | const |  |
+| [`DW_OP_lit21`](#dw_op_lit21) | const |  |
+| [`DW_OP_lit22`](#dw_op_lit22) | const |  |
+| [`DW_OP_lit23`](#dw_op_lit23) | const |  |
+| [`DW_OP_lit24`](#dw_op_lit24) | const |  |
+| [`DW_OP_lit25`](#dw_op_lit25) | const |  |
+| [`DW_OP_lit26`](#dw_op_lit26) | const |  |
+| [`DW_OP_lit27`](#dw_op_lit27) | const |  |
+| [`DW_OP_lit28`](#dw_op_lit28) | const |  |
+| [`DW_OP_lit29`](#dw_op_lit29) | const |  |
+| [`DW_OP_lit30`](#dw_op_lit30) | const |  |
+| [`DW_OP_lit31`](#dw_op_lit31) | const |  |
+| [`DW_OP_reg0`](#dw_op_reg0) | const |  |
+| [`DW_OP_reg1`](#dw_op_reg1) | const |  |
+| [`DW_OP_reg2`](#dw_op_reg2) | const |  |
+| [`DW_OP_reg3`](#dw_op_reg3) | const |  |
+| [`DW_OP_reg4`](#dw_op_reg4) | const |  |
+| [`DW_OP_reg5`](#dw_op_reg5) | const |  |
+| [`DW_OP_reg6`](#dw_op_reg6) | const |  |
+| [`DW_OP_reg7`](#dw_op_reg7) | const |  |
+| [`DW_OP_reg8`](#dw_op_reg8) | const |  |
+| [`DW_OP_reg9`](#dw_op_reg9) | const |  |
+| [`DW_OP_reg10`](#dw_op_reg10) | const |  |
+| [`DW_OP_reg11`](#dw_op_reg11) | const |  |
+| [`DW_OP_reg12`](#dw_op_reg12) | const |  |
+| [`DW_OP_reg13`](#dw_op_reg13) | const |  |
+| [`DW_OP_reg14`](#dw_op_reg14) | const |  |
+| [`DW_OP_reg15`](#dw_op_reg15) | const |  |
+| [`DW_OP_reg16`](#dw_op_reg16) | const |  |
+| [`DW_OP_reg17`](#dw_op_reg17) | const |  |
+| [`DW_OP_reg18`](#dw_op_reg18) | const |  |
+| [`DW_OP_reg19`](#dw_op_reg19) | const |  |
+| [`DW_OP_reg20`](#dw_op_reg20) | const |  |
+| [`DW_OP_reg21`](#dw_op_reg21) | const |  |
+| [`DW_OP_reg22`](#dw_op_reg22) | const |  |
+| [`DW_OP_reg23`](#dw_op_reg23) | const |  |
+| [`DW_OP_reg24`](#dw_op_reg24) | const |  |
+| [`DW_OP_reg25`](#dw_op_reg25) | const |  |
+| [`DW_OP_reg26`](#dw_op_reg26) | const |  |
+| [`DW_OP_reg27`](#dw_op_reg27) | const |  |
+| [`DW_OP_reg28`](#dw_op_reg28) | const |  |
+| [`DW_OP_reg29`](#dw_op_reg29) | const |  |
+| [`DW_OP_reg30`](#dw_op_reg30) | const |  |
+| [`DW_OP_reg31`](#dw_op_reg31) | const |  |
+| [`DW_OP_breg0`](#dw_op_breg0) | const |  |
+| [`DW_OP_breg1`](#dw_op_breg1) | const |  |
+| [`DW_OP_breg2`](#dw_op_breg2) | const |  |
+| [`DW_OP_breg3`](#dw_op_breg3) | const |  |
+| [`DW_OP_breg4`](#dw_op_breg4) | const |  |
+| [`DW_OP_breg5`](#dw_op_breg5) | const |  |
+| [`DW_OP_breg6`](#dw_op_breg6) | const |  |
+| [`DW_OP_breg7`](#dw_op_breg7) | const |  |
+| [`DW_OP_breg8`](#dw_op_breg8) | const |  |
+| [`DW_OP_breg9`](#dw_op_breg9) | const |  |
+| [`DW_OP_breg10`](#dw_op_breg10) | const |  |
+| [`DW_OP_breg11`](#dw_op_breg11) | const |  |
+| [`DW_OP_breg12`](#dw_op_breg12) | const |  |
+| [`DW_OP_breg13`](#dw_op_breg13) | const |  |
+| [`DW_OP_breg14`](#dw_op_breg14) | const |  |
+| [`DW_OP_breg15`](#dw_op_breg15) | const |  |
+| [`DW_OP_breg16`](#dw_op_breg16) | const |  |
+| [`DW_OP_breg17`](#dw_op_breg17) | const |  |
+| [`DW_OP_breg18`](#dw_op_breg18) | const |  |
+| [`DW_OP_breg19`](#dw_op_breg19) | const |  |
+| [`DW_OP_breg20`](#dw_op_breg20) | const |  |
+| [`DW_OP_breg21`](#dw_op_breg21) | const |  |
+| [`DW_OP_breg22`](#dw_op_breg22) | const |  |
+| [`DW_OP_breg23`](#dw_op_breg23) | const |  |
+| [`DW_OP_breg24`](#dw_op_breg24) | const |  |
+| [`DW_OP_breg25`](#dw_op_breg25) | const |  |
+| [`DW_OP_breg26`](#dw_op_breg26) | const |  |
+| [`DW_OP_breg27`](#dw_op_breg27) | const |  |
+| [`DW_OP_breg28`](#dw_op_breg28) | const |  |
+| [`DW_OP_breg29`](#dw_op_breg29) | const |  |
+| [`DW_OP_breg30`](#dw_op_breg30) | const |  |
+| [`DW_OP_breg31`](#dw_op_breg31) | const |  |
+| [`DW_OP_regx`](#dw_op_regx) | const |  |
+| [`DW_OP_fbreg`](#dw_op_fbreg) | const |  |
+| [`DW_OP_bregx`](#dw_op_bregx) | const |  |
+| [`DW_OP_piece`](#dw_op_piece) | const |  |
+| [`DW_OP_deref_size`](#dw_op_deref_size) | const |  |
+| [`DW_OP_xderef_size`](#dw_op_xderef_size) | const |  |
+| [`DW_OP_nop`](#dw_op_nop) | const |  |
+| [`DW_OP_push_object_address`](#dw_op_push_object_address) | const |  |
+| [`DW_OP_call2`](#dw_op_call2) | const |  |
+| [`DW_OP_call4`](#dw_op_call4) | const |  |
+| [`DW_OP_call_ref`](#dw_op_call_ref) | const |  |
+| [`DW_OP_form_tls_address`](#dw_op_form_tls_address) | const |  |
+| [`DW_OP_call_frame_cfa`](#dw_op_call_frame_cfa) | const |  |
+| [`DW_OP_bit_piece`](#dw_op_bit_piece) | const |  |
+| [`DW_OP_implicit_value`](#dw_op_implicit_value) | const |  |
+| [`DW_OP_stack_value`](#dw_op_stack_value) | const |  |
+| [`DW_OP_implicit_pointer`](#dw_op_implicit_pointer) | const |  |
+| [`DW_OP_addrx`](#dw_op_addrx) | const |  |
+| [`DW_OP_constx`](#dw_op_constx) | const |  |
+| [`DW_OP_entry_value`](#dw_op_entry_value) | const |  |
+| [`DW_OP_const_type`](#dw_op_const_type) | const |  |
+| [`DW_OP_regval_type`](#dw_op_regval_type) | const |  |
+| [`DW_OP_deref_type`](#dw_op_deref_type) | const |  |
+| [`DW_OP_xderef_type`](#dw_op_xderef_type) | const |  |
+| [`DW_OP_convert`](#dw_op_convert) | const |  |
+| [`DW_OP_reinterpret`](#dw_op_reinterpret) | const |  |
+| [`DW_OP_GNU_push_tls_address`](#dw_op_gnu_push_tls_address) | const |  |
+| [`DW_OP_GNU_implicit_pointer`](#dw_op_gnu_implicit_pointer) | const |  |
+| [`DW_OP_GNU_entry_value`](#dw_op_gnu_entry_value) | const |  |
+| [`DW_OP_GNU_const_type`](#dw_op_gnu_const_type) | const |  |
+| [`DW_OP_GNU_regval_type`](#dw_op_gnu_regval_type) | const |  |
+| [`DW_OP_GNU_deref_type`](#dw_op_gnu_deref_type) | const |  |
+| [`DW_OP_GNU_convert`](#dw_op_gnu_convert) | const |  |
+| [`DW_OP_GNU_reinterpret`](#dw_op_gnu_reinterpret) | const |  |
+| [`DW_OP_GNU_parameter_ref`](#dw_op_gnu_parameter_ref) | const |  |
+| [`DW_OP_GNU_addr_index`](#dw_op_gnu_addr_index) | const |  |
+| [`DW_OP_GNU_const_index`](#dw_op_gnu_const_index) | const |  |
+| [`DW_OP_WASM_location`](#dw_op_wasm_location) | const |  |
+| [`DW_EH_PE_uleb128`](#dw_eh_pe_uleb128) | const |  |
+| [`DW_EH_PE_udata2`](#dw_eh_pe_udata2) | const |  |
+| [`DW_EH_PE_udata4`](#dw_eh_pe_udata4) | const |  |
+| [`DW_EH_PE_udata8`](#dw_eh_pe_udata8) | const |  |
+| [`DW_EH_PE_sleb128`](#dw_eh_pe_sleb128) | const |  |
+| [`DW_EH_PE_sdata2`](#dw_eh_pe_sdata2) | const |  |
+| [`DW_EH_PE_sdata4`](#dw_eh_pe_sdata4) | const |  |
+| [`DW_EH_PE_sdata8`](#dw_eh_pe_sdata8) | const |  |
+| [`DW_EH_PE_pcrel`](#dw_eh_pe_pcrel) | const |  |
+| [`DW_EH_PE_textrel`](#dw_eh_pe_textrel) | const |  |
+| [`DW_EH_PE_datarel`](#dw_eh_pe_datarel) | const |  |
+| [`DW_EH_PE_funcrel`](#dw_eh_pe_funcrel) | const |  |
+| [`DW_EH_PE_aligned`](#dw_eh_pe_aligned) | const |  |
+| [`DW_EH_PE_indirect`](#dw_eh_pe_indirect) | const |  |
+| [`DW_EH_PE_absptr`](#dw_eh_pe_absptr) | const |  |
+| [`DW_EH_PE_omit`](#dw_eh_pe_omit) | const |  |
+| [`DW_EH_PE_FORMAT_MASK`](#dw_eh_pe_format_mask) | const |  |
+| [`DW_EH_PE_APPLICATION_MASK`](#dw_eh_pe_application_mask) | const |  |
+| [`registers!`](#registers) | macro |  |
+| [`dw!`](#dw) | macro |  |
+
 ## Modules
 
 - [`common`](common/index.md) - 
@@ -86,23 +2097,23 @@ This is intended to be small enough to pass by value.
 
 ##### `impl Clone for Encoding`
 
-- `fn clone(self: &Self) -> Encoding` — [`Encoding`](#encoding)
+- <span id="encoding-clone"></span>`fn clone(&self) -> Encoding` — [`Encoding`](#encoding)
 
 ##### `impl Copy for Encoding`
 
 ##### `impl Debug for Encoding`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="encoding-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Encoding`
 
 ##### `impl Hash for Encoding`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="encoding-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Encoding`
 
-- `fn eq(self: &Self, other: &Encoding) -> bool` — [`Encoding`](#encoding)
+- <span id="encoding-eq"></span>`fn eq(&self, other: &Encoding) -> bool` — [`Encoding`](#encoding)
 
 ##### `impl StructuralPartialEq for Encoding`
 
@@ -147,27 +2158,27 @@ Encoding parameters for a line number program.
 
 ##### `impl Clone for LineEncoding`
 
-- `fn clone(self: &Self) -> LineEncoding` — [`LineEncoding`](#lineencoding)
+- <span id="lineencoding-clone"></span>`fn clone(&self) -> LineEncoding` — [`LineEncoding`](#lineencoding)
 
 ##### `impl Copy for LineEncoding`
 
 ##### `impl Debug for LineEncoding`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="lineencoding-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for LineEncoding`
 
-- `fn default() -> Self`
+- <span id="lineencoding-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for LineEncoding`
 
 ##### `impl Hash for LineEncoding`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="lineencoding-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for LineEncoding`
 
-- `fn eq(self: &Self, other: &LineEncoding) -> bool` — [`LineEncoding`](#lineencoding)
+- <span id="lineencoding-eq"></span>`fn eq(&self, other: &LineEncoding) -> bool` — [`LineEncoding`](#lineencoding)
 
 ##### `impl StructuralPartialEq for LineEncoding`
 
@@ -184,37 +2195,37 @@ a ULEB128, but supported architectures need 16 bits at most.
 
 #### Implementations
 
-- `fn from_u64(x: u64) -> Result<Register>` — [`Result`](#result), [`Register`](#register)
+- <span id="cratecommonregister-from-u64"></span>`fn from_u64(x: u64) -> Result<Register>` — [`Result`](#result), [`Register`](#register)
 
 #### Trait Implementations
 
 ##### `impl Clone for Register`
 
-- `fn clone(self: &Self) -> Register` — [`Register`](#register)
+- <span id="register-clone"></span>`fn clone(&self) -> Register` — [`Register`](#register)
 
 ##### `impl Copy for Register`
 
 ##### `impl Debug for Register`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="register-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Register`
 
 ##### `impl Hash for Register`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="register-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for Register`
 
-- `fn cmp(self: &Self, other: &Register) -> $crate::cmp::Ordering` — [`Register`](#register)
+- <span id="register-cmp"></span>`fn cmp(&self, other: &Register) -> cmp::Ordering` — [`Register`](#register)
 
 ##### `impl PartialEq for Register`
 
-- `fn eq(self: &Self, other: &Register) -> bool` — [`Register`](#register)
+- <span id="register-eq"></span>`fn eq(&self, other: &Register) -> bool` — [`Register`](#register)
 
 ##### `impl PartialOrd for Register`
 
-- `fn partial_cmp(self: &Self, other: &Register) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Register`](#register)
+- <span id="register-partial-cmp"></span>`fn partial_cmp(&self, other: &Register) -> option::Option<cmp::Ordering>` — [`Register`](#register)
 
 ##### `impl StructuralPartialEq for Register`
 
@@ -228,25 +2239,25 @@ An offset into the `.debug_abbrev` section.
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for DebugAbbrevOffset<T>`
+##### `impl<T: clone::Clone> Clone for DebugAbbrevOffset<T>`
 
-- `fn clone(self: &Self) -> DebugAbbrevOffset<T>` — [`DebugAbbrevOffset`](#debugabbrevoffset)
+- <span id="debugabbrevoffset-clone"></span>`fn clone(&self) -> DebugAbbrevOffset<T>` — [`DebugAbbrevOffset`](#debugabbrevoffset)
 
-##### `impl<T: $crate::marker::Copy> Copy for DebugAbbrevOffset<T>`
+##### `impl<T: marker::Copy> Copy for DebugAbbrevOffset<T>`
 
-##### `impl<T: $crate::fmt::Debug> Debug for DebugAbbrevOffset<T>`
+##### `impl<T: fmt::Debug> Debug for DebugAbbrevOffset<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugabbrevoffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq> Eq for DebugAbbrevOffset<T>`
+##### `impl<T: cmp::Eq> Eq for DebugAbbrevOffset<T>`
 
-##### `impl<T: $crate::hash::Hash> Hash for DebugAbbrevOffset<T>`
+##### `impl<T: hash::Hash> Hash for DebugAbbrevOffset<T>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="debugabbrevoffset-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<T: $crate::cmp::PartialEq> PartialEq for DebugAbbrevOffset<T>`
+##### `impl<T: cmp::PartialEq> PartialEq for DebugAbbrevOffset<T>`
 
-- `fn eq(self: &Self, other: &DebugAbbrevOffset<T>) -> bool` — [`DebugAbbrevOffset`](#debugabbrevoffset)
+- <span id="debugabbrevoffset-eq"></span>`fn eq(&self, other: &DebugAbbrevOffset<T>) -> bool` — [`DebugAbbrevOffset`](#debugabbrevoffset)
 
 ##### `impl<T> StructuralPartialEq for DebugAbbrevOffset<T>`
 
@@ -260,21 +2271,21 @@ An offset into the `.debug_addr` section.
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for DebugAddrOffset<T>`
+##### `impl<T: clone::Clone> Clone for DebugAddrOffset<T>`
 
-- `fn clone(self: &Self) -> DebugAddrOffset<T>` — [`DebugAddrOffset`](#debugaddroffset)
+- <span id="debugaddroffset-clone"></span>`fn clone(&self) -> DebugAddrOffset<T>` — [`DebugAddrOffset`](#debugaddroffset)
 
-##### `impl<T: $crate::marker::Copy> Copy for DebugAddrOffset<T>`
+##### `impl<T: marker::Copy> Copy for DebugAddrOffset<T>`
 
-##### `impl<T: $crate::fmt::Debug> Debug for DebugAddrOffset<T>`
+##### `impl<T: fmt::Debug> Debug for DebugAddrOffset<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugaddroffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq> Eq for DebugAddrOffset<T>`
+##### `impl<T: cmp::Eq> Eq for DebugAddrOffset<T>`
 
-##### `impl<T: $crate::cmp::PartialEq> PartialEq for DebugAddrOffset<T>`
+##### `impl<T: cmp::PartialEq> PartialEq for DebugAddrOffset<T>`
 
-- `fn eq(self: &Self, other: &DebugAddrOffset<T>) -> bool` — [`DebugAddrOffset`](#debugaddroffset)
+- <span id="debugaddroffset-eq"></span>`fn eq(&self, other: &DebugAddrOffset<T>) -> bool` — [`DebugAddrOffset`](#debugaddroffset)
 
 ##### `impl<T> StructuralPartialEq for DebugAddrOffset<T>`
 
@@ -288,21 +2299,21 @@ An offset to a set of entries in the `.debug_addr` section.
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for DebugAddrBase<T>`
+##### `impl<T: clone::Clone> Clone for DebugAddrBase<T>`
 
-- `fn clone(self: &Self) -> DebugAddrBase<T>` — [`DebugAddrBase`](#debugaddrbase)
+- <span id="debugaddrbase-clone"></span>`fn clone(&self) -> DebugAddrBase<T>` — [`DebugAddrBase`](#debugaddrbase)
 
-##### `impl<T: $crate::marker::Copy> Copy for DebugAddrBase<T>`
+##### `impl<T: marker::Copy> Copy for DebugAddrBase<T>`
 
-##### `impl<T: $crate::fmt::Debug> Debug for DebugAddrBase<T>`
+##### `impl<T: fmt::Debug> Debug for DebugAddrBase<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugaddrbase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq> Eq for DebugAddrBase<T>`
+##### `impl<T: cmp::Eq> Eq for DebugAddrBase<T>`
 
-##### `impl<T: $crate::cmp::PartialEq> PartialEq for DebugAddrBase<T>`
+##### `impl<T: cmp::PartialEq> PartialEq for DebugAddrBase<T>`
 
-- `fn eq(self: &Self, other: &DebugAddrBase<T>) -> bool` — [`DebugAddrBase`](#debugaddrbase)
+- <span id="debugaddrbase-eq"></span>`fn eq(&self, other: &DebugAddrBase<T>) -> bool` — [`DebugAddrBase`](#debugaddrbase)
 
 ##### `impl<T> StructuralPartialEq for DebugAddrBase<T>`
 
@@ -316,21 +2327,21 @@ An index into a set of addresses in the `.debug_addr` section.
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for DebugAddrIndex<T>`
+##### `impl<T: clone::Clone> Clone for DebugAddrIndex<T>`
 
-- `fn clone(self: &Self) -> DebugAddrIndex<T>` — [`DebugAddrIndex`](#debugaddrindex)
+- <span id="debugaddrindex-clone"></span>`fn clone(&self) -> DebugAddrIndex<T>` — [`DebugAddrIndex`](#debugaddrindex)
 
-##### `impl<T: $crate::marker::Copy> Copy for DebugAddrIndex<T>`
+##### `impl<T: marker::Copy> Copy for DebugAddrIndex<T>`
 
-##### `impl<T: $crate::fmt::Debug> Debug for DebugAddrIndex<T>`
+##### `impl<T: fmt::Debug> Debug for DebugAddrIndex<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugaddrindex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq> Eq for DebugAddrIndex<T>`
+##### `impl<T: cmp::Eq> Eq for DebugAddrIndex<T>`
 
-##### `impl<T: $crate::cmp::PartialEq> PartialEq for DebugAddrIndex<T>`
+##### `impl<T: cmp::PartialEq> PartialEq for DebugAddrIndex<T>`
 
-- `fn eq(self: &Self, other: &DebugAddrIndex<T>) -> bool` — [`DebugAddrIndex`](#debugaddrindex)
+- <span id="debugaddrindex-eq"></span>`fn eq(&self, other: &DebugAddrIndex<T>) -> bool` — [`DebugAddrIndex`](#debugaddrindex)
 
 ##### `impl<T> StructuralPartialEq for DebugAddrIndex<T>`
 
@@ -344,21 +2355,21 @@ An offset into the `.debug_aranges` section.
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for DebugArangesOffset<T>`
+##### `impl<T: clone::Clone> Clone for DebugArangesOffset<T>`
 
-- `fn clone(self: &Self) -> DebugArangesOffset<T>` — [`DebugArangesOffset`](#debugarangesoffset)
+- <span id="debugarangesoffset-clone"></span>`fn clone(&self) -> DebugArangesOffset<T>` — [`DebugArangesOffset`](#debugarangesoffset)
 
-##### `impl<T: $crate::marker::Copy> Copy for DebugArangesOffset<T>`
+##### `impl<T: marker::Copy> Copy for DebugArangesOffset<T>`
 
-##### `impl<T: $crate::fmt::Debug> Debug for DebugArangesOffset<T>`
+##### `impl<T: fmt::Debug> Debug for DebugArangesOffset<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugarangesoffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq> Eq for DebugArangesOffset<T>`
+##### `impl<T: cmp::Eq> Eq for DebugArangesOffset<T>`
 
-##### `impl<T: $crate::cmp::PartialEq> PartialEq for DebugArangesOffset<T>`
+##### `impl<T: cmp::PartialEq> PartialEq for DebugArangesOffset<T>`
 
-- `fn eq(self: &Self, other: &DebugArangesOffset<T>) -> bool` — [`DebugArangesOffset`](#debugarangesoffset)
+- <span id="debugarangesoffset-eq"></span>`fn eq(&self, other: &DebugArangesOffset<T>) -> bool` — [`DebugArangesOffset`](#debugarangesoffset)
 
 ##### `impl<T> StructuralPartialEq for DebugArangesOffset<T>`
 
@@ -372,37 +2383,37 @@ An offset into the `.debug_info` section.
 
 #### Implementations
 
-- `fn to_unit_offset<R>(self: &Self, unit: &UnitHeader<R>) -> Option<UnitOffset<T>>` — [`UnitHeader`](read/index.md), [`UnitOffset`](#unitoffset)
+- <span id="cratecommondebuginfooffset-to-unit-offset"></span>`fn to_unit_offset<R>(&self, unit: &UnitHeader<R>) -> Option<UnitOffset<T>>` — [`UnitHeader`](read/index.md), [`UnitOffset`](#unitoffset)
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for DebugInfoOffset<T>`
+##### `impl<T: clone::Clone> Clone for DebugInfoOffset<T>`
 
-- `fn clone(self: &Self) -> DebugInfoOffset<T>` — [`DebugInfoOffset`](#debuginfooffset)
+- <span id="debuginfooffset-clone"></span>`fn clone(&self) -> DebugInfoOffset<T>` — [`DebugInfoOffset`](#debuginfooffset)
 
-##### `impl<T: $crate::marker::Copy> Copy for DebugInfoOffset<T>`
+##### `impl<T: marker::Copy> Copy for DebugInfoOffset<T>`
 
-##### `impl<T: $crate::fmt::Debug> Debug for DebugInfoOffset<T>`
+##### `impl<T: fmt::Debug> Debug for DebugInfoOffset<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debuginfooffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq> Eq for DebugInfoOffset<T>`
+##### `impl<T: cmp::Eq> Eq for DebugInfoOffset<T>`
 
-##### `impl<T: $crate::hash::Hash> Hash for DebugInfoOffset<T>`
+##### `impl<T: hash::Hash> Hash for DebugInfoOffset<T>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="debuginfooffset-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<T: $crate::cmp::Ord> Ord for DebugInfoOffset<T>`
+##### `impl<T: cmp::Ord> Ord for DebugInfoOffset<T>`
 
-- `fn cmp(self: &Self, other: &DebugInfoOffset<T>) -> $crate::cmp::Ordering` — [`DebugInfoOffset`](#debuginfooffset)
+- <span id="debuginfooffset-cmp"></span>`fn cmp(&self, other: &DebugInfoOffset<T>) -> cmp::Ordering` — [`DebugInfoOffset`](#debuginfooffset)
 
-##### `impl<T: $crate::cmp::PartialEq> PartialEq for DebugInfoOffset<T>`
+##### `impl<T: cmp::PartialEq> PartialEq for DebugInfoOffset<T>`
 
-- `fn eq(self: &Self, other: &DebugInfoOffset<T>) -> bool` — [`DebugInfoOffset`](#debuginfooffset)
+- <span id="debuginfooffset-eq"></span>`fn eq(&self, other: &DebugInfoOffset<T>) -> bool` — [`DebugInfoOffset`](#debuginfooffset)
 
-##### `impl<T: $crate::cmp::PartialOrd> PartialOrd for DebugInfoOffset<T>`
+##### `impl<T: cmp::PartialOrd> PartialOrd for DebugInfoOffset<T>`
 
-- `fn partial_cmp(self: &Self, other: &DebugInfoOffset<T>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DebugInfoOffset`](#debuginfooffset)
+- <span id="debuginfooffset-partial-cmp"></span>`fn partial_cmp(&self, other: &DebugInfoOffset<T>) -> option::Option<cmp::Ordering>` — [`DebugInfoOffset`](#debuginfooffset)
 
 ##### `impl<T> StructuralPartialEq for DebugInfoOffset<T>`
 
@@ -416,21 +2427,21 @@ An offset into the `.debug_line` section.
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for DebugLineOffset<T>`
+##### `impl<T: clone::Clone> Clone for DebugLineOffset<T>`
 
-- `fn clone(self: &Self) -> DebugLineOffset<T>` — [`DebugLineOffset`](#debuglineoffset)
+- <span id="debuglineoffset-clone"></span>`fn clone(&self) -> DebugLineOffset<T>` — [`DebugLineOffset`](#debuglineoffset)
 
-##### `impl<T: $crate::marker::Copy> Copy for DebugLineOffset<T>`
+##### `impl<T: marker::Copy> Copy for DebugLineOffset<T>`
 
-##### `impl<T: $crate::fmt::Debug> Debug for DebugLineOffset<T>`
+##### `impl<T: fmt::Debug> Debug for DebugLineOffset<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debuglineoffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq> Eq for DebugLineOffset<T>`
+##### `impl<T: cmp::Eq> Eq for DebugLineOffset<T>`
 
-##### `impl<T: $crate::cmp::PartialEq> PartialEq for DebugLineOffset<T>`
+##### `impl<T: cmp::PartialEq> PartialEq for DebugLineOffset<T>`
 
-- `fn eq(self: &Self, other: &DebugLineOffset<T>) -> bool` — [`DebugLineOffset`](#debuglineoffset)
+- <span id="debuglineoffset-eq"></span>`fn eq(&self, other: &DebugLineOffset<T>) -> bool` — [`DebugLineOffset`](#debuglineoffset)
 
 ##### `impl<T> StructuralPartialEq for DebugLineOffset<T>`
 
@@ -444,21 +2455,21 @@ An offset into the `.debug_line_str` section.
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for DebugLineStrOffset<T>`
+##### `impl<T: clone::Clone> Clone for DebugLineStrOffset<T>`
 
-- `fn clone(self: &Self) -> DebugLineStrOffset<T>` — [`DebugLineStrOffset`](#debuglinestroffset)
+- <span id="debuglinestroffset-clone"></span>`fn clone(&self) -> DebugLineStrOffset<T>` — [`DebugLineStrOffset`](#debuglinestroffset)
 
-##### `impl<T: $crate::marker::Copy> Copy for DebugLineStrOffset<T>`
+##### `impl<T: marker::Copy> Copy for DebugLineStrOffset<T>`
 
-##### `impl<T: $crate::fmt::Debug> Debug for DebugLineStrOffset<T>`
+##### `impl<T: fmt::Debug> Debug for DebugLineStrOffset<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debuglinestroffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq> Eq for DebugLineStrOffset<T>`
+##### `impl<T: cmp::Eq> Eq for DebugLineStrOffset<T>`
 
-##### `impl<T: $crate::cmp::PartialEq> PartialEq for DebugLineStrOffset<T>`
+##### `impl<T: cmp::PartialEq> PartialEq for DebugLineStrOffset<T>`
 
-- `fn eq(self: &Self, other: &DebugLineStrOffset<T>) -> bool` — [`DebugLineStrOffset`](#debuglinestroffset)
+- <span id="debuglinestroffset-eq"></span>`fn eq(&self, other: &DebugLineStrOffset<T>) -> bool` — [`DebugLineStrOffset`](#debuglinestroffset)
 
 ##### `impl<T> StructuralPartialEq for DebugLineStrOffset<T>`
 
@@ -473,25 +2484,25 @@ depending on the version of the unit the offset was contained in.
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for LocationListsOffset<T>`
+##### `impl<T: clone::Clone> Clone for LocationListsOffset<T>`
 
-- `fn clone(self: &Self) -> LocationListsOffset<T>` — [`LocationListsOffset`](#locationlistsoffset)
+- <span id="locationlistsoffset-clone"></span>`fn clone(&self) -> LocationListsOffset<T>` — [`LocationListsOffset`](#locationlistsoffset)
 
-##### `impl<T: $crate::marker::Copy> Copy for LocationListsOffset<T>`
+##### `impl<T: marker::Copy> Copy for LocationListsOffset<T>`
 
-##### `impl<T: $crate::fmt::Debug> Debug for LocationListsOffset<T>`
+##### `impl<T: fmt::Debug> Debug for LocationListsOffset<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="locationlistsoffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq> Eq for LocationListsOffset<T>`
+##### `impl<T: cmp::Eq> Eq for LocationListsOffset<T>`
 
-##### `impl<T: $crate::hash::Hash> Hash for LocationListsOffset<T>`
+##### `impl<T: hash::Hash> Hash for LocationListsOffset<T>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="locationlistsoffset-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<T: $crate::cmp::PartialEq> PartialEq for LocationListsOffset<T>`
+##### `impl<T: cmp::PartialEq> PartialEq for LocationListsOffset<T>`
 
-- `fn eq(self: &Self, other: &LocationListsOffset<T>) -> bool` — [`LocationListsOffset`](#locationlistsoffset)
+- <span id="locationlistsoffset-eq"></span>`fn eq(&self, other: &LocationListsOffset<T>) -> bool` — [`LocationListsOffset`](#locationlistsoffset)
 
 ##### `impl<T> StructuralPartialEq for LocationListsOffset<T>`
 
@@ -505,25 +2516,25 @@ An offset to a set of location list offsets in the `.debug_loclists` section.
 
 #### Implementations
 
-- `fn default_for_encoding_and_file(encoding: Encoding, file_type: DwarfFileType) -> DebugLocListsBase<Offset>` — [`Encoding`](#encoding), [`DwarfFileType`](#dwarffiletype), [`DebugLocListsBase`](#debugloclistsbase)
+- <span id="cratecommondebugloclistsbase-default-for-encoding-and-file"></span>`fn default_for_encoding_and_file(encoding: Encoding, file_type: DwarfFileType) -> DebugLocListsBase<Offset>` — [`Encoding`](#encoding), [`DwarfFileType`](#dwarffiletype), [`DebugLocListsBase`](#debugloclistsbase)
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for DebugLocListsBase<T>`
+##### `impl<T: clone::Clone> Clone for DebugLocListsBase<T>`
 
-- `fn clone(self: &Self) -> DebugLocListsBase<T>` — [`DebugLocListsBase`](#debugloclistsbase)
+- <span id="debugloclistsbase-clone"></span>`fn clone(&self) -> DebugLocListsBase<T>` — [`DebugLocListsBase`](#debugloclistsbase)
 
-##### `impl<T: $crate::marker::Copy> Copy for DebugLocListsBase<T>`
+##### `impl<T: marker::Copy> Copy for DebugLocListsBase<T>`
 
-##### `impl<T: $crate::fmt::Debug> Debug for DebugLocListsBase<T>`
+##### `impl<T: fmt::Debug> Debug for DebugLocListsBase<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugloclistsbase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq> Eq for DebugLocListsBase<T>`
+##### `impl<T: cmp::Eq> Eq for DebugLocListsBase<T>`
 
-##### `impl<T: $crate::cmp::PartialEq> PartialEq for DebugLocListsBase<T>`
+##### `impl<T: cmp::PartialEq> PartialEq for DebugLocListsBase<T>`
 
-- `fn eq(self: &Self, other: &DebugLocListsBase<T>) -> bool` — [`DebugLocListsBase`](#debugloclistsbase)
+- <span id="debugloclistsbase-eq"></span>`fn eq(&self, other: &DebugLocListsBase<T>) -> bool` — [`DebugLocListsBase`](#debugloclistsbase)
 
 ##### `impl<T> StructuralPartialEq for DebugLocListsBase<T>`
 
@@ -537,21 +2548,21 @@ An index into a set of location list offsets in the `.debug_loclists` section.
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for DebugLocListsIndex<T>`
+##### `impl<T: clone::Clone> Clone for DebugLocListsIndex<T>`
 
-- `fn clone(self: &Self) -> DebugLocListsIndex<T>` — [`DebugLocListsIndex`](#debugloclistsindex)
+- <span id="debugloclistsindex-clone"></span>`fn clone(&self) -> DebugLocListsIndex<T>` — [`DebugLocListsIndex`](#debugloclistsindex)
 
-##### `impl<T: $crate::marker::Copy> Copy for DebugLocListsIndex<T>`
+##### `impl<T: marker::Copy> Copy for DebugLocListsIndex<T>`
 
-##### `impl<T: $crate::fmt::Debug> Debug for DebugLocListsIndex<T>`
+##### `impl<T: fmt::Debug> Debug for DebugLocListsIndex<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugloclistsindex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq> Eq for DebugLocListsIndex<T>`
+##### `impl<T: cmp::Eq> Eq for DebugLocListsIndex<T>`
 
-##### `impl<T: $crate::cmp::PartialEq> PartialEq for DebugLocListsIndex<T>`
+##### `impl<T: cmp::PartialEq> PartialEq for DebugLocListsIndex<T>`
 
-- `fn eq(self: &Self, other: &DebugLocListsIndex<T>) -> bool` — [`DebugLocListsIndex`](#debugloclistsindex)
+- <span id="debugloclistsindex-eq"></span>`fn eq(&self, other: &DebugLocListsIndex<T>) -> bool` — [`DebugLocListsIndex`](#debugloclistsindex)
 
 ##### `impl<T> StructuralPartialEq for DebugLocListsIndex<T>`
 
@@ -565,25 +2576,25 @@ An offset into the `.debug_macinfo` section.
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for DebugMacinfoOffset<T>`
+##### `impl<T: clone::Clone> Clone for DebugMacinfoOffset<T>`
 
-- `fn clone(self: &Self) -> DebugMacinfoOffset<T>` — [`DebugMacinfoOffset`](#debugmacinfooffset)
+- <span id="debugmacinfooffset-clone"></span>`fn clone(&self) -> DebugMacinfoOffset<T>` — [`DebugMacinfoOffset`](#debugmacinfooffset)
 
-##### `impl<T: $crate::marker::Copy> Copy for DebugMacinfoOffset<T>`
+##### `impl<T: marker::Copy> Copy for DebugMacinfoOffset<T>`
 
-##### `impl<T: $crate::fmt::Debug> Debug for DebugMacinfoOffset<T>`
+##### `impl<T: fmt::Debug> Debug for DebugMacinfoOffset<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugmacinfooffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq> Eq for DebugMacinfoOffset<T>`
+##### `impl<T: cmp::Eq> Eq for DebugMacinfoOffset<T>`
 
-##### `impl<T: $crate::hash::Hash> Hash for DebugMacinfoOffset<T>`
+##### `impl<T: hash::Hash> Hash for DebugMacinfoOffset<T>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="debugmacinfooffset-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<T: $crate::cmp::PartialEq> PartialEq for DebugMacinfoOffset<T>`
+##### `impl<T: cmp::PartialEq> PartialEq for DebugMacinfoOffset<T>`
 
-- `fn eq(self: &Self, other: &DebugMacinfoOffset<T>) -> bool` — [`DebugMacinfoOffset`](#debugmacinfooffset)
+- <span id="debugmacinfooffset-eq"></span>`fn eq(&self, other: &DebugMacinfoOffset<T>) -> bool` — [`DebugMacinfoOffset`](#debugmacinfooffset)
 
 ##### `impl<T> StructuralPartialEq for DebugMacinfoOffset<T>`
 
@@ -597,25 +2608,25 @@ An offset into the `.debug_macro` section.
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for DebugMacroOffset<T>`
+##### `impl<T: clone::Clone> Clone for DebugMacroOffset<T>`
 
-- `fn clone(self: &Self) -> DebugMacroOffset<T>` — [`DebugMacroOffset`](#debugmacrooffset)
+- <span id="debugmacrooffset-clone"></span>`fn clone(&self) -> DebugMacroOffset<T>` — [`DebugMacroOffset`](#debugmacrooffset)
 
-##### `impl<T: $crate::marker::Copy> Copy for DebugMacroOffset<T>`
+##### `impl<T: marker::Copy> Copy for DebugMacroOffset<T>`
 
-##### `impl<T: $crate::fmt::Debug> Debug for DebugMacroOffset<T>`
+##### `impl<T: fmt::Debug> Debug for DebugMacroOffset<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugmacrooffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq> Eq for DebugMacroOffset<T>`
+##### `impl<T: cmp::Eq> Eq for DebugMacroOffset<T>`
 
-##### `impl<T: $crate::hash::Hash> Hash for DebugMacroOffset<T>`
+##### `impl<T: hash::Hash> Hash for DebugMacroOffset<T>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="debugmacrooffset-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<T: $crate::cmp::PartialEq> PartialEq for DebugMacroOffset<T>`
+##### `impl<T: cmp::PartialEq> PartialEq for DebugMacroOffset<T>`
 
-- `fn eq(self: &Self, other: &DebugMacroOffset<T>) -> bool` — [`DebugMacroOffset`](#debugmacrooffset)
+- <span id="debugmacrooffset-eq"></span>`fn eq(&self, other: &DebugMacroOffset<T>) -> bool` — [`DebugMacroOffset`](#debugmacrooffset)
 
 ##### `impl<T> StructuralPartialEq for DebugMacroOffset<T>`
 
@@ -633,25 +2644,25 @@ value of `DW_AT_GNU_ranges_base`. You can use `Dwarf::ranges_offset_from_raw` to
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for RawRangeListsOffset<T>`
+##### `impl<T: clone::Clone> Clone for RawRangeListsOffset<T>`
 
-- `fn clone(self: &Self) -> RawRangeListsOffset<T>` — [`RawRangeListsOffset`](#rawrangelistsoffset)
+- <span id="rawrangelistsoffset-clone"></span>`fn clone(&self) -> RawRangeListsOffset<T>` — [`RawRangeListsOffset`](#rawrangelistsoffset)
 
-##### `impl<T: $crate::marker::Copy> Copy for RawRangeListsOffset<T>`
+##### `impl<T: marker::Copy> Copy for RawRangeListsOffset<T>`
 
-##### `impl<T: $crate::fmt::Debug> Debug for RawRangeListsOffset<T>`
+##### `impl<T: fmt::Debug> Debug for RawRangeListsOffset<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rawrangelistsoffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq> Eq for RawRangeListsOffset<T>`
+##### `impl<T: cmp::Eq> Eq for RawRangeListsOffset<T>`
 
-##### `impl<T: $crate::hash::Hash> Hash for RawRangeListsOffset<T>`
+##### `impl<T: hash::Hash> Hash for RawRangeListsOffset<T>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="rawrangelistsoffset-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<T: $crate::cmp::PartialEq> PartialEq for RawRangeListsOffset<T>`
+##### `impl<T: cmp::PartialEq> PartialEq for RawRangeListsOffset<T>`
 
-- `fn eq(self: &Self, other: &RawRangeListsOffset<T>) -> bool` — [`RawRangeListsOffset`](#rawrangelistsoffset)
+- <span id="rawrangelistsoffset-eq"></span>`fn eq(&self, other: &RawRangeListsOffset<T>) -> bool` — [`RawRangeListsOffset`](#rawrangelistsoffset)
 
 ##### `impl<T> StructuralPartialEq for RawRangeListsOffset<T>`
 
@@ -666,25 +2677,25 @@ depending on the version of the unit the offset was contained in.
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for RangeListsOffset<T>`
+##### `impl<T: clone::Clone> Clone for RangeListsOffset<T>`
 
-- `fn clone(self: &Self) -> RangeListsOffset<T>` — [`RangeListsOffset`](#rangelistsoffset)
+- <span id="rangelistsoffset-clone"></span>`fn clone(&self) -> RangeListsOffset<T>` — [`RangeListsOffset`](#rangelistsoffset)
 
-##### `impl<T: $crate::marker::Copy> Copy for RangeListsOffset<T>`
+##### `impl<T: marker::Copy> Copy for RangeListsOffset<T>`
 
-##### `impl<T: $crate::fmt::Debug> Debug for RangeListsOffset<T>`
+##### `impl<T: fmt::Debug> Debug for RangeListsOffset<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rangelistsoffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq> Eq for RangeListsOffset<T>`
+##### `impl<T: cmp::Eq> Eq for RangeListsOffset<T>`
 
-##### `impl<T: $crate::hash::Hash> Hash for RangeListsOffset<T>`
+##### `impl<T: hash::Hash> Hash for RangeListsOffset<T>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="rangelistsoffset-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<T: $crate::cmp::PartialEq> PartialEq for RangeListsOffset<T>`
+##### `impl<T: cmp::PartialEq> PartialEq for RangeListsOffset<T>`
 
-- `fn eq(self: &Self, other: &RangeListsOffset<T>) -> bool` — [`RangeListsOffset`](#rangelistsoffset)
+- <span id="rangelistsoffset-eq"></span>`fn eq(&self, other: &RangeListsOffset<T>) -> bool` — [`RangeListsOffset`](#rangelistsoffset)
 
 ##### `impl<T> StructuralPartialEq for RangeListsOffset<T>`
 
@@ -698,25 +2709,25 @@ An offset to a set of range list offsets in the `.debug_rnglists` section.
 
 #### Implementations
 
-- `fn default_for_encoding_and_file(encoding: Encoding, file_type: DwarfFileType) -> DebugRngListsBase<Offset>` — [`Encoding`](#encoding), [`DwarfFileType`](#dwarffiletype), [`DebugRngListsBase`](#debugrnglistsbase)
+- <span id="cratecommondebugrnglistsbase-default-for-encoding-and-file"></span>`fn default_for_encoding_and_file(encoding: Encoding, file_type: DwarfFileType) -> DebugRngListsBase<Offset>` — [`Encoding`](#encoding), [`DwarfFileType`](#dwarffiletype), [`DebugRngListsBase`](#debugrnglistsbase)
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for DebugRngListsBase<T>`
+##### `impl<T: clone::Clone> Clone for DebugRngListsBase<T>`
 
-- `fn clone(self: &Self) -> DebugRngListsBase<T>` — [`DebugRngListsBase`](#debugrnglistsbase)
+- <span id="debugrnglistsbase-clone"></span>`fn clone(&self) -> DebugRngListsBase<T>` — [`DebugRngListsBase`](#debugrnglistsbase)
 
-##### `impl<T: $crate::marker::Copy> Copy for DebugRngListsBase<T>`
+##### `impl<T: marker::Copy> Copy for DebugRngListsBase<T>`
 
-##### `impl<T: $crate::fmt::Debug> Debug for DebugRngListsBase<T>`
+##### `impl<T: fmt::Debug> Debug for DebugRngListsBase<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugrnglistsbase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq> Eq for DebugRngListsBase<T>`
+##### `impl<T: cmp::Eq> Eq for DebugRngListsBase<T>`
 
-##### `impl<T: $crate::cmp::PartialEq> PartialEq for DebugRngListsBase<T>`
+##### `impl<T: cmp::PartialEq> PartialEq for DebugRngListsBase<T>`
 
-- `fn eq(self: &Self, other: &DebugRngListsBase<T>) -> bool` — [`DebugRngListsBase`](#debugrnglistsbase)
+- <span id="debugrnglistsbase-eq"></span>`fn eq(&self, other: &DebugRngListsBase<T>) -> bool` — [`DebugRngListsBase`](#debugrnglistsbase)
 
 ##### `impl<T> StructuralPartialEq for DebugRngListsBase<T>`
 
@@ -730,21 +2741,21 @@ An index into a set of range list offsets in the `.debug_rnglists` section.
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for DebugRngListsIndex<T>`
+##### `impl<T: clone::Clone> Clone for DebugRngListsIndex<T>`
 
-- `fn clone(self: &Self) -> DebugRngListsIndex<T>` — [`DebugRngListsIndex`](#debugrnglistsindex)
+- <span id="debugrnglistsindex-clone"></span>`fn clone(&self) -> DebugRngListsIndex<T>` — [`DebugRngListsIndex`](#debugrnglistsindex)
 
-##### `impl<T: $crate::marker::Copy> Copy for DebugRngListsIndex<T>`
+##### `impl<T: marker::Copy> Copy for DebugRngListsIndex<T>`
 
-##### `impl<T: $crate::fmt::Debug> Debug for DebugRngListsIndex<T>`
+##### `impl<T: fmt::Debug> Debug for DebugRngListsIndex<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugrnglistsindex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq> Eq for DebugRngListsIndex<T>`
+##### `impl<T: cmp::Eq> Eq for DebugRngListsIndex<T>`
 
-##### `impl<T: $crate::cmp::PartialEq> PartialEq for DebugRngListsIndex<T>`
+##### `impl<T: cmp::PartialEq> PartialEq for DebugRngListsIndex<T>`
 
-- `fn eq(self: &Self, other: &DebugRngListsIndex<T>) -> bool` — [`DebugRngListsIndex`](#debugrnglistsindex)
+- <span id="debugrnglistsindex-eq"></span>`fn eq(&self, other: &DebugRngListsIndex<T>) -> bool` — [`DebugRngListsIndex`](#debugrnglistsindex)
 
 ##### `impl<T> StructuralPartialEq for DebugRngListsIndex<T>`
 
@@ -758,21 +2769,21 @@ An offset into the `.debug_str` section.
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for DebugStrOffset<T>`
+##### `impl<T: clone::Clone> Clone for DebugStrOffset<T>`
 
-- `fn clone(self: &Self) -> DebugStrOffset<T>` — [`DebugStrOffset`](#debugstroffset)
+- <span id="debugstroffset-clone"></span>`fn clone(&self) -> DebugStrOffset<T>` — [`DebugStrOffset`](#debugstroffset)
 
-##### `impl<T: $crate::marker::Copy> Copy for DebugStrOffset<T>`
+##### `impl<T: marker::Copy> Copy for DebugStrOffset<T>`
 
-##### `impl<T: $crate::fmt::Debug> Debug for DebugStrOffset<T>`
+##### `impl<T: fmt::Debug> Debug for DebugStrOffset<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugstroffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq> Eq for DebugStrOffset<T>`
+##### `impl<T: cmp::Eq> Eq for DebugStrOffset<T>`
 
-##### `impl<T: $crate::cmp::PartialEq> PartialEq for DebugStrOffset<T>`
+##### `impl<T: cmp::PartialEq> PartialEq for DebugStrOffset<T>`
 
-- `fn eq(self: &Self, other: &DebugStrOffset<T>) -> bool` — [`DebugStrOffset`](#debugstroffset)
+- <span id="debugstroffset-eq"></span>`fn eq(&self, other: &DebugStrOffset<T>) -> bool` — [`DebugStrOffset`](#debugstroffset)
 
 ##### `impl<T> StructuralPartialEq for DebugStrOffset<T>`
 
@@ -786,25 +2797,25 @@ An offset to a set of entries in the `.debug_str_offsets` section.
 
 #### Implementations
 
-- `fn default_for_encoding_and_file(encoding: Encoding, file_type: DwarfFileType) -> DebugStrOffsetsBase<Offset>` — [`Encoding`](#encoding), [`DwarfFileType`](#dwarffiletype), [`DebugStrOffsetsBase`](#debugstroffsetsbase)
+- <span id="cratecommondebugstroffsetsbase-default-for-encoding-and-file"></span>`fn default_for_encoding_and_file(encoding: Encoding, file_type: DwarfFileType) -> DebugStrOffsetsBase<Offset>` — [`Encoding`](#encoding), [`DwarfFileType`](#dwarffiletype), [`DebugStrOffsetsBase`](#debugstroffsetsbase)
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for DebugStrOffsetsBase<T>`
+##### `impl<T: clone::Clone> Clone for DebugStrOffsetsBase<T>`
 
-- `fn clone(self: &Self) -> DebugStrOffsetsBase<T>` — [`DebugStrOffsetsBase`](#debugstroffsetsbase)
+- <span id="debugstroffsetsbase-clone"></span>`fn clone(&self) -> DebugStrOffsetsBase<T>` — [`DebugStrOffsetsBase`](#debugstroffsetsbase)
 
-##### `impl<T: $crate::marker::Copy> Copy for DebugStrOffsetsBase<T>`
+##### `impl<T: marker::Copy> Copy for DebugStrOffsetsBase<T>`
 
-##### `impl<T: $crate::fmt::Debug> Debug for DebugStrOffsetsBase<T>`
+##### `impl<T: fmt::Debug> Debug for DebugStrOffsetsBase<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugstroffsetsbase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq> Eq for DebugStrOffsetsBase<T>`
+##### `impl<T: cmp::Eq> Eq for DebugStrOffsetsBase<T>`
 
-##### `impl<T: $crate::cmp::PartialEq> PartialEq for DebugStrOffsetsBase<T>`
+##### `impl<T: cmp::PartialEq> PartialEq for DebugStrOffsetsBase<T>`
 
-- `fn eq(self: &Self, other: &DebugStrOffsetsBase<T>) -> bool` — [`DebugStrOffsetsBase`](#debugstroffsetsbase)
+- <span id="debugstroffsetsbase-eq"></span>`fn eq(&self, other: &DebugStrOffsetsBase<T>) -> bool` — [`DebugStrOffsetsBase`](#debugstroffsetsbase)
 
 ##### `impl<T> StructuralPartialEq for DebugStrOffsetsBase<T>`
 
@@ -818,21 +2829,21 @@ An index into a set of entries in the `.debug_str_offsets` section.
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for DebugStrOffsetsIndex<T>`
+##### `impl<T: clone::Clone> Clone for DebugStrOffsetsIndex<T>`
 
-- `fn clone(self: &Self) -> DebugStrOffsetsIndex<T>` — [`DebugStrOffsetsIndex`](#debugstroffsetsindex)
+- <span id="debugstroffsetsindex-clone"></span>`fn clone(&self) -> DebugStrOffsetsIndex<T>` — [`DebugStrOffsetsIndex`](#debugstroffsetsindex)
 
-##### `impl<T: $crate::marker::Copy> Copy for DebugStrOffsetsIndex<T>`
+##### `impl<T: marker::Copy> Copy for DebugStrOffsetsIndex<T>`
 
-##### `impl<T: $crate::fmt::Debug> Debug for DebugStrOffsetsIndex<T>`
+##### `impl<T: fmt::Debug> Debug for DebugStrOffsetsIndex<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugstroffsetsindex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq> Eq for DebugStrOffsetsIndex<T>`
+##### `impl<T: cmp::Eq> Eq for DebugStrOffsetsIndex<T>`
 
-##### `impl<T: $crate::cmp::PartialEq> PartialEq for DebugStrOffsetsIndex<T>`
+##### `impl<T: cmp::PartialEq> PartialEq for DebugStrOffsetsIndex<T>`
 
-- `fn eq(self: &Self, other: &DebugStrOffsetsIndex<T>) -> bool` — [`DebugStrOffsetsIndex`](#debugstroffsetsindex)
+- <span id="debugstroffsetsindex-eq"></span>`fn eq(&self, other: &DebugStrOffsetsIndex<T>) -> bool` — [`DebugStrOffsetsIndex`](#debugstroffsetsindex)
 
 ##### `impl<T> StructuralPartialEq for DebugStrOffsetsIndex<T>`
 
@@ -846,37 +2857,37 @@ An offset into the `.debug_types` section.
 
 #### Implementations
 
-- `fn to_unit_offset<R>(self: &Self, unit: &UnitHeader<R>) -> Option<UnitOffset<T>>` — [`UnitHeader`](read/index.md), [`UnitOffset`](#unitoffset)
+- <span id="cratecommondebugtypesoffset-to-unit-offset"></span>`fn to_unit_offset<R>(&self, unit: &UnitHeader<R>) -> Option<UnitOffset<T>>` — [`UnitHeader`](read/index.md), [`UnitOffset`](#unitoffset)
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for DebugTypesOffset<T>`
+##### `impl<T: clone::Clone> Clone for DebugTypesOffset<T>`
 
-- `fn clone(self: &Self) -> DebugTypesOffset<T>` — [`DebugTypesOffset`](#debugtypesoffset)
+- <span id="debugtypesoffset-clone"></span>`fn clone(&self) -> DebugTypesOffset<T>` — [`DebugTypesOffset`](#debugtypesoffset)
 
-##### `impl<T: $crate::marker::Copy> Copy for DebugTypesOffset<T>`
+##### `impl<T: marker::Copy> Copy for DebugTypesOffset<T>`
 
-##### `impl<T: $crate::fmt::Debug> Debug for DebugTypesOffset<T>`
+##### `impl<T: fmt::Debug> Debug for DebugTypesOffset<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugtypesoffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq> Eq for DebugTypesOffset<T>`
+##### `impl<T: cmp::Eq> Eq for DebugTypesOffset<T>`
 
-##### `impl<T: $crate::hash::Hash> Hash for DebugTypesOffset<T>`
+##### `impl<T: hash::Hash> Hash for DebugTypesOffset<T>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="debugtypesoffset-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<T: $crate::cmp::Ord> Ord for DebugTypesOffset<T>`
+##### `impl<T: cmp::Ord> Ord for DebugTypesOffset<T>`
 
-- `fn cmp(self: &Self, other: &DebugTypesOffset<T>) -> $crate::cmp::Ordering` — [`DebugTypesOffset`](#debugtypesoffset)
+- <span id="debugtypesoffset-cmp"></span>`fn cmp(&self, other: &DebugTypesOffset<T>) -> cmp::Ordering` — [`DebugTypesOffset`](#debugtypesoffset)
 
-##### `impl<T: $crate::cmp::PartialEq> PartialEq for DebugTypesOffset<T>`
+##### `impl<T: cmp::PartialEq> PartialEq for DebugTypesOffset<T>`
 
-- `fn eq(self: &Self, other: &DebugTypesOffset<T>) -> bool` — [`DebugTypesOffset`](#debugtypesoffset)
+- <span id="debugtypesoffset-eq"></span>`fn eq(&self, other: &DebugTypesOffset<T>) -> bool` — [`DebugTypesOffset`](#debugtypesoffset)
 
-##### `impl<T: $crate::cmp::PartialOrd> PartialOrd for DebugTypesOffset<T>`
+##### `impl<T: cmp::PartialOrd> PartialOrd for DebugTypesOffset<T>`
 
-- `fn partial_cmp(self: &Self, other: &DebugTypesOffset<T>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DebugTypesOffset`](#debugtypesoffset)
+- <span id="debugtypesoffset-partial-cmp"></span>`fn partial_cmp(&self, other: &DebugTypesOffset<T>) -> option::Option<cmp::Ordering>` — [`DebugTypesOffset`](#debugtypesoffset)
 
 ##### `impl<T> StructuralPartialEq for DebugTypesOffset<T>`
 
@@ -892,23 +2903,23 @@ A type signature as used in the `.debug_types` section.
 
 ##### `impl Clone for DebugTypeSignature`
 
-- `fn clone(self: &Self) -> DebugTypeSignature` — [`DebugTypeSignature`](#debugtypesignature)
+- <span id="debugtypesignature-clone"></span>`fn clone(&self) -> DebugTypeSignature` — [`DebugTypeSignature`](#debugtypesignature)
 
 ##### `impl Copy for DebugTypeSignature`
 
 ##### `impl Debug for DebugTypeSignature`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugtypesignature-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for DebugTypeSignature`
 
 ##### `impl Hash for DebugTypeSignature`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="debugtypesignature-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for DebugTypeSignature`
 
-- `fn eq(self: &Self, other: &DebugTypeSignature) -> bool` — [`DebugTypeSignature`](#debugtypesignature)
+- <span id="debugtypesignature-eq"></span>`fn eq(&self, other: &DebugTypeSignature) -> bool` — [`DebugTypeSignature`](#debugtypesignature)
 
 ##### `impl StructuralPartialEq for DebugTypeSignature`
 
@@ -922,31 +2933,31 @@ An offset into the `.debug_frame` section.
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for DebugFrameOffset<T>`
+##### `impl<T: clone::Clone> Clone for DebugFrameOffset<T>`
 
-- `fn clone(self: &Self) -> DebugFrameOffset<T>` — [`DebugFrameOffset`](#debugframeoffset)
+- <span id="debugframeoffset-clone"></span>`fn clone(&self) -> DebugFrameOffset<T>` — [`DebugFrameOffset`](#debugframeoffset)
 
-##### `impl<T: $crate::marker::Copy> Copy for DebugFrameOffset<T>`
+##### `impl<T: marker::Copy> Copy for DebugFrameOffset<T>`
 
-##### `impl<T: $crate::fmt::Debug> Debug for DebugFrameOffset<T>`
+##### `impl<T: fmt::Debug> Debug for DebugFrameOffset<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugframeoffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq> Eq for DebugFrameOffset<T>`
+##### `impl<T: cmp::Eq> Eq for DebugFrameOffset<T>`
 
-##### `impl<T: $crate::hash::Hash> Hash for DebugFrameOffset<T>`
+##### `impl<T: hash::Hash> Hash for DebugFrameOffset<T>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="debugframeoffset-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<T: $crate::cmp::PartialEq> PartialEq for DebugFrameOffset<T>`
+##### `impl<T: cmp::PartialEq> PartialEq for DebugFrameOffset<T>`
 
-- `fn eq(self: &Self, other: &DebugFrameOffset<T>) -> bool` — [`DebugFrameOffset`](#debugframeoffset)
+- <span id="debugframeoffset-eq"></span>`fn eq(&self, other: &DebugFrameOffset<T>) -> bool` — [`DebugFrameOffset`](#debugframeoffset)
 
 ##### `impl<T> StructuralPartialEq for DebugFrameOffset<T>`
 
 ##### `impl<T> UnwindOffset for crate::common::DebugFrameOffset<T>`
 
-- `fn into(self: Self) -> T`
+- <span id="cratecommondebugframeoffset-into"></span>`fn into(self) -> T`
 
 ### `EhFrameOffset<T>`
 
@@ -958,31 +2969,31 @@ An offset into the `.eh_frame` section.
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for EhFrameOffset<T>`
+##### `impl<T: clone::Clone> Clone for EhFrameOffset<T>`
 
-- `fn clone(self: &Self) -> EhFrameOffset<T>` — [`EhFrameOffset`](#ehframeoffset)
+- <span id="ehframeoffset-clone"></span>`fn clone(&self) -> EhFrameOffset<T>` — [`EhFrameOffset`](#ehframeoffset)
 
-##### `impl<T: $crate::marker::Copy> Copy for EhFrameOffset<T>`
+##### `impl<T: marker::Copy> Copy for EhFrameOffset<T>`
 
-##### `impl<T: $crate::fmt::Debug> Debug for EhFrameOffset<T>`
+##### `impl<T: fmt::Debug> Debug for EhFrameOffset<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="ehframeoffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq> Eq for EhFrameOffset<T>`
+##### `impl<T: cmp::Eq> Eq for EhFrameOffset<T>`
 
-##### `impl<T: $crate::hash::Hash> Hash for EhFrameOffset<T>`
+##### `impl<T: hash::Hash> Hash for EhFrameOffset<T>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="ehframeoffset-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<T: $crate::cmp::PartialEq> PartialEq for EhFrameOffset<T>`
+##### `impl<T: cmp::PartialEq> PartialEq for EhFrameOffset<T>`
 
-- `fn eq(self: &Self, other: &EhFrameOffset<T>) -> bool` — [`EhFrameOffset`](#ehframeoffset)
+- <span id="ehframeoffset-eq"></span>`fn eq(&self, other: &EhFrameOffset<T>) -> bool` — [`EhFrameOffset`](#ehframeoffset)
 
 ##### `impl<T> StructuralPartialEq for EhFrameOffset<T>`
 
 ##### `impl<T> UnwindOffset for crate::common::EhFrameOffset<T>`
 
-- `fn into(self: Self) -> T`
+- <span id="cratecommonehframeoffset-into"></span>`fn into(self) -> T`
 
 ### `DwoId`
 
@@ -997,23 +3008,23 @@ split DWARF and linking a split compilation unit back together.
 
 ##### `impl Clone for DwoId`
 
-- `fn clone(self: &Self) -> DwoId` — [`DwoId`](#dwoid)
+- <span id="dwoid-clone"></span>`fn clone(&self) -> DwoId` — [`DwoId`](#dwoid)
 
 ##### `impl Copy for DwoId`
 
 ##### `impl Debug for DwoId`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwoid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for DwoId`
 
 ##### `impl Hash for DwoId`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwoid-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for DwoId`
 
-- `fn eq(self: &Self, other: &DwoId) -> bool` — [`DwoId`](#dwoid)
+- <span id="dwoid-eq"></span>`fn eq(&self, other: &DwoId) -> bool` — [`DwoId`](#dwoid)
 
 ##### `impl StructuralPartialEq for DwoId`
 
@@ -1030,329 +3041,21 @@ https://github.com/ARM-software/abi-aa/blob/main/aadwarf32/aadwarf32.rst).
 
 #### Implementations
 
-- `const R0: Register`
+- <span id="arm-register-name"></span>`fn register_name(register: Register) -> Option<&'static str>` — [`Register`](#register)
 
-- `const R1: Register`
-
-- `const R2: Register`
-
-- `const R3: Register`
-
-- `const R4: Register`
-
-- `const R5: Register`
-
-- `const R6: Register`
-
-- `const R7: Register`
-
-- `const R8: Register`
-
-- `const R9: Register`
-
-- `const R10: Register`
-
-- `const R11: Register`
-
-- `const R12: Register`
-
-- `const R13: Register`
-
-- `const R14: Register`
-
-- `const R15: Register`
-
-- `const WCGR0: Register`
-
-- `const WCGR1: Register`
-
-- `const WCGR2: Register`
-
-- `const WCGR3: Register`
-
-- `const WCGR4: Register`
-
-- `const WCGR5: Register`
-
-- `const WCGR6: Register`
-
-- `const WCGR7: Register`
-
-- `const WR0: Register`
-
-- `const WR1: Register`
-
-- `const WR2: Register`
-
-- `const WR3: Register`
-
-- `const WR4: Register`
-
-- `const WR5: Register`
-
-- `const WR6: Register`
-
-- `const WR7: Register`
-
-- `const WR8: Register`
-
-- `const WR9: Register`
-
-- `const WR10: Register`
-
-- `const WR11: Register`
-
-- `const WR12: Register`
-
-- `const WR13: Register`
-
-- `const WR14: Register`
-
-- `const WR15: Register`
-
-- `const SPSR: Register`
-
-- `const SPSR_FIQ: Register`
-
-- `const SPSR_IRQ: Register`
-
-- `const SPSR_ABT: Register`
-
-- `const SPSR_UND: Register`
-
-- `const SPSR_SVC: Register`
-
-- `const RA_AUTH_CODE: Register`
-
-- `const R8_USR: Register`
-
-- `const R9_USR: Register`
-
-- `const R10_USR: Register`
-
-- `const R11_USR: Register`
-
-- `const R12_USR: Register`
-
-- `const R13_USR: Register`
-
-- `const R14_USR: Register`
-
-- `const R8_FIQ: Register`
-
-- `const R9_FIQ: Register`
-
-- `const R10_FIQ: Register`
-
-- `const R11_FIQ: Register`
-
-- `const R12_FIQ: Register`
-
-- `const R13_FIQ: Register`
-
-- `const R14_FIQ: Register`
-
-- `const R13_IRQ: Register`
-
-- `const R14_IRQ: Register`
-
-- `const R13_ABT: Register`
-
-- `const R14_ABT: Register`
-
-- `const R13_UND: Register`
-
-- `const R14_UND: Register`
-
-- `const R13_SVC: Register`
-
-- `const R14_SVC: Register`
-
-- `const WC0: Register`
-
-- `const WC1: Register`
-
-- `const WC2: Register`
-
-- `const WC3: Register`
-
-- `const WC4: Register`
-
-- `const WC5: Register`
-
-- `const WC6: Register`
-
-- `const WC7: Register`
-
-- `const D0: Register`
-
-- `const D1: Register`
-
-- `const D2: Register`
-
-- `const D3: Register`
-
-- `const D4: Register`
-
-- `const D5: Register`
-
-- `const D6: Register`
-
-- `const D7: Register`
-
-- `const D8: Register`
-
-- `const D9: Register`
-
-- `const D10: Register`
-
-- `const D11: Register`
-
-- `const D12: Register`
-
-- `const D13: Register`
-
-- `const D14: Register`
-
-- `const D15: Register`
-
-- `const D16: Register`
-
-- `const D17: Register`
-
-- `const D18: Register`
-
-- `const D19: Register`
-
-- `const D20: Register`
-
-- `const D21: Register`
-
-- `const D22: Register`
-
-- `const D23: Register`
-
-- `const D24: Register`
-
-- `const D25: Register`
-
-- `const D26: Register`
-
-- `const D27: Register`
-
-- `const D28: Register`
-
-- `const D29: Register`
-
-- `const D30: Register`
-
-- `const D31: Register`
-
-- `const TPIDRURO: Register`
-
-- `const TPIDRURW: Register`
-
-- `const TPIDPR: Register`
-
-- `const HTPIDPR: Register`
-
-- `const SP: Register`
-
-- `const LR: Register`
-
-- `const PC: Register`
-
-- `const ACC0: Register`
-
-- `const ACC1: Register`
-
-- `const ACC2: Register`
-
-- `const ACC3: Register`
-
-- `const ACC4: Register`
-
-- `const ACC5: Register`
-
-- `const ACC6: Register`
-
-- `const ACC7: Register`
-
-- `const S0: Register`
-
-- `const S1: Register`
-
-- `const S2: Register`
-
-- `const S3: Register`
-
-- `const S4: Register`
-
-- `const S5: Register`
-
-- `const S6: Register`
-
-- `const S7: Register`
-
-- `const S8: Register`
-
-- `const S9: Register`
-
-- `const S10: Register`
-
-- `const S11: Register`
-
-- `const S12: Register`
-
-- `const S13: Register`
-
-- `const S14: Register`
-
-- `const S15: Register`
-
-- `const S16: Register`
-
-- `const S17: Register`
-
-- `const S18: Register`
-
-- `const S19: Register`
-
-- `const S20: Register`
-
-- `const S21: Register`
-
-- `const S22: Register`
-
-- `const S23: Register`
-
-- `const S24: Register`
-
-- `const S25: Register`
-
-- `const S26: Register`
-
-- `const S27: Register`
-
-- `const S28: Register`
-
-- `const S29: Register`
-
-- `const S30: Register`
-
-- `const S31: Register`
+- <span id="arm-name-to-register"></span>`fn name_to_register(value: &str) -> Option<Register>` — [`Register`](#register)
 
 #### Trait Implementations
 
 ##### `impl Clone for Arm`
 
-- `fn clone(self: &Self) -> Arm` — [`Arm`](#arm)
+- <span id="arm-clone"></span>`fn clone(&self) -> Arm` — [`Arm`](#arm)
 
 ##### `impl Copy for Arm`
 
 ##### `impl Debug for Arm`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="arm-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `AArch64`
 
@@ -1367,21 +3070,21 @@ https://github.com/ARM-software/abi-aa/blob/main/aadwarf64/aadwarf64.rst).
 
 #### Implementations
 
-- `fn register_name(register: Register) -> Option<&'static str>` — [`Register`](#register)
+- <span id="aarch64-register-name"></span>`fn register_name(register: Register) -> Option<&'static str>` — [`Register`](#register)
 
-- `fn name_to_register(value: &str) -> Option<Register>` — [`Register`](#register)
+- <span id="aarch64-name-to-register"></span>`fn name_to_register(value: &str) -> Option<Register>` — [`Register`](#register)
 
 #### Trait Implementations
 
 ##### `impl Clone for AArch64`
 
-- `fn clone(self: &Self) -> AArch64` — [`AArch64`](#aarch64)
+- <span id="aarch64-clone"></span>`fn clone(&self) -> AArch64` — [`AArch64`](#aarch64)
 
 ##### `impl Copy for AArch64`
 
 ##### `impl Debug for AArch64`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="aarch64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `LoongArch`
 
@@ -1395,287 +3098,21 @@ See [LoongArch ELF psABI specification](https://loongson.github.io/LoongArch-Doc
 
 #### Implementations
 
-- `const R0: Register`
+- <span id="loongarch-register-name"></span>`fn register_name(register: Register) -> Option<&'static str>` — [`Register`](#register)
 
-- `const R1: Register`
-
-- `const R2: Register`
-
-- `const R3: Register`
-
-- `const R4: Register`
-
-- `const R5: Register`
-
-- `const R6: Register`
-
-- `const R7: Register`
-
-- `const R8: Register`
-
-- `const R9: Register`
-
-- `const R10: Register`
-
-- `const R11: Register`
-
-- `const R12: Register`
-
-- `const R13: Register`
-
-- `const R14: Register`
-
-- `const R15: Register`
-
-- `const R16: Register`
-
-- `const R17: Register`
-
-- `const R18: Register`
-
-- `const R19: Register`
-
-- `const R20: Register`
-
-- `const R21: Register`
-
-- `const R22: Register`
-
-- `const R23: Register`
-
-- `const R24: Register`
-
-- `const R25: Register`
-
-- `const R26: Register`
-
-- `const R27: Register`
-
-- `const R28: Register`
-
-- `const R29: Register`
-
-- `const R30: Register`
-
-- `const R31: Register`
-
-- `const F0: Register`
-
-- `const F1: Register`
-
-- `const F2: Register`
-
-- `const F3: Register`
-
-- `const F4: Register`
-
-- `const F5: Register`
-
-- `const F6: Register`
-
-- `const F7: Register`
-
-- `const F8: Register`
-
-- `const F9: Register`
-
-- `const F10: Register`
-
-- `const F11: Register`
-
-- `const F12: Register`
-
-- `const F13: Register`
-
-- `const F14: Register`
-
-- `const F15: Register`
-
-- `const F16: Register`
-
-- `const F17: Register`
-
-- `const F18: Register`
-
-- `const F19: Register`
-
-- `const F20: Register`
-
-- `const F21: Register`
-
-- `const F22: Register`
-
-- `const F23: Register`
-
-- `const F24: Register`
-
-- `const F25: Register`
-
-- `const F26: Register`
-
-- `const F27: Register`
-
-- `const F28: Register`
-
-- `const F29: Register`
-
-- `const F30: Register`
-
-- `const F31: Register`
-
-- `const FCC0: Register`
-
-- `const FCC1: Register`
-
-- `const FCC2: Register`
-
-- `const FCC3: Register`
-
-- `const FCC4: Register`
-
-- `const FCC5: Register`
-
-- `const FCC6: Register`
-
-- `const FCC7: Register`
-
-- `const ZERO: Register`
-
-- `const RA: Register`
-
-- `const TP: Register`
-
-- `const SP: Register`
-
-- `const A0: Register`
-
-- `const A1: Register`
-
-- `const A2: Register`
-
-- `const A3: Register`
-
-- `const A4: Register`
-
-- `const A5: Register`
-
-- `const A6: Register`
-
-- `const A7: Register`
-
-- `const T0: Register`
-
-- `const T1: Register`
-
-- `const T2: Register`
-
-- `const T3: Register`
-
-- `const T4: Register`
-
-- `const T5: Register`
-
-- `const T6: Register`
-
-- `const T7: Register`
-
-- `const T8: Register`
-
-- `const FP: Register`
-
-- `const S0: Register`
-
-- `const S1: Register`
-
-- `const S2: Register`
-
-- `const S3: Register`
-
-- `const S4: Register`
-
-- `const S5: Register`
-
-- `const S6: Register`
-
-- `const S7: Register`
-
-- `const S8: Register`
-
-- `const FA0: Register`
-
-- `const FA1: Register`
-
-- `const FA2: Register`
-
-- `const FA3: Register`
-
-- `const FA4: Register`
-
-- `const FA5: Register`
-
-- `const FA6: Register`
-
-- `const FA7: Register`
-
-- `const FT0: Register`
-
-- `const FT1: Register`
-
-- `const FT2: Register`
-
-- `const FT3: Register`
-
-- `const FT4: Register`
-
-- `const FT5: Register`
-
-- `const FT6: Register`
-
-- `const FT7: Register`
-
-- `const FT8: Register`
-
-- `const FT9: Register`
-
-- `const FT10: Register`
-
-- `const FT11: Register`
-
-- `const FT12: Register`
-
-- `const FT13: Register`
-
-- `const FT14: Register`
-
-- `const FT15: Register`
-
-- `const FS0: Register`
-
-- `const FS1: Register`
-
-- `const FS2: Register`
-
-- `const FS3: Register`
-
-- `const FS4: Register`
-
-- `const FS5: Register`
-
-- `const FS6: Register`
-
-- `const FS7: Register`
+- <span id="loongarch-name-to-register"></span>`fn name_to_register(value: &str) -> Option<Register>` — [`Register`](#register)
 
 #### Trait Implementations
 
 ##### `impl Clone for LoongArch`
 
-- `fn clone(self: &Self) -> LoongArch` — [`LoongArch`](#loongarch)
+- <span id="loongarch-clone"></span>`fn clone(&self) -> LoongArch` — [`LoongArch`](#loongarch)
 
 ##### `impl Copy for LoongArch`
 
 ##### `impl Debug for LoongArch`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="loongarch-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `MIPS`
 
@@ -1689,215 +3126,21 @@ See [MIPS Details](https://en.wikibooks.org/wiki/MIPS_Assembly/MIPS_Details).
 
 #### Implementations
 
-- `const R0: Register`
+- <span id="mips-register-name"></span>`fn register_name(register: Register) -> Option<&'static str>` — [`Register`](#register)
 
-- `const R1: Register`
-
-- `const R2: Register`
-
-- `const R3: Register`
-
-- `const R4: Register`
-
-- `const R5: Register`
-
-- `const R6: Register`
-
-- `const R7: Register`
-
-- `const R8: Register`
-
-- `const R9: Register`
-
-- `const R10: Register`
-
-- `const R11: Register`
-
-- `const R12: Register`
-
-- `const R13: Register`
-
-- `const R14: Register`
-
-- `const R15: Register`
-
-- `const R16: Register`
-
-- `const R17: Register`
-
-- `const R18: Register`
-
-- `const R19: Register`
-
-- `const R20: Register`
-
-- `const R21: Register`
-
-- `const R22: Register`
-
-- `const R23: Register`
-
-- `const R24: Register`
-
-- `const R25: Register`
-
-- `const R26: Register`
-
-- `const R27: Register`
-
-- `const R28: Register`
-
-- `const R29: Register`
-
-- `const R30: Register`
-
-- `const R31: Register`
-
-- `const F0: Register`
-
-- `const F1: Register`
-
-- `const F2: Register`
-
-- `const F3: Register`
-
-- `const F4: Register`
-
-- `const F5: Register`
-
-- `const F6: Register`
-
-- `const F7: Register`
-
-- `const F8: Register`
-
-- `const F9: Register`
-
-- `const F10: Register`
-
-- `const F11: Register`
-
-- `const F12: Register`
-
-- `const F13: Register`
-
-- `const F14: Register`
-
-- `const F15: Register`
-
-- `const F16: Register`
-
-- `const F17: Register`
-
-- `const F18: Register`
-
-- `const F19: Register`
-
-- `const F20: Register`
-
-- `const F21: Register`
-
-- `const F22: Register`
-
-- `const F23: Register`
-
-- `const F24: Register`
-
-- `const F25: Register`
-
-- `const F26: Register`
-
-- `const F27: Register`
-
-- `const F28: Register`
-
-- `const F29: Register`
-
-- `const F30: Register`
-
-- `const F31: Register`
-
-- `const HI: Register`
-
-- `const LO: Register`
-
-- `const ZERO: Register`
-
-- `const AT: Register`
-
-- `const V0: Register`
-
-- `const V1: Register`
-
-- `const A0: Register`
-
-- `const A1: Register`
-
-- `const A2: Register`
-
-- `const A3: Register`
-
-- `const T0: Register`
-
-- `const T1: Register`
-
-- `const T2: Register`
-
-- `const T3: Register`
-
-- `const T4: Register`
-
-- `const T5: Register`
-
-- `const T6: Register`
-
-- `const T7: Register`
-
-- `const S0: Register`
-
-- `const S1: Register`
-
-- `const S2: Register`
-
-- `const S3: Register`
-
-- `const S4: Register`
-
-- `const S5: Register`
-
-- `const S6: Register`
-
-- `const S7: Register`
-
-- `const T8: Register`
-
-- `const T9: Register`
-
-- `const K0: Register`
-
-- `const K1: Register`
-
-- `const GP: Register`
-
-- `const SP: Register`
-
-- `const FP: Register`
-
-- `const RA: Register`
-
-- `const S8: Register`
+- <span id="mips-name-to-register"></span>`fn name_to_register(value: &str) -> Option<Register>` — [`Register`](#register)
 
 #### Trait Implementations
 
 ##### `impl Clone for MIPS`
 
-- `fn clone(self: &Self) -> MIPS` — [`MIPS`](#mips)
+- <span id="mips-clone"></span>`fn clone(&self) -> MIPS` — [`MIPS`](#mips)
 
 ##### `impl Copy for MIPS`
 
 ##### `impl Debug for MIPS`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="mips-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `RiscV`
 
@@ -1911,21 +3154,21 @@ See [RISC-V ELF psABI specification](https://github.com/riscv/riscv-elf-psabi-do
 
 #### Implementations
 
-- `fn register_name(register: Register) -> Option<&'static str>` — [`Register`](#register)
+- <span id="riscv-register-name"></span>`fn register_name(register: Register) -> Option<&'static str>` — [`Register`](#register)
 
-- `fn name_to_register(value: &str) -> Option<Register>` — [`Register`](#register)
+- <span id="riscv-name-to-register"></span>`fn name_to_register(value: &str) -> Option<Register>` — [`Register`](#register)
 
 #### Trait Implementations
 
 ##### `impl Clone for RiscV`
 
-- `fn clone(self: &Self) -> RiscV` — [`RiscV`](#riscv)
+- <span id="riscv-clone"></span>`fn clone(&self) -> RiscV` — [`RiscV`](#riscv)
 
 ##### `impl Copy for RiscV`
 
 ##### `impl Debug for RiscV`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="riscv-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `X86`
 
@@ -1939,21 +3182,21 @@ See section 2.4.2 of the [i386 psABI](https://gitlab.com/x86-psABIs/i386-ABI).
 
 #### Implementations
 
-- `fn register_name(register: Register) -> Option<&'static str>` — [`Register`](#register)
+- <span id="x86-register-name"></span>`fn register_name(register: Register) -> Option<&'static str>` — [`Register`](#register)
 
-- `fn name_to_register(value: &str) -> Option<Register>` — [`Register`](#register)
+- <span id="x86-name-to-register"></span>`fn name_to_register(value: &str) -> Option<Register>` — [`Register`](#register)
 
 #### Trait Implementations
 
 ##### `impl Clone for X86`
 
-- `fn clone(self: &Self) -> X86` — [`X86`](#x86)
+- <span id="x86-clone"></span>`fn clone(&self) -> X86` — [`X86`](#x86)
 
 ##### `impl Copy for X86`
 
 ##### `impl Debug for X86`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="x86-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `X86_64`
 
@@ -1967,21 +3210,21 @@ See section 3.6.2 of the [x86-64 psABI](https://gitlab.com/x86-psABIs/x86-64-ABI
 
 #### Implementations
 
-- `fn register_name(register: Register) -> Option<&'static str>` — [`Register`](#register)
+- <span id="x86-64-register-name"></span>`fn register_name(register: Register) -> Option<&'static str>` — [`Register`](#register)
 
-- `fn name_to_register(value: &str) -> Option<Register>` — [`Register`](#register)
+- <span id="x86-64-name-to-register"></span>`fn name_to_register(value: &str) -> Option<Register>` — [`Register`](#register)
 
 #### Trait Implementations
 
 ##### `impl Clone for X86_64`
 
-- `fn clone(self: &Self) -> X86_64` — [`X86_64`](#x86-64)
+- <span id="x86-64-clone"></span>`fn clone(&self) -> X86_64` — [`X86_64`](#x86-64)
 
 ##### `impl Copy for X86_64`
 
 ##### `impl Debug for X86_64`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="x86-64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `PowerPc64`
 
@@ -1995,239 +3238,21 @@ See [64-bit ELF ABI Specification for OpenPOWER Architecture](https://openpowerf
 
 #### Implementations
 
-- `const R0: Register`
+- <span id="powerpc64-register-name"></span>`fn register_name(register: Register) -> Option<&'static str>` — [`Register`](#register)
 
-- `const R1: Register`
-
-- `const R2: Register`
-
-- `const R3: Register`
-
-- `const R4: Register`
-
-- `const R5: Register`
-
-- `const R6: Register`
-
-- `const R7: Register`
-
-- `const R8: Register`
-
-- `const R9: Register`
-
-- `const R10: Register`
-
-- `const R11: Register`
-
-- `const R12: Register`
-
-- `const R13: Register`
-
-- `const R14: Register`
-
-- `const R15: Register`
-
-- `const R16: Register`
-
-- `const R17: Register`
-
-- `const R18: Register`
-
-- `const R19: Register`
-
-- `const R20: Register`
-
-- `const R21: Register`
-
-- `const R22: Register`
-
-- `const R23: Register`
-
-- `const R24: Register`
-
-- `const R25: Register`
-
-- `const R26: Register`
-
-- `const R27: Register`
-
-- `const R28: Register`
-
-- `const R29: Register`
-
-- `const R30: Register`
-
-- `const R31: Register`
-
-- `const F0: Register`
-
-- `const F1: Register`
-
-- `const F2: Register`
-
-- `const F3: Register`
-
-- `const F4: Register`
-
-- `const F5: Register`
-
-- `const F6: Register`
-
-- `const F7: Register`
-
-- `const F8: Register`
-
-- `const F9: Register`
-
-- `const F10: Register`
-
-- `const F11: Register`
-
-- `const F12: Register`
-
-- `const F13: Register`
-
-- `const F14: Register`
-
-- `const F15: Register`
-
-- `const F16: Register`
-
-- `const F17: Register`
-
-- `const F18: Register`
-
-- `const F19: Register`
-
-- `const F20: Register`
-
-- `const F21: Register`
-
-- `const F22: Register`
-
-- `const F23: Register`
-
-- `const F24: Register`
-
-- `const F25: Register`
-
-- `const F26: Register`
-
-- `const F27: Register`
-
-- `const F28: Register`
-
-- `const F29: Register`
-
-- `const F30: Register`
-
-- `const F31: Register`
-
-- `const LR: Register`
-
-- `const CTR: Register`
-
-- `const CR0: Register`
-
-- `const CR1: Register`
-
-- `const CR2: Register`
-
-- `const CR3: Register`
-
-- `const CR4: Register`
-
-- `const CR5: Register`
-
-- `const CR6: Register`
-
-- `const CR7: Register`
-
-- `const XER: Register`
-
-- `const VR0: Register`
-
-- `const VR1: Register`
-
-- `const VR2: Register`
-
-- `const VR3: Register`
-
-- `const VR4: Register`
-
-- `const VR5: Register`
-
-- `const VR6: Register`
-
-- `const VR7: Register`
-
-- `const VR8: Register`
-
-- `const VR9: Register`
-
-- `const VR10: Register`
-
-- `const VR11: Register`
-
-- `const VR12: Register`
-
-- `const VR13: Register`
-
-- `const VR14: Register`
-
-- `const VR15: Register`
-
-- `const VR16: Register`
-
-- `const VR17: Register`
-
-- `const VR18: Register`
-
-- `const VR19: Register`
-
-- `const VR20: Register`
-
-- `const VR21: Register`
-
-- `const VR22: Register`
-
-- `const VR23: Register`
-
-- `const VR24: Register`
-
-- `const VR25: Register`
-
-- `const VR26: Register`
-
-- `const VR27: Register`
-
-- `const VR28: Register`
-
-- `const VR29: Register`
-
-- `const VR30: Register`
-
-- `const VR31: Register`
-
-- `const VSCR: Register`
-
-- `const TFHAR: Register`
-
-- `const TFIAR: Register`
-
-- `const TEXASR: Register`
+- <span id="powerpc64-name-to-register"></span>`fn name_to_register(value: &str) -> Option<Register>` — [`Register`](#register)
 
 #### Trait Implementations
 
 ##### `impl Clone for PowerPc64`
 
-- `fn clone(self: &Self) -> PowerPc64` — [`PowerPc64`](#powerpc64)
+- <span id="powerpc64-clone"></span>`fn clone(&self) -> PowerPc64` — [`PowerPc64`](#powerpc64)
 
 ##### `impl Copy for PowerPc64`
 
 ##### `impl Debug for PowerPc64`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="powerpc64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `DwSect`
 
@@ -2243,47 +3268,47 @@ See Section 7.3.5.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwsect-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwSect`
 
-- `fn clone(self: &Self) -> DwSect` — [`DwSect`](#dwsect)
+- <span id="dwsect-clone"></span>`fn clone(&self) -> DwSect` — [`DwSect`](#dwsect)
 
 ##### `impl Copy for DwSect`
 
 ##### `impl Debug for DwSect`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwsect-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwSect`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwsect-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwSect`
 
 ##### `impl Hash for DwSect`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwsect-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwSect`
 
-- `fn cmp(self: &Self, other: &DwSect) -> $crate::cmp::Ordering` — [`DwSect`](#dwsect)
+- <span id="dwsect-cmp"></span>`fn cmp(&self, other: &DwSect) -> cmp::Ordering` — [`DwSect`](#dwsect)
 
 ##### `impl PartialEq for DwSect`
 
-- `fn eq(self: &Self, other: &DwSect) -> bool` — [`DwSect`](#dwsect)
+- <span id="dwsect-eq"></span>`fn eq(&self, other: &DwSect) -> bool` — [`DwSect`](#dwsect)
 
 ##### `impl PartialOrd for DwSect`
 
-- `fn partial_cmp(self: &Self, other: &DwSect) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwSect`](#dwsect)
+- <span id="dwsect-partial-cmp"></span>`fn partial_cmp(&self, other: &DwSect) -> option::Option<cmp::Ordering>` — [`DwSect`](#dwsect)
 
 ##### `impl StructuralPartialEq for DwSect`
 
 ##### `impl<T> ToString for DwSect`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwsect-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwSectV2`
 
@@ -2295,47 +3320,47 @@ The section type field in a `.dwp` unit index with version 2.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwsectv2-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwSectV2`
 
-- `fn clone(self: &Self) -> DwSectV2` — [`DwSectV2`](#dwsectv2)
+- <span id="dwsectv2-clone"></span>`fn clone(&self) -> DwSectV2` — [`DwSectV2`](#dwsectv2)
 
 ##### `impl Copy for DwSectV2`
 
 ##### `impl Debug for DwSectV2`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwsectv2-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwSectV2`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwsectv2-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwSectV2`
 
 ##### `impl Hash for DwSectV2`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwsectv2-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwSectV2`
 
-- `fn cmp(self: &Self, other: &DwSectV2) -> $crate::cmp::Ordering` — [`DwSectV2`](#dwsectv2)
+- <span id="dwsectv2-cmp"></span>`fn cmp(&self, other: &DwSectV2) -> cmp::Ordering` — [`DwSectV2`](#dwsectv2)
 
 ##### `impl PartialEq for DwSectV2`
 
-- `fn eq(self: &Self, other: &DwSectV2) -> bool` — [`DwSectV2`](#dwsectv2)
+- <span id="dwsectv2-eq"></span>`fn eq(&self, other: &DwSectV2) -> bool` — [`DwSectV2`](#dwsectv2)
 
 ##### `impl PartialOrd for DwSectV2`
 
-- `fn partial_cmp(self: &Self, other: &DwSectV2) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwSectV2`](#dwsectv2)
+- <span id="dwsectv2-partial-cmp"></span>`fn partial_cmp(&self, other: &DwSectV2) -> option::Option<cmp::Ordering>` — [`DwSectV2`](#dwsectv2)
 
 ##### `impl StructuralPartialEq for DwSectV2`
 
 ##### `impl<T> ToString for DwSectV2`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwsectv2-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwUt`
 
@@ -2349,47 +3374,47 @@ See Section 7.5.1, Table 7.2.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwut-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwUt`
 
-- `fn clone(self: &Self) -> DwUt` — [`DwUt`](#dwut)
+- <span id="dwut-clone"></span>`fn clone(&self) -> DwUt` — [`DwUt`](#dwut)
 
 ##### `impl Copy for DwUt`
 
 ##### `impl Debug for DwUt`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwUt`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwUt`
 
 ##### `impl Hash for DwUt`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwut-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwUt`
 
-- `fn cmp(self: &Self, other: &DwUt) -> $crate::cmp::Ordering` — [`DwUt`](#dwut)
+- <span id="dwut-cmp"></span>`fn cmp(&self, other: &DwUt) -> cmp::Ordering` — [`DwUt`](#dwut)
 
 ##### `impl PartialEq for DwUt`
 
-- `fn eq(self: &Self, other: &DwUt) -> bool` — [`DwUt`](#dwut)
+- <span id="dwut-eq"></span>`fn eq(&self, other: &DwUt) -> bool` — [`DwUt`](#dwut)
 
 ##### `impl PartialOrd for DwUt`
 
-- `fn partial_cmp(self: &Self, other: &DwUt) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwUt`](#dwut)
+- <span id="dwut-partial-cmp"></span>`fn partial_cmp(&self, other: &DwUt) -> option::Option<cmp::Ordering>` — [`DwUt`](#dwut)
 
 ##### `impl StructuralPartialEq for DwUt`
 
 ##### `impl<T> ToString for DwUt`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwut-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwCfa`
 
@@ -2407,47 +3432,47 @@ Section 7.24:
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwcfa-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwCfa`
 
-- `fn clone(self: &Self) -> DwCfa` — [`DwCfa`](#dwcfa)
+- <span id="dwcfa-clone"></span>`fn clone(&self) -> DwCfa` — [`DwCfa`](#dwcfa)
 
 ##### `impl Copy for DwCfa`
 
 ##### `impl Debug for DwCfa`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwcfa-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwCfa`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwcfa-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwCfa`
 
 ##### `impl Hash for DwCfa`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwcfa-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwCfa`
 
-- `fn cmp(self: &Self, other: &DwCfa) -> $crate::cmp::Ordering` — [`DwCfa`](#dwcfa)
+- <span id="dwcfa-cmp"></span>`fn cmp(&self, other: &DwCfa) -> cmp::Ordering` — [`DwCfa`](#dwcfa)
 
 ##### `impl PartialEq for DwCfa`
 
-- `fn eq(self: &Self, other: &DwCfa) -> bool` — [`DwCfa`](#dwcfa)
+- <span id="dwcfa-eq"></span>`fn eq(&self, other: &DwCfa) -> bool` — [`DwCfa`](#dwcfa)
 
 ##### `impl PartialOrd for DwCfa`
 
-- `fn partial_cmp(self: &Self, other: &DwCfa) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwCfa`](#dwcfa)
+- <span id="dwcfa-partial-cmp"></span>`fn partial_cmp(&self, other: &DwCfa) -> option::Option<cmp::Ordering>` — [`DwCfa`](#dwcfa)
 
 ##### `impl StructuralPartialEq for DwCfa`
 
 ##### `impl<T> ToString for DwCfa`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwcfa-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwChildren`
 
@@ -2461,47 +3486,47 @@ See Section 7.5.3, Table 7.4.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwchildren-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwChildren`
 
-- `fn clone(self: &Self) -> DwChildren` — [`DwChildren`](#dwchildren)
+- <span id="dwchildren-clone"></span>`fn clone(&self) -> DwChildren` — [`DwChildren`](#dwchildren)
 
 ##### `impl Copy for DwChildren`
 
 ##### `impl Debug for DwChildren`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwchildren-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwChildren`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwchildren-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwChildren`
 
 ##### `impl Hash for DwChildren`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwchildren-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwChildren`
 
-- `fn cmp(self: &Self, other: &DwChildren) -> $crate::cmp::Ordering` — [`DwChildren`](#dwchildren)
+- <span id="dwchildren-cmp"></span>`fn cmp(&self, other: &DwChildren) -> cmp::Ordering` — [`DwChildren`](#dwchildren)
 
 ##### `impl PartialEq for DwChildren`
 
-- `fn eq(self: &Self, other: &DwChildren) -> bool` — [`DwChildren`](#dwchildren)
+- <span id="dwchildren-eq"></span>`fn eq(&self, other: &DwChildren) -> bool` — [`DwChildren`](#dwchildren)
 
 ##### `impl PartialOrd for DwChildren`
 
-- `fn partial_cmp(self: &Self, other: &DwChildren) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwChildren`](#dwchildren)
+- <span id="dwchildren-partial-cmp"></span>`fn partial_cmp(&self, other: &DwChildren) -> option::Option<cmp::Ordering>` — [`DwChildren`](#dwchildren)
 
 ##### `impl StructuralPartialEq for DwChildren`
 
 ##### `impl<T> ToString for DwChildren`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwchildren-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwTag`
 
@@ -2515,47 +3540,47 @@ See Section 7.5.3, Table 7.3.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwtag-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwTag`
 
-- `fn clone(self: &Self) -> DwTag` — [`DwTag`](#dwtag)
+- <span id="dwtag-clone"></span>`fn clone(&self) -> DwTag` — [`DwTag`](#dwtag)
 
 ##### `impl Copy for DwTag`
 
 ##### `impl Debug for DwTag`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwtag-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwTag`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwtag-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwTag`
 
 ##### `impl Hash for DwTag`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwtag-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwTag`
 
-- `fn cmp(self: &Self, other: &DwTag) -> $crate::cmp::Ordering` — [`DwTag`](#dwtag)
+- <span id="dwtag-cmp"></span>`fn cmp(&self, other: &DwTag) -> cmp::Ordering` — [`DwTag`](#dwtag)
 
 ##### `impl PartialEq for DwTag`
 
-- `fn eq(self: &Self, other: &DwTag) -> bool` — [`DwTag`](#dwtag)
+- <span id="dwtag-eq"></span>`fn eq(&self, other: &DwTag) -> bool` — [`DwTag`](#dwtag)
 
 ##### `impl PartialOrd for DwTag`
 
-- `fn partial_cmp(self: &Self, other: &DwTag) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwTag`](#dwtag)
+- <span id="dwtag-partial-cmp"></span>`fn partial_cmp(&self, other: &DwTag) -> option::Option<cmp::Ordering>` — [`DwTag`](#dwtag)
 
 ##### `impl StructuralPartialEq for DwTag`
 
 ##### `impl<T> ToString for DwTag`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwtag-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwAt`
 
@@ -2569,47 +3594,47 @@ See Section 7.5.4, Table 7.5.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwat-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwAt`
 
-- `fn clone(self: &Self) -> DwAt` — [`DwAt`](#dwat)
+- <span id="dwat-clone"></span>`fn clone(&self) -> DwAt` — [`DwAt`](#dwat)
 
 ##### `impl Copy for DwAt`
 
 ##### `impl Debug for DwAt`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwAt`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwAt`
 
 ##### `impl Hash for DwAt`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwat-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwAt`
 
-- `fn cmp(self: &Self, other: &DwAt) -> $crate::cmp::Ordering` — [`DwAt`](#dwat)
+- <span id="dwat-cmp"></span>`fn cmp(&self, other: &DwAt) -> cmp::Ordering` — [`DwAt`](#dwat)
 
 ##### `impl PartialEq for DwAt`
 
-- `fn eq(self: &Self, other: &DwAt) -> bool` — [`DwAt`](#dwat)
+- <span id="dwat-eq"></span>`fn eq(&self, other: &DwAt) -> bool` — [`DwAt`](#dwat)
 
 ##### `impl PartialOrd for DwAt`
 
-- `fn partial_cmp(self: &Self, other: &DwAt) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwAt`](#dwat)
+- <span id="dwat-partial-cmp"></span>`fn partial_cmp(&self, other: &DwAt) -> option::Option<cmp::Ordering>` — [`DwAt`](#dwat)
 
 ##### `impl StructuralPartialEq for DwAt`
 
 ##### `impl<T> ToString for DwAt`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwat-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwForm`
 
@@ -2623,47 +3648,47 @@ See Section 7.5.6, Table 7.6.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwform-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwForm`
 
-- `fn clone(self: &Self) -> DwForm` — [`DwForm`](#dwform)
+- <span id="dwform-clone"></span>`fn clone(&self) -> DwForm` — [`DwForm`](#dwform)
 
 ##### `impl Copy for DwForm`
 
 ##### `impl Debug for DwForm`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwform-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwForm`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwform-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwForm`
 
 ##### `impl Hash for DwForm`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwform-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwForm`
 
-- `fn cmp(self: &Self, other: &DwForm) -> $crate::cmp::Ordering` — [`DwForm`](#dwform)
+- <span id="dwform-cmp"></span>`fn cmp(&self, other: &DwForm) -> cmp::Ordering` — [`DwForm`](#dwform)
 
 ##### `impl PartialEq for DwForm`
 
-- `fn eq(self: &Self, other: &DwForm) -> bool` — [`DwForm`](#dwform)
+- <span id="dwform-eq"></span>`fn eq(&self, other: &DwForm) -> bool` — [`DwForm`](#dwform)
 
 ##### `impl PartialOrd for DwForm`
 
-- `fn partial_cmp(self: &Self, other: &DwForm) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwForm`](#dwform)
+- <span id="dwform-partial-cmp"></span>`fn partial_cmp(&self, other: &DwForm) -> option::Option<cmp::Ordering>` — [`DwForm`](#dwform)
 
 ##### `impl StructuralPartialEq for DwForm`
 
 ##### `impl<T> ToString for DwForm`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwform-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwAte`
 
@@ -2677,47 +3702,47 @@ See Section 7.8, Table 7.11.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwate-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwAte`
 
-- `fn clone(self: &Self) -> DwAte` — [`DwAte`](#dwate)
+- <span id="dwate-clone"></span>`fn clone(&self) -> DwAte` — [`DwAte`](#dwate)
 
 ##### `impl Copy for DwAte`
 
 ##### `impl Debug for DwAte`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwAte`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwAte`
 
 ##### `impl Hash for DwAte`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwate-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwAte`
 
-- `fn cmp(self: &Self, other: &DwAte) -> $crate::cmp::Ordering` — [`DwAte`](#dwate)
+- <span id="dwate-cmp"></span>`fn cmp(&self, other: &DwAte) -> cmp::Ordering` — [`DwAte`](#dwate)
 
 ##### `impl PartialEq for DwAte`
 
-- `fn eq(self: &Self, other: &DwAte) -> bool` — [`DwAte`](#dwate)
+- <span id="dwate-eq"></span>`fn eq(&self, other: &DwAte) -> bool` — [`DwAte`](#dwate)
 
 ##### `impl PartialOrd for DwAte`
 
-- `fn partial_cmp(self: &Self, other: &DwAte) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwAte`](#dwate)
+- <span id="dwate-partial-cmp"></span>`fn partial_cmp(&self, other: &DwAte) -> option::Option<cmp::Ordering>` — [`DwAte`](#dwate)
 
 ##### `impl StructuralPartialEq for DwAte`
 
 ##### `impl<T> ToString for DwAte`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwate-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwLle`
 
@@ -2731,47 +3756,47 @@ See Section 7.7.3, Table 7.10.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwlle-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwLle`
 
-- `fn clone(self: &Self) -> DwLle` — [`DwLle`](#dwlle)
+- <span id="dwlle-clone"></span>`fn clone(&self) -> DwLle` — [`DwLle`](#dwlle)
 
 ##### `impl Copy for DwLle`
 
 ##### `impl Debug for DwLle`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwlle-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwLle`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwlle-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwLle`
 
 ##### `impl Hash for DwLle`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwlle-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwLle`
 
-- `fn cmp(self: &Self, other: &DwLle) -> $crate::cmp::Ordering` — [`DwLle`](#dwlle)
+- <span id="dwlle-cmp"></span>`fn cmp(&self, other: &DwLle) -> cmp::Ordering` — [`DwLle`](#dwlle)
 
 ##### `impl PartialEq for DwLle`
 
-- `fn eq(self: &Self, other: &DwLle) -> bool` — [`DwLle`](#dwlle)
+- <span id="dwlle-eq"></span>`fn eq(&self, other: &DwLle) -> bool` — [`DwLle`](#dwlle)
 
 ##### `impl PartialOrd for DwLle`
 
-- `fn partial_cmp(self: &Self, other: &DwLle) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwLle`](#dwlle)
+- <span id="dwlle-partial-cmp"></span>`fn partial_cmp(&self, other: &DwLle) -> option::Option<cmp::Ordering>` — [`DwLle`](#dwlle)
 
 ##### `impl StructuralPartialEq for DwLle`
 
 ##### `impl<T> ToString for DwLle`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwlle-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwDs`
 
@@ -2785,47 +3810,47 @@ See Section 7.8, Table 7.12.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwds-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwDs`
 
-- `fn clone(self: &Self) -> DwDs` — [`DwDs`](#dwds)
+- <span id="dwds-clone"></span>`fn clone(&self) -> DwDs` — [`DwDs`](#dwds)
 
 ##### `impl Copy for DwDs`
 
 ##### `impl Debug for DwDs`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwds-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwDs`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwds-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwDs`
 
 ##### `impl Hash for DwDs`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwds-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwDs`
 
-- `fn cmp(self: &Self, other: &DwDs) -> $crate::cmp::Ordering` — [`DwDs`](#dwds)
+- <span id="dwds-cmp"></span>`fn cmp(&self, other: &DwDs) -> cmp::Ordering` — [`DwDs`](#dwds)
 
 ##### `impl PartialEq for DwDs`
 
-- `fn eq(self: &Self, other: &DwDs) -> bool` — [`DwDs`](#dwds)
+- <span id="dwds-eq"></span>`fn eq(&self, other: &DwDs) -> bool` — [`DwDs`](#dwds)
 
 ##### `impl PartialOrd for DwDs`
 
-- `fn partial_cmp(self: &Self, other: &DwDs) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwDs`](#dwds)
+- <span id="dwds-partial-cmp"></span>`fn partial_cmp(&self, other: &DwDs) -> option::Option<cmp::Ordering>` — [`DwDs`](#dwds)
 
 ##### `impl StructuralPartialEq for DwDs`
 
 ##### `impl<T> ToString for DwDs`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwds-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwEnd`
 
@@ -2839,47 +3864,47 @@ See Section 7.8, Table 7.13.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwend-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwEnd`
 
-- `fn clone(self: &Self) -> DwEnd` — [`DwEnd`](#dwend)
+- <span id="dwend-clone"></span>`fn clone(&self) -> DwEnd` — [`DwEnd`](#dwend)
 
 ##### `impl Copy for DwEnd`
 
 ##### `impl Debug for DwEnd`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwend-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwEnd`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwend-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwEnd`
 
 ##### `impl Hash for DwEnd`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwend-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwEnd`
 
-- `fn cmp(self: &Self, other: &DwEnd) -> $crate::cmp::Ordering` — [`DwEnd`](#dwend)
+- <span id="dwend-cmp"></span>`fn cmp(&self, other: &DwEnd) -> cmp::Ordering` — [`DwEnd`](#dwend)
 
 ##### `impl PartialEq for DwEnd`
 
-- `fn eq(self: &Self, other: &DwEnd) -> bool` — [`DwEnd`](#dwend)
+- <span id="dwend-eq"></span>`fn eq(&self, other: &DwEnd) -> bool` — [`DwEnd`](#dwend)
 
 ##### `impl PartialOrd for DwEnd`
 
-- `fn partial_cmp(self: &Self, other: &DwEnd) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwEnd`](#dwend)
+- <span id="dwend-partial-cmp"></span>`fn partial_cmp(&self, other: &DwEnd) -> option::Option<cmp::Ordering>` — [`DwEnd`](#dwend)
 
 ##### `impl StructuralPartialEq for DwEnd`
 
 ##### `impl<T> ToString for DwEnd`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwend-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwAccess`
 
@@ -2893,47 +3918,47 @@ See Section 7.9, Table 7.14.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwaccess-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwAccess`
 
-- `fn clone(self: &Self) -> DwAccess` — [`DwAccess`](#dwaccess)
+- <span id="dwaccess-clone"></span>`fn clone(&self) -> DwAccess` — [`DwAccess`](#dwaccess)
 
 ##### `impl Copy for DwAccess`
 
 ##### `impl Debug for DwAccess`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwaccess-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwAccess`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwaccess-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwAccess`
 
 ##### `impl Hash for DwAccess`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwaccess-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwAccess`
 
-- `fn cmp(self: &Self, other: &DwAccess) -> $crate::cmp::Ordering` — [`DwAccess`](#dwaccess)
+- <span id="dwaccess-cmp"></span>`fn cmp(&self, other: &DwAccess) -> cmp::Ordering` — [`DwAccess`](#dwaccess)
 
 ##### `impl PartialEq for DwAccess`
 
-- `fn eq(self: &Self, other: &DwAccess) -> bool` — [`DwAccess`](#dwaccess)
+- <span id="dwaccess-eq"></span>`fn eq(&self, other: &DwAccess) -> bool` — [`DwAccess`](#dwaccess)
 
 ##### `impl PartialOrd for DwAccess`
 
-- `fn partial_cmp(self: &Self, other: &DwAccess) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwAccess`](#dwaccess)
+- <span id="dwaccess-partial-cmp"></span>`fn partial_cmp(&self, other: &DwAccess) -> option::Option<cmp::Ordering>` — [`DwAccess`](#dwaccess)
 
 ##### `impl StructuralPartialEq for DwAccess`
 
 ##### `impl<T> ToString for DwAccess`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwaccess-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwVis`
 
@@ -2947,47 +3972,47 @@ See Section 7.10, Table 7.15.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwvis-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwVis`
 
-- `fn clone(self: &Self) -> DwVis` — [`DwVis`](#dwvis)
+- <span id="dwvis-clone"></span>`fn clone(&self) -> DwVis` — [`DwVis`](#dwvis)
 
 ##### `impl Copy for DwVis`
 
 ##### `impl Debug for DwVis`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwvis-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwVis`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwvis-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwVis`
 
 ##### `impl Hash for DwVis`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwvis-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwVis`
 
-- `fn cmp(self: &Self, other: &DwVis) -> $crate::cmp::Ordering` — [`DwVis`](#dwvis)
+- <span id="dwvis-cmp"></span>`fn cmp(&self, other: &DwVis) -> cmp::Ordering` — [`DwVis`](#dwvis)
 
 ##### `impl PartialEq for DwVis`
 
-- `fn eq(self: &Self, other: &DwVis) -> bool` — [`DwVis`](#dwvis)
+- <span id="dwvis-eq"></span>`fn eq(&self, other: &DwVis) -> bool` — [`DwVis`](#dwvis)
 
 ##### `impl PartialOrd for DwVis`
 
-- `fn partial_cmp(self: &Self, other: &DwVis) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwVis`](#dwvis)
+- <span id="dwvis-partial-cmp"></span>`fn partial_cmp(&self, other: &DwVis) -> option::Option<cmp::Ordering>` — [`DwVis`](#dwvis)
 
 ##### `impl StructuralPartialEq for DwVis`
 
 ##### `impl<T> ToString for DwVis`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwvis-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwVirtuality`
 
@@ -3001,47 +4026,47 @@ See Section 7.11, Table 7.16.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwvirtuality-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwVirtuality`
 
-- `fn clone(self: &Self) -> DwVirtuality` — [`DwVirtuality`](#dwvirtuality)
+- <span id="dwvirtuality-clone"></span>`fn clone(&self) -> DwVirtuality` — [`DwVirtuality`](#dwvirtuality)
 
 ##### `impl Copy for DwVirtuality`
 
 ##### `impl Debug for DwVirtuality`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwvirtuality-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwVirtuality`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwvirtuality-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwVirtuality`
 
 ##### `impl Hash for DwVirtuality`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwvirtuality-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwVirtuality`
 
-- `fn cmp(self: &Self, other: &DwVirtuality) -> $crate::cmp::Ordering` — [`DwVirtuality`](#dwvirtuality)
+- <span id="dwvirtuality-cmp"></span>`fn cmp(&self, other: &DwVirtuality) -> cmp::Ordering` — [`DwVirtuality`](#dwvirtuality)
 
 ##### `impl PartialEq for DwVirtuality`
 
-- `fn eq(self: &Self, other: &DwVirtuality) -> bool` — [`DwVirtuality`](#dwvirtuality)
+- <span id="dwvirtuality-eq"></span>`fn eq(&self, other: &DwVirtuality) -> bool` — [`DwVirtuality`](#dwvirtuality)
 
 ##### `impl PartialOrd for DwVirtuality`
 
-- `fn partial_cmp(self: &Self, other: &DwVirtuality) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwVirtuality`](#dwvirtuality)
+- <span id="dwvirtuality-partial-cmp"></span>`fn partial_cmp(&self, other: &DwVirtuality) -> option::Option<cmp::Ordering>` — [`DwVirtuality`](#dwvirtuality)
 
 ##### `impl StructuralPartialEq for DwVirtuality`
 
 ##### `impl<T> ToString for DwVirtuality`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwvirtuality-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwLang`
 
@@ -3055,47 +4080,47 @@ See Section 7.12, Table 7.17.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwlang-default-lower-bound"></span>`fn default_lower_bound(self) -> Option<usize>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwLang`
 
-- `fn clone(self: &Self) -> DwLang` — [`DwLang`](#dwlang)
+- <span id="dwlang-clone"></span>`fn clone(&self) -> DwLang` — [`DwLang`](#dwlang)
 
 ##### `impl Copy for DwLang`
 
 ##### `impl Debug for DwLang`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwlang-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwLang`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwlang-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwLang`
 
 ##### `impl Hash for DwLang`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwlang-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwLang`
 
-- `fn cmp(self: &Self, other: &DwLang) -> $crate::cmp::Ordering` — [`DwLang`](#dwlang)
+- <span id="dwlang-cmp"></span>`fn cmp(&self, other: &DwLang) -> cmp::Ordering` — [`DwLang`](#dwlang)
 
 ##### `impl PartialEq for DwLang`
 
-- `fn eq(self: &Self, other: &DwLang) -> bool` — [`DwLang`](#dwlang)
+- <span id="dwlang-eq"></span>`fn eq(&self, other: &DwLang) -> bool` — [`DwLang`](#dwlang)
 
 ##### `impl PartialOrd for DwLang`
 
-- `fn partial_cmp(self: &Self, other: &DwLang) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwLang`](#dwlang)
+- <span id="dwlang-partial-cmp"></span>`fn partial_cmp(&self, other: &DwLang) -> option::Option<cmp::Ordering>` — [`DwLang`](#dwlang)
 
 ##### `impl StructuralPartialEq for DwLang`
 
 ##### `impl<T> ToString for DwLang`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwlang-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwAddr`
 
@@ -3110,47 +4135,47 @@ See Section 7.13.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwaddr-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwAddr`
 
-- `fn clone(self: &Self) -> DwAddr` — [`DwAddr`](#dwaddr)
+- <span id="dwaddr-clone"></span>`fn clone(&self) -> DwAddr` — [`DwAddr`](#dwaddr)
 
 ##### `impl Copy for DwAddr`
 
 ##### `impl Debug for DwAddr`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwaddr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwAddr`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwaddr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwAddr`
 
 ##### `impl Hash for DwAddr`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwaddr-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwAddr`
 
-- `fn cmp(self: &Self, other: &DwAddr) -> $crate::cmp::Ordering` — [`DwAddr`](#dwaddr)
+- <span id="dwaddr-cmp"></span>`fn cmp(&self, other: &DwAddr) -> cmp::Ordering` — [`DwAddr`](#dwaddr)
 
 ##### `impl PartialEq for DwAddr`
 
-- `fn eq(self: &Self, other: &DwAddr) -> bool` — [`DwAddr`](#dwaddr)
+- <span id="dwaddr-eq"></span>`fn eq(&self, other: &DwAddr) -> bool` — [`DwAddr`](#dwaddr)
 
 ##### `impl PartialOrd for DwAddr`
 
-- `fn partial_cmp(self: &Self, other: &DwAddr) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwAddr`](#dwaddr)
+- <span id="dwaddr-partial-cmp"></span>`fn partial_cmp(&self, other: &DwAddr) -> option::Option<cmp::Ordering>` — [`DwAddr`](#dwaddr)
 
 ##### `impl StructuralPartialEq for DwAddr`
 
 ##### `impl<T> ToString for DwAddr`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwaddr-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwId`
 
@@ -3164,47 +4189,47 @@ See Section 7.14, Table 7.18.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwid-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwId`
 
-- `fn clone(self: &Self) -> DwId` — [`DwId`](#dwid)
+- <span id="dwid-clone"></span>`fn clone(&self) -> DwId` — [`DwId`](#dwid)
 
 ##### `impl Copy for DwId`
 
 ##### `impl Debug for DwId`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwId`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwId`
 
 ##### `impl Hash for DwId`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwid-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwId`
 
-- `fn cmp(self: &Self, other: &DwId) -> $crate::cmp::Ordering` — [`DwId`](#dwid)
+- <span id="dwid-cmp"></span>`fn cmp(&self, other: &DwId) -> cmp::Ordering` — [`DwId`](#dwid)
 
 ##### `impl PartialEq for DwId`
 
-- `fn eq(self: &Self, other: &DwId) -> bool` — [`DwId`](#dwid)
+- <span id="dwid-eq"></span>`fn eq(&self, other: &DwId) -> bool` — [`DwId`](#dwid)
 
 ##### `impl PartialOrd for DwId`
 
-- `fn partial_cmp(self: &Self, other: &DwId) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwId`](#dwid)
+- <span id="dwid-partial-cmp"></span>`fn partial_cmp(&self, other: &DwId) -> option::Option<cmp::Ordering>` — [`DwId`](#dwid)
 
 ##### `impl StructuralPartialEq for DwId`
 
 ##### `impl<T> ToString for DwId`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwid-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwCc`
 
@@ -3218,47 +4243,47 @@ See Section 7.15, Table 7.19.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwcc-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwCc`
 
-- `fn clone(self: &Self) -> DwCc` — [`DwCc`](#dwcc)
+- <span id="dwcc-clone"></span>`fn clone(&self) -> DwCc` — [`DwCc`](#dwcc)
 
 ##### `impl Copy for DwCc`
 
 ##### `impl Debug for DwCc`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwcc-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwCc`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwcc-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwCc`
 
 ##### `impl Hash for DwCc`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwcc-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwCc`
 
-- `fn cmp(self: &Self, other: &DwCc) -> $crate::cmp::Ordering` — [`DwCc`](#dwcc)
+- <span id="dwcc-cmp"></span>`fn cmp(&self, other: &DwCc) -> cmp::Ordering` — [`DwCc`](#dwcc)
 
 ##### `impl PartialEq for DwCc`
 
-- `fn eq(self: &Self, other: &DwCc) -> bool` — [`DwCc`](#dwcc)
+- <span id="dwcc-eq"></span>`fn eq(&self, other: &DwCc) -> bool` — [`DwCc`](#dwcc)
 
 ##### `impl PartialOrd for DwCc`
 
-- `fn partial_cmp(self: &Self, other: &DwCc) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwCc`](#dwcc)
+- <span id="dwcc-partial-cmp"></span>`fn partial_cmp(&self, other: &DwCc) -> option::Option<cmp::Ordering>` — [`DwCc`](#dwcc)
 
 ##### `impl StructuralPartialEq for DwCc`
 
 ##### `impl<T> ToString for DwCc`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwcc-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwInl`
 
@@ -3272,47 +4297,47 @@ See Section 7.16, Table 7.20.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwinl-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwInl`
 
-- `fn clone(self: &Self) -> DwInl` — [`DwInl`](#dwinl)
+- <span id="dwinl-clone"></span>`fn clone(&self) -> DwInl` — [`DwInl`](#dwinl)
 
 ##### `impl Copy for DwInl`
 
 ##### `impl Debug for DwInl`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwinl-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwInl`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwinl-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwInl`
 
 ##### `impl Hash for DwInl`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwinl-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwInl`
 
-- `fn cmp(self: &Self, other: &DwInl) -> $crate::cmp::Ordering` — [`DwInl`](#dwinl)
+- <span id="dwinl-cmp"></span>`fn cmp(&self, other: &DwInl) -> cmp::Ordering` — [`DwInl`](#dwinl)
 
 ##### `impl PartialEq for DwInl`
 
-- `fn eq(self: &Self, other: &DwInl) -> bool` — [`DwInl`](#dwinl)
+- <span id="dwinl-eq"></span>`fn eq(&self, other: &DwInl) -> bool` — [`DwInl`](#dwinl)
 
 ##### `impl PartialOrd for DwInl`
 
-- `fn partial_cmp(self: &Self, other: &DwInl) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwInl`](#dwinl)
+- <span id="dwinl-partial-cmp"></span>`fn partial_cmp(&self, other: &DwInl) -> option::Option<cmp::Ordering>` — [`DwInl`](#dwinl)
 
 ##### `impl StructuralPartialEq for DwInl`
 
 ##### `impl<T> ToString for DwInl`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwinl-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwOrd`
 
@@ -3326,47 +4351,47 @@ See Section 7.17, Table 7.17.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dword-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwOrd`
 
-- `fn clone(self: &Self) -> DwOrd` — [`DwOrd`](#dword)
+- <span id="dword-clone"></span>`fn clone(&self) -> DwOrd` — [`DwOrd`](#dword)
 
 ##### `impl Copy for DwOrd`
 
 ##### `impl Debug for DwOrd`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dword-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwOrd`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dword-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwOrd`
 
 ##### `impl Hash for DwOrd`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dword-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwOrd`
 
-- `fn cmp(self: &Self, other: &DwOrd) -> $crate::cmp::Ordering` — [`DwOrd`](#dword)
+- <span id="dword-cmp"></span>`fn cmp(&self, other: &DwOrd) -> cmp::Ordering` — [`DwOrd`](#dword)
 
 ##### `impl PartialEq for DwOrd`
 
-- `fn eq(self: &Self, other: &DwOrd) -> bool` — [`DwOrd`](#dword)
+- <span id="dword-eq"></span>`fn eq(&self, other: &DwOrd) -> bool` — [`DwOrd`](#dword)
 
 ##### `impl PartialOrd for DwOrd`
 
-- `fn partial_cmp(self: &Self, other: &DwOrd) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwOrd`](#dword)
+- <span id="dword-partial-cmp"></span>`fn partial_cmp(&self, other: &DwOrd) -> option::Option<cmp::Ordering>` — [`DwOrd`](#dword)
 
 ##### `impl StructuralPartialEq for DwOrd`
 
 ##### `impl<T> ToString for DwOrd`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dword-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwDsc`
 
@@ -3380,47 +4405,47 @@ See Section 7.18, Table 7.22.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwdsc-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwDsc`
 
-- `fn clone(self: &Self) -> DwDsc` — [`DwDsc`](#dwdsc)
+- <span id="dwdsc-clone"></span>`fn clone(&self) -> DwDsc` — [`DwDsc`](#dwdsc)
 
 ##### `impl Copy for DwDsc`
 
 ##### `impl Debug for DwDsc`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwdsc-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwDsc`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwdsc-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwDsc`
 
 ##### `impl Hash for DwDsc`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwdsc-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwDsc`
 
-- `fn cmp(self: &Self, other: &DwDsc) -> $crate::cmp::Ordering` — [`DwDsc`](#dwdsc)
+- <span id="dwdsc-cmp"></span>`fn cmp(&self, other: &DwDsc) -> cmp::Ordering` — [`DwDsc`](#dwdsc)
 
 ##### `impl PartialEq for DwDsc`
 
-- `fn eq(self: &Self, other: &DwDsc) -> bool` — [`DwDsc`](#dwdsc)
+- <span id="dwdsc-eq"></span>`fn eq(&self, other: &DwDsc) -> bool` — [`DwDsc`](#dwdsc)
 
 ##### `impl PartialOrd for DwDsc`
 
-- `fn partial_cmp(self: &Self, other: &DwDsc) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwDsc`](#dwdsc)
+- <span id="dwdsc-partial-cmp"></span>`fn partial_cmp(&self, other: &DwDsc) -> option::Option<cmp::Ordering>` — [`DwDsc`](#dwdsc)
 
 ##### `impl StructuralPartialEq for DwDsc`
 
 ##### `impl<T> ToString for DwDsc`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwdsc-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwIdx`
 
@@ -3434,47 +4459,47 @@ See Section 7.19, Table 7.23.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwidx-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwIdx`
 
-- `fn clone(self: &Self) -> DwIdx` — [`DwIdx`](#dwidx)
+- <span id="dwidx-clone"></span>`fn clone(&self) -> DwIdx` — [`DwIdx`](#dwidx)
 
 ##### `impl Copy for DwIdx`
 
 ##### `impl Debug for DwIdx`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwidx-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwIdx`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwidx-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwIdx`
 
 ##### `impl Hash for DwIdx`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwidx-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwIdx`
 
-- `fn cmp(self: &Self, other: &DwIdx) -> $crate::cmp::Ordering` — [`DwIdx`](#dwidx)
+- <span id="dwidx-cmp"></span>`fn cmp(&self, other: &DwIdx) -> cmp::Ordering` — [`DwIdx`](#dwidx)
 
 ##### `impl PartialEq for DwIdx`
 
-- `fn eq(self: &Self, other: &DwIdx) -> bool` — [`DwIdx`](#dwidx)
+- <span id="dwidx-eq"></span>`fn eq(&self, other: &DwIdx) -> bool` — [`DwIdx`](#dwidx)
 
 ##### `impl PartialOrd for DwIdx`
 
-- `fn partial_cmp(self: &Self, other: &DwIdx) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwIdx`](#dwidx)
+- <span id="dwidx-partial-cmp"></span>`fn partial_cmp(&self, other: &DwIdx) -> option::Option<cmp::Ordering>` — [`DwIdx`](#dwidx)
 
 ##### `impl StructuralPartialEq for DwIdx`
 
 ##### `impl<T> ToString for DwIdx`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwidx-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwDefaulted`
 
@@ -3488,47 +4513,47 @@ See Section 7.20, Table 7.24.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwdefaulted-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwDefaulted`
 
-- `fn clone(self: &Self) -> DwDefaulted` — [`DwDefaulted`](#dwdefaulted)
+- <span id="dwdefaulted-clone"></span>`fn clone(&self) -> DwDefaulted` — [`DwDefaulted`](#dwdefaulted)
 
 ##### `impl Copy for DwDefaulted`
 
 ##### `impl Debug for DwDefaulted`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwdefaulted-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwDefaulted`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwdefaulted-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwDefaulted`
 
 ##### `impl Hash for DwDefaulted`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwdefaulted-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwDefaulted`
 
-- `fn cmp(self: &Self, other: &DwDefaulted) -> $crate::cmp::Ordering` — [`DwDefaulted`](#dwdefaulted)
+- <span id="dwdefaulted-cmp"></span>`fn cmp(&self, other: &DwDefaulted) -> cmp::Ordering` — [`DwDefaulted`](#dwdefaulted)
 
 ##### `impl PartialEq for DwDefaulted`
 
-- `fn eq(self: &Self, other: &DwDefaulted) -> bool` — [`DwDefaulted`](#dwdefaulted)
+- <span id="dwdefaulted-eq"></span>`fn eq(&self, other: &DwDefaulted) -> bool` — [`DwDefaulted`](#dwdefaulted)
 
 ##### `impl PartialOrd for DwDefaulted`
 
-- `fn partial_cmp(self: &Self, other: &DwDefaulted) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwDefaulted`](#dwdefaulted)
+- <span id="dwdefaulted-partial-cmp"></span>`fn partial_cmp(&self, other: &DwDefaulted) -> option::Option<cmp::Ordering>` — [`DwDefaulted`](#dwdefaulted)
 
 ##### `impl StructuralPartialEq for DwDefaulted`
 
 ##### `impl<T> ToString for DwDefaulted`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwdefaulted-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwLns`
 
@@ -3542,47 +4567,47 @@ See Section 7.22, Table 7.25.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwlns-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwLns`
 
-- `fn clone(self: &Self) -> DwLns` — [`DwLns`](#dwlns)
+- <span id="dwlns-clone"></span>`fn clone(&self) -> DwLns` — [`DwLns`](#dwlns)
 
 ##### `impl Copy for DwLns`
 
 ##### `impl Debug for DwLns`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwlns-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwLns`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwlns-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwLns`
 
 ##### `impl Hash for DwLns`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwlns-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwLns`
 
-- `fn cmp(self: &Self, other: &DwLns) -> $crate::cmp::Ordering` — [`DwLns`](#dwlns)
+- <span id="dwlns-cmp"></span>`fn cmp(&self, other: &DwLns) -> cmp::Ordering` — [`DwLns`](#dwlns)
 
 ##### `impl PartialEq for DwLns`
 
-- `fn eq(self: &Self, other: &DwLns) -> bool` — [`DwLns`](#dwlns)
+- <span id="dwlns-eq"></span>`fn eq(&self, other: &DwLns) -> bool` — [`DwLns`](#dwlns)
 
 ##### `impl PartialOrd for DwLns`
 
-- `fn partial_cmp(self: &Self, other: &DwLns) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwLns`](#dwlns)
+- <span id="dwlns-partial-cmp"></span>`fn partial_cmp(&self, other: &DwLns) -> option::Option<cmp::Ordering>` — [`DwLns`](#dwlns)
 
 ##### `impl StructuralPartialEq for DwLns`
 
 ##### `impl<T> ToString for DwLns`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwlns-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwLne`
 
@@ -3596,47 +4621,47 @@ See Section 7.22, Table 7.26.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwlne-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwLne`
 
-- `fn clone(self: &Self) -> DwLne` — [`DwLne`](#dwlne)
+- <span id="dwlne-clone"></span>`fn clone(&self) -> DwLne` — [`DwLne`](#dwlne)
 
 ##### `impl Copy for DwLne`
 
 ##### `impl Debug for DwLne`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwlne-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwLne`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwlne-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwLne`
 
 ##### `impl Hash for DwLne`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwlne-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwLne`
 
-- `fn cmp(self: &Self, other: &DwLne) -> $crate::cmp::Ordering` — [`DwLne`](#dwlne)
+- <span id="dwlne-cmp"></span>`fn cmp(&self, other: &DwLne) -> cmp::Ordering` — [`DwLne`](#dwlne)
 
 ##### `impl PartialEq for DwLne`
 
-- `fn eq(self: &Self, other: &DwLne) -> bool` — [`DwLne`](#dwlne)
+- <span id="dwlne-eq"></span>`fn eq(&self, other: &DwLne) -> bool` — [`DwLne`](#dwlne)
 
 ##### `impl PartialOrd for DwLne`
 
-- `fn partial_cmp(self: &Self, other: &DwLne) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwLne`](#dwlne)
+- <span id="dwlne-partial-cmp"></span>`fn partial_cmp(&self, other: &DwLne) -> option::Option<cmp::Ordering>` — [`DwLne`](#dwlne)
 
 ##### `impl StructuralPartialEq for DwLne`
 
 ##### `impl<T> ToString for DwLne`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwlne-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwLnct`
 
@@ -3650,47 +4675,47 @@ See Section 7.22, Table 7.27.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwlnct-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwLnct`
 
-- `fn clone(self: &Self) -> DwLnct` — [`DwLnct`](#dwlnct)
+- <span id="dwlnct-clone"></span>`fn clone(&self) -> DwLnct` — [`DwLnct`](#dwlnct)
 
 ##### `impl Copy for DwLnct`
 
 ##### `impl Debug for DwLnct`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwlnct-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwLnct`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwlnct-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwLnct`
 
 ##### `impl Hash for DwLnct`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwlnct-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwLnct`
 
-- `fn cmp(self: &Self, other: &DwLnct) -> $crate::cmp::Ordering` — [`DwLnct`](#dwlnct)
+- <span id="dwlnct-cmp"></span>`fn cmp(&self, other: &DwLnct) -> cmp::Ordering` — [`DwLnct`](#dwlnct)
 
 ##### `impl PartialEq for DwLnct`
 
-- `fn eq(self: &Self, other: &DwLnct) -> bool` — [`DwLnct`](#dwlnct)
+- <span id="dwlnct-eq"></span>`fn eq(&self, other: &DwLnct) -> bool` — [`DwLnct`](#dwlnct)
 
 ##### `impl PartialOrd for DwLnct`
 
-- `fn partial_cmp(self: &Self, other: &DwLnct) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwLnct`](#dwlnct)
+- <span id="dwlnct-partial-cmp"></span>`fn partial_cmp(&self, other: &DwLnct) -> option::Option<cmp::Ordering>` — [`DwLnct`](#dwlnct)
 
 ##### `impl StructuralPartialEq for DwLnct`
 
 ##### `impl<T> ToString for DwLnct`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwlnct-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwMacinfo`
 
@@ -3704,47 +4729,47 @@ See Section 7.22, Figure 39 for DWARF 4.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwmacinfo-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwMacinfo`
 
-- `fn clone(self: &Self) -> DwMacinfo` — [`DwMacinfo`](#dwmacinfo)
+- <span id="dwmacinfo-clone"></span>`fn clone(&self) -> DwMacinfo` — [`DwMacinfo`](#dwmacinfo)
 
 ##### `impl Copy for DwMacinfo`
 
 ##### `impl Debug for DwMacinfo`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwmacinfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwMacinfo`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwmacinfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwMacinfo`
 
 ##### `impl Hash for DwMacinfo`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwmacinfo-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwMacinfo`
 
-- `fn cmp(self: &Self, other: &DwMacinfo) -> $crate::cmp::Ordering` — [`DwMacinfo`](#dwmacinfo)
+- <span id="dwmacinfo-cmp"></span>`fn cmp(&self, other: &DwMacinfo) -> cmp::Ordering` — [`DwMacinfo`](#dwmacinfo)
 
 ##### `impl PartialEq for DwMacinfo`
 
-- `fn eq(self: &Self, other: &DwMacinfo) -> bool` — [`DwMacinfo`](#dwmacinfo)
+- <span id="dwmacinfo-eq"></span>`fn eq(&self, other: &DwMacinfo) -> bool` — [`DwMacinfo`](#dwmacinfo)
 
 ##### `impl PartialOrd for DwMacinfo`
 
-- `fn partial_cmp(self: &Self, other: &DwMacinfo) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwMacinfo`](#dwmacinfo)
+- <span id="dwmacinfo-partial-cmp"></span>`fn partial_cmp(&self, other: &DwMacinfo) -> option::Option<cmp::Ordering>` — [`DwMacinfo`](#dwmacinfo)
 
 ##### `impl StructuralPartialEq for DwMacinfo`
 
 ##### `impl<T> ToString for DwMacinfo`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwmacinfo-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwMacro`
 
@@ -3758,47 +4783,47 @@ See Section 7.23, Table 7.28 for DWARF 5.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwmacro-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwMacro`
 
-- `fn clone(self: &Self) -> DwMacro` — [`DwMacro`](#dwmacro)
+- <span id="dwmacro-clone"></span>`fn clone(&self) -> DwMacro` — [`DwMacro`](#dwmacro)
 
 ##### `impl Copy for DwMacro`
 
 ##### `impl Debug for DwMacro`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwmacro-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwMacro`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwmacro-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwMacro`
 
 ##### `impl Hash for DwMacro`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwmacro-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwMacro`
 
-- `fn cmp(self: &Self, other: &DwMacro) -> $crate::cmp::Ordering` — [`DwMacro`](#dwmacro)
+- <span id="dwmacro-cmp"></span>`fn cmp(&self, other: &DwMacro) -> cmp::Ordering` — [`DwMacro`](#dwmacro)
 
 ##### `impl PartialEq for DwMacro`
 
-- `fn eq(self: &Self, other: &DwMacro) -> bool` — [`DwMacro`](#dwmacro)
+- <span id="dwmacro-eq"></span>`fn eq(&self, other: &DwMacro) -> bool` — [`DwMacro`](#dwmacro)
 
 ##### `impl PartialOrd for DwMacro`
 
-- `fn partial_cmp(self: &Self, other: &DwMacro) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwMacro`](#dwmacro)
+- <span id="dwmacro-partial-cmp"></span>`fn partial_cmp(&self, other: &DwMacro) -> option::Option<cmp::Ordering>` — [`DwMacro`](#dwmacro)
 
 ##### `impl StructuralPartialEq for DwMacro`
 
 ##### `impl<T> ToString for DwMacro`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwmacro-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwRle`
 
@@ -3812,47 +4837,47 @@ See Section 7.25, Table 7.30.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwrle-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwRle`
 
-- `fn clone(self: &Self) -> DwRle` — [`DwRle`](#dwrle)
+- <span id="dwrle-clone"></span>`fn clone(&self) -> DwRle` — [`DwRle`](#dwrle)
 
 ##### `impl Copy for DwRle`
 
 ##### `impl Debug for DwRle`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwrle-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwRle`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwrle-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwRle`
 
 ##### `impl Hash for DwRle`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwrle-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwRle`
 
-- `fn cmp(self: &Self, other: &DwRle) -> $crate::cmp::Ordering` — [`DwRle`](#dwrle)
+- <span id="dwrle-cmp"></span>`fn cmp(&self, other: &DwRle) -> cmp::Ordering` — [`DwRle`](#dwrle)
 
 ##### `impl PartialEq for DwRle`
 
-- `fn eq(self: &Self, other: &DwRle) -> bool` — [`DwRle`](#dwrle)
+- <span id="dwrle-eq"></span>`fn eq(&self, other: &DwRle) -> bool` — [`DwRle`](#dwrle)
 
 ##### `impl PartialOrd for DwRle`
 
-- `fn partial_cmp(self: &Self, other: &DwRle) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwRle`](#dwrle)
+- <span id="dwrle-partial-cmp"></span>`fn partial_cmp(&self, other: &DwRle) -> option::Option<cmp::Ordering>` — [`DwRle`](#dwrle)
 
 ##### `impl StructuralPartialEq for DwRle`
 
 ##### `impl<T> ToString for DwRle`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwrle-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwOp`
 
@@ -3866,47 +4891,47 @@ See Section 7.7.1, Table 7.9.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- <span id="dwop-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DwOp`
 
-- `fn clone(self: &Self) -> DwOp` — [`DwOp`](#dwop)
+- <span id="dwop-clone"></span>`fn clone(&self) -> DwOp` — [`DwOp`](#dwop)
 
 ##### `impl Copy for DwOp`
 
 ##### `impl Debug for DwOp`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwop-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwOp`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwop-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwOp`
 
 ##### `impl Hash for DwOp`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwop-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwOp`
 
-- `fn cmp(self: &Self, other: &DwOp) -> $crate::cmp::Ordering` — [`DwOp`](#dwop)
+- <span id="dwop-cmp"></span>`fn cmp(&self, other: &DwOp) -> cmp::Ordering` — [`DwOp`](#dwop)
 
 ##### `impl PartialEq for DwOp`
 
-- `fn eq(self: &Self, other: &DwOp) -> bool` — [`DwOp`](#dwop)
+- <span id="dwop-eq"></span>`fn eq(&self, other: &DwOp) -> bool` — [`DwOp`](#dwop)
 
 ##### `impl PartialOrd for DwOp`
 
-- `fn partial_cmp(self: &Self, other: &DwOp) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwOp`](#dwop)
+- <span id="dwop-partial-cmp"></span>`fn partial_cmp(&self, other: &DwOp) -> option::Option<cmp::Ordering>` — [`DwOp`](#dwop)
 
 ##### `impl StructuralPartialEq for DwOp`
 
 ##### `impl<T> ToString for DwOp`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwop-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DwEhPe`
 
@@ -3924,61 +4949,53 @@ Defined in `<https://refspecs.linuxfoundation.org/LSB_4.0.0/LSB-Core-generic/LSB
 
 #### Implementations
 
-- `fn format(self: Self) -> DwEhPe` — [`DwEhPe`](#dwehpe)
-
-- `fn application(self: Self) -> DwEhPe` — [`DwEhPe`](#dwehpe)
-
-- `fn is_absent(self: Self) -> bool`
-
-- `fn is_indirect(self: Self) -> bool`
-
-- `fn is_valid_encoding(self: Self) -> bool`
+- <span id="dwehpe-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 
 ##### `impl BitOr for DwEhPe`
 
-- `type Output = DwEhPe`
+- <span id="dwehpe-output"></span>`type Output = DwEhPe`
 
-- `fn bitor(self: Self, rhs: DwEhPe) -> DwEhPe` — [`DwEhPe`](#dwehpe)
+- <span id="dwehpe-bitor"></span>`fn bitor(self, rhs: DwEhPe) -> DwEhPe` — [`DwEhPe`](#dwehpe)
 
 ##### `impl Clone for DwEhPe`
 
-- `fn clone(self: &Self) -> DwEhPe` — [`DwEhPe`](#dwehpe)
+- <span id="dwehpe-clone"></span>`fn clone(&self) -> DwEhPe` — [`DwEhPe`](#dwehpe)
 
 ##### `impl Copy for DwEhPe`
 
 ##### `impl Debug for DwEhPe`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwehpe-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DwEhPe`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="dwehpe-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Eq for DwEhPe`
 
 ##### `impl Hash for DwEhPe`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dwehpe-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for DwEhPe`
 
-- `fn cmp(self: &Self, other: &DwEhPe) -> $crate::cmp::Ordering` — [`DwEhPe`](#dwehpe)
+- <span id="dwehpe-cmp"></span>`fn cmp(&self, other: &DwEhPe) -> cmp::Ordering` — [`DwEhPe`](#dwehpe)
 
 ##### `impl PartialEq for DwEhPe`
 
-- `fn eq(self: &Self, other: &DwEhPe) -> bool` — [`DwEhPe`](#dwehpe)
+- <span id="dwehpe-eq"></span>`fn eq(&self, other: &DwEhPe) -> bool` — [`DwEhPe`](#dwehpe)
 
 ##### `impl PartialOrd for DwEhPe`
 
-- `fn partial_cmp(self: &Self, other: &DwEhPe) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwEhPe`](#dwehpe)
+- <span id="dwehpe-partial-cmp"></span>`fn partial_cmp(&self, other: &DwEhPe) -> option::Option<cmp::Ordering>` — [`DwEhPe`](#dwehpe)
 
 ##### `impl StructuralPartialEq for DwEhPe`
 
 ##### `impl<T> ToString for DwEhPe`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="dwehpe-to-string"></span>`fn to_string(&self) -> String`
 
 ### `LittleEndian`
 
@@ -3992,31 +5009,31 @@ Little endian byte order.
 
 ##### `impl Clone for LittleEndian`
 
-- `fn clone(self: &Self) -> LittleEndian` — [`LittleEndian`](#littleendian)
+- <span id="littleendian-clone"></span>`fn clone(&self) -> LittleEndian` — [`LittleEndian`](#littleendian)
 
 ##### `impl Copy for LittleEndian`
 
 ##### `impl Debug for LittleEndian`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="littleendian-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for LittleEndian`
 
-- `fn default() -> LittleEndian` — [`LittleEndian`](#littleendian)
+- <span id="littleendian-default"></span>`fn default() -> LittleEndian` — [`LittleEndian`](#littleendian)
 
 ##### `impl Endianity for LittleEndian`
 
-- `fn is_big_endian(self: Self) -> bool`
+- <span id="littleendian-is-big-endian"></span>`fn is_big_endian(self) -> bool`
 
 ##### `impl Eq for LittleEndian`
 
 ##### `impl Hash for LittleEndian`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="littleendian-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for LittleEndian`
 
-- `fn eq(self: &Self, other: &LittleEndian) -> bool` — [`LittleEndian`](#littleendian)
+- <span id="littleendian-eq"></span>`fn eq(&self, other: &LittleEndian) -> bool` — [`LittleEndian`](#littleendian)
 
 ##### `impl StructuralPartialEq for LittleEndian`
 
@@ -4032,31 +5049,31 @@ Big endian byte order.
 
 ##### `impl Clone for BigEndian`
 
-- `fn clone(self: &Self) -> BigEndian` — [`BigEndian`](#bigendian)
+- <span id="bigendian-clone"></span>`fn clone(&self) -> BigEndian` — [`BigEndian`](#bigendian)
 
 ##### `impl Copy for BigEndian`
 
 ##### `impl Debug for BigEndian`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="bigendian-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for BigEndian`
 
-- `fn default() -> BigEndian` — [`BigEndian`](#bigendian)
+- <span id="bigendian-default"></span>`fn default() -> BigEndian` — [`BigEndian`](#bigendian)
 
 ##### `impl Endianity for BigEndian`
 
-- `fn is_big_endian(self: Self) -> bool`
+- <span id="bigendian-is-big-endian"></span>`fn is_big_endian(self) -> bool`
 
 ##### `impl Eq for BigEndian`
 
 ##### `impl Hash for BigEndian`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="bigendian-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for BigEndian`
 
-- `fn eq(self: &Self, other: &BigEndian) -> bool` — [`BigEndian`](#bigendian)
+- <span id="bigendian-eq"></span>`fn eq(&self, other: &BigEndian) -> bool` — [`BigEndian`](#bigendian)
 
 ##### `impl StructuralPartialEq for BigEndian`
 
@@ -4070,37 +5087,39 @@ An offset into the current compilation or type unit.
 
 #### Implementations
 
-- `fn to_unit_section_offset<R>(self: &Self, unit: &Unit<R>) -> UnitSectionOffset<T>` — [`Unit`](read/index.md), [`UnitSectionOffset`](#unitsectionoffset)
+- <span id="cratereadunitoffset-to-debug-info-offset"></span>`fn to_debug_info_offset<R>(&self, unit: &UnitHeader<R>) -> Option<DebugInfoOffset<T>>` — [`UnitHeader`](read/index.md), [`DebugInfoOffset`](#debuginfooffset)
+
+- <span id="cratereadunitoffset-to-debug-types-offset"></span>`fn to_debug_types_offset<R>(&self, unit: &UnitHeader<R>) -> Option<DebugTypesOffset<T>>` — [`UnitHeader`](read/index.md), [`DebugTypesOffset`](#debugtypesoffset)
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for UnitOffset<T>`
+##### `impl<T: clone::Clone> Clone for UnitOffset<T>`
 
-- `fn clone(self: &Self) -> UnitOffset<T>` — [`UnitOffset`](#unitoffset)
+- <span id="unitoffset-clone"></span>`fn clone(&self) -> UnitOffset<T>` — [`UnitOffset`](#unitoffset)
 
-##### `impl<T: $crate::marker::Copy> Copy for UnitOffset<T>`
+##### `impl<T: marker::Copy> Copy for UnitOffset<T>`
 
-##### `impl<T: $crate::fmt::Debug> Debug for UnitOffset<T>`
+##### `impl<T: fmt::Debug> Debug for UnitOffset<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="unitoffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq> Eq for UnitOffset<T>`
+##### `impl<T: cmp::Eq> Eq for UnitOffset<T>`
 
-##### `impl<T: $crate::hash::Hash> Hash for UnitOffset<T>`
+##### `impl<T: hash::Hash> Hash for UnitOffset<T>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="unitoffset-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<T: $crate::cmp::Ord> Ord for UnitOffset<T>`
+##### `impl<T: cmp::Ord> Ord for UnitOffset<T>`
 
-- `fn cmp(self: &Self, other: &UnitOffset<T>) -> $crate::cmp::Ordering` — [`UnitOffset`](#unitoffset)
+- <span id="unitoffset-cmp"></span>`fn cmp(&self, other: &UnitOffset<T>) -> cmp::Ordering` — [`UnitOffset`](#unitoffset)
 
-##### `impl<T: $crate::cmp::PartialEq> PartialEq for UnitOffset<T>`
+##### `impl<T: cmp::PartialEq> PartialEq for UnitOffset<T>`
 
-- `fn eq(self: &Self, other: &UnitOffset<T>) -> bool` — [`UnitOffset`](#unitoffset)
+- <span id="unitoffset-eq"></span>`fn eq(&self, other: &UnitOffset<T>) -> bool` — [`UnitOffset`](#unitoffset)
 
-##### `impl<T: $crate::cmp::PartialOrd> PartialOrd for UnitOffset<T>`
+##### `impl<T: cmp::PartialOrd> PartialOrd for UnitOffset<T>`
 
-- `fn partial_cmp(self: &Self, other: &UnitOffset<T>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`UnitOffset`](#unitoffset)
+- <span id="unitoffset-partial-cmp"></span>`fn partial_cmp(&self, other: &UnitOffset<T>) -> option::Option<cmp::Ordering>` — [`UnitOffset`](#unitoffset)
 
 ##### `impl<T> StructuralPartialEq for UnitOffset<T>`
 
@@ -4116,35 +5135,35 @@ Indicates that storage should be allocated on heap.
 
 ##### `impl Clone for StoreOnHeap`
 
-- `fn clone(self: &Self) -> StoreOnHeap` — [`StoreOnHeap`](#storeonheap)
+- <span id="storeonheap-clone"></span>`fn clone(&self) -> StoreOnHeap` — [`StoreOnHeap`](#storeonheap)
 
 ##### `impl Copy for StoreOnHeap`
 
 ##### `impl Debug for StoreOnHeap`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="storeonheap-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for StoreOnHeap`
 
 ##### `impl<R: Reader> EvaluationStorage for crate::read::StoreOnHeap`
 
-- `type Stack = Vec<Value>`
+- <span id="cratereadstoreonheap-stack"></span>`type Stack = Vec<Value>`
 
-- `type ExpressionStack = Vec<(R, R)>`
+- <span id="cratereadstoreonheap-expressionstack"></span>`type ExpressionStack = Vec<(R, R)>`
 
-- `type Result = Vec<Piece<R>>`
+- <span id="cratereadstoreonheap-result"></span>`type Result = Vec<Piece<R>>`
 
 ##### `impl PartialEq for StoreOnHeap`
 
-- `fn eq(self: &Self, other: &StoreOnHeap) -> bool` — [`StoreOnHeap`](#storeonheap)
+- <span id="storeonheap-eq"></span>`fn eq(&self, other: &StoreOnHeap) -> bool` — [`StoreOnHeap`](#storeonheap)
 
 ##### `impl StructuralPartialEq for StoreOnHeap`
 
 ##### `impl<T: ReaderOffset> UnwindContextStorage for crate::read::StoreOnHeap`
 
-- `type Rules = [(Register, RegisterRule<T>); 192]`
+- <span id="cratereadstoreonheap-rules"></span>`type Rules = [(Register, RegisterRule<T>); 192]`
 
-- `type Stack = Box<[UnwindTableRow<T>; 4]>`
+- <span id="cratereadstoreonheap-stack"></span>`type Stack = Box<[UnwindTableRow<T>; 4]>`
 
 ## Enums
 
@@ -4171,31 +5190,31 @@ Whether the format of a compilation unit is 32- or 64-bit.
 
 #### Implementations
 
-- `fn initial_length_size(self: Self) -> u8`
+- <span id="format-initial-length-size"></span>`fn initial_length_size(self) -> u8`
 
-- `fn word_size(self: Self) -> u8`
+- <span id="format-word-size"></span>`fn word_size(self) -> u8`
 
 #### Trait Implementations
 
 ##### `impl Clone for Format`
 
-- `fn clone(self: &Self) -> Format` — [`Format`](#format)
+- <span id="format-clone"></span>`fn clone(&self) -> Format` — [`Format`](#format)
 
 ##### `impl Copy for Format`
 
 ##### `impl Debug for Format`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="format-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Format`
 
 ##### `impl Hash for Format`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="format-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Format`
 
-- `fn eq(self: &Self, other: &Format) -> bool` — [`Format`](#format)
+- <span id="format-eq"></span>`fn eq(&self, other: &Format) -> bool` — [`Format`](#format)
 
 ##### `impl StructuralPartialEq for Format`
 
@@ -4224,19 +5243,19 @@ Which vendor extensions to support.
 
 ##### `impl Clone for Vendor`
 
-- `fn clone(self: &Self) -> Vendor` — [`Vendor`](#vendor)
+- <span id="vendor-clone"></span>`fn clone(&self) -> Vendor` — [`Vendor`](#vendor)
 
 ##### `impl Copy for Vendor`
 
 ##### `impl Debug for Vendor`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="vendor-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Vendor`
 
 ##### `impl PartialEq for Vendor`
 
-- `fn eq(self: &Self, other: &Vendor) -> bool` — [`Vendor`](#vendor)
+- <span id="vendor-eq"></span>`fn eq(&self, other: &Vendor) -> bool` — [`Vendor`](#vendor)
 
 ##### `impl StructuralPartialEq for Vendor`
 
@@ -4263,39 +5282,39 @@ An offset into the `.debug_info` or `.debug_types` sections.
 
 #### Implementations
 
-- `fn as_debug_info_offset(self: &Self) -> Option<DebugInfoOffset<T>>` — [`DebugInfoOffset`](#debuginfooffset)
+- <span id="unitsectionoffset-as-debug-info-offset"></span>`fn as_debug_info_offset(&self) -> Option<DebugInfoOffset<T>>` — [`DebugInfoOffset`](#debuginfooffset)
 
-- `fn as_debug_types_offset(self: &Self) -> Option<DebugTypesOffset<T>>` — [`DebugTypesOffset`](#debugtypesoffset)
+- <span id="unitsectionoffset-as-debug-types-offset"></span>`fn as_debug_types_offset(&self) -> Option<DebugTypesOffset<T>>` — [`DebugTypesOffset`](#debugtypesoffset)
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for UnitSectionOffset<T>`
+##### `impl<T: clone::Clone> Clone for UnitSectionOffset<T>`
 
-- `fn clone(self: &Self) -> UnitSectionOffset<T>` — [`UnitSectionOffset`](#unitsectionoffset)
+- <span id="unitsectionoffset-clone"></span>`fn clone(&self) -> UnitSectionOffset<T>` — [`UnitSectionOffset`](#unitsectionoffset)
 
-##### `impl<T: $crate::marker::Copy> Copy for UnitSectionOffset<T>`
+##### `impl<T: marker::Copy> Copy for UnitSectionOffset<T>`
 
-##### `impl<T: $crate::fmt::Debug> Debug for UnitSectionOffset<T>`
+##### `impl<T: fmt::Debug> Debug for UnitSectionOffset<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="unitsectionoffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq> Eq for UnitSectionOffset<T>`
+##### `impl<T: cmp::Eq> Eq for UnitSectionOffset<T>`
 
-##### `impl<T: $crate::hash::Hash> Hash for UnitSectionOffset<T>`
+##### `impl<T: hash::Hash> Hash for UnitSectionOffset<T>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="unitsectionoffset-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<T: $crate::cmp::Ord> Ord for UnitSectionOffset<T>`
+##### `impl<T: cmp::Ord> Ord for UnitSectionOffset<T>`
 
-- `fn cmp(self: &Self, other: &UnitSectionOffset<T>) -> $crate::cmp::Ordering` — [`UnitSectionOffset`](#unitsectionoffset)
+- <span id="unitsectionoffset-cmp"></span>`fn cmp(&self, other: &UnitSectionOffset<T>) -> cmp::Ordering` — [`UnitSectionOffset`](#unitsectionoffset)
 
-##### `impl<T: $crate::cmp::PartialEq> PartialEq for UnitSectionOffset<T>`
+##### `impl<T: cmp::PartialEq> PartialEq for UnitSectionOffset<T>`
 
-- `fn eq(self: &Self, other: &UnitSectionOffset<T>) -> bool` — [`UnitSectionOffset`](#unitsectionoffset)
+- <span id="unitsectionoffset-eq"></span>`fn eq(&self, other: &UnitSectionOffset<T>) -> bool` — [`UnitSectionOffset`](#unitsectionoffset)
 
-##### `impl<T: $crate::cmp::PartialOrd> PartialOrd for UnitSectionOffset<T>`
+##### `impl<T: cmp::PartialOrd> PartialOrd for UnitSectionOffset<T>`
 
-- `fn partial_cmp(self: &Self, other: &UnitSectionOffset<T>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`UnitSectionOffset`](#unitsectionoffset)
+- <span id="unitsectionoffset-partial-cmp"></span>`fn partial_cmp(&self, other: &UnitSectionOffset<T>) -> option::Option<cmp::Ordering>` — [`UnitSectionOffset`](#unitsectionoffset)
 
 ##### `impl<T> StructuralPartialEq for UnitSectionOffset<T>`
 
@@ -4422,43 +5441,43 @@ An identifier for a DWARF section.
 
 #### Implementations
 
-- `fn name(self: Self) -> &'static str`
+- <span id="sectionid-name"></span>`fn name(self) -> &'static str`
 
-- `fn dwo_name(self: Self) -> Option<&'static str>`
+- <span id="sectionid-dwo-name"></span>`fn dwo_name(self) -> Option<&'static str>`
 
-- `fn xcoff_name(self: Self) -> Option<&'static str>`
+- <span id="sectionid-xcoff-name"></span>`fn xcoff_name(self) -> Option<&'static str>`
 
-- `fn is_string(self: Self) -> bool`
+- <span id="sectionid-is-string"></span>`fn is_string(self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for SectionId`
 
-- `fn clone(self: &Self) -> SectionId` — [`SectionId`](#sectionid)
+- <span id="sectionid-clone"></span>`fn clone(&self) -> SectionId` — [`SectionId`](#sectionid)
 
 ##### `impl Copy for SectionId`
 
 ##### `impl Debug for SectionId`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sectionid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for SectionId`
 
 ##### `impl Hash for SectionId`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="sectionid-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for SectionId`
 
-- `fn cmp(self: &Self, other: &SectionId) -> $crate::cmp::Ordering` — [`SectionId`](#sectionid)
+- <span id="sectionid-cmp"></span>`fn cmp(&self, other: &SectionId) -> cmp::Ordering` — [`SectionId`](#sectionid)
 
 ##### `impl PartialEq for SectionId`
 
-- `fn eq(self: &Self, other: &SectionId) -> bool` — [`SectionId`](#sectionid)
+- <span id="sectionid-eq"></span>`fn eq(&self, other: &SectionId) -> bool` — [`SectionId`](#sectionid)
 
 ##### `impl PartialOrd for SectionId`
 
-- `fn partial_cmp(self: &Self, other: &SectionId) -> $crate::option::Option<$crate::cmp::Ordering>` — [`SectionId`](#sectionid)
+- <span id="sectionid-partial-cmp"></span>`fn partial_cmp(&self, other: &SectionId) -> option::Option<cmp::Ordering>` — [`SectionId`](#sectionid)
 
 ##### `impl StructuralPartialEq for SectionId`
 
@@ -4488,23 +5507,23 @@ which files DWARF sections should be loaded from.
 
 ##### `impl Clone for DwarfFileType`
 
-- `fn clone(self: &Self) -> DwarfFileType` — [`DwarfFileType`](#dwarffiletype)
+- <span id="dwarffiletype-clone"></span>`fn clone(&self) -> DwarfFileType` — [`DwarfFileType`](#dwarffiletype)
 
 ##### `impl Copy for DwarfFileType`
 
 ##### `impl Debug for DwarfFileType`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwarffiletype-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for DwarfFileType`
 
-- `fn default() -> Self`
+- <span id="dwarffiletype-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for DwarfFileType`
 
 ##### `impl PartialEq for DwarfFileType`
 
-- `fn eq(self: &Self, other: &DwarfFileType) -> bool` — [`DwarfFileType`](#dwarffiletype)
+- <span id="dwarffiletype-eq"></span>`fn eq(&self, other: &DwarfFileType) -> bool` — [`DwarfFileType`](#dwarffiletype)
 
 ##### `impl StructuralPartialEq for DwarfFileType`
 
@@ -4533,31 +5552,31 @@ Byte order that is selectable at runtime.
 
 ##### `impl Clone for RunTimeEndian`
 
-- `fn clone(self: &Self) -> RunTimeEndian` — [`RunTimeEndian`](#runtimeendian)
+- <span id="runtimeendian-clone"></span>`fn clone(&self) -> RunTimeEndian` — [`RunTimeEndian`](#runtimeendian)
 
 ##### `impl Copy for RunTimeEndian`
 
 ##### `impl Debug for RunTimeEndian`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="runtimeendian-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for RunTimeEndian`
 
-- `fn default() -> RunTimeEndian` — [`RunTimeEndian`](#runtimeendian)
+- <span id="runtimeendian-default"></span>`fn default() -> RunTimeEndian` — [`RunTimeEndian`](#runtimeendian)
 
 ##### `impl Endianity for RunTimeEndian`
 
-- `fn is_big_endian(self: Self) -> bool`
+- <span id="runtimeendian-is-big-endian"></span>`fn is_big_endian(self) -> bool`
 
 ##### `impl Eq for RunTimeEndian`
 
 ##### `impl Hash for RunTimeEndian`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="runtimeendian-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for RunTimeEndian`
 
-- `fn eq(self: &Self, other: &RunTimeEndian) -> bool` — [`RunTimeEndian`](#runtimeendian)
+- <span id="runtimeendian-eq"></span>`fn eq(&self, other: &RunTimeEndian) -> bool` — [`RunTimeEndian`](#runtimeendian)
 
 ##### `impl StructuralPartialEq for RunTimeEndian`
 
@@ -4999,35 +6018,35 @@ An error that occurred when parsing.
 
 #### Implementations
 
-- `fn description(self: &Self) -> &str`
+- <span id="error-description"></span>`fn description(&self) -> &str`
 
 #### Trait Implementations
 
 ##### `impl Clone for Error`
 
-- `fn clone(self: &Self) -> Error` — [`Error`](#error)
+- <span id="error-clone"></span>`fn clone(&self) -> Error` — [`Error`](#error)
 
 ##### `impl Copy for Error`
 
 ##### `impl Debug for Error`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="error-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Error`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> ::core::result::Result<(), fmt::Error>`
+- <span id="error-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> ::core::result::Result<(), fmt::Error>`
 
 ##### `impl Eq for Error`
 
 ##### `impl PartialEq for Error`
 
-- `fn eq(self: &Self, other: &Error) -> bool` — [`Error`](#error)
+- <span id="error-eq"></span>`fn eq(&self, other: &Error) -> bool` — [`Error`](#error)
 
 ##### `impl StructuralPartialEq for Error`
 
 ##### `impl<T> ToString for Error`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="error-to-string"></span>`fn to_string(&self) -> String`
 
 ## Traits
 
@@ -5041,59 +6060,59 @@ A trait describing the endianity of some buffer.
 
 #### Required Methods
 
-- `fn is_big_endian(self: Self) -> bool`
+- `fn is_big_endian(self) -> bool`
 
   Return true for big endian byte order.
 
-- `fn is_little_endian(self: Self) -> bool`
+- `fn is_little_endian(self) -> bool`
 
   Return true for little endian byte order.
 
-- `fn read_u16(self: Self, buf: &[u8]) -> u16`
+- `fn read_u16(self, buf: &[u8]) -> u16`
 
   Reads an unsigned 16 bit integer from `buf`.
 
-- `fn read_u32(self: Self, buf: &[u8]) -> u32`
+- `fn read_u32(self, buf: &[u8]) -> u32`
 
   Reads an unsigned 32 bit integer from `buf`.
 
-- `fn read_u64(self: Self, buf: &[u8]) -> u64`
+- `fn read_u64(self, buf: &[u8]) -> u64`
 
   Reads an unsigned 64 bit integer from `buf`.
 
-- `fn read_uint(self: &mut Self, buf: &[u8]) -> u64`
+- `fn read_uint(&mut self, buf: &[u8]) -> u64`
 
   Read an unsigned n-bytes integer u64.
 
-- `fn read_i16(self: Self, buf: &[u8]) -> i16`
+- `fn read_i16(self, buf: &[u8]) -> i16`
 
   Reads a signed 16 bit integer from `buf`.
 
-- `fn read_i32(self: Self, buf: &[u8]) -> i32`
+- `fn read_i32(self, buf: &[u8]) -> i32`
 
   Reads a signed 32 bit integer from `buf`.
 
-- `fn read_i64(self: Self, buf: &[u8]) -> i64`
+- `fn read_i64(self, buf: &[u8]) -> i64`
 
   Reads a signed 64 bit integer from `buf`.
 
-- `fn read_f32(self: Self, buf: &[u8]) -> f32`
+- `fn read_f32(self, buf: &[u8]) -> f32`
 
   Reads a 32 bit floating point number from `buf`.
 
-- `fn read_f64(self: Self, buf: &[u8]) -> f64`
+- `fn read_f64(self, buf: &[u8]) -> f64`
 
   Reads a 32 bit floating point number from `buf`.
 
-- `fn write_u16(self: Self, buf: &mut [u8], n: u16)`
+- `fn write_u16(self, buf: &mut [u8], n: u16)`
 
   Writes an unsigned 16 bit integer `n` to `buf`.
 
-- `fn write_u32(self: Self, buf: &mut [u8], n: u32)`
+- `fn write_u32(self, buf: &mut [u8], n: u32)`
 
   Writes an unsigned 32 bit integer `n` to `buf`.
 
-- `fn write_u64(self: Self, buf: &mut [u8], n: u64)`
+- `fn write_u64(self, buf: &mut [u8], n: u64)`
 
   Writes an unsigned 64 bit integer `n` to `buf`.
 
@@ -5138,15 +6157,15 @@ let debug_info: DebugInfo<_> = Section::load(loader).unwrap();
 
   Try to load the section using the given loader function.
 
-- `fn reader(self: &Self) -> &R`
+- `fn reader(&self) -> &R`
 
   Returns the `Reader` for this section.
 
-- `fn dwp_range(self: &Self, offset: u32, size: u32) -> Result<Self>`
+- `fn dwp_range(&self, offset: u32, size: u32) -> Result<Self>`
 
   Returns the subrange of the section that is the contribution of
 
-- `fn lookup_offset_id(self: &Self, id: ReaderOffsetId) -> Option<(SectionId, <R as >::Offset)>`
+- `fn lookup_offset_id(&self, id: ReaderOffsetId) -> Option<(SectionId, <R as >::Offset)>`
 
   Returns the `Reader` for this section.
 

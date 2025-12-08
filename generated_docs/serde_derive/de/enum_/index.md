@@ -4,6 +4,14 @@
 
 # Module `enum_`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`deserialize`](#deserialize) | fn | Generates `Deserialize::deserialize` body for an `enum Enum {...}` |
+| [`deserialize_homogeneous_enum`](#deserialize_homogeneous_enum) | fn |  |
+| [`prepare_enum_variant_enum`](#prepare_enum_variant_enum) | fn |  |
+
 ## Functions
 
 ### `deserialize`

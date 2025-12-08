@@ -4,6 +4,13 @@
 
 # Module `guard`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Guard`](#guard) | struct | A guard that keeps the current thread pinned. |
+| [`unprotected`](#unprotected) | fn | Returns a reference to a dummy guard that allows unprotected access to [`Atomic`]s. |
+
 ## Structs
 
 ### `Guard`
@@ -76,43 +83,43 @@ assert!(!epoch::is_pinned());
 
 #### Implementations
 
-- `fn defer<F, R>(self: &Self, f: F)`
+- <span id="guard-defer"></span>`fn defer<F, R>(&self, f: F)`
 
-- `unsafe fn defer_unchecked<F, R>(self: &Self, f: F)`
+- <span id="guard-defer-unchecked"></span>`unsafe fn defer_unchecked<F, R>(&self, f: F)`
 
-- `unsafe fn defer_destroy<T>(self: &Self, ptr: Shared<'_, T>)` — [`Shared`](../index.md)
+- <span id="guard-defer-destroy"></span>`unsafe fn defer_destroy<T>(&self, ptr: Shared<'_, T>)` — [`Shared`](../index.md)
 
-- `fn flush(self: &Self)`
+- <span id="guard-flush"></span>`fn flush(&self)`
 
-- `fn repin(self: &mut Self)`
+- <span id="guard-repin"></span>`fn repin(&mut self)`
 
-- `fn repin_after<F, R>(self: &mut Self, f: F) -> R`
+- <span id="guard-repin-after"></span>`fn repin_after<F, R>(&mut self, f: F) -> R`
 
-- `fn collector(self: &Self) -> Option<&Collector>` — [`Collector`](../index.md)
+- <span id="guard-collector"></span>`fn collector(&self) -> Option<&Collector>` — [`Collector`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Debug for Guard`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="guard-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Drop for Guard`
 
-- `fn drop(self: &mut Self)`
+- <span id="guard-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<T> Pointable for Guard`
 
-- `const ALIGN: usize`
+- <span id="guard-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="guard-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
+- <span id="guard-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="guard-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="guard-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="guard-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ## Functions
 

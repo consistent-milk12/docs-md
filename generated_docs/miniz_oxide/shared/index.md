@@ -4,6 +4,12 @@
 
 # Module `shared`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`HUFFMAN_LENGTH_ORDER`](#huffman_length_order) | const |  |
+
 ## Constants
 
 ### `HUFFMAN_LENGTH_ORDER`

@@ -341,6 +341,42 @@ impl CrateSource {
         })
     }
 
+    /// Look up an enum by its full path.
+    #[must_use]
+    pub fn find_enum(&self, path: &str) -> Option<&EnumInfo> {
+        self.enums.iter().find(|e| {
+            let full_path = format!("{}::{}", e.module_path, e.name);
+            full_path == path
+        })
+    }
+
+    /// Look up a trait by its full path.
+    #[must_use]
+    pub fn find_trait(&self, path: &str) -> Option<&TraitInfo> {
+        self.traits.iter().find(|t| {
+            let full_path = format!("{}::{}", t.module_path, t.name);
+            full_path == path
+        })
+    }
+
+    /// Look up a constant by its full path.
+    #[must_use]
+    pub fn find_const(&self, path: &str) -> Option<&ConstInfo> {
+        self.constants.iter().find(|c| {
+            let full_path = format!("{}::{}", c.module_path, c.name);
+            full_path == path
+        })
+    }
+
+    /// Look up a static by its full path.
+    #[must_use]
+    pub fn find_static(&self, path: &str) -> Option<&StaticInfo> {
+        self.statics.iter().find(|s| {
+            let full_path = format!("{}::{}", s.module_path, s.name);
+            full_path == path
+        })
+    }
+
     /// Get all private items (functions, structs, etc.) in a module.
     #[must_use]
     pub fn private_items_in_module(&self, module_path: &str) -> Vec<PrivateItem<'_>> {

@@ -143,6 +143,16 @@ character or string, in order of decreasing precedence. These may be tweaked in 
 
 Canonically equivalent strings are assigned the same width (CJK and non-CJK).
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`tables`](#tables) | mod |  |
+| [`private`](#private) | mod |  |
+| [`UnicodeWidthChar`](#unicodewidthchar) | trait | Methods for determining displayed width of Unicode characters. |
+| [`UnicodeWidthStr`](#unicodewidthstr) | trait | Methods for determining displayed width of Unicode strings. |
+| [`unnamed`](#unnamed) | const |  |
+
 ## Modules
 
 - [`tables`](tables/index.md) - 
@@ -160,11 +170,11 @@ Methods for determining displayed width of Unicode characters.
 
 #### Required Methods
 
-- `fn width(self: Self) -> Option<usize>`
+- `fn width(self) -> Option<usize>`
 
   Returns the character's displayed width in columns, or `None` if the
 
-- `fn width_cjk(self: Self) -> Option<usize>`
+- `fn width_cjk(self) -> Option<usize>`
 
   Returns the character's displayed width in columns, or `None` if the
 
@@ -178,11 +188,11 @@ Methods for determining displayed width of Unicode strings.
 
 #### Required Methods
 
-- `fn width(self: &Self) -> usize`
+- `fn width(&self) -> usize`
 
   Returns the string's displayed width in columns.
 
-- `fn width_cjk(self: &Self) -> usize`
+- `fn width_cjk(&self) -> usize`
 
   Returns the string's displayed width in columns.
 

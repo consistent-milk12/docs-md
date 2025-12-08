@@ -4,6 +4,13 @@
 
 # Module `d2s_full_table`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`DOUBLE_POW5_INV_TABLE_SIZE`](#double_pow5_inv_table_size) | const |  |
+| [`DOUBLE_POW5_TABLE_SIZE`](#double_pow5_table_size) | const |  |
+
 ## Constants
 
 ### `DOUBLE_POW5_INV_TABLE_SIZE`

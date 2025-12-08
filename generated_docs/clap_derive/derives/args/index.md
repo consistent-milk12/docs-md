@@ -4,6 +4,19 @@
 
 # Module `args`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`derive_args`](#derive_args) | fn |  |
+| [`gen_for_struct`](#gen_for_struct) | fn |  |
+| [`gen_augment`](#gen_augment) | fn | Generate a block of code to add arguments/subcommands corresponding to |
+| [`gen_constructor`](#gen_constructor) | fn |  |
+| [`gen_updater`](#gen_updater) | fn |  |
+| [`gen_parsers`](#gen_parsers) | fn |  |
+| [`raw_deprecated`](#raw_deprecated) | fn |  |
+| [`collect_args_fields`](#collect_args_fields) | fn |  |
+
 ## Functions
 
 ### `derive_args`

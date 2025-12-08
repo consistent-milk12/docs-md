@@ -8,6 +8,14 @@ Package up unwind recovery. Note that if you are in some sensitive
 place, you can use the `AbortIfPanic` helper to protect against
 accidental panics in the rayon code itself.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`AbortIfPanic`](#abortifpanic) | struct |  |
+| [`halt_unwinding`](#halt_unwinding) | fn | Executes `f` and captures any panic, translating that panic into a |
+| [`resume_unwinding`](#resume_unwinding) | fn |  |
+
 ## Structs
 
 ### `AbortIfPanic`
@@ -20,21 +28,21 @@ struct AbortIfPanic;
 
 ##### `impl Drop for AbortIfPanic`
 
-- `fn drop(self: &mut Self)`
+- <span id="abortifpanic-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<T> Pointable for AbortIfPanic`
 
-- `const ALIGN: usize`
+- <span id="abortifpanic-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="abortifpanic-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="abortifpanic-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="abortifpanic-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="abortifpanic-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="abortifpanic-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ## Functions
 

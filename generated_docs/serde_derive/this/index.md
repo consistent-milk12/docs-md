@@ -4,6 +4,13 @@
 
 # Module `this`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`this_type`](#this_type) | fn |  |
+| [`this_value`](#this_value) | fn |  |
+
 ## Functions
 
 ### `this_type`

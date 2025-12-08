@@ -4,6 +4,12 @@
 
 # Module `value_source`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ValueSource`](#valuesource) | enum | Origin of the argument's value |
+
 ## Enums
 
 ### `ValueSource`
@@ -34,33 +40,33 @@ Origin of the argument's value
 
 #### Implementations
 
-- `fn is_explicit(self: Self) -> bool`
+- <span id="valuesource-is-explicit"></span>`fn is_explicit(self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for ValueSource`
 
-- `fn clone(self: &Self) -> ValueSource` — [`ValueSource`](../../index.md)
+- <span id="valuesource-clone"></span>`fn clone(&self) -> ValueSource` — [`ValueSource`](../../index.md)
 
 ##### `impl Copy for ValueSource`
 
 ##### `impl Debug for ValueSource`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="valuesource-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ValueSource`
 
 ##### `impl Ord for ValueSource`
 
-- `fn cmp(self: &Self, other: &ValueSource) -> $crate::cmp::Ordering` — [`ValueSource`](../../index.md)
+- <span id="valuesource-cmp"></span>`fn cmp(&self, other: &ValueSource) -> cmp::Ordering` — [`ValueSource`](../../index.md)
 
 ##### `impl PartialEq for ValueSource`
 
-- `fn eq(self: &Self, other: &ValueSource) -> bool` — [`ValueSource`](../../index.md)
+- <span id="valuesource-eq"></span>`fn eq(&self, other: &ValueSource) -> bool` — [`ValueSource`](../../index.md)
 
 ##### `impl PartialOrd for ValueSource`
 
-- `fn partial_cmp(self: &Self, other: &ValueSource) -> $crate::option::Option<$crate::cmp::Ordering>` — [`ValueSource`](../../index.md)
+- <span id="valuesource-partial-cmp"></span>`fn partial_cmp(&self, other: &ValueSource) -> option::Option<cmp::Ordering>` — [`ValueSource`](../../index.md)
 
 ##### `impl StructuralPartialEq for ValueSource`
 

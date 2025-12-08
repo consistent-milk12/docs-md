@@ -4,6 +4,12 @@
 
 # Module `error`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Error`](#error) | enum | An error that occurred during parsing or compiling a regular expression. |
+
 ## Enums
 
 ### `Error`
@@ -48,33 +54,33 @@ An error that occurred during parsing or compiling a regular expression.
 
 #### Implementations
 
-- `fn from_meta_build_error(err: meta::BuildError) -> Error` — [`Error`](../index.md)
+- <span id="error-from-meta-build-error"></span>`fn from_meta_build_error(err: meta::BuildError) -> Error` — [`Error`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Error`
 
-- `fn clone(self: &Self) -> Error` — [`Error`](../index.md)
+- <span id="error-clone"></span>`fn clone(&self) -> Error` — [`Error`](../index.md)
 
 ##### `impl Debug for Error`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="error-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Display for Error`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="error-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for Error`
 
-- `fn description(self: &Self) -> &str`
+- <span id="error-description"></span>`fn description(&self) -> &str`
 
 ##### `impl PartialEq for Error`
 
-- `fn eq(self: &Self, other: &Error) -> bool` — [`Error`](../index.md)
+- <span id="error-eq"></span>`fn eq(&self, other: &Error) -> bool` — [`Error`](../index.md)
 
 ##### `impl StructuralPartialEq for Error`
 
 ##### `impl<T> ToString for Error`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="error-to-string"></span>`fn to_string(&self) -> String`
 

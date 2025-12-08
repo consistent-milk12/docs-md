@@ -1302,6 +1302,75 @@ search. It also provides SIMD vectorized routines in the case where the number
 of substrings to search for is relatively small. The `regex` crate also uses
 this for literal optimizations.
 
+## Contents
+
+- [Modules](#modules)
+  - [`builders`](#builders)
+  - [`bytes`](#bytes)
+  - [`error`](#error)
+  - [`find_byte`](#find_byte)
+  - [`regex`](#regex)
+  - [`regexset`](#regexset)
+- [Structs](#structs)
+  - [`RegexBuilder`](#regexbuilder)
+  - [`RegexSetBuilder`](#regexsetbuilder)
+  - [`Regex`](#regex)
+  - [`Match`](#match)
+  - [`Captures`](#captures)
+  - [`CaptureLocations`](#capturelocations)
+  - [`Matches`](#matches)
+  - [`CaptureMatches`](#capturematches)
+  - [`Split`](#split)
+  - [`SplitN`](#splitn)
+  - [`CaptureNames`](#capturenames)
+  - [`SubCaptureMatches`](#subcapturematches)
+  - [`ReplacerRef`](#replacerref)
+  - [`NoExpand`](#noexpand)
+  - [`RegexSet`](#regexset)
+  - [`SetMatches`](#setmatches)
+  - [`SetMatchesIntoIter`](#setmatchesintoiter)
+  - [`SetMatchesIter`](#setmatchesiter)
+- [Enums](#enums)
+  - [`unnamed`](#unnamed)
+- [Traits](#traits)
+  - [`Replacer`](#replacer)
+- [Functions](#functions)
+  - [`escape`](#escape)
+  - [`no_expansion`](#no_expansion)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`builders`](#builders) | mod |  |
+| [`bytes`](#bytes) | mod | Search for regex matches in `&[u8]` haystacks. |
+| [`error`](#error) | mod |  |
+| [`find_byte`](#find_byte) | mod |  |
+| [`regex`](#regex) | mod |  |
+| [`regexset`](#regexset) | mod |  |
+| [`RegexBuilder`](#regexbuilder) | struct | A configurable builder for a [`Regex`]. |
+| [`RegexSetBuilder`](#regexsetbuilder) | struct | A configurable builder for a [`RegexSet`]. |
+| [`Regex`](#regex) | struct | A compiled regular expression for searching Unicode haystacks. |
+| [`Match`](#match) | struct | Represents a single match of a regex in a haystack. |
+| [`Captures`](#captures) | struct | Represents the capture groups for a single match. |
+| [`CaptureLocations`](#capturelocations) | struct | A low level representation of the byte offsets of each capture group. |
+| [`Matches`](#matches) | struct | An iterator over all non-overlapping matches in a haystack. |
+| [`CaptureMatches`](#capturematches) | struct | An iterator over all non-overlapping capture matches in a haystack. |
+| [`Split`](#split) | struct | An iterator over all substrings delimited by a regex match. |
+| [`SplitN`](#splitn) | struct | An iterator over at most `N` substrings delimited by a regex match. |
+| [`CaptureNames`](#capturenames) | struct | An iterator over the names of all capture groups in a regex. |
+| [`SubCaptureMatches`](#subcapturematches) | struct | An iterator over all group matches in a [`Captures`] value. |
+| [`ReplacerRef`](#replacerref) | struct | A by-reference adaptor for a [`Replacer`]. |
+| [`NoExpand`](#noexpand) | struct | A helper type for forcing literal string replacement. |
+| [`RegexSet`](#regexset) | struct | Match multiple, possibly overlapping, regexes in a single search. |
+| [`SetMatches`](#setmatches) | struct | A set of matches returned by a regex set. |
+| [`SetMatchesIntoIter`](#setmatchesintoiter) | struct | An owned iterator over the set of matches from a regex set. |
+| [`SetMatchesIter`](#setmatchesiter) | struct | A borrowed iterator over the set of matches from a regex set. |
+| [`unnamed`](#unnamed) | enum |  |
+| [`Replacer`](#replacer) | trait | A trait for types that can be used to replace matches in a haystack. |
+| [`escape`](#escape) | fn | Escapes all regular expression meta characters in `pattern`. |
+| [`no_expansion`](#no_expansion) | fn | Quickly checks the given replacement string for whether interpolation |
+
 ## Modules
 
 - [`builders`](builders/index.md) - 
@@ -1330,43 +1399,43 @@ the compiled regular expression.
 
 #### Implementations
 
-- `fn new(pattern: &str) -> RegexBuilder` — [`RegexBuilder`](#regexbuilder)
+- <span id="regexbuilder-new"></span>`fn new(pattern: &str) -> RegexBuilder` — [`RegexBuilder`](#regexbuilder)
 
-- `fn build(self: &Self) -> Result<Regex, Error>` — [`Regex`](#regex), [`Error`](#error)
+- <span id="regexbuilder-build"></span>`fn build(&self) -> Result<Regex, Error>` — [`Regex`](#regex), [`Error`](#error)
 
-- `fn unicode(self: &mut Self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
+- <span id="regexbuilder-unicode"></span>`fn unicode(&mut self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
 
-- `fn case_insensitive(self: &mut Self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
+- <span id="regexbuilder-case-insensitive"></span>`fn case_insensitive(&mut self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
 
-- `fn multi_line(self: &mut Self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
+- <span id="regexbuilder-multi-line"></span>`fn multi_line(&mut self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
 
-- `fn dot_matches_new_line(self: &mut Self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
+- <span id="regexbuilder-dot-matches-new-line"></span>`fn dot_matches_new_line(&mut self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
 
-- `fn crlf(self: &mut Self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
+- <span id="regexbuilder-crlf"></span>`fn crlf(&mut self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
 
-- `fn line_terminator(self: &mut Self, byte: u8) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
+- <span id="regexbuilder-line-terminator"></span>`fn line_terminator(&mut self, byte: u8) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
 
-- `fn swap_greed(self: &mut Self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
+- <span id="regexbuilder-swap-greed"></span>`fn swap_greed(&mut self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
 
-- `fn ignore_whitespace(self: &mut Self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
+- <span id="regexbuilder-ignore-whitespace"></span>`fn ignore_whitespace(&mut self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
 
-- `fn octal(self: &mut Self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
+- <span id="regexbuilder-octal"></span>`fn octal(&mut self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
 
-- `fn size_limit(self: &mut Self, bytes: usize) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
+- <span id="regexbuilder-size-limit"></span>`fn size_limit(&mut self, bytes: usize) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
 
-- `fn dfa_size_limit(self: &mut Self, bytes: usize) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
+- <span id="regexbuilder-dfa-size-limit"></span>`fn dfa_size_limit(&mut self, bytes: usize) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
 
-- `fn nest_limit(self: &mut Self, limit: u32) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
+- <span id="regexbuilder-nest-limit"></span>`fn nest_limit(&mut self, limit: u32) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
 
 #### Trait Implementations
 
 ##### `impl Clone for RegexBuilder`
 
-- `fn clone(self: &Self) -> RegexBuilder` — [`RegexBuilder`](#regexbuilder)
+- <span id="regexbuilder-clone"></span>`fn clone(&self) -> RegexBuilder` — [`RegexBuilder`](#regexbuilder)
 
 ##### `impl Debug for RegexBuilder`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="regexbuilder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `RegexSetBuilder`
 
@@ -1385,43 +1454,43 @@ and a size limit on the compiled regular expression.
 
 #### Implementations
 
-- `fn new<I, S>(patterns: I) -> RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
+- <span id="regexsetbuilder-new"></span>`fn new<I, S>(patterns: I) -> RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
 
-- `fn build(self: &Self) -> Result<RegexSet, Error>` — [`RegexSet`](#regexset), [`Error`](#error)
+- <span id="regexsetbuilder-build"></span>`fn build(&self) -> Result<RegexSet, Error>` — [`RegexSet`](#regexset), [`Error`](#error)
 
-- `fn unicode(self: &mut Self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
+- <span id="regexsetbuilder-unicode"></span>`fn unicode(&mut self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
 
-- `fn case_insensitive(self: &mut Self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
+- <span id="regexsetbuilder-case-insensitive"></span>`fn case_insensitive(&mut self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
 
-- `fn multi_line(self: &mut Self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
+- <span id="regexsetbuilder-multi-line"></span>`fn multi_line(&mut self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
 
-- `fn dot_matches_new_line(self: &mut Self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
+- <span id="regexsetbuilder-dot-matches-new-line"></span>`fn dot_matches_new_line(&mut self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
 
-- `fn crlf(self: &mut Self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
+- <span id="regexsetbuilder-crlf"></span>`fn crlf(&mut self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
 
-- `fn line_terminator(self: &mut Self, byte: u8) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
+- <span id="regexsetbuilder-line-terminator"></span>`fn line_terminator(&mut self, byte: u8) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
 
-- `fn swap_greed(self: &mut Self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
+- <span id="regexsetbuilder-swap-greed"></span>`fn swap_greed(&mut self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
 
-- `fn ignore_whitespace(self: &mut Self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
+- <span id="regexsetbuilder-ignore-whitespace"></span>`fn ignore_whitespace(&mut self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
 
-- `fn octal(self: &mut Self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
+- <span id="regexsetbuilder-octal"></span>`fn octal(&mut self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
 
-- `fn size_limit(self: &mut Self, bytes: usize) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
+- <span id="regexsetbuilder-size-limit"></span>`fn size_limit(&mut self, bytes: usize) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
 
-- `fn dfa_size_limit(self: &mut Self, bytes: usize) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
+- <span id="regexsetbuilder-dfa-size-limit"></span>`fn dfa_size_limit(&mut self, bytes: usize) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
 
-- `fn nest_limit(self: &mut Self, limit: u32) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
+- <span id="regexsetbuilder-nest-limit"></span>`fn nest_limit(&mut self, limit: u32) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
 
 #### Trait Implementations
 
 ##### `impl Clone for RegexSetBuilder`
 
-- `fn clone(self: &Self) -> RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
+- <span id="regexsetbuilder-clone"></span>`fn clone(&self) -> RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
 
 ##### `impl Debug for RegexSetBuilder`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="regexsetbuilder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Regex`
 
@@ -1528,39 +1597,39 @@ assert_eq!(hay.split(&re).collect::<Vec<_>>(), vec!["a", "b", "c"]);
 
 #### Implementations
 
-- `fn as_str(self: &Self) -> &str`
+- <span id="regex-as-str"></span>`fn as_str(&self) -> &str`
 
-- `fn capture_names(self: &Self) -> CaptureNames<'_>` — [`CaptureNames`](#capturenames)
+- <span id="regex-capture-names"></span>`fn capture_names(&self) -> CaptureNames<'_>` — [`CaptureNames`](#capturenames)
 
-- `fn captures_len(self: &Self) -> usize`
+- <span id="regex-captures-len"></span>`fn captures_len(&self) -> usize`
 
-- `fn static_captures_len(self: &Self) -> Option<usize>`
+- <span id="regex-static-captures-len"></span>`fn static_captures_len(&self) -> Option<usize>`
 
-- `fn capture_locations(self: &Self) -> CaptureLocations` — [`CaptureLocations`](#capturelocations)
+- <span id="regex-capture-locations"></span>`fn capture_locations(&self) -> CaptureLocations` — [`CaptureLocations`](#capturelocations)
 
 #### Trait Implementations
 
 ##### `impl Clone for Regex`
 
-- `fn clone(self: &Self) -> Regex` — [`Regex`](#regex)
+- <span id="regex-clone"></span>`fn clone(&self) -> Regex` — [`Regex`](#regex)
 
 ##### `impl Debug for Regex`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="regex-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Display for Regex`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="regex-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl FromStr for Regex`
 
-- `type Err = Error`
+- <span id="regex-err"></span>`type Err = Error`
 
-- `fn from_str(s: &str) -> Result<Regex, Error>` — [`Regex`](#regex), [`Error`](#error)
+- <span id="regex-from-str"></span>`fn from_str(s: &str) -> Result<Regex, Error>` — [`Regex`](#regex), [`Error`](#error)
 
 ##### `impl<T> ToString for Regex`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="regex-to-string"></span>`fn to_string(&self) -> String`
 
 ### `Match<'h>`
 
@@ -1625,37 +1694,37 @@ assert_eq!("αβγδ", m.as_str());
 
 #### Implementations
 
-- `fn start(self: &Self) -> usize`
+- <span id="match-start"></span>`fn start(&self) -> usize`
 
-- `fn end(self: &Self) -> usize`
+- <span id="match-end"></span>`fn end(&self) -> usize`
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="match-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn len(self: &Self) -> usize`
+- <span id="match-len"></span>`fn len(&self) -> usize`
 
-- `fn range(self: &Self) -> core::ops::Range<usize>`
+- <span id="match-range"></span>`fn range(&self) -> core::ops::Range<usize>`
 
-- `fn as_str(self: &Self) -> &'h str`
+- <span id="match-as-str"></span>`fn as_str(&self) -> &'h str`
 
-- `fn new(haystack: &'h str, start: usize, end: usize) -> Match<'h>` — [`Match`](#match)
+- <span id="match-new"></span>`fn new(haystack: &'h str, start: usize, end: usize) -> Match<'h>` — [`Match`](#match)
 
 #### Trait Implementations
 
 ##### `impl<'h> Clone for Match<'h>`
 
-- `fn clone(self: &Self) -> Match<'h>` — [`Match`](#match)
+- <span id="match-clone"></span>`fn clone(&self) -> Match<'h>` — [`Match`](#match)
 
 ##### `impl<'h> Copy for Match<'h>`
 
 ##### `impl<'h> Debug for Match<'h>`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="match-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl<'h> Eq for Match<'h>`
 
 ##### `impl<'h> PartialEq for Match<'h>`
 
-- `fn eq(self: &Self, other: &Match<'h>) -> bool` — [`Match`](#match)
+- <span id="match-eq"></span>`fn eq(&self, other: &Match<'h>) -> bool` — [`Match`](#match)
 
 ##### `impl<'h> StructuralPartialEq for Match<'h>`
 
@@ -1723,31 +1792,31 @@ assert_eq!("y", &caps["last"]);
 
 #### Implementations
 
-- `fn get(self: &Self, i: usize) -> Option<Match<'h>>` — [`Match`](#match)
+- <span id="captures-get"></span>`fn get(&self, i: usize) -> Option<Match<'h>>` — [`Match`](#match)
 
-- `fn get_match(self: &Self) -> Match<'h>` — [`Match`](#match)
+- <span id="captures-get-match"></span>`fn get_match(&self) -> Match<'h>` — [`Match`](#match)
 
-- `fn name(self: &Self, name: &str) -> Option<Match<'h>>` — [`Match`](#match)
+- <span id="captures-name"></span>`fn name(&self, name: &str) -> Option<Match<'h>>` — [`Match`](#match)
 
-- `fn extract<const N: usize>(self: &Self) -> (&'h str, [&'h str; N])`
+- <span id="captures-extract"></span>`fn extract<const N: usize>(&self) -> (&'h str, [&'h str; N])`
 
-- `fn expand(self: &Self, replacement: &str, dst: &mut String)`
+- <span id="captures-expand"></span>`fn expand(&self, replacement: &str, dst: &mut String)`
 
-- `fn iter<'c>(self: &'c Self) -> SubCaptureMatches<'c, 'h>` — [`SubCaptureMatches`](#subcapturematches)
+- <span id="captures-iter"></span>`fn iter<'c>(self: &'c Self) -> SubCaptureMatches<'c, 'h>` — [`SubCaptureMatches`](#subcapturematches)
 
-- `fn len(self: &Self) -> usize`
+- <span id="captures-len"></span>`fn len(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl<'h> Debug for Captures<'h>`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="captures-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl<'h, 'n> Index for Captures<'h>`
 
-- `type Output = str`
+- <span id="captures-output"></span>`type Output = str`
 
-- `fn index<'a>(self: &'a Self, name: &'n str) -> &'a str`
+- <span id="captures-index"></span>`fn index<'a>(self: &'a Self, name: &'n str) -> &'a str`
 
 ### `CaptureLocations`
 
@@ -1796,19 +1865,19 @@ assert_eq!(None, locs.get(9944060567225171988));
 
 #### Implementations
 
-- `fn get(self: &Self, i: usize) -> Option<(usize, usize)>`
+- <span id="capturelocations-get"></span>`fn get(&self, i: usize) -> Option<(usize, usize)>`
 
-- `fn len(self: &Self) -> usize`
+- <span id="capturelocations-len"></span>`fn len(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Clone for CaptureLocations`
 
-- `fn clone(self: &Self) -> CaptureLocations` — [`CaptureLocations`](#capturelocations)
+- <span id="capturelocations-clone"></span>`fn clone(&self) -> CaptureLocations` — [`CaptureLocations`](#capturelocations)
 
 ##### `impl Debug for CaptureLocations`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="capturelocations-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Matches<'r, 'h>`
 
@@ -1839,25 +1908,25 @@ overall worst case time complexity for iteration is `O(m * n^2)`.
 
 ##### `impl<'r, 'h> Debug for Matches<'r, 'h>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="matches-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'r, 'h> FusedIterator for Matches<'r, 'h>`
 
 ##### `impl<I> IntoIterator for Matches<'r, 'h>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="matches-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="matches-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="matches-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'r, 'h> Iterator for Matches<'r, 'h>`
 
-- `type Item = Match<'h>`
+- <span id="matches-item"></span>`type Item = Match<'h>`
 
-- `fn next(self: &mut Self) -> Option<Match<'h>>` — [`Match`](#match)
+- <span id="matches-next"></span>`fn next(&mut self) -> Option<Match<'h>>` — [`Match`](#match)
 
-- `fn count(self: Self) -> usize`
+- <span id="matches-count"></span>`fn count(self) -> usize`
 
 ### `CaptureMatches<'r, 'h>`
 
@@ -1888,25 +1957,25 @@ overall worst case time complexity for iteration is `O(m * n^2)`.
 
 ##### `impl<'r, 'h> Debug for CaptureMatches<'r, 'h>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="capturematches-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'r, 'h> FusedIterator for CaptureMatches<'r, 'h>`
 
 ##### `impl<I> IntoIterator for CaptureMatches<'r, 'h>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="capturematches-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="capturematches-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="capturematches-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'r, 'h> Iterator for CaptureMatches<'r, 'h>`
 
-- `type Item = Captures<'h>`
+- <span id="capturematches-item"></span>`type Item = Captures<'h>`
 
-- `fn next(self: &mut Self) -> Option<Captures<'h>>` — [`Captures`](#captures)
+- <span id="capturematches-next"></span>`fn next(&mut self) -> Option<Captures<'h>>` — [`Captures`](#captures)
 
-- `fn count(self: Self) -> usize`
+- <span id="capturematches-count"></span>`fn count(self) -> usize`
 
 ### `Split<'r, 'h>`
 
@@ -1934,23 +2003,23 @@ overall worst case time complexity for iteration is `O(m * n^2)`.
 
 ##### `impl<'r, 'h> Debug for Split<'r, 'h>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="split-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'r, 'h> FusedIterator for Split<'r, 'h>`
 
 ##### `impl<I> IntoIterator for Split<'r, 'h>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="split-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="split-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="split-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'r, 'h> Iterator for Split<'r, 'h>`
 
-- `type Item = &'h str`
+- <span id="split-item"></span>`type Item = &'h str`
 
-- `fn next(self: &mut Self) -> Option<&'h str>`
+- <span id="split-next"></span>`fn next(&mut self) -> Option<&'h str>`
 
 ### `SplitN<'r, 'h>`
 
@@ -1984,25 +2053,25 @@ by the `limit` parameter to `Regex::splitn`.
 
 ##### `impl<'r, 'h> Debug for SplitN<'r, 'h>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="splitn-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'r, 'h> FusedIterator for SplitN<'r, 'h>`
 
 ##### `impl<I> IntoIterator for SplitN<'r, 'h>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="splitn-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="splitn-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="splitn-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'r, 'h> Iterator for SplitN<'r, 'h>`
 
-- `type Item = &'h str`
+- <span id="splitn-item"></span>`type Item = &'h str`
 
-- `fn next(self: &mut Self) -> Option<&'h str>`
+- <span id="splitn-next"></span>`fn next(&mut self) -> Option<&'h str>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="splitn-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ### `CaptureNames<'r>`
 
@@ -2025,11 +2094,11 @@ This iterator is created by `Regex::capture_names`.
 
 ##### `impl<'r> Clone for CaptureNames<'r>`
 
-- `fn clone(self: &Self) -> CaptureNames<'r>` — [`CaptureNames`](#capturenames)
+- <span id="capturenames-clone"></span>`fn clone(&self) -> CaptureNames<'r>` — [`CaptureNames`](#capturenames)
 
 ##### `impl<'r> Debug for CaptureNames<'r>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="capturenames-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'r> ExactSizeIterator for CaptureNames<'r>`
 
@@ -2037,21 +2106,21 @@ This iterator is created by `Regex::capture_names`.
 
 ##### `impl<I> IntoIterator for CaptureNames<'r>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="capturenames-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="capturenames-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="capturenames-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'r> Iterator for CaptureNames<'r>`
 
-- `type Item = Option<&'r str>`
+- <span id="capturenames-item"></span>`type Item = Option<&'r str>`
 
-- `fn next(self: &mut Self) -> Option<Option<&'r str>>`
+- <span id="capturenames-next"></span>`fn next(&mut self) -> Option<Option<&'r str>>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="capturenames-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- `fn count(self: Self) -> usize`
+- <span id="capturenames-count"></span>`fn count(self) -> usize`
 
 ### `SubCaptureMatches<'c, 'h>`
 
@@ -2083,11 +2152,11 @@ matched haystack.
 
 ##### `impl<'c, 'h> Clone for SubCaptureMatches<'c, 'h>`
 
-- `fn clone(self: &Self) -> SubCaptureMatches<'c, 'h>` — [`SubCaptureMatches`](#subcapturematches)
+- <span id="subcapturematches-clone"></span>`fn clone(&self) -> SubCaptureMatches<'c, 'h>` — [`SubCaptureMatches`](#subcapturematches)
 
 ##### `impl<'c, 'h> Debug for SubCaptureMatches<'c, 'h>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="subcapturematches-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'c, 'h> ExactSizeIterator for SubCaptureMatches<'c, 'h>`
 
@@ -2095,21 +2164,21 @@ matched haystack.
 
 ##### `impl<I> IntoIterator for SubCaptureMatches<'c, 'h>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="subcapturematches-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="subcapturematches-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="subcapturematches-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'c, 'h> Iterator for SubCaptureMatches<'c, 'h>`
 
-- `type Item = Option<Match<'h>>`
+- <span id="subcapturematches-item"></span>`type Item = Option<Match<'h>>`
 
-- `fn next(self: &mut Self) -> Option<Option<Match<'h>>>` — [`Match`](#match)
+- <span id="subcapturematches-next"></span>`fn next(&mut self) -> Option<Option<Match<'h>>>` — [`Match`](#match)
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="subcapturematches-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- `fn count(self: Self) -> usize`
+- <span id="subcapturematches-count"></span>`fn count(self) -> usize`
 
 ### `ReplacerRef<'a, R: ?Sized>`
 
@@ -2126,15 +2195,15 @@ This type is created by `Replacer::by_ref`.
 
 #### Trait Implementations
 
-##### `impl<'a, R: $crate::fmt::Debug + ?Sized> Debug for ReplacerRef<'a, R>`
+##### `impl<'a, R: fmt::Debug + ?Sized> Debug for ReplacerRef<'a, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="replacerref-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'a, R: Replacer + ?Sized + 'a> Replacer for ReplacerRef<'a, R>`
 
-- `fn replace_append(self: &mut Self, caps: &Captures<'_>, dst: &mut String)` — [`Captures`](#captures)
+- <span id="replacerref-replace-append"></span>`fn replace_append(&mut self, caps: &Captures<'_>, dst: &mut String)` — [`Captures`](#captures)
 
-- `fn no_expansion(self: &mut Self) -> Option<Cow<'_, str>>`
+- <span id="replacerref-no-expansion"></span>`fn no_expansion(&mut self) -> Option<Cow<'_, str>>`
 
 ### `NoExpand<'s>`
 
@@ -2166,17 +2235,17 @@ assert_eq!(result, "$2 $last");
 
 ##### `impl<'s> Clone for NoExpand<'s>`
 
-- `fn clone(self: &Self) -> NoExpand<'s>` — [`NoExpand`](#noexpand)
+- <span id="noexpand-clone"></span>`fn clone(&self) -> NoExpand<'s>` — [`NoExpand`](#noexpand)
 
 ##### `impl<'s> Debug for NoExpand<'s>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="noexpand-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'s> Replacer for NoExpand<'s>`
 
-- `fn replace_append(self: &mut Self, _: &Captures<'_>, dst: &mut String)` — [`Captures`](#captures)
+- <span id="noexpand-replace-append"></span>`fn replace_append(&mut self, _: &Captures<'_>, dst: &mut String)` — [`Captures`](#captures)
 
-- `fn no_expansion(self: &mut Self) -> Option<Cow<'_, str>>`
+- <span id="noexpand-no-expansion"></span>`fn no_expansion(&mut self) -> Option<Cow<'_, str>>`
 
 ### `RegexSet`
 
@@ -2314,37 +2383,37 @@ alternate isn't always obvious to reason about.
 
 #### Implementations
 
-- `fn new<I, S>(exprs: I) -> Result<RegexSet, Error>` — [`RegexSet`](#regexset), [`Error`](#error)
+- <span id="regexset-new"></span>`fn new<I, S>(exprs: I) -> Result<RegexSet, Error>` — [`RegexSet`](#regexset), [`Error`](#error)
 
-- `fn empty() -> RegexSet` — [`RegexSet`](#regexset)
+- <span id="regexset-empty"></span>`fn empty() -> RegexSet` — [`RegexSet`](#regexset)
 
-- `fn is_match(self: &Self, haystack: &str) -> bool`
+- <span id="regexset-is-match"></span>`fn is_match(&self, haystack: &str) -> bool`
 
-- `fn is_match_at(self: &Self, haystack: &str, start: usize) -> bool`
+- <span id="regexset-is-match-at"></span>`fn is_match_at(&self, haystack: &str, start: usize) -> bool`
 
-- `fn matches(self: &Self, haystack: &str) -> SetMatches` — [`SetMatches`](#setmatches)
+- <span id="regexset-matches"></span>`fn matches(&self, haystack: &str) -> SetMatches` — [`SetMatches`](#setmatches)
 
-- `fn matches_at(self: &Self, haystack: &str, start: usize) -> SetMatches` — [`SetMatches`](#setmatches)
+- <span id="regexset-matches-at"></span>`fn matches_at(&self, haystack: &str, start: usize) -> SetMatches` — [`SetMatches`](#setmatches)
 
-- `fn len(self: &Self) -> usize`
+- <span id="regexset-len"></span>`fn len(&self) -> usize`
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="regexset-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn patterns(self: &Self) -> &[String]`
+- <span id="regexset-patterns"></span>`fn patterns(&self) -> &[String]`
 
 #### Trait Implementations
 
 ##### `impl Clone for RegexSet`
 
-- `fn clone(self: &Self) -> RegexSet` — [`RegexSet`](#regexset)
+- <span id="regexset-clone"></span>`fn clone(&self) -> RegexSet` — [`RegexSet`](#regexset)
 
 ##### `impl Debug for RegexSet`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="regexset-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Default for RegexSet`
 
-- `fn default() -> Self`
+- <span id="regexset-default"></span>`fn default() -> Self`
 
 ### `SetMatches`
 
@@ -2358,33 +2427,33 @@ Values of this type are constructed by `RegexSet::matches`.
 
 #### Implementations
 
-- `fn matched_any(self: &Self) -> bool`
+- <span id="setmatches-matched-any"></span>`fn matched_any(&self) -> bool`
 
-- `fn matched_all(self: &Self) -> bool`
+- <span id="setmatches-matched-all"></span>`fn matched_all(&self) -> bool`
 
-- `fn matched(self: &Self, index: usize) -> bool`
+- <span id="setmatches-matched"></span>`fn matched(&self, index: usize) -> bool`
 
-- `fn len(self: &Self) -> usize`
+- <span id="setmatches-len"></span>`fn len(&self) -> usize`
 
-- `fn iter(self: &Self) -> SetMatchesIter<'_>` — [`SetMatchesIter`](#setmatchesiter)
+- <span id="setmatches-iter"></span>`fn iter(&self) -> SetMatchesIter<'_>` — [`SetMatchesIter`](#setmatchesiter)
 
 #### Trait Implementations
 
 ##### `impl Clone for SetMatches`
 
-- `fn clone(self: &Self) -> SetMatches` — [`SetMatches`](#setmatches)
+- <span id="setmatches-clone"></span>`fn clone(&self) -> SetMatches` — [`SetMatches`](#setmatches)
 
 ##### `impl Debug for SetMatches`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="setmatches-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl IntoIterator for SetMatches`
 
-- `type IntoIter = SetMatchesIntoIter`
+- <span id="setmatches-intoiter"></span>`type IntoIter = SetMatchesIntoIter`
 
-- `type Item = usize`
+- <span id="setmatches-item"></span>`type Item = usize`
 
-- `fn into_iter(self: Self) -> <Self as >::IntoIter`
+- <span id="setmatches-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
 ### `SetMatchesIntoIter`
 
@@ -2427,29 +2496,29 @@ assert_eq!(matches, vec![0, 1, 3]);
 
 ##### `impl Debug for SetMatchesIntoIter`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="setmatchesintoiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl DoubleEndedIterator for SetMatchesIntoIter`
 
-- `fn next_back(self: &mut Self) -> Option<usize>`
+- <span id="setmatchesintoiter-next-back"></span>`fn next_back(&mut self) -> Option<usize>`
 
 ##### `impl FusedIterator for SetMatchesIntoIter`
 
 ##### `impl<I> IntoIterator for SetMatchesIntoIter`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="setmatchesintoiter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="setmatchesintoiter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="setmatchesintoiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for SetMatchesIntoIter`
 
-- `type Item = usize`
+- <span id="setmatchesintoiter-item"></span>`type Item = usize`
 
-- `fn next(self: &mut Self) -> Option<usize>`
+- <span id="setmatchesintoiter-next"></span>`fn next(&mut self) -> Option<usize>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="setmatchesintoiter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ### `SetMatchesIter<'a>`
 
@@ -2472,33 +2541,33 @@ This iterator is created by the `SetMatches::iter` method.
 
 ##### `impl<'a> Clone for SetMatchesIter<'a>`
 
-- `fn clone(self: &Self) -> SetMatchesIter<'a>` — [`SetMatchesIter`](#setmatchesiter)
+- <span id="setmatchesiter-clone"></span>`fn clone(&self) -> SetMatchesIter<'a>` — [`SetMatchesIter`](#setmatchesiter)
 
 ##### `impl<'a> Debug for SetMatchesIter<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="setmatchesiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'a> DoubleEndedIterator for SetMatchesIter<'a>`
 
-- `fn next_back(self: &mut Self) -> Option<usize>`
+- <span id="setmatchesiter-next-back"></span>`fn next_back(&mut self) -> Option<usize>`
 
 ##### `impl<'a> FusedIterator for SetMatchesIter<'a>`
 
 ##### `impl<I> IntoIterator for SetMatchesIter<'a>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="setmatchesiter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="setmatchesiter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="setmatchesiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a> Iterator for SetMatchesIter<'a>`
 
-- `type Item = usize`
+- <span id="setmatchesiter-item"></span>`type Item = usize`
 
-- `fn next(self: &mut Self) -> Option<usize>`
+- <span id="setmatchesiter-next"></span>`fn next(&mut self) -> Option<usize>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="setmatchesiter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ## Enums
 
@@ -2544,35 +2613,35 @@ An error that occurred during parsing or compiling a regular expression.
 
 #### Implementations
 
-- `fn from_meta_build_error(err: meta::BuildError) -> Error` — [`Error`](#error)
+- <span id="error-from-meta-build-error"></span>`fn from_meta_build_error(err: meta::BuildError) -> Error` — [`Error`](#error)
 
 #### Trait Implementations
 
 ##### `impl Clone for Error`
 
-- `fn clone(self: &Self) -> Error` — [`Error`](#error)
+- <span id="error-clone"></span>`fn clone(&self) -> Error` — [`Error`](#error)
 
 ##### `impl Debug for Error`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="error-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Display for Error`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="error-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for Error`
 
-- `fn description(self: &Self) -> &str`
+- <span id="error-description"></span>`fn description(&self) -> &str`
 
 ##### `impl PartialEq for Error`
 
-- `fn eq(self: &Self, other: &Error) -> bool` — [`Error`](#error)
+- <span id="error-eq"></span>`fn eq(&self, other: &Error) -> bool` — [`Error`](#error)
 
 ##### `impl StructuralPartialEq for Error`
 
 ##### `impl<T> ToString for Error`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="error-to-string"></span>`fn to_string(&self) -> String`
 
 ## Traits
 
@@ -2617,7 +2686,7 @@ assert_eq!(result, "Bruce Springsteen");
 
 #### Required Methods
 
-- `fn replace_append(self: &mut Self, caps: &Captures<'_>, dst: &mut String)`
+- `fn replace_append(&mut self, caps: &Captures<'_>, dst: &mut String)`
 
   Appends possibly empty data to `dst` to replace the current match.
 

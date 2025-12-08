@@ -4,6 +4,34 @@
 
 # Module `section`
 
+## Contents
+
+- [Structs](#structs)
+  - [`SectionTable`](#sectiontable)
+  - [`CoffSegmentIterator`](#coffsegmentiterator)
+  - [`CoffSegment`](#coffsegment)
+  - [`CoffSectionIterator`](#coffsectioniterator)
+  - [`CoffSection`](#coffsection)
+- [Type Aliases](#type-aliases)
+  - [`CoffBigSegmentIterator`](#coffbigsegmentiterator)
+  - [`CoffBigSegment`](#coffbigsegment)
+  - [`CoffBigSectionIterator`](#coffbigsectioniterator)
+  - [`CoffBigSection`](#coffbigsection)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`SectionTable`](#sectiontable) | struct | The table of section headers in a COFF or PE file. |
+| [`CoffSegmentIterator`](#coffsegmentiterator) | struct | An iterator for the loadable sections in a [`CoffFile`]. |
+| [`CoffSegment`](#coffsegment) | struct | A loadable section in a [`CoffFile`]. |
+| [`CoffSectionIterator`](#coffsectioniterator) | struct | An iterator for the sections in a [`CoffFile`]. |
+| [`CoffSection`](#coffsection) | struct | A section in a [`CoffFile`]. |
+| [`CoffBigSegmentIterator`](#coffbigsegmentiterator) | type | An iterator for the loadable sections in a [`CoffBigFile`](super::CoffBigFile). |
+| [`CoffBigSegment`](#coffbigsegment) | type | A loadable section in a [`CoffBigFile`](super::CoffBigFile). |
+| [`CoffBigSectionIterator`](#coffbigsectioniterator) | type | An iterator for the sections in a [`CoffBigFile`](super::CoffBigFile). |
+| [`CoffBigSection`](#coffbigsection) | type | A section in a [`CoffBigFile`](super::CoffBigFile). |
+
 ## Structs
 
 ### `SectionTable<'data>`
@@ -21,37 +49,37 @@ Returned by `CoffHeader::sections` and
 
 #### Implementations
 
-- `fn parse<Coff: CoffHeader, R: ReadRef<'data>>(header: &Coff, data: R, offset: u64) -> Result<Self>` — [`Result`](../../../index.md)
+- <span id="sectiontable-parse"></span>`fn parse<Coff: CoffHeader, R: ReadRef<'data>>(header: &Coff, data: R, offset: u64) -> Result<Self>` — [`Result`](../../../index.md)
 
-- `fn iter(self: &Self) -> slice::Iter<'data, pe::ImageSectionHeader>` — [`ImageSectionHeader`](../../../pe/index.md)
+- <span id="sectiontable-iter"></span>`fn iter(&self) -> slice::Iter<'data, pe::ImageSectionHeader>` — [`ImageSectionHeader`](../../../pe/index.md)
 
-- `fn enumerate(self: &Self) -> impl Iterator<Item = (SectionIndex, &'data pe::ImageSectionHeader)>` — [`SectionIndex`](../../../index.md), [`ImageSectionHeader`](../../../pe/index.md)
+- <span id="sectiontable-enumerate"></span>`fn enumerate(&self) -> impl Iterator<Item = (SectionIndex, &'data pe::ImageSectionHeader)>` — [`SectionIndex`](../../../index.md), [`ImageSectionHeader`](../../../pe/index.md)
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="sectiontable-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn len(self: &Self) -> usize`
+- <span id="sectiontable-len"></span>`fn len(&self) -> usize`
 
-- `fn section(self: &Self, index: SectionIndex) -> read::Result<&'data pe::ImageSectionHeader>` — [`SectionIndex`](../../../index.md), [`Result`](../../../index.md), [`ImageSectionHeader`](../../../pe/index.md)
+- <span id="sectiontable-section"></span>`fn section(&self, index: SectionIndex) -> read::Result<&'data pe::ImageSectionHeader>` — [`SectionIndex`](../../../index.md), [`Result`](../../../index.md), [`ImageSectionHeader`](../../../pe/index.md)
 
-- `fn section_by_name<R: ReadRef<'data>>(self: &Self, strings: StringTable<'data, R>, name: &[u8]) -> Option<(SectionIndex, &'data pe::ImageSectionHeader)>` — [`StringTable`](../../index.md), [`SectionIndex`](../../../index.md), [`ImageSectionHeader`](../../../pe/index.md)
+- <span id="sectiontable-section-by-name"></span>`fn section_by_name<R: ReadRef<'data>>(&self, strings: StringTable<'data, R>, name: &[u8]) -> Option<(SectionIndex, &'data pe::ImageSectionHeader)>` — [`StringTable`](../../index.md), [`SectionIndex`](../../../index.md), [`ImageSectionHeader`](../../../pe/index.md)
 
-- `fn max_section_file_offset(self: &Self) -> u64`
+- <span id="sectiontable-max-section-file-offset"></span>`fn max_section_file_offset(&self) -> u64`
 
 #### Trait Implementations
 
 ##### `impl<'data> Clone for SectionTable<'data>`
 
-- `fn clone(self: &Self) -> SectionTable<'data>` — [`SectionTable`](../../pe/index.md)
+- <span id="sectiontable-clone"></span>`fn clone(&self) -> SectionTable<'data>` — [`SectionTable`](../../pe/index.md)
 
 ##### `impl<'data> Copy for SectionTable<'data>`
 
 ##### `impl<'data> Debug for SectionTable<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sectiontable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data> Default for SectionTable<'data>`
 
-- `fn default() -> SectionTable<'data>` — [`SectionTable`](../../pe/index.md)
+- <span id="sectiontable-default"></span>`fn default() -> SectionTable<'data>` — [`SectionTable`](../../pe/index.md)
 
 ### `CoffSegmentIterator<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader>`
 
@@ -66,23 +94,23 @@ An iterator for the loadable sections in a [`CoffFile`](../index.md).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R: $crate::fmt::Debug + ReadRef<'data>, Coff: $crate::fmt::Debug + CoffHeader> Debug for CoffSegmentIterator<'data, 'file, R, Coff>`
+##### `impl<'data, 'file, R: fmt::Debug + ReadRef<'data>, Coff: fmt::Debug + CoffHeader> Debug for CoffSegmentIterator<'data, 'file, R, Coff>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="coffsegmentiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for CoffSegmentIterator<'data, 'file, R, Coff>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="coffsegmentiterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="coffsegmentiterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="coffsegmentiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> Iterator for CoffSegmentIterator<'data, 'file, R, Coff>`
 
-- `type Item = CoffSegment<'data, 'file, R, Coff>`
+- <span id="coffsegmentiterator-item"></span>`type Item = CoffSegment<'data, 'file, R, Coff>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="coffsegmentiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `CoffSegment<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader>`
 
@@ -99,37 +127,37 @@ Most functionality is provided by the [`ObjectSegment`](../../index.md) trait im
 
 #### Implementations
 
-- `fn coff_file(self: &Self) -> &'file CoffFile<'data, R, Coff>` — [`CoffFile`](../index.md)
+- <span id="coffsegment-coff-file"></span>`fn coff_file(&self) -> &'file CoffFile<'data, R, Coff>` — [`CoffFile`](../index.md)
 
-- `fn coff_section(self: &Self) -> &'data pe::ImageSectionHeader` — [`ImageSectionHeader`](../../../pe/index.md)
+- <span id="coffsegment-coff-section"></span>`fn coff_section(&self) -> &'data pe::ImageSectionHeader` — [`ImageSectionHeader`](../../../pe/index.md)
 
-- `fn bytes(self: &Self) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
+- <span id="coffsegment-bytes"></span>`fn bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R: $crate::fmt::Debug + ReadRef<'data>, Coff: $crate::fmt::Debug + CoffHeader> Debug for CoffSegment<'data, 'file, R, Coff>`
+##### `impl<'data, 'file, R: fmt::Debug + ReadRef<'data>, Coff: fmt::Debug + CoffHeader> Debug for CoffSegment<'data, 'file, R, Coff>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="coffsegment-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> ObjectSegment for CoffSegment<'data, 'file, R, Coff>`
 
-- `fn address(self: &Self) -> u64`
+- <span id="coffsegment-address"></span>`fn address(&self) -> u64`
 
-- `fn size(self: &Self) -> u64`
+- <span id="coffsegment-size"></span>`fn size(&self) -> u64`
 
-- `fn align(self: &Self) -> u64`
+- <span id="coffsegment-align"></span>`fn align(&self) -> u64`
 
-- `fn file_range(self: &Self) -> (u64, u64)`
+- <span id="coffsegment-file-range"></span>`fn file_range(&self) -> (u64, u64)`
 
-- `fn data(self: &Self) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
+- <span id="coffsegment-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
 
-- `fn data_range(self: &Self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../../index.md)
+- <span id="coffsegment-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../../index.md)
 
-- `fn name_bytes(self: &Self) -> Result<Option<&[u8]>>` — [`Result`](../../../index.md)
+- <span id="coffsegment-name-bytes"></span>`fn name_bytes(&self) -> Result<Option<&[u8]>>` — [`Result`](../../../index.md)
 
-- `fn name(self: &Self) -> Result<Option<&str>>` — [`Result`](../../../index.md)
+- <span id="coffsegment-name"></span>`fn name(&self) -> Result<Option<&str>>` — [`Result`](../../../index.md)
 
-- `fn flags(self: &Self) -> SegmentFlags` — [`SegmentFlags`](../../../index.md)
+- <span id="coffsegment-flags"></span>`fn flags(&self) -> SegmentFlags` — [`SegmentFlags`](../../../index.md)
 
 ##### `impl<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> Sealed for CoffSegment<'data, 'file, R, Coff>`
 
@@ -146,23 +174,23 @@ An iterator for the sections in a [`CoffFile`](../index.md).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R: $crate::fmt::Debug + ReadRef<'data>, Coff: $crate::fmt::Debug + CoffHeader> Debug for CoffSectionIterator<'data, 'file, R, Coff>`
+##### `impl<'data, 'file, R: fmt::Debug + ReadRef<'data>, Coff: fmt::Debug + CoffHeader> Debug for CoffSectionIterator<'data, 'file, R, Coff>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="coffsectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for CoffSectionIterator<'data, 'file, R, Coff>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="coffsectioniterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="coffsectioniterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="coffsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> Iterator for CoffSectionIterator<'data, 'file, R, Coff>`
 
-- `type Item = CoffSection<'data, 'file, R, Coff>`
+- <span id="coffsectioniterator-item"></span>`type Item = CoffSection<'data, 'file, R, Coff>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="coffsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `CoffSection<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader>`
 
@@ -180,57 +208,57 @@ Most functionality is provided by the [`ObjectSection`](../../index.md) trait im
 
 #### Implementations
 
-- `fn coff_file(self: &Self) -> &'file CoffFile<'data, R, Coff>` — [`CoffFile`](../index.md)
+- <span id="coffsection-coff-file"></span>`fn coff_file(&self) -> &'file CoffFile<'data, R, Coff>` — [`CoffFile`](../index.md)
 
-- `fn coff_section(self: &Self) -> &'data pe::ImageSectionHeader` — [`ImageSectionHeader`](../../../pe/index.md)
+- <span id="coffsection-coff-section"></span>`fn coff_section(&self) -> &'data pe::ImageSectionHeader` — [`ImageSectionHeader`](../../../pe/index.md)
 
-- `fn coff_relocations(self: &Self) -> Result<&'data [pe::ImageRelocation]>` — [`Result`](../../../index.md), [`ImageRelocation`](../../../pe/index.md)
+- <span id="coffsection-coff-relocations"></span>`fn coff_relocations(&self) -> Result<&'data [pe::ImageRelocation]>` — [`Result`](../../../index.md), [`ImageRelocation`](../../../pe/index.md)
 
-- `fn bytes(self: &Self) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
+- <span id="coffsection-bytes"></span>`fn bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R: $crate::fmt::Debug + ReadRef<'data>, Coff: $crate::fmt::Debug + CoffHeader> Debug for CoffSection<'data, 'file, R, Coff>`
+##### `impl<'data, 'file, R: fmt::Debug + ReadRef<'data>, Coff: fmt::Debug + CoffHeader> Debug for CoffSection<'data, 'file, R, Coff>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="coffsection-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> ObjectSection for CoffSection<'data, 'file, R, Coff>`
 
-- `type RelocationIterator = CoffRelocationIterator<'data, 'file, R, Coff>`
+- <span id="coffsection-relocationiterator"></span>`type RelocationIterator = CoffRelocationIterator<'data, 'file, R, Coff>`
 
-- `fn index(self: &Self) -> SectionIndex` — [`SectionIndex`](../../../index.md)
+- <span id="coffsection-index"></span>`fn index(&self) -> SectionIndex` — [`SectionIndex`](../../../index.md)
 
-- `fn address(self: &Self) -> u64`
+- <span id="coffsection-address"></span>`fn address(&self) -> u64`
 
-- `fn size(self: &Self) -> u64`
+- <span id="coffsection-size"></span>`fn size(&self) -> u64`
 
-- `fn align(self: &Self) -> u64`
+- <span id="coffsection-align"></span>`fn align(&self) -> u64`
 
-- `fn file_range(self: &Self) -> Option<(u64, u64)>`
+- <span id="coffsection-file-range"></span>`fn file_range(&self) -> Option<(u64, u64)>`
 
-- `fn data(self: &Self) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
+- <span id="coffsection-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
 
-- `fn data_range(self: &Self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../../index.md)
+- <span id="coffsection-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../../index.md)
 
-- `fn compressed_file_range(self: &Self) -> Result<CompressedFileRange>` — [`Result`](../../../index.md), [`CompressedFileRange`](../../../index.md)
+- <span id="coffsection-compressed-file-range"></span>`fn compressed_file_range(&self) -> Result<CompressedFileRange>` — [`Result`](../../../index.md), [`CompressedFileRange`](../../../index.md)
 
-- `fn compressed_data(self: &Self) -> Result<CompressedData<'data>>` — [`Result`](../../../index.md), [`CompressedData`](../../../index.md)
+- <span id="coffsection-compressed-data"></span>`fn compressed_data(&self) -> Result<CompressedData<'data>>` — [`Result`](../../../index.md), [`CompressedData`](../../../index.md)
 
-- `fn name_bytes(self: &Self) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
+- <span id="coffsection-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
 
-- `fn name(self: &Self) -> Result<&'data str>` — [`Result`](../../../index.md)
+- <span id="coffsection-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../../index.md)
 
-- `fn segment_name_bytes(self: &Self) -> Result<Option<&[u8]>>` — [`Result`](../../../index.md)
+- <span id="coffsection-segment-name-bytes"></span>`fn segment_name_bytes(&self) -> Result<Option<&[u8]>>` — [`Result`](../../../index.md)
 
-- `fn segment_name(self: &Self) -> Result<Option<&str>>` — [`Result`](../../../index.md)
+- <span id="coffsection-segment-name"></span>`fn segment_name(&self) -> Result<Option<&str>>` — [`Result`](../../../index.md)
 
-- `fn kind(self: &Self) -> SectionKind` — [`SectionKind`](../../../index.md)
+- <span id="coffsection-kind"></span>`fn kind(&self) -> SectionKind` — [`SectionKind`](../../../index.md)
 
-- `fn relocations(self: &Self) -> CoffRelocationIterator<'data, 'file, R, Coff>` — [`CoffRelocationIterator`](../index.md)
+- <span id="coffsection-relocations"></span>`fn relocations(&self) -> CoffRelocationIterator<'data, 'file, R, Coff>` — [`CoffRelocationIterator`](../index.md)
 
-- `fn relocation_map(self: &Self) -> read::Result<RelocationMap>` — [`Result`](../../../index.md), [`RelocationMap`](../../../index.md)
+- <span id="coffsection-relocation-map"></span>`fn relocation_map(&self) -> read::Result<RelocationMap>` — [`Result`](../../../index.md), [`RelocationMap`](../../../index.md)
 
-- `fn flags(self: &Self) -> SectionFlags` — [`SectionFlags`](../../../index.md)
+- <span id="coffsection-flags"></span>`fn flags(&self) -> SectionFlags` — [`SectionFlags`](../../../index.md)
 
 ##### `impl<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader> Sealed for CoffSection<'data, 'file, R, Coff>`
 

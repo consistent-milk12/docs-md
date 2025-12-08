@@ -4,6 +4,37 @@
 
 # Module `expand`
 
+## Contents
+
+- [Structs](#structs)
+  - [`AsyncInfo`](#asyncinfo)
+  - [`IdentAndTypesRenamer`](#identandtypesrenamer)
+  - [`ImplTraitEraser`](#impltraiteraser)
+- [Enums](#enums)
+  - [`RecordType`](#recordtype)
+  - [`AsyncKind`](#asynckind)
+- [Functions](#functions)
+  - [`gen_function`](#gen_function)
+  - [`gen_block`](#gen_block)
+  - [`param_names`](#param_names)
+  - [`path_to_string`](#path_to_string)
+  - [`erase_impl_trait`](#erase_impl_trait)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`AsyncInfo`](#asyncinfo) | struct |  |
+| [`IdentAndTypesRenamer`](#identandtypesrenamer) | struct | A visitor struct to replace idents and types in some piece |
+| [`ImplTraitEraser`](#impltraiteraser) | struct |  |
+| [`RecordType`](#recordtype) | enum | Indicates whether a field should be recorded as `Value` or `Debug`. |
+| [`AsyncKind`](#asynckind) | enum | The specific async code pattern that was detected |
+| [`gen_function`](#gen_function) | fn | Given an existing function, generate an instrumented version of that function |
+| [`gen_block`](#gen_block) | fn | Instrument a block |
+| [`param_names`](#param_names) | fn |  |
+| [`path_to_string`](#path_to_string) | fn |  |
+| [`erase_impl_trait`](#erase_impl_trait) | fn |  |
+
 ## Structs
 
 ### `AsyncInfo<'block>`
@@ -19,9 +50,9 @@ struct AsyncInfo<'block> {
 
 #### Implementations
 
-- `fn from_fn(input: &'block ItemFn) -> Option<Self>`
+- <span id="asyncinfo-from-fn"></span>`fn from_fn(input: &'block ItemFn) -> Option<Self>`
 
-- `fn gen_async(self: Self, args: InstrumentArgs, instrumented_function_name: &str) -> Result<proc_macro::TokenStream, syn::Error>` — [`InstrumentArgs`](../attr/index.md)
+- <span id="asyncinfo-gen-async"></span>`fn gen_async(self, args: InstrumentArgs, instrumented_function_name: &str) -> Result<proc_macro::TokenStream, syn::Error>` — [`InstrumentArgs`](../attr/index.md)
 
 ### `IdentAndTypesRenamer<'a>`
 
@@ -41,9 +72,9 @@ version of async-trait).
 
 ##### `impl VisitMut for IdentAndTypesRenamer<'_>`
 
-- `fn visit_ident_mut(self: &mut Self, id: &mut Ident)`
+- <span id="identandtypesrenamer-visit-ident-mut"></span>`fn visit_ident_mut(&mut self, id: &mut Ident)`
 
-- `fn visit_type_mut(self: &mut Self, ty: &mut Type)`
+- <span id="identandtypesrenamer-visit-type-mut"></span>`fn visit_type_mut(&mut self, ty: &mut Type)`
 
 ### `ImplTraitEraser`
 
@@ -55,7 +86,7 @@ struct ImplTraitEraser;
 
 ##### `impl VisitMut for ImplTraitEraser`
 
-- `fn visit_type_mut(self: &mut Self, t: &mut Type)`
+- <span id="impltraiteraser-visit-type-mut"></span>`fn visit_type_mut(&mut self, t: &mut Type)`
 
 ## Enums
 
@@ -82,9 +113,9 @@ Indicates whether a field should be recorded as `Value` or `Debug`.
 
 #### Implementations
 
-- `const TYPES_FOR_VALUE: &'static [&'static str]`
+- <span id="recordtype-types-for-value"></span>`const TYPES_FOR_VALUE: &'static [&'static str]`
 
-- `fn parse_from_ty(ty: &Type) -> Self`
+- <span id="recordtype-parse-from-ty"></span>`fn parse_from_ty(ty: &Type) -> Self`
 
 ### `AsyncKind<'a>`
 
@@ -126,7 +157,7 @@ Given an existing function, generate an instrumented version of that function
 ### `gen_block`
 
 ```rust
-fn gen_block<B: ToTokens>(block: &B, params: &syn::punctuated::Punctuated<syn::FnArg, $crate::token::Comma>, async_context: bool, args: crate::attr::InstrumentArgs, instrumented_function_name: &str, self_type: Option<&syn::TypePath>) -> proc_macro2::TokenStream
+fn gen_block<B: ToTokens>(block: &B, params: &syn::punctuated::Punctuated<syn::FnArg, token::Comma>, async_context: bool, args: crate::attr::InstrumentArgs, instrumented_function_name: &str, self_type: Option<&syn::TypePath>) -> proc_macro2::TokenStream
 ```
 
 Instrument a block

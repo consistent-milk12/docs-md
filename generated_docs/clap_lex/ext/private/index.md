@@ -4,6 +4,12 @@
 
 # Module `private`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Sealed`](#sealed) | trait |  |
+
 ## Traits
 
 ### `Sealed`

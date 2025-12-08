@@ -158,6 +158,14 @@ support would need to be limited or banned when UTF-8 mode is enabled, just
 like we did for `(?-u:\B)`. But thankfully our more robust approach in this
 crate handles that case just fine too.)
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`skip_splits_fwd`](#skip_splits_fwd) | fn |  |
+| [`skip_splits_rev`](#skip_splits_rev) | fn |  |
+| [`skip_splits`](#skip_splits) | fn |  |
+
 ## Functions
 
 ### `skip_splits_fwd`

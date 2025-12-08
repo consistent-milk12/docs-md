@@ -4,6 +4,39 @@
 
 # Module `heap`
 
+## Contents
+
+- [Modules](#modules)
+  - [`heap_capacity`](#heap_capacity)
+  - [`inline_capacity`](#inline_capacity)
+- [Structs](#structs)
+  - [`HeapBuffer`](#heapbuffer)
+- [Functions](#functions)
+  - [`amortized_growth`](#amortized_growth)
+  - [`allocate_ptr`](#allocate_ptr)
+  - [`deallocate_ptr`](#deallocate_ptr)
+  - [`do_alloc`](#do_alloc)
+- [Type Aliases](#type-aliases)
+  - [`StrBuffer`](#strbuffer)
+- [Constants](#constants)
+  - [`MIN_HEAP_SIZE`](#min_heap_size)
+  - [`UNKNOWN`](#unknown)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`heap_capacity`](#heap_capacity) | mod |  |
+| [`inline_capacity`](#inline_capacity) | mod |  |
+| [`HeapBuffer`](#heapbuffer) | struct |  |
+| [`amortized_growth`](#amortized_growth) | fn | [`HeapBuffer`] grows at an amortized rates of 1.5x |
+| [`allocate_ptr`](#allocate_ptr) | fn | Allocates a buffer on the heap that we can use to store a string, optionally stores the capacity |
+| [`deallocate_ptr`](#deallocate_ptr) | fn | Deallocates a buffer on the heap, handling when the capacity is also stored on the heap |
+| [`do_alloc`](#do_alloc) | fn | SAFETY: `layout` must not be zero sized |
+| [`StrBuffer`](#strbuffer) | type |  |
+| [`MIN_HEAP_SIZE`](#min_heap_size) | const | The minimum size we'll allocate on the heap is one usize larger than our max inline size |
+| [`UNKNOWN`](#unknown) | const |  |
+
 ## Modules
 
 - [`heap_capacity`](heap_capacity/index.md) - 
@@ -23,29 +56,29 @@ struct HeapBuffer {
 
 #### Implementations
 
-- `fn new(text: &str) -> Result<Self, ReserveError>` — [`ReserveError`](../../index.md)
+- <span id="heapbuffer-new"></span>`fn new(text: &str) -> Result<Self, ReserveError>` — [`ReserveError`](../../index.md)
 
-- `fn with_capacity(capacity: usize) -> Result<Self, ReserveError>` — [`ReserveError`](../../index.md)
+- <span id="heapbuffer-with-capacity"></span>`fn with_capacity(capacity: usize) -> Result<Self, ReserveError>` — [`ReserveError`](../../index.md)
 
-- `fn with_additional(text: &str, additional: usize) -> Result<Self, ReserveError>` — [`ReserveError`](../../index.md)
+- <span id="heapbuffer-with-additional"></span>`fn with_additional(text: &str, additional: usize) -> Result<Self, ReserveError>` — [`ReserveError`](../../index.md)
 
-- `fn capacity(self: &Self) -> usize`
+- <span id="heapbuffer-capacity"></span>`fn capacity(&self) -> usize`
 
-- `fn realloc(self: &mut Self, new_capacity: usize) -> Result<usize, ()>`
+- <span id="heapbuffer-realloc"></span>`fn realloc(&mut self, new_capacity: usize) -> Result<usize, ()>`
 
-- `unsafe fn set_len(self: &mut Self, len: usize)`
+- <span id="heapbuffer-set-len"></span>`unsafe fn set_len(&mut self, len: usize)`
 
-- `fn dealloc(self: &mut Self)`
+- <span id="heapbuffer-dealloc"></span>`fn dealloc(&mut self)`
 
 #### Trait Implementations
 
 ##### `impl Clone for HeapBuffer`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="heapbuffer-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Drop for HeapBuffer`
 
-- `fn drop(self: &mut Self)`
+- <span id="heapbuffer-drop"></span>`fn drop(&mut self)`
 
 ## Functions
 

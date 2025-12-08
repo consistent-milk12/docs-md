@@ -4,6 +4,12 @@
 
 # Module `aho_corasick`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`AhoCorasick`](#ahocorasick) | struct |  |
+
 ## Structs
 
 ### `AhoCorasick`
@@ -16,25 +22,25 @@ struct AhoCorasick {
 
 #### Implementations
 
-- `fn new<B: AsRef<[u8]>>(kind: MatchKind, needles: &[B]) -> Option<AhoCorasick>` — [`MatchKind`](../../../index.md), [`AhoCorasick`](#ahocorasick)
+- <span id="ahocorasick-new"></span>`fn new<B: AsRef<[u8]>>(kind: MatchKind, needles: &[B]) -> Option<AhoCorasick>` — [`MatchKind`](../../../index.md), [`AhoCorasick`](#ahocorasick)
 
 #### Trait Implementations
 
 ##### `impl Clone for AhoCorasick`
 
-- `fn clone(self: &Self) -> AhoCorasick` — [`AhoCorasick`](#ahocorasick)
+- <span id="ahocorasick-clone"></span>`fn clone(&self) -> AhoCorasick` — [`AhoCorasick`](#ahocorasick)
 
 ##### `impl Debug for AhoCorasick`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="ahocorasick-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl PrefilterI for AhoCorasick`
 
-- `fn find(self: &Self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
+- <span id="ahocorasick-find"></span>`fn find(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
 
-- `fn prefix(self: &Self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
+- <span id="ahocorasick-prefix"></span>`fn prefix(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="ahocorasick-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- `fn is_fast(self: &Self) -> bool`
+- <span id="ahocorasick-is-fast"></span>`fn is_fast(&self) -> bool`
 

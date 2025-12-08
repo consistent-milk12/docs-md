@@ -4,6 +4,16 @@
 
 # Module `handler`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`syscall`](#syscall) | mod |  |
+| [`MietteHandlerOpts`](#miettehandleropts) | struct | Create a custom [`MietteHandler`] from options. |
+| [`MietteHandler`](#miettehandler) | struct | A [`ReportHandler`] that displays a given [`Report`](crate::Report) in a |
+| [`RgbColors`](#rgbcolors) | enum | Settings to control the color format used for graphical rendering. |
+| [`HighlighterOption`](#highlighteroption) | enum |  |
+
 ## Modules
 
 - [`syscall`](syscall/index.md) - 
@@ -52,71 +62,71 @@ miette::set_hook(Box::new(|_| {
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="miettehandleropts-new"></span>`fn new() -> Self`
 
-- `fn terminal_links(self: Self, linkify: bool) -> Self`
+- <span id="miettehandleropts-terminal-links"></span>`fn terminal_links(self, linkify: bool) -> Self`
 
-- `fn graphical_theme(self: Self, theme: GraphicalTheme) -> Self` — [`GraphicalTheme`](../handlers/index.md)
+- <span id="miettehandleropts-graphical-theme"></span>`fn graphical_theme(self, theme: GraphicalTheme) -> Self` — [`GraphicalTheme`](../handlers/index.md)
 
-- `fn with_syntax_highlighting(self: Self, highlighter: impl Highlighter + Send + Sync + 'static) -> Self` — [`Highlighter`](../highlighters/index.md)
+- <span id="miettehandleropts-with-syntax-highlighting"></span>`fn with_syntax_highlighting(self, highlighter: impl Highlighter + Send + Sync + 'static) -> Self` — [`Highlighter`](../highlighters/index.md)
 
-- `fn without_syntax_highlighting(self: Self) -> Self`
+- <span id="miettehandleropts-without-syntax-highlighting"></span>`fn without_syntax_highlighting(self) -> Self`
 
-- `fn width(self: Self, width: usize) -> Self`
+- <span id="miettehandleropts-width"></span>`fn width(self, width: usize) -> Self`
 
-- `fn wrap_lines(self: Self, wrap_lines: bool) -> Self`
+- <span id="miettehandleropts-wrap-lines"></span>`fn wrap_lines(self, wrap_lines: bool) -> Self`
 
-- `fn break_words(self: Self, break_words: bool) -> Self`
+- <span id="miettehandleropts-break-words"></span>`fn break_words(self, break_words: bool) -> Self`
 
-- `fn word_separator(self: Self, word_separator: textwrap::WordSeparator) -> Self`
+- <span id="miettehandleropts-word-separator"></span>`fn word_separator(self, word_separator: textwrap::WordSeparator) -> Self`
 
-- `fn word_splitter(self: Self, word_splitter: textwrap::WordSplitter) -> Self`
+- <span id="miettehandleropts-word-splitter"></span>`fn word_splitter(self, word_splitter: textwrap::WordSplitter) -> Self`
 
-- `fn with_cause_chain(self: Self) -> Self`
+- <span id="miettehandleropts-with-cause-chain"></span>`fn with_cause_chain(self) -> Self`
 
-- `fn without_cause_chain(self: Self) -> Self`
+- <span id="miettehandleropts-without-cause-chain"></span>`fn without_cause_chain(self) -> Self`
 
-- `fn show_related_errors_as_siblings(self: Self) -> Self`
+- <span id="miettehandleropts-show-related-errors-as-siblings"></span>`fn show_related_errors_as_siblings(self) -> Self`
 
-- `fn show_related_errors_as_nested(self: Self) -> Self`
+- <span id="miettehandleropts-show-related-errors-as-nested"></span>`fn show_related_errors_as_nested(self) -> Self`
 
-- `fn color(self: Self, color: bool) -> Self`
+- <span id="miettehandleropts-color"></span>`fn color(self, color: bool) -> Self`
 
-- `fn rgb_colors(self: Self, color: RgbColors) -> Self` — [`RgbColors`](../index.md)
+- <span id="miettehandleropts-rgb-colors"></span>`fn rgb_colors(self, color: RgbColors) -> Self` — [`RgbColors`](../index.md)
 
-- `fn unicode(self: Self, unicode: bool) -> Self`
+- <span id="miettehandleropts-unicode"></span>`fn unicode(self, unicode: bool) -> Self`
 
-- `fn force_graphical(self: Self, force: bool) -> Self`
+- <span id="miettehandleropts-force-graphical"></span>`fn force_graphical(self, force: bool) -> Self`
 
-- `fn force_narrated(self: Self, force: bool) -> Self`
+- <span id="miettehandleropts-force-narrated"></span>`fn force_narrated(self, force: bool) -> Self`
 
-- `fn footer(self: Self, footer: String) -> Self`
+- <span id="miettehandleropts-footer"></span>`fn footer(self, footer: String) -> Self`
 
-- `fn context_lines(self: Self, context_lines: usize) -> Self`
+- <span id="miettehandleropts-context-lines"></span>`fn context_lines(self, context_lines: usize) -> Self`
 
-- `fn tab_width(self: Self, width: usize) -> Self`
+- <span id="miettehandleropts-tab-width"></span>`fn tab_width(self, width: usize) -> Self`
 
-- `fn build(self: Self) -> MietteHandler` — [`MietteHandler`](../index.md)
+- <span id="miettehandleropts-build"></span>`fn build(self) -> MietteHandler` — [`MietteHandler`](../index.md)
 
-- `fn is_graphical(self: &Self) -> bool`
+- <span id="miettehandleropts-is-graphical"></span>`fn is_graphical(&self) -> bool`
 
-- `fn use_links(self: &Self) -> bool`
+- <span id="miettehandleropts-use-links"></span>`fn use_links(&self) -> bool`
 
-- `fn get_width(self: &Self) -> usize`
+- <span id="miettehandleropts-get-width"></span>`fn get_width(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Clone for MietteHandlerOpts`
 
-- `fn clone(self: &Self) -> MietteHandlerOpts` — [`MietteHandlerOpts`](../index.md)
+- <span id="miettehandleropts-clone"></span>`fn clone(&self) -> MietteHandlerOpts` — [`MietteHandlerOpts`](../index.md)
 
 ##### `impl Debug for MietteHandlerOpts`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="miettehandleropts-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for MietteHandlerOpts`
 
-- `fn default() -> MietteHandlerOpts` — [`MietteHandlerOpts`](../index.md)
+- <span id="miettehandleropts-default"></span>`fn default() -> MietteHandlerOpts` — [`MietteHandlerOpts`](../index.md)
 
 ##### `impl<D> OwoColorize for MietteHandlerOpts`
 
@@ -143,19 +153,19 @@ printer.
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="miettehandler-new"></span>`fn new() -> Self`
 
 #### Trait Implementations
 
 ##### `impl Default for MietteHandler`
 
-- `fn default() -> Self`
+- <span id="miettehandler-default"></span>`fn default() -> Self`
 
 ##### `impl<D> OwoColorize for MietteHandler`
 
 ##### `impl ReportHandler for MietteHandler`
 
-- `fn debug(self: &Self, diagnostic: &dyn Diagnostic, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`Diagnostic`](../index.md)
+- <span id="miettehandler-debug"></span>`fn debug(&self, diagnostic: &dyn Diagnostic, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`Diagnostic`](../index.md)
 
 ## Enums
 
@@ -189,17 +199,17 @@ Settings to control the color format used for graphical rendering.
 
 ##### `impl Clone for RgbColors`
 
-- `fn clone(self: &Self) -> RgbColors` — [`RgbColors`](../index.md)
+- <span id="rgbcolors-clone"></span>`fn clone(&self) -> RgbColors` — [`RgbColors`](../index.md)
 
 ##### `impl Copy for RgbColors`
 
 ##### `impl Debug for RgbColors`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rgbcolors-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for RgbColors`
 
-- `fn default() -> RgbColors` — [`RgbColors`](../index.md)
+- <span id="rgbcolors-default"></span>`fn default() -> RgbColors` — [`RgbColors`](../index.md)
 
 ##### `impl Eq for RgbColors`
 
@@ -207,7 +217,7 @@ Settings to control the color format used for graphical rendering.
 
 ##### `impl PartialEq for RgbColors`
 
-- `fn eq(self: &Self, other: &RgbColors) -> bool` — [`RgbColors`](../index.md)
+- <span id="rgbcolors-eq"></span>`fn eq(&self, other: &RgbColors) -> bool` — [`RgbColors`](../index.md)
 
 ##### `impl StructuralPartialEq for RgbColors`
 
@@ -222,13 +232,13 @@ enum HighlighterOption {
 
 #### Implementations
 
-- `fn select(color: Option<bool>, highlighter: Option<MietteHighlighter>, supports_color: bool) -> HighlighterOption` — [`MietteHighlighter`](../highlighters/index.md), [`HighlighterOption`](#highlighteroption)
+- <span id="highlighteroption-select"></span>`fn select(color: Option<bool>, highlighter: Option<MietteHighlighter>, supports_color: bool) -> HighlighterOption` — [`MietteHighlighter`](../highlighters/index.md), [`HighlighterOption`](#highlighteroption)
 
 #### Trait Implementations
 
 ##### `impl Default for HighlighterOption`
 
-- `fn default() -> Self`
+- <span id="highlighteroption-default"></span>`fn default() -> Self`
 
 ##### `impl<D> OwoColorize for HighlighterOption`
 

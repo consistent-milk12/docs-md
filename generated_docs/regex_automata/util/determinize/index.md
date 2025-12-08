@@ -39,6 +39,16 @@ approach, my instinct is that it would be more complex than is needed here.
 And the interface required would be pretty hairy. Instead, I think splitting
 it into logical sub-components works better.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`state`](#state) | mod | This module defines a DFA state representation and builders for constructing |
+| [`next`](#next) | fn | Compute the set of all reachable NFA states, including the full epsilon |
+| [`epsilon_closure`](#epsilon_closure) | fn | Compute the epsilon closure for the given NFA state. |
+| [`add_nfa_states`](#add_nfa_states) | fn | Add the NFA state IDs in the given `set` to the given DFA builder state. |
+| [`set_lookbehind_from_start`](#set_lookbehind_from_start) | fn | Sets the appropriate look-behind assertions on the given state based on |
+
 ## Modules
 
 - [`state`](state/index.md) - This module defines a DFA state representation and builders for constructing

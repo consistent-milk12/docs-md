@@ -27,7 +27,7 @@ use std::process::Command;
 
 #[cfg(feature = "source-parsing")]
 use Internals::CollectSourcesArgs;
-use Internals::generator::Generator;
+use Internals::generator::{Generator, RenderConfig};
 use Internals::multi_crate::{MultiCrateGenerator, MultiCrateParser};
 use Internals::parser::Parser as InternalParser;
 use Internals::{Cargo, Command as CliCommand, DocsArgs, GenerateArgs};
@@ -170,7 +170,7 @@ fn run_generate(args: &GenerateArgs) -> Result<()> {
         );
 
         // Generate documentation for all crates
-        let generator = MultiCrateGenerator::new(&crates, args);
+        let generator = MultiCrateGenerator::new(&crates, args, RenderConfig::default());
         generator.generate()?;
 
         // Success message

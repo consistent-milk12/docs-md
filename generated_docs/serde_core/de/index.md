@@ -117,6 +117,59 @@ One example is `OsStr`.
 
 
 
+## Contents
+
+- [Modules](#modules)
+  - [`value`](#value)
+  - [`ignored_any`](#ignored_any)
+  - [`impls`](#impls)
+- [Structs](#structs)
+  - [`unnamed`](#unnamed)
+  - [`OneOf`](#oneof)
+  - [`WithDecimalPoint`](#withdecimalpoint)
+- [Enums](#enums)
+  - [`Unexpected`](#unexpected)
+- [Traits](#traits)
+  - [`Error`](#error)
+  - [`Expected`](#expected)
+  - [`Deserialize`](#deserialize)
+  - [`DeserializeOwned`](#deserializeowned)
+  - [`DeserializeSeed`](#deserializeseed)
+  - [`Deserializer`](#deserializer)
+  - [`Visitor`](#visitor)
+  - [`SeqAccess`](#seqaccess)
+  - [`MapAccess`](#mapaccess)
+  - [`EnumAccess`](#enumaccess)
+  - [`VariantAccess`](#variantaccess)
+  - [`IntoDeserializer`](#intodeserializer)
+- [Macros](#macros)
+  - [`declare_error_trait!`](#declare_error_trait)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`value`](#value) | mod | Building blocks for deserializing basic values using the `IntoDeserializer` |
+| [`ignored_any`](#ignored_any) | mod |  |
+| [`impls`](#impls) | mod |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`OneOf`](#oneof) | struct | Used in error messages. |
+| [`WithDecimalPoint`](#withdecimalpoint) | struct |  |
+| [`Unexpected`](#unexpected) | enum | `Unexpected` represents an unexpected invocation of any one of the `Visitor` |
+| [`Error`](#error) | trait | The `Error` trait allows `Deserialize` implementations to create descriptive |
+| [`Expected`](#expected) | trait | `Expected` represents an explanation of what data a `Visitor` was expecting |
+| [`Deserialize`](#deserialize) | trait | A **data structure** that can be deserialized from any data format supported |
+| [`DeserializeOwned`](#deserializeowned) | trait | A data structure that can be deserialized without borrowing any data from |
+| [`DeserializeSeed`](#deserializeseed) | trait | `DeserializeSeed` is the stateful form of the `Deserialize` trait. |
+| [`Deserializer`](#deserializer) | trait | A **data format** that can deserialize any data structure supported by |
+| [`Visitor`](#visitor) | trait | This trait represents a visitor that walks through a deserializer. |
+| [`SeqAccess`](#seqaccess) | trait | Provides a `Visitor` access to each element of a sequence in the input. |
+| [`MapAccess`](#mapaccess) | trait | Provides a `Visitor` access to each entry of a map in the input. |
+| [`EnumAccess`](#enumaccess) | trait | Provides a `Visitor` access to the data of an enum in the input. |
+| [`VariantAccess`](#variantaccess) | trait | `VariantAccess` is a visitor that is created by the `Deserializer` and |
+| [`IntoDeserializer`](#intodeserializer) | trait | Converts an existing value into a `Deserializer` from which other values can |
+| [`declare_error_trait!`](#declare_error_trait) | macro |  |
+
 ## Modules
 
 - [`value`](value/index.md) - Building blocks for deserializing basic values using the `IntoDeserializer`
@@ -239,69 +292,69 @@ let s: String = NthElement::new(3).deserialize(deserializer)?;
 
 ##### `impl Clone for IgnoredAny`
 
-- `fn clone(self: &Self) -> IgnoredAny` — [`IgnoredAny`](#ignoredany)
+- <span id="ignoredany-clone"></span>`fn clone(&self) -> IgnoredAny` — [`IgnoredAny`](#ignoredany)
 
 ##### `impl Copy for IgnoredAny`
 
 ##### `impl Debug for IgnoredAny`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="ignoredany-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for IgnoredAny`
 
-- `fn default() -> IgnoredAny` — [`IgnoredAny`](#ignoredany)
+- <span id="ignoredany-default"></span>`fn default() -> IgnoredAny` — [`IgnoredAny`](#ignoredany)
 
 ##### `impl<'de> Deserialize for IgnoredAny`
 
-- `fn deserialize<D>(deserializer: D) -> Result<IgnoredAny, <D as >::Error>` — [`IgnoredAny`](#ignoredany), [`Deserializer`](../index.md)
+- <span id="ignoredany-deserialize"></span>`fn deserialize<D>(deserializer: D) -> Result<IgnoredAny, <D as >::Error>` — [`IgnoredAny`](#ignoredany), [`Deserializer`](../index.md)
 
 ##### `impl<T> DeserializeOwned for IgnoredAny`
 
 ##### `impl<'de, T> Expected for IgnoredAny`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ignoredany-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl PartialEq for IgnoredAny`
 
-- `fn eq(self: &Self, other: &IgnoredAny) -> bool` — [`IgnoredAny`](#ignoredany)
+- <span id="ignoredany-eq"></span>`fn eq(&self, other: &IgnoredAny) -> bool` — [`IgnoredAny`](#ignoredany)
 
 ##### `impl StructuralPartialEq for IgnoredAny`
 
 ##### `impl<'de> Visitor for IgnoredAny`
 
-- `type Value = IgnoredAny`
+- <span id="ignoredany-value"></span>`type Value = IgnoredAny`
 
-- `fn expecting(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ignoredany-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- `fn visit_bool<E>(self: Self, x: bool) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
+- <span id="ignoredany-visit-bool"></span>`fn visit_bool<E>(self, x: bool) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
 
-- `fn visit_i64<E>(self: Self, x: i64) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
+- <span id="ignoredany-visit-i64"></span>`fn visit_i64<E>(self, x: i64) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
 
-- `fn visit_i128<E>(self: Self, x: i128) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
+- <span id="ignoredany-visit-i128"></span>`fn visit_i128<E>(self, x: i128) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
 
-- `fn visit_u64<E>(self: Self, x: u64) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
+- <span id="ignoredany-visit-u64"></span>`fn visit_u64<E>(self, x: u64) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
 
-- `fn visit_u128<E>(self: Self, x: u128) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
+- <span id="ignoredany-visit-u128"></span>`fn visit_u128<E>(self, x: u128) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
 
-- `fn visit_f64<E>(self: Self, x: f64) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
+- <span id="ignoredany-visit-f64"></span>`fn visit_f64<E>(self, x: f64) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
 
-- `fn visit_str<E>(self: Self, s: &str) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
+- <span id="ignoredany-visit-str"></span>`fn visit_str<E>(self, s: &str) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
 
-- `fn visit_none<E>(self: Self) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
+- <span id="ignoredany-visit-none"></span>`fn visit_none<E>(self) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
 
-- `fn visit_some<D>(self: Self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>` — [`Visitor`](#visitor)
+- <span id="ignoredany-visit-some"></span>`fn visit_some<D>(self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>` — [`Visitor`](#visitor)
 
-- `fn visit_newtype_struct<D>(self: Self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>` — [`Visitor`](#visitor)
+- <span id="ignoredany-visit-newtype-struct"></span>`fn visit_newtype_struct<D>(self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>` — [`Visitor`](#visitor)
 
-- `fn visit_unit<E>(self: Self) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
+- <span id="ignoredany-visit-unit"></span>`fn visit_unit<E>(self) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
 
-- `fn visit_seq<A>(self: Self, seq: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](#visitor)
+- <span id="ignoredany-visit-seq"></span>`fn visit_seq<A>(self, seq: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](#visitor)
 
-- `fn visit_map<A>(self: Self, map: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](#visitor)
+- <span id="ignoredany-visit-map"></span>`fn visit_map<A>(self, map: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](#visitor)
 
-- `fn visit_bytes<E>(self: Self, bytes: &[u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
+- <span id="ignoredany-visit-bytes"></span>`fn visit_bytes<E>(self, bytes: &[u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
 
-- `fn visit_enum<A>(self: Self, data: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](#visitor)
+- <span id="ignoredany-visit-enum"></span>`fn visit_enum<A>(self, data: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](#visitor)
 
 ### `OneOf`
 
@@ -323,11 +376,11 @@ The slice of names must not be empty.
 
 ##### `impl Display for OneOf`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="oneof-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for OneOf`
 
-- `fn to_string(self: &Self) -> String` — [`String`](../lib/index.md)
+- <span id="oneof-to-string"></span>`fn to_string(&self) -> String` — [`String`](../lib/index.md)
 
 ### `WithDecimalPoint`
 
@@ -339,11 +392,11 @@ struct WithDecimalPoint(f64);
 
 ##### `impl Display for WithDecimalPoint`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="withdecimalpoint-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for WithDecimalPoint`
 
-- `fn to_string(self: &Self) -> String` — [`String`](../lib/index.md)
+- <span id="withdecimalpoint-to-string"></span>`fn to_string(&self) -> String` — [`String`](../lib/index.md)
 
 ## Enums
 
@@ -486,27 +539,27 @@ where
 
 ##### `impl<'a> Clone for Unexpected<'a>`
 
-- `fn clone(self: &Self) -> Unexpected<'a>` — [`Unexpected`](#unexpected)
+- <span id="unexpected-clone"></span>`fn clone(&self) -> Unexpected<'a>` — [`Unexpected`](#unexpected)
 
 ##### `impl<'a> Copy for Unexpected<'a>`
 
 ##### `impl<'a> Debug for Unexpected<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="unexpected-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'a> Display for Unexpected<'a>`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="unexpected-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'a> PartialEq for Unexpected<'a>`
 
-- `fn eq(self: &Self, other: &Unexpected<'a>) -> bool` — [`Unexpected`](#unexpected)
+- <span id="unexpected-eq"></span>`fn eq(&self, other: &Unexpected<'a>) -> bool` — [`Unexpected`](#unexpected)
 
 ##### `impl<'a> StructuralPartialEq for Unexpected<'a>`
 
 ##### `impl<T> ToString for Unexpected<'a>`
 
-- `fn to_string(self: &Self) -> String` — [`String`](../lib/index.md)
+- <span id="unexpected-to-string"></span>`fn to_string(&self) -> String` — [`String`](../lib/index.md)
 
 ## Traits
 
@@ -630,7 +683,7 @@ return Err(de::Error::invalid_type(
 
 #### Required Methods
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- `fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
   Format an explanation of what data was being expected. Same signature as
 
@@ -883,7 +936,7 @@ let flattened: Vec<u64> = deserializer.deserialize_seq(visitor)?;
 
 - `type Value`
 
-- `fn deserialize<D>(self: Self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>`
+- `fn deserialize<D>(self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>`
 
   Equivalent to the more common `Deserialize::deserialize` method, except
 
@@ -1001,131 +1054,131 @@ a basic JSON `Deserializer`.
 
 - `type Error: 1`
 
-- `fn deserialize_any<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Require the `Deserializer` to figure out how to drive the visitor based
 
-- `fn deserialize_bool<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_bool<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a `bool` value.
 
-- `fn deserialize_i8<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_i8<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting an `i8` value.
 
-- `fn deserialize_i16<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_i16<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting an `i16` value.
 
-- `fn deserialize_i32<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_i32<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting an `i32` value.
 
-- `fn deserialize_i64<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_i64<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting an `i64` value.
 
-- `fn deserialize_i128<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_i128<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting an `i128` value.
 
-- `fn deserialize_u8<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_u8<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a `u8` value.
 
-- `fn deserialize_u16<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_u16<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a `u16` value.
 
-- `fn deserialize_u32<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_u32<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a `u32` value.
 
-- `fn deserialize_u64<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_u64<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a `u64` value.
 
-- `fn deserialize_u128<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_u128<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting an `u128` value.
 
-- `fn deserialize_f32<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_f32<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a `f32` value.
 
-- `fn deserialize_f64<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_f64<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a `f64` value.
 
-- `fn deserialize_char<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_char<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a `char` value.
 
-- `fn deserialize_str<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_str<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a string value and does
 
-- `fn deserialize_string<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_string<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a string value and would
 
-- `fn deserialize_bytes<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_bytes<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a byte array and does not
 
-- `fn deserialize_byte_buf<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_byte_buf<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a byte array and would
 
-- `fn deserialize_option<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_option<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting an optional value.
 
-- `fn deserialize_unit<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_unit<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a unit value.
 
-- `fn deserialize_unit_struct<V>(self: Self, name: &'static str, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a unit struct with a
 
-- `fn deserialize_newtype_struct<V>(self: Self, name: &'static str, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a newtype struct with a
 
-- `fn deserialize_seq<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_seq<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a sequence of values.
 
-- `fn deserialize_tuple<V>(self: Self, len: usize, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_tuple<V>(self, len: usize, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a sequence of values and
 
-- `fn deserialize_tuple_struct<V>(self: Self, name: &'static str, len: usize, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a tuple struct with a
 
-- `fn deserialize_map<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_map<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a map of key-value pairs.
 
-- `fn deserialize_struct<V>(self: Self, name: &'static str, fields: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a struct with a particular
 
-- `fn deserialize_enum<V>(self: Self, name: &'static str, variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting an enum value with a
 
-- `fn deserialize_identifier<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_identifier<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting the name of a struct
 
-- `fn deserialize_ignored_any<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn deserialize_ignored_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type needs to deserialize a value whose type
 
-- `fn is_human_readable(self: &Self) -> bool`
+- `fn is_human_readable(&self) -> bool`
 
   Determine whether `Deserialize` implementations should expect to
 
@@ -1179,115 +1232,115 @@ impl<'de> Visitor<'de> for LongString {
 
 - `type Value`
 
-- `fn expecting(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- `fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
   Format a message stating what data this Visitor expects to receive.
 
-- `fn visit_bool<E>(self: Self, v: bool) -> Result<<Self as >::Value, E>`
+- `fn visit_bool<E>(self, v: bool) -> Result<<Self as >::Value, E>`
 
   The input contains a boolean.
 
-- `fn visit_i8<E>(self: Self, v: i8) -> Result<<Self as >::Value, E>`
+- `fn visit_i8<E>(self, v: i8) -> Result<<Self as >::Value, E>`
 
   The input contains an `i8`.
 
-- `fn visit_i16<E>(self: Self, v: i16) -> Result<<Self as >::Value, E>`
+- `fn visit_i16<E>(self, v: i16) -> Result<<Self as >::Value, E>`
 
   The input contains an `i16`.
 
-- `fn visit_i32<E>(self: Self, v: i32) -> Result<<Self as >::Value, E>`
+- `fn visit_i32<E>(self, v: i32) -> Result<<Self as >::Value, E>`
 
   The input contains an `i32`.
 
-- `fn visit_i64<E>(self: Self, v: i64) -> Result<<Self as >::Value, E>`
+- `fn visit_i64<E>(self, v: i64) -> Result<<Self as >::Value, E>`
 
   The input contains an `i64`.
 
-- `fn visit_i128<E>(self: Self, v: i128) -> Result<<Self as >::Value, E>`
+- `fn visit_i128<E>(self, v: i128) -> Result<<Self as >::Value, E>`
 
   The input contains a `i128`.
 
-- `fn visit_u8<E>(self: Self, v: u8) -> Result<<Self as >::Value, E>`
+- `fn visit_u8<E>(self, v: u8) -> Result<<Self as >::Value, E>`
 
   The input contains a `u8`.
 
-- `fn visit_u16<E>(self: Self, v: u16) -> Result<<Self as >::Value, E>`
+- `fn visit_u16<E>(self, v: u16) -> Result<<Self as >::Value, E>`
 
   The input contains a `u16`.
 
-- `fn visit_u32<E>(self: Self, v: u32) -> Result<<Self as >::Value, E>`
+- `fn visit_u32<E>(self, v: u32) -> Result<<Self as >::Value, E>`
 
   The input contains a `u32`.
 
-- `fn visit_u64<E>(self: Self, v: u64) -> Result<<Self as >::Value, E>`
+- `fn visit_u64<E>(self, v: u64) -> Result<<Self as >::Value, E>`
 
   The input contains a `u64`.
 
-- `fn visit_u128<E>(self: Self, v: u128) -> Result<<Self as >::Value, E>`
+- `fn visit_u128<E>(self, v: u128) -> Result<<Self as >::Value, E>`
 
   The input contains a `u128`.
 
-- `fn visit_f32<E>(self: Self, v: f32) -> Result<<Self as >::Value, E>`
+- `fn visit_f32<E>(self, v: f32) -> Result<<Self as >::Value, E>`
 
   The input contains an `f32`.
 
-- `fn visit_f64<E>(self: Self, v: f64) -> Result<<Self as >::Value, E>`
+- `fn visit_f64<E>(self, v: f64) -> Result<<Self as >::Value, E>`
 
   The input contains an `f64`.
 
-- `fn visit_char<E>(self: Self, v: char) -> Result<<Self as >::Value, E>`
+- `fn visit_char<E>(self, v: char) -> Result<<Self as >::Value, E>`
 
   The input contains a `char`.
 
-- `fn visit_str<E>(self: Self, v: &str) -> Result<<Self as >::Value, E>`
+- `fn visit_str<E>(self, v: &str) -> Result<<Self as >::Value, E>`
 
   The input contains a string. The lifetime of the string is ephemeral and
 
-- `fn visit_borrowed_str<E>(self: Self, v: &'de str) -> Result<<Self as >::Value, E>`
+- `fn visit_borrowed_str<E>(self, v: &'de str) -> Result<<Self as >::Value, E>`
 
   The input contains a string that lives at least as long as the
 
-- `fn visit_string<E>(self: Self, v: String) -> Result<<Self as >::Value, E>`
+- `fn visit_string<E>(self, v: String) -> Result<<Self as >::Value, E>`
 
   The input contains a string and ownership of the string is being given
 
-- `fn visit_bytes<E>(self: Self, v: &[u8]) -> Result<<Self as >::Value, E>`
+- `fn visit_bytes<E>(self, v: &[u8]) -> Result<<Self as >::Value, E>`
 
   The input contains a byte array. The lifetime of the byte array is
 
-- `fn visit_borrowed_bytes<E>(self: Self, v: &'de [u8]) -> Result<<Self as >::Value, E>`
+- `fn visit_borrowed_bytes<E>(self, v: &'de [u8]) -> Result<<Self as >::Value, E>`
 
   The input contains a byte array that lives at least as long as the
 
-- `fn visit_byte_buf<E>(self: Self, v: Vec<u8>) -> Result<<Self as >::Value, E>`
+- `fn visit_byte_buf<E>(self, v: Vec<u8>) -> Result<<Self as >::Value, E>`
 
   The input contains a byte array and ownership of the byte array is being
 
-- `fn visit_none<E>(self: Self) -> Result<<Self as >::Value, E>`
+- `fn visit_none<E>(self) -> Result<<Self as >::Value, E>`
 
   The input contains an optional that is absent.
 
-- `fn visit_some<D>(self: Self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>`
+- `fn visit_some<D>(self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>`
 
   The input contains an optional that is present.
 
-- `fn visit_unit<E>(self: Self) -> Result<<Self as >::Value, E>`
+- `fn visit_unit<E>(self) -> Result<<Self as >::Value, E>`
 
   The input contains a unit `()`.
 
-- `fn visit_newtype_struct<D>(self: Self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>`
+- `fn visit_newtype_struct<D>(self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>`
 
   The input contains a newtype struct.
 
-- `fn visit_seq<A>(self: Self, seq: A) -> Result<<Self as >::Value, <A as >::Error>`
+- `fn visit_seq<A>(self, seq: A) -> Result<<Self as >::Value, <A as >::Error>`
 
   The input contains a sequence of elements.
 
-- `fn visit_map<A>(self: Self, map: A) -> Result<<Self as >::Value, <A as >::Error>`
+- `fn visit_map<A>(self, map: A) -> Result<<Self as >::Value, <A as >::Error>`
 
   The input contains a key-value map.
 
-- `fn visit_enum<A>(self: Self, data: A) -> Result<<Self as >::Value, <A as >::Error>`
+- `fn visit_enum<A>(self, data: A) -> Result<<Self as >::Value, <A as >::Error>`
 
   The input contains an enum.
 
@@ -1318,15 +1371,15 @@ implementation of `SeqAccess` for a basic JSON data format.
 
 - `type Error: 1`
 
-- `fn next_element_seed<T>(self: &mut Self, seed: T) -> Result<Option<<T as >::Value>, <Self as >::Error>`
+- `fn next_element_seed<T>(&mut self, seed: T) -> Result<Option<<T as >::Value>, <Self as >::Error>`
 
   This returns `Ok(Some(value))` for the next value in the sequence, or
 
-- `fn next_element<T>(self: &mut Self) -> Result<Option<T>, <Self as >::Error>`
+- `fn next_element<T>(&mut self) -> Result<Option<T>, <Self as >::Error>`
 
   This returns `Ok(Some(value))` for the next value in the sequence, or
 
-- `fn size_hint(self: &Self) -> Option<usize>`
+- `fn size_hint(&self) -> Option<usize>`
 
   Returns the number of elements remaining in the sequence, if known.
 
@@ -1356,31 +1409,31 @@ implementation of `MapAccess` for a basic JSON data format.
 
 - `type Error: 1`
 
-- `fn next_key_seed<K>(self: &mut Self, seed: K) -> Result<Option<<K as >::Value>, <Self as >::Error>`
+- `fn next_key_seed<K>(&mut self, seed: K) -> Result<Option<<K as >::Value>, <Self as >::Error>`
 
   This returns `Ok(Some(key))` for the next key in the map, or `Ok(None)`
 
-- `fn next_value_seed<V>(self: &mut Self, seed: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn next_value_seed<V>(&mut self, seed: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   This returns a `Ok(value)` for the next value in the map.
 
-- `fn next_entry_seed<K, V>(self: &mut Self, kseed: K, vseed: V) -> Result<Option<(<K as >::Value, <V as >::Value)>, <Self as >::Error>`
+- `fn next_entry_seed<K, V>(&mut self, kseed: K, vseed: V) -> Result<Option<(<K as >::Value, <V as >::Value)>, <Self as >::Error>`
 
   This returns `Ok(Some((key, value)))` for the next (key-value) pair in
 
-- `fn next_key<K>(self: &mut Self) -> Result<Option<K>, <Self as >::Error>`
+- `fn next_key<K>(&mut self) -> Result<Option<K>, <Self as >::Error>`
 
   This returns `Ok(Some(key))` for the next key in the map, or `Ok(None)`
 
-- `fn next_value<V>(self: &mut Self) -> Result<V, <Self as >::Error>`
+- `fn next_value<V>(&mut self) -> Result<V, <Self as >::Error>`
 
   This returns a `Ok(value)` for the next value in the map.
 
-- `fn next_entry<K, V>(self: &mut Self) -> Result<Option<(K, V)>, <Self as >::Error>`
+- `fn next_entry<K, V>(&mut self) -> Result<Option<(K, V)>, <Self as >::Error>`
 
   This returns `Ok(Some((key, value)))` for the next (key-value) pair in
 
-- `fn size_hint(self: &Self) -> Option<usize>`
+- `fn size_hint(&self) -> Option<usize>`
 
   Returns the number of entries remaining in the map, if known.
 
@@ -1413,11 +1466,11 @@ implementation of `EnumAccess` for a basic JSON data format.
 
 - `type Variant: 1`
 
-- `fn variant_seed<V>(self: Self, seed: V) -> Result<(<V as >::Value, <Self as >::Variant), <Self as >::Error>`
+- `fn variant_seed<V>(self, seed: V) -> Result<(<V as >::Value, <Self as >::Variant), <Self as >::Error>`
 
   `variant` is called to identify which variant to deserialize.
 
-- `fn variant<V>(self: Self) -> Result<(V, <Self as >::Variant), <Self as >::Error>`
+- `fn variant<V>(self) -> Result<(V, <Self as >::Variant), <Self as >::Error>`
 
   `variant` is called to identify which variant to deserialize.
 
@@ -1447,23 +1500,23 @@ implementation of `VariantAccess` for a basic JSON data format.
 
 - `type Error: 1`
 
-- `fn unit_variant(self: Self) -> Result<(), <Self as >::Error>`
+- `fn unit_variant(self) -> Result<(), <Self as >::Error>`
 
   Called when deserializing a variant with no values.
 
-- `fn newtype_variant_seed<T>(self: Self, seed: T) -> Result<<T as >::Value, <Self as >::Error>`
+- `fn newtype_variant_seed<T>(self, seed: T) -> Result<<T as >::Value, <Self as >::Error>`
 
   Called when deserializing a variant with a single value.
 
-- `fn newtype_variant<T>(self: Self) -> Result<T, <Self as >::Error>`
+- `fn newtype_variant<T>(self) -> Result<T, <Self as >::Error>`
 
   Called when deserializing a variant with a single value.
 
-- `fn tuple_variant<V>(self: Self, len: usize, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn tuple_variant<V>(self, len: usize, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Called when deserializing a tuple-like variant.
 
-- `fn struct_variant<V>(self: Self, fields: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+- `fn struct_variant<V>(self, fields: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Called when deserializing a struct-like variant.
 
@@ -1508,7 +1561,7 @@ impl FromStr for Setting {
 
 - `type Deserializer: 1`
 
-- `fn into_deserializer(self: Self) -> <Self as >::Deserializer`
+- `fn into_deserializer(self) -> <Self as >::Deserializer`
 
   Convert this value into a deserializer.
 

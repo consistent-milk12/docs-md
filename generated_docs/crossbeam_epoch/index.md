@@ -50,6 +50,67 @@ structures may defer the deallocation of an object.
 For majority of use cases, just use the default garbage collector by invoking [`pin`](#pin). If you
 want to create your own garbage collector, use the [`Collector`](#collector) API.
 
+## Contents
+
+- [Modules](#modules)
+  - [`primitive`](#primitive)
+  - [`atomic`](#atomic)
+  - [`collector`](#collector)
+  - [`deferred`](#deferred)
+  - [`epoch`](#epoch)
+  - [`guard`](#guard)
+  - [`internal`](#internal)
+  - [`sync`](#sync)
+  - [`default`](#default)
+- [Structs](#structs)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+- [Traits](#traits)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+- [Functions](#functions)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+- [Type Aliases](#type-aliases)
+  - [`unnamed`](#unnamed)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`primitive`](#primitive) | mod |  |
+| [`atomic`](#atomic) | mod |  |
+| [`collector`](#collector) | mod |  |
+| [`deferred`](#deferred) | mod |  |
+| [`epoch`](#epoch) | mod | The global epoch |
+| [`guard`](#guard) | mod |  |
+| [`internal`](#internal) | mod | The global data and participant for garbage collection. |
+| [`sync`](#sync) | mod | Synchronization primitives. |
+| [`default`](#default) | mod | The default garbage collector. |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | trait |  |
+| [`unnamed`](#unnamed) | trait |  |
+| [`unnamed`](#unnamed) | trait |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | type |  |
+
 ## Modules
 
 - [`primitive`](primitive/index.md) - 
@@ -85,71 +146,39 @@ Crossbeam supports dynamically sized types.  See [`Pointable`](#pointable) for d
 
 #### Implementations
 
-- `fn init(init: <T as >::Init) -> Atomic<T>` — [`Pointable`](#pointable), [`Atomic`](#atomic)
-
-- `fn from_usize(data: usize) -> Self`
-
-- `const fn null() -> Atomic<T>` — [`Atomic`](#atomic)
-
-- `fn load<'g>(self: &Self, ord: Ordering, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](#guard), [`Shared`](#shared)
-
-- `fn load_consume<'g>(self: &Self, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](#guard), [`Shared`](#shared)
-
-- `fn store<P: Pointer<T>>(self: &Self, new: P, ord: Ordering)`
-
-- `fn swap<'g, P: Pointer<T>>(self: &Self, new: P, ord: Ordering, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](#guard), [`Shared`](#shared)
-
-- `fn compare_exchange<'g, P>(self: &Self, current: Shared<'_, T>, new: P, success: Ordering, failure: Ordering, _: &'g Guard) -> Result<Shared<'g, T>, CompareExchangeError<'g, T, P>>` — [`Shared`](#shared), [`Guard`](#guard), [`CompareExchangeError`](#compareexchangeerror)
-
-- `fn compare_exchange_weak<'g, P>(self: &Self, current: Shared<'_, T>, new: P, success: Ordering, failure: Ordering, _: &'g Guard) -> Result<Shared<'g, T>, CompareExchangeError<'g, T, P>>` — [`Shared`](#shared), [`Guard`](#guard), [`CompareExchangeError`](#compareexchangeerror)
-
-- `fn fetch_update<'g, F>(self: &Self, set_order: Ordering, fail_order: Ordering, guard: &'g Guard, func: F) -> Result<Shared<'g, T>, Shared<'g, T>>` — [`Guard`](#guard), [`Shared`](#shared)
-
-- `fn compare_and_set<'g, O, P>(self: &Self, current: Shared<'_, T>, new: P, ord: O, guard: &'g Guard) -> Result<Shared<'g, T>, CompareAndSetError<'g, T, P>>` — [`Shared`](#shared), [`Guard`](#guard), [`CompareAndSetError`](#compareandseterror)
-
-- `fn compare_and_set_weak<'g, O, P>(self: &Self, current: Shared<'_, T>, new: P, ord: O, guard: &'g Guard) -> Result<Shared<'g, T>, CompareAndSetError<'g, T, P>>` — [`Shared`](#shared), [`Guard`](#guard), [`CompareAndSetError`](#compareandseterror)
-
-- `fn fetch_and<'g>(self: &Self, val: usize, ord: Ordering, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](#guard), [`Shared`](#shared)
-
-- `fn fetch_or<'g>(self: &Self, val: usize, ord: Ordering, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](#guard), [`Shared`](#shared)
-
-- `fn fetch_xor<'g>(self: &Self, val: usize, ord: Ordering, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](#guard), [`Shared`](#shared)
-
-- `unsafe fn into_owned(self: Self) -> Owned<T>` — [`Owned`](#owned)
-
-- `unsafe fn try_into_owned(self: Self) -> Option<Owned<T>>` — [`Owned`](#owned)
+- <span id="atomic-new"></span>`fn new(init: T) -> Atomic<T>` — [`Atomic`](#atomic)
 
 #### Trait Implementations
 
 ##### `impl<T: ?Sized + Pointable> Clone for Atomic<T>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="atomic-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T: ?Sized + Pointable> Debug for Atomic<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="atomic-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + Pointable> Default for Atomic<T>`
 
-- `fn default() -> Self`
+- <span id="atomic-default"></span>`fn default() -> Self`
 
 ##### `impl<T> Pointable for Atomic<T>`
 
-- `const ALIGN: usize`
+- <span id="atomic-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="atomic-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](#pointable)
+- <span id="atomic-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](#pointable)
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="atomic-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="atomic-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="atomic-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T: ?Sized + Pointable> Pointer for Atomic<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="atomic-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + Pointable + Send + Sync> Send for Atomic<T>`
 
@@ -180,21 +209,21 @@ The error returned on failed compare-and-swap operation.
 
 ##### `impl<T, P: Pointer<T> + fmt::Debug> Debug for CompareExchangeError<'_, T, P>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="compareexchangeerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> Pointable for CompareExchangeError<'g, T, P>`
 
-- `const ALIGN: usize`
+- <span id="compareexchangeerror-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="compareexchangeerror-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](#pointable)
+- <span id="compareexchangeerror-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](#pointable)
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="compareexchangeerror-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="compareexchangeerror-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="compareexchangeerror-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `Owned<T: ?Sized + Pointable>`
 
@@ -214,69 +243,69 @@ least significant bits of the address.
 
 #### Implementations
 
-- `fn init(init: <T as >::Init) -> Owned<T>` — [`Pointable`](#pointable), [`Owned`](#owned)
+- <span id="owned-init"></span>`fn init(init: <T as >::Init) -> Owned<T>` — [`Pointable`](#pointable), [`Owned`](#owned)
 
-- `fn into_shared<'g>(self: Self, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](#guard), [`Shared`](#shared)
+- <span id="owned-into-shared"></span>`fn into_shared<'g>(self, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](#guard), [`Shared`](#shared)
 
-- `fn tag(self: &Self) -> usize`
+- <span id="owned-tag"></span>`fn tag(&self) -> usize`
 
-- `fn with_tag(self: Self, tag: usize) -> Owned<T>` — [`Owned`](#owned)
+- <span id="owned-with-tag"></span>`fn with_tag(self, tag: usize) -> Owned<T>` — [`Owned`](#owned)
 
 #### Trait Implementations
 
 ##### `impl<T: ?Sized + Pointable> AsMut for Owned<T>`
 
-- `fn as_mut(self: &mut Self) -> &mut T`
+- <span id="owned-as-mut"></span>`fn as_mut(&mut self) -> &mut T`
 
 ##### `impl<T: ?Sized + Pointable> AsRef for Owned<T>`
 
-- `fn as_ref(self: &Self) -> &T`
+- <span id="owned-as-ref"></span>`fn as_ref(&self) -> &T`
 
 ##### `impl<T: Clone> Clone for Owned<T>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="owned-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T: ?Sized + Pointable> Debug for Owned<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="owned-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + Pointable> Deref for Owned<T>`
 
-- `type Target = T`
+- <span id="owned-target"></span>`type Target = T`
 
-- `fn deref(self: &Self) -> &T`
+- <span id="owned-deref"></span>`fn deref(&self) -> &T`
 
 ##### `impl<T: ?Sized + Pointable> DerefMut for Owned<T>`
 
-- `fn deref_mut(self: &mut Self) -> &mut T`
+- <span id="owned-deref-mut"></span>`fn deref_mut(&mut self) -> &mut T`
 
 ##### `impl<T: ?Sized + Pointable> Drop for Owned<T>`
 
-- `fn drop(self: &mut Self)`
+- <span id="owned-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<T> Pointable for Owned<T>`
 
-- `const ALIGN: usize`
+- <span id="owned-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="owned-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](#pointable)
+- <span id="owned-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](#pointable)
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="owned-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="owned-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="owned-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T: ?Sized + Pointable> Pointer for Owned<T>`
 
-- `fn into_usize(self: Self) -> usize`
+- <span id="owned-into-usize"></span>`fn into_usize(self) -> usize`
 
-- `unsafe fn from_usize(data: usize) -> Self`
+- <span id="owned-from-usize"></span>`unsafe fn from_usize(data: usize) -> Self`
 
 ##### `impl<P, T> Receiver for Owned<T>`
 
-- `type Target = T`
+- <span id="owned-target"></span>`type Target = T`
 
 ### `Shared<'g, T: 'g + ?Sized + Pointable>`
 
@@ -296,55 +325,73 @@ least significant bits of the address.
 
 #### Implementations
 
-- `fn as_raw(self: &Self) -> *const T`
+- <span id="shared-null"></span>`fn null() -> Shared<'g, T>` — [`Shared`](#shared)
+
+- <span id="shared-is-null"></span>`fn is_null(&self) -> bool`
+
+- <span id="shared-deref"></span>`unsafe fn deref(&self) -> &'g T`
+
+- <span id="shared-deref-mut"></span>`unsafe fn deref_mut(&mut self) -> &'g mut T`
+
+- <span id="shared-as-ref"></span>`unsafe fn as_ref(&self) -> Option<&'g T>`
+
+- <span id="shared-into-owned"></span>`unsafe fn into_owned(self) -> Owned<T>` — [`Owned`](#owned)
+
+- <span id="shared-try-into-owned"></span>`unsafe fn try_into_owned(self) -> Option<Owned<T>>` — [`Owned`](#owned)
+
+- <span id="shared-tag"></span>`fn tag(&self) -> usize`
+
+- <span id="shared-with-tag"></span>`fn with_tag(&self, tag: usize) -> Shared<'g, T>` — [`Shared`](#shared)
 
 #### Trait Implementations
 
 ##### `impl<T: ?Sized + Pointable> Clone for Shared<'_, T>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="shared-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T: ?Sized + Pointable> Copy for Shared<'_, T>`
 
 ##### `impl<T: ?Sized + Pointable> Debug for Shared<'_, T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="shared-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized + Pointable> Default for Shared<'_, T>`
 
-- `fn default() -> Self`
+- <span id="shared-default"></span>`fn default() -> Self`
 
 ##### `impl<T: ?Sized + Pointable> Eq for Shared<'_, T>`
 
 ##### `impl<T: ?Sized + Pointable> Ord for Shared<'_, T>`
 
-- `fn cmp(self: &Self, other: &Self) -> cmp::Ordering`
+- <span id="shared-cmp"></span>`fn cmp(&self, other: &Self) -> cmp::Ordering`
 
 ##### `impl<'g, T: ?Sized + Pointable> PartialEq for Shared<'g, T>`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="shared-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<'g, T: ?Sized + Pointable> PartialOrd for Shared<'g, T>`
 
-- `fn partial_cmp(self: &Self, other: &Self) -> Option<cmp::Ordering>`
+- <span id="shared-partial-cmp"></span>`fn partial_cmp(&self, other: &Self) -> Option<cmp::Ordering>`
 
 ##### `impl<T> Pointable for Shared<'g, T>`
 
-- `const ALIGN: usize`
+- <span id="shared-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="shared-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](#pointable)
+- <span id="shared-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](#pointable)
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="shared-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="shared-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="shared-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T: ?Sized + Pointable> Pointer for Shared<'_, T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="shared-into-usize"></span>`fn into_usize(self) -> usize`
+
+- <span id="shared-from-usize"></span>`unsafe fn from_usize(data: usize) -> Self`
 
 ### `Collector`
 
@@ -358,43 +405,43 @@ An epoch-based garbage collector.
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="collector-new"></span>`fn new() -> Self`
 
-- `fn register(self: &Self) -> LocalHandle` — [`LocalHandle`](#localhandle)
+- <span id="collector-register"></span>`fn register(&self) -> LocalHandle` — [`LocalHandle`](#localhandle)
 
 #### Trait Implementations
 
 ##### `impl Clone for Collector`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="collector-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for Collector`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="collector-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Collector`
 
-- `fn default() -> Self`
+- <span id="collector-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Collector`
 
 ##### `impl PartialEq for Collector`
 
-- `fn eq(self: &Self, rhs: &Collector) -> bool` — [`Collector`](#collector)
+- <span id="collector-eq"></span>`fn eq(&self, rhs: &Collector) -> bool` — [`Collector`](#collector)
 
 ##### `impl<T> Pointable for Collector`
 
-- `const ALIGN: usize`
+- <span id="collector-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="collector-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](#pointable)
+- <span id="collector-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](#pointable)
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="collector-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="collector-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="collector-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl Send for Collector`
 
@@ -412,35 +459,35 @@ A handle to a garbage collector.
 
 #### Implementations
 
-- `fn pin(self: &Self) -> Guard` — [`Guard`](#guard)
+- <span id="localhandle-pin"></span>`fn pin(&self) -> Guard` — [`Guard`](#guard)
 
-- `fn is_pinned(self: &Self) -> bool`
+- <span id="localhandle-is-pinned"></span>`fn is_pinned(&self) -> bool`
 
-- `fn collector(self: &Self) -> &Collector` — [`Collector`](#collector)
+- <span id="localhandle-collector"></span>`fn collector(&self) -> &Collector` — [`Collector`](#collector)
 
 #### Trait Implementations
 
 ##### `impl Debug for LocalHandle`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="localhandle-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Drop for LocalHandle`
 
-- `fn drop(self: &mut Self)`
+- <span id="localhandle-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<T> Pointable for LocalHandle`
 
-- `const ALIGN: usize`
+- <span id="localhandle-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="localhandle-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](#pointable)
+- <span id="localhandle-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](#pointable)
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="localhandle-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="localhandle-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="localhandle-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `Guard`
 
@@ -512,43 +559,43 @@ assert!(!epoch::is_pinned());
 
 #### Implementations
 
-- `fn defer<F, R>(self: &Self, f: F)`
+- <span id="guard-defer"></span>`fn defer<F, R>(&self, f: F)`
 
-- `unsafe fn defer_unchecked<F, R>(self: &Self, f: F)`
+- <span id="guard-defer-unchecked"></span>`unsafe fn defer_unchecked<F, R>(&self, f: F)`
 
-- `unsafe fn defer_destroy<T>(self: &Self, ptr: Shared<'_, T>)` — [`Shared`](#shared)
+- <span id="guard-defer-destroy"></span>`unsafe fn defer_destroy<T>(&self, ptr: Shared<'_, T>)` — [`Shared`](#shared)
 
-- `fn flush(self: &Self)`
+- <span id="guard-flush"></span>`fn flush(&self)`
 
-- `fn repin(self: &mut Self)`
+- <span id="guard-repin"></span>`fn repin(&mut self)`
 
-- `fn repin_after<F, R>(self: &mut Self, f: F) -> R`
+- <span id="guard-repin-after"></span>`fn repin_after<F, R>(&mut self, f: F) -> R`
 
-- `fn collector(self: &Self) -> Option<&Collector>` — [`Collector`](#collector)
+- <span id="guard-collector"></span>`fn collector(&self) -> Option<&Collector>` — [`Collector`](#collector)
 
 #### Trait Implementations
 
 ##### `impl Debug for Guard`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="guard-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Drop for Guard`
 
-- `fn drop(self: &mut Self)`
+- <span id="guard-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<T> Pointable for Guard`
 
-- `const ALIGN: usize`
+- <span id="guard-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="guard-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](#pointable)
+- <span id="guard-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](#pointable)
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="guard-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="guard-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="guard-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ## Traits
 

@@ -4,6 +4,41 @@
 
 # Module `path`
 
+## Contents
+
+- [Modules](#modules)
+  - [`parsing`](#parsing)
+  - [`printing`](#printing)
+- [Structs](#structs)
+  - [`Path`](#path)
+  - [`PathSegment`](#pathsegment)
+  - [`AngleBracketedGenericArguments`](#anglebracketedgenericarguments)
+  - [`AssocType`](#assoctype)
+  - [`AssocConst`](#assocconst)
+  - [`Constraint`](#constraint)
+  - [`ParenthesizedGenericArguments`](#parenthesizedgenericarguments)
+  - [`QSelf`](#qself)
+- [Enums](#enums)
+  - [`PathArguments`](#patharguments)
+  - [`GenericArgument`](#genericargument)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`parsing`](#parsing) | mod |  |
+| [`printing`](#printing) | mod |  |
+| [`Path`](#path) | struct | A path at which a named item is exported (e.g. `std::collections::HashMap`). |
+| [`PathSegment`](#pathsegment) | struct | A segment of a path together with any path arguments on that segment. |
+| [`AngleBracketedGenericArguments`](#anglebracketedgenericarguments) | struct | Angle bracketed arguments of a path segment: the `<K, V>` in `HashMap<K |
+| [`AssocType`](#assoctype) | struct | A binding (equality constraint) on an associated type: the `Item = u8` |
+| [`AssocConst`](#assocconst) | struct | An equality constraint on an associated constant: the `PANIC = false` in |
+| [`Constraint`](#constraint) | struct | An associated type bound: `Iterator<Item: Display>`. |
+| [`ParenthesizedGenericArguments`](#parenthesizedgenericarguments) | struct | Arguments of a function path segment: the `(A, B) -> C` in `Fn(A,B) -> |
+| [`QSelf`](#qself) | struct | The explicit Self type in a qualified path: the `T` in `<T as |
+| [`PathArguments`](#patharguments) | enum | Angle bracketed or parenthesized arguments of a path segment. |
+| [`GenericArgument`](#genericargument) | enum | An individual generic argument, like `'a`, `T`, or `Item = T`. |
+
 ## Modules
 
 - [`parsing`](parsing/index.md) - 
@@ -15,8 +50,8 @@
 
 ```rust
 struct Path {
-    pub leading_colon: Option<$crate::token::PathSep>,
-    pub segments: crate::punctuated::Punctuated<PathSegment, $crate::token::PathSep>,
+    pub leading_colon: Option<token::PathSep>,
+    pub segments: crate::punctuated::Punctuated<PathSegment, token::PathSep>,
 }
 ```
 
@@ -24,37 +59,31 @@ A path at which a named item is exported (e.g. `std::collections::HashMap`).
 
 #### Implementations
 
-- `fn parse_mod_style(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
-
-- `fn parse_helper(input: ParseStream<'_>, expr_style: bool) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
-
-- `fn parse_rest(input: ParseStream<'_>, path: &mut Self, expr_style: bool) -> Result<()>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
-
-- `fn is_mod_style(self: &Self) -> bool`
+- <span id="cratepath-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::Path`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratepath-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Path`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratepath-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Path`
 
 ##### `impl Hash for crate::Path`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratepath-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::path::Path`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratepathpath-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::Path`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratepath-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl PartialEq for syn::Path`
 
@@ -62,11 +91,11 @@ A path at which a named item is exported (e.g. `std::collections::HashMap`).
 
 ##### `impl<T> Spanned for Path`
 
-- `fn span(self: &Self) -> Span`
+- <span id="path-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::path::Path`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratepathpath-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `PathSegment`
 
@@ -81,50 +110,50 @@ A segment of a path together with any path arguments on that segment.
 
 #### Implementations
 
-- `fn parse_helper(input: ParseStream<'_>, expr_style: bool) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratepathpathsegment-parse-helper"></span>`fn parse_helper(input: ParseStream<'_>, expr_style: bool) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::PathSegment`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratepathsegment-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::PathSegment`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratepathsegment-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::PathSegment`
 
 ##### `impl Hash for crate::PathSegment`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratepathsegment-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::path::PathSegment`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratepathpathsegment-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::PathSegment`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratepathsegment-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for PathSegment`
 
 ##### `impl<T> Spanned for PathSegment`
 
-- `fn span(self: &Self) -> Span`
+- <span id="pathsegment-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::path::PathSegment`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratepathpathsegment-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `AngleBracketedGenericArguments`
 
 ```rust
 struct AngleBracketedGenericArguments {
-    pub colon2_token: Option<$crate::token::PathSep>,
-    pub lt_token: $crate::token::Lt,
-    pub args: crate::punctuated::Punctuated<GenericArgument, $crate::token::Comma>,
-    pub gt_token: $crate::token::Gt,
+    pub colon2_token: Option<token::PathSep>,
+    pub lt_token: token::Lt,
+    pub args: crate::punctuated::Punctuated<GenericArgument, token::Comma>,
+    pub gt_token: token::Gt,
 }
 ```
 
@@ -133,43 +162,41 @@ V>`.
 
 #### Implementations
 
-- `fn parse_turbofish(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
-
-- `fn do_parse(colon2_token: Option<$crate::token::PathSep>, input: ParseStream<'_>) -> Result<Self>` — [`PathSep`](../token/index.md), [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateanglebracketedgenericarguments-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::AngleBracketedGenericArguments`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateanglebracketedgenericarguments-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::AngleBracketedGenericArguments`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateanglebracketedgenericarguments-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::AngleBracketedGenericArguments`
 
 ##### `impl Hash for crate::AngleBracketedGenericArguments`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateanglebracketedgenericarguments-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::path::AngleBracketedGenericArguments`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratepathanglebracketedgenericarguments-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::AngleBracketedGenericArguments`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateanglebracketedgenericarguments-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for AngleBracketedGenericArguments`
 
 ##### `impl<T> Spanned for AngleBracketedGenericArguments`
 
-- `fn span(self: &Self) -> Span`
+- <span id="anglebracketedgenericarguments-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::path::AngleBracketedGenericArguments`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratepathanglebracketedgenericarguments-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `AssocType`
 
@@ -177,7 +204,7 @@ V>`.
 struct AssocType {
     pub ident: crate::ident::Ident,
     pub generics: Option<AngleBracketedGenericArguments>,
-    pub eq_token: $crate::token::Eq,
+    pub eq_token: token::Eq,
     pub ty: crate::ty::Type,
 }
 ```
@@ -189,31 +216,31 @@ in `Iterator<Item = u8>`.
 
 ##### `impl Clone for crate::AssocType`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateassoctype-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::AssocType`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateassoctype-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::AssocType`
 
 ##### `impl Hash for crate::AssocType`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateassoctype-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::AssocType`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateassoctype-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for AssocType`
 
 ##### `impl<T> Spanned for AssocType`
 
-- `fn span(self: &Self) -> Span`
+- <span id="assoctype-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::path::AssocType`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratepathassoctype-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `AssocConst`
 
@@ -221,7 +248,7 @@ in `Iterator<Item = u8>`.
 struct AssocConst {
     pub ident: crate::ident::Ident,
     pub generics: Option<AngleBracketedGenericArguments>,
-    pub eq_token: $crate::token::Eq,
+    pub eq_token: token::Eq,
     pub value: crate::expr::Expr,
 }
 ```
@@ -233,31 +260,31 @@ An equality constraint on an associated constant: the `PANIC = false` in
 
 ##### `impl Clone for crate::AssocConst`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateassocconst-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::AssocConst`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateassocconst-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::AssocConst`
 
 ##### `impl Hash for crate::AssocConst`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateassocconst-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::AssocConst`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateassocconst-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for AssocConst`
 
 ##### `impl<T> Spanned for AssocConst`
 
-- `fn span(self: &Self) -> Span`
+- <span id="assocconst-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::path::AssocConst`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratepathassocconst-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `Constraint`
 
@@ -265,8 +292,8 @@ An equality constraint on an associated constant: the `PANIC = false` in
 struct Constraint {
     pub ident: crate::ident::Ident,
     pub generics: Option<AngleBracketedGenericArguments>,
-    pub colon_token: $crate::token::Colon,
-    pub bounds: crate::punctuated::Punctuated<crate::generics::TypeParamBound, $crate::token::Plus>,
+    pub colon_token: token::Colon,
+    pub bounds: crate::punctuated::Punctuated<crate::generics::TypeParamBound, token::Plus>,
 }
 ```
 
@@ -276,38 +303,38 @@ An associated type bound: `Iterator<Item: Display>`.
 
 ##### `impl Clone for crate::Constraint`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateconstraint-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Constraint`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateconstraint-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Constraint`
 
 ##### `impl Hash for crate::Constraint`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateconstraint-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::Constraint`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateconstraint-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for Constraint`
 
 ##### `impl<T> Spanned for Constraint`
 
-- `fn span(self: &Self) -> Span`
+- <span id="constraint-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::path::Constraint`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratepathconstraint-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ParenthesizedGenericArguments`
 
 ```rust
 struct ParenthesizedGenericArguments {
     pub paren_token: token::Paren,
-    pub inputs: crate::punctuated::Punctuated<crate::ty::Type, $crate::token::Comma>,
+    pub inputs: crate::punctuated::Punctuated<crate::ty::Type, token::Comma>,
     pub output: crate::ty::ReturnType,
 }
 ```
@@ -317,7 +344,7 @@ C`.
 
 #### Fields
 
-- **`inputs`**: `crate::punctuated::Punctuated<crate::ty::Type, $crate::token::Comma>`
+- **`inputs`**: `crate::punctuated::Punctuated<crate::ty::Type, token::Comma>`
 
   `(A, B)`
 
@@ -327,51 +354,51 @@ C`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateparenthesizedgenericarguments-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ParenthesizedGenericArguments`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateparenthesizedgenericarguments-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ParenthesizedGenericArguments`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateparenthesizedgenericarguments-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ParenthesizedGenericArguments`
 
 ##### `impl Hash for crate::ParenthesizedGenericArguments`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateparenthesizedgenericarguments-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::path::ParenthesizedGenericArguments`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratepathparenthesizedgenericarguments-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ParenthesizedGenericArguments`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateparenthesizedgenericarguments-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ParenthesizedGenericArguments`
 
 ##### `impl<T> Spanned for ParenthesizedGenericArguments`
 
-- `fn span(self: &Self) -> Span`
+- <span id="parenthesizedgenericarguments-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::path::ParenthesizedGenericArguments`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratepathparenthesizedgenericarguments-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `QSelf`
 
 ```rust
 struct QSelf {
-    pub lt_token: $crate::token::Lt,
+    pub lt_token: token::Lt,
     pub ty: Box<crate::ty::Type>,
     pub position: usize,
-    pub as_token: Option<$crate::token::As>,
-    pub gt_token: $crate::token::Gt,
+    pub as_token: Option<token::As>,
+    pub gt_token: token::Gt,
 }
 ```
 
@@ -396,27 +423,27 @@ item qualified with this Self type.
 
 ##### `impl Clone for crate::QSelf`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateqself-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::QSelf`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateqself-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::QSelf`
 
 ##### `impl Hash for crate::QSelf`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateqself-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::QSelf`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateqself-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl Sealed for crate::QSelf`
 
 ##### `impl Spanned for crate::path::QSelf`
 
-- `fn span(self: &Self) -> Span`
+- <span id="cratepathqself-span"></span>`fn span(&self) -> Span`
 
 ## Enums
 
@@ -452,43 +479,43 @@ The `(A, B) -> C` in `Fn(A, B) -> C`.
 
 #### Implementations
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="patharguments-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn is_none(self: &Self) -> bool`
+- <span id="patharguments-is-none"></span>`fn is_none(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::PathArguments`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratepatharguments-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::PathArguments`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratepatharguments-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for PathArguments`
 
-- `fn default() -> Self`
+- <span id="patharguments-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for crate::PathArguments`
 
 ##### `impl Hash for crate::PathArguments`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratepatharguments-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::PathArguments`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratepatharguments-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for PathArguments`
 
 ##### `impl<T> Spanned for PathArguments`
 
-- `fn span(self: &Self) -> Span`
+- <span id="patharguments-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::path::PathArguments`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratepathpatharguments-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `GenericArgument`
 
@@ -540,33 +567,33 @@ An individual generic argument, like `'a`, `T`, or `Item = T`.
 
 ##### `impl Clone for crate::GenericArgument`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crategenericargument-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::GenericArgument`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crategenericargument-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::GenericArgument`
 
 ##### `impl Hash for crate::GenericArgument`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crategenericargument-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::path::GenericArgument`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratepathgenericargument-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::GenericArgument`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crategenericargument-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for GenericArgument`
 
 ##### `impl<T> Spanned for GenericArgument`
 
-- `fn span(self: &Self) -> Span`
+- <span id="genericargument-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::path::GenericArgument`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratepathgenericargument-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 

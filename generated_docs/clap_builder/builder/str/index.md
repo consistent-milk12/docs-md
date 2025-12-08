@@ -4,6 +4,13 @@
 
 # Module `str`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`inner`](#inner) | mod |  |
+| [`Str`](#str) | struct | A UTF-8-encoded fixed string |
+
 ## Modules
 
 - [`inner`](inner/index.md) - 
@@ -29,69 +36,69 @@ feature
 
 #### Implementations
 
-- `fn from_static_ref(name: &'static str) -> Self`
+- <span id="str-from-static-ref"></span>`fn from_static_ref(name: &'static str) -> Self`
 
-- `fn into_inner(self: Self) -> Inner` — [`Inner`](inner/index.md)
+- <span id="str-into-inner"></span>`fn into_inner(self) -> Inner` — [`Inner`](inner/index.md)
 
-- `fn as_str(self: &Self) -> &str`
+- <span id="str-as-str"></span>`fn as_str(&self) -> &str`
 
 #### Trait Implementations
 
 ##### `impl AsRef for Str`
 
-- `fn as_ref(self: &Self) -> &[u8]`
+- <span id="str-as-ref"></span>`fn as_ref(&self) -> &[u8]`
 
 ##### `impl Clone for Str`
 
-- `fn clone(self: &Self) -> Str` — [`Str`](../index.md)
+- <span id="str-clone"></span>`fn clone(&self) -> Str` — [`Str`](../index.md)
 
 ##### `impl Debug for Str`
 
-- `fn fmt(self: &Self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="str-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
 ##### `impl Default for Str`
 
-- `fn default() -> Str` — [`Str`](../index.md)
+- <span id="str-default"></span>`fn default() -> Str` — [`Str`](../index.md)
 
 ##### `impl Deref for Str`
 
-- `type Target = str`
+- <span id="str-target"></span>`type Target = str`
 
-- `fn deref(self: &Self) -> &str`
+- <span id="str-deref"></span>`fn deref(&self) -> &str`
 
 ##### `impl Display for Str`
 
-- `fn fmt(self: &Self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="str-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
 ##### `impl Eq for Str`
 
 ##### `impl Hash for Str`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="str-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl<I> IntoResettable for Str`
 
-- `fn into_resettable(self: Self) -> Resettable<Str>` — [`Resettable`](../index.md), [`Str`](../index.md)
+- <span id="str-into-resettable"></span>`fn into_resettable(self) -> Resettable<Str>` — [`Resettable`](../index.md), [`Str`](../index.md)
 
 ##### `impl Ord for Str`
 
-- `fn cmp(self: &Self, other: &Str) -> $crate::cmp::Ordering` — [`Str`](../index.md)
+- <span id="str-cmp"></span>`fn cmp(&self, other: &Str) -> cmp::Ordering` — [`Str`](../index.md)
 
 ##### `impl PartialEq for Str`
 
-- `fn eq(self: &Self, other: &str) -> bool`
+- <span id="str-eq"></span>`fn eq(&self, other: &String) -> bool`
 
 ##### `impl PartialOrd for Str`
 
-- `fn partial_cmp(self: &Self, other: &Str) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Str`](../index.md)
+- <span id="str-partial-cmp"></span>`fn partial_cmp(&self, other: &Str) -> option::Option<cmp::Ordering>` — [`Str`](../index.md)
 
 ##### `impl<P, T> Receiver for Str`
 
-- `type Target = T`
+- <span id="str-target"></span>`type Target = T`
 
 ##### `impl StructuralPartialEq for Str`
 
 ##### `impl<T> ToString for Str`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="str-to-string"></span>`fn to_string(&self) -> String`
 

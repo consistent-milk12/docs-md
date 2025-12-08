@@ -4,6 +4,12 @@
 
 # Module `last_utf8_char`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`LastByte`](#lastbyte) | enum | [`LastByte`] is an unsigned 8-bit integer data type that has a valid range of `[0, 217]`. |
+
 ## Enums
 
 ### `LastByte`
@@ -242,11 +248,11 @@ Specifically the compiler can use a value in this range to encode the `None` var
 
 ##### `impl Clone for LastByte`
 
-- `fn clone(self: &Self) -> LastByte` — [`LastByte`](#lastbyte)
+- <span id="lastbyte-clone"></span>`fn clone(&self) -> LastByte` — [`LastByte`](#lastbyte)
 
 ##### `impl Copy for LastByte`
 
 ##### `impl Debug for LastByte`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="lastbyte-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

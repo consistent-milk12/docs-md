@@ -4,6 +4,15 @@
 
 # Module `util`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`cold_path`](#cold_path) | fn |  |
+| [`likely`](#likely) | fn |  |
+| [`unlikely`](#unlikely) | fn |  |
+| [`invalid_mut`](#invalid_mut) | fn |  |
+
 ## Functions
 
 ### `cold_path`

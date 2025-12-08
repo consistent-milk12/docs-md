@@ -4,6 +4,37 @@
 
 # Module `util`
 
+## Contents
+
+- [Modules](#modules)
+  - [`alphabet`](#alphabet)
+  - [`buffer`](#buffer)
+  - [`byte_frequencies`](#byte_frequencies)
+  - [`debug`](#debug)
+  - [`error`](#error)
+  - [`int`](#int)
+  - [`prefilter`](#prefilter)
+  - [`primitives`](#primitives)
+  - [`remapper`](#remapper)
+  - [`search`](#search)
+  - [`special`](#special)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`alphabet`](#alphabet) | mod |  |
+| [`buffer`](#buffer) | mod |  |
+| [`byte_frequencies`](#byte_frequencies) | mod |  |
+| [`debug`](#debug) | mod |  |
+| [`error`](#error) | mod |  |
+| [`int`](#int) | mod | This module provides several integer oriented traits for converting between |
+| [`prefilter`](#prefilter) | mod |  |
+| [`primitives`](#primitives) | mod | Lower level primitive types that are useful in a variety of circumstances. |
+| [`remapper`](#remapper) | mod |  |
+| [`search`](#search) | mod |  |
+| [`special`](#special) | mod |  |
+
 ## Modules
 
 - [`alphabet`](alphabet/index.md) - 

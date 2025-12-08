@@ -4,6 +4,17 @@
 
 # Module `sse2`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Group`](#group) | struct | Abstraction over a group of control tags which can be scanned in |
+| [`BitMaskWord`](#bitmaskword) | type |  |
+| [`NonZeroBitMaskWord`](#nonzerobitmaskword) | type |  |
+| [`BITMASK_STRIDE`](#bitmask_stride) | const |  |
+| [`BITMASK_MASK`](#bitmask_mask) | const |  |
+| [`BITMASK_ITER_MASK`](#bitmask_iter_mask) | const |  |
+
 ## Structs
 
 ### `Group`
@@ -19,31 +30,31 @@ This implementation uses a 128-bit SSE value.
 
 #### Implementations
 
-- `const WIDTH: usize`
+- <span id="group-width"></span>`const WIDTH: usize`
 
-- `const fn static_empty() -> &'static [Tag; 16]` — [`Tag`](../../tag/index.md)
+- <span id="group-static-empty"></span>`const fn static_empty() -> &'static [Tag; 16]` — [`Tag`](../../tag/index.md)
 
-- `unsafe fn load(ptr: *const Tag) -> Self` — [`Tag`](../../tag/index.md)
+- <span id="group-load"></span>`unsafe fn load(ptr: *const Tag) -> Self` — [`Tag`](../../tag/index.md)
 
-- `unsafe fn load_aligned(ptr: *const Tag) -> Self` — [`Tag`](../../tag/index.md)
+- <span id="group-load-aligned"></span>`unsafe fn load_aligned(ptr: *const Tag) -> Self` — [`Tag`](../../tag/index.md)
 
-- `unsafe fn store_aligned(self: Self, ptr: *mut Tag)` — [`Tag`](../../tag/index.md)
+- <span id="group-store-aligned"></span>`unsafe fn store_aligned(self, ptr: *mut Tag)` — [`Tag`](../../tag/index.md)
 
-- `fn match_tag(self: Self, tag: Tag) -> BitMask` — [`Tag`](../../tag/index.md), [`BitMask`](../../bitmask/index.md)
+- <span id="group-match-tag"></span>`fn match_tag(self, tag: Tag) -> BitMask` — [`Tag`](../../tag/index.md), [`BitMask`](../../bitmask/index.md)
 
-- `fn match_empty(self: Self) -> BitMask` — [`BitMask`](../../bitmask/index.md)
+- <span id="group-match-empty"></span>`fn match_empty(self) -> BitMask` — [`BitMask`](../../bitmask/index.md)
 
-- `fn match_empty_or_deleted(self: Self) -> BitMask` — [`BitMask`](../../bitmask/index.md)
+- <span id="group-match-empty-or-deleted"></span>`fn match_empty_or_deleted(self) -> BitMask` — [`BitMask`](../../bitmask/index.md)
 
-- `fn match_full(self: &Self) -> BitMask` — [`BitMask`](../../bitmask/index.md)
+- <span id="group-match-full"></span>`fn match_full(&self) -> BitMask` — [`BitMask`](../../bitmask/index.md)
 
-- `fn convert_special_to_empty_and_full_to_deleted(self: Self) -> Self`
+- <span id="group-convert-special-to-empty-and-full-to-deleted"></span>`fn convert_special_to_empty_and_full_to_deleted(self) -> Self`
 
 #### Trait Implementations
 
 ##### `impl Clone for Group`
 
-- `fn clone(self: &Self) -> Group` — [`Group`](#group)
+- <span id="group-clone"></span>`fn clone(&self) -> Group` — [`Group`](#group)
 
 ##### `impl Copy for Group`
 

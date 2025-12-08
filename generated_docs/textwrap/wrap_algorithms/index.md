@@ -23,6 +23,13 @@ left behind by overly short lines.
 While both algorithms run in linear time, the first-fit algorithm
 is about 4 times faster than the optimal-fit algorithm.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`WrapAlgorithm`](#wrapalgorithm) | enum | Describes how to wrap words into lines. |
+| [`wrap_first_fit`](#wrap_first_fit) | fn | Wrap abstract fragments into lines with a first-fit algorithm. |
+
 ## Enums
 
 ### `WrapAlgorithm`
@@ -88,29 +95,29 @@ an entire paragraph at a time in order to find optimal line breaks
 
 #### Implementations
 
-- `const fn new() -> Self`
+- <span id="wrapalgorithm-new"></span>`const fn new() -> Self`
 
-- `fn wrap<'a, 'b>(self: &Self, words: &'b [Word<'a>], line_widths: &'b [usize]) -> Vec<&'b [Word<'a>]>` — [`Word`](../core/index.md)
+- <span id="wrapalgorithm-wrap"></span>`fn wrap<'a, 'b>(&self, words: &'b [Word<'a>], line_widths: &'b [usize]) -> Vec<&'b [Word<'a>]>` — [`Word`](../core/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for WrapAlgorithm`
 
-- `fn clone(self: &Self) -> WrapAlgorithm` — [`WrapAlgorithm`](../index.md)
+- <span id="wrapalgorithm-clone"></span>`fn clone(&self) -> WrapAlgorithm` — [`WrapAlgorithm`](../index.md)
 
 ##### `impl Copy for WrapAlgorithm`
 
 ##### `impl Debug for WrapAlgorithm`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="wrapalgorithm-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for WrapAlgorithm`
 
-- `fn default() -> Self`
+- <span id="wrapalgorithm-default"></span>`fn default() -> Self`
 
 ##### `impl PartialEq for WrapAlgorithm`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="wrapalgorithm-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ## Functions
 

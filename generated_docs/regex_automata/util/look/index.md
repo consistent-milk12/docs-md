@@ -13,6 +13,17 @@ This module principally defines two types:
 * [`LookMatcher`](#lookmatcher) provides routines for checking whether a `Look` or a
 `LookSet` matches at a particular position in a haystack.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`is_word_char`](#is_word_char) | mod | A module that looks for word codepoints using regex-syntax's data tables. |
+| [`LookSet`](#lookset) | struct | LookSet is a memory-efficient set of look-around assertions. |
+| [`LookSetIter`](#looksetiter) | struct | An iterator over all look-around assertions in a [`LookSet`]. |
+| [`LookMatcher`](#lookmatcher) | struct | A matcher for look-around assertions. |
+| [`UnicodeWordBoundaryError`](#unicodewordboundaryerror) | struct | An error that occurs when the Unicode-aware `\w` class is unavailable. |
+| [`Look`](#look) | enum | A look-around assertion. |
+
 ## Modules
 
 - [`is_word_char`](is_word_char/index.md) - A module that looks for word codepoints using regex-syntax's data tables.
@@ -49,83 +60,83 @@ that return `LookSet`s.
 
 #### Implementations
 
-- `fn empty() -> LookSet` — [`LookSet`](#lookset)
+- <span id="lookset-empty"></span>`fn empty() -> LookSet` — [`LookSet`](#lookset)
 
-- `fn full() -> LookSet` — [`LookSet`](#lookset)
+- <span id="lookset-full"></span>`fn full() -> LookSet` — [`LookSet`](#lookset)
 
-- `fn singleton(look: Look) -> LookSet` — [`Look`](#look), [`LookSet`](#lookset)
+- <span id="lookset-singleton"></span>`fn singleton(look: Look) -> LookSet` — [`Look`](#look), [`LookSet`](#lookset)
 
-- `fn len(self: Self) -> usize`
+- <span id="lookset-len"></span>`fn len(self) -> usize`
 
-- `fn is_empty(self: Self) -> bool`
+- <span id="lookset-is-empty"></span>`fn is_empty(self) -> bool`
 
-- `fn contains(self: Self, look: Look) -> bool` — [`Look`](#look)
+- <span id="lookset-contains"></span>`fn contains(self, look: Look) -> bool` — [`Look`](#look)
 
-- `fn contains_anchor(self: &Self) -> bool`
+- <span id="lookset-contains-anchor"></span>`fn contains_anchor(&self) -> bool`
 
-- `fn contains_anchor_haystack(self: &Self) -> bool`
+- <span id="lookset-contains-anchor-haystack"></span>`fn contains_anchor_haystack(&self) -> bool`
 
-- `fn contains_anchor_line(self: &Self) -> bool`
+- <span id="lookset-contains-anchor-line"></span>`fn contains_anchor_line(&self) -> bool`
 
-- `fn contains_anchor_lf(self: &Self) -> bool`
+- <span id="lookset-contains-anchor-lf"></span>`fn contains_anchor_lf(&self) -> bool`
 
-- `fn contains_anchor_crlf(self: &Self) -> bool`
+- <span id="lookset-contains-anchor-crlf"></span>`fn contains_anchor_crlf(&self) -> bool`
 
-- `fn contains_word(self: Self) -> bool`
+- <span id="lookset-contains-word"></span>`fn contains_word(self) -> bool`
 
-- `fn contains_word_unicode(self: Self) -> bool`
+- <span id="lookset-contains-word-unicode"></span>`fn contains_word_unicode(self) -> bool`
 
-- `fn contains_word_ascii(self: Self) -> bool`
+- <span id="lookset-contains-word-ascii"></span>`fn contains_word_ascii(self) -> bool`
 
-- `fn iter(self: Self) -> LookSetIter` — [`LookSetIter`](#looksetiter)
+- <span id="lookset-iter"></span>`fn iter(self) -> LookSetIter` — [`LookSetIter`](#looksetiter)
 
-- `fn insert(self: Self, look: Look) -> LookSet` — [`Look`](#look), [`LookSet`](#lookset)
+- <span id="lookset-insert"></span>`fn insert(self, look: Look) -> LookSet` — [`Look`](#look), [`LookSet`](#lookset)
 
-- `fn set_insert(self: &mut Self, look: Look)` — [`Look`](#look)
+- <span id="lookset-set-insert"></span>`fn set_insert(&mut self, look: Look)` — [`Look`](#look)
 
-- `fn remove(self: Self, look: Look) -> LookSet` — [`Look`](#look), [`LookSet`](#lookset)
+- <span id="lookset-remove"></span>`fn remove(self, look: Look) -> LookSet` — [`Look`](#look), [`LookSet`](#lookset)
 
-- `fn set_remove(self: &mut Self, look: Look)` — [`Look`](#look)
+- <span id="lookset-set-remove"></span>`fn set_remove(&mut self, look: Look)` — [`Look`](#look)
 
-- `fn subtract(self: Self, other: LookSet) -> LookSet` — [`LookSet`](#lookset)
+- <span id="lookset-subtract"></span>`fn subtract(self, other: LookSet) -> LookSet` — [`LookSet`](#lookset)
 
-- `fn set_subtract(self: &mut Self, other: LookSet)` — [`LookSet`](#lookset)
+- <span id="lookset-set-subtract"></span>`fn set_subtract(&mut self, other: LookSet)` — [`LookSet`](#lookset)
 
-- `fn union(self: Self, other: LookSet) -> LookSet` — [`LookSet`](#lookset)
+- <span id="lookset-union"></span>`fn union(self, other: LookSet) -> LookSet` — [`LookSet`](#lookset)
 
-- `fn set_union(self: &mut Self, other: LookSet)` — [`LookSet`](#lookset)
+- <span id="lookset-set-union"></span>`fn set_union(&mut self, other: LookSet)` — [`LookSet`](#lookset)
 
-- `fn intersect(self: Self, other: LookSet) -> LookSet` — [`LookSet`](#lookset)
+- <span id="lookset-intersect"></span>`fn intersect(self, other: LookSet) -> LookSet` — [`LookSet`](#lookset)
 
-- `fn set_intersect(self: &mut Self, other: LookSet)` — [`LookSet`](#lookset)
+- <span id="lookset-set-intersect"></span>`fn set_intersect(&mut self, other: LookSet)` — [`LookSet`](#lookset)
 
-- `fn read_repr(slice: &[u8]) -> LookSet` — [`LookSet`](#lookset)
+- <span id="lookset-read-repr"></span>`fn read_repr(slice: &[u8]) -> LookSet` — [`LookSet`](#lookset)
 
-- `fn write_repr(self: Self, slice: &mut [u8])`
+- <span id="lookset-write-repr"></span>`fn write_repr(self, slice: &mut [u8])`
 
-- `fn available(self: Self) -> Result<(), UnicodeWordBoundaryError>` — [`UnicodeWordBoundaryError`](#unicodewordboundaryerror)
+- <span id="lookset-available"></span>`fn available(self) -> Result<(), UnicodeWordBoundaryError>` — [`UnicodeWordBoundaryError`](#unicodewordboundaryerror)
 
 #### Trait Implementations
 
 ##### `impl Clone for LookSet`
 
-- `fn clone(self: &Self) -> LookSet` — [`LookSet`](#lookset)
+- <span id="lookset-clone"></span>`fn clone(&self) -> LookSet` — [`LookSet`](#lookset)
 
 ##### `impl Copy for LookSet`
 
 ##### `impl Debug for LookSet`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="lookset-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Default for LookSet`
 
-- `fn default() -> LookSet` — [`LookSet`](#lookset)
+- <span id="lookset-default"></span>`fn default() -> LookSet` — [`LookSet`](#lookset)
 
 ##### `impl Eq for LookSet`
 
 ##### `impl PartialEq for LookSet`
 
-- `fn eq(self: &Self, other: &LookSet) -> bool` — [`LookSet`](#lookset)
+- <span id="lookset-eq"></span>`fn eq(&self, other: &LookSet) -> bool` — [`LookSet`](#lookset)
 
 ##### `impl StructuralPartialEq for LookSet`
 
@@ -145,25 +156,25 @@ This iterator is created by `LookSet::iter`.
 
 ##### `impl Clone for LookSetIter`
 
-- `fn clone(self: &Self) -> LookSetIter` — [`LookSetIter`](#looksetiter)
+- <span id="looksetiter-clone"></span>`fn clone(&self) -> LookSetIter` — [`LookSetIter`](#looksetiter)
 
 ##### `impl Debug for LookSetIter`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="looksetiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for LookSetIter`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="looksetiter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="looksetiter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="looksetiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for LookSetIter`
 
-- `type Item = Look`
+- <span id="looksetiter-item"></span>`type Item = Look`
 
-- `fn next(self: &mut Self) -> Option<Look>` — [`Look`](#look)
+- <span id="looksetiter-next"></span>`fn next(&mut self) -> Option<Look>` — [`Look`](#look)
 
 ### `LookMatcher`
 
@@ -214,71 +225,71 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new() -> LookMatcher` — [`LookMatcher`](#lookmatcher)
+- <span id="lookmatcher-new"></span>`fn new() -> LookMatcher` — [`LookMatcher`](#lookmatcher)
 
-- `fn set_line_terminator(self: &mut Self, byte: u8) -> &mut LookMatcher` — [`LookMatcher`](#lookmatcher)
+- <span id="lookmatcher-set-line-terminator"></span>`fn set_line_terminator(&mut self, byte: u8) -> &mut LookMatcher` — [`LookMatcher`](#lookmatcher)
 
-- `fn get_line_terminator(self: &Self) -> u8`
+- <span id="lookmatcher-get-line-terminator"></span>`fn get_line_terminator(&self) -> u8`
 
-- `fn matches(self: &Self, look: Look, haystack: &[u8], at: usize) -> bool` — [`Look`](#look)
+- <span id="lookmatcher-matches"></span>`fn matches(&self, look: Look, haystack: &[u8], at: usize) -> bool` — [`Look`](#look)
 
-- `fn matches_inline(self: &Self, look: Look, haystack: &[u8], at: usize) -> bool` — [`Look`](#look)
+- <span id="lookmatcher-matches-inline"></span>`fn matches_inline(&self, look: Look, haystack: &[u8], at: usize) -> bool` — [`Look`](#look)
 
-- `fn matches_set(self: &Self, set: LookSet, haystack: &[u8], at: usize) -> bool` — [`LookSet`](#lookset)
+- <span id="lookmatcher-matches-set"></span>`fn matches_set(&self, set: LookSet, haystack: &[u8], at: usize) -> bool` — [`LookSet`](#lookset)
 
-- `fn matches_set_inline(self: &Self, set: LookSet, haystack: &[u8], at: usize) -> bool` — [`LookSet`](#lookset)
+- <span id="lookmatcher-matches-set-inline"></span>`fn matches_set_inline(&self, set: LookSet, haystack: &[u8], at: usize) -> bool` — [`LookSet`](#lookset)
 
-- `fn add_to_byteset(self: &Self, look: Look, set: &mut crate::util::alphabet::ByteClassSet)` — [`Look`](#look), [`ByteClassSet`](../alphabet/index.md)
+- <span id="lookmatcher-add-to-byteset"></span>`fn add_to_byteset(&self, look: Look, set: &mut crate::util::alphabet::ByteClassSet)` — [`Look`](#look), [`ByteClassSet`](../alphabet/index.md)
 
-- `fn is_start(self: &Self, _haystack: &[u8], at: usize) -> bool`
+- <span id="lookmatcher-is-start"></span>`fn is_start(&self, _haystack: &[u8], at: usize) -> bool`
 
-- `fn is_end(self: &Self, haystack: &[u8], at: usize) -> bool`
+- <span id="lookmatcher-is-end"></span>`fn is_end(&self, haystack: &[u8], at: usize) -> bool`
 
-- `fn is_start_lf(self: &Self, haystack: &[u8], at: usize) -> bool`
+- <span id="lookmatcher-is-start-lf"></span>`fn is_start_lf(&self, haystack: &[u8], at: usize) -> bool`
 
-- `fn is_end_lf(self: &Self, haystack: &[u8], at: usize) -> bool`
+- <span id="lookmatcher-is-end-lf"></span>`fn is_end_lf(&self, haystack: &[u8], at: usize) -> bool`
 
-- `fn is_start_crlf(self: &Self, haystack: &[u8], at: usize) -> bool`
+- <span id="lookmatcher-is-start-crlf"></span>`fn is_start_crlf(&self, haystack: &[u8], at: usize) -> bool`
 
-- `fn is_end_crlf(self: &Self, haystack: &[u8], at: usize) -> bool`
+- <span id="lookmatcher-is-end-crlf"></span>`fn is_end_crlf(&self, haystack: &[u8], at: usize) -> bool`
 
-- `fn is_word_ascii(self: &Self, haystack: &[u8], at: usize) -> bool`
+- <span id="lookmatcher-is-word-ascii"></span>`fn is_word_ascii(&self, haystack: &[u8], at: usize) -> bool`
 
-- `fn is_word_ascii_negate(self: &Self, haystack: &[u8], at: usize) -> bool`
+- <span id="lookmatcher-is-word-ascii-negate"></span>`fn is_word_ascii_negate(&self, haystack: &[u8], at: usize) -> bool`
 
-- `fn is_word_unicode(self: &Self, haystack: &[u8], at: usize) -> Result<bool, UnicodeWordBoundaryError>` — [`UnicodeWordBoundaryError`](#unicodewordboundaryerror)
+- <span id="lookmatcher-is-word-unicode"></span>`fn is_word_unicode(&self, haystack: &[u8], at: usize) -> Result<bool, UnicodeWordBoundaryError>` — [`UnicodeWordBoundaryError`](#unicodewordboundaryerror)
 
-- `fn is_word_unicode_negate(self: &Self, haystack: &[u8], at: usize) -> Result<bool, UnicodeWordBoundaryError>` — [`UnicodeWordBoundaryError`](#unicodewordboundaryerror)
+- <span id="lookmatcher-is-word-unicode-negate"></span>`fn is_word_unicode_negate(&self, haystack: &[u8], at: usize) -> Result<bool, UnicodeWordBoundaryError>` — [`UnicodeWordBoundaryError`](#unicodewordboundaryerror)
 
-- `fn is_word_start_ascii(self: &Self, haystack: &[u8], at: usize) -> bool`
+- <span id="lookmatcher-is-word-start-ascii"></span>`fn is_word_start_ascii(&self, haystack: &[u8], at: usize) -> bool`
 
-- `fn is_word_end_ascii(self: &Self, haystack: &[u8], at: usize) -> bool`
+- <span id="lookmatcher-is-word-end-ascii"></span>`fn is_word_end_ascii(&self, haystack: &[u8], at: usize) -> bool`
 
-- `fn is_word_start_unicode(self: &Self, haystack: &[u8], at: usize) -> Result<bool, UnicodeWordBoundaryError>` — [`UnicodeWordBoundaryError`](#unicodewordboundaryerror)
+- <span id="lookmatcher-is-word-start-unicode"></span>`fn is_word_start_unicode(&self, haystack: &[u8], at: usize) -> Result<bool, UnicodeWordBoundaryError>` — [`UnicodeWordBoundaryError`](#unicodewordboundaryerror)
 
-- `fn is_word_end_unicode(self: &Self, haystack: &[u8], at: usize) -> Result<bool, UnicodeWordBoundaryError>` — [`UnicodeWordBoundaryError`](#unicodewordboundaryerror)
+- <span id="lookmatcher-is-word-end-unicode"></span>`fn is_word_end_unicode(&self, haystack: &[u8], at: usize) -> Result<bool, UnicodeWordBoundaryError>` — [`UnicodeWordBoundaryError`](#unicodewordboundaryerror)
 
-- `fn is_word_start_half_ascii(self: &Self, haystack: &[u8], at: usize) -> bool`
+- <span id="lookmatcher-is-word-start-half-ascii"></span>`fn is_word_start_half_ascii(&self, haystack: &[u8], at: usize) -> bool`
 
-- `fn is_word_end_half_ascii(self: &Self, haystack: &[u8], at: usize) -> bool`
+- <span id="lookmatcher-is-word-end-half-ascii"></span>`fn is_word_end_half_ascii(&self, haystack: &[u8], at: usize) -> bool`
 
-- `fn is_word_start_half_unicode(self: &Self, haystack: &[u8], at: usize) -> Result<bool, UnicodeWordBoundaryError>` — [`UnicodeWordBoundaryError`](#unicodewordboundaryerror)
+- <span id="lookmatcher-is-word-start-half-unicode"></span>`fn is_word_start_half_unicode(&self, haystack: &[u8], at: usize) -> Result<bool, UnicodeWordBoundaryError>` — [`UnicodeWordBoundaryError`](#unicodewordboundaryerror)
 
-- `fn is_word_end_half_unicode(self: &Self, haystack: &[u8], at: usize) -> Result<bool, UnicodeWordBoundaryError>` — [`UnicodeWordBoundaryError`](#unicodewordboundaryerror)
+- <span id="lookmatcher-is-word-end-half-unicode"></span>`fn is_word_end_half_unicode(&self, haystack: &[u8], at: usize) -> Result<bool, UnicodeWordBoundaryError>` — [`UnicodeWordBoundaryError`](#unicodewordboundaryerror)
 
 #### Trait Implementations
 
 ##### `impl Clone for LookMatcher`
 
-- `fn clone(self: &Self) -> LookMatcher` — [`LookMatcher`](#lookmatcher)
+- <span id="lookmatcher-clone"></span>`fn clone(&self) -> LookMatcher` — [`LookMatcher`](#lookmatcher)
 
 ##### `impl Debug for LookMatcher`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="lookmatcher-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for LookMatcher`
 
-- `fn default() -> LookMatcher` — [`LookMatcher`](#lookmatcher)
+- <span id="lookmatcher-default"></span>`fn default() -> LookMatcher` — [`LookMatcher`](#lookmatcher)
 
 ### `UnicodeWordBoundaryError`
 
@@ -299,27 +310,27 @@ disabled.
 
 #### Implementations
 
-- `fn check() -> Result<(), UnicodeWordBoundaryError>` — [`UnicodeWordBoundaryError`](#unicodewordboundaryerror)
+- <span id="unicodewordboundaryerror-check"></span>`fn check() -> Result<(), UnicodeWordBoundaryError>` — [`UnicodeWordBoundaryError`](#unicodewordboundaryerror)
 
 #### Trait Implementations
 
 ##### `impl Clone for UnicodeWordBoundaryError`
 
-- `fn clone(self: &Self) -> UnicodeWordBoundaryError` — [`UnicodeWordBoundaryError`](#unicodewordboundaryerror)
+- <span id="unicodewordboundaryerror-clone"></span>`fn clone(&self) -> UnicodeWordBoundaryError` — [`UnicodeWordBoundaryError`](#unicodewordboundaryerror)
 
 ##### `impl Debug for UnicodeWordBoundaryError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="unicodewordboundaryerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for UnicodeWordBoundaryError`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="unicodewordboundaryerror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for UnicodeWordBoundaryError`
 
 ##### `impl<T> ToString for UnicodeWordBoundaryError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="unicodewordboundaryerror-to-string"></span>`fn to_string(&self) -> String`
 
 ## Enums
 
@@ -497,31 +508,31 @@ without an assertion.
 
 #### Implementations
 
-- `const fn reversed(self: Self) -> Look` — [`Look`](#look)
+- <span id="look-reversed"></span>`const fn reversed(self) -> Look` — [`Look`](#look)
 
-- `const fn as_repr(self: Self) -> u32`
+- <span id="look-as-repr"></span>`const fn as_repr(self) -> u32`
 
-- `const fn from_repr(repr: u32) -> Option<Look>` — [`Look`](#look)
+- <span id="look-from-repr"></span>`const fn from_repr(repr: u32) -> Option<Look>` — [`Look`](#look)
 
-- `const fn as_char(self: Self) -> char`
+- <span id="look-as-char"></span>`const fn as_char(self) -> char`
 
 #### Trait Implementations
 
 ##### `impl Clone for Look`
 
-- `fn clone(self: &Self) -> Look` — [`Look`](#look)
+- <span id="look-clone"></span>`fn clone(&self) -> Look` — [`Look`](#look)
 
 ##### `impl Copy for Look`
 
 ##### `impl Debug for Look`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="look-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Look`
 
 ##### `impl PartialEq for Look`
 
-- `fn eq(self: &Self, other: &Look) -> bool` — [`Look`](#look)
+- <span id="look-eq"></span>`fn eq(&self, other: &Look) -> bool` — [`Look`](#look)
 
 ##### `impl StructuralPartialEq for Look`
 

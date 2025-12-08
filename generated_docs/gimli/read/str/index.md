@@ -4,6 +4,14 @@
 
 # Module `str`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`DebugStr`](#debugstr) | struct | The `DebugStr` struct represents the DWARF strings |
+| [`DebugStrOffsets`](#debugstroffsets) | struct | The raw contents of the `.debug_str_offsets` section. |
+| [`DebugLineStr`](#debuglinestr) | struct | The `DebugLineStr` struct represents the DWARF strings |
+
 ## Structs
 
 ### `DebugStr<R>`
@@ -19,29 +27,29 @@ found in the `.debug_str` section.
 
 #### Implementations
 
-- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugStr<R>` — [`DebugStr`](../index.md)
+- <span id="debugstr-get-str"></span>`fn get_str(&self, offset: DebugStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugStrOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone> Clone for DebugStr<R>`
+##### `impl<R: clone::Clone> Clone for DebugStr<R>`
 
-- `fn clone(self: &Self) -> DebugStr<R>` — [`DebugStr`](../index.md)
+- <span id="debugstr-clone"></span>`fn clone(&self) -> DebugStr<R>` — [`DebugStr`](../index.md)
 
-##### `impl<R: $crate::marker::Copy> Copy for DebugStr<R>`
+##### `impl<R: marker::Copy> Copy for DebugStr<R>`
 
-##### `impl<R: $crate::fmt::Debug> Debug for DebugStr<R>`
+##### `impl<R: fmt::Debug> Debug for DebugStr<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugstr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::default::Default> Default for DebugStr<R>`
+##### `impl<R: default::Default> Default for DebugStr<R>`
 
-- `fn default() -> DebugStr<R>` — [`DebugStr`](../index.md)
+- <span id="debugstr-default"></span>`fn default() -> DebugStr<R>` — [`DebugStr`](../index.md)
 
 ##### `impl<R> Section for DebugStr<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../../index.md)
+- <span id="debugstr-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="debugstr-reader"></span>`fn reader(&self) -> &R`
 
 ### `DebugStrOffsets<R>`
 
@@ -55,29 +63,29 @@ The raw contents of the `.debug_str_offsets` section.
 
 #### Implementations
 
-- `fn get_str_offset(self: &Self, format: Format, base: DebugStrOffsetsBase<<R as >::Offset>, index: DebugStrOffsetsIndex<<R as >::Offset>) -> Result<DebugStrOffset<<R as >::Offset>>` — [`Format`](../../index.md), [`DebugStrOffsetsBase`](../../index.md), [`Reader`](../index.md), [`DebugStrOffsetsIndex`](../../index.md), [`Result`](../../index.md), [`DebugStrOffset`](../../index.md)
+- <span id="debugstroffsets-get-str-offset"></span>`fn get_str_offset(&self, format: Format, base: DebugStrOffsetsBase<<R as >::Offset>, index: DebugStrOffsetsIndex<<R as >::Offset>) -> Result<DebugStrOffset<<R as >::Offset>>` — [`Format`](../../index.md), [`DebugStrOffsetsBase`](../../index.md), [`Reader`](../index.md), [`DebugStrOffsetsIndex`](../../index.md), [`Result`](../../index.md), [`DebugStrOffset`](../../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone> Clone for DebugStrOffsets<R>`
+##### `impl<R: clone::Clone> Clone for DebugStrOffsets<R>`
 
-- `fn clone(self: &Self) -> DebugStrOffsets<R>` — [`DebugStrOffsets`](../index.md)
+- <span id="debugstroffsets-clone"></span>`fn clone(&self) -> DebugStrOffsets<R>` — [`DebugStrOffsets`](../index.md)
 
-##### `impl<R: $crate::marker::Copy> Copy for DebugStrOffsets<R>`
+##### `impl<R: marker::Copy> Copy for DebugStrOffsets<R>`
 
-##### `impl<R: $crate::fmt::Debug> Debug for DebugStrOffsets<R>`
+##### `impl<R: fmt::Debug> Debug for DebugStrOffsets<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugstroffsets-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::default::Default> Default for DebugStrOffsets<R>`
+##### `impl<R: default::Default> Default for DebugStrOffsets<R>`
 
-- `fn default() -> DebugStrOffsets<R>` — [`DebugStrOffsets`](../index.md)
+- <span id="debugstroffsets-default"></span>`fn default() -> DebugStrOffsets<R>` — [`DebugStrOffsets`](../index.md)
 
 ##### `impl<R> Section for DebugStrOffsets<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../../index.md)
+- <span id="debugstroffsets-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="debugstroffsets-reader"></span>`fn reader(&self) -> &R`
 
 ### `DebugLineStr<R>`
 
@@ -92,27 +100,27 @@ found in the `.debug_line_str` section.
 
 #### Implementations
 
-- `fn new(debug_line_str_section: &'input [u8], endian: Endian) -> Self`
+- <span id="debuglinestr-get-str"></span>`fn get_str(&self, offset: DebugLineStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugLineStrOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone> Clone for DebugLineStr<R>`
+##### `impl<R: clone::Clone> Clone for DebugLineStr<R>`
 
-- `fn clone(self: &Self) -> DebugLineStr<R>` — [`DebugLineStr`](../index.md)
+- <span id="debuglinestr-clone"></span>`fn clone(&self) -> DebugLineStr<R>` — [`DebugLineStr`](../index.md)
 
-##### `impl<R: $crate::marker::Copy> Copy for DebugLineStr<R>`
+##### `impl<R: marker::Copy> Copy for DebugLineStr<R>`
 
-##### `impl<R: $crate::fmt::Debug> Debug for DebugLineStr<R>`
+##### `impl<R: fmt::Debug> Debug for DebugLineStr<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debuglinestr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::default::Default> Default for DebugLineStr<R>`
+##### `impl<R: default::Default> Default for DebugLineStr<R>`
 
-- `fn default() -> DebugLineStr<R>` — [`DebugLineStr`](../index.md)
+- <span id="debuglinestr-default"></span>`fn default() -> DebugLineStr<R>` — [`DebugLineStr`](../index.md)
 
 ##### `impl<R> Section for DebugLineStr<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../../index.md)
+- <span id="debuglinestr-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="debuglinestr-reader"></span>`fn reader(&self) -> &R`
 

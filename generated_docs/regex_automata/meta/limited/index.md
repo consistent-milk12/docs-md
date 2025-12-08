@@ -40,6 +40,13 @@ was beyond my bandwidth to work on at the time of writing.
 See the 'opt/reverse-inner' and 'opt/reverse-suffix' benchmarks in rebar for a
 real demonstration of how quadratic behavior is mitigated.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`hybrid_try_search_half_rev`](#hybrid_try_search_half_rev) | fn |  |
+| [`hybrid_eoi_rev`](#hybrid_eoi_rev) | fn |  |
+
 ## Functions
 
 ### `hybrid_try_search_half_rev`

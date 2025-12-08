@@ -4,6 +4,51 @@
 
 # Module `unix_term`
 
+## Contents
+
+- [Enums](#enums)
+  - [`Input`](#input)
+- [Functions](#functions)
+  - [`is_a_terminal`](#is_a_terminal)
+  - [`is_a_color_terminal`](#is_a_color_terminal)
+  - [`c_result`](#c_result)
+  - [`terminal_size`](#terminal_size)
+  - [`read_secure`](#read_secure)
+  - [`poll_fd`](#poll_fd)
+  - [`select_or_poll_term_fd`](#select_or_poll_term_fd)
+  - [`read_single_char`](#read_single_char)
+  - [`read_bytes`](#read_bytes)
+  - [`read_single_key_impl`](#read_single_key_impl)
+  - [`read_single_key`](#read_single_key)
+  - [`key_from_utf8`](#key_from_utf8)
+  - [`wants_emoji`](#wants_emoji)
+  - [`set_title`](#set_title)
+  - [`make_raw`](#make_raw)
+- [Constants](#constants)
+  - [`DEFAULT_WIDTH`](#default_width)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Input`](#input) | enum |  |
+| [`is_a_terminal`](#is_a_terminal) | fn |  |
+| [`is_a_color_terminal`](#is_a_color_terminal) | fn |  |
+| [`c_result`](#c_result) | fn |  |
+| [`terminal_size`](#terminal_size) | fn |  |
+| [`read_secure`](#read_secure) | fn |  |
+| [`poll_fd`](#poll_fd) | fn |  |
+| [`select_or_poll_term_fd`](#select_or_poll_term_fd) | fn |  |
+| [`read_single_char`](#read_single_char) | fn |  |
+| [`read_bytes`](#read_bytes) | fn |  |
+| [`read_single_key_impl`](#read_single_key_impl) | fn |  |
+| [`read_single_key`](#read_single_key) | fn |  |
+| [`key_from_utf8`](#key_from_utf8) | fn |  |
+| [`wants_emoji`](#wants_emoji) | fn |  |
+| [`set_title`](#set_title) | fn |  |
+| [`make_raw`](#make_raw) | fn |  |
+| [`DEFAULT_WIDTH`](#default_width) | const |  |
+
 ## Enums
 
 ### `Input<T>`
@@ -17,13 +62,13 @@ enum Input<T> {
 
 #### Implementations
 
-- `fn read_line(self: &mut Self, buf: &mut String) -> io::Result<usize>`
+- <span id="input-buffered"></span>`fn buffered() -> io::Result<Self>`
 
 #### Trait Implementations
 
-##### `impl AsRawFd for Input<std::io::BufReader<fs::File>>`
+##### `impl AsRawFd for Input<fs::File>`
 
-- `fn as_raw_fd(self: &Self) -> RawFd`
+- <span id="input-as-raw-fd"></span>`fn as_raw_fd(&self) -> RawFd`
 
 ## Functions
 

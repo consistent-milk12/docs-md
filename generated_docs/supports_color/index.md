@@ -24,6 +24,48 @@ if let Some(support) = supports_color::on(Stream::Stdout) {
 }
 ```
 
+## Contents
+
+- [Structs](#structs)
+  - [`ColorLevel`](#colorlevel)
+- [Enums](#enums)
+  - [`Stream`](#stream)
+- [Functions](#functions)
+  - [`env_force_color`](#env_force_color)
+  - [`env_no_color`](#env_no_color)
+  - [`as_str`](#as_str)
+  - [`translate_level`](#translate_level)
+  - [`is_a_tty`](#is_a_tty)
+  - [`supports_color`](#supports_color)
+  - [`check_ansi_color`](#check_ansi_color)
+  - [`check_colorterm_16m`](#check_colorterm_16m)
+  - [`check_term_16m`](#check_term_16m)
+  - [`check_256_color`](#check_256_color)
+  - [`on`](#on)
+  - [`on_cached`](#on_cached)
+- [Macros](#macros)
+  - [`assert_stream_in_bounds!`](#assert_stream_in_bounds)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ColorLevel`](#colorlevel) | struct | Color level support details. |
+| [`Stream`](#stream) | enum | possible stream sources |
+| [`env_force_color`](#env_force_color) | fn |  |
+| [`env_no_color`](#env_no_color) | fn |  |
+| [`as_str`](#as_str) | fn |  |
+| [`translate_level`](#translate_level) | fn |  |
+| [`is_a_tty`](#is_a_tty) | fn |  |
+| [`supports_color`](#supports_color) | fn |  |
+| [`check_ansi_color`](#check_ansi_color) | fn |  |
+| [`check_colorterm_16m`](#check_colorterm_16m) | fn |  |
+| [`check_term_16m`](#check_term_16m) | fn |  |
+| [`check_256_color`](#check_256_color) | fn |  |
+| [`on`](#on) | fn | Returns a [ColorLevel] if a [Stream] supports terminal colors. |
+| [`on_cached`](#on_cached) | fn | Returns a [ColorLevel] if a [Stream] supports terminal colors, caching the result to |
+| [`assert_stream_in_bounds!`](#assert_stream_in_bounds) | macro |  |
+
 ## Structs
 
 ### `ColorLevel`
@@ -59,23 +101,23 @@ This type is returned from [on](#on). See documentation for its fields for more 
 
 ##### `impl Clone for ColorLevel`
 
-- `fn clone(self: &Self) -> ColorLevel` — [`ColorLevel`](#colorlevel)
+- <span id="colorlevel-clone"></span>`fn clone(&self) -> ColorLevel` — [`ColorLevel`](#colorlevel)
 
 ##### `impl Copy for ColorLevel`
 
 ##### `impl Debug for ColorLevel`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="colorlevel-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ColorLevel`
 
 ##### `impl Hash for ColorLevel`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="colorlevel-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for ColorLevel`
 
-- `fn eq(self: &Self, other: &ColorLevel) -> bool` — [`ColorLevel`](#colorlevel)
+- <span id="colorlevel-eq"></span>`fn eq(&self, other: &ColorLevel) -> bool` — [`ColorLevel`](#colorlevel)
 
 ##### `impl StructuralPartialEq for ColorLevel`
 
@@ -96,13 +138,13 @@ possible stream sources
 
 ##### `impl Clone for Stream`
 
-- `fn clone(self: &Self) -> Stream` — [`Stream`](#stream)
+- <span id="stream-clone"></span>`fn clone(&self) -> Stream` — [`Stream`](#stream)
 
 ##### `impl Copy for Stream`
 
 ##### `impl Debug for Stream`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="stream-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Functions
 

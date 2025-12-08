@@ -4,6 +4,13 @@
 
 # Module `iterator`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`IterEither`](#itereither) | struct | Iterator that maps left or right iterators to corresponding `Either`-wrapped items. |
+| [`wrap_either!`](#wrap_either) | macro |  |
+
 ## Structs
 
 ### `IterEither<L, R>`
@@ -22,31 +29,31 @@ and `factor_iter_mut` methods.
 
 #### Implementations
 
-- `fn new(inner: Either<L, R>) -> Self` — [`Either`](../index.md)
+- <span id="itereither-new"></span>`fn new(inner: Either<L, R>) -> Self` — [`Either`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<L: $crate::clone::Clone, R: $crate::clone::Clone> Clone for IterEither<L, R>`
+##### `impl<L: clone::Clone, R: clone::Clone> Clone for IterEither<L, R>`
 
-- `fn clone(self: &Self) -> IterEither<L, R>` — [`IterEither`](../index.md)
+- <span id="itereither-clone"></span>`fn clone(&self) -> IterEither<L, R>` — [`IterEither`](../index.md)
 
-##### `impl<L: $crate::fmt::Debug, R: $crate::fmt::Debug> Debug for IterEither<L, R>`
+##### `impl<L: fmt::Debug, R: fmt::Debug> Debug for IterEither<L, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="itereither-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<L, R> DoubleEndedIterator for IterEither<L, R>`
 
-- `fn next_back(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="itereither-next-back"></span>`fn next_back(&mut self) -> Option<<Self as >::Item>`
 
-- `fn nth_back(self: &mut Self, n: usize) -> Option<<Self as >::Item>`
+- <span id="itereither-nth-back"></span>`fn nth_back(&mut self, n: usize) -> Option<<Self as >::Item>`
 
-- `fn rfold<Acc, G>(self: Self, init: Acc, f: G) -> Acc`
+- <span id="itereither-rfold"></span>`fn rfold<Acc, G>(self, init: Acc, f: G) -> Acc`
 
-- `fn rfind<P>(self: &mut Self, predicate: P) -> Option<<Self as >::Item>`
+- <span id="itereither-rfind"></span>`fn rfind<P>(&mut self, predicate: P) -> Option<<Self as >::Item>`
 
 ##### `impl<L, R> ExactSizeIterator for IterEither<L, R>`
 
-- `fn len(self: &Self) -> usize`
+- <span id="itereither-len"></span>`fn len(&self) -> usize`
 
 ##### `impl<L, R> FusedIterator for IterEither<L, R>`
 
@@ -54,43 +61,43 @@ and `factor_iter_mut` methods.
 
 ##### `impl<I> IntoIterator for IterEither<L, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="itereither-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="itereither-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="itereither-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<L, R> Iterator for IterEither<L, R>`
 
-- `type Item = Either<<L as Iterator>::Item, <R as Iterator>::Item>`
+- <span id="itereither-item"></span>`type Item = Either<<L as Iterator>::Item, <R as Iterator>::Item>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="itereither-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="itereither-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- `fn fold<Acc, G>(self: Self, init: Acc, f: G) -> Acc`
+- <span id="itereither-fold"></span>`fn fold<Acc, G>(self, init: Acc, f: G) -> Acc`
 
-- `fn for_each<F>(self: Self, f: F)`
+- <span id="itereither-for-each"></span>`fn for_each<F>(self, f: F)`
 
-- `fn count(self: Self) -> usize`
+- <span id="itereither-count"></span>`fn count(self) -> usize`
 
-- `fn last(self: Self) -> Option<<Self as >::Item>`
+- <span id="itereither-last"></span>`fn last(self) -> Option<<Self as >::Item>`
 
-- `fn nth(self: &mut Self, n: usize) -> Option<<Self as >::Item>`
+- <span id="itereither-nth"></span>`fn nth(&mut self, n: usize) -> Option<<Self as >::Item>`
 
-- `fn collect<B>(self: Self) -> B`
+- <span id="itereither-collect"></span>`fn collect<B>(self) -> B`
 
-- `fn partition<B, F>(self: Self, f: F) -> (B, B)`
+- <span id="itereither-partition"></span>`fn partition<B, F>(self, f: F) -> (B, B)`
 
-- `fn all<F>(self: &mut Self, f: F) -> bool`
+- <span id="itereither-all"></span>`fn all<F>(&mut self, f: F) -> bool`
 
-- `fn any<F>(self: &mut Self, f: F) -> bool`
+- <span id="itereither-any"></span>`fn any<F>(&mut self, f: F) -> bool`
 
-- `fn find<P>(self: &mut Self, predicate: P) -> Option<<Self as >::Item>`
+- <span id="itereither-find"></span>`fn find<P>(&mut self, predicate: P) -> Option<<Self as >::Item>`
 
-- `fn find_map<B, F>(self: &mut Self, f: F) -> Option<B>`
+- <span id="itereither-find-map"></span>`fn find_map<B, F>(&mut self, f: F) -> Option<B>`
 
-- `fn position<P>(self: &mut Self, predicate: P) -> Option<usize>`
+- <span id="itereither-position"></span>`fn position<P>(&mut self, predicate: P) -> Option<usize>`
 
 ## Macros
 

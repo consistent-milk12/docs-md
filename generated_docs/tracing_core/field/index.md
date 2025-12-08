@@ -38,7 +38,7 @@ for their field names rather than printing them.
 
 `tracing`'s [`Value`](#value) trait is intentionally minimalist: it supports only a small
 number of Rust primitives as typed values, and only permits recording
-user-defined types with their [`fmt::Debug`](../../object/index.md) or [`fmt::Display`](../../miette_derive/index.md)
+user-defined types with their [`fmt::Debug`](../../object/index.md) or [`fmt::Display`](../../miette_derive/fmt/index.md)
 implementations. However, there are some cases where it may be useful to record
 nested values (such as arrays, `Vec`s, or `HashMap`s containing values), or
 user-defined `struct` and `enum` types without having to format them as
@@ -113,6 +113,56 @@ be forwarded to the visitor's `record_debug` method.
 
 
 
+## Contents
+
+- [Modules](#modules)
+  - [`private`](#private)
+- [Structs](#structs)
+  - [`Field`](#field)
+  - [`Empty`](#empty)
+  - [`FieldSet`](#fieldset)
+  - [`ValueSet`](#valueset)
+  - [`Iter`](#iter)
+  - [`DisplayValue`](#displayvalue)
+  - [`DebugValue`](#debugvalue)
+  - [`HexBytes`](#hexbytes)
+- [Enums](#enums)
+  - [`Values`](#values)
+- [Traits](#traits)
+  - [`Visit`](#visit)
+  - [`Value`](#value)
+- [Functions](#functions)
+  - [`display`](#display)
+  - [`debug`](#debug)
+- [Macros](#macros)
+  - [`impl_values!`](#impl_values)
+  - [`ty_to_nonzero!`](#ty_to_nonzero)
+  - [`impl_one_value!`](#impl_one_value)
+  - [`impl_value!`](#impl_value)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`private`](#private) | mod |  |
+| [`Field`](#field) | struct | An opaque key allowing _O_(1) access to a field in a `Span`'s key-value |
+| [`Empty`](#empty) | struct | An empty field. |
+| [`FieldSet`](#fieldset) | struct | Describes the fields present on a span. |
+| [`ValueSet`](#valueset) | struct | A set of fields and values for a span. |
+| [`Iter`](#iter) | struct | An iterator over a set of fields. |
+| [`DisplayValue`](#displayvalue) | struct | A `Value` which serializes using `fmt::Display`. |
+| [`DebugValue`](#debugvalue) | struct | A `Value` which serializes as a string using `fmt::Debug`. |
+| [`HexBytes`](#hexbytes) | struct |  |
+| [`Values`](#values) | enum |  |
+| [`Visit`](#visit) | trait | Visits typed values. |
+| [`Value`](#value) | trait | A field value of an erased type. |
+| [`display`](#display) | fn | Wraps a type implementing `fmt::Display` as a `Value` that can be |
+| [`debug`](#debug) | fn | Wraps a type implementing `fmt::Debug` as a `Value` that can be |
+| [`impl_values!`](#impl_values) | macro |  |
+| [`ty_to_nonzero!`](#ty_to_nonzero) | macro |  |
+| [`impl_one_value!`](#impl_one_value) | macro |  |
+| [`impl_value!`](#impl_value) | macro |  |
+
 ## Modules
 
 - [`private`](private/index.md) - 
@@ -139,43 +189,43 @@ and use the key for that name for all other accesses.
 
 #### Implementations
 
-- `fn callsite(self: &Self) -> callsite::Identifier` — [`Identifier`](../callsite/index.md)
+- <span id="field-callsite"></span>`fn callsite(&self) -> callsite::Identifier` — [`Identifier`](../callsite/index.md)
 
-- `fn name(self: &Self) -> &'static str`
+- <span id="field-name"></span>`fn name(&self) -> &'static str`
 
-- `fn index(self: &Self) -> usize`
+- <span id="field-index"></span>`fn index(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl AsRef for Field`
 
-- `fn as_ref(self: &Self) -> &str`
+- <span id="field-as-ref"></span>`fn as_ref(&self) -> &str`
 
 ##### `impl Clone for Field`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="field-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for Field`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="field-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Field`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="field-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Field`
 
 ##### `impl Hash for Field`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="field-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for Field`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="field-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> ToString for Field`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="field-to-string"></span>`fn to_string(&self) -> String`
 
 ### `Empty`
 
@@ -194,13 +244,13 @@ When a field's value is `Empty`. it will not be recorded.
 
 ##### `impl Debug for Empty`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="empty-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Empty`
 
 ##### `impl PartialEq for Empty`
 
-- `fn eq(self: &Self, other: &Empty) -> bool` — [`Empty`](#empty)
+- <span id="empty-eq"></span>`fn eq(&self, other: &Empty) -> bool` — [`Empty`](#empty)
 
 ##### `impl Sealed for Empty`
 
@@ -208,7 +258,7 @@ When a field's value is `Empty`. it will not be recorded.
 
 ##### `impl Value for Empty`
 
-- `fn record(self: &Self, _: &Field, _: &mut dyn Visit)` — [`Field`](../index.md), [`Visit`](#visit)
+- <span id="empty-record"></span>`fn record(&self, _: &Field, _: &mut dyn Visit)` — [`Field`](../index.md), [`Visit`](#visit)
 
 ### `FieldSet`
 
@@ -242,39 +292,39 @@ callsites. However, the equality of field names is checked in debug builds.
 
 #### Implementations
 
-- `const fn new(names: &'static [&'static str], callsite: callsite::Identifier) -> Self` — [`Identifier`](../callsite/index.md)
+- <span id="fieldset-new"></span>`const fn new(names: &'static [&'static str], callsite: callsite::Identifier) -> Self` — [`Identifier`](../callsite/index.md)
 
-- `fn callsite(self: &Self) -> callsite::Identifier` — [`Identifier`](../callsite/index.md)
+- <span id="fieldset-callsite"></span>`fn callsite(&self) -> callsite::Identifier` — [`Identifier`](../callsite/index.md)
 
-- `fn field<Q: Borrow<str> + ?Sized>(self: &Self, name: &Q) -> Option<Field>` — [`Field`](../index.md)
+- <span id="fieldset-field"></span>`fn field<Q: Borrow<str> + ?Sized>(&self, name: &Q) -> Option<Field>` — [`Field`](../index.md)
 
-- `fn contains(self: &Self, field: &Field) -> bool` — [`Field`](../index.md)
+- <span id="fieldset-contains"></span>`fn contains(&self, field: &Field) -> bool` — [`Field`](../index.md)
 
-- `fn iter(self: &Self) -> Iter` — [`Iter`](#iter)
+- <span id="fieldset-iter"></span>`fn iter(&self) -> Iter` — [`Iter`](#iter)
 
-- `fn len(self: &Self) -> usize`
+- <span id="fieldset-len"></span>`fn len(&self) -> usize`
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="fieldset-is-empty"></span>`fn is_empty(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Debug for FieldSet`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fieldset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for FieldSet`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="fieldset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for FieldSet`
 
 ##### `impl PartialEq for FieldSet`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="fieldset-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> ToString for FieldSet`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="fieldset-to-string"></span>`fn to_string(&self) -> String`
 
 ### `ValueSet<'a>`
 
@@ -289,31 +339,31 @@ A set of fields and values for a span.
 
 #### Implementations
 
-- `fn callsite(self: &Self) -> callsite::Identifier` — [`Identifier`](../callsite/index.md)
+- <span id="valueset-callsite"></span>`fn callsite(&self) -> callsite::Identifier` — [`Identifier`](../callsite/index.md)
 
-- `fn record(self: &Self, visitor: &mut dyn Visit)` — [`Visit`](#visit)
+- <span id="valueset-record"></span>`fn record(&self, visitor: &mut dyn Visit)` — [`Visit`](#visit)
 
-- `fn len(self: &Self) -> usize`
+- <span id="valueset-len"></span>`fn len(&self) -> usize`
 
-- `fn contains(self: &Self, field: &Field) -> bool` — [`Field`](../index.md)
+- <span id="valueset-contains"></span>`fn contains(&self, field: &Field) -> bool` — [`Field`](../index.md)
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="valueset-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn field_set(self: &Self) -> &FieldSet` — [`FieldSet`](#fieldset)
+- <span id="valueset-field-set"></span>`fn field_set(&self) -> &FieldSet` — [`FieldSet`](#fieldset)
 
 #### Trait Implementations
 
 ##### `impl Debug for ValueSet<'_>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="valueset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for ValueSet<'_>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="valueset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for ValueSet<'a>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="valueset-to-string"></span>`fn to_string(&self) -> String`
 
 ### `Iter`
 
@@ -330,21 +380,21 @@ An iterator over a set of fields.
 
 ##### `impl Debug for Iter`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="iter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for Iter`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="iter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="iter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="iter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for Iter`
 
-- `type Item = Field`
+- <span id="iter-item"></span>`type Item = Field`
 
-- `fn next(self: &mut Self) -> Option<Field>` — [`Field`](../index.md)
+- <span id="iter-next"></span>`fn next(&mut self) -> Option<Field>` — [`Field`](../index.md)
 
 ### `DisplayValue<T: fmt::Display>`
 
@@ -359,27 +409,27 @@ avoid an unnecessary evaluation.
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone + fmt::Display> Clone for DisplayValue<T>`
+##### `impl<T: clone::Clone + fmt::Display> Clone for DisplayValue<T>`
 
-- `fn clone(self: &Self) -> DisplayValue<T>` — [`DisplayValue`](#displayvalue)
+- <span id="displayvalue-clone"></span>`fn clone(&self) -> DisplayValue<T>` — [`DisplayValue`](#displayvalue)
 
 ##### `impl<T: fmt::Display> Debug for DisplayValue<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="displayvalue-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: fmt::Display> Display for DisplayValue<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="displayvalue-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: fmt::Display> Sealed for DisplayValue<T>`
 
 ##### `impl<T> ToString for DisplayValue<T>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="displayvalue-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl<T> Value for DisplayValue<T>`
 
-- `fn record(self: &Self, key: &Field, visitor: &mut dyn Visit)` — [`Field`](../index.md), [`Visit`](#visit)
+- <span id="displayvalue-record"></span>`fn record(&self, key: &Field, visitor: &mut dyn Visit)` — [`Field`](../index.md), [`Visit`](#visit)
 
 ### `DebugValue<T: fmt::Debug>`
 
@@ -391,19 +441,19 @@ A `Value` which serializes as a string using `fmt::Debug`.
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone + fmt::Debug> Clone for DebugValue<T>`
+##### `impl<T: clone::Clone + fmt::Debug> Clone for DebugValue<T>`
 
-- `fn clone(self: &Self) -> DebugValue<T>` — [`DebugValue`](#debugvalue)
+- <span id="debugvalue-clone"></span>`fn clone(&self) -> DebugValue<T>` — [`DebugValue`](#debugvalue)
 
 ##### `impl<T: fmt::Debug> Debug for DebugValue<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="debugvalue-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: fmt::Debug> Sealed for DebugValue<T>`
 
 ##### `impl<T> Value for DebugValue<T>`
 
-- `fn record(self: &Self, key: &Field, visitor: &mut dyn Visit)` — [`Field`](../index.md), [`Visit`](#visit)
+- <span id="debugvalue-record"></span>`fn record(&self, key: &Field, visitor: &mut dyn Visit)` — [`Field`](../index.md), [`Visit`](#visit)
 
 ### `HexBytes<'a>`
 
@@ -415,7 +465,7 @@ struct HexBytes<'a>(&'a [u8]);
 
 ##### `impl Debug for HexBytes<'_>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="hexbytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Enums
 
@@ -537,43 +587,43 @@ available when the Rust standard library is present, as it requires the
 
 #### Required Methods
 
-- `fn record_f64(self: &mut Self, field: &Field, value: f64)`
+- `fn record_f64(&mut self, field: &Field, value: f64)`
 
   Visit a double-precision floating point value.
 
-- `fn record_i64(self: &mut Self, field: &Field, value: i64)`
+- `fn record_i64(&mut self, field: &Field, value: i64)`
 
   Visit a signed 64-bit integer value.
 
-- `fn record_u64(self: &mut Self, field: &Field, value: u64)`
+- `fn record_u64(&mut self, field: &Field, value: u64)`
 
   Visit an unsigned 64-bit integer value.
 
-- `fn record_i128(self: &mut Self, field: &Field, value: i128)`
+- `fn record_i128(&mut self, field: &Field, value: i128)`
 
   Visit a signed 128-bit integer value.
 
-- `fn record_u128(self: &mut Self, field: &Field, value: u128)`
+- `fn record_u128(&mut self, field: &Field, value: u128)`
 
   Visit an unsigned 128-bit integer value.
 
-- `fn record_bool(self: &mut Self, field: &Field, value: bool)`
+- `fn record_bool(&mut self, field: &Field, value: bool)`
 
   Visit a boolean value.
 
-- `fn record_str(self: &mut Self, field: &Field, value: &str)`
+- `fn record_str(&mut self, field: &Field, value: &str)`
 
   Visit a string value.
 
-- `fn record_bytes(self: &mut Self, field: &Field, value: &[u8])`
+- `fn record_bytes(&mut self, field: &Field, value: &[u8])`
 
   Visit a byte slice.
 
-- `fn record_error(self: &mut Self, field: &Field, value: &dyn std::error::Error)`
+- `fn record_error(&mut self, field: &Field, value: &dyn std::error::Error)`
 
   Records a type implementing `Error`.
 
-- `fn record_debug(self: &mut Self, field: &Field, value: &dyn fmt::Debug)`
+- `fn record_debug(&mut self, field: &Field, value: &dyn fmt::Debug)`
 
   Visit a value implementing `fmt::Debug`.
 
@@ -592,7 +642,7 @@ their data should be recorded.
 
 #### Required Methods
 
-- `fn record(self: &Self, key: &Field, visitor: &mut dyn Visit)`
+- `fn record(&self, key: &Field, visitor: &mut dyn Visit)`
 
   Visits this value with the given `Visitor`.
 

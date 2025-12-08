@@ -36,6 +36,15 @@ And if it can find one, it looks for literals in each of the direct child
 sub-expressions of that concatenation. If some good ones are found, we return
 those and a concatenation of the Hir expressions seen up to that point.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`extract`](#extract) | fn | Attempts to extract an "inner" prefilter from the given HIR expressions. |
+| [`prefilter`](#prefilter) | fn | Attempt to extract a prefilter from an HIR expression. |
+| [`top_concat`](#top_concat) | fn | Looks for a "top level" HirKind::Concat item in the given HIR. |
+| [`flatten`](#flatten) | fn | Returns a copy of the given HIR but with all capturing groups removed. |
+
 ## Functions
 
 ### `extract`

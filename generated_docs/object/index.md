@@ -42,6 +42,207 @@ The crate provides a number of definitions that are used by both the read and wr
 APIs. These are defined at the top level module, but none of these are the main entry
 points of the crate.
 
+## Contents
+
+- [Modules](#modules)
+  - [`common`](#common)
+  - [`endian`](#endian)
+  - [`pod`](#pod)
+  - [`read`](#read)
+  - [`archive`](#archive)
+  - [`elf`](#elf)
+  - [`macho`](#macho)
+  - [`pe`](#pe)
+  - [`xcoff`](#xcoff)
+  - [`read_ref`](#read_ref)
+  - [`read_cache`](#read_cache)
+  - [`util`](#util)
+  - [`gnu_compression`](#gnu_compression)
+  - [`any`](#any)
+  - [`archive`](#archive)
+  - [`coff`](#coff)
+  - [`elf`](#elf)
+  - [`macho`](#macho)
+  - [`pe`](#pe)
+  - [`xcoff`](#xcoff)
+  - [`traits`](#traits)
+  - [`private`](#private)
+- [Structs](#structs)
+  - [`LittleEndian`](#littleendian)
+  - [`BigEndian`](#bigendian)
+  - [`U16Bytes`](#u16bytes)
+  - [`U32Bytes`](#u32bytes)
+  - [`U64Bytes`](#u64bytes)
+  - [`I16Bytes`](#i16bytes)
+  - [`I32Bytes`](#i32bytes)
+  - [`I64Bytes`](#i64bytes)
+  - [`Error`](#error)
+  - [`SectionIndex`](#sectionindex)
+  - [`SymbolIndex`](#symbolindex)
+  - [`SymbolMap`](#symbolmap)
+  - [`SymbolMapName`](#symbolmapname)
+  - [`ObjectMap`](#objectmap)
+  - [`ObjectMapEntry`](#objectmapentry)
+  - [`ObjectMapFile`](#objectmapfile)
+  - [`Import`](#import)
+  - [`Export`](#export)
+  - [`CodeView`](#codeview)
+  - [`Relocation`](#relocation)
+  - [`RelocationMap`](#relocationmap)
+  - [`RelocationMapEntry`](#relocationmapentry)
+  - [`CompressedFileRange`](#compressedfilerange)
+  - [`CompressedData`](#compresseddata)
+- [Enums](#enums)
+  - [`Architecture`](#architecture)
+  - [`SubArchitecture`](#subarchitecture)
+  - [`AddressSize`](#addresssize)
+  - [`BinaryFormat`](#binaryformat)
+  - [`SectionKind`](#sectionkind)
+  - [`ComdatKind`](#comdatkind)
+  - [`SymbolKind`](#symbolkind)
+  - [`SymbolScope`](#symbolscope)
+  - [`RelocationKind`](#relocationkind)
+  - [`RelocationEncoding`](#relocationencoding)
+  - [`FileFlags`](#fileflags)
+  - [`SegmentFlags`](#segmentflags)
+  - [`SectionFlags`](#sectionflags)
+  - [`SymbolFlags`](#symbolflags)
+  - [`RelocationFlags`](#relocationflags)
+  - [`Endianness`](#endianness)
+  - [`FileKind`](#filekind)
+  - [`ObjectKind`](#objectkind)
+  - [`SymbolSection`](#symbolsection)
+  - [`RelocationTarget`](#relocationtarget)
+  - [`CompressionFormat`](#compressionformat)
+- [Traits](#traits)
+  - [`Endian`](#endian)
+  - [`Pod`](#pod)
+  - [`ReadError`](#readerror)
+  - [`SymbolMapEntry`](#symbolmapentry)
+- [Functions](#functions)
+  - [`from_bytes`](#from_bytes)
+  - [`from_bytes_mut`](#from_bytes_mut)
+  - [`slice_from_bytes`](#slice_from_bytes)
+  - [`slice_from_bytes_mut`](#slice_from_bytes_mut)
+  - [`slice_from_all_bytes`](#slice_from_all_bytes)
+  - [`slice_from_all_bytes_mut`](#slice_from_all_bytes_mut)
+  - [`bytes_of`](#bytes_of)
+  - [`bytes_of_mut`](#bytes_of_mut)
+  - [`bytes_of_slice`](#bytes_of_slice)
+  - [`bytes_of_slice_mut`](#bytes_of_slice_mut)
+- [Type Aliases](#type-aliases)
+  - [`NativeEndian`](#nativeendian)
+  - [`U16`](#u16)
+  - [`U32`](#u32)
+  - [`U64`](#u64)
+  - [`I16`](#i16)
+  - [`I32`](#i32)
+  - [`I64`](#i64)
+  - [`Result`](#result)
+  - [`Result`](#result)
+  - [`NativeFile`](#nativefile)
+- [Macros](#macros)
+  - [`unsafe_impl_endian_pod!`](#unsafe_impl_endian_pod)
+  - [`unsafe_impl_pod!`](#unsafe_impl_pod)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`common`](#common) | mod |  |
+| [`endian`](#endian) | mod | Types for compile-time and run-time endianness. |
+| [`pod`](#pod) | mod | Tools for converting file format structures to and from bytes. |
+| [`read`](#read) | mod | Interface for reading object files. |
+| [`archive`](#archive) | mod | Archive definitions. |
+| [`elf`](#elf) | mod | ELF definitions. |
+| [`macho`](#macho) | mod | Mach-O definitions. |
+| [`pe`](#pe) | mod | PE/COFF definitions. |
+| [`xcoff`](#xcoff) | mod | XCOFF definitions |
+| [`read_ref`](#read_ref) | mod |  |
+| [`read_cache`](#read_cache) | mod |  |
+| [`util`](#util) | mod |  |
+| [`gnu_compression`](#gnu_compression) | mod |  |
+| [`any`](#any) | mod |  |
+| [`archive`](#archive) | mod | Support for archive files. |
+| [`coff`](#coff) | mod | Support for reading Windows COFF files. |
+| [`elf`](#elf) | mod | Support for reading ELF files. |
+| [`macho`](#macho) | mod | Support for reading Mach-O files. |
+| [`pe`](#pe) | mod | Support for reading PE files. |
+| [`xcoff`](#xcoff) | mod | Support for reading AIX XCOFF files. |
+| [`traits`](#traits) | mod |  |
+| [`private`](#private) | mod |  |
+| [`LittleEndian`](#littleendian) | struct | Compile-time little endian byte order. |
+| [`BigEndian`](#bigendian) | struct | Compile-time big endian byte order. |
+| [`U16Bytes`](#u16bytes) | struct | An unaligned `u16` value with an externally specified endianness of type `E`. |
+| [`U32Bytes`](#u32bytes) | struct | An unaligned `u32` value with an externally specified endianness of type `E`. |
+| [`U64Bytes`](#u64bytes) | struct | An unaligned `u64` value with an externally specified endianness of type `E`. |
+| [`I16Bytes`](#i16bytes) | struct | An unaligned `i16` value with an externally specified endianness of type `E`. |
+| [`I32Bytes`](#i32bytes) | struct | An unaligned `i32` value with an externally specified endianness of type `E`. |
+| [`I64Bytes`](#i64bytes) | struct | An unaligned `i64` value with an externally specified endianness of type `E`. |
+| [`Error`](#error) | struct | The error type used within the read module. |
+| [`SectionIndex`](#sectionindex) | struct | The index used to identify a section in a file. |
+| [`SymbolIndex`](#symbolindex) | struct | The index used to identify a symbol in a symbol table. |
+| [`SymbolMap`](#symbolmap) | struct | A map from addresses to symbol information. |
+| [`SymbolMapName`](#symbolmapname) | struct | The type used for entries in a [`SymbolMap`] that maps from addresses to names. |
+| [`ObjectMap`](#objectmap) | struct | A map from addresses to symbol names and object files. |
+| [`ObjectMapEntry`](#objectmapentry) | struct | A symbol in an [`ObjectMap`]. |
+| [`ObjectMapFile`](#objectmapfile) | struct | An object file name in an [`ObjectMap`]. |
+| [`Import`](#import) | struct | An imported symbol. |
+| [`Export`](#export) | struct | An exported symbol. |
+| [`CodeView`](#codeview) | struct | PDB information from the debug directory in a PE file. |
+| [`Relocation`](#relocation) | struct | A relocation entry. |
+| [`RelocationMap`](#relocationmap) | struct | A map from section offsets to relocation information. |
+| [`RelocationMapEntry`](#relocationmapentry) | struct |  |
+| [`CompressedFileRange`](#compressedfilerange) | struct | A range in a file that may be compressed. |
+| [`CompressedData`](#compresseddata) | struct | Data that may be compressed. |
+| [`Architecture`](#architecture) | enum | A CPU architecture. |
+| [`SubArchitecture`](#subarchitecture) | enum | A CPU sub-architecture. |
+| [`AddressSize`](#addresssize) | enum | The size of an address value for an architecture. |
+| [`BinaryFormat`](#binaryformat) | enum | A binary file format. |
+| [`SectionKind`](#sectionkind) | enum | The kind of a section. |
+| [`ComdatKind`](#comdatkind) | enum | The selection kind for a COMDAT section group. |
+| [`SymbolKind`](#symbolkind) | enum | The kind of a symbol. |
+| [`SymbolScope`](#symbolscope) | enum | A symbol scope. |
+| [`RelocationKind`](#relocationkind) | enum | The operation used to calculate the result of the relocation. |
+| [`RelocationEncoding`](#relocationencoding) | enum | Information about how the result of the relocation operation is encoded in the place. |
+| [`FileFlags`](#fileflags) | enum | File flags that are specific to each file format. |
+| [`SegmentFlags`](#segmentflags) | enum | Segment flags that are specific to each file format. |
+| [`SectionFlags`](#sectionflags) | enum | Section flags that are specific to each file format. |
+| [`SymbolFlags`](#symbolflags) | enum | Symbol flags that are specific to each file format. |
+| [`RelocationFlags`](#relocationflags) | enum | Relocation fields that are specific to each file format and architecture. |
+| [`Endianness`](#endianness) | enum | An endianness that is selectable at run-time. |
+| [`FileKind`](#filekind) | enum | A file format kind. |
+| [`ObjectKind`](#objectkind) | enum | An object kind. |
+| [`SymbolSection`](#symbolsection) | enum | The section where an [`ObjectSymbol`] is defined. |
+| [`RelocationTarget`](#relocationtarget) | enum | The target referenced by a [`Relocation`]. |
+| [`CompressionFormat`](#compressionformat) | enum | A data compression format. |
+| [`Endian`](#endian) | trait | A trait for using an endianness specification. |
+| [`Pod`](#pod) | trait | A trait for types that can safely be converted from and to byte slices. |
+| [`ReadError`](#readerror) | trait |  |
+| [`SymbolMapEntry`](#symbolmapentry) | trait | An entry in a [`SymbolMap`]. |
+| [`from_bytes`](#from_bytes) | fn | Cast the head of a byte slice to a `Pod` type. |
+| [`from_bytes_mut`](#from_bytes_mut) | fn | Cast the head of a mutable byte slice to a `Pod` type. |
+| [`slice_from_bytes`](#slice_from_bytes) | fn | Cast the head of a byte slice to a slice of a `Pod` type. |
+| [`slice_from_bytes_mut`](#slice_from_bytes_mut) | fn | Cast the head of a mutable byte slice to a slice of a `Pod` type. |
+| [`slice_from_all_bytes`](#slice_from_all_bytes) | fn | Cast all of a byte slice to a slice of a `Pod` type. |
+| [`slice_from_all_bytes_mut`](#slice_from_all_bytes_mut) | fn | Cast all of a byte slice to a slice of a `Pod` type. |
+| [`bytes_of`](#bytes_of) | fn | Cast a `Pod` type to a byte slice. |
+| [`bytes_of_mut`](#bytes_of_mut) | fn | Cast a `Pod` type to a mutable byte slice. |
+| [`bytes_of_slice`](#bytes_of_slice) | fn | Cast a slice of a `Pod` type to a byte slice. |
+| [`bytes_of_slice_mut`](#bytes_of_slice_mut) | fn | Cast a slice of a `Pod` type to a mutable byte slice. |
+| [`NativeEndian`](#nativeendian) | type | The native endianness for the target platform. |
+| [`U16`](#u16) | type | A `u16` value with an externally specified endianness of type `E`. |
+| [`U32`](#u32) | type | A `u32` value with an externally specified endianness of type `E`. |
+| [`U64`](#u64) | type | A `u64` value with an externally specified endianness of type `E`. |
+| [`I16`](#i16) | type | An `i16` value with an externally specified endianness of type `E`. |
+| [`I32`](#i32) | type | An `i32` value with an externally specified endianness of type `E`. |
+| [`I64`](#i64) | type | An `i64` value with an externally specified endianness of type `E`. |
+| [`Result`](#result) | type |  |
+| [`Result`](#result) | type | The result type used within the read module. |
+| [`NativeFile`](#nativefile) | type | The native executable file for the target platform. |
+| [`unsafe_impl_endian_pod!`](#unsafe_impl_endian_pod) | macro |  |
+| [`unsafe_impl_pod!`](#unsafe_impl_pod) | macro |  |
+
 ## Modules
 
 - [`common`](common/index.md) - 
@@ -81,33 +282,33 @@ Compile-time little endian byte order.
 
 ##### `impl Clone for LittleEndian`
 
-- `fn clone(self: &Self) -> LittleEndian` — [`LittleEndian`](#littleendian)
+- <span id="littleendian-clone"></span>`fn clone(&self) -> LittleEndian` — [`LittleEndian`](#littleendian)
 
 ##### `impl Copy for LittleEndian`
 
 ##### `impl Debug for LittleEndian`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="littleendian-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for LittleEndian`
 
-- `fn default() -> LittleEndian` — [`LittleEndian`](#littleendian)
+- <span id="littleendian-default"></span>`fn default() -> LittleEndian` — [`LittleEndian`](#littleendian)
 
 ##### `impl Endian for LittleEndian`
 
-- `fn from_big_endian(big_endian: bool) -> Option<Self>`
+- <span id="littleendian-from-big-endian"></span>`fn from_big_endian(big_endian: bool) -> Option<Self>`
 
-- `fn is_big_endian(self: Self) -> bool`
+- <span id="littleendian-is-big-endian"></span>`fn is_big_endian(self) -> bool`
 
 ##### `impl Eq for LittleEndian`
 
 ##### `impl Hash for LittleEndian`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="littleendian-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for LittleEndian`
 
-- `fn eq(self: &Self, other: &LittleEndian) -> bool` — [`LittleEndian`](#littleendian)
+- <span id="littleendian-eq"></span>`fn eq(&self, other: &LittleEndian) -> bool` — [`LittleEndian`](#littleendian)
 
 ##### `impl StructuralPartialEq for LittleEndian`
 
@@ -123,33 +324,33 @@ Compile-time big endian byte order.
 
 ##### `impl Clone for BigEndian`
 
-- `fn clone(self: &Self) -> BigEndian` — [`BigEndian`](#bigendian)
+- <span id="bigendian-clone"></span>`fn clone(&self) -> BigEndian` — [`BigEndian`](#bigendian)
 
 ##### `impl Copy for BigEndian`
 
 ##### `impl Debug for BigEndian`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="bigendian-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for BigEndian`
 
-- `fn default() -> BigEndian` — [`BigEndian`](#bigendian)
+- <span id="bigendian-default"></span>`fn default() -> BigEndian` — [`BigEndian`](#bigendian)
 
 ##### `impl Endian for BigEndian`
 
-- `fn from_big_endian(big_endian: bool) -> Option<Self>`
+- <span id="bigendian-from-big-endian"></span>`fn from_big_endian(big_endian: bool) -> Option<Self>`
 
-- `fn is_big_endian(self: Self) -> bool`
+- <span id="bigendian-is-big-endian"></span>`fn is_big_endian(self) -> bool`
 
 ##### `impl Eq for BigEndian`
 
 ##### `impl Hash for BigEndian`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="bigendian-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for BigEndian`
 
-- `fn eq(self: &Self, other: &BigEndian) -> bool` — [`BigEndian`](#bigendian)
+- <span id="bigendian-eq"></span>`fn eq(&self, other: &BigEndian) -> bool` — [`BigEndian`](#bigendian)
 
 ##### `impl StructuralPartialEq for BigEndian`
 
@@ -163,47 +364,47 @@ An unaligned `u16` value with an externally specified endianness of type `E`.
 
 #### Implementations
 
-- `const fn from_bytes(n: [u8; 2]) -> Self`
+- <span id="u16bytes-from-bytes"></span>`const fn from_bytes(n: [u8; 2]) -> Self`
 
-- `fn new(e: E, n: u16) -> Self`
+- <span id="u16bytes-new"></span>`fn new(e: E, n: u16) -> Self`
 
-- `fn get(self: Self, e: E) -> u16`
+- <span id="u16bytes-get"></span>`fn get(self, e: E) -> u16`
 
-- `fn set(self: &mut Self, e: E, n: u16)`
+- <span id="u16bytes-set"></span>`fn set(&mut self, e: E, n: u16)`
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for U16Bytes<E>`
+##### `impl<E: clone::Clone + Endian> Clone for U16Bytes<E>`
 
-- `fn clone(self: &Self) -> U16Bytes<E>` — [`U16Bytes`](#u16bytes)
+- <span id="u16bytes-clone"></span>`fn clone(&self) -> U16Bytes<E>` — [`U16Bytes`](#u16bytes)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for U16Bytes<E>`
+##### `impl<E: marker::Copy + Endian> Copy for U16Bytes<E>`
 
 ##### `impl<E: Endian> Debug for U16Bytes<E>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="u16bytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<E: $crate::default::Default + Endian> Default for U16Bytes<E>`
+##### `impl<E: default::Default + Endian> Default for U16Bytes<E>`
 
-- `fn default() -> U16Bytes<E>` — [`U16Bytes`](#u16bytes)
+- <span id="u16bytes-default"></span>`fn default() -> U16Bytes<E>` — [`U16Bytes`](#u16bytes)
 
-##### `impl<E: $crate::cmp::Eq + Endian> Eq for U16Bytes<E>`
+##### `impl<E: cmp::Eq + Endian> Eq for U16Bytes<E>`
 
-##### `impl<E: $crate::hash::Hash + Endian> Hash for U16Bytes<E>`
+##### `impl<E: hash::Hash + Endian> Hash for U16Bytes<E>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="u16bytes-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<E: $crate::cmp::Ord + Endian> Ord for U16Bytes<E>`
+##### `impl<E: cmp::Ord + Endian> Ord for U16Bytes<E>`
 
-- `fn cmp(self: &Self, other: &U16Bytes<E>) -> $crate::cmp::Ordering` — [`U16Bytes`](#u16bytes)
+- <span id="u16bytes-cmp"></span>`fn cmp(&self, other: &U16Bytes<E>) -> cmp::Ordering` — [`U16Bytes`](#u16bytes)
 
-##### `impl<E: $crate::cmp::PartialEq + Endian> PartialEq for U16Bytes<E>`
+##### `impl<E: cmp::PartialEq + Endian> PartialEq for U16Bytes<E>`
 
-- `fn eq(self: &Self, other: &U16Bytes<E>) -> bool` — [`U16Bytes`](#u16bytes)
+- <span id="u16bytes-eq"></span>`fn eq(&self, other: &U16Bytes<E>) -> bool` — [`U16Bytes`](#u16bytes)
 
-##### `impl<E: $crate::cmp::PartialOrd + Endian> PartialOrd for U16Bytes<E>`
+##### `impl<E: cmp::PartialOrd + Endian> PartialOrd for U16Bytes<E>`
 
-- `fn partial_cmp(self: &Self, other: &U16Bytes<E>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`U16Bytes`](#u16bytes)
+- <span id="u16bytes-partial-cmp"></span>`fn partial_cmp(&self, other: &U16Bytes<E>) -> option::Option<cmp::Ordering>` — [`U16Bytes`](#u16bytes)
 
 ##### `impl<E: Endian> Pod for U16Bytes<E>`
 
@@ -219,47 +420,47 @@ An unaligned `u32` value with an externally specified endianness of type `E`.
 
 #### Implementations
 
-- `const fn from_bytes(n: [u8; 4]) -> Self`
+- <span id="u32bytes-from-bytes"></span>`const fn from_bytes(n: [u8; 4]) -> Self`
 
-- `fn new(e: E, n: u32) -> Self`
+- <span id="u32bytes-new"></span>`fn new(e: E, n: u32) -> Self`
 
-- `fn get(self: Self, e: E) -> u32`
+- <span id="u32bytes-get"></span>`fn get(self, e: E) -> u32`
 
-- `fn set(self: &mut Self, e: E, n: u32)`
+- <span id="u32bytes-set"></span>`fn set(&mut self, e: E, n: u32)`
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for U32Bytes<E>`
+##### `impl<E: clone::Clone + Endian> Clone for U32Bytes<E>`
 
-- `fn clone(self: &Self) -> U32Bytes<E>` — [`U32Bytes`](#u32bytes)
+- <span id="u32bytes-clone"></span>`fn clone(&self) -> U32Bytes<E>` — [`U32Bytes`](#u32bytes)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for U32Bytes<E>`
+##### `impl<E: marker::Copy + Endian> Copy for U32Bytes<E>`
 
 ##### `impl<E: Endian> Debug for U32Bytes<E>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="u32bytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<E: $crate::default::Default + Endian> Default for U32Bytes<E>`
+##### `impl<E: default::Default + Endian> Default for U32Bytes<E>`
 
-- `fn default() -> U32Bytes<E>` — [`U32Bytes`](#u32bytes)
+- <span id="u32bytes-default"></span>`fn default() -> U32Bytes<E>` — [`U32Bytes`](#u32bytes)
 
-##### `impl<E: $crate::cmp::Eq + Endian> Eq for U32Bytes<E>`
+##### `impl<E: cmp::Eq + Endian> Eq for U32Bytes<E>`
 
-##### `impl<E: $crate::hash::Hash + Endian> Hash for U32Bytes<E>`
+##### `impl<E: hash::Hash + Endian> Hash for U32Bytes<E>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="u32bytes-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<E: $crate::cmp::Ord + Endian> Ord for U32Bytes<E>`
+##### `impl<E: cmp::Ord + Endian> Ord for U32Bytes<E>`
 
-- `fn cmp(self: &Self, other: &U32Bytes<E>) -> $crate::cmp::Ordering` — [`U32Bytes`](#u32bytes)
+- <span id="u32bytes-cmp"></span>`fn cmp(&self, other: &U32Bytes<E>) -> cmp::Ordering` — [`U32Bytes`](#u32bytes)
 
-##### `impl<E: $crate::cmp::PartialEq + Endian> PartialEq for U32Bytes<E>`
+##### `impl<E: cmp::PartialEq + Endian> PartialEq for U32Bytes<E>`
 
-- `fn eq(self: &Self, other: &U32Bytes<E>) -> bool` — [`U32Bytes`](#u32bytes)
+- <span id="u32bytes-eq"></span>`fn eq(&self, other: &U32Bytes<E>) -> bool` — [`U32Bytes`](#u32bytes)
 
-##### `impl<E: $crate::cmp::PartialOrd + Endian> PartialOrd for U32Bytes<E>`
+##### `impl<E: cmp::PartialOrd + Endian> PartialOrd for U32Bytes<E>`
 
-- `fn partial_cmp(self: &Self, other: &U32Bytes<E>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`U32Bytes`](#u32bytes)
+- <span id="u32bytes-partial-cmp"></span>`fn partial_cmp(&self, other: &U32Bytes<E>) -> option::Option<cmp::Ordering>` — [`U32Bytes`](#u32bytes)
 
 ##### `impl<E: Endian> Pod for U32Bytes<E>`
 
@@ -275,47 +476,47 @@ An unaligned `u64` value with an externally specified endianness of type `E`.
 
 #### Implementations
 
-- `const fn from_bytes(n: [u8; 8]) -> Self`
+- <span id="u64bytes-from-bytes"></span>`const fn from_bytes(n: [u8; 8]) -> Self`
 
-- `fn new(e: E, n: u64) -> Self`
+- <span id="u64bytes-new"></span>`fn new(e: E, n: u64) -> Self`
 
-- `fn get(self: Self, e: E) -> u64`
+- <span id="u64bytes-get"></span>`fn get(self, e: E) -> u64`
 
-- `fn set(self: &mut Self, e: E, n: u64)`
+- <span id="u64bytes-set"></span>`fn set(&mut self, e: E, n: u64)`
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for U64Bytes<E>`
+##### `impl<E: clone::Clone + Endian> Clone for U64Bytes<E>`
 
-- `fn clone(self: &Self) -> U64Bytes<E>` — [`U64Bytes`](#u64bytes)
+- <span id="u64bytes-clone"></span>`fn clone(&self) -> U64Bytes<E>` — [`U64Bytes`](#u64bytes)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for U64Bytes<E>`
+##### `impl<E: marker::Copy + Endian> Copy for U64Bytes<E>`
 
 ##### `impl<E: Endian> Debug for U64Bytes<E>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="u64bytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<E: $crate::default::Default + Endian> Default for U64Bytes<E>`
+##### `impl<E: default::Default + Endian> Default for U64Bytes<E>`
 
-- `fn default() -> U64Bytes<E>` — [`U64Bytes`](#u64bytes)
+- <span id="u64bytes-default"></span>`fn default() -> U64Bytes<E>` — [`U64Bytes`](#u64bytes)
 
-##### `impl<E: $crate::cmp::Eq + Endian> Eq for U64Bytes<E>`
+##### `impl<E: cmp::Eq + Endian> Eq for U64Bytes<E>`
 
-##### `impl<E: $crate::hash::Hash + Endian> Hash for U64Bytes<E>`
+##### `impl<E: hash::Hash + Endian> Hash for U64Bytes<E>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="u64bytes-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<E: $crate::cmp::Ord + Endian> Ord for U64Bytes<E>`
+##### `impl<E: cmp::Ord + Endian> Ord for U64Bytes<E>`
 
-- `fn cmp(self: &Self, other: &U64Bytes<E>) -> $crate::cmp::Ordering` — [`U64Bytes`](#u64bytes)
+- <span id="u64bytes-cmp"></span>`fn cmp(&self, other: &U64Bytes<E>) -> cmp::Ordering` — [`U64Bytes`](#u64bytes)
 
-##### `impl<E: $crate::cmp::PartialEq + Endian> PartialEq for U64Bytes<E>`
+##### `impl<E: cmp::PartialEq + Endian> PartialEq for U64Bytes<E>`
 
-- `fn eq(self: &Self, other: &U64Bytes<E>) -> bool` — [`U64Bytes`](#u64bytes)
+- <span id="u64bytes-eq"></span>`fn eq(&self, other: &U64Bytes<E>) -> bool` — [`U64Bytes`](#u64bytes)
 
-##### `impl<E: $crate::cmp::PartialOrd + Endian> PartialOrd for U64Bytes<E>`
+##### `impl<E: cmp::PartialOrd + Endian> PartialOrd for U64Bytes<E>`
 
-- `fn partial_cmp(self: &Self, other: &U64Bytes<E>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`U64Bytes`](#u64bytes)
+- <span id="u64bytes-partial-cmp"></span>`fn partial_cmp(&self, other: &U64Bytes<E>) -> option::Option<cmp::Ordering>` — [`U64Bytes`](#u64bytes)
 
 ##### `impl<E: Endian> Pod for U64Bytes<E>`
 
@@ -331,47 +532,47 @@ An unaligned `i16` value with an externally specified endianness of type `E`.
 
 #### Implementations
 
-- `const fn from_bytes(n: [u8; 2]) -> Self`
+- <span id="i16bytes-from-bytes"></span>`const fn from_bytes(n: [u8; 2]) -> Self`
 
-- `fn new(e: E, n: i16) -> Self`
+- <span id="i16bytes-new"></span>`fn new(e: E, n: i16) -> Self`
 
-- `fn get(self: Self, e: E) -> i16`
+- <span id="i16bytes-get"></span>`fn get(self, e: E) -> i16`
 
-- `fn set(self: &mut Self, e: E, n: i16)`
+- <span id="i16bytes-set"></span>`fn set(&mut self, e: E, n: i16)`
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for I16Bytes<E>`
+##### `impl<E: clone::Clone + Endian> Clone for I16Bytes<E>`
 
-- `fn clone(self: &Self) -> I16Bytes<E>` — [`I16Bytes`](#i16bytes)
+- <span id="i16bytes-clone"></span>`fn clone(&self) -> I16Bytes<E>` — [`I16Bytes`](#i16bytes)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for I16Bytes<E>`
+##### `impl<E: marker::Copy + Endian> Copy for I16Bytes<E>`
 
 ##### `impl<E: Endian> Debug for I16Bytes<E>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="i16bytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<E: $crate::default::Default + Endian> Default for I16Bytes<E>`
+##### `impl<E: default::Default + Endian> Default for I16Bytes<E>`
 
-- `fn default() -> I16Bytes<E>` — [`I16Bytes`](#i16bytes)
+- <span id="i16bytes-default"></span>`fn default() -> I16Bytes<E>` — [`I16Bytes`](#i16bytes)
 
-##### `impl<E: $crate::cmp::Eq + Endian> Eq for I16Bytes<E>`
+##### `impl<E: cmp::Eq + Endian> Eq for I16Bytes<E>`
 
-##### `impl<E: $crate::hash::Hash + Endian> Hash for I16Bytes<E>`
+##### `impl<E: hash::Hash + Endian> Hash for I16Bytes<E>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="i16bytes-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<E: $crate::cmp::Ord + Endian> Ord for I16Bytes<E>`
+##### `impl<E: cmp::Ord + Endian> Ord for I16Bytes<E>`
 
-- `fn cmp(self: &Self, other: &I16Bytes<E>) -> $crate::cmp::Ordering` — [`I16Bytes`](#i16bytes)
+- <span id="i16bytes-cmp"></span>`fn cmp(&self, other: &I16Bytes<E>) -> cmp::Ordering` — [`I16Bytes`](#i16bytes)
 
-##### `impl<E: $crate::cmp::PartialEq + Endian> PartialEq for I16Bytes<E>`
+##### `impl<E: cmp::PartialEq + Endian> PartialEq for I16Bytes<E>`
 
-- `fn eq(self: &Self, other: &I16Bytes<E>) -> bool` — [`I16Bytes`](#i16bytes)
+- <span id="i16bytes-eq"></span>`fn eq(&self, other: &I16Bytes<E>) -> bool` — [`I16Bytes`](#i16bytes)
 
-##### `impl<E: $crate::cmp::PartialOrd + Endian> PartialOrd for I16Bytes<E>`
+##### `impl<E: cmp::PartialOrd + Endian> PartialOrd for I16Bytes<E>`
 
-- `fn partial_cmp(self: &Self, other: &I16Bytes<E>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`I16Bytes`](#i16bytes)
+- <span id="i16bytes-partial-cmp"></span>`fn partial_cmp(&self, other: &I16Bytes<E>) -> option::Option<cmp::Ordering>` — [`I16Bytes`](#i16bytes)
 
 ##### `impl<E: Endian> Pod for I16Bytes<E>`
 
@@ -387,47 +588,47 @@ An unaligned `i32` value with an externally specified endianness of type `E`.
 
 #### Implementations
 
-- `const fn from_bytes(n: [u8; 4]) -> Self`
+- <span id="i32bytes-from-bytes"></span>`const fn from_bytes(n: [u8; 4]) -> Self`
 
-- `fn new(e: E, n: i32) -> Self`
+- <span id="i32bytes-new"></span>`fn new(e: E, n: i32) -> Self`
 
-- `fn get(self: Self, e: E) -> i32`
+- <span id="i32bytes-get"></span>`fn get(self, e: E) -> i32`
 
-- `fn set(self: &mut Self, e: E, n: i32)`
+- <span id="i32bytes-set"></span>`fn set(&mut self, e: E, n: i32)`
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for I32Bytes<E>`
+##### `impl<E: clone::Clone + Endian> Clone for I32Bytes<E>`
 
-- `fn clone(self: &Self) -> I32Bytes<E>` — [`I32Bytes`](#i32bytes)
+- <span id="i32bytes-clone"></span>`fn clone(&self) -> I32Bytes<E>` — [`I32Bytes`](#i32bytes)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for I32Bytes<E>`
+##### `impl<E: marker::Copy + Endian> Copy for I32Bytes<E>`
 
 ##### `impl<E: Endian> Debug for I32Bytes<E>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="i32bytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<E: $crate::default::Default + Endian> Default for I32Bytes<E>`
+##### `impl<E: default::Default + Endian> Default for I32Bytes<E>`
 
-- `fn default() -> I32Bytes<E>` — [`I32Bytes`](#i32bytes)
+- <span id="i32bytes-default"></span>`fn default() -> I32Bytes<E>` — [`I32Bytes`](#i32bytes)
 
-##### `impl<E: $crate::cmp::Eq + Endian> Eq for I32Bytes<E>`
+##### `impl<E: cmp::Eq + Endian> Eq for I32Bytes<E>`
 
-##### `impl<E: $crate::hash::Hash + Endian> Hash for I32Bytes<E>`
+##### `impl<E: hash::Hash + Endian> Hash for I32Bytes<E>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="i32bytes-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<E: $crate::cmp::Ord + Endian> Ord for I32Bytes<E>`
+##### `impl<E: cmp::Ord + Endian> Ord for I32Bytes<E>`
 
-- `fn cmp(self: &Self, other: &I32Bytes<E>) -> $crate::cmp::Ordering` — [`I32Bytes`](#i32bytes)
+- <span id="i32bytes-cmp"></span>`fn cmp(&self, other: &I32Bytes<E>) -> cmp::Ordering` — [`I32Bytes`](#i32bytes)
 
-##### `impl<E: $crate::cmp::PartialEq + Endian> PartialEq for I32Bytes<E>`
+##### `impl<E: cmp::PartialEq + Endian> PartialEq for I32Bytes<E>`
 
-- `fn eq(self: &Self, other: &I32Bytes<E>) -> bool` — [`I32Bytes`](#i32bytes)
+- <span id="i32bytes-eq"></span>`fn eq(&self, other: &I32Bytes<E>) -> bool` — [`I32Bytes`](#i32bytes)
 
-##### `impl<E: $crate::cmp::PartialOrd + Endian> PartialOrd for I32Bytes<E>`
+##### `impl<E: cmp::PartialOrd + Endian> PartialOrd for I32Bytes<E>`
 
-- `fn partial_cmp(self: &Self, other: &I32Bytes<E>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`I32Bytes`](#i32bytes)
+- <span id="i32bytes-partial-cmp"></span>`fn partial_cmp(&self, other: &I32Bytes<E>) -> option::Option<cmp::Ordering>` — [`I32Bytes`](#i32bytes)
 
 ##### `impl<E: Endian> Pod for I32Bytes<E>`
 
@@ -443,47 +644,47 @@ An unaligned `i64` value with an externally specified endianness of type `E`.
 
 #### Implementations
 
-- `const fn from_bytes(n: [u8; 8]) -> Self`
+- <span id="i64bytes-from-bytes"></span>`const fn from_bytes(n: [u8; 8]) -> Self`
 
-- `fn new(e: E, n: i64) -> Self`
+- <span id="i64bytes-new"></span>`fn new(e: E, n: i64) -> Self`
 
-- `fn get(self: Self, e: E) -> i64`
+- <span id="i64bytes-get"></span>`fn get(self, e: E) -> i64`
 
-- `fn set(self: &mut Self, e: E, n: i64)`
+- <span id="i64bytes-set"></span>`fn set(&mut self, e: E, n: i64)`
 
 #### Trait Implementations
 
-##### `impl<E: $crate::clone::Clone + Endian> Clone for I64Bytes<E>`
+##### `impl<E: clone::Clone + Endian> Clone for I64Bytes<E>`
 
-- `fn clone(self: &Self) -> I64Bytes<E>` — [`I64Bytes`](#i64bytes)
+- <span id="i64bytes-clone"></span>`fn clone(&self) -> I64Bytes<E>` — [`I64Bytes`](#i64bytes)
 
-##### `impl<E: $crate::marker::Copy + Endian> Copy for I64Bytes<E>`
+##### `impl<E: marker::Copy + Endian> Copy for I64Bytes<E>`
 
 ##### `impl<E: Endian> Debug for I64Bytes<E>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="i64bytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<E: $crate::default::Default + Endian> Default for I64Bytes<E>`
+##### `impl<E: default::Default + Endian> Default for I64Bytes<E>`
 
-- `fn default() -> I64Bytes<E>` — [`I64Bytes`](#i64bytes)
+- <span id="i64bytes-default"></span>`fn default() -> I64Bytes<E>` — [`I64Bytes`](#i64bytes)
 
-##### `impl<E: $crate::cmp::Eq + Endian> Eq for I64Bytes<E>`
+##### `impl<E: cmp::Eq + Endian> Eq for I64Bytes<E>`
 
-##### `impl<E: $crate::hash::Hash + Endian> Hash for I64Bytes<E>`
+##### `impl<E: hash::Hash + Endian> Hash for I64Bytes<E>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="i64bytes-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<E: $crate::cmp::Ord + Endian> Ord for I64Bytes<E>`
+##### `impl<E: cmp::Ord + Endian> Ord for I64Bytes<E>`
 
-- `fn cmp(self: &Self, other: &I64Bytes<E>) -> $crate::cmp::Ordering` — [`I64Bytes`](#i64bytes)
+- <span id="i64bytes-cmp"></span>`fn cmp(&self, other: &I64Bytes<E>) -> cmp::Ordering` — [`I64Bytes`](#i64bytes)
 
-##### `impl<E: $crate::cmp::PartialEq + Endian> PartialEq for I64Bytes<E>`
+##### `impl<E: cmp::PartialEq + Endian> PartialEq for I64Bytes<E>`
 
-- `fn eq(self: &Self, other: &I64Bytes<E>) -> bool` — [`I64Bytes`](#i64bytes)
+- <span id="i64bytes-eq"></span>`fn eq(&self, other: &I64Bytes<E>) -> bool` — [`I64Bytes`](#i64bytes)
 
-##### `impl<E: $crate::cmp::PartialOrd + Endian> PartialOrd for I64Bytes<E>`
+##### `impl<E: cmp::PartialOrd + Endian> PartialOrd for I64Bytes<E>`
 
-- `fn partial_cmp(self: &Self, other: &I64Bytes<E>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`I64Bytes`](#i64bytes)
+- <span id="i64bytes-partial-cmp"></span>`fn partial_cmp(&self, other: &I64Bytes<E>) -> option::Option<cmp::Ordering>` — [`I64Bytes`](#i64bytes)
 
 ##### `impl<E: Endian> Pod for I64Bytes<E>`
 
@@ -501,17 +702,17 @@ The error type used within the read module.
 
 ##### `impl Clone for Error`
 
-- `fn clone(self: &Self) -> Error` — [`Error`](#error)
+- <span id="error-clone"></span>`fn clone(&self) -> Error` — [`Error`](#error)
 
 ##### `impl Copy for Error`
 
 ##### `impl Debug for Error`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="error-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Error`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="error-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Error`
 
@@ -519,13 +720,13 @@ The error type used within the read module.
 
 ##### `impl PartialEq for Error`
 
-- `fn eq(self: &Self, other: &Error) -> bool` — [`Error`](#error)
+- <span id="error-eq"></span>`fn eq(&self, other: &Error) -> bool` — [`Error`](#error)
 
 ##### `impl StructuralPartialEq for Error`
 
 ##### `impl<T> ToString for Error`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="error-to-string"></span>`fn to_string(&self) -> String`
 
 ### `SectionIndex`
 
@@ -539,33 +740,33 @@ The index used to identify a section in a file.
 
 ##### `impl Clone for SectionIndex`
 
-- `fn clone(self: &Self) -> SectionIndex` — [`SectionIndex`](#sectionindex)
+- <span id="sectionindex-clone"></span>`fn clone(&self) -> SectionIndex` — [`SectionIndex`](#sectionindex)
 
 ##### `impl Copy for SectionIndex`
 
 ##### `impl Debug for SectionIndex`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sectionindex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for SectionIndex`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="sectionindex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for SectionIndex`
 
 ##### `impl Hash for SectionIndex`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="sectionindex-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for SectionIndex`
 
-- `fn eq(self: &Self, other: &SectionIndex) -> bool` — [`SectionIndex`](#sectionindex)
+- <span id="sectionindex-eq"></span>`fn eq(&self, other: &SectionIndex) -> bool` — [`SectionIndex`](#sectionindex)
 
 ##### `impl StructuralPartialEq for SectionIndex`
 
 ##### `impl<T> ToString for SectionIndex`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="sectionindex-to-string"></span>`fn to_string(&self) -> String`
 
 ### `SymbolIndex`
 
@@ -579,33 +780,33 @@ The index used to identify a symbol in a symbol table.
 
 ##### `impl Clone for SymbolIndex`
 
-- `fn clone(self: &Self) -> SymbolIndex` — [`SymbolIndex`](#symbolindex)
+- <span id="symbolindex-clone"></span>`fn clone(&self) -> SymbolIndex` — [`SymbolIndex`](#symbolindex)
 
 ##### `impl Copy for SymbolIndex`
 
 ##### `impl Debug for SymbolIndex`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="symbolindex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for SymbolIndex`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="symbolindex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for SymbolIndex`
 
 ##### `impl Hash for SymbolIndex`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="symbolindex-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for SymbolIndex`
 
-- `fn eq(self: &Self, other: &SymbolIndex) -> bool` — [`SymbolIndex`](#symbolindex)
+- <span id="symbolindex-eq"></span>`fn eq(&self, other: &SymbolIndex) -> bool` — [`SymbolIndex`](#symbolindex)
 
 ##### `impl StructuralPartialEq for SymbolIndex`
 
 ##### `impl<T> ToString for SymbolIndex`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="symbolindex-to-string"></span>`fn to_string(&self) -> String`
 
 ### `SymbolMap<T: SymbolMapEntry>`
 
@@ -623,25 +824,25 @@ Returned by `Object::symbol_map`.
 
 #### Implementations
 
-- `fn new(symbols: Vec<T>) -> Self`
+- <span id="symbolmap-new"></span>`fn new(symbols: Vec<T>) -> Self`
 
-- `fn get(self: &Self, address: u64) -> Option<&T>`
+- <span id="symbolmap-get"></span>`fn get(&self, address: u64) -> Option<&T>`
 
-- `fn symbols(self: &Self) -> &[T]`
+- <span id="symbolmap-symbols"></span>`fn symbols(&self) -> &[T]`
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone + SymbolMapEntry> Clone for SymbolMap<T>`
+##### `impl<T: clone::Clone + SymbolMapEntry> Clone for SymbolMap<T>`
 
-- `fn clone(self: &Self) -> SymbolMap<T>` — [`SymbolMap`](#symbolmap)
+- <span id="symbolmap-clone"></span>`fn clone(&self) -> SymbolMap<T>` — [`SymbolMap`](#symbolmap)
 
-##### `impl<T: $crate::fmt::Debug + SymbolMapEntry> Debug for SymbolMap<T>`
+##### `impl<T: fmt::Debug + SymbolMapEntry> Debug for SymbolMap<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="symbolmap-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::default::Default + SymbolMapEntry> Default for SymbolMap<T>`
+##### `impl<T: default::Default + SymbolMapEntry> Default for SymbolMap<T>`
 
-- `fn default() -> SymbolMap<T>` — [`SymbolMap`](#symbolmap)
+- <span id="symbolmap-default"></span>`fn default() -> SymbolMap<T>` — [`SymbolMap`](#symbolmap)
 
 ### `SymbolMapName<'data>`
 
@@ -656,39 +857,39 @@ The type used for entries in a [`SymbolMap`](#symbolmap) that maps from addresse
 
 #### Implementations
 
-- `fn new(address: u64, name: &'data str) -> Self`
+- <span id="symbolmapname-new"></span>`fn new(address: u64, name: &'data str) -> Self`
 
-- `fn address(self: &Self) -> u64`
+- <span id="symbolmapname-address"></span>`fn address(&self) -> u64`
 
-- `fn name(self: &Self) -> &'data str`
+- <span id="symbolmapname-name"></span>`fn name(&self) -> &'data str`
 
 #### Trait Implementations
 
 ##### `impl<'data> Clone for SymbolMapName<'data>`
 
-- `fn clone(self: &Self) -> SymbolMapName<'data>` — [`SymbolMapName`](#symbolmapname)
+- <span id="symbolmapname-clone"></span>`fn clone(&self) -> SymbolMapName<'data>` — [`SymbolMapName`](#symbolmapname)
 
 ##### `impl<'data> Copy for SymbolMapName<'data>`
 
 ##### `impl<'data> Debug for SymbolMapName<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="symbolmapname-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data> Eq for SymbolMapName<'data>`
 
 ##### `impl<'data> Hash for SymbolMapName<'data>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="symbolmapname-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl<'data> PartialEq for SymbolMapName<'data>`
 
-- `fn eq(self: &Self, other: &SymbolMapName<'data>) -> bool` — [`SymbolMapName`](#symbolmapname)
+- <span id="symbolmapname-eq"></span>`fn eq(&self, other: &SymbolMapName<'data>) -> bool` — [`SymbolMapName`](#symbolmapname)
 
 ##### `impl<'data> StructuralPartialEq for SymbolMapName<'data>`
 
 ##### `impl<'data> SymbolMapEntry for SymbolMapName<'data>`
 
-- `fn address(self: &Self) -> u64`
+- <span id="symbolmapname-address"></span>`fn address(&self) -> u64`
 
 ### `ObjectMap<'data>`
 
@@ -707,25 +908,25 @@ Returned by `Object::object_map`.
 
 #### Implementations
 
-- `fn get(self: &Self, address: u64) -> Option<&ObjectMapEntry<'data>>` — [`ObjectMapEntry`](#objectmapentry)
+- <span id="objectmap-get"></span>`fn get(&self, address: u64) -> Option<&ObjectMapEntry<'data>>` — [`ObjectMapEntry`](#objectmapentry)
 
-- `fn symbols(self: &Self) -> &[ObjectMapEntry<'data>]` — [`ObjectMapEntry`](#objectmapentry)
+- <span id="objectmap-symbols"></span>`fn symbols(&self) -> &[ObjectMapEntry<'data>]` — [`ObjectMapEntry`](#objectmapentry)
 
-- `fn objects(self: &Self) -> &[ObjectMapFile<'data>]` — [`ObjectMapFile`](#objectmapfile)
+- <span id="objectmap-objects"></span>`fn objects(&self) -> &[ObjectMapFile<'data>]` — [`ObjectMapFile`](#objectmapfile)
 
 #### Trait Implementations
 
 ##### `impl<'data> Clone for ObjectMap<'data>`
 
-- `fn clone(self: &Self) -> ObjectMap<'data>` — [`ObjectMap`](#objectmap)
+- <span id="objectmap-clone"></span>`fn clone(&self) -> ObjectMap<'data>` — [`ObjectMap`](#objectmap)
 
 ##### `impl<'data> Debug for ObjectMap<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="objectmap-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data> Default for ObjectMap<'data>`
 
-- `fn default() -> ObjectMap<'data>` — [`ObjectMap`](#objectmap)
+- <span id="objectmap-default"></span>`fn default() -> ObjectMap<'data>` — [`ObjectMap`](#objectmap)
 
 ### `ObjectMapEntry<'data>`
 
@@ -742,47 +943,47 @@ A symbol in an [`ObjectMap`](#objectmap).
 
 #### Implementations
 
-- `fn address(self: &Self) -> u64`
+- <span id="objectmapentry-address"></span>`fn address(&self) -> u64`
 
-- `fn size(self: &Self) -> u64`
+- <span id="objectmapentry-size"></span>`fn size(&self) -> u64`
 
-- `fn name(self: &Self) -> &'data [u8]`
+- <span id="objectmapentry-name"></span>`fn name(&self) -> &'data [u8]`
 
-- `fn object_index(self: &Self) -> usize`
+- <span id="objectmapentry-object-index"></span>`fn object_index(&self) -> usize`
 
-- `fn object<'a>(self: &Self, map: &'a ObjectMap<'data>) -> &'a ObjectMapFile<'data>` — [`ObjectMap`](#objectmap), [`ObjectMapFile`](#objectmapfile)
+- <span id="objectmapentry-object"></span>`fn object<'a>(&self, map: &'a ObjectMap<'data>) -> &'a ObjectMapFile<'data>` — [`ObjectMap`](#objectmap), [`ObjectMapFile`](#objectmapfile)
 
 #### Trait Implementations
 
 ##### `impl<'data> Clone for ObjectMapEntry<'data>`
 
-- `fn clone(self: &Self) -> ObjectMapEntry<'data>` — [`ObjectMapEntry`](#objectmapentry)
+- <span id="objectmapentry-clone"></span>`fn clone(&self) -> ObjectMapEntry<'data>` — [`ObjectMapEntry`](#objectmapentry)
 
 ##### `impl<'data> Copy for ObjectMapEntry<'data>`
 
 ##### `impl<'data> Debug for ObjectMapEntry<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="objectmapentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data> Default for ObjectMapEntry<'data>`
 
-- `fn default() -> ObjectMapEntry<'data>` — [`ObjectMapEntry`](#objectmapentry)
+- <span id="objectmapentry-default"></span>`fn default() -> ObjectMapEntry<'data>` — [`ObjectMapEntry`](#objectmapentry)
 
 ##### `impl<'data> Eq for ObjectMapEntry<'data>`
 
 ##### `impl<'data> Hash for ObjectMapEntry<'data>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="objectmapentry-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl<'data> PartialEq for ObjectMapEntry<'data>`
 
-- `fn eq(self: &Self, other: &ObjectMapEntry<'data>) -> bool` — [`ObjectMapEntry`](#objectmapentry)
+- <span id="objectmapentry-eq"></span>`fn eq(&self, other: &ObjectMapEntry<'data>) -> bool` — [`ObjectMapEntry`](#objectmapentry)
 
 ##### `impl<'data> StructuralPartialEq for ObjectMapEntry<'data>`
 
 ##### `impl<'data> SymbolMapEntry for ObjectMapEntry<'data>`
 
-- `fn address(self: &Self) -> u64`
+- <span id="objectmapentry-address"></span>`fn address(&self) -> u64`
 
 ### `ObjectMapFile<'data>`
 
@@ -797,33 +998,33 @@ An object file name in an [`ObjectMap`](#objectmap).
 
 #### Implementations
 
-- `fn new(path: &'data [u8], member: Option<&'data [u8]>) -> Self`
+- <span id="objectmapfile-new"></span>`fn new(path: &'data [u8], member: Option<&'data [u8]>) -> Self`
 
-- `fn path(self: &Self) -> &'data [u8]`
+- <span id="objectmapfile-path"></span>`fn path(&self) -> &'data [u8]`
 
-- `fn member(self: &Self) -> Option<&'data [u8]>`
+- <span id="objectmapfile-member"></span>`fn member(&self) -> Option<&'data [u8]>`
 
 #### Trait Implementations
 
 ##### `impl<'data> Clone for ObjectMapFile<'data>`
 
-- `fn clone(self: &Self) -> ObjectMapFile<'data>` — [`ObjectMapFile`](#objectmapfile)
+- <span id="objectmapfile-clone"></span>`fn clone(&self) -> ObjectMapFile<'data>` — [`ObjectMapFile`](#objectmapfile)
 
 ##### `impl<'data> Copy for ObjectMapFile<'data>`
 
 ##### `impl<'data> Debug for ObjectMapFile<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="objectmapfile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data> Eq for ObjectMapFile<'data>`
 
 ##### `impl<'data> Hash for ObjectMapFile<'data>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="objectmapfile-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl<'data> PartialEq for ObjectMapFile<'data>`
 
-- `fn eq(self: &Self, other: &ObjectMapFile<'data>) -> bool` — [`ObjectMapFile`](#objectmapfile)
+- <span id="objectmapfile-eq"></span>`fn eq(&self, other: &ObjectMapFile<'data>) -> bool` — [`ObjectMapFile`](#objectmapfile)
 
 ##### `impl<'data> StructuralPartialEq for ObjectMapFile<'data>`
 
@@ -842,27 +1043,27 @@ Returned by `Object::imports`.
 
 #### Implementations
 
-- `fn name(self: &Self) -> &'data [u8]`
+- <span id="import-name"></span>`fn name(&self) -> &'data [u8]`
 
-- `fn library(self: &Self) -> &'data [u8]`
+- <span id="import-library"></span>`fn library(&self) -> &'data [u8]`
 
 #### Trait Implementations
 
 ##### `impl<'data> Clone for Import<'data>`
 
-- `fn clone(self: &Self) -> Import<'data>` — [`Import`](#import)
+- <span id="import-clone"></span>`fn clone(&self) -> Import<'data>` — [`Import`](#import)
 
 ##### `impl<'data> Copy for Import<'data>`
 
 ##### `impl<'data> Debug for Import<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="import-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data> Eq for Import<'data>`
 
 ##### `impl<'data> PartialEq for Import<'data>`
 
-- `fn eq(self: &Self, other: &Import<'data>) -> bool` — [`Import`](#import)
+- <span id="import-eq"></span>`fn eq(&self, other: &Import<'data>) -> bool` — [`Import`](#import)
 
 ##### `impl<'data> StructuralPartialEq for Import<'data>`
 
@@ -881,27 +1082,27 @@ Returned by `Object::exports`.
 
 #### Implementations
 
-- `fn name(self: &Self) -> &'data [u8]`
+- <span id="export-name"></span>`fn name(&self) -> &'data [u8]`
 
-- `fn address(self: &Self) -> u64`
+- <span id="export-address"></span>`fn address(&self) -> u64`
 
 #### Trait Implementations
 
 ##### `impl<'data> Clone for Export<'data>`
 
-- `fn clone(self: &Self) -> Export<'data>` — [`Export`](#export)
+- <span id="export-clone"></span>`fn clone(&self) -> Export<'data>` — [`Export`](#export)
 
 ##### `impl<'data> Copy for Export<'data>`
 
 ##### `impl<'data> Debug for Export<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="export-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data> Eq for Export<'data>`
 
 ##### `impl<'data> PartialEq for Export<'data>`
 
-- `fn eq(self: &Self, other: &Export<'data>) -> bool` — [`Export`](#export)
+- <span id="export-eq"></span>`fn eq(&self, other: &Export<'data>) -> bool` — [`Export`](#export)
 
 ##### `impl<'data> StructuralPartialEq for Export<'data>`
 
@@ -919,29 +1120,29 @@ PDB information from the debug directory in a PE file.
 
 #### Implementations
 
-- `fn path(self: &Self) -> &'data [u8]`
+- <span id="codeview-path"></span>`fn path(&self) -> &'data [u8]`
 
-- `fn age(self: &Self) -> u32`
+- <span id="codeview-age"></span>`fn age(&self) -> u32`
 
-- `fn guid(self: &Self) -> [u8; 16]`
+- <span id="codeview-guid"></span>`fn guid(&self) -> [u8; 16]`
 
 #### Trait Implementations
 
 ##### `impl<'data> Clone for CodeView<'data>`
 
-- `fn clone(self: &Self) -> CodeView<'data>` — [`CodeView`](#codeview)
+- <span id="codeview-clone"></span>`fn clone(&self) -> CodeView<'data>` — [`CodeView`](#codeview)
 
 ##### `impl<'data> Copy for CodeView<'data>`
 
 ##### `impl<'data> Debug for CodeView<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="codeview-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data> Eq for CodeView<'data>`
 
 ##### `impl<'data> PartialEq for CodeView<'data>`
 
-- `fn eq(self: &Self, other: &CodeView<'data>) -> bool` — [`CodeView`](#codeview)
+- <span id="codeview-eq"></span>`fn eq(&self, other: &CodeView<'data>) -> bool` — [`CodeView`](#codeview)
 
 ##### `impl<'data> StructuralPartialEq for CodeView<'data>`
 
@@ -965,27 +1166,27 @@ Returned by `Object::dynamic_relocations` or `ObjectSection::relocations`.
 
 #### Implementations
 
-- `fn kind(self: &Self) -> RelocationKind` — [`RelocationKind`](#relocationkind)
+- <span id="relocation-kind"></span>`fn kind(&self) -> RelocationKind` — [`RelocationKind`](#relocationkind)
 
-- `fn encoding(self: &Self) -> RelocationEncoding` — [`RelocationEncoding`](#relocationencoding)
+- <span id="relocation-encoding"></span>`fn encoding(&self) -> RelocationEncoding` — [`RelocationEncoding`](#relocationencoding)
 
-- `fn size(self: &Self) -> u8`
+- <span id="relocation-size"></span>`fn size(&self) -> u8`
 
-- `fn target(self: &Self) -> RelocationTarget` — [`RelocationTarget`](#relocationtarget)
+- <span id="relocation-target"></span>`fn target(&self) -> RelocationTarget` — [`RelocationTarget`](#relocationtarget)
 
-- `fn addend(self: &Self) -> i64`
+- <span id="relocation-addend"></span>`fn addend(&self) -> i64`
 
-- `fn set_addend(self: &mut Self, addend: i64)`
+- <span id="relocation-set-addend"></span>`fn set_addend(&mut self, addend: i64)`
 
-- `fn has_implicit_addend(self: &Self) -> bool`
+- <span id="relocation-has-implicit-addend"></span>`fn has_implicit_addend(&self) -> bool`
 
-- `fn flags(self: &Self) -> RelocationFlags` — [`RelocationFlags`](#relocationflags)
+- <span id="relocation-flags"></span>`fn flags(&self) -> RelocationFlags` — [`RelocationFlags`](#relocationflags)
 
 #### Trait Implementations
 
 ##### `impl Debug for Relocation`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="relocation-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `RelocationMap`
 
@@ -1003,21 +1204,21 @@ Returned by `ObjectSection::relocation_map`.
 
 #### Implementations
 
-- `fn new<'data, 'file, T>(file: &'file T, section: &<T as >::Section) -> Result<Self>` — [`Object`](read/index.md), [`Result`](#result)
+- <span id="relocationmap-new"></span>`fn new<'data, 'file, T>(file: &'file T, section: &<T as >::Section) -> Result<Self>` — [`Object`](read/index.md), [`Result`](#result)
 
-- `fn add<'data: 'file, 'file, T>(self: &mut Self, file: &'file T, offset: u64, relocation: Relocation) -> Result<()>` — [`Relocation`](#relocation), [`Result`](#result)
+- <span id="relocationmap-add"></span>`fn add<'data: 'file, 'file, T>(&mut self, file: &'file T, offset: u64, relocation: Relocation) -> Result<()>` — [`Relocation`](#relocation), [`Result`](#result)
 
-- `fn relocate(self: &Self, offset: u64, value: u64) -> u64`
+- <span id="relocationmap-relocate"></span>`fn relocate(&self, offset: u64, value: u64) -> u64`
 
 #### Trait Implementations
 
 ##### `impl Debug for RelocationMap`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="relocationmap-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for RelocationMap`
 
-- `fn default() -> RelocationMap` — [`RelocationMap`](#relocationmap)
+- <span id="relocationmap-default"></span>`fn default() -> RelocationMap` — [`RelocationMap`](#relocationmap)
 
 ### `RelocationMapEntry`
 
@@ -1032,23 +1233,23 @@ struct RelocationMapEntry {
 
 ##### `impl Clone for RelocationMapEntry`
 
-- `fn clone(self: &Self) -> RelocationMapEntry` — [`RelocationMapEntry`](read/index.md)
+- <span id="relocationmapentry-clone"></span>`fn clone(&self) -> RelocationMapEntry` — [`RelocationMapEntry`](read/index.md)
 
 ##### `impl Copy for RelocationMapEntry`
 
 ##### `impl Debug for RelocationMapEntry`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="relocationmapentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for RelocationMapEntry`
 
 ##### `impl Hash for RelocationMapEntry`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="relocationmapentry-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for RelocationMapEntry`
 
-- `fn eq(self: &Self, other: &RelocationMapEntry) -> bool` — [`RelocationMapEntry`](read/index.md)
+- <span id="relocationmapentry-eq"></span>`fn eq(&self, other: &RelocationMapEntry) -> bool` — [`RelocationMapEntry`](read/index.md)
 
 ##### `impl StructuralPartialEq for RelocationMapEntry`
 
@@ -1087,31 +1288,31 @@ Returned by `ObjectSection::compressed_file_range`.
 
 #### Implementations
 
-- `fn none(range: Option<(u64, u64)>) -> Self`
+- <span id="compressedfilerange-none"></span>`fn none(range: Option<(u64, u64)>) -> Self`
 
-- `fn data<'data, R: ReadRef<'data>>(self: Self, file: R) -> Result<CompressedData<'data>>` — [`Result`](#result), [`CompressedData`](#compresseddata)
+- <span id="compressedfilerange-data"></span>`fn data<'data, R: ReadRef<'data>>(self, file: R) -> Result<CompressedData<'data>>` — [`Result`](#result), [`CompressedData`](#compresseddata)
 
 #### Trait Implementations
 
 ##### `impl Clone for CompressedFileRange`
 
-- `fn clone(self: &Self) -> CompressedFileRange` — [`CompressedFileRange`](#compressedfilerange)
+- <span id="compressedfilerange-clone"></span>`fn clone(&self) -> CompressedFileRange` — [`CompressedFileRange`](#compressedfilerange)
 
 ##### `impl Copy for CompressedFileRange`
 
 ##### `impl Debug for CompressedFileRange`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="compressedfilerange-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for CompressedFileRange`
 
 ##### `impl Hash for CompressedFileRange`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="compressedfilerange-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for CompressedFileRange`
 
-- `fn eq(self: &Self, other: &CompressedFileRange) -> bool` — [`CompressedFileRange`](#compressedfilerange)
+- <span id="compressedfilerange-eq"></span>`fn eq(&self, other: &CompressedFileRange) -> bool` — [`CompressedFileRange`](#compressedfilerange)
 
 ##### `impl StructuralPartialEq for CompressedFileRange`
 
@@ -1145,31 +1346,31 @@ Returned by `ObjectSection::compressed_data`.
 
 #### Implementations
 
-- `fn none(data: &'data [u8]) -> Self`
+- <span id="compresseddata-none"></span>`fn none(data: &'data [u8]) -> Self`
 
-- `fn decompress(self: Self) -> Result<Cow<'data, [u8]>>` — [`Result`](#result)
+- <span id="compresseddata-decompress"></span>`fn decompress(self) -> Result<Cow<'data, [u8]>>` — [`Result`](#result)
 
 #### Trait Implementations
 
 ##### `impl<'data> Clone for CompressedData<'data>`
 
-- `fn clone(self: &Self) -> CompressedData<'data>` — [`CompressedData`](#compresseddata)
+- <span id="compresseddata-clone"></span>`fn clone(&self) -> CompressedData<'data>` — [`CompressedData`](#compresseddata)
 
 ##### `impl<'data> Copy for CompressedData<'data>`
 
 ##### `impl<'data> Debug for CompressedData<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="compresseddata-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data> Eq for CompressedData<'data>`
 
 ##### `impl<'data> Hash for CompressedData<'data>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="compresseddata-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl<'data> PartialEq for CompressedData<'data>`
 
-- `fn eq(self: &Self, other: &CompressedData<'data>) -> bool` — [`CompressedData`](#compresseddata)
+- <span id="compresseddata-eq"></span>`fn eq(&self, other: &CompressedData<'data>) -> bool` — [`CompressedData`](#compresseddata)
 
 ##### `impl<'data> StructuralPartialEq for CompressedData<'data>`
 
@@ -1222,29 +1423,29 @@ A CPU architecture.
 
 #### Implementations
 
-- `fn address_size(self: Self) -> Option<AddressSize>` — [`AddressSize`](#addresssize)
+- <span id="architecture-address-size"></span>`fn address_size(self) -> Option<AddressSize>` — [`AddressSize`](#addresssize)
 
 #### Trait Implementations
 
 ##### `impl Clone for Architecture`
 
-- `fn clone(self: &Self) -> Architecture` — [`Architecture`](#architecture)
+- <span id="architecture-clone"></span>`fn clone(&self) -> Architecture` — [`Architecture`](#architecture)
 
 ##### `impl Copy for Architecture`
 
 ##### `impl Debug for Architecture`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="architecture-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Architecture`
 
 ##### `impl Hash for Architecture`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="architecture-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Architecture`
 
-- `fn eq(self: &Self, other: &Architecture) -> bool` — [`Architecture`](#architecture)
+- <span id="architecture-eq"></span>`fn eq(&self, other: &Architecture) -> bool` — [`Architecture`](#architecture)
 
 ##### `impl StructuralPartialEq for Architecture`
 
@@ -1263,23 +1464,23 @@ A CPU sub-architecture.
 
 ##### `impl Clone for SubArchitecture`
 
-- `fn clone(self: &Self) -> SubArchitecture` — [`SubArchitecture`](#subarchitecture)
+- <span id="subarchitecture-clone"></span>`fn clone(&self) -> SubArchitecture` — [`SubArchitecture`](#subarchitecture)
 
 ##### `impl Copy for SubArchitecture`
 
 ##### `impl Debug for SubArchitecture`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="subarchitecture-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for SubArchitecture`
 
 ##### `impl Hash for SubArchitecture`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="subarchitecture-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for SubArchitecture`
 
-- `fn eq(self: &Self, other: &SubArchitecture) -> bool` — [`SubArchitecture`](#subarchitecture)
+- <span id="subarchitecture-eq"></span>`fn eq(&self, other: &SubArchitecture) -> bool` — [`SubArchitecture`](#subarchitecture)
 
 ##### `impl StructuralPartialEq for SubArchitecture`
 
@@ -1300,29 +1501,29 @@ This may differ from the address size supported by the file format (such as for 
 
 #### Implementations
 
-- `fn bytes(self: Self) -> u8`
+- <span id="addresssize-bytes"></span>`fn bytes(self) -> u8`
 
 #### Trait Implementations
 
 ##### `impl Clone for AddressSize`
 
-- `fn clone(self: &Self) -> AddressSize` — [`AddressSize`](#addresssize)
+- <span id="addresssize-clone"></span>`fn clone(&self) -> AddressSize` — [`AddressSize`](#addresssize)
 
 ##### `impl Copy for AddressSize`
 
 ##### `impl Debug for AddressSize`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="addresssize-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for AddressSize`
 
 ##### `impl Hash for AddressSize`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="addresssize-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for AddressSize`
 
-- `fn eq(self: &Self, other: &AddressSize) -> bool` — [`AddressSize`](#addresssize)
+- <span id="addresssize-eq"></span>`fn eq(&self, other: &AddressSize) -> bool` — [`AddressSize`](#addresssize)
 
 ##### `impl StructuralPartialEq for AddressSize`
 
@@ -1343,29 +1544,29 @@ A binary file format.
 
 #### Implementations
 
-- `fn native_object() -> BinaryFormat` — [`BinaryFormat`](#binaryformat)
+- <span id="binaryformat-native-object"></span>`fn native_object() -> BinaryFormat` — [`BinaryFormat`](#binaryformat)
 
 #### Trait Implementations
 
 ##### `impl Clone for BinaryFormat`
 
-- `fn clone(self: &Self) -> BinaryFormat` — [`BinaryFormat`](#binaryformat)
+- <span id="binaryformat-clone"></span>`fn clone(&self) -> BinaryFormat` — [`BinaryFormat`](#binaryformat)
 
 ##### `impl Copy for BinaryFormat`
 
 ##### `impl Debug for BinaryFormat`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="binaryformat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for BinaryFormat`
 
 ##### `impl Hash for BinaryFormat`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="binaryformat-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for BinaryFormat`
 
-- `fn eq(self: &Self, other: &BinaryFormat) -> bool` — [`BinaryFormat`](#binaryformat)
+- <span id="binaryformat-eq"></span>`fn eq(&self, other: &BinaryFormat) -> bool` — [`BinaryFormat`](#binaryformat)
 
 ##### `impl StructuralPartialEq for BinaryFormat`
 
@@ -1530,29 +1731,29 @@ The kind of a section.
 
 #### Implementations
 
-- `fn is_bss(self: Self) -> bool`
+- <span id="sectionkind-is-bss"></span>`fn is_bss(self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for SectionKind`
 
-- `fn clone(self: &Self) -> SectionKind` — [`SectionKind`](#sectionkind)
+- <span id="sectionkind-clone"></span>`fn clone(&self) -> SectionKind` — [`SectionKind`](#sectionkind)
 
 ##### `impl Copy for SectionKind`
 
 ##### `impl Debug for SectionKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sectionkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for SectionKind`
 
 ##### `impl Hash for SectionKind`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="sectionkind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for SectionKind`
 
-- `fn eq(self: &Self, other: &SectionKind) -> bool` — [`SectionKind`](#sectionkind)
+- <span id="sectionkind-eq"></span>`fn eq(&self, other: &SectionKind) -> bool` — [`SectionKind`](#sectionkind)
 
 ##### `impl StructuralPartialEq for SectionKind`
 
@@ -1621,23 +1822,23 @@ sections.
 
 ##### `impl Clone for ComdatKind`
 
-- `fn clone(self: &Self) -> ComdatKind` — [`ComdatKind`](#comdatkind)
+- <span id="comdatkind-clone"></span>`fn clone(&self) -> ComdatKind` — [`ComdatKind`](#comdatkind)
 
 ##### `impl Copy for ComdatKind`
 
 ##### `impl Debug for ComdatKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="comdatkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ComdatKind`
 
 ##### `impl Hash for ComdatKind`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="comdatkind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for ComdatKind`
 
-- `fn eq(self: &Self, other: &ComdatKind) -> bool` — [`ComdatKind`](#comdatkind)
+- <span id="comdatkind-eq"></span>`fn eq(&self, other: &ComdatKind) -> bool` — [`ComdatKind`](#comdatkind)
 
 ##### `impl StructuralPartialEq for ComdatKind`
 
@@ -1691,23 +1892,23 @@ The kind of a symbol.
 
 ##### `impl Clone for SymbolKind`
 
-- `fn clone(self: &Self) -> SymbolKind` — [`SymbolKind`](#symbolkind)
+- <span id="symbolkind-clone"></span>`fn clone(&self) -> SymbolKind` — [`SymbolKind`](#symbolkind)
 
 ##### `impl Copy for SymbolKind`
 
 ##### `impl Debug for SymbolKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="symbolkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for SymbolKind`
 
 ##### `impl Hash for SymbolKind`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="symbolkind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for SymbolKind`
 
-- `fn eq(self: &Self, other: &SymbolKind) -> bool` — [`SymbolKind`](#symbolkind)
+- <span id="symbolkind-eq"></span>`fn eq(&self, other: &SymbolKind) -> bool` — [`SymbolKind`](#symbolkind)
 
 ##### `impl StructuralPartialEq for SymbolKind`
 
@@ -1746,23 +1947,23 @@ A symbol scope.
 
 ##### `impl Clone for SymbolScope`
 
-- `fn clone(self: &Self) -> SymbolScope` — [`SymbolScope`](#symbolscope)
+- <span id="symbolscope-clone"></span>`fn clone(&self) -> SymbolScope` — [`SymbolScope`](#symbolscope)
 
 ##### `impl Copy for SymbolScope`
 
 ##### `impl Debug for SymbolScope`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="symbolscope-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for SymbolScope`
 
 ##### `impl Hash for SymbolScope`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="symbolscope-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for SymbolScope`
 
-- `fn eq(self: &Self, other: &SymbolScope) -> bool` — [`SymbolScope`](#symbolscope)
+- <span id="symbolscope-eq"></span>`fn eq(&self, other: &SymbolScope) -> bool` — [`SymbolScope`](#symbolscope)
 
 ##### `impl StructuralPartialEq for SymbolScope`
 
@@ -1850,23 +2051,23 @@ these definitions probably don't match any ELF ABI.
 
 ##### `impl Clone for RelocationKind`
 
-- `fn clone(self: &Self) -> RelocationKind` — [`RelocationKind`](#relocationkind)
+- <span id="relocationkind-clone"></span>`fn clone(&self) -> RelocationKind` — [`RelocationKind`](#relocationkind)
 
 ##### `impl Copy for RelocationKind`
 
 ##### `impl Debug for RelocationKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="relocationkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for RelocationKind`
 
 ##### `impl Hash for RelocationKind`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="relocationkind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for RelocationKind`
 
-- `fn eq(self: &Self, other: &RelocationKind) -> bool` — [`RelocationKind`](#relocationkind)
+- <span id="relocationkind-eq"></span>`fn eq(&self, other: &RelocationKind) -> bool` — [`RelocationKind`](#relocationkind)
 
 ##### `impl StructuralPartialEq for RelocationKind`
 
@@ -1991,23 +2192,23 @@ a specific instruction.
 
 ##### `impl Clone for RelocationEncoding`
 
-- `fn clone(self: &Self) -> RelocationEncoding` — [`RelocationEncoding`](#relocationencoding)
+- <span id="relocationencoding-clone"></span>`fn clone(&self) -> RelocationEncoding` — [`RelocationEncoding`](#relocationencoding)
 
 ##### `impl Copy for RelocationEncoding`
 
 ##### `impl Debug for RelocationEncoding`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="relocationencoding-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for RelocationEncoding`
 
 ##### `impl Hash for RelocationEncoding`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="relocationencoding-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for RelocationEncoding`
 
-- `fn eq(self: &Self, other: &RelocationEncoding) -> bool` — [`RelocationEncoding`](#relocationencoding)
+- <span id="relocationencoding-eq"></span>`fn eq(&self, other: &RelocationEncoding) -> bool` — [`RelocationEncoding`](#relocationencoding)
 
 ##### `impl StructuralPartialEq for RelocationEncoding`
 
@@ -2061,23 +2262,23 @@ File flags that are specific to each file format.
 
 ##### `impl Clone for FileFlags`
 
-- `fn clone(self: &Self) -> FileFlags` — [`FileFlags`](#fileflags)
+- <span id="fileflags-clone"></span>`fn clone(&self) -> FileFlags` — [`FileFlags`](#fileflags)
 
 ##### `impl Copy for FileFlags`
 
 ##### `impl Debug for FileFlags`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="fileflags-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for FileFlags`
 
 ##### `impl Hash for FileFlags`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="fileflags-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for FileFlags`
 
-- `fn eq(self: &Self, other: &FileFlags) -> bool` — [`FileFlags`](#fileflags)
+- <span id="fileflags-eq"></span>`fn eq(&self, other: &FileFlags) -> bool` — [`FileFlags`](#fileflags)
 
 ##### `impl StructuralPartialEq for FileFlags`
 
@@ -2124,23 +2325,23 @@ Segment flags that are specific to each file format.
 
 ##### `impl Clone for SegmentFlags`
 
-- `fn clone(self: &Self) -> SegmentFlags` — [`SegmentFlags`](#segmentflags)
+- <span id="segmentflags-clone"></span>`fn clone(&self) -> SegmentFlags` — [`SegmentFlags`](#segmentflags)
 
 ##### `impl Copy for SegmentFlags`
 
 ##### `impl Debug for SegmentFlags`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="segmentflags-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for SegmentFlags`
 
 ##### `impl Hash for SegmentFlags`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="segmentflags-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for SegmentFlags`
 
-- `fn eq(self: &Self, other: &SegmentFlags) -> bool` — [`SegmentFlags`](#segmentflags)
+- <span id="segmentflags-eq"></span>`fn eq(&self, other: &SegmentFlags) -> bool` — [`SegmentFlags`](#segmentflags)
 
 ##### `impl StructuralPartialEq for SegmentFlags`
 
@@ -2192,23 +2393,23 @@ Section flags that are specific to each file format.
 
 ##### `impl Clone for SectionFlags`
 
-- `fn clone(self: &Self) -> SectionFlags` — [`SectionFlags`](#sectionflags)
+- <span id="sectionflags-clone"></span>`fn clone(&self) -> SectionFlags` — [`SectionFlags`](#sectionflags)
 
 ##### `impl Copy for SectionFlags`
 
 ##### `impl Debug for SectionFlags`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sectionflags-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for SectionFlags`
 
 ##### `impl Hash for SectionFlags`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="sectionflags-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for SectionFlags`
 
-- `fn eq(self: &Self, other: &SectionFlags) -> bool` — [`SectionFlags`](#sectionflags)
+- <span id="sectionflags-eq"></span>`fn eq(&self, other: &SectionFlags) -> bool` — [`SectionFlags`](#sectionflags)
 
 ##### `impl StructuralPartialEq for SectionFlags`
 
@@ -2263,25 +2464,25 @@ Symbol flags that are specific to each file format.
 
 #### Trait Implementations
 
-##### `impl<Section: $crate::clone::Clone, Symbol: $crate::clone::Clone> Clone for SymbolFlags<Section, Symbol>`
+##### `impl<Section: clone::Clone, Symbol: clone::Clone> Clone for SymbolFlags<Section, Symbol>`
 
-- `fn clone(self: &Self) -> SymbolFlags<Section, Symbol>` — [`SymbolFlags`](#symbolflags)
+- <span id="symbolflags-clone"></span>`fn clone(&self) -> SymbolFlags<Section, Symbol>` — [`SymbolFlags`](#symbolflags)
 
-##### `impl<Section: $crate::marker::Copy, Symbol: $crate::marker::Copy> Copy for SymbolFlags<Section, Symbol>`
+##### `impl<Section: marker::Copy, Symbol: marker::Copy> Copy for SymbolFlags<Section, Symbol>`
 
-##### `impl<Section: $crate::fmt::Debug, Symbol: $crate::fmt::Debug> Debug for SymbolFlags<Section, Symbol>`
+##### `impl<Section: fmt::Debug, Symbol: fmt::Debug> Debug for SymbolFlags<Section, Symbol>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="symbolflags-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<Section: $crate::cmp::Eq, Symbol: $crate::cmp::Eq> Eq for SymbolFlags<Section, Symbol>`
+##### `impl<Section: cmp::Eq, Symbol: cmp::Eq> Eq for SymbolFlags<Section, Symbol>`
 
-##### `impl<Section: $crate::hash::Hash, Symbol: $crate::hash::Hash> Hash for SymbolFlags<Section, Symbol>`
+##### `impl<Section: hash::Hash, Symbol: hash::Hash> Hash for SymbolFlags<Section, Symbol>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="symbolflags-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<Section: $crate::cmp::PartialEq, Symbol: $crate::cmp::PartialEq> PartialEq for SymbolFlags<Section, Symbol>`
+##### `impl<Section: cmp::PartialEq, Symbol: cmp::PartialEq> PartialEq for SymbolFlags<Section, Symbol>`
 
-- `fn eq(self: &Self, other: &SymbolFlags<Section, Symbol>) -> bool` — [`SymbolFlags`](#symbolflags)
+- <span id="symbolflags-eq"></span>`fn eq(&self, other: &SymbolFlags<Section, Symbol>) -> bool` — [`SymbolFlags`](#symbolflags)
 
 ##### `impl<Section, Symbol> StructuralPartialEq for SymbolFlags<Section, Symbol>`
 
@@ -2340,23 +2541,23 @@ Relocation fields that are specific to each file format and architecture.
 
 ##### `impl Clone for RelocationFlags`
 
-- `fn clone(self: &Self) -> RelocationFlags` — [`RelocationFlags`](#relocationflags)
+- <span id="relocationflags-clone"></span>`fn clone(&self) -> RelocationFlags` — [`RelocationFlags`](#relocationflags)
 
 ##### `impl Copy for RelocationFlags`
 
 ##### `impl Debug for RelocationFlags`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="relocationflags-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for RelocationFlags`
 
 ##### `impl Hash for RelocationFlags`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="relocationflags-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for RelocationFlags`
 
-- `fn eq(self: &Self, other: &RelocationFlags) -> bool` — [`RelocationFlags`](#relocationflags)
+- <span id="relocationflags-eq"></span>`fn eq(&self, other: &RelocationFlags) -> bool` — [`RelocationFlags`](#relocationflags)
 
 ##### `impl StructuralPartialEq for RelocationFlags`
 
@@ -2385,33 +2586,33 @@ An endianness that is selectable at run-time.
 
 ##### `impl Clone for Endianness`
 
-- `fn clone(self: &Self) -> Endianness` — [`Endianness`](#endianness)
+- <span id="endianness-clone"></span>`fn clone(&self) -> Endianness` — [`Endianness`](#endianness)
 
 ##### `impl Copy for Endianness`
 
 ##### `impl Debug for Endianness`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="endianness-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Endianness`
 
-- `fn default() -> Endianness` — [`Endianness`](#endianness)
+- <span id="endianness-default"></span>`fn default() -> Endianness` — [`Endianness`](#endianness)
 
 ##### `impl Endian for Endianness`
 
-- `fn from_big_endian(big_endian: bool) -> Option<Self>`
+- <span id="endianness-from-big-endian"></span>`fn from_big_endian(big_endian: bool) -> Option<Self>`
 
-- `fn is_big_endian(self: Self) -> bool`
+- <span id="endianness-is-big-endian"></span>`fn is_big_endian(self) -> bool`
 
 ##### `impl Eq for Endianness`
 
 ##### `impl Hash for Endianness`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="endianness-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Endianness`
 
-- `fn eq(self: &Self, other: &Endianness) -> bool` — [`Endianness`](#endianness)
+- <span id="endianness-eq"></span>`fn eq(&self, other: &Endianness) -> bool` — [`Endianness`](#endianness)
 
 ##### `impl StructuralPartialEq for Endianness`
 
@@ -2535,31 +2736,31 @@ A file format kind.
 
 #### Implementations
 
-- `fn parse<'data, R: ReadRef<'data>>(data: R) -> Result<FileKind>` — [`Result`](#result), [`FileKind`](#filekind)
+- <span id="filekind-parse"></span>`fn parse<'data, R: ReadRef<'data>>(data: R) -> Result<FileKind>` — [`Result`](#result), [`FileKind`](#filekind)
 
-- `fn parse_at<'data, R: ReadRef<'data>>(data: R, offset: u64) -> Result<FileKind>` — [`Result`](#result), [`FileKind`](#filekind)
+- <span id="filekind-parse-at"></span>`fn parse_at<'data, R: ReadRef<'data>>(data: R, offset: u64) -> Result<FileKind>` — [`Result`](#result), [`FileKind`](#filekind)
 
 #### Trait Implementations
 
 ##### `impl Clone for FileKind`
 
-- `fn clone(self: &Self) -> FileKind` — [`FileKind`](#filekind)
+- <span id="filekind-clone"></span>`fn clone(&self) -> FileKind` — [`FileKind`](#filekind)
 
 ##### `impl Copy for FileKind`
 
 ##### `impl Debug for FileKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="filekind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for FileKind`
 
 ##### `impl Hash for FileKind`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="filekind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for FileKind`
 
-- `fn eq(self: &Self, other: &FileKind) -> bool` — [`FileKind`](#filekind)
+- <span id="filekind-eq"></span>`fn eq(&self, other: &FileKind) -> bool` — [`FileKind`](#filekind)
 
 ##### `impl StructuralPartialEq for FileKind`
 
@@ -2605,23 +2806,23 @@ Returned by `Object::kind`.
 
 ##### `impl Clone for ObjectKind`
 
-- `fn clone(self: &Self) -> ObjectKind` — [`ObjectKind`](#objectkind)
+- <span id="objectkind-clone"></span>`fn clone(&self) -> ObjectKind` — [`ObjectKind`](#objectkind)
 
 ##### `impl Copy for ObjectKind`
 
 ##### `impl Debug for ObjectKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="objectkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ObjectKind`
 
 ##### `impl Hash for ObjectKind`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="objectkind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for ObjectKind`
 
-- `fn eq(self: &Self, other: &ObjectKind) -> bool` — [`ObjectKind`](#objectkind)
+- <span id="objectkind-eq"></span>`fn eq(&self, other: &ObjectKind) -> bool` — [`ObjectKind`](#objectkind)
 
 ##### `impl StructuralPartialEq for ObjectKind`
 
@@ -2668,29 +2869,29 @@ The section where an [`ObjectSymbol`](read/index.md) is defined.
 
 #### Implementations
 
-- `fn index(self: Self) -> Option<SectionIndex>` — [`SectionIndex`](#sectionindex)
+- <span id="symbolsection-index"></span>`fn index(self) -> Option<SectionIndex>` — [`SectionIndex`](#sectionindex)
 
 #### Trait Implementations
 
 ##### `impl Clone for SymbolSection`
 
-- `fn clone(self: &Self) -> SymbolSection` — [`SymbolSection`](#symbolsection)
+- <span id="symbolsection-clone"></span>`fn clone(&self) -> SymbolSection` — [`SymbolSection`](#symbolsection)
 
 ##### `impl Copy for SymbolSection`
 
 ##### `impl Debug for SymbolSection`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="symbolsection-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for SymbolSection`
 
 ##### `impl Hash for SymbolSection`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="symbolsection-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for SymbolSection`
 
-- `fn eq(self: &Self, other: &SymbolSection) -> bool` — [`SymbolSection`](#symbolsection)
+- <span id="symbolsection-eq"></span>`fn eq(&self, other: &SymbolSection) -> bool` — [`SymbolSection`](#symbolsection)
 
 ##### `impl StructuralPartialEq for SymbolSection`
 
@@ -2724,23 +2925,23 @@ The target referenced by a [`Relocation`](#relocation).
 
 ##### `impl Clone for RelocationTarget`
 
-- `fn clone(self: &Self) -> RelocationTarget` — [`RelocationTarget`](#relocationtarget)
+- <span id="relocationtarget-clone"></span>`fn clone(&self) -> RelocationTarget` — [`RelocationTarget`](#relocationtarget)
 
 ##### `impl Copy for RelocationTarget`
 
 ##### `impl Debug for RelocationTarget`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="relocationtarget-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for RelocationTarget`
 
 ##### `impl Hash for RelocationTarget`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="relocationtarget-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for RelocationTarget`
 
-- `fn eq(self: &Self, other: &RelocationTarget) -> bool` — [`RelocationTarget`](#relocationtarget)
+- <span id="relocationtarget-eq"></span>`fn eq(&self, other: &RelocationTarget) -> bool` — [`RelocationTarget`](#relocationtarget)
 
 ##### `impl StructuralPartialEq for RelocationTarget`
 
@@ -2783,23 +2984,23 @@ A data compression format.
 
 ##### `impl Clone for CompressionFormat`
 
-- `fn clone(self: &Self) -> CompressionFormat` — [`CompressionFormat`](#compressionformat)
+- <span id="compressionformat-clone"></span>`fn clone(&self) -> CompressionFormat` — [`CompressionFormat`](#compressionformat)
 
 ##### `impl Copy for CompressionFormat`
 
 ##### `impl Debug for CompressionFormat`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="compressionformat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for CompressionFormat`
 
 ##### `impl Hash for CompressionFormat`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="compressionformat-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for CompressionFormat`
 
-- `fn eq(self: &Self, other: &CompressionFormat) -> bool` — [`CompressionFormat`](#compressionformat)
+- <span id="compressionformat-eq"></span>`fn eq(&self, other: &CompressionFormat) -> bool` — [`CompressionFormat`](#compressionformat)
 
 ##### `impl StructuralPartialEq for CompressionFormat`
 
@@ -2828,107 +3029,107 @@ This trait does not require that the endianness is known at compile time.
 
   Construct a specification for the endianness of some values.
 
-- `fn is_big_endian(self: Self) -> bool`
+- `fn is_big_endian(self) -> bool`
 
   Return true for big endian byte order.
 
-- `fn is_little_endian(self: Self) -> bool`
+- `fn is_little_endian(self) -> bool`
 
   Return true for little endian byte order.
 
-- `fn read_u16(self: Self, n: u16) -> u16`
+- `fn read_u16(self, n: u16) -> u16`
 
   Converts an unsigned 16 bit integer to native endian.
 
-- `fn read_u32(self: Self, n: u32) -> u32`
+- `fn read_u32(self, n: u32) -> u32`
 
   Converts an unsigned 32 bit integer to native endian.
 
-- `fn read_u64(self: Self, n: u64) -> u64`
+- `fn read_u64(self, n: u64) -> u64`
 
   Converts an unsigned 64 bit integer to native endian.
 
-- `fn read_i16(self: Self, n: i16) -> i16`
+- `fn read_i16(self, n: i16) -> i16`
 
   Converts a signed 16 bit integer to native endian.
 
-- `fn read_i32(self: Self, n: i32) -> i32`
+- `fn read_i32(self, n: i32) -> i32`
 
   Converts a signed 32 bit integer to native endian.
 
-- `fn read_i64(self: Self, n: i64) -> i64`
+- `fn read_i64(self, n: i64) -> i64`
 
   Converts a signed 64 bit integer to native endian.
 
-- `fn read_u16_bytes(self: Self, n: [u8; 2]) -> u16`
+- `fn read_u16_bytes(self, n: [u8; 2]) -> u16`
 
   Converts an unaligned unsigned 16 bit integer to native endian.
 
-- `fn read_u32_bytes(self: Self, n: [u8; 4]) -> u32`
+- `fn read_u32_bytes(self, n: [u8; 4]) -> u32`
 
   Converts an unaligned unsigned 32 bit integer to native endian.
 
-- `fn read_u64_bytes(self: Self, n: [u8; 8]) -> u64`
+- `fn read_u64_bytes(self, n: [u8; 8]) -> u64`
 
   Converts an unaligned unsigned 64 bit integer to native endian.
 
-- `fn read_i16_bytes(self: Self, n: [u8; 2]) -> i16`
+- `fn read_i16_bytes(self, n: [u8; 2]) -> i16`
 
   Converts an unaligned signed 16 bit integer to native endian.
 
-- `fn read_i32_bytes(self: Self, n: [u8; 4]) -> i32`
+- `fn read_i32_bytes(self, n: [u8; 4]) -> i32`
 
   Converts an unaligned signed 32 bit integer to native endian.
 
-- `fn read_i64_bytes(self: Self, n: [u8; 8]) -> i64`
+- `fn read_i64_bytes(self, n: [u8; 8]) -> i64`
 
   Converts an unaligned signed 64 bit integer to native endian.
 
-- `fn write_u16(self: Self, n: u16) -> u16`
+- `fn write_u16(self, n: u16) -> u16`
 
   Converts an unsigned 16 bit integer from native endian.
 
-- `fn write_u32(self: Self, n: u32) -> u32`
+- `fn write_u32(self, n: u32) -> u32`
 
   Converts an unsigned 32 bit integer from native endian.
 
-- `fn write_u64(self: Self, n: u64) -> u64`
+- `fn write_u64(self, n: u64) -> u64`
 
   Converts an unsigned 64 bit integer from native endian.
 
-- `fn write_i16(self: Self, n: i16) -> i16`
+- `fn write_i16(self, n: i16) -> i16`
 
   Converts a signed 16 bit integer from native endian.
 
-- `fn write_i32(self: Self, n: i32) -> i32`
+- `fn write_i32(self, n: i32) -> i32`
 
   Converts a signed 32 bit integer from native endian.
 
-- `fn write_i64(self: Self, n: i64) -> i64`
+- `fn write_i64(self, n: i64) -> i64`
 
   Converts a signed 64 bit integer from native endian.
 
-- `fn write_u16_bytes(self: Self, n: u16) -> [u8; 2]`
+- `fn write_u16_bytes(self, n: u16) -> [u8; 2]`
 
   Converts an unaligned unsigned 16 bit integer from native endian.
 
-- `fn write_u32_bytes(self: Self, n: u32) -> [u8; 4]`
+- `fn write_u32_bytes(self, n: u32) -> [u8; 4]`
 
   Converts an unaligned unsigned 32 bit integer from native endian.
 
-- `fn write_u64_bytes(self: Self, n: u64) -> [u8; 8]`
+- `fn write_u64_bytes(self, n: u64) -> [u8; 8]`
 
   Converts an unaligned unsigned 64 bit integer from native endian.
 
-- `fn write_i16_bytes(self: Self, n: i16) -> [u8; 2]`
+- `fn write_i16_bytes(self, n: i16) -> [u8; 2]`
 
   Converts an unaligned signed 16 bit integer from native endian.
 
-- `fn write_i32_bytes(self: Self, n: i32) -> [u8; 4]`
+- `fn write_i32_bytes(self, n: i32) -> [u8; 4]`
 
   Converts an unaligned signed 32 bit integer from native endian.
 
-- `fn write_i64_bytes(self: Self, n: i64) -> [u8; 8]`
+- `fn write_i64_bytes(self, n: i64) -> [u8; 8]`
 
   Converts an unaligned signed 64 bit integer from native endian.
 
@@ -2954,7 +3155,7 @@ trait ReadError<T> { ... }
 
 #### Required Methods
 
-- `fn read_error(self: Self, error: &'static str) -> Result<T>`
+- `fn read_error(self, error: &'static str) -> Result<T>`
 
 ### `SymbolMapEntry`
 
@@ -2966,7 +3167,7 @@ An entry in a [`SymbolMap`](#symbolmap).
 
 #### Required Methods
 
-- `fn address(self: &Self) -> u64`
+- `fn address(&self) -> u64`
 
   The symbol address.
 

@@ -4,6 +4,14 @@
 
 # Module `index`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`private`](#private) | mod |  |
+| [`Type`](#type) | struct | Used in panic messages. |
+| [`Index`](#index) | trait | A type that can be used to index into a `serde_json::Value`. |
+
 ## Modules
 
 - [`private`](private/index.md) - 
@@ -22,11 +30,11 @@ Used in panic messages.
 
 ##### `impl<'a> Display for Type<'a>`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="type-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for Type<'a>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="type-to-string"></span>`fn to_string(&self) -> String`
 
 ## Traits
 

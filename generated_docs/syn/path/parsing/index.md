@@ -4,6 +4,13 @@
 
 # Module `parsing`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`const_argument`](#const_argument) | fn |  |
+| [`qpath`](#qpath) | fn |  |
+
 ## Functions
 
 ### `const_argument`

@@ -4,6 +4,40 @@
 
 # Module `symbolize`
 
+## Contents
+
+- [Modules](#modules)
+  - [`gimli`](#gimli)
+- [Structs](#structs)
+  - [`Symbol`](#symbol)
+  - [`SymbolName`](#symbolname)
+- [Enums](#enums)
+  - [`ResolveWhat`](#resolvewhat)
+- [Functions](#functions)
+  - [`resolve`](#resolve)
+  - [`resolve_frame`](#resolve_frame)
+  - [`adjust_ip`](#adjust_ip)
+  - [`resolve_unsynchronized`](#resolve_unsynchronized)
+  - [`resolve_frame_unsynchronized`](#resolve_frame_unsynchronized)
+  - [`format_symbol_name`](#format_symbol_name)
+  - [`clear_symbol_cache`](#clear_symbol_cache)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`gimli`](#gimli) | mod | Support for symbolication using the `gimli` crate on crates.io |
+| [`Symbol`](#symbol) | struct | A trait representing the resolution of a symbol in a file. |
+| [`SymbolName`](#symbolname) | struct | A wrapper around a symbol name to provide ergonomic accessors to the |
+| [`ResolveWhat`](#resolvewhat) | enum |  |
+| [`resolve`](#resolve) | fn | Resolve an address to a symbol, passing the symbol to the specified |
+| [`resolve_frame`](#resolve_frame) | fn | Resolve a previously captured frame to a symbol, passing the symbol to the |
+| [`adjust_ip`](#adjust_ip) | fn |  |
+| [`resolve_unsynchronized`](#resolve_unsynchronized) | fn | Same as `resolve`, only unsafe as it's unsynchronized. |
+| [`resolve_frame_unsynchronized`](#resolve_frame_unsynchronized) | fn | Same as `resolve_frame`, only unsafe as it's unsynchronized. |
+| [`format_symbol_name`](#format_symbol_name) | fn |  |
+| [`clear_symbol_cache`](#clear_symbol_cache) | fn | Attempt to reclaim that cached memory used to symbolicate addresses. |
+
 ## Modules
 
 - [`gimli`](gimli/index.md) - Support for symbolication using the `gimli` crate on crates.io
@@ -30,23 +64,23 @@ always available in a symbol, however, so all methods return an `Option`.
 
 #### Implementations
 
-- `fn name(self: &Self) -> Option<SymbolName<'_>>` — [`SymbolName`](../index.md)
+- <span id="symbol-name"></span>`fn name(&self) -> Option<SymbolName<'_>>` — [`SymbolName`](../index.md)
 
-- `fn addr(self: &Self) -> Option<*mut c_void>`
+- <span id="symbol-addr"></span>`fn addr(&self) -> Option<*mut c_void>`
 
-- `fn filename_raw(self: &Self) -> Option<BytesOrWideString<'_>>` — [`BytesOrWideString`](../index.md)
+- <span id="symbol-filename-raw"></span>`fn filename_raw(&self) -> Option<BytesOrWideString<'_>>` — [`BytesOrWideString`](../index.md)
 
-- `fn colno(self: &Self) -> Option<u32>`
+- <span id="symbol-colno"></span>`fn colno(&self) -> Option<u32>`
 
-- `fn lineno(self: &Self) -> Option<u32>`
+- <span id="symbol-lineno"></span>`fn lineno(&self) -> Option<u32>`
 
-- `fn filename(self: &Self) -> Option<&Path>`
+- <span id="symbol-filename"></span>`fn filename(&self) -> Option<&Path>`
 
 #### Trait Implementations
 
 ##### `impl Debug for Symbol`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="symbol-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `SymbolName<'a>`
 
@@ -62,25 +96,25 @@ demangled name, the raw bytes, the raw string, etc.
 
 #### Implementations
 
-- `fn new(bytes: &'a [u8]) -> SymbolName<'a>` — [`SymbolName`](../index.md)
+- <span id="symbolname-new"></span>`fn new(bytes: &'a [u8]) -> SymbolName<'a>` — [`SymbolName`](../index.md)
 
-- `fn as_str(self: &Self) -> Option<&'a str>`
+- <span id="symbolname-as-str"></span>`fn as_str(&self) -> Option<&'a str>`
 
-- `fn as_bytes(self: &Self) -> &'a [u8]`
+- <span id="symbolname-as-bytes"></span>`fn as_bytes(&self) -> &'a [u8]`
 
 #### Trait Implementations
 
 ##### `impl<'a> Debug for SymbolName<'a>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="symbolname-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'a> Display for SymbolName<'a>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="symbolname-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for SymbolName<'a>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="symbolname-to-string"></span>`fn to_string(&self) -> String`
 
 ## Enums
 
@@ -95,7 +129,7 @@ enum ResolveWhat<'a> {
 
 #### Implementations
 
-- `fn address_or_ip(self: &Self) -> *mut c_void`
+- <span id="resolvewhat-address-or-ip"></span>`fn address_or_ip(&self) -> *mut c_void`
 
 ## Functions
 

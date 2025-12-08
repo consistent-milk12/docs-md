@@ -85,6 +85,41 @@ file, consider having the code generator pass the tokens through
 code it is convenient for a human to read and debug.
 
 
+## Contents
+
+- [Modules](#modules)
+  - [`ext`](#ext)
+  - [`format`](#format)
+  - [`ident_fragment`](#ident_fragment)
+  - [`to_tokens`](#to_tokens)
+- [Traits](#traits)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+- [Macros](#macros)
+  - [`__quote!`](#__quote)
+  - [`__quote_spanned!`](#__quote_spanned)
+  - [`format_ident!`](#format_ident)
+  - [`quote!`](#quote)
+  - [`quote_spanned!`](#quote_spanned)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ext`](#ext) | mod |  |
+| [`format`](#format) | mod |  |
+| [`ident_fragment`](#ident_fragment) | mod |  |
+| [`to_tokens`](#to_tokens) | mod |  |
+| [`unnamed`](#unnamed) | trait |  |
+| [`unnamed`](#unnamed) | trait |  |
+| [`unnamed`](#unnamed) | trait |  |
+| [`__quote!`](#__quote) | macro |  |
+| [`__quote_spanned!`](#__quote_spanned) | macro |  |
+| [`format_ident!`](#format_ident) | macro | Formatting macro for constructing `Ident`s. |
+| [`quote!`](#quote) | macro | The whole point. |
+| [`quote_spanned!`](#quote_spanned) | macro | Same as `quote!`, but applies a given span to all tokens originating within |
+
 ## Modules
 
 - [`ext`](ext/index.md) - 

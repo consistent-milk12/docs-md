@@ -4,6 +4,13 @@
 
 # Module `error`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`SpanError`](#spanerror) | trait |  |
+| [`ToTokensError`](#totokenserror) | trait |  |
+
 ## Traits
 
 ### `SpanError`
@@ -14,7 +21,7 @@ trait SpanError { ... }
 
 #### Required Methods
 
-- `fn EXPECTED_Span_OR_ToTokens<D: std::fmt::Display>(self: &Self, msg: D) -> syn::Error`
+- `fn EXPECTED_Span_OR_ToTokens<D: std::fmt::Display>(&self, msg: D) -> syn::Error`
 
 ### `ToTokensError`
 
@@ -24,5 +31,5 @@ trait ToTokensError { ... }
 
 #### Required Methods
 
-- `fn EXPECTED_Span_OR_ToTokens<D: std::fmt::Display>(self: &Self, msg: D) -> syn::Error`
+- `fn EXPECTED_Span_OR_ToTokens<D: std::fmt::Display>(&self, msg: D) -> syn::Error`
 

@@ -4,6 +4,16 @@
 
 # Module `seq_lock`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`SeqLock`](#seqlock) | struct | A simple stamped lock. |
+| [`SeqLockWriteGuard`](#seqlockwriteguard) | struct | An RAII guard that releases the lock and increments the stamp when dropped. |
+| [`Stamp`](#stamp) | type |  |
+| [`AtomicChunk`](#atomicchunk) | type |  |
+| [`Chunk`](#chunk) | type |  |
+
 ## Structs
 
 ### `SeqLock`
@@ -27,13 +37,13 @@ A simple stamped lock.
 
 #### Implementations
 
-- `const fn new() -> Self`
+- <span id="seqlock-new"></span>`const fn new() -> Self`
 
-- `fn optimistic_read(self: &Self) -> Option<usize>`
+- <span id="seqlock-optimistic-read"></span>`fn optimistic_read(&self) -> Option<usize>`
 
-- `fn validate_read(self: &Self, stamp: usize) -> bool`
+- <span id="seqlock-validate-read"></span>`fn validate_read(&self, stamp: usize) -> bool`
 
-- `fn write(self: &Self) -> SeqLockWriteGuard<'_>` — [`SeqLockWriteGuard`](#seqlockwriteguard)
+- <span id="seqlock-write"></span>`fn write(&self) -> SeqLockWriteGuard<'_>` — [`SeqLockWriteGuard`](#seqlockwriteguard)
 
 ### `SeqLockWriteGuard<'a>`
 
@@ -58,13 +68,13 @@ An RAII guard that releases the lock and increments the stamp when dropped.
 
 #### Implementations
 
-- `fn abort(self: Self)`
+- <span id="seqlockwriteguard-abort"></span>`fn abort(self)`
 
 #### Trait Implementations
 
 ##### `impl Drop for SeqLockWriteGuard<'_>`
 
-- `fn drop(self: &mut Self)`
+- <span id="seqlockwriteguard-drop"></span>`fn drop(&mut self)`
 
 ## Type Aliases
 

@@ -4,6 +4,12 @@
 
 # Module `id`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Id`](#id) | struct | [`Arg`][crate::Arg] or [`ArgGroup`][crate::ArgGroup] identifier |
+
 ## Structs
 
 ### `Id`
@@ -20,65 +26,65 @@ relationships between `Arg`s and `ArgGroup`s with functions like
 
 #### Implementations
 
-- `const HELP: &'static str`
+- <span id="id-help"></span>`const HELP: &'static str`
 
-- `const VERSION: &'static str`
+- <span id="id-version"></span>`const VERSION: &'static str`
 
-- `const EXTERNAL: &'static str`
+- <span id="id-external"></span>`const EXTERNAL: &'static str`
 
-- `fn from_static_ref(name: &'static str) -> Self`
+- <span id="id-from-static-ref"></span>`fn from_static_ref(name: &'static str) -> Self`
 
-- `fn as_str(self: &Self) -> &str`
+- <span id="id-as-str"></span>`fn as_str(&self) -> &str`
 
-- `fn as_internal_str(self: &Self) -> &Str` — [`Str`](../../builder/index.md)
+- <span id="id-as-internal-str"></span>`fn as_internal_str(&self) -> &Str` — [`Str`](../../builder/index.md)
 
 #### Trait Implementations
 
 ##### `impl AsRef for Id`
 
-- `fn as_ref(self: &Self) -> &str`
+- <span id="id-as-ref"></span>`fn as_ref(&self) -> &str`
 
 ##### `impl Clone for Id`
 
-- `fn clone(self: &Self) -> Id` — [`Id`](../../index.md)
+- <span id="id-clone"></span>`fn clone(&self) -> Id` — [`Id`](../../index.md)
 
 ##### `impl Debug for Id`
 
-- `fn fmt(self: &Self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="id-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
 ##### `impl Default for Id`
 
-- `fn default() -> Id` — [`Id`](../../index.md)
+- <span id="id-default"></span>`fn default() -> Id` — [`Id`](../../index.md)
 
 ##### `impl Display for Id`
 
-- `fn fmt(self: &Self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="id-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
 ##### `impl Eq for Id`
 
 ##### `impl Hash for Id`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="id-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl<I> IntoResettable for Id`
 
-- `fn into_resettable(self: Self) -> Resettable<Str>` — [`Resettable`](../../builder/index.md), [`Str`](../../builder/index.md)
+- <span id="id-into-resettable"></span>`fn into_resettable(self) -> Resettable<Str>` — [`Resettable`](../../builder/index.md), [`Str`](../../builder/index.md)
 
 ##### `impl Ord for Id`
 
-- `fn cmp(self: &Self, other: &Id) -> $crate::cmp::Ordering` — [`Id`](../../index.md)
+- <span id="id-cmp"></span>`fn cmp(&self, other: &Id) -> cmp::Ordering` — [`Id`](../../index.md)
 
 ##### `impl PartialEq for Id`
 
-- `fn eq(self: &Self, other: &str) -> bool`
+- <span id="id-eq"></span>`fn eq(&self, other: &&str) -> bool`
 
 ##### `impl PartialOrd for Id`
 
-- `fn partial_cmp(self: &Self, other: &Id) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Id`](../../index.md)
+- <span id="id-partial-cmp"></span>`fn partial_cmp(&self, other: &Id) -> option::Option<cmp::Ordering>` — [`Id`](../../index.md)
 
 ##### `impl StructuralPartialEq for Id`
 
 ##### `impl<T> ToString for Id`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="id-to-string"></span>`fn to_string(&self) -> String`
 

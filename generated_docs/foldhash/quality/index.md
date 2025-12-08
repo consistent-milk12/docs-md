@@ -6,6 +6,15 @@
 
 The foldhash implementation optimized for quality.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`FoldHasher`](#foldhasher) | struct | A [`Hasher`] instance implementing foldhash, optimized for quality. |
+| [`RandomState`](#randomstate) | struct | A [`BuildHasher`] for [`quality::FoldHasher`](FoldHasher) that is randomly initialized. |
+| [`SeedableRandomState`](#seedablerandomstate) | struct | A [`BuildHasher`] for [`quality::FoldHasher`](FoldHasher) that is randomly |
+| [`FixedState`](#fixedstate) | struct | A [`BuildHasher`] for [`quality::FoldHasher`](FoldHasher) that always has the same fixed seed. |
+
 ## Structs
 
 ### `FoldHasher<'a>`
@@ -24,31 +33,31 @@ most likely want to use [`RandomState`](#randomstate), [`SeedableRandomState`](#
 
 #### Implementations
 
-- `const fn with_seed(per_hasher_seed: u64, shared_seed: &'a SharedSeed) -> FoldHasher<'a>` — [`SharedSeed`](../index.md), [`FoldHasher`](#foldhasher)
+- <span id="foldhasher-with-seed"></span>`const fn with_seed(per_hasher_seed: u64, shared_seed: &'a SharedSeed) -> FoldHasher<'a>` — [`SharedSeed`](../index.md), [`FoldHasher`](#foldhasher)
 
 #### Trait Implementations
 
 ##### `impl<'a> Clone for FoldHasher<'a>`
 
-- `fn clone(self: &Self) -> FoldHasher<'a>` — [`FoldHasher`](#foldhasher)
+- <span id="foldhasher-clone"></span>`fn clone(&self) -> FoldHasher<'a>` — [`FoldHasher`](#foldhasher)
 
 ##### `impl<'a> Hasher for FoldHasher<'a>`
 
-- `fn write(self: &mut Self, bytes: &[u8])`
+- <span id="foldhasher-write"></span>`fn write(&mut self, bytes: &[u8])`
 
-- `fn write_u8(self: &mut Self, i: u8)`
+- <span id="foldhasher-write-u8"></span>`fn write_u8(&mut self, i: u8)`
 
-- `fn write_u16(self: &mut Self, i: u16)`
+- <span id="foldhasher-write-u16"></span>`fn write_u16(&mut self, i: u16)`
 
-- `fn write_u32(self: &mut Self, i: u32)`
+- <span id="foldhasher-write-u32"></span>`fn write_u32(&mut self, i: u32)`
 
-- `fn write_u64(self: &mut Self, i: u64)`
+- <span id="foldhasher-write-u64"></span>`fn write_u64(&mut self, i: u64)`
 
-- `fn write_u128(self: &mut Self, i: u128)`
+- <span id="foldhasher-write-u128"></span>`fn write_u128(&mut self, i: u128)`
 
-- `fn write_usize(self: &mut Self, i: usize)`
+- <span id="foldhasher-write-usize"></span>`fn write_usize(&mut self, i: usize)`
 
-- `fn finish(self: &Self) -> u64`
+- <span id="foldhasher-finish"></span>`fn finish(&self) -> u64`
 
 ### `RandomState`
 
@@ -64,21 +73,21 @@ A [`BuildHasher`](../../serde_core/lib/index.md) for [`quality::FoldHasher`](Fol
 
 ##### `impl BuildHasher for RandomState`
 
-- `type Hasher = FoldHasher<'static>`
+- <span id="randomstate-hasher"></span>`type Hasher = FoldHasher<'static>`
 
-- `fn build_hasher(self: &Self) -> FoldHasher<'static>` — [`FoldHasher`](#foldhasher)
+- <span id="randomstate-build-hasher"></span>`fn build_hasher(&self) -> FoldHasher<'static>` — [`FoldHasher`](#foldhasher)
 
 ##### `impl Clone for RandomState`
 
-- `fn clone(self: &Self) -> RandomState` — [`RandomState`](#randomstate)
+- <span id="randomstate-clone"></span>`fn clone(&self) -> RandomState` — [`RandomState`](#randomstate)
 
 ##### `impl Debug for RandomState`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="randomstate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for RandomState`
 
-- `fn default() -> RandomState` — [`RandomState`](#randomstate)
+- <span id="randomstate-default"></span>`fn default() -> RandomState` — [`RandomState`](#randomstate)
 
 ### `SeedableRandomState`
 
@@ -96,31 +105,31 @@ has a size of 16 bytes rather than the 8 bytes [`RandomState`](#randomstate) is.
 
 #### Implementations
 
-- `fn random() -> Self`
+- <span id="seedablerandomstate-random"></span>`fn random() -> Self`
 
-- `fn fixed() -> Self`
+- <span id="seedablerandomstate-fixed"></span>`fn fixed() -> Self`
 
-- `fn with_seed(per_hasher_seed: u64, shared_seed: &'static SharedSeed) -> Self` — [`SharedSeed`](../index.md)
+- <span id="seedablerandomstate-with-seed"></span>`fn with_seed(per_hasher_seed: u64, shared_seed: &'static SharedSeed) -> Self` — [`SharedSeed`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl BuildHasher for SeedableRandomState`
 
-- `type Hasher = FoldHasher<'static>`
+- <span id="seedablerandomstate-hasher"></span>`type Hasher = FoldHasher<'static>`
 
-- `fn build_hasher(self: &Self) -> FoldHasher<'static>` — [`FoldHasher`](#foldhasher)
+- <span id="seedablerandomstate-build-hasher"></span>`fn build_hasher(&self) -> FoldHasher<'static>` — [`FoldHasher`](#foldhasher)
 
 ##### `impl Clone for SeedableRandomState`
 
-- `fn clone(self: &Self) -> SeedableRandomState` — [`SeedableRandomState`](#seedablerandomstate)
+- <span id="seedablerandomstate-clone"></span>`fn clone(&self) -> SeedableRandomState` — [`SeedableRandomState`](#seedablerandomstate)
 
 ##### `impl Debug for SeedableRandomState`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="seedablerandomstate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for SeedableRandomState`
 
-- `fn default() -> SeedableRandomState` — [`SeedableRandomState`](#seedablerandomstate)
+- <span id="seedablerandomstate-default"></span>`fn default() -> SeedableRandomState` — [`SeedableRandomState`](#seedablerandomstate)
 
 ### `FixedState`
 
@@ -136,25 +145,25 @@ Not recommended unless you absolutely need determinism.
 
 #### Implementations
 
-- `const fn with_seed(per_hasher_seed: u64) -> Self`
+- <span id="fixedstate-with-seed"></span>`const fn with_seed(per_hasher_seed: u64) -> Self`
 
 #### Trait Implementations
 
 ##### `impl BuildHasher for FixedState`
 
-- `type Hasher = FoldHasher<'static>`
+- <span id="fixedstate-hasher"></span>`type Hasher = FoldHasher<'static>`
 
-- `fn build_hasher(self: &Self) -> FoldHasher<'static>` — [`FoldHasher`](#foldhasher)
+- <span id="fixedstate-build-hasher"></span>`fn build_hasher(&self) -> FoldHasher<'static>` — [`FoldHasher`](#foldhasher)
 
 ##### `impl Clone for FixedState`
 
-- `fn clone(self: &Self) -> FixedState` — [`FixedState`](#fixedstate)
+- <span id="fixedstate-clone"></span>`fn clone(&self) -> FixedState` — [`FixedState`](#fixedstate)
 
 ##### `impl Debug for FixedState`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="fixedstate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for FixedState`
 
-- `fn default() -> FixedState` — [`FixedState`](#fixedstate)
+- <span id="fixedstate-default"></span>`fn default() -> FixedState` — [`FixedState`](#fixedstate)
 

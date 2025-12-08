@@ -4,6 +4,45 @@
 
 # Module `sentence_break`
 
+## Contents
+
+- [Constants](#constants)
+  - [`BY_NAME`](#by_name)
+  - [`ATERM`](#aterm)
+  - [`CR`](#cr)
+  - [`CLOSE`](#close)
+  - [`EXTEND`](#extend)
+  - [`FORMAT`](#format)
+  - [`LF`](#lf)
+  - [`LOWER`](#lower)
+  - [`NUMERIC`](#numeric)
+  - [`OLETTER`](#oletter)
+  - [`SCONTINUE`](#scontinue)
+  - [`STERM`](#sterm)
+  - [`SEP`](#sep)
+  - [`SP`](#sp)
+  - [`UPPER`](#upper)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`BY_NAME`](#by_name) | const |  |
+| [`ATERM`](#aterm) | const |  |
+| [`CR`](#cr) | const |  |
+| [`CLOSE`](#close) | const |  |
+| [`EXTEND`](#extend) | const |  |
+| [`FORMAT`](#format) | const |  |
+| [`LF`](#lf) | const |  |
+| [`LOWER`](#lower) | const |  |
+| [`NUMERIC`](#numeric) | const |  |
+| [`OLETTER`](#oletter) | const |  |
+| [`SCONTINUE`](#scontinue) | const |  |
+| [`STERM`](#sterm) | const |  |
+| [`SEP`](#sep) | const |  |
+| [`SP`](#sp) | const |  |
+| [`UPPER`](#upper) | const |  |
+
 ## Constants
 
 ### `BY_NAME`

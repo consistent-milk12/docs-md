@@ -9,6 +9,315 @@ CSS named colors. Not as widely supported as standard ANSI as it relies on 48bit
 Reference: <https://www.w3schools.com/cssref/css_colors.asp>
 Reference: <https://developer.mozilla.org/en-US/docs/Web/CSS/color_value>
 
+## Contents
+
+- [Modules](#modules)
+  - [`dynamic`](#dynamic)
+- [Type Aliases](#type-aliases)
+  - [`AliceBlue`](#aliceblue)
+  - [`AntiqueWhite`](#antiquewhite)
+  - [`Aqua`](#aqua)
+  - [`Aquamarine`](#aquamarine)
+  - [`Azure`](#azure)
+  - [`Beige`](#beige)
+  - [`Bisque`](#bisque)
+  - [`Black`](#black)
+  - [`BlanchedAlmond`](#blanchedalmond)
+  - [`Blue`](#blue)
+  - [`BlueViolet`](#blueviolet)
+  - [`Brown`](#brown)
+  - [`BurlyWood`](#burlywood)
+  - [`CadetBlue`](#cadetblue)
+  - [`Chartreuse`](#chartreuse)
+  - [`Chocolate`](#chocolate)
+  - [`Coral`](#coral)
+  - [`CornflowerBlue`](#cornflowerblue)
+  - [`Cornsilk`](#cornsilk)
+  - [`Crimson`](#crimson)
+  - [`DarkBlue`](#darkblue)
+  - [`DarkCyan`](#darkcyan)
+  - [`DarkGoldenRod`](#darkgoldenrod)
+  - [`DarkGray`](#darkgray)
+  - [`DarkGrey`](#darkgrey)
+  - [`DarkGreen`](#darkgreen)
+  - [`DarkKhaki`](#darkkhaki)
+  - [`DarkMagenta`](#darkmagenta)
+  - [`DarkOliveGreen`](#darkolivegreen)
+  - [`DarkOrange`](#darkorange)
+  - [`DarkOrchid`](#darkorchid)
+  - [`DarkRed`](#darkred)
+  - [`DarkSalmon`](#darksalmon)
+  - [`DarkSeaGreen`](#darkseagreen)
+  - [`DarkSlateBlue`](#darkslateblue)
+  - [`DarkSlateGray`](#darkslategray)
+  - [`DarkSlateGrey`](#darkslategrey)
+  - [`DarkTurquoise`](#darkturquoise)
+  - [`DarkViolet`](#darkviolet)
+  - [`DeepPink`](#deeppink)
+  - [`DeepSkyBlue`](#deepskyblue)
+  - [`DimGray`](#dimgray)
+  - [`DimGrey`](#dimgrey)
+  - [`DodgerBlue`](#dodgerblue)
+  - [`FireBrick`](#firebrick)
+  - [`FloralWhite`](#floralwhite)
+  - [`ForestGreen`](#forestgreen)
+  - [`Fuchsia`](#fuchsia)
+  - [`Gainsboro`](#gainsboro)
+  - [`GhostWhite`](#ghostwhite)
+  - [`Gold`](#gold)
+  - [`GoldenRod`](#goldenrod)
+  - [`Gray`](#gray)
+  - [`Grey`](#grey)
+  - [`Green`](#green)
+  - [`GreenYellow`](#greenyellow)
+  - [`HoneyDew`](#honeydew)
+  - [`HotPink`](#hotpink)
+  - [`IndianRed`](#indianred)
+  - [`Indigo`](#indigo)
+  - [`Ivory`](#ivory)
+  - [`Khaki`](#khaki)
+  - [`Lavender`](#lavender)
+  - [`LavenderBlush`](#lavenderblush)
+  - [`LawnGreen`](#lawngreen)
+  - [`LemonChiffon`](#lemonchiffon)
+  - [`LightBlue`](#lightblue)
+  - [`LightCoral`](#lightcoral)
+  - [`LightCyan`](#lightcyan)
+  - [`LightGoldenRodYellow`](#lightgoldenrodyellow)
+  - [`LightGray`](#lightgray)
+  - [`LightGrey`](#lightgrey)
+  - [`LightGreen`](#lightgreen)
+  - [`LightPink`](#lightpink)
+  - [`LightSalmon`](#lightsalmon)
+  - [`LightSeaGreen`](#lightseagreen)
+  - [`LightSkyBlue`](#lightskyblue)
+  - [`LightSlateGray`](#lightslategray)
+  - [`LightSlateGrey`](#lightslategrey)
+  - [`LightSteelBlue`](#lightsteelblue)
+  - [`LightYellow`](#lightyellow)
+  - [`Lime`](#lime)
+  - [`LimeGreen`](#limegreen)
+  - [`Linen`](#linen)
+  - [`Magenta`](#magenta)
+  - [`Maroon`](#maroon)
+  - [`MediumAquaMarine`](#mediumaquamarine)
+  - [`MediumBlue`](#mediumblue)
+  - [`MediumOrchid`](#mediumorchid)
+  - [`MediumPurple`](#mediumpurple)
+  - [`MediumSeaGreen`](#mediumseagreen)
+  - [`MediumSlateBlue`](#mediumslateblue)
+  - [`MediumSpringGreen`](#mediumspringgreen)
+  - [`MediumTurquoise`](#mediumturquoise)
+  - [`MediumVioletRed`](#mediumvioletred)
+  - [`MidnightBlue`](#midnightblue)
+  - [`MintCream`](#mintcream)
+  - [`MistyRose`](#mistyrose)
+  - [`Moccasin`](#moccasin)
+  - [`NavajoWhite`](#navajowhite)
+  - [`Navy`](#navy)
+  - [`OldLace`](#oldlace)
+  - [`Olive`](#olive)
+  - [`OliveDrab`](#olivedrab)
+  - [`Orange`](#orange)
+  - [`OrangeRed`](#orangered)
+  - [`Orchid`](#orchid)
+  - [`PaleGoldenRod`](#palegoldenrod)
+  - [`PaleGreen`](#palegreen)
+  - [`PaleTurquoise`](#paleturquoise)
+  - [`PaleVioletRed`](#palevioletred)
+  - [`PapayaWhip`](#papayawhip)
+  - [`PeachPuff`](#peachpuff)
+  - [`Peru`](#peru)
+  - [`Pink`](#pink)
+  - [`Plum`](#plum)
+  - [`PowderBlue`](#powderblue)
+  - [`Purple`](#purple)
+  - [`RebeccaPurple`](#rebeccapurple)
+  - [`Red`](#red)
+  - [`RosyBrown`](#rosybrown)
+  - [`RoyalBlue`](#royalblue)
+  - [`SaddleBrown`](#saddlebrown)
+  - [`Salmon`](#salmon)
+  - [`SandyBrown`](#sandybrown)
+  - [`SeaGreen`](#seagreen)
+  - [`SeaShell`](#seashell)
+  - [`Sienna`](#sienna)
+  - [`Silver`](#silver)
+  - [`SkyBlue`](#skyblue)
+  - [`SlateBlue`](#slateblue)
+  - [`SlateGray`](#slategray)
+  - [`SlateGrey`](#slategrey)
+  - [`Snow`](#snow)
+  - [`SpringGreen`](#springgreen)
+  - [`SteelBlue`](#steelblue)
+  - [`Tan`](#tan)
+  - [`Teal`](#teal)
+  - [`Thistle`](#thistle)
+  - [`Tomato`](#tomato)
+  - [`Turquoise`](#turquoise)
+  - [`Violet`](#violet)
+  - [`Wheat`](#wheat)
+  - [`White`](#white)
+  - [`WhiteSmoke`](#whitesmoke)
+  - [`Yellow`](#yellow)
+  - [`YellowGreen`](#yellowgreen)
+- [Macros](#macros)
+  - [`css_color_types!`](#css_color_types)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`dynamic`](#dynamic) | mod |  |
+| [`AliceBlue`](#aliceblue) | type |  |
+| [`AntiqueWhite`](#antiquewhite) | type |  |
+| [`Aqua`](#aqua) | type |  |
+| [`Aquamarine`](#aquamarine) | type |  |
+| [`Azure`](#azure) | type |  |
+| [`Beige`](#beige) | type |  |
+| [`Bisque`](#bisque) | type |  |
+| [`Black`](#black) | type |  |
+| [`BlanchedAlmond`](#blanchedalmond) | type |  |
+| [`Blue`](#blue) | type |  |
+| [`BlueViolet`](#blueviolet) | type |  |
+| [`Brown`](#brown) | type |  |
+| [`BurlyWood`](#burlywood) | type |  |
+| [`CadetBlue`](#cadetblue) | type |  |
+| [`Chartreuse`](#chartreuse) | type |  |
+| [`Chocolate`](#chocolate) | type |  |
+| [`Coral`](#coral) | type |  |
+| [`CornflowerBlue`](#cornflowerblue) | type |  |
+| [`Cornsilk`](#cornsilk) | type |  |
+| [`Crimson`](#crimson) | type |  |
+| [`DarkBlue`](#darkblue) | type |  |
+| [`DarkCyan`](#darkcyan) | type |  |
+| [`DarkGoldenRod`](#darkgoldenrod) | type |  |
+| [`DarkGray`](#darkgray) | type |  |
+| [`DarkGrey`](#darkgrey) | type |  |
+| [`DarkGreen`](#darkgreen) | type |  |
+| [`DarkKhaki`](#darkkhaki) | type |  |
+| [`DarkMagenta`](#darkmagenta) | type |  |
+| [`DarkOliveGreen`](#darkolivegreen) | type |  |
+| [`DarkOrange`](#darkorange) | type |  |
+| [`DarkOrchid`](#darkorchid) | type |  |
+| [`DarkRed`](#darkred) | type |  |
+| [`DarkSalmon`](#darksalmon) | type |  |
+| [`DarkSeaGreen`](#darkseagreen) | type |  |
+| [`DarkSlateBlue`](#darkslateblue) | type |  |
+| [`DarkSlateGray`](#darkslategray) | type |  |
+| [`DarkSlateGrey`](#darkslategrey) | type |  |
+| [`DarkTurquoise`](#darkturquoise) | type |  |
+| [`DarkViolet`](#darkviolet) | type |  |
+| [`DeepPink`](#deeppink) | type |  |
+| [`DeepSkyBlue`](#deepskyblue) | type |  |
+| [`DimGray`](#dimgray) | type |  |
+| [`DimGrey`](#dimgrey) | type |  |
+| [`DodgerBlue`](#dodgerblue) | type |  |
+| [`FireBrick`](#firebrick) | type |  |
+| [`FloralWhite`](#floralwhite) | type |  |
+| [`ForestGreen`](#forestgreen) | type |  |
+| [`Fuchsia`](#fuchsia) | type |  |
+| [`Gainsboro`](#gainsboro) | type |  |
+| [`GhostWhite`](#ghostwhite) | type |  |
+| [`Gold`](#gold) | type |  |
+| [`GoldenRod`](#goldenrod) | type |  |
+| [`Gray`](#gray) | type |  |
+| [`Grey`](#grey) | type |  |
+| [`Green`](#green) | type |  |
+| [`GreenYellow`](#greenyellow) | type |  |
+| [`HoneyDew`](#honeydew) | type |  |
+| [`HotPink`](#hotpink) | type |  |
+| [`IndianRed`](#indianred) | type |  |
+| [`Indigo`](#indigo) | type |  |
+| [`Ivory`](#ivory) | type |  |
+| [`Khaki`](#khaki) | type |  |
+| [`Lavender`](#lavender) | type |  |
+| [`LavenderBlush`](#lavenderblush) | type |  |
+| [`LawnGreen`](#lawngreen) | type |  |
+| [`LemonChiffon`](#lemonchiffon) | type |  |
+| [`LightBlue`](#lightblue) | type |  |
+| [`LightCoral`](#lightcoral) | type |  |
+| [`LightCyan`](#lightcyan) | type |  |
+| [`LightGoldenRodYellow`](#lightgoldenrodyellow) | type |  |
+| [`LightGray`](#lightgray) | type |  |
+| [`LightGrey`](#lightgrey) | type |  |
+| [`LightGreen`](#lightgreen) | type |  |
+| [`LightPink`](#lightpink) | type |  |
+| [`LightSalmon`](#lightsalmon) | type |  |
+| [`LightSeaGreen`](#lightseagreen) | type |  |
+| [`LightSkyBlue`](#lightskyblue) | type |  |
+| [`LightSlateGray`](#lightslategray) | type |  |
+| [`LightSlateGrey`](#lightslategrey) | type |  |
+| [`LightSteelBlue`](#lightsteelblue) | type |  |
+| [`LightYellow`](#lightyellow) | type |  |
+| [`Lime`](#lime) | type |  |
+| [`LimeGreen`](#limegreen) | type |  |
+| [`Linen`](#linen) | type |  |
+| [`Magenta`](#magenta) | type |  |
+| [`Maroon`](#maroon) | type |  |
+| [`MediumAquaMarine`](#mediumaquamarine) | type |  |
+| [`MediumBlue`](#mediumblue) | type |  |
+| [`MediumOrchid`](#mediumorchid) | type |  |
+| [`MediumPurple`](#mediumpurple) | type |  |
+| [`MediumSeaGreen`](#mediumseagreen) | type |  |
+| [`MediumSlateBlue`](#mediumslateblue) | type |  |
+| [`MediumSpringGreen`](#mediumspringgreen) | type |  |
+| [`MediumTurquoise`](#mediumturquoise) | type |  |
+| [`MediumVioletRed`](#mediumvioletred) | type |  |
+| [`MidnightBlue`](#midnightblue) | type |  |
+| [`MintCream`](#mintcream) | type |  |
+| [`MistyRose`](#mistyrose) | type |  |
+| [`Moccasin`](#moccasin) | type |  |
+| [`NavajoWhite`](#navajowhite) | type |  |
+| [`Navy`](#navy) | type |  |
+| [`OldLace`](#oldlace) | type |  |
+| [`Olive`](#olive) | type |  |
+| [`OliveDrab`](#olivedrab) | type |  |
+| [`Orange`](#orange) | type |  |
+| [`OrangeRed`](#orangered) | type |  |
+| [`Orchid`](#orchid) | type |  |
+| [`PaleGoldenRod`](#palegoldenrod) | type |  |
+| [`PaleGreen`](#palegreen) | type |  |
+| [`PaleTurquoise`](#paleturquoise) | type |  |
+| [`PaleVioletRed`](#palevioletred) | type |  |
+| [`PapayaWhip`](#papayawhip) | type |  |
+| [`PeachPuff`](#peachpuff) | type |  |
+| [`Peru`](#peru) | type |  |
+| [`Pink`](#pink) | type |  |
+| [`Plum`](#plum) | type |  |
+| [`PowderBlue`](#powderblue) | type |  |
+| [`Purple`](#purple) | type |  |
+| [`RebeccaPurple`](#rebeccapurple) | type |  |
+| [`Red`](#red) | type |  |
+| [`RosyBrown`](#rosybrown) | type |  |
+| [`RoyalBlue`](#royalblue) | type |  |
+| [`SaddleBrown`](#saddlebrown) | type |  |
+| [`Salmon`](#salmon) | type |  |
+| [`SandyBrown`](#sandybrown) | type |  |
+| [`SeaGreen`](#seagreen) | type |  |
+| [`SeaShell`](#seashell) | type |  |
+| [`Sienna`](#sienna) | type |  |
+| [`Silver`](#silver) | type |  |
+| [`SkyBlue`](#skyblue) | type |  |
+| [`SlateBlue`](#slateblue) | type |  |
+| [`SlateGray`](#slategray) | type |  |
+| [`SlateGrey`](#slategrey) | type |  |
+| [`Snow`](#snow) | type |  |
+| [`SpringGreen`](#springgreen) | type |  |
+| [`SteelBlue`](#steelblue) | type |  |
+| [`Tan`](#tan) | type |  |
+| [`Teal`](#teal) | type |  |
+| [`Thistle`](#thistle) | type |  |
+| [`Tomato`](#tomato) | type |  |
+| [`Turquoise`](#turquoise) | type |  |
+| [`Violet`](#violet) | type |  |
+| [`Wheat`](#wheat) | type |  |
+| [`White`](#white) | type |  |
+| [`WhiteSmoke`](#whitesmoke) | type |  |
+| [`Yellow`](#yellow) | type |  |
+| [`YellowGreen`](#yellowgreen) | type |  |
+| [`css_color_types!`](#css_color_types) | macro |  |
+
 ## Modules
 
 - [`dynamic`](dynamic/index.md) - 

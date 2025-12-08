@@ -4,6 +4,14 @@
 
 # Module `macros`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`debug!`](#debug) | macro |  |
+| [`ok!`](#ok) | macro |  |
+| [`some!`](#some) | macro |  |
+
 ## Macros
 
 ### `debug!`

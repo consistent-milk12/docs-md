@@ -4,6 +4,12 @@
 
 # Module `partial_eq`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`__impl_slice_eq1!`](#__impl_slice_eq1) | macro |  |
+
 ## Macros
 
 ### `__impl_slice_eq1!`

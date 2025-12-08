@@ -4,6 +4,12 @@
 
 # Module `io`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`unnamed`](#unnamed) | struct |  |
+
 ## Structs
 
 ### `IoSliceMut<'ctx, R>`

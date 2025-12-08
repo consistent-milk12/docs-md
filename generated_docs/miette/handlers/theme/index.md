@@ -4,6 +4,15 @@
 
 # Module `theme`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`GraphicalTheme`](#graphicaltheme) | struct | Theme used by [`GraphicalReportHandler`](crate::GraphicalReportHandler) to |
+| [`ThemeStyles`](#themestyles) | struct | Styles for various parts of graphical rendering for the |
+| [`ThemeCharacters`](#themecharacters) | struct | Characters to be used when drawing when using |
+| [`style`](#style) | fn |  |
+
 ## Structs
 
 ### `GraphicalTheme`
@@ -37,27 +46,27 @@ one of the predefined ones using the methods below.
 
 #### Implementations
 
-- `fn ascii() -> Self`
+- <span id="graphicaltheme-ascii"></span>`fn ascii() -> Self`
 
-- `fn unicode() -> Self`
+- <span id="graphicaltheme-unicode"></span>`fn unicode() -> Self`
 
-- `fn unicode_nocolor() -> Self`
+- <span id="graphicaltheme-unicode-nocolor"></span>`fn unicode_nocolor() -> Self`
 
-- `fn none() -> Self`
+- <span id="graphicaltheme-none"></span>`fn none() -> Self`
 
 #### Trait Implementations
 
 ##### `impl Clone for GraphicalTheme`
 
-- `fn clone(self: &Self) -> GraphicalTheme` — [`GraphicalTheme`](../index.md)
+- <span id="graphicaltheme-clone"></span>`fn clone(&self) -> GraphicalTheme` — [`GraphicalTheme`](../index.md)
 
 ##### `impl Debug for GraphicalTheme`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="graphicaltheme-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for GraphicalTheme`
 
-- `fn default() -> Self`
+- <span id="graphicaltheme-default"></span>`fn default() -> Self`
 
 ##### `impl<D> OwoColorize for GraphicalTheme`
 
@@ -111,21 +120,21 @@ Styles for various parts of graphical rendering for the
 
 #### Implementations
 
-- `fn rgb() -> Self`
+- <span id="themestyles-rgb"></span>`fn rgb() -> Self`
 
-- `fn ansi() -> Self`
+- <span id="themestyles-ansi"></span>`fn ansi() -> Self`
 
-- `fn none() -> Self`
+- <span id="themestyles-none"></span>`fn none() -> Self`
 
 #### Trait Implementations
 
 ##### `impl Clone for ThemeStyles`
 
-- `fn clone(self: &Self) -> ThemeStyles` — [`ThemeStyles`](../index.md)
+- <span id="themestyles-clone"></span>`fn clone(&self) -> ThemeStyles` — [`ThemeStyles`](../index.md)
 
 ##### `impl Debug for ThemeStyles`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="themestyles-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<D> OwoColorize for ThemeStyles`
 
@@ -162,21 +171,21 @@ Characters to be used when drawing when using
 
 #### Implementations
 
-- `fn unicode() -> Self`
+- <span id="themecharacters-unicode"></span>`fn unicode() -> Self`
 
-- `fn emoji() -> Self`
+- <span id="themecharacters-emoji"></span>`fn emoji() -> Self`
 
-- `fn ascii() -> Self`
+- <span id="themecharacters-ascii"></span>`fn ascii() -> Self`
 
 #### Trait Implementations
 
 ##### `impl Clone for ThemeCharacters`
 
-- `fn clone(self: &Self) -> ThemeCharacters` — [`ThemeCharacters`](../index.md)
+- <span id="themecharacters-clone"></span>`fn clone(&self) -> ThemeCharacters` — [`ThemeCharacters`](../index.md)
 
 ##### `impl Debug for ThemeCharacters`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="themecharacters-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ThemeCharacters`
 
@@ -184,7 +193,7 @@ Characters to be used when drawing when using
 
 ##### `impl PartialEq for ThemeCharacters`
 
-- `fn eq(self: &Self, other: &ThemeCharacters) -> bool` — [`ThemeCharacters`](../index.md)
+- <span id="themecharacters-eq"></span>`fn eq(&self, other: &ThemeCharacters) -> bool` — [`ThemeCharacters`](../index.md)
 
 ##### `impl StructuralPartialEq for ThemeCharacters`
 

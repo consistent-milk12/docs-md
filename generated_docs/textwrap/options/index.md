@@ -6,6 +6,12 @@
 
 Options for wrapping text.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Options`](#options) | struct | Holds configuration options for wrapping and filling text. |
+
 ## Structs
 
 ### `Options<'a>`
@@ -69,31 +75,31 @@ Holds configuration options for wrapping and filling text.
 
 #### Implementations
 
-- `const fn new(width: usize) -> Self`
+- <span id="options-new"></span>`const fn new(width: usize) -> Self`
 
-- `fn line_ending(self: Self, line_ending: LineEnding) -> Self` — [`LineEnding`](../index.md)
+- <span id="options-line-ending"></span>`fn line_ending(self, line_ending: LineEnding) -> Self` — [`LineEnding`](../index.md)
 
-- `fn width(self: Self, width: usize) -> Self`
+- <span id="options-width"></span>`fn width(self, width: usize) -> Self`
 
-- `fn initial_indent(self: Self, initial_indent: &'a str) -> Self`
+- <span id="options-initial-indent"></span>`fn initial_indent(self, initial_indent: &'a str) -> Self`
 
-- `fn subsequent_indent(self: Self, subsequent_indent: &'a str) -> Self`
+- <span id="options-subsequent-indent"></span>`fn subsequent_indent(self, subsequent_indent: &'a str) -> Self`
 
-- `fn break_words(self: Self, break_words: bool) -> Self`
+- <span id="options-break-words"></span>`fn break_words(self, break_words: bool) -> Self`
 
-- `fn word_separator(self: Self, word_separator: WordSeparator) -> Options<'a>` — [`WordSeparator`](../index.md), [`Options`](../index.md)
+- <span id="options-word-separator"></span>`fn word_separator(self, word_separator: WordSeparator) -> Options<'a>` — [`WordSeparator`](../index.md), [`Options`](../index.md)
 
-- `fn wrap_algorithm(self: Self, wrap_algorithm: WrapAlgorithm) -> Options<'a>` — [`WrapAlgorithm`](../index.md), [`Options`](../index.md)
+- <span id="options-wrap-algorithm"></span>`fn wrap_algorithm(self, wrap_algorithm: WrapAlgorithm) -> Options<'a>` — [`WrapAlgorithm`](../index.md), [`Options`](../index.md)
 
-- `fn word_splitter(self: Self, word_splitter: WordSplitter) -> Options<'a>` — [`WordSplitter`](../index.md), [`Options`](../index.md)
+- <span id="options-word-splitter"></span>`fn word_splitter(self, word_splitter: WordSplitter) -> Options<'a>` — [`WordSplitter`](../index.md), [`Options`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'a> Clone for Options<'a>`
 
-- `fn clone(self: &Self) -> Options<'a>` — [`Options`](../index.md)
+- <span id="options-clone"></span>`fn clone(&self) -> Options<'a>` — [`Options`](../index.md)
 
 ##### `impl<'a> Debug for Options<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="options-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

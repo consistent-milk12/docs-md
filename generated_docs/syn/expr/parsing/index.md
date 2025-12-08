@@ -4,6 +4,79 @@
 
 # Module `parsing`
 
+## Contents
+
+- [Structs](#structs)
+  - [`AllowStruct`](#allowstruct)
+- [Functions](#functions)
+  - [`parse_with_earlier_boundary_rule`](#parse_with_earlier_boundary_rule)
+  - [`parse_expr`](#parse_expr)
+  - [`parse_binop_rhs`](#parse_binop_rhs)
+  - [`peek_precedence`](#peek_precedence)
+  - [`ambiguous_expr`](#ambiguous_expr)
+  - [`expr_attrs`](#expr_attrs)
+  - [`unary_expr`](#unary_expr)
+  - [`trailer_expr`](#trailer_expr)
+  - [`trailer_helper`](#trailer_helper)
+  - [`atom_expr`](#atom_expr)
+  - [`atom_labeled`](#atom_labeled)
+  - [`expr_builtin`](#expr_builtin)
+  - [`path_or_macro_or_struct`](#path_or_macro_or_struct)
+  - [`rest_of_path_or_macro_or_struct`](#rest_of_path_or_macro_or_struct)
+  - [`paren_or_tuple`](#paren_or_tuple)
+  - [`array_or_repeat`](#array_or_repeat)
+  - [`continue_parsing_early`](#continue_parsing_early)
+  - [`expr_group`](#expr_group)
+  - [`expr_let`](#expr_let)
+  - [`expr_unary`](#expr_unary)
+  - [`expr_become`](#expr_become)
+  - [`expr_closure`](#expr_closure)
+  - [`closure_arg`](#closure_arg)
+  - [`expr_break`](#expr_break)
+  - [`expr_struct_helper`](#expr_struct_helper)
+  - [`expr_range`](#expr_range)
+  - [`parse_range_end`](#parse_range_end)
+  - [`multi_index`](#multi_index)
+  - [`check_cast`](#check_cast)
+- [Macros](#macros)
+  - [`impl_by_parsing_expr!`](#impl_by_parsing_expr)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`AllowStruct`](#allowstruct) | struct |  |
+| [`parse_with_earlier_boundary_rule`](#parse_with_earlier_boundary_rule) | fn |  |
+| [`parse_expr`](#parse_expr) | fn |  |
+| [`parse_binop_rhs`](#parse_binop_rhs) | fn |  |
+| [`peek_precedence`](#peek_precedence) | fn |  |
+| [`ambiguous_expr`](#ambiguous_expr) | fn |  |
+| [`expr_attrs`](#expr_attrs) | fn |  |
+| [`unary_expr`](#unary_expr) | fn |  |
+| [`trailer_expr`](#trailer_expr) | fn |  |
+| [`trailer_helper`](#trailer_helper) | fn |  |
+| [`atom_expr`](#atom_expr) | fn |  |
+| [`atom_labeled`](#atom_labeled) | fn |  |
+| [`expr_builtin`](#expr_builtin) | fn |  |
+| [`path_or_macro_or_struct`](#path_or_macro_or_struct) | fn |  |
+| [`rest_of_path_or_macro_or_struct`](#rest_of_path_or_macro_or_struct) | fn |  |
+| [`paren_or_tuple`](#paren_or_tuple) | fn |  |
+| [`array_or_repeat`](#array_or_repeat) | fn |  |
+| [`continue_parsing_early`](#continue_parsing_early) | fn |  |
+| [`expr_group`](#expr_group) | fn |  |
+| [`expr_let`](#expr_let) | fn |  |
+| [`expr_unary`](#expr_unary) | fn |  |
+| [`expr_become`](#expr_become) | fn |  |
+| [`expr_closure`](#expr_closure) | fn |  |
+| [`closure_arg`](#closure_arg) | fn |  |
+| [`expr_break`](#expr_break) | fn |  |
+| [`expr_struct_helper`](#expr_struct_helper) | fn |  |
+| [`expr_range`](#expr_range) | fn |  |
+| [`parse_range_end`](#parse_range_end) | fn |  |
+| [`multi_index`](#multi_index) | fn |  |
+| [`check_cast`](#check_cast) | fn |  |
+| [`impl_by_parsing_expr!`](#impl_by_parsing_expr) | macro |  |
+
 ## Structs
 
 ### `AllowStruct`
@@ -16,7 +89,7 @@ struct AllowStruct(bool);
 
 ##### `impl Clone for AllowStruct`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="allowstruct-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for AllowStruct`
 
@@ -187,7 +260,7 @@ fn parse_range_end(input: crate::parse::ParseStream<'_>, limits: &crate::expr::R
 ### `multi_index`
 
 ```rust
-fn multi_index(e: &mut crate::expr::Expr, dot_token: &mut $crate::token::Dot, float: crate::lit::LitFloat) -> crate::error::Result<bool>
+fn multi_index(e: &mut crate::expr::Expr, dot_token: &mut token::Dot, float: crate::lit::LitFloat) -> crate::error::Result<bool>
 ```
 
 ### `check_cast`

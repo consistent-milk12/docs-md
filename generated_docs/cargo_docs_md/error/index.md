@@ -18,6 +18,12 @@ Errors use the `miette` crate for enhanced diagnostics, providing:
 - **Parse Errors** (`JsonParse`): Invalid or malformed rustdoc JSON
 - **Lookup Errors** (`ItemNotFound`): Missing items in the documentation index
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Error`](#error) | enum | Errors that can occur during documentation generation. |
+
 ## Enums
 
 ### `Error`
@@ -137,21 +143,21 @@ Each variant includes:
 
 ##### `impl Debug for Error`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="error-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Diagnostic for Error`
 
-- `fn code(self: &Self) -> std::option::Option<std::boxed::Box<dyn std::fmt::Display>>`
+- <span id="error-code"></span>`fn code(&self) -> std::option::Option<std::boxed::Box<dyn std::fmt::Display>>`
 
-- `fn help(self: &Self) -> std::option::Option<std::boxed::Box<dyn std::fmt::Display>>`
+- <span id="error-help"></span>`fn help(&self) -> std::option::Option<std::boxed::Box<dyn std::fmt::Display>>`
 
 ##### `impl Display for Error`
 
-- `fn fmt(self: &Self, __formatter: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result`
+- <span id="error-fmt"></span>`fn fmt(&self, __formatter: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result`
 
 ##### `impl Error for Error`
 
-- `fn source(self: &Self) -> ::core::option::Option<&dyn ::thiserror::__private17::Error>`
+- <span id="error-source"></span>`fn source(&self) -> ::core::option::Option<&dyn ::thiserror::__private17::Error>`
 
 ##### `impl<T> Instrument for Error`
 
@@ -161,25 +167,25 @@ Each variant includes:
 
 ##### `impl<T> Pointable for Error`
 
-- `const ALIGN: usize`
+- <span id="error-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="error-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="error-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="error-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="error-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="error-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T> ToCompactString for Error`
 
-- `fn try_to_compact_string(self: &Self) -> Result<CompactString, ToCompactStringError>`
+- <span id="error-try-to-compact-string"></span>`fn try_to_compact_string(&self) -> Result<CompactString, ToCompactStringError>`
 
 ##### `impl<T> ToString for Error`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="error-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl<T> WithSubscriber for Error`
 

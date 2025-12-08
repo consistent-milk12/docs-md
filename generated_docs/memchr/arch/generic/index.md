@@ -14,6 +14,13 @@ it is allowed to evolve. Instead, what we expose are architecture specific
 instantiations of these generic implementations. The generic code just lets us
 write the code once (usually).
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`memchr`](#memchr) | mod | Generic crate-internal routines for the `memchr` family of functions. |
+| [`packedpair`](#packedpair) | mod | Generic crate-internal routines for the "packed pair" SIMD algorithm. |
+
 ## Modules
 
 - [`memchr`](memchr/index.md) - Generic crate-internal routines for the `memchr` family of functions.

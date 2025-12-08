@@ -27,6 +27,35 @@ fn main() {
 
 ![performance](https://raw.githubusercontent.com/dtolnay/itoa/master/performance.png)
 
+## Contents
+
+- [Modules](#modules)
+  - [`udiv128`](#udiv128)
+  - [`private`](#private)
+- [Structs](#structs)
+  - [`Buffer`](#buffer)
+- [Traits](#traits)
+  - [`Integer`](#integer)
+- [Constants](#constants)
+  - [`DEC_DIGITS_LUT`](#dec_digits_lut)
+- [Macros](#macros)
+  - [`impl_Integer!`](#impl_integer)
+  - [`impl_Integer_size!`](#impl_integer_size)
+  - [`impl_Integer128!`](#impl_integer128)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`udiv128`](#udiv128) | mod |  |
+| [`private`](#private) | mod |  |
+| [`Buffer`](#buffer) | struct | A correctly sized stack allocation for the formatted integer to be written |
+| [`Integer`](#integer) | trait | An integer that can be written into an [`itoa::Buffer`][Buffer]. |
+| [`DEC_DIGITS_LUT`](#dec_digits_lut) | const |  |
+| [`impl_Integer!`](#impl_integer) | macro |  |
+| [`impl_Integer_size!`](#impl_integer_size) | macro |  |
+| [`impl_Integer128!`](#impl_integer128) | macro |  |
+
 ## Modules
 
 - [`udiv128`](udiv128/index.md) - 
@@ -55,21 +84,21 @@ assert_eq!(printed, "1234");
 
 #### Implementations
 
-- `fn new() -> Buffer` — [`Buffer`](#buffer)
+- <span id="buffer-new"></span>`fn new() -> Buffer` — [`Buffer`](#buffer)
 
-- `fn format<I: Integer>(self: &mut Self, i: I) -> &str`
+- <span id="buffer-format"></span>`fn format<I: Integer>(&mut self, i: I) -> &str`
 
 #### Trait Implementations
 
 ##### `impl Clone for Buffer`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="buffer-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Buffer`
 
 ##### `impl Default for Buffer`
 
-- `fn default() -> Buffer` — [`Buffer`](#buffer)
+- <span id="buffer-default"></span>`fn default() -> Buffer` — [`Buffer`](#buffer)
 
 ## Traits
 

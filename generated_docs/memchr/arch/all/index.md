@@ -9,6 +9,34 @@ Contains architecture independent routines.
 These routines are often used as a "fallback" implementation when the more
 specialized architecture dependent routines are unavailable.
 
+## Contents
+
+- [Modules](#modules)
+  - [`memchr`](#memchr)
+  - [`packedpair`](#packedpair)
+  - [`rabinkarp`](#rabinkarp)
+  - [`shiftor`](#shiftor)
+  - [`twoway`](#twoway)
+- [Functions](#functions)
+  - [`is_prefix`](#is_prefix)
+  - [`is_suffix`](#is_suffix)
+  - [`is_equal`](#is_equal)
+  - [`is_equal_raw`](#is_equal_raw)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`memchr`](#memchr) | mod | Provides architecture independent implementations of `memchr` and friends. |
+| [`packedpair`](#packedpair) | mod | Provides an architecture independent implementation of the "packed pair" |
+| [`rabinkarp`](#rabinkarp) | mod | An implementation of the [Rabin-Karp substring search algorithm][rabinkarp]. |
+| [`shiftor`](#shiftor) | mod | An implementation of the [Shift-Or substring search algorithm][shiftor]. |
+| [`twoway`](#twoway) | mod | An implementation of the [Two-Way substring search algorithm][two-way]. |
+| [`is_prefix`](#is_prefix) | fn | Returns true if and only if `needle` is a prefix of `haystack`. |
+| [`is_suffix`](#is_suffix) | fn | Returns true if and only if `needle` is a suffix of `haystack`. |
+| [`is_equal`](#is_equal) | fn | Compare corresponding bytes in `x` and `y` for equality. |
+| [`is_equal_raw`](#is_equal_raw) | fn | Compare `n` bytes at the given pointers for equality. |
+
 ## Modules
 
 - [`memchr`](memchr/index.md) - Provides architecture independent implementations of `memchr` and friends.

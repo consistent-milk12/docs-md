@@ -4,6 +4,14 @@
 
 # Module `snake`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`AsSnakeCase`](#assnakecase) | struct | This wrapper performs a snake case conversion in [`fmt::Display`]. |
+| [`ToSnakeCase`](#tosnakecase) | trait | This trait defines a snake case conversion. |
+| [`ToSnekCase`](#tosnekcase) | trait | Oh heck, `SnekCase` is an alias for [`ToSnakeCase`]. |
+
 ## Structs
 
 ### `AsSnakeCase<T: AsRef<str>>`
@@ -12,7 +20,7 @@
 struct AsSnakeCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a snake case conversion in [`fmt::Display`](../../miette_derive/index.md).
+This wrapper performs a snake case conversion in [`fmt::Display`](../../miette_derive/fmt/index.md).
 
 ## Example:
 
@@ -27,11 +35,11 @@ assert_eq!(format!("{}", AsSnakeCase(sentence)), "we_carry_a_new_world_here_in_o
 
 ##### `impl<T: AsRef<str>> Display for AsSnakeCase<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="assnakecase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for AsSnakeCase<T>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="assnakecase-to-string"></span>`fn to_string(&self) -> String`
 
 ## Traits
 
@@ -56,7 +64,7 @@ assert_eq!(sentence.to_snake_case(), "we_carry_a_new_world_here_in_our_hearts");
 
 #### Required Methods
 
-- `fn to_snake_case(self: &Self) -> <Self as >::Owned`
+- `fn to_snake_case(&self) -> <Self as >::Owned`
 
   Convert this type to snake case.
 
@@ -71,7 +79,7 @@ more documentation.
 
 #### Required Methods
 
-- `fn to_snek_case(self: &Self) -> <Self as >::Owned`
+- `fn to_snek_case(&self) -> <Self as >::Owned`
 
   Convert this type to snek case.
 

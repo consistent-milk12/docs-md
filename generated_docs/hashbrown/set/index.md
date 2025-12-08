@@ -4,6 +4,43 @@
 
 # Module `set`
 
+## Contents
+
+- [Structs](#structs)
+  - [`HashSet`](#hashset)
+  - [`Iter`](#iter)
+  - [`IntoIter`](#intoiter)
+  - [`Drain`](#drain)
+  - [`ExtractIf`](#extractif)
+  - [`Intersection`](#intersection)
+  - [`Difference`](#difference)
+  - [`SymmetricDifference`](#symmetricdifference)
+  - [`Union`](#union)
+  - [`OccupiedEntry`](#occupiedentry)
+  - [`VacantEntry`](#vacantentry)
+- [Enums](#enums)
+  - [`Entry`](#entry)
+- [Functions](#functions)
+  - [`assert_covariance`](#assert_covariance)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`HashSet`](#hashset) | struct | A hash set implemented as a `HashMap` where the value is `()`. |
+| [`Iter`](#iter) | struct | An iterator over the items of a `HashSet`. |
+| [`IntoIter`](#intoiter) | struct | An owning iterator over the items of a `HashSet`. |
+| [`Drain`](#drain) | struct | A draining iterator over the items of a `HashSet`. |
+| [`ExtractIf`](#extractif) | struct | A draining iterator over entries of a `HashSet` which don't satisfy the predicate `f`. |
+| [`Intersection`](#intersection) | struct | A lazy iterator producing elements in the intersection of `HashSet`s. |
+| [`Difference`](#difference) | struct | A lazy iterator producing elements in the difference of `HashSet`s. |
+| [`SymmetricDifference`](#symmetricdifference) | struct | A lazy iterator producing elements in the symmetric difference of `HashSet`s. |
+| [`Union`](#union) | struct | A lazy iterator producing elements in the union of `HashSet`s. |
+| [`OccupiedEntry`](#occupiedentry) | struct | A view into an occupied entry in a `HashSet`. |
+| [`VacantEntry`](#vacantentry) | struct | A view into a vacant entry in a `HashSet`. |
+| [`Entry`](#entry) | enum | A view into a single entry in a set, which may either be vacant or occupied. |
+| [`assert_covariance`](#assert_covariance) | fn |  |
+
 ## Structs
 
 ### `HashSet<T, S, A: Allocator>`
@@ -111,79 +148,71 @@ let viking_names: HashSet<&'static str> =
 
 #### Implementations
 
-- `fn capacity(self: &Self) -> usize`
+- <span id="hashset-allocator"></span>`fn allocator(&self) -> &A`
 
-- `fn iter(self: &Self) -> Iter<'_, T>` — [`Iter`](../hash_set/index.md)
+- <span id="hashset-with-hasher-in"></span>`const fn with_hasher_in(hasher: S, alloc: A) -> Self`
 
-- `fn len(self: &Self) -> usize`
+- <span id="hashset-with-capacity-and-hasher-in"></span>`fn with_capacity_and_hasher_in(capacity: usize, hasher: S, alloc: A) -> Self`
 
-- `fn is_empty(self: &Self) -> bool`
-
-- `fn drain(self: &mut Self) -> Drain<'_, T, A>` — [`Drain`](../hash_set/index.md)
-
-- `fn retain<F>(self: &mut Self, f: F)`
-
-- `fn extract_if<F>(self: &mut Self, f: F) -> ExtractIf<'_, T, F, A>` — [`ExtractIf`](../hash_set/index.md)
-
-- `fn clear(self: &mut Self)`
+- <span id="hashset-hasher"></span>`fn hasher(&self) -> &S`
 
 #### Trait Implementations
 
 ##### `impl<T, S, A> BitAndAssign for HashSet<T, S, A>`
 
-- `fn bitand_assign(self: &mut Self, rhs: &HashSet<T, S, A>)` — [`HashSet`](../index.md)
+- <span id="hashset-bitand-assign"></span>`fn bitand_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](../index.md)
 
 ##### `impl<T, S, A> BitOrAssign for HashSet<T, S, A>`
 
-- `fn bitor_assign(self: &mut Self, rhs: &HashSet<T, S, A>)` — [`HashSet`](../index.md)
+- <span id="hashset-bitor-assign"></span>`fn bitor_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](../index.md)
 
 ##### `impl<T, S, A> BitXorAssign for HashSet<T, S, A>`
 
-- `fn bitxor_assign(self: &mut Self, rhs: &HashSet<T, S, A>)` — [`HashSet`](../index.md)
+- <span id="hashset-bitxor-assign"></span>`fn bitxor_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](../index.md)
 
 ##### `impl<T: Clone, S: Clone, A: Allocator + Clone> Clone for HashSet<T, S, A>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="hashset-clone"></span>`fn clone(&self) -> Self`
 
-- `fn clone_from(self: &mut Self, source: &Self)`
+- <span id="hashset-clone-from"></span>`fn clone_from(&mut self, source: &Self)`
 
 ##### `impl<T, S, A> Debug for HashSet<T, S, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="hashset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T, S, A> Default for HashSet<T, S, A>`
 
-- `fn default() -> Self`
+- <span id="hashset-default"></span>`fn default() -> Self`
 
 ##### `impl<T, S, A> Eq for HashSet<T, S, A>`
 
 ##### `impl<Q, K> Equivalent for HashSet<T, S, A>`
 
-- `fn equivalent(self: &Self, key: &K) -> bool`
+- <span id="hashset-equivalent"></span>`fn equivalent(&self, key: &K) -> bool`
 
 ##### `impl<T, S, A> Extend for HashSet<T, S, A>`
 
-- `fn extend<I: IntoIterator<Item = T>>(self: &mut Self, iter: I)`
+- <span id="hashset-extend"></span>`fn extend<I: IntoIterator<Item = T>>(&mut self, iter: I)`
 
 ##### `impl<T, S, A> FromIterator for HashSet<T, S, A>`
 
-- `fn from_iter<I: IntoIterator<Item = T>>(iter: I) -> Self`
+- <span id="hashset-from-iter"></span>`fn from_iter<I: IntoIterator<Item = T>>(iter: I) -> Self`
 
 ##### `impl<T, S, A: Allocator> IntoIterator for HashSet<T, S, A>`
 
-- `type Item = T`
+- <span id="hashset-item"></span>`type Item = T`
 
-- `type IntoIter = IntoIter<T, A>`
+- <span id="hashset-intoiter"></span>`type IntoIter = IntoIter<T, A>`
 
-- `fn into_iter(self: Self) -> IntoIter<T, A>` — [`IntoIter`](../hash_set/index.md)
+- <span id="hashset-into-iter"></span>`fn into_iter(self) -> IntoIter<T, A>` — [`IntoIter`](../hash_set/index.md)
 
 ##### `impl<T, S, A> PartialEq for HashSet<T, S, A>`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="hashset-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T, S, A> SubAssign for HashSet<T, S, A>`
 
-- `fn sub_assign(self: &mut Self, rhs: &HashSet<T, S, A>)` — [`HashSet`](../index.md)
+- <span id="hashset-sub-assign"></span>`fn sub_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](../index.md)
 
 ### `Iter<'a, K>`
 
@@ -204,39 +233,39 @@ See its documentation for more.
 
 ##### `impl<K> Clone for Iter<'_, K>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="iter-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<K: fmt::Debug> Debug for Iter<'_, K>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="iter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<K> Default for Iter<'_, K>`
 
-- `fn default() -> Self`
+- <span id="iter-default"></span>`fn default() -> Self`
 
 ##### `impl<K> ExactSizeIterator for Iter<'_, K>`
 
-- `fn len(self: &Self) -> usize`
+- <span id="iter-len"></span>`fn len(&self) -> usize`
 
 ##### `impl<K> FusedIterator for Iter<'_, K>`
 
 ##### `impl<I> IntoIterator for Iter<'a, K>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="iter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="iter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="iter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, K> Iterator for Iter<'a, K>`
 
-- `type Item = &'a K`
+- <span id="iter-item"></span>`type Item = &'a K`
 
-- `fn next(self: &mut Self) -> Option<&'a K>`
+- <span id="iter-next"></span>`fn next(&mut self) -> Option<&'a K>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="iter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- `fn fold<B, F>(self: Self, init: B, f: F) -> B`
+- <span id="iter-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
 
 ### `IntoIter<K, A: Allocator>`
 
@@ -257,35 +286,35 @@ This `struct` is created by the `into_iter` method on [`HashSet`](../index.md)
 
 ##### `impl<K: fmt::Debug, A: Allocator> Debug for IntoIter<K, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="intoiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<K, A: Allocator> Default for IntoIter<K, A>`
 
-- `fn default() -> Self`
+- <span id="intoiter-default"></span>`fn default() -> Self`
 
 ##### `impl<K, A: Allocator> ExactSizeIterator for IntoIter<K, A>`
 
-- `fn len(self: &Self) -> usize`
+- <span id="intoiter-len"></span>`fn len(&self) -> usize`
 
 ##### `impl<K, A: Allocator> FusedIterator for IntoIter<K, A>`
 
 ##### `impl<I> IntoIterator for IntoIter<K, A>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="intoiter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="intoiter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="intoiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<K, A: Allocator> Iterator for IntoIter<K, A>`
 
-- `type Item = K`
+- <span id="intoiter-item"></span>`type Item = K`
 
-- `fn next(self: &mut Self) -> Option<K>`
+- <span id="intoiter-next"></span>`fn next(&mut self) -> Option<K>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="intoiter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- `fn fold<B, F>(self: Self, init: B, f: F) -> B`
+- <span id="intoiter-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
 
 ### `Drain<'a, K, A: Allocator>`
 
@@ -306,31 +335,31 @@ See its documentation for more.
 
 ##### `impl<K: fmt::Debug, A: Allocator> Debug for Drain<'_, K, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="drain-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<K, A: Allocator> ExactSizeIterator for Drain<'_, K, A>`
 
-- `fn len(self: &Self) -> usize`
+- <span id="drain-len"></span>`fn len(&self) -> usize`
 
 ##### `impl<K, A: Allocator> FusedIterator for Drain<'_, K, A>`
 
 ##### `impl<I> IntoIterator for Drain<'a, K, A>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="drain-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="drain-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="drain-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<K, A: Allocator> Iterator for Drain<'_, K, A>`
 
-- `type Item = K`
+- <span id="drain-item"></span>`type Item = K`
 
-- `fn next(self: &mut Self) -> Option<K>`
+- <span id="drain-next"></span>`fn next(&mut self) -> Option<K>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="drain-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- `fn fold<B, F>(self: Self, init: B, f: F) -> B`
+- <span id="drain-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
 
 ### `ExtractIf<'a, K, F, A: Allocator>`
 
@@ -354,19 +383,19 @@ documentation for more.
 
 ##### `impl<I> IntoIterator for ExtractIf<'a, K, F, A>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="extractif-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="extractif-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="extractif-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<K, F, A: Allocator> Iterator for ExtractIf<'_, K, F, A>`
 
-- `type Item = K`
+- <span id="extractif-item"></span>`type Item = K`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="extractif-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="extractif-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ### `Intersection<'a, T, S, A: Allocator>`
 
@@ -388,31 +417,31 @@ See its documentation for more.
 
 ##### `impl<T, S, A: Allocator> Clone for Intersection<'_, T, S, A>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="intersection-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T, S, A> Debug for Intersection<'_, T, S, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="intersection-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T, S, A> FusedIterator for Intersection<'_, T, S, A>`
 
 ##### `impl<I> IntoIterator for Intersection<'a, T, S, A>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="intersection-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="intersection-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="intersection-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, T, S, A> Iterator for Intersection<'a, T, S, A>`
 
-- `type Item = &'a T`
+- <span id="intersection-item"></span>`type Item = &'a T`
 
-- `fn next(self: &mut Self) -> Option<&'a T>`
+- <span id="intersection-next"></span>`fn next(&mut self) -> Option<&'a T>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="intersection-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- `fn fold<B, F>(self: Self, init: B, f: F) -> B`
+- <span id="intersection-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
 
 ### `Difference<'a, T, S, A: Allocator>`
 
@@ -434,31 +463,31 @@ See its documentation for more.
 
 ##### `impl<T, S, A: Allocator> Clone for Difference<'_, T, S, A>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="difference-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T, S, A> Debug for Difference<'_, T, S, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="difference-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T, S, A> FusedIterator for Difference<'_, T, S, A>`
 
 ##### `impl<I> IntoIterator for Difference<'a, T, S, A>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="difference-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="difference-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="difference-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, T, S, A> Iterator for Difference<'a, T, S, A>`
 
-- `type Item = &'a T`
+- <span id="difference-item"></span>`type Item = &'a T`
 
-- `fn next(self: &mut Self) -> Option<&'a T>`
+- <span id="difference-next"></span>`fn next(&mut self) -> Option<&'a T>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="difference-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- `fn fold<B, F>(self: Self, init: B, f: F) -> B`
+- <span id="difference-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
 
 ### `SymmetricDifference<'a, T, S, A: Allocator>`
 
@@ -479,31 +508,31 @@ This `struct` is created by the `symmetric_difference` method on
 
 ##### `impl<T, S, A: Allocator> Clone for SymmetricDifference<'_, T, S, A>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="symmetricdifference-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T, S, A> Debug for SymmetricDifference<'_, T, S, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="symmetricdifference-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T, S, A> FusedIterator for SymmetricDifference<'_, T, S, A>`
 
 ##### `impl<I> IntoIterator for SymmetricDifference<'a, T, S, A>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="symmetricdifference-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="symmetricdifference-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="symmetricdifference-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, T, S, A> Iterator for SymmetricDifference<'a, T, S, A>`
 
-- `type Item = &'a T`
+- <span id="symmetricdifference-item"></span>`type Item = &'a T`
 
-- `fn next(self: &mut Self) -> Option<&'a T>`
+- <span id="symmetricdifference-next"></span>`fn next(&mut self) -> Option<&'a T>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="symmetricdifference-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- `fn fold<B, F>(self: Self, init: B, f: F) -> B`
+- <span id="symmetricdifference-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
 
 ### `Union<'a, T, S, A: Allocator>`
 
@@ -524,31 +553,31 @@ See its documentation for more.
 
 ##### `impl<T, S, A: Allocator> Clone for Union<'_, T, S, A>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="union-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T, S, A> Debug for Union<'_, T, S, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="union-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T, S, A> FusedIterator for Union<'_, T, S, A>`
 
 ##### `impl<I> IntoIterator for Union<'a, T, S, A>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="union-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="union-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="union-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, T, S, A> Iterator for Union<'a, T, S, A>`
 
-- `type Item = &'a T`
+- <span id="union-item"></span>`type Item = &'a T`
 
-- `fn next(self: &mut Self) -> Option<&'a T>`
+- <span id="union-next"></span>`fn next(&mut self) -> Option<&'a T>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="union-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- `fn fold<B, F>(self: Self, init: B, f: F) -> B`
+- <span id="union-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
 
 ### `OccupiedEntry<'a, T, S, A: Allocator>`
 
@@ -559,7 +588,7 @@ struct OccupiedEntry<'a, T, S, A: Allocator> {
 ```
 
 A view into an occupied entry in a `HashSet`.
-It is part of the [`Entry`](../hash_map/index.md) enum.
+It is part of the [`Entry`](../hash_set/index.md) enum.
 
 # Examples
 
@@ -595,15 +624,15 @@ assert_eq!(set.len(), 2);
 
 #### Implementations
 
-- `fn get(self: &Self) -> &T`
+- <span id="occupiedentry-get"></span>`fn get(&self) -> &T`
 
-- `fn remove(self: Self) -> T`
+- <span id="occupiedentry-remove"></span>`fn remove(self) -> T`
 
 #### Trait Implementations
 
 ##### `impl<T: fmt::Debug, S, A: Allocator> Debug for OccupiedEntry<'_, T, S, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="occupiedentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `VacantEntry<'a, T, S, A: Allocator>`
 
@@ -614,7 +643,7 @@ struct VacantEntry<'a, T, S, A: Allocator> {
 ```
 
 A view into a vacant entry in a `HashSet`.
-It is part of the [`Entry`](../hash_map/index.md) enum.
+It is part of the [`Entry`](../hash_set/index.md) enum.
 
 # Examples
 
@@ -640,17 +669,17 @@ assert!(set.contains("b") && set.len() == 2);
 
 #### Implementations
 
-- `fn get(self: &Self) -> &T`
+- <span id="vacantentry-get"></span>`fn get(&self) -> &T`
 
-- `fn into_value(self: Self) -> T`
+- <span id="vacantentry-into-value"></span>`fn into_value(self) -> T`
 
-- `fn insert(self: Self) -> OccupiedEntry<'a, T, S, A>` — [`OccupiedEntry`](../hash_set/index.md)
+- <span id="vacantentry-insert"></span>`fn insert(self) -> OccupiedEntry<'a, T, S, A>` — [`OccupiedEntry`](../hash_set/index.md)
 
 #### Trait Implementations
 
 ##### `impl<T: fmt::Debug, S, A: Allocator> Debug for VacantEntry<'_, T, S, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="vacantentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Enums
 
@@ -736,17 +765,17 @@ assert_eq!(vec, ["a", "b", "c", "d", "e"]);
 
 #### Implementations
 
-- `fn insert(self: Self) -> OccupiedEntry<'a, T, S, A>` — [`OccupiedEntry`](../hash_set/index.md)
+- <span id="entry-insert"></span>`fn insert(self) -> OccupiedEntry<'a, T, S, A>` — [`OccupiedEntry`](../hash_set/index.md)
 
-- `fn or_insert(self: Self)`
+- <span id="entry-or-insert"></span>`fn or_insert(self)`
 
-- `fn get(self: &Self) -> &T`
+- <span id="entry-get"></span>`fn get(&self) -> &T`
 
 #### Trait Implementations
 
 ##### `impl<T: fmt::Debug, S, A: Allocator> Debug for Entry<'_, T, S, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="entry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Functions
 

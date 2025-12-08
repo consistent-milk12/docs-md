@@ -4,6 +4,12 @@
 
 # Module `url`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Url`](#url) | enum |  |
+
 ## Enums
 
 ### `Url`
@@ -17,13 +23,13 @@ enum Url {
 
 #### Implementations
 
-- `fn gen_enum(enum_name: &syn::Ident, variants: &[DiagnosticDef]) -> Option<TokenStream>` — [`DiagnosticDef`](../diagnostic/index.md)
+- <span id="url-gen-enum"></span>`fn gen_enum(enum_name: &syn::Ident, variants: &[DiagnosticDef]) -> Option<TokenStream>` — [`DiagnosticDef`](../diagnostic/index.md)
 
-- `fn gen_struct(self: &Self, struct_name: &syn::Ident, fields: &Fields) -> Option<TokenStream>`
+- <span id="url-gen-struct"></span>`fn gen_struct(&self, struct_name: &syn::Ident, fields: &Fields) -> Option<TokenStream>`
 
 #### Trait Implementations
 
 ##### `impl Parse for Url`
 
-- `fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
+- <span id="url-parse"></span>`fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
 

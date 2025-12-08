@@ -8,6 +8,12 @@ Directory: `net/`
 
 Source directory: `sysdeps/unix/sysv/linux/net`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`route`](#route) | mod | Header: `net/route.h` |
+
 ## Modules
 
 - [`route`](route/index.md) - Header: `net/route.h`

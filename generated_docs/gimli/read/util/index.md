@@ -4,6 +4,14 @@
 
 # Module `util`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`sealed`](#sealed) | mod |  |
+| [`ArrayVec`](#arrayvec) | struct |  |
+| [`ArrayLike`](#arraylike) | trait | Marker trait for types that can be used as backing storage when a growable array type is needed. |
+
 ## Modules
 
 - [`sealed`](sealed/index.md) - 
@@ -21,55 +29,45 @@ struct ArrayVec<A: ArrayLike> {
 
 #### Implementations
 
-- `fn new() -> Self`
-
-- `fn clear(self: &mut Self)`
-
-- `fn try_push(self: &mut Self, value: <A as >::Item) -> Result<(), CapacityFull>` — [`ArrayLike`](../index.md), [`CapacityFull`](sealed/index.md)
-
-- `fn try_insert(self: &mut Self, index: usize, element: <A as >::Item) -> Result<(), CapacityFull>` — [`ArrayLike`](../index.md), [`CapacityFull`](sealed/index.md)
-
-- `fn pop(self: &mut Self) -> Option<<A as >::Item>` — [`ArrayLike`](../index.md)
-
-- `fn swap_remove(self: &mut Self, index: usize) -> <A as >::Item` — [`ArrayLike`](../index.md)
+- <span id="arrayvec-into-vec"></span>`fn into_vec(self) -> Vec<T>`
 
 #### Trait Implementations
 
 ##### `impl<A: ArrayLike> Clone for ArrayVec<A>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="arrayvec-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<A: ArrayLike> Debug for ArrayVec<A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="arrayvec-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<A: ArrayLike> Default for ArrayVec<A>`
 
-- `fn default() -> Self`
+- <span id="arrayvec-default"></span>`fn default() -> Self`
 
 ##### `impl<A: ArrayLike> Deref for ArrayVec<A>`
 
-- `type Target = [<A as ArrayLike>::Item]`
+- <span id="arrayvec-target"></span>`type Target = [<A as ArrayLike>::Item]`
 
-- `fn deref(self: &Self) -> &[<A as >::Item]` — [`ArrayLike`](../index.md)
+- <span id="arrayvec-deref"></span>`fn deref(&self) -> &[<A as >::Item]` — [`ArrayLike`](../index.md)
 
 ##### `impl<A: ArrayLike> DerefMut for ArrayVec<A>`
 
-- `fn deref_mut(self: &mut Self) -> &mut [<A as >::Item]` — [`ArrayLike`](../index.md)
+- <span id="arrayvec-deref-mut"></span>`fn deref_mut(&mut self) -> &mut [<A as >::Item]` — [`ArrayLike`](../index.md)
 
 ##### `impl<A: ArrayLike> Drop for ArrayVec<A>`
 
-- `fn drop(self: &mut Self)`
+- <span id="arrayvec-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<A: ArrayLike> Eq for ArrayVec<A>`
 
 ##### `impl<A: ArrayLike> PartialEq for ArrayVec<A>`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="arrayvec-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<P, T> Receiver for ArrayVec<A>`
 
-- `type Target = T`
+- <span id="arrayvec-target"></span>`type Target = T`
 
 ## Traits
 

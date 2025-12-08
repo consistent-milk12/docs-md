@@ -7,6 +7,18 @@
 This module contains traits that are usable with the `#[derive(...)]`
 macros in `clap_derive`.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Parser`](#parser) | trait | Parse command-line arguments into `Self`. |
+| [`CommandFactory`](#commandfactory) | trait | Create a [`Command`] relevant for a user-defined container. |
+| [`FromArgMatches`](#fromargmatches) | trait | Converts an instance of [`ArgMatches`] to a user-defined container. |
+| [`Args`](#args) | trait | Parse a set of arguments into a user-defined container. |
+| [`Subcommand`](#subcommand) | trait | Parse a sub-command into a user-defined enum. |
+| [`ValueEnum`](#valueenum) | trait | Parse arguments into enums. |
+| [`format_error`](#format_error) | fn |  |
+
 ## Traits
 
 ### `Parser`
@@ -53,11 +65,11 @@ See also [`Subcommand`](../index.md) and [`Args`](../index.md).
 
   Parse from iterator, return Err on error.
 
-- `fn update_from<I, T>(self: &mut Self, itr: I)`
+- `fn update_from<I, T>(&mut self, itr: I)`
 
   Update from iterator, `exit` on error.
 
-- `fn try_update_from<I, T>(self: &mut Self, itr: I) -> Result<(), Error>`
+- `fn try_update_from<I, T>(&mut self, itr: I) -> Result<(), Error>`
 
   Update from iterator, return Err on error.
 
@@ -101,11 +113,11 @@ Derived as part of [`Parser`](../index.md), [`Args`](../index.md), and [`Subcomm
 
   Instantiate `Self` from [`ArgMatches`](../index.md), parsing the arguments as needed.
 
-- `fn update_from_arg_matches(self: &mut Self, matches: &ArgMatches) -> Result<(), Error>`
+- `fn update_from_arg_matches(&mut self, matches: &ArgMatches) -> Result<(), Error>`
 
   Assign values from `ArgMatches` to `self`.
 
-- `fn update_from_arg_matches_mut(self: &mut Self, matches: &mut ArgMatches) -> Result<(), Error>`
+- `fn update_from_arg_matches_mut(&mut self, matches: &mut ArgMatches) -> Result<(), Error>`
 
   Assign values from `ArgMatches` to `self`.
 
@@ -207,7 +219,7 @@ When deriving [`Parser`](../index.md), a field whose type implements `ValueEnum`
 
   Parse an argument into `Self`.
 
-- `fn to_possible_value(self: &Self) -> Option<PossibleValue>`
+- `fn to_possible_value(&self) -> Option<PossibleValue>`
 
   The canonical argument value.
 

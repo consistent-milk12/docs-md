@@ -4,6 +4,13 @@
 
 # Module `unraw`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`IdentUnraw`](#identunraw) | struct |  |
+| [`MemberUnraw`](#memberunraw) | enum |  |
+
 ## Structs
 
 ### `IdentUnraw`
@@ -14,51 +21,51 @@ struct IdentUnraw(proc_macro2::Ident);
 
 #### Implementations
 
-- `fn new(ident: Ident) -> Self`
+- <span id="identunraw-new"></span>`fn new(ident: Ident) -> Self`
 
-- `fn to_local(self: &Self) -> Ident`
+- <span id="identunraw-to-local"></span>`fn to_local(&self) -> Ident`
 
-- `fn set_span(self: &mut Self, span: Span)`
+- <span id="identunraw-set-span"></span>`fn set_span(&mut self, span: Span)`
 
 #### Trait Implementations
 
 ##### `impl Clone for IdentUnraw`
 
-- `fn clone(self: &Self) -> IdentUnraw` — [`IdentUnraw`](#identunraw)
+- <span id="identunraw-clone"></span>`fn clone(&self) -> IdentUnraw` — [`IdentUnraw`](#identunraw)
 
 ##### `impl Display for IdentUnraw`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="identunraw-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for IdentUnraw`
 
 ##### `impl Ord for IdentUnraw`
 
-- `fn cmp(self: &Self, other: &Self) -> Ordering`
+- <span id="identunraw-cmp"></span>`fn cmp(&self, other: &Self) -> Ordering`
 
 ##### `impl Parse for IdentUnraw`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- <span id="identunraw-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>`
 
 ##### `impl PartialEq for IdentUnraw`
 
-- `fn eq(self: &Self, other: &str) -> bool`
+- <span id="identunraw-eq"></span>`fn eq(&self, other: &str) -> bool`
 
 ##### `impl PartialOrd for IdentUnraw`
 
-- `fn partial_cmp(self: &Self, other: &Self) -> Option<Ordering>`
+- <span id="identunraw-partial-cmp"></span>`fn partial_cmp(&self, other: &Self) -> Option<Ordering>`
 
 ##### `impl<T> Spanned for IdentUnraw`
 
-- `fn span(self: &Self) -> Span`
+- <span id="identunraw-span"></span>`fn span(&self) -> Span`
 
 ##### `impl<T> ToString for IdentUnraw`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="identunraw-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl ToTokens for IdentUnraw`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="identunraw-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ## Enums
 
@@ -73,37 +80,37 @@ enum MemberUnraw {
 
 #### Implementations
 
-- `fn span(self: &Self) -> Span`
+- <span id="memberunraw-span"></span>`fn span(&self) -> Span`
 
 #### Trait Implementations
 
 ##### `impl Clone for MemberUnraw`
 
-- `fn clone(self: &Self) -> MemberUnraw` — [`MemberUnraw`](#memberunraw)
+- <span id="memberunraw-clone"></span>`fn clone(&self) -> MemberUnraw` — [`MemberUnraw`](#memberunraw)
 
 ##### `impl Display for MemberUnraw`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="memberunraw-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for MemberUnraw`
 
 ##### `impl Hash for MemberUnraw`
 
-- `fn hash<H: Hasher>(self: &Self, hasher: &mut H)`
+- <span id="memberunraw-hash"></span>`fn hash<H: Hasher>(&self, hasher: &mut H)`
 
 ##### `impl PartialEq for MemberUnraw`
 
-- `fn eq(self: &Self, other: &str) -> bool`
+- <span id="memberunraw-eq"></span>`fn eq(&self, other: &str) -> bool`
 
 ##### `impl<T> Spanned for MemberUnraw`
 
-- `fn span(self: &Self) -> Span`
+- <span id="memberunraw-span"></span>`fn span(&self) -> Span`
 
 ##### `impl<T> ToString for MemberUnraw`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="memberunraw-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl ToTokens for MemberUnraw`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="memberunraw-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 

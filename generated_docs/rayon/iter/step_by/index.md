@@ -4,6 +4,13 @@
 
 # Module `step_by`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`StepBy`](#stepby) | struct | `StepBy` is an iterator that skips `n` elements between each yield, where `n` is the given step. |
+| [`StepByProducer`](#stepbyproducer) | struct |  |
+
 ## Structs
 
 ### `StepBy<I>`
@@ -21,57 +28,57 @@ This struct is created by the `step_by()` method on [`IndexedParallelIterator`](
 
 #### Implementations
 
-- `fn new(base: I, step: usize) -> Self`
+- <span id="stepby-new"></span>`fn new(base: I, step: usize) -> Self`
 
 #### Trait Implementations
 
-##### `impl<I: $crate::clone::Clone> Clone for StepBy<I>`
+##### `impl<I: clone::Clone> Clone for StepBy<I>`
 
-- `fn clone(self: &Self) -> StepBy<I>` — [`StepBy`](../index.md)
+- <span id="stepby-clone"></span>`fn clone(&self) -> StepBy<I>` — [`StepBy`](../index.md)
 
-##### `impl<I: $crate::fmt::Debug> Debug for StepBy<I>`
+##### `impl<I: fmt::Debug> Debug for StepBy<I>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="stepby-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IndexedParallelIterator for StepBy<I>`
 
-- `fn drive<C: Consumer<<Self as >::Item>>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="stepby-drive"></span>`fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
-- `fn len(self: &Self) -> usize`
+- <span id="stepby-len"></span>`fn len(&self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
+- <span id="stepby-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
 
 ##### `impl<T> IntoEither for StepBy<I>`
 
 ##### `impl<T> IntoParallelIterator for StepBy<I>`
 
-- `type Iter = T`
+- <span id="stepby-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="stepby-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="stepby-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for StepBy<I>`
 
-- `type Item = <I as ParallelIterator>::Item`
+- <span id="stepby-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="stepby-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
-- `fn opt_len(self: &Self) -> Option<usize>`
+- <span id="stepby-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for StepBy<I>`
 
-- `const ALIGN: usize`
+- <span id="stepby-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="stepby-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="stepby-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="stepby-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="stepby-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="stepby-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `StepByProducer<P>`
 
@@ -89,29 +96,29 @@ struct StepByProducer<P> {
 
 ##### `impl<T> Pointable for StepByProducer<P>`
 
-- `const ALIGN: usize`
+- <span id="stepbyproducer-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="stepbyproducer-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="stepbyproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="stepbyproducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="stepbyproducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="stepbyproducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<P> Producer for StepByProducer<P>`
 
-- `type Item = <P as Producer>::Item`
+- <span id="stepbyproducer-item"></span>`type Item = <P as Producer>::Item`
 
-- `type IntoIter = StepBy<<P as Producer>::IntoIter>`
+- <span id="stepbyproducer-intoiter"></span>`type IntoIter = StepBy<<P as Producer>::IntoIter>`
 
-- `fn into_iter(self: Self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
+- <span id="stepbyproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
 
-- `fn split_at(self: Self, index: usize) -> (Self, Self)`
+- <span id="stepbyproducer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
 
-- `fn min_len(self: &Self) -> usize`
+- <span id="stepbyproducer-min-len"></span>`fn min_len(&self) -> usize`
 
-- `fn max_len(self: &Self) -> usize`
+- <span id="stepbyproducer-max-len"></span>`fn max_len(&self) -> usize`
 

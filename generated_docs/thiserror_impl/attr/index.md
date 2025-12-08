@@ -4,6 +4,37 @@
 
 # Module `attr`
 
+## Contents
+
+- [Structs](#structs)
+  - [`Attrs`](#attrs)
+  - [`Display`](#display)
+  - [`Source`](#source)
+  - [`From`](#from)
+  - [`Transparent`](#transparent)
+  - [`Fmt`](#fmt)
+- [Enums](#enums)
+  - [`Trait`](#trait)
+- [Functions](#functions)
+  - [`get`](#get)
+  - [`parse_error_attribute`](#parse_error_attribute)
+  - [`parse_token_expr`](#parse_token_expr)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Attrs`](#attrs) | struct |  |
+| [`Display`](#display) | struct |  |
+| [`Source`](#source) | struct |  |
+| [`From`](#from) | struct |  |
+| [`Transparent`](#transparent) | struct |  |
+| [`Fmt`](#fmt) | struct |  |
+| [`Trait`](#trait) | enum |  |
+| [`get`](#get) | fn |  |
+| [`parse_error_attribute`](#parse_error_attribute) | fn |  |
+| [`parse_token_expr`](#parse_token_expr) | fn |  |
+
 ## Structs
 
 ### `Attrs<'a>`
@@ -36,21 +67,21 @@ struct Display<'a> {
 
 #### Implementations
 
-- `fn expand_shorthand(self: &mut Self, fields: &[Field<'_>], container: ContainerKind) -> Result<()>` — [`Field`](../ast/index.md), [`ContainerKind`](../ast/index.md)
+- <span id="crateattrdisplay-expand-shorthand"></span>`fn expand_shorthand(&mut self, fields: &[Field<'_>], container: ContainerKind) -> Result<()>` — [`Field`](../ast/index.md), [`ContainerKind`](../ast/index.md)
 
 #### Trait Implementations
 
 ##### `impl<'a> Clone for Display<'a>`
 
-- `fn clone(self: &Self) -> Display<'a>` — [`Display`](#display)
+- <span id="display-clone"></span>`fn clone(&self) -> Display<'a>` — [`Display`](#display)
 
 ##### `impl<T> Spanned for Display<'a>`
 
-- `fn span(self: &Self) -> Span`
+- <span id="display-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Display<'_>`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="display-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `Source<'a>`
 
@@ -65,7 +96,7 @@ struct Source<'a> {
 
 ##### `impl<'a> Clone for Source<'a>`
 
-- `fn clone(self: &Self) -> Source<'a>` — [`Source`](#source)
+- <span id="source-clone"></span>`fn clone(&self) -> Source<'a>` — [`Source`](#source)
 
 ##### `impl<'a> Copy for Source<'a>`
 
@@ -82,7 +113,7 @@ struct From<'a> {
 
 ##### `impl<'a> Clone for From<'a>`
 
-- `fn clone(self: &Self) -> From<'a>` — [`From`](#from)
+- <span id="from-clone"></span>`fn clone(&self) -> From<'a>` — [`From`](#from)
 
 ##### `impl<'a> Copy for From<'a>`
 
@@ -99,7 +130,7 @@ struct Transparent<'a> {
 
 ##### `impl<'a> Clone for Transparent<'a>`
 
-- `fn clone(self: &Self) -> Transparent<'a>` — [`Transparent`](#transparent)
+- <span id="transparent-clone"></span>`fn clone(&self) -> Transparent<'a>` — [`Transparent`](#transparent)
 
 ##### `impl<'a> Copy for Transparent<'a>`
 
@@ -116,7 +147,7 @@ struct Fmt<'a> {
 
 ##### `impl<'a> Clone for Fmt<'a>`
 
-- `fn clone(self: &Self) -> Fmt<'a>` — [`Fmt`](#fmt)
+- <span id="fmt-clone"></span>`fn clone(&self) -> Fmt<'a>` — [`Fmt`](#fmt)
 
 ## Enums
 
@@ -140,37 +171,37 @@ enum Trait {
 
 ##### `impl Clone for Trait`
 
-- `fn clone(self: &Self) -> Trait` — [`Trait`](#trait)
+- <span id="trait-clone"></span>`fn clone(&self) -> Trait` — [`Trait`](#trait)
 
 ##### `impl Copy for Trait`
 
 ##### `impl Debug for Trait`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="trait-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Trait`
 
 ##### `impl Ord for Trait`
 
-- `fn cmp(self: &Self, other: &Trait) -> $crate::cmp::Ordering` — [`Trait`](#trait)
+- <span id="trait-cmp"></span>`fn cmp(&self, other: &Trait) -> cmp::Ordering` — [`Trait`](#trait)
 
 ##### `impl PartialEq for Trait`
 
-- `fn eq(self: &Self, other: &Trait) -> bool` — [`Trait`](#trait)
+- <span id="trait-eq"></span>`fn eq(&self, other: &Trait) -> bool` — [`Trait`](#trait)
 
 ##### `impl PartialOrd for Trait`
 
-- `fn partial_cmp(self: &Self, other: &Trait) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Trait`](#trait)
+- <span id="trait-partial-cmp"></span>`fn partial_cmp(&self, other: &Trait) -> option::Option<cmp::Ordering>` — [`Trait`](#trait)
 
 ##### `impl<T> Spanned for Trait`
 
-- `fn span(self: &Self) -> Span`
+- <span id="trait-span"></span>`fn span(&self) -> Span`
 
 ##### `impl StructuralPartialEq for Trait`
 
 ##### `impl ToTokens for Trait`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="trait-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ## Functions
 

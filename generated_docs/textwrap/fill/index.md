@@ -6,6 +6,14 @@
 
 Functions for filling text.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`fill`](#fill) | fn | Fill a line of text at a given width. |
+| [`fill_slow_path`](#fill_slow_path) | fn | Slow path for fill. |
+| [`fill_inplace`](#fill_inplace) | fn | Fill `text` in-place without reallocating the input string. |
+
 ## Functions
 
 ### `fill`

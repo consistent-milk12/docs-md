@@ -4,6 +4,13 @@
 
 # Module `signal_macros`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`sig_ign`](#sig_ign) | fn | Rust doesn't currently permit us to use `transmute` to convert the |
+| [`SIG_DFL`](#sig_dfl) | const |  |
+
 ## Functions
 
 ### `sig_ign`

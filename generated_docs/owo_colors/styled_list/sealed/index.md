@@ -4,6 +4,12 @@
 
 # Module `sealed`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`IsStyled`](#isstyled) | trait |  |
+
 ## Traits
 
 ### `IsStyled`
@@ -16,7 +22,7 @@ trait IsStyled { ... }
 
 - `type Inner: 1`
 
-- `fn style(self: &Self) -> &crate::Style`
+- `fn style(&self) -> &crate::Style`
 
-- `fn inner(self: &Self) -> &<Self as >::Inner`
+- `fn inner(&self) -> &<Self as >::Inner`
 

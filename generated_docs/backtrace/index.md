@@ -86,6 +86,64 @@ need to worry about these caveats. We'll try to fix ones where we can over
 time, but otherwise it's important to be aware of the limitations of
 unwinding-based backtraces!
 
+## Contents
+
+- [Modules](#modules)
+  - [`backtrace`](#backtrace)
+  - [`symbolize`](#symbolize)
+  - [`types`](#types)
+  - [`print`](#print)
+  - [`capture`](#capture)
+  - [`lock`](#lock)
+- [Structs](#structs)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+- [Enums](#enums)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+- [Functions](#functions)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`backtrace`](#backtrace) | mod |  |
+| [`symbolize`](#symbolize) | mod |  |
+| [`types`](#types) | mod | Platform dependent types. |
+| [`print`](#print) | mod |  |
+| [`capture`](#capture) | mod |  |
+| [`lock`](#lock) | mod |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | enum |  |
+| [`unnamed`](#unnamed) | enum |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+
 ## Modules
 
 - [`backtrace`](backtrace/index.md) - 
@@ -114,23 +172,23 @@ until runtime.
 
 #### Implementations
 
-- `fn ip(self: &Self) -> *mut c_void`
+- <span id="frame-ip"></span>`fn ip(&self) -> *mut c_void`
 
-- `fn sp(self: &Self) -> *mut c_void`
+- <span id="frame-sp"></span>`fn sp(&self) -> *mut c_void`
 
-- `fn symbol_address(self: &Self) -> *mut c_void`
+- <span id="frame-symbol-address"></span>`fn symbol_address(&self) -> *mut c_void`
 
-- `fn module_base_address(self: &Self) -> Option<*mut c_void>`
+- <span id="frame-module-base-address"></span>`fn module_base_address(&self) -> Option<*mut c_void>`
 
 #### Trait Implementations
 
 ##### `impl Clone for Frame`
 
-- `fn clone(self: &Self) -> Frame` — [`Frame`](#frame)
+- <span id="frame-clone"></span>`fn clone(&self) -> Frame` — [`Frame`](#frame)
 
 ##### `impl Debug for Frame`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="frame-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Symbol`
 
@@ -152,23 +210,23 @@ always available in a symbol, however, so all methods return an `Option`.
 
 #### Implementations
 
-- `fn name(self: &Self) -> Option<SymbolName<'_>>` — [`SymbolName`](#symbolname)
+- <span id="symbol-name"></span>`fn name(&self) -> Option<SymbolName<'_>>` — [`SymbolName`](#symbolname)
 
-- `fn addr(self: &Self) -> Option<*mut c_void>`
+- <span id="symbol-addr"></span>`fn addr(&self) -> Option<*mut c_void>`
 
-- `fn filename_raw(self: &Self) -> Option<BytesOrWideString<'_>>` — [`BytesOrWideString`](#bytesorwidestring)
+- <span id="symbol-filename-raw"></span>`fn filename_raw(&self) -> Option<BytesOrWideString<'_>>` — [`BytesOrWideString`](#bytesorwidestring)
 
-- `fn colno(self: &Self) -> Option<u32>`
+- <span id="symbol-colno"></span>`fn colno(&self) -> Option<u32>`
 
-- `fn lineno(self: &Self) -> Option<u32>`
+- <span id="symbol-lineno"></span>`fn lineno(&self) -> Option<u32>`
 
-- `fn filename(self: &Self) -> Option<&Path>`
+- <span id="symbol-filename"></span>`fn filename(&self) -> Option<&Path>`
 
 #### Trait Implementations
 
 ##### `impl Debug for Symbol`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="symbol-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `SymbolName<'a>`
 
@@ -184,25 +242,25 @@ demangled name, the raw bytes, the raw string, etc.
 
 #### Implementations
 
-- `fn new(bytes: &'a [u8]) -> SymbolName<'a>` — [`SymbolName`](#symbolname)
+- <span id="symbolname-new"></span>`fn new(bytes: &'a [u8]) -> SymbolName<'a>` — [`SymbolName`](#symbolname)
 
-- `fn as_str(self: &Self) -> Option<&'a str>`
+- <span id="symbolname-as-str"></span>`fn as_str(&self) -> Option<&'a str>`
 
-- `fn as_bytes(self: &Self) -> &'a [u8]`
+- <span id="symbolname-as-bytes"></span>`fn as_bytes(&self) -> &'a [u8]`
 
 #### Trait Implementations
 
 ##### `impl<'a> Debug for SymbolName<'a>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="symbolname-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'a> Display for SymbolName<'a>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="symbolname-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for SymbolName<'a>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="symbolname-to-string"></span>`fn to_string(&self) -> String`
 
 ### `BacktraceFmt<'a, 'b>`
 
@@ -223,17 +281,17 @@ implementation already uses this printing format.
 
 #### Implementations
 
-- `fn new(fmt: &'a mut fmt::Formatter<'b>, format: PrintFmt, print_path: &'a mut dyn FnMut(&mut fmt::Formatter<'_>, BytesOrWideString<'_>) -> fmt::Result) -> Self` — [`PrintFmt`](#printfmt), [`BytesOrWideString`](#bytesorwidestring)
+- <span id="backtracefmt-new"></span>`fn new(fmt: &'a mut fmt::Formatter<'b>, format: PrintFmt, print_path: &'a mut dyn FnMut(&mut fmt::Formatter<'_>, BytesOrWideString<'_>) -> fmt::Result) -> Self` — [`PrintFmt`](#printfmt), [`BytesOrWideString`](#bytesorwidestring)
 
-- `fn add_context(self: &mut Self) -> fmt::Result`
+- <span id="backtracefmt-add-context"></span>`fn add_context(&mut self) -> fmt::Result`
 
-- `fn frame(self: &mut Self) -> BacktraceFrameFmt<'_, 'a, 'b>` — [`BacktraceFrameFmt`](#backtraceframefmt)
+- <span id="backtracefmt-frame"></span>`fn frame(&mut self) -> BacktraceFrameFmt<'_, 'a, 'b>` — [`BacktraceFrameFmt`](#backtraceframefmt)
 
-- `fn finish(self: &mut Self) -> fmt::Result`
+- <span id="backtracefmt-finish"></span>`fn finish(&mut self) -> fmt::Result`
 
-- `fn message(self: &mut Self, msg: &str) -> fmt::Result`
+- <span id="backtracefmt-message"></span>`fn message(&mut self, msg: &str) -> fmt::Result`
 
-- `fn formatter(self: &mut Self) -> &mut fmt::Formatter<'b>`
+- <span id="backtracefmt-formatter"></span>`fn formatter(&mut self) -> &mut fmt::Formatter<'b>`
 
 ### `BacktraceFrameFmt<'fmt, 'a, 'b>`
 
@@ -250,27 +308,27 @@ This type is created by the `BacktraceFmt::frame` function.
 
 #### Implementations
 
-- `fn backtrace_frame(self: &mut Self, frame: &BacktraceFrame) -> fmt::Result` — [`BacktraceFrame`](#backtraceframe)
+- <span id="backtraceframefmt-backtrace-frame"></span>`fn backtrace_frame(&mut self, frame: &BacktraceFrame) -> fmt::Result` — [`BacktraceFrame`](#backtraceframe)
 
-- `fn backtrace_symbol(self: &mut Self, frame: &BacktraceFrame, symbol: &BacktraceSymbol) -> fmt::Result` — [`BacktraceFrame`](#backtraceframe), [`BacktraceSymbol`](#backtracesymbol)
+- <span id="backtraceframefmt-backtrace-symbol"></span>`fn backtrace_symbol(&mut self, frame: &BacktraceFrame, symbol: &BacktraceSymbol) -> fmt::Result` — [`BacktraceFrame`](#backtraceframe), [`BacktraceSymbol`](#backtracesymbol)
 
-- `fn symbol(self: &mut Self, frame: &Frame, symbol: &super::Symbol) -> fmt::Result` — [`Frame`](#frame), [`Symbol`](#symbol)
+- <span id="backtraceframefmt-symbol"></span>`fn symbol(&mut self, frame: &Frame, symbol: &super::Symbol) -> fmt::Result` — [`Frame`](#frame), [`Symbol`](#symbol)
 
-- `fn print_raw(self: &mut Self, frame_ip: *mut c_void, symbol_name: Option<SymbolName<'_>>, filename: Option<BytesOrWideString<'_>>, lineno: Option<u32>) -> fmt::Result` — [`SymbolName`](#symbolname), [`BytesOrWideString`](#bytesorwidestring)
+- <span id="backtraceframefmt-print-raw"></span>`fn print_raw(&mut self, frame_ip: *mut c_void, symbol_name: Option<SymbolName<'_>>, filename: Option<BytesOrWideString<'_>>, lineno: Option<u32>) -> fmt::Result` — [`SymbolName`](#symbolname), [`BytesOrWideString`](#bytesorwidestring)
 
-- `fn print_raw_with_column(self: &mut Self, frame_ip: *mut c_void, symbol_name: Option<SymbolName<'_>>, filename: Option<BytesOrWideString<'_>>, lineno: Option<u32>, colno: Option<u32>) -> fmt::Result` — [`SymbolName`](#symbolname), [`BytesOrWideString`](#bytesorwidestring)
+- <span id="backtraceframefmt-print-raw-with-column"></span>`fn print_raw_with_column(&mut self, frame_ip: *mut c_void, symbol_name: Option<SymbolName<'_>>, filename: Option<BytesOrWideString<'_>>, lineno: Option<u32>, colno: Option<u32>) -> fmt::Result` — [`SymbolName`](#symbolname), [`BytesOrWideString`](#bytesorwidestring)
 
-- `fn print_raw_generic(self: &mut Self, frame_ip: *mut c_void, symbol_name: Option<SymbolName<'_>>, filename: Option<BytesOrWideString<'_>>, lineno: Option<u32>, colno: Option<u32>) -> fmt::Result` — [`SymbolName`](#symbolname), [`BytesOrWideString`](#bytesorwidestring)
+- <span id="backtraceframefmt-print-raw-generic"></span>`fn print_raw_generic(&mut self, frame_ip: *mut c_void, symbol_name: Option<SymbolName<'_>>, filename: Option<BytesOrWideString<'_>>, lineno: Option<u32>, colno: Option<u32>) -> fmt::Result` — [`SymbolName`](#symbolname), [`BytesOrWideString`](#bytesorwidestring)
 
-- `fn print_fileline(self: &mut Self, file: BytesOrWideString<'_>, line: u32, colno: Option<u32>) -> fmt::Result` — [`BytesOrWideString`](#bytesorwidestring)
+- <span id="backtraceframefmt-print-fileline"></span>`fn print_fileline(&mut self, file: BytesOrWideString<'_>, line: u32, colno: Option<u32>) -> fmt::Result` — [`BytesOrWideString`](#bytesorwidestring)
 
-- `fn print_raw_fuchsia(self: &mut Self, frame_ip: *mut c_void) -> fmt::Result`
+- <span id="backtraceframefmt-print-raw-fuchsia"></span>`fn print_raw_fuchsia(&mut self, frame_ip: *mut c_void) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Drop for BacktraceFrameFmt<'_, '_, '_>`
 
-- `fn drop(self: &mut Self)`
+- <span id="backtraceframefmt-drop"></span>`fn drop(&mut self)`
 
 ### `Backtrace`
 
@@ -295,29 +353,29 @@ enabled, and the `std` feature is enabled by default.
 
 #### Implementations
 
-- `fn new() -> Backtrace` — [`Backtrace`](#backtrace)
+- <span id="backtrace-new"></span>`fn new() -> Backtrace` — [`Backtrace`](#backtrace)
 
-- `fn new_unresolved() -> Backtrace` — [`Backtrace`](#backtrace)
+- <span id="backtrace-new-unresolved"></span>`fn new_unresolved() -> Backtrace` — [`Backtrace`](#backtrace)
 
-- `fn create(ip: usize) -> Backtrace` — [`Backtrace`](#backtrace)
+- <span id="backtrace-create"></span>`fn create(ip: usize) -> Backtrace` — [`Backtrace`](#backtrace)
 
-- `fn frames(self: &Self) -> &[BacktraceFrame]` — [`BacktraceFrame`](#backtraceframe)
+- <span id="backtrace-frames"></span>`fn frames(&self) -> &[BacktraceFrame]` — [`BacktraceFrame`](#backtraceframe)
 
-- `fn resolve(self: &mut Self)`
+- <span id="backtrace-resolve"></span>`fn resolve(&mut self)`
 
 #### Trait Implementations
 
 ##### `impl Clone for Backtrace`
 
-- `fn clone(self: &Self) -> Backtrace` — [`Backtrace`](#backtrace)
+- <span id="backtrace-clone"></span>`fn clone(&self) -> Backtrace` — [`Backtrace`](#backtrace)
 
 ##### `impl Debug for Backtrace`
 
-- `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="backtrace-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Backtrace`
 
-- `fn default() -> Backtrace` — [`Backtrace`](#backtrace)
+- <span id="backtrace-default"></span>`fn default() -> Backtrace` — [`Backtrace`](#backtrace)
 
 ### `BacktraceFrame`
 
@@ -340,25 +398,25 @@ enabled, and the `std` feature is enabled by default.
 
 #### Implementations
 
-- `fn ip(self: &Self) -> *mut c_void`
+- <span id="backtraceframe-ip"></span>`fn ip(&self) -> *mut c_void`
 
-- `fn symbol_address(self: &Self) -> *mut c_void`
+- <span id="backtraceframe-symbol-address"></span>`fn symbol_address(&self) -> *mut c_void`
 
-- `fn module_base_address(self: &Self) -> Option<*mut c_void>`
+- <span id="backtraceframe-module-base-address"></span>`fn module_base_address(&self) -> Option<*mut c_void>`
 
-- `fn symbols(self: &Self) -> &[BacktraceSymbol]` — [`BacktraceSymbol`](#backtracesymbol)
+- <span id="backtraceframe-symbols"></span>`fn symbols(&self) -> &[BacktraceSymbol]` — [`BacktraceSymbol`](#backtracesymbol)
 
-- `fn resolve(self: &mut Self)`
+- <span id="backtraceframe-resolve"></span>`fn resolve(&mut self)`
 
 #### Trait Implementations
 
 ##### `impl Clone for BacktraceFrame`
 
-- `fn clone(self: &Self) -> BacktraceFrame` — [`BacktraceFrame`](#backtraceframe)
+- <span id="backtraceframe-clone"></span>`fn clone(&self) -> BacktraceFrame` — [`BacktraceFrame`](#backtraceframe)
 
 ##### `impl Debug for BacktraceFrame`
 
-- `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="backtraceframe-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `BacktraceSymbol`
 
@@ -384,25 +442,25 @@ enabled, and the `std` feature is enabled by default.
 
 #### Implementations
 
-- `fn name(self: &Self) -> Option<SymbolName<'_>>` — [`SymbolName`](#symbolname)
+- <span id="backtracesymbol-name"></span>`fn name(&self) -> Option<SymbolName<'_>>` — [`SymbolName`](#symbolname)
 
-- `fn addr(self: &Self) -> Option<*mut c_void>`
+- <span id="backtracesymbol-addr"></span>`fn addr(&self) -> Option<*mut c_void>`
 
-- `fn filename(self: &Self) -> Option<&Path>`
+- <span id="backtracesymbol-filename"></span>`fn filename(&self) -> Option<&Path>`
 
-- `fn lineno(self: &Self) -> Option<u32>`
+- <span id="backtracesymbol-lineno"></span>`fn lineno(&self) -> Option<u32>`
 
-- `fn colno(self: &Self) -> Option<u32>`
+- <span id="backtracesymbol-colno"></span>`fn colno(&self) -> Option<u32>`
 
 #### Trait Implementations
 
 ##### `impl Clone for BacktraceSymbol`
 
-- `fn clone(self: &Self) -> BacktraceSymbol` — [`BacktraceSymbol`](#backtracesymbol)
+- <span id="backtracesymbol-clone"></span>`fn clone(&self) -> BacktraceSymbol` — [`BacktraceSymbol`](#backtracesymbol)
 
 ##### `impl Debug for BacktraceSymbol`
 
-- `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="backtracesymbol-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Enums
 
@@ -431,23 +489,23 @@ conversions to `std` types.
 
 #### Implementations
 
-- `fn to_str_lossy(self: &Self) -> Cow<'a, str>`
+- <span id="bytesorwidestring-to-str-lossy"></span>`fn to_str_lossy(&self) -> Cow<'a, str>`
 
-- `fn into_path_buf(self: Self) -> PathBuf`
+- <span id="bytesorwidestring-into-path-buf"></span>`fn into_path_buf(self) -> PathBuf`
 
 #### Trait Implementations
 
 ##### `impl<'a> Debug for BytesOrWideString<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="bytesorwidestring-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'a> Display for BytesOrWideString<'a>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bytesorwidestring-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for BytesOrWideString<'a>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="bytesorwidestring-to-string"></span>`fn to_string(&self) -> String`
 
 ### `PrintFmt`
 
@@ -474,7 +532,7 @@ The styles of printing that we can print
 
 ##### `impl Clone for PrintFmt`
 
-- `fn clone(self: &Self) -> PrintFmt` — [`PrintFmt`](#printfmt)
+- <span id="printfmt-clone"></span>`fn clone(&self) -> PrintFmt` — [`PrintFmt`](#printfmt)
 
 ##### `impl Copy for PrintFmt`
 
@@ -482,7 +540,7 @@ The styles of printing that we can print
 
 ##### `impl PartialEq for PrintFmt`
 
-- `fn eq(self: &Self, other: &PrintFmt) -> bool` — [`PrintFmt`](#printfmt)
+- <span id="printfmt-eq"></span>`fn eq(&self, other: &PrintFmt) -> bool` — [`PrintFmt`](#printfmt)
 
 ##### `impl StructuralPartialEq for PrintFmt`
 

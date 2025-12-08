@@ -4,6 +4,19 @@
 
 # Module `d2s_intrinsics`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`div5`](#div5) | fn |  |
+| [`div10`](#div10) | fn |  |
+| [`div100`](#div100) | fn |  |
+| [`pow5_factor`](#pow5_factor) | fn |  |
+| [`multiple_of_power_of_5`](#multiple_of_power_of_5) | fn |  |
+| [`multiple_of_power_of_2`](#multiple_of_power_of_2) | fn |  |
+| [`mul_shift_64`](#mul_shift_64) | fn |  |
+| [`mul_shift_all_64`](#mul_shift_all_64) | fn |  |
+
 ## Functions
 
 ### `div5`

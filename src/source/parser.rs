@@ -14,6 +14,7 @@ use std::path::{Path, PathBuf};
 use std::string::ToString;
 
 use quote::ToTokens;
+use syn::spanned::Spanned;
 use syn::{
     Attribute, Expr, Fields, File, ImplItem, Item, ItemConst, ItemEnum, ItemFn, ItemImpl, ItemMod,
     ItemStatic, ItemStruct, ItemTrait, ItemType, Lit, Meta, StaticMutability, Visibility,
@@ -200,7 +201,7 @@ impl SourceParser {
                         definition: m.to_token_stream().to_string(),
                         doc_comments: Self::extract_doc_comments(&m.attrs),
                         source_file: file_path.to_path_buf(),
-                        line_number: 0, // syn doesn't provide line numbers directly
+                        line_number: Self::line_of(m),
                     });
                 }
             },
@@ -297,7 +298,7 @@ impl SourceParser {
             is_public: matches!(func.vis, Visibility::Public(_)),
             doc_comments: Self::extract_doc_comments(&func.attrs),
             source_file: file_path.to_path_buf(),
-            line_number: 0,
+            line_number: Self::line_of(func),
         }
     }
 
@@ -310,7 +311,7 @@ impl SourceParser {
             is_public: matches!(s.vis, Visibility::Public(_)),
             doc_comments: Self::extract_doc_comments(&s.attrs),
             source_file: file_path.to_path_buf(),
-            line_number: 0,
+            line_number: Self::line_of(s),
             fields: Self::extract_fields(&s.fields),
         }
     }
@@ -324,7 +325,7 @@ impl SourceParser {
             is_public: matches!(e.vis, Visibility::Public(_)),
             doc_comments: Self::extract_doc_comments(&e.attrs),
             source_file: file_path.to_path_buf(),
-            line_number: 0,
+            line_number: Self::line_of(e),
             variants: e
                 .variants
                 .iter()
@@ -346,7 +347,7 @@ impl SourceParser {
             is_public: matches!(t.vis, Visibility::Public(_)),
             doc_comments: Self::extract_doc_comments(&t.attrs),
             source_file: file_path.to_path_buf(),
-            line_number: 0,
+            line_number: Self::line_of(t),
         }
     }
 
@@ -371,7 +372,7 @@ impl SourceParser {
                         is_public: matches!(method.vis, Visibility::Public(_)),
                         doc_comments: Self::extract_doc_comments(&method.attrs),
                         source_file: file_path.to_path_buf(),
-                        line_number: 0,
+                        line_number: Self::line_of(method),
                     })
                 } else {
                     None
@@ -385,7 +386,7 @@ impl SourceParser {
             module_path: module_path.to_string(),
             methods,
             source_file: file_path.to_path_buf(),
-            line_number: 0,
+            line_number: Self::line_of(impl_block),
         }
     }
 
@@ -399,7 +400,7 @@ impl SourceParser {
             is_public: matches!(c.vis, Visibility::Public(_)),
             doc_comments: Self::extract_doc_comments(&c.attrs),
             source_file: file_path.to_path_buf(),
-            line_number: 0,
+            line_number: Self::line_of(c),
         }
     }
 
@@ -414,7 +415,7 @@ impl SourceParser {
             is_public: matches!(s.vis, Visibility::Public(_)),
             doc_comments: Self::extract_doc_comments(&s.attrs),
             source_file: file_path.to_path_buf(),
-            line_number: 0,
+            line_number: Self::line_of(s),
         }
     }
 
@@ -432,8 +433,15 @@ impl SourceParser {
             is_public: matches!(t.vis, Visibility::Public(_)),
             doc_comments: Self::extract_doc_comments(&t.attrs),
             source_file: file_path.to_path_buf(),
-            line_number: 0,
+            line_number: Self::line_of(t),
         }
+    }
+
+    /// Extract the starting line number from a spanned item.
+    ///
+    /// Uses `proc-macro2`'s span-locations feature to get accurate line numbers.
+    fn line_of<T: Spanned>(item: &T) -> usize {
+        item.span().start().line
     }
 
     /// Extract doc comments from attributes.
@@ -570,6 +578,141 @@ mod tests {
             assert_eq!(info.fields.len(), 2);
             assert_eq!(info.fields[0].name, Some("x".to_string()));
             assert!(info.fields[0].doc_comments[0].contains("X coordinate"));
+        }
+    }
+
+    #[test]
+    fn test_line_numbers_function() {
+        // Line 1 is the function
+        let src = "pub fn foo() {}";
+
+        let file = syn::parse_file(src).unwrap();
+        let parser = SourceParser::new("test".into(), "0.1.0".into(), PathBuf::new());
+
+        if let Item::Fn(func) = &file.items[0] {
+            let info = parser.extract_function(func, Path::new("test.rs"), "crate");
+            assert_eq!(info.line_number, 1, "Function should be on line 1");
+        } else {
+            panic!("Expected function");
+        }
+    }
+
+    #[test]
+    fn test_line_numbers_multiple_items() {
+        let src = r"pub fn first() {}
+
+pub struct Second;
+
+pub enum Third { A, B }
+
+pub const FOURTH: i32 = 42;
+";
+
+        let file = syn::parse_file(src).unwrap();
+        let parser = SourceParser::new("test".into(), "0.1.0".into(), PathBuf::new());
+
+        // Function on line 1
+        if let Item::Fn(func) = &file.items[0] {
+            let info = parser.extract_function(func, Path::new("test.rs"), "crate");
+            assert_eq!(info.line_number, 1, "first() should be on line 1");
+        }
+
+        // Struct on line 3
+        if let Item::Struct(s) = &file.items[1] {
+            let info = parser.extract_struct(s, Path::new("test.rs"), "crate");
+            assert_eq!(info.line_number, 3, "Second should be on line 3");
+        }
+
+        // Enum on line 5
+        if let Item::Enum(e) = &file.items[2] {
+            let info = parser.extract_enum(e, Path::new("test.rs"), "crate");
+            assert_eq!(info.line_number, 5, "Third should be on line 5");
+        }
+
+        // Const on line 7
+        if let Item::Const(c) = &file.items[3] {
+            let info = parser.extract_const(c, Path::new("test.rs"), "crate");
+            assert_eq!(info.line_number, 7, "FOURTH should be on line 7");
+        }
+    }
+
+    #[test]
+    fn test_line_numbers_impl_block() {
+        let src = r"struct Foo;
+
+impl Foo {
+    pub fn method_one(&self) {}
+
+    pub fn method_two(&self) {}
+}
+";
+
+        let file = syn::parse_file(src).unwrap();
+        let parser = SourceParser::new("test".into(), "0.1.0".into(), PathBuf::new());
+
+        if let Item::Impl(impl_block) = &file.items[1] {
+            let info = parser.extract_impl(impl_block, Path::new("test.rs"), "crate");
+
+            // impl block starts on line 3
+            assert_eq!(info.line_number, 3, "impl block should be on line 3");
+
+            // Methods have their own line numbers
+            assert_eq!(info.methods.len(), 2);
+            assert_eq!(
+                info.methods[0].line_number, 4,
+                "method_one should be on line 4"
+            );
+            assert_eq!(
+                info.methods[1].line_number, 6,
+                "method_two should be on line 6"
+            );
+        } else {
+            panic!("Expected impl block");
+        }
+    }
+
+    #[test]
+    fn test_line_numbers_trait() {
+        let src = r"
+/// A trait
+pub trait MyTrait {
+    fn required(&self);
+}
+";
+
+        let file = syn::parse_file(src).unwrap();
+        let parser = SourceParser::new("test".into(), "0.1.0".into(), PathBuf::new());
+
+        if let Item::Trait(t) = &file.items[0] {
+            let info = parser.extract_trait(t, Path::new("test.rs"), "crate");
+            // Doc comment is on line 2, trait keyword on line 3
+            assert_eq!(
+                info.line_number, 2,
+                "Trait should start on line 2 (doc comment)"
+            );
+        } else {
+            panic!("Expected trait");
+        }
+    }
+
+    #[test]
+    fn test_line_numbers_static_and_type_alias() {
+        let src = r"pub static FOO: i32 = 1;
+
+pub type Bar = Vec<String>;
+";
+
+        let file = syn::parse_file(src).unwrap();
+        let parser = SourceParser::new("test".into(), "0.1.0".into(), PathBuf::new());
+
+        if let Item::Static(s) = &file.items[0] {
+            let info = parser.extract_static(s, Path::new("test.rs"), "crate");
+            assert_eq!(info.line_number, 1, "static FOO should be on line 1");
+        }
+
+        if let Item::Type(t) = &file.items[1] {
+            let info = parser.extract_type_alias(t, Path::new("test.rs"), "crate");
+            assert_eq!(info.line_number, 3, "type Bar should be on line 3");
         }
     }
 }

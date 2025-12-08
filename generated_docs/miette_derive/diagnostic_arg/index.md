@@ -4,6 +4,12 @@
 
 # Module `diagnostic_arg`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`DiagnosticArg`](#diagnosticarg) | enum |  |
+
 ## Enums
 
 ### `DiagnosticArg`
@@ -23,5 +29,5 @@ enum DiagnosticArg {
 
 ##### `impl Parse for DiagnosticArg`
 
-- `fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
+- <span id="diagnosticarg-parse"></span>`fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
 

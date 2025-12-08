@@ -4,6 +4,13 @@
 
 # Module `static_str`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`StaticStr`](#staticstr) | struct | A buffer stored on the stack whose size is equal to the stack size of `String` |
+| [`DISCRIMINANT_SIZE`](#discriminant_size) | const |  |
+
 ## Structs
 
 ### `StaticStr`
@@ -21,17 +28,17 @@ The last byte is set to 0.
 
 #### Implementations
 
-- `const fn new(text: &'static str) -> Self`
+- <span id="staticstr-new"></span>`const fn new(text: &'static str) -> Self`
 
-- `const fn get_text(self: &Self) -> &'static str`
+- <span id="staticstr-get-text"></span>`const fn get_text(&self) -> &'static str`
 
-- `unsafe fn set_len(self: &mut Self, len: usize)`
+- <span id="staticstr-set-len"></span>`unsafe fn set_len(&mut self, len: usize)`
 
 #### Trait Implementations
 
 ##### `impl Clone for StaticStr`
 
-- `fn clone(self: &Self) -> StaticStr` — [`StaticStr`](#staticstr)
+- <span id="staticstr-clone"></span>`fn clone(&self) -> StaticStr` — [`StaticStr`](#staticstr)
 
 ##### `impl Copy for StaticStr`
 

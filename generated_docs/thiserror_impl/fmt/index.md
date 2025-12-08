@@ -4,6 +4,32 @@
 
 # Module `fmt`
 
+## Contents
+
+- [Structs](#structs)
+  - [`FmtArguments`](#fmtarguments)
+- [Functions](#functions)
+  - [`explicit_named_args`](#explicit_named_args)
+  - [`try_explicit_named_args`](#try_explicit_named_args)
+  - [`fallback_explicit_named_args`](#fallback_explicit_named_args)
+  - [`is_syn_full`](#is_syn_full)
+  - [`take_int`](#take_int)
+  - [`take_ident`](#take_ident)
+  - [`between`](#between)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`FmtArguments`](#fmtarguments) | struct |  |
+| [`explicit_named_args`](#explicit_named_args) | fn |  |
+| [`try_explicit_named_args`](#try_explicit_named_args) | fn |  |
+| [`fallback_explicit_named_args`](#fallback_explicit_named_args) | fn |  |
+| [`is_syn_full`](#is_syn_full) | fn |  |
+| [`take_int`](#take_int) | fn |  |
+| [`take_ident`](#take_ident) | fn |  |
+| [`between`](#between) | fn |  |
+
 ## Structs
 
 ### `FmtArguments`

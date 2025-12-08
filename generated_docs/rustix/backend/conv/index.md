@@ -18,6 +18,75 @@ into and out of these wrapper structs.
 Some of this code is `unsafe` in order to work with raw file descriptors,
 and some is `unsafe` to interpret the values in a `RetReg`.
 
+## Contents
+
+- [Functions](#functions)
+  - [`zero`](#zero)
+  - [`size_of`](#size_of)
+  - [`pass_usize`](#pass_usize)
+  - [`raw_fd`](#raw_fd)
+  - [`no_fd`](#no_fd)
+  - [`slice_just_addr`](#slice_just_addr)
+  - [`slice_just_addr_mut`](#slice_just_addr_mut)
+  - [`slice`](#slice)
+  - [`slice_mut`](#slice_mut)
+  - [`by_ref`](#by_ref)
+  - [`by_mut`](#by_mut)
+  - [`opt_mut`](#opt_mut)
+  - [`opt_ref`](#opt_ref)
+  - [`c_int`](#c_int)
+  - [`c_uint`](#c_uint)
+  - [`loff_t`](#loff_t)
+  - [`loff_t_from_u64`](#loff_t_from_u64)
+  - [`dev_t`](#dev_t)
+  - [`ret`](#ret)
+  - [`ret_infallible`](#ret_infallible)
+  - [`ret_c_int`](#ret_c_int)
+  - [`ret_c_uint`](#ret_c_uint)
+  - [`ret_u64`](#ret_u64)
+  - [`ret_usize`](#ret_usize)
+  - [`ret_usize_infallible`](#ret_usize_infallible)
+  - [`ret_c_int_infallible`](#ret_c_int_infallible)
+  - [`ret_c_uint_infallible`](#ret_c_uint_infallible)
+  - [`ret_owned_fd`](#ret_owned_fd)
+  - [`ret_discarded_fd`](#ret_discarded_fd)
+  - [`ret_void_star`](#ret_void_star)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`zero`](#zero) | fn | Pass a zero, or null, argument. |
+| [`size_of`](#size_of) | fn | Pass the `mem::size_of` of a type. |
+| [`pass_usize`](#pass_usize) | fn | Pass an arbitrary `usize` value. |
+| [`raw_fd`](#raw_fd) | fn | Pass a raw file-descriptor argument. |
+| [`no_fd`](#no_fd) | fn | Deliberately pass `-1` to a file-descriptor argument, for system calls |
+| [`slice_just_addr`](#slice_just_addr) | fn |  |
+| [`slice_just_addr_mut`](#slice_just_addr_mut) | fn |  |
+| [`slice`](#slice) | fn |  |
+| [`slice_mut`](#slice_mut) | fn |  |
+| [`by_ref`](#by_ref) | fn |  |
+| [`by_mut`](#by_mut) | fn |  |
+| [`opt_mut`](#opt_mut) | fn | Convert an optional mutable reference into a `usize` for passing to a |
+| [`opt_ref`](#opt_ref) | fn | Convert an optional immutable reference into a `usize` for passing to a |
+| [`c_int`](#c_int) | fn | Convert a `c_int` into an `ArgReg`. |
+| [`c_uint`](#c_uint) | fn | Convert a `c_uint` into an `ArgReg`. |
+| [`loff_t`](#loff_t) | fn |  |
+| [`loff_t_from_u64`](#loff_t_from_u64) | fn |  |
+| [`dev_t`](#dev_t) | fn |  |
+| [`ret`](#ret) | fn | Convert a `usize` returned from a syscall that effectively returns `()` on |
+| [`ret_infallible`](#ret_infallible) | fn | Convert a `usize` returned from a syscall that effectively always returns |
+| [`ret_c_int`](#ret_c_int) | fn | Convert a `usize` returned from a syscall that effectively returns a |
+| [`ret_c_uint`](#ret_c_uint) | fn | Convert a `usize` returned from a syscall that effectively returns a |
+| [`ret_u64`](#ret_u64) | fn | Convert a `usize` returned from a syscall that effectively returns a `u64` |
+| [`ret_usize`](#ret_usize) | fn | Convert a `usize` returned from a syscall that effectively returns a |
+| [`ret_usize_infallible`](#ret_usize_infallible) | fn | Convert a `usize` returned from a syscall that effectively always |
+| [`ret_c_int_infallible`](#ret_c_int_infallible) | fn | Convert a `c_int` returned from a syscall that effectively always |
+| [`ret_c_uint_infallible`](#ret_c_uint_infallible) | fn | Convert a `c_uint` returned from a syscall that effectively always |
+| [`ret_owned_fd`](#ret_owned_fd) | fn | Convert a `usize` returned from a syscall that effectively returns an |
+| [`ret_discarded_fd`](#ret_discarded_fd) | fn | Convert the return value of `dup2` and `dup3`. |
+| [`ret_void_star`](#ret_void_star) | fn | Convert a `usize` returned from a syscall that effectively returns a |
+
 ## Functions
 
 ### `zero`

@@ -4,5 +4,11 @@
 
 # Module `__private`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`unnamed`](#unnamed) | trait |  |
+
 ## Traits
 

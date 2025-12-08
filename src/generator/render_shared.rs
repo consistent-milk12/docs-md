@@ -13,7 +13,62 @@ use std::fmt::Write;
 use rustdoc_types::{Crate, Id, Impl, Item, ItemEnum, StructKind, VariantKind, Visibility};
 
 use crate::generator::context::RenderContext;
+use crate::linker::method_anchor;
 use crate::types::TypeRenderer;
+
+/// Sanitize trait paths by removing macro artifacts.
+///
+/// Rustdoc JSON can contain `$crate::` prefixes from macro expansions
+/// which leak implementation details into documentation. This function
+/// removes these artifacts for cleaner output.
+///
+/// Uses `Cow<str>` to avoid allocation when no changes are needed.
+///
+/// # Examples
+///
+/// ```
+/// use cargo_docs_md::generator::render_shared::sanitize_path;
+///
+/// assert_eq!(sanitize_path("$crate::clone::Clone"), "clone::Clone");
+/// assert_eq!(sanitize_path("std::fmt::Debug"), "std::fmt::Debug");
+/// ```
+#[must_use]
+pub fn sanitize_path(path: &str) -> Cow<'_, str> {
+    if path.contains("$crate::") {
+        Cow::Owned(path.replace("$crate::", ""))
+    } else {
+        Cow::Borrowed(path)
+    }
+}
+
+/// Sanitize self parameter in function signatures.
+///
+/// Converts verbose self type annotations to idiomatic Rust syntax:
+/// - `self: &Self` → `&self`
+/// - `self: &mut Self` → `&mut self`
+/// - `self: Self` → `self`
+///
+/// Uses `Cow<str>` to avoid allocation when no changes are needed.
+///
+/// # Examples
+///
+/// ```
+/// use cargo_docs_md::generator::render_shared::sanitize_self_param;
+///
+/// assert_eq!(sanitize_self_param("self: &Self"), "&self");
+/// assert_eq!(sanitize_self_param("self: &mut Self"), "&mut self");
+/// assert_eq!(sanitize_self_param("self: Self"), "self");
+/// assert_eq!(sanitize_self_param("x: i32"), "x: i32");
+/// ```
+#[must_use]
+pub fn sanitize_self_param(param: &str) -> Cow<'_, str> {
+    match param {
+        "self: &Self" => Cow::Borrowed("&self"),
+        "self: &mut Self" => Cow::Borrowed("&mut self"),
+        "self: Self" => Cow::Borrowed("self"),
+        _ => Cow::Borrowed(param),
+    }
+}
 
 /// Render a struct definition code block to markdown.
 ///
@@ -351,7 +406,10 @@ pub fn render_trait_item<F>(
                 .sig
                 .inputs
                 .iter()
-                .map(|(param_name, ty)| format!("{param_name}: {}", type_renderer.render_type(ty)))
+                .map(|(param_name, ty)| {
+                    let raw = format!("{param_name}: {}", type_renderer.render_type(ty));
+                    sanitize_self_param(&raw).into_owned()
+                })
                 .collect();
 
             let ret = f
@@ -431,7 +489,10 @@ pub fn render_function_definition(
         .sig
         .inputs
         .iter()
-        .map(|(param_name, ty)| format!("{param_name}: {}", type_renderer.render_type(ty)))
+        .map(|(param_name, ty)| {
+            let raw = format!("{param_name}: {}", type_renderer.render_type(ty));
+            sanitize_self_param(&raw).into_owned()
+        })
         .collect();
 
     let ret = f
@@ -559,6 +620,7 @@ pub fn render_macro_heading(md: &mut String, name: &str) {
 /// * `type_renderer` - Type renderer for types
 /// * `process_docs` - Optional closure to process documentation
 /// * `create_type_link` - Optional closure to create links for types `(id -> Option<markdown_link>)`
+/// * `parent_type_name` - Optional type name for generating method anchors
 pub fn render_impl_items<F, L>(
     md: &mut String,
     impl_block: &Impl,
@@ -566,6 +628,7 @@ pub fn render_impl_items<F, L>(
     type_renderer: &TypeRenderer,
     process_docs: &Option<F>,
     create_type_link: &Option<L>,
+    parent_type_name: Option<&str>,
 ) where
     F: Fn(&Item) -> Option<String>,
     L: Fn(rustdoc_types::Id) -> Option<String>,
@@ -576,7 +639,7 @@ pub fn render_impl_items<F, L>(
 
             match &item.inner {
                 ItemEnum::Function(f) => {
-                    render_impl_function(md, name, f, *type_renderer);
+                    render_impl_function(md, name, f, *type_renderer, parent_type_name);
 
                     // Add type links if link creator is provided
                     if let Some(link_creator) = create_type_link {
@@ -594,18 +657,37 @@ pub fn render_impl_items<F, L>(
                 },
 
                 ItemEnum::AssocConst { type_, .. } => {
-                    _ = writeln!(
-                        md,
-                        "- `const {name}: {}`\n",
-                        type_renderer.render_type(type_)
-                    );
+                    // Add anchor for associated constants if parent type is known
+                    if let Some(type_name) = parent_type_name {
+                        let anchor = method_anchor(type_name, name);
+                        _ = writeln!(
+                            md,
+                            "- <span id=\"{anchor}\"></span>`const {name}: {}`\n",
+                            type_renderer.render_type(type_)
+                        );
+                    } else {
+                        _ = writeln!(
+                            md,
+                            "- `const {name}: {}`\n",
+                            type_renderer.render_type(type_)
+                        );
+                    }
                 },
 
                 ItemEnum::AssocType { type_, .. } => {
+                    // Add anchor for associated types if parent type is known
+                    let anchor_prefix = parent_type_name
+                        .map(|tn| format!("<span id=\"{}\"></span>", method_anchor(tn, name)))
+                        .unwrap_or_default();
+
                     if let Some(ty) = type_ {
-                        _ = writeln!(md, "- `type {name} = {}`\n", type_renderer.render_type(ty));
+                        _ = writeln!(
+                            md,
+                            "- {anchor_prefix}`type {name} = {}`\n",
+                            type_renderer.render_type(ty)
+                        );
                     } else {
-                        _ = writeln!(md, "- `type {name}`\n");
+                        _ = writeln!(md, "- {anchor_prefix}`type {name}`\n");
                     }
                 },
 
@@ -663,11 +745,13 @@ fn render_function_type_links_inline<L>(
 /// Render a function signature within an impl block.
 ///
 /// Renders as a bullet point with the full signature including modifiers.
+/// If `parent_type_name` is provided, includes a hidden anchor for deep linking.
 fn render_impl_function(
     md: &mut String,
     name: &str,
     f: &rustdoc_types::Function,
     type_renderer: TypeRenderer,
+    parent_type_name: Option<&str>,
 ) {
     let generics = type_renderer.render_generics(&f.generics.params);
 
@@ -675,7 +759,10 @@ fn render_impl_function(
         .sig
         .inputs
         .iter()
-        .map(|(param_name, ty)| format!("{param_name}: {}", type_renderer.render_type(ty)))
+        .map(|(param_name, ty)| {
+            let raw = format!("{param_name}: {}", type_renderer.render_type(ty));
+            sanitize_self_param(&raw).into_owned()
+        })
         .collect();
 
     let ret = f
@@ -689,9 +776,14 @@ fn render_impl_function(
     let is_const = if f.header.is_const { "const " } else { "" };
     let is_unsafe = if f.header.is_unsafe { "unsafe " } else { "" };
 
+    // Add anchor for deep linking if parent type is known
+    let anchor_span = parent_type_name
+        .map(|tn| format!("<span id=\"{}\"></span>", method_anchor(tn, name)))
+        .unwrap_or_default();
+
     _ = write!(
         md,
-        "- `{}{}{}fn {}{}({}){}`",
+        "- {anchor_span}`{}{}{}fn {}{}({}){}`",
         is_const,
         is_async,
         is_unsafe,
@@ -738,5 +830,95 @@ pub trait DocsProcessor {
 impl<T: RenderContext + ?Sized> DocsProcessor for (&T, &str) {
     fn process_item_docs(&self, item: &Item) -> Option<String> {
         self.0.process_docs(item, self.1)
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    mod sanitize_path_tests {
+        use super::*;
+
+        #[test]
+        fn removes_crate_prefix() {
+            assert_eq!(sanitize_path("$crate::clone::Clone"), "clone::Clone");
+        }
+
+        #[test]
+        fn removes_multiple_crate_prefixes() {
+            assert_eq!(
+                sanitize_path("$crate::foo::$crate::bar::Baz"),
+                "foo::bar::Baz"
+            );
+        }
+
+        #[test]
+        fn preserves_normal_paths() {
+            assert_eq!(sanitize_path("std::fmt::Debug"), "std::fmt::Debug");
+        }
+
+        #[test]
+        fn preserves_simple_names() {
+            assert_eq!(sanitize_path("Clone"), "Clone");
+        }
+
+        #[test]
+        fn handles_empty_string() {
+            assert_eq!(sanitize_path(""), "");
+        }
+
+        #[test]
+        fn returns_borrowed_when_no_change() {
+            let result = sanitize_path("std::fmt::Debug");
+            assert!(matches!(result, Cow::Borrowed(_)));
+        }
+
+        #[test]
+        fn returns_owned_when_changed() {
+            let result = sanitize_path("$crate::Clone");
+            assert!(matches!(result, Cow::Owned(_)));
+        }
+    }
+
+    mod sanitize_self_param_tests {
+        use super::*;
+
+        #[test]
+        fn converts_ref_self() {
+            assert_eq!(sanitize_self_param("self: &Self"), "&self");
+        }
+
+        #[test]
+        fn converts_mut_ref_self() {
+            assert_eq!(sanitize_self_param("self: &mut Self"), "&mut self");
+        }
+
+        #[test]
+        fn converts_owned_self() {
+            assert_eq!(sanitize_self_param("self: Self"), "self");
+        }
+
+        #[test]
+        fn preserves_regular_params() {
+            assert_eq!(sanitize_self_param("x: i32"), "x: i32");
+        }
+
+        #[test]
+        fn preserves_complex_types() {
+            assert_eq!(
+                sanitize_self_param("callback: impl Fn()"),
+                "callback: impl Fn()"
+            );
+        }
+
+        #[test]
+        fn returns_borrowed_for_all_cases() {
+            // All return values should be borrowed (no allocation)
+            assert!(matches!(sanitize_self_param("self: &Self"), Cow::Borrowed(_)));
+            assert!(matches!(sanitize_self_param("self: &mut Self"), Cow::Borrowed(_)));
+            assert!(matches!(sanitize_self_param("self: Self"), Cow::Borrowed(_)));
+            assert!(matches!(sanitize_self_param("x: i32"), Cow::Borrowed(_)));
+        }
     }
 }

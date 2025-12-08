@@ -804,6 +804,141 @@ and some from [`thiserror`](https://github.com/dtolnay/thiserror), also
 under the Apache License. Some code is taken from
 [`ariadne`](https://github.com/zesterer/ariadne), which is MIT licensed.
 
+## Contents
+
+- [Modules](#modules)
+  - [`chain`](#chain)
+  - [`diagnostic_chain`](#diagnostic_chain)
+  - [`diagnostic_impls`](#diagnostic_impls)
+  - [`error`](#error)
+  - [`eyreish`](#eyreish)
+  - [`handler`](#handler)
+  - [`handlers`](#handlers)
+  - [`highlighters`](#highlighters)
+  - [`miette_diagnostic`](#miette_diagnostic)
+  - [`named_source`](#named_source)
+  - [`panic`](#panic)
+  - [`protocol`](#protocol)
+  - [`source_impls`](#source_impls)
+  - [`context`](#context)
+  - [`error`](#error)
+  - [`fmt`](#fmt)
+  - [`into_diagnostic`](#into_diagnostic)
+  - [`kind`](#kind)
+  - [`macros`](#macros)
+  - [`ptr`](#ptr)
+  - [`wrapper`](#wrapper)
+  - [`syscall`](#syscall)
+  - [`debug`](#debug)
+  - [`graphical`](#graphical)
+  - [`json`](#json)
+  - [`narratable`](#narratable)
+  - [`theme`](#theme)
+- [Structs](#structs)
+  - [`Report`](#report)
+  - [`InstallError`](#installerror)
+  - [`MietteHandlerOpts`](#miettehandleropts)
+  - [`MietteHandler`](#miettehandler)
+  - [`MietteDiagnostic`](#miettediagnostic)
+  - [`NamedSource`](#namedsource)
+  - [`Panic`](#panic)
+  - [`LabeledSpan`](#labeledspan)
+  - [`MietteSpanContents`](#miettespancontents)
+  - [`SourceSpan`](#sourcespan)
+  - [`SourceOffset`](#sourceoffset)
+- [Enums](#enums)
+  - [`MietteError`](#mietteerror)
+  - [`RgbColors`](#rgbcolors)
+  - [`HighlighterOption`](#highlighteroption)
+  - [`Severity`](#severity)
+- [Traits](#traits)
+  - [`ReportHandler`](#reporthandler)
+  - [`WrapErr`](#wraperr)
+  - [`Diagnostic`](#diagnostic)
+  - [`SourceCode`](#sourcecode)
+  - [`SpanContents`](#spancontents)
+- [Functions](#functions)
+  - [`set_hook`](#set_hook)
+  - [`capture_handler`](#capture_handler)
+  - [`get_default_printer`](#get_default_printer)
+  - [`set_panic_hook`](#set_panic_hook)
+- [Type Aliases](#type-aliases)
+  - [`ErrorHook`](#errorhook)
+  - [`Result`](#result)
+  - [`ByteOffset`](#byteoffset)
+- [Macros](#macros)
+  - [`bail!`](#bail)
+  - [`ensure!`](#ensure)
+  - [`miette!`](#miette)
+  - [`diagnostic!`](#diagnostic)
+  - [`box_error_impls!`](#box_error_impls)
+  - [`box_borrow_impls!`](#box_borrow_impls)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`chain`](#chain) | mod | Iterate over error `.source()` chains. |
+| [`diagnostic_chain`](#diagnostic_chain) | mod | Iterate over error `.diagnostic_source()` chains. |
+| [`diagnostic_impls`](#diagnostic_impls) | mod | Default trait implementations for [`Diagnostic`]. |
+| [`error`](#error) | mod |  |
+| [`eyreish`](#eyreish) | mod |  |
+| [`handler`](#handler) | mod |  |
+| [`handlers`](#handlers) | mod | Reporters included with `miette`. |
+| [`highlighters`](#highlighters) | mod | This module provides a trait for creating custom syntax highlighters that |
+| [`miette_diagnostic`](#miette_diagnostic) | mod |  |
+| [`named_source`](#named_source) | mod |  |
+| [`panic`](#panic) | mod |  |
+| [`protocol`](#protocol) | mod | This module defines the core of the miette protocol: a series of types and |
+| [`source_impls`](#source_impls) | mod | Default trait implementations for [`SourceCode`]. |
+| [`context`](#context) | mod |  |
+| [`error`](#error) | mod |  |
+| [`fmt`](#fmt) | mod |  |
+| [`into_diagnostic`](#into_diagnostic) | mod |  |
+| [`kind`](#kind) | mod |  |
+| [`macros`](#macros) | mod |  |
+| [`ptr`](#ptr) | mod |  |
+| [`wrapper`](#wrapper) | mod |  |
+| [`syscall`](#syscall) | mod |  |
+| [`debug`](#debug) | mod |  |
+| [`graphical`](#graphical) | mod |  |
+| [`json`](#json) | mod |  |
+| [`narratable`](#narratable) | mod |  |
+| [`theme`](#theme) | mod |  |
+| [`Report`](#report) | struct | Core Diagnostic wrapper type. |
+| [`InstallError`](#installerror) | struct | Error indicating that [`set_hook()`] was unable to install the provided |
+| [`MietteHandlerOpts`](#miettehandleropts) | struct | Create a custom [`MietteHandler`] from options. |
+| [`MietteHandler`](#miettehandler) | struct | A [`ReportHandler`] that displays a given [`Report`](crate::Report) in a |
+| [`MietteDiagnostic`](#miettediagnostic) | struct | Diagnostic that can be created at runtime. |
+| [`NamedSource`](#namedsource) | struct | Utility struct for when you have a regular [`SourceCode`] type that doesn't |
+| [`Panic`](#panic) | struct |  |
+| [`LabeledSpan`](#labeledspan) | struct | A labeled [`SourceSpan`]. |
+| [`MietteSpanContents`](#miettespancontents) | struct | Basic implementation of the [`SpanContents`] trait, for convenience. |
+| [`SourceSpan`](#sourcespan) | struct | Span within a [`SourceCode`] |
+| [`SourceOffset`](#sourceoffset) | struct | Newtype that represents the [`ByteOffset`] from the beginning of a [`SourceCode`] |
+| [`MietteError`](#mietteerror) | enum | Error enum for miette. |
+| [`RgbColors`](#rgbcolors) | enum | Settings to control the color format used for graphical rendering. |
+| [`HighlighterOption`](#highlighteroption) | enum |  |
+| [`Severity`](#severity) | enum | [`Diagnostic`] severity. |
+| [`ReportHandler`](#reporthandler) | trait | Error Report Handler trait for customizing `miette::Report` |
+| [`WrapErr`](#wraperr) | trait | Provides the [`wrap_err()`](WrapErr::wrap_err) method for [`Result`]. |
+| [`Diagnostic`](#diagnostic) | trait | Adds rich metadata to your Error that can be used by |
+| [`SourceCode`](#sourcecode) | trait | Represents readable source code of some sort. |
+| [`SpanContents`](#spancontents) | trait | Contents of a [`SourceCode`] covered by [`SourceSpan`]. |
+| [`set_hook`](#set_hook) | fn | Set the error hook. |
+| [`capture_handler`](#capture_handler) | fn |  |
+| [`get_default_printer`](#get_default_printer) | fn |  |
+| [`set_panic_hook`](#set_panic_hook) | fn | Tells miette to render panics using its rendering engine. |
+| [`ErrorHook`](#errorhook) | type |  |
+| [`Result`](#result) | type | type alias for `Result<T, Report>` |
+| [`ByteOffset`](#byteoffset) | type | "Raw" type for the byte offset from the beginning of a [`SourceCode`]. |
+| [`bail!`](#bail) | macro | Return early with an error. |
+| [`ensure!`](#ensure) | macro | Return early with an error if a condition is not satisfied. |
+| [`miette!`](#miette) | macro | Construct an ad-hoc [`Report`]. |
+| [`diagnostic!`](#diagnostic) | macro | Construct a [`MietteDiagnostic`] in more user-friendly way. |
+| [`box_error_impls!`](#box_error_impls) | macro |  |
+| [`box_borrow_impls!`](#box_borrow_impls) | macro |  |
+
 ## Modules
 
 - [`chain`](chain/index.md) - Iterate over error `.source()` chains.
@@ -852,83 +987,83 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 #### Implementations
 
-- `fn new<E>(error: E) -> Self`
+- <span id="superreport-new"></span>`fn new<E>(error: E) -> Self`
 
-- `fn msg<M>(message: M) -> Self`
+- <span id="superreport-msg"></span>`fn msg<M>(message: M) -> Self`
 
-- `fn new_boxed(error: Box<dyn Diagnostic + Send + Sync>) -> Self` — [`Diagnostic`](#diagnostic)
+- <span id="superreport-new-boxed"></span>`fn new_boxed(error: Box<dyn Diagnostic + Send + Sync>) -> Self` — [`Diagnostic`](#diagnostic)
 
-- `fn from_std<E>(error: E) -> Self`
+- <span id="superreport-from-std"></span>`fn from_std<E>(error: E) -> Self`
 
-- `fn from_adhoc<M>(message: M) -> Self`
+- <span id="superreport-from-adhoc"></span>`fn from_adhoc<M>(message: M) -> Self`
 
-- `fn from_msg<D, E>(msg: D, error: E) -> Self`
+- <span id="superreport-from-msg"></span>`fn from_msg<D, E>(msg: D, error: E) -> Self`
 
-- `fn from_boxed(error: Box<dyn Diagnostic + Send + Sync>) -> Self` — [`Diagnostic`](#diagnostic)
+- <span id="superreport-from-boxed"></span>`fn from_boxed(error: Box<dyn Diagnostic + Send + Sync>) -> Self` — [`Diagnostic`](#diagnostic)
 
-- `unsafe fn construct<E>(error: E, vtable: &'static ErrorVTable, handler: Option<Box<dyn ReportHandler>>) -> Self` — [`ErrorVTable`](eyreish/error/index.md), [`ReportHandler`](#reporthandler)
+- <span id="superreport-construct"></span>`unsafe fn construct<E>(error: E, vtable: &'static ErrorVTable, handler: Option<Box<dyn ReportHandler>>) -> Self` — [`ErrorVTable`](eyreish/error/index.md), [`ReportHandler`](#reporthandler)
 
-- `fn wrap_err<D>(self: Self, msg: D) -> Self`
+- <span id="superreport-wrap-err"></span>`fn wrap_err<D>(self, msg: D) -> Self`
 
-- `fn context<D>(self: Self, msg: D) -> Self`
+- <span id="superreport-context"></span>`fn context<D>(self, msg: D) -> Self`
 
-- `fn chain(self: &Self) -> Chain<'_>` — [`Chain`](chain/index.md)
+- <span id="superreport-chain"></span>`fn chain(&self) -> Chain<'_>` — [`Chain`](chain/index.md)
 
-- `fn root_cause(self: &Self) -> &dyn StdError`
+- <span id="superreport-root-cause"></span>`fn root_cause(&self) -> &dyn StdError`
 
-- `fn is<E>(self: &Self) -> bool`
+- <span id="superreport-is"></span>`fn is<E>(&self) -> bool`
 
-- `fn downcast<E>(self: Self) -> Result<E, Self>`
+- <span id="superreport-downcast"></span>`fn downcast<E>(self) -> Result<E, Self>`
 
-- `fn downcast_ref<E>(self: &Self) -> Option<&E>`
+- <span id="superreport-downcast-ref"></span>`fn downcast_ref<E>(&self) -> Option<&E>`
 
-- `fn downcast_mut<E>(self: &mut Self) -> Option<&mut E>`
+- <span id="superreport-downcast-mut"></span>`fn downcast_mut<E>(&mut self) -> Option<&mut E>`
 
-- `fn handler(self: &Self) -> &dyn ReportHandler` — [`ReportHandler`](#reporthandler)
+- <span id="superreport-handler"></span>`fn handler(&self) -> &dyn ReportHandler` — [`ReportHandler`](#reporthandler)
 
-- `fn handler_mut(self: &mut Self) -> &mut dyn ReportHandler` — [`ReportHandler`](#reporthandler)
+- <span id="superreport-handler-mut"></span>`fn handler_mut(&mut self) -> &mut dyn ReportHandler` — [`ReportHandler`](#reporthandler)
 
-- `fn with_source_code(self: Self, source_code: impl SourceCode + 'static) -> Report` — [`SourceCode`](#sourcecode), [`Report`](#report)
+- <span id="superreport-with-source-code"></span>`fn with_source_code(self, source_code: impl SourceCode + 'static) -> Report` — [`SourceCode`](#sourcecode), [`Report`](#report)
 
-- `fn from_err<E>(err: E) -> Self`
+- <span id="superreport-from-err"></span>`fn from_err<E>(err: E) -> Self`
 
 #### Trait Implementations
 
 ##### `impl AsRef for super::Report`
 
-- `fn as_ref(self: &Self) -> &dyn StdError`
+- <span id="superreport-as-ref"></span>`fn as_ref(&self) -> &dyn Diagnostic` — [`Diagnostic`](#diagnostic)
 
 ##### `impl Debug for super::Report`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="superreport-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deref for super::Report`
 
-- `type Target = dyn Diagnostic + Send + Sync`
+- <span id="superreport-target"></span>`type Target = dyn Diagnostic + Send + Sync`
 
-- `fn deref(self: &Self) -> &<Self as >::Target`
+- <span id="superreport-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl DerefMut for super::Report`
 
-- `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+- <span id="superreport-deref-mut"></span>`fn deref_mut(&mut self) -> &mut <Self as >::Target`
 
 ##### `impl Diag for super::Report`
 
-- `fn ext_report<D>(self: Self, msg: D) -> Report` — [`Report`](#report)
+- <span id="superreport-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](#report)
 
 ##### `impl Display for super::Report`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="superreport-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Drop for super::Report`
 
-- `fn drop(self: &mut Self)`
+- <span id="superreport-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<D> OwoColorize for Report`
 
 ##### `impl<P, T> Receiver for Report`
 
-- `type Target = T`
+- <span id="report-target"></span>`type Target = T`
 
 ##### `impl Send for Report`
 
@@ -936,7 +1071,7 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 ##### `impl<T> ToString for Report`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="report-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl<E> TraitKind for Report`
 
@@ -953,17 +1088,17 @@ Error indicating that [`set_hook()`](#set-hook) was unable to install the provid
 
 ##### `impl Debug for InstallError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="installerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E> Diag for InstallError`
 
-- `fn ext_report<D>(self: Self, msg: D) -> Report` — [`Report`](#report)
+- <span id="installerror-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](#report)
 
 ##### `impl Diagnostic for InstallError`
 
 ##### `impl Display for InstallError`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="installerror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for InstallError`
 
@@ -971,7 +1106,7 @@ Error indicating that [`set_hook()`](#set-hook) was unable to install the provid
 
 ##### `impl<T> ToString for InstallError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="installerror-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl<E> TraitKind for InstallError`
 
@@ -1017,71 +1152,71 @@ miette::set_hook(Box::new(|_| {
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="miettehandleropts-new"></span>`fn new() -> Self`
 
-- `fn terminal_links(self: Self, linkify: bool) -> Self`
+- <span id="miettehandleropts-terminal-links"></span>`fn terminal_links(self, linkify: bool) -> Self`
 
-- `fn graphical_theme(self: Self, theme: GraphicalTheme) -> Self` — [`GraphicalTheme`](handlers/index.md)
+- <span id="miettehandleropts-graphical-theme"></span>`fn graphical_theme(self, theme: GraphicalTheme) -> Self` — [`GraphicalTheme`](handlers/index.md)
 
-- `fn with_syntax_highlighting(self: Self, highlighter: impl Highlighter + Send + Sync + 'static) -> Self` — [`Highlighter`](highlighters/index.md)
+- <span id="miettehandleropts-with-syntax-highlighting"></span>`fn with_syntax_highlighting(self, highlighter: impl Highlighter + Send + Sync + 'static) -> Self` — [`Highlighter`](highlighters/index.md)
 
-- `fn without_syntax_highlighting(self: Self) -> Self`
+- <span id="miettehandleropts-without-syntax-highlighting"></span>`fn without_syntax_highlighting(self) -> Self`
 
-- `fn width(self: Self, width: usize) -> Self`
+- <span id="miettehandleropts-width"></span>`fn width(self, width: usize) -> Self`
 
-- `fn wrap_lines(self: Self, wrap_lines: bool) -> Self`
+- <span id="miettehandleropts-wrap-lines"></span>`fn wrap_lines(self, wrap_lines: bool) -> Self`
 
-- `fn break_words(self: Self, break_words: bool) -> Self`
+- <span id="miettehandleropts-break-words"></span>`fn break_words(self, break_words: bool) -> Self`
 
-- `fn word_separator(self: Self, word_separator: textwrap::WordSeparator) -> Self`
+- <span id="miettehandleropts-word-separator"></span>`fn word_separator(self, word_separator: textwrap::WordSeparator) -> Self`
 
-- `fn word_splitter(self: Self, word_splitter: textwrap::WordSplitter) -> Self`
+- <span id="miettehandleropts-word-splitter"></span>`fn word_splitter(self, word_splitter: textwrap::WordSplitter) -> Self`
 
-- `fn with_cause_chain(self: Self) -> Self`
+- <span id="miettehandleropts-with-cause-chain"></span>`fn with_cause_chain(self) -> Self`
 
-- `fn without_cause_chain(self: Self) -> Self`
+- <span id="miettehandleropts-without-cause-chain"></span>`fn without_cause_chain(self) -> Self`
 
-- `fn show_related_errors_as_siblings(self: Self) -> Self`
+- <span id="miettehandleropts-show-related-errors-as-siblings"></span>`fn show_related_errors_as_siblings(self) -> Self`
 
-- `fn show_related_errors_as_nested(self: Self) -> Self`
+- <span id="miettehandleropts-show-related-errors-as-nested"></span>`fn show_related_errors_as_nested(self) -> Self`
 
-- `fn color(self: Self, color: bool) -> Self`
+- <span id="miettehandleropts-color"></span>`fn color(self, color: bool) -> Self`
 
-- `fn rgb_colors(self: Self, color: RgbColors) -> Self` — [`RgbColors`](#rgbcolors)
+- <span id="miettehandleropts-rgb-colors"></span>`fn rgb_colors(self, color: RgbColors) -> Self` — [`RgbColors`](#rgbcolors)
 
-- `fn unicode(self: Self, unicode: bool) -> Self`
+- <span id="miettehandleropts-unicode"></span>`fn unicode(self, unicode: bool) -> Self`
 
-- `fn force_graphical(self: Self, force: bool) -> Self`
+- <span id="miettehandleropts-force-graphical"></span>`fn force_graphical(self, force: bool) -> Self`
 
-- `fn force_narrated(self: Self, force: bool) -> Self`
+- <span id="miettehandleropts-force-narrated"></span>`fn force_narrated(self, force: bool) -> Self`
 
-- `fn footer(self: Self, footer: String) -> Self`
+- <span id="miettehandleropts-footer"></span>`fn footer(self, footer: String) -> Self`
 
-- `fn context_lines(self: Self, context_lines: usize) -> Self`
+- <span id="miettehandleropts-context-lines"></span>`fn context_lines(self, context_lines: usize) -> Self`
 
-- `fn tab_width(self: Self, width: usize) -> Self`
+- <span id="miettehandleropts-tab-width"></span>`fn tab_width(self, width: usize) -> Self`
 
-- `fn build(self: Self) -> MietteHandler` — [`MietteHandler`](#miettehandler)
+- <span id="miettehandleropts-build"></span>`fn build(self) -> MietteHandler` — [`MietteHandler`](#miettehandler)
 
-- `fn is_graphical(self: &Self) -> bool`
+- <span id="miettehandleropts-is-graphical"></span>`fn is_graphical(&self) -> bool`
 
-- `fn use_links(self: &Self) -> bool`
+- <span id="miettehandleropts-use-links"></span>`fn use_links(&self) -> bool`
 
-- `fn get_width(self: &Self) -> usize`
+- <span id="miettehandleropts-get-width"></span>`fn get_width(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Clone for MietteHandlerOpts`
 
-- `fn clone(self: &Self) -> MietteHandlerOpts` — [`MietteHandlerOpts`](#miettehandleropts)
+- <span id="miettehandleropts-clone"></span>`fn clone(&self) -> MietteHandlerOpts` — [`MietteHandlerOpts`](#miettehandleropts)
 
 ##### `impl Debug for MietteHandlerOpts`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="miettehandleropts-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for MietteHandlerOpts`
 
-- `fn default() -> MietteHandlerOpts` — [`MietteHandlerOpts`](#miettehandleropts)
+- <span id="miettehandleropts-default"></span>`fn default() -> MietteHandlerOpts` — [`MietteHandlerOpts`](#miettehandleropts)
 
 ##### `impl<D> OwoColorize for MietteHandlerOpts`
 
@@ -1108,19 +1243,19 @@ printer.
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="miettehandler-new"></span>`fn new() -> Self`
 
 #### Trait Implementations
 
 ##### `impl Default for MietteHandler`
 
-- `fn default() -> Self`
+- <span id="miettehandler-default"></span>`fn default() -> Self`
 
 ##### `impl<D> OwoColorize for MietteHandler`
 
 ##### `impl ReportHandler for MietteHandler`
 
-- `fn debug(self: &Self, diagnostic: &dyn Diagnostic, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`Diagnostic`](#diagnostic)
+- <span id="miettehandler-debug"></span>`fn debug(&self, diagnostic: &dyn Diagnostic, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`Diagnostic`](#diagnostic)
 
 ### `MietteDiagnostic`
 
@@ -1172,53 +1307,53 @@ Diagnostic that can be created at runtime.
 
 #### Implementations
 
-- `fn new(message: impl Into<String>) -> Self`
+- <span id="miettediagnostic-new"></span>`fn new(message: impl Into<String>) -> Self`
 
-- `fn with_code(self: Self, code: impl Into<String>) -> Self`
+- <span id="miettediagnostic-with-code"></span>`fn with_code(self, code: impl Into<String>) -> Self`
 
-- `fn with_severity(self: Self, severity: Severity) -> Self` — [`Severity`](#severity)
+- <span id="miettediagnostic-with-severity"></span>`fn with_severity(self, severity: Severity) -> Self` — [`Severity`](#severity)
 
-- `fn with_help(self: Self, help: impl Into<String>) -> Self`
+- <span id="miettediagnostic-with-help"></span>`fn with_help(self, help: impl Into<String>) -> Self`
 
-- `fn with_url(self: Self, url: impl Into<String>) -> Self`
+- <span id="miettediagnostic-with-url"></span>`fn with_url(self, url: impl Into<String>) -> Self`
 
-- `fn with_label(self: Self, label: impl Into<LabeledSpan>) -> Self` — [`LabeledSpan`](#labeledspan)
+- <span id="miettediagnostic-with-label"></span>`fn with_label(self, label: impl Into<LabeledSpan>) -> Self` — [`LabeledSpan`](#labeledspan)
 
-- `fn with_labels(self: Self, labels: impl IntoIterator<Item = LabeledSpan>) -> Self` — [`LabeledSpan`](#labeledspan)
+- <span id="miettediagnostic-with-labels"></span>`fn with_labels(self, labels: impl IntoIterator<Item = LabeledSpan>) -> Self` — [`LabeledSpan`](#labeledspan)
 
-- `fn and_label(self: Self, label: impl Into<LabeledSpan>) -> Self` — [`LabeledSpan`](#labeledspan)
+- <span id="miettediagnostic-and-label"></span>`fn and_label(self, label: impl Into<LabeledSpan>) -> Self` — [`LabeledSpan`](#labeledspan)
 
-- `fn and_labels(self: Self, labels: impl IntoIterator<Item = LabeledSpan>) -> Self` — [`LabeledSpan`](#labeledspan)
+- <span id="miettediagnostic-and-labels"></span>`fn and_labels(self, labels: impl IntoIterator<Item = LabeledSpan>) -> Self` — [`LabeledSpan`](#labeledspan)
 
 #### Trait Implementations
 
 ##### `impl Clone for MietteDiagnostic`
 
-- `fn clone(self: &Self) -> MietteDiagnostic` — [`MietteDiagnostic`](#miettediagnostic)
+- <span id="miettediagnostic-clone"></span>`fn clone(&self) -> MietteDiagnostic` — [`MietteDiagnostic`](#miettediagnostic)
 
 ##### `impl Debug for MietteDiagnostic`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="miettediagnostic-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E> Diag for MietteDiagnostic`
 
-- `fn ext_report<D>(self: Self, msg: D) -> Report` — [`Report`](#report)
+- <span id="miettediagnostic-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](#report)
 
 ##### `impl Diagnostic for MietteDiagnostic`
 
-- `fn code<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
+- <span id="miettediagnostic-code"></span>`fn code<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
-- `fn severity(self: &Self) -> Option<Severity>` — [`Severity`](#severity)
+- <span id="miettediagnostic-severity"></span>`fn severity(&self) -> Option<Severity>` — [`Severity`](#severity)
 
-- `fn help<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
+- <span id="miettediagnostic-help"></span>`fn help<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
-- `fn url<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
+- <span id="miettediagnostic-url"></span>`fn url<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
-- `fn labels(self: &Self) -> Option<Box<dyn Iterator<Item = LabeledSpan>>>` — [`LabeledSpan`](#labeledspan)
+- <span id="miettediagnostic-labels"></span>`fn labels(&self) -> Option<Box<dyn Iterator<Item = LabeledSpan>>>` — [`LabeledSpan`](#labeledspan)
 
 ##### `impl Display for MietteDiagnostic`
 
-- `fn fmt(self: &Self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="miettediagnostic-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
 ##### `impl Eq for MietteDiagnostic`
 
@@ -1228,13 +1363,13 @@ Diagnostic that can be created at runtime.
 
 ##### `impl PartialEq for MietteDiagnostic`
 
-- `fn eq(self: &Self, other: &MietteDiagnostic) -> bool` — [`MietteDiagnostic`](#miettediagnostic)
+- <span id="miettediagnostic-eq"></span>`fn eq(&self, other: &MietteDiagnostic) -> bool` — [`MietteDiagnostic`](#miettediagnostic)
 
 ##### `impl StructuralPartialEq for MietteDiagnostic`
 
 ##### `impl<T> ToString for MietteDiagnostic`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="miettediagnostic-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl<E> TraitKind for MietteDiagnostic`
 
@@ -1254,47 +1389,47 @@ implement `name`. For example [`String`](../clap_builder/index.md). Or if you wa
 
 #### Implementations
 
-- `fn new(name: impl AsRef<str>, source: S) -> Self`
+- <span id="namedsource-new"></span>`fn new(name: impl AsRef<str>, source: S) -> Self`
 
-- `fn name(self: &Self) -> &str`
+- <span id="namedsource-name"></span>`fn name(&self) -> &str`
 
-- `fn inner(self: &Self) -> &S`
+- <span id="namedsource-inner"></span>`fn inner(&self) -> &S`
 
-- `fn with_language(self: Self, language: impl Into<String>) -> Self`
+- <span id="namedsource-with-language"></span>`fn with_language(self, language: impl Into<String>) -> Self`
 
 #### Trait Implementations
 
-##### `impl<S: $crate::clone::Clone + SourceCode + 'static> Clone for NamedSource<S>`
+##### `impl<S: clone::Clone + SourceCode + 'static> Clone for NamedSource<S>`
 
-- `fn clone(self: &Self) -> NamedSource<S>` — [`NamedSource`](#namedsource)
+- <span id="namedsource-clone"></span>`fn clone(&self) -> NamedSource<S>` — [`NamedSource`](#namedsource)
 
 ##### `impl<S: SourceCode> Debug for NamedSource<S>`
 
-- `fn fmt(self: &Self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="namedsource-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
-##### `impl<S: $crate::cmp::Eq + SourceCode + 'static> Eq for NamedSource<S>`
+##### `impl<S: cmp::Eq + SourceCode + 'static> Eq for NamedSource<S>`
 
-##### `impl<S: $crate::hash::Hash + SourceCode + 'static> Hash for NamedSource<S>`
+##### `impl<S: hash::Hash + SourceCode + 'static> Hash for NamedSource<S>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="namedsource-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<S: $crate::cmp::Ord + SourceCode + 'static> Ord for NamedSource<S>`
+##### `impl<S: cmp::Ord + SourceCode + 'static> Ord for NamedSource<S>`
 
-- `fn cmp(self: &Self, other: &NamedSource<S>) -> $crate::cmp::Ordering` — [`NamedSource`](#namedsource)
+- <span id="namedsource-cmp"></span>`fn cmp(&self, other: &NamedSource<S>) -> cmp::Ordering` — [`NamedSource`](#namedsource)
 
 ##### `impl<D> OwoColorize for NamedSource<S>`
 
-##### `impl<S: $crate::cmp::PartialEq + SourceCode + 'static> PartialEq for NamedSource<S>`
+##### `impl<S: cmp::PartialEq + SourceCode + 'static> PartialEq for NamedSource<S>`
 
-- `fn eq(self: &Self, other: &NamedSource<S>) -> bool` — [`NamedSource`](#namedsource)
+- <span id="namedsource-eq"></span>`fn eq(&self, other: &NamedSource<S>) -> bool` — [`NamedSource`](#namedsource)
 
-##### `impl<S: $crate::cmp::PartialOrd + SourceCode + 'static> PartialOrd for NamedSource<S>`
+##### `impl<S: cmp::PartialOrd + SourceCode + 'static> PartialOrd for NamedSource<S>`
 
-- `fn partial_cmp(self: &Self, other: &NamedSource<S>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`NamedSource`](#namedsource)
+- <span id="namedsource-partial-cmp"></span>`fn partial_cmp(&self, other: &NamedSource<S>) -> option::Option<cmp::Ordering>` — [`NamedSource`](#namedsource)
 
 ##### `impl<S: SourceCode + 'static> SourceCode for NamedSource<S>`
 
-- `fn read_span<'a>(self: &'a Self, span: &crate::SourceSpan, context_lines_before: usize, context_lines_after: usize) -> Result<Box<dyn SpanContents<'a>>, MietteError>` — [`SourceSpan`](#sourcespan), [`SpanContents`](#spancontents), [`MietteError`](#mietteerror)
+- <span id="namedsource-read-span"></span>`fn read_span<'a>(self: &'a Self, span: &crate::SourceSpan, context_lines_before: usize, context_lines_after: usize) -> Result<Box<dyn SpanContents<'a>>, MietteError>` — [`SourceSpan`](#sourcespan), [`SpanContents`](#spancontents), [`MietteError`](#mietteerror)
 
 ##### `impl<S: SourceCode + 'static> StructuralPartialEq for NamedSource<S>`
 
@@ -1306,25 +1441,25 @@ struct Panic(String);
 
 #### Implementations
 
-- `fn backtrace() -> String`
+- <span id="panic-backtrace"></span>`fn backtrace() -> String`
 
 #### Trait Implementations
 
 ##### `impl Debug for Panic`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="panic-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E> Diag for Panic`
 
-- `fn ext_report<D>(self: Self, msg: D) -> Report` — [`Report`](#report)
+- <span id="panic-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](#report)
 
 ##### `impl Diagnostic for Panic`
 
-- `fn help<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
+- <span id="panic-help"></span>`fn help<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
 ##### `impl Display for Panic`
 
-- `fn fmt(self: &Self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="panic-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
 ##### `impl Error for Panic`
 
@@ -1332,7 +1467,7 @@ struct Panic(String);
 
 ##### `impl<T> ToString for Panic`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="panic-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl<E> TraitKind for Panic`
 
@@ -1350,41 +1485,41 @@ A labeled [`SourceSpan`](#sourcespan).
 
 #### Implementations
 
-- `const fn new(label: Option<String>, offset: ByteOffset, len: usize) -> Self` — [`ByteOffset`](#byteoffset)
+- <span id="labeledspan-new"></span>`const fn new(label: Option<String>, offset: ByteOffset, len: usize) -> Self` — [`ByteOffset`](#byteoffset)
 
-- `fn new_with_span(label: Option<String>, span: impl Into<SourceSpan>) -> Self` — [`SourceSpan`](#sourcespan)
+- <span id="labeledspan-new-with-span"></span>`fn new_with_span(label: Option<String>, span: impl Into<SourceSpan>) -> Self` — [`SourceSpan`](#sourcespan)
 
-- `fn new_primary_with_span(label: Option<String>, span: impl Into<SourceSpan>) -> Self` — [`SourceSpan`](#sourcespan)
+- <span id="labeledspan-new-primary-with-span"></span>`fn new_primary_with_span(label: Option<String>, span: impl Into<SourceSpan>) -> Self` — [`SourceSpan`](#sourcespan)
 
-- `fn set_label(self: &mut Self, label: Option<String>)`
+- <span id="labeledspan-set-label"></span>`fn set_label(&mut self, label: Option<String>)`
 
-- `fn at(span: impl Into<SourceSpan>, label: impl Into<String>) -> Self` — [`SourceSpan`](#sourcespan)
+- <span id="labeledspan-at"></span>`fn at(span: impl Into<SourceSpan>, label: impl Into<String>) -> Self` — [`SourceSpan`](#sourcespan)
 
-- `fn at_offset(offset: ByteOffset, label: impl Into<String>) -> Self` — [`ByteOffset`](#byteoffset)
+- <span id="labeledspan-at-offset"></span>`fn at_offset(offset: ByteOffset, label: impl Into<String>) -> Self` — [`ByteOffset`](#byteoffset)
 
-- `fn underline(span: impl Into<SourceSpan>) -> Self` — [`SourceSpan`](#sourcespan)
+- <span id="labeledspan-underline"></span>`fn underline(span: impl Into<SourceSpan>) -> Self` — [`SourceSpan`](#sourcespan)
 
-- `fn label(self: &Self) -> Option<&str>`
+- <span id="labeledspan-label"></span>`fn label(&self) -> Option<&str>`
 
-- `const fn inner(self: &Self) -> &SourceSpan` — [`SourceSpan`](#sourcespan)
+- <span id="labeledspan-inner"></span>`const fn inner(&self) -> &SourceSpan` — [`SourceSpan`](#sourcespan)
 
-- `const fn offset(self: &Self) -> usize`
+- <span id="labeledspan-offset"></span>`const fn offset(&self) -> usize`
 
-- `const fn len(self: &Self) -> usize`
+- <span id="labeledspan-len"></span>`const fn len(&self) -> usize`
 
-- `const fn is_empty(self: &Self) -> bool`
+- <span id="labeledspan-is-empty"></span>`const fn is_empty(&self) -> bool`
 
-- `const fn primary(self: &Self) -> bool`
+- <span id="labeledspan-primary"></span>`const fn primary(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for LabeledSpan`
 
-- `fn clone(self: &Self) -> LabeledSpan` — [`LabeledSpan`](#labeledspan)
+- <span id="labeledspan-clone"></span>`fn clone(&self) -> LabeledSpan` — [`LabeledSpan`](#labeledspan)
 
 ##### `impl Debug for LabeledSpan`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="labeledspan-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for LabeledSpan`
 
@@ -1392,7 +1527,7 @@ A labeled [`SourceSpan`](#sourcespan).
 
 ##### `impl PartialEq for LabeledSpan`
 
-- `fn eq(self: &Self, other: &LabeledSpan) -> bool` — [`LabeledSpan`](#labeledspan)
+- <span id="labeledspan-eq"></span>`fn eq(&self, other: &LabeledSpan) -> bool` — [`LabeledSpan`](#labeledspan)
 
 ##### `impl StructuralPartialEq for LabeledSpan`
 
@@ -1414,39 +1549,39 @@ Basic implementation of the [`SpanContents`](#spancontents) trait, for convenien
 
 #### Implementations
 
-- `const fn new(data: &'a [u8], span: SourceSpan, line: usize, column: usize, line_count: usize) -> MietteSpanContents<'a>` — [`SourceSpan`](#sourcespan), [`MietteSpanContents`](#miettespancontents)
+- <span id="miettespancontents-new"></span>`const fn new(data: &'a [u8], span: SourceSpan, line: usize, column: usize, line_count: usize) -> MietteSpanContents<'a>` — [`SourceSpan`](#sourcespan), [`MietteSpanContents`](#miettespancontents)
 
-- `const fn new_named(name: String, data: &'a [u8], span: SourceSpan, line: usize, column: usize, line_count: usize) -> MietteSpanContents<'a>` — [`SourceSpan`](#sourcespan), [`MietteSpanContents`](#miettespancontents)
+- <span id="miettespancontents-new-named"></span>`const fn new_named(name: String, data: &'a [u8], span: SourceSpan, line: usize, column: usize, line_count: usize) -> MietteSpanContents<'a>` — [`SourceSpan`](#sourcespan), [`MietteSpanContents`](#miettespancontents)
 
-- `fn with_language(self: Self, language: impl Into<String>) -> Self`
+- <span id="miettespancontents-with-language"></span>`fn with_language(self, language: impl Into<String>) -> Self`
 
 #### Trait Implementations
 
 ##### `impl<'a> Clone for MietteSpanContents<'a>`
 
-- `fn clone(self: &Self) -> MietteSpanContents<'a>` — [`MietteSpanContents`](#miettespancontents)
+- <span id="miettespancontents-clone"></span>`fn clone(&self) -> MietteSpanContents<'a>` — [`MietteSpanContents`](#miettespancontents)
 
 ##### `impl<'a> Debug for MietteSpanContents<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="miettespancontents-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<D> OwoColorize for MietteSpanContents<'a>`
 
 ##### `impl<'a> SpanContents for MietteSpanContents<'a>`
 
-- `fn data(self: &Self) -> &'a [u8]`
+- <span id="miettespancontents-data"></span>`fn data(&self) -> &'a [u8]`
 
-- `fn span(self: &Self) -> &SourceSpan` — [`SourceSpan`](#sourcespan)
+- <span id="miettespancontents-span"></span>`fn span(&self) -> &SourceSpan` — [`SourceSpan`](#sourcespan)
 
-- `fn line(self: &Self) -> usize`
+- <span id="miettespancontents-line"></span>`fn line(&self) -> usize`
 
-- `fn column(self: &Self) -> usize`
+- <span id="miettespancontents-column"></span>`fn column(&self) -> usize`
 
-- `fn line_count(self: &Self) -> usize`
+- <span id="miettespancontents-line-count"></span>`fn line_count(&self) -> usize`
 
-- `fn name(self: &Self) -> Option<&str>`
+- <span id="miettespancontents-name"></span>`fn name(&self) -> Option<&str>`
 
-- `fn language(self: &Self) -> Option<&str>`
+- <span id="miettespancontents-language"></span>`fn language(&self) -> Option<&str>`
 
 ### `SourceSpan`
 
@@ -1471,45 +1606,45 @@ Span within a [`SourceCode`](#sourcecode)
 
 #### Implementations
 
-- `const fn new(start: SourceOffset, length: usize) -> Self` — [`SourceOffset`](#sourceoffset)
+- <span id="sourcespan-new"></span>`const fn new(start: SourceOffset, length: usize) -> Self` — [`SourceOffset`](#sourceoffset)
 
-- `const fn offset(self: &Self) -> usize`
+- <span id="sourcespan-offset"></span>`const fn offset(&self) -> usize`
 
-- `const fn len(self: &Self) -> usize`
+- <span id="sourcespan-len"></span>`const fn len(&self) -> usize`
 
-- `const fn is_empty(self: &Self) -> bool`
+- <span id="sourcespan-is-empty"></span>`const fn is_empty(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for SourceSpan`
 
-- `fn clone(self: &Self) -> SourceSpan` — [`SourceSpan`](#sourcespan)
+- <span id="sourcespan-clone"></span>`fn clone(&self) -> SourceSpan` — [`SourceSpan`](#sourcespan)
 
 ##### `impl Copy for SourceSpan`
 
 ##### `impl Debug for SourceSpan`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sourcespan-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for SourceSpan`
 
 ##### `impl Hash for SourceSpan`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="sourcespan-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for SourceSpan`
 
-- `fn cmp(self: &Self, other: &SourceSpan) -> $crate::cmp::Ordering` — [`SourceSpan`](#sourcespan)
+- <span id="sourcespan-cmp"></span>`fn cmp(&self, other: &SourceSpan) -> cmp::Ordering` — [`SourceSpan`](#sourcespan)
 
 ##### `impl<D> OwoColorize for SourceSpan`
 
 ##### `impl PartialEq for SourceSpan`
 
-- `fn eq(self: &Self, other: &SourceSpan) -> bool` — [`SourceSpan`](#sourcespan)
+- <span id="sourcespan-eq"></span>`fn eq(&self, other: &SourceSpan) -> bool` — [`SourceSpan`](#sourcespan)
 
 ##### `impl PartialOrd for SourceSpan`
 
-- `fn partial_cmp(self: &Self, other: &SourceSpan) -> $crate::option::Option<$crate::cmp::Ordering>` — [`SourceSpan`](#sourcespan)
+- <span id="sourcespan-partial-cmp"></span>`fn partial_cmp(&self, other: &SourceSpan) -> option::Option<cmp::Ordering>` — [`SourceSpan`](#sourcespan)
 
 ##### `impl StructuralPartialEq for SourceSpan`
 
@@ -1523,43 +1658,43 @@ Newtype that represents the [`ByteOffset`](#byteoffset) from the beginning of a 
 
 #### Implementations
 
-- `const fn offset(self: &Self) -> ByteOffset` — [`ByteOffset`](#byteoffset)
+- <span id="sourceoffset-offset"></span>`const fn offset(&self) -> ByteOffset` — [`ByteOffset`](#byteoffset)
 
-- `fn from_location(source: impl AsRef<str>, loc_line: usize, loc_col: usize) -> Self`
+- <span id="sourceoffset-from-location"></span>`fn from_location(source: impl AsRef<str>, loc_line: usize, loc_col: usize) -> Self`
 
-- `fn from_current_location() -> Result<(String, Self), MietteError>` — [`MietteError`](#mietteerror)
+- <span id="sourceoffset-from-current-location"></span>`fn from_current_location() -> Result<(String, Self), MietteError>` — [`MietteError`](#mietteerror)
 
 #### Trait Implementations
 
 ##### `impl Clone for SourceOffset`
 
-- `fn clone(self: &Self) -> SourceOffset` — [`SourceOffset`](#sourceoffset)
+- <span id="sourceoffset-clone"></span>`fn clone(&self) -> SourceOffset` — [`SourceOffset`](#sourceoffset)
 
 ##### `impl Copy for SourceOffset`
 
 ##### `impl Debug for SourceOffset`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sourceoffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for SourceOffset`
 
 ##### `impl Hash for SourceOffset`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="sourceoffset-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for SourceOffset`
 
-- `fn cmp(self: &Self, other: &SourceOffset) -> $crate::cmp::Ordering` — [`SourceOffset`](#sourceoffset)
+- <span id="sourceoffset-cmp"></span>`fn cmp(&self, other: &SourceOffset) -> cmp::Ordering` — [`SourceOffset`](#sourceoffset)
 
 ##### `impl<D> OwoColorize for SourceOffset`
 
 ##### `impl PartialEq for SourceOffset`
 
-- `fn eq(self: &Self, other: &SourceOffset) -> bool` — [`SourceOffset`](#sourceoffset)
+- <span id="sourceoffset-eq"></span>`fn eq(&self, other: &SourceOffset) -> bool` — [`SourceOffset`](#sourceoffset)
 
 ##### `impl PartialOrd for SourceOffset`
 
-- `fn partial_cmp(self: &Self, other: &SourceOffset) -> $crate::option::Option<$crate::cmp::Ordering>` — [`SourceOffset`](#sourceoffset)
+- <span id="sourceoffset-partial-cmp"></span>`fn partial_cmp(&self, other: &SourceOffset) -> option::Option<cmp::Ordering>` — [`SourceOffset`](#sourceoffset)
 
 ##### `impl StructuralPartialEq for SourceOffset`
 
@@ -1592,33 +1727,33 @@ Error enum for miette. Used by certain operations in the protocol.
 
 ##### `impl Debug for MietteError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="mietteerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E> Diag for MietteError`
 
-- `fn ext_report<D>(self: Self, msg: D) -> Report` — [`Report`](#report)
+- <span id="mietteerror-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](#report)
 
 ##### `impl Diagnostic for MietteError`
 
-- `fn code<'a>(self: &'a Self) -> Option<Box<dyn fmt::Display>>`
+- <span id="mietteerror-code"></span>`fn code<'a>(self: &'a Self) -> Option<Box<dyn fmt::Display>>`
 
-- `fn help<'a>(self: &'a Self) -> Option<Box<dyn fmt::Display>>`
+- <span id="mietteerror-help"></span>`fn help<'a>(self: &'a Self) -> Option<Box<dyn fmt::Display>>`
 
-- `fn url<'a>(self: &'a Self) -> Option<Box<dyn fmt::Display>>`
+- <span id="mietteerror-url"></span>`fn url<'a>(self: &'a Self) -> Option<Box<dyn fmt::Display>>`
 
 ##### `impl Display for MietteError`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="mietteerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Error for MietteError`
 
-- `fn source(self: &Self) -> Option<&dyn Error>`
+- <span id="mietteerror-source"></span>`fn source(&self) -> Option<&dyn Error>`
 
 ##### `impl<D> OwoColorize for MietteError`
 
 ##### `impl<T> ToString for MietteError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="mietteerror-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl<E> TraitKind for MietteError`
 
@@ -1652,17 +1787,17 @@ Settings to control the color format used for graphical rendering.
 
 ##### `impl Clone for RgbColors`
 
-- `fn clone(self: &Self) -> RgbColors` — [`RgbColors`](#rgbcolors)
+- <span id="rgbcolors-clone"></span>`fn clone(&self) -> RgbColors` — [`RgbColors`](#rgbcolors)
 
 ##### `impl Copy for RgbColors`
 
 ##### `impl Debug for RgbColors`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rgbcolors-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for RgbColors`
 
-- `fn default() -> RgbColors` — [`RgbColors`](#rgbcolors)
+- <span id="rgbcolors-default"></span>`fn default() -> RgbColors` — [`RgbColors`](#rgbcolors)
 
 ##### `impl Eq for RgbColors`
 
@@ -1670,7 +1805,7 @@ Settings to control the color format used for graphical rendering.
 
 ##### `impl PartialEq for RgbColors`
 
-- `fn eq(self: &Self, other: &RgbColors) -> bool` — [`RgbColors`](#rgbcolors)
+- <span id="rgbcolors-eq"></span>`fn eq(&self, other: &RgbColors) -> bool` — [`RgbColors`](#rgbcolors)
 
 ##### `impl StructuralPartialEq for RgbColors`
 
@@ -1685,13 +1820,13 @@ enum HighlighterOption {
 
 #### Implementations
 
-- `fn select(color: Option<bool>, highlighter: Option<MietteHighlighter>, supports_color: bool) -> HighlighterOption` — [`MietteHighlighter`](highlighters/index.md), [`HighlighterOption`](handler/index.md)
+- <span id="highlighteroption-select"></span>`fn select(color: Option<bool>, highlighter: Option<MietteHighlighter>, supports_color: bool) -> HighlighterOption` — [`MietteHighlighter`](highlighters/index.md), [`HighlighterOption`](handler/index.md)
 
 #### Trait Implementations
 
 ##### `impl Default for HighlighterOption`
 
-- `fn default() -> Self`
+- <span id="highlighteroption-default"></span>`fn default() -> Self`
 
 ##### `impl<D> OwoColorize for HighlighterOption`
 
@@ -1728,33 +1863,33 @@ enum Severity {
 
 ##### `impl Clone for Severity`
 
-- `fn clone(self: &Self) -> Severity` — [`Severity`](#severity)
+- <span id="severity-clone"></span>`fn clone(&self) -> Severity` — [`Severity`](#severity)
 
 ##### `impl Copy for Severity`
 
 ##### `impl Debug for Severity`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="severity-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Severity`
 
-- `fn default() -> Severity` — [`Severity`](#severity)
+- <span id="severity-default"></span>`fn default() -> Severity` — [`Severity`](#severity)
 
 ##### `impl Eq for Severity`
 
 ##### `impl Ord for Severity`
 
-- `fn cmp(self: &Self, other: &Severity) -> $crate::cmp::Ordering` — [`Severity`](#severity)
+- <span id="severity-cmp"></span>`fn cmp(&self, other: &Severity) -> cmp::Ordering` — [`Severity`](#severity)
 
 ##### `impl<D> OwoColorize for Severity`
 
 ##### `impl PartialEq for Severity`
 
-- `fn eq(self: &Self, other: &Severity) -> bool` — [`Severity`](#severity)
+- <span id="severity-eq"></span>`fn eq(&self, other: &Severity) -> bool` — [`Severity`](#severity)
 
 ##### `impl PartialOrd for Severity`
 
-- `fn partial_cmp(self: &Self, other: &Severity) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Severity`](#severity)
+- <span id="severity-partial-cmp"></span>`fn partial_cmp(&self, other: &Severity) -> option::Option<cmp::Ordering>` — [`Severity`](#severity)
 
 ##### `impl StructuralPartialEq for Severity`
 
@@ -1770,15 +1905,15 @@ Error Report Handler trait for customizing `miette::Report`
 
 #### Required Methods
 
-- `fn debug(self: &Self, error: &dyn Diagnostic, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- `fn debug(&self, error: &dyn Diagnostic, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
   Define the report format
 
-- `fn display(self: &Self, error: &dyn StdError, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- `fn display(&self, error: &dyn StdError, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
   Override for the `Display` format
 
-- `fn track_caller(self: &mut Self, location: &'static std::panic::Location<'static>)`
+- `fn track_caller(&mut self, location: &'static std::panic::Location<'static>)`
 
   Store the location of the caller who constructed this error report
 
@@ -1965,19 +2100,19 @@ supports both of the following use cases:
 
 #### Required Methods
 
-- `fn wrap_err<D>(self: Self, msg: D) -> Result<T, Report>`
+- `fn wrap_err<D>(self, msg: D) -> Result<T, Report>`
 
   Wrap the error value with a new adhoc error
 
-- `fn wrap_err_with<D, F>(self: Self, f: F) -> Result<T, Report>`
+- `fn wrap_err_with<D, F>(self, f: F) -> Result<T, Report>`
 
   Wrap the error value with a new adhoc error that is evaluated lazily
 
-- `fn context<D>(self: Self, msg: D) -> Result<T, Report>`
+- `fn context<D>(self, msg: D) -> Result<T, Report>`
 
   Compatibility re-export of `wrap_err()` for interop with `anyhow`
 
-- `fn with_context<D, F>(self: Self, f: F) -> Result<T, Report>`
+- `fn with_context<D, F>(self, f: F) -> Result<T, Report>`
 
   Compatibility re-export of `wrap_err_with()` for interop with `anyhow`
 
@@ -1997,7 +2132,7 @@ messages.
 
   Unique diagnostic code that can be used to look up more information
 
-- `fn severity(self: &Self) -> Option<Severity>`
+- `fn severity(&self) -> Option<Severity>`
 
   Diagnostic severity. This may be used by
 
@@ -2009,11 +2144,11 @@ messages.
 
   URL to visit for a more detailed explanation/help about this
 
-- `fn source_code(self: &Self) -> Option<&dyn SourceCode>`
+- `fn source_code(&self) -> Option<&dyn SourceCode>`
 
   Source code to apply this `Diagnostic`'s `Diagnostic::labels` to.
 
-- `fn labels(self: &Self) -> Option<Box<dyn Iterator<Item = LabeledSpan>>>`
+- `fn labels(&self) -> Option<Box<dyn Iterator<Item = LabeledSpan>>>`
 
   Labels to apply to this `Diagnostic`'s `Diagnostic::source_code`
 
@@ -2021,7 +2156,7 @@ messages.
 
   Additional related `Diagnostic`s.
 
-- `fn diagnostic_source(self: &Self) -> Option<&dyn Diagnostic>`
+- `fn diagnostic_source(&self) -> Option<&dyn Diagnostic>`
 
   The cause of the error.
 
@@ -2059,31 +2194,31 @@ Includes line and column information to optimize highlight calculations.
 
 #### Required Methods
 
-- `fn data(self: &Self) -> &'a [u8]`
+- `fn data(&self) -> &'a [u8]`
 
   Reference to the data inside the associated span, in bytes.
 
-- `fn span(self: &Self) -> &SourceSpan`
+- `fn span(&self) -> &SourceSpan`
 
   [`SourceSpan`](#sourcespan) representing the span covered by this `SpanContents`.
 
-- `fn name(self: &Self) -> Option<&str>`
+- `fn name(&self) -> Option<&str>`
 
   An optional (file?) name for the container of this `SpanContents`.
 
-- `fn line(self: &Self) -> usize`
+- `fn line(&self) -> usize`
 
   The 0-indexed line in the associated [`SourceCode`](#sourcecode) where the data
 
-- `fn column(self: &Self) -> usize`
+- `fn column(&self) -> usize`
 
   The 0-indexed column in the associated [`SourceCode`](#sourcecode) where the data
 
-- `fn line_count(self: &Self) -> usize`
+- `fn line_count(&self) -> usize`
 
   Total number of lines covered by this `SpanContents`.
 
-- `fn language(self: &Self) -> Option<&str>`
+- `fn language(&self) -> Option<&str>`
 
   Optional method. The language name for this source code, if any.
 

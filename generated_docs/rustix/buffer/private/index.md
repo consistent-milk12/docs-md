@@ -4,6 +4,12 @@
 
 # Module `private`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Sealed`](#sealed) | trait |  |
+
 ## Traits
 
 ### `Sealed<T>`
@@ -16,11 +22,11 @@ trait Sealed<T> { ... }
 
 - `type Output`
 
-- `fn parts_mut(self: &mut Self) -> (*mut T, usize)`
+- `fn parts_mut(&mut self) -> (*mut T, usize)`
 
   Return a pointer and length for this buffer.
 
-- `fn assume_init(self: Self, len: usize) -> <Self as >::Output`
+- `fn assume_init(self, len: usize) -> <Self as >::Output`
 
   Convert a finished buffer pointer into its result.
 

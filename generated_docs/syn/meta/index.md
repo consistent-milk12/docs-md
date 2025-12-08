@@ -6,6 +6,15 @@
 
 Facility for interpreting structured content inside of an `Attribute`.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ParseNestedMeta`](#parsenestedmeta) | struct | Context for parsing a single property in the conventional syntax for |
+| [`parser`](#parser) | fn | Make a parser that is usable with `parse_macro_input!` in a |
+| [`parse_nested_meta`](#parse_nested_meta) | fn |  |
+| [`parse_meta_path`](#parse_meta_path) | fn |  |
+
 ## Structs
 
 ### `ParseNestedMeta<'a>`
@@ -40,11 +49,11 @@ Refer to usage examples on the following two entry-points:
 
 #### Implementations
 
-- `fn value(self: &Self) -> Result<ParseStream<'a>>` — [`Result`](../index.md), [`ParseStream`](../parse/index.md)
+- <span id="parsenestedmeta-value"></span>`fn value(&self) -> Result<ParseStream<'a>>` — [`Result`](../index.md), [`ParseStream`](../parse/index.md)
 
-- `fn parse_nested_meta(self: &Self, logic: impl FnMut(ParseNestedMeta<'_>) -> Result<()>) -> Result<()>` — [`ParseNestedMeta`](#parsenestedmeta), [`Result`](../index.md)
+- <span id="parsenestedmeta-parse-nested-meta"></span>`fn parse_nested_meta(&self, logic: impl FnMut(ParseNestedMeta<'_>) -> Result<()>) -> Result<()>` — [`ParseNestedMeta`](#parsenestedmeta), [`Result`](../index.md)
 
-- `fn error(self: &Self, msg: impl Display) -> Error` — [`Error`](../index.md)
+- <span id="parsenestedmeta-error"></span>`fn error(&self, msg: impl Display) -> Error` — [`Error`](../index.md)
 
 ## Functions
 

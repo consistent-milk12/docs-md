@@ -7,6 +7,16 @@
 Adapted from
 <https://doc.rust-lang.org/nightly/src/core/unicode/unicode_data.rs.html>
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`case_ignorable`](#case_ignorable) | mod |  |
+| [`cased`](#cased) | mod |  |
+| [`skip_search`](#skip_search) | fn |  |
+| [`decode_prefix_sum`](#decode_prefix_sum) | fn |  |
+| [`decode_length`](#decode_length) | fn |  |
+
 ## Modules
 
 - [`case_ignorable`](case_ignorable/index.md) - 

@@ -4,6 +4,14 @@
 
 # Module `auto`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`AutoStream`](#autostream) | struct | [`std::io::Write`] that adapts ANSI escape codes to the underlying `Write`s capabilities |
+| [`StreamInner`](#streaminner) | enum |  |
+| [`choice`](#choice) | fn |  |
+
 ## Structs
 
 ### `AutoStream<S: RawStream>`
@@ -27,25 +35,47 @@ to get a [`ColorChoice`](../index.md) and then calling `AutoStream::new(stream, 
 
 #### Implementations
 
-- `fn lock(self: Self) -> AutoStream<std::io::StdoutLock<'static>>` — [`AutoStream`](../index.md)
+- <span id="autostream-new"></span>`fn new(raw: S, choice: ColorChoice) -> Self` — [`ColorChoice`](../index.md)
+
+- <span id="autostream-auto"></span>`fn auto(raw: S) -> Self`
+
+- <span id="autostream-choice"></span>`fn choice(raw: &S) -> ColorChoice` — [`ColorChoice`](../index.md)
+
+- <span id="autostream-always-ansi"></span>`fn always_ansi(raw: S) -> Self`
+
+- <span id="autostream-always-ansi"></span>`fn always_ansi_(raw: S) -> Self`
+
+- <span id="autostream-always"></span>`fn always(raw: S) -> Self`
+
+- <span id="autostream-never"></span>`fn never(raw: S) -> Self`
+
+- <span id="autostream-wincon"></span>`fn wincon(raw: S) -> Result<Self, S>`
+
+- <span id="autostream-into-inner"></span>`fn into_inner(self) -> S`
+
+- <span id="autostream-as-inner"></span>`fn as_inner(&self) -> &S`
+
+- <span id="autostream-is-terminal"></span>`fn is_terminal(&self) -> bool`
+
+- <span id="autostream-current-choice"></span>`fn current_choice(&self) -> ColorChoice` — [`ColorChoice`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<S: $crate::fmt::Debug + RawStream> Debug for AutoStream<S>`
+##### `impl<S: fmt::Debug + RawStream> Debug for AutoStream<S>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="autostream-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<S> Write for AutoStream<S>`
 
-- `fn write(self: &mut Self, buf: &[u8]) -> std::io::Result<usize>`
+- <span id="autostream-write"></span>`fn write(&mut self, buf: &[u8]) -> std::io::Result<usize>`
 
-- `fn write_vectored(self: &mut Self, bufs: &[std::io::IoSlice<'_>]) -> std::io::Result<usize>`
+- <span id="autostream-write-vectored"></span>`fn write_vectored(&mut self, bufs: &[std::io::IoSlice<'_>]) -> std::io::Result<usize>`
 
-- `fn flush(self: &mut Self) -> std::io::Result<()>`
+- <span id="autostream-flush"></span>`fn flush(&mut self) -> std::io::Result<()>`
 
-- `fn write_all(self: &mut Self, buf: &[u8]) -> std::io::Result<()>`
+- <span id="autostream-write-all"></span>`fn write_all(&mut self, buf: &[u8]) -> std::io::Result<()>`
 
-- `fn write_fmt(self: &mut Self, args: std::fmt::Arguments<'_>) -> std::io::Result<()>`
+- <span id="autostream-write-fmt"></span>`fn write_fmt(&mut self, args: std::fmt::Arguments<'_>) -> std::io::Result<()>`
 
 ## Enums
 
@@ -60,9 +90,9 @@ enum StreamInner<S: RawStream> {
 
 #### Trait Implementations
 
-##### `impl<S: $crate::fmt::Debug + RawStream> Debug for StreamInner<S>`
+##### `impl<S: fmt::Debug + RawStream> Debug for StreamInner<S>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="streaminner-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Functions
 

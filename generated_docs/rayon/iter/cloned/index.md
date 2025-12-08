@@ -4,6 +4,15 @@
 
 # Module `cloned`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Cloned`](#cloned) | struct | `Cloned` is an iterator that clones the elements of an underlying iterator. |
+| [`ClonedProducer`](#clonedproducer) | struct |  |
+| [`ClonedConsumer`](#clonedconsumer) | struct |  |
+| [`ClonedFolder`](#clonedfolder) | struct |  |
+
 ## Structs
 
 ### `Cloned<I>`
@@ -21,57 +30,57 @@ This struct is created by the `cloned()` method on [`ParallelIterator`](../../pr
 
 #### Implementations
 
-- `fn new(base: I) -> Self`
+- <span id="cloned-new"></span>`fn new(base: I) -> Self`
 
 #### Trait Implementations
 
-##### `impl<I: $crate::clone::Clone> Clone for Cloned<I>`
+##### `impl<I: clone::Clone> Clone for Cloned<I>`
 
-- `fn clone(self: &Self) -> Cloned<I>` — [`Cloned`](../index.md)
+- <span id="cloned-clone"></span>`fn clone(&self) -> Cloned<I>` — [`Cloned`](../index.md)
 
-##### `impl<I: $crate::fmt::Debug> Debug for Cloned<I>`
+##### `impl<I: fmt::Debug> Debug for Cloned<I>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="cloned-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'a, T, I> IndexedParallelIterator for Cloned<I>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="cloned-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
-- `fn len(self: &Self) -> usize`
+- <span id="cloned-len"></span>`fn len(&self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
+- <span id="cloned-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
 
 ##### `impl<T> IntoEither for Cloned<I>`
 
 ##### `impl<T> IntoParallelIterator for Cloned<I>`
 
-- `type Iter = T`
+- <span id="cloned-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="cloned-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="cloned-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'a, T, I> ParallelIterator for Cloned<I>`
 
-- `type Item = T`
+- <span id="cloned-item"></span>`type Item = T`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="cloned-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
-- `fn opt_len(self: &Self) -> Option<usize>`
+- <span id="cloned-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for Cloned<I>`
 
-- `const ALIGN: usize`
+- <span id="cloned-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="cloned-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="cloned-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="cloned-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="cloned-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="cloned-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `ClonedProducer<P>`
 
@@ -87,33 +96,33 @@ struct ClonedProducer<P> {
 
 ##### `impl<T> Pointable for ClonedProducer<P>`
 
-- `const ALIGN: usize`
+- <span id="clonedproducer-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="clonedproducer-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="clonedproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="clonedproducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="clonedproducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="clonedproducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<'a, T, P> Producer for ClonedProducer<P>`
 
-- `type Item = T`
+- <span id="clonedproducer-item"></span>`type Item = T`
 
-- `type IntoIter = Cloned<<P as Producer>::IntoIter>`
+- <span id="clonedproducer-intoiter"></span>`type IntoIter = Cloned<<P as Producer>::IntoIter>`
 
-- `fn into_iter(self: Self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
+- <span id="clonedproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
 
-- `fn min_len(self: &Self) -> usize`
+- <span id="clonedproducer-min-len"></span>`fn min_len(&self) -> usize`
 
-- `fn max_len(self: &Self) -> usize`
+- <span id="clonedproducer-max-len"></span>`fn max_len(&self) -> usize`
 
-- `fn split_at(self: Self, index: usize) -> (Self, Self)`
+- <span id="clonedproducer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
 
-- `fn fold_with<F>(self: Self, folder: F) -> F`
+- <span id="clonedproducer-fold-with"></span>`fn fold_with<F>(self, folder: F) -> F`
 
 ### `ClonedConsumer<C>`
 
@@ -125,45 +134,45 @@ struct ClonedConsumer<C> {
 
 #### Implementations
 
-- `fn new(base: C) -> Self`
+- <span id="clonedconsumer-new"></span>`fn new(base: C) -> Self`
 
 #### Trait Implementations
 
 ##### `impl<'a, T, C> Consumer for ClonedConsumer<C>`
 
-- `type Folder = ClonedFolder<<C as Consumer>::Folder>`
+- <span id="clonedconsumer-folder"></span>`type Folder = ClonedFolder<<C as Consumer>::Folder>`
 
-- `type Reducer = <C as Consumer>::Reducer`
+- <span id="clonedconsumer-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
 
-- `type Result = <C as Consumer>::Result`
+- <span id="clonedconsumer-result"></span>`type Result = <C as Consumer>::Result`
 
-- `fn split_at(self: Self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
+- <span id="clonedconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
 
-- `fn into_folder(self: Self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="clonedconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
 
-- `fn full(self: &Self) -> bool`
+- <span id="clonedconsumer-full"></span>`fn full(&self) -> bool`
 
 ##### `impl<T> IntoEither for ClonedConsumer<C>`
 
 ##### `impl<T> Pointable for ClonedConsumer<C>`
 
-- `const ALIGN: usize`
+- <span id="clonedconsumer-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="clonedconsumer-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="clonedconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="clonedconsumer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="clonedconsumer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="clonedconsumer-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<'a, T, C> UnindexedConsumer for ClonedConsumer<C>`
 
-- `fn split_off_left(self: &Self) -> Self`
+- <span id="clonedconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- `fn to_reducer(self: &Self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
+- <span id="clonedconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
 
 ### `ClonedFolder<F>`
 
@@ -177,29 +186,29 @@ struct ClonedFolder<F> {
 
 ##### `impl<'a, T, F> Folder for ClonedFolder<F>`
 
-- `type Result = <F as Folder>::Result`
+- <span id="clonedfolder-result"></span>`type Result = <F as Folder>::Result`
 
-- `fn consume(self: Self, item: &'a T) -> Self`
+- <span id="clonedfolder-consume"></span>`fn consume(self, item: &'a T) -> Self`
 
-- `fn consume_iter<I>(self: Self, iter: I) -> Self`
+- <span id="clonedfolder-consume-iter"></span>`fn consume_iter<I>(self, iter: I) -> Self`
 
-- `fn complete(self: Self) -> <F as >::Result` — [`Folder`](../plumbing/index.md)
+- <span id="clonedfolder-complete"></span>`fn complete(self) -> <F as >::Result` — [`Folder`](../plumbing/index.md)
 
-- `fn full(self: &Self) -> bool`
+- <span id="clonedfolder-full"></span>`fn full(&self) -> bool`
 
 ##### `impl<T> IntoEither for ClonedFolder<F>`
 
 ##### `impl<T> Pointable for ClonedFolder<F>`
 
-- `const ALIGN: usize`
+- <span id="clonedfolder-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="clonedfolder-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="clonedfolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="clonedfolder-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="clonedfolder-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="clonedfolder-drop"></span>`unsafe fn drop(ptr: usize)`
 

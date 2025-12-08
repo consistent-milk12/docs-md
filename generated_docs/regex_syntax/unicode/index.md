@@ -4,6 +4,78 @@
 
 # Module `unicode`
 
+## Contents
+
+- [Structs](#structs)
+  - [`CaseFoldError`](#casefolderror)
+  - [`UnicodeWordError`](#unicodeworderror)
+  - [`SimpleCaseFolder`](#simplecasefolder)
+- [Enums](#enums)
+  - [`Error`](#error)
+  - [`ClassQuery`](#classquery)
+  - [`CanonicalClassQuery`](#canonicalclassquery)
+- [Functions](#functions)
+  - [`class`](#class)
+  - [`perl_word`](#perl_word)
+  - [`perl_space`](#perl_space)
+  - [`perl_digit`](#perl_digit)
+  - [`hir_class`](#hir_class)
+  - [`is_word_character`](#is_word_character)
+  - [`canonical_gencat`](#canonical_gencat)
+  - [`canonical_script`](#canonical_script)
+  - [`canonical_prop`](#canonical_prop)
+  - [`canonical_value`](#canonical_value)
+  - [`property_values`](#property_values)
+  - [`property_set`](#property_set)
+  - [`ages`](#ages)
+  - [`gencat`](#gencat)
+  - [`script`](#script)
+  - [`script_extension`](#script_extension)
+  - [`bool_property`](#bool_property)
+  - [`gcb`](#gcb)
+  - [`wb`](#wb)
+  - [`sb`](#sb)
+  - [`symbolic_name_normalize`](#symbolic_name_normalize)
+  - [`symbolic_name_normalize_bytes`](#symbolic_name_normalize_bytes)
+- [Type Aliases](#type-aliases)
+  - [`Range`](#range)
+  - [`PropertyValues`](#propertyvalues)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`CaseFoldError`](#casefolderror) | struct | An error that occurs when Unicode-aware simple case folding fails. |
+| [`UnicodeWordError`](#unicodeworderror) | struct | An error that occurs when the Unicode-aware `\w` class is unavailable. |
+| [`SimpleCaseFolder`](#simplecasefolder) | struct | A state oriented traverser of the simple case folding table. |
+| [`Error`](#error) | enum | An error that occurs when dealing with Unicode. |
+| [`ClassQuery`](#classquery) | enum | A query for finding a character class defined by Unicode. |
+| [`CanonicalClassQuery`](#canonicalclassquery) | enum | Like ClassQuery, but its parameters have been canonicalized. |
+| [`class`](#class) | fn | Looks up a Unicode class given a query. |
+| [`perl_word`](#perl_word) | fn | Returns a Unicode aware class for \w. |
+| [`perl_space`](#perl_space) | fn | Returns a Unicode aware class for \s. |
+| [`perl_digit`](#perl_digit) | fn | Returns a Unicode aware class for \d. |
+| [`hir_class`](#hir_class) | fn | Build a Unicode HIR class from a sequence of Unicode scalar value ranges. |
+| [`is_word_character`](#is_word_character) | fn | Returns true only if the given codepoint is in the `\w` character class. |
+| [`canonical_gencat`](#canonical_gencat) | fn |  |
+| [`canonical_script`](#canonical_script) | fn |  |
+| [`canonical_prop`](#canonical_prop) | fn | Find the canonical property name for the given normalized property name. |
+| [`canonical_value`](#canonical_value) | fn | Find the canonical property value for the given normalized property |
+| [`property_values`](#property_values) | fn | Return the table of property values for the given property name. |
+| [`property_set`](#property_set) | fn |  |
+| [`ages`](#ages) | fn | Returns an iterator over Unicode Age sets. |
+| [`gencat`](#gencat) | fn | Returns the Unicode HIR class corresponding to the given general category. |
+| [`script`](#script) | fn | Returns the Unicode HIR class corresponding to the given script. |
+| [`script_extension`](#script_extension) | fn | Returns the Unicode HIR class corresponding to the given script extension. |
+| [`bool_property`](#bool_property) | fn | Returns the Unicode HIR class corresponding to the given Unicode boolean |
+| [`gcb`](#gcb) | fn | Returns the Unicode HIR class corresponding to the given grapheme cluster |
+| [`wb`](#wb) | fn | Returns the Unicode HIR class corresponding to the given word break |
+| [`sb`](#sb) | fn | Returns the Unicode HIR class corresponding to the given sentence |
+| [`symbolic_name_normalize`](#symbolic_name_normalize) | fn | Like symbolic_name_normalize_bytes, but operates on a string. |
+| [`symbolic_name_normalize_bytes`](#symbolic_name_normalize_bytes) | fn | Normalize the given symbolic name in place according to UAX44-LM3. |
+| [`Range`](#range) | type | An inclusive range of codepoints from a generated file (hence the static |
+| [`PropertyValues`](#propertyvalues) | type | A mapping of property values for a specific property. |
+
 ## Structs
 
 ### `CaseFoldError`
@@ -22,17 +94,17 @@ aware case folding are unavailable. This only occurs when the
 
 ##### `impl Debug for CaseFoldError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="casefolderror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for CaseFoldError`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="casefolderror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for CaseFoldError`
 
 ##### `impl<T> ToString for CaseFoldError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="casefolderror-to-string"></span>`fn to_string(&self) -> String`
 
 ### `UnicodeWordError`
 
@@ -50,17 +122,17 @@ Perl character class `\w` are unavailable. This only occurs when the
 
 ##### `impl Debug for UnicodeWordError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="unicodeworderror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for UnicodeWordError`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="unicodeworderror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for UnicodeWordError`
 
 ##### `impl<T> ToString for UnicodeWordError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="unicodeworderror-to-string"></span>`fn to_string(&self) -> String`
 
 ### `SimpleCaseFolder`
 
@@ -107,19 +179,19 @@ assumption enables this.
 
 #### Implementations
 
-- `fn new() -> Result<SimpleCaseFolder, CaseFoldError>` — [`SimpleCaseFolder`](#simplecasefolder), [`CaseFoldError`](#casefolderror)
+- <span id="simplecasefolder-new"></span>`fn new() -> Result<SimpleCaseFolder, CaseFoldError>` — [`SimpleCaseFolder`](#simplecasefolder), [`CaseFoldError`](#casefolderror)
 
-- `fn mapping(self: &mut Self, c: char) -> &'static [char]`
+- <span id="simplecasefolder-mapping"></span>`fn mapping(&mut self, c: char) -> &'static [char]`
 
-- `fn overlaps(self: &Self, start: char, end: char) -> bool`
+- <span id="simplecasefolder-overlaps"></span>`fn overlaps(&self, start: char, end: char) -> bool`
 
-- `fn get(self: &Self, c: char) -> Result<usize, usize>`
+- <span id="simplecasefolder-get"></span>`fn get(&self, c: char) -> Result<usize, usize>`
 
 #### Trait Implementations
 
 ##### `impl Debug for SimpleCaseFolder`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="simplecasefolder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Enums
 
@@ -142,7 +214,7 @@ into other public errors. (This error type isn't exported.)
 
 ##### `impl Debug for Error`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="error-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ClassQuery<'a>`
 
@@ -193,15 +265,15 @@ and property value.
 
 #### Implementations
 
-- `fn canonicalize(self: &Self) -> Result<CanonicalClassQuery, Error>` — [`CanonicalClassQuery`](#canonicalclassquery), [`Error`](#error)
+- <span id="classquery-canonicalize"></span>`fn canonicalize(&self) -> Result<CanonicalClassQuery, Error>` — [`CanonicalClassQuery`](#canonicalclassquery), [`Error`](#error)
 
-- `fn canonical_binary(self: &Self, name: &str) -> Result<CanonicalClassQuery, Error>` — [`CanonicalClassQuery`](#canonicalclassquery), [`Error`](#error)
+- <span id="classquery-canonical-binary"></span>`fn canonical_binary(&self, name: &str) -> Result<CanonicalClassQuery, Error>` — [`CanonicalClassQuery`](#canonicalclassquery), [`Error`](#error)
 
 #### Trait Implementations
 
 ##### `impl<'a> Debug for ClassQuery<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="classquery-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `CanonicalClassQuery`
 
@@ -248,13 +320,13 @@ scripts.
 
 ##### `impl Debug for CanonicalClassQuery`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="canonicalclassquery-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for CanonicalClassQuery`
 
 ##### `impl PartialEq for CanonicalClassQuery`
 
-- `fn eq(self: &Self, other: &CanonicalClassQuery) -> bool` — [`CanonicalClassQuery`](#canonicalclassquery)
+- <span id="canonicalclassquery-eq"></span>`fn eq(&self, other: &CanonicalClassQuery) -> bool` — [`CanonicalClassQuery`](#canonicalclassquery)
 
 ##### `impl StructuralPartialEq for CanonicalClassQuery`
 

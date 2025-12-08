@@ -4,6 +4,14 @@
 
 # Module `flatten_iter`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`FlattenIter`](#flatteniter) | struct | `FlattenIter` turns each element to a serial iterator, then flattens these iterators |
+| [`FlattenIterConsumer`](#flatteniterconsumer) | struct |  |
+| [`FlattenIterFolder`](#flatteniterfolder) | struct |  |
+
 ## Structs
 
 ### `FlattenIter<I>`
@@ -20,47 +28,47 @@ together. This struct is created by the `flatten_iter()` method on [`ParallelIte
 
 #### Implementations
 
-- `fn new(base: I) -> Self`
+- <span id="flatteniter-new"></span>`fn new(base: I) -> Self`
 
 #### Trait Implementations
 
-##### `impl<I: $crate::clone::Clone> Clone for FlattenIter<I>`
+##### `impl<I: clone::Clone> Clone for FlattenIter<I>`
 
-- `fn clone(self: &Self) -> FlattenIter<I>` — [`FlattenIter`](../index.md)
+- <span id="flatteniter-clone"></span>`fn clone(&self) -> FlattenIter<I>` — [`FlattenIter`](../index.md)
 
-##### `impl<I: $crate::fmt::Debug> Debug for FlattenIter<I>`
+##### `impl<I: fmt::Debug> Debug for FlattenIter<I>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="flatteniter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> IntoEither for FlattenIter<I>`
 
 ##### `impl<T> IntoParallelIterator for FlattenIter<I>`
 
-- `type Iter = T`
+- <span id="flatteniter-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="flatteniter-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="flatteniter-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for FlattenIter<I>`
 
-- `type Item = <<I as ParallelIterator>::Item as IntoIterator>::Item`
+- <span id="flatteniter-item"></span>`type Item = <<I as ParallelIterator>::Item as IntoIterator>::Item`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="flatteniter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
 ##### `impl<T> Pointable for FlattenIter<I>`
 
-- `const ALIGN: usize`
+- <span id="flatteniter-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="flatteniter-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="flatteniter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="flatteniter-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="flatteniter-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="flatteniter-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `FlattenIterConsumer<C>`
 
@@ -72,45 +80,45 @@ struct FlattenIterConsumer<C> {
 
 #### Implementations
 
-- `fn new(base: C) -> Self`
+- <span id="flatteniterconsumer-new"></span>`fn new(base: C) -> Self`
 
 #### Trait Implementations
 
 ##### `impl<T, C> Consumer for FlattenIterConsumer<C>`
 
-- `type Folder = FlattenIterFolder<<C as Consumer>::Folder>`
+- <span id="flatteniterconsumer-folder"></span>`type Folder = FlattenIterFolder<<C as Consumer>::Folder>`
 
-- `type Reducer = <C as Consumer>::Reducer`
+- <span id="flatteniterconsumer-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
 
-- `type Result = <C as Consumer>::Result`
+- <span id="flatteniterconsumer-result"></span>`type Result = <C as Consumer>::Result`
 
-- `fn split_at(self: Self, index: usize) -> (Self, Self, <C as >::Reducer)` — [`Consumer`](../plumbing/index.md)
+- <span id="flatteniterconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <C as >::Reducer)` — [`Consumer`](../plumbing/index.md)
 
-- `fn into_folder(self: Self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="flatteniterconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
 
-- `fn full(self: &Self) -> bool`
+- <span id="flatteniterconsumer-full"></span>`fn full(&self) -> bool`
 
 ##### `impl<T> IntoEither for FlattenIterConsumer<C>`
 
 ##### `impl<T> Pointable for FlattenIterConsumer<C>`
 
-- `const ALIGN: usize`
+- <span id="flatteniterconsumer-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="flatteniterconsumer-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="flatteniterconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="flatteniterconsumer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="flatteniterconsumer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="flatteniterconsumer-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T, C> UnindexedConsumer for FlattenIterConsumer<C>`
 
-- `fn split_off_left(self: &Self) -> Self`
+- <span id="flatteniterconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- `fn to_reducer(self: &Self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
+- <span id="flatteniterconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
 
 ### `FlattenIterFolder<C>`
 
@@ -124,29 +132,29 @@ struct FlattenIterFolder<C> {
 
 ##### `impl<T, C> Folder for FlattenIterFolder<C>`
 
-- `type Result = <C as Folder>::Result`
+- <span id="flatteniterfolder-result"></span>`type Result = <C as Folder>::Result`
 
-- `fn consume(self: Self, item: T) -> Self`
+- <span id="flatteniterfolder-consume"></span>`fn consume(self, item: T) -> Self`
 
-- `fn consume_iter<I>(self: Self, iter: I) -> Self`
+- <span id="flatteniterfolder-consume-iter"></span>`fn consume_iter<I>(self, iter: I) -> Self`
 
-- `fn complete(self: Self) -> <Self as >::Result` — [`Folder`](../plumbing/index.md)
+- <span id="flatteniterfolder-complete"></span>`fn complete(self) -> <Self as >::Result` — [`Folder`](../plumbing/index.md)
 
-- `fn full(self: &Self) -> bool`
+- <span id="flatteniterfolder-full"></span>`fn full(&self) -> bool`
 
 ##### `impl<T> IntoEither for FlattenIterFolder<C>`
 
 ##### `impl<T> Pointable for FlattenIterFolder<C>`
 
-- `const ALIGN: usize`
+- <span id="flatteniterfolder-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="flatteniterfolder-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="flatteniterfolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="flatteniterfolder-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="flatteniterfolder-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="flatteniterfolder-drop"></span>`unsafe fn drop(ptr: usize)`
 

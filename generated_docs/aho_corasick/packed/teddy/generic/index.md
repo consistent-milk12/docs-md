@@ -4,6 +4,18 @@
 
 # Module `generic`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Match`](#match) | struct | A match type specialized to the Teddy implementations below. |
+| [`Slim`](#slim) | struct | A "slim" Teddy implementation that is generic over both the vector type |
+| [`Fat`](#fat) | struct | A "fat" Teddy implementation that is generic over both the vector type |
+| [`Teddy`](#teddy) | struct | The common elements of all "slim" and "fat" Teddy search implementations. |
+| [`Mask`](#mask) | struct | A vector generic mask for the low and high nybbles in a set of patterns. |
+| [`SlimMaskBuilder`](#slimmaskbuilder) | struct | Represents the low and high nybble masks that will be used during |
+| [`FatMaskBuilder`](#fatmaskbuilder) | struct | Represents the low and high nybble masks that will be used during "fat" |
+
 ## Structs
 
 ### `Match`
@@ -27,23 +39,23 @@ Also, the `PatternID` used here is a `u16`.
 
 #### Implementations
 
-- `fn pattern(self: &Self) -> PatternID` — [`PatternID`](../../../index.md)
+- <span id="match-pattern"></span>`fn pattern(&self) -> PatternID` — [`PatternID`](../../../index.md)
 
-- `fn start(self: &Self) -> *const u8`
+- <span id="match-start"></span>`fn start(&self) -> *const u8`
 
-- `fn end(self: &Self) -> *const u8`
+- <span id="match-end"></span>`fn end(&self) -> *const u8`
 
 #### Trait Implementations
 
 ##### `impl Clone for Match`
 
-- `fn clone(self: &Self) -> Match` — [`Match`](#match)
+- <span id="match-clone"></span>`fn clone(&self) -> Match` — [`Match`](#match)
 
 ##### `impl Copy for Match`
 
 ##### `impl Debug for Match`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="match-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Slim<V, const BYTES: usize>`
 
@@ -72,21 +84,21 @@ Only 1, 2, 3 and 4 bytes are supported as minimum lengths.
 
 #### Implementations
 
-- `unsafe fn new(patterns: Arc<Patterns>) -> Slim<V, BYTES>` — [`Patterns`](../../pattern/index.md), [`Slim`](#slim)
+- <span id="slim-find"></span>`unsafe fn find(&self, start: *const u8, end: *const u8) -> Option<Match>` — [`Match`](#match)
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="slim-find-one"></span>`unsafe fn find_one(&self, cur: *const u8, end: *const u8) -> Option<Match>` — [`Match`](#match)
 
-- `fn minimum_len(self: &Self) -> usize`
+- <span id="slim-candidate"></span>`unsafe fn candidate(&self, cur: *const u8) -> V`
 
 #### Trait Implementations
 
-##### `impl<V: $crate::clone::Clone, const BYTES: usize> Clone for Slim<V, BYTES>`
+##### `impl<V: clone::Clone, const BYTES: usize> Clone for Slim<V, BYTES>`
 
-- `fn clone(self: &Self) -> Slim<V, BYTES>` — [`Slim`](#slim)
+- <span id="slim-clone"></span>`fn clone(&self) -> Slim<V, BYTES>` — [`Slim`](#slim)
 
-##### `impl<V: $crate::fmt::Debug, const BYTES: usize> Debug for Slim<V, BYTES>`
+##### `impl<V: fmt::Debug, const BYTES: usize> Debug for Slim<V, BYTES>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="slim-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Fat<V, const BYTES: usize>`
 
@@ -115,21 +127,21 @@ Only 1, 2, 3 and 4 bytes are supported as minimum lengths.
 
 #### Implementations
 
-- `unsafe fn new(patterns: Arc<Patterns>) -> Fat<V, BYTES>` — [`Patterns`](../../pattern/index.md), [`Fat`](#fat)
+- <span id="fat-find"></span>`unsafe fn find(&self, start: *const u8, end: *const u8) -> Option<Match>` — [`Match`](#match)
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="fat-find-one"></span>`unsafe fn find_one(&self, cur: *const u8, end: *const u8, prev0: &mut V, prev1: &mut V, prev2: &mut V) -> Option<Match>` — [`Match`](#match)
 
-- `fn minimum_len(self: &Self) -> usize`
+- <span id="fat-candidate"></span>`unsafe fn candidate(&self, cur: *const u8, prev0: &mut V, prev1: &mut V, prev2: &mut V) -> V`
 
 #### Trait Implementations
 
-##### `impl<V: $crate::clone::Clone, const BYTES: usize> Clone for Fat<V, BYTES>`
+##### `impl<V: clone::Clone, const BYTES: usize> Clone for Fat<V, BYTES>`
 
-- `fn clone(self: &Self) -> Fat<V, BYTES>` — [`Fat`](#fat)
+- <span id="fat-clone"></span>`fn clone(&self) -> Fat<V, BYTES>` — [`Fat`](#fat)
 
-##### `impl<V: $crate::fmt::Debug, const BYTES: usize> Debug for Fat<V, BYTES>`
+##### `impl<V: fmt::Debug, const BYTES: usize> Debug for Fat<V, BYTES>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="fat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Teddy<const BUCKETS: usize>`
 
@@ -169,25 +181,25 @@ be quite expensive if `N` is not a multiple of 2.
 
 #### Implementations
 
-- `fn new(patterns: Arc<Patterns>) -> Teddy<BUCKETS>` — [`Patterns`](../../pattern/index.md), [`Teddy`](#teddy)
+- <span id="teddy-new"></span>`fn new(patterns: Arc<Patterns>) -> Teddy<BUCKETS>` — [`Patterns`](../../pattern/index.md), [`Teddy`](#teddy)
 
-- `unsafe fn verify64(self: &Self, cur: *const u8, end: *const u8, candidate_chunk: u64) -> Option<Match>` — [`Match`](#match)
+- <span id="teddy-verify64"></span>`unsafe fn verify64(&self, cur: *const u8, end: *const u8, candidate_chunk: u64) -> Option<Match>` — [`Match`](#match)
 
-- `unsafe fn verify_bucket(self: &Self, cur: *const u8, end: *const u8, bucket: usize) -> Option<Match>` — [`Match`](#match)
+- <span id="teddy-verify-bucket"></span>`unsafe fn verify_bucket(&self, cur: *const u8, end: *const u8, bucket: usize) -> Option<Match>` — [`Match`](#match)
 
-- `fn mask_len(self: &Self) -> usize`
+- <span id="teddy-mask-len"></span>`fn mask_len(&self) -> usize`
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="teddy-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl<const BUCKETS: usize> Clone for Teddy<BUCKETS>`
 
-- `fn clone(self: &Self) -> Teddy<BUCKETS>` — [`Teddy`](#teddy)
+- <span id="teddy-clone"></span>`fn clone(&self) -> Teddy<BUCKETS>` — [`Teddy`](#teddy)
 
 ##### `impl<const BUCKETS: usize> Debug for Teddy<BUCKETS>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="teddy-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Mask<V>`
 
@@ -216,25 +228,25 @@ if it's in the higher half.
 
 #### Implementations
 
-- `unsafe fn members1(chunk: V, masks: [Mask<V>; 1]) -> V` — [`Mask`](#mask)
+- <span id="mask-members1"></span>`unsafe fn members1(chunk: V, masks: [Mask<V>; 1]) -> V` — [`Mask`](#mask)
 
-- `unsafe fn members2(chunk: V, masks: [Mask<V>; 2]) -> (V, V)` — [`Mask`](#mask)
+- <span id="mask-members2"></span>`unsafe fn members2(chunk: V, masks: [Mask<V>; 2]) -> (V, V)` — [`Mask`](#mask)
 
-- `unsafe fn members3(chunk: V, masks: [Mask<V>; 3]) -> (V, V, V)` — [`Mask`](#mask)
+- <span id="mask-members3"></span>`unsafe fn members3(chunk: V, masks: [Mask<V>; 3]) -> (V, V, V)` — [`Mask`](#mask)
 
-- `unsafe fn members4(chunk: V, masks: [Mask<V>; 4]) -> (V, V, V, V)` — [`Mask`](#mask)
+- <span id="mask-members4"></span>`unsafe fn members4(chunk: V, masks: [Mask<V>; 4]) -> (V, V, V, V)` — [`Mask`](#mask)
 
 #### Trait Implementations
 
-##### `impl<V: $crate::clone::Clone> Clone for Mask<V>`
+##### `impl<V: clone::Clone> Clone for Mask<V>`
 
-- `fn clone(self: &Self) -> Mask<V>` — [`Mask`](#mask)
+- <span id="mask-clone"></span>`fn clone(&self) -> Mask<V>` — [`Mask`](#mask)
 
-##### `impl<V: $crate::marker::Copy> Copy for Mask<V>`
+##### `impl<V: marker::Copy> Copy for Mask<V>`
 
-##### `impl<V: $crate::fmt::Debug> Debug for Mask<V>`
+##### `impl<V: fmt::Debug> Debug for Mask<V>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="mask-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `SlimMaskBuilder`
 
@@ -260,25 +272,25 @@ low and high masks together also results in 8-bit bitsets, but where bit
 
 #### Implementations
 
-- `fn add(self: &mut Self, bucket: usize, byte: u8)`
+- <span id="slimmaskbuilder-add"></span>`fn add(&mut self, bucket: usize, byte: u8)`
 
-- `unsafe fn build<V: Vector>(self: &Self) -> Mask<V>` — [`Mask`](#mask)
+- <span id="slimmaskbuilder-build"></span>`unsafe fn build<V: Vector>(&self) -> Mask<V>` — [`Mask`](#mask)
 
-- `unsafe fn from_teddy<const BYTES: usize, V: Vector>(teddy: &Teddy<8>) -> [Mask<V>; BYTES]` — [`Teddy`](#teddy), [`Mask`](#mask)
+- <span id="slimmaskbuilder-from-teddy"></span>`unsafe fn from_teddy<const BYTES: usize, V: Vector>(teddy: &Teddy<8>) -> [Mask<V>; BYTES]` — [`Teddy`](#teddy), [`Mask`](#mask)
 
 #### Trait Implementations
 
 ##### `impl Clone for SlimMaskBuilder`
 
-- `fn clone(self: &Self) -> SlimMaskBuilder` — [`SlimMaskBuilder`](#slimmaskbuilder)
+- <span id="slimmaskbuilder-clone"></span>`fn clone(&self) -> SlimMaskBuilder` — [`SlimMaskBuilder`](#slimmaskbuilder)
 
 ##### `impl Debug for SlimMaskBuilder`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="slimmaskbuilder-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Default for SlimMaskBuilder`
 
-- `fn default() -> SlimMaskBuilder` — [`SlimMaskBuilder`](#slimmaskbuilder)
+- <span id="slimmaskbuilder-default"></span>`fn default() -> SlimMaskBuilder` — [`SlimMaskBuilder`](#slimmaskbuilder)
 
 ### `FatMaskBuilder`
 
@@ -307,25 +319,25 @@ the byte (0-15, inclusive) corresponds to the nybble.
 
 #### Implementations
 
-- `fn add(self: &mut Self, bucket: usize, byte: u8)`
+- <span id="fatmaskbuilder-add"></span>`fn add(&mut self, bucket: usize, byte: u8)`
 
-- `unsafe fn build<V: Vector>(self: &Self) -> Mask<V>` — [`Mask`](#mask)
+- <span id="fatmaskbuilder-build"></span>`unsafe fn build<V: Vector>(&self) -> Mask<V>` — [`Mask`](#mask)
 
-- `unsafe fn from_teddy<const BYTES: usize, V: Vector>(teddy: &Teddy<16>) -> [Mask<V>; BYTES]` — [`Teddy`](#teddy), [`Mask`](#mask)
+- <span id="fatmaskbuilder-from-teddy"></span>`unsafe fn from_teddy<const BYTES: usize, V: Vector>(teddy: &Teddy<16>) -> [Mask<V>; BYTES]` — [`Teddy`](#teddy), [`Mask`](#mask)
 
 #### Trait Implementations
 
 ##### `impl Clone for FatMaskBuilder`
 
-- `fn clone(self: &Self) -> FatMaskBuilder` — [`FatMaskBuilder`](#fatmaskbuilder)
+- <span id="fatmaskbuilder-clone"></span>`fn clone(&self) -> FatMaskBuilder` — [`FatMaskBuilder`](#fatmaskbuilder)
 
 ##### `impl Copy for FatMaskBuilder`
 
 ##### `impl Debug for FatMaskBuilder`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="fatmaskbuilder-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Default for FatMaskBuilder`
 
-- `fn default() -> FatMaskBuilder` — [`FatMaskBuilder`](#fatmaskbuilder)
+- <span id="fatmaskbuilder-default"></span>`fn default() -> FatMaskBuilder` — [`FatMaskBuilder`](#fatmaskbuilder)
 

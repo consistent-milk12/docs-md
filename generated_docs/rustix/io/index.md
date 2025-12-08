@@ -10,6 +10,78 @@ If you're looking for [`SeekFrom`](#seekfrom), it's in the `fs` module.
 
 
 
+## Contents
+
+- [Modules](#modules)
+  - [`close`](#close)
+  - [`dup`](#dup)
+  - [`errno`](#errno)
+  - [`fcntl`](#fcntl)
+  - [`ioctl`](#ioctl)
+  - [`read_write`](#read_write)
+- [Structs](#structs)
+  - [`unnamed`](#unnamed)
+- [Functions](#functions)
+  - [`unnamed`](#unnamed)
+  - [`close`](#close)
+  - [`dup`](#dup)
+  - [`dup2`](#dup2)
+  - [`dup3`](#dup3)
+  - [`fcntl_getfd`](#fcntl_getfd)
+  - [`fcntl_setfd`](#fcntl_setfd)
+  - [`fcntl_dupfd_cloexec`](#fcntl_dupfd_cloexec)
+  - [`ioctl_fioclex`](#ioctl_fioclex)
+  - [`ioctl_fionclex`](#ioctl_fionclex)
+  - [`ioctl_fionbio`](#ioctl_fionbio)
+  - [`ioctl_fionread`](#ioctl_fionread)
+  - [`read`](#read)
+  - [`write`](#write)
+  - [`pread`](#pread)
+  - [`pwrite`](#pwrite)
+  - [`readv`](#readv)
+  - [`writev`](#writev)
+  - [`preadv`](#preadv)
+  - [`pwritev`](#pwritev)
+  - [`preadv2`](#preadv2)
+  - [`pwritev2`](#pwritev2)
+- [Type Aliases](#type-aliases)
+  - [`unnamed`](#unnamed)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`close`](#close) | mod | The unsafe `close` for raw file descriptors. |
+| [`dup`](#dup) | mod | Functions which duplicate file descriptors. |
+| [`errno`](#errno) | mod | The `Errno` type, which is a minimal wrapper around an error code. |
+| [`fcntl`](#fcntl) | mod | The Unix `fcntl` function is effectively lots of different functions hidden |
+| [`ioctl`](#ioctl) | mod | The Unix `ioctl` function is effectively lots of different functions hidden |
+| [`read_write`](#read_write) | mod | `read` and `write`, optionally positioned, optionally vectored. |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`close`](#close) | fn | `close(raw_fd)`—Closes a `RawFd` directly. |
+| [`dup`](#dup) | fn | `dup(fd)`—Creates a new `OwnedFd` instance that shares the same |
+| [`dup2`](#dup2) | fn | `dup2(fd, new)`—Changes the [file description] of a file descriptor. |
+| [`dup3`](#dup3) | fn | `dup3(fd, new, flags)`—Changes the [file description] of a file |
+| [`fcntl_getfd`](#fcntl_getfd) | fn | `fcntl(fd, F_GETFD)`—Returns a file descriptor's flags. |
+| [`fcntl_setfd`](#fcntl_setfd) | fn | `fcntl(fd, F_SETFD, flags)`—Sets a file descriptor's flags. |
+| [`fcntl_dupfd_cloexec`](#fcntl_dupfd_cloexec) | fn | `fcntl(fd, F_DUPFD_CLOEXEC)`—Creates a new `OwnedFd` instance, with value |
+| [`ioctl_fioclex`](#ioctl_fioclex) | fn | `ioctl(fd, FIOCLEX, NULL)`—Set the close-on-exec flag. |
+| [`ioctl_fionclex`](#ioctl_fionclex) | fn | `ioctl(fd, FIONCLEX, NULL)`—Remove the close-on-exec flag. |
+| [`ioctl_fionbio`](#ioctl_fionbio) | fn | `ioctl(fd, FIONBIO, &value)`—Enables or disables non-blocking mode. |
+| [`ioctl_fionread`](#ioctl_fionread) | fn | `ioctl(fd, FIONREAD)`—Returns the number of bytes ready to be read. |
+| [`read`](#read) | fn | `read(fd, buf)`—Reads from a stream. |
+| [`write`](#write) | fn | `write(fd, buf)`—Writes to a stream. |
+| [`pread`](#pread) | fn | `pread(fd, buf, offset)`—Reads from a file at a given position. |
+| [`pwrite`](#pwrite) | fn | `pwrite(fd, bufs)`—Writes to a file at a given position. |
+| [`readv`](#readv) | fn | `readv(fd, bufs)`—Reads from a stream into multiple buffers. |
+| [`writev`](#writev) | fn | `writev(fd, bufs)`—Writes to a stream from multiple buffers. |
+| [`preadv`](#preadv) | fn | `preadv(fd, bufs, offset)`—Reads from a file at a given position into |
+| [`pwritev`](#pwritev) | fn | `pwritev(fd, bufs, offset)`—Writes to a file at a given position from |
+| [`preadv2`](#preadv2) | fn | `preadv2(fd, bufs, offset, flags)`—Reads data, with several options. |
+| [`pwritev2`](#pwritev2) | fn | `pwritev2(fd, bufs, offset, flags)`—Writes data, with several options. |
+| [`unnamed`](#unnamed) | type |  |
+
 ## Modules
 
 - [`close`](close/index.md) - The unsafe `close` for raw file descriptors.
@@ -54,29 +126,23 @@ but only holds an OS error code, and no extra error value.
 
 #### Implementations
 
-- `fn from_io_error(io_err: &std::io::Error) -> Option<Self>`
-
-- `const fn raw_os_error(self: Self) -> i32`
-
-- `const fn from_raw_os_error(raw: i32) -> Self`
-
-- `const fn from_errno(raw: u32) -> Self`
+- <span id="errno-kind"></span>`fn kind(self) -> std::io::ErrorKind`
 
 #### Trait Implementations
 
 ##### `impl Clone for Errno`
 
-- `fn clone(self: &Self) -> Errno` — [`Errno`](#errno)
+- <span id="errno-clone"></span>`fn clone(&self) -> Errno` — [`Errno`](#errno)
 
 ##### `impl Copy for Errno`
 
 ##### `impl Debug for Errno`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="errno-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Errno`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="errno-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Errno`
 
@@ -84,17 +150,17 @@ but only holds an OS error code, and no extra error value.
 
 ##### `impl Hash for Errno`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="errno-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Errno`
 
-- `fn eq(self: &Self, other: &Errno) -> bool` — [`Errno`](#errno)
+- <span id="errno-eq"></span>`fn eq(&self, other: &Errno) -> bool` — [`Errno`](#errno)
 
 ##### `impl StructuralPartialEq for Errno`
 
 ##### `impl<T> ToString for Errno`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="errno-to-string"></span>`fn to_string(&self) -> String`
 
 ## Functions
 

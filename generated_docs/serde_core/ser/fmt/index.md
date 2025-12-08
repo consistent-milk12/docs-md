@@ -4,6 +4,12 @@
 
 # Module `fmt`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`fmt_primitives!`](#fmt_primitives) | macro |  |
+
 ## Macros
 
 ### `fmt_primitives!`

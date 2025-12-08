@@ -4,6 +4,13 @@
 
 # Module `string`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`RegexBuilder`](#regexbuilder) | struct | A configurable builder for a [`Regex`]. |
+| [`RegexSetBuilder`](#regexsetbuilder) | struct | A configurable builder for a [`RegexSet`]. |
+
 ## Structs
 
 ### `RegexBuilder`
@@ -23,43 +30,43 @@ the compiled regular expression.
 
 #### Implementations
 
-- `fn new(pattern: &str) -> RegexBuilder` — [`RegexBuilder`](../../index.md)
+- <span id="regexbuilder-new"></span>`fn new(pattern: &str) -> RegexBuilder` — [`RegexBuilder`](../../index.md)
 
-- `fn build(self: &Self) -> Result<Regex, Error>` — [`Regex`](../../index.md), [`Error`](../../index.md)
+- <span id="regexbuilder-build"></span>`fn build(&self) -> Result<Regex, Error>` — [`Regex`](../../index.md), [`Error`](../../index.md)
 
-- `fn unicode(self: &mut Self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](../../index.md)
+- <span id="regexbuilder-unicode"></span>`fn unicode(&mut self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](../../index.md)
 
-- `fn case_insensitive(self: &mut Self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](../../index.md)
+- <span id="regexbuilder-case-insensitive"></span>`fn case_insensitive(&mut self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](../../index.md)
 
-- `fn multi_line(self: &mut Self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](../../index.md)
+- <span id="regexbuilder-multi-line"></span>`fn multi_line(&mut self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](../../index.md)
 
-- `fn dot_matches_new_line(self: &mut Self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](../../index.md)
+- <span id="regexbuilder-dot-matches-new-line"></span>`fn dot_matches_new_line(&mut self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](../../index.md)
 
-- `fn crlf(self: &mut Self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](../../index.md)
+- <span id="regexbuilder-crlf"></span>`fn crlf(&mut self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](../../index.md)
 
-- `fn line_terminator(self: &mut Self, byte: u8) -> &mut RegexBuilder` — [`RegexBuilder`](../../index.md)
+- <span id="regexbuilder-line-terminator"></span>`fn line_terminator(&mut self, byte: u8) -> &mut RegexBuilder` — [`RegexBuilder`](../../index.md)
 
-- `fn swap_greed(self: &mut Self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](../../index.md)
+- <span id="regexbuilder-swap-greed"></span>`fn swap_greed(&mut self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](../../index.md)
 
-- `fn ignore_whitespace(self: &mut Self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](../../index.md)
+- <span id="regexbuilder-ignore-whitespace"></span>`fn ignore_whitespace(&mut self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](../../index.md)
 
-- `fn octal(self: &mut Self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](../../index.md)
+- <span id="regexbuilder-octal"></span>`fn octal(&mut self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](../../index.md)
 
-- `fn size_limit(self: &mut Self, bytes: usize) -> &mut RegexBuilder` — [`RegexBuilder`](../../index.md)
+- <span id="regexbuilder-size-limit"></span>`fn size_limit(&mut self, bytes: usize) -> &mut RegexBuilder` — [`RegexBuilder`](../../index.md)
 
-- `fn dfa_size_limit(self: &mut Self, bytes: usize) -> &mut RegexBuilder` — [`RegexBuilder`](../../index.md)
+- <span id="regexbuilder-dfa-size-limit"></span>`fn dfa_size_limit(&mut self, bytes: usize) -> &mut RegexBuilder` — [`RegexBuilder`](../../index.md)
 
-- `fn nest_limit(self: &mut Self, limit: u32) -> &mut RegexBuilder` — [`RegexBuilder`](../../index.md)
+- <span id="regexbuilder-nest-limit"></span>`fn nest_limit(&mut self, limit: u32) -> &mut RegexBuilder` — [`RegexBuilder`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for RegexBuilder`
 
-- `fn clone(self: &Self) -> RegexBuilder` — [`RegexBuilder`](../../index.md)
+- <span id="regexbuilder-clone"></span>`fn clone(&self) -> RegexBuilder` — [`RegexBuilder`](../../index.md)
 
 ##### `impl Debug for RegexBuilder`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="regexbuilder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `RegexSetBuilder`
 
@@ -78,41 +85,41 @@ and a size limit on the compiled regular expression.
 
 #### Implementations
 
-- `fn new<I, S>(patterns: I) -> RegexSetBuilder` — [`RegexSetBuilder`](../../index.md)
+- <span id="regexsetbuilder-new"></span>`fn new<I, S>(patterns: I) -> RegexSetBuilder` — [`RegexSetBuilder`](../../index.md)
 
-- `fn build(self: &Self) -> Result<RegexSet, Error>` — [`RegexSet`](../../index.md), [`Error`](../../index.md)
+- <span id="regexsetbuilder-build"></span>`fn build(&self) -> Result<RegexSet, Error>` — [`RegexSet`](../../index.md), [`Error`](../../index.md)
 
-- `fn unicode(self: &mut Self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../index.md)
+- <span id="regexsetbuilder-unicode"></span>`fn unicode(&mut self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../index.md)
 
-- `fn case_insensitive(self: &mut Self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../index.md)
+- <span id="regexsetbuilder-case-insensitive"></span>`fn case_insensitive(&mut self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../index.md)
 
-- `fn multi_line(self: &mut Self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../index.md)
+- <span id="regexsetbuilder-multi-line"></span>`fn multi_line(&mut self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../index.md)
 
-- `fn dot_matches_new_line(self: &mut Self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../index.md)
+- <span id="regexsetbuilder-dot-matches-new-line"></span>`fn dot_matches_new_line(&mut self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../index.md)
 
-- `fn crlf(self: &mut Self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../index.md)
+- <span id="regexsetbuilder-crlf"></span>`fn crlf(&mut self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../index.md)
 
-- `fn line_terminator(self: &mut Self, byte: u8) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../index.md)
+- <span id="regexsetbuilder-line-terminator"></span>`fn line_terminator(&mut self, byte: u8) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../index.md)
 
-- `fn swap_greed(self: &mut Self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../index.md)
+- <span id="regexsetbuilder-swap-greed"></span>`fn swap_greed(&mut self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../index.md)
 
-- `fn ignore_whitespace(self: &mut Self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../index.md)
+- <span id="regexsetbuilder-ignore-whitespace"></span>`fn ignore_whitespace(&mut self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../index.md)
 
-- `fn octal(self: &mut Self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../index.md)
+- <span id="regexsetbuilder-octal"></span>`fn octal(&mut self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../index.md)
 
-- `fn size_limit(self: &mut Self, bytes: usize) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../index.md)
+- <span id="regexsetbuilder-size-limit"></span>`fn size_limit(&mut self, bytes: usize) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../index.md)
 
-- `fn dfa_size_limit(self: &mut Self, bytes: usize) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../index.md)
+- <span id="regexsetbuilder-dfa-size-limit"></span>`fn dfa_size_limit(&mut self, bytes: usize) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../index.md)
 
-- `fn nest_limit(self: &mut Self, limit: u32) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../index.md)
+- <span id="regexsetbuilder-nest-limit"></span>`fn nest_limit(&mut self, limit: u32) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for RegexSetBuilder`
 
-- `fn clone(self: &Self) -> RegexSetBuilder` — [`RegexSetBuilder`](../../index.md)
+- <span id="regexsetbuilder-clone"></span>`fn clone(&self) -> RegexSetBuilder` — [`RegexSetBuilder`](../../index.md)
 
 ##### `impl Debug for RegexSetBuilder`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="regexsetbuilder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

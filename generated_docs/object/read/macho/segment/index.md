@@ -4,6 +4,33 @@
 
 # Module `segment`
 
+## Contents
+
+- [Structs](#structs)
+  - [`MachOSegmentIterator`](#machosegmentiterator)
+  - [`MachOSegment`](#machosegment)
+  - [`MachOSegmentInternal`](#machosegmentinternal)
+- [Traits](#traits)
+  - [`Segment`](#segment)
+- [Type Aliases](#type-aliases)
+  - [`MachOSegmentIterator32`](#machosegmentiterator32)
+  - [`MachOSegmentIterator64`](#machosegmentiterator64)
+  - [`MachOSegment32`](#machosegment32)
+  - [`MachOSegment64`](#machosegment64)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`MachOSegmentIterator`](#machosegmentiterator) | struct | An iterator for the segments in a [`MachOFile`]. |
+| [`MachOSegment`](#machosegment) | struct | A segment in a [`MachOFile`]. |
+| [`MachOSegmentInternal`](#machosegmentinternal) | struct |  |
+| [`Segment`](#segment) | trait | A trait for generic access to [`macho::SegmentCommand32`] and [`macho::SegmentCommand64`]. |
+| [`MachOSegmentIterator32`](#machosegmentiterator32) | type | An iterator for the segments in a [`MachOFile32`](super::MachOFile32). |
+| [`MachOSegmentIterator64`](#machosegmentiterator64) | type | An iterator for the segments in a [`MachOFile64`](super::MachOFile64). |
+| [`MachOSegment32`](#machosegment32) | type | A segment in a [`MachOFile32`](super::MachOFile32). |
+| [`MachOSegment64`](#machosegment64) | type | A segment in a [`MachOFile64`](super::MachOFile64). |
+
 ## Structs
 
 ### `MachOSegmentIterator<'data, 'file, Mach, R>`
@@ -24,21 +51,21 @@ An iterator for the segments in a [`MachOFile`](../index.md).
 
 ##### `impl<'data, 'file, Mach, R> Debug for MachOSegmentIterator<'data, 'file, Mach, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="machosegmentiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for MachOSegmentIterator<'data, 'file, Mach, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="machosegmentiterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="machosegmentiterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="machosegmentiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Mach, R> Iterator for MachOSegmentIterator<'data, 'file, Mach, R>`
 
-- `type Item = MachOSegment<'data, 'file, Mach, R>`
+- <span id="machosegmentiterator-item"></span>`type Item = MachOSegment<'data, 'file, Mach, R>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="machosegmentiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `MachOSegment<'data, 'file, Mach, R>`
 
@@ -58,37 +85,37 @@ Most functionality is provided by the [`ObjectSegment`](../../index.md) trait im
 
 #### Implementations
 
-- `fn macho_file(self: &Self) -> &'file MachOFile<'data, Mach, R>` — [`MachOFile`](../index.md)
+- <span id="machosegment-macho-file"></span>`fn macho_file(&self) -> &'file MachOFile<'data, Mach, R>` — [`MachOFile`](../index.md)
 
-- `fn macho_segment(self: &Self) -> &'data <Mach as >::Segment` — [`MachHeader`](../index.md)
+- <span id="machosegment-macho-segment"></span>`fn macho_segment(&self) -> &'data <Mach as >::Segment` — [`MachHeader`](../index.md)
 
-- `fn bytes(self: &Self) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
+- <span id="machosegment-bytes"></span>`fn bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'data, 'file, Mach, R> Debug for MachOSegment<'data, 'file, Mach, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="machosegment-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, 'file, Mach, R> ObjectSegment for MachOSegment<'data, 'file, Mach, R>`
 
-- `fn address(self: &Self) -> u64`
+- <span id="machosegment-address"></span>`fn address(&self) -> u64`
 
-- `fn size(self: &Self) -> u64`
+- <span id="machosegment-size"></span>`fn size(&self) -> u64`
 
-- `fn align(self: &Self) -> u64`
+- <span id="machosegment-align"></span>`fn align(&self) -> u64`
 
-- `fn file_range(self: &Self) -> (u64, u64)`
+- <span id="machosegment-file-range"></span>`fn file_range(&self) -> (u64, u64)`
 
-- `fn data(self: &Self) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
+- <span id="machosegment-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
 
-- `fn data_range(self: &Self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../../index.md)
+- <span id="machosegment-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../../index.md)
 
-- `fn name_bytes(self: &Self) -> Result<Option<&[u8]>>` — [`Result`](../../../index.md)
+- <span id="machosegment-name-bytes"></span>`fn name_bytes(&self) -> Result<Option<&[u8]>>` — [`Result`](../../../index.md)
 
-- `fn name(self: &Self) -> Result<Option<&str>>` — [`Result`](../../../index.md)
+- <span id="machosegment-name"></span>`fn name(&self) -> Result<Option<&str>>` — [`Result`](../../../index.md)
 
-- `fn flags(self: &Self) -> SegmentFlags` — [`SegmentFlags`](../../../index.md)
+- <span id="machosegment-flags"></span>`fn flags(&self) -> SegmentFlags` — [`SegmentFlags`](../../../index.md)
 
 ##### `impl<'data, 'file, Mach, R> Sealed for MachOSegment<'data, 'file, Mach, R>`
 
@@ -112,15 +139,15 @@ struct MachOSegmentInternal<'data, Mach: MachHeader, R: ReadRef<'data>> {
 
 #### Trait Implementations
 
-##### `impl<'data, Mach: $crate::clone::Clone + MachHeader, R: $crate::clone::Clone + ReadRef<'data>> Clone for MachOSegmentInternal<'data, Mach, R>`
+##### `impl<'data, Mach: clone::Clone + MachHeader, R: clone::Clone + ReadRef<'data>> Clone for MachOSegmentInternal<'data, Mach, R>`
 
-- `fn clone(self: &Self) -> MachOSegmentInternal<'data, Mach, R>` — [`MachOSegmentInternal`](#machosegmentinternal)
+- <span id="machosegmentinternal-clone"></span>`fn clone(&self) -> MachOSegmentInternal<'data, Mach, R>` — [`MachOSegmentInternal`](#machosegmentinternal)
 
-##### `impl<'data, Mach: $crate::marker::Copy + MachHeader, R: $crate::marker::Copy + ReadRef<'data>> Copy for MachOSegmentInternal<'data, Mach, R>`
+##### `impl<'data, Mach: marker::Copy + MachHeader, R: marker::Copy + ReadRef<'data>> Copy for MachOSegmentInternal<'data, Mach, R>`
 
-##### `impl<'data, Mach: $crate::fmt::Debug + MachHeader, R: $crate::fmt::Debug + ReadRef<'data>> Debug for MachOSegmentInternal<'data, Mach, R>`
+##### `impl<'data, Mach: fmt::Debug + MachHeader, R: fmt::Debug + ReadRef<'data>> Debug for MachOSegmentInternal<'data, Mach, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="machosegmentinternal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Traits
 
@@ -142,41 +169,41 @@ A trait for generic access to [`macho::SegmentCommand32`](../../../macho/index.m
 
 - `fn from_command(command: LoadCommandData<'_, <Self as >::Endian>) -> Result<Option<(&Self, &[u8])>>`
 
-- `fn cmd(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn cmd(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn cmdsize(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn cmdsize(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn segname(self: &Self) -> &[u8; 16]`
+- `fn segname(&self) -> &[u8; 16]`
 
-- `fn vmaddr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn vmaddr(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn vmsize(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn vmsize(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn fileoff(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn fileoff(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn filesize(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn filesize(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn maxprot(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn maxprot(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn initprot(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn initprot(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn nsects(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn nsects(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn flags(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn flags(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn name(self: &Self) -> &[u8]`
+- `fn name(&self) -> &[u8]`
 
   Return the `segname` bytes up until the null terminator.
 
-- `fn file_range(self: &Self, endian: <Self as >::Endian) -> (u64, u64)`
+- `fn file_range(&self, endian: <Self as >::Endian) -> (u64, u64)`
 
   Return the offset and size of the segment in the file.
 
-- `fn data<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> result::Result<&'data [u8], ()>`
+- `fn data<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> result::Result<&'data [u8], ()>`
 
   Get the segment data from the file data.
 
-- `fn sections<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, section_data: R) -> Result<&'data [<Self as >::Section]>`
+- `fn sections<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, section_data: R) -> Result<&'data [<Self as >::Section]>`
 
   Get the array of sections from the data following the segment command.
 

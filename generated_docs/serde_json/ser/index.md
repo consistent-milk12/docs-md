@@ -6,6 +6,71 @@
 
 Serialize a Rust data structure into JSON data.
 
+## Contents
+
+- [Structs](#structs)
+  - [`Serializer`](#serializer)
+  - [`MapKeySerializer`](#mapkeyserializer)
+  - [`CompactFormatter`](#compactformatter)
+  - [`PrettyFormatter`](#prettyformatter)
+- [Enums](#enums)
+  - [`CharEscape`](#charescape)
+- [Traits](#traits)
+  - [`Formatter`](#formatter)
+- [Functions](#functions)
+  - [`key_must_be_a_string`](#key_must_be_a_string)
+  - [`float_key_must_be_finite`](#float_key_must_be_finite)
+  - [`format_escaped_str`](#format_escaped_str)
+  - [`format_escaped_str_contents`](#format_escaped_str_contents)
+  - [`to_writer`](#to_writer)
+  - [`to_writer_pretty`](#to_writer_pretty)
+  - [`to_vec`](#to_vec)
+  - [`to_vec_pretty`](#to_vec_pretty)
+  - [`to_string`](#to_string)
+  - [`to_string_pretty`](#to_string_pretty)
+  - [`indent`](#indent)
+- [Constants](#constants)
+  - [`BB`](#bb)
+  - [`TT`](#tt)
+  - [`NN`](#nn)
+  - [`FF`](#ff)
+  - [`RR`](#rr)
+  - [`QU`](#qu)
+  - [`BS`](#bs)
+  - [`UU`](#uu)
+  - [`__`](#__)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Serializer`](#serializer) | struct | A structure for serializing Rust values into JSON. |
+| [`MapKeySerializer`](#mapkeyserializer) | struct |  |
+| [`CompactFormatter`](#compactformatter) | struct | This structure compacts a JSON value with no extra whitespace. |
+| [`PrettyFormatter`](#prettyformatter) | struct | This structure pretty prints a JSON value to make it human readable. |
+| [`CharEscape`](#charescape) | enum | Represents a character escape code in a type-safe manner. |
+| [`Formatter`](#formatter) | trait | This trait abstracts away serializing the JSON control characters, which allows the user to |
+| [`key_must_be_a_string`](#key_must_be_a_string) | fn |  |
+| [`float_key_must_be_finite`](#float_key_must_be_finite) | fn |  |
+| [`format_escaped_str`](#format_escaped_str) | fn |  |
+| [`format_escaped_str_contents`](#format_escaped_str_contents) | fn |  |
+| [`to_writer`](#to_writer) | fn | Serialize the given data structure as JSON into the I/O stream. |
+| [`to_writer_pretty`](#to_writer_pretty) | fn | Serialize the given data structure as pretty-printed JSON into the I/O |
+| [`to_vec`](#to_vec) | fn | Serialize the given data structure as a JSON byte vector. |
+| [`to_vec_pretty`](#to_vec_pretty) | fn | Serialize the given data structure as a pretty-printed JSON byte vector. |
+| [`to_string`](#to_string) | fn | Serialize the given data structure as a String of JSON. |
+| [`to_string_pretty`](#to_string_pretty) | fn | Serialize the given data structure as a pretty-printed String of JSON. |
+| [`indent`](#indent) | fn |  |
+| [`BB`](#bb) | const |  |
+| [`TT`](#tt) | const |  |
+| [`NN`](#nn) | const |  |
+| [`FF`](#ff) | const |  |
+| [`RR`](#rr) | const |  |
+| [`QU`](#qu) | const |  |
+| [`BS`](#bs) | const |  |
+| [`UU`](#uu) | const |  |
+| [`__`](#__) | const |  |
+
 ## Structs
 
 ### `Serializer<W, F>`
@@ -21,7 +86,9 @@ A structure for serializing Rust values into JSON.
 
 #### Implementations
 
-- `fn new(writer: W) -> Self`
+- <span id="serializer-with-formatter"></span>`fn with_formatter(writer: W, formatter: F) -> Self`
+
+- <span id="serializer-into-inner"></span>`fn into_inner(self) -> W`
 
 ### `MapKeySerializer<'a, W: 'a, F: 'a>`
 
@@ -35,85 +102,85 @@ struct MapKeySerializer<'a, W: 'a, F: 'a> {
 
 ##### `impl<'a, W, F> Serializer for MapKeySerializer<'a, W, F>`
 
-- `type Ok = ()`
+- <span id="mapkeyserializer-ok"></span>`type Ok = ()`
 
-- `type Error = Error`
+- <span id="mapkeyserializer-error"></span>`type Error = Error`
 
-- `fn serialize_str(self: Self, value: &str) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-str"></span>`fn serialize_str(self, value: &str) -> Result<()>` — [`Result`](../index.md)
 
-- `fn serialize_unit_variant(self: Self, _name: &'static str, _variant_index: u32, variant: &'static str) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-unit-variant"></span>`fn serialize_unit_variant(self, _name: &'static str, _variant_index: u32, variant: &'static str) -> Result<()>` — [`Result`](../index.md)
 
-- `fn serialize_newtype_struct<T>(self: Self, _name: &'static str, value: &T) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-newtype-struct"></span>`fn serialize_newtype_struct<T>(self, _name: &'static str, value: &T) -> Result<()>` — [`Result`](../index.md)
 
-- `type SerializeSeq = Impossible<(), Error>`
+- <span id="mapkeyserializer-serializeseq"></span>`type SerializeSeq = Impossible<(), Error>`
 
-- `type SerializeTuple = Impossible<(), Error>`
+- <span id="mapkeyserializer-serializetuple"></span>`type SerializeTuple = Impossible<(), Error>`
 
-- `type SerializeTupleStruct = Impossible<(), Error>`
+- <span id="mapkeyserializer-serializetuplestruct"></span>`type SerializeTupleStruct = Impossible<(), Error>`
 
-- `type SerializeTupleVariant = Impossible<(), Error>`
+- <span id="mapkeyserializer-serializetuplevariant"></span>`type SerializeTupleVariant = Impossible<(), Error>`
 
-- `type SerializeMap = Impossible<(), Error>`
+- <span id="mapkeyserializer-serializemap"></span>`type SerializeMap = Impossible<(), Error>`
 
-- `type SerializeStruct = Impossible<(), Error>`
+- <span id="mapkeyserializer-serializestruct"></span>`type SerializeStruct = Impossible<(), Error>`
 
-- `type SerializeStructVariant = Impossible<(), Error>`
+- <span id="mapkeyserializer-serializestructvariant"></span>`type SerializeStructVariant = Impossible<(), Error>`
 
-- `fn serialize_bool(self: Self, value: bool) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-bool"></span>`fn serialize_bool(self, value: bool) -> Result<()>` — [`Result`](../index.md)
 
-- `fn serialize_i8(self: Self, value: i8) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-i8"></span>`fn serialize_i8(self, value: i8) -> Result<()>` — [`Result`](../index.md)
 
-- `fn serialize_i16(self: Self, value: i16) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-i16"></span>`fn serialize_i16(self, value: i16) -> Result<()>` — [`Result`](../index.md)
 
-- `fn serialize_i32(self: Self, value: i32) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-i32"></span>`fn serialize_i32(self, value: i32) -> Result<()>` — [`Result`](../index.md)
 
-- `fn serialize_i64(self: Self, value: i64) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-i64"></span>`fn serialize_i64(self, value: i64) -> Result<()>` — [`Result`](../index.md)
 
-- `fn serialize_i128(self: Self, value: i128) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-i128"></span>`fn serialize_i128(self, value: i128) -> Result<()>` — [`Result`](../index.md)
 
-- `fn serialize_u8(self: Self, value: u8) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-u8"></span>`fn serialize_u8(self, value: u8) -> Result<()>` — [`Result`](../index.md)
 
-- `fn serialize_u16(self: Self, value: u16) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-u16"></span>`fn serialize_u16(self, value: u16) -> Result<()>` — [`Result`](../index.md)
 
-- `fn serialize_u32(self: Self, value: u32) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-u32"></span>`fn serialize_u32(self, value: u32) -> Result<()>` — [`Result`](../index.md)
 
-- `fn serialize_u64(self: Self, value: u64) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-u64"></span>`fn serialize_u64(self, value: u64) -> Result<()>` — [`Result`](../index.md)
 
-- `fn serialize_u128(self: Self, value: u128) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-u128"></span>`fn serialize_u128(self, value: u128) -> Result<()>` — [`Result`](../index.md)
 
-- `fn serialize_f32(self: Self, value: f32) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-f32"></span>`fn serialize_f32(self, value: f32) -> Result<()>` — [`Result`](../index.md)
 
-- `fn serialize_f64(self: Self, value: f64) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-f64"></span>`fn serialize_f64(self, value: f64) -> Result<()>` — [`Result`](../index.md)
 
-- `fn serialize_char(self: Self, value: char) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-char"></span>`fn serialize_char(self, value: char) -> Result<()>` — [`Result`](../index.md)
 
-- `fn serialize_bytes(self: Self, _value: &[u8]) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-bytes"></span>`fn serialize_bytes(self, _value: &[u8]) -> Result<()>` — [`Result`](../index.md)
 
-- `fn serialize_unit(self: Self) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-unit"></span>`fn serialize_unit(self) -> Result<()>` — [`Result`](../index.md)
 
-- `fn serialize_unit_struct(self: Self, _name: &'static str) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-unit-struct"></span>`fn serialize_unit_struct(self, _name: &'static str) -> Result<()>` — [`Result`](../index.md)
 
-- `fn serialize_newtype_variant<T>(self: Self, _name: &'static str, _variant_index: u32, _variant: &'static str, _value: &T) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-newtype-variant"></span>`fn serialize_newtype_variant<T>(self, _name: &'static str, _variant_index: u32, _variant: &'static str, _value: &T) -> Result<()>` — [`Result`](../index.md)
 
-- `fn serialize_none(self: Self) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-none"></span>`fn serialize_none(self) -> Result<()>` — [`Result`](../index.md)
 
-- `fn serialize_some<T>(self: Self, value: &T) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-some"></span>`fn serialize_some<T>(self, value: &T) -> Result<()>` — [`Result`](../index.md)
 
-- `fn serialize_seq(self: Self, _len: Option<usize>) -> Result<<Self as >::SerializeSeq>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-seq"></span>`fn serialize_seq(self, _len: Option<usize>) -> Result<<Self as >::SerializeSeq>` — [`Result`](../index.md)
 
-- `fn serialize_tuple(self: Self, _len: usize) -> Result<<Self as >::SerializeTuple>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-tuple"></span>`fn serialize_tuple(self, _len: usize) -> Result<<Self as >::SerializeTuple>` — [`Result`](../index.md)
 
-- `fn serialize_tuple_struct(self: Self, _name: &'static str, _len: usize) -> Result<<Self as >::SerializeTupleStruct>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-tuple-struct"></span>`fn serialize_tuple_struct(self, _name: &'static str, _len: usize) -> Result<<Self as >::SerializeTupleStruct>` — [`Result`](../index.md)
 
-- `fn serialize_tuple_variant(self: Self, _name: &'static str, _variant_index: u32, _variant: &'static str, _len: usize) -> Result<<Self as >::SerializeTupleVariant>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-tuple-variant"></span>`fn serialize_tuple_variant(self, _name: &'static str, _variant_index: u32, _variant: &'static str, _len: usize) -> Result<<Self as >::SerializeTupleVariant>` — [`Result`](../index.md)
 
-- `fn serialize_map(self: Self, _len: Option<usize>) -> Result<<Self as >::SerializeMap>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-map"></span>`fn serialize_map(self, _len: Option<usize>) -> Result<<Self as >::SerializeMap>` — [`Result`](../index.md)
 
-- `fn serialize_struct(self: Self, _name: &'static str, _len: usize) -> Result<<Self as >::SerializeStruct>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-struct"></span>`fn serialize_struct(self, _name: &'static str, _len: usize) -> Result<<Self as >::SerializeStruct>` — [`Result`](../index.md)
 
-- `fn serialize_struct_variant(self: Self, _name: &'static str, _variant_index: u32, _variant: &'static str, _len: usize) -> Result<<Self as >::SerializeStructVariant>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-serialize-struct-variant"></span>`fn serialize_struct_variant(self, _name: &'static str, _variant_index: u32, _variant: &'static str, _len: usize) -> Result<<Self as >::SerializeStructVariant>` — [`Result`](../index.md)
 
-- `fn collect_str<T>(self: Self, value: &T) -> Result<()>` — [`Result`](../index.md)
+- <span id="mapkeyserializer-collect-str"></span>`fn collect_str<T>(self, value: &T) -> Result<()>` — [`Result`](../index.md)
 
 ### `CompactFormatter`
 
@@ -127,15 +194,15 @@ This structure compacts a JSON value with no extra whitespace.
 
 ##### `impl Clone for CompactFormatter`
 
-- `fn clone(self: &Self) -> CompactFormatter` — [`CompactFormatter`](#compactformatter)
+- <span id="compactformatter-clone"></span>`fn clone(&self) -> CompactFormatter` — [`CompactFormatter`](#compactformatter)
 
 ##### `impl Debug for CompactFormatter`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="compactformatter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for CompactFormatter`
 
-- `fn default() -> CompactFormatter` — [`CompactFormatter`](#compactformatter)
+- <span id="compactformatter-default"></span>`fn default() -> CompactFormatter` — [`CompactFormatter`](#compactformatter)
 
 ##### `impl Formatter for CompactFormatter`
 
@@ -153,43 +220,43 @@ This structure pretty prints a JSON value to make it human readable.
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="prettyformatter-new"></span>`fn new() -> Self`
 
-- `fn with_indent(indent: &'a [u8]) -> Self`
+- <span id="prettyformatter-with-indent"></span>`fn with_indent(indent: &'a [u8]) -> Self`
 
 #### Trait Implementations
 
 ##### `impl<'a> Clone for PrettyFormatter<'a>`
 
-- `fn clone(self: &Self) -> PrettyFormatter<'a>` — [`PrettyFormatter`](#prettyformatter)
+- <span id="prettyformatter-clone"></span>`fn clone(&self) -> PrettyFormatter<'a>` — [`PrettyFormatter`](#prettyformatter)
 
 ##### `impl<'a> Debug for PrettyFormatter<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="prettyformatter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'a> Default for PrettyFormatter<'a>`
 
-- `fn default() -> Self`
+- <span id="prettyformatter-default"></span>`fn default() -> Self`
 
 ##### `impl<'a> Formatter for PrettyFormatter<'a>`
 
-- `fn begin_array<W>(self: &mut Self, writer: &mut W) -> io::Result<()>` — [`Result`](../io/index.md)
+- <span id="prettyformatter-begin-array"></span>`fn begin_array<W>(&mut self, writer: &mut W) -> io::Result<()>` — [`Result`](../io/index.md)
 
-- `fn end_array<W>(self: &mut Self, writer: &mut W) -> io::Result<()>` — [`Result`](../io/index.md)
+- <span id="prettyformatter-end-array"></span>`fn end_array<W>(&mut self, writer: &mut W) -> io::Result<()>` — [`Result`](../io/index.md)
 
-- `fn begin_array_value<W>(self: &mut Self, writer: &mut W, first: bool) -> io::Result<()>` — [`Result`](../io/index.md)
+- <span id="prettyformatter-begin-array-value"></span>`fn begin_array_value<W>(&mut self, writer: &mut W, first: bool) -> io::Result<()>` — [`Result`](../io/index.md)
 
-- `fn end_array_value<W>(self: &mut Self, _writer: &mut W) -> io::Result<()>` — [`Result`](../io/index.md)
+- <span id="prettyformatter-end-array-value"></span>`fn end_array_value<W>(&mut self, _writer: &mut W) -> io::Result<()>` — [`Result`](../io/index.md)
 
-- `fn begin_object<W>(self: &mut Self, writer: &mut W) -> io::Result<()>` — [`Result`](../io/index.md)
+- <span id="prettyformatter-begin-object"></span>`fn begin_object<W>(&mut self, writer: &mut W) -> io::Result<()>` — [`Result`](../io/index.md)
 
-- `fn end_object<W>(self: &mut Self, writer: &mut W) -> io::Result<()>` — [`Result`](../io/index.md)
+- <span id="prettyformatter-end-object"></span>`fn end_object<W>(&mut self, writer: &mut W) -> io::Result<()>` — [`Result`](../io/index.md)
 
-- `fn begin_object_key<W>(self: &mut Self, writer: &mut W, first: bool) -> io::Result<()>` — [`Result`](../io/index.md)
+- <span id="prettyformatter-begin-object-key"></span>`fn begin_object_key<W>(&mut self, writer: &mut W, first: bool) -> io::Result<()>` — [`Result`](../io/index.md)
 
-- `fn begin_object_value<W>(self: &mut Self, writer: &mut W) -> io::Result<()>` — [`Result`](../io/index.md)
+- <span id="prettyformatter-begin-object-value"></span>`fn begin_object_value<W>(&mut self, writer: &mut W) -> io::Result<()>` — [`Result`](../io/index.md)
 
-- `fn end_object_value<W>(self: &mut Self, _writer: &mut W) -> io::Result<()>` — [`Result`](../io/index.md)
+- <span id="prettyformatter-end-object-value"></span>`fn end_object_value<W>(&mut self, _writer: &mut W) -> io::Result<()>` — [`Result`](../io/index.md)
 
 ## Enums
 
@@ -263,127 +330,127 @@ optionally pretty print the JSON output.
 
 #### Required Methods
 
-- `fn write_null<W>(self: &mut Self, writer: &mut W) -> io::Result<()>`
+- `fn write_null<W>(&mut self, writer: &mut W) -> io::Result<()>`
 
   Writes a `null` value to the specified writer.
 
-- `fn write_bool<W>(self: &mut Self, writer: &mut W, value: bool) -> io::Result<()>`
+- `fn write_bool<W>(&mut self, writer: &mut W, value: bool) -> io::Result<()>`
 
   Writes a `true` or `false` value to the specified writer.
 
-- `fn write_i8<W>(self: &mut Self, writer: &mut W, value: i8) -> io::Result<()>`
+- `fn write_i8<W>(&mut self, writer: &mut W, value: i8) -> io::Result<()>`
 
   Writes an integer value like `-123` to the specified writer.
 
-- `fn write_i16<W>(self: &mut Self, writer: &mut W, value: i16) -> io::Result<()>`
+- `fn write_i16<W>(&mut self, writer: &mut W, value: i16) -> io::Result<()>`
 
   Writes an integer value like `-123` to the specified writer.
 
-- `fn write_i32<W>(self: &mut Self, writer: &mut W, value: i32) -> io::Result<()>`
+- `fn write_i32<W>(&mut self, writer: &mut W, value: i32) -> io::Result<()>`
 
   Writes an integer value like `-123` to the specified writer.
 
-- `fn write_i64<W>(self: &mut Self, writer: &mut W, value: i64) -> io::Result<()>`
+- `fn write_i64<W>(&mut self, writer: &mut W, value: i64) -> io::Result<()>`
 
   Writes an integer value like `-123` to the specified writer.
 
-- `fn write_i128<W>(self: &mut Self, writer: &mut W, value: i128) -> io::Result<()>`
+- `fn write_i128<W>(&mut self, writer: &mut W, value: i128) -> io::Result<()>`
 
   Writes an integer value like `-123` to the specified writer.
 
-- `fn write_u8<W>(self: &mut Self, writer: &mut W, value: u8) -> io::Result<()>`
+- `fn write_u8<W>(&mut self, writer: &mut W, value: u8) -> io::Result<()>`
 
   Writes an integer value like `123` to the specified writer.
 
-- `fn write_u16<W>(self: &mut Self, writer: &mut W, value: u16) -> io::Result<()>`
+- `fn write_u16<W>(&mut self, writer: &mut W, value: u16) -> io::Result<()>`
 
   Writes an integer value like `123` to the specified writer.
 
-- `fn write_u32<W>(self: &mut Self, writer: &mut W, value: u32) -> io::Result<()>`
+- `fn write_u32<W>(&mut self, writer: &mut W, value: u32) -> io::Result<()>`
 
   Writes an integer value like `123` to the specified writer.
 
-- `fn write_u64<W>(self: &mut Self, writer: &mut W, value: u64) -> io::Result<()>`
+- `fn write_u64<W>(&mut self, writer: &mut W, value: u64) -> io::Result<()>`
 
   Writes an integer value like `123` to the specified writer.
 
-- `fn write_u128<W>(self: &mut Self, writer: &mut W, value: u128) -> io::Result<()>`
+- `fn write_u128<W>(&mut self, writer: &mut W, value: u128) -> io::Result<()>`
 
   Writes an integer value like `123` to the specified writer.
 
-- `fn write_f32<W>(self: &mut Self, writer: &mut W, value: f32) -> io::Result<()>`
+- `fn write_f32<W>(&mut self, writer: &mut W, value: f32) -> io::Result<()>`
 
   Writes a floating point value like `-31.26e+12` to the specified writer.
 
-- `fn write_f64<W>(self: &mut Self, writer: &mut W, value: f64) -> io::Result<()>`
+- `fn write_f64<W>(&mut self, writer: &mut W, value: f64) -> io::Result<()>`
 
   Writes a floating point value like `-31.26e+12` to the specified writer.
 
-- `fn write_number_str<W>(self: &mut Self, writer: &mut W, value: &str) -> io::Result<()>`
+- `fn write_number_str<W>(&mut self, writer: &mut W, value: &str) -> io::Result<()>`
 
   Writes a number that has already been rendered to a string.
 
-- `fn begin_string<W>(self: &mut Self, writer: &mut W) -> io::Result<()>`
+- `fn begin_string<W>(&mut self, writer: &mut W) -> io::Result<()>`
 
   Called before each series of `write_string_fragment` and
 
-- `fn end_string<W>(self: &mut Self, writer: &mut W) -> io::Result<()>`
+- `fn end_string<W>(&mut self, writer: &mut W) -> io::Result<()>`
 
   Called after each series of `write_string_fragment` and
 
-- `fn write_string_fragment<W>(self: &mut Self, writer: &mut W, fragment: &str) -> io::Result<()>`
+- `fn write_string_fragment<W>(&mut self, writer: &mut W, fragment: &str) -> io::Result<()>`
 
   Writes a string fragment that doesn't need any escaping to the
 
-- `fn write_char_escape<W>(self: &mut Self, writer: &mut W, char_escape: CharEscape) -> io::Result<()>`
+- `fn write_char_escape<W>(&mut self, writer: &mut W, char_escape: CharEscape) -> io::Result<()>`
 
   Writes a character escape code to the specified writer.
 
-- `fn write_byte_array<W>(self: &mut Self, writer: &mut W, value: &[u8]) -> io::Result<()>`
+- `fn write_byte_array<W>(&mut self, writer: &mut W, value: &[u8]) -> io::Result<()>`
 
   Writes the representation of a byte array. Formatters can choose whether
 
-- `fn begin_array<W>(self: &mut Self, writer: &mut W) -> io::Result<()>`
+- `fn begin_array<W>(&mut self, writer: &mut W) -> io::Result<()>`
 
   Called before every array.  Writes a `[` to the specified
 
-- `fn end_array<W>(self: &mut Self, writer: &mut W) -> io::Result<()>`
+- `fn end_array<W>(&mut self, writer: &mut W) -> io::Result<()>`
 
   Called after every array.  Writes a `]` to the specified
 
-- `fn begin_array_value<W>(self: &mut Self, writer: &mut W, first: bool) -> io::Result<()>`
+- `fn begin_array_value<W>(&mut self, writer: &mut W, first: bool) -> io::Result<()>`
 
   Called before every array value.  Writes a `,` if needed to
 
-- `fn end_array_value<W>(self: &mut Self, _writer: &mut W) -> io::Result<()>`
+- `fn end_array_value<W>(&mut self, _writer: &mut W) -> io::Result<()>`
 
   Called after every array value.
 
-- `fn begin_object<W>(self: &mut Self, writer: &mut W) -> io::Result<()>`
+- `fn begin_object<W>(&mut self, writer: &mut W) -> io::Result<()>`
 
   Called before every object.  Writes a `{` to the specified
 
-- `fn end_object<W>(self: &mut Self, writer: &mut W) -> io::Result<()>`
+- `fn end_object<W>(&mut self, writer: &mut W) -> io::Result<()>`
 
   Called after every object.  Writes a `}` to the specified
 
-- `fn begin_object_key<W>(self: &mut Self, writer: &mut W, first: bool) -> io::Result<()>`
+- `fn begin_object_key<W>(&mut self, writer: &mut W, first: bool) -> io::Result<()>`
 
   Called before every object key.
 
-- `fn end_object_key<W>(self: &mut Self, _writer: &mut W) -> io::Result<()>`
+- `fn end_object_key<W>(&mut self, _writer: &mut W) -> io::Result<()>`
 
   Called after every object key.  A `:` should be written to the
 
-- `fn begin_object_value<W>(self: &mut Self, writer: &mut W) -> io::Result<()>`
+- `fn begin_object_value<W>(&mut self, writer: &mut W) -> io::Result<()>`
 
   Called before every object value.  A `:` should be written to
 
-- `fn end_object_value<W>(self: &mut Self, _writer: &mut W) -> io::Result<()>`
+- `fn end_object_value<W>(&mut self, _writer: &mut W) -> io::Result<()>`
 
   Called after every object value.
 
-- `fn write_raw_fragment<W>(self: &mut Self, writer: &mut W, fragment: &str) -> io::Result<()>`
+- `fn write_raw_fragment<W>(&mut self, writer: &mut W, fragment: &str) -> io::Result<()>`
 
   Writes a raw JSON fragment that doesn't need any escaping to the
 

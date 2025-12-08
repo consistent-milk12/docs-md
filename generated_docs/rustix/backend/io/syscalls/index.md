@@ -10,6 +10,53 @@ linux_raw syscalls supporting `rustix::io`.
 
 See the `rustix::backend` module documentation for details.
 
+## Contents
+
+- [Functions](#functions)
+  - [`read`](#read)
+  - [`pread`](#pread)
+  - [`readv`](#readv)
+  - [`preadv`](#preadv)
+  - [`preadv2`](#preadv2)
+  - [`write`](#write)
+  - [`pwrite`](#pwrite)
+  - [`writev`](#writev)
+  - [`pwritev`](#pwritev)
+  - [`pwritev2`](#pwritev2)
+  - [`close`](#close)
+  - [`ioctl`](#ioctl)
+  - [`ioctl_readonly`](#ioctl_readonly)
+  - [`dup`](#dup)
+  - [`dup2`](#dup2)
+  - [`dup3`](#dup3)
+  - [`fcntl_getfd`](#fcntl_getfd)
+  - [`fcntl_setfd`](#fcntl_setfd)
+  - [`fcntl_dupfd_cloexec`](#fcntl_dupfd_cloexec)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`read`](#read) | fn |  |
+| [`pread`](#pread) | fn |  |
+| [`readv`](#readv) | fn |  |
+| [`preadv`](#preadv) | fn |  |
+| [`preadv2`](#preadv2) | fn |  |
+| [`write`](#write) | fn |  |
+| [`pwrite`](#pwrite) | fn |  |
+| [`writev`](#writev) | fn |  |
+| [`pwritev`](#pwritev) | fn |  |
+| [`pwritev2`](#pwritev2) | fn |  |
+| [`close`](#close) | fn |  |
+| [`ioctl`](#ioctl) | fn |  |
+| [`ioctl_readonly`](#ioctl_readonly) | fn |  |
+| [`dup`](#dup) | fn |  |
+| [`dup2`](#dup2) | fn |  |
+| [`dup3`](#dup3) | fn |  |
+| [`fcntl_getfd`](#fcntl_getfd) | fn |  |
+| [`fcntl_setfd`](#fcntl_setfd) | fn |  |
+| [`fcntl_dupfd_cloexec`](#fcntl_dupfd_cloexec) | fn |  |
+
 ## Functions
 
 ### `read`

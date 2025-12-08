@@ -6,6 +6,44 @@
 
 A hash table implemented with quadratic probing and SIMD lookup.
 
+## Contents
+
+- [Structs](#structs)
+  - [`HashTable`](#hashtable)
+  - [`OccupiedEntry`](#occupiedentry)
+  - [`VacantEntry`](#vacantentry)
+  - [`AbsentEntry`](#absententry)
+  - [`Iter`](#iter)
+  - [`IterMut`](#itermut)
+  - [`IterBuckets`](#iterbuckets)
+  - [`IterHash`](#iterhash)
+  - [`IterHashMut`](#iterhashmut)
+  - [`IterHashBuckets`](#iterhashbuckets)
+  - [`IntoIter`](#intoiter)
+  - [`Drain`](#drain)
+  - [`ExtractIf`](#extractif)
+- [Enums](#enums)
+  - [`Entry`](#entry)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`HashTable`](#hashtable) | struct | Low-level hash table with explicit hashing. |
+| [`OccupiedEntry`](#occupiedentry) | struct | A view into an occupied entry in a `HashTable`. |
+| [`VacantEntry`](#vacantentry) | struct | A view into a vacant entry in a `HashTable`. |
+| [`AbsentEntry`](#absententry) | struct | Type representing the absence of an entry, as returned by [`HashTable::find_entry`] |
+| [`Iter`](#iter) | struct | An iterator over the entries of a `HashTable` in arbitrary order. |
+| [`IterMut`](#itermut) | struct | A mutable iterator over the entries of a `HashTable` in arbitrary order. |
+| [`IterBuckets`](#iterbuckets) | struct | An iterator producing the `usize` indices of all occupied buckets |
+| [`IterHash`](#iterhash) | struct | An iterator over the entries of a `HashTable` that could match a given hash. |
+| [`IterHashMut`](#iterhashmut) | struct | A mutable iterator over the entries of a `HashTable` that could match a given hash. |
+| [`IterHashBuckets`](#iterhashbuckets) | struct | An iterator producing the `usize` indices of all buckets which may match a hash. |
+| [`IntoIter`](#intoiter) | struct | An owning iterator over the entries of a `HashTable` in arbitrary order. |
+| [`Drain`](#drain) | struct | A draining iterator over the items of a `HashTable`. |
+| [`ExtractIf`](#extractif) | struct | A draining iterator over entries of a `HashTable` which don't satisfy the predicate `f`. |
+| [`Entry`](#entry) | enum | A view into a single entry in a table, which may either be vacant or occupied. |
+
 ## Structs
 
 ### `HashTable<T, A>`
@@ -56,31 +94,31 @@ doing this because it changes the runtime of hash table operations from
 
 #### Implementations
 
-- `const fn new() -> Self`
+- <span id="hashtable-new"></span>`const fn new() -> Self`
 
-- `fn with_capacity(capacity: usize) -> Self`
+- <span id="hashtable-with-capacity"></span>`fn with_capacity(capacity: usize) -> Self`
 
 #### Trait Implementations
 
 ##### `impl<T, A> Clone for HashTable<T, A>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="hashtable-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T, A> Debug for HashTable<T, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="hashtable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T, A> Default for HashTable<T, A>`
 
-- `fn default() -> Self`
+- <span id="hashtable-default"></span>`fn default() -> Self`
 
 ##### `impl<T, A> IntoIterator for HashTable<T, A>`
 
-- `type Item = T`
+- <span id="hashtable-item"></span>`type Item = T`
 
-- `type IntoIter = IntoIter<T, A>`
+- <span id="hashtable-intoiter"></span>`type IntoIter = IntoIter<T, A>`
 
-- `fn into_iter(self: Self) -> IntoIter<T, A>` — [`IntoIter`](#intoiter)
+- <span id="hashtable-into-iter"></span>`fn into_iter(self) -> IntoIter<T, A>` — [`IntoIter`](#intoiter)
 
 ### `OccupiedEntry<'a, T, A>`
 
@@ -94,7 +132,7 @@ where
 ```
 
 A view into an occupied entry in a `HashTable`.
-It is part of the [`Entry`](../hash_map/index.md) enum.
+It is part of the [`Entry`](../hash_set/index.md) enum.
 
 # Examples
 
@@ -144,23 +182,23 @@ fn main() {
 
 #### Implementations
 
-- `fn remove(self: Self) -> (T, VacantEntry<'a, T, A>)` — [`VacantEntry`](#vacantentry)
+- <span id="occupiedentry-remove"></span>`fn remove(self) -> (T, VacantEntry<'a, T, A>)` — [`VacantEntry`](#vacantentry)
 
-- `fn get(self: &Self) -> &T`
+- <span id="occupiedentry-get"></span>`fn get(&self) -> &T`
 
-- `fn get_mut(self: &mut Self) -> &mut T`
+- <span id="occupiedentry-get-mut"></span>`fn get_mut(&mut self) -> &mut T`
 
-- `fn into_mut(self: Self) -> &'a mut T`
+- <span id="occupiedentry-into-mut"></span>`fn into_mut(self) -> &'a mut T`
 
-- `fn into_table(self: Self) -> &'a mut HashTable<T, A>` — [`HashTable`](../index.md)
+- <span id="occupiedentry-into-table"></span>`fn into_table(self) -> &'a mut HashTable<T, A>` — [`HashTable`](../index.md)
 
-- `fn bucket_index(self: &Self) -> usize`
+- <span id="occupiedentry-bucket-index"></span>`fn bucket_index(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl<T: fmt::Debug, A: Allocator> Debug for OccupiedEntry<'_, T, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="occupiedentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T, A> Send for OccupiedEntry<'_, T, A>`
 
@@ -179,7 +217,7 @@ where
 ```
 
 A view into a vacant entry in a `HashTable`.
-It is part of the [`Entry`](../hash_map/index.md) enum.
+It is part of the [`Entry`](../hash_set/index.md) enum.
 
 # Examples
 
@@ -218,15 +256,15 @@ fn main() {
 
 #### Implementations
 
-- `fn insert(self: Self, value: T) -> OccupiedEntry<'a, T, A>` — [`OccupiedEntry`](#occupiedentry)
+- <span id="vacantentry-insert"></span>`fn insert(self, value: T) -> OccupiedEntry<'a, T, A>` — [`OccupiedEntry`](#occupiedentry)
 
-- `fn into_table(self: Self) -> &'a mut HashTable<T, A>` — [`HashTable`](../index.md)
+- <span id="vacantentry-into-table"></span>`fn into_table(self) -> &'a mut HashTable<T, A>` — [`HashTable`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<T: fmt::Debug, A: Allocator> Debug for VacantEntry<'_, T, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="vacantentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `AbsentEntry<'a, T, A>`
 
@@ -281,13 +319,13 @@ fn main() {
 
 #### Implementations
 
-- `fn into_table(self: Self) -> &'a mut HashTable<T, A>` — [`HashTable`](../index.md)
+- <span id="absententry-into-table"></span>`fn into_table(self) -> &'a mut HashTable<T, A>` — [`HashTable`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<T: fmt::Debug, A: Allocator> Debug for AbsentEntry<'_, T, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="absententry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Iter<'a, T>`
 
@@ -310,39 +348,39 @@ documentation for more.
 
 ##### `impl<'a, T> Clone for Iter<'a, T>`
 
-- `fn clone(self: &Self) -> Iter<'a, T>` — [`Iter`](#iter)
+- <span id="iter-clone"></span>`fn clone(&self) -> Iter<'a, T>` — [`Iter`](#iter)
 
 ##### `impl<T: fmt::Debug> Debug for Iter<'_, T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="iter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> Default for Iter<'_, T>`
 
-- `fn default() -> Self`
+- <span id="iter-default"></span>`fn default() -> Self`
 
 ##### `impl<T> ExactSizeIterator for Iter<'_, T>`
 
-- `fn len(self: &Self) -> usize`
+- <span id="iter-len"></span>`fn len(&self) -> usize`
 
 ##### `impl<T> FusedIterator for Iter<'_, T>`
 
 ##### `impl<I> IntoIterator for Iter<'a, T>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="iter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="iter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="iter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, T> Iterator for Iter<'a, T>`
 
-- `type Item = &'a T`
+- <span id="iter-item"></span>`type Item = &'a T`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="iter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="iter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- `fn fold<B, F>(self: Self, init: B, f: F) -> B`
+- <span id="iter-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
 
 ### `IterMut<'a, T>`
 
@@ -365,35 +403,35 @@ documentation for more.
 
 ##### `impl<T> Debug for IterMut<'_, T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="itermut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> Default for IterMut<'_, T>`
 
-- `fn default() -> Self`
+- <span id="itermut-default"></span>`fn default() -> Self`
 
 ##### `impl<T> ExactSizeIterator for IterMut<'_, T>`
 
-- `fn len(self: &Self) -> usize`
+- <span id="itermut-len"></span>`fn len(&self) -> usize`
 
 ##### `impl<T> FusedIterator for IterMut<'_, T>`
 
 ##### `impl<I> IntoIterator for IterMut<'a, T>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="itermut-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="itermut-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="itermut-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, T> Iterator for IterMut<'a, T>`
 
-- `type Item = &'a mut T`
+- <span id="itermut-item"></span>`type Item = &'a mut T`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="itermut-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="itermut-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- `fn fold<B, F>(self: Self, init: B, f: F) -> B`
+- <span id="itermut-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
 
 ### `IterBuckets<'a, T>`
 
@@ -417,37 +455,37 @@ documentation for more.
 
 ##### `impl<T> Clone for IterBuckets<'_, T>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="iterbuckets-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T> Debug for IterBuckets<'_, T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="iterbuckets-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> Default for IterBuckets<'_, T>`
 
-- `fn default() -> Self`
+- <span id="iterbuckets-default"></span>`fn default() -> Self`
 
 ##### `impl<T> ExactSizeIterator for IterBuckets<'_, T>`
 
-- `fn len(self: &Self) -> usize`
+- <span id="iterbuckets-len"></span>`fn len(&self) -> usize`
 
 ##### `impl<T> FusedIterator for IterBuckets<'_, T>`
 
 ##### `impl<I> IntoIterator for IterBuckets<'a, T>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="iterbuckets-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="iterbuckets-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="iterbuckets-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T> Iterator for IterBuckets<'_, T>`
 
-- `type Item = usize`
+- <span id="iterbuckets-item"></span>`type Item = usize`
 
-- `fn next(self: &mut Self) -> Option<usize>`
+- <span id="iterbuckets-next"></span>`fn next(&mut self) -> Option<usize>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="iterbuckets-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ### `IterHash<'a, T>`
 
@@ -470,33 +508,33 @@ documentation for more.
 
 ##### `impl<'a, T> Clone for IterHash<'a, T>`
 
-- `fn clone(self: &Self) -> IterHash<'a, T>` — [`IterHash`](#iterhash)
+- <span id="iterhash-clone"></span>`fn clone(&self) -> IterHash<'a, T>` — [`IterHash`](#iterhash)
 
 ##### `impl<T> Debug for IterHash<'_, T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="iterhash-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> Default for IterHash<'_, T>`
 
-- `fn default() -> Self`
+- <span id="iterhash-default"></span>`fn default() -> Self`
 
 ##### `impl<T> FusedIterator for IterHash<'_, T>`
 
 ##### `impl<I> IntoIterator for IterHash<'a, T>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="iterhash-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="iterhash-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="iterhash-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, T> Iterator for IterHash<'a, T>`
 
-- `type Item = &'a T`
+- <span id="iterhash-item"></span>`type Item = &'a T`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="iterhash-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-- `fn fold<B, F>(self: Self, init: B, f: F) -> B`
+- <span id="iterhash-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
 
 ### `IterHashMut<'a, T>`
 
@@ -519,29 +557,29 @@ documentation for more.
 
 ##### `impl<T> Debug for IterHashMut<'_, T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="iterhashmut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> Default for IterHashMut<'_, T>`
 
-- `fn default() -> Self`
+- <span id="iterhashmut-default"></span>`fn default() -> Self`
 
 ##### `impl<T> FusedIterator for IterHashMut<'_, T>`
 
 ##### `impl<I> IntoIterator for IterHashMut<'a, T>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="iterhashmut-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="iterhashmut-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="iterhashmut-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, T> Iterator for IterHashMut<'a, T>`
 
-- `type Item = &'a mut T`
+- <span id="iterhashmut-item"></span>`type Item = &'a mut T`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="iterhashmut-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-- `fn fold<B, F>(self: Self, init: B, f: F) -> B`
+- <span id="iterhashmut-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
 
 ### `IterHashBuckets<'a, T>`
 
@@ -561,31 +599,31 @@ documentation for more.
 
 ##### `impl<T> Clone for IterHashBuckets<'_, T>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="iterhashbuckets-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T> Debug for IterHashBuckets<'_, T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="iterhashbuckets-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> Default for IterHashBuckets<'_, T>`
 
-- `fn default() -> Self`
+- <span id="iterhashbuckets-default"></span>`fn default() -> Self`
 
 ##### `impl<T> FusedIterator for IterHashBuckets<'_, T>`
 
 ##### `impl<I> IntoIterator for IterHashBuckets<'a, T>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="iterhashbuckets-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="iterhashbuckets-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="iterhashbuckets-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T> Iterator for IterHashBuckets<'_, T>`
 
-- `type Item = usize`
+- <span id="iterhashbuckets-item"></span>`type Item = usize`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="iterhashbuckets-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `IntoIter<T, A>`
 
@@ -611,35 +649,35 @@ The table cannot be used after calling that method.
 
 ##### `impl<T, A> Debug for IntoIter<T, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="intoiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T, A: Allocator> Default for IntoIter<T, A>`
 
-- `fn default() -> Self`
+- <span id="intoiter-default"></span>`fn default() -> Self`
 
 ##### `impl<T, A> ExactSizeIterator for IntoIter<T, A>`
 
-- `fn len(self: &Self) -> usize`
+- <span id="intoiter-len"></span>`fn len(&self) -> usize`
 
 ##### `impl<T, A> FusedIterator for IntoIter<T, A>`
 
 ##### `impl<I> IntoIterator for IntoIter<T, A>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="intoiter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="intoiter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="intoiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T, A> Iterator for IntoIter<T, A>`
 
-- `type Item = T`
+- <span id="intoiter-item"></span>`type Item = T`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="intoiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="intoiter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- `fn fold<B, F>(self: Self, init: B, f: F) -> B`
+- <span id="intoiter-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
 
 ### `Drain<'a, T, A: Allocator>`
 
@@ -660,31 +698,31 @@ See its documentation for more.
 
 ##### `impl<T: fmt::Debug, A: Allocator> Debug for Drain<'_, T, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="drain-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T, A: Allocator> ExactSizeIterator for Drain<'_, T, A>`
 
-- `fn len(self: &Self) -> usize`
+- <span id="drain-len"></span>`fn len(&self) -> usize`
 
 ##### `impl<T, A: Allocator> FusedIterator for Drain<'_, T, A>`
 
 ##### `impl<I> IntoIterator for Drain<'a, T, A>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="drain-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="drain-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="drain-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T, A: Allocator> Iterator for Drain<'_, T, A>`
 
-- `type Item = T`
+- <span id="drain-item"></span>`type Item = T`
 
-- `fn next(self: &mut Self) -> Option<T>`
+- <span id="drain-next"></span>`fn next(&mut self) -> Option<T>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="drain-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- `fn fold<B, F>(self: Self, init: B, f: F) -> B`
+- <span id="drain-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
 
 ### `ExtractIf<'a, T, F, A: Allocator>`
 
@@ -706,19 +744,19 @@ documentation for more.
 
 ##### `impl<I> IntoIterator for ExtractIf<'a, T, F, A>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="extractif-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="extractif-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="extractif-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T, F, A: Allocator> Iterator for ExtractIf<'_, T, F, A>`
 
-- `type Item = T`
+- <span id="extractif-item"></span>`type Item = T`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="extractif-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="extractif-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ## Enums
 
@@ -848,17 +886,17 @@ fn main() {
 
 #### Implementations
 
-- `fn insert(self: Self, value: T) -> OccupiedEntry<'a, T, A>` — [`OccupiedEntry`](#occupiedentry)
+- <span id="entry-insert"></span>`fn insert(self, value: T) -> OccupiedEntry<'a, T, A>` — [`OccupiedEntry`](#occupiedentry)
 
-- `fn or_insert(self: Self, default: T) -> OccupiedEntry<'a, T, A>` — [`OccupiedEntry`](#occupiedentry)
+- <span id="entry-or-insert"></span>`fn or_insert(self, default: T) -> OccupiedEntry<'a, T, A>` — [`OccupiedEntry`](#occupiedentry)
 
-- `fn or_insert_with(self: Self, default: impl FnOnce() -> T) -> OccupiedEntry<'a, T, A>` — [`OccupiedEntry`](#occupiedentry)
+- <span id="entry-or-insert-with"></span>`fn or_insert_with(self, default: impl FnOnce() -> T) -> OccupiedEntry<'a, T, A>` — [`OccupiedEntry`](#occupiedentry)
 
-- `fn and_modify(self: Self, f: impl FnOnce(&mut T)) -> Self`
+- <span id="entry-and-modify"></span>`fn and_modify(self, f: impl FnOnce(&mut T)) -> Self`
 
 #### Trait Implementations
 
 ##### `impl<T: fmt::Debug, A: Allocator> Debug for Entry<'_, T, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="entry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

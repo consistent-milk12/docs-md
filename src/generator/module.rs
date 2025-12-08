@@ -11,6 +11,9 @@ use rustdoc_types::{Id, Item, ItemEnum};
 
 use crate::generator::context::RenderContext;
 use crate::generator::items::ItemRenderer;
+use crate::generator::quick_ref::{QuickRefEntry, QuickRefGenerator, extract_summary};
+use crate::generator::toc::{TocEntry, TocGenerator};
+use crate::linker::slugify_anchor;
 
 /// Renders a module to markdown.
 ///
@@ -66,6 +69,10 @@ impl<'a> ModuleRenderer<'a> {
     ///
     /// [module documentation]
     ///
+    /// ## Contents (if items exceed threshold)
+    /// - [Structs](#structs)
+    ///   - [`Parser`](#parser)
+    ///
     /// ## Modules
     /// - [submodule](link) - first line of docs
     ///
@@ -101,6 +108,24 @@ impl<'a> ModuleRenderer<'a> {
         // === Module Contents ===
         if let ItemEnum::Module(module) = &item.inner {
             let categorized = self.categorize_items(&module.items);
+            let config = self.ctx.render_config();
+
+            // === Table of Contents (if above threshold) ===
+            let toc_gen = TocGenerator::new(config.toc_threshold);
+            let toc_entries = self.build_toc_entries(&categorized);
+            if let Some(toc) = toc_gen.generate(&toc_entries) {
+                md.push_str(&toc);
+            }
+
+            // === Quick Reference (if enabled) ===
+            if config.quick_reference {
+                let quick_ref_entries = self.build_quick_ref_entries(&categorized);
+                if !quick_ref_entries.is_empty() {
+                    let quick_ref_gen = QuickRefGenerator::new();
+                    md.push_str(&quick_ref_gen.generate(&quick_ref_entries));
+                }
+            }
+
             self.render_all_sections(&mut md, &categorized);
         }
 
@@ -229,6 +254,153 @@ impl<'a> ModuleRenderer<'a> {
         self.render_macros_section(md, &items.macros);
         self.render_constants_section(md, &items.constants);
         self.render_type_aliases_section(md, &items.type_aliases);
+    }
+
+    /// Build TOC entries from categorized items.
+    ///
+    /// Creates a hierarchical structure for the table of contents, with
+    /// section headings as top-level entries and individual items as children.
+    fn build_toc_entries(&self, items: &CategorizedItems) -> Vec<TocEntry> {
+        let mut entries = Vec::new();
+
+        // Helper to create item entries
+        fn item_entries(items: &[(&Id, &Item)]) -> Vec<TocEntry> {
+            items
+                .iter()
+                .filter_map(|(_, item)| {
+                    let name = item.name.as_deref()?;
+                    Some(TocEntry::new(format!("`{name}`"), slugify_anchor(name)))
+                })
+                .collect()
+        }
+
+        fn simple_item_entries(items: &[&Item]) -> Vec<TocEntry> {
+            items
+                .iter()
+                .filter_map(|item| {
+                    let name = item.name.as_deref()?;
+                    Some(TocEntry::new(format!("`{name}`"), slugify_anchor(name)))
+                })
+                .collect()
+        }
+
+        // Add sections with their items
+        if !items.modules.is_empty() {
+            entries.push(TocEntry::with_children(
+                "Modules",
+                "modules",
+                item_entries(&items.modules),
+            ));
+        }
+
+        if !items.structs.is_empty() {
+            entries.push(TocEntry::with_children(
+                "Structs",
+                "structs",
+                item_entries(&items.structs),
+            ));
+        }
+
+        if !items.enums.is_empty() {
+            entries.push(TocEntry::with_children(
+                "Enums",
+                "enums",
+                item_entries(&items.enums),
+            ));
+        }
+
+        if !items.traits.is_empty() {
+            entries.push(TocEntry::with_children(
+                "Traits",
+                "traits",
+                item_entries(&items.traits),
+            ));
+        }
+
+        if !items.functions.is_empty() {
+            entries.push(TocEntry::with_children(
+                "Functions",
+                "functions",
+                simple_item_entries(&items.functions),
+            ));
+        }
+
+        if !items.macros.is_empty() {
+            entries.push(TocEntry::with_children(
+                "Macros",
+                "macros",
+                simple_item_entries(&items.macros),
+            ));
+        }
+
+        if !items.constants.is_empty() {
+            entries.push(TocEntry::with_children(
+                "Constants",
+                "constants",
+                simple_item_entries(&items.constants),
+            ));
+        }
+
+        if !items.type_aliases.is_empty() {
+            entries.push(TocEntry::with_children(
+                "Type Aliases",
+                "type-aliases",
+                simple_item_entries(&items.type_aliases),
+            ));
+        }
+
+        entries
+    }
+
+    /// Build quick reference entries from categorized items.
+    ///
+    /// Creates a flat list of entries for the quick reference table,
+    /// including all item types with their names, kinds, and summaries.
+    fn build_quick_ref_entries(&self, items: &CategorizedItems) -> Vec<QuickRefEntry> {
+        let mut entries = Vec::new();
+
+        // Helper to create entries from items with IDs
+        fn add_entries_with_id(
+            entries: &mut Vec<QuickRefEntry>,
+            items: &[(&Id, &Item)],
+            kind: &'static str,
+        ) {
+            for (_, item) in items {
+                if let Some(name) = item.name.as_deref() {
+                    entries.push(QuickRefEntry::new(
+                        name,
+                        kind,
+                        slugify_anchor(name),
+                        extract_summary(item.docs.as_deref()),
+                    ));
+                }
+            }
+        }
+
+        // Helper to create entries from items without IDs
+        fn add_simple_entries(entries: &mut Vec<QuickRefEntry>, items: &[&Item], kind: &'static str) {
+            for item in items {
+                if let Some(name) = item.name.as_deref() {
+                    entries.push(QuickRefEntry::new(
+                        name,
+                        kind,
+                        slugify_anchor(name),
+                        extract_summary(item.docs.as_deref()),
+                    ));
+                }
+            }
+        }
+
+        // Add all item types (skip modules - they have their own section with links)
+        add_entries_with_id(&mut entries, &items.structs, "struct");
+        add_entries_with_id(&mut entries, &items.enums, "enum");
+        add_entries_with_id(&mut entries, &items.traits, "trait");
+        add_simple_entries(&mut entries, &items.functions, "fn");
+        add_simple_entries(&mut entries, &items.macros, "macro");
+        add_simple_entries(&mut entries, &items.constants, "const");
+        add_simple_entries(&mut entries, &items.type_aliases, "type");
+
+        entries
     }
 
     /// Render the Modules section with links to submodules.

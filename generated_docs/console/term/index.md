@@ -4,6 +4,38 @@
 
 # Module `term`
 
+## Contents
+
+- [Structs](#structs)
+  - [`ReadWritePair`](#readwritepair)
+  - [`TermInner`](#terminner)
+  - [`TermFeatures`](#termfeatures)
+  - [`Term`](#term)
+- [Enums](#enums)
+  - [`TermTarget`](#termtarget)
+  - [`TermFamily`](#termfamily)
+- [Traits](#traits)
+  - [`TermWrite`](#termwrite)
+  - [`TermRead`](#termread)
+- [Functions](#functions)
+  - [`user_attended`](#user_attended)
+  - [`user_attended_stderr`](#user_attended_stderr)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ReadWritePair`](#readwritepair) | struct |  |
+| [`TermInner`](#terminner) | struct |  |
+| [`TermFeatures`](#termfeatures) | struct | Gives access to the terminal features. |
+| [`Term`](#term) | struct | Abstraction around a terminal. |
+| [`TermTarget`](#termtarget) | enum | Where the term is writing. |
+| [`TermFamily`](#termfamily) | enum | The family of the terminal. |
+| [`TermWrite`](#termwrite) | trait |  |
+| [`TermRead`](#termread) | trait |  |
+| [`user_attended`](#user_attended) | fn | A fast way to check if the application has a user attended for stdout. |
+| [`user_attended_stderr`](#user_attended_stderr) | fn | A fast way to check if the application has a user attended for stderr. |
+
 ## Structs
 
 ### `ReadWritePair`
@@ -20,11 +52,11 @@ struct ReadWritePair {
 
 ##### `impl Clone for ReadWritePair`
 
-- `fn clone(self: &Self) -> ReadWritePair` — [`ReadWritePair`](#readwritepair)
+- <span id="readwritepair-clone"></span>`fn clone(&self) -> ReadWritePair` — [`ReadWritePair`](#readwritepair)
 
 ##### `impl Debug for ReadWritePair`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="readwritepair-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `TermInner`
 
@@ -41,7 +73,7 @@ struct TermInner {
 
 ##### `impl Debug for TermInner`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="terminner-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `TermFeatures<'a>`
 
@@ -53,25 +85,25 @@ Gives access to the terminal features.
 
 #### Implementations
 
-- `fn is_attended(self: &Self) -> bool`
+- <span id="termfeatures-is-attended"></span>`fn is_attended(&self) -> bool`
 
-- `fn colors_supported(self: &Self) -> bool`
+- <span id="termfeatures-colors-supported"></span>`fn colors_supported(&self) -> bool`
 
-- `fn is_msys_tty(self: &Self) -> bool`
+- <span id="termfeatures-is-msys-tty"></span>`fn is_msys_tty(&self) -> bool`
 
-- `fn wants_emoji(self: &Self) -> bool`
+- <span id="termfeatures-wants-emoji"></span>`fn wants_emoji(&self) -> bool`
 
-- `fn family(self: &Self) -> TermFamily` — [`TermFamily`](../index.md)
+- <span id="termfeatures-family"></span>`fn family(&self) -> TermFamily` — [`TermFamily`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'a> Clone for TermFeatures<'a>`
 
-- `fn clone(self: &Self) -> TermFeatures<'a>` — [`TermFeatures`](../index.md)
+- <span id="termfeatures-clone"></span>`fn clone(&self) -> TermFeatures<'a>` — [`TermFeatures`](../index.md)
 
 ##### `impl<'a> Debug for TermFeatures<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="termfeatures-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Term`
 
@@ -90,103 +122,103 @@ clones which means it largely acts as a handle.
 
 #### Implementations
 
-- `fn with_inner(inner: TermInner) -> Term` — [`TermInner`](#terminner), [`Term`](../index.md)
+- <span id="term-with-inner"></span>`fn with_inner(inner: TermInner) -> Term` — [`TermInner`](#terminner), [`Term`](../index.md)
 
-- `fn stdout() -> Term` — [`Term`](../index.md)
+- <span id="term-stdout"></span>`fn stdout() -> Term` — [`Term`](../index.md)
 
-- `fn stderr() -> Term` — [`Term`](../index.md)
+- <span id="term-stderr"></span>`fn stderr() -> Term` — [`Term`](../index.md)
 
-- `fn buffered_stdout() -> Term` — [`Term`](../index.md)
+- <span id="term-buffered-stdout"></span>`fn buffered_stdout() -> Term` — [`Term`](../index.md)
 
-- `fn buffered_stderr() -> Term` — [`Term`](../index.md)
+- <span id="term-buffered-stderr"></span>`fn buffered_stderr() -> Term` — [`Term`](../index.md)
 
-- `fn read_write_pair<R, W>(read: R, write: W) -> Term` — [`Term`](../index.md)
+- <span id="term-read-write-pair"></span>`fn read_write_pair<R, W>(read: R, write: W) -> Term` — [`Term`](../index.md)
 
-- `fn read_write_pair_with_style<R, W>(read: R, write: W, style: Style) -> Term` — [`Style`](../index.md), [`Term`](../index.md)
+- <span id="term-read-write-pair-with-style"></span>`fn read_write_pair_with_style<R, W>(read: R, write: W, style: Style) -> Term` — [`Style`](../index.md), [`Term`](../index.md)
 
-- `fn style(self: &Self) -> Style` — [`Style`](../index.md)
+- <span id="term-style"></span>`fn style(&self) -> Style` — [`Style`](../index.md)
 
-- `fn target(self: &Self) -> TermTarget` — [`TermTarget`](../index.md)
+- <span id="term-target"></span>`fn target(&self) -> TermTarget` — [`TermTarget`](../index.md)
 
-- `fn write_line(self: &Self, s: &str) -> io::Result<()>`
+- <span id="term-write-line"></span>`fn write_line(&self, s: &str) -> io::Result<()>`
 
-- `fn read_char(self: &Self) -> io::Result<char>`
+- <span id="term-read-char"></span>`fn read_char(&self) -> io::Result<char>`
 
-- `fn read_key(self: &Self) -> io::Result<Key>` — [`Key`](../index.md)
+- <span id="term-read-key"></span>`fn read_key(&self) -> io::Result<Key>` — [`Key`](../index.md)
 
-- `fn read_key_raw(self: &Self) -> io::Result<Key>` — [`Key`](../index.md)
+- <span id="term-read-key-raw"></span>`fn read_key_raw(&self) -> io::Result<Key>` — [`Key`](../index.md)
 
-- `fn read_line(self: &Self) -> io::Result<String>`
+- <span id="term-read-line"></span>`fn read_line(&self) -> io::Result<String>`
 
-- `fn read_line_initial_text(self: &Self, initial: &str) -> io::Result<String>`
+- <span id="term-read-line-initial-text"></span>`fn read_line_initial_text(&self, initial: &str) -> io::Result<String>`
 
-- `fn read_secure_line(self: &Self) -> io::Result<String>`
+- <span id="term-read-secure-line"></span>`fn read_secure_line(&self) -> io::Result<String>`
 
-- `fn flush(self: &Self) -> io::Result<()>`
+- <span id="term-flush"></span>`fn flush(&self) -> io::Result<()>`
 
-- `fn is_term(self: &Self) -> bool`
+- <span id="term-is-term"></span>`fn is_term(&self) -> bool`
 
-- `fn features(self: &Self) -> TermFeatures<'_>` — [`TermFeatures`](../index.md)
+- <span id="term-features"></span>`fn features(&self) -> TermFeatures<'_>` — [`TermFeatures`](../index.md)
 
-- `fn size(self: &Self) -> (u16, u16)`
+- <span id="term-size"></span>`fn size(&self) -> (u16, u16)`
 
-- `fn size_checked(self: &Self) -> Option<(u16, u16)>`
+- <span id="term-size-checked"></span>`fn size_checked(&self) -> Option<(u16, u16)>`
 
-- `fn move_cursor_to(self: &Self, x: usize, y: usize) -> io::Result<()>`
+- <span id="term-move-cursor-to"></span>`fn move_cursor_to(&self, x: usize, y: usize) -> io::Result<()>`
 
-- `fn move_cursor_up(self: &Self, n: usize) -> io::Result<()>`
+- <span id="term-move-cursor-up"></span>`fn move_cursor_up(&self, n: usize) -> io::Result<()>`
 
-- `fn move_cursor_down(self: &Self, n: usize) -> io::Result<()>`
+- <span id="term-move-cursor-down"></span>`fn move_cursor_down(&self, n: usize) -> io::Result<()>`
 
-- `fn move_cursor_left(self: &Self, n: usize) -> io::Result<()>`
+- <span id="term-move-cursor-left"></span>`fn move_cursor_left(&self, n: usize) -> io::Result<()>`
 
-- `fn move_cursor_right(self: &Self, n: usize) -> io::Result<()>`
+- <span id="term-move-cursor-right"></span>`fn move_cursor_right(&self, n: usize) -> io::Result<()>`
 
-- `fn clear_line(self: &Self) -> io::Result<()>`
+- <span id="term-clear-line"></span>`fn clear_line(&self) -> io::Result<()>`
 
-- `fn clear_last_lines(self: &Self, n: usize) -> io::Result<()>`
+- <span id="term-clear-last-lines"></span>`fn clear_last_lines(&self, n: usize) -> io::Result<()>`
 
-- `fn clear_screen(self: &Self) -> io::Result<()>`
+- <span id="term-clear-screen"></span>`fn clear_screen(&self) -> io::Result<()>`
 
-- `fn clear_to_end_of_screen(self: &Self) -> io::Result<()>`
+- <span id="term-clear-to-end-of-screen"></span>`fn clear_to_end_of_screen(&self) -> io::Result<()>`
 
-- `fn clear_chars(self: &Self, n: usize) -> io::Result<()>`
+- <span id="term-clear-chars"></span>`fn clear_chars(&self, n: usize) -> io::Result<()>`
 
-- `fn set_title<T: Display>(self: &Self, title: T)`
+- <span id="term-set-title"></span>`fn set_title<T: Display>(&self, title: T)`
 
-- `fn show_cursor(self: &Self) -> io::Result<()>`
+- <span id="term-show-cursor"></span>`fn show_cursor(&self) -> io::Result<()>`
 
-- `fn hide_cursor(self: &Self) -> io::Result<()>`
+- <span id="term-hide-cursor"></span>`fn hide_cursor(&self) -> io::Result<()>`
 
-- `fn write_through(self: &Self, bytes: &[u8]) -> io::Result<()>`
+- <span id="term-write-through"></span>`fn write_through(&self, bytes: &[u8]) -> io::Result<()>`
 
-- `fn write_through_common(self: &Self, bytes: &[u8]) -> io::Result<()>`
+- <span id="term-write-through-common"></span>`fn write_through_common(&self, bytes: &[u8]) -> io::Result<()>`
 
 #### Trait Implementations
 
 ##### `impl AsRawFd for Term`
 
-- `fn as_raw_fd(self: &Self) -> RawFd`
+- <span id="term-as-raw-fd"></span>`fn as_raw_fd(&self) -> RawFd`
 
 ##### `impl Clone for Term`
 
-- `fn clone(self: &Self) -> Term` — [`Term`](../index.md)
+- <span id="term-clone"></span>`fn clone(&self) -> Term` — [`Term`](../index.md)
 
 ##### `impl Debug for Term`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="term-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Read for Term`
 
-- `fn read(self: &mut Self, buf: &mut [u8]) -> io::Result<usize>`
+- <span id="term-read"></span>`fn read(&mut self, buf: &mut [u8]) -> io::Result<usize>`
 
 ##### `impl TermLike for console::Term`
 
 ##### `impl Write for Term`
 
-- `fn write(self: &mut Self, buf: &[u8]) -> io::Result<usize>`
+- <span id="term-write"></span>`fn write(&mut self, buf: &[u8]) -> io::Result<usize>`
 
-- `fn flush(self: &mut Self) -> io::Result<()>`
+- <span id="term-flush"></span>`fn flush(&mut self) -> io::Result<()>`
 
 ## Enums
 
@@ -206,11 +238,11 @@ Where the term is writing.
 
 ##### `impl Clone for TermTarget`
 
-- `fn clone(self: &Self) -> TermTarget` — [`TermTarget`](../index.md)
+- <span id="termtarget-clone"></span>`fn clone(&self) -> TermTarget` — [`TermTarget`](../index.md)
 
 ##### `impl Debug for TermTarget`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="termtarget-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `TermFamily`
 
@@ -247,19 +279,19 @@ The family of the terminal.
 
 ##### `impl Clone for TermFamily`
 
-- `fn clone(self: &Self) -> TermFamily` — [`TermFamily`](../index.md)
+- <span id="termfamily-clone"></span>`fn clone(&self) -> TermFamily` — [`TermFamily`](../index.md)
 
 ##### `impl Copy for TermFamily`
 
 ##### `impl Debug for TermFamily`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="termfamily-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for TermFamily`
 
 ##### `impl PartialEq for TermFamily`
 
-- `fn eq(self: &Self, other: &TermFamily) -> bool` — [`TermFamily`](../index.md)
+- <span id="termfamily-eq"></span>`fn eq(&self, other: &TermFamily) -> bool` — [`TermFamily`](../index.md)
 
 ##### `impl StructuralPartialEq for TermFamily`
 

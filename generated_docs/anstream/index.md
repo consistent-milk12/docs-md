@@ -33,6 +33,53 @@ println!("My number is not {}!", 4.on_red());
 
 And this will correctly handle piping to a file, etc
 
+## Contents
+
+- [Modules](#modules)
+  - [`adapter`](#adapter)
+  - [`stream`](#stream)
+  - [`auto`](#auto)
+  - [`buffer`](#buffer)
+  - [`fmt`](#fmt)
+  - [`strip`](#strip)
+- [Structs](#structs)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+- [Functions](#functions)
+  - [`stdout`](#stdout)
+  - [`stderr`](#stderr)
+- [Type Aliases](#type-aliases)
+  - [`Stdout`](#stdout)
+  - [`Stderr`](#stderr)
+- [Macros](#macros)
+  - [`print!`](#print)
+  - [`println!`](#println)
+  - [`eprint!`](#eprint)
+  - [`eprintln!`](#eprintln)
+  - [`panic!`](#panic)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`adapter`](#adapter) | mod | Gracefully degrade styled output |
+| [`stream`](#stream) | mod | Higher-level traits to describe writeable streams |
+| [`auto`](#auto) | mod |  |
+| [`buffer`](#buffer) | mod |  |
+| [`fmt`](#fmt) | mod |  |
+| [`strip`](#strip) | mod |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`stdout`](#stdout) | fn | Create an ANSI escape code compatible stdout |
+| [`stderr`](#stderr) | fn | Create an ANSI escape code compatible stderr |
+| [`Stdout`](#stdout) | type | An adaptive wrapper around the global standard output stream of the current process |
+| [`Stderr`](#stderr) | type | An adaptive wrapper around the global standard error stream of the current process |
+| [`print!`](#print) | macro | Prints to [`stdout`][crate::stdout]. |
+| [`println!`](#println) | macro | Prints to [`stdout`][crate::stdout], with a newline. |
+| [`eprint!`](#eprint) | macro | Prints to [`stderr`][crate::stderr]. |
+| [`eprintln!`](#eprintln) | macro | Prints to [`stderr`][crate::stderr], with a newline. |
+| [`panic!`](#panic) | macro | Panics the current thread. |
+
 ## Modules
 
 - [`adapter`](adapter/index.md) - Gracefully degrade styled output
@@ -65,25 +112,47 @@ to get a [`ColorChoice`](#colorchoice) and then calling `AutoStream::new(stream,
 
 #### Implementations
 
-- `fn lock(self: Self) -> AutoStream<std::io::StdoutLock<'static>>` — [`AutoStream`](#autostream)
+- <span id="autostream-new"></span>`fn new(raw: S, choice: ColorChoice) -> Self` — [`ColorChoice`](#colorchoice)
+
+- <span id="autostream-auto"></span>`fn auto(raw: S) -> Self`
+
+- <span id="autostream-choice"></span>`fn choice(raw: &S) -> ColorChoice` — [`ColorChoice`](#colorchoice)
+
+- <span id="autostream-always-ansi"></span>`fn always_ansi(raw: S) -> Self`
+
+- <span id="autostream-always-ansi"></span>`fn always_ansi_(raw: S) -> Self`
+
+- <span id="autostream-always"></span>`fn always(raw: S) -> Self`
+
+- <span id="autostream-never"></span>`fn never(raw: S) -> Self`
+
+- <span id="autostream-wincon"></span>`fn wincon(raw: S) -> Result<Self, S>`
+
+- <span id="autostream-into-inner"></span>`fn into_inner(self) -> S`
+
+- <span id="autostream-as-inner"></span>`fn as_inner(&self) -> &S`
+
+- <span id="autostream-is-terminal"></span>`fn is_terminal(&self) -> bool`
+
+- <span id="autostream-current-choice"></span>`fn current_choice(&self) -> ColorChoice` — [`ColorChoice`](#colorchoice)
 
 #### Trait Implementations
 
-##### `impl<S: $crate::fmt::Debug + RawStream> Debug for AutoStream<S>`
+##### `impl<S: fmt::Debug + RawStream> Debug for AutoStream<S>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="autostream-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<S> Write for AutoStream<S>`
 
-- `fn write(self: &mut Self, buf: &[u8]) -> std::io::Result<usize>`
+- <span id="autostream-write"></span>`fn write(&mut self, buf: &[u8]) -> std::io::Result<usize>`
 
-- `fn write_vectored(self: &mut Self, bufs: &[std::io::IoSlice<'_>]) -> std::io::Result<usize>`
+- <span id="autostream-write-vectored"></span>`fn write_vectored(&mut self, bufs: &[std::io::IoSlice<'_>]) -> std::io::Result<usize>`
 
-- `fn flush(self: &mut Self) -> std::io::Result<()>`
+- <span id="autostream-flush"></span>`fn flush(&mut self) -> std::io::Result<()>`
 
-- `fn write_all(self: &mut Self, buf: &[u8]) -> std::io::Result<()>`
+- <span id="autostream-write-all"></span>`fn write_all(&mut self, buf: &[u8]) -> std::io::Result<()>`
 
-- `fn write_fmt(self: &mut Self, args: std::fmt::Arguments<'_>) -> std::io::Result<()>`
+- <span id="autostream-write-fmt"></span>`fn write_fmt(&mut self, args: std::fmt::Arguments<'_>) -> std::io::Result<()>`
 
 ### `StripStream<S>`
 
@@ -100,25 +169,29 @@ Only pass printable data to the inner `Write`
 
 #### Implementations
 
-- `fn lock(self: Self) -> StripStream<std::io::StderrLock<'static>>` — [`StripStream`](#stripstream)
+- <span id="stripstream-new"></span>`fn new(raw: S) -> Self`
+
+- <span id="stripstream-into-inner"></span>`fn into_inner(self) -> S`
+
+- <span id="stripstream-as-inner"></span>`fn as_inner(&self) -> &S`
 
 #### Trait Implementations
 
 ##### `impl<S> Debug for StripStream<S>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="stripstream-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<S> Write for StripStream<S>`
 
-- `fn write(self: &mut Self, buf: &[u8]) -> std::io::Result<usize>`
+- <span id="stripstream-write"></span>`fn write(&mut self, buf: &[u8]) -> std::io::Result<usize>`
 
-- `fn write_vectored(self: &mut Self, bufs: &[std::io::IoSlice<'_>]) -> std::io::Result<usize>`
+- <span id="stripstream-write-vectored"></span>`fn write_vectored(&mut self, bufs: &[std::io::IoSlice<'_>]) -> std::io::Result<usize>`
 
-- `fn flush(self: &mut Self) -> std::io::Result<()>`
+- <span id="stripstream-flush"></span>`fn flush(&mut self) -> std::io::Result<()>`
 
-- `fn write_all(self: &mut Self, buf: &[u8]) -> std::io::Result<()>`
+- <span id="stripstream-write-all"></span>`fn write_all(&mut self, buf: &[u8]) -> std::io::Result<()>`
 
-- `fn write_fmt(self: &mut Self, args: std::fmt::Arguments<'_>) -> std::io::Result<()>`
+- <span id="stripstream-write-fmt"></span>`fn write_fmt(&mut self, args: std::fmt::Arguments<'_>) -> std::io::Result<()>`
 
 ## Functions
 

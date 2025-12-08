@@ -4,6 +4,12 @@
 
 # Module `cell`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`UnsafeCell`](#unsafecell) | struct |  |
+
 ## Structs
 
 ### `UnsafeCell<T>`
@@ -14,29 +20,29 @@ struct UnsafeCell<T>(::core::cell::UnsafeCell<T>);
 
 #### Implementations
 
-- `const fn new(data: T) -> UnsafeCell<T>` — [`UnsafeCell`](#unsafecell)
+- <span id="unsafecell-new"></span>`const fn new(data: T) -> UnsafeCell<T>` — [`UnsafeCell`](#unsafecell)
 
-- `fn with<R>(self: &Self, f: impl FnOnce(*const T) -> R) -> R`
+- <span id="unsafecell-with"></span>`fn with<R>(&self, f: impl FnOnce(*const T) -> R) -> R`
 
-- `fn with_mut<R>(self: &Self, f: impl FnOnce(*mut T) -> R) -> R`
+- <span id="unsafecell-with-mut"></span>`fn with_mut<R>(&self, f: impl FnOnce(*mut T) -> R) -> R`
 
 #### Trait Implementations
 
-##### `impl<T: $crate::fmt::Debug> Debug for UnsafeCell<T>`
+##### `impl<T: fmt::Debug> Debug for UnsafeCell<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="unsafecell-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> Pointable for UnsafeCell<T>`
 
-- `const ALIGN: usize`
+- <span id="unsafecell-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="unsafecell-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../index.md)
+- <span id="unsafecell-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../index.md)
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="unsafecell-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="unsafecell-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="unsafecell-drop"></span>`unsafe fn drop(ptr: usize)`
 

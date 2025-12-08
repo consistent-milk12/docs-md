@@ -11,6 +11,13 @@ Deserialization for internally tagged enums:
 enum Enum {}
 ```
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`deserialize`](#deserialize) | fn | Generates `Deserialize::deserialize` body for an `enum Enum {...}` with `#[serde(tag)]` attribute |
+| [`deserialize_internally_tagged_variant`](#deserialize_internally_tagged_variant) | fn |  |
+
 ## Functions
 
 ### `deserialize`

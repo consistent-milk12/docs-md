@@ -10,6 +10,36 @@ Thread synchronization primitives.
 * [`ShardedLock`](#shardedlock), a sharded reader-writer lock with fast concurrent reads.
 * [`WaitGroup`](#waitgroup), for synchronizing the beginning or end of some computation.
 
+## Contents
+
+- [Modules](#modules)
+  - [`once_lock`](#once_lock)
+  - [`parker`](#parker)
+  - [`sharded_lock`](#sharded_lock)
+  - [`wait_group`](#wait_group)
+- [Structs](#structs)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`once_lock`](#once_lock) | mod |  |
+| [`parker`](#parker) | mod |  |
+| [`sharded_lock`](#sharded_lock) | mod |  |
+| [`wait_group`](#wait_group) | mod |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+
 ## Modules
 
 - [`once_lock`](once_lock/index.md) - 
@@ -76,29 +106,29 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 
 #### Implementations
 
-- `fn new() -> Parker` — [`Parker`](#parker)
+- <span id="parker-new"></span>`fn new() -> Parker` — [`Parker`](#parker)
 
-- `fn park(self: &Self)`
+- <span id="parker-park"></span>`fn park(&self)`
 
-- `fn park_timeout(self: &Self, timeout: Duration)`
+- <span id="parker-park-timeout"></span>`fn park_timeout(&self, timeout: Duration)`
 
-- `fn park_deadline(self: &Self, deadline: Instant)`
+- <span id="parker-park-deadline"></span>`fn park_deadline(&self, deadline: Instant)`
 
-- `fn unparker(self: &Self) -> &Unparker` — [`Unparker`](#unparker)
+- <span id="parker-unparker"></span>`fn unparker(&self) -> &Unparker` — [`Unparker`](#unparker)
 
-- `fn into_raw(this: Parker) -> *const ()` — [`Parker`](#parker)
+- <span id="parker-into-raw"></span>`fn into_raw(this: Parker) -> *const ()` — [`Parker`](#parker)
 
-- `unsafe fn from_raw(ptr: *const ()) -> Parker` — [`Parker`](#parker)
+- <span id="parker-from-raw"></span>`unsafe fn from_raw(ptr: *const ()) -> Parker` — [`Parker`](#parker)
 
 #### Trait Implementations
 
 ##### `impl Debug for Parker`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="parker-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Parker`
 
-- `fn default() -> Self`
+- <span id="parker-default"></span>`fn default() -> Self`
 
 ##### `impl Send for Parker`
 
@@ -114,21 +144,21 @@ Unparks a thread parked by the associated [`Parker`](#parker).
 
 #### Implementations
 
-- `fn unpark(self: &Self)`
+- <span id="unparker-unpark"></span>`fn unpark(&self)`
 
-- `fn into_raw(this: Unparker) -> *const ()` — [`Unparker`](#unparker)
+- <span id="unparker-into-raw"></span>`fn into_raw(this: Unparker) -> *const ()` — [`Unparker`](#unparker)
 
-- `unsafe fn from_raw(ptr: *const ()) -> Unparker` — [`Unparker`](#unparker)
+- <span id="unparker-from-raw"></span>`unsafe fn from_raw(ptr: *const ()) -> Unparker` — [`Unparker`](#unparker)
 
 #### Trait Implementations
 
 ##### `impl Clone for Unparker`
 
-- `fn clone(self: &Self) -> Unparker` — [`Unparker`](#unparker)
+- <span id="unparker-clone"></span>`fn clone(&self) -> Unparker` — [`Unparker`](#unparker)
 
 ##### `impl Debug for Unparker`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="unparker-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Send for Unparker`
 
@@ -201,19 +231,27 @@ let lock = ShardedLock::new(5);
 
 #### Implementations
 
-- `fn new(value: T) -> ShardedLock<T>` — [`ShardedLock`](#shardedlock)
+- <span id="shardedlock-is-poisoned"></span>`fn is_poisoned(&self) -> bool`
 
-- `fn into_inner(self: Self) -> LockResult<T>`
+- <span id="shardedlock-get-mut"></span>`fn get_mut(&mut self) -> LockResult<&mut T>`
+
+- <span id="shardedlock-try-read"></span>`fn try_read(&self) -> TryLockResult<ShardedLockReadGuard<'_, T>>` — [`ShardedLockReadGuard`](#shardedlockreadguard)
+
+- <span id="shardedlock-read"></span>`fn read(&self) -> LockResult<ShardedLockReadGuard<'_, T>>` — [`ShardedLockReadGuard`](#shardedlockreadguard)
+
+- <span id="shardedlock-try-write"></span>`fn try_write(&self) -> TryLockResult<ShardedLockWriteGuard<'_, T>>` — [`ShardedLockWriteGuard`](#shardedlockwriteguard)
+
+- <span id="shardedlock-write"></span>`fn write(&self) -> LockResult<ShardedLockWriteGuard<'_, T>>` — [`ShardedLockWriteGuard`](#shardedlockwriteguard)
 
 #### Trait Implementations
 
 ##### `impl<T: ?Sized + fmt::Debug> Debug for ShardedLock<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="shardedlock-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: Default> Default for ShardedLock<T>`
 
-- `fn default() -> ShardedLock<T>` — [`ShardedLock`](#shardedlock)
+- <span id="shardedlock-default"></span>`fn default() -> ShardedLock<T>` — [`ShardedLock`](#shardedlock)
 
 ##### `impl<T: ?Sized> RefUnwindSafe for ShardedLock<T>`
 
@@ -239,27 +277,27 @@ A guard used to release the shared read access of a [`ShardedLock`](#shardedlock
 
 ##### `impl<T: fmt::Debug> Debug for ShardedLockReadGuard<'_, T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="shardedlockreadguard-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized> Deref for ShardedLockReadGuard<'_, T>`
 
-- `type Target = T`
+- <span id="shardedlockreadguard-target"></span>`type Target = T`
 
-- `fn deref(self: &Self) -> &T`
+- <span id="shardedlockreadguard-deref"></span>`fn deref(&self) -> &T`
 
 ##### `impl<T: ?Sized + fmt::Display> Display for ShardedLockReadGuard<'_, T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="shardedlockreadguard-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<P, T> Receiver for ShardedLockReadGuard<'a, T>`
 
-- `type Target = T`
+- <span id="shardedlockreadguard-target"></span>`type Target = T`
 
 ##### `impl<T: ?Sized + Sync> Sync for ShardedLockReadGuard<'_, T>`
 
 ##### `impl<T> ToString for ShardedLockReadGuard<'a, T>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="shardedlockreadguard-to-string"></span>`fn to_string(&self) -> String`
 
 ### `ShardedLockWriteGuard<'a, T: ?Sized>`
 
@@ -276,35 +314,35 @@ A guard used to release the exclusive write access of a [`ShardedLock`](#sharded
 
 ##### `impl<T: fmt::Debug> Debug for ShardedLockWriteGuard<'_, T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="shardedlockwriteguard-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized> Deref for ShardedLockWriteGuard<'_, T>`
 
-- `type Target = T`
+- <span id="shardedlockwriteguard-target"></span>`type Target = T`
 
-- `fn deref(self: &Self) -> &T`
+- <span id="shardedlockwriteguard-deref"></span>`fn deref(&self) -> &T`
 
 ##### `impl<T: ?Sized> DerefMut for ShardedLockWriteGuard<'_, T>`
 
-- `fn deref_mut(self: &mut Self) -> &mut T`
+- <span id="shardedlockwriteguard-deref-mut"></span>`fn deref_mut(&mut self) -> &mut T`
 
 ##### `impl<T: ?Sized + fmt::Display> Display for ShardedLockWriteGuard<'_, T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="shardedlockwriteguard-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized> Drop for ShardedLockWriteGuard<'_, T>`
 
-- `fn drop(self: &mut Self)`
+- <span id="shardedlockwriteguard-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<P, T> Receiver for ShardedLockWriteGuard<'a, T>`
 
-- `type Target = T`
+- <span id="shardedlockwriteguard-target"></span>`type Target = T`
 
 ##### `impl<T: ?Sized + Sync> Sync for ShardedLockWriteGuard<'_, T>`
 
 ##### `impl<T> ToString for ShardedLockWriteGuard<'a, T>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="shardedlockwriteguard-to-string"></span>`fn to_string(&self) -> String`
 
 ### `WaitGroup`
 
@@ -358,25 +396,25 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="waitgroup-new"></span>`fn new() -> Self`
 
-- `fn wait(self: Self)`
+- <span id="waitgroup-wait"></span>`fn wait(self)`
 
 #### Trait Implementations
 
 ##### `impl Clone for WaitGroup`
 
-- `fn clone(self: &Self) -> WaitGroup` — [`WaitGroup`](#waitgroup)
+- <span id="waitgroup-clone"></span>`fn clone(&self) -> WaitGroup` — [`WaitGroup`](#waitgroup)
 
 ##### `impl Debug for WaitGroup`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="waitgroup-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for WaitGroup`
 
-- `fn default() -> Self`
+- <span id="waitgroup-default"></span>`fn default() -> Self`
 
 ##### `impl Drop for WaitGroup`
 
-- `fn drop(self: &mut Self)`
+- <span id="waitgroup-drop"></span>`fn drop(&mut self)`
 

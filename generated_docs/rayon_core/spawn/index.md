@@ -4,6 +4,16 @@
 
 # Module `spawn`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`spawn`](#spawn) | fn | Puts the task into the Rayon thread pool's job queue in the "static" |
+| [`spawn_in`](#spawn_in) | fn | Spawns an asynchronous job in `registry.` |
+| [`spawn_job`](#spawn_job) | fn |  |
+| [`spawn_fifo`](#spawn_fifo) | fn | Fires off a task into the Rayon thread pool in the "static" or |
+| [`spawn_fifo_in`](#spawn_fifo_in) | fn | Spawns an asynchronous FIFO job in `registry.` |
+
 ## Functions
 
 ### `spawn`

@@ -25,6 +25,16 @@ getter thread's perspective. This is an acceptable tradeoff to make since
 `Acquire` and `Release` have very little performance overhead on most
 architectures versus `Relaxed`.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`once_box`](#once_box) | mod |  |
+| [`OnceNonZeroUsize`](#oncenonzerousize) | struct | A thread-safe cell which can be written to only once. |
+| [`OnceBool`](#oncebool) | struct | A thread-safe cell which can be written to only once. |
+| [`OnceRef`](#onceref) | struct | A thread-safe cell which can be written to only once. |
+| [`unnamed`](#unnamed) | struct |  |
+
 ## Modules
 
 - [`once_box`](once_box/index.md) - 
@@ -43,31 +53,31 @@ A thread-safe cell which can be written to only once.
 
 #### Implementations
 
-- `const fn new() -> Self`
+- <span id="oncenonzerousize-new"></span>`const fn new() -> Self`
 
-- `fn get(self: &Self) -> Option<NonZeroUsize>`
+- <span id="oncenonzerousize-get"></span>`fn get(&self) -> Option<NonZeroUsize>`
 
-- `unsafe fn get_unchecked(self: &Self) -> NonZeroUsize`
+- <span id="oncenonzerousize-get-unchecked"></span>`unsafe fn get_unchecked(&self) -> NonZeroUsize`
 
-- `fn set(self: &Self, value: NonZeroUsize) -> Result<(), ()>`
+- <span id="oncenonzerousize-set"></span>`fn set(&self, value: NonZeroUsize) -> Result<(), ()>`
 
-- `fn get_or_init<F>(self: &Self, f: F) -> NonZeroUsize`
+- <span id="oncenonzerousize-get-or-init"></span>`fn get_or_init<F>(&self, f: F) -> NonZeroUsize`
 
-- `fn get_or_try_init<F, E>(self: &Self, f: F) -> Result<NonZeroUsize, E>`
+- <span id="oncenonzerousize-get-or-try-init"></span>`fn get_or_try_init<F, E>(&self, f: F) -> Result<NonZeroUsize, E>`
 
-- `fn init<E>(self: &Self, f: impl FnOnce() -> Result<NonZeroUsize, E>) -> Result<NonZeroUsize, E>`
+- <span id="oncenonzerousize-init"></span>`fn init<E>(&self, f: impl FnOnce() -> Result<NonZeroUsize, E>) -> Result<NonZeroUsize, E>`
 
-- `fn compare_exchange(self: &Self, val: NonZeroUsize) -> Result<usize, usize>`
+- <span id="oncenonzerousize-compare-exchange"></span>`fn compare_exchange(&self, val: NonZeroUsize) -> Result<usize, usize>`
 
 #### Trait Implementations
 
 ##### `impl Debug for OnceNonZeroUsize`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="oncenonzerousize-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for OnceNonZeroUsize`
 
-- `fn default() -> OnceNonZeroUsize` — [`OnceNonZeroUsize`](#oncenonzerousize)
+- <span id="oncenonzerousize-default"></span>`fn default() -> OnceNonZeroUsize` — [`OnceNonZeroUsize`](#oncenonzerousize)
 
 ### `OnceBool`
 
@@ -81,29 +91,29 @@ A thread-safe cell which can be written to only once.
 
 #### Implementations
 
-- `const fn new() -> Self`
+- <span id="oncebool-new"></span>`const fn new() -> Self`
 
-- `fn get(self: &Self) -> Option<bool>`
+- <span id="oncebool-get"></span>`fn get(&self) -> Option<bool>`
 
-- `fn set(self: &Self, value: bool) -> Result<(), ()>`
+- <span id="oncebool-set"></span>`fn set(&self, value: bool) -> Result<(), ()>`
 
-- `fn get_or_init<F>(self: &Self, f: F) -> bool`
+- <span id="oncebool-get-or-init"></span>`fn get_or_init<F>(&self, f: F) -> bool`
 
-- `fn get_or_try_init<F, E>(self: &Self, f: F) -> Result<bool, E>`
+- <span id="oncebool-get-or-try-init"></span>`fn get_or_try_init<F, E>(&self, f: F) -> Result<bool, E>`
 
-- `fn from_usize(value: NonZeroUsize) -> bool`
+- <span id="oncebool-from-usize"></span>`fn from_usize(value: NonZeroUsize) -> bool`
 
-- `fn to_usize(value: bool) -> NonZeroUsize`
+- <span id="oncebool-to-usize"></span>`fn to_usize(value: bool) -> NonZeroUsize`
 
 #### Trait Implementations
 
 ##### `impl Debug for OnceBool`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="oncebool-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for OnceBool`
 
-- `fn default() -> OnceBool` — [`OnceBool`](#oncebool)
+- <span id="oncebool-default"></span>`fn default() -> OnceBool` — [`OnceBool`](#oncebool)
 
 ### `OnceRef<'a, T>`
 
@@ -118,31 +128,31 @@ A thread-safe cell which can be written to only once.
 
 #### Implementations
 
-- `const fn new() -> Self`
+- <span id="onceref-new"></span>`const fn new() -> Self`
 
-- `fn get(self: &Self) -> Option<&'a T>`
+- <span id="onceref-get"></span>`fn get(&self) -> Option<&'a T>`
 
-- `fn set(self: &Self, value: &'a T) -> Result<(), ()>`
+- <span id="onceref-set"></span>`fn set(&self, value: &'a T) -> Result<(), ()>`
 
-- `fn get_or_init<F>(self: &Self, f: F) -> &'a T`
+- <span id="onceref-get-or-init"></span>`fn get_or_init<F>(&self, f: F) -> &'a T`
 
-- `fn get_or_try_init<F, E>(self: &Self, f: F) -> Result<&'a T, E>`
+- <span id="onceref-get-or-try-init"></span>`fn get_or_try_init<F, E>(&self, f: F) -> Result<&'a T, E>`
 
-- `fn init<E>(self: &Self, f: impl FnOnce() -> Result<&'a T, E>) -> Result<&'a T, E>`
+- <span id="onceref-init"></span>`fn init<E>(&self, f: impl FnOnce() -> Result<&'a T, E>) -> Result<&'a T, E>`
 
-- `fn compare_exchange(self: &Self, value: &'a T) -> Result<(), *const T>`
+- <span id="onceref-compare-exchange"></span>`fn compare_exchange(&self, value: &'a T) -> Result<(), *const T>`
 
-- `fn _dummy()`
+- <span id="onceref-dummy"></span>`fn _dummy()`
 
 #### Trait Implementations
 
 ##### `impl<'a, T> Debug for OnceRef<'a, T>`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="onceref-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl<'a, T> Default for OnceRef<'a, T>`
 
-- `fn default() -> Self`
+- <span id="onceref-default"></span>`fn default() -> Self`
 
 ##### `impl<'a, T: Sync> Sync for OnceRef<'a, T>`
 
@@ -159,37 +169,37 @@ A thread-safe cell which can be written to only once.
 
 #### Implementations
 
-- `const fn new() -> Self`
+- <span id="oncebox-new"></span>`const fn new() -> Self`
 
-- `fn with_value(value: Box<T>) -> Self`
+- <span id="oncebox-with-value"></span>`fn with_value(value: Box<T>) -> Self`
 
-- `fn get(self: &Self) -> Option<&T>`
+- <span id="oncebox-get"></span>`fn get(&self) -> Option<&T>`
 
-- `fn set(self: &Self, value: Box<T>) -> Result<(), Box<T>>`
+- <span id="oncebox-set"></span>`fn set(&self, value: Box<T>) -> Result<(), Box<T>>`
 
-- `fn get_or_init<F>(self: &Self, f: F) -> &T`
+- <span id="oncebox-get-or-init"></span>`fn get_or_init<F>(&self, f: F) -> &T`
 
-- `fn get_or_try_init<F, E>(self: &Self, f: F) -> Result<&T, E>`
+- <span id="oncebox-get-or-try-init"></span>`fn get_or_try_init<F, E>(&self, f: F) -> Result<&T, E>`
 
-- `fn init<E>(self: &Self, f: impl FnOnce() -> Result<Box<T>, E>) -> Result<&T, E>`
+- <span id="oncebox-init"></span>`fn init<E>(&self, f: impl FnOnce() -> Result<Box<T>, E>) -> Result<&T, E>`
 
 #### Trait Implementations
 
 ##### `impl<T: Clone> Clone for OnceBox<T>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="oncebox-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T> Debug for OnceBox<T>`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="oncebox-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl<T> Default for OnceBox<T>`
 
-- `fn default() -> Self`
+- <span id="oncebox-default"></span>`fn default() -> Self`
 
 ##### `impl<T> Drop for OnceBox<T>`
 
-- `fn drop(self: &mut Self)`
+- <span id="oncebox-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<T: Sync + Send> Sync for OnceBox<T>`
 

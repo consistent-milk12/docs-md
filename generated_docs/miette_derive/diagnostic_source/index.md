@@ -4,6 +4,12 @@
 
 # Module `diagnostic_source`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`DiagnosticSource`](#diagnosticsource) | struct |  |
+
 ## Structs
 
 ### `DiagnosticSource`
@@ -14,11 +20,11 @@ struct DiagnosticSource(syn::Member);
 
 #### Implementations
 
-- `fn from_fields(fields: &syn::Fields) -> syn::Result<Option<Self>>`
+- <span id="diagnosticsource-from-fields"></span>`fn from_fields(fields: &syn::Fields) -> syn::Result<Option<Self>>`
 
-- `fn from_fields_vec(fields: Vec<&syn::Field>) -> syn::Result<Option<Self>>`
+- <span id="diagnosticsource-from-fields-vec"></span>`fn from_fields_vec(fields: Vec<&syn::Field>) -> syn::Result<Option<Self>>`
 
-- `fn gen_enum(variants: &[DiagnosticDef]) -> Option<TokenStream>` — [`DiagnosticDef`](../diagnostic/index.md)
+- <span id="diagnosticsource-gen-enum"></span>`fn gen_enum(variants: &[DiagnosticDef]) -> Option<TokenStream>` — [`DiagnosticDef`](../diagnostic/index.md)
 
-- `fn gen_struct(self: &Self) -> Option<TokenStream>`
+- <span id="diagnosticsource-gen-struct"></span>`fn gen_struct(&self) -> Option<TokenStream>`
 

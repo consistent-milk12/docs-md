@@ -117,6 +117,12 @@ be forwarded to the visitor's `record_debug` method.
 
 
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`AsField`](#asfield) | trait | Trait implemented to allow a type to be used as a field key. |
+
 ## Traits
 
 ### `AsField`
@@ -139,7 +145,7 @@ should be used whenever possible.
 
 #### Required Methods
 
-- `fn as_field(self: &Self, metadata: &Metadata<'_>) -> Option<Field>`
+- `fn as_field(&self, metadata: &Metadata<'_>) -> Option<Field>`
 
   Attempts to convert `&self` into a `Field` with the specified `metadata`.
 

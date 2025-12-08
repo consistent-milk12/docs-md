@@ -4,6 +4,13 @@
 
 # Module `name`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`MultiName`](#multiname) | struct |  |
+| [`Name`](#name) | struct |  |
+
 ## Structs
 
 ### `MultiName`
@@ -20,13 +27,13 @@ struct MultiName {
 
 #### Implementations
 
-- `fn from_attrs(source_name: Name, ser_name: Attr<'_, Name>, de_name: Attr<'_, Name>, de_aliases: Option<VecAttr<'_, Name>>) -> Self` — [`Name`](#name), [`Attr`](../attr/index.md), [`VecAttr`](../attr/index.md)
+- <span id="multiname-from-attrs"></span>`fn from_attrs(source_name: Name, ser_name: Attr<'_, Name>, de_name: Attr<'_, Name>, de_aliases: Option<VecAttr<'_, Name>>) -> Self` — [`Name`](#name), [`Attr`](../attr/index.md), [`VecAttr`](../attr/index.md)
 
-- `fn serialize_name(self: &Self) -> &Name` — [`Name`](#name)
+- <span id="multiname-serialize-name"></span>`fn serialize_name(&self) -> &Name` — [`Name`](#name)
 
-- `fn deserialize_name(self: &Self) -> &Name` — [`Name`](#name)
+- <span id="multiname-deserialize-name"></span>`fn deserialize_name(&self) -> &Name` — [`Name`](#name)
 
-- `fn deserialize_aliases(self: &Self) -> &BTreeSet<Name>` — [`Name`](#name)
+- <span id="multiname-deserialize-aliases"></span>`fn deserialize_aliases(&self) -> &BTreeSet<Name>` — [`Name`](#name)
 
 ### `Name`
 
@@ -41,35 +48,35 @@ struct Name {
 
 ##### `impl Clone for Name`
 
-- `fn clone(self: &Self) -> Name` — [`Name`](#name)
+- <span id="name-clone"></span>`fn clone(&self) -> Name` — [`Name`](#name)
 
 ##### `impl Display for Name`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="name-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Name`
 
 ##### `impl Ord for Name`
 
-- `fn cmp(self: &Self, other: &Self) -> Ordering`
+- <span id="name-cmp"></span>`fn cmp(&self, other: &Self) -> Ordering`
 
 ##### `impl PartialEq for Name`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="name-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl PartialOrd for Name`
 
-- `fn partial_cmp(self: &Self, other: &Self) -> Option<Ordering>`
+- <span id="name-partial-cmp"></span>`fn partial_cmp(&self, other: &Self) -> Option<Ordering>`
 
 ##### `impl<T> Spanned for Name`
 
-- `fn span(self: &Self) -> Span`
+- <span id="name-span"></span>`fn span(&self) -> Span`
 
 ##### `impl<T> ToString for Name`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="name-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl ToTokens for Name`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="name-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 

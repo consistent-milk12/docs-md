@@ -4,6 +4,117 @@
 
 # Module `x86_64`
 
+## Contents
+
+- [Modules](#modules)
+  - [`fallback`](#fallback)
+  - [`detect`](#detect)
+- [Structs](#structs)
+  - [`AtomicI128`](#atomici128)
+  - [`AtomicU128`](#atomicu128)
+- [Functions](#functions)
+  - [`cmpxchg16b`](#cmpxchg16b)
+  - [`atomic_load_vmovdqa`](#atomic_load_vmovdqa)
+  - [`atomic_store_vmovdqa`](#atomic_store_vmovdqa)
+  - [`atomic_load`](#atomic_load)
+  - [`atomic_load_cmpxchg16b`](#atomic_load_cmpxchg16b)
+  - [`atomic_store`](#atomic_store)
+  - [`atomic_store_cmpxchg16b`](#atomic_store_cmpxchg16b)
+  - [`atomic_compare_exchange`](#atomic_compare_exchange)
+  - [`atomic_swap_cmpxchg16b`](#atomic_swap_cmpxchg16b)
+  - [`atomic_add_cmpxchg16b`](#atomic_add_cmpxchg16b)
+  - [`atomic_sub_cmpxchg16b`](#atomic_sub_cmpxchg16b)
+  - [`atomic_and_cmpxchg16b`](#atomic_and_cmpxchg16b)
+  - [`atomic_nand_cmpxchg16b`](#atomic_nand_cmpxchg16b)
+  - [`atomic_or_cmpxchg16b`](#atomic_or_cmpxchg16b)
+  - [`atomic_xor_cmpxchg16b`](#atomic_xor_cmpxchg16b)
+  - [`atomic_not_cmpxchg16b`](#atomic_not_cmpxchg16b)
+  - [`atomic_neg_cmpxchg16b`](#atomic_neg_cmpxchg16b)
+  - [`atomic_max_cmpxchg16b`](#atomic_max_cmpxchg16b)
+  - [`atomic_umax_cmpxchg16b`](#atomic_umax_cmpxchg16b)
+  - [`atomic_min_cmpxchg16b`](#atomic_min_cmpxchg16b)
+  - [`atomic_umin_cmpxchg16b`](#atomic_umin_cmpxchg16b)
+  - [`atomic_swap`](#atomic_swap)
+  - [`atomic_add`](#atomic_add)
+  - [`atomic_sub`](#atomic_sub)
+  - [`atomic_and`](#atomic_and)
+  - [`atomic_nand`](#atomic_nand)
+  - [`atomic_or`](#atomic_or)
+  - [`atomic_xor`](#atomic_xor)
+  - [`atomic_max`](#atomic_max)
+  - [`atomic_umax`](#atomic_umax)
+  - [`atomic_min`](#atomic_min)
+  - [`atomic_umin`](#atomic_umin)
+  - [`atomic_not`](#atomic_not)
+  - [`atomic_neg`](#atomic_neg)
+  - [`is_lock_free`](#is_lock_free)
+- [Constants](#constants)
+  - [`IS_ALWAYS_LOCK_FREE`](#is_always_lock_free)
+- [Macros](#macros)
+  - [`atomic128!`](#atomic128)
+  - [`atomic_rmw_by_atomic_update!`](#atomic_rmw_by_atomic_update)
+  - [`debug_assert_cmpxchg16b!`](#debug_assert_cmpxchg16b)
+  - [`debug_assert_vmovdqa_atomic!`](#debug_assert_vmovdqa_atomic)
+  - [`ptr_modifier!`](#ptr_modifier)
+  - [`load_store_detect!`](#load_store_detect)
+  - [`atomic_rmw_cas_3!`](#atomic_rmw_cas_3)
+  - [`atomic_rmw_cas_2!`](#atomic_rmw_cas_2)
+  - [`select_atomic_rmw!`](#select_atomic_rmw)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`fallback`](#fallback) | mod |  |
+| [`detect`](#detect) | mod |  |
+| [`AtomicI128`](#atomici128) | struct |  |
+| [`AtomicU128`](#atomicu128) | struct |  |
+| [`cmpxchg16b`](#cmpxchg16b) | fn |  |
+| [`atomic_load_vmovdqa`](#atomic_load_vmovdqa) | fn |  |
+| [`atomic_store_vmovdqa`](#atomic_store_vmovdqa) | fn |  |
+| [`atomic_load`](#atomic_load) | fn |  |
+| [`atomic_load_cmpxchg16b`](#atomic_load_cmpxchg16b) | fn |  |
+| [`atomic_store`](#atomic_store) | fn |  |
+| [`atomic_store_cmpxchg16b`](#atomic_store_cmpxchg16b) | fn |  |
+| [`atomic_compare_exchange`](#atomic_compare_exchange) | fn |  |
+| [`atomic_swap_cmpxchg16b`](#atomic_swap_cmpxchg16b) | fn |  |
+| [`atomic_add_cmpxchg16b`](#atomic_add_cmpxchg16b) | fn |  |
+| [`atomic_sub_cmpxchg16b`](#atomic_sub_cmpxchg16b) | fn |  |
+| [`atomic_and_cmpxchg16b`](#atomic_and_cmpxchg16b) | fn |  |
+| [`atomic_nand_cmpxchg16b`](#atomic_nand_cmpxchg16b) | fn |  |
+| [`atomic_or_cmpxchg16b`](#atomic_or_cmpxchg16b) | fn |  |
+| [`atomic_xor_cmpxchg16b`](#atomic_xor_cmpxchg16b) | fn |  |
+| [`atomic_not_cmpxchg16b`](#atomic_not_cmpxchg16b) | fn |  |
+| [`atomic_neg_cmpxchg16b`](#atomic_neg_cmpxchg16b) | fn |  |
+| [`atomic_max_cmpxchg16b`](#atomic_max_cmpxchg16b) | fn |  |
+| [`atomic_umax_cmpxchg16b`](#atomic_umax_cmpxchg16b) | fn |  |
+| [`atomic_min_cmpxchg16b`](#atomic_min_cmpxchg16b) | fn |  |
+| [`atomic_umin_cmpxchg16b`](#atomic_umin_cmpxchg16b) | fn |  |
+| [`atomic_swap`](#atomic_swap) | fn |  |
+| [`atomic_add`](#atomic_add) | fn |  |
+| [`atomic_sub`](#atomic_sub) | fn |  |
+| [`atomic_and`](#atomic_and) | fn |  |
+| [`atomic_nand`](#atomic_nand) | fn |  |
+| [`atomic_or`](#atomic_or) | fn |  |
+| [`atomic_xor`](#atomic_xor) | fn |  |
+| [`atomic_max`](#atomic_max) | fn |  |
+| [`atomic_umax`](#atomic_umax) | fn |  |
+| [`atomic_min`](#atomic_min) | fn |  |
+| [`atomic_umin`](#atomic_umin) | fn |  |
+| [`atomic_not`](#atomic_not) | fn |  |
+| [`atomic_neg`](#atomic_neg) | fn |  |
+| [`is_lock_free`](#is_lock_free) | fn |  |
+| [`IS_ALWAYS_LOCK_FREE`](#is_always_lock_free) | const |  |
+| [`atomic128!`](#atomic128) | macro |  |
+| [`atomic_rmw_by_atomic_update!`](#atomic_rmw_by_atomic_update) | macro |  |
+| [`debug_assert_cmpxchg16b!`](#debug_assert_cmpxchg16b) | macro |  |
+| [`debug_assert_vmovdqa_atomic!`](#debug_assert_vmovdqa_atomic) | macro |  |
+| [`ptr_modifier!`](#ptr_modifier) | macro |  |
+| [`load_store_detect!`](#load_store_detect) | macro |  |
+| [`atomic_rmw_cas_3!`](#atomic_rmw_cas_3) | macro | Atomic RMW by CAS loop (3 arguments) |
+| [`atomic_rmw_cas_2!`](#atomic_rmw_cas_2) | macro | Atomic RMW by CAS loop (2 arguments) |
+| [`select_atomic_rmw!`](#select_atomic_rmw) | macro |  |
+
 ## Modules
 
 - [`fallback`](fallback/index.md) - 
@@ -21,11 +132,15 @@ struct AtomicI128 {
 
 #### Implementations
 
-- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](../../../index.md)
+- <span id="atomici128-add"></span>`fn add(&self, val: i128, order: Ordering)` — [`Ordering`](../../../index.md)
 
-- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](../../../index.md)
+- <span id="atomici128-sub"></span>`fn sub(&self, val: i128, order: Ordering)` — [`Ordering`](../../../index.md)
 
-- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](../../../index.md)
+- <span id="atomici128-and"></span>`fn and(&self, val: i128, order: Ordering)` — [`Ordering`](../../../index.md)
+
+- <span id="atomici128-or"></span>`fn or(&self, val: i128, order: Ordering)` — [`Ordering`](../../../index.md)
+
+- <span id="atomici128-xor"></span>`fn xor(&self, val: i128, order: Ordering)` — [`Ordering`](../../../index.md)
 
 #### Trait Implementations
 
@@ -41,47 +156,11 @@ struct AtomicU128 {
 
 #### Implementations
 
-- `const fn new(v: u128) -> Self`
+- <span id="atomicu128-bit-set"></span>`fn bit_set(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](../../../index.md)
 
-- `fn is_lock_free() -> bool`
+- <span id="atomicu128-bit-clear"></span>`fn bit_clear(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](../../../index.md)
 
-- `const IS_ALWAYS_LOCK_FREE: bool`
-
-- `fn load(self: &Self, order: Ordering) -> u128` — [`Ordering`](../../../index.md)
-
-- `fn store(self: &Self, val: u128, order: Ordering)` — [`Ordering`](../../../index.md)
-
-- `fn swap(self: &Self, val: u128, order: Ordering) -> u128` — [`Ordering`](../../../index.md)
-
-- `fn compare_exchange(self: &Self, current: u128, new: u128, success: Ordering, failure: Ordering) -> Result<u128, u128>` — [`Ordering`](../../../index.md)
-
-- `fn compare_exchange_weak(self: &Self, current: u128, new: u128, success: Ordering, failure: Ordering) -> Result<u128, u128>` — [`Ordering`](../../../index.md)
-
-- `fn fetch_add(self: &Self, val: u128, order: Ordering) -> u128` — [`Ordering`](../../../index.md)
-
-- `fn fetch_sub(self: &Self, val: u128, order: Ordering) -> u128` — [`Ordering`](../../../index.md)
-
-- `fn fetch_and(self: &Self, val: u128, order: Ordering) -> u128` — [`Ordering`](../../../index.md)
-
-- `fn fetch_nand(self: &Self, val: u128, order: Ordering) -> u128` — [`Ordering`](../../../index.md)
-
-- `fn fetch_or(self: &Self, val: u128, order: Ordering) -> u128` — [`Ordering`](../../../index.md)
-
-- `fn fetch_xor(self: &Self, val: u128, order: Ordering) -> u128` — [`Ordering`](../../../index.md)
-
-- `fn fetch_max(self: &Self, val: u128, order: Ordering) -> u128` — [`Ordering`](../../../index.md)
-
-- `fn fetch_min(self: &Self, val: u128, order: Ordering) -> u128` — [`Ordering`](../../../index.md)
-
-- `fn fetch_not(self: &Self, order: Ordering) -> u128` — [`Ordering`](../../../index.md)
-
-- `fn not(self: &Self, order: Ordering)` — [`Ordering`](../../../index.md)
-
-- `fn fetch_neg(self: &Self, order: Ordering) -> u128` — [`Ordering`](../../../index.md)
-
-- `fn neg(self: &Self, order: Ordering)` — [`Ordering`](../../../index.md)
-
-- `const fn as_ptr(self: &Self) -> *mut u128`
+- <span id="atomicu128-bit-toggle"></span>`fn bit_toggle(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](../../../index.md)
 
 #### Trait Implementations
 

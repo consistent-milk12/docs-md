@@ -6,6 +6,12 @@
 
 Terminal [`Styles`](../index.md) for help and error output
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Styles`](#styles) | struct | Terminal styling definitions |
+
 ## Structs
 
 ### `Styles`
@@ -43,23 +49,27 @@ let styles = Styles::styled()
 
 #### Implementations
 
-- `const fn get_header(self: &Self) -> &Style`
+- <span id="styles-plain"></span>`const fn plain() -> Self`
 
-- `const fn get_error(self: &Self) -> &Style`
+- <span id="styles-styled"></span>`const fn styled() -> Self`
 
-- `const fn get_usage(self: &Self) -> &Style`
+- <span id="styles-header"></span>`const fn header(self, style: Style) -> Self`
 
-- `const fn get_literal(self: &Self) -> &Style`
+- <span id="styles-error"></span>`const fn error(self, style: Style) -> Self`
 
-- `const fn get_placeholder(self: &Self) -> &Style`
+- <span id="styles-usage"></span>`const fn usage(self, style: Style) -> Self`
 
-- `const fn get_valid(self: &Self) -> &Style`
+- <span id="styles-literal"></span>`const fn literal(self, style: Style) -> Self`
 
-- `const fn get_invalid(self: &Self) -> &Style`
+- <span id="styles-placeholder"></span>`const fn placeholder(self, style: Style) -> Self`
 
-- `const fn get_context(self: &Self) -> &Style`
+- <span id="styles-valid"></span>`const fn valid(self, style: Style) -> Self`
 
-- `const fn get_context_value(self: &Self) -> &Style`
+- <span id="styles-invalid"></span>`const fn invalid(self, style: Style) -> Self`
+
+- <span id="styles-context"></span>`const fn context(self, style: Style) -> Self`
+
+- <span id="styles-context-value"></span>`const fn context_value(self, style: Style) -> Self`
 
 #### Trait Implementations
 
@@ -67,13 +77,13 @@ let styles = Styles::styled()
 
 ##### `impl Clone for Styles`
 
-- `fn clone(self: &Self) -> Styles` — [`Styles`](../index.md)
+- <span id="styles-clone"></span>`fn clone(&self) -> Styles` — [`Styles`](../index.md)
 
 ##### `impl Debug for Styles`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="styles-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Styles`
 
-- `fn default() -> Self`
+- <span id="styles-default"></span>`fn default() -> Self`
 

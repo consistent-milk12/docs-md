@@ -4,6 +4,15 @@
 
 # Module `errors`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Error`](#error) | struct | Contains an IO error that has a file path attached. |
+| [`SourceDestError`](#sourcedesterror) | struct | Error type used by functions like `fs::copy` that holds two paths. |
+| [`ErrorKind`](#errorkind) | enum |  |
+| [`SourceDestErrorKind`](#sourcedesterrorkind) | enum |  |
+
 ## Structs
 
 ### `Error`
@@ -23,27 +32,27 @@ another IO error.
 
 #### Implementations
 
-- `fn build(source: io::Error, kind: ErrorKind, path: impl Into<PathBuf>) -> io::Error` — [`ErrorKind`](#errorkind)
+- <span id="error-build"></span>`fn build(source: io::Error, kind: ErrorKind, path: impl Into<PathBuf>) -> io::Error` — [`ErrorKind`](#errorkind)
 
 #### Trait Implementations
 
 ##### `impl Debug for Error`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="error-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Error`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="error-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Error for Error`
 
-- `fn cause(self: &Self) -> Option<&dyn StdError>`
+- <span id="error-cause"></span>`fn cause(&self) -> Option<&dyn StdError>`
 
-- `fn source(self: &Self) -> Option<&dyn StdError>`
+- <span id="error-source"></span>`fn source(&self) -> Option<&dyn StdError>`
 
 ##### `impl<T> ToString for Error`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="error-to-string"></span>`fn to_string(&self) -> String`
 
 ### `SourceDestError`
 
@@ -60,27 +69,27 @@ Error type used by functions like `fs::copy` that holds two paths.
 
 #### Implementations
 
-- `fn build(source: io::Error, kind: SourceDestErrorKind, from_path: impl Into<PathBuf>, to_path: impl Into<PathBuf>) -> io::Error` — [`SourceDestErrorKind`](#sourcedesterrorkind)
+- <span id="sourcedesterror-build"></span>`fn build(source: io::Error, kind: SourceDestErrorKind, from_path: impl Into<PathBuf>, to_path: impl Into<PathBuf>) -> io::Error` — [`SourceDestErrorKind`](#sourcedesterrorkind)
 
 #### Trait Implementations
 
 ##### `impl Debug for SourceDestError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sourcedesterror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for SourceDestError`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="sourcedesterror-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Error for SourceDestError`
 
-- `fn cause(self: &Self) -> Option<&dyn StdError>`
+- <span id="sourcedesterror-cause"></span>`fn cause(&self) -> Option<&dyn StdError>`
 
-- `fn source(self: &Self) -> Option<&dyn StdError>`
+- <span id="sourcedesterror-source"></span>`fn source(&self) -> Option<&dyn StdError>`
 
 ##### `impl<T> ToString for SourceDestError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="sourcedesterror-to-string"></span>`fn to_string(&self) -> String`
 
 ## Enums
 
@@ -118,13 +127,13 @@ enum ErrorKind {
 
 ##### `impl Clone for ErrorKind`
 
-- `fn clone(self: &Self) -> ErrorKind` — [`ErrorKind`](#errorkind)
+- <span id="errorkind-clone"></span>`fn clone(&self) -> ErrorKind` — [`ErrorKind`](#errorkind)
 
 ##### `impl Copy for ErrorKind`
 
 ##### `impl Debug for ErrorKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="errorkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `SourceDestErrorKind`
 
@@ -142,11 +151,11 @@ enum SourceDestErrorKind {
 
 ##### `impl Clone for SourceDestErrorKind`
 
-- `fn clone(self: &Self) -> SourceDestErrorKind` — [`SourceDestErrorKind`](#sourcedesterrorkind)
+- <span id="sourcedesterrorkind-clone"></span>`fn clone(&self) -> SourceDestErrorKind` — [`SourceDestErrorKind`](#sourcedesterrorkind)
 
 ##### `impl Copy for SourceDestErrorKind`
 
 ##### `impl Debug for SourceDestErrorKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sourcedesterrorkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

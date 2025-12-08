@@ -4,6 +4,40 @@
 
 # Module `range_trie`
 
+## Contents
+
+- [Structs](#structs)
+  - [`RangeTrie`](#rangetrie)
+  - [`State`](#state)
+  - [`Transition`](#transition)
+  - [`NextDupe`](#nextdupe)
+  - [`NextIter`](#nextiter)
+  - [`NextInsert`](#nextinsert)
+  - [`Split`](#split)
+- [Enums](#enums)
+  - [`SplitRange`](#splitrange)
+- [Functions](#functions)
+  - [`intersects`](#intersects)
+- [Constants](#constants)
+  - [`FINAL`](#final)
+  - [`ROOT`](#root)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`RangeTrie`](#rangetrie) | struct | A range trie represents an ordered set of sequences of bytes. |
+| [`State`](#state) | struct | A single state in this trie. |
+| [`Transition`](#transition) | struct | A transition is a single range of bytes. |
+| [`NextDupe`](#nextdupe) | struct | The next state to process during duplication. |
+| [`NextIter`](#nextiter) | struct | The next state (and its corresponding transition) that we want to visit |
+| [`NextInsert`](#nextinsert) | struct | The next state to process during insertion and any remaining ranges that we |
+| [`Split`](#split) | struct | Split represents a partitioning of two ranges into one or more ranges. |
+| [`SplitRange`](#splitrange) | enum | A tagged range indicating how it was derived from a pair of ranges. |
+| [`intersects`](#intersects) | fn | Returns true if and only if the given ranges intersect. |
+| [`FINAL`](#final) | const | There is only one final state in this trie. |
+| [`ROOT`](#root) | const | The root state of the trie. |
+
 ## Structs
 
 ### `RangeTrie`
@@ -74,37 +108,37 @@ that it is acyclic.
 
 #### Implementations
 
-- `fn new() -> RangeTrie` — [`RangeTrie`](#rangetrie)
+- <span id="rangetrie-new"></span>`fn new() -> RangeTrie` — [`RangeTrie`](#rangetrie)
 
-- `fn clear(self: &mut Self)`
+- <span id="rangetrie-clear"></span>`fn clear(&mut self)`
 
-- `fn iter<E, F: FnMut(&[Utf8Range]) -> Result<(), E>>(self: &Self, f: F) -> Result<(), E>`
+- <span id="rangetrie-iter"></span>`fn iter<E, F: FnMut(&[Utf8Range]) -> Result<(), E>>(&self, f: F) -> Result<(), E>`
 
-- `fn insert(self: &mut Self, ranges: &[Utf8Range])`
+- <span id="rangetrie-insert"></span>`fn insert(&mut self, ranges: &[Utf8Range])`
 
-- `fn add_empty(self: &mut Self) -> StateID` — [`StateID`](../../../util/primitives/index.md)
+- <span id="rangetrie-add-empty"></span>`fn add_empty(&mut self) -> StateID` — [`StateID`](../../../util/primitives/index.md)
 
-- `fn duplicate(self: &mut Self, old_id: StateID) -> StateID` — [`StateID`](../../../util/primitives/index.md)
+- <span id="rangetrie-duplicate"></span>`fn duplicate(&mut self, old_id: StateID) -> StateID` — [`StateID`](../../../util/primitives/index.md)
 
-- `fn add_transition(self: &mut Self, from_id: StateID, range: Utf8Range, next_id: StateID)` — [`StateID`](../../../util/primitives/index.md)
+- <span id="rangetrie-add-transition"></span>`fn add_transition(&mut self, from_id: StateID, range: Utf8Range, next_id: StateID)` — [`StateID`](../../../util/primitives/index.md)
 
-- `fn add_transition_at(self: &mut Self, i: usize, from_id: StateID, range: Utf8Range, next_id: StateID)` — [`StateID`](../../../util/primitives/index.md)
+- <span id="rangetrie-add-transition-at"></span>`fn add_transition_at(&mut self, i: usize, from_id: StateID, range: Utf8Range, next_id: StateID)` — [`StateID`](../../../util/primitives/index.md)
 
-- `fn set_transition_at(self: &mut Self, i: usize, from_id: StateID, range: Utf8Range, next_id: StateID)` — [`StateID`](../../../util/primitives/index.md)
+- <span id="rangetrie-set-transition-at"></span>`fn set_transition_at(&mut self, i: usize, from_id: StateID, range: Utf8Range, next_id: StateID)` — [`StateID`](../../../util/primitives/index.md)
 
-- `fn state(self: &Self, id: StateID) -> &State` — [`StateID`](../../../util/primitives/index.md), [`State`](#state)
+- <span id="rangetrie-state"></span>`fn state(&self, id: StateID) -> &State` — [`StateID`](../../../util/primitives/index.md), [`State`](#state)
 
-- `fn state_mut(self: &mut Self, id: StateID) -> &mut State` — [`StateID`](../../../util/primitives/index.md), [`State`](#state)
+- <span id="rangetrie-state-mut"></span>`fn state_mut(&mut self, id: StateID) -> &mut State` — [`StateID`](../../../util/primitives/index.md), [`State`](#state)
 
 #### Trait Implementations
 
 ##### `impl Clone for RangeTrie`
 
-- `fn clone(self: &Self) -> RangeTrie` — [`RangeTrie`](#rangetrie)
+- <span id="rangetrie-clone"></span>`fn clone(&self) -> RangeTrie` — [`RangeTrie`](#rangetrie)
 
 ##### `impl Debug for RangeTrie`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rangetrie-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `State`
 
@@ -125,19 +159,19 @@ A single state in this trie.
 
 #### Implementations
 
-- `fn find(self: &Self, range: Utf8Range) -> usize`
+- <span id="state-find"></span>`fn find(&self, range: Utf8Range) -> usize`
 
-- `fn clear(self: &mut Self)`
+- <span id="state-clear"></span>`fn clear(&mut self)`
 
 #### Trait Implementations
 
 ##### `impl Clone for State`
 
-- `fn clone(self: &Self) -> State` — [`State`](#state)
+- <span id="state-clone"></span>`fn clone(&self) -> State` — [`State`](#state)
 
 ##### `impl Debug for State`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="state-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Transition`
 
@@ -166,11 +200,11 @@ to by `next_id`.
 
 ##### `impl Clone for Transition`
 
-- `fn clone(self: &Self) -> Transition` — [`Transition`](#transition)
+- <span id="transition-clone"></span>`fn clone(&self) -> Transition` — [`Transition`](#transition)
 
 ##### `impl Debug for Transition`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="transition-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `NextDupe`
 
@@ -197,11 +231,11 @@ The next state to process during duplication.
 
 ##### `impl Clone for NextDupe`
 
-- `fn clone(self: &Self) -> NextDupe` — [`NextDupe`](#nextdupe)
+- <span id="nextdupe-clone"></span>`fn clone(&self) -> NextDupe` — [`NextDupe`](#nextdupe)
 
 ##### `impl Debug for NextDupe`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="nextdupe-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `NextIter`
 
@@ -219,11 +253,11 @@ during iteration in lexicographic order.
 
 ##### `impl Clone for NextIter`
 
-- `fn clone(self: &Self) -> NextIter` — [`NextIter`](#nextiter)
+- <span id="nextiter-clone"></span>`fn clone(&self) -> NextIter` — [`NextIter`](#nextiter)
 
 ##### `impl Debug for NextIter`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="nextiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `NextInsert`
 
@@ -257,23 +291,23 @@ is always the root state along with all ranges given.
 
 #### Implementations
 
-- `fn new(state_id: StateID, ranges: &[Utf8Range]) -> NextInsert` — [`StateID`](../../../util/primitives/index.md), [`NextInsert`](#nextinsert)
+- <span id="nextinsert-new"></span>`fn new(state_id: StateID, ranges: &[Utf8Range]) -> NextInsert` — [`StateID`](../../../util/primitives/index.md), [`NextInsert`](#nextinsert)
 
-- `fn push(trie: &mut RangeTrie, stack: &mut Vec<NextInsert>, ranges: &[Utf8Range]) -> StateID` — [`RangeTrie`](#rangetrie), [`NextInsert`](#nextinsert), [`StateID`](../../../util/primitives/index.md)
+- <span id="nextinsert-push"></span>`fn push(trie: &mut RangeTrie, stack: &mut Vec<NextInsert>, ranges: &[Utf8Range]) -> StateID` — [`RangeTrie`](#rangetrie), [`NextInsert`](#nextinsert), [`StateID`](../../../util/primitives/index.md)
 
-- `fn state_id(self: &Self) -> StateID` — [`StateID`](../../../util/primitives/index.md)
+- <span id="nextinsert-state-id"></span>`fn state_id(&self) -> StateID` — [`StateID`](../../../util/primitives/index.md)
 
-- `fn ranges(self: &Self) -> &[Utf8Range]`
+- <span id="nextinsert-ranges"></span>`fn ranges(&self) -> &[Utf8Range]`
 
 #### Trait Implementations
 
 ##### `impl Clone for NextInsert`
 
-- `fn clone(self: &Self) -> NextInsert` — [`NextInsert`](#nextinsert)
+- <span id="nextinsert-clone"></span>`fn clone(&self) -> NextInsert` — [`NextInsert`](#nextinsert)
 
 ##### `impl Debug for NextInsert`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="nextinsert-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Split`
 
@@ -374,31 +408,31 @@ of [a,b] or [x,y] exclusively.
 
 #### Implementations
 
-- `fn new(o: Utf8Range, n: Utf8Range) -> Option<Split>` — [`Split`](#split)
+- <span id="split-new"></span>`fn new(o: Utf8Range, n: Utf8Range) -> Option<Split>` — [`Split`](#split)
 
-- `fn parts1(r1: SplitRange) -> Split` — [`SplitRange`](#splitrange), [`Split`](#split)
+- <span id="split-parts1"></span>`fn parts1(r1: SplitRange) -> Split` — [`SplitRange`](#splitrange), [`Split`](#split)
 
-- `fn parts2(r1: SplitRange, r2: SplitRange) -> Split` — [`SplitRange`](#splitrange), [`Split`](#split)
+- <span id="split-parts2"></span>`fn parts2(r1: SplitRange, r2: SplitRange) -> Split` — [`SplitRange`](#splitrange), [`Split`](#split)
 
-- `fn parts3(r1: SplitRange, r2: SplitRange, r3: SplitRange) -> Split` — [`SplitRange`](#splitrange), [`Split`](#split)
+- <span id="split-parts3"></span>`fn parts3(r1: SplitRange, r2: SplitRange, r3: SplitRange) -> Split` — [`SplitRange`](#splitrange), [`Split`](#split)
 
-- `fn as_slice(self: &Self) -> &[SplitRange]` — [`SplitRange`](#splitrange)
+- <span id="split-as-slice"></span>`fn as_slice(&self) -> &[SplitRange]` — [`SplitRange`](#splitrange)
 
 #### Trait Implementations
 
 ##### `impl Clone for Split`
 
-- `fn clone(self: &Self) -> Split` — [`Split`](#split)
+- <span id="split-clone"></span>`fn clone(&self) -> Split` — [`Split`](#split)
 
 ##### `impl Debug for Split`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="split-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Split`
 
 ##### `impl PartialEq for Split`
 
-- `fn eq(self: &Self, other: &Split) -> bool` — [`Split`](#split)
+- <span id="split-eq"></span>`fn eq(&self, other: &Split) -> bool` — [`Split`](#split)
 
 ##### `impl StructuralPartialEq for Split`
 
@@ -420,19 +454,19 @@ A tagged range indicating how it was derived from a pair of ranges.
 
 ##### `impl Clone for SplitRange`
 
-- `fn clone(self: &Self) -> SplitRange` — [`SplitRange`](#splitrange)
+- <span id="splitrange-clone"></span>`fn clone(&self) -> SplitRange` — [`SplitRange`](#splitrange)
 
 ##### `impl Copy for SplitRange`
 
 ##### `impl Debug for SplitRange`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="splitrange-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for SplitRange`
 
 ##### `impl PartialEq for SplitRange`
 
-- `fn eq(self: &Self, other: &SplitRange) -> bool` — [`SplitRange`](#splitrange)
+- <span id="splitrange-eq"></span>`fn eq(&self, other: &SplitRange) -> bool` — [`SplitRange`](#splitrange)
 
 ##### `impl StructuralPartialEq for SplitRange`
 

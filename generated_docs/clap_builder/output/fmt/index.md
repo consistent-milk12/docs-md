@@ -4,6 +4,13 @@
 
 # Module `fmt`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Colorizer`](#colorizer) | struct |  |
+| [`Stream`](#stream) | enum |  |
+
 ## Structs
 
 ### `Colorizer`
@@ -18,25 +25,27 @@ struct Colorizer {
 
 #### Implementations
 
-- `fn print(self: &Self) -> std::io::Result<()>`
+- <span id="colorizer-new"></span>`fn new(stream: Stream, color_when: ColorChoice) -> Self` — [`Stream`](#stream), [`ColorChoice`](../../index.md)
+
+- <span id="colorizer-with-content"></span>`fn with_content(self, content: StyledStr) -> Self` — [`StyledStr`](../../builder/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Colorizer`
 
-- `fn clone(self: &Self) -> Colorizer` — [`Colorizer`](#colorizer)
+- <span id="colorizer-clone"></span>`fn clone(&self) -> Colorizer` — [`Colorizer`](#colorizer)
 
 ##### `impl Debug for Colorizer`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="colorizer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Colorizer`
 
-- `fn fmt(self: &Self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="colorizer-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
 ##### `impl<T> ToString for Colorizer`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="colorizer-to-string"></span>`fn to_string(&self) -> String`
 
 ## Enums
 
@@ -53,19 +62,19 @@ enum Stream {
 
 ##### `impl Clone for Stream`
 
-- `fn clone(self: &Self) -> Stream` — [`Stream`](#stream)
+- <span id="stream-clone"></span>`fn clone(&self) -> Stream` — [`Stream`](#stream)
 
 ##### `impl Copy for Stream`
 
 ##### `impl Debug for Stream`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="stream-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Stream`
 
 ##### `impl PartialEq for Stream`
 
-- `fn eq(self: &Self, other: &Stream) -> bool` — [`Stream`](#stream)
+- <span id="stream-eq"></span>`fn eq(&self, other: &Stream) -> bool` — [`Stream`](#stream)
 
 ##### `impl StructuralPartialEq for Stream`
 

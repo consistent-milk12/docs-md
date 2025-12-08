@@ -4,6 +4,14 @@
 
 # Module `parser`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ParserBuilder`](#parserbuilder) | struct | A builder for a regular expression parser. |
+| [`Parser`](#parser) | struct | A convenience parser for regular expressions. |
+| [`parse`](#parse) | fn | A convenience routine for parsing a regex using default options. |
+
 ## Structs
 
 ### `ParserBuilder`
@@ -25,45 +33,45 @@ This type combines the builder options for both the [AST
 
 #### Implementations
 
-- `fn new() -> ParserBuilder` — [`ParserBuilder`](../index.md)
+- <span id="parserbuilder-new"></span>`fn new() -> ParserBuilder` — [`ParserBuilder`](../index.md)
 
-- `fn build(self: &Self) -> Parser` — [`Parser`](../index.md)
+- <span id="parserbuilder-build"></span>`fn build(&self) -> Parser` — [`Parser`](../index.md)
 
-- `fn nest_limit(self: &mut Self, limit: u32) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
+- <span id="parserbuilder-nest-limit"></span>`fn nest_limit(&mut self, limit: u32) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
 
-- `fn octal(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
+- <span id="parserbuilder-octal"></span>`fn octal(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
 
-- `fn utf8(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
+- <span id="parserbuilder-utf8"></span>`fn utf8(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
 
-- `fn ignore_whitespace(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
+- <span id="parserbuilder-ignore-whitespace"></span>`fn ignore_whitespace(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
 
-- `fn case_insensitive(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
+- <span id="parserbuilder-case-insensitive"></span>`fn case_insensitive(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
 
-- `fn multi_line(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
+- <span id="parserbuilder-multi-line"></span>`fn multi_line(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
 
-- `fn dot_matches_new_line(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
+- <span id="parserbuilder-dot-matches-new-line"></span>`fn dot_matches_new_line(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
 
-- `fn crlf(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
+- <span id="parserbuilder-crlf"></span>`fn crlf(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
 
-- `fn line_terminator(self: &mut Self, byte: u8) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
+- <span id="parserbuilder-line-terminator"></span>`fn line_terminator(&mut self, byte: u8) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
 
-- `fn swap_greed(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
+- <span id="parserbuilder-swap-greed"></span>`fn swap_greed(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
 
-- `fn unicode(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
+- <span id="parserbuilder-unicode"></span>`fn unicode(&mut self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for ParserBuilder`
 
-- `fn clone(self: &Self) -> ParserBuilder` — [`ParserBuilder`](../index.md)
+- <span id="parserbuilder-clone"></span>`fn clone(&self) -> ParserBuilder` — [`ParserBuilder`](../index.md)
 
 ##### `impl Debug for ParserBuilder`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="parserbuilder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for ParserBuilder`
 
-- `fn default() -> ParserBuilder` — [`ParserBuilder`](../index.md)
+- <span id="parserbuilder-default"></span>`fn default() -> ParserBuilder` — [`ParserBuilder`](../index.md)
 
 ### `Parser`
 
@@ -90,19 +98,19 @@ A `Parser` can be configured in more detail via a [`ParserBuilder`](../index.md)
 
 #### Implementations
 
-- `fn new() -> Parser` — [`Parser`](../index.md)
+- <span id="parser-new"></span>`fn new() -> Parser` — [`Parser`](../index.md)
 
-- `fn parse(self: &mut Self, pattern: &str) -> Result<hir::Hir, Error>` — [`Hir`](../hir/index.md), [`Error`](../index.md)
+- <span id="parser-parse"></span>`fn parse(&mut self, pattern: &str) -> Result<hir::Hir, Error>` — [`Hir`](../hir/index.md), [`Error`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Parser`
 
-- `fn clone(self: &Self) -> Parser` — [`Parser`](../index.md)
+- <span id="parser-clone"></span>`fn clone(&self) -> Parser` — [`Parser`](../index.md)
 
 ##### `impl Debug for Parser`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="parser-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Functions
 

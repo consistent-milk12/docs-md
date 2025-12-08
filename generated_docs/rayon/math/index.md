@@ -4,6 +4,12 @@
 
 # Module `math`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`simplify_range`](#simplify_range) | fn | Normalize arbitrary `RangeBounds` to a `Range` |
+
 ## Functions
 
 ### `simplify_range`

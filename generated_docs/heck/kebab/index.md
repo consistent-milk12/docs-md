@@ -4,6 +4,13 @@
 
 # Module `kebab`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`AsKebabCase`](#askebabcase) | struct | This wrapper performs a kebab case conversion in [`fmt::Display`]. |
+| [`ToKebabCase`](#tokebabcase) | trait | This trait defines a kebab case conversion. |
+
 ## Structs
 
 ### `AsKebabCase<T: AsRef<str>>`
@@ -12,7 +19,7 @@
 struct AsKebabCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a kebab case conversion in [`fmt::Display`](../../miette_derive/index.md).
+This wrapper performs a kebab case conversion in [`fmt::Display`](../../miette_derive/fmt/index.md).
 
 ## Example:
 
@@ -27,11 +34,11 @@ assert_eq!(format!("{}", AsKebabCase(sentence)), "we-are-going-to-inherit-the-ea
 
 ##### `impl<T: AsRef<str>> Display for AsKebabCase<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="askebabcase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for AsKebabCase<T>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="askebabcase-to-string"></span>`fn to_string(&self) -> String`
 
 ## Traits
 
@@ -56,7 +63,7 @@ assert_eq!(sentence.to_kebab_case(), "we-are-going-to-inherit-the-earth");
 
 #### Required Methods
 
-- `fn to_kebab_case(self: &Self) -> <Self as >::Owned`
+- `fn to_kebab_case(&self) -> <Self as >::Owned`
 
   Convert this type to kebab case.
 

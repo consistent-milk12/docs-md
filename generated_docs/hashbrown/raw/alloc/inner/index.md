@@ -4,6 +4,12 @@
 
 # Module `inner`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`do_alloc`](#do_alloc) | fn |  |
+
 ## Functions
 
 ### `do_alloc`

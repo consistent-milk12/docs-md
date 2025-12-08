@@ -4,6 +4,16 @@
 
 # Module `vector`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`x86sse2`](#x86sse2) | mod |  |
+| [`x86avx2`](#x86avx2) | mod |  |
+| [`SensibleMoveMask`](#sensiblemovemask) | struct | This is a "sensible" movemask implementation where each bit represents |
+| [`Vector`](#vector) | trait | A trait for describing vector operations used by vectorized searchers. |
+| [`MoveMask`](#movemask) | trait | A trait that abstracts over a vector-to-scalar operation called |
+
 ## Modules
 
 - [`x86sse2`](x86sse2/index.md) - 
@@ -27,37 +37,37 @@ movemask instructions. But neon has no such native equivalent.
 
 #### Implementations
 
-- `fn get_for_offset(self: Self) -> u32`
+- <span id="sensiblemovemask-get-for-offset"></span>`fn get_for_offset(self) -> u32`
 
 #### Trait Implementations
 
 ##### `impl Clone for SensibleMoveMask`
 
-- `fn clone(self: &Self) -> SensibleMoveMask` — [`SensibleMoveMask`](#sensiblemovemask)
+- <span id="sensiblemovemask-clone"></span>`fn clone(&self) -> SensibleMoveMask` — [`SensibleMoveMask`](#sensiblemovemask)
 
 ##### `impl Copy for SensibleMoveMask`
 
 ##### `impl Debug for SensibleMoveMask`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sensiblemovemask-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl MoveMask for SensibleMoveMask`
 
-- `fn all_zeros_except_least_significant(n: usize) -> SensibleMoveMask` — [`SensibleMoveMask`](#sensiblemovemask)
+- <span id="sensiblemovemask-all-zeros-except-least-significant"></span>`fn all_zeros_except_least_significant(n: usize) -> SensibleMoveMask` — [`SensibleMoveMask`](#sensiblemovemask)
 
-- `fn has_non_zero(self: Self) -> bool`
+- <span id="sensiblemovemask-has-non-zero"></span>`fn has_non_zero(self) -> bool`
 
-- `fn count_ones(self: Self) -> usize`
+- <span id="sensiblemovemask-count-ones"></span>`fn count_ones(self) -> usize`
 
-- `fn and(self: Self, other: SensibleMoveMask) -> SensibleMoveMask` — [`SensibleMoveMask`](#sensiblemovemask)
+- <span id="sensiblemovemask-and"></span>`fn and(self, other: SensibleMoveMask) -> SensibleMoveMask` — [`SensibleMoveMask`](#sensiblemovemask)
 
-- `fn or(self: Self, other: SensibleMoveMask) -> SensibleMoveMask` — [`SensibleMoveMask`](#sensiblemovemask)
+- <span id="sensiblemovemask-or"></span>`fn or(self, other: SensibleMoveMask) -> SensibleMoveMask` — [`SensibleMoveMask`](#sensiblemovemask)
 
-- `fn clear_least_significant_bit(self: Self) -> SensibleMoveMask` — [`SensibleMoveMask`](#sensiblemovemask)
+- <span id="sensiblemovemask-clear-least-significant-bit"></span>`fn clear_least_significant_bit(self) -> SensibleMoveMask` — [`SensibleMoveMask`](#sensiblemovemask)
 
-- `fn first_offset(self: Self) -> usize`
+- <span id="sensiblemovemask-first-offset"></span>`fn first_offset(self) -> usize`
 
-- `fn last_offset(self: Self) -> usize`
+- <span id="sensiblemovemask-last-offset"></span>`fn last_offset(self) -> usize`
 
 ## Traits
 
@@ -104,23 +114,23 @@ with target_feature.)
 
   Read a vector-size number of bytes from the given pointer. The pointer
 
-- `fn movemask(self: Self) -> <Self as >::Mask`
+- `fn movemask(self) -> <Self as >::Mask`
 
   _mm_movemask_epi8 or _mm256_movemask_epi8
 
-- `fn cmpeq(self: Self, vector2: Self) -> Self`
+- `fn cmpeq(self, vector2: Self) -> Self`
 
   _mm_cmpeq_epi8 or _mm256_cmpeq_epi8
 
-- `fn and(self: Self, vector2: Self) -> Self`
+- `fn and(self, vector2: Self) -> Self`
 
   _mm_and_si128 or _mm256_and_si256
 
-- `fn or(self: Self, vector2: Self) -> Self`
+- `fn or(self, vector2: Self) -> Self`
 
   _mm_or or _mm256_or_si256
 
-- `fn movemask_will_have_non_zero(self: Self) -> bool`
+- `fn movemask_will_have_non_zero(self) -> bool`
 
   Returns true if and only if `Self::movemask` would return a mask that
 
@@ -151,31 +161,31 @@ representation with this trait and define the operations we actually need.
 
   Return a mask that is all zeros except for the least significant `n`
 
-- `fn has_non_zero(self: Self) -> bool`
+- `fn has_non_zero(self) -> bool`
 
   Returns true if and only if this mask has a a non-zero bit anywhere.
 
-- `fn count_ones(self: Self) -> usize`
+- `fn count_ones(self) -> usize`
 
   Returns the number of bits set to 1 in this mask.
 
-- `fn and(self: Self, other: Self) -> Self`
+- `fn and(self, other: Self) -> Self`
 
   Does a bitwise `and` operation between `self` and `other`.
 
-- `fn or(self: Self, other: Self) -> Self`
+- `fn or(self, other: Self) -> Self`
 
   Does a bitwise `or` operation between `self` and `other`.
 
-- `fn clear_least_significant_bit(self: Self) -> Self`
+- `fn clear_least_significant_bit(self) -> Self`
 
   Returns a mask that is equivalent to `self` but with the least
 
-- `fn first_offset(self: Self) -> usize`
+- `fn first_offset(self) -> usize`
 
   Returns the offset of the first non-zero lane this mask represents.
 
-- `fn last_offset(self: Self) -> usize`
+- `fn last_offset(self) -> usize`
 
   Returns the offset of the last non-zero lane this mask represents.
 

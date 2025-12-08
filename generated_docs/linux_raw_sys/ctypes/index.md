@@ -4,6 +4,41 @@
 
 # Module `ctypes`
 
+## Contents
+
+- [Type Aliases](#type-aliases)
+  - [`c_char`](#c_char)
+  - [`c_schar`](#c_schar)
+  - [`c_uchar`](#c_uchar)
+  - [`c_short`](#c_short)
+  - [`c_ushort`](#c_ushort)
+  - [`c_int`](#c_int)
+  - [`c_uint`](#c_uint)
+  - [`c_long`](#c_long)
+  - [`c_ulong`](#c_ulong)
+  - [`c_longlong`](#c_longlong)
+  - [`c_ulonglong`](#c_ulonglong)
+  - [`c_float`](#c_float)
+  - [`c_double`](#c_double)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`c_char`](#c_char) | type |  |
+| [`c_schar`](#c_schar) | type |  |
+| [`c_uchar`](#c_uchar) | type |  |
+| [`c_short`](#c_short) | type |  |
+| [`c_ushort`](#c_ushort) | type |  |
+| [`c_int`](#c_int) | type |  |
+| [`c_uint`](#c_uint) | type |  |
+| [`c_long`](#c_long) | type |  |
+| [`c_ulong`](#c_ulong) | type |  |
+| [`c_longlong`](#c_longlong) | type |  |
+| [`c_ulonglong`](#c_ulonglong) | type |  |
+| [`c_float`](#c_float) | type |  |
+| [`c_double`](#c_double) | type |  |
+
 ## Type Aliases
 
 ### `c_char`

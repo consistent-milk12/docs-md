@@ -4,6 +4,14 @@
 
 # Module `release`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Release`](#release) | struct |  |
+| [`parse`](#parse) | fn |  |
+| [`try_parse`](#try_parse) | fn |  |
+
 ## Structs
 
 ### `Release`
@@ -19,27 +27,27 @@ struct Release {
 
 ##### `impl Clone for Release`
 
-- `fn clone(self: &Self) -> Release` — [`Release`](#release)
+- <span id="release-clone"></span>`fn clone(&self) -> Release` — [`Release`](#release)
 
 ##### `impl Copy for Release`
 
 ##### `impl Debug for Release`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="release-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Release`
 
 ##### `impl Ord for Release`
 
-- `fn cmp(self: &Self, other: &Release) -> $crate::cmp::Ordering` — [`Release`](#release)
+- <span id="release-cmp"></span>`fn cmp(&self, other: &Release) -> cmp::Ordering` — [`Release`](#release)
 
 ##### `impl PartialEq for Release`
 
-- `fn eq(self: &Self, other: &Release) -> bool` — [`Release`](#release)
+- <span id="release-eq"></span>`fn eq(&self, other: &Release) -> bool` — [`Release`](#release)
 
 ##### `impl PartialOrd for Release`
 
-- `fn partial_cmp(self: &Self, other: &Release) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Release`](#release)
+- <span id="release-partial-cmp"></span>`fn partial_cmp(&self, other: &Release) -> option::Option<cmp::Ordering>` — [`Release`](#release)
 
 ##### `impl StructuralPartialEq for Release`
 

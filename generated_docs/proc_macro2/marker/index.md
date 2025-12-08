@@ -4,6 +4,13 @@
 
 # Module `marker`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ProcMacroAutoTraits`](#procmacroautotraits) | struct |  |
+| [`MARKER`](#marker) | const |  |
+
 ## Structs
 
 ### `ProcMacroAutoTraits`
@@ -16,7 +23,7 @@ struct ProcMacroAutoTraits(core::marker::PhantomData<alloc::rc::Rc<()>>);
 
 ##### `impl Clone for ProcMacroAutoTraits`
 
-- `fn clone(self: &Self) -> ProcMacroAutoTraits` — [`ProcMacroAutoTraits`](#procmacroautotraits)
+- <span id="procmacroautotraits-clone"></span>`fn clone(&self) -> ProcMacroAutoTraits` — [`ProcMacroAutoTraits`](#procmacroautotraits)
 
 ##### `impl Copy for ProcMacroAutoTraits`
 

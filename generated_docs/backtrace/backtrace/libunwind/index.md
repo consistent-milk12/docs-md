@@ -21,6 +21,15 @@ straightforward Rust binding to the libunwind APIs.
 
 This is the default unwinding API for all non-Windows platforms currently.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`uw`](#uw) | mod | Unwind library interface used for backtraces |
+| [`Bomb`](#bomb) | struct |  |
+| [`Frame`](#frame) | enum |  |
+| [`trace`](#trace) | fn |  |
+
 ## Modules
 
 - [`uw`](uw/index.md) - Unwind library interface used for backtraces
@@ -39,7 +48,7 @@ struct Bomb {
 
 ##### `impl Drop for Bomb`
 
-- `fn drop(self: &mut Self)`
+- <span id="bomb-drop"></span>`fn drop(&mut self)`
 
 ## Enums
 
@@ -58,19 +67,19 @@ enum Frame {
 
 #### Implementations
 
-- `fn ip(self: &Self) -> *mut c_void`
+- <span id="frame-ip"></span>`fn ip(&self) -> *mut c_void`
 
-- `fn sp(self: &Self) -> *mut c_void`
+- <span id="frame-sp"></span>`fn sp(&self) -> *mut c_void`
 
-- `fn symbol_address(self: &Self) -> *mut c_void`
+- <span id="frame-symbol-address"></span>`fn symbol_address(&self) -> *mut c_void`
 
-- `fn module_base_address(self: &Self) -> Option<*mut c_void>`
+- <span id="frame-module-base-address"></span>`fn module_base_address(&self) -> Option<*mut c_void>`
 
 #### Trait Implementations
 
 ##### `impl Clone for Frame`
 
-- `fn clone(self: &Self) -> Frame` — [`Frame`](#frame)
+- <span id="frame-clone"></span>`fn clone(&self) -> Frame` — [`Frame`](#frame)
 
 ##### `impl Send for Frame`
 

@@ -4,6 +4,13 @@
 
 # Module `recompose`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Recompositions`](#recompositions) | struct | External iterator for a string recomposition's characters. |
+| [`RecompositionState`](#recompositionstate) | enum |  |
+
 ## Structs
 
 ### `Recompositions<I>`
@@ -22,53 +29,53 @@ External iterator for a string recomposition's characters.
 
 #### Implementations
 
-- `fn new_canonical(iter: I) -> Self`
+- <span id="recompositions-new-canonical"></span>`fn new_canonical(iter: I) -> Self`
 
-- `fn new_compatible(iter: I) -> Self`
+- <span id="recompositions-new-compatible"></span>`fn new_compatible(iter: I) -> Self`
 
 #### Trait Implementations
 
-##### `impl<I: $crate::clone::Clone> Clone for Recompositions<I>`
+##### `impl<I: clone::Clone> Clone for Recompositions<I>`
 
-- `fn clone(self: &Self) -> Recompositions<I>` — [`Recompositions`](../index.md)
+- <span id="recompositions-clone"></span>`fn clone(&self) -> Recompositions<I>` — [`Recompositions`](../index.md)
 
 ##### `impl<I: Iterator<Item = char> + Clone> Display for Recompositions<I>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="recompositions-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I: Iterator<Item = char> + FusedIterator> FusedIterator for Recompositions<I>`
 
 ##### `impl<I> IntoIterator for Recompositions<I>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="recompositions-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="recompositions-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="recompositions-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I: Iterator<Item = char>> Iterator for Recompositions<I>`
 
-- `type Item = char`
+- <span id="recompositions-item"></span>`type Item = char`
 
-- `fn next(self: &mut Self) -> Option<char>`
+- <span id="recompositions-next"></span>`fn next(&mut self) -> Option<char>`
 
 ##### `impl<T> ToString for Recompositions<I>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="recompositions-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl<I> UnicodeNormalization for Recompositions<I>`
 
-- `fn nfd(self: Self) -> Decompositions<I>` — [`Decompositions`](../index.md)
+- <span id="recompositions-nfd"></span>`fn nfd(self) -> Decompositions<I>` — [`Decompositions`](../index.md)
 
-- `fn nfkd(self: Self) -> Decompositions<I>` — [`Decompositions`](../index.md)
+- <span id="recompositions-nfkd"></span>`fn nfkd(self) -> Decompositions<I>` — [`Decompositions`](../index.md)
 
-- `fn nfc(self: Self) -> Recompositions<I>` — [`Recompositions`](../index.md)
+- <span id="recompositions-nfc"></span>`fn nfc(self) -> Recompositions<I>` — [`Recompositions`](../index.md)
 
-- `fn nfkc(self: Self) -> Recompositions<I>` — [`Recompositions`](../index.md)
+- <span id="recompositions-nfkc"></span>`fn nfkc(self) -> Recompositions<I>` — [`Recompositions`](../index.md)
 
-- `fn cjk_compat_variants(self: Self) -> Replacements<I>` — [`Replacements`](../index.md)
+- <span id="recompositions-cjk-compat-variants"></span>`fn cjk_compat_variants(self) -> Replacements<I>` — [`Replacements`](../index.md)
 
-- `fn stream_safe(self: Self) -> StreamSafe<I>` — [`StreamSafe`](../index.md)
+- <span id="recompositions-stream-safe"></span>`fn stream_safe(self) -> StreamSafe<I>` — [`StreamSafe`](../index.md)
 
 ## Enums
 
@@ -86,5 +93,5 @@ enum RecompositionState {
 
 ##### `impl Clone for RecompositionState`
 
-- `fn clone(self: &Self) -> RecompositionState` — [`RecompositionState`](#recompositionstate)
+- <span id="recompositionstate-clone"></span>`fn clone(&self) -> RecompositionState` — [`RecompositionState`](#recompositionstate)
 

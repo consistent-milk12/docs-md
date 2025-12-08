@@ -4,6 +4,96 @@
 
 # Module `de`
 
+## Contents
+
+- [Modules](#modules)
+  - [`enum_`](#enum_)
+  - [`enum_adjacently`](#enum_adjacently)
+  - [`enum_externally`](#enum_externally)
+  - [`enum_internally`](#enum_internally)
+  - [`enum_untagged`](#enum_untagged)
+  - [`identifier`](#identifier)
+  - [`struct_`](#struct_)
+  - [`tuple`](#tuple)
+  - [`unit`](#unit)
+- [Structs](#structs)
+  - [`Parameters`](#parameters)
+  - [`FieldWithAliases`](#fieldwithaliases)
+  - [`DeImplGenerics`](#deimplgenerics)
+  - [`DeTypeGenerics`](#detypegenerics)
+- [Enums](#enums)
+  - [`BorrowedLifetimes`](#borrowedlifetimes)
+  - [`TupleForm`](#tupleform)
+  - [`StructForm`](#structform)
+- [Functions](#functions)
+  - [`expand_derive_deserialize`](#expand_derive_deserialize)
+  - [`precondition`](#precondition)
+  - [`precondition_sized`](#precondition_sized)
+  - [`precondition_no_de_lifetime`](#precondition_no_de_lifetime)
+  - [`build_generics`](#build_generics)
+  - [`needs_deserialize_bound`](#needs_deserialize_bound)
+  - [`requires_default`](#requires_default)
+  - [`borrowed_lifetimes`](#borrowed_lifetimes)
+  - [`deserialize_body`](#deserialize_body)
+  - [`deserialize_in_place_body`](#deserialize_in_place_body)
+  - [`deserialize_transparent`](#deserialize_transparent)
+  - [`deserialize_from`](#deserialize_from)
+  - [`deserialize_try_from`](#deserialize_try_from)
+  - [`deserialize_seq`](#deserialize_seq)
+  - [`field_i`](#field_i)
+  - [`wrap_deserialize_with`](#wrap_deserialize_with)
+  - [`wrap_deserialize_field_with`](#wrap_deserialize_field_with)
+  - [`unwrap_to_variant_closure`](#unwrap_to_variant_closure)
+  - [`expr_is_missing`](#expr_is_missing)
+  - [`expr_is_missing_seq`](#expr_is_missing_seq)
+  - [`effective_style`](#effective_style)
+  - [`has_flatten`](#has_flatten)
+  - [`de_type_generics_to_tokens`](#de_type_generics_to_tokens)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`enum_`](#enum_) | mod |  |
+| [`enum_adjacently`](#enum_adjacently) | mod | Deserialization for adjacently tagged enums |
+| [`enum_externally`](#enum_externally) | mod | Deserialization for externally tagged enums |
+| [`enum_internally`](#enum_internally) | mod | Deserialization for internally tagged enums |
+| [`enum_untagged`](#enum_untagged) | mod | Deserialization for untagged enums |
+| [`identifier`](#identifier) | mod | Deserialization of struct field identifiers and enum variant identifiers by |
+| [`struct_`](#struct_) | mod |  |
+| [`tuple`](#tuple) | mod |  |
+| [`unit`](#unit) | mod |  |
+| [`Parameters`](#parameters) | struct |  |
+| [`FieldWithAliases`](#fieldwithaliases) | struct |  |
+| [`DeImplGenerics`](#deimplgenerics) | struct |  |
+| [`DeTypeGenerics`](#detypegenerics) | struct |  |
+| [`BorrowedLifetimes`](#borrowedlifetimes) | enum |  |
+| [`TupleForm`](#tupleform) | enum |  |
+| [`StructForm`](#structform) | enum |  |
+| [`expand_derive_deserialize`](#expand_derive_deserialize) | fn |  |
+| [`precondition`](#precondition) | fn |  |
+| [`precondition_sized`](#precondition_sized) | fn |  |
+| [`precondition_no_de_lifetime`](#precondition_no_de_lifetime) | fn |  |
+| [`build_generics`](#build_generics) | fn |  |
+| [`needs_deserialize_bound`](#needs_deserialize_bound) | fn |  |
+| [`requires_default`](#requires_default) | fn |  |
+| [`borrowed_lifetimes`](#borrowed_lifetimes) | fn |  |
+| [`deserialize_body`](#deserialize_body) | fn |  |
+| [`deserialize_in_place_body`](#deserialize_in_place_body) | fn |  |
+| [`deserialize_transparent`](#deserialize_transparent) | fn | Generates `Deserialize::deserialize` body for a type with `#[serde(transparent)]` attribute |
+| [`deserialize_from`](#deserialize_from) | fn | Generates `Deserialize::deserialize` body for a type with `#[serde(from)]` attribute |
+| [`deserialize_try_from`](#deserialize_try_from) | fn | Generates `Deserialize::deserialize` body for a type with `#[serde(try_from)]` attribute |
+| [`deserialize_seq`](#deserialize_seq) | fn |  |
+| [`field_i`](#field_i) | fn |  |
+| [`wrap_deserialize_with`](#wrap_deserialize_with) | fn | This function wraps the expression in `#[serde(deserialize_with = "...")]` |
+| [`wrap_deserialize_field_with`](#wrap_deserialize_field_with) | fn |  |
+| [`unwrap_to_variant_closure`](#unwrap_to_variant_closure) | fn |  |
+| [`expr_is_missing`](#expr_is_missing) | fn |  |
+| [`expr_is_missing_seq`](#expr_is_missing_seq) | fn |  |
+| [`effective_style`](#effective_style) | fn |  |
+| [`has_flatten`](#has_flatten) | fn | True if there is any field with a `#[serde(flatten)]` attribute, other than |
+| [`de_type_generics_to_tokens`](#de_type_generics_to_tokens) | fn |  |
+
 ## Modules
 
 - [`enum_`](enum_/index.md) - 
@@ -69,11 +159,11 @@ struct Parameters {
 
 #### Implementations
 
-- `fn new(cont: &Container<'_>) -> Self` — [`Container`](../internals/ast/index.md)
+- <span id="parameters-new"></span>`fn new(cont: &Container<'_>) -> Self` — [`Container`](../internals/ast/index.md)
 
-- `fn type_name(self: &Self) -> String`
+- <span id="parameters-type-name"></span>`fn type_name(&self) -> String`
 
-- `fn generics_with_de_lifetime(self: &Self) -> (DeImplGenerics<'_>, DeTypeGenerics<'_>, syn::TypeGenerics<'_>, Option<&syn::WhereClause>)` — [`DeImplGenerics`](#deimplgenerics), [`DeTypeGenerics`](#detypegenerics)
+- <span id="parameters-generics-with-de-lifetime"></span>`fn generics_with_de_lifetime(&self) -> (DeImplGenerics<'_>, DeTypeGenerics<'_>, syn::TypeGenerics<'_>, Option<&syn::WhereClause>)` — [`DeImplGenerics`](#deimplgenerics), [`DeTypeGenerics`](#detypegenerics)
 
 ### `FieldWithAliases<'a>`
 
@@ -94,11 +184,11 @@ struct DeImplGenerics<'a>(&'a Parameters);
 
 ##### `impl<T> Spanned for DeImplGenerics<'a>`
 
-- `fn span(self: &Self) -> Span`
+- <span id="deimplgenerics-span"></span>`fn span(&self) -> Span`
 
 ##### `impl<'a> ToTokens for DeImplGenerics<'a>`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="deimplgenerics-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `DeTypeGenerics<'a>`
 
@@ -110,11 +200,11 @@ struct DeTypeGenerics<'a>(&'a Parameters);
 
 ##### `impl<T> Spanned for DeTypeGenerics<'a>`
 
-- `fn span(self: &Self) -> Span`
+- <span id="detypegenerics-span"></span>`fn span(&self) -> Span`
 
 ##### `impl<'a> ToTokens for DeTypeGenerics<'a>`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="detypegenerics-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ## Enums
 
@@ -129,9 +219,9 @@ enum BorrowedLifetimes {
 
 #### Implementations
 
-- `fn de_lifetime(self: &Self) -> syn::Lifetime`
+- <span id="borrowedlifetimes-de-lifetime"></span>`fn de_lifetime(&self) -> syn::Lifetime`
 
-- `fn de_lifetime_param(self: &Self) -> Option<syn::LifetimeParam>`
+- <span id="borrowedlifetimes-de-lifetime-param"></span>`fn de_lifetime_param(&self) -> Option<syn::LifetimeParam>`
 
 ### `TupleForm<'a>`
 

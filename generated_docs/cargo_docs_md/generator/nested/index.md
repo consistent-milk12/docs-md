@@ -10,6 +10,12 @@ This module provides the [`NestedGenerator`](#nestedgenerator) struct which gene
 documentation with a nested directory structure that mirrors the Rust module
 hierarchy.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`NestedGenerator`](#nestedgenerator) | struct | Generates documentation with nested directory structure. |
+
 ## Structs
 
 ### `NestedGenerator<'a>`
@@ -56,11 +62,11 @@ output/
 
 #### Implementations
 
-- `const fn new(ctx: &'a GeneratorContext<'a>, output_dir: &'a Path, progress: &'a ProgressBar) -> Self` — [`GeneratorContext`](../index.md)
+- <span id="nestedgenerator-new"></span>`const fn new(ctx: &'a GeneratorContext<'a>, output_dir: &'a Path, progress: &'a ProgressBar) -> Self` — [`GeneratorContext`](../index.md)
 
-- `fn generate(self: &Self, root: &Item) -> Result<(), Error>` — [`Error`](../../error/index.md)
+- <span id="nestedgenerator-generate"></span>`fn generate(&self, root: &Item) -> Result<(), Error>` — [`Error`](../../error/index.md)
 
-- `fn generate_module(self: &Self, item: &Item, parent_dir: &Path, module_path: Vec<String>) -> Result<(), Error>` — [`Error`](../../error/index.md)
+- <span id="nestedgenerator-generate-module"></span>`fn generate_module(&self, item: &Item, parent_dir: &Path, module_path: Vec<String>) -> Result<(), Error>` — [`Error`](../../error/index.md)
 
 #### Trait Implementations
 
@@ -72,17 +78,17 @@ output/
 
 ##### `impl<T> Pointable for NestedGenerator<'a>`
 
-- `const ALIGN: usize`
+- <span id="nestedgenerator-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="nestedgenerator-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="nestedgenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="nestedgenerator-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="nestedgenerator-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="nestedgenerator-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T> WithSubscriber for NestedGenerator<'a>`
 

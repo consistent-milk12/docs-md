@@ -46,10 +46,16 @@ pub mod impls;
 mod items;
 pub mod module;
 mod nested;
+pub mod quick_ref;
 pub mod render_shared;
+pub mod toc;
 
 pub use breadcrumbs::BreadcrumbGenerator;
 pub use capture::MarkdownCapture;
+pub mod config;
+pub use quick_ref::{QuickRefEntry, QuickRefGenerator, extract_summary};
+pub use toc::{TocEntry, TocGenerator};
+pub use config::{RenderConfig, SourceConfig};
 pub use context::{GeneratorContext, ItemAccess, ItemFilter, LinkResolver, RenderContext};
 pub use doc_links::{
     DocLinkProcessor, convert_html_links, convert_path_reference_links, strip_duplicate_title,
@@ -101,17 +107,18 @@ impl<'a> Generator<'a> {
     ///
     /// * `krate` - The parsed rustdoc JSON crate
     /// * `args` - CLI arguments containing output path, format, and options
+    /// * `config` - Rendering configuration options
     ///
     /// # Errors
     ///
     /// Returns an error if the root item cannot be found in the crate index.
-    pub fn new(krate: &'a Crate, args: &'a Args) -> Result<Self, Error> {
+    pub fn new(krate: &'a Crate, args: &'a Args, config: RenderConfig) -> Result<Self, Error> {
         let root_item = krate
             .index
             .get(&krate.root)
             .ok_or_else(|| Error::ItemNotFound(krate.root.0.to_string()))?;
 
-        let ctx = GeneratorContext::new(krate, args);
+        let ctx = GeneratorContext::new(krate, args, config);
 
         Ok(Self {
             ctx,
@@ -225,7 +232,7 @@ impl<'a> Generator<'a> {
             .get(&krate.root)
             .ok_or_else(|| Error::ItemNotFound(krate.root.0.to_string()))?;
 
-        let ctx = GeneratorContext::new(krate, &args);
+        let ctx = GeneratorContext::new(krate, &args, RenderConfig::default());
         let mut capture = MarkdownCapture::new();
 
         match format {
@@ -360,6 +367,8 @@ impl<'a> Generator<'a> {
     /// Creates a `Generator` and runs it immediately. For more control
     /// over the generation process, use `new()` and `generate()` separately.
     ///
+    /// Uses default `RenderConfig`. For custom configuration, use `new()` directly.
+    ///
     /// # Arguments
     ///
     /// * `krate` - The parsed rustdoc JSON crate
@@ -373,7 +382,7 @@ impl<'a> Generator<'a> {
     ///
     /// Returns an error if the root item cannot be found or if file operations fail.
     pub fn run(krate: &'a Crate, args: &'a Args) -> Result<(), Error> {
-        let generator = Self::new(krate, args)?;
+        let generator = Self::new(krate, args, RenderConfig::default())?;
         generator.generate()
     }
 }

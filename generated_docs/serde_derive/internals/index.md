@@ -4,6 +4,44 @@
 
 # Module `internals`
 
+## Contents
+
+- [Modules](#modules)
+  - [`ast`](#ast)
+  - [`attr`](#attr)
+  - [`name`](#name)
+  - [`case`](#case)
+  - [`check`](#check)
+  - [`ctxt`](#ctxt)
+  - [`receiver`](#receiver)
+  - [`respan`](#respan)
+  - [`symbol`](#symbol)
+- [Structs](#structs)
+  - [`unnamed`](#unnamed)
+- [Enums](#enums)
+  - [`Derive`](#derive)
+- [Functions](#functions)
+  - [`unnamed`](#unnamed)
+  - [`ungroup`](#ungroup)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ast`](#ast) | mod | A Serde ast, parsed from the Syn ast and ready to generate Rust code. |
+| [`attr`](#attr) | mod |  |
+| [`name`](#name) | mod |  |
+| [`case`](#case) | mod | Code to convert the Rust-styled field/variant (e.g. `my_field`, `MyType`) to the |
+| [`check`](#check) | mod |  |
+| [`ctxt`](#ctxt) | mod |  |
+| [`receiver`](#receiver) | mod |  |
+| [`respan`](#respan) | mod |  |
+| [`symbol`](#symbol) | mod |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`Derive`](#derive) | enum |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`ungroup`](#ungroup) | fn |  |
+
 ## Modules
 
 - [`ast`](ast/index.md) - A Serde ast, parsed from the Syn ast and ready to generate Rust code.
@@ -34,23 +72,23 @@ References can be shared since this type uses run-time exclusive mut checking.
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="ctxt-new"></span>`fn new() -> Self`
 
-- `fn error_spanned_by<A: ToTokens, T: Display>(self: &Self, obj: A, msg: T)`
+- <span id="ctxt-error-spanned-by"></span>`fn error_spanned_by<A: ToTokens, T: Display>(&self, obj: A, msg: T)`
 
-- `fn syn_error(self: &Self, err: syn::Error)`
+- <span id="ctxt-syn-error"></span>`fn syn_error(&self, err: syn::Error)`
 
-- `fn check(self: Self) -> syn::Result<()>`
+- <span id="ctxt-check"></span>`fn check(self) -> syn::Result<()>`
 
 #### Trait Implementations
 
 ##### `impl Default for Ctxt`
 
-- `fn default() -> Ctxt` — [`Ctxt`](#ctxt)
+- <span id="ctxt-default"></span>`fn default() -> Ctxt` — [`Ctxt`](#ctxt)
 
 ##### `impl Drop for Ctxt`
 
-- `fn drop(self: &mut Self)`
+- <span id="ctxt-drop"></span>`fn drop(&mut self)`
 
 ## Enums
 
@@ -67,7 +105,7 @@ enum Derive {
 
 ##### `impl Clone for Derive`
 
-- `fn clone(self: &Self) -> Derive` — [`Derive`](#derive)
+- <span id="derive-clone"></span>`fn clone(&self) -> Derive` — [`Derive`](#derive)
 
 ##### `impl Copy for Derive`
 

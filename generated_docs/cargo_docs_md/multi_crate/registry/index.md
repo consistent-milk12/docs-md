@@ -10,6 +10,16 @@ This module provides [`UnifiedLinkRegistry`](../../index.md) which maps item IDs
 multiple crates to their documentation file paths, enabling cross-crate
 linking in the generated markdown.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`BorrowedKey`](#borrowedkey) | struct | Borrowed key for zero-allocation lookups. |
+| [`UnifiedLinkRegistry`](#unifiedlinkregistry) | struct | Registry mapping item IDs to documentation paths across multiple crates. |
+| [`keys_match`](#keys_match) | fn | Allow comparing `BorrowedKey` with `RegistryKey`. |
+| [`Str`](#str) | type | Compact string type for memory-efficient storage. |
+| [`RegistryKey`](#registrykey) | type | Key type for registry lookups: `(crate_name, item_id)`. |
+
 ## Structs
 
 ### `BorrowedKey<'a>`
@@ -28,11 +38,11 @@ Must hash identically to `RegistryKey` tuple of `(CompactString, Id)`.
 
 ##### `impl<Q, K> Equivalent for BorrowedKey<'a>`
 
-- `fn equivalent(self: &Self, key: &K) -> bool`
+- <span id="borrowedkey-equivalent"></span>`fn equivalent(&self, key: &K) -> bool`
 
 ##### `impl Hash for BorrowedKey<'_>`
 
-- `fn hash<H: Hasher>(self: &Self, state: &mut H)`
+- <span id="borrowedkey-hash"></span>`fn hash<H: Hasher>(&self, state: &mut H)`
 
 ##### `impl<T> Instrument for BorrowedKey<'a>`
 
@@ -42,21 +52,21 @@ Must hash identically to `RegistryKey` tuple of `(CompactString, Id)`.
 
 ##### `impl<'a> PartialEq for BorrowedKey<'a>`
 
-- `fn eq(self: &Self, other: &BorrowedKey<'a>) -> bool` — [`BorrowedKey`](#borrowedkey)
+- <span id="borrowedkey-eq"></span>`fn eq(&self, other: &BorrowedKey<'a>) -> bool` — [`BorrowedKey`](#borrowedkey)
 
 ##### `impl<T> Pointable for BorrowedKey<'a>`
 
-- `const ALIGN: usize`
+- <span id="borrowedkey-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="borrowedkey-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="borrowedkey-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="borrowedkey-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="borrowedkey-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="borrowedkey-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<'a> StructuralPartialEq for BorrowedKey<'a>`
 
@@ -132,51 +142,51 @@ This avoids allocating a `String` for the crate name on every lookup.
 
 #### Implementations
 
-- `fn build(crates: &CrateCollection, primary_crate: Option<&str>) -> Self` — [`CrateCollection`](../../index.md)
+- <span id="unifiedlinkregistry-build"></span>`fn build(crates: &CrateCollection, primary_crate: Option<&str>) -> Self` — [`CrateCollection`](../../index.md)
 
-- `fn register_crate(self: &mut Self, crate_name: &str, krate: &Crate)`
+- <span id="unifiedlinkregistry-register-crate"></span>`fn register_crate(&mut self, crate_name: &str, krate: &Crate)`
 
-- `fn register_from_paths(self: &mut Self, crate_name: &str, krate: &Crate)`
+- <span id="unifiedlinkregistry-register-from-paths"></span>`fn register_from_paths(&mut self, crate_name: &str, krate: &Crate)`
 
-- `fn item_enum_to_kind(inner: &ItemEnum) -> ItemKind`
+- <span id="unifiedlinkregistry-item-enum-to-kind"></span>`const fn item_enum_to_kind(inner: &ItemEnum) -> ItemKind`
 
-- `fn register_item_recursive(self: &mut Self, krate: &Crate, crate_name: &str, item_id: Id, item: &rustdoc_types::Item, parent_path: &str)`
+- <span id="unifiedlinkregistry-register-item-recursive"></span>`fn register_item_recursive(&mut self, krate: &Crate, crate_name: &str, item_id: Id, item: &rustdoc_types::Item, parent_path: &str)`
 
-- `fn register_item(self: &mut Self, crate_name: &str, id: Id, name: &str, path: &str, kind: ItemKind)`
+- <span id="unifiedlinkregistry-register-item"></span>`fn register_item(&mut self, crate_name: &str, id: Id, name: &str, path: &str, kind: ItemKind)`
 
-- `fn get_path(self: &Self, crate_name: &str, id: Id) -> Option<&compact_str::CompactString>`
+- <span id="unifiedlinkregistry-get-path"></span>`fn get_path(&self, crate_name: &str, id: Id) -> Option<&compact_str::CompactString>`
 
-- `fn get_name(self: &Self, crate_name: &str, id: Id) -> Option<&compact_str::CompactString>`
+- <span id="unifiedlinkregistry-get-name"></span>`fn get_name(&self, crate_name: &str, id: Id) -> Option<&compact_str::CompactString>`
 
-- `fn get_re_export_source(self: &Self, crate_name: &str, id: Id) -> Option<&compact_str::CompactString>`
+- <span id="unifiedlinkregistry-get-re-export-source"></span>`fn get_re_export_source(&self, crate_name: &str, id: Id) -> Option<&compact_str::CompactString>`
 
-- `fn resolve_reexport(self: &Self, crate_name: &str, id: Id) -> Option<(compact_str::CompactString, Id)>`
+- <span id="unifiedlinkregistry-resolve-reexport"></span>`fn resolve_reexport(&self, crate_name: &str, id: Id) -> Option<(compact_str::CompactString, Id)>`
 
-- `fn resolve_name(self: &Self, name: &str, current_crate: &str) -> Option<(compact_str::CompactString, Id)>`
+- <span id="unifiedlinkregistry-resolve-name"></span>`fn resolve_name(&self, name: &str, current_crate: &str) -> Option<(compact_str::CompactString, Id)>`
 
-- `fn resolve_path(self: &Self, path: &str) -> Option<(compact_str::CompactString, Id)>`
+- <span id="unifiedlinkregistry-resolve-path"></span>`fn resolve_path(&self, path: &str) -> Option<(compact_str::CompactString, Id)>`
 
-- `fn create_link(self: &Self, from_crate: &str, from_path: &str, to_crate: &str, to_id: Id) -> Option<String>`
+- <span id="unifiedlinkregistry-create-link"></span>`fn create_link(&self, from_crate: &str, from_path: &str, to_crate: &str, to_id: Id) -> Option<String>`
 
-- `fn compute_cross_crate_path(from: &str, to: &str) -> String`
+- <span id="unifiedlinkregistry-compute-cross-crate-path"></span>`fn compute_cross_crate_path(from: &str, to: &str) -> String`
 
-- `fn get_anchor(self: &Self, crate_name: &str, id: Id) -> Option<String>`
+- <span id="unifiedlinkregistry-get-anchor"></span>`fn get_anchor(&self, crate_name: &str, id: Id) -> Option<String>`
 
-- `fn contains(self: &Self, crate_name: &str, id: Id) -> bool`
+- <span id="unifiedlinkregistry-contains"></span>`fn contains(&self, crate_name: &str, id: Id) -> bool`
 
-- `fn len(self: &Self) -> usize`
+- <span id="unifiedlinkregistry-len"></span>`fn len(&self) -> usize`
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="unifiedlinkregistry-is-empty"></span>`fn is_empty(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Debug for UnifiedLinkRegistry`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="unifiedlinkregistry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for UnifiedLinkRegistry`
 
-- `fn default() -> UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](../../index.md)
+- <span id="unifiedlinkregistry-default"></span>`fn default() -> UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](../../index.md)
 
 ##### `impl<T> Instrument for UnifiedLinkRegistry`
 
@@ -186,17 +196,17 @@ This avoids allocating a `String` for the crate name on every lookup.
 
 ##### `impl<T> Pointable for UnifiedLinkRegistry`
 
-- `const ALIGN: usize`
+- <span id="unifiedlinkregistry-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="unifiedlinkregistry-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="unifiedlinkregistry-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="unifiedlinkregistry-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="unifiedlinkregistry-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="unifiedlinkregistry-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T> WithSubscriber for UnifiedLinkRegistry`
 

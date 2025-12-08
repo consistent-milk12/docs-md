@@ -4,6 +4,17 @@
 
 # Module `lookup`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`SplitDwarfLoad`](#splitdwarfload) | struct | This struct contains the information needed to find split DWARF data |
+| [`SimpleLookup`](#simplelookup) | struct |  |
+| [`MappedLookup`](#mappedlookup) | struct |  |
+| [`LoopingLookup`](#loopinglookup) | struct | Some functions (e.g. `find_frames`) require considering multiple |
+| [`LookupResult`](#lookupresult) | enum | Operations that consult debug information may require additional files |
+| [`LookupContinuation`](#lookupcontinuation) | trait | This trait represents a partially complete operation that can be resumed |
+
 ## Structs
 
 ### `SplitDwarfLoad<R>`
@@ -55,19 +66,19 @@ where
 
 #### Implementations
 
-- `fn new_complete(t: <F as >::Output) -> LookupResult<SimpleLookup<T, R, F>>` — [`LookupResult`](../index.md), [`SimpleLookup`](#simplelookup)
+- <span id="simplelookup-new-complete"></span>`fn new_complete(t: <F as >::Output) -> LookupResult<SimpleLookup<T, R, F>>` — [`LookupResult`](../index.md), [`SimpleLookup`](#simplelookup)
 
-- `fn new_needs_load(load: SplitDwarfLoad<R>, f: F) -> LookupResult<SimpleLookup<T, R, F>>` — [`SplitDwarfLoad`](../index.md), [`LookupResult`](../index.md), [`SimpleLookup`](#simplelookup)
+- <span id="simplelookup-new-needs-load"></span>`fn new_needs_load(load: SplitDwarfLoad<R>, f: F) -> LookupResult<SimpleLookup<T, R, F>>` — [`SplitDwarfLoad`](../index.md), [`LookupResult`](../index.md), [`SimpleLookup`](#simplelookup)
 
 #### Trait Implementations
 
 ##### `impl<T, R, F> LookupContinuation for SimpleLookup<T, R, F>`
 
-- `type Output = T`
+- <span id="simplelookup-output"></span>`type Output = T`
 
-- `type Buf = R`
+- <span id="simplelookup-buf"></span>`type Buf = R`
 
-- `fn resume(self: Self, v: Option<Arc<gimli::Dwarf<<Self as >::Buf>>>) -> LookupResult<Self>` — [`LookupContinuation`](../index.md), [`LookupResult`](../index.md)
+- <span id="simplelookup-resume"></span>`fn resume(self, v: Option<Arc<gimli::Dwarf<<Self as >::Buf>>>) -> LookupResult<Self>` — [`LookupContinuation`](../index.md), [`LookupResult`](../index.md)
 
 ### `MappedLookup<T, L, F>`
 
@@ -85,11 +96,11 @@ where
 
 ##### `impl<T, L, F> LookupContinuation for MappedLookup<T, L, F>`
 
-- `type Output = T`
+- <span id="mappedlookup-output"></span>`type Output = T`
 
-- `type Buf = <L as LookupContinuation>::Buf`
+- <span id="mappedlookup-buf"></span>`type Buf = <L as LookupContinuation>::Buf`
 
-- `fn resume(self: Self, v: Option<Arc<gimli::Dwarf<<Self as >::Buf>>>) -> LookupResult<Self>` — [`LookupContinuation`](../index.md), [`LookupResult`](../index.md)
+- <span id="mappedlookup-resume"></span>`fn resume(self, v: Option<Arc<gimli::Dwarf<<Self as >::Buf>>>) -> LookupResult<Self>` — [`LookupContinuation`](../index.md), [`LookupResult`](../index.md)
 
 ### `LoopingLookup<T, L, F>`
 
@@ -118,19 +129,19 @@ computation is resumed.
 
 #### Implementations
 
-- `fn new_complete(t: T) -> LookupResult<Self>` — [`LookupResult`](../index.md)
+- <span id="loopinglookup-new-complete"></span>`fn new_complete(t: T) -> LookupResult<Self>` — [`LookupResult`](../index.md)
 
-- `fn new_lookup(r: LookupResult<L>, mutator: F) -> LookupResult<Self>` — [`LookupResult`](../index.md)
+- <span id="loopinglookup-new-lookup"></span>`fn new_lookup(r: LookupResult<L>, mutator: F) -> LookupResult<Self>` — [`LookupResult`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<T, L, F> LookupContinuation for LoopingLookup<T, L, F>`
 
-- `type Output = T`
+- <span id="loopinglookup-output"></span>`type Output = T`
 
-- `type Buf = <L as LookupContinuation>::Buf`
+- <span id="loopinglookup-buf"></span>`type Buf = <L as LookupContinuation>::Buf`
 
-- `fn resume(self: Self, v: Option<Arc<gimli::Dwarf<<Self as >::Buf>>>) -> LookupResult<Self>` — [`LookupContinuation`](../index.md), [`LookupResult`](../index.md)
+- <span id="loopinglookup-resume"></span>`fn resume(self, v: Option<Arc<gimli::Dwarf<<Self as >::Buf>>>) -> LookupResult<Self>` — [`LookupContinuation`](../index.md), [`LookupResult`](../index.md)
 
 ## Enums
 
@@ -183,11 +194,11 @@ This enum is intended to be used in a loop like so:
 
 #### Implementations
 
-- `fn skip_all_loads(self: Self) -> <L as >::Output` — [`LookupContinuation`](../index.md)
+- <span id="lookupresult-skip-all-loads"></span>`fn skip_all_loads(self) -> <L as >::Output` — [`LookupContinuation`](../index.md)
 
-- `fn map<T, F: FnOnce(<L as >::Output) -> T>(self: Self, f: F) -> LookupResult<MappedLookup<T, L, F>>` — [`LookupResult`](../index.md), [`MappedLookup`](#mappedlookup)
+- <span id="lookupresult-map"></span>`fn map<T, F: FnOnce(<L as >::Output) -> T>(self, f: F) -> LookupResult<MappedLookup<T, L, F>>` — [`LookupResult`](../index.md), [`MappedLookup`](#mappedlookup)
 
-- `fn unwrap(self: Self) -> <L as >::Output` — [`LookupContinuation`](../index.md)
+- <span id="lookupresult-unwrap"></span>`fn unwrap(self) -> <L as >::Output` — [`LookupContinuation`](../index.md)
 
 ## Traits
 
@@ -207,7 +218,7 @@ API consumer.
 
 - `type Buf: 1`
 
-- `fn resume(self: Self, input: Option<Arc<gimli::Dwarf<<Self as >::Buf>>>) -> LookupResult<Self>`
+- `fn resume(self, input: Option<Arc<gimli::Dwarf<<Self as >::Buf>>>) -> LookupResult<Self>`
 
   Resumes the operation with the provided data.
 

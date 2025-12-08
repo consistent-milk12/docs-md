@@ -15,6 +15,12 @@ use portable_atomic::hint;
 hint::spin_loop();
 ```
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`spin_loop`](#spin_loop) | fn | Emits a machine instruction to signal the processor that it is running in |
+
 ## Functions
 
 ### `spin_loop`

@@ -6,6 +6,40 @@
 
 `read` and `write`, optionally positioned, optionally vectored.
 
+## Contents
+
+- [Structs](#structs)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+- [Functions](#functions)
+  - [`read`](#read)
+  - [`write`](#write)
+  - [`pread`](#pread)
+  - [`pwrite`](#pwrite)
+  - [`readv`](#readv)
+  - [`writev`](#writev)
+  - [`preadv`](#preadv)
+  - [`pwritev`](#pwritev)
+  - [`preadv2`](#preadv2)
+  - [`pwritev2`](#pwritev2)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`read`](#read) | fn | `read(fd, buf)`—Reads from a stream. |
+| [`write`](#write) | fn | `write(fd, buf)`—Writes to a stream. |
+| [`pread`](#pread) | fn | `pread(fd, buf, offset)`—Reads from a file at a given position. |
+| [`pwrite`](#pwrite) | fn | `pwrite(fd, bufs)`—Writes to a file at a given position. |
+| [`readv`](#readv) | fn | `readv(fd, bufs)`—Reads from a stream into multiple buffers. |
+| [`writev`](#writev) | fn | `writev(fd, bufs)`—Writes to a stream from multiple buffers. |
+| [`preadv`](#preadv) | fn | `preadv(fd, bufs, offset)`—Reads from a file at a given position into |
+| [`pwritev`](#pwritev) | fn | `pwritev(fd, bufs, offset)`—Writes to a file at a given position from |
+| [`preadv2`](#preadv2) | fn | `preadv2(fd, bufs, offset, flags)`—Reads data, with several options. |
+| [`pwritev2`](#pwritev2) | fn | `pwritev2(fd, bufs, offset, flags)`—Writes data, with several options. |
+
 ## Structs
 
 ### `IoSliceMut<'ctx, R>`
@@ -27,7 +61,7 @@ where
 ### `ReadWriteFlags`
 
 ```rust
-struct ReadWriteFlags(<ReadWriteFlags as $crate::__private::PublicFlags>::Internal);
+struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 ```
 
 `RWF_*` constants for use with [`preadv2`](../index.md) and [`pwritev2`](../../backend/io/syscalls/index.md).
@@ -36,163 +70,163 @@ struct ReadWriteFlags(<ReadWriteFlags as $crate::__private::PublicFlags>::Intern
 
 #### Implementations
 
-- `const fn empty() -> Self`
+- <span id="readwriteflags-empty"></span>`const fn empty() -> Self`
 
-- `const fn all() -> Self`
+- <span id="readwriteflags-all"></span>`const fn all() -> Self`
 
-- `const fn bits(self: &Self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md)
+- <span id="readwriteflags-bits"></span>`const fn bits(&self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md)
 
-- `const fn from_bits(bits: ffi::c_uint) -> $crate::__private::core::option::Option<Self>` — [`c_uint`](../../ffi/index.md)
+- <span id="readwriteflags-from-bits"></span>`const fn from_bits(bits: ffi::c_uint) -> __private::core::option::Option<Self>` — [`c_uint`](../../ffi/index.md)
 
-- `const fn from_bits_truncate(bits: ffi::c_uint) -> Self` — [`c_uint`](../../ffi/index.md)
+- <span id="readwriteflags-from-bits-truncate"></span>`const fn from_bits_truncate(bits: ffi::c_uint) -> Self` — [`c_uint`](../../ffi/index.md)
 
-- `const fn from_bits_retain(bits: ffi::c_uint) -> Self` — [`c_uint`](../../ffi/index.md)
+- <span id="readwriteflags-from-bits-retain"></span>`const fn from_bits_retain(bits: ffi::c_uint) -> Self` — [`c_uint`](../../ffi/index.md)
 
-- `fn from_name(name: &str) -> $crate::__private::core::option::Option<Self>`
+- <span id="readwriteflags-from-name"></span>`fn from_name(name: &str) -> __private::core::option::Option<Self>`
 
-- `const fn is_empty(self: &Self) -> bool`
+- <span id="readwriteflags-is-empty"></span>`const fn is_empty(&self) -> bool`
 
-- `const fn is_all(self: &Self) -> bool`
+- <span id="readwriteflags-is-all"></span>`const fn is_all(&self) -> bool`
 
-- `const fn intersects(self: &Self, other: Self) -> bool`
+- <span id="readwriteflags-intersects"></span>`const fn intersects(&self, other: Self) -> bool`
 
-- `const fn contains(self: &Self, other: Self) -> bool`
+- <span id="readwriteflags-contains"></span>`const fn contains(&self, other: Self) -> bool`
 
-- `fn insert(self: &mut Self, other: Self)`
+- <span id="readwriteflags-insert"></span>`fn insert(&mut self, other: Self)`
 
-- `fn remove(self: &mut Self, other: Self)`
+- <span id="readwriteflags-remove"></span>`fn remove(&mut self, other: Self)`
 
-- `fn toggle(self: &mut Self, other: Self)`
+- <span id="readwriteflags-toggle"></span>`fn toggle(&mut self, other: Self)`
 
-- `fn set(self: &mut Self, other: Self, value: bool)`
+- <span id="readwriteflags-set"></span>`fn set(&mut self, other: Self, value: bool)`
 
-- `const fn intersection(self: Self, other: Self) -> Self`
+- <span id="readwriteflags-intersection"></span>`const fn intersection(self, other: Self) -> Self`
 
-- `const fn union(self: Self, other: Self) -> Self`
+- <span id="readwriteflags-union"></span>`const fn union(self, other: Self) -> Self`
 
-- `const fn difference(self: Self, other: Self) -> Self`
+- <span id="readwriteflags-difference"></span>`const fn difference(self, other: Self) -> Self`
 
-- `const fn symmetric_difference(self: Self, other: Self) -> Self`
+- <span id="readwriteflags-symmetric-difference"></span>`const fn symmetric_difference(self, other: Self) -> Self`
 
-- `const fn complement(self: Self) -> Self`
+- <span id="readwriteflags-complement"></span>`const fn complement(self) -> Self`
 
 #### Trait Implementations
 
 ##### `impl Binary for ReadWriteFlags`
 
-- `fn fmt(self: &Self, f: &mut $crate::__private::core::fmt::Formatter<'_>) -> $crate::__private::core::fmt::Result`
+- <span id="readwriteflags-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
 
 ##### `impl BitAnd for ReadWriteFlags`
 
-- `type Output = ReadWriteFlags`
+- <span id="readwriteflags-output"></span>`type Output = ReadWriteFlags`
 
-- `fn bitand(self: Self, other: Self) -> Self`
+- <span id="readwriteflags-bitand"></span>`fn bitand(self, other: Self) -> Self`
 
 ##### `impl BitAndAssign for ReadWriteFlags`
 
-- `fn bitand_assign(self: &mut Self, other: Self)`
+- <span id="readwriteflags-bitand-assign"></span>`fn bitand_assign(&mut self, other: Self)`
 
 ##### `impl BitOr for ReadWriteFlags`
 
-- `type Output = ReadWriteFlags`
+- <span id="readwriteflags-output"></span>`type Output = ReadWriteFlags`
 
-- `fn bitor(self: Self, other: ReadWriteFlags) -> Self` — [`ReadWriteFlags`](#readwriteflags)
+- <span id="readwriteflags-bitor"></span>`fn bitor(self, other: ReadWriteFlags) -> Self` — [`ReadWriteFlags`](#readwriteflags)
 
 ##### `impl BitOrAssign for ReadWriteFlags`
 
-- `fn bitor_assign(self: &mut Self, other: Self)`
+- <span id="readwriteflags-bitor-assign"></span>`fn bitor_assign(&mut self, other: Self)`
 
 ##### `impl BitXor for ReadWriteFlags`
 
-- `type Output = ReadWriteFlags`
+- <span id="readwriteflags-output"></span>`type Output = ReadWriteFlags`
 
-- `fn bitxor(self: Self, other: Self) -> Self`
+- <span id="readwriteflags-bitxor"></span>`fn bitxor(self, other: Self) -> Self`
 
 ##### `impl BitXorAssign for ReadWriteFlags`
 
-- `fn bitxor_assign(self: &mut Self, other: Self)`
+- <span id="readwriteflags-bitxor-assign"></span>`fn bitxor_assign(&mut self, other: Self)`
 
 ##### `impl Clone for ReadWriteFlags`
 
-- `fn clone(self: &Self) -> ReadWriteFlags` — [`ReadWriteFlags`](#readwriteflags)
+- <span id="readwriteflags-clone"></span>`fn clone(&self) -> ReadWriteFlags` — [`ReadWriteFlags`](#readwriteflags)
 
 ##### `impl Copy for ReadWriteFlags`
 
 ##### `impl Debug for ReadWriteFlags`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="readwriteflags-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ReadWriteFlags`
 
 ##### `impl Extend for ReadWriteFlags`
 
-- `fn extend<T: $crate::__private::core::iter::IntoIterator<Item = Self>>(self: &mut Self, iterator: T)`
+- <span id="readwriteflags-extend"></span>`fn extend<T: __private::core::iter::IntoIterator<Item = Self>>(&mut self, iterator: T)`
 
 ##### `impl Flags for ReadWriteFlags`
 
-- `const FLAGS: &'static [$crate::Flag<ReadWriteFlags>]`
+- <span id="readwriteflags-flags"></span>`const FLAGS: &'static [Flag<ReadWriteFlags>]`
 
-- `type Bits = u32`
+- <span id="readwriteflags-bits"></span>`type Bits = u32`
 
-- `fn bits(self: &Self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md)
+- <span id="readwriteflags-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md)
 
-- `fn from_bits_retain(bits: ffi::c_uint) -> ReadWriteFlags` — [`c_uint`](../../ffi/index.md), [`ReadWriteFlags`](#readwriteflags)
+- <span id="readwriteflags-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> ReadWriteFlags` — [`c_uint`](../../ffi/index.md), [`ReadWriteFlags`](#readwriteflags)
 
 ##### `impl FromIterator for ReadWriteFlags`
 
-- `fn from_iter<T: $crate::__private::core::iter::IntoIterator<Item = Self>>(iterator: T) -> Self`
+- <span id="readwriteflags-from-iter"></span>`fn from_iter<T: __private::core::iter::IntoIterator<Item = Self>>(iterator: T) -> Self`
 
 ##### `impl Hash for ReadWriteFlags`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="readwriteflags-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl IntoIterator for ReadWriteFlags`
 
-- `type Item = ReadWriteFlags`
+- <span id="readwriteflags-item"></span>`type Item = ReadWriteFlags`
 
-- `type IntoIter = Iter<ReadWriteFlags>`
+- <span id="readwriteflags-intoiter"></span>`type IntoIter = Iter<ReadWriteFlags>`
 
-- `fn into_iter(self: Self) -> <Self as >::IntoIter`
+- <span id="readwriteflags-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
 ##### `impl LowerHex for ReadWriteFlags`
 
-- `fn fmt(self: &Self, f: &mut $crate::__private::core::fmt::Formatter<'_>) -> $crate::__private::core::fmt::Result`
+- <span id="readwriteflags-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
 
 ##### `impl Not for ReadWriteFlags`
 
-- `type Output = ReadWriteFlags`
+- <span id="readwriteflags-output"></span>`type Output = ReadWriteFlags`
 
-- `fn not(self: Self) -> Self`
+- <span id="readwriteflags-not"></span>`fn not(self) -> Self`
 
 ##### `impl Octal for ReadWriteFlags`
 
-- `fn fmt(self: &Self, f: &mut $crate::__private::core::fmt::Formatter<'_>) -> $crate::__private::core::fmt::Result`
+- <span id="readwriteflags-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
 
 ##### `impl PartialEq for ReadWriteFlags`
 
-- `fn eq(self: &Self, other: &ReadWriteFlags) -> bool` — [`ReadWriteFlags`](#readwriteflags)
+- <span id="readwriteflags-eq"></span>`fn eq(&self, other: &ReadWriteFlags) -> bool` — [`ReadWriteFlags`](#readwriteflags)
 
 ##### `impl PublicFlags for ReadWriteFlags`
 
-- `type Primitive = u32`
+- <span id="readwriteflags-primitive"></span>`type Primitive = u32`
 
-- `type Internal = InternalBitFlags`
+- <span id="readwriteflags-internal"></span>`type Internal = InternalBitFlags`
 
 ##### `impl StructuralPartialEq for ReadWriteFlags`
 
 ##### `impl Sub for ReadWriteFlags`
 
-- `type Output = ReadWriteFlags`
+- <span id="readwriteflags-output"></span>`type Output = ReadWriteFlags`
 
-- `fn sub(self: Self, other: Self) -> Self`
+- <span id="readwriteflags-sub"></span>`fn sub(self, other: Self) -> Self`
 
 ##### `impl SubAssign for ReadWriteFlags`
 
-- `fn sub_assign(self: &mut Self, other: Self)`
+- <span id="readwriteflags-sub-assign"></span>`fn sub_assign(&mut self, other: Self)`
 
 ##### `impl UpperHex for ReadWriteFlags`
 
-- `fn fmt(self: &Self, f: &mut $crate::__private::core::fmt::Formatter<'_>) -> $crate::__private::core::fmt::Result`
+- <span id="readwriteflags-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
 
 ## Functions
 

@@ -14,6 +14,14 @@ having a quick way of reusing scratch space in a thread safe way. This avoids
 needing to re-create the scratch space for every search, which could wind up
 being quite expensive.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`inner`](#inner) | mod |  |
+| [`Pool`](#pool) | struct | A thread safe pool that works in an `alloc`-only context. |
+| [`PoolGuard`](#poolguard) | struct | A guard that is returned when a caller requests a value from the pool. |
+
 ## Modules
 
 - [`inner`](inner/index.md) - 
@@ -91,13 +99,13 @@ assert_eq!(expected, RE.find(&mut CACHE.get(), b"zzzfoo12345barzzz"));
 
 #### Implementations
 
-- `fn get(self: &Self) -> PoolGuard<'_, T, F>` — [`PoolGuard`](#poolguard)
+- <span id="pool-new"></span>`fn new(create: F) -> Pool<T, F>` — [`Pool`](#pool)
 
 #### Trait Implementations
 
 ##### `impl<T: core::fmt::Debug, F> Debug for Pool<T, F>`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="pool-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ### `PoolGuard<'a, T: Send, F: Fn() -> T>`
 
@@ -112,25 +120,25 @@ back in the pool once it's dropped.
 
 #### Implementations
 
-- `fn put(this: PoolGuard<'_, T, F>)` — [`PoolGuard`](#poolguard)
+- <span id="poolguard-put"></span>`fn put(this: PoolGuard<'_, T, F>)` — [`PoolGuard`](#poolguard)
 
 #### Trait Implementations
 
 ##### `impl<'a, T: Send + core::fmt::Debug, F: Fn() -> T> Debug for PoolGuard<'a, T, F>`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="poolguard-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl<'a, T: Send, F: Fn() -> T> Deref for PoolGuard<'a, T, F>`
 
-- `type Target = T`
+- <span id="poolguard-target"></span>`type Target = T`
 
-- `fn deref(self: &Self) -> &T`
+- <span id="poolguard-deref"></span>`fn deref(&self) -> &T`
 
 ##### `impl<'a, T: Send, F: Fn() -> T> DerefMut for PoolGuard<'a, T, F>`
 
-- `fn deref_mut(self: &mut Self) -> &mut T`
+- <span id="poolguard-deref-mut"></span>`fn deref_mut(&mut self) -> &mut T`
 
 ##### `impl<P, T> Receiver for PoolGuard<'a, T, F>`
 
-- `type Target = T`
+- <span id="poolguard-target"></span>`type Target = T`
 

@@ -25,6 +25,12 @@ cfg_if::cfg_if! {
 fn main() {}
 ```
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`cfg_if!`](#cfg_if) | macro | The main macro provided by this crate. |
+
 ## Macros
 
 ### `cfg_if!`

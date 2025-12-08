@@ -4,6 +4,16 @@
 
 # Module `fmt`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Display`](#display) | struct |  |
+| [`explicit_named_args`](#explicit_named_args) | fn |  |
+| [`take_int`](#take_int) | fn |  |
+| [`take_ident`](#take_ident) | fn |  |
+| [`parse_token_expr`](#parse_token_expr) | fn |  |
+
 ## Structs
 
 ### `Display`
@@ -18,21 +28,21 @@ struct Display {
 
 #### Implementations
 
-- `fn expand_shorthand(self: &mut Self, members: &Set<Member>)`
+- <span id="display-expand-shorthand"></span>`fn expand_shorthand(&mut self, members: &Set<Member>)`
 
 #### Trait Implementations
 
 ##### `impl Clone for Display`
 
-- `fn clone(self: &Self) -> Display` — [`Display`](#display)
+- <span id="display-clone"></span>`fn clone(&self) -> Display` — [`Display`](#display)
 
 ##### `impl<T> Spanned for Display`
 
-- `fn span(self: &Self) -> Span`
+- <span id="display-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Display`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="display-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ## Functions
 

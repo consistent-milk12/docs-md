@@ -4,6 +4,995 @@
 
 # Module `gnu`
 
+## Contents
+
+- [Modules](#modules)
+  - [`b64`](#b64)
+  - [`x86_64`](#x86_64)
+- [Structs](#structs)
+  - [`aiocb`](#aiocb)
+  - [`__exit_status`](#__exit_status)
+  - [`__timeval`](#__timeval)
+  - [`glob64_t`](#glob64_t)
+  - [`msghdr`](#msghdr)
+  - [`cmsghdr`](#cmsghdr)
+  - [`termios`](#termios)
+  - [`mallinfo`](#mallinfo)
+  - [`mallinfo2`](#mallinfo2)
+  - [`nl_pktinfo`](#nl_pktinfo)
+  - [`nl_mmap_req`](#nl_mmap_req)
+  - [`nl_mmap_hdr`](#nl_mmap_hdr)
+  - [`ntptimeval`](#ntptimeval)
+  - [`regex_t`](#regex_t)
+  - [`Elf64_Chdr`](#elf64_chdr)
+  - [`Elf32_Chdr`](#elf32_chdr)
+  - [`seminfo`](#seminfo)
+  - [`ptrace_peeksiginfo_args`](#ptrace_peeksiginfo_args)
+  - [`__c_anonymous_ptrace_syscall_info_entry`](#__c_anonymous_ptrace_syscall_info_entry)
+  - [`__c_anonymous_ptrace_syscall_info_exit`](#__c_anonymous_ptrace_syscall_info_exit)
+  - [`__c_anonymous_ptrace_syscall_info_seccomp`](#__c_anonymous_ptrace_syscall_info_seccomp)
+  - [`ptrace_syscall_info`](#ptrace_syscall_info)
+  - [`ptrace_sud_config`](#ptrace_sud_config)
+  - [`iocb`](#iocb)
+  - [`tcp_info`](#tcp_info)
+  - [`fanotify_event_info_pidfd`](#fanotify_event_info_pidfd)
+  - [`fanotify_event_info_error`](#fanotify_event_info_error)
+  - [`sem_t`](#sem_t)
+  - [`mbstate_t`](#mbstate_t)
+  - [`fpos64_t`](#fpos64_t)
+  - [`fpos_t`](#fpos_t)
+  - [`timespec`](#timespec)
+  - [`utmpx`](#utmpx)
+  - [`sifields_sigchld`](#sifields_sigchld)
+  - [`siginfo_f`](#siginfo_f)
+  - [`sigset_t`](#sigset_t)
+  - [`sysinfo`](#sysinfo)
+  - [`msqid_ds`](#msqid_ds)
+  - [`semid_ds`](#semid_ds)
+  - [`timex`](#timex)
+- [Functions](#functions)
+  - [`fgetspent_r`](#fgetspent_r)
+  - [`sgetspent_r`](#sgetspent_r)
+  - [`getspent_r`](#getspent_r)
+  - [`qsort_r`](#qsort_r)
+  - [`sendmmsg`](#sendmmsg)
+  - [`recvmmsg`](#recvmmsg)
+  - [`getrlimit64`](#getrlimit64)
+  - [`setrlimit64`](#setrlimit64)
+  - [`getrlimit`](#getrlimit)
+  - [`setrlimit`](#setrlimit)
+  - [`prlimit`](#prlimit)
+  - [`prlimit64`](#prlimit64)
+  - [`utmpname`](#utmpname)
+  - [`utmpxname`](#utmpxname)
+  - [`getutxent`](#getutxent)
+  - [`getutxid`](#getutxid)
+  - [`getutxline`](#getutxline)
+  - [`pututxline`](#pututxline)
+  - [`setutxent`](#setutxent)
+  - [`endutxent`](#endutxent)
+  - [`getpt`](#getpt)
+  - [`mallopt`](#mallopt)
+  - [`gettimeofday`](#gettimeofday)
+  - [`getentropy`](#getentropy)
+  - [`getrandom`](#getrandom)
+  - [`getauxval`](#getauxval)
+  - [`adjtimex`](#adjtimex)
+  - [`ntp_adjtime`](#ntp_adjtime)
+  - [`ntp_gettime`](#ntp_gettime)
+  - [`clock_adjtime`](#clock_adjtime)
+  - [`fanotify_mark`](#fanotify_mark)
+  - [`preadv2`](#preadv2)
+  - [`pwritev2`](#pwritev2)
+  - [`preadv64v2`](#preadv64v2)
+  - [`pwritev64v2`](#pwritev64v2)
+  - [`renameat2`](#renameat2)
+  - [`explicit_bzero`](#explicit_bzero)
+  - [`reallocarray`](#reallocarray)
+  - [`ctermid`](#ctermid)
+  - [`backtrace`](#backtrace)
+  - [`backtrace_symbols`](#backtrace_symbols)
+  - [`backtrace_symbols_fd`](#backtrace_symbols_fd)
+  - [`glob64`](#glob64)
+  - [`globfree64`](#globfree64)
+  - [`ptrace`](#ptrace)
+  - [`pthread_attr_getaffinity_np`](#pthread_attr_getaffinity_np)
+  - [`pthread_attr_setaffinity_np`](#pthread_attr_setaffinity_np)
+  - [`getpriority`](#getpriority)
+  - [`setpriority`](#setpriority)
+  - [`pthread_rwlockattr_getkind_np`](#pthread_rwlockattr_getkind_np)
+  - [`pthread_rwlockattr_setkind_np`](#pthread_rwlockattr_setkind_np)
+  - [`pthread_sigqueue`](#pthread_sigqueue)
+  - [`mallinfo`](#mallinfo)
+  - [`mallinfo2`](#mallinfo2)
+  - [`malloc_stats`](#malloc_stats)
+  - [`malloc_info`](#malloc_info)
+  - [`malloc_usable_size`](#malloc_usable_size)
+  - [`getpwent_r`](#getpwent_r)
+  - [`getgrent_r`](#getgrent_r)
+  - [`fgetpwent_r`](#fgetpwent_r)
+  - [`fgetgrent_r`](#fgetgrent_r)
+  - [`putpwent`](#putpwent)
+  - [`putgrent`](#putgrent)
+  - [`sethostid`](#sethostid)
+  - [`memfd_create`](#memfd_create)
+  - [`mlock2`](#mlock2)
+  - [`euidaccess`](#euidaccess)
+  - [`eaccess`](#eaccess)
+  - [`asctime_r`](#asctime_r)
+  - [`ctime_r`](#ctime_r)
+  - [`dirname`](#dirname)
+  - [`posix_basename`](#posix_basename)
+  - [`gnu_basename`](#gnu_basename)
+  - [`dlmopen`](#dlmopen)
+  - [`dlinfo`](#dlinfo)
+  - [`dladdr1`](#dladdr1)
+  - [`dlvsym`](#dlvsym)
+  - [`malloc_trim`](#malloc_trim)
+  - [`gnu_get_libc_release`](#gnu_get_libc_release)
+  - [`gnu_get_libc_version`](#gnu_get_libc_version)
+  - [`posix_spawn_file_actions_addchdir_np`](#posix_spawn_file_actions_addchdir_np)
+  - [`posix_spawn_file_actions_addfchdir_np`](#posix_spawn_file_actions_addfchdir_np)
+  - [`posix_spawn_file_actions_addclosefrom_np`](#posix_spawn_file_actions_addclosefrom_np)
+  - [`posix_spawn_file_actions_addtcsetpgrp_np`](#posix_spawn_file_actions_addtcsetpgrp_np)
+  - [`getmntent_r`](#getmntent_r)
+  - [`execveat`](#execveat)
+  - [`close_range`](#close_range)
+  - [`mq_notify`](#mq_notify)
+  - [`epoll_pwait2`](#epoll_pwait2)
+  - [`mempcpy`](#mempcpy)
+- [Type Aliases](#type-aliases)
+  - [`pthread_t`](#pthread_t)
+  - [`__priority_which_t`](#__priority_which_t)
+  - [`__rlimit_resource_t`](#__rlimit_resource_t)
+  - [`Lmid_t`](#lmid_t)
+  - [`regoff_t`](#regoff_t)
+  - [`__kernel_rwf_t`](#__kernel_rwf_t)
+  - [`Ioctl`](#ioctl)
+  - [`ino_t`](#ino_t)
+  - [`off_t`](#off_t)
+  - [`blkcnt_t`](#blkcnt_t)
+  - [`shmatt_t`](#shmatt_t)
+  - [`msgqnum_t`](#msgqnum_t)
+  - [`msglen_t`](#msglen_t)
+  - [`fsblkcnt_t`](#fsblkcnt_t)
+  - [`fsfilcnt_t`](#fsfilcnt_t)
+  - [`rlim_t`](#rlim_t)
+  - [`__syscall_ulong_t`](#__syscall_ulong_t)
+  - [`__fsword_t`](#__fsword_t)
+  - [`clock_t`](#clock_t)
+  - [`time_t`](#time_t)
+- [Constants](#constants)
+  - [`HUGETLB_FLAG_ENCODE_SHIFT`](#hugetlb_flag_encode_shift)
+  - [`HUGETLB_FLAG_ENCODE_MASK`](#hugetlb_flag_encode_mask)
+  - [`HUGETLB_FLAG_ENCODE_64KB`](#hugetlb_flag_encode_64kb)
+  - [`HUGETLB_FLAG_ENCODE_512KB`](#hugetlb_flag_encode_512kb)
+  - [`HUGETLB_FLAG_ENCODE_1MB`](#hugetlb_flag_encode_1mb)
+  - [`HUGETLB_FLAG_ENCODE_2MB`](#hugetlb_flag_encode_2mb)
+  - [`HUGETLB_FLAG_ENCODE_8MB`](#hugetlb_flag_encode_8mb)
+  - [`HUGETLB_FLAG_ENCODE_16MB`](#hugetlb_flag_encode_16mb)
+  - [`HUGETLB_FLAG_ENCODE_32MB`](#hugetlb_flag_encode_32mb)
+  - [`HUGETLB_FLAG_ENCODE_256MB`](#hugetlb_flag_encode_256mb)
+  - [`HUGETLB_FLAG_ENCODE_512MB`](#hugetlb_flag_encode_512mb)
+  - [`HUGETLB_FLAG_ENCODE_1GB`](#hugetlb_flag_encode_1gb)
+  - [`HUGETLB_FLAG_ENCODE_2GB`](#hugetlb_flag_encode_2gb)
+  - [`HUGETLB_FLAG_ENCODE_16GB`](#hugetlb_flag_encode_16gb)
+  - [`MAP_HUGE_SHIFT`](#map_huge_shift)
+  - [`MAP_HUGE_MASK`](#map_huge_mask)
+  - [`MAP_HUGE_64KB`](#map_huge_64kb)
+  - [`MAP_HUGE_512KB`](#map_huge_512kb)
+  - [`MAP_HUGE_1MB`](#map_huge_1mb)
+  - [`MAP_HUGE_2MB`](#map_huge_2mb)
+  - [`MAP_HUGE_8MB`](#map_huge_8mb)
+  - [`MAP_HUGE_16MB`](#map_huge_16mb)
+  - [`MAP_HUGE_32MB`](#map_huge_32mb)
+  - [`MAP_HUGE_256MB`](#map_huge_256mb)
+  - [`MAP_HUGE_512MB`](#map_huge_512mb)
+  - [`MAP_HUGE_1GB`](#map_huge_1gb)
+  - [`MAP_HUGE_2GB`](#map_huge_2gb)
+  - [`MAP_HUGE_16GB`](#map_huge_16gb)
+  - [`PRIO_PROCESS`](#prio_process)
+  - [`PRIO_PGRP`](#prio_pgrp)
+  - [`PRIO_USER`](#prio_user)
+  - [`MS_RMT_MASK`](#ms_rmt_mask)
+  - [`__UT_LINESIZE`](#__ut_linesize)
+  - [`__UT_NAMESIZE`](#__ut_namesize)
+  - [`__UT_HOSTSIZE`](#__ut_hostsize)
+  - [`EMPTY`](#empty)
+  - [`RUN_LVL`](#run_lvl)
+  - [`BOOT_TIME`](#boot_time)
+  - [`NEW_TIME`](#new_time)
+  - [`OLD_TIME`](#old_time)
+  - [`INIT_PROCESS`](#init_process)
+  - [`LOGIN_PROCESS`](#login_process)
+  - [`USER_PROCESS`](#user_process)
+  - [`DEAD_PROCESS`](#dead_process)
+  - [`ACCOUNTING`](#accounting)
+  - [`LM_ID_BASE`](#lm_id_base)
+  - [`LM_ID_NEWLM`](#lm_id_newlm)
+  - [`RTLD_DI_LMID`](#rtld_di_lmid)
+  - [`RTLD_DI_LINKMAP`](#rtld_di_linkmap)
+  - [`RTLD_DI_CONFIGADDR`](#rtld_di_configaddr)
+  - [`RTLD_DI_SERINFO`](#rtld_di_serinfo)
+  - [`RTLD_DI_SERINFOSIZE`](#rtld_di_serinfosize)
+  - [`RTLD_DI_ORIGIN`](#rtld_di_origin)
+  - [`RTLD_DI_PROFILENAME`](#rtld_di_profilename)
+  - [`RTLD_DI_PROFILEOUT`](#rtld_di_profileout)
+  - [`RTLD_DI_TLS_MODID`](#rtld_di_tls_modid)
+  - [`RTLD_DI_TLS_DATA`](#rtld_di_tls_data)
+  - [`SOCK_NONBLOCK`](#sock_nonblock)
+  - [`SOL_RXRPC`](#sol_rxrpc)
+  - [`SOL_PPPOL2TP`](#sol_pppol2tp)
+  - [`SOL_PNPIPE`](#sol_pnpipe)
+  - [`SOL_RDS`](#sol_rds)
+  - [`SOL_IUCV`](#sol_iucv)
+  - [`SOL_CAIF`](#sol_caif)
+  - [`SOL_NFC`](#sol_nfc)
+  - [`MSG_TRYHARD`](#msg_tryhard)
+  - [`LC_PAPER`](#lc_paper)
+  - [`LC_NAME`](#lc_name)
+  - [`LC_ADDRESS`](#lc_address)
+  - [`LC_TELEPHONE`](#lc_telephone)
+  - [`LC_MEASUREMENT`](#lc_measurement)
+  - [`LC_IDENTIFICATION`](#lc_identification)
+  - [`LC_PAPER_MASK`](#lc_paper_mask)
+  - [`LC_NAME_MASK`](#lc_name_mask)
+  - [`LC_ADDRESS_MASK`](#lc_address_mask)
+  - [`LC_TELEPHONE_MASK`](#lc_telephone_mask)
+  - [`LC_MEASUREMENT_MASK`](#lc_measurement_mask)
+  - [`LC_IDENTIFICATION_MASK`](#lc_identification_mask)
+  - [`LC_ALL_MASK`](#lc_all_mask)
+  - [`ENOTSUP`](#enotsup)
+  - [`SOCK_SEQPACKET`](#sock_seqpacket)
+  - [`SOCK_DCCP`](#sock_dccp)
+  - [`SOCK_PACKET`](#sock_packet)
+  - [`AF_IB`](#af_ib)
+  - [`AF_MPLS`](#af_mpls)
+  - [`AF_NFC`](#af_nfc)
+  - [`AF_VSOCK`](#af_vsock)
+  - [`AF_XDP`](#af_xdp)
+  - [`PF_IB`](#pf_ib)
+  - [`PF_MPLS`](#pf_mpls)
+  - [`PF_NFC`](#pf_nfc)
+  - [`PF_VSOCK`](#pf_vsock)
+  - [`PF_XDP`](#pf_xdp)
+  - [`SIGEV_THREAD_ID`](#sigev_thread_id)
+  - [`BUFSIZ`](#bufsiz)
+  - [`TMP_MAX`](#tmp_max)
+  - [`FOPEN_MAX`](#fopen_max)
+  - [`FILENAME_MAX`](#filename_max)
+  - [`POSIX_MADV_DONTNEED`](#posix_madv_dontneed)
+  - [`_CS_GNU_LIBC_VERSION`](#_cs_gnu_libc_version)
+  - [`_CS_GNU_LIBPTHREAD_VERSION`](#_cs_gnu_libpthread_version)
+  - [`_CS_V6_ENV`](#_cs_v6_env)
+  - [`_CS_V7_ENV`](#_cs_v7_env)
+  - [`_SC_EQUIV_CLASS_MAX`](#_sc_equiv_class_max)
+  - [`_SC_CHARCLASS_NAME_MAX`](#_sc_charclass_name_max)
+  - [`_SC_PII`](#_sc_pii)
+  - [`_SC_PII_XTI`](#_sc_pii_xti)
+  - [`_SC_PII_SOCKET`](#_sc_pii_socket)
+  - [`_SC_PII_INTERNET`](#_sc_pii_internet)
+  - [`_SC_PII_OSI`](#_sc_pii_osi)
+  - [`_SC_POLL`](#_sc_poll)
+  - [`_SC_SELECT`](#_sc_select)
+  - [`_SC_PII_INTERNET_STREAM`](#_sc_pii_internet_stream)
+  - [`_SC_PII_INTERNET_DGRAM`](#_sc_pii_internet_dgram)
+  - [`_SC_PII_OSI_COTS`](#_sc_pii_osi_cots)
+  - [`_SC_PII_OSI_CLTS`](#_sc_pii_osi_clts)
+  - [`_SC_PII_OSI_M`](#_sc_pii_osi_m)
+  - [`_SC_T_IOV_MAX`](#_sc_t_iov_max)
+  - [`_SC_2_C_VERSION`](#_sc_2_c_version)
+  - [`_SC_CHAR_BIT`](#_sc_char_bit)
+  - [`_SC_CHAR_MAX`](#_sc_char_max)
+  - [`_SC_CHAR_MIN`](#_sc_char_min)
+  - [`_SC_INT_MAX`](#_sc_int_max)
+  - [`_SC_INT_MIN`](#_sc_int_min)
+  - [`_SC_LONG_BIT`](#_sc_long_bit)
+  - [`_SC_WORD_BIT`](#_sc_word_bit)
+  - [`_SC_MB_LEN_MAX`](#_sc_mb_len_max)
+  - [`_SC_SSIZE_MAX`](#_sc_ssize_max)
+  - [`_SC_SCHAR_MAX`](#_sc_schar_max)
+  - [`_SC_SCHAR_MIN`](#_sc_schar_min)
+  - [`_SC_SHRT_MAX`](#_sc_shrt_max)
+  - [`_SC_SHRT_MIN`](#_sc_shrt_min)
+  - [`_SC_UCHAR_MAX`](#_sc_uchar_max)
+  - [`_SC_UINT_MAX`](#_sc_uint_max)
+  - [`_SC_ULONG_MAX`](#_sc_ulong_max)
+  - [`_SC_USHRT_MAX`](#_sc_ushrt_max)
+  - [`_SC_NL_ARGMAX`](#_sc_nl_argmax)
+  - [`_SC_NL_LANGMAX`](#_sc_nl_langmax)
+  - [`_SC_NL_MSGMAX`](#_sc_nl_msgmax)
+  - [`_SC_NL_NMAX`](#_sc_nl_nmax)
+  - [`_SC_NL_SETMAX`](#_sc_nl_setmax)
+  - [`_SC_NL_TEXTMAX`](#_sc_nl_textmax)
+  - [`_SC_BASE`](#_sc_base)
+  - [`_SC_C_LANG_SUPPORT`](#_sc_c_lang_support)
+  - [`_SC_C_LANG_SUPPORT_R`](#_sc_c_lang_support_r)
+  - [`_SC_DEVICE_IO`](#_sc_device_io)
+  - [`_SC_DEVICE_SPECIFIC`](#_sc_device_specific)
+  - [`_SC_DEVICE_SPECIFIC_R`](#_sc_device_specific_r)
+  - [`_SC_FD_MGMT`](#_sc_fd_mgmt)
+  - [`_SC_FIFO`](#_sc_fifo)
+  - [`_SC_PIPE`](#_sc_pipe)
+  - [`_SC_FILE_ATTRIBUTES`](#_sc_file_attributes)
+  - [`_SC_FILE_LOCKING`](#_sc_file_locking)
+  - [`_SC_FILE_SYSTEM`](#_sc_file_system)
+  - [`_SC_MULTI_PROCESS`](#_sc_multi_process)
+  - [`_SC_SINGLE_PROCESS`](#_sc_single_process)
+  - [`_SC_NETWORKING`](#_sc_networking)
+  - [`_SC_REGEX_VERSION`](#_sc_regex_version)
+  - [`_SC_SIGNALS`](#_sc_signals)
+  - [`_SC_SYSTEM_DATABASE`](#_sc_system_database)
+  - [`_SC_SYSTEM_DATABASE_R`](#_sc_system_database_r)
+  - [`_SC_USER_GROUPS`](#_sc_user_groups)
+  - [`_SC_USER_GROUPS_R`](#_sc_user_groups_r)
+  - [`_SC_LEVEL1_ICACHE_SIZE`](#_sc_level1_icache_size)
+  - [`_SC_LEVEL1_ICACHE_ASSOC`](#_sc_level1_icache_assoc)
+  - [`_SC_LEVEL1_ICACHE_LINESIZE`](#_sc_level1_icache_linesize)
+  - [`_SC_LEVEL1_DCACHE_SIZE`](#_sc_level1_dcache_size)
+  - [`_SC_LEVEL1_DCACHE_ASSOC`](#_sc_level1_dcache_assoc)
+  - [`_SC_LEVEL1_DCACHE_LINESIZE`](#_sc_level1_dcache_linesize)
+  - [`_SC_LEVEL2_CACHE_SIZE`](#_sc_level2_cache_size)
+  - [`_SC_LEVEL2_CACHE_ASSOC`](#_sc_level2_cache_assoc)
+  - [`_SC_LEVEL2_CACHE_LINESIZE`](#_sc_level2_cache_linesize)
+  - [`_SC_LEVEL3_CACHE_SIZE`](#_sc_level3_cache_size)
+  - [`_SC_LEVEL3_CACHE_ASSOC`](#_sc_level3_cache_assoc)
+  - [`_SC_LEVEL3_CACHE_LINESIZE`](#_sc_level3_cache_linesize)
+  - [`_SC_LEVEL4_CACHE_SIZE`](#_sc_level4_cache_size)
+  - [`_SC_LEVEL4_CACHE_ASSOC`](#_sc_level4_cache_assoc)
+  - [`_SC_LEVEL4_CACHE_LINESIZE`](#_sc_level4_cache_linesize)
+  - [`O_ACCMODE`](#o_accmode)
+  - [`ST_RELATIME`](#st_relatime)
+  - [`NI_MAXHOST`](#ni_maxhost)
+  - [`BINDERFS_SUPER_MAGIC`](#binderfs_super_magic)
+  - [`XFS_SUPER_MAGIC`](#xfs_super_magic)
+  - [`CPU_SETSIZE`](#cpu_setsize)
+  - [`PTRACE_TRACEME`](#ptrace_traceme)
+  - [`PTRACE_PEEKTEXT`](#ptrace_peektext)
+  - [`PTRACE_PEEKDATA`](#ptrace_peekdata)
+  - [`PTRACE_PEEKUSER`](#ptrace_peekuser)
+  - [`PTRACE_POKETEXT`](#ptrace_poketext)
+  - [`PTRACE_POKEDATA`](#ptrace_pokedata)
+  - [`PTRACE_POKEUSER`](#ptrace_pokeuser)
+  - [`PTRACE_CONT`](#ptrace_cont)
+  - [`PTRACE_KILL`](#ptrace_kill)
+  - [`PTRACE_SINGLESTEP`](#ptrace_singlestep)
+  - [`PTRACE_ATTACH`](#ptrace_attach)
+  - [`PTRACE_SYSCALL`](#ptrace_syscall)
+  - [`PTRACE_SETOPTIONS`](#ptrace_setoptions)
+  - [`PTRACE_GETEVENTMSG`](#ptrace_geteventmsg)
+  - [`PTRACE_GETSIGINFO`](#ptrace_getsiginfo)
+  - [`PTRACE_SETSIGINFO`](#ptrace_setsiginfo)
+  - [`PTRACE_GETREGSET`](#ptrace_getregset)
+  - [`PTRACE_SETREGSET`](#ptrace_setregset)
+  - [`PTRACE_SEIZE`](#ptrace_seize)
+  - [`PTRACE_INTERRUPT`](#ptrace_interrupt)
+  - [`PTRACE_LISTEN`](#ptrace_listen)
+  - [`PTRACE_PEEKSIGINFO`](#ptrace_peeksiginfo)
+  - [`PTRACE_GETSIGMASK`](#ptrace_getsigmask)
+  - [`PTRACE_SETSIGMASK`](#ptrace_setsigmask)
+  - [`PTRACE_GET_SYSCALL_INFO`](#ptrace_get_syscall_info)
+  - [`PTRACE_SYSCALL_INFO_NONE`](#ptrace_syscall_info_none)
+  - [`PTRACE_SYSCALL_INFO_ENTRY`](#ptrace_syscall_info_entry)
+  - [`PTRACE_SYSCALL_INFO_EXIT`](#ptrace_syscall_info_exit)
+  - [`PTRACE_SYSCALL_INFO_SECCOMP`](#ptrace_syscall_info_seccomp)
+  - [`PTRACE_SET_SYSCALL_USER_DISPATCH_CONFIG`](#ptrace_set_syscall_user_dispatch_config)
+  - [`PTRACE_GET_SYSCALL_USER_DISPATCH_CONFIG`](#ptrace_get_syscall_user_dispatch_config)
+  - [`TCA_PAD`](#tca_pad)
+  - [`TCA_DUMP_INVISIBLE`](#tca_dump_invisible)
+  - [`TCA_CHAIN`](#tca_chain)
+  - [`TCA_HW_OFFLOAD`](#tca_hw_offload)
+  - [`RTM_DELNETCONF`](#rtm_delnetconf)
+  - [`RTM_NEWSTATS`](#rtm_newstats)
+  - [`RTM_GETSTATS`](#rtm_getstats)
+  - [`RTM_NEWCACHEREPORT`](#rtm_newcachereport)
+  - [`RTM_F_LOOKUP_TABLE`](#rtm_f_lookup_table)
+  - [`RTM_F_FIB_MATCH`](#rtm_f_fib_match)
+  - [`RTA_VIA`](#rta_via)
+  - [`RTA_NEWDST`](#rta_newdst)
+  - [`RTA_PREF`](#rta_pref)
+  - [`RTA_ENCAP_TYPE`](#rta_encap_type)
+  - [`RTA_ENCAP`](#rta_encap)
+  - [`RTA_EXPIRES`](#rta_expires)
+  - [`RTA_PAD`](#rta_pad)
+  - [`RTA_UID`](#rta_uid)
+  - [`RTA_TTL_PROPAGATE`](#rta_ttl_propagate)
+  - [`NTF_EXT_LEARNED`](#ntf_ext_learned)
+  - [`NTF_OFFLOADED`](#ntf_offloaded)
+  - [`NDA_MASTER`](#nda_master)
+  - [`NDA_LINK_NETNSID`](#nda_link_netnsid)
+  - [`NDA_SRC_VNI`](#nda_src_vni)
+  - [`UNAME26`](#uname26)
+  - [`FDPIC_FUNCPTRS`](#fdpic_funcptrs)
+  - [`MAX_LINKS`](#max_links)
+  - [`GENL_UNS_ADMIN_PERM`](#genl_uns_admin_perm)
+  - [`GENL_ID_VFS_DQUOT`](#genl_id_vfs_dquot)
+  - [`GENL_ID_PMCRAID`](#genl_id_pmcraid)
+  - [`ELFOSABI_ARM_AEABI`](#elfosabi_arm_aeabi)
+  - [`CLONE_NEWTIME`](#clone_newtime)
+  - [`CLONE_CLEAR_SIGHAND`](#clone_clear_sighand)
+  - [`CLONE_INTO_CGROUP`](#clone_into_cgroup)
+  - [`M_MXFAST`](#m_mxfast)
+  - [`M_NLBLKS`](#m_nlblks)
+  - [`M_GRAIN`](#m_grain)
+  - [`M_KEEP`](#m_keep)
+  - [`M_TRIM_THRESHOLD`](#m_trim_threshold)
+  - [`M_TOP_PAD`](#m_top_pad)
+  - [`M_MMAP_THRESHOLD`](#m_mmap_threshold)
+  - [`M_MMAP_MAX`](#m_mmap_max)
+  - [`M_CHECK_ACTION`](#m_check_action)
+  - [`M_PERTURB`](#m_perturb)
+  - [`M_ARENA_TEST`](#m_arena_test)
+  - [`M_ARENA_MAX`](#m_arena_max)
+  - [`SOMAXCONN`](#somaxconn)
+  - [`MOVE_MOUNT_F_SYMLINKS`](#move_mount_f_symlinks)
+  - [`MOVE_MOUNT_F_AUTOMOUNTS`](#move_mount_f_automounts)
+  - [`MOVE_MOUNT_F_EMPTY_PATH`](#move_mount_f_empty_path)
+  - [`MOVE_MOUNT_T_SYMLINKS`](#move_mount_t_symlinks)
+  - [`MOVE_MOUNT_T_AUTOMOUNTS`](#move_mount_t_automounts)
+  - [`MOVE_MOUNT_T_EMPTY_PATH`](#move_mount_t_empty_path)
+  - [`MOVE_MOUNT_SET_GROUP`](#move_mount_set_group)
+  - [`MOVE_MOUNT_BENEATH`](#move_mount_beneath)
+  - [`ADJ_OFFSET`](#adj_offset)
+  - [`ADJ_FREQUENCY`](#adj_frequency)
+  - [`ADJ_MAXERROR`](#adj_maxerror)
+  - [`ADJ_ESTERROR`](#adj_esterror)
+  - [`ADJ_STATUS`](#adj_status)
+  - [`ADJ_TIMECONST`](#adj_timeconst)
+  - [`ADJ_TAI`](#adj_tai)
+  - [`ADJ_SETOFFSET`](#adj_setoffset)
+  - [`ADJ_MICRO`](#adj_micro)
+  - [`ADJ_NANO`](#adj_nano)
+  - [`ADJ_TICK`](#adj_tick)
+  - [`ADJ_OFFSET_SINGLESHOT`](#adj_offset_singleshot)
+  - [`ADJ_OFFSET_SS_READ`](#adj_offset_ss_read)
+  - [`MOD_OFFSET`](#mod_offset)
+  - [`MOD_FREQUENCY`](#mod_frequency)
+  - [`MOD_MAXERROR`](#mod_maxerror)
+  - [`MOD_ESTERROR`](#mod_esterror)
+  - [`MOD_STATUS`](#mod_status)
+  - [`MOD_TIMECONST`](#mod_timeconst)
+  - [`MOD_CLKB`](#mod_clkb)
+  - [`MOD_CLKA`](#mod_clka)
+  - [`MOD_TAI`](#mod_tai)
+  - [`MOD_MICRO`](#mod_micro)
+  - [`MOD_NANO`](#mod_nano)
+  - [`STA_PLL`](#sta_pll)
+  - [`STA_PPSFREQ`](#sta_ppsfreq)
+  - [`STA_PPSTIME`](#sta_ppstime)
+  - [`STA_FLL`](#sta_fll)
+  - [`STA_INS`](#sta_ins)
+  - [`STA_DEL`](#sta_del)
+  - [`STA_UNSYNC`](#sta_unsync)
+  - [`STA_FREQHOLD`](#sta_freqhold)
+  - [`STA_PPSSIGNAL`](#sta_ppssignal)
+  - [`STA_PPSJITTER`](#sta_ppsjitter)
+  - [`STA_PPSWANDER`](#sta_ppswander)
+  - [`STA_PPSERROR`](#sta_ppserror)
+  - [`STA_CLOCKERR`](#sta_clockerr)
+  - [`STA_NANO`](#sta_nano)
+  - [`STA_MODE`](#sta_mode)
+  - [`STA_CLK`](#sta_clk)
+  - [`STA_RONLY`](#sta_ronly)
+  - [`NTP_API`](#ntp_api)
+  - [`TIME_OK`](#time_ok)
+  - [`TIME_INS`](#time_ins)
+  - [`TIME_DEL`](#time_del)
+  - [`TIME_OOP`](#time_oop)
+  - [`TIME_WAIT`](#time_wait)
+  - [`TIME_ERROR`](#time_error)
+  - [`TIME_BAD`](#time_bad)
+  - [`MAXTC`](#maxtc)
+  - [`GLOB_PERIOD`](#glob_period)
+  - [`GLOB_ALTDIRFUNC`](#glob_altdirfunc)
+  - [`GLOB_BRACE`](#glob_brace)
+  - [`GLOB_NOMAGIC`](#glob_nomagic)
+  - [`GLOB_TILDE`](#glob_tilde)
+  - [`GLOB_ONLYDIR`](#glob_onlydir)
+  - [`GLOB_TILDE_CHECK`](#glob_tilde_check)
+  - [`MADV_COLLAPSE`](#madv_collapse)
+  - [`PTHREAD_STACK_MIN`](#pthread_stack_min)
+  - [`PTHREAD_MUTEX_ADAPTIVE_NP`](#pthread_mutex_adaptive_np)
+  - [`REG_STARTEND`](#reg_startend)
+  - [`REG_EEND`](#reg_eend)
+  - [`REG_ESIZE`](#reg_esize)
+  - [`REG_ERPAREN`](#reg_erparen)
+  - [`__SIZEOF_PTHREAD_RWLOCKATTR_T`](#__sizeof_pthread_rwlockattr_t)
+  - [`O_LARGEFILE`](#o_largefile)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`b64`](#b64) | mod | 64-bit specific definitions for linux-like values |
+| [`x86_64`](#x86_64) | mod | x86_64-specific definitions for 64-bit linux-like values |
+| [`aiocb`](#aiocb) | struct |  |
+| [`__exit_status`](#__exit_status) | struct |  |
+| [`__timeval`](#__timeval) | struct |  |
+| [`glob64_t`](#glob64_t) | struct |  |
+| [`msghdr`](#msghdr) | struct |  |
+| [`cmsghdr`](#cmsghdr) | struct |  |
+| [`termios`](#termios) | struct |  |
+| [`mallinfo`](#mallinfo) | struct |  |
+| [`mallinfo2`](#mallinfo2) | struct |  |
+| [`nl_pktinfo`](#nl_pktinfo) | struct |  |
+| [`nl_mmap_req`](#nl_mmap_req) | struct |  |
+| [`nl_mmap_hdr`](#nl_mmap_hdr) | struct |  |
+| [`ntptimeval`](#ntptimeval) | struct |  |
+| [`regex_t`](#regex_t) | struct |  |
+| [`Elf64_Chdr`](#elf64_chdr) | struct |  |
+| [`Elf32_Chdr`](#elf32_chdr) | struct |  |
+| [`seminfo`](#seminfo) | struct |  |
+| [`ptrace_peeksiginfo_args`](#ptrace_peeksiginfo_args) | struct |  |
+| [`__c_anonymous_ptrace_syscall_info_entry`](#__c_anonymous_ptrace_syscall_info_entry) | struct |  |
+| [`__c_anonymous_ptrace_syscall_info_exit`](#__c_anonymous_ptrace_syscall_info_exit) | struct |  |
+| [`__c_anonymous_ptrace_syscall_info_seccomp`](#__c_anonymous_ptrace_syscall_info_seccomp) | struct |  |
+| [`ptrace_syscall_info`](#ptrace_syscall_info) | struct |  |
+| [`ptrace_sud_config`](#ptrace_sud_config) | struct |  |
+| [`iocb`](#iocb) | struct |  |
+| [`tcp_info`](#tcp_info) | struct |  |
+| [`fanotify_event_info_pidfd`](#fanotify_event_info_pidfd) | struct |  |
+| [`fanotify_event_info_error`](#fanotify_event_info_error) | struct |  |
+| [`sem_t`](#sem_t) | struct |  |
+| [`mbstate_t`](#mbstate_t) | struct |  |
+| [`fpos64_t`](#fpos64_t) | struct |  |
+| [`fpos_t`](#fpos_t) | struct |  |
+| [`timespec`](#timespec) | struct |  |
+| [`utmpx`](#utmpx) | struct |  |
+| [`sifields_sigchld`](#sifields_sigchld) | struct |  |
+| [`siginfo_f`](#siginfo_f) | struct |  |
+| [`sigset_t`](#sigset_t) | struct |  |
+| [`sysinfo`](#sysinfo) | struct |  |
+| [`msqid_ds`](#msqid_ds) | struct |  |
+| [`semid_ds`](#semid_ds) | struct |  |
+| [`timex`](#timex) | struct |  |
+| [`fgetspent_r`](#fgetspent_r) | fn |  |
+| [`sgetspent_r`](#sgetspent_r) | fn |  |
+| [`getspent_r`](#getspent_r) | fn |  |
+| [`qsort_r`](#qsort_r) | fn |  |
+| [`sendmmsg`](#sendmmsg) | fn |  |
+| [`recvmmsg`](#recvmmsg) | fn |  |
+| [`getrlimit64`](#getrlimit64) | fn |  |
+| [`setrlimit64`](#setrlimit64) | fn |  |
+| [`getrlimit`](#getrlimit) | fn |  |
+| [`setrlimit`](#setrlimit) | fn |  |
+| [`prlimit`](#prlimit) | fn |  |
+| [`prlimit64`](#prlimit64) | fn |  |
+| [`utmpname`](#utmpname) | fn |  |
+| [`utmpxname`](#utmpxname) | fn |  |
+| [`getutxent`](#getutxent) | fn |  |
+| [`getutxid`](#getutxid) | fn |  |
+| [`getutxline`](#getutxline) | fn |  |
+| [`pututxline`](#pututxline) | fn |  |
+| [`setutxent`](#setutxent) | fn |  |
+| [`endutxent`](#endutxent) | fn |  |
+| [`getpt`](#getpt) | fn |  |
+| [`mallopt`](#mallopt) | fn |  |
+| [`gettimeofday`](#gettimeofday) | fn |  |
+| [`getentropy`](#getentropy) | fn |  |
+| [`getrandom`](#getrandom) | fn |  |
+| [`getauxval`](#getauxval) | fn |  |
+| [`adjtimex`](#adjtimex) | fn |  |
+| [`ntp_adjtime`](#ntp_adjtime) | fn |  |
+| [`ntp_gettime`](#ntp_gettime) | fn |  |
+| [`clock_adjtime`](#clock_adjtime) | fn |  |
+| [`fanotify_mark`](#fanotify_mark) | fn |  |
+| [`preadv2`](#preadv2) | fn |  |
+| [`pwritev2`](#pwritev2) | fn |  |
+| [`preadv64v2`](#preadv64v2) | fn |  |
+| [`pwritev64v2`](#pwritev64v2) | fn |  |
+| [`renameat2`](#renameat2) | fn |  |
+| [`explicit_bzero`](#explicit_bzero) | fn |  |
+| [`reallocarray`](#reallocarray) | fn |  |
+| [`ctermid`](#ctermid) | fn |  |
+| [`backtrace`](#backtrace) | fn |  |
+| [`backtrace_symbols`](#backtrace_symbols) | fn |  |
+| [`backtrace_symbols_fd`](#backtrace_symbols_fd) | fn |  |
+| [`glob64`](#glob64) | fn |  |
+| [`globfree64`](#globfree64) | fn |  |
+| [`ptrace`](#ptrace) | fn |  |
+| [`pthread_attr_getaffinity_np`](#pthread_attr_getaffinity_np) | fn |  |
+| [`pthread_attr_setaffinity_np`](#pthread_attr_setaffinity_np) | fn |  |
+| [`getpriority`](#getpriority) | fn |  |
+| [`setpriority`](#setpriority) | fn |  |
+| [`pthread_rwlockattr_getkind_np`](#pthread_rwlockattr_getkind_np) | fn |  |
+| [`pthread_rwlockattr_setkind_np`](#pthread_rwlockattr_setkind_np) | fn |  |
+| [`pthread_sigqueue`](#pthread_sigqueue) | fn |  |
+| [`mallinfo`](#mallinfo) | fn |  |
+| [`mallinfo2`](#mallinfo2) | fn |  |
+| [`malloc_stats`](#malloc_stats) | fn |  |
+| [`malloc_info`](#malloc_info) | fn |  |
+| [`malloc_usable_size`](#malloc_usable_size) | fn |  |
+| [`getpwent_r`](#getpwent_r) | fn |  |
+| [`getgrent_r`](#getgrent_r) | fn |  |
+| [`fgetpwent_r`](#fgetpwent_r) | fn |  |
+| [`fgetgrent_r`](#fgetgrent_r) | fn |  |
+| [`putpwent`](#putpwent) | fn |  |
+| [`putgrent`](#putgrent) | fn |  |
+| [`sethostid`](#sethostid) | fn |  |
+| [`memfd_create`](#memfd_create) | fn |  |
+| [`mlock2`](#mlock2) | fn |  |
+| [`euidaccess`](#euidaccess) | fn |  |
+| [`eaccess`](#eaccess) | fn |  |
+| [`asctime_r`](#asctime_r) | fn |  |
+| [`ctime_r`](#ctime_r) | fn |  |
+| [`dirname`](#dirname) | fn |  |
+| [`posix_basename`](#posix_basename) | fn | POSIX version of `basename(3)`, defined in `libgen.h`. |
+| [`gnu_basename`](#gnu_basename) | fn | GNU version of `basename(3)`, defined in `string.h`. |
+| [`dlmopen`](#dlmopen) | fn |  |
+| [`dlinfo`](#dlinfo) | fn |  |
+| [`dladdr1`](#dladdr1) | fn |  |
+| [`dlvsym`](#dlvsym) | fn |  |
+| [`malloc_trim`](#malloc_trim) | fn |  |
+| [`gnu_get_libc_release`](#gnu_get_libc_release) | fn |  |
+| [`gnu_get_libc_version`](#gnu_get_libc_version) | fn |  |
+| [`posix_spawn_file_actions_addchdir_np`](#posix_spawn_file_actions_addchdir_np) | fn |  |
+| [`posix_spawn_file_actions_addfchdir_np`](#posix_spawn_file_actions_addfchdir_np) | fn |  |
+| [`posix_spawn_file_actions_addclosefrom_np`](#posix_spawn_file_actions_addclosefrom_np) | fn |  |
+| [`posix_spawn_file_actions_addtcsetpgrp_np`](#posix_spawn_file_actions_addtcsetpgrp_np) | fn |  |
+| [`getmntent_r`](#getmntent_r) | fn |  |
+| [`execveat`](#execveat) | fn |  |
+| [`close_range`](#close_range) | fn |  |
+| [`mq_notify`](#mq_notify) | fn |  |
+| [`epoll_pwait2`](#epoll_pwait2) | fn |  |
+| [`mempcpy`](#mempcpy) | fn |  |
+| [`pthread_t`](#pthread_t) | type |  |
+| [`__priority_which_t`](#__priority_which_t) | type |  |
+| [`__rlimit_resource_t`](#__rlimit_resource_t) | type |  |
+| [`Lmid_t`](#lmid_t) | type |  |
+| [`regoff_t`](#regoff_t) | type |  |
+| [`__kernel_rwf_t`](#__kernel_rwf_t) | type |  |
+| [`Ioctl`](#ioctl) | type |  |
+| [`ino_t`](#ino_t) | type |  |
+| [`off_t`](#off_t) | type |  |
+| [`blkcnt_t`](#blkcnt_t) | type |  |
+| [`shmatt_t`](#shmatt_t) | type |  |
+| [`msgqnum_t`](#msgqnum_t) | type |  |
+| [`msglen_t`](#msglen_t) | type |  |
+| [`fsblkcnt_t`](#fsblkcnt_t) | type |  |
+| [`fsfilcnt_t`](#fsfilcnt_t) | type |  |
+| [`rlim_t`](#rlim_t) | type |  |
+| [`__syscall_ulong_t`](#__syscall_ulong_t) | type |  |
+| [`__fsword_t`](#__fsword_t) | type |  |
+| [`clock_t`](#clock_t) | type |  |
+| [`time_t`](#time_t) | type |  |
+| [`HUGETLB_FLAG_ENCODE_SHIFT`](#hugetlb_flag_encode_shift) | const |  |
+| [`HUGETLB_FLAG_ENCODE_MASK`](#hugetlb_flag_encode_mask) | const |  |
+| [`HUGETLB_FLAG_ENCODE_64KB`](#hugetlb_flag_encode_64kb) | const |  |
+| [`HUGETLB_FLAG_ENCODE_512KB`](#hugetlb_flag_encode_512kb) | const |  |
+| [`HUGETLB_FLAG_ENCODE_1MB`](#hugetlb_flag_encode_1mb) | const |  |
+| [`HUGETLB_FLAG_ENCODE_2MB`](#hugetlb_flag_encode_2mb) | const |  |
+| [`HUGETLB_FLAG_ENCODE_8MB`](#hugetlb_flag_encode_8mb) | const |  |
+| [`HUGETLB_FLAG_ENCODE_16MB`](#hugetlb_flag_encode_16mb) | const |  |
+| [`HUGETLB_FLAG_ENCODE_32MB`](#hugetlb_flag_encode_32mb) | const |  |
+| [`HUGETLB_FLAG_ENCODE_256MB`](#hugetlb_flag_encode_256mb) | const |  |
+| [`HUGETLB_FLAG_ENCODE_512MB`](#hugetlb_flag_encode_512mb) | const |  |
+| [`HUGETLB_FLAG_ENCODE_1GB`](#hugetlb_flag_encode_1gb) | const |  |
+| [`HUGETLB_FLAG_ENCODE_2GB`](#hugetlb_flag_encode_2gb) | const |  |
+| [`HUGETLB_FLAG_ENCODE_16GB`](#hugetlb_flag_encode_16gb) | const |  |
+| [`MAP_HUGE_SHIFT`](#map_huge_shift) | const |  |
+| [`MAP_HUGE_MASK`](#map_huge_mask) | const |  |
+| [`MAP_HUGE_64KB`](#map_huge_64kb) | const |  |
+| [`MAP_HUGE_512KB`](#map_huge_512kb) | const |  |
+| [`MAP_HUGE_1MB`](#map_huge_1mb) | const |  |
+| [`MAP_HUGE_2MB`](#map_huge_2mb) | const |  |
+| [`MAP_HUGE_8MB`](#map_huge_8mb) | const |  |
+| [`MAP_HUGE_16MB`](#map_huge_16mb) | const |  |
+| [`MAP_HUGE_32MB`](#map_huge_32mb) | const |  |
+| [`MAP_HUGE_256MB`](#map_huge_256mb) | const |  |
+| [`MAP_HUGE_512MB`](#map_huge_512mb) | const |  |
+| [`MAP_HUGE_1GB`](#map_huge_1gb) | const |  |
+| [`MAP_HUGE_2GB`](#map_huge_2gb) | const |  |
+| [`MAP_HUGE_16GB`](#map_huge_16gb) | const |  |
+| [`PRIO_PROCESS`](#prio_process) | const |  |
+| [`PRIO_PGRP`](#prio_pgrp) | const |  |
+| [`PRIO_USER`](#prio_user) | const |  |
+| [`MS_RMT_MASK`](#ms_rmt_mask) | const |  |
+| [`__UT_LINESIZE`](#__ut_linesize) | const |  |
+| [`__UT_NAMESIZE`](#__ut_namesize) | const |  |
+| [`__UT_HOSTSIZE`](#__ut_hostsize) | const |  |
+| [`EMPTY`](#empty) | const |  |
+| [`RUN_LVL`](#run_lvl) | const |  |
+| [`BOOT_TIME`](#boot_time) | const |  |
+| [`NEW_TIME`](#new_time) | const |  |
+| [`OLD_TIME`](#old_time) | const |  |
+| [`INIT_PROCESS`](#init_process) | const |  |
+| [`LOGIN_PROCESS`](#login_process) | const |  |
+| [`USER_PROCESS`](#user_process) | const |  |
+| [`DEAD_PROCESS`](#dead_process) | const |  |
+| [`ACCOUNTING`](#accounting) | const |  |
+| [`LM_ID_BASE`](#lm_id_base) | const |  |
+| [`LM_ID_NEWLM`](#lm_id_newlm) | const |  |
+| [`RTLD_DI_LMID`](#rtld_di_lmid) | const |  |
+| [`RTLD_DI_LINKMAP`](#rtld_di_linkmap) | const |  |
+| [`RTLD_DI_CONFIGADDR`](#rtld_di_configaddr) | const |  |
+| [`RTLD_DI_SERINFO`](#rtld_di_serinfo) | const |  |
+| [`RTLD_DI_SERINFOSIZE`](#rtld_di_serinfosize) | const |  |
+| [`RTLD_DI_ORIGIN`](#rtld_di_origin) | const |  |
+| [`RTLD_DI_PROFILENAME`](#rtld_di_profilename) | const |  |
+| [`RTLD_DI_PROFILEOUT`](#rtld_di_profileout) | const |  |
+| [`RTLD_DI_TLS_MODID`](#rtld_di_tls_modid) | const |  |
+| [`RTLD_DI_TLS_DATA`](#rtld_di_tls_data) | const |  |
+| [`SOCK_NONBLOCK`](#sock_nonblock) | const |  |
+| [`SOL_RXRPC`](#sol_rxrpc) | const |  |
+| [`SOL_PPPOL2TP`](#sol_pppol2tp) | const |  |
+| [`SOL_PNPIPE`](#sol_pnpipe) | const |  |
+| [`SOL_RDS`](#sol_rds) | const |  |
+| [`SOL_IUCV`](#sol_iucv) | const |  |
+| [`SOL_CAIF`](#sol_caif) | const |  |
+| [`SOL_NFC`](#sol_nfc) | const |  |
+| [`MSG_TRYHARD`](#msg_tryhard) | const |  |
+| [`LC_PAPER`](#lc_paper) | const |  |
+| [`LC_NAME`](#lc_name) | const |  |
+| [`LC_ADDRESS`](#lc_address) | const |  |
+| [`LC_TELEPHONE`](#lc_telephone) | const |  |
+| [`LC_MEASUREMENT`](#lc_measurement) | const |  |
+| [`LC_IDENTIFICATION`](#lc_identification) | const |  |
+| [`LC_PAPER_MASK`](#lc_paper_mask) | const |  |
+| [`LC_NAME_MASK`](#lc_name_mask) | const |  |
+| [`LC_ADDRESS_MASK`](#lc_address_mask) | const |  |
+| [`LC_TELEPHONE_MASK`](#lc_telephone_mask) | const |  |
+| [`LC_MEASUREMENT_MASK`](#lc_measurement_mask) | const |  |
+| [`LC_IDENTIFICATION_MASK`](#lc_identification_mask) | const |  |
+| [`LC_ALL_MASK`](#lc_all_mask) | const |  |
+| [`ENOTSUP`](#enotsup) | const |  |
+| [`SOCK_SEQPACKET`](#sock_seqpacket) | const |  |
+| [`SOCK_DCCP`](#sock_dccp) | const |  |
+| [`SOCK_PACKET`](#sock_packet) | const |  |
+| [`AF_IB`](#af_ib) | const |  |
+| [`AF_MPLS`](#af_mpls) | const |  |
+| [`AF_NFC`](#af_nfc) | const |  |
+| [`AF_VSOCK`](#af_vsock) | const |  |
+| [`AF_XDP`](#af_xdp) | const |  |
+| [`PF_IB`](#pf_ib) | const |  |
+| [`PF_MPLS`](#pf_mpls) | const |  |
+| [`PF_NFC`](#pf_nfc) | const |  |
+| [`PF_VSOCK`](#pf_vsock) | const |  |
+| [`PF_XDP`](#pf_xdp) | const |  |
+| [`SIGEV_THREAD_ID`](#sigev_thread_id) | const |  |
+| [`BUFSIZ`](#bufsiz) | const |  |
+| [`TMP_MAX`](#tmp_max) | const |  |
+| [`FOPEN_MAX`](#fopen_max) | const |  |
+| [`FILENAME_MAX`](#filename_max) | const |  |
+| [`POSIX_MADV_DONTNEED`](#posix_madv_dontneed) | const |  |
+| [`_CS_GNU_LIBC_VERSION`](#_cs_gnu_libc_version) | const |  |
+| [`_CS_GNU_LIBPTHREAD_VERSION`](#_cs_gnu_libpthread_version) | const |  |
+| [`_CS_V6_ENV`](#_cs_v6_env) | const |  |
+| [`_CS_V7_ENV`](#_cs_v7_env) | const |  |
+| [`_SC_EQUIV_CLASS_MAX`](#_sc_equiv_class_max) | const |  |
+| [`_SC_CHARCLASS_NAME_MAX`](#_sc_charclass_name_max) | const |  |
+| [`_SC_PII`](#_sc_pii) | const |  |
+| [`_SC_PII_XTI`](#_sc_pii_xti) | const |  |
+| [`_SC_PII_SOCKET`](#_sc_pii_socket) | const |  |
+| [`_SC_PII_INTERNET`](#_sc_pii_internet) | const |  |
+| [`_SC_PII_OSI`](#_sc_pii_osi) | const |  |
+| [`_SC_POLL`](#_sc_poll) | const |  |
+| [`_SC_SELECT`](#_sc_select) | const |  |
+| [`_SC_PII_INTERNET_STREAM`](#_sc_pii_internet_stream) | const |  |
+| [`_SC_PII_INTERNET_DGRAM`](#_sc_pii_internet_dgram) | const |  |
+| [`_SC_PII_OSI_COTS`](#_sc_pii_osi_cots) | const |  |
+| [`_SC_PII_OSI_CLTS`](#_sc_pii_osi_clts) | const |  |
+| [`_SC_PII_OSI_M`](#_sc_pii_osi_m) | const |  |
+| [`_SC_T_IOV_MAX`](#_sc_t_iov_max) | const |  |
+| [`_SC_2_C_VERSION`](#_sc_2_c_version) | const |  |
+| [`_SC_CHAR_BIT`](#_sc_char_bit) | const |  |
+| [`_SC_CHAR_MAX`](#_sc_char_max) | const |  |
+| [`_SC_CHAR_MIN`](#_sc_char_min) | const |  |
+| [`_SC_INT_MAX`](#_sc_int_max) | const |  |
+| [`_SC_INT_MIN`](#_sc_int_min) | const |  |
+| [`_SC_LONG_BIT`](#_sc_long_bit) | const |  |
+| [`_SC_WORD_BIT`](#_sc_word_bit) | const |  |
+| [`_SC_MB_LEN_MAX`](#_sc_mb_len_max) | const |  |
+| [`_SC_SSIZE_MAX`](#_sc_ssize_max) | const |  |
+| [`_SC_SCHAR_MAX`](#_sc_schar_max) | const |  |
+| [`_SC_SCHAR_MIN`](#_sc_schar_min) | const |  |
+| [`_SC_SHRT_MAX`](#_sc_shrt_max) | const |  |
+| [`_SC_SHRT_MIN`](#_sc_shrt_min) | const |  |
+| [`_SC_UCHAR_MAX`](#_sc_uchar_max) | const |  |
+| [`_SC_UINT_MAX`](#_sc_uint_max) | const |  |
+| [`_SC_ULONG_MAX`](#_sc_ulong_max) | const |  |
+| [`_SC_USHRT_MAX`](#_sc_ushrt_max) | const |  |
+| [`_SC_NL_ARGMAX`](#_sc_nl_argmax) | const |  |
+| [`_SC_NL_LANGMAX`](#_sc_nl_langmax) | const |  |
+| [`_SC_NL_MSGMAX`](#_sc_nl_msgmax) | const |  |
+| [`_SC_NL_NMAX`](#_sc_nl_nmax) | const |  |
+| [`_SC_NL_SETMAX`](#_sc_nl_setmax) | const |  |
+| [`_SC_NL_TEXTMAX`](#_sc_nl_textmax) | const |  |
+| [`_SC_BASE`](#_sc_base) | const |  |
+| [`_SC_C_LANG_SUPPORT`](#_sc_c_lang_support) | const |  |
+| [`_SC_C_LANG_SUPPORT_R`](#_sc_c_lang_support_r) | const |  |
+| [`_SC_DEVICE_IO`](#_sc_device_io) | const |  |
+| [`_SC_DEVICE_SPECIFIC`](#_sc_device_specific) | const |  |
+| [`_SC_DEVICE_SPECIFIC_R`](#_sc_device_specific_r) | const |  |
+| [`_SC_FD_MGMT`](#_sc_fd_mgmt) | const |  |
+| [`_SC_FIFO`](#_sc_fifo) | const |  |
+| [`_SC_PIPE`](#_sc_pipe) | const |  |
+| [`_SC_FILE_ATTRIBUTES`](#_sc_file_attributes) | const |  |
+| [`_SC_FILE_LOCKING`](#_sc_file_locking) | const |  |
+| [`_SC_FILE_SYSTEM`](#_sc_file_system) | const |  |
+| [`_SC_MULTI_PROCESS`](#_sc_multi_process) | const |  |
+| [`_SC_SINGLE_PROCESS`](#_sc_single_process) | const |  |
+| [`_SC_NETWORKING`](#_sc_networking) | const |  |
+| [`_SC_REGEX_VERSION`](#_sc_regex_version) | const |  |
+| [`_SC_SIGNALS`](#_sc_signals) | const |  |
+| [`_SC_SYSTEM_DATABASE`](#_sc_system_database) | const |  |
+| [`_SC_SYSTEM_DATABASE_R`](#_sc_system_database_r) | const |  |
+| [`_SC_USER_GROUPS`](#_sc_user_groups) | const |  |
+| [`_SC_USER_GROUPS_R`](#_sc_user_groups_r) | const |  |
+| [`_SC_LEVEL1_ICACHE_SIZE`](#_sc_level1_icache_size) | const |  |
+| [`_SC_LEVEL1_ICACHE_ASSOC`](#_sc_level1_icache_assoc) | const |  |
+| [`_SC_LEVEL1_ICACHE_LINESIZE`](#_sc_level1_icache_linesize) | const |  |
+| [`_SC_LEVEL1_DCACHE_SIZE`](#_sc_level1_dcache_size) | const |  |
+| [`_SC_LEVEL1_DCACHE_ASSOC`](#_sc_level1_dcache_assoc) | const |  |
+| [`_SC_LEVEL1_DCACHE_LINESIZE`](#_sc_level1_dcache_linesize) | const |  |
+| [`_SC_LEVEL2_CACHE_SIZE`](#_sc_level2_cache_size) | const |  |
+| [`_SC_LEVEL2_CACHE_ASSOC`](#_sc_level2_cache_assoc) | const |  |
+| [`_SC_LEVEL2_CACHE_LINESIZE`](#_sc_level2_cache_linesize) | const |  |
+| [`_SC_LEVEL3_CACHE_SIZE`](#_sc_level3_cache_size) | const |  |
+| [`_SC_LEVEL3_CACHE_ASSOC`](#_sc_level3_cache_assoc) | const |  |
+| [`_SC_LEVEL3_CACHE_LINESIZE`](#_sc_level3_cache_linesize) | const |  |
+| [`_SC_LEVEL4_CACHE_SIZE`](#_sc_level4_cache_size) | const |  |
+| [`_SC_LEVEL4_CACHE_ASSOC`](#_sc_level4_cache_assoc) | const |  |
+| [`_SC_LEVEL4_CACHE_LINESIZE`](#_sc_level4_cache_linesize) | const |  |
+| [`O_ACCMODE`](#o_accmode) | const |  |
+| [`ST_RELATIME`](#st_relatime) | const |  |
+| [`NI_MAXHOST`](#ni_maxhost) | const |  |
+| [`BINDERFS_SUPER_MAGIC`](#binderfs_super_magic) | const |  |
+| [`XFS_SUPER_MAGIC`](#xfs_super_magic) | const |  |
+| [`CPU_SETSIZE`](#cpu_setsize) | const |  |
+| [`PTRACE_TRACEME`](#ptrace_traceme) | const |  |
+| [`PTRACE_PEEKTEXT`](#ptrace_peektext) | const |  |
+| [`PTRACE_PEEKDATA`](#ptrace_peekdata) | const |  |
+| [`PTRACE_PEEKUSER`](#ptrace_peekuser) | const |  |
+| [`PTRACE_POKETEXT`](#ptrace_poketext) | const |  |
+| [`PTRACE_POKEDATA`](#ptrace_pokedata) | const |  |
+| [`PTRACE_POKEUSER`](#ptrace_pokeuser) | const |  |
+| [`PTRACE_CONT`](#ptrace_cont) | const |  |
+| [`PTRACE_KILL`](#ptrace_kill) | const |  |
+| [`PTRACE_SINGLESTEP`](#ptrace_singlestep) | const |  |
+| [`PTRACE_ATTACH`](#ptrace_attach) | const |  |
+| [`PTRACE_SYSCALL`](#ptrace_syscall) | const |  |
+| [`PTRACE_SETOPTIONS`](#ptrace_setoptions) | const |  |
+| [`PTRACE_GETEVENTMSG`](#ptrace_geteventmsg) | const |  |
+| [`PTRACE_GETSIGINFO`](#ptrace_getsiginfo) | const |  |
+| [`PTRACE_SETSIGINFO`](#ptrace_setsiginfo) | const |  |
+| [`PTRACE_GETREGSET`](#ptrace_getregset) | const |  |
+| [`PTRACE_SETREGSET`](#ptrace_setregset) | const |  |
+| [`PTRACE_SEIZE`](#ptrace_seize) | const |  |
+| [`PTRACE_INTERRUPT`](#ptrace_interrupt) | const |  |
+| [`PTRACE_LISTEN`](#ptrace_listen) | const |  |
+| [`PTRACE_PEEKSIGINFO`](#ptrace_peeksiginfo) | const |  |
+| [`PTRACE_GETSIGMASK`](#ptrace_getsigmask) | const |  |
+| [`PTRACE_SETSIGMASK`](#ptrace_setsigmask) | const |  |
+| [`PTRACE_GET_SYSCALL_INFO`](#ptrace_get_syscall_info) | const |  |
+| [`PTRACE_SYSCALL_INFO_NONE`](#ptrace_syscall_info_none) | const |  |
+| [`PTRACE_SYSCALL_INFO_ENTRY`](#ptrace_syscall_info_entry) | const |  |
+| [`PTRACE_SYSCALL_INFO_EXIT`](#ptrace_syscall_info_exit) | const |  |
+| [`PTRACE_SYSCALL_INFO_SECCOMP`](#ptrace_syscall_info_seccomp) | const |  |
+| [`PTRACE_SET_SYSCALL_USER_DISPATCH_CONFIG`](#ptrace_set_syscall_user_dispatch_config) | const |  |
+| [`PTRACE_GET_SYSCALL_USER_DISPATCH_CONFIG`](#ptrace_get_syscall_user_dispatch_config) | const |  |
+| [`TCA_PAD`](#tca_pad) | const |  |
+| [`TCA_DUMP_INVISIBLE`](#tca_dump_invisible) | const |  |
+| [`TCA_CHAIN`](#tca_chain) | const |  |
+| [`TCA_HW_OFFLOAD`](#tca_hw_offload) | const |  |
+| [`RTM_DELNETCONF`](#rtm_delnetconf) | const |  |
+| [`RTM_NEWSTATS`](#rtm_newstats) | const |  |
+| [`RTM_GETSTATS`](#rtm_getstats) | const |  |
+| [`RTM_NEWCACHEREPORT`](#rtm_newcachereport) | const |  |
+| [`RTM_F_LOOKUP_TABLE`](#rtm_f_lookup_table) | const |  |
+| [`RTM_F_FIB_MATCH`](#rtm_f_fib_match) | const |  |
+| [`RTA_VIA`](#rta_via) | const |  |
+| [`RTA_NEWDST`](#rta_newdst) | const |  |
+| [`RTA_PREF`](#rta_pref) | const |  |
+| [`RTA_ENCAP_TYPE`](#rta_encap_type) | const |  |
+| [`RTA_ENCAP`](#rta_encap) | const |  |
+| [`RTA_EXPIRES`](#rta_expires) | const |  |
+| [`RTA_PAD`](#rta_pad) | const |  |
+| [`RTA_UID`](#rta_uid) | const |  |
+| [`RTA_TTL_PROPAGATE`](#rta_ttl_propagate) | const |  |
+| [`NTF_EXT_LEARNED`](#ntf_ext_learned) | const |  |
+| [`NTF_OFFLOADED`](#ntf_offloaded) | const |  |
+| [`NDA_MASTER`](#nda_master) | const |  |
+| [`NDA_LINK_NETNSID`](#nda_link_netnsid) | const |  |
+| [`NDA_SRC_VNI`](#nda_src_vni) | const |  |
+| [`UNAME26`](#uname26) | const |  |
+| [`FDPIC_FUNCPTRS`](#fdpic_funcptrs) | const |  |
+| [`MAX_LINKS`](#max_links) | const |  |
+| [`GENL_UNS_ADMIN_PERM`](#genl_uns_admin_perm) | const |  |
+| [`GENL_ID_VFS_DQUOT`](#genl_id_vfs_dquot) | const |  |
+| [`GENL_ID_PMCRAID`](#genl_id_pmcraid) | const |  |
+| [`ELFOSABI_ARM_AEABI`](#elfosabi_arm_aeabi) | const |  |
+| [`CLONE_NEWTIME`](#clone_newtime) | const |  |
+| [`CLONE_CLEAR_SIGHAND`](#clone_clear_sighand) | const |  |
+| [`CLONE_INTO_CGROUP`](#clone_into_cgroup) | const |  |
+| [`M_MXFAST`](#m_mxfast) | const |  |
+| [`M_NLBLKS`](#m_nlblks) | const |  |
+| [`M_GRAIN`](#m_grain) | const |  |
+| [`M_KEEP`](#m_keep) | const |  |
+| [`M_TRIM_THRESHOLD`](#m_trim_threshold) | const |  |
+| [`M_TOP_PAD`](#m_top_pad) | const |  |
+| [`M_MMAP_THRESHOLD`](#m_mmap_threshold) | const |  |
+| [`M_MMAP_MAX`](#m_mmap_max) | const |  |
+| [`M_CHECK_ACTION`](#m_check_action) | const |  |
+| [`M_PERTURB`](#m_perturb) | const |  |
+| [`M_ARENA_TEST`](#m_arena_test) | const |  |
+| [`M_ARENA_MAX`](#m_arena_max) | const |  |
+| [`SOMAXCONN`](#somaxconn) | const |  |
+| [`MOVE_MOUNT_F_SYMLINKS`](#move_mount_f_symlinks) | const |  |
+| [`MOVE_MOUNT_F_AUTOMOUNTS`](#move_mount_f_automounts) | const |  |
+| [`MOVE_MOUNT_F_EMPTY_PATH`](#move_mount_f_empty_path) | const |  |
+| [`MOVE_MOUNT_T_SYMLINKS`](#move_mount_t_symlinks) | const |  |
+| [`MOVE_MOUNT_T_AUTOMOUNTS`](#move_mount_t_automounts) | const |  |
+| [`MOVE_MOUNT_T_EMPTY_PATH`](#move_mount_t_empty_path) | const |  |
+| [`MOVE_MOUNT_SET_GROUP`](#move_mount_set_group) | const |  |
+| [`MOVE_MOUNT_BENEATH`](#move_mount_beneath) | const |  |
+| [`ADJ_OFFSET`](#adj_offset) | const |  |
+| [`ADJ_FREQUENCY`](#adj_frequency) | const |  |
+| [`ADJ_MAXERROR`](#adj_maxerror) | const |  |
+| [`ADJ_ESTERROR`](#adj_esterror) | const |  |
+| [`ADJ_STATUS`](#adj_status) | const |  |
+| [`ADJ_TIMECONST`](#adj_timeconst) | const |  |
+| [`ADJ_TAI`](#adj_tai) | const |  |
+| [`ADJ_SETOFFSET`](#adj_setoffset) | const |  |
+| [`ADJ_MICRO`](#adj_micro) | const |  |
+| [`ADJ_NANO`](#adj_nano) | const |  |
+| [`ADJ_TICK`](#adj_tick) | const |  |
+| [`ADJ_OFFSET_SINGLESHOT`](#adj_offset_singleshot) | const |  |
+| [`ADJ_OFFSET_SS_READ`](#adj_offset_ss_read) | const |  |
+| [`MOD_OFFSET`](#mod_offset) | const |  |
+| [`MOD_FREQUENCY`](#mod_frequency) | const |  |
+| [`MOD_MAXERROR`](#mod_maxerror) | const |  |
+| [`MOD_ESTERROR`](#mod_esterror) | const |  |
+| [`MOD_STATUS`](#mod_status) | const |  |
+| [`MOD_TIMECONST`](#mod_timeconst) | const |  |
+| [`MOD_CLKB`](#mod_clkb) | const |  |
+| [`MOD_CLKA`](#mod_clka) | const |  |
+| [`MOD_TAI`](#mod_tai) | const |  |
+| [`MOD_MICRO`](#mod_micro) | const |  |
+| [`MOD_NANO`](#mod_nano) | const |  |
+| [`STA_PLL`](#sta_pll) | const |  |
+| [`STA_PPSFREQ`](#sta_ppsfreq) | const |  |
+| [`STA_PPSTIME`](#sta_ppstime) | const |  |
+| [`STA_FLL`](#sta_fll) | const |  |
+| [`STA_INS`](#sta_ins) | const |  |
+| [`STA_DEL`](#sta_del) | const |  |
+| [`STA_UNSYNC`](#sta_unsync) | const |  |
+| [`STA_FREQHOLD`](#sta_freqhold) | const |  |
+| [`STA_PPSSIGNAL`](#sta_ppssignal) | const |  |
+| [`STA_PPSJITTER`](#sta_ppsjitter) | const |  |
+| [`STA_PPSWANDER`](#sta_ppswander) | const |  |
+| [`STA_PPSERROR`](#sta_ppserror) | const |  |
+| [`STA_CLOCKERR`](#sta_clockerr) | const |  |
+| [`STA_NANO`](#sta_nano) | const |  |
+| [`STA_MODE`](#sta_mode) | const |  |
+| [`STA_CLK`](#sta_clk) | const |  |
+| [`STA_RONLY`](#sta_ronly) | const |  |
+| [`NTP_API`](#ntp_api) | const |  |
+| [`TIME_OK`](#time_ok) | const |  |
+| [`TIME_INS`](#time_ins) | const |  |
+| [`TIME_DEL`](#time_del) | const |  |
+| [`TIME_OOP`](#time_oop) | const |  |
+| [`TIME_WAIT`](#time_wait) | const |  |
+| [`TIME_ERROR`](#time_error) | const |  |
+| [`TIME_BAD`](#time_bad) | const |  |
+| [`MAXTC`](#maxtc) | const |  |
+| [`GLOB_PERIOD`](#glob_period) | const |  |
+| [`GLOB_ALTDIRFUNC`](#glob_altdirfunc) | const |  |
+| [`GLOB_BRACE`](#glob_brace) | const |  |
+| [`GLOB_NOMAGIC`](#glob_nomagic) | const |  |
+| [`GLOB_TILDE`](#glob_tilde) | const |  |
+| [`GLOB_ONLYDIR`](#glob_onlydir) | const |  |
+| [`GLOB_TILDE_CHECK`](#glob_tilde_check) | const |  |
+| [`MADV_COLLAPSE`](#madv_collapse) | const |  |
+| [`PTHREAD_STACK_MIN`](#pthread_stack_min) | const |  |
+| [`PTHREAD_MUTEX_ADAPTIVE_NP`](#pthread_mutex_adaptive_np) | const |  |
+| [`REG_STARTEND`](#reg_startend) | const |  |
+| [`REG_EEND`](#reg_eend) | const |  |
+| [`REG_ESIZE`](#reg_esize) | const |  |
+| [`REG_ERPAREN`](#reg_erparen) | const |  |
+| [`__SIZEOF_PTHREAD_RWLOCKATTR_T`](#__sizeof_pthread_rwlockattr_t) | const |  |
+| [`O_LARGEFILE`](#o_largefile) | const |  |
+
 ## Modules
 
 - [`b64`](b64/index.md) - 64-bit specific definitions for linux-like values
@@ -35,13 +1024,13 @@ struct aiocb {
 
 ##### `impl Clone for aiocb`
 
-- `fn clone(self: &Self) -> aiocb` — [`aiocb`](../index.md)
+- <span id="aiocb-clone"></span>`fn clone(&self) -> aiocb` — [`aiocb`](../index.md)
 
 ##### `impl Copy for aiocb`
 
 ##### `impl Debug for aiocb`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="aiocb-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `__exit_status`
 
@@ -56,13 +1045,13 @@ struct __exit_status {
 
 ##### `impl Clone for __exit_status`
 
-- `fn clone(self: &Self) -> __exit_status` — [`__exit_status`](../index.md)
+- <span id="exit-status-clone"></span>`fn clone(&self) -> __exit_status` — [`__exit_status`](../index.md)
 
 ##### `impl Copy for __exit_status`
 
 ##### `impl Debug for __exit_status`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="exit-status-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `__timeval`
 
@@ -77,13 +1066,13 @@ struct __timeval {
 
 ##### `impl Clone for __timeval`
 
-- `fn clone(self: &Self) -> __timeval` — [`__timeval`](../index.md)
+- <span id="timeval-clone"></span>`fn clone(&self) -> __timeval` — [`__timeval`](../index.md)
 
 ##### `impl Copy for __timeval`
 
 ##### `impl Debug for __timeval`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="timeval-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `glob64_t`
 
@@ -105,13 +1094,13 @@ struct glob64_t {
 
 ##### `impl Clone for glob64_t`
 
-- `fn clone(self: &Self) -> glob64_t` — [`glob64_t`](../index.md)
+- <span id="glob64-t-clone"></span>`fn clone(&self) -> glob64_t` — [`glob64_t`](../index.md)
 
 ##### `impl Copy for glob64_t`
 
 ##### `impl Debug for glob64_t`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="glob64-t-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `msghdr`
 
@@ -131,13 +1120,13 @@ struct msghdr {
 
 ##### `impl Clone for msghdr`
 
-- `fn clone(self: &Self) -> msghdr` — [`msghdr`](../index.md)
+- <span id="msghdr-clone"></span>`fn clone(&self) -> msghdr` — [`msghdr`](../index.md)
 
 ##### `impl Copy for msghdr`
 
 ##### `impl Debug for msghdr`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="msghdr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `cmsghdr`
 
@@ -153,13 +1142,13 @@ struct cmsghdr {
 
 ##### `impl Clone for cmsghdr`
 
-- `fn clone(self: &Self) -> cmsghdr` — [`cmsghdr`](../index.md)
+- <span id="cmsghdr-clone"></span>`fn clone(&self) -> cmsghdr` — [`cmsghdr`](../index.md)
 
 ##### `impl Copy for cmsghdr`
 
 ##### `impl Debug for cmsghdr`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="cmsghdr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `termios`
 
@@ -180,13 +1169,13 @@ struct termios {
 
 ##### `impl Clone for termios`
 
-- `fn clone(self: &Self) -> termios` — [`termios`](../index.md)
+- <span id="termios-clone"></span>`fn clone(&self) -> termios` — [`termios`](../index.md)
 
 ##### `impl Copy for termios`
 
 ##### `impl Debug for termios`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="termios-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `mallinfo`
 
@@ -209,13 +1198,13 @@ struct mallinfo {
 
 ##### `impl Clone for mallinfo`
 
-- `fn clone(self: &Self) -> mallinfo` — [`mallinfo`](../index.md)
+- <span id="mallinfo-clone"></span>`fn clone(&self) -> mallinfo` — [`mallinfo`](../index.md)
 
 ##### `impl Copy for mallinfo`
 
 ##### `impl Debug for mallinfo`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="mallinfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `mallinfo2`
 
@@ -238,13 +1227,13 @@ struct mallinfo2 {
 
 ##### `impl Clone for mallinfo2`
 
-- `fn clone(self: &Self) -> mallinfo2` — [`mallinfo2`](../index.md)
+- <span id="mallinfo2-clone"></span>`fn clone(&self) -> mallinfo2` — [`mallinfo2`](../index.md)
 
 ##### `impl Copy for mallinfo2`
 
 ##### `impl Debug for mallinfo2`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="mallinfo2-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `nl_pktinfo`
 
@@ -258,13 +1247,13 @@ struct nl_pktinfo {
 
 ##### `impl Clone for nl_pktinfo`
 
-- `fn clone(self: &Self) -> nl_pktinfo` — [`nl_pktinfo`](../index.md)
+- <span id="nl-pktinfo-clone"></span>`fn clone(&self) -> nl_pktinfo` — [`nl_pktinfo`](../index.md)
 
 ##### `impl Copy for nl_pktinfo`
 
 ##### `impl Debug for nl_pktinfo`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="nl-pktinfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `nl_mmap_req`
 
@@ -281,13 +1270,13 @@ struct nl_mmap_req {
 
 ##### `impl Clone for nl_mmap_req`
 
-- `fn clone(self: &Self) -> nl_mmap_req` — [`nl_mmap_req`](../index.md)
+- <span id="nl-mmap-req-clone"></span>`fn clone(&self) -> nl_mmap_req` — [`nl_mmap_req`](../index.md)
 
 ##### `impl Copy for nl_mmap_req`
 
 ##### `impl Debug for nl_mmap_req`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="nl-mmap-req-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `nl_mmap_hdr`
 
@@ -306,13 +1295,13 @@ struct nl_mmap_hdr {
 
 ##### `impl Clone for nl_mmap_hdr`
 
-- `fn clone(self: &Self) -> nl_mmap_hdr` — [`nl_mmap_hdr`](../index.md)
+- <span id="nl-mmap-hdr-clone"></span>`fn clone(&self) -> nl_mmap_hdr` — [`nl_mmap_hdr`](../index.md)
 
 ##### `impl Copy for nl_mmap_hdr`
 
 ##### `impl Debug for nl_mmap_hdr`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="nl-mmap-hdr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ntptimeval`
 
@@ -333,13 +1322,13 @@ struct ntptimeval {
 
 ##### `impl Clone for ntptimeval`
 
-- `fn clone(self: &Self) -> ntptimeval` — [`ntptimeval`](../index.md)
+- <span id="ntptimeval-clone"></span>`fn clone(&self) -> ntptimeval` — [`ntptimeval`](../index.md)
 
 ##### `impl Copy for ntptimeval`
 
 ##### `impl Debug for ntptimeval`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="ntptimeval-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `regex_t`
 
@@ -360,13 +1349,13 @@ struct regex_t {
 
 ##### `impl Clone for regex_t`
 
-- `fn clone(self: &Self) -> regex_t` — [`regex_t`](../index.md)
+- <span id="regex-t-clone"></span>`fn clone(&self) -> regex_t` — [`regex_t`](../index.md)
 
 ##### `impl Copy for regex_t`
 
 ##### `impl Debug for regex_t`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="regex-t-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Elf64_Chdr`
 
@@ -383,13 +1372,13 @@ struct Elf64_Chdr {
 
 ##### `impl Clone for Elf64_Chdr`
 
-- `fn clone(self: &Self) -> Elf64_Chdr` — [`Elf64_Chdr`](../index.md)
+- <span id="elf64-chdr-clone"></span>`fn clone(&self) -> Elf64_Chdr` — [`Elf64_Chdr`](../index.md)
 
 ##### `impl Copy for Elf64_Chdr`
 
 ##### `impl Debug for Elf64_Chdr`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="elf64-chdr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Elf32_Chdr`
 
@@ -405,13 +1394,13 @@ struct Elf32_Chdr {
 
 ##### `impl Clone for Elf32_Chdr`
 
-- `fn clone(self: &Self) -> Elf32_Chdr` — [`Elf32_Chdr`](../index.md)
+- <span id="elf32-chdr-clone"></span>`fn clone(&self) -> Elf32_Chdr` — [`Elf32_Chdr`](../index.md)
 
 ##### `impl Copy for Elf32_Chdr`
 
 ##### `impl Debug for Elf32_Chdr`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="elf32-chdr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `seminfo`
 
@@ -434,13 +1423,13 @@ struct seminfo {
 
 ##### `impl Clone for seminfo`
 
-- `fn clone(self: &Self) -> seminfo` — [`seminfo`](../index.md)
+- <span id="seminfo-clone"></span>`fn clone(&self) -> seminfo` — [`seminfo`](../index.md)
 
 ##### `impl Copy for seminfo`
 
 ##### `impl Debug for seminfo`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="seminfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ptrace_peeksiginfo_args`
 
@@ -456,13 +1445,13 @@ struct ptrace_peeksiginfo_args {
 
 ##### `impl Clone for ptrace_peeksiginfo_args`
 
-- `fn clone(self: &Self) -> ptrace_peeksiginfo_args` — [`ptrace_peeksiginfo_args`](../index.md)
+- <span id="ptrace-peeksiginfo-args-clone"></span>`fn clone(&self) -> ptrace_peeksiginfo_args` — [`ptrace_peeksiginfo_args`](../index.md)
 
 ##### `impl Copy for ptrace_peeksiginfo_args`
 
 ##### `impl Debug for ptrace_peeksiginfo_args`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="ptrace-peeksiginfo-args-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `__c_anonymous_ptrace_syscall_info_entry`
 
@@ -477,13 +1466,13 @@ struct __c_anonymous_ptrace_syscall_info_entry {
 
 ##### `impl Clone for __c_anonymous_ptrace_syscall_info_entry`
 
-- `fn clone(self: &Self) -> __c_anonymous_ptrace_syscall_info_entry` — [`__c_anonymous_ptrace_syscall_info_entry`](../index.md)
+- <span id="c-anonymous-ptrace-syscall-info-entry-clone"></span>`fn clone(&self) -> __c_anonymous_ptrace_syscall_info_entry` — [`__c_anonymous_ptrace_syscall_info_entry`](../index.md)
 
 ##### `impl Copy for __c_anonymous_ptrace_syscall_info_entry`
 
 ##### `impl Debug for __c_anonymous_ptrace_syscall_info_entry`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="c-anonymous-ptrace-syscall-info-entry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `__c_anonymous_ptrace_syscall_info_exit`
 
@@ -498,13 +1487,13 @@ struct __c_anonymous_ptrace_syscall_info_exit {
 
 ##### `impl Clone for __c_anonymous_ptrace_syscall_info_exit`
 
-- `fn clone(self: &Self) -> __c_anonymous_ptrace_syscall_info_exit` — [`__c_anonymous_ptrace_syscall_info_exit`](../index.md)
+- <span id="c-anonymous-ptrace-syscall-info-exit-clone"></span>`fn clone(&self) -> __c_anonymous_ptrace_syscall_info_exit` — [`__c_anonymous_ptrace_syscall_info_exit`](../index.md)
 
 ##### `impl Copy for __c_anonymous_ptrace_syscall_info_exit`
 
 ##### `impl Debug for __c_anonymous_ptrace_syscall_info_exit`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="c-anonymous-ptrace-syscall-info-exit-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `__c_anonymous_ptrace_syscall_info_seccomp`
 
@@ -520,13 +1509,13 @@ struct __c_anonymous_ptrace_syscall_info_seccomp {
 
 ##### `impl Clone for __c_anonymous_ptrace_syscall_info_seccomp`
 
-- `fn clone(self: &Self) -> __c_anonymous_ptrace_syscall_info_seccomp` — [`__c_anonymous_ptrace_syscall_info_seccomp`](../index.md)
+- <span id="c-anonymous-ptrace-syscall-info-seccomp-clone"></span>`fn clone(&self) -> __c_anonymous_ptrace_syscall_info_seccomp` — [`__c_anonymous_ptrace_syscall_info_seccomp`](../index.md)
 
 ##### `impl Copy for __c_anonymous_ptrace_syscall_info_seccomp`
 
 ##### `impl Debug for __c_anonymous_ptrace_syscall_info_seccomp`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="c-anonymous-ptrace-syscall-info-seccomp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ptrace_syscall_info`
 
@@ -545,13 +1534,13 @@ struct ptrace_syscall_info {
 
 ##### `impl Clone for ptrace_syscall_info`
 
-- `fn clone(self: &Self) -> ptrace_syscall_info` — [`ptrace_syscall_info`](../index.md)
+- <span id="ptrace-syscall-info-clone"></span>`fn clone(&self) -> ptrace_syscall_info` — [`ptrace_syscall_info`](../index.md)
 
 ##### `impl Copy for ptrace_syscall_info`
 
 ##### `impl Debug for ptrace_syscall_info`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="ptrace-syscall-info-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ptrace_sud_config`
 
@@ -568,13 +1557,13 @@ struct ptrace_sud_config {
 
 ##### `impl Clone for ptrace_sud_config`
 
-- `fn clone(self: &Self) -> ptrace_sud_config` — [`ptrace_sud_config`](../index.md)
+- <span id="ptrace-sud-config-clone"></span>`fn clone(&self) -> ptrace_sud_config` — [`ptrace_sud_config`](../index.md)
 
 ##### `impl Copy for ptrace_sud_config`
 
 ##### `impl Debug for ptrace_sud_config`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="ptrace-sud-config-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `iocb`
 
@@ -599,13 +1588,13 @@ struct iocb {
 
 ##### `impl Clone for iocb`
 
-- `fn clone(self: &Self) -> iocb` — [`iocb`](../index.md)
+- <span id="iocb-clone"></span>`fn clone(&self) -> iocb` — [`iocb`](../index.md)
 
 ##### `impl Copy for iocb`
 
 ##### `impl Debug for iocb`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="iocb-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `tcp_info`
 
@@ -656,13 +1645,13 @@ struct tcp_info {
 
 ##### `impl Clone for tcp_info`
 
-- `fn clone(self: &Self) -> tcp_info` — [`tcp_info`](../index.md)
+- <span id="tcp-info-clone"></span>`fn clone(&self) -> tcp_info` — [`tcp_info`](../index.md)
 
 ##### `impl Copy for tcp_info`
 
 ##### `impl Debug for tcp_info`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="tcp-info-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `fanotify_event_info_pidfd`
 
@@ -677,13 +1666,13 @@ struct fanotify_event_info_pidfd {
 
 ##### `impl Clone for fanotify_event_info_pidfd`
 
-- `fn clone(self: &Self) -> fanotify_event_info_pidfd` — [`fanotify_event_info_pidfd`](../index.md)
+- <span id="fanotify-event-info-pidfd-clone"></span>`fn clone(&self) -> fanotify_event_info_pidfd` — [`fanotify_event_info_pidfd`](../index.md)
 
 ##### `impl Copy for fanotify_event_info_pidfd`
 
 ##### `impl Debug for fanotify_event_info_pidfd`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="fanotify-event-info-pidfd-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `fanotify_event_info_error`
 
@@ -699,13 +1688,13 @@ struct fanotify_event_info_error {
 
 ##### `impl Clone for fanotify_event_info_error`
 
-- `fn clone(self: &Self) -> fanotify_event_info_error` — [`fanotify_event_info_error`](../index.md)
+- <span id="fanotify-event-info-error-clone"></span>`fn clone(&self) -> fanotify_event_info_error` — [`fanotify_event_info_error`](../index.md)
 
 ##### `impl Copy for fanotify_event_info_error`
 
 ##### `impl Debug for fanotify_event_info_error`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="fanotify-event-info-error-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `sem_t`
 
@@ -719,13 +1708,13 @@ struct sem_t {
 
 ##### `impl Clone for sem_t`
 
-- `fn clone(self: &Self) -> sem_t` — [`sem_t`](../index.md)
+- <span id="sem-t-clone"></span>`fn clone(&self) -> sem_t` — [`sem_t`](../index.md)
 
 ##### `impl Copy for sem_t`
 
 ##### `impl Debug for sem_t`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sem-t-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `mbstate_t`
 
@@ -740,13 +1729,13 @@ struct mbstate_t {
 
 ##### `impl Clone for mbstate_t`
 
-- `fn clone(self: &Self) -> mbstate_t` — [`mbstate_t`](../index.md)
+- <span id="mbstate-t-clone"></span>`fn clone(&self) -> mbstate_t` — [`mbstate_t`](../index.md)
 
 ##### `impl Copy for mbstate_t`
 
 ##### `impl Debug for mbstate_t`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="mbstate-t-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `fpos64_t`
 
@@ -761,13 +1750,13 @@ struct fpos64_t {
 
 ##### `impl Clone for fpos64_t`
 
-- `fn clone(self: &Self) -> fpos64_t` — [`fpos64_t`](../index.md)
+- <span id="fpos64-t-clone"></span>`fn clone(&self) -> fpos64_t` — [`fpos64_t`](../index.md)
 
 ##### `impl Copy for fpos64_t`
 
 ##### `impl Debug for fpos64_t`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="fpos64-t-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `fpos_t`
 
@@ -782,13 +1771,13 @@ struct fpos_t {
 
 ##### `impl Clone for fpos_t`
 
-- `fn clone(self: &Self) -> fpos_t` — [`fpos_t`](../index.md)
+- <span id="fpos-t-clone"></span>`fn clone(&self) -> fpos_t` — [`fpos_t`](../index.md)
 
 ##### `impl Copy for fpos_t`
 
 ##### `impl Debug for fpos_t`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="fpos-t-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `timespec`
 
@@ -803,13 +1792,13 @@ struct timespec {
 
 ##### `impl Clone for timespec`
 
-- `fn clone(self: &Self) -> timespec` — [`timespec`](../index.md)
+- <span id="timespec-clone"></span>`fn clone(&self) -> timespec` — [`timespec`](../index.md)
 
 ##### `impl Copy for timespec`
 
 ##### `impl Debug for timespec`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="timespec-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `utmpx`
 
@@ -833,13 +1822,13 @@ struct utmpx {
 
 ##### `impl Clone for utmpx`
 
-- `fn clone(self: &Self) -> utmpx` — [`utmpx`](../index.md)
+- <span id="utmpx-clone"></span>`fn clone(&self) -> utmpx` — [`utmpx`](../index.md)
 
 ##### `impl Copy for utmpx`
 
 ##### `impl Debug for utmpx`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="utmpx-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `sifields_sigchld`
 
@@ -857,13 +1846,13 @@ struct sifields_sigchld {
 
 ##### `impl Clone for sifields_sigchld`
 
-- `fn clone(self: &Self) -> sifields_sigchld` — [`sifields_sigchld`](#sifields-sigchld)
+- <span id="sifields-sigchld-clone"></span>`fn clone(&self) -> sifields_sigchld` — [`sifields_sigchld`](#sifields-sigchld)
 
 ##### `impl Copy for sifields_sigchld`
 
 ##### `impl Debug for sifields_sigchld`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sifields-sigchld-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `siginfo_f`
 
@@ -878,13 +1867,13 @@ struct siginfo_f {
 
 ##### `impl Clone for siginfo_f`
 
-- `fn clone(self: &Self) -> siginfo_f` — [`siginfo_f`](#siginfo-f)
+- <span id="siginfo-f-clone"></span>`fn clone(&self) -> siginfo_f` — [`siginfo_f`](#siginfo-f)
 
 ##### `impl Copy for siginfo_f`
 
 ##### `impl Debug for siginfo_f`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="siginfo-f-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `sigset_t`
 
@@ -898,13 +1887,13 @@ struct sigset_t {
 
 ##### `impl Clone for sigset_t`
 
-- `fn clone(self: &Self) -> sigset_t` — [`sigset_t`](#sigset-t)
+- <span id="sigset-t-clone"></span>`fn clone(&self) -> sigset_t` — [`sigset_t`](#sigset-t)
 
 ##### `impl Copy for sigset_t`
 
 ##### `impl Debug for sigset_t`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sigset-t-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `sysinfo`
 
@@ -931,13 +1920,13 @@ struct sysinfo {
 
 ##### `impl Clone for sysinfo`
 
-- `fn clone(self: &Self) -> sysinfo` — [`sysinfo`](#sysinfo)
+- <span id="sysinfo-clone"></span>`fn clone(&self) -> sysinfo` — [`sysinfo`](#sysinfo)
 
 ##### `impl Copy for sysinfo`
 
 ##### `impl Debug for sysinfo`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sysinfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `msqid_ds`
 
@@ -961,13 +1950,13 @@ struct msqid_ds {
 
 ##### `impl Clone for msqid_ds`
 
-- `fn clone(self: &Self) -> msqid_ds` — [`msqid_ds`](#msqid-ds)
+- <span id="msqid-ds-clone"></span>`fn clone(&self) -> msqid_ds` — [`msqid_ds`](#msqid-ds)
 
 ##### `impl Copy for msqid_ds`
 
 ##### `impl Debug for msqid_ds`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="msqid-ds-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `semid_ds`
 
@@ -988,13 +1977,13 @@ struct semid_ds {
 
 ##### `impl Clone for semid_ds`
 
-- `fn clone(self: &Self) -> semid_ds` — [`semid_ds`](#semid-ds)
+- <span id="semid-ds-clone"></span>`fn clone(&self) -> semid_ds` — [`semid_ds`](#semid-ds)
 
 ##### `impl Copy for semid_ds`
 
 ##### `impl Debug for semid_ds`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="semid-ds-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `timex`
 
@@ -1038,13 +2027,13 @@ struct timex {
 
 ##### `impl Clone for timex`
 
-- `fn clone(self: &Self) -> timex` — [`timex`](#timex)
+- <span id="timex-clone"></span>`fn clone(&self) -> timex` — [`timex`](#timex)
 
 ##### `impl Copy for timex`
 
 ##### `impl Debug for timex`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="timex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Functions
 

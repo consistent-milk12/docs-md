@@ -4,6 +4,14 @@
 
 # Module `lock`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`LockGuard`](#lockguard) | struct | A "Maybe" LockGuard |
+| [`lock`](#lock) | fn | Acquire a partially unsound(!!!) global re-entrant lock over |
+| [`LOCK_HELD`](#lock_held) | const |  |
+
 ## Structs
 
 ### `LockGuard`
@@ -18,7 +26,7 @@ A "Maybe" LockGuard
 
 ##### `impl Drop for LockGuard`
 
-- `fn drop(self: &mut Self)`
+- <span id="lockguard-drop"></span>`fn drop(&mut self)`
 
 ## Functions
 
@@ -84,6 +92,6 @@ that prevents two backtraces from getting interleaved during printing.
 ### `LOCK_HELD`
 
 ```rust
-const LOCK_HELD: $crate::thread::LocalKey<std::cell::Cell<bool>>;
+const LOCK_HELD: thread::LocalKey<std::cell::Cell<bool>>;
 ```
 

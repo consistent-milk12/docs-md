@@ -4,6 +4,15 @@
 
 # Module `dir`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`unix`](#unix) | mod |  |
+| [`ReadDir`](#readdir) | struct | Wrapper around [`std::fs::ReadDir`][std::fs::ReadDir] which adds more |
+| [`DirEntry`](#direntry) | struct | Wrapper around [`std::fs::DirEntry`][std::fs::DirEntry] which adds more |
+| [`read_dir`](#read_dir) | fn | Returns an iterator over the entries within a directory. |
+
 ## Modules
 
 - [`unix`](unix/index.md) - 
@@ -30,21 +39,21 @@ This struct is created via `fs_err::read_dir`.
 
 ##### `impl Debug for ReadDir`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="readdir-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for ReadDir`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="readdir-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="readdir-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="readdir-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for ReadDir`
 
-- `type Item = Result<DirEntry, Error>`
+- <span id="readdir-item"></span>`type Item = Result<DirEntry, Error>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="readdir-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `DirEntry`
 
@@ -60,23 +69,23 @@ helpful information to all errors.
 
 #### Implementations
 
-- `fn path(self: &Self) -> PathBuf`
+- <span id="direntry-path"></span>`fn path(&self) -> PathBuf`
 
-- `fn metadata(self: &Self) -> io::Result<fs::Metadata>`
+- <span id="direntry-metadata"></span>`fn metadata(&self) -> io::Result<fs::Metadata>`
 
-- `fn file_type(self: &Self) -> io::Result<fs::FileType>`
+- <span id="direntry-file-type"></span>`fn file_type(&self) -> io::Result<fs::FileType>`
 
-- `fn file_name(self: &Self) -> OsString`
+- <span id="direntry-file-name"></span>`fn file_name(&self) -> OsString`
 
 #### Trait Implementations
 
 ##### `impl Debug for DirEntry`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="direntry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl DirEntryExt for DirEntry`
 
-- `fn ino(self: &Self) -> u64`
+- <span id="direntry-ino"></span>`fn ino(&self) -> u64`
 
 ## Functions
 

@@ -4,6 +4,45 @@
 
 # Module `format`
 
+## Contents
+
+- [Structs](#structs)
+  - [`KindFormatter`](#kindformatter)
+  - [`RichFormatter`](#richformatter)
+  - [`Escape`](#escape)
+- [Traits](#traits)
+  - [`ErrorFormatter`](#errorformatter)
+- [Functions](#functions)
+  - [`start_error`](#start_error)
+  - [`write_dynamic_context`](#write_dynamic_context)
+  - [`write_values_list`](#write_values_list)
+  - [`format_error_message`](#format_error_message)
+  - [`singular_or_plural`](#singular_or_plural)
+  - [`put_usage`](#put_usage)
+  - [`get_help_flag`](#get_help_flag)
+  - [`get_user_help_flag`](#get_user_help_flag)
+  - [`try_help`](#try_help)
+  - [`did_you_mean`](#did_you_mean)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`KindFormatter`](#kindformatter) | struct | Report [`ErrorKind`] |
+| [`RichFormatter`](#richformatter) | struct | Richly formatted error context |
+| [`Escape`](#escape) | struct |  |
+| [`ErrorFormatter`](#errorformatter) | trait | Defines how to format an error for displaying to the user |
+| [`start_error`](#start_error) | fn |  |
+| [`write_dynamic_context`](#write_dynamic_context) | fn |  |
+| [`write_values_list`](#write_values_list) | fn |  |
+| [`format_error_message`](#format_error_message) | fn |  |
+| [`singular_or_plural`](#singular_or_plural) | fn | Returns the singular or plural form on the verb to be based on the argument's value. |
+| [`put_usage`](#put_usage) | fn |  |
+| [`get_help_flag`](#get_help_flag) | fn |  |
+| [`get_user_help_flag`](#get_user_help_flag) | fn |  |
+| [`try_help`](#try_help) | fn |  |
+| [`did_you_mean`](#did_you_mean) | fn |  |
+
 ## Structs
 
 ### `KindFormatter`
@@ -27,7 +66,7 @@ overhead for [`RichFormatter`](../index.md).
 
 ##### `impl ErrorFormatter for KindFormatter`
 
-- `fn format_error(error: &crate::error::Error<Self>) -> StyledStr` — [`Error`](../index.md), [`StyledStr`](../../builder/index.md)
+- <span id="kindformatter-format-error"></span>`fn format_error(error: &crate::error::Error<Self>) -> StyledStr` — [`Error`](../index.md), [`StyledStr`](../../builder/index.md)
 
 ### `RichFormatter`
 
@@ -43,7 +82,7 @@ This follows the [rustc diagnostic style guide](https://rustc-dev-guide.rust-lan
 
 ##### `impl ErrorFormatter for RichFormatter`
 
-- `fn format_error(error: &crate::error::Error<Self>) -> StyledStr` — [`Error`](../index.md), [`StyledStr`](../../builder/index.md)
+- <span id="richformatter-format-error"></span>`fn format_error(error: &crate::error::Error<Self>) -> StyledStr` — [`Error`](../index.md), [`StyledStr`](../../builder/index.md)
 
 ### `Escape<'s>`
 
@@ -55,11 +94,11 @@ struct Escape<'s>(&'s str);
 
 ##### `impl Display for Escape<'_>`
 
-- `fn fmt(self: &Self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="escape-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
 ##### `impl<T> ToString for Escape<'s>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="escape-to-string"></span>`fn to_string(&self) -> String`
 
 ## Traits
 

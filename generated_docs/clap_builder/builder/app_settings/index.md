@@ -4,6 +4,13 @@
 
 # Module `app_settings`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`AppFlags`](#appflags) | struct |  |
+| [`AppSettings`](#appsettings) | enum | Application level settings, which affect how [`Command`] operates |
+
 ## Structs
 
 ### `AppFlags`
@@ -14,41 +21,41 @@ struct AppFlags(u32);
 
 #### Implementations
 
-- `fn set(self: &mut Self, setting: AppSettings)` — [`AppSettings`](#appsettings)
+- <span id="appflags-set"></span>`fn set(&mut self, setting: AppSettings)` — [`AppSettings`](#appsettings)
 
-- `fn unset(self: &mut Self, setting: AppSettings)` — [`AppSettings`](#appsettings)
+- <span id="appflags-unset"></span>`fn unset(&mut self, setting: AppSettings)` — [`AppSettings`](#appsettings)
 
-- `fn is_set(self: &Self, setting: AppSettings) -> bool` — [`AppSettings`](#appsettings)
+- <span id="appflags-is-set"></span>`fn is_set(&self, setting: AppSettings) -> bool` — [`AppSettings`](#appsettings)
 
-- `fn insert(self: &mut Self, other: Self)`
+- <span id="appflags-insert"></span>`fn insert(&mut self, other: Self)`
 
 #### Trait Implementations
 
 ##### `impl BitOr for AppFlags`
 
-- `type Output = AppFlags`
+- <span id="appflags-output"></span>`type Output = AppFlags`
 
-- `fn bitor(self: Self, rhs: Self) -> <Self as >::Output`
+- <span id="appflags-bitor"></span>`fn bitor(self, rhs: Self) -> <Self as >::Output`
 
 ##### `impl Clone for AppFlags`
 
-- `fn clone(self: &Self) -> AppFlags` — [`AppFlags`](#appflags)
+- <span id="appflags-clone"></span>`fn clone(&self) -> AppFlags` — [`AppFlags`](#appflags)
 
 ##### `impl Copy for AppFlags`
 
 ##### `impl Debug for AppFlags`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="appflags-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for AppFlags`
 
-- `fn default() -> AppFlags` — [`AppFlags`](#appflags)
+- <span id="appflags-default"></span>`fn default() -> AppFlags` — [`AppFlags`](#appflags)
 
 ##### `impl Eq for AppFlags`
 
 ##### `impl PartialEq for AppFlags`
 
-- `fn eq(self: &Self, other: &AppFlags) -> bool` — [`AppFlags`](#appflags)
+- <span id="appflags-eq"></span>`fn eq(&self, other: &AppFlags) -> bool` — [`AppFlags`](#appflags)
 
 ##### `impl StructuralPartialEq for AppFlags`
 
@@ -105,23 +112,23 @@ propagated down or up through child or parent subcommands
 
 #### Implementations
 
-- `fn bit(self: Self) -> u32`
+- <span id="appsettings-bit"></span>`fn bit(self) -> u32`
 
 #### Trait Implementations
 
 ##### `impl Clone for AppSettings`
 
-- `fn clone(self: &Self) -> AppSettings` — [`AppSettings`](#appsettings)
+- <span id="appsettings-clone"></span>`fn clone(&self) -> AppSettings` — [`AppSettings`](#appsettings)
 
 ##### `impl Copy for AppSettings`
 
 ##### `impl Debug for AppSettings`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="appsettings-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl PartialEq for AppSettings`
 
-- `fn eq(self: &Self, other: &AppSettings) -> bool` — [`AppSettings`](#appsettings)
+- <span id="appsettings-eq"></span>`fn eq(&self, other: &AppSettings) -> bool` — [`AppSettings`](#appsettings)
 
 ##### `impl StructuralPartialEq for AppSettings`
 

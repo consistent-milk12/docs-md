@@ -4,6 +4,38 @@
 
 # Module `elf`
 
+## Contents
+
+- [Structs](#structs)
+  - [`ParsedSym`](#parsedsym)
+  - [`Object`](#object)
+- [Functions](#functions)
+  - [`decompress_zlib`](#decompress_zlib)
+  - [`debug_path_exists`](#debug_path_exists)
+  - [`locate_build_id`](#locate_build_id)
+  - [`locate_debuglink`](#locate_debuglink)
+  - [`locate_debugaltlink`](#locate_debugaltlink)
+  - [`handle_split_dwarf`](#handle_split_dwarf)
+- [Type Aliases](#type-aliases)
+  - [`Elf`](#elf)
+- [Constants](#constants)
+  - [`DEBUG_PATH`](#debug_path)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ParsedSym`](#parsedsym) | struct |  |
+| [`Object`](#object) | struct |  |
+| [`decompress_zlib`](#decompress_zlib) | fn |  |
+| [`debug_path_exists`](#debug_path_exists) | fn |  |
+| [`locate_build_id`](#locate_build_id) | fn | Locate a debug file based on its build ID. |
+| [`locate_debuglink`](#locate_debuglink) | fn | Locate a file specified in a `.gnu_debuglink` section. |
+| [`locate_debugaltlink`](#locate_debugaltlink) | fn | Locate a file specified in a `.gnu_debugaltlink` section. |
+| [`handle_split_dwarf`](#handle_split_dwarf) | fn |  |
+| [`Elf`](#elf) | type |  |
+| [`DEBUG_PATH`](#debug_path) | const |  |
+
 ## Structs
 
 ### `ParsedSym`
@@ -46,21 +78,21 @@ struct Object<'a> {
 
 #### Implementations
 
-- `fn parse(data: &'a [u8]) -> Option<Object<'a>>` — [`Object`](#object)
+- <span id="object-parse"></span>`fn parse(data: &'a [u8]) -> Option<Object<'a>>` — [`Object`](#object)
 
-- `fn section(self: &Self, stash: &'a Stash, name: &str) -> Option<&'a [u8]>` — [`Stash`](../stash/index.md)
+- <span id="object-section"></span>`fn section(&self, stash: &'a Stash, name: &str) -> Option<&'a [u8]>` — [`Stash`](../stash/index.md)
 
-- `fn section_header(self: &Self, name: &str) -> Option<&<object::elf::FileHeader64<object::NativeEndian> as FileHeader>::SectionHeader>`
+- <span id="object-section-header"></span>`fn section_header(&self, name: &str) -> Option<&<object::elf::FileHeader64<object::NativeEndian> as FileHeader>::SectionHeader>`
 
-- `fn search_symtab(self: &Self, addr: u64) -> Option<&[u8]>`
+- <span id="object-search-symtab"></span>`fn search_symtab(&self, addr: u64) -> Option<&[u8]>`
 
-- `fn search_object_map(self: &Self, _addr: u64) -> Option<(&Context<'_>, u64)>` — [`Context`](../index.md)
+- <span id="object-search-object-map"></span>`fn search_object_map(&self, _addr: u64) -> Option<(&Context<'_>, u64)>` — [`Context`](../index.md)
 
-- `fn build_id(self: &Self) -> Option<&'a [u8]>`
+- <span id="object-build-id"></span>`fn build_id(&self) -> Option<&'a [u8]>`
 
-- `fn gnu_debuglink_path(self: &Self, path: &Path) -> Option<(PathBuf, u32)>`
+- <span id="object-gnu-debuglink-path"></span>`fn gnu_debuglink_path(&self, path: &Path) -> Option<(PathBuf, u32)>`
 
-- `fn gnu_debugaltlink_path(self: &Self, path: &Path) -> Option<(PathBuf, &'a [u8])>`
+- <span id="object-gnu-debugaltlink-path"></span>`fn gnu_debugaltlink_path(&self, path: &Path) -> Option<(PathBuf, &'a [u8])>`
 
 ## Functions
 

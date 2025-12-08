@@ -20,6 +20,67 @@ stable sorting implementation.
 In addition it also contains the core logic of the stable sort used by `slice::sort` based on
 TimSort.
 
+## Contents
+
+- [Structs](#structs)
+  - [`InsertionHole`](#insertionhole)
+  - [`MergeHole`](#mergehole)
+  - [`TimSortRun`](#timsortrun)
+- [Enums](#enums)
+  - [`MergeSortResult`](#mergesortresult)
+- [Functions](#functions)
+  - [`insert_tail`](#insert_tail)
+  - [`insert_head`](#insert_head)
+  - [`insertion_sort_shift_left`](#insertion_sort_shift_left)
+  - [`insertion_sort_shift_right`](#insertion_sort_shift_right)
+  - [`partial_insertion_sort`](#partial_insertion_sort)
+  - [`heapsort`](#heapsort)
+  - [`partition_in_blocks`](#partition_in_blocks)
+  - [`partition`](#partition)
+  - [`partition_equal`](#partition_equal)
+  - [`break_patterns`](#break_patterns)
+  - [`choose_pivot`](#choose_pivot)
+  - [`recurse`](#recurse)
+  - [`par_quicksort`](#par_quicksort)
+  - [`merge`](#merge)
+  - [`merge_sort`](#merge_sort)
+  - [`provide_sorted_batch`](#provide_sorted_batch)
+  - [`find_streak`](#find_streak)
+  - [`split_for_merge`](#split_for_merge)
+  - [`par_merge`](#par_merge)
+  - [`merge_recurse`](#merge_recurse)
+  - [`par_mergesort`](#par_mergesort)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`InsertionHole`](#insertionhole) | struct |  |
+| [`MergeHole`](#mergehole) | struct |  |
+| [`TimSortRun`](#timsortrun) | struct | Internal type used by merge_sort. |
+| [`MergeSortResult`](#mergesortresult) | enum | The result of merge sort. |
+| [`insert_tail`](#insert_tail) | fn | Inserts `v[v.len() - 1]` into pre-sorted sequence `v[..v.len() - 1]` so that whole `v[..]` |
+| [`insert_head`](#insert_head) | fn | Inserts `v[0]` into pre-sorted sequence `v[1..]` so that whole `v[..]` becomes sorted. |
+| [`insertion_sort_shift_left`](#insertion_sort_shift_left) | fn | Sort `v` assuming `v[..offset]` is already sorted. |
+| [`insertion_sort_shift_right`](#insertion_sort_shift_right) | fn | Sort `v` assuming `v[offset..]` is already sorted. |
+| [`partial_insertion_sort`](#partial_insertion_sort) | fn | Partially sorts a slice by shifting several out-of-order elements around. |
+| [`heapsort`](#heapsort) | fn | Sorts `v` using heapsort, which guarantees *O*(*n* \* log(*n*)) worst-case. |
+| [`partition_in_blocks`](#partition_in_blocks) | fn | Partitions `v` into elements smaller than `pivot`, followed by elements greater than or equal |
+| [`partition`](#partition) | fn | Partitions `v` into elements smaller than `v[pivot]`, followed by elements greater than or |
+| [`partition_equal`](#partition_equal) | fn | Partitions `v` into elements equal to `v[pivot]` followed by elements greater than `v[pivot]`. |
+| [`break_patterns`](#break_patterns) | fn | Scatters some elements around in an attempt to break patterns that might cause imbalanced |
+| [`choose_pivot`](#choose_pivot) | fn | Chooses a pivot in `v` and returns the index and `true` if the slice is likely already sorted. |
+| [`recurse`](#recurse) | fn | Sorts `v` recursively. |
+| [`par_quicksort`](#par_quicksort) | fn | Sorts `v` using pattern-defeating quicksort in parallel. |
+| [`merge`](#merge) | fn | Merges non-decreasing runs `v[..mid]` and `v[mid..]` using `buf` as temporary storage, and |
+| [`merge_sort`](#merge_sort) | fn | This merge sort borrows some (but not all) ideas from TimSort, which used to be described in |
+| [`provide_sorted_batch`](#provide_sorted_batch) | fn | Takes a range as denoted by start and end, that is already sorted and extends it to the right if |
+| [`find_streak`](#find_streak) | fn | Finds a streak of presorted elements starting at the beginning of the slice. |
+| [`split_for_merge`](#split_for_merge) | fn | Splits two sorted slices so that they can be merged in parallel. |
+| [`par_merge`](#par_merge) | fn | Merges slices `left` and `right` in parallel and stores the result into `dest`. |
+| [`merge_recurse`](#merge_recurse) | fn | Recursively merges pre-sorted chunks inside `v`. |
+| [`par_mergesort`](#par_mergesort) | fn | Sorts `v` using merge sort in parallel. |
+
 ## Structs
 
 ### `InsertionHole<T>`
@@ -35,23 +96,23 @@ struct InsertionHole<T> {
 
 ##### `impl<T> Drop for InsertionHole<T>`
 
-- `fn drop(self: &mut Self)`
+- <span id="insertionhole-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<T> IntoEither for InsertionHole<T>`
 
 ##### `impl<T> Pointable for InsertionHole<T>`
 
-- `const ALIGN: usize`
+- <span id="insertionhole-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="insertionhole-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="insertionhole-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="insertionhole-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="insertionhole-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="insertionhole-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `MergeHole<T>`
 
@@ -67,23 +128,23 @@ struct MergeHole<T> {
 
 ##### `impl<T> Drop for MergeHole<T>`
 
-- `fn drop(self: &mut Self)`
+- <span id="mergehole-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<T> IntoEither for MergeHole<T>`
 
 ##### `impl<T> Pointable for MergeHole<T>`
 
-- `const ALIGN: usize`
+- <span id="mergehole-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="mergehole-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="mergehole-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="mergehole-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="mergehole-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="mergehole-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `TimSortRun`
 
@@ -100,29 +161,29 @@ Internal type used by merge_sort.
 
 ##### `impl Clone for TimSortRun`
 
-- `fn clone(self: &Self) -> TimSortRun` — [`TimSortRun`](#timsortrun)
+- <span id="timsortrun-clone"></span>`fn clone(&self) -> TimSortRun` — [`TimSortRun`](#timsortrun)
 
 ##### `impl Copy for TimSortRun`
 
 ##### `impl Debug for TimSortRun`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="timsortrun-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> IntoEither for TimSortRun`
 
 ##### `impl<T> Pointable for TimSortRun`
 
-- `const ALIGN: usize`
+- <span id="timsortrun-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="timsortrun-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="timsortrun-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="timsortrun-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="timsortrun-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="timsortrun-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ## Enums
 
@@ -156,7 +217,7 @@ The result of merge sort.
 
 ##### `impl Clone for MergeSortResult`
 
-- `fn clone(self: &Self) -> MergeSortResult` — [`MergeSortResult`](#mergesortresult)
+- <span id="mergesortresult-clone"></span>`fn clone(&self) -> MergeSortResult` — [`MergeSortResult`](#mergesortresult)
 
 ##### `impl Copy for MergeSortResult`
 
@@ -166,21 +227,21 @@ The result of merge sort.
 
 ##### `impl PartialEq for MergeSortResult`
 
-- `fn eq(self: &Self, other: &MergeSortResult) -> bool` — [`MergeSortResult`](#mergesortresult)
+- <span id="mergesortresult-eq"></span>`fn eq(&self, other: &MergeSortResult) -> bool` — [`MergeSortResult`](#mergesortresult)
 
 ##### `impl<T> Pointable for MergeSortResult`
 
-- `const ALIGN: usize`
+- <span id="mergesortresult-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="mergesortresult-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="mergesortresult-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="mergesortresult-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="mergesortresult-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="mergesortresult-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl StructuralPartialEq for MergeSortResult`
 

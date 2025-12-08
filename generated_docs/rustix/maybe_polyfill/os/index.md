@@ -4,6 +4,12 @@
 
 # Module `os`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`fd`](#fd) | mod |  |
+
 ## Modules
 
 - [`fd`](fd/index.md) - 

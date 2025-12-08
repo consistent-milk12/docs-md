@@ -4,6 +4,14 @@
 
 # Module `parsing`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ambig_ty`](#ambig_ty) | fn |  |
+| [`parse_bare_fn_arg`](#parse_bare_fn_arg) | fn |  |
+| [`parse_bare_variadic`](#parse_bare_variadic) | fn |  |
+
 ## Functions
 
 ### `ambig_ty`

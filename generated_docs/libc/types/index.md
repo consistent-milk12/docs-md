@@ -6,6 +6,13 @@
 
 Platform-agnostic support types.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Padding`](#padding) | struct | A transparent wrapper over `MaybeUninit<T>` to represent uninitialized padding |
+| [`CEnumRepr`](#cenumrepr) | type |  |
+
 ## Structs
 
 ### `Padding<T: Copy>`
@@ -19,19 +26,19 @@ while providing `Default`.
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone + Copy> Clone for Padding<T>`
+##### `impl<T: clone::Clone + Copy> Clone for Padding<T>`
 
-- `fn clone(self: &Self) -> Padding<T>` — [`Padding`](#padding)
+- <span id="padding-clone"></span>`fn clone(&self) -> Padding<T>` — [`Padding`](#padding)
 
-##### `impl<T: $crate::marker::Copy + Copy> Copy for Padding<T>`
+##### `impl<T: marker::Copy + Copy> Copy for Padding<T>`
 
 ##### `impl<T: Copy> Debug for Padding<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="padding-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: Copy> Default for Padding<T>`
 
-- `fn default() -> Self`
+- <span id="padding-default"></span>`fn default() -> Self`
 
 ## Type Aliases
 

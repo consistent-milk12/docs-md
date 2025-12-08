@@ -8,6 +8,44 @@ Tools for converting file format structures to and from bytes.
 
 This module should be replaced once rust provides safe transmutes.
 
+## Contents
+
+- [Traits](#traits)
+  - [`Pod`](#pod)
+- [Functions](#functions)
+  - [`from_bytes`](#from_bytes)
+  - [`from_bytes_mut`](#from_bytes_mut)
+  - [`slice_from_bytes`](#slice_from_bytes)
+  - [`slice_from_bytes_mut`](#slice_from_bytes_mut)
+  - [`slice_from_all_bytes`](#slice_from_all_bytes)
+  - [`slice_from_all_bytes_mut`](#slice_from_all_bytes_mut)
+  - [`bytes_of`](#bytes_of)
+  - [`bytes_of_mut`](#bytes_of_mut)
+  - [`bytes_of_slice`](#bytes_of_slice)
+  - [`bytes_of_slice_mut`](#bytes_of_slice_mut)
+- [Type Aliases](#type-aliases)
+  - [`Result`](#result)
+- [Macros](#macros)
+  - [`unsafe_impl_pod!`](#unsafe_impl_pod)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Pod`](#pod) | trait | A trait for types that can safely be converted from and to byte slices. |
+| [`from_bytes`](#from_bytes) | fn | Cast the head of a byte slice to a `Pod` type. |
+| [`from_bytes_mut`](#from_bytes_mut) | fn | Cast the head of a mutable byte slice to a `Pod` type. |
+| [`slice_from_bytes`](#slice_from_bytes) | fn | Cast the head of a byte slice to a slice of a `Pod` type. |
+| [`slice_from_bytes_mut`](#slice_from_bytes_mut) | fn | Cast the head of a mutable byte slice to a slice of a `Pod` type. |
+| [`slice_from_all_bytes`](#slice_from_all_bytes) | fn | Cast all of a byte slice to a slice of a `Pod` type. |
+| [`slice_from_all_bytes_mut`](#slice_from_all_bytes_mut) | fn | Cast all of a byte slice to a slice of a `Pod` type. |
+| [`bytes_of`](#bytes_of) | fn | Cast a `Pod` type to a byte slice. |
+| [`bytes_of_mut`](#bytes_of_mut) | fn | Cast a `Pod` type to a mutable byte slice. |
+| [`bytes_of_slice`](#bytes_of_slice) | fn | Cast a slice of a `Pod` type to a byte slice. |
+| [`bytes_of_slice_mut`](#bytes_of_slice_mut) | fn | Cast a slice of a `Pod` type to a mutable byte slice. |
+| [`Result`](#result) | type |  |
+| [`unsafe_impl_pod!`](#unsafe_impl_pod) | macro |  |
+
 ## Traits
 
 ### `Pod`

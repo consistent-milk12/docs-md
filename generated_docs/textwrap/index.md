@@ -194,6 +194,66 @@ These Cargo features enable new functionality:
 
 
 
+## Contents
+
+- [Modules](#modules)
+  - [`core`](#core)
+  - [`word_splitters`](#word_splitters)
+  - [`wrap_algorithms`](#wrap_algorithms)
+  - [`columns`](#columns)
+  - [`fill`](#fill)
+  - [`indentation`](#indentation)
+  - [`line_ending`](#line_ending)
+  - [`options`](#options)
+  - [`refill`](#refill)
+  - [`word_separators`](#word_separators)
+  - [`wrap`](#wrap)
+- [Structs](#structs)
+  - [`unnamed`](#unnamed)
+- [Enums](#enums)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+- [Functions](#functions)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`core`](#core) | mod | Building blocks for advanced wrapping functionality. |
+| [`word_splitters`](#word_splitters) | mod | Word splitting functionality. |
+| [`wrap_algorithms`](#wrap_algorithms) | mod | Word wrapping algorithms. |
+| [`columns`](#columns) | mod | Functionality for wrapping text into columns. |
+| [`fill`](#fill) | mod | Functions for filling text. |
+| [`indentation`](#indentation) | mod | Functions related to adding and removing indentation from lines of |
+| [`line_ending`](#line_ending) | mod | Line ending detection and conversion. |
+| [`options`](#options) | mod | Options for wrapping text. |
+| [`refill`](#refill) | mod | Functionality for unfilling and refilling text. |
+| [`word_separators`](#word_separators) | mod | Functionality for finding words. |
+| [`wrap`](#wrap) | mod | Functions for wrapping text. |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | enum |  |
+| [`unnamed`](#unnamed) | enum |  |
+| [`unnamed`](#unnamed) | enum |  |
+| [`unnamed`](#unnamed) | enum |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+
 ## Modules
 
 - [`core`](core/index.md) - Building blocks for advanced wrapping functionality.
@@ -271,33 +331,33 @@ Holds configuration options for wrapping and filling text.
 
 #### Implementations
 
-- `const fn new(width: usize) -> Self`
+- <span id="options-new"></span>`const fn new(width: usize) -> Self`
 
-- `fn line_ending(self: Self, line_ending: LineEnding) -> Self` — [`LineEnding`](#lineending)
+- <span id="options-line-ending"></span>`fn line_ending(self, line_ending: LineEnding) -> Self` — [`LineEnding`](#lineending)
 
-- `fn width(self: Self, width: usize) -> Self`
+- <span id="options-width"></span>`fn width(self, width: usize) -> Self`
 
-- `fn initial_indent(self: Self, initial_indent: &'a str) -> Self`
+- <span id="options-initial-indent"></span>`fn initial_indent(self, initial_indent: &'a str) -> Self`
 
-- `fn subsequent_indent(self: Self, subsequent_indent: &'a str) -> Self`
+- <span id="options-subsequent-indent"></span>`fn subsequent_indent(self, subsequent_indent: &'a str) -> Self`
 
-- `fn break_words(self: Self, break_words: bool) -> Self`
+- <span id="options-break-words"></span>`fn break_words(self, break_words: bool) -> Self`
 
-- `fn word_separator(self: Self, word_separator: WordSeparator) -> Options<'a>` — [`WordSeparator`](#wordseparator), [`Options`](#options)
+- <span id="options-word-separator"></span>`fn word_separator(self, word_separator: WordSeparator) -> Options<'a>` — [`WordSeparator`](#wordseparator), [`Options`](#options)
 
-- `fn wrap_algorithm(self: Self, wrap_algorithm: WrapAlgorithm) -> Options<'a>` — [`WrapAlgorithm`](#wrapalgorithm), [`Options`](#options)
+- <span id="options-wrap-algorithm"></span>`fn wrap_algorithm(self, wrap_algorithm: WrapAlgorithm) -> Options<'a>` — [`WrapAlgorithm`](#wrapalgorithm), [`Options`](#options)
 
-- `fn word_splitter(self: Self, word_splitter: WordSplitter) -> Options<'a>` — [`WordSplitter`](#wordsplitter), [`Options`](#options)
+- <span id="options-word-splitter"></span>`fn word_splitter(self, word_splitter: WordSplitter) -> Options<'a>` — [`WordSplitter`](#wordsplitter), [`Options`](#options)
 
 #### Trait Implementations
 
 ##### `impl<'a> Clone for Options<'a>`
 
-- `fn clone(self: &Self) -> Options<'a>` — [`Options`](#options)
+- <span id="options-clone"></span>`fn clone(&self) -> Options<'a>` — [`Options`](#options)
 
 ##### `impl<'a> Debug for Options<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="options-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Enums
 
@@ -328,25 +388,25 @@ endings are supported: `\r\n` and `\n`
 
 #### Implementations
 
-- `const fn as_str(self: &Self) -> &'static str`
+- <span id="lineending-as-str"></span>`const fn as_str(&self) -> &'static str`
 
 #### Trait Implementations
 
 ##### `impl Clone for LineEnding`
 
-- `fn clone(self: &Self) -> LineEnding` — [`LineEnding`](#lineending)
+- <span id="lineending-clone"></span>`fn clone(&self) -> LineEnding` — [`LineEnding`](#lineending)
 
 ##### `impl Copy for LineEnding`
 
 ##### `impl Debug for LineEnding`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="lineending-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for LineEnding`
 
 ##### `impl PartialEq for LineEnding`
 
-- `fn eq(self: &Self, other: &LineEnding) -> bool` — [`LineEnding`](#lineending)
+- <span id="lineending-eq"></span>`fn eq(&self, other: &LineEnding) -> bool` — [`LineEnding`](#lineending)
 
 ##### `impl StructuralPartialEq for LineEnding`
 
@@ -468,25 +528,25 @@ assert_eq!(words, vec![Word::from("Hello "), Word::from("World!")]);
 
 #### Implementations
 
-- `const fn new() -> Self`
+- <span id="wordseparator-new"></span>`const fn new() -> Self`
 
-- `fn find_words<'a>(self: &Self, line: &'a str) -> Box<dyn Iterator<Item = Word<'a>>>` — [`Word`](core/index.md)
+- <span id="wordseparator-find-words"></span>`fn find_words<'a>(&self, line: &'a str) -> Box<dyn Iterator<Item = Word<'a>>>` — [`Word`](core/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for WordSeparator`
 
-- `fn clone(self: &Self) -> WordSeparator` — [`WordSeparator`](#wordseparator)
+- <span id="wordseparator-clone"></span>`fn clone(&self) -> WordSeparator` — [`WordSeparator`](#wordseparator)
 
 ##### `impl Copy for WordSeparator`
 
 ##### `impl Debug for WordSeparator`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="wordseparator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl PartialEq for WordSeparator`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="wordseparator-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ### `WordSplitter`
 
@@ -583,21 +643,21 @@ details.
 
 #### Implementations
 
-- `fn split_points(self: &Self, word: &str) -> Vec<usize>`
+- <span id="wordsplitter-split-points"></span>`fn split_points(&self, word: &str) -> Vec<usize>`
 
 #### Trait Implementations
 
 ##### `impl Clone for WordSplitter`
 
-- `fn clone(self: &Self) -> WordSplitter` — [`WordSplitter`](#wordsplitter)
+- <span id="wordsplitter-clone"></span>`fn clone(&self) -> WordSplitter` — [`WordSplitter`](#wordsplitter)
 
 ##### `impl Debug for WordSplitter`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="wordsplitter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl PartialEq for WordSplitter`
 
-- `fn eq(self: &Self, other: &WordSplitter) -> bool` — [`WordSplitter`](#wordsplitter)
+- <span id="wordsplitter-eq"></span>`fn eq(&self, other: &WordSplitter) -> bool` — [`WordSplitter`](#wordsplitter)
 
 ### `WrapAlgorithm`
 
@@ -662,29 +722,29 @@ an entire paragraph at a time in order to find optimal line breaks
 
 #### Implementations
 
-- `const fn new() -> Self`
+- <span id="wrapalgorithm-new"></span>`const fn new() -> Self`
 
-- `fn wrap<'a, 'b>(self: &Self, words: &'b [Word<'a>], line_widths: &'b [usize]) -> Vec<&'b [Word<'a>]>` — [`Word`](core/index.md)
+- <span id="wrapalgorithm-wrap"></span>`fn wrap<'a, 'b>(&self, words: &'b [Word<'a>], line_widths: &'b [usize]) -> Vec<&'b [Word<'a>]>` — [`Word`](core/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for WrapAlgorithm`
 
-- `fn clone(self: &Self) -> WrapAlgorithm` — [`WrapAlgorithm`](#wrapalgorithm)
+- <span id="wrapalgorithm-clone"></span>`fn clone(&self) -> WrapAlgorithm` — [`WrapAlgorithm`](#wrapalgorithm)
 
 ##### `impl Copy for WrapAlgorithm`
 
 ##### `impl Debug for WrapAlgorithm`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="wrapalgorithm-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for WrapAlgorithm`
 
-- `fn default() -> Self`
+- <span id="wrapalgorithm-default"></span>`fn default() -> Self`
 
 ##### `impl PartialEq for WrapAlgorithm`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="wrapalgorithm-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ## Functions
 

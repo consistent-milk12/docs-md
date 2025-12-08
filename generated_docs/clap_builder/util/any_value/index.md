@@ -4,6 +4,13 @@
 
 # Module `any_value`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`AnyValue`](#anyvalue) | struct |  |
+| [`AnyValueId`](#anyvalueid) | struct |  |
+
 ## Structs
 
 ### `AnyValue`
@@ -17,23 +24,23 @@ struct AnyValue {
 
 #### Implementations
 
-- `fn new<V: std::any::Any + Clone + Send + Sync + 'static>(inner: V) -> Self`
+- <span id="anyvalue-new"></span>`fn new<V: std::any::Any + Clone + Send + Sync + 'static>(inner: V) -> Self`
 
-- `fn downcast_ref<T: std::any::Any + Clone + Send + Sync + 'static>(self: &Self) -> Option<&T>`
+- <span id="anyvalue-downcast-ref"></span>`fn downcast_ref<T: std::any::Any + Clone + Send + Sync + 'static>(&self) -> Option<&T>`
 
-- `fn downcast_into<T: std::any::Any + Clone + Send + Sync>(self: Self) -> Result<T, Self>`
+- <span id="anyvalue-downcast-into"></span>`fn downcast_into<T: std::any::Any + Clone + Send + Sync>(self) -> Result<T, Self>`
 
-- `fn type_id(self: &Self) -> AnyValueId` — [`AnyValueId`](#anyvalueid)
+- <span id="anyvalue-type-id"></span>`fn type_id(&self) -> AnyValueId` — [`AnyValueId`](#anyvalueid)
 
 #### Trait Implementations
 
 ##### `impl Clone for AnyValue`
 
-- `fn clone(self: &Self) -> AnyValue` — [`AnyValue`](#anyvalue)
+- <span id="anyvalue-clone"></span>`fn clone(&self) -> AnyValue` — [`AnyValue`](#anyvalue)
 
 ##### `impl Debug for AnyValue`
 
-- `fn fmt(self: &Self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error>`
+- <span id="anyvalue-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error>`
 
 ### `AnyValueId`
 
@@ -46,35 +53,35 @@ struct AnyValueId {
 
 #### Implementations
 
-- `fn of<A: ?Sized + 'static>() -> Self`
+- <span id="anyvalueid-of"></span>`fn of<A: ?Sized + 'static>() -> Self`
 
 #### Trait Implementations
 
 ##### `impl Clone for AnyValueId`
 
-- `fn clone(self: &Self) -> AnyValueId` — [`AnyValueId`](#anyvalueid)
+- <span id="anyvalueid-clone"></span>`fn clone(&self) -> AnyValueId` — [`AnyValueId`](#anyvalueid)
 
 ##### `impl Copy for AnyValueId`
 
 ##### `impl Debug for AnyValueId`
 
-- `fn fmt(self: &Self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error>`
+- <span id="anyvalueid-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error>`
 
 ##### `impl Eq for AnyValueId`
 
 ##### `impl Hash for AnyValueId`
 
-- `fn hash<H: std::hash::Hasher>(self: &Self, state: &mut H)`
+- <span id="anyvalueid-hash"></span>`fn hash<H: std::hash::Hasher>(&self, state: &mut H)`
 
 ##### `impl Ord for AnyValueId`
 
-- `fn cmp(self: &Self, other: &Self) -> std::cmp::Ordering`
+- <span id="anyvalueid-cmp"></span>`fn cmp(&self, other: &Self) -> std::cmp::Ordering`
 
 ##### `impl PartialEq for AnyValueId`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="anyvalueid-eq"></span>`fn eq(&self, other: &std::any::TypeId) -> bool`
 
 ##### `impl PartialOrd for AnyValueId`
 
-- `fn partial_cmp(self: &Self, other: &Self) -> Option<std::cmp::Ordering>`
+- <span id="anyvalueid-partial-cmp"></span>`fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering>`
 

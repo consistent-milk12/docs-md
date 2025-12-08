@@ -4,6 +4,12 @@
 
 # Module `table`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`STATE_CHANGES`](#state_changes) | const |  |
+
 ## Constants
 
 ### `STATE_CHANGES`

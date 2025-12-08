@@ -4,6 +4,14 @@
 
 # Module `parsing`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`parse_negative_lit`](#parse_negative_lit) | fn |  |
+| [`peek_impl`](#peek_impl) | fn |  |
+| [`impl_token!`](#impl_token) | macro |  |
+
 ## Functions
 
 ### `parse_negative_lit`

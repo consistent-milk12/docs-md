@@ -4,6 +4,13 @@
 
 # Module `scopeguard`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ScopeGuard`](#scopeguard) | struct |  |
+| [`guard`](#guard) | fn |  |
+
 ## Structs
 
 ### `ScopeGuard<T, F>`
@@ -19,27 +26,27 @@ where
 
 #### Implementations
 
-- `fn into_inner(guard: Self) -> T`
+- <span id="scopeguard-into-inner"></span>`fn into_inner(guard: Self) -> T`
 
 #### Trait Implementations
 
 ##### `impl<T, F> Deref for ScopeGuard<T, F>`
 
-- `type Target = T`
+- <span id="scopeguard-target"></span>`type Target = T`
 
-- `fn deref(self: &Self) -> &T`
+- <span id="scopeguard-deref"></span>`fn deref(&self) -> &T`
 
 ##### `impl<T, F> DerefMut for ScopeGuard<T, F>`
 
-- `fn deref_mut(self: &mut Self) -> &mut T`
+- <span id="scopeguard-deref-mut"></span>`fn deref_mut(&mut self) -> &mut T`
 
 ##### `impl<T, F> Drop for ScopeGuard<T, F>`
 
-- `fn drop(self: &mut Self)`
+- <span id="scopeguard-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<P, T> Receiver for ScopeGuard<T, F>`
 
-- `type Target = T`
+- <span id="scopeguard-target"></span>`type Target = T`
 
 ## Functions
 

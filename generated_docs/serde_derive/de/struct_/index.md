@@ -4,6 +4,14 @@
 
 # Module `struct_`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`deserialize`](#deserialize) | fn | Generates `Deserialize::deserialize` body for a `struct Struct {...}` |
+| [`deserialize_map`](#deserialize_map) | fn |  |
+| [`deserialize_field_identifier`](#deserialize_field_identifier) | fn | Generates enum and its `Deserialize` implementation that represents each |
+
 ## Functions
 
 ### `deserialize`

@@ -6,6 +6,14 @@
 
 Unix-specific extensions to wrappers in `fs_err` for `std::fs` types.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`FileExt`](#fileext) | trait | Wrapper for [`std::os::unix::fs::FileExt`](https://doc.rust-lang.org/std/os/unix/fs/trait.FileExt.html). |
+| [`OpenOptionsExt`](#openoptionsext) | trait | Wrapper for [`std::os::unix::fs::OpenOptionsExt`](https://doc.rust-lang.org/std/os/unix/fs/trait.OpenOptionsExt.html) |
+| [`symlink`](#symlink) | fn | Creates a new symbolic link on the filesystem. |
+
 ## Traits
 
 ### `FileExt`
@@ -21,11 +29,11 @@ This trait is sealed and can not be implemented by other crates.
 
 #### Required Methods
 
-- `fn read_at(self: &Self, buf: &mut [u8], offset: u64) -> io::Result<usize>`
+- `fn read_at(&self, buf: &mut [u8], offset: u64) -> io::Result<usize>`
 
   Wrapper for [`FileExt::read_at`](https://doc.rust-lang.org/std/os/unix/fs/trait.FileExt.html#tymethod.read_at)
 
-- `fn write_at(self: &Self, buf: &[u8], offset: u64) -> io::Result<usize>`
+- `fn write_at(&self, buf: &[u8], offset: u64) -> io::Result<usize>`
 
   Wrapper for [`FileExt::write_at`](https://doc.rust-lang.org/std/os/unix/fs/trait.FileExt.html#tymethod.write_at)
 
@@ -42,11 +50,11 @@ This trait is sealed and can not be implemented by other crates.
 
 #### Required Methods
 
-- `fn mode(self: &mut Self, mode: u32) -> &mut Self`
+- `fn mode(&mut self, mode: u32) -> &mut Self`
 
   Wrapper for [`OpenOptionsExt::mode`](https://doc.rust-lang.org/std/os/unix/fs/trait.OpenOptionsExt.html#tymethod.mode)
 
-- `fn custom_flags(self: &mut Self, flags: i32) -> &mut Self`
+- `fn custom_flags(&mut self, flags: i32) -> &mut Self`
 
   Wrapper for [`OpenOptionsExt::custom_flags`](https://doc.rust-lang.org/std/os/unix/fs/trait.OpenOptionsExt.html#tymethod.custom_flags)
 

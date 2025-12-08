@@ -11,6 +11,49 @@ This module is the home of [`hybrid::dfa::DFA`](DFA).
 This module also contains a [`hybrid::dfa::Builder`](Builder) and a
 [`hybrid::dfa::Config`](Config) for configuring and building a lazy DFA.
 
+## Contents
+
+- [Structs](#structs)
+  - [`DFA`](#dfa)
+  - [`Cache`](#cache)
+  - [`SearchProgress`](#searchprogress)
+  - [`Lazy`](#lazy)
+  - [`LazyRef`](#lazyref)
+  - [`Config`](#config)
+  - [`Builder`](#builder)
+  - [`OverlappingState`](#overlappingstate)
+- [Enums](#enums)
+  - [`StateSaver`](#statesaver)
+- [Functions](#functions)
+  - [`skip_empty_utf8_splits_overlapping`](#skip_empty_utf8_splits_overlapping)
+  - [`minimum_lazy_state_id`](#minimum_lazy_state_id)
+  - [`minimum_cache_capacity`](#minimum_cache_capacity)
+- [Type Aliases](#type-aliases)
+  - [`StateMap`](#statemap)
+- [Constants](#constants)
+  - [`MIN_STATES`](#min_states)
+  - [`SENTINEL_STATES`](#sentinel_states)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`DFA`](#dfa) | struct | A hybrid NFA/DFA (also called a "lazy DFA") for regex searching. |
+| [`Cache`](#cache) | struct | A cache represents a partially computed DFA. |
+| [`SearchProgress`](#searchprogress) | struct | Keeps track of the progress of the current search. |
+| [`Lazy`](#lazy) | struct | A type that groups methods that require the base NFA/DFA and writable |
+| [`LazyRef`](#lazyref) | struct | A type that groups methods that require the base NFA/DFA and read-only |
+| [`Config`](#config) | struct | The configuration used for building a lazy DFA. |
+| [`Builder`](#builder) | struct | A builder for constructing a lazy deterministic finite automaton from |
+| [`OverlappingState`](#overlappingstate) | struct | Represents the current state of an overlapping search. |
+| [`StateSaver`](#statesaver) | enum | A simple type that encapsulates the saving of a state ID through a cache |
+| [`skip_empty_utf8_splits_overlapping`](#skip_empty_utf8_splits_overlapping) | fn | Runs the given overlapping `search` function (forwards or backwards) until |
+| [`minimum_lazy_state_id`](#minimum_lazy_state_id) | fn | Based on the minimum number of states required for a useful lazy DFA cache |
+| [`minimum_cache_capacity`](#minimum_cache_capacity) | fn | Based on the minimum number of states required for a useful lazy DFA cache |
+| [`StateMap`](#statemap) | type | A map from states to state identifiers. |
+| [`MIN_STATES`](#min_states) | const | The minimum number of states that a lazy DFA's cache size must support. |
+| [`SENTINEL_STATES`](#sentinel_states) | const | The number of "sentinel" states that get added to every lazy DFA. |
+
 ## Structs
 
 ### `DFA`
@@ -95,45 +138,33 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new(pattern: &str) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../index.md)
+- <span id="dfa-next-state"></span>`fn next_state(&self, cache: &mut Cache, current: LazyStateID, input: u8) -> Result<LazyStateID, CacheError>` — [`Cache`](#cache), [`LazyStateID`](../index.md), [`CacheError`](../index.md)
 
-- `fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../index.md)
+- <span id="dfa-next-state-untagged"></span>`fn next_state_untagged(&self, cache: &Cache, current: LazyStateID, input: u8) -> LazyStateID` — [`Cache`](#cache), [`LazyStateID`](../index.md)
 
-- `fn always_match() -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../index.md)
+- <span id="dfa-next-state-untagged-unchecked"></span>`unsafe fn next_state_untagged_unchecked(&self, cache: &Cache, current: LazyStateID, input: u8) -> LazyStateID` — [`Cache`](#cache), [`LazyStateID`](../index.md)
 
-- `fn never_match() -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../index.md)
+- <span id="dfa-next-eoi-state"></span>`fn next_eoi_state(&self, cache: &mut Cache, current: LazyStateID) -> Result<LazyStateID, CacheError>` — [`Cache`](#cache), [`LazyStateID`](../index.md), [`CacheError`](../index.md)
 
-- `fn config() -> Config` — [`Config`](#config)
+- <span id="dfa-start-state"></span>`fn start_state(&self, cache: &mut Cache, config: &start::Config) -> Result<LazyStateID, StartError>` — [`Cache`](#cache), [`Config`](../../util/start/index.md), [`LazyStateID`](../index.md), [`StartError`](../index.md)
 
-- `fn builder() -> Builder` — [`Builder`](#builder)
+- <span id="dfa-start-state-forward"></span>`fn start_state_forward(&self, cache: &mut Cache, input: &Input<'_>) -> Result<LazyStateID, MatchError>` — [`Cache`](#cache), [`Input`](../../index.md), [`LazyStateID`](../index.md), [`MatchError`](../../index.md)
 
-- `fn create_cache(self: &Self) -> Cache` — [`Cache`](#cache)
+- <span id="dfa-start-state-reverse"></span>`fn start_state_reverse(&self, cache: &mut Cache, input: &Input<'_>) -> Result<LazyStateID, MatchError>` — [`Cache`](#cache), [`Input`](../../index.md), [`LazyStateID`](../index.md), [`MatchError`](../../index.md)
 
-- `fn reset_cache(self: &Self, cache: &mut Cache)` — [`Cache`](#cache)
+- <span id="dfa-match-len"></span>`fn match_len(&self, cache: &Cache, id: LazyStateID) -> usize` — [`Cache`](#cache), [`LazyStateID`](../index.md)
 
-- `fn pattern_len(self: &Self) -> usize`
-
-- `fn byte_classes(self: &Self) -> &ByteClasses` — [`ByteClasses`](../../util/alphabet/index.md)
-
-- `fn get_config(self: &Self) -> &Config` — [`Config`](#config)
-
-- `fn get_nfa(self: &Self) -> &thompson::NFA` — [`NFA`](../../nfa/thompson/index.md)
-
-- `fn stride2(self: &Self) -> usize`
-
-- `fn stride(self: &Self) -> usize`
-
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="dfa-match-pattern"></span>`fn match_pattern(&self, cache: &Cache, id: LazyStateID, match_index: usize) -> PatternID` — [`Cache`](#cache), [`LazyStateID`](../index.md), [`PatternID`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for DFA`
 
-- `fn clone(self: &Self) -> DFA` — [`DFA`](#dfa)
+- <span id="dfa-clone"></span>`fn clone(&self) -> DFA` — [`DFA`](#dfa)
 
 ##### `impl Debug for DFA`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dfa-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Cache`
 
@@ -284,31 +315,31 @@ or incorrect results.
 
 #### Implementations
 
-- `fn new(dfa: &DFA) -> Cache` — [`DFA`](#dfa), [`Cache`](#cache)
+- <span id="cache-new"></span>`fn new(dfa: &DFA) -> Cache` — [`DFA`](#dfa), [`Cache`](#cache)
 
-- `fn reset(self: &mut Self, dfa: &DFA)` — [`DFA`](#dfa)
+- <span id="cache-reset"></span>`fn reset(&mut self, dfa: &DFA)` — [`DFA`](#dfa)
 
-- `fn search_start(self: &mut Self, at: usize)`
+- <span id="cache-search-start"></span>`fn search_start(&mut self, at: usize)`
 
-- `fn search_update(self: &mut Self, at: usize)`
+- <span id="cache-search-update"></span>`fn search_update(&mut self, at: usize)`
 
-- `fn search_finish(self: &mut Self, at: usize)`
+- <span id="cache-search-finish"></span>`fn search_finish(&mut self, at: usize)`
 
-- `fn search_total_len(self: &Self) -> usize`
+- <span id="cache-search-total-len"></span>`fn search_total_len(&self) -> usize`
 
-- `fn clear_count(self: &Self) -> usize`
+- <span id="cache-clear-count"></span>`fn clear_count(&self) -> usize`
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="cache-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Clone for Cache`
 
-- `fn clone(self: &Self) -> Cache` — [`Cache`](#cache)
+- <span id="cache-clone"></span>`fn clone(&self) -> Cache` — [`Cache`](#cache)
 
 ##### `impl Debug for Cache`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="cache-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `SearchProgress`
 
@@ -328,17 +359,17 @@ whether the lazy DFA should give up or not.
 
 #### Implementations
 
-- `fn len(self: &Self) -> usize`
+- <span id="searchprogress-len"></span>`fn len(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Clone for SearchProgress`
 
-- `fn clone(self: &Self) -> SearchProgress` — [`SearchProgress`](#searchprogress)
+- <span id="searchprogress-clone"></span>`fn clone(&self) -> SearchProgress` — [`SearchProgress`](#searchprogress)
 
 ##### `impl Debug for SearchProgress`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="searchprogress-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Lazy<'i, 'c>`
 
@@ -354,49 +385,49 @@ access to the cache.
 
 #### Implementations
 
-- `fn new(dfa: &'i DFA, cache: &'c mut Cache) -> Lazy<'i, 'c>` — [`DFA`](#dfa), [`Cache`](#cache), [`Lazy`](#lazy)
+- <span id="lazy-new"></span>`fn new(dfa: &'i DFA, cache: &'c mut Cache) -> Lazy<'i, 'c>` — [`DFA`](#dfa), [`Cache`](#cache), [`Lazy`](#lazy)
 
-- `fn as_ref<'a>(self: &'a Self) -> LazyRef<'i, 'a>` — [`LazyRef`](#lazyref)
+- <span id="lazy-as-ref"></span>`fn as_ref<'a>(self: &'a Self) -> LazyRef<'i, 'a>` — [`LazyRef`](#lazyref)
 
-- `fn cache_next_state(self: &mut Self, current: LazyStateID, unit: alphabet::Unit) -> Result<LazyStateID, CacheError>` — [`LazyStateID`](../index.md), [`Unit`](../../util/alphabet/index.md), [`CacheError`](../index.md)
+- <span id="lazy-cache-next-state"></span>`fn cache_next_state(&mut self, current: LazyStateID, unit: alphabet::Unit) -> Result<LazyStateID, CacheError>` — [`LazyStateID`](../index.md), [`Unit`](../../util/alphabet/index.md), [`CacheError`](../index.md)
 
-- `fn cache_start_group(self: &mut Self, anchored: Anchored, start: Start) -> Result<LazyStateID, StartError>` — [`Anchored`](../../index.md), [`Start`](../../util/start/index.md), [`LazyStateID`](../index.md), [`StartError`](../index.md)
+- <span id="lazy-cache-start-group"></span>`fn cache_start_group(&mut self, anchored: Anchored, start: Start) -> Result<LazyStateID, StartError>` — [`Anchored`](../../index.md), [`Start`](../../util/start/index.md), [`LazyStateID`](../index.md), [`StartError`](../index.md)
 
-- `fn cache_start_one(self: &mut Self, nfa_start_id: NFAStateID, start: Start) -> Result<LazyStateID, CacheError>` — [`StateID`](../../util/primitives/index.md), [`Start`](../../util/start/index.md), [`LazyStateID`](../index.md), [`CacheError`](../index.md)
+- <span id="lazy-cache-start-one"></span>`fn cache_start_one(&mut self, nfa_start_id: NFAStateID, start: Start) -> Result<LazyStateID, CacheError>` — [`StateID`](../../util/primitives/index.md), [`Start`](../../util/start/index.md), [`LazyStateID`](../index.md), [`CacheError`](../index.md)
 
-- `fn add_builder_state(self: &mut Self, builder: StateBuilderNFA, idmap: impl Fn(LazyStateID) -> LazyStateID) -> Result<LazyStateID, CacheError>` — [`StateBuilderNFA`](../../util/determinize/state/index.md), [`LazyStateID`](../index.md), [`CacheError`](../index.md)
+- <span id="lazy-add-builder-state"></span>`fn add_builder_state(&mut self, builder: StateBuilderNFA, idmap: impl Fn(LazyStateID) -> LazyStateID) -> Result<LazyStateID, CacheError>` — [`StateBuilderNFA`](../../util/determinize/state/index.md), [`LazyStateID`](../index.md), [`CacheError`](../index.md)
 
-- `fn add_state(self: &mut Self, state: State, idmap: impl Fn(LazyStateID) -> LazyStateID) -> Result<LazyStateID, CacheError>` — [`State`](../../util/determinize/state/index.md), [`LazyStateID`](../index.md), [`CacheError`](../index.md)
+- <span id="lazy-add-state"></span>`fn add_state(&mut self, state: State, idmap: impl Fn(LazyStateID) -> LazyStateID) -> Result<LazyStateID, CacheError>` — [`State`](../../util/determinize/state/index.md), [`LazyStateID`](../index.md), [`CacheError`](../index.md)
 
-- `fn next_state_id(self: &mut Self) -> Result<LazyStateID, CacheError>` — [`LazyStateID`](../index.md), [`CacheError`](../index.md)
+- <span id="lazy-next-state-id"></span>`fn next_state_id(&mut self) -> Result<LazyStateID, CacheError>` — [`LazyStateID`](../index.md), [`CacheError`](../index.md)
 
-- `fn try_clear_cache(self: &mut Self) -> Result<(), CacheError>` — [`CacheError`](../index.md)
+- <span id="lazy-try-clear-cache"></span>`fn try_clear_cache(&mut self) -> Result<(), CacheError>` — [`CacheError`](../index.md)
 
-- `fn reset_cache(self: &mut Self)`
+- <span id="lazy-reset-cache"></span>`fn reset_cache(&mut self)`
 
-- `fn clear_cache(self: &mut Self)`
+- <span id="lazy-clear-cache"></span>`fn clear_cache(&mut self)`
 
-- `fn init_cache(self: &mut Self)`
+- <span id="lazy-init-cache"></span>`fn init_cache(&mut self)`
 
-- `fn save_state(self: &mut Self, id: LazyStateID)` — [`LazyStateID`](../index.md)
+- <span id="lazy-save-state"></span>`fn save_state(&mut self, id: LazyStateID)` — [`LazyStateID`](../index.md)
 
-- `fn saved_state_id(self: &mut Self) -> LazyStateID` — [`LazyStateID`](../index.md)
+- <span id="lazy-saved-state-id"></span>`fn saved_state_id(&mut self) -> LazyStateID` — [`LazyStateID`](../index.md)
 
-- `fn set_all_transitions(self: &mut Self, from: LazyStateID, to: LazyStateID)` — [`LazyStateID`](../index.md)
+- <span id="lazy-set-all-transitions"></span>`fn set_all_transitions(&mut self, from: LazyStateID, to: LazyStateID)` — [`LazyStateID`](../index.md)
 
-- `fn set_transition(self: &mut Self, from: LazyStateID, unit: alphabet::Unit, to: LazyStateID)` — [`LazyStateID`](../index.md), [`Unit`](../../util/alphabet/index.md)
+- <span id="lazy-set-transition"></span>`fn set_transition(&mut self, from: LazyStateID, unit: alphabet::Unit, to: LazyStateID)` — [`LazyStateID`](../index.md), [`Unit`](../../util/alphabet/index.md)
 
-- `fn set_start_state(self: &mut Self, anchored: Anchored, start: Start, id: LazyStateID)` — [`Anchored`](../../index.md), [`Start`](../../util/start/index.md), [`LazyStateID`](../index.md)
+- <span id="lazy-set-start-state"></span>`fn set_start_state(&mut self, anchored: Anchored, start: Start, id: LazyStateID)` — [`Anchored`](../../index.md), [`Start`](../../util/start/index.md), [`LazyStateID`](../index.md)
 
-- `fn get_state_builder(self: &mut Self) -> StateBuilderEmpty` — [`StateBuilderEmpty`](../../util/determinize/state/index.md)
+- <span id="lazy-get-state-builder"></span>`fn get_state_builder(&mut self) -> StateBuilderEmpty` — [`StateBuilderEmpty`](../../util/determinize/state/index.md)
 
-- `fn put_state_builder(self: &mut Self, builder: StateBuilderNFA)` — [`StateBuilderNFA`](../../util/determinize/state/index.md)
+- <span id="lazy-put-state-builder"></span>`fn put_state_builder(&mut self, builder: StateBuilderNFA)` — [`StateBuilderNFA`](../../util/determinize/state/index.md)
 
 #### Trait Implementations
 
 ##### `impl<'i, 'c> Debug for Lazy<'i, 'c>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="lazy-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `LazyRef<'i, 'c>`
 
@@ -412,33 +443,33 @@ access to the cache.
 
 #### Implementations
 
-- `fn new(dfa: &'i DFA, cache: &'c Cache) -> LazyRef<'i, 'c>` — [`DFA`](#dfa), [`Cache`](#cache), [`LazyRef`](#lazyref)
+- <span id="lazyref-new"></span>`fn new(dfa: &'i DFA, cache: &'c Cache) -> LazyRef<'i, 'c>` — [`DFA`](#dfa), [`Cache`](#cache), [`LazyRef`](#lazyref)
 
-- `fn get_cached_start_id(self: &Self, anchored: Anchored, start: Start) -> Result<LazyStateID, StartError>` — [`Anchored`](../../index.md), [`Start`](../../util/start/index.md), [`LazyStateID`](../index.md), [`StartError`](../index.md)
+- <span id="lazyref-get-cached-start-id"></span>`fn get_cached_start_id(&self, anchored: Anchored, start: Start) -> Result<LazyStateID, StartError>` — [`Anchored`](../../index.md), [`Start`](../../util/start/index.md), [`LazyStateID`](../index.md), [`StartError`](../index.md)
 
-- `fn get_cached_state(self: &Self, sid: LazyStateID) -> &State` — [`LazyStateID`](../index.md), [`State`](../../util/determinize/state/index.md)
+- <span id="lazyref-get-cached-state"></span>`fn get_cached_state(&self, sid: LazyStateID) -> &State` — [`LazyStateID`](../index.md), [`State`](../../util/determinize/state/index.md)
 
-- `fn is_sentinel(self: &Self, id: LazyStateID) -> bool` — [`LazyStateID`](../index.md)
+- <span id="lazyref-is-sentinel"></span>`fn is_sentinel(&self, id: LazyStateID) -> bool` — [`LazyStateID`](../index.md)
 
-- `fn unknown_id(self: &Self) -> LazyStateID` — [`LazyStateID`](../index.md)
+- <span id="lazyref-unknown-id"></span>`fn unknown_id(&self) -> LazyStateID` — [`LazyStateID`](../index.md)
 
-- `fn dead_id(self: &Self) -> LazyStateID` — [`LazyStateID`](../index.md)
+- <span id="lazyref-dead-id"></span>`fn dead_id(&self) -> LazyStateID` — [`LazyStateID`](../index.md)
 
-- `fn quit_id(self: &Self) -> LazyStateID` — [`LazyStateID`](../index.md)
+- <span id="lazyref-quit-id"></span>`fn quit_id(&self) -> LazyStateID` — [`LazyStateID`](../index.md)
 
-- `fn is_valid(self: &Self, id: LazyStateID) -> bool` — [`LazyStateID`](../index.md)
+- <span id="lazyref-is-valid"></span>`fn is_valid(&self, id: LazyStateID) -> bool` — [`LazyStateID`](../index.md)
 
-- `fn state_fits_in_cache(self: &Self, state: &State) -> bool` — [`State`](../../util/determinize/state/index.md)
+- <span id="lazyref-state-fits-in-cache"></span>`fn state_fits_in_cache(&self, state: &State) -> bool` — [`State`](../../util/determinize/state/index.md)
 
-- `fn state_builder_fits_in_cache(self: &Self, state: &StateBuilderNFA) -> bool` — [`StateBuilderNFA`](../../util/determinize/state/index.md)
+- <span id="lazyref-state-builder-fits-in-cache"></span>`fn state_builder_fits_in_cache(&self, state: &StateBuilderNFA) -> bool` — [`StateBuilderNFA`](../../util/determinize/state/index.md)
 
-- `fn memory_usage_for_one_more_state(self: &Self, state_heap_size: usize) -> usize`
+- <span id="lazyref-memory-usage-for-one-more-state"></span>`fn memory_usage_for_one_more_state(&self, state_heap_size: usize) -> usize`
 
 #### Trait Implementations
 
 ##### `impl<'i, 'c> Debug for LazyRef<'i, 'c>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="lazyref-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Config`
 
@@ -474,73 +505,73 @@ default) and an [`Anchored::Pattern`](../../index.md) mode is requested via [`In
 
 #### Implementations
 
-- `fn new() -> Config` — [`Config`](#config)
+- <span id="config-new"></span>`fn new() -> Config` — [`Config`](#config)
 
-- `fn match_kind(self: Self, kind: MatchKind) -> Config` — [`MatchKind`](../../index.md), [`Config`](#config)
+- <span id="config-match-kind"></span>`fn match_kind(self, kind: MatchKind) -> Config` — [`MatchKind`](../../index.md), [`Config`](#config)
 
-- `fn prefilter(self: Self, pre: Option<Prefilter>) -> Config` — [`Prefilter`](../../util/prefilter/index.md), [`Config`](#config)
+- <span id="config-prefilter"></span>`fn prefilter(self, pre: Option<Prefilter>) -> Config` — [`Prefilter`](../../util/prefilter/index.md), [`Config`](#config)
 
-- `fn starts_for_each_pattern(self: Self, yes: bool) -> Config` — [`Config`](#config)
+- <span id="config-starts-for-each-pattern"></span>`fn starts_for_each_pattern(self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn byte_classes(self: Self, yes: bool) -> Config` — [`Config`](#config)
+- <span id="config-byte-classes"></span>`fn byte_classes(self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn unicode_word_boundary(self: Self, yes: bool) -> Config` — [`Config`](#config)
+- <span id="config-unicode-word-boundary"></span>`fn unicode_word_boundary(self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn quit(self: Self, byte: u8, yes: bool) -> Config` — [`Config`](#config)
+- <span id="config-quit"></span>`fn quit(self, byte: u8, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn specialize_start_states(self: Self, yes: bool) -> Config` — [`Config`](#config)
+- <span id="config-specialize-start-states"></span>`fn specialize_start_states(self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn cache_capacity(self: Self, bytes: usize) -> Config` — [`Config`](#config)
+- <span id="config-cache-capacity"></span>`fn cache_capacity(self, bytes: usize) -> Config` — [`Config`](#config)
 
-- `fn skip_cache_capacity_check(self: Self, yes: bool) -> Config` — [`Config`](#config)
+- <span id="config-skip-cache-capacity-check"></span>`fn skip_cache_capacity_check(self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn minimum_cache_clear_count(self: Self, min: Option<usize>) -> Config` — [`Config`](#config)
+- <span id="config-minimum-cache-clear-count"></span>`fn minimum_cache_clear_count(self, min: Option<usize>) -> Config` — [`Config`](#config)
 
-- `fn minimum_bytes_per_state(self: Self, min: Option<usize>) -> Config` — [`Config`](#config)
+- <span id="config-minimum-bytes-per-state"></span>`fn minimum_bytes_per_state(self, min: Option<usize>) -> Config` — [`Config`](#config)
 
-- `fn get_match_kind(self: &Self) -> MatchKind` — [`MatchKind`](../../index.md)
+- <span id="config-get-match-kind"></span>`fn get_match_kind(&self) -> MatchKind` — [`MatchKind`](../../index.md)
 
-- `fn get_prefilter(self: &Self) -> Option<&Prefilter>` — [`Prefilter`](../../util/prefilter/index.md)
+- <span id="config-get-prefilter"></span>`fn get_prefilter(&self) -> Option<&Prefilter>` — [`Prefilter`](../../util/prefilter/index.md)
 
-- `fn get_starts_for_each_pattern(self: &Self) -> bool`
+- <span id="config-get-starts-for-each-pattern"></span>`fn get_starts_for_each_pattern(&self) -> bool`
 
-- `fn get_byte_classes(self: &Self) -> bool`
+- <span id="config-get-byte-classes"></span>`fn get_byte_classes(&self) -> bool`
 
-- `fn get_unicode_word_boundary(self: &Self) -> bool`
+- <span id="config-get-unicode-word-boundary"></span>`fn get_unicode_word_boundary(&self) -> bool`
 
-- `fn get_quit(self: &Self, byte: u8) -> bool`
+- <span id="config-get-quit"></span>`fn get_quit(&self, byte: u8) -> bool`
 
-- `fn get_specialize_start_states(self: &Self) -> bool`
+- <span id="config-get-specialize-start-states"></span>`fn get_specialize_start_states(&self) -> bool`
 
-- `fn get_cache_capacity(self: &Self) -> usize`
+- <span id="config-get-cache-capacity"></span>`fn get_cache_capacity(&self) -> usize`
 
-- `fn get_skip_cache_capacity_check(self: &Self) -> bool`
+- <span id="config-get-skip-cache-capacity-check"></span>`fn get_skip_cache_capacity_check(&self) -> bool`
 
-- `fn get_minimum_cache_clear_count(self: &Self) -> Option<usize>`
+- <span id="config-get-minimum-cache-clear-count"></span>`fn get_minimum_cache_clear_count(&self) -> Option<usize>`
 
-- `fn get_minimum_bytes_per_state(self: &Self) -> Option<usize>`
+- <span id="config-get-minimum-bytes-per-state"></span>`fn get_minimum_bytes_per_state(&self) -> Option<usize>`
 
-- `fn get_minimum_cache_capacity(self: &Self, nfa: &thompson::NFA) -> Result<usize, BuildError>` — [`NFA`](../../nfa/thompson/index.md), [`BuildError`](../index.md)
+- <span id="config-get-minimum-cache-capacity"></span>`fn get_minimum_cache_capacity(&self, nfa: &thompson::NFA) -> Result<usize, BuildError>` — [`NFA`](../../nfa/thompson/index.md), [`BuildError`](../index.md)
 
-- `fn byte_classes_from_nfa(self: &Self, nfa: &thompson::NFA, quit: &ByteSet) -> ByteClasses` — [`NFA`](../../nfa/thompson/index.md), [`ByteSet`](../../util/alphabet/index.md), [`ByteClasses`](../../util/alphabet/index.md)
+- <span id="config-byte-classes-from-nfa"></span>`fn byte_classes_from_nfa(&self, nfa: &thompson::NFA, quit: &ByteSet) -> ByteClasses` — [`NFA`](../../nfa/thompson/index.md), [`ByteSet`](../../util/alphabet/index.md), [`ByteClasses`](../../util/alphabet/index.md)
 
-- `fn quit_set_from_nfa(self: &Self, nfa: &thompson::NFA) -> Result<ByteSet, BuildError>` — [`NFA`](../../nfa/thompson/index.md), [`ByteSet`](../../util/alphabet/index.md), [`BuildError`](../index.md)
+- <span id="config-quit-set-from-nfa"></span>`fn quit_set_from_nfa(&self, nfa: &thompson::NFA) -> Result<ByteSet, BuildError>` — [`NFA`](../../nfa/thompson/index.md), [`ByteSet`](../../util/alphabet/index.md), [`BuildError`](../index.md)
 
-- `fn overwrite(self: &Self, o: Config) -> Config` — [`Config`](#config)
+- <span id="config-overwrite"></span>`fn overwrite(&self, o: Config) -> Config` — [`Config`](#config)
 
 #### Trait Implementations
 
 ##### `impl Clone for Config`
 
-- `fn clone(self: &Self) -> Config` — [`Config`](#config)
+- <span id="config-clone"></span>`fn clone(&self) -> Config` — [`Config`](#config)
 
 ##### `impl Debug for Config`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="config-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Config`
 
-- `fn default() -> Config` — [`Config`](#config)
+- <span id="config-default"></span>`fn default() -> Config` — [`Config`](#config)
 
 ### `Builder`
 
@@ -619,29 +650,29 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new() -> Builder` — [`Builder`](#builder)
+- <span id="builder-new"></span>`fn new() -> Builder` — [`Builder`](#builder)
 
-- `fn build(self: &Self, pattern: &str) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../index.md)
+- <span id="builder-build"></span>`fn build(&self, pattern: &str) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../index.md)
 
-- `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../index.md)
+- <span id="builder-build-many"></span>`fn build_many<P: AsRef<str>>(&self, patterns: &[P]) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../index.md)
 
-- `fn build_from_nfa(self: &Self, nfa: thompson::NFA) -> Result<DFA, BuildError>` — [`NFA`](../../nfa/thompson/index.md), [`DFA`](#dfa), [`BuildError`](../index.md)
+- <span id="builder-build-from-nfa"></span>`fn build_from_nfa(&self, nfa: thompson::NFA) -> Result<DFA, BuildError>` — [`NFA`](../../nfa/thompson/index.md), [`DFA`](#dfa), [`BuildError`](../index.md)
 
-- `fn configure(self: &mut Self, config: Config) -> &mut Builder` — [`Config`](#config), [`Builder`](#builder)
+- <span id="builder-configure"></span>`fn configure(&mut self, config: Config) -> &mut Builder` — [`Config`](#config), [`Builder`](#builder)
 
-- `fn syntax(self: &mut Self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../util/syntax/index.md), [`Builder`](#builder)
+- <span id="builder-syntax"></span>`fn syntax(&mut self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../util/syntax/index.md), [`Builder`](#builder)
 
-- `fn thompson(self: &mut Self, config: thompson::Config) -> &mut Builder` — [`Config`](../../nfa/thompson/index.md), [`Builder`](#builder)
+- <span id="builder-thompson"></span>`fn thompson(&mut self, config: thompson::Config) -> &mut Builder` — [`Config`](../../nfa/thompson/index.md), [`Builder`](#builder)
 
 #### Trait Implementations
 
 ##### `impl Clone for Builder`
 
-- `fn clone(self: &Self) -> Builder` — [`Builder`](#builder)
+- <span id="builder-clone"></span>`fn clone(&self) -> Builder` — [`Builder`](#builder)
 
 ##### `impl Debug for Builder`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="builder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `OverlappingState`
 
@@ -724,25 +755,25 @@ a previous search may result in incorrect results.
 
 #### Implementations
 
-- `fn start() -> OverlappingState` — [`OverlappingState`](#overlappingstate)
+- <span id="overlappingstate-start"></span>`fn start() -> OverlappingState` — [`OverlappingState`](#overlappingstate)
 
-- `fn get_match(self: &Self) -> Option<HalfMatch>` — [`HalfMatch`](../../index.md)
+- <span id="overlappingstate-get-match"></span>`fn get_match(&self) -> Option<HalfMatch>` — [`HalfMatch`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for OverlappingState`
 
-- `fn clone(self: &Self) -> OverlappingState` — [`OverlappingState`](#overlappingstate)
+- <span id="overlappingstate-clone"></span>`fn clone(&self) -> OverlappingState` — [`OverlappingState`](#overlappingstate)
 
 ##### `impl Debug for OverlappingState`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="overlappingstate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for OverlappingState`
 
 ##### `impl PartialEq for OverlappingState`
 
-- `fn eq(self: &Self, other: &OverlappingState) -> bool` — [`OverlappingState`](#overlappingstate)
+- <span id="overlappingstate-eq"></span>`fn eq(&self, other: &OverlappingState) -> bool` — [`OverlappingState`](#overlappingstate)
 
 ##### `impl StructuralPartialEq for OverlappingState`
 
@@ -789,21 +820,21 @@ saved itself with Saved.
 
 #### Implementations
 
-- `fn none() -> StateSaver` — [`StateSaver`](#statesaver)
+- <span id="statesaver-none"></span>`fn none() -> StateSaver` — [`StateSaver`](#statesaver)
 
-- `fn take_to_save(self: &mut Self) -> Option<(LazyStateID, State)>` — [`LazyStateID`](../index.md), [`State`](../../util/determinize/state/index.md)
+- <span id="statesaver-take-to-save"></span>`fn take_to_save(&mut self) -> Option<(LazyStateID, State)>` — [`LazyStateID`](../index.md), [`State`](../../util/determinize/state/index.md)
 
-- `fn take_saved(self: &mut Self) -> Option<LazyStateID>` — [`LazyStateID`](../index.md)
+- <span id="statesaver-take-saved"></span>`fn take_saved(&mut self) -> Option<LazyStateID>` — [`LazyStateID`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for StateSaver`
 
-- `fn clone(self: &Self) -> StateSaver` — [`StateSaver`](#statesaver)
+- <span id="statesaver-clone"></span>`fn clone(&self) -> StateSaver` — [`StateSaver`](#statesaver)
 
 ##### `impl Debug for StateSaver`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="statesaver-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Functions
 

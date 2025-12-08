@@ -11,6 +11,14 @@ circumstances. When possible, prefer using [`AhoCorasick`](crate::AhoCorasick)
 instead of a DFA directly. Using an `DFA` directly is typically only necessary
 when one needs access to the [`Automaton`](../automaton/index.md) trait implementation.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`DFA`](#dfa) | struct | A DFA implementation of Aho-Corasick. |
+| [`Builder`](#builder) | struct | A builder for configuring an Aho-Corasick DFA. |
+| [`sparse_iter`](#sparse_iter) | fn | Iterate over all possible equivalence class transitions in this state. |
+
 ## Structs
 
 ### `DFA`
@@ -166,51 +174,51 @@ It is also possible to implement your own version of `try_find`. See the
 
 #### Implementations
 
-- `const DEAD: StateID`
+- <span id="dfa-new"></span>`fn new<I, P>(patterns: I) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../index.md)
 
-- `fn set_matches(self: &mut Self, sid: StateID, pids: impl Iterator<Item = PatternID>)` — [`StateID`](../util/primitives/index.md), [`PatternID`](../index.md)
+- <span id="dfa-builder"></span>`fn builder() -> Builder` — [`Builder`](#builder)
 
 #### Trait Implementations
 
 ##### `impl Automaton for DFA`
 
-- `fn start_state(self: &Self, anchored: Anchored) -> Result<StateID, MatchError>` — [`Anchored`](../index.md), [`StateID`](../util/primitives/index.md), [`MatchError`](../index.md)
+- <span id="dfa-start-state"></span>`fn start_state(&self, anchored: Anchored) -> Result<StateID, MatchError>` — [`Anchored`](../index.md), [`StateID`](../util/primitives/index.md), [`MatchError`](../index.md)
 
-- `fn next_state(self: &Self, _anchored: Anchored, sid: StateID, byte: u8) -> StateID` — [`Anchored`](../index.md), [`StateID`](../util/primitives/index.md)
+- <span id="dfa-next-state"></span>`fn next_state(&self, _anchored: Anchored, sid: StateID, byte: u8) -> StateID` — [`Anchored`](../index.md), [`StateID`](../util/primitives/index.md)
 
-- `fn is_special(self: &Self, sid: StateID) -> bool` — [`StateID`](../util/primitives/index.md)
+- <span id="dfa-is-special"></span>`fn is_special(&self, sid: StateID) -> bool` — [`StateID`](../util/primitives/index.md)
 
-- `fn is_dead(self: &Self, sid: StateID) -> bool` — [`StateID`](../util/primitives/index.md)
+- <span id="dfa-is-dead"></span>`fn is_dead(&self, sid: StateID) -> bool` — [`StateID`](../util/primitives/index.md)
 
-- `fn is_match(self: &Self, sid: StateID) -> bool` — [`StateID`](../util/primitives/index.md)
+- <span id="dfa-is-match"></span>`fn is_match(&self, sid: StateID) -> bool` — [`StateID`](../util/primitives/index.md)
 
-- `fn is_start(self: &Self, sid: StateID) -> bool` — [`StateID`](../util/primitives/index.md)
+- <span id="dfa-is-start"></span>`fn is_start(&self, sid: StateID) -> bool` — [`StateID`](../util/primitives/index.md)
 
-- `fn match_kind(self: &Self) -> MatchKind` — [`MatchKind`](../index.md)
+- <span id="dfa-match-kind"></span>`fn match_kind(&self) -> MatchKind` — [`MatchKind`](../index.md)
 
-- `fn patterns_len(self: &Self) -> usize`
+- <span id="dfa-patterns-len"></span>`fn patterns_len(&self) -> usize`
 
-- `fn pattern_len(self: &Self, pid: PatternID) -> usize` — [`PatternID`](../index.md)
+- <span id="dfa-pattern-len"></span>`fn pattern_len(&self, pid: PatternID) -> usize` — [`PatternID`](../index.md)
 
-- `fn min_pattern_len(self: &Self) -> usize`
+- <span id="dfa-min-pattern-len"></span>`fn min_pattern_len(&self) -> usize`
 
-- `fn max_pattern_len(self: &Self) -> usize`
+- <span id="dfa-max-pattern-len"></span>`fn max_pattern_len(&self) -> usize`
 
-- `fn match_len(self: &Self, sid: StateID) -> usize` — [`StateID`](../util/primitives/index.md)
+- <span id="dfa-match-len"></span>`fn match_len(&self, sid: StateID) -> usize` — [`StateID`](../util/primitives/index.md)
 
-- `fn match_pattern(self: &Self, sid: StateID, index: usize) -> PatternID` — [`StateID`](../util/primitives/index.md), [`PatternID`](../index.md)
+- <span id="dfa-match-pattern"></span>`fn match_pattern(&self, sid: StateID, index: usize) -> PatternID` — [`StateID`](../util/primitives/index.md), [`PatternID`](../index.md)
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="dfa-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- `fn prefilter(self: &Self) -> Option<&Prefilter>` — [`Prefilter`](../util/prefilter/index.md)
+- <span id="dfa-prefilter"></span>`fn prefilter(&self) -> Option<&Prefilter>` — [`Prefilter`](../util/prefilter/index.md)
 
 ##### `impl Clone for DFA`
 
-- `fn clone(self: &Self) -> DFA` — [`DFA`](#dfa)
+- <span id="dfa-clone"></span>`fn clone(&self) -> DFA` — [`DFA`](#dfa)
 
 ##### `impl Debug for DFA`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="dfa-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Sealed for crate::dfa::DFA`
 
@@ -232,39 +240,39 @@ their behavior is identical.
 
 #### Implementations
 
-- `fn new() -> Builder` — [`Builder`](#builder)
+- <span id="builder-new"></span>`fn new() -> Builder` — [`Builder`](#builder)
 
-- `fn build<I, P>(self: &Self, patterns: I) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../index.md)
+- <span id="builder-build"></span>`fn build<I, P>(&self, patterns: I) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../index.md)
 
-- `fn build_from_noncontiguous(self: &Self, nnfa: &noncontiguous::NFA) -> Result<DFA, BuildError>` — [`NFA`](../nfa/noncontiguous/index.md), [`DFA`](#dfa), [`BuildError`](../index.md)
+- <span id="builder-build-from-noncontiguous"></span>`fn build_from_noncontiguous(&self, nnfa: &noncontiguous::NFA) -> Result<DFA, BuildError>` — [`NFA`](../nfa/noncontiguous/index.md), [`DFA`](#dfa), [`BuildError`](../index.md)
 
-- `fn finish_build_one_start(self: &Self, anchored: Anchored, nnfa: &noncontiguous::NFA, dfa: &mut DFA)` — [`Anchored`](../index.md), [`NFA`](../nfa/noncontiguous/index.md), [`DFA`](#dfa)
+- <span id="builder-finish-build-one-start"></span>`fn finish_build_one_start(&self, anchored: Anchored, nnfa: &noncontiguous::NFA, dfa: &mut DFA)` — [`Anchored`](../index.md), [`NFA`](../nfa/noncontiguous/index.md), [`DFA`](#dfa)
 
-- `fn finish_build_both_starts(self: &Self, nnfa: &noncontiguous::NFA, dfa: &mut DFA)` — [`NFA`](../nfa/noncontiguous/index.md), [`DFA`](#dfa)
+- <span id="builder-finish-build-both-starts"></span>`fn finish_build_both_starts(&self, nnfa: &noncontiguous::NFA, dfa: &mut DFA)` — [`NFA`](../nfa/noncontiguous/index.md), [`DFA`](#dfa)
 
-- `fn match_kind(self: &mut Self, kind: MatchKind) -> &mut Builder` — [`MatchKind`](../index.md), [`Builder`](#builder)
+- <span id="builder-match-kind"></span>`fn match_kind(&mut self, kind: MatchKind) -> &mut Builder` — [`MatchKind`](../index.md), [`Builder`](#builder)
 
-- `fn ascii_case_insensitive(self: &mut Self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
+- <span id="builder-ascii-case-insensitive"></span>`fn ascii_case_insensitive(&mut self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 
-- `fn prefilter(self: &mut Self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
+- <span id="builder-prefilter"></span>`fn prefilter(&mut self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 
-- `fn start_kind(self: &mut Self, kind: StartKind) -> &mut Builder` — [`StartKind`](../index.md), [`Builder`](#builder)
+- <span id="builder-start-kind"></span>`fn start_kind(&mut self, kind: StartKind) -> &mut Builder` — [`StartKind`](../index.md), [`Builder`](#builder)
 
-- `fn byte_classes(self: &mut Self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
+- <span id="builder-byte-classes"></span>`fn byte_classes(&mut self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 
 #### Trait Implementations
 
 ##### `impl Clone for Builder`
 
-- `fn clone(self: &Self) -> Builder` — [`Builder`](#builder)
+- <span id="builder-clone"></span>`fn clone(&self) -> Builder` — [`Builder`](#builder)
 
 ##### `impl Debug for Builder`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="builder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Builder`
 
-- `fn default() -> Builder` — [`Builder`](#builder)
+- <span id="builder-default"></span>`fn default() -> Builder` — [`Builder`](#builder)
 
 ## Functions
 

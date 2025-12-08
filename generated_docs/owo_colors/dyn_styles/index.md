@@ -4,6 +4,57 @@
 
 # Module `dyn_styles`
 
+## Contents
+
+- [Structs](#structs)
+  - [`Styled`](#styled)
+  - [`Style`](#style)
+  - [`StyleFlags`](#styleflags)
+  - [`StylePrefixFormatter`](#styleprefixformatter)
+  - [`StyleSuffixFormatter`](#stylesuffixformatter)
+- [Enums](#enums)
+  - [`Effect`](#effect)
+- [Functions](#functions)
+  - [`style`](#style)
+- [Constants](#constants)
+  - [`DIMMED_SHIFT`](#dimmed_shift)
+  - [`ITALIC_SHIFT`](#italic_shift)
+  - [`UNDERLINE_SHIFT`](#underline_shift)
+  - [`BLINK_SHIFT`](#blink_shift)
+  - [`BLINK_FAST_SHIFT`](#blink_fast_shift)
+  - [`REVERSED_SHIFT`](#reversed_shift)
+  - [`HIDDEN_SHIFT`](#hidden_shift)
+  - [`STRIKETHROUGH_SHIFT`](#strikethrough_shift)
+- [Macros](#macros)
+  - [`color_methods!`](#color_methods)
+  - [`style_methods!`](#style_methods)
+  - [`style_flags_methods!`](#style_flags_methods)
+  - [`impl_fmt!`](#impl_fmt)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Styled`](#styled) | struct | A wrapper type which applies a [`Style`] when displaying the inner type |
+| [`Style`](#style) | struct | A pre-computed style that can be applied to a struct using [`OwoColorize::style`]. |
+| [`StyleFlags`](#styleflags) | struct |  |
+| [`StylePrefixFormatter`](#styleprefixformatter) | struct | Formatter for the prefix of a [`Style`]. |
+| [`StyleSuffixFormatter`](#stylesuffixformatter) | struct | Formatter for the suffix of a [`Style`]. |
+| [`Effect`](#effect) | enum | A runtime-configurable text effect for use with [`Style`] |
+| [`style`](#style) | fn | Helper to create [`Style`]s more ergonomically |
+| [`DIMMED_SHIFT`](#dimmed_shift) | const |  |
+| [`ITALIC_SHIFT`](#italic_shift) | const |  |
+| [`UNDERLINE_SHIFT`](#underline_shift) | const |  |
+| [`BLINK_SHIFT`](#blink_shift) | const |  |
+| [`BLINK_FAST_SHIFT`](#blink_fast_shift) | const |  |
+| [`REVERSED_SHIFT`](#reversed_shift) | const |  |
+| [`HIDDEN_SHIFT`](#hidden_shift) | const |  |
+| [`STRIKETHROUGH_SHIFT`](#strikethrough_shift) | const |  |
+| [`color_methods!`](#color_methods) | macro |  |
+| [`style_methods!`](#style_methods) | macro |  |
+| [`style_flags_methods!`](#style_flags_methods) | macro |  |
+| [`impl_fmt!`](#impl_fmt) | macro |  |
+
 ## Structs
 
 ### `Styled<T>`
@@ -29,57 +80,57 @@ A wrapper type which applies a [`Style`](../index.md) when displaying the inner 
 
 #### Implementations
 
-- `const fn inner(self: &Self) -> &T`
+- <span id="styled-inner"></span>`const fn inner(&self) -> &T`
 
-- `const fn inner_mut(self: &mut Self) -> &mut T`
+- <span id="styled-inner-mut"></span>`const fn inner_mut(&mut self) -> &mut T`
 
 #### Trait Implementations
 
 ##### `impl<T: fmt::Binary> Binary for Styled<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styled-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: fmt::Debug> Debug for Styled<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styled-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: fmt::Display> Display for Styled<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styled-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: Display> IsStyled for crate::Styled<T>`
 
-- `type Inner = T`
+- <span id="cratestyled-inner"></span>`type Inner = T`
 
-- `fn style(self: &Self) -> &Style` — [`Style`](../index.md)
+- <span id="cratestyled-style"></span>`fn style(&self) -> &Style` — [`Style`](../index.md)
 
-- `fn inner(self: &Self) -> &T`
+- <span id="cratestyled-inner"></span>`fn inner(&self) -> &T`
 
 ##### `impl<T: fmt::LowerExp> LowerExp for Styled<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styled-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: fmt::LowerHex> LowerHex for Styled<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styled-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: fmt::Octal> Octal for Styled<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styled-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<D> OwoColorize for Styled<T>`
 
 ##### `impl<T: fmt::Pointer> Pointer for Styled<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styled-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: fmt::UpperExp> UpperExp for Styled<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styled-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: fmt::UpperHex> UpperHex for Styled<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styled-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Style`
 
@@ -110,29 +161,169 @@ println!("{}", "red text, white background, struck through".style(my_style));
 
 #### Implementations
 
-- `fn transition_from(self: &'a Self, from: &Style) -> Transition<'a>` — [`Style`](../index.md), [`Transition`](../styled_list/index.md)
+- <span id="style-new"></span>`const fn new() -> Self`
+
+- <span id="style-style"></span>`const fn style<T>(&self, target: T) -> Styled<T>` — [`Styled`](../index.md)
+
+- <span id="style-fg"></span>`const fn fg<C: Color>(self) -> Self`
+
+- <span id="style-bg"></span>`const fn bg<C: Color>(self) -> Self`
+
+- <span id="style-remove-fg"></span>`const fn remove_fg(self) -> Self`
+
+- <span id="style-remove-bg"></span>`const fn remove_bg(self) -> Self`
+
+- <span id="style-black"></span>`const fn black(self) -> Self`
+
+- <span id="style-on-black"></span>`const fn on_black(self) -> Self`
+
+- <span id="style-red"></span>`const fn red(self) -> Self`
+
+- <span id="style-on-red"></span>`const fn on_red(self) -> Self`
+
+- <span id="style-green"></span>`const fn green(self) -> Self`
+
+- <span id="style-on-green"></span>`const fn on_green(self) -> Self`
+
+- <span id="style-yellow"></span>`const fn yellow(self) -> Self`
+
+- <span id="style-on-yellow"></span>`const fn on_yellow(self) -> Self`
+
+- <span id="style-blue"></span>`const fn blue(self) -> Self`
+
+- <span id="style-on-blue"></span>`const fn on_blue(self) -> Self`
+
+- <span id="style-magenta"></span>`const fn magenta(self) -> Self`
+
+- <span id="style-on-magenta"></span>`const fn on_magenta(self) -> Self`
+
+- <span id="style-purple"></span>`const fn purple(self) -> Self`
+
+- <span id="style-on-purple"></span>`const fn on_purple(self) -> Self`
+
+- <span id="style-cyan"></span>`const fn cyan(self) -> Self`
+
+- <span id="style-on-cyan"></span>`const fn on_cyan(self) -> Self`
+
+- <span id="style-white"></span>`const fn white(self) -> Self`
+
+- <span id="style-on-white"></span>`const fn on_white(self) -> Self`
+
+- <span id="style-default-color"></span>`const fn default_color(self) -> Self`
+
+- <span id="style-on-default-color"></span>`const fn on_default_color(self) -> Self`
+
+- <span id="style-bright-black"></span>`const fn bright_black(self) -> Self`
+
+- <span id="style-on-bright-black"></span>`const fn on_bright_black(self) -> Self`
+
+- <span id="style-bright-red"></span>`const fn bright_red(self) -> Self`
+
+- <span id="style-on-bright-red"></span>`const fn on_bright_red(self) -> Self`
+
+- <span id="style-bright-green"></span>`const fn bright_green(self) -> Self`
+
+- <span id="style-on-bright-green"></span>`const fn on_bright_green(self) -> Self`
+
+- <span id="style-bright-yellow"></span>`const fn bright_yellow(self) -> Self`
+
+- <span id="style-on-bright-yellow"></span>`const fn on_bright_yellow(self) -> Self`
+
+- <span id="style-bright-blue"></span>`const fn bright_blue(self) -> Self`
+
+- <span id="style-on-bright-blue"></span>`const fn on_bright_blue(self) -> Self`
+
+- <span id="style-bright-magenta"></span>`const fn bright_magenta(self) -> Self`
+
+- <span id="style-on-bright-magenta"></span>`const fn on_bright_magenta(self) -> Self`
+
+- <span id="style-bright-purple"></span>`const fn bright_purple(self) -> Self`
+
+- <span id="style-on-bright-purple"></span>`const fn on_bright_purple(self) -> Self`
+
+- <span id="style-bright-cyan"></span>`const fn bright_cyan(self) -> Self`
+
+- <span id="style-on-bright-cyan"></span>`const fn on_bright_cyan(self) -> Self`
+
+- <span id="style-bright-white"></span>`const fn bright_white(self) -> Self`
+
+- <span id="style-on-bright-white"></span>`const fn on_bright_white(self) -> Self`
+
+- <span id="style-bold"></span>`const fn bold(self) -> Self`
+
+- <span id="style-dimmed"></span>`const fn dimmed(self) -> Self`
+
+- <span id="style-italic"></span>`const fn italic(self) -> Self`
+
+- <span id="style-underline"></span>`const fn underline(self) -> Self`
+
+- <span id="style-blink"></span>`const fn blink(self) -> Self`
+
+- <span id="style-blink-fast"></span>`const fn blink_fast(self) -> Self`
+
+- <span id="style-reversed"></span>`const fn reversed(self) -> Self`
+
+- <span id="style-hidden"></span>`const fn hidden(self) -> Self`
+
+- <span id="style-strikethrough"></span>`const fn strikethrough(self) -> Self`
+
+- <span id="style-set-effect"></span>`const fn set_effect(self, effect: Effect, to: bool) -> Self` — [`Effect`](../index.md)
+
+- <span id="style-set-effects"></span>`const fn set_effects(self, effects: &[Effect], to: bool) -> Self` — [`Effect`](../index.md)
+
+- <span id="style-effect"></span>`const fn effect(self, effect: Effect) -> Self` — [`Effect`](../index.md)
+
+- <span id="style-remove-effect"></span>`const fn remove_effect(self, effect: Effect) -> Self` — [`Effect`](../index.md)
+
+- <span id="style-effects"></span>`const fn effects(self, effects: &[Effect]) -> Self` — [`Effect`](../index.md)
+
+- <span id="style-remove-effects"></span>`const fn remove_effects(self, effects: &[Effect]) -> Self` — [`Effect`](../index.md)
+
+- <span id="style-remove-all-effects"></span>`const fn remove_all_effects(self) -> Self`
+
+- <span id="style-color"></span>`fn color<Color: DynColor>(self, color: Color) -> Self`
+
+- <span id="style-on-color"></span>`fn on_color<Color: DynColor>(self, color: Color) -> Self`
+
+- <span id="style-fg-rgb"></span>`const fn fg_rgb<const R: u8, const G: u8, const B: u8>(self) -> Self`
+
+- <span id="style-bg-rgb"></span>`const fn bg_rgb<const R: u8, const G: u8, const B: u8>(self) -> Self`
+
+- <span id="style-truecolor"></span>`const fn truecolor(self, r: u8, g: u8, b: u8) -> Self`
+
+- <span id="style-on-truecolor"></span>`const fn on_truecolor(self, r: u8, g: u8, b: u8) -> Self`
+
+- <span id="style-is-plain"></span>`const fn is_plain(&self) -> bool`
+
+- <span id="style-prefix-formatter"></span>`const fn prefix_formatter(&self) -> StylePrefixFormatter` — [`StylePrefixFormatter`](../index.md)
+
+- <span id="style-suffix-formatter"></span>`const fn suffix_formatter(&self) -> StyleSuffixFormatter` — [`StyleSuffixFormatter`](../index.md)
+
+- <span id="style-fmt-prefix"></span>`fn fmt_prefix(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+- <span id="style-fmt-suffix"></span>`fn fmt_suffix(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for Style`
 
-- `fn clone(self: &Self) -> Style` — [`Style`](../index.md)
+- <span id="style-clone"></span>`fn clone(&self) -> Style` — [`Style`](../index.md)
 
 ##### `impl Copy for Style`
 
 ##### `impl Debug for Style`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="style-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Style`
 
-- `fn default() -> Self`
+- <span id="style-default"></span>`fn default() -> Self`
 
 ##### `impl<D> OwoColorize for Style`
 
 ##### `impl PartialEq for Style`
 
-- `fn eq(self: &Self, other: &Style) -> bool` — [`Style`](../index.md)
+- <span id="style-eq"></span>`fn eq(&self, other: &Style) -> bool` — [`Style`](../index.md)
 
 ##### `impl StructuralPartialEq for Style`
 
@@ -144,29 +335,29 @@ struct StyleFlags(u8);
 
 #### Implementations
 
-- `const fn is_plain(self: &Self) -> bool`
+- <span id="styleflags-is-plain"></span>`const fn is_plain(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for StyleFlags`
 
-- `fn clone(self: &Self) -> StyleFlags` — [`StyleFlags`](#styleflags)
+- <span id="styleflags-clone"></span>`fn clone(&self) -> StyleFlags` — [`StyleFlags`](#styleflags)
 
 ##### `impl Copy for StyleFlags`
 
 ##### `impl Debug for StyleFlags`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="styleflags-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for StyleFlags`
 
-- `fn default() -> Self`
+- <span id="styleflags-default"></span>`fn default() -> Self`
 
 ##### `impl<D> OwoColorize for StyleFlags`
 
 ##### `impl PartialEq for StyleFlags`
 
-- `fn eq(self: &Self, other: &StyleFlags) -> bool` — [`StyleFlags`](#styleflags)
+- <span id="styleflags-eq"></span>`fn eq(&self, other: &StyleFlags) -> bool` — [`StyleFlags`](#styleflags)
 
 ##### `impl StructuralPartialEq for StyleFlags`
 
@@ -185,23 +376,23 @@ the suffix, which is useful for formatting the prefix separately.
 
 ##### `impl Clone for StylePrefixFormatter`
 
-- `fn clone(self: &Self) -> StylePrefixFormatter` — [`StylePrefixFormatter`](../index.md)
+- <span id="styleprefixformatter-clone"></span>`fn clone(&self) -> StylePrefixFormatter` — [`StylePrefixFormatter`](../index.md)
 
 ##### `impl Copy for StylePrefixFormatter`
 
 ##### `impl Debug for StylePrefixFormatter`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="styleprefixformatter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for StylePrefixFormatter`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="styleprefixformatter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<D> OwoColorize for StylePrefixFormatter`
 
 ##### `impl PartialEq for StylePrefixFormatter`
 
-- `fn eq(self: &Self, other: &StylePrefixFormatter) -> bool` — [`StylePrefixFormatter`](../index.md)
+- <span id="styleprefixformatter-eq"></span>`fn eq(&self, other: &StylePrefixFormatter) -> bool` — [`StylePrefixFormatter`](../index.md)
 
 ##### `impl StructuralPartialEq for StylePrefixFormatter`
 
@@ -220,23 +411,23 @@ the prefix, which is useful for formatting the suffix separately.
 
 ##### `impl Clone for StyleSuffixFormatter`
 
-- `fn clone(self: &Self) -> StyleSuffixFormatter` — [`StyleSuffixFormatter`](../index.md)
+- <span id="stylesuffixformatter-clone"></span>`fn clone(&self) -> StyleSuffixFormatter` — [`StyleSuffixFormatter`](../index.md)
 
 ##### `impl Copy for StyleSuffixFormatter`
 
 ##### `impl Debug for StyleSuffixFormatter`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="stylesuffixformatter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for StyleSuffixFormatter`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="stylesuffixformatter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<D> OwoColorize for StyleSuffixFormatter`
 
 ##### `impl PartialEq for StyleSuffixFormatter`
 
-- `fn eq(self: &Self, other: &StyleSuffixFormatter) -> bool` — [`StyleSuffixFormatter`](../index.md)
+- <span id="stylesuffixformatter-eq"></span>`fn eq(&self, other: &StyleSuffixFormatter) -> bool` — [`StyleSuffixFormatter`](../index.md)
 
 ##### `impl StructuralPartialEq for StyleSuffixFormatter`
 
@@ -264,13 +455,13 @@ A runtime-configurable text effect for use with [`Style`](../index.md)
 
 ##### `impl Clone for Effect`
 
-- `fn clone(self: &Self) -> Effect` — [`Effect`](../index.md)
+- <span id="effect-clone"></span>`fn clone(&self) -> Effect` — [`Effect`](../index.md)
 
 ##### `impl Copy for Effect`
 
 ##### `impl Debug for Effect`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="effect-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<D> OwoColorize for Effect`
 

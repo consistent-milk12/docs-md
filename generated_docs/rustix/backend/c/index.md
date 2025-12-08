@@ -9,6 +9,96 @@ Adapt the Linux API to resemble a POSIX-style libc API.
 The linux_raw backend doesn't use actual libc; this just defines certain
 types that are convenient to have defined.
 
+## Contents
+
+- [Type Aliases](#type-aliases)
+  - [`size_t`](#size_t)
+- [Constants](#constants)
+  - [`SIGHUP`](#sighup)
+  - [`SIGINT`](#sigint)
+  - [`SIGQUIT`](#sigquit)
+  - [`SIGILL`](#sigill)
+  - [`SIGTRAP`](#sigtrap)
+  - [`SIGABRT`](#sigabrt)
+  - [`SIGBUS`](#sigbus)
+  - [`SIGFPE`](#sigfpe)
+  - [`SIGKILL`](#sigkill)
+  - [`SIGUSR1`](#sigusr1)
+  - [`SIGSEGV`](#sigsegv)
+  - [`SIGUSR2`](#sigusr2)
+  - [`SIGPIPE`](#sigpipe)
+  - [`SIGALRM`](#sigalrm)
+  - [`SIGTERM`](#sigterm)
+  - [`SIGSTKFLT`](#sigstkflt)
+  - [`SIGCHLD`](#sigchld)
+  - [`SIGCONT`](#sigcont)
+  - [`SIGSTOP`](#sigstop)
+  - [`SIGTSTP`](#sigtstp)
+  - [`SIGTTIN`](#sigttin)
+  - [`SIGTTOU`](#sigttou)
+  - [`SIGURG`](#sigurg)
+  - [`SIGXCPU`](#sigxcpu)
+  - [`SIGXFSZ`](#sigxfsz)
+  - [`SIGVTALRM`](#sigvtalrm)
+  - [`SIGPROF`](#sigprof)
+  - [`SIGWINCH`](#sigwinch)
+  - [`SIGIO`](#sigio)
+  - [`SIGPWR`](#sigpwr)
+  - [`SIGSYS`](#sigsys)
+  - [`PIPE_BUF`](#pipe_buf)
+  - [`CLOCK_MONOTONIC`](#clock_monotonic)
+  - [`CLOCK_REALTIME`](#clock_realtime)
+  - [`CLOCK_MONOTONIC_RAW`](#clock_monotonic_raw)
+  - [`CLOCK_MONOTONIC_COARSE`](#clock_monotonic_coarse)
+  - [`CLOCK_REALTIME_COARSE`](#clock_realtime_coarse)
+  - [`CLOCK_THREAD_CPUTIME_ID`](#clock_thread_cputime_id)
+  - [`CLOCK_PROCESS_CPUTIME_ID`](#clock_process_cputime_id)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`size_t`](#size_t) | type |  |
+| [`SIGHUP`](#sighup) | const |  |
+| [`SIGINT`](#sigint) | const |  |
+| [`SIGQUIT`](#sigquit) | const |  |
+| [`SIGILL`](#sigill) | const |  |
+| [`SIGTRAP`](#sigtrap) | const |  |
+| [`SIGABRT`](#sigabrt) | const |  |
+| [`SIGBUS`](#sigbus) | const |  |
+| [`SIGFPE`](#sigfpe) | const |  |
+| [`SIGKILL`](#sigkill) | const |  |
+| [`SIGUSR1`](#sigusr1) | const |  |
+| [`SIGSEGV`](#sigsegv) | const |  |
+| [`SIGUSR2`](#sigusr2) | const |  |
+| [`SIGPIPE`](#sigpipe) | const |  |
+| [`SIGALRM`](#sigalrm) | const |  |
+| [`SIGTERM`](#sigterm) | const |  |
+| [`SIGSTKFLT`](#sigstkflt) | const |  |
+| [`SIGCHLD`](#sigchld) | const |  |
+| [`SIGCONT`](#sigcont) | const |  |
+| [`SIGSTOP`](#sigstop) | const |  |
+| [`SIGTSTP`](#sigtstp) | const |  |
+| [`SIGTTIN`](#sigttin) | const |  |
+| [`SIGTTOU`](#sigttou) | const |  |
+| [`SIGURG`](#sigurg) | const |  |
+| [`SIGXCPU`](#sigxcpu) | const |  |
+| [`SIGXFSZ`](#sigxfsz) | const |  |
+| [`SIGVTALRM`](#sigvtalrm) | const |  |
+| [`SIGPROF`](#sigprof) | const |  |
+| [`SIGWINCH`](#sigwinch) | const |  |
+| [`SIGIO`](#sigio) | const |  |
+| [`SIGPWR`](#sigpwr) | const |  |
+| [`SIGSYS`](#sigsys) | const |  |
+| [`PIPE_BUF`](#pipe_buf) | const |  |
+| [`CLOCK_MONOTONIC`](#clock_monotonic) | const |  |
+| [`CLOCK_REALTIME`](#clock_realtime) | const |  |
+| [`CLOCK_MONOTONIC_RAW`](#clock_monotonic_raw) | const |  |
+| [`CLOCK_MONOTONIC_COARSE`](#clock_monotonic_coarse) | const |  |
+| [`CLOCK_REALTIME_COARSE`](#clock_realtime_coarse) | const |  |
+| [`CLOCK_THREAD_CPUTIME_ID`](#clock_thread_cputime_id) | const |  |
+| [`CLOCK_PROCESS_CPUTIME_ID`](#clock_process_cputime_id) | const |  |
+
 ## Type Aliases
 
 ### `size_t`

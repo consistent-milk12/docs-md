@@ -4,6 +4,12 @@
 
 # Module `printing`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`print_const_argument`](#print_const_argument) | fn |  |
+
 ## Functions
 
 ### `print_const_argument`

@@ -4,6 +4,13 @@
 
 # Module `suggestions`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`did_you_mean`](#did_you_mean) | fn | Find strings from an iterable of `possible_values` similar to a given value `v` |
+| [`did_you_mean_flag`](#did_you_mean_flag) | fn | Returns a suffix that can be empty, or is the standard 'did you mean' phrase |
+
 ## Functions
 
 ### `did_you_mean`

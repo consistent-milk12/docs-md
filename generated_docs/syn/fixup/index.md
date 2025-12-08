@@ -4,6 +4,15 @@
 
 # Module `fixup`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`FixupContext`](#fixupcontext) | struct |  |
+| [`Scan`](#scan) | enum |  |
+| [`scan_left`](#scan_left) | fn |  |
+| [`scan_right`](#scan_right) | fn |  |
+
 ## Structs
 
 ### `FixupContext`
@@ -27,35 +36,35 @@ struct FixupContext {
 
 #### Implementations
 
-- `const NONE: Self`
+- <span id="fixupcontext-none"></span>`const NONE: Self`
 
-- `fn new_stmt() -> Self`
+- <span id="fixupcontext-new-stmt"></span>`fn new_stmt() -> Self`
 
-- `fn new_match_arm() -> Self`
+- <span id="fixupcontext-new-match-arm"></span>`fn new_match_arm() -> Self`
 
-- `fn new_condition() -> Self`
+- <span id="fixupcontext-new-condition"></span>`fn new_condition() -> Self`
 
-- `fn leftmost_subexpression_with_operator(self: Self, expr: &Expr, next_operator_can_begin_expr: bool, next_operator_can_begin_generics: bool, precedence: Precedence) -> (Precedence, Self)` — [`Expr`](../index.md), [`Precedence`](../precedence/index.md)
+- <span id="fixupcontext-leftmost-subexpression-with-operator"></span>`fn leftmost_subexpression_with_operator(self, expr: &Expr, next_operator_can_begin_expr: bool, next_operator_can_begin_generics: bool, precedence: Precedence) -> (Precedence, Self)` — [`Expr`](../index.md), [`Precedence`](../precedence/index.md)
 
-- `fn leftmost_subexpression_with_dot(self: Self, expr: &Expr) -> (Precedence, Self)` — [`Expr`](../index.md), [`Precedence`](../precedence/index.md)
+- <span id="fixupcontext-leftmost-subexpression-with-dot"></span>`fn leftmost_subexpression_with_dot(self, expr: &Expr) -> (Precedence, Self)` — [`Expr`](../index.md), [`Precedence`](../precedence/index.md)
 
-- `fn leftmost_subexpression_precedence(self: Self, expr: &Expr) -> Precedence` — [`Expr`](../index.md), [`Precedence`](../precedence/index.md)
+- <span id="fixupcontext-leftmost-subexpression-precedence"></span>`fn leftmost_subexpression_precedence(self, expr: &Expr) -> Precedence` — [`Expr`](../index.md), [`Precedence`](../precedence/index.md)
 
-- `fn rightmost_subexpression(self: Self, expr: &Expr, precedence: Precedence) -> (Precedence, Self)` — [`Expr`](../index.md), [`Precedence`](../precedence/index.md)
+- <span id="fixupcontext-rightmost-subexpression"></span>`fn rightmost_subexpression(self, expr: &Expr, precedence: Precedence) -> (Precedence, Self)` — [`Expr`](../index.md), [`Precedence`](../precedence/index.md)
 
-- `fn rightmost_subexpression_fixup(self: Self, reset_allow_struct: bool, optional_operand: bool, precedence: Precedence) -> Self` — [`Precedence`](../precedence/index.md)
+- <span id="fixupcontext-rightmost-subexpression-fixup"></span>`fn rightmost_subexpression_fixup(self, reset_allow_struct: bool, optional_operand: bool, precedence: Precedence) -> Self` — [`Precedence`](../precedence/index.md)
 
-- `fn rightmost_subexpression_precedence(self: Self, expr: &Expr) -> Precedence` — [`Expr`](../index.md), [`Precedence`](../precedence/index.md)
+- <span id="fixupcontext-rightmost-subexpression-precedence"></span>`fn rightmost_subexpression_precedence(self, expr: &Expr) -> Precedence` — [`Expr`](../index.md), [`Precedence`](../precedence/index.md)
 
-- `fn parenthesize(self: Self, expr: &Expr) -> bool` — [`Expr`](../index.md)
+- <span id="fixupcontext-parenthesize"></span>`fn parenthesize(self, expr: &Expr) -> bool` — [`Expr`](../index.md)
 
-- `fn precedence(self: Self, expr: &Expr) -> Precedence` — [`Expr`](../index.md), [`Precedence`](../precedence/index.md)
+- <span id="fixupcontext-precedence"></span>`fn precedence(self, expr: &Expr) -> Precedence` — [`Expr`](../index.md), [`Precedence`](../precedence/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for FixupContext`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="fixupcontext-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for FixupContext`
 
@@ -75,13 +84,13 @@ enum Scan {
 
 ##### `impl Clone for Scan`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="scan-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Scan`
 
 ##### `impl PartialEq for Scan`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="scan-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ## Functions
 

@@ -4,6 +4,12 @@
 
 # Module `miette_diagnostic`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`MietteDiagnostic`](#miettediagnostic) | struct | Diagnostic that can be created at runtime. |
+
 ## Structs
 
 ### `MietteDiagnostic`
@@ -56,53 +62,53 @@ Diagnostic that can be created at runtime.
 
 #### Implementations
 
-- `fn new(message: impl Into<String>) -> Self`
+- <span id="miettediagnostic-new"></span>`fn new(message: impl Into<String>) -> Self`
 
-- `fn with_code(self: Self, code: impl Into<String>) -> Self`
+- <span id="miettediagnostic-with-code"></span>`fn with_code(self, code: impl Into<String>) -> Self`
 
-- `fn with_severity(self: Self, severity: Severity) -> Self` — [`Severity`](../index.md)
+- <span id="miettediagnostic-with-severity"></span>`fn with_severity(self, severity: Severity) -> Self` — [`Severity`](../index.md)
 
-- `fn with_help(self: Self, help: impl Into<String>) -> Self`
+- <span id="miettediagnostic-with-help"></span>`fn with_help(self, help: impl Into<String>) -> Self`
 
-- `fn with_url(self: Self, url: impl Into<String>) -> Self`
+- <span id="miettediagnostic-with-url"></span>`fn with_url(self, url: impl Into<String>) -> Self`
 
-- `fn with_label(self: Self, label: impl Into<LabeledSpan>) -> Self` — [`LabeledSpan`](../index.md)
+- <span id="miettediagnostic-with-label"></span>`fn with_label(self, label: impl Into<LabeledSpan>) -> Self` — [`LabeledSpan`](../index.md)
 
-- `fn with_labels(self: Self, labels: impl IntoIterator<Item = LabeledSpan>) -> Self` — [`LabeledSpan`](../index.md)
+- <span id="miettediagnostic-with-labels"></span>`fn with_labels(self, labels: impl IntoIterator<Item = LabeledSpan>) -> Self` — [`LabeledSpan`](../index.md)
 
-- `fn and_label(self: Self, label: impl Into<LabeledSpan>) -> Self` — [`LabeledSpan`](../index.md)
+- <span id="miettediagnostic-and-label"></span>`fn and_label(self, label: impl Into<LabeledSpan>) -> Self` — [`LabeledSpan`](../index.md)
 
-- `fn and_labels(self: Self, labels: impl IntoIterator<Item = LabeledSpan>) -> Self` — [`LabeledSpan`](../index.md)
+- <span id="miettediagnostic-and-labels"></span>`fn and_labels(self, labels: impl IntoIterator<Item = LabeledSpan>) -> Self` — [`LabeledSpan`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for MietteDiagnostic`
 
-- `fn clone(self: &Self) -> MietteDiagnostic` — [`MietteDiagnostic`](../index.md)
+- <span id="miettediagnostic-clone"></span>`fn clone(&self) -> MietteDiagnostic` — [`MietteDiagnostic`](../index.md)
 
 ##### `impl Debug for MietteDiagnostic`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="miettediagnostic-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E> Diag for MietteDiagnostic`
 
-- `fn ext_report<D>(self: Self, msg: D) -> Report` — [`Report`](../index.md)
+- <span id="miettediagnostic-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../index.md)
 
 ##### `impl Diagnostic for MietteDiagnostic`
 
-- `fn code<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
+- <span id="miettediagnostic-code"></span>`fn code<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
-- `fn severity(self: &Self) -> Option<Severity>` — [`Severity`](../index.md)
+- <span id="miettediagnostic-severity"></span>`fn severity(&self) -> Option<Severity>` — [`Severity`](../index.md)
 
-- `fn help<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
+- <span id="miettediagnostic-help"></span>`fn help<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
-- `fn url<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
+- <span id="miettediagnostic-url"></span>`fn url<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
-- `fn labels(self: &Self) -> Option<Box<dyn Iterator<Item = LabeledSpan>>>` — [`LabeledSpan`](../index.md)
+- <span id="miettediagnostic-labels"></span>`fn labels(&self) -> Option<Box<dyn Iterator<Item = LabeledSpan>>>` — [`LabeledSpan`](../index.md)
 
 ##### `impl Display for MietteDiagnostic`
 
-- `fn fmt(self: &Self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="miettediagnostic-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
 ##### `impl Eq for MietteDiagnostic`
 
@@ -112,13 +118,13 @@ Diagnostic that can be created at runtime.
 
 ##### `impl PartialEq for MietteDiagnostic`
 
-- `fn eq(self: &Self, other: &MietteDiagnostic) -> bool` — [`MietteDiagnostic`](../index.md)
+- <span id="miettediagnostic-eq"></span>`fn eq(&self, other: &MietteDiagnostic) -> bool` — [`MietteDiagnostic`](../index.md)
 
 ##### `impl StructuralPartialEq for MietteDiagnostic`
 
 ##### `impl<T> ToString for MietteDiagnostic`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="miettediagnostic-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl<E> TraitKind for MietteDiagnostic`
 

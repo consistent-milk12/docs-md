@@ -6,6 +6,61 @@
 
 A hash map implemented with quadratic probing and SIMD lookup.
 
+## Contents
+
+- [Structs](#structs)
+  - [`HashMap`](#hashmap)
+  - [`Iter`](#iter)
+  - [`IterMut`](#itermut)
+  - [`IntoIter`](#intoiter)
+  - [`IntoKeys`](#intokeys)
+  - [`IntoValues`](#intovalues)
+  - [`Keys`](#keys)
+  - [`Values`](#values)
+  - [`Drain`](#drain)
+  - [`ExtractIf`](#extractif)
+  - [`ValuesMut`](#valuesmut)
+  - [`OccupiedEntry`](#occupiedentry)
+  - [`VacantEntry`](#vacantentry)
+  - [`VacantEntryRef`](#vacantentryref)
+  - [`OccupiedError`](#occupiederror)
+- [Enums](#enums)
+  - [`Entry`](#entry)
+  - [`EntryRef`](#entryref)
+- [Functions](#functions)
+  - [`make_hasher`](#make_hasher)
+  - [`equivalent_key`](#equivalent_key)
+  - [`equivalent`](#equivalent)
+  - [`make_hash`](#make_hash)
+  - [`assert_covariance`](#assert_covariance)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`HashMap`](#hashmap) | struct | A hash map implemented with quadratic probing and SIMD lookup. |
+| [`Iter`](#iter) | struct | An iterator over the entries of a `HashMap` in arbitrary order. |
+| [`IterMut`](#itermut) | struct | A mutable iterator over the entries of a `HashMap` in arbitrary order. |
+| [`IntoIter`](#intoiter) | struct | An owning iterator over the entries of a `HashMap` in arbitrary order. |
+| [`IntoKeys`](#intokeys) | struct | An owning iterator over the keys of a `HashMap` in arbitrary order. |
+| [`IntoValues`](#intovalues) | struct | An owning iterator over the values of a `HashMap` in arbitrary order. |
+| [`Keys`](#keys) | struct | An iterator over the keys of a `HashMap` in arbitrary order. |
+| [`Values`](#values) | struct | An iterator over the values of a `HashMap` in arbitrary order. |
+| [`Drain`](#drain) | struct | A draining iterator over the entries of a `HashMap` in arbitrary |
+| [`ExtractIf`](#extractif) | struct | A draining iterator over entries of a `HashMap` which don't satisfy the predicate |
+| [`ValuesMut`](#valuesmut) | struct | A mutable iterator over the values of a `HashMap` in arbitrary order. |
+| [`OccupiedEntry`](#occupiedentry) | struct | A view into an occupied entry in a [`HashMap`]. |
+| [`VacantEntry`](#vacantentry) | struct | A view into a vacant entry in a `HashMap`. |
+| [`VacantEntryRef`](#vacantentryref) | struct | A view into a vacant entry in a `HashMap`. |
+| [`OccupiedError`](#occupiederror) | struct | The error returned by [`try_insert`](HashMap::try_insert) when the key already exists. |
+| [`Entry`](#entry) | enum | A view into a single entry in a map, which may either be vacant or occupied. |
+| [`EntryRef`](#entryref) | enum | A view into a single entry in a map, which may either be vacant or occupied |
+| [`make_hasher`](#make_hasher) | fn | Ensures that a single closure type across uses of this which, in turn prevents multiple |
+| [`equivalent_key`](#equivalent_key) | fn | Ensures that a single closure type across uses of this which, in turn prevents multiple |
+| [`equivalent`](#equivalent) | fn | Ensures that a single closure type across uses of this which, in turn prevents multiple |
+| [`make_hash`](#make_hash) | fn |  |
+| [`assert_covariance`](#assert_covariance) | fn |  |
+
 ## Structs
 
 ### `HashMap<K, V, S, A: Allocator>`
@@ -187,89 +242,57 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
 
 #### Implementations
 
-- `fn allocator(self: &Self) -> &A`
+- <span id="hashmap-new"></span>`fn new() -> Self`
 
-- `const fn with_hasher_in(hash_builder: S, alloc: A) -> Self`
-
-- `fn with_capacity_and_hasher_in(capacity: usize, hash_builder: S, alloc: A) -> Self`
-
-- `fn hasher(self: &Self) -> &S`
-
-- `fn capacity(self: &Self) -> usize`
-
-- `fn keys(self: &Self) -> Keys<'_, K, V>` — [`Keys`](#keys)
-
-- `fn values(self: &Self) -> Values<'_, K, V>` — [`Values`](#values)
-
-- `fn values_mut(self: &mut Self) -> ValuesMut<'_, K, V>` — [`ValuesMut`](#valuesmut)
-
-- `fn iter(self: &Self) -> Iter<'_, K, V>` — [`Iter`](#iter)
-
-- `fn iter_mut(self: &mut Self) -> IterMut<'_, K, V>` — [`IterMut`](#itermut)
-
-- `fn len(self: &Self) -> usize`
-
-- `fn is_empty(self: &Self) -> bool`
-
-- `fn drain(self: &mut Self) -> Drain<'_, K, V, A>` — [`Drain`](#drain)
-
-- `fn retain<F>(self: &mut Self, f: F)`
-
-- `fn extract_if<F>(self: &mut Self, f: F) -> ExtractIf<'_, K, V, F, A>` — [`ExtractIf`](#extractif)
-
-- `fn clear(self: &mut Self)`
-
-- `fn into_keys(self: Self) -> IntoKeys<K, V, A>` — [`IntoKeys`](#intokeys)
-
-- `fn into_values(self: Self) -> IntoValues<K, V, A>` — [`IntoValues`](#intovalues)
+- <span id="hashmap-with-capacity"></span>`fn with_capacity(capacity: usize) -> Self`
 
 #### Trait Implementations
 
 ##### `impl<K: Clone, V: Clone, S: Clone, A: Allocator + Clone> Clone for HashMap<K, V, S, A>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="hashmap-clone"></span>`fn clone(&self) -> Self`
 
-- `fn clone_from(self: &mut Self, source: &Self)`
+- <span id="hashmap-clone-from"></span>`fn clone_from(&mut self, source: &Self)`
 
 ##### `impl<K, V, S, A> Debug for HashMap<K, V, S, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="hashmap-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<K, V, S, A> Default for HashMap<K, V, S, A>`
 
-- `fn default() -> Self`
+- <span id="hashmap-default"></span>`fn default() -> Self`
 
 ##### `impl<K, V, S, A> Eq for HashMap<K, V, S, A>`
 
 ##### `impl<Q, K> Equivalent for HashMap<K, V, S, A>`
 
-- `fn equivalent(self: &Self, key: &K) -> bool`
+- <span id="hashmap-equivalent"></span>`fn equivalent(&self, key: &K) -> bool`
 
 ##### `impl<K, V, S, A> Extend for HashMap<K, V, S, A>`
 
-- `fn extend<T: IntoIterator<Item = (K, V)>>(self: &mut Self, iter: T)`
+- <span id="hashmap-extend"></span>`fn extend<T: IntoIterator<Item = (K, V)>>(&mut self, iter: T)`
 
 ##### `impl<K, V, S, A> FromIterator for HashMap<K, V, S, A>`
 
-- `fn from_iter<T: IntoIterator<Item = (K, V)>>(iter: T) -> Self`
+- <span id="hashmap-from-iter"></span>`fn from_iter<T: IntoIterator<Item = (K, V)>>(iter: T) -> Self`
 
 ##### `impl<K, Q, V, S, A> Index for HashMap<K, V, S, A>`
 
-- `type Output = V`
+- <span id="hashmap-output"></span>`type Output = V`
 
-- `fn index(self: &Self, key: &Q) -> &V`
+- <span id="hashmap-index"></span>`fn index(&self, key: &Q) -> &V`
 
 ##### `impl<K, V, S, A: Allocator> IntoIterator for HashMap<K, V, S, A>`
 
-- `type Item = (K, V)`
+- <span id="hashmap-item"></span>`type Item = (K, V)`
 
-- `type IntoIter = IntoIter<K, V, A>`
+- <span id="hashmap-intoiter"></span>`type IntoIter = IntoIter<K, V, A>`
 
-- `fn into_iter(self: Self) -> IntoIter<K, V, A>` — [`IntoIter`](#intoiter)
+- <span id="hashmap-into-iter"></span>`fn into_iter(self) -> IntoIter<K, V, A>` — [`IntoIter`](#intoiter)
 
 ##### `impl<K, V, S, A> PartialEq for HashMap<K, V, S, A>`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="hashmap-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ### `Iter<'a, K, V>`
 
@@ -311,39 +334,39 @@ assert_eq!(iter.next(), None);
 
 ##### `impl<K, V> Clone for Iter<'_, K, V>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="iter-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<K: Debug, V: Debug> Debug for Iter<'_, K, V>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="iter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<K, V> Default for Iter<'_, K, V>`
 
-- `fn default() -> Self`
+- <span id="iter-default"></span>`fn default() -> Self`
 
 ##### `impl<K, V> ExactSizeIterator for Iter<'_, K, V>`
 
-- `fn len(self: &Self) -> usize`
+- <span id="iter-len"></span>`fn len(&self) -> usize`
 
 ##### `impl<K, V> FusedIterator for Iter<'_, K, V>`
 
 ##### `impl<I> IntoIterator for Iter<'a, K, V>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="iter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="iter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="iter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, K, V> Iterator for Iter<'a, K, V>`
 
-- `type Item = (&'a K, &'a V)`
+- <span id="iter-item"></span>`type Item = (&'a K, &'a V)`
 
-- `fn next(self: &mut Self) -> Option<(&'a K, &'a V)>`
+- <span id="iter-next"></span>`fn next(&mut self) -> Option<(&'a K, &'a V)>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="iter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- `fn fold<B, F>(self: Self, init: B, f: F) -> B`
+- <span id="iter-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
 
 ### `IterMut<'a, K, V>`
 
@@ -382,41 +405,41 @@ assert_eq!(map.get(&2).unwrap(), &"Two Mississippi".to_owned());
 
 #### Implementations
 
-- `fn iter(self: &Self) -> Iter<'_, K, V>` — [`Iter`](#iter)
+- <span id="itermut-iter"></span>`fn iter(&self) -> Iter<'_, K, V>` — [`Iter`](#iter)
 
 #### Trait Implementations
 
 ##### `impl<K, V> Debug for IterMut<'_, K, V>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="itermut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<K, V> Default for IterMut<'_, K, V>`
 
-- `fn default() -> Self`
+- <span id="itermut-default"></span>`fn default() -> Self`
 
 ##### `impl<K, V> ExactSizeIterator for IterMut<'_, K, V>`
 
-- `fn len(self: &Self) -> usize`
+- <span id="itermut-len"></span>`fn len(&self) -> usize`
 
 ##### `impl<K, V> FusedIterator for IterMut<'_, K, V>`
 
 ##### `impl<I> IntoIterator for IterMut<'a, K, V>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="itermut-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="itermut-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="itermut-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, K, V> Iterator for IterMut<'a, K, V>`
 
-- `type Item = (&'a K, &'a mut V)`
+- <span id="itermut-item"></span>`type Item = (&'a K, &'a mut V)`
 
-- `fn next(self: &mut Self) -> Option<(&'a K, &'a mut V)>`
+- <span id="itermut-next"></span>`fn next(&mut self) -> Option<(&'a K, &'a mut V)>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="itermut-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- `fn fold<B, F>(self: Self, init: B, f: F) -> B`
+- <span id="itermut-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
 
 ##### `impl<K: Send, V: Send> Send for IterMut<'_, K, V>`
 
@@ -459,41 +482,41 @@ assert_eq!(iter.next(), None);
 
 #### Implementations
 
-- `fn iter(self: &Self) -> Iter<'_, K, V>` — [`Iter`](#iter)
+- <span id="intoiter-iter"></span>`fn iter(&self) -> Iter<'_, K, V>` — [`Iter`](#iter)
 
 #### Trait Implementations
 
 ##### `impl<K: Debug, V: Debug, A: Allocator> Debug for IntoIter<K, V, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="intoiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<K, V, A: Allocator> Default for IntoIter<K, V, A>`
 
-- `fn default() -> Self`
+- <span id="intoiter-default"></span>`fn default() -> Self`
 
 ##### `impl<K, V, A: Allocator> ExactSizeIterator for IntoIter<K, V, A>`
 
-- `fn len(self: &Self) -> usize`
+- <span id="intoiter-len"></span>`fn len(&self) -> usize`
 
 ##### `impl<K, V, A: Allocator> FusedIterator for IntoIter<K, V, A>`
 
 ##### `impl<I> IntoIterator for IntoIter<K, V, A>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="intoiter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="intoiter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="intoiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<K, V, A: Allocator> Iterator for IntoIter<K, V, A>`
 
-- `type Item = (K, V)`
+- <span id="intoiter-item"></span>`type Item = (K, V)`
 
-- `fn next(self: &mut Self) -> Option<(K, V)>`
+- <span id="intoiter-next"></span>`fn next(&mut self) -> Option<(K, V)>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="intoiter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- `fn fold<B, F>(self: Self, init: B, f: F) -> B`
+- <span id="intoiter-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
 
 ### `IntoKeys<K, V, A: Allocator>`
 
@@ -535,35 +558,35 @@ assert_eq!(keys.next(), None);
 
 ##### `impl<K: Debug, V: Debug, A: Allocator> Debug for IntoKeys<K, V, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="intokeys-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<K, V, A: Allocator> Default for IntoKeys<K, V, A>`
 
-- `fn default() -> Self`
+- <span id="intokeys-default"></span>`fn default() -> Self`
 
 ##### `impl<K, V, A: Allocator> ExactSizeIterator for IntoKeys<K, V, A>`
 
-- `fn len(self: &Self) -> usize`
+- <span id="intokeys-len"></span>`fn len(&self) -> usize`
 
 ##### `impl<K, V, A: Allocator> FusedIterator for IntoKeys<K, V, A>`
 
 ##### `impl<I> IntoIterator for IntoKeys<K, V, A>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="intokeys-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="intokeys-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="intokeys-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<K, V, A: Allocator> Iterator for IntoKeys<K, V, A>`
 
-- `type Item = K`
+- <span id="intokeys-item"></span>`type Item = K`
 
-- `fn next(self: &mut Self) -> Option<K>`
+- <span id="intokeys-next"></span>`fn next(&mut self) -> Option<K>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="intokeys-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- `fn fold<B, F>(self: Self, init: B, f: F) -> B`
+- <span id="intokeys-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
 
 ### `IntoValues<K, V, A: Allocator>`
 
@@ -604,35 +627,35 @@ assert_eq!(values.next(), None);
 
 ##### `impl<K, V: Debug, A: Allocator> Debug for IntoValues<K, V, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="intovalues-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<K, V, A: Allocator> Default for IntoValues<K, V, A>`
 
-- `fn default() -> Self`
+- <span id="intovalues-default"></span>`fn default() -> Self`
 
 ##### `impl<K, V, A: Allocator> ExactSizeIterator for IntoValues<K, V, A>`
 
-- `fn len(self: &Self) -> usize`
+- <span id="intovalues-len"></span>`fn len(&self) -> usize`
 
 ##### `impl<K, V, A: Allocator> FusedIterator for IntoValues<K, V, A>`
 
 ##### `impl<I> IntoIterator for IntoValues<K, V, A>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="intovalues-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="intovalues-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="intovalues-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<K, V, A: Allocator> Iterator for IntoValues<K, V, A>`
 
-- `type Item = V`
+- <span id="intovalues-item"></span>`type Item = V`
 
-- `fn next(self: &mut Self) -> Option<V>`
+- <span id="intovalues-next"></span>`fn next(&mut self) -> Option<V>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="intovalues-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- `fn fold<B, F>(self: Self, init: B, f: F) -> B`
+- <span id="intovalues-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
 
 ### `Keys<'a, K, V>`
 
@@ -673,39 +696,39 @@ assert_eq!(keys.next(), None);
 
 ##### `impl<K, V> Clone for Keys<'_, K, V>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="keys-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<K: Debug, V> Debug for Keys<'_, K, V>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="keys-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<K, V> Default for Keys<'_, K, V>`
 
-- `fn default() -> Self`
+- <span id="keys-default"></span>`fn default() -> Self`
 
 ##### `impl<K, V> ExactSizeIterator for Keys<'_, K, V>`
 
-- `fn len(self: &Self) -> usize`
+- <span id="keys-len"></span>`fn len(&self) -> usize`
 
 ##### `impl<K, V> FusedIterator for Keys<'_, K, V>`
 
 ##### `impl<I> IntoIterator for Keys<'a, K, V>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="keys-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="keys-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="keys-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, K, V> Iterator for Keys<'a, K, V>`
 
-- `type Item = &'a K`
+- <span id="keys-item"></span>`type Item = &'a K`
 
-- `fn next(self: &mut Self) -> Option<&'a K>`
+- <span id="keys-next"></span>`fn next(&mut self) -> Option<&'a K>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="keys-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- `fn fold<B, F>(self: Self, init: B, f: F) -> B`
+- <span id="keys-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
 
 ### `Values<'a, K, V>`
 
@@ -746,39 +769,39 @@ assert_eq!(values.next(), None);
 
 ##### `impl<K, V> Clone for Values<'_, K, V>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="values-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<K, V: Debug> Debug for Values<'_, K, V>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="values-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<K, V> Default for Values<'_, K, V>`
 
-- `fn default() -> Self`
+- <span id="values-default"></span>`fn default() -> Self`
 
 ##### `impl<K, V> ExactSizeIterator for Values<'_, K, V>`
 
-- `fn len(self: &Self) -> usize`
+- <span id="values-len"></span>`fn len(&self) -> usize`
 
 ##### `impl<K, V> FusedIterator for Values<'_, K, V>`
 
 ##### `impl<I> IntoIterator for Values<'a, K, V>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="values-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="values-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="values-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, K, V> Iterator for Values<'a, K, V>`
 
-- `type Item = &'a V`
+- <span id="values-item"></span>`type Item = &'a V`
 
-- `fn next(self: &mut Self) -> Option<&'a V>`
+- <span id="values-next"></span>`fn next(&mut self) -> Option<&'a V>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="values-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- `fn fold<B, F>(self: Self, init: B, f: F) -> B`
+- <span id="values-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
 
 ### `Drain<'a, K, V, A: Allocator>`
 
@@ -817,37 +840,37 @@ assert_eq!(drain_iter.next(), None);
 
 #### Implementations
 
-- `fn iter(self: &Self) -> Iter<'_, K, V>` — [`Iter`](#iter)
+- <span id="drain-iter"></span>`fn iter(&self) -> Iter<'_, K, V>` — [`Iter`](#iter)
 
 #### Trait Implementations
 
 ##### `impl<K, V, A> Debug for Drain<'_, K, V, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="drain-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<K, V, A: Allocator> ExactSizeIterator for Drain<'_, K, V, A>`
 
-- `fn len(self: &Self) -> usize`
+- <span id="drain-len"></span>`fn len(&self) -> usize`
 
 ##### `impl<K, V, A: Allocator> FusedIterator for Drain<'_, K, V, A>`
 
 ##### `impl<I> IntoIterator for Drain<'a, K, V, A>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="drain-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="drain-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="drain-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<K, V, A: Allocator> Iterator for Drain<'_, K, V, A>`
 
-- `type Item = (K, V)`
+- <span id="drain-item"></span>`type Item = (K, V)`
 
-- `fn next(self: &mut Self) -> Option<(K, V)>`
+- <span id="drain-next"></span>`fn next(&mut self) -> Option<(K, V)>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="drain-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- `fn fold<B, F>(self: Self, init: B, f: F) -> B`
+- <span id="drain-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
 
 ### `ExtractIf<'a, K, V, F, A: Allocator>`
 
@@ -894,19 +917,19 @@ assert_eq!(map.len(), 1);
 
 ##### `impl<I> IntoIterator for ExtractIf<'a, K, V, F, A>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="extractif-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="extractif-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="extractif-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<K, V, F, A> Iterator for ExtractIf<'_, K, V, F, A>`
 
-- `type Item = (K, V)`
+- <span id="extractif-item"></span>`type Item = (K, V)`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="extractif-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="extractif-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ### `ValuesMut<'a, K, V>`
 
@@ -946,35 +969,35 @@ assert_eq!(map.get(&2).unwrap(), &"Two Mississippi".to_owned());
 
 ##### `impl<K, V: Debug> Debug for ValuesMut<'_, K, V>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="valuesmut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<K, V> Default for ValuesMut<'_, K, V>`
 
-- `fn default() -> Self`
+- <span id="valuesmut-default"></span>`fn default() -> Self`
 
 ##### `impl<K, V> ExactSizeIterator for ValuesMut<'_, K, V>`
 
-- `fn len(self: &Self) -> usize`
+- <span id="valuesmut-len"></span>`fn len(&self) -> usize`
 
 ##### `impl<K, V> FusedIterator for ValuesMut<'_, K, V>`
 
 ##### `impl<I> IntoIterator for ValuesMut<'a, K, V>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="valuesmut-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="valuesmut-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="valuesmut-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, K, V> Iterator for ValuesMut<'a, K, V>`
 
-- `type Item = &'a mut V`
+- <span id="valuesmut-item"></span>`type Item = &'a mut V`
 
-- `fn next(self: &mut Self) -> Option<&'a mut V>`
+- <span id="valuesmut-next"></span>`fn next(&mut self) -> Option<&'a mut V>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="valuesmut-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- `fn fold<B, F>(self: Self, init: B, f: F) -> B`
+- <span id="valuesmut-fold"></span>`fn fold<B, F>(self, init: B, f: F) -> B`
 
 ### `OccupiedEntry<'a, K, V, S, A: Allocator>`
 
@@ -1027,27 +1050,27 @@ assert_eq!(map.len(), 2);
 
 #### Implementations
 
-- `fn key(self: &Self) -> &K`
+- <span id="occupiedentry-key"></span>`fn key(&self) -> &K`
 
-- `fn remove_entry(self: Self) -> (K, V)`
+- <span id="occupiedentry-remove-entry"></span>`fn remove_entry(self) -> (K, V)`
 
-- `fn get(self: &Self) -> &V`
+- <span id="occupiedentry-get"></span>`fn get(&self) -> &V`
 
-- `fn get_mut(self: &mut Self) -> &mut V`
+- <span id="occupiedentry-get-mut"></span>`fn get_mut(&mut self) -> &mut V`
 
-- `fn into_mut(self: Self) -> &'a mut V`
+- <span id="occupiedentry-into-mut"></span>`fn into_mut(self) -> &'a mut V`
 
-- `fn insert(self: &mut Self, value: V) -> V`
+- <span id="occupiedentry-insert"></span>`fn insert(&mut self, value: V) -> V`
 
-- `fn remove(self: Self) -> V`
+- <span id="occupiedentry-remove"></span>`fn remove(self) -> V`
 
-- `fn replace_entry_with<F>(self: Self, f: F) -> Entry<'a, K, V, S, A>` — [`Entry`](#entry)
+- <span id="occupiedentry-replace-entry-with"></span>`fn replace_entry_with<F>(self, f: F) -> Entry<'a, K, V, S, A>` — [`Entry`](#entry)
 
 #### Trait Implementations
 
 ##### `impl<K: Debug, V: Debug, S, A: Allocator> Debug for OccupiedEntry<'_, K, V, S, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="occupiedentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<K, V, S, A> Send for OccupiedEntry<'_, K, V, S, A>`
 
@@ -1064,7 +1087,7 @@ struct VacantEntry<'a, K, V, S, A: Allocator> {
 ```
 
 A view into a vacant entry in a `HashMap`.
-It is part of the [`Entry`](#entry) enum.
+It is part of the [`Entry`](../hash_set/index.md) enum.
 
 # Examples
 
@@ -1094,19 +1117,19 @@ assert!(map[&"b"] == 20 && map.len() == 2);
 
 #### Implementations
 
-- `fn key(self: &Self) -> &K`
+- <span id="vacantentry-key"></span>`fn key(&self) -> &K`
 
-- `fn into_key(self: Self) -> K`
+- <span id="vacantentry-into-key"></span>`fn into_key(self) -> K`
 
-- `fn insert(self: Self, value: V) -> &'a mut V`
+- <span id="vacantentry-insert"></span>`fn insert(self, value: V) -> &'a mut V`
 
-- `fn insert_entry(self: Self, value: V) -> OccupiedEntry<'a, K, V, S, A>` — [`OccupiedEntry`](#occupiedentry)
+- <span id="vacantentry-insert-entry"></span>`fn insert_entry(self, value: V) -> OccupiedEntry<'a, K, V, S, A>` — [`OccupiedEntry`](#occupiedentry)
 
 #### Trait Implementations
 
 ##### `impl<K: Debug, V, S, A: Allocator> Debug for VacantEntry<'_, K, V, S, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="vacantentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `VacantEntryRef<'map, 'key, K, Q: ?Sized, V, S, A: Allocator>`
 
@@ -1149,19 +1172,19 @@ assert!(map["b"] == 20 && map.len() == 2);
 
 #### Implementations
 
-- `fn key(self: &Self) -> &'key Q`
+- <span id="vacantentryref-key"></span>`fn key(&self) -> &'key Q`
 
-- `fn insert(self: Self, value: V) -> &'map mut V`
+- <span id="vacantentryref-insert"></span>`fn insert(self, value: V) -> &'map mut V`
 
-- `fn insert_with_key(self: Self, key: K, value: V) -> &'map mut V`
+- <span id="vacantentryref-insert-with-key"></span>`fn insert_with_key(self, key: K, value: V) -> &'map mut V`
 
-- `fn insert_entry(self: Self, value: V) -> OccupiedEntry<'map, K, V, S, A>` — [`OccupiedEntry`](#occupiedentry)
+- <span id="vacantentryref-insert-entry"></span>`fn insert_entry(self, value: V) -> OccupiedEntry<'map, K, V, S, A>` — [`OccupiedEntry`](#occupiedentry)
 
 #### Trait Implementations
 
 ##### `impl<K, Q, V, S, A> Debug for VacantEntryRef<'_, '_, K, Q, V, S, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="vacantentryref-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `OccupiedError<'a, K, V, S, A: Allocator>`
 
@@ -1211,15 +1234,15 @@ assert_eq!(map[&"a"], 100);
 
 ##### `impl<K: Debug, V: Debug, S, A: Allocator> Debug for OccupiedError<'_, K, V, S, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="occupiederror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<K: Debug, V: Debug, S, A: Allocator> Display for OccupiedError<'_, K, V, S, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="occupiederror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for OccupiedError<'a, K, V, S, A>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="occupiederror-to-string"></span>`fn to_string(&self) -> String`
 
 ## Enums
 
@@ -1312,13 +1335,13 @@ assert_eq!(vec, [("a", 1), ("b", 2), ("c", 3), ("d", 4), ("e", 5), ("f", 6)]);
 
 #### Implementations
 
-- `fn or_default(self: Self) -> &'a mut V`
+- <span id="entry-or-default"></span>`fn or_default(self) -> &'a mut V`
 
 #### Trait Implementations
 
 ##### `impl<K: Debug, V: Debug, S, A: Allocator> Debug for Entry<'_, K, V, S, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="entry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `EntryRef<'a, 'b, K, Q: ?Sized, V, S, A>`
 
@@ -1418,23 +1441,23 @@ assert_eq!(map.len(), 6);
 
 #### Implementations
 
-- `fn insert(self: Self, value: V) -> OccupiedEntry<'a, K, V, S, A>` — [`OccupiedEntry`](#occupiedentry)
+- <span id="entryref-insert"></span>`fn insert(self, value: V) -> OccupiedEntry<'a, K, V, S, A>` — [`OccupiedEntry`](#occupiedentry)
 
-- `fn or_insert(self: Self, default: V) -> &'a mut V`
+- <span id="entryref-or-insert"></span>`fn or_insert(self, default: V) -> &'a mut V`
 
-- `fn or_insert_with<F: FnOnce() -> V>(self: Self, default: F) -> &'a mut V`
+- <span id="entryref-or-insert-with"></span>`fn or_insert_with<F: FnOnce() -> V>(self, default: F) -> &'a mut V`
 
-- `fn or_insert_with_key<F: FnOnce(&Q) -> V>(self: Self, default: F) -> &'a mut V`
+- <span id="entryref-or-insert-with-key"></span>`fn or_insert_with_key<F: FnOnce(&Q) -> V>(self, default: F) -> &'a mut V`
 
-- `fn key(self: &Self) -> &Q`
+- <span id="entryref-key"></span>`fn key(&self) -> &Q`
 
-- `fn and_modify<F>(self: Self, f: F) -> Self`
+- <span id="entryref-and-modify"></span>`fn and_modify<F>(self, f: F) -> Self`
 
 #### Trait Implementations
 
 ##### `impl<K, Q, V, S, A> Debug for EntryRef<'_, '_, K, Q, V, S, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="entryref-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Functions
 

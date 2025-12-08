@@ -4,6 +4,12 @@
 
 # Module `byteset`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ByteSet`](#byteset) | struct |  |
+
 ## Structs
 
 ### `ByteSet`
@@ -14,25 +20,25 @@ struct ByteSet([bool; 256]);
 
 #### Implementations
 
-- `fn new<B: AsRef<[u8]>>(_kind: MatchKind, needles: &[B]) -> Option<ByteSet>` — [`MatchKind`](../../../index.md), [`ByteSet`](#byteset)
+- <span id="byteset-new"></span>`fn new<B: AsRef<[u8]>>(_kind: MatchKind, needles: &[B]) -> Option<ByteSet>` — [`MatchKind`](../../../index.md), [`ByteSet`](#byteset)
 
 #### Trait Implementations
 
 ##### `impl Clone for ByteSet`
 
-- `fn clone(self: &Self) -> ByteSet` — [`ByteSet`](#byteset)
+- <span id="byteset-clone"></span>`fn clone(&self) -> ByteSet` — [`ByteSet`](#byteset)
 
 ##### `impl Debug for ByteSet`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="byteset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl PrefilterI for ByteSet`
 
-- `fn find(self: &Self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
+- <span id="byteset-find"></span>`fn find(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
 
-- `fn prefix(self: &Self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
+- <span id="byteset-prefix"></span>`fn prefix(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="byteset-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- `fn is_fast(self: &Self) -> bool`
+- <span id="byteset-is-fast"></span>`fn is_fast(&self) -> bool`
 

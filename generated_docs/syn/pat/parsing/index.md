@@ -4,6 +4,50 @@
 
 # Module `parsing`
 
+## Contents
+
+- [Enums](#enums)
+  - [`PatRangeBound`](#patrangebound)
+- [Functions](#functions)
+  - [`multi_pat_impl`](#multi_pat_impl)
+  - [`pat_path_or_macro_or_struct_or_range`](#pat_path_or_macro_or_struct_or_range)
+  - [`pat_wild`](#pat_wild)
+  - [`pat_box`](#pat_box)
+  - [`pat_ident`](#pat_ident)
+  - [`pat_tuple_struct`](#pat_tuple_struct)
+  - [`pat_struct`](#pat_struct)
+  - [`field_pat`](#field_pat)
+  - [`pat_range`](#pat_range)
+  - [`pat_range_half_open`](#pat_range_half_open)
+  - [`pat_paren_or_tuple`](#pat_paren_or_tuple)
+  - [`pat_reference`](#pat_reference)
+  - [`pat_lit_or_range`](#pat_lit_or_range)
+  - [`pat_range_bound`](#pat_range_bound)
+  - [`pat_slice`](#pat_slice)
+  - [`pat_const`](#pat_const)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`PatRangeBound`](#patrangebound) | enum |  |
+| [`multi_pat_impl`](#multi_pat_impl) | fn |  |
+| [`pat_path_or_macro_or_struct_or_range`](#pat_path_or_macro_or_struct_or_range) | fn |  |
+| [`pat_wild`](#pat_wild) | fn |  |
+| [`pat_box`](#pat_box) | fn |  |
+| [`pat_ident`](#pat_ident) | fn |  |
+| [`pat_tuple_struct`](#pat_tuple_struct) | fn |  |
+| [`pat_struct`](#pat_struct) | fn |  |
+| [`field_pat`](#field_pat) | fn |  |
+| [`pat_range`](#pat_range) | fn |  |
+| [`pat_range_half_open`](#pat_range_half_open) | fn |  |
+| [`pat_paren_or_tuple`](#pat_paren_or_tuple) | fn |  |
+| [`pat_reference`](#pat_reference) | fn |  |
+| [`pat_lit_or_range`](#pat_lit_or_range) | fn |  |
+| [`pat_range_bound`](#pat_range_bound) | fn |  |
+| [`pat_slice`](#pat_slice) | fn |  |
+| [`pat_const`](#pat_const) | fn |  |
+
 ## Enums
 
 ### `PatRangeBound`
@@ -18,16 +62,16 @@ enum PatRangeBound {
 
 #### Implementations
 
-- `fn into_expr(self: Self) -> Box<Expr>` — [`Expr`](../../index.md)
+- <span id="patrangebound-into-expr"></span>`fn into_expr(self) -> Box<Expr>` — [`Expr`](../../index.md)
 
-- `fn into_pat(self: Self) -> Pat` — [`Pat`](../../index.md)
+- <span id="patrangebound-into-pat"></span>`fn into_pat(self) -> Pat` — [`Pat`](../../index.md)
 
 ## Functions
 
 ### `multi_pat_impl`
 
 ```rust
-fn multi_pat_impl(input: crate::parse::ParseStream<'_>, leading_vert: Option<$crate::token::Or>) -> crate::error::Result<crate::pat::Pat>
+fn multi_pat_impl(input: crate::parse::ParseStream<'_>, leading_vert: Option<token::Or>) -> crate::error::Result<crate::pat::Pat>
 ```
 
 ### `pat_path_or_macro_or_struct_or_range`

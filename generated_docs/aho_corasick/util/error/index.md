@@ -4,6 +4,15 @@
 
 # Module `error`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`BuildError`](#builderror) | struct | An error that occurred during the construction of an Aho-Corasick |
+| [`MatchError`](#matcherror) | struct | An error that occurred during an Aho-Corasick search. |
+| [`ErrorKind`](#errorkind) | enum | The kind of error that occurred. |
+| [`MatchErrorKind`](#matcherrorkind) | enum | The underlying kind of a [`MatchError`]. |
+
 ## Structs
 
 ### `BuildError`
@@ -27,31 +36,31 @@ trait.
 
 #### Implementations
 
-- `fn state_id_overflow(max: u64, requested_max: u64) -> BuildError` — [`BuildError`](../../index.md)
+- <span id="builderror-state-id-overflow"></span>`fn state_id_overflow(max: u64, requested_max: u64) -> BuildError` — [`BuildError`](../../index.md)
 
-- `fn pattern_id_overflow(max: u64, requested_max: u64) -> BuildError` — [`BuildError`](../../index.md)
+- <span id="builderror-pattern-id-overflow"></span>`fn pattern_id_overflow(max: u64, requested_max: u64) -> BuildError` — [`BuildError`](../../index.md)
 
-- `fn pattern_too_long(pattern: PatternID, len: usize) -> BuildError` — [`PatternID`](../../index.md), [`BuildError`](../../index.md)
+- <span id="builderror-pattern-too-long"></span>`fn pattern_too_long(pattern: PatternID, len: usize) -> BuildError` — [`PatternID`](../../index.md), [`BuildError`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for BuildError`
 
-- `fn clone(self: &Self) -> BuildError` — [`BuildError`](../../index.md)
+- <span id="builderror-clone"></span>`fn clone(&self) -> BuildError` — [`BuildError`](../../index.md)
 
 ##### `impl Debug for BuildError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="builderror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for BuildError`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="builderror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for BuildError`
 
 ##### `impl<T> ToString for BuildError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="builderror-to-string"></span>`fn to_string(&self) -> String`
 
 ### `MatchError`
 
@@ -79,33 +88,33 @@ trait.
 
 #### Implementations
 
-- `fn new(kind: MatchErrorKind) -> MatchError` — [`MatchErrorKind`](../../index.md), [`MatchError`](../../index.md)
+- <span id="matcherror-new"></span>`fn new(kind: MatchErrorKind) -> MatchError` — [`MatchErrorKind`](../../index.md), [`MatchError`](../../index.md)
 
-- `fn kind(self: &Self) -> &MatchErrorKind` — [`MatchErrorKind`](../../index.md)
+- <span id="matcherror-kind"></span>`fn kind(&self) -> &MatchErrorKind` — [`MatchErrorKind`](../../index.md)
 
-- `fn invalid_input_anchored() -> MatchError` — [`MatchError`](../../index.md)
+- <span id="matcherror-invalid-input-anchored"></span>`fn invalid_input_anchored() -> MatchError` — [`MatchError`](../../index.md)
 
-- `fn invalid_input_unanchored() -> MatchError` — [`MatchError`](../../index.md)
+- <span id="matcherror-invalid-input-unanchored"></span>`fn invalid_input_unanchored() -> MatchError` — [`MatchError`](../../index.md)
 
-- `fn unsupported_stream(got: MatchKind) -> MatchError` — [`MatchKind`](../../index.md), [`MatchError`](../../index.md)
+- <span id="matcherror-unsupported-stream"></span>`fn unsupported_stream(got: MatchKind) -> MatchError` — [`MatchKind`](../../index.md), [`MatchError`](../../index.md)
 
-- `fn unsupported_overlapping(got: MatchKind) -> MatchError` — [`MatchKind`](../../index.md), [`MatchError`](../../index.md)
+- <span id="matcherror-unsupported-overlapping"></span>`fn unsupported_overlapping(got: MatchKind) -> MatchError` — [`MatchKind`](../../index.md), [`MatchError`](../../index.md)
 
-- `fn unsupported_empty() -> MatchError` — [`MatchError`](../../index.md)
+- <span id="matcherror-unsupported-empty"></span>`fn unsupported_empty() -> MatchError` — [`MatchError`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for MatchError`
 
-- `fn clone(self: &Self) -> MatchError` — [`MatchError`](../../index.md)
+- <span id="matcherror-clone"></span>`fn clone(&self) -> MatchError` — [`MatchError`](../../index.md)
 
 ##### `impl Debug for MatchError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="matcherror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for MatchError`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="matcherror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq for MatchError`
 
@@ -113,13 +122,13 @@ trait.
 
 ##### `impl PartialEq for MatchError`
 
-- `fn eq(self: &Self, other: &MatchError) -> bool` — [`MatchError`](../../index.md)
+- <span id="matcherror-eq"></span>`fn eq(&self, other: &MatchError) -> bool` — [`MatchError`](../../index.md)
 
 ##### `impl StructuralPartialEq for MatchError`
 
 ##### `impl<T> ToString for MatchError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="matcherror-to-string"></span>`fn to_string(&self) -> String`
 
 ## Enums
 
@@ -166,11 +175,11 @@ The kind of error that occurred.
 
 ##### `impl Clone for ErrorKind`
 
-- `fn clone(self: &Self) -> ErrorKind` — [`ErrorKind`](#errorkind)
+- <span id="errorkind-clone"></span>`fn clone(&self) -> ErrorKind` — [`ErrorKind`](#errorkind)
 
 ##### `impl Debug for ErrorKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="errorkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `MatchErrorKind`
 
@@ -224,17 +233,17 @@ a semver-compatible release.
 
 ##### `impl Clone for MatchErrorKind`
 
-- `fn clone(self: &Self) -> MatchErrorKind` — [`MatchErrorKind`](../../index.md)
+- <span id="matcherrorkind-clone"></span>`fn clone(&self) -> MatchErrorKind` — [`MatchErrorKind`](../../index.md)
 
 ##### `impl Debug for MatchErrorKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="matcherrorkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for MatchErrorKind`
 
 ##### `impl PartialEq for MatchErrorKind`
 
-- `fn eq(self: &Self, other: &MatchErrorKind) -> bool` — [`MatchErrorKind`](../../index.md)
+- <span id="matcherrorkind-eq"></span>`fn eq(&self, other: &MatchErrorKind) -> bool` — [`MatchErrorKind`](../../index.md)
 
 ##### `impl StructuralPartialEq for MatchErrorKind`
 

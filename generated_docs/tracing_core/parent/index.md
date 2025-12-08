@@ -4,6 +4,12 @@
 
 # Module `parent`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Parent`](#parent) | enum |  |
+
 ## Enums
 
 ### `Parent`
@@ -34,5 +40,5 @@ enum Parent {
 
 ##### `impl Debug for Parent`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="parent-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

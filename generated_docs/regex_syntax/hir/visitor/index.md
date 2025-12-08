@@ -4,6 +4,15 @@
 
 # Module `visitor`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`HeapVisitor`](#heapvisitor) | struct | HeapVisitor visits every item in an `Hir` recursively using constant stack |
+| [`Frame`](#frame) | enum | Represents a single stack frame while performing structural induction over |
+| [`Visitor`](#visitor) | trait | A trait for visiting the high-level IR (HIR) in depth first order. |
+| [`visit`](#visit) | fn | Executes an implementation of `Visitor` in constant stack space. |
+
 ## Structs
 
 ### `HeapVisitor<'a>`
@@ -26,13 +35,13 @@ size and a heap size proportional to the size of the `Hir`.
 
 #### Implementations
 
-- `fn new() -> HeapVisitor<'a>` — [`HeapVisitor`](#heapvisitor)
+- <span id="heapvisitor-new"></span>`fn new() -> HeapVisitor<'a>` — [`HeapVisitor`](#heapvisitor)
 
-- `fn visit<V: Visitor>(self: &mut Self, hir: &'a Hir, visitor: V) -> Result<<V as >::Output, <V as >::Err>` — [`Hir`](../index.md), [`Visitor`](../index.md)
+- <span id="heapvisitor-visit"></span>`fn visit<V: Visitor>(&mut self, hir: &'a Hir, visitor: V) -> Result<<V as >::Output, <V as >::Err>` — [`Hir`](../index.md), [`Visitor`](../index.md)
 
-- `fn induct(self: &mut Self, hir: &'a Hir) -> Option<Frame<'a>>` — [`Hir`](../index.md), [`Frame`](#frame)
+- <span id="heapvisitor-induct"></span>`fn induct(&mut self, hir: &'a Hir) -> Option<Frame<'a>>` — [`Hir`](../index.md), [`Frame`](#frame)
 
-- `fn pop(self: &Self, induct: Frame<'a>) -> Option<Frame<'a>>` — [`Frame`](#frame)
+- <span id="heapvisitor-pop"></span>`fn pop(&self, induct: Frame<'a>) -> Option<Frame<'a>>` — [`Frame`](#frame)
 
 ## Enums
 
@@ -80,7 +89,7 @@ an `Hir`.
 
 #### Implementations
 
-- `fn child(self: &Self) -> &'a Hir` — [`Hir`](../index.md)
+- <span id="frame-child"></span>`fn child(&self) -> &'a Hir` — [`Hir`](../index.md)
 
 ## Traits
 
@@ -107,27 +116,27 @@ running it using the [`visit`](../index.md) function.
 
 - `type Err`
 
-- `fn finish(self: Self) -> Result<<Self as >::Output, <Self as >::Err>`
+- `fn finish(self) -> Result<<Self as >::Output, <Self as >::Err>`
 
   All implementors of `Visitor` must provide a `finish` method, which
 
-- `fn start(self: &mut Self)`
+- `fn start(&mut self)`
 
   This method is called before beginning traversal of the HIR.
 
-- `fn visit_pre(self: &mut Self, _hir: &Hir) -> Result<(), <Self as >::Err>`
+- `fn visit_pre(&mut self, _hir: &Hir) -> Result<(), <Self as >::Err>`
 
   This method is called on an `Hir` before descending into child `Hir`
 
-- `fn visit_post(self: &mut Self, _hir: &Hir) -> Result<(), <Self as >::Err>`
+- `fn visit_post(&mut self, _hir: &Hir) -> Result<(), <Self as >::Err>`
 
   This method is called on an `Hir` after descending all of its child
 
-- `fn visit_alternation_in(self: &mut Self) -> Result<(), <Self as >::Err>`
+- `fn visit_alternation_in(&mut self) -> Result<(), <Self as >::Err>`
 
   This method is called between child nodes of an alternation.
 
-- `fn visit_concat_in(self: &mut Self) -> Result<(), <Self as >::Err>`
+- `fn visit_concat_in(&mut self) -> Result<(), <Self as >::Err>`
 
   This method is called between child nodes of a concatenation.
 

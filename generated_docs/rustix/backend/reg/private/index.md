@@ -7,6 +7,12 @@
 Seal our various traits using the technique documented [here].
 
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Sealed`](#sealed) | trait |  |
+
 ## Traits
 
 ### `Sealed`

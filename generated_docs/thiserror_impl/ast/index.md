@@ -4,6 +4,17 @@
 
 # Module `ast`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Struct`](#struct) | struct |  |
+| [`Enum`](#enum) | struct |  |
+| [`Variant`](#variant) | struct |  |
+| [`Field`](#field) | struct |  |
+| [`Input`](#input) | enum |  |
+| [`ContainerKind`](#containerkind) | enum |  |
+
 ## Structs
 
 ### `Struct<'a>`
@@ -19,7 +30,13 @@ struct Struct<'a> {
 
 #### Implementations
 
-- `fn from_syn(node: &'a DeriveInput, data: &'a DataStruct) -> Result<Self>`
+- <span id="crateaststruct-from-field"></span>`fn from_field(&self) -> Option<&Field<'_>>` — [`Field`](#field)
+
+- <span id="crateaststruct-source-field"></span>`fn source_field(&self) -> Option<&Field<'_>>` — [`Field`](#field)
+
+- <span id="crateaststruct-backtrace-field"></span>`fn backtrace_field(&self) -> Option<&Field<'_>>` — [`Field`](#field)
+
+- <span id="crateaststruct-distinct-backtrace-field"></span>`fn distinct_backtrace_field(&self) -> Option<&Field<'_>>` — [`Field`](#field)
 
 ### `Enum<'a>`
 
@@ -34,11 +51,7 @@ struct Enum<'a> {
 
 #### Implementations
 
-- `fn has_source(self: &Self) -> bool`
-
-- `fn has_backtrace(self: &Self) -> bool`
-
-- `fn has_display(self: &Self) -> bool`
+- <span id="crateastenum-validate"></span>`fn validate(&self) -> Result<()>`
 
 ### `Variant<'a>`
 
@@ -53,13 +66,7 @@ struct Variant<'a> {
 
 #### Implementations
 
-- `fn from_field(self: &Self) -> Option<&Field<'_>>` — [`Field`](#field)
-
-- `fn source_field(self: &Self) -> Option<&Field<'_>>` — [`Field`](#field)
-
-- `fn backtrace_field(self: &Self) -> Option<&Field<'_>>` — [`Field`](#field)
-
-- `fn distinct_backtrace_field(self: &Self) -> Option<&Field<'_>>` — [`Field`](#field)
+- <span id="crateastvariant-validate"></span>`fn validate(&self) -> Result<()>`
 
 ### `Field<'a>`
 
@@ -75,9 +82,9 @@ struct Field<'a> {
 
 #### Implementations
 
-- `fn multiple_from_syn(fields: &'a Fields, scope: &ParamsInScope<'a>) -> Result<Vec<Self>>` — [`ParamsInScope`](../generics/index.md)
+- <span id="field-multiple-from-syn"></span>`fn multiple_from_syn(fields: &'a Fields, scope: &ParamsInScope<'a>) -> Result<Vec<Self>>` — [`ParamsInScope`](../generics/index.md)
 
-- `fn from_syn(i: usize, node: &'a syn::Field, scope: &ParamsInScope<'a>) -> Result<Self>` — [`ParamsInScope`](../generics/index.md)
+- <span id="field-from-syn"></span>`fn from_syn(i: usize, node: &'a syn::Field, scope: &ParamsInScope<'a>) -> Result<Self>` — [`ParamsInScope`](../generics/index.md)
 
 ## Enums
 
@@ -92,7 +99,7 @@ enum Input<'a> {
 
 #### Implementations
 
-- `fn from_syn(node: &'a DeriveInput) -> Result<Self>`
+- <span id="crateastinput-validate"></span>`fn validate(&self) -> Result<()>`
 
 ### `ContainerKind`
 
@@ -109,23 +116,23 @@ enum ContainerKind {
 
 #### Implementations
 
-- `fn from_struct(node: &DataStruct) -> Self`
+- <span id="containerkind-from-struct"></span>`fn from_struct(node: &DataStruct) -> Self`
 
-- `fn from_variant(node: &syn::Variant) -> Self`
+- <span id="containerkind-from-variant"></span>`fn from_variant(node: &syn::Variant) -> Self`
 
 #### Trait Implementations
 
 ##### `impl Clone for ContainerKind`
 
-- `fn clone(self: &Self) -> ContainerKind` — [`ContainerKind`](#containerkind)
+- <span id="containerkind-clone"></span>`fn clone(&self) -> ContainerKind` — [`ContainerKind`](#containerkind)
 
 ##### `impl Copy for ContainerKind`
 
 ##### `impl Display for ContainerKind`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="containerkind-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for ContainerKind`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="containerkind-to-string"></span>`fn to_string(&self) -> String`
 

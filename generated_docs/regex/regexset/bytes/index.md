@@ -4,6 +4,15 @@
 
 # Module `bytes`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`RegexSet`](#regexset) | struct | Match multiple, possibly overlapping, regexes in a single search. |
+| [`SetMatches`](#setmatches) | struct | A set of matches returned by a regex set. |
+| [`SetMatchesIntoIter`](#setmatchesintoiter) | struct | An owned iterator over the set of matches from a regex set. |
+| [`SetMatchesIter`](#setmatchesiter) | struct | A borrowed iterator over the set of matches from a regex set. |
+
 ## Structs
 
 ### `RegexSet`
@@ -146,37 +155,37 @@ alternate isn't always obvious to reason about.
 
 #### Implementations
 
-- `fn new<I, S>(exprs: I) -> Result<RegexSet, Error>` — [`RegexSet`](#regexset), [`Error`](../../index.md)
+- <span id="regexset-new"></span>`fn new<I, S>(exprs: I) -> Result<RegexSet, Error>` — [`RegexSet`](#regexset), [`Error`](../../index.md)
 
-- `fn empty() -> RegexSet` — [`RegexSet`](#regexset)
+- <span id="regexset-empty"></span>`fn empty() -> RegexSet` — [`RegexSet`](#regexset)
 
-- `fn is_match(self: &Self, haystack: &[u8]) -> bool`
+- <span id="regexset-is-match"></span>`fn is_match(&self, haystack: &[u8]) -> bool`
 
-- `fn is_match_at(self: &Self, haystack: &[u8], start: usize) -> bool`
+- <span id="regexset-is-match-at"></span>`fn is_match_at(&self, haystack: &[u8], start: usize) -> bool`
 
-- `fn matches(self: &Self, haystack: &[u8]) -> SetMatches` — [`SetMatches`](#setmatches)
+- <span id="regexset-matches"></span>`fn matches(&self, haystack: &[u8]) -> SetMatches` — [`SetMatches`](#setmatches)
 
-- `fn matches_at(self: &Self, haystack: &[u8], start: usize) -> SetMatches` — [`SetMatches`](#setmatches)
+- <span id="regexset-matches-at"></span>`fn matches_at(&self, haystack: &[u8], start: usize) -> SetMatches` — [`SetMatches`](#setmatches)
 
-- `fn len(self: &Self) -> usize`
+- <span id="regexset-len"></span>`fn len(&self) -> usize`
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="regexset-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn patterns(self: &Self) -> &[String]`
+- <span id="regexset-patterns"></span>`fn patterns(&self) -> &[String]`
 
 #### Trait Implementations
 
 ##### `impl Clone for RegexSet`
 
-- `fn clone(self: &Self) -> RegexSet` — [`RegexSet`](#regexset)
+- <span id="regexset-clone"></span>`fn clone(&self) -> RegexSet` — [`RegexSet`](#regexset)
 
 ##### `impl Debug for RegexSet`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="regexset-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Default for RegexSet`
 
-- `fn default() -> Self`
+- <span id="regexset-default"></span>`fn default() -> Self`
 
 ### `SetMatches`
 
@@ -190,33 +199,33 @@ Values of this type are constructed by `RegexSet::matches`.
 
 #### Implementations
 
-- `fn matched_any(self: &Self) -> bool`
+- <span id="setmatches-matched-any"></span>`fn matched_any(&self) -> bool`
 
-- `fn matched_all(self: &Self) -> bool`
+- <span id="setmatches-matched-all"></span>`fn matched_all(&self) -> bool`
 
-- `fn matched(self: &Self, index: usize) -> bool`
+- <span id="setmatches-matched"></span>`fn matched(&self, index: usize) -> bool`
 
-- `fn len(self: &Self) -> usize`
+- <span id="setmatches-len"></span>`fn len(&self) -> usize`
 
-- `fn iter(self: &Self) -> SetMatchesIter<'_>` — [`SetMatchesIter`](#setmatchesiter)
+- <span id="setmatches-iter"></span>`fn iter(&self) -> SetMatchesIter<'_>` — [`SetMatchesIter`](#setmatchesiter)
 
 #### Trait Implementations
 
 ##### `impl Clone for SetMatches`
 
-- `fn clone(self: &Self) -> SetMatches` — [`SetMatches`](#setmatches)
+- <span id="setmatches-clone"></span>`fn clone(&self) -> SetMatches` — [`SetMatches`](#setmatches)
 
 ##### `impl Debug for SetMatches`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="setmatches-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl IntoIterator for SetMatches`
 
-- `type IntoIter = SetMatchesIntoIter`
+- <span id="setmatches-intoiter"></span>`type IntoIter = SetMatchesIntoIter`
 
-- `type Item = usize`
+- <span id="setmatches-item"></span>`type Item = usize`
 
-- `fn into_iter(self: Self) -> <Self as >::IntoIter`
+- <span id="setmatches-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
 ### `SetMatchesIntoIter`
 
@@ -259,29 +268,29 @@ assert_eq!(matches, vec![0, 1, 3]);
 
 ##### `impl Debug for SetMatchesIntoIter`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="setmatchesintoiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl DoubleEndedIterator for SetMatchesIntoIter`
 
-- `fn next_back(self: &mut Self) -> Option<usize>`
+- <span id="setmatchesintoiter-next-back"></span>`fn next_back(&mut self) -> Option<usize>`
 
 ##### `impl FusedIterator for SetMatchesIntoIter`
 
 ##### `impl<I> IntoIterator for SetMatchesIntoIter`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="setmatchesintoiter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="setmatchesintoiter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="setmatchesintoiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for SetMatchesIntoIter`
 
-- `type Item = usize`
+- <span id="setmatchesintoiter-item"></span>`type Item = usize`
 
-- `fn next(self: &mut Self) -> Option<usize>`
+- <span id="setmatchesintoiter-next"></span>`fn next(&mut self) -> Option<usize>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="setmatchesintoiter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ### `SetMatchesIter<'a>`
 
@@ -304,31 +313,31 @@ This iterator is created by the `SetMatches::iter` method.
 
 ##### `impl<'a> Clone for SetMatchesIter<'a>`
 
-- `fn clone(self: &Self) -> SetMatchesIter<'a>` — [`SetMatchesIter`](#setmatchesiter)
+- <span id="setmatchesiter-clone"></span>`fn clone(&self) -> SetMatchesIter<'a>` — [`SetMatchesIter`](#setmatchesiter)
 
 ##### `impl<'a> Debug for SetMatchesIter<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="setmatchesiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'a> DoubleEndedIterator for SetMatchesIter<'a>`
 
-- `fn next_back(self: &mut Self) -> Option<usize>`
+- <span id="setmatchesiter-next-back"></span>`fn next_back(&mut self) -> Option<usize>`
 
 ##### `impl<'a> FusedIterator for SetMatchesIter<'a>`
 
 ##### `impl<I> IntoIterator for SetMatchesIter<'a>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="setmatchesiter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="setmatchesiter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="setmatchesiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a> Iterator for SetMatchesIter<'a>`
 
-- `type Item = usize`
+- <span id="setmatchesiter-item"></span>`type Item = usize`
 
-- `fn next(self: &mut Self) -> Option<usize>`
+- <span id="setmatchesiter-next"></span>`fn next(&mut self) -> Option<usize>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="setmatchesiter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 

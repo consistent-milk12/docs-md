@@ -4,6 +4,15 @@
 
 # Module `skip_any_while`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`SkipAnyWhile`](#skipanywhile) | struct | `SkipAnyWhile` is an iterator that skips over elements from anywhere in `I` |
+| [`SkipAnyWhileConsumer`](#skipanywhileconsumer) | struct |  |
+| [`SkipAnyWhileFolder`](#skipanywhilefolder) | struct |  |
+| [`skip`](#skip) | fn |  |
+
 ## Structs
 
 ### `SkipAnyWhile<I, P>`
@@ -22,47 +31,47 @@ This struct is created by the `skip_any_while()` method on [`ParallelIterator`](
 
 #### Implementations
 
-- `fn new(base: I, predicate: P) -> Self`
+- <span id="skipanywhile-new"></span>`fn new(base: I, predicate: P) -> Self`
 
 #### Trait Implementations
 
-##### `impl<I: $crate::clone::Clone, P: $crate::clone::Clone> Clone for SkipAnyWhile<I, P>`
+##### `impl<I: clone::Clone, P: clone::Clone> Clone for SkipAnyWhile<I, P>`
 
-- `fn clone(self: &Self) -> SkipAnyWhile<I, P>` — [`SkipAnyWhile`](../index.md)
+- <span id="skipanywhile-clone"></span>`fn clone(&self) -> SkipAnyWhile<I, P>` — [`SkipAnyWhile`](../index.md)
 
 ##### `impl<I: fmt::Debug, P> Debug for SkipAnyWhile<I, P>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="skipanywhile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> IntoEither for SkipAnyWhile<I, P>`
 
 ##### `impl<T> IntoParallelIterator for SkipAnyWhile<I, P>`
 
-- `type Iter = T`
+- <span id="skipanywhile-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="skipanywhile-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="skipanywhile-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, P> ParallelIterator for SkipAnyWhile<I, P>`
 
-- `type Item = <I as ParallelIterator>::Item`
+- <span id="skipanywhile-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="skipanywhile-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
 ##### `impl<T> Pointable for SkipAnyWhile<I, P>`
 
-- `const ALIGN: usize`
+- <span id="skipanywhile-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="skipanywhile-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="skipanywhile-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="skipanywhile-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="skipanywhile-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="skipanywhile-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `SkipAnyWhileConsumer<'p, C, P>`
 
@@ -78,39 +87,39 @@ struct SkipAnyWhileConsumer<'p, C, P> {
 
 ##### `impl<'p, T, C, P> Consumer for SkipAnyWhileConsumer<'p, C, P>`
 
-- `type Folder = SkipAnyWhileFolder<'p, <C as Consumer>::Folder, P>`
+- <span id="skipanywhileconsumer-folder"></span>`type Folder = SkipAnyWhileFolder<'p, <C as Consumer>::Folder, P>`
 
-- `type Reducer = <C as Consumer>::Reducer`
+- <span id="skipanywhileconsumer-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
 
-- `type Result = <C as Consumer>::Result`
+- <span id="skipanywhileconsumer-result"></span>`type Result = <C as Consumer>::Result`
 
-- `fn split_at(self: Self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
+- <span id="skipanywhileconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
 
-- `fn into_folder(self: Self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="skipanywhileconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
 
-- `fn full(self: &Self) -> bool`
+- <span id="skipanywhileconsumer-full"></span>`fn full(&self) -> bool`
 
 ##### `impl<T> IntoEither for SkipAnyWhileConsumer<'p, C, P>`
 
 ##### `impl<T> Pointable for SkipAnyWhileConsumer<'p, C, P>`
 
-- `const ALIGN: usize`
+- <span id="skipanywhileconsumer-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="skipanywhileconsumer-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="skipanywhileconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="skipanywhileconsumer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="skipanywhileconsumer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="skipanywhileconsumer-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<'p, T, C, P> UnindexedConsumer for SkipAnyWhileConsumer<'p, C, P>`
 
-- `fn split_off_left(self: &Self) -> Self`
+- <span id="skipanywhileconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- `fn to_reducer(self: &Self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
+- <span id="skipanywhileconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
 
 ### `SkipAnyWhileFolder<'p, C, P>`
 
@@ -126,31 +135,31 @@ struct SkipAnyWhileFolder<'p, C, P> {
 
 ##### `impl<'p, T, C, P> Folder for SkipAnyWhileFolder<'p, C, P>`
 
-- `type Result = <C as Folder>::Result`
+- <span id="skipanywhilefolder-result"></span>`type Result = <C as Folder>::Result`
 
-- `fn consume(self: Self, item: T) -> Self`
+- <span id="skipanywhilefolder-consume"></span>`fn consume(self, item: T) -> Self`
 
-- `fn consume_iter<I>(self: Self, iter: I) -> Self`
+- <span id="skipanywhilefolder-consume-iter"></span>`fn consume_iter<I>(self, iter: I) -> Self`
 
-- `fn complete(self: Self) -> <C as >::Result` — [`Folder`](../plumbing/index.md)
+- <span id="skipanywhilefolder-complete"></span>`fn complete(self) -> <C as >::Result` — [`Folder`](../plumbing/index.md)
 
-- `fn full(self: &Self) -> bool`
+- <span id="skipanywhilefolder-full"></span>`fn full(&self) -> bool`
 
 ##### `impl<T> IntoEither for SkipAnyWhileFolder<'p, C, P>`
 
 ##### `impl<T> Pointable for SkipAnyWhileFolder<'p, C, P>`
 
-- `const ALIGN: usize`
+- <span id="skipanywhilefolder-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="skipanywhilefolder-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="skipanywhilefolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="skipanywhilefolder-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="skipanywhilefolder-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="skipanywhilefolder-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ## Functions
 

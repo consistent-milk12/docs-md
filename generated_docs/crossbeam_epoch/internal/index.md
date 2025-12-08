@@ -41,6 +41,16 @@ garbage collection.
 Ideally each instance of concurrent data structure may have its own queue that gets fully
 destroyed as soon as the data structure gets dropped.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Bag`](#bag) | struct | A bag of deferred functions. |
+| [`SealedBag`](#sealedbag) | struct | A pair of an epoch and a bag. |
+| [`Global`](#global) | struct | The global data for a garbage collector. |
+| [`Local`](#local) | struct | Participant for garbage collection. |
+| [`MAX_OBJECTS`](#max_objects) | const | Maximum number of objects a bag can contain. |
+
 ## Structs
 
 ### `Bag`
@@ -62,41 +72,41 @@ A bag of deferred functions.
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="bag-new"></span>`fn new() -> Self`
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="bag-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `unsafe fn try_push(self: &mut Self, deferred: Deferred) -> Result<(), Deferred>` — [`Deferred`](../deferred/index.md)
+- <span id="bag-try-push"></span>`unsafe fn try_push(&mut self, deferred: Deferred) -> Result<(), Deferred>` — [`Deferred`](../deferred/index.md)
 
-- `fn seal(self: Self, epoch: Epoch) -> SealedBag` — [`Epoch`](../epoch/index.md), [`SealedBag`](#sealedbag)
+- <span id="bag-seal"></span>`fn seal(self, epoch: Epoch) -> SealedBag` — [`Epoch`](../epoch/index.md), [`SealedBag`](#sealedbag)
 
 #### Trait Implementations
 
 ##### `impl Debug for Bag`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bag-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Bag`
 
-- `fn default() -> Self`
+- <span id="bag-default"></span>`fn default() -> Self`
 
 ##### `impl Drop for Bag`
 
-- `fn drop(self: &mut Self)`
+- <span id="bag-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<T> Pointable for Bag`
 
-- `const ALIGN: usize`
+- <span id="bag-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="bag-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
+- <span id="bag-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="bag-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="bag-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="bag-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl Send for Bag`
 
@@ -113,31 +123,31 @@ A pair of an epoch and a bag.
 
 #### Implementations
 
-- `fn is_expired(self: &Self, global_epoch: Epoch) -> bool` — [`Epoch`](../epoch/index.md)
+- <span id="sealedbag-is-expired"></span>`fn is_expired(&self, global_epoch: Epoch) -> bool` — [`Epoch`](../epoch/index.md)
 
 #### Trait Implementations
 
 ##### `impl Debug for SealedBag`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sealedbag-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for SealedBag`
 
-- `fn default() -> SealedBag` — [`SealedBag`](#sealedbag)
+- <span id="sealedbag-default"></span>`fn default() -> SealedBag` — [`SealedBag`](#sealedbag)
 
 ##### `impl<T> Pointable for SealedBag`
 
-- `const ALIGN: usize`
+- <span id="sealedbag-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="sealedbag-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
+- <span id="sealedbag-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="sealedbag-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="sealedbag-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="sealedbag-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl Sync for SealedBag`
 
@@ -169,31 +179,31 @@ The global data for a garbage collector.
 
 #### Implementations
 
-- `const COLLECT_STEPS: usize`
+- <span id="global-collect-steps"></span>`const COLLECT_STEPS: usize`
 
-- `fn new() -> Self`
+- <span id="global-new"></span>`fn new() -> Self`
 
-- `fn push_bag(self: &Self, bag: &mut Bag, guard: &Guard)` — [`Bag`](#bag), [`Guard`](../index.md)
+- <span id="global-push-bag"></span>`fn push_bag(&self, bag: &mut Bag, guard: &Guard)` — [`Bag`](#bag), [`Guard`](../index.md)
 
-- `fn collect(self: &Self, guard: &Guard)` — [`Guard`](../index.md)
+- <span id="global-collect"></span>`fn collect(&self, guard: &Guard)` — [`Guard`](../index.md)
 
-- `fn try_advance(self: &Self, guard: &Guard) -> Epoch` — [`Guard`](../index.md), [`Epoch`](../epoch/index.md)
+- <span id="global-try-advance"></span>`fn try_advance(&self, guard: &Guard) -> Epoch` — [`Guard`](../index.md), [`Epoch`](../epoch/index.md)
 
 #### Trait Implementations
 
 ##### `impl<T> Pointable for Global`
 
-- `const ALIGN: usize`
+- <span id="global-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="global-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
+- <span id="global-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="global-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="global-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="global-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `Local`
 
@@ -247,55 +257,55 @@ Participant for garbage collection.
 
 #### Implementations
 
-- `const PINNINGS_BETWEEN_COLLECT: usize`
+- <span id="local-pinnings-between-collect"></span>`const PINNINGS_BETWEEN_COLLECT: usize`
 
-- `fn register(collector: &Collector) -> LocalHandle` — [`Collector`](../index.md), [`LocalHandle`](../index.md)
+- <span id="local-register"></span>`fn register(collector: &Collector) -> LocalHandle` — [`Collector`](../index.md), [`LocalHandle`](../index.md)
 
-- `fn global(self: &Self) -> &Global` — [`Global`](#global)
+- <span id="local-global"></span>`fn global(&self) -> &Global` — [`Global`](#global)
 
-- `fn collector(self: &Self) -> &Collector` — [`Collector`](../index.md)
+- <span id="local-collector"></span>`fn collector(&self) -> &Collector` — [`Collector`](../index.md)
 
-- `fn is_pinned(self: &Self) -> bool`
+- <span id="local-is-pinned"></span>`fn is_pinned(&self) -> bool`
 
-- `unsafe fn defer(self: &Self, deferred: Deferred, guard: &Guard)` — [`Deferred`](../deferred/index.md), [`Guard`](../index.md)
+- <span id="local-defer"></span>`unsafe fn defer(&self, deferred: Deferred, guard: &Guard)` — [`Deferred`](../deferred/index.md), [`Guard`](../index.md)
 
-- `fn flush(self: &Self, guard: &Guard)` — [`Guard`](../index.md)
+- <span id="local-flush"></span>`fn flush(&self, guard: &Guard)` — [`Guard`](../index.md)
 
-- `fn pin(self: &Self) -> Guard` — [`Guard`](../index.md)
+- <span id="local-pin"></span>`fn pin(&self) -> Guard` — [`Guard`](../index.md)
 
-- `fn unpin(self: &Self)`
+- <span id="local-unpin"></span>`fn unpin(&self)`
 
-- `fn repin(self: &Self)`
+- <span id="local-repin"></span>`fn repin(&self)`
 
-- `fn acquire_handle(self: &Self)`
+- <span id="local-acquire-handle"></span>`fn acquire_handle(&self)`
 
-- `fn release_handle(self: &Self)`
+- <span id="local-release-handle"></span>`fn release_handle(&self)`
 
-- `fn finalize(self: &Self)`
+- <span id="local-finalize"></span>`fn finalize(&self)`
 
 #### Trait Implementations
 
 ##### `impl IsElement for Local`
 
-- `fn entry_of(local: &Self) -> &Entry` — [`Entry`](../sync/list/index.md)
+- <span id="local-entry-of"></span>`fn entry_of(local: &Self) -> &Entry` — [`Entry`](../sync/list/index.md)
 
-- `unsafe fn element_of(entry: &Entry) -> &Self` — [`Entry`](../sync/list/index.md)
+- <span id="local-element-of"></span>`unsafe fn element_of(entry: &Entry) -> &Self` — [`Entry`](../sync/list/index.md)
 
-- `unsafe fn finalize(entry: &Entry, guard: &Guard)` — [`Entry`](../sync/list/index.md), [`Guard`](../index.md)
+- <span id="local-finalize"></span>`unsafe fn finalize(entry: &Entry, guard: &Guard)` — [`Entry`](../sync/list/index.md), [`Guard`](../index.md)
 
 ##### `impl<T> Pointable for Local`
 
-- `const ALIGN: usize`
+- <span id="local-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="local-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
+- <span id="local-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="local-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="local-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="local-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ## Constants
 

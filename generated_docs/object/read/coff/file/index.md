@@ -4,6 +4,16 @@
 
 # Module `file`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`CoffCommon`](#coffcommon) | struct | The common parts of `PeFile` and `CoffFile`. |
+| [`CoffFile`](#cofffile) | struct | A COFF object file. |
+| [`CoffHeader`](#coffheader) | trait | A trait for generic access to [`pe::ImageFileHeader`] and [`pe::AnonObjectHeaderBigobj`]. |
+| [`anon_object_class_id`](#anon_object_class_id) | fn | Read the `class_id` field from a [`pe::AnonObjectHeader`]. |
+| [`CoffBigFile`](#coffbigfile) | type | A COFF bigobj object file with 32-bit section numbers. |
+
 ## Structs
 
 ### `CoffCommon<'data, R: ReadRef<'data>, Coff: CoffHeader>`
@@ -20,9 +30,9 @@ The common parts of `PeFile` and `CoffFile`.
 
 #### Trait Implementations
 
-##### `impl<'data, R: $crate::fmt::Debug + ReadRef<'data>, Coff: $crate::fmt::Debug + CoffHeader> Debug for CoffCommon<'data, R, Coff>`
+##### `impl<'data, R: fmt::Debug + ReadRef<'data>, Coff: fmt::Debug + CoffHeader> Debug for CoffCommon<'data, R, Coff>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="coffcommon-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `CoffFile<'data, R: ReadRef<'data>, Coff: CoffHeader>`
 
@@ -43,85 +53,85 @@ Most functionality is provided by the [`Object`](../../index.md) trait implement
 
 #### Implementations
 
-- `fn parse(data: R) -> Result<Self>` — [`Result`](../../../index.md)
+- <span id="cofffile-parse"></span>`fn parse(data: R) -> Result<Self>` — [`Result`](../../../index.md)
 
-- `fn coff_header(self: &Self) -> &'data Coff`
+- <span id="cofffile-coff-header"></span>`fn coff_header(&self) -> &'data Coff`
 
-- `fn coff_section_table(self: &Self) -> SectionTable<'data>` — [`SectionTable`](../../pe/index.md)
+- <span id="cofffile-coff-section-table"></span>`fn coff_section_table(&self) -> SectionTable<'data>` — [`SectionTable`](../../pe/index.md)
 
-- `fn coff_symbol_table(self: &Self) -> &SymbolTable<'data, R, Coff>` — [`SymbolTable`](../../pe/index.md)
+- <span id="cofffile-coff-symbol-table"></span>`fn coff_symbol_table(&self) -> &SymbolTable<'data, R, Coff>` — [`SymbolTable`](../../pe/index.md)
 
 #### Trait Implementations
 
-##### `impl<'data, R: $crate::fmt::Debug + ReadRef<'data>, Coff: $crate::fmt::Debug + CoffHeader> Debug for CoffFile<'data, R, Coff>`
+##### `impl<'data, R: fmt::Debug + ReadRef<'data>, Coff: fmt::Debug + CoffHeader> Debug for CoffFile<'data, R, Coff>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="cofffile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, R, Coff> Object for CoffFile<'data, R, Coff>`
 
-- `type Segment = CoffSegment<'data, 'file, R, Coff>`
+- <span id="cofffile-segment"></span>`type Segment = CoffSegment<'data, 'file, R, Coff>`
 
-- `type SegmentIterator = CoffSegmentIterator<'data, 'file, R, Coff>`
+- <span id="cofffile-segmentiterator"></span>`type SegmentIterator = CoffSegmentIterator<'data, 'file, R, Coff>`
 
-- `type Section = CoffSection<'data, 'file, R, Coff>`
+- <span id="cofffile-section"></span>`type Section = CoffSection<'data, 'file, R, Coff>`
 
-- `type SectionIterator = CoffSectionIterator<'data, 'file, R, Coff>`
+- <span id="cofffile-sectioniterator"></span>`type SectionIterator = CoffSectionIterator<'data, 'file, R, Coff>`
 
-- `type Comdat = CoffComdat<'data, 'file, R, Coff>`
+- <span id="cofffile-comdat"></span>`type Comdat = CoffComdat<'data, 'file, R, Coff>`
 
-- `type ComdatIterator = CoffComdatIterator<'data, 'file, R, Coff>`
+- <span id="cofffile-comdatiterator"></span>`type ComdatIterator = CoffComdatIterator<'data, 'file, R, Coff>`
 
-- `type Symbol = CoffSymbol<'data, 'file, R, Coff>`
+- <span id="cofffile-symbol"></span>`type Symbol = CoffSymbol<'data, 'file, R, Coff>`
 
-- `type SymbolIterator = CoffSymbolIterator<'data, 'file, R, Coff>`
+- <span id="cofffile-symboliterator"></span>`type SymbolIterator = CoffSymbolIterator<'data, 'file, R, Coff>`
 
-- `type SymbolTable = CoffSymbolTable<'data, 'file, R, Coff>`
+- <span id="cofffile-symboltable"></span>`type SymbolTable = CoffSymbolTable<'data, 'file, R, Coff>`
 
-- `type DynamicRelocationIterator = NoDynamicRelocationIterator`
+- <span id="cofffile-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = NoDynamicRelocationIterator`
 
-- `fn architecture(self: &Self) -> Architecture` — [`Architecture`](../../../index.md)
+- <span id="cofffile-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../../index.md)
 
-- `fn sub_architecture(self: &Self) -> Option<SubArchitecture>` — [`SubArchitecture`](../../../index.md)
+- <span id="cofffile-sub-architecture"></span>`fn sub_architecture(&self) -> Option<SubArchitecture>` — [`SubArchitecture`](../../../index.md)
 
-- `fn is_little_endian(self: &Self) -> bool`
+- <span id="cofffile-is-little-endian"></span>`fn is_little_endian(&self) -> bool`
 
-- `fn is_64(self: &Self) -> bool`
+- <span id="cofffile-is-64"></span>`fn is_64(&self) -> bool`
 
-- `fn kind(self: &Self) -> ObjectKind` — [`ObjectKind`](../../../index.md)
+- <span id="cofffile-kind"></span>`fn kind(&self) -> ObjectKind` — [`ObjectKind`](../../../index.md)
 
-- `fn segments(self: &Self) -> CoffSegmentIterator<'data, '_, R, Coff>` — [`CoffSegmentIterator`](../index.md)
+- <span id="cofffile-segments"></span>`fn segments(&self) -> CoffSegmentIterator<'data, '_, R, Coff>` — [`CoffSegmentIterator`](../index.md)
 
-- `fn section_by_name_bytes<'file>(self: &'file Self, section_name: &[u8]) -> Option<CoffSection<'data, 'file, R, Coff>>` — [`CoffSection`](../index.md)
+- <span id="cofffile-section-by-name-bytes"></span>`fn section_by_name_bytes<'file>(self: &'file Self, section_name: &[u8]) -> Option<CoffSection<'data, 'file, R, Coff>>` — [`CoffSection`](../index.md)
 
-- `fn section_by_index(self: &Self, index: SectionIndex) -> Result<CoffSection<'data, '_, R, Coff>>` — [`SectionIndex`](../../../index.md), [`Result`](../../../index.md), [`CoffSection`](../index.md)
+- <span id="cofffile-section-by-index"></span>`fn section_by_index(&self, index: SectionIndex) -> Result<CoffSection<'data, '_, R, Coff>>` — [`SectionIndex`](../../../index.md), [`Result`](../../../index.md), [`CoffSection`](../index.md)
 
-- `fn sections(self: &Self) -> CoffSectionIterator<'data, '_, R, Coff>` — [`CoffSectionIterator`](../index.md)
+- <span id="cofffile-sections"></span>`fn sections(&self) -> CoffSectionIterator<'data, '_, R, Coff>` — [`CoffSectionIterator`](../index.md)
 
-- `fn comdats(self: &Self) -> CoffComdatIterator<'data, '_, R, Coff>` — [`CoffComdatIterator`](../index.md)
+- <span id="cofffile-comdats"></span>`fn comdats(&self) -> CoffComdatIterator<'data, '_, R, Coff>` — [`CoffComdatIterator`](../index.md)
 
-- `fn symbol_by_index(self: &Self, index: SymbolIndex) -> Result<CoffSymbol<'data, '_, R, Coff>>` — [`SymbolIndex`](../../../index.md), [`Result`](../../../index.md), [`CoffSymbol`](../index.md)
+- <span id="cofffile-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> Result<CoffSymbol<'data, '_, R, Coff>>` — [`SymbolIndex`](../../../index.md), [`Result`](../../../index.md), [`CoffSymbol`](../index.md)
 
-- `fn symbols(self: &Self) -> CoffSymbolIterator<'data, '_, R, Coff>` — [`CoffSymbolIterator`](../index.md)
+- <span id="cofffile-symbols"></span>`fn symbols(&self) -> CoffSymbolIterator<'data, '_, R, Coff>` — [`CoffSymbolIterator`](../index.md)
 
-- `fn symbol_table(self: &Self) -> Option<CoffSymbolTable<'data, '_, R, Coff>>` — [`CoffSymbolTable`](../index.md)
+- <span id="cofffile-symbol-table"></span>`fn symbol_table(&self) -> Option<CoffSymbolTable<'data, '_, R, Coff>>` — [`CoffSymbolTable`](../index.md)
 
-- `fn dynamic_symbols(self: &Self) -> CoffSymbolIterator<'data, '_, R, Coff>` — [`CoffSymbolIterator`](../index.md)
+- <span id="cofffile-dynamic-symbols"></span>`fn dynamic_symbols(&self) -> CoffSymbolIterator<'data, '_, R, Coff>` — [`CoffSymbolIterator`](../index.md)
 
-- `fn dynamic_symbol_table(self: &Self) -> Option<CoffSymbolTable<'data, '_, R, Coff>>` — [`CoffSymbolTable`](../index.md)
+- <span id="cofffile-dynamic-symbol-table"></span>`fn dynamic_symbol_table(&self) -> Option<CoffSymbolTable<'data, '_, R, Coff>>` — [`CoffSymbolTable`](../index.md)
 
-- `fn dynamic_relocations(self: &Self) -> Option<NoDynamicRelocationIterator>` — [`NoDynamicRelocationIterator`](../../index.md)
+- <span id="cofffile-dynamic-relocations"></span>`fn dynamic_relocations(&self) -> Option<NoDynamicRelocationIterator>` — [`NoDynamicRelocationIterator`](../../index.md)
 
-- `fn imports(self: &Self) -> Result<Vec<Import<'data>>>` — [`Result`](../../../index.md), [`Import`](../../../index.md)
+- <span id="cofffile-imports"></span>`fn imports(&self) -> Result<Vec<Import<'data>>>` — [`Result`](../../../index.md), [`Import`](../../../index.md)
 
-- `fn exports(self: &Self) -> Result<Vec<Export<'data>>>` — [`Result`](../../../index.md), [`Export`](../../../index.md)
+- <span id="cofffile-exports"></span>`fn exports(&self) -> Result<Vec<Export<'data>>>` — [`Result`](../../../index.md), [`Export`](../../../index.md)
 
-- `fn has_debug_symbols(self: &Self) -> bool`
+- <span id="cofffile-has-debug-symbols"></span>`fn has_debug_symbols(&self) -> bool`
 
-- `fn relative_address_base(self: &Self) -> u64`
+- <span id="cofffile-relative-address-base"></span>`fn relative_address_base(&self) -> u64`
 
-- `fn entry(self: &Self) -> u64`
+- <span id="cofffile-entry"></span>`fn entry(&self) -> u64`
 
-- `fn flags(self: &Self) -> FileFlags` — [`FileFlags`](../../../index.md)
+- <span id="cofffile-flags"></span>`fn flags(&self) -> FileFlags` — [`FileFlags`](../../../index.md)
 
 ##### `impl<'data, R: ReadRef<'data>, Coff: CoffHeader> Sealed for CoffFile<'data, R, Coff>`
 
@@ -145,25 +155,25 @@ A trait for generic access to [`pe::ImageFileHeader`](../../../pe/index.md) and 
 
   Return true if this type is [`pe::AnonObjectHeaderBigobj`](../../../pe/index.md).
 
-- `fn machine(self: &Self) -> u16`
+- `fn machine(&self) -> u16`
 
-- `fn number_of_sections(self: &Self) -> u32`
+- `fn number_of_sections(&self) -> u32`
 
-- `fn pointer_to_symbol_table(self: &Self) -> u32`
+- `fn pointer_to_symbol_table(&self) -> u32`
 
-- `fn number_of_symbols(self: &Self) -> u32`
+- `fn number_of_symbols(&self) -> u32`
 
-- `fn characteristics(self: &Self) -> u16`
+- `fn characteristics(&self) -> u16`
 
 - `fn parse<'data, R: ReadRef<'data>>(data: R, offset: &mut u64) -> read::Result<&'data Self>`
 
   Read the file header.
 
-- `fn sections<'data, R: ReadRef<'data>>(self: &Self, data: R, offset: u64) -> read::Result<SectionTable<'data>>`
+- `fn sections<'data, R: ReadRef<'data>>(&self, data: R, offset: u64) -> read::Result<SectionTable<'data>>`
 
   Read the section table.
 
-- `fn symbols<'data, R: ReadRef<'data>>(self: &Self, data: R) -> read::Result<SymbolTable<'data, R, Self>>`
+- `fn symbols<'data, R: ReadRef<'data>>(&self, data: R) -> read::Result<SymbolTable<'data, R, Self>>`
 
   Read the symbol table and string table.
 

@@ -4,6 +4,15 @@
 
 # Module `pretty`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`exponent`](#exponent) | mod |  |
+| [`mantissa`](#mantissa) | mod |  |
+| [`format64`](#format64) | fn | Print f64 to the given buffer and return number of bytes written. |
+| [`format32`](#format32) | fn | Print f32 to the given buffer and return number of bytes written. |
+
 ## Modules
 
 - [`exponent`](exponent/index.md) - 

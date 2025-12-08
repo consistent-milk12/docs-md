@@ -4,6 +4,14 @@
 
 # Module `splitter`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Split`](#split) | struct | `Split` is a parallel iterator using arbitrary data and a splitting function. |
+| [`SplitProducer`](#splitproducer) | struct |  |
+| [`split`](#split) | fn | The `split` function takes arbitrary data and a closure that knows how to |
+
 ## Structs
 
 ### `Split<D, S>`
@@ -20,43 +28,43 @@ This struct is created by the [`split()`](../index.md) function.
 
 #### Trait Implementations
 
-##### `impl<D: $crate::clone::Clone, S: $crate::clone::Clone> Clone for Split<D, S>`
+##### `impl<D: clone::Clone, S: clone::Clone> Clone for Split<D, S>`
 
-- `fn clone(self: &Self) -> Split<D, S>` — [`Split`](../index.md)
+- <span id="split-clone"></span>`fn clone(&self) -> Split<D, S>` — [`Split`](../index.md)
 
 ##### `impl<D: Debug, S> Debug for Split<D, S>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="split-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> IntoEither for Split<D, S>`
 
 ##### `impl<T> IntoParallelIterator for Split<D, S>`
 
-- `type Iter = T`
+- <span id="split-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="split-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="split-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<D, S> ParallelIterator for Split<D, S>`
 
-- `type Item = D`
+- <span id="split-item"></span>`type Item = D`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="split-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
 ##### `impl<T> Pointable for Split<D, S>`
 
-- `const ALIGN: usize`
+- <span id="split-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="split-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="split-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="split-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="split-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="split-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `SplitProducer<'a, D, S>`
 
@@ -73,25 +81,25 @@ struct SplitProducer<'a, D, S> {
 
 ##### `impl<T> Pointable for SplitProducer<'a, D, S>`
 
-- `const ALIGN: usize`
+- <span id="splitproducer-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="splitproducer-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="splitproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="splitproducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="splitproducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="splitproducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<'a, D, S> UnindexedProducer for SplitProducer<'a, D, S>`
 
-- `type Item = D`
+- <span id="splitproducer-item"></span>`type Item = D`
 
-- `fn split(self: Self) -> (Self, Option<Self>)`
+- <span id="splitproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
 
-- `fn fold_with<F>(self: Self, folder: F) -> F`
+- <span id="splitproducer-fold-with"></span>`fn fold_with<F>(self, folder: F) -> F`
 
 ## Functions
 

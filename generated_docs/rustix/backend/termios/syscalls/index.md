@@ -10,6 +10,51 @@ linux_raw syscalls supporting `rustix::termios`.
 
 See the `rustix::backend` module documentation for details.
 
+## Contents
+
+- [Functions](#functions)
+  - [`tcgetwinsize`](#tcgetwinsize)
+  - [`tcgetattr`](#tcgetattr)
+  - [`tcgetattr_fallback`](#tcgetattr_fallback)
+  - [`tcgetpgrp`](#tcgetpgrp)
+  - [`tcsetattr`](#tcsetattr)
+  - [`tcsetattr_fallback`](#tcsetattr_fallback)
+  - [`tcsendbreak`](#tcsendbreak)
+  - [`tcdrain`](#tcdrain)
+  - [`tcflush`](#tcflush)
+  - [`tcflow`](#tcflow)
+  - [`tcgetsid`](#tcgetsid)
+  - [`tcsetwinsize`](#tcsetwinsize)
+  - [`tcsetpgrp`](#tcsetpgrp)
+  - [`set_speed`](#set_speed)
+  - [`set_output_speed`](#set_output_speed)
+  - [`set_input_speed`](#set_input_speed)
+  - [`cfmakeraw`](#cfmakeraw)
+  - [`isatty`](#isatty)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`tcgetwinsize`](#tcgetwinsize) | fn |  |
+| [`tcgetattr`](#tcgetattr) | fn |  |
+| [`tcgetattr_fallback`](#tcgetattr_fallback) | fn | Implement `tcgetattr` using the old `TCGETS` ioctl. |
+| [`tcgetpgrp`](#tcgetpgrp) | fn |  |
+| [`tcsetattr`](#tcsetattr) | fn |  |
+| [`tcsetattr_fallback`](#tcsetattr_fallback) | fn | Implement `tcsetattr` using the old `TCSETS` ioctl. |
+| [`tcsendbreak`](#tcsendbreak) | fn |  |
+| [`tcdrain`](#tcdrain) | fn |  |
+| [`tcflush`](#tcflush) | fn |  |
+| [`tcflow`](#tcflow) | fn |  |
+| [`tcgetsid`](#tcgetsid) | fn |  |
+| [`tcsetwinsize`](#tcsetwinsize) | fn |  |
+| [`tcsetpgrp`](#tcsetpgrp) | fn |  |
+| [`set_speed`](#set_speed) | fn | A wrapper around a conceptual `cfsetspeed` which handles an arbitrary |
+| [`set_output_speed`](#set_output_speed) | fn | A wrapper around a conceptual `cfsetospeed` which handles an arbitrary |
+| [`set_input_speed`](#set_input_speed) | fn | A wrapper around a conceptual `cfsetispeed` which handles an arbitrary |
+| [`cfmakeraw`](#cfmakeraw) | fn |  |
+| [`isatty`](#isatty) | fn |  |
+
 ## Functions
 
 ### `tcgetwinsize`

@@ -6,6 +6,12 @@
 
 Types for the `termios` module.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`tcflag_t`](#tcflag_t) | type |  |
+
 ## Type Aliases
 
 ### `tcflag_t`

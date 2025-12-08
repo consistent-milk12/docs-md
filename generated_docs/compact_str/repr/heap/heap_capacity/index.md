@@ -4,6 +4,15 @@
 
 # Module `heap_capacity`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`HeapBufferInnerHeapCapacity`](#heapbufferinnerheapcapacity) | struct |  |
+| [`alloc`](#alloc) | fn | SAFETY: `capacity` must not be zero |
+| [`dealloc`](#dealloc) | fn | Deallocates a pointer which references a `HeapBuffer` whose capacity is on the heap |
+| [`layout`](#layout) | fn |  |
+
 ## Structs
 
 ### `HeapBufferInnerHeapCapacity`

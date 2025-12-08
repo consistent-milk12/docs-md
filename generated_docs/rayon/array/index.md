@@ -10,6 +10,12 @@ You will rarely need to interact with this module directly unless you need
 to name one of the iterator types.
 
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`IntoIter`](#intoiter) | struct | Parallel iterator that moves out of an array. |
+
 ## Structs
 
 ### `IntoIter<T, const N: usize>`
@@ -24,51 +30,51 @@ Parallel iterator that moves out of an array.
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone, const N: usize> Clone for IntoIter<T, N>`
+##### `impl<T: clone::Clone, const N: usize> Clone for IntoIter<T, N>`
 
-- `fn clone(self: &Self) -> IntoIter<T, N>` — [`IntoIter`](#intoiter)
+- <span id="intoiter-clone"></span>`fn clone(&self) -> IntoIter<T, N>` — [`IntoIter`](#intoiter)
 
-##### `impl<T: $crate::fmt::Debug, const N: usize> Debug for IntoIter<T, N>`
+##### `impl<T: fmt::Debug, const N: usize> Debug for IntoIter<T, N>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="intoiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: Send, const N: usize> IndexedParallelIterator for IntoIter<T, N>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="intoiter-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-- `fn len(self: &Self) -> usize`
+- <span id="intoiter-len"></span>`fn len(&self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md)
+- <span id="intoiter-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md)
 
 ##### `impl<T> IntoEither for IntoIter<T, N>`
 
 ##### `impl<T> IntoParallelIterator for IntoIter<T, N>`
 
-- `type Iter = T`
+- <span id="intoiter-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="intoiter-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="intoiter-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<T: Send, const N: usize> ParallelIterator for IntoIter<T, N>`
 
-- `type Item = T`
+- <span id="intoiter-item"></span>`type Item = T`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="intoiter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-- `fn opt_len(self: &Self) -> Option<usize>`
+- <span id="intoiter-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for IntoIter<T, N>`
 
-- `const ALIGN: usize`
+- <span id="intoiter-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="intoiter-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="intoiter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="intoiter-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="intoiter-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="intoiter-drop"></span>`unsafe fn drop(ptr: usize)`
 

@@ -4,6 +4,14 @@
 
 # Module `date`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Date`](#date) | struct |  |
+| [`parse`](#parse) | fn |  |
+| [`try_parse`](#try_parse) | fn |  |
+
 ## Structs
 
 ### `Date`
@@ -20,37 +28,37 @@ struct Date {
 
 ##### `impl Clone for Date`
 
-- `fn clone(self: &Self) -> Date` — [`Date`](#date)
+- <span id="date-clone"></span>`fn clone(&self) -> Date` — [`Date`](#date)
 
 ##### `impl Copy for Date`
 
 ##### `impl Debug for Date`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="date-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Date`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="date-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Date`
 
 ##### `impl Ord for Date`
 
-- `fn cmp(self: &Self, other: &Date) -> $crate::cmp::Ordering` — [`Date`](#date)
+- <span id="date-cmp"></span>`fn cmp(&self, other: &Date) -> cmp::Ordering` — [`Date`](#date)
 
 ##### `impl PartialEq for Date`
 
-- `fn eq(self: &Self, other: &Date) -> bool` — [`Date`](#date)
+- <span id="date-eq"></span>`fn eq(&self, other: &Date) -> bool` — [`Date`](#date)
 
 ##### `impl PartialOrd for Date`
 
-- `fn partial_cmp(self: &Self, other: &Date) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Date`](#date)
+- <span id="date-partial-cmp"></span>`fn partial_cmp(&self, other: &Date) -> option::Option<cmp::Ordering>` — [`Date`](#date)
 
 ##### `impl StructuralPartialEq for Date`
 
 ##### `impl<T> ToString for Date`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="date-to-string"></span>`fn to_string(&self) -> String`
 
 ## Functions
 

@@ -9,6 +9,12 @@ Multi-crate JSON parser.
 This module provides [`MultiCrateParser`](../../index.md) which scans a directory for
 rustdoc JSON files and parses them into a [`CrateCollection`](../../index.md).
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`MultiCrateParser`](#multicrateparser) | struct | Parser for multiple rustdoc JSON files in a directory. |
+
 ## Structs
 
 ### `MultiCrateParser`
@@ -31,9 +37,9 @@ println!("Found {} crates", crates.len());
 
 #### Implementations
 
-- `fn parse_directory(dir: &Path) -> Result<CrateCollection, Error>` — [`CrateCollection`](../../index.md), [`Error`](../../error/index.md)
+- <span id="multicrateparser-parse-directory"></span>`fn parse_directory(dir: &Path) -> Result<CrateCollection, Error>` — [`CrateCollection`](../../index.md), [`Error`](../../error/index.md)
 
-- `fn extract_crate_name(krate: &rustdoc_types::Crate, path: &Path) -> Result<String, Error>` — [`Error`](../../error/index.md)
+- <span id="multicrateparser-extract-crate-name"></span>`fn extract_crate_name(krate: &rustdoc_types::Crate, path: &Path) -> Result<String, Error>` — [`Error`](../../error/index.md)
 
 #### Trait Implementations
 
@@ -45,17 +51,17 @@ println!("Found {} crates", crates.len());
 
 ##### `impl<T> Pointable for MultiCrateParser`
 
-- `const ALIGN: usize`
+- <span id="multicrateparser-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="multicrateparser-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="multicrateparser-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="multicrateparser-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="multicrateparser-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="multicrateparser-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T> WithSubscriber for MultiCrateParser`
 

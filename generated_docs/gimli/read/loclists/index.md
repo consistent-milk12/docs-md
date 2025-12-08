@@ -4,6 +4,38 @@
 
 # Module `loclists`
 
+## Contents
+
+- [Structs](#structs)
+  - [`DebugLoc`](#debugloc)
+  - [`DebugLocLists`](#debugloclists)
+  - [`LocationLists`](#locationlists)
+  - [`RawLocListIter`](#rawloclistiter)
+  - [`LocListIter`](#loclistiter)
+  - [`LocationListEntry`](#locationlistentry)
+- [Enums](#enums)
+  - [`LocListsFormat`](#loclistsformat)
+  - [`RawLocListEntry`](#rawloclistentry)
+- [Functions](#functions)
+  - [`parse_data`](#parse_data)
+- [Type Aliases](#type-aliases)
+  - [`LocListsHeader`](#loclistsheader)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`DebugLoc`](#debugloc) | struct | The raw contents of the `.debug_loc` section. |
+| [`DebugLocLists`](#debugloclists) | struct | The `DebugLocLists` struct represents the DWARF data |
+| [`LocationLists`](#locationlists) | struct | The DWARF data found in `.debug_loc` and `.debug_loclists` sections. |
+| [`RawLocListIter`](#rawloclistiter) | struct | A raw iterator over a location list. |
+| [`LocListIter`](#loclistiter) | struct | An iterator over a location list. |
+| [`LocationListEntry`](#locationlistentry) | struct | A location list entry from the `.debug_loc` or `.debug_loclists` sections. |
+| [`LocListsFormat`](#loclistsformat) | enum |  |
+| [`RawLocListEntry`](#rawloclistentry) | enum | A raw entry in .debug_loclists. |
+| [`parse_data`](#parse_data) | fn |  |
+| [`LocListsHeader`](#loclistsheader) | type |  |
+
 ## Structs
 
 ### `DebugLoc<R>`
@@ -18,29 +50,29 @@ The raw contents of the `.debug_loc` section.
 
 #### Implementations
 
-- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugLoc<R>` — [`DebugLoc`](../index.md)
+- <span id="debugloc-new"></span>`fn new(section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone> Clone for DebugLoc<R>`
+##### `impl<R: clone::Clone> Clone for DebugLoc<R>`
 
-- `fn clone(self: &Self) -> DebugLoc<R>` — [`DebugLoc`](../index.md)
+- <span id="debugloc-clone"></span>`fn clone(&self) -> DebugLoc<R>` — [`DebugLoc`](../index.md)
 
-##### `impl<R: $crate::marker::Copy> Copy for DebugLoc<R>`
+##### `impl<R: marker::Copy> Copy for DebugLoc<R>`
 
-##### `impl<R: $crate::fmt::Debug> Debug for DebugLoc<R>`
+##### `impl<R: fmt::Debug> Debug for DebugLoc<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugloc-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::default::Default> Default for DebugLoc<R>`
+##### `impl<R: default::Default> Default for DebugLoc<R>`
 
-- `fn default() -> DebugLoc<R>` — [`DebugLoc`](../index.md)
+- <span id="debugloc-default"></span>`fn default() -> DebugLoc<R>` — [`DebugLoc`](../index.md)
 
 ##### `impl<R> Section for DebugLoc<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../../index.md)
+- <span id="debugloc-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="debugloc-reader"></span>`fn reader(&self) -> &R`
 
 ### `DebugLocLists<R>`
 
@@ -55,29 +87,29 @@ found in the `.debug_loclists` section.
 
 #### Implementations
 
-- `fn new(section: &'input [u8], endian: Endian) -> Self`
+- <span id="debugloclists-borrow"></span>`fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugLocLists<R>` — [`DebugLocLists`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone> Clone for DebugLocLists<R>`
+##### `impl<R: clone::Clone> Clone for DebugLocLists<R>`
 
-- `fn clone(self: &Self) -> DebugLocLists<R>` — [`DebugLocLists`](../index.md)
+- <span id="debugloclists-clone"></span>`fn clone(&self) -> DebugLocLists<R>` — [`DebugLocLists`](../index.md)
 
-##### `impl<R: $crate::marker::Copy> Copy for DebugLocLists<R>`
+##### `impl<R: marker::Copy> Copy for DebugLocLists<R>`
 
-##### `impl<R: $crate::fmt::Debug> Debug for DebugLocLists<R>`
+##### `impl<R: fmt::Debug> Debug for DebugLocLists<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugloclists-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::default::Default> Default for DebugLocLists<R>`
+##### `impl<R: default::Default> Default for DebugLocLists<R>`
 
-- `fn default() -> DebugLocLists<R>` — [`DebugLocLists`](../index.md)
+- <span id="debugloclists-default"></span>`fn default() -> DebugLocLists<R>` — [`DebugLocLists`](../index.md)
 
 ##### `impl<R> Section for DebugLocLists<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../../index.md)
+- <span id="debugloclists-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="debugloclists-reader"></span>`fn reader(&self) -> &R`
 
 ### `LocationLists<R>`
 
@@ -92,23 +124,33 @@ The DWARF data found in `.debug_loc` and `.debug_loclists` sections.
 
 #### Implementations
 
-- `fn new(debug_loc: DebugLoc<R>, debug_loclists: DebugLocLists<R>) -> LocationLists<R>` — [`DebugLoc`](../index.md), [`DebugLocLists`](../index.md), [`LocationLists`](../index.md)
+- <span id="locationlists-locations"></span>`fn locations(&self, offset: LocationListsOffset<<R as >::Offset>, unit_encoding: Encoding, base_address: u64, debug_addr: &DebugAddr<R>, debug_addr_base: DebugAddrBase<<R as >::Offset>) -> Result<LocListIter<R>>` — [`LocationListsOffset`](../../index.md), [`Reader`](../index.md), [`Encoding`](../../index.md), [`DebugAddr`](../index.md), [`DebugAddrBase`](../../index.md), [`Result`](../../index.md), [`LocListIter`](../index.md)
+
+- <span id="locationlists-locations-dwo"></span>`fn locations_dwo(&self, offset: LocationListsOffset<<R as >::Offset>, unit_encoding: Encoding, base_address: u64, debug_addr: &DebugAddr<R>, debug_addr_base: DebugAddrBase<<R as >::Offset>) -> Result<LocListIter<R>>` — [`LocationListsOffset`](../../index.md), [`Reader`](../index.md), [`Encoding`](../../index.md), [`DebugAddr`](../index.md), [`DebugAddrBase`](../../index.md), [`Result`](../../index.md), [`LocListIter`](../index.md)
+
+- <span id="locationlists-raw-locations"></span>`fn raw_locations(&self, offset: LocationListsOffset<<R as >::Offset>, unit_encoding: Encoding) -> Result<RawLocListIter<R>>` — [`LocationListsOffset`](../../index.md), [`Reader`](../index.md), [`Encoding`](../../index.md), [`Result`](../../index.md), [`RawLocListIter`](../index.md)
+
+- <span id="locationlists-raw-locations-dwo"></span>`fn raw_locations_dwo(&self, offset: LocationListsOffset<<R as >::Offset>, unit_encoding: Encoding) -> Result<RawLocListIter<R>>` — [`LocationListsOffset`](../../index.md), [`Reader`](../index.md), [`Encoding`](../../index.md), [`Result`](../../index.md), [`RawLocListIter`](../index.md)
+
+- <span id="locationlists-get-offset"></span>`fn get_offset(&self, unit_encoding: Encoding, base: DebugLocListsBase<<R as >::Offset>, index: DebugLocListsIndex<<R as >::Offset>) -> Result<LocationListsOffset<<R as >::Offset>>` — [`Encoding`](../../index.md), [`DebugLocListsBase`](../../index.md), [`Reader`](../index.md), [`DebugLocListsIndex`](../../index.md), [`Result`](../../index.md), [`LocationListsOffset`](../../index.md)
+
+- <span id="locationlists-lookup-offset-id"></span>`fn lookup_offset_id(&self, id: ReaderOffsetId) -> Option<(SectionId, <R as >::Offset)>` — [`ReaderOffsetId`](../index.md), [`SectionId`](../../index.md), [`Reader`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone> Clone for LocationLists<R>`
+##### `impl<R: clone::Clone> Clone for LocationLists<R>`
 
-- `fn clone(self: &Self) -> LocationLists<R>` — [`LocationLists`](../index.md)
+- <span id="locationlists-clone"></span>`fn clone(&self) -> LocationLists<R>` — [`LocationLists`](../index.md)
 
-##### `impl<R: $crate::marker::Copy> Copy for LocationLists<R>`
+##### `impl<R: marker::Copy> Copy for LocationLists<R>`
 
-##### `impl<R: $crate::fmt::Debug> Debug for LocationLists<R>`
+##### `impl<R: fmt::Debug> Debug for LocationLists<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="locationlists-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::default::Default> Default for LocationLists<R>`
+##### `impl<R: default::Default> Default for LocationLists<R>`
 
-- `fn default() -> LocationLists<R>` — [`LocationLists`](../index.md)
+- <span id="locationlists-default"></span>`fn default() -> LocationLists<R>` — [`LocationLists`](../index.md)
 
 ### `RawLocListIter<R: Reader>`
 
@@ -127,15 +169,15 @@ such as handling base addresses.
 
 #### Implementations
 
-- `fn new(input: R, encoding: Encoding, format: LocListsFormat) -> RawLocListIter<R>` — [`Encoding`](../../index.md), [`LocListsFormat`](#loclistsformat), [`RawLocListIter`](../index.md)
+- <span id="rawloclistiter-new"></span>`fn new(input: R, encoding: Encoding, format: LocListsFormat) -> RawLocListIter<R>` — [`Encoding`](../../index.md), [`LocListsFormat`](#loclistsformat), [`RawLocListIter`](../index.md)
 
-- `fn next(self: &mut Self) -> Result<Option<RawLocListEntry<R>>>` — [`Result`](../../index.md), [`RawLocListEntry`](../index.md)
+- <span id="rawloclistiter-next"></span>`fn next(&mut self) -> Result<Option<RawLocListEntry<R>>>` — [`Result`](../../index.md), [`RawLocListEntry`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for RawLocListIter<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for RawLocListIter<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rawloclistiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `LocListIter<R: Reader>`
 
@@ -156,17 +198,17 @@ and already adjusted for the base address.
 
 #### Implementations
 
-- `fn new(raw: RawLocListIter<R>, base_address: u64, debug_addr: DebugAddr<R>, debug_addr_base: DebugAddrBase<<R as >::Offset>) -> LocListIter<R>` — [`RawLocListIter`](../index.md), [`DebugAddr`](../index.md), [`DebugAddrBase`](../../index.md), [`Reader`](../index.md), [`LocListIter`](../index.md)
+- <span id="loclistiter-new"></span>`fn new(raw: RawLocListIter<R>, base_address: u64, debug_addr: DebugAddr<R>, debug_addr_base: DebugAddrBase<<R as >::Offset>) -> LocListIter<R>` — [`RawLocListIter`](../index.md), [`DebugAddr`](../index.md), [`DebugAddrBase`](../../index.md), [`Reader`](../index.md), [`LocListIter`](../index.md)
 
-- `fn get_address(self: &Self, index: DebugAddrIndex<<R as >::Offset>) -> Result<u64>` — [`DebugAddrIndex`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md)
+- <span id="loclistiter-get-address"></span>`fn get_address(&self, index: DebugAddrIndex<<R as >::Offset>) -> Result<u64>` — [`DebugAddrIndex`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md)
 
-- `fn next(self: &mut Self) -> Result<Option<LocationListEntry<R>>>` — [`Result`](../../index.md), [`LocationListEntry`](../index.md)
+- <span id="loclistiter-next"></span>`fn next(&mut self) -> Result<Option<LocationListEntry<R>>>` — [`Result`](../../index.md), [`LocationListEntry`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for LocListIter<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for LocListIter<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="loclistiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `LocationListEntry<R: Reader>`
 
@@ -191,25 +233,25 @@ A location list entry from the `.debug_loc` or `.debug_loclists` sections.
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for LocationListEntry<R>`
+##### `impl<R: clone::Clone + Reader> Clone for LocationListEntry<R>`
 
-- `fn clone(self: &Self) -> LocationListEntry<R>` — [`LocationListEntry`](../index.md)
+- <span id="locationlistentry-clone"></span>`fn clone(&self) -> LocationListEntry<R>` — [`LocationListEntry`](../index.md)
 
-##### `impl<R: $crate::marker::Copy + Reader> Copy for LocationListEntry<R>`
+##### `impl<R: marker::Copy + Reader> Copy for LocationListEntry<R>`
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for LocationListEntry<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for LocationListEntry<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="locationlistentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::cmp::Eq + Reader> Eq for LocationListEntry<R>`
+##### `impl<R: cmp::Eq + Reader> Eq for LocationListEntry<R>`
 
-##### `impl<R: $crate::hash::Hash + Reader> Hash for LocationListEntry<R>`
+##### `impl<R: hash::Hash + Reader> Hash for LocationListEntry<R>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="locationlistentry-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<R: $crate::cmp::PartialEq + Reader> PartialEq for LocationListEntry<R>`
+##### `impl<R: cmp::PartialEq + Reader> PartialEq for LocationListEntry<R>`
 
-- `fn eq(self: &Self, other: &LocationListEntry<R>) -> bool` — [`LocationListEntry`](../index.md)
+- <span id="locationlistentry-eq"></span>`fn eq(&self, other: &LocationListEntry<R>) -> bool` — [`LocationListEntry`](../index.md)
 
 ##### `impl<R: Reader> StructuralPartialEq for LocationListEntry<R>`
 
@@ -239,19 +281,19 @@ enum LocListsFormat {
 
 ##### `impl Clone for LocListsFormat`
 
-- `fn clone(self: &Self) -> LocListsFormat` — [`LocListsFormat`](#loclistsformat)
+- <span id="loclistsformat-clone"></span>`fn clone(&self) -> LocListsFormat` — [`LocListsFormat`](#loclistsformat)
 
 ##### `impl Copy for LocListsFormat`
 
 ##### `impl Debug for LocListsFormat`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="loclistsformat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for LocListsFormat`
 
 ##### `impl PartialEq for LocListsFormat`
 
-- `fn eq(self: &Self, other: &LocListsFormat) -> bool` — [`LocListsFormat`](#loclistsformat)
+- <span id="loclistsformat-eq"></span>`fn eq(&self, other: &LocListsFormat) -> bool` — [`LocListsFormat`](#loclistsformat)
 
 ##### `impl StructuralPartialEq for LocListsFormat`
 
@@ -343,17 +385,17 @@ A raw entry in .debug_loclists.
 
 #### Implementations
 
-- `fn parse(input: &mut R, encoding: Encoding, format: LocListsFormat) -> Result<Option<Self>>` — [`Encoding`](../../index.md), [`LocListsFormat`](#loclistsformat), [`Result`](../../index.md)
+- <span id="rawloclistentry-parse"></span>`fn parse(input: &mut R, encoding: Encoding, format: LocListsFormat) -> Result<Option<Self>>` — [`Encoding`](../../index.md), [`LocListsFormat`](#loclistsformat), [`Result`](../../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for RawLocListEntry<R>`
+##### `impl<R: clone::Clone + Reader> Clone for RawLocListEntry<R>`
 
-- `fn clone(self: &Self) -> RawLocListEntry<R>` — [`RawLocListEntry`](../index.md)
+- <span id="rawloclistentry-clone"></span>`fn clone(&self) -> RawLocListEntry<R>` — [`RawLocListEntry`](../index.md)
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for RawLocListEntry<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for RawLocListEntry<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rawloclistentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Functions
 

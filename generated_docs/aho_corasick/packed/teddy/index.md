@@ -4,6 +4,13 @@
 
 # Module `teddy`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`builder`](#builder) | mod |  |
+| [`generic`](#generic) | mod |  |
+
 ## Modules
 
 - [`builder`](builder/index.md) - 

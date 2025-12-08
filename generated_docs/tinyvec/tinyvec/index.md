@@ -4,6 +4,15 @@
 
 # Module `tinyvec`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`TinyVecSplice`](#tinyvecsplice) | struct | Splicing iterator for `TinyVec` |
+| [`TinyVec`](#tinyvec) | enum | A vector that starts inline, but can automatically move to the heap. |
+| [`TinyVecDrain`](#tinyvecdrain) | enum | Draining iterator for `TinyVecDrain` |
+| [`TinyVecIterator`](#tinyveciterator) | enum | Iterator for consuming an `TinyVec` and returning owned elements. |
+
 ## Structs
 
 ### `TinyVecSplice<'p, A: Array, I: Iterator<Item = <A as >::Item>>`
@@ -24,33 +33,33 @@ See [`TinyVec::splice`](TinyVec::<A>::splice)
 
 ##### `impl<'p, A, I> DoubleEndedIterator for TinyVecSplice<'p, A, I>`
 
-- `fn next_back(self: &mut Self) -> Option<<A as >::Item>` — [`Array`](../index.md)
+- <span id="tinyvecsplice-next-back"></span>`fn next_back(&mut self) -> Option<<A as >::Item>` — [`Array`](../index.md)
 
 ##### `impl<'p, A: Array, I: Iterator<Item = <A as >::Item>> Drop for TinyVecSplice<'p, A, I>`
 
-- `fn drop(self: &mut Self)`
+- <span id="tinyvecsplice-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<'p, A, I> ExactSizeIterator for TinyVecSplice<'p, A, I>`
 
-- `fn len(self: &Self) -> usize`
+- <span id="tinyvecsplice-len"></span>`fn len(&self) -> usize`
 
 ##### `impl<'p, A, I> FusedIterator for TinyVecSplice<'p, A, I>`
 
 ##### `impl<I> IntoIterator for TinyVecSplice<'p, A, I>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="tinyvecsplice-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="tinyvecsplice-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="tinyvecsplice-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'p, A, I> Iterator for TinyVecSplice<'p, A, I>`
 
-- `type Item = <A as Array>::Item`
+- <span id="tinyvecsplice-item"></span>`type Item = <A as Array>::Item`
 
-- `fn next(self: &mut Self) -> Option<<A as >::Item>` — [`Array`](../index.md)
+- <span id="tinyvecsplice-next"></span>`fn next(&mut self) -> Option<<A as >::Item>` — [`Array`](../index.md)
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="tinyvecsplice-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ## Enums
 
@@ -87,173 +96,143 @@ let some_ints = tiny_vec!([i32; 4] => 1, 2, 3);
 
 #### Implementations
 
-- `fn append(self: &mut Self, other: &mut Self)`
+- <span id="tinyvec-is-heap"></span>`fn is_heap(&self) -> bool`
 
-- `fn swap_remove(self: &mut Self, index: usize) -> <A as >::Item` — [`Array`](../index.md)
+- <span id="tinyvec-is-inline"></span>`fn is_inline(&self) -> bool`
 
-- `fn pop(self: &mut Self) -> Option<<A as >::Item>` — [`Array`](../index.md)
+- <span id="tinyvec-shrink-to-fit"></span>`fn shrink_to_fit(&mut self)`
 
-- `fn remove(self: &mut Self, index: usize) -> <A as >::Item` — [`Array`](../index.md)
+- <span id="tinyvec-move-to-the-heap"></span>`fn move_to_the_heap(&mut self)`
 
-- `fn len(self: &Self) -> usize`
+- <span id="tinyvec-move-to-the-heap-and-reserve"></span>`fn move_to_the_heap_and_reserve(&mut self, n: usize)`
 
-- `fn capacity(self: &Self) -> usize`
+- <span id="tinyvec-reserve"></span>`fn reserve(&mut self, n: usize)`
 
-- `fn truncate(self: &mut Self, new_len: usize)`
+- <span id="tinyvec-reserve-exact"></span>`fn reserve_exact(&mut self, n: usize)`
 
-- `fn as_mut_ptr(self: &mut Self) -> *mut <A as >::Item` — [`Array`](../index.md)
+- <span id="tinyvec-with-capacity"></span>`fn with_capacity(cap: usize) -> Self`
 
-- `fn as_ptr(self: &Self) -> *const <A as >::Item` — [`Array`](../index.md)
+- <span id="tinyvec-into-boxed-slice"></span>`fn into_boxed_slice(self) -> alloc::boxed::Box<[<A as >::Item]>` — [`Array`](../index.md)
 
-- `fn retain<F: FnMut(&<A as >::Item) -> bool>(self: &mut Self, acceptable: F)`
-
-- `fn as_mut_slice(self: &mut Self) -> &mut [<A as >::Item]` — [`Array`](../index.md)
-
-- `fn as_slice(self: &Self) -> &[<A as >::Item]` — [`Array`](../index.md)
-
-- `fn clear(self: &mut Self)`
-
-- `fn drain<R: RangeBounds<usize>>(self: &mut Self, range: R) -> TinyVecDrain<'_, A>` — [`TinyVecDrain`](../index.md)
-
-- `fn extend_from_slice(self: &mut Self, sli: &[<A as >::Item])` — [`Array`](../index.md)
-
-- `fn from_array_len(data: A, len: usize) -> Self`
-
-- `fn insert(self: &mut Self, index: usize, item: <A as >::Item)` — [`Array`](../index.md)
-
-- `fn is_empty(self: &Self) -> bool`
-
-- `fn new() -> Self`
-
-- `fn push(self: &mut Self, val: <A as >::Item)` — [`Array`](../index.md)
-
-- `fn resize(self: &mut Self, new_len: usize, new_val: <A as >::Item)` — [`Array`](../index.md)
-
-- `fn resize_with<F: FnMut() -> <A as >::Item>(self: &mut Self, new_len: usize, f: F)`
-
-- `fn split_off(self: &mut Self, at: usize) -> Self`
-
-- `fn splice<R, I>(self: &mut Self, range: R, replacement: I) -> TinyVecSplice<'_, A, core::iter::Fuse<<I as >::IntoIter>>` — [`TinyVecSplice`](../index.md)
-
-- `fn try_from_array_len(data: A, len: usize) -> Result<Self, A>`
+- <span id="tinyvec-into-vec"></span>`fn into_vec(self) -> Vec<<A as >::Item>` — [`Array`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<A: Array> AsMut for TinyVec<A>`
 
-- `fn as_mut(self: &mut Self) -> &mut [<A as >::Item]` — [`Array`](../index.md)
+- <span id="tinyvec-as-mut"></span>`fn as_mut(&mut self) -> &mut [<A as >::Item]` — [`Array`](../index.md)
 
 ##### `impl<A: Array> AsRef for TinyVec<A>`
 
-- `fn as_ref(self: &Self) -> &[<A as >::Item]` — [`Array`](../index.md)
+- <span id="tinyvec-as-ref"></span>`fn as_ref(&self) -> &[<A as >::Item]` — [`Array`](../index.md)
 
 ##### `impl<A: Array> Binary for TinyVec<A>`
 
-- `fn fmt(self: &Self, f: &mut Formatter<'_>) -> core::fmt::Result`
+- <span id="tinyvec-fmt"></span>`fn fmt(&self, f: &mut Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl<A> Clone for TinyVec<A>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="tinyvec-clone"></span>`fn clone(&self) -> Self`
 
-- `fn clone_from(self: &mut Self, o: &Self)`
+- <span id="tinyvec-clone-from"></span>`fn clone_from(&mut self, o: &Self)`
 
 ##### `impl<A: Array> Debug for TinyVec<A>`
 
-- `fn fmt(self: &Self, f: &mut Formatter<'_>) -> core::fmt::Result`
+- <span id="tinyvec-fmt"></span>`fn fmt(&self, f: &mut Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl<A: Array> Default for TinyVec<A>`
 
-- `fn default() -> Self`
+- <span id="tinyvec-default"></span>`fn default() -> Self`
 
 ##### `impl<A: Array> Deref for TinyVec<A>`
 
-- `type Target = [<A as Array>::Item]`
+- <span id="tinyvec-target"></span>`type Target = [<A as Array>::Item]`
 
-- `fn deref(self: &Self) -> &<Self as >::Target`
+- <span id="tinyvec-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl<A: Array> DerefMut for TinyVec<A>`
 
-- `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+- <span id="tinyvec-deref-mut"></span>`fn deref_mut(&mut self) -> &mut <Self as >::Target`
 
 ##### `impl<A: Array> Display for TinyVec<A>`
 
-- `fn fmt(self: &Self, f: &mut Formatter<'_>) -> core::fmt::Result`
+- <span id="tinyvec-fmt"></span>`fn fmt(&self, f: &mut Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl<A: Array> Eq for TinyVec<A>`
 
 ##### `impl<A: Array> Extend for TinyVec<A>`
 
-- `fn extend<T: IntoIterator<Item = <A as >::Item>>(self: &mut Self, iter: T)`
+- <span id="tinyvec-extend"></span>`fn extend<T: IntoIterator<Item = <A as >::Item>>(&mut self, iter: T)`
 
 ##### `impl<A: Array> FromIterator for TinyVec<A>`
 
-- `fn from_iter<T: IntoIterator<Item = <A as >::Item>>(iter: T) -> Self`
+- <span id="tinyvec-from-iter"></span>`fn from_iter<T: IntoIterator<Item = <A as >::Item>>(iter: T) -> Self`
 
 ##### `impl<A: Array> Hash for TinyVec<A>`
 
-- `fn hash<H: Hasher>(self: &Self, state: &mut H)`
+- <span id="tinyvec-hash"></span>`fn hash<H: Hasher>(&self, state: &mut H)`
 
 ##### `impl<A: Array, I: SliceIndex<[<A as >::Item]>> Index for TinyVec<A>`
 
-- `type Output = <I as SliceIndex>::Output`
+- <span id="tinyvec-output"></span>`type Output = <I as SliceIndex>::Output`
 
-- `fn index(self: &Self, index: I) -> &<Self as >::Output`
+- <span id="tinyvec-index"></span>`fn index(&self, index: I) -> &<Self as >::Output`
 
 ##### `impl<A: Array, I: SliceIndex<[<A as >::Item]>> IndexMut for TinyVec<A>`
 
-- `fn index_mut(self: &mut Self, index: I) -> &mut <Self as >::Output`
+- <span id="tinyvec-index-mut"></span>`fn index_mut(&mut self, index: I) -> &mut <Self as >::Output`
 
 ##### `impl<A: Array> IntoIterator for TinyVec<A>`
 
-- `type Item = <A as Array>::Item`
+- <span id="tinyvec-item"></span>`type Item = <A as Array>::Item`
 
-- `type IntoIter = TinyVecIterator<A>`
+- <span id="tinyvec-intoiter"></span>`type IntoIter = TinyVecIterator<A>`
 
-- `fn into_iter(self: Self) -> <Self as >::IntoIter`
+- <span id="tinyvec-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
 ##### `impl<A: Array> LowerExp for TinyVec<A>`
 
-- `fn fmt(self: &Self, f: &mut Formatter<'_>) -> core::fmt::Result`
+- <span id="tinyvec-fmt"></span>`fn fmt(&self, f: &mut Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl<A: Array> LowerHex for TinyVec<A>`
 
-- `fn fmt(self: &Self, f: &mut Formatter<'_>) -> core::fmt::Result`
+- <span id="tinyvec-fmt"></span>`fn fmt(&self, f: &mut Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl<A: Array> Octal for TinyVec<A>`
 
-- `fn fmt(self: &Self, f: &mut Formatter<'_>) -> core::fmt::Result`
+- <span id="tinyvec-fmt"></span>`fn fmt(&self, f: &mut Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl<A: Array> Ord for TinyVec<A>`
 
-- `fn cmp(self: &Self, other: &Self) -> core::cmp::Ordering`
+- <span id="tinyvec-cmp"></span>`fn cmp(&self, other: &Self) -> core::cmp::Ordering`
 
 ##### `impl<A: Array> PartialEq for TinyVec<A>`
 
-- `fn eq(self: &Self, other: &&[<A as >::Item]) -> bool` — [`Array`](../index.md)
+- <span id="tinyvec-eq"></span>`fn eq(&self, other: &&A) -> bool`
 
 ##### `impl<A: Array> PartialOrd for TinyVec<A>`
 
-- `fn partial_cmp(self: &Self, other: &Self) -> Option<core::cmp::Ordering>`
+- <span id="tinyvec-partial-cmp"></span>`fn partial_cmp(&self, other: &Self) -> Option<core::cmp::Ordering>`
 
 ##### `impl<A: Array> Pointer for TinyVec<A>`
 
-- `fn fmt(self: &Self, f: &mut Formatter<'_>) -> core::fmt::Result`
+- <span id="tinyvec-fmt"></span>`fn fmt(&self, f: &mut Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl<P, T> Receiver for TinyVec<A>`
 
-- `type Target = T`
+- <span id="tinyvec-target"></span>`type Target = T`
 
 ##### `impl<T> ToString for TinyVec<A>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="tinyvec-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl<A: Array> UpperExp for TinyVec<A>`
 
-- `fn fmt(self: &Self, f: &mut Formatter<'_>) -> core::fmt::Result`
+- <span id="tinyvec-fmt"></span>`fn fmt(&self, f: &mut Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl<A: Array> UpperHex for TinyVec<A>`
 
-- `fn fmt(self: &Self, f: &mut Formatter<'_>) -> core::fmt::Result`
+- <span id="tinyvec-fmt"></span>`fn fmt(&self, f: &mut Formatter<'_>) -> core::fmt::Result`
 
 ### `TinyVecDrain<'p, A: Array>`
 
@@ -272,33 +251,33 @@ See [`TinyVecDrain::drain`](TinyVecDrain::<A>::drain)
 
 ##### `impl<'p, A: Array> DoubleEndedIterator for TinyVecDrain<'p, A>`
 
-- `fn next_back(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="tinyvecdrain-next-back"></span>`fn next_back(&mut self) -> Option<<Self as >::Item>`
 
-- `fn nth_back(self: &mut Self, n: usize) -> Option<<Self as >::Item>`
+- <span id="tinyvecdrain-nth-back"></span>`fn nth_back(&mut self, n: usize) -> Option<<Self as >::Item>`
 
 ##### `impl<I> IntoIterator for TinyVecDrain<'p, A>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="tinyvecdrain-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="tinyvecdrain-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="tinyvecdrain-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'p, A: Array> Iterator for TinyVecDrain<'p, A>`
 
-- `type Item = <A as Array>::Item`
+- <span id="tinyvecdrain-item"></span>`type Item = <A as Array>::Item`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="tinyvecdrain-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-- `fn nth(self: &mut Self, n: usize) -> Option<<Self as >::Item>`
+- <span id="tinyvecdrain-nth"></span>`fn nth(&mut self, n: usize) -> Option<<Self as >::Item>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="tinyvecdrain-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- `fn last(self: Self) -> Option<<Self as >::Item>`
+- <span id="tinyvecdrain-last"></span>`fn last(self) -> Option<<Self as >::Item>`
 
-- `fn count(self: Self) -> usize`
+- <span id="tinyvecdrain-count"></span>`fn count(self) -> usize`
 
-- `fn for_each<F: FnMut(<Self as >::Item)>(self: Self, f: F)`
+- <span id="tinyvecdrain-for-each"></span>`fn for_each<F: FnMut(<Self as >::Item)>(self, f: F)`
 
 ### `TinyVecIterator<A: Array>`
 
@@ -313,45 +292,45 @@ Iterator for consuming an `TinyVec` and returning owned elements.
 
 #### Implementations
 
-- `fn as_slice(self: &Self) -> &[<A as >::Item]` — [`Array`](../index.md)
+- <span id="tinyveciterator-as-slice"></span>`fn as_slice(&self) -> &[<A as >::Item]` — [`Array`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<A: Array> Debug for TinyVecIterator<A>`
 
-- `fn fmt(self: &Self, f: &mut Formatter<'_>) -> core::fmt::Result`
+- <span id="tinyveciterator-fmt"></span>`fn fmt(&self, f: &mut Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl<A: Array> DoubleEndedIterator for TinyVecIterator<A>`
 
-- `fn next_back(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="tinyveciterator-next-back"></span>`fn next_back(&mut self) -> Option<<Self as >::Item>`
 
-- `fn nth_back(self: &mut Self, n: usize) -> Option<<Self as >::Item>`
+- <span id="tinyveciterator-nth-back"></span>`fn nth_back(&mut self, n: usize) -> Option<<Self as >::Item>`
 
 ##### `impl<A: Array> ExactSizeIterator for TinyVecIterator<A>`
 
-- `fn len(self: &Self) -> usize`
+- <span id="tinyveciterator-len"></span>`fn len(&self) -> usize`
 
 ##### `impl<A: Array> FusedIterator for TinyVecIterator<A>`
 
 ##### `impl<I> IntoIterator for TinyVecIterator<A>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="tinyveciterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="tinyveciterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="tinyveciterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<A: Array> Iterator for TinyVecIterator<A>`
 
-- `type Item = <A as Array>::Item`
+- <span id="tinyveciterator-item"></span>`type Item = <A as Array>::Item`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="tinyveciterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="tinyveciterator-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- `fn count(self: Self) -> usize`
+- <span id="tinyveciterator-count"></span>`fn count(self) -> usize`
 
-- `fn last(self: Self) -> Option<<Self as >::Item>`
+- <span id="tinyveciterator-last"></span>`fn last(self) -> Option<<Self as >::Item>`
 
-- `fn nth(self: &mut Self, n: usize) -> Option<<A as >::Item>` — [`Array`](../index.md)
+- <span id="tinyveciterator-nth"></span>`fn nth(&mut self, n: usize) -> Option<<A as >::Item>` — [`Array`](../index.md)
 

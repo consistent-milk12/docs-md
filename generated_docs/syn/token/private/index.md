@@ -4,6 +4,13 @@
 
 # Module `private`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`WithSpan`](#withspan) | struct | Support writing `token.span` rather than `token.spans[0]` on tokens that |
+| [`Sealed`](#sealed) | trait |  |
+
 ## Structs
 
 ### `WithSpan`

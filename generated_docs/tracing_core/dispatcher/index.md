@@ -129,6 +129,52 @@ A thread's current default subscriber can be accessed using the
 currently default `Dispatch`. This is used primarily by `tracing`
 instrumentation.
 
+## Contents
+
+- [Structs](#structs)
+  - [`Dispatch`](#dispatch)
+  - [`WeakDispatch`](#weakdispatch)
+  - [`State`](#state)
+  - [`Entered`](#entered)
+  - [`DefaultGuard`](#defaultguard)
+  - [`SetGlobalDefaultError`](#setglobaldefaulterror)
+  - [`Registrar`](#registrar)
+- [Enums](#enums)
+  - [`Kind`](#kind)
+- [Functions](#functions)
+  - [`with_default`](#with_default)
+  - [`set_default`](#set_default)
+  - [`set_global_default`](#set_global_default)
+  - [`get_default`](#get_default)
+  - [`get_global`](#get_global)
+- [Constants](#constants)
+  - [`CURRENT_STATE`](#current_state)
+  - [`UNINITIALIZED`](#uninitialized)
+  - [`INITIALIZING`](#initializing)
+  - [`INITIALIZED`](#initialized)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Dispatch`](#dispatch) | struct | `Dispatch` trace data to a [`Subscriber`]. |
+| [`WeakDispatch`](#weakdispatch) | struct | `WeakDispatch` is a version of [`Dispatch`] that holds a non-owning reference |
+| [`State`](#state) | struct | The dispatch state of a thread. |
+| [`Entered`](#entered) | struct | While this guard is active, additional calls to subscriber functions on |
+| [`DefaultGuard`](#defaultguard) | struct | A guard that resets the current default dispatcher to the prior |
+| [`SetGlobalDefaultError`](#setglobaldefaulterror) | struct | Returned if setting the global dispatcher fails. |
+| [`Registrar`](#registrar) | struct |  |
+| [`Kind`](#kind) | enum |  |
+| [`with_default`](#with_default) | fn | Sets this dispatch as the default for the duration of a closure. |
+| [`set_default`](#set_default) | fn | Sets the dispatch as the default dispatch for the duration of the lifetime |
+| [`set_global_default`](#set_global_default) | fn | Sets this dispatch as the global default for the duration of the entire program. |
+| [`get_default`](#get_default) | fn | Executes a closure with a reference to this thread's current [dispatcher]. |
+| [`get_global`](#get_global) | fn |  |
+| [`CURRENT_STATE`](#current_state) | const |  |
+| [`UNINITIALIZED`](#uninitialized) | const |  |
+| [`INITIALIZING`](#initializing) | const |  |
+| [`INITIALIZED`](#initialized) | const |  |
+
 ## Structs
 
 ### `Dispatch`
@@ -143,59 +189,59 @@ struct Dispatch {
 
 #### Implementations
 
-- `fn none() -> Self`
+- <span id="dispatch-none"></span>`fn none() -> Self`
 
-- `fn new<S>(subscriber: S) -> Self`
+- <span id="dispatch-new"></span>`fn new<S>(subscriber: S) -> Self`
 
-- `fn registrar(self: &Self) -> Registrar` — [`Registrar`](#registrar)
+- <span id="dispatch-registrar"></span>`fn registrar(&self) -> Registrar` — [`Registrar`](#registrar)
 
-- `fn downgrade(self: &Self) -> WeakDispatch` — [`WeakDispatch`](#weakdispatch)
+- <span id="dispatch-downgrade"></span>`fn downgrade(&self) -> WeakDispatch` — [`WeakDispatch`](#weakdispatch)
 
-- `fn subscriber(self: &Self) -> &dyn Subscriber + Send + Sync` — [`Subscriber`](../index.md)
+- <span id="dispatch-subscriber"></span>`fn subscriber(&self) -> &dyn Subscriber + Send + Sync` — [`Subscriber`](../index.md)
 
-- `fn register_callsite(self: &Self, metadata: &'static Metadata<'static>) -> subscriber::Interest` — [`Metadata`](../index.md), [`Interest`](../index.md)
+- <span id="dispatch-register-callsite"></span>`fn register_callsite(&self, metadata: &'static Metadata<'static>) -> subscriber::Interest` — [`Metadata`](../index.md), [`Interest`](../index.md)
 
-- `fn max_level_hint(self: &Self) -> Option<LevelFilter>` — [`LevelFilter`](../index.md)
+- <span id="dispatch-max-level-hint"></span>`fn max_level_hint(&self) -> Option<LevelFilter>` — [`LevelFilter`](../index.md)
 
-- `fn new_span(self: &Self, span: &span::Attributes<'_>) -> span::Id` — [`Attributes`](../span/index.md), [`Id`](../span/index.md)
+- <span id="dispatch-new-span"></span>`fn new_span(&self, span: &span::Attributes<'_>) -> span::Id` — [`Attributes`](../span/index.md), [`Id`](../span/index.md)
 
-- `fn record(self: &Self, span: &span::Id, values: &span::Record<'_>)` — [`Id`](../span/index.md), [`Record`](../span/index.md)
+- <span id="dispatch-record"></span>`fn record(&self, span: &span::Id, values: &span::Record<'_>)` — [`Id`](../span/index.md), [`Record`](../span/index.md)
 
-- `fn record_follows_from(self: &Self, span: &span::Id, follows: &span::Id)` — [`Id`](../span/index.md)
+- <span id="dispatch-record-follows-from"></span>`fn record_follows_from(&self, span: &span::Id, follows: &span::Id)` — [`Id`](../span/index.md)
 
-- `fn enabled(self: &Self, metadata: &Metadata<'_>) -> bool` — [`Metadata`](../index.md)
+- <span id="dispatch-enabled"></span>`fn enabled(&self, metadata: &Metadata<'_>) -> bool` — [`Metadata`](../index.md)
 
-- `fn event(self: &Self, event: &Event<'_>)` — [`Event`](../index.md)
+- <span id="dispatch-event"></span>`fn event(&self, event: &Event<'_>)` — [`Event`](../index.md)
 
-- `fn enter(self: &Self, span: &span::Id)` — [`Id`](../span/index.md)
+- <span id="dispatch-enter"></span>`fn enter(&self, span: &span::Id)` — [`Id`](../span/index.md)
 
-- `fn exit(self: &Self, span: &span::Id)` — [`Id`](../span/index.md)
+- <span id="dispatch-exit"></span>`fn exit(&self, span: &span::Id)` — [`Id`](../span/index.md)
 
-- `fn clone_span(self: &Self, id: &span::Id) -> span::Id` — [`Id`](../span/index.md)
+- <span id="dispatch-clone-span"></span>`fn clone_span(&self, id: &span::Id) -> span::Id` — [`Id`](../span/index.md)
 
-- `fn drop_span(self: &Self, id: span::Id)` — [`Id`](../span/index.md)
+- <span id="dispatch-drop-span"></span>`fn drop_span(&self, id: span::Id)` — [`Id`](../span/index.md)
 
-- `fn try_close(self: &Self, id: span::Id) -> bool` — [`Id`](../span/index.md)
+- <span id="dispatch-try-close"></span>`fn try_close(&self, id: span::Id) -> bool` — [`Id`](../span/index.md)
 
-- `fn current_span(self: &Self) -> span::Current` — [`Current`](../span/index.md)
+- <span id="dispatch-current-span"></span>`fn current_span(&self) -> span::Current` — [`Current`](../span/index.md)
 
-- `fn is<T: Any>(self: &Self) -> bool`
+- <span id="dispatch-is"></span>`fn is<T: Any>(&self) -> bool`
 
-- `fn downcast_ref<T: Any>(self: &Self) -> Option<&T>`
+- <span id="dispatch-downcast-ref"></span>`fn downcast_ref<T: Any>(&self) -> Option<&T>`
 
 #### Trait Implementations
 
 ##### `impl Clone for Dispatch`
 
-- `fn clone(self: &Self) -> Dispatch` — [`Dispatch`](../index.md)
+- <span id="dispatch-clone"></span>`fn clone(&self) -> Dispatch` — [`Dispatch`](../index.md)
 
 ##### `impl Debug for Dispatch`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dispatch-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Dispatch`
 
-- `fn default() -> Self`
+- <span id="dispatch-default"></span>`fn default() -> Self`
 
 ### `WeakDispatch`
 
@@ -225,17 +271,17 @@ This type is analogous to the `std::sync::Weak` type, but for a
 
 #### Implementations
 
-- `fn upgrade(self: &Self) -> Option<Dispatch>` — [`Dispatch`](../index.md)
+- <span id="weakdispatch-upgrade"></span>`fn upgrade(&self) -> Option<Dispatch>` — [`Dispatch`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for WeakDispatch`
 
-- `fn clone(self: &Self) -> WeakDispatch` — [`WeakDispatch`](#weakdispatch)
+- <span id="weakdispatch-clone"></span>`fn clone(&self) -> WeakDispatch` — [`WeakDispatch`](#weakdispatch)
 
 ##### `impl Debug for WeakDispatch`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="weakdispatch-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `State`
 
@@ -266,9 +312,9 @@ The dispatch state of a thread.
 
 #### Implementations
 
-- `fn set_default(new_dispatch: Dispatch) -> DefaultGuard` — [`Dispatch`](../index.md), [`DefaultGuard`](#defaultguard)
+- <span id="state-set-default"></span>`fn set_default(new_dispatch: Dispatch) -> DefaultGuard` — [`Dispatch`](../index.md), [`DefaultGuard`](#defaultguard)
 
-- `fn enter(self: &Self) -> Option<Entered<'_>>` — [`Entered`](#entered)
+- <span id="state-enter"></span>`fn enter(&self) -> Option<Entered<'_>>` — [`Entered`](#entered)
 
 ### `Entered<'a>`
 
@@ -282,13 +328,13 @@ Dropping the guard will allow the dispatch context to be re-entered.
 
 #### Implementations
 
-- `fn current(self: &Self) -> Ref<'a, Dispatch>` — [`Dispatch`](../index.md)
+- <span id="entered-current"></span>`fn current(&self) -> Ref<'a, Dispatch>` — [`Dispatch`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Drop for Entered<'_>`
 
-- `fn drop(self: &mut Self)`
+- <span id="entered-drop"></span>`fn drop(&mut self)`
 
 ### `DefaultGuard`
 
@@ -303,11 +349,11 @@ default dispatcher when dropped.
 
 ##### `impl Debug for DefaultGuard`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="defaultguard-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Drop for DefaultGuard`
 
-- `fn drop(self: &mut Self)`
+- <span id="defaultguard-drop"></span>`fn drop(&mut self)`
 
 ### `SetGlobalDefaultError`
 
@@ -321,23 +367,23 @@ Returned if setting the global dispatcher fails.
 
 #### Implementations
 
-- `const MESSAGE: &'static str`
+- <span id="setglobaldefaulterror-message"></span>`const MESSAGE: &'static str`
 
 #### Trait Implementations
 
 ##### `impl Debug for SetGlobalDefaultError`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="setglobaldefaulterror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for SetGlobalDefaultError`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="setglobaldefaulterror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Error for SetGlobalDefaultError`
 
 ##### `impl<T> ToString for SetGlobalDefaultError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="setglobaldefaulterror-to-string"></span>`fn to_string(&self) -> String`
 
 ### `Registrar`
 
@@ -347,7 +393,7 @@ struct Registrar(Kind<alloc::sync::Weak<dyn Subscriber + Send + Sync>>);
 
 #### Implementations
 
-- `fn upgrade(self: &Self) -> Option<Dispatch>` — [`Dispatch`](../index.md)
+- <span id="registrar-upgrade"></span>`fn upgrade(&self) -> Option<Dispatch>` — [`Dispatch`](../index.md)
 
 ## Enums
 
@@ -362,13 +408,13 @@ enum Kind<T> {
 
 #### Implementations
 
-- `fn downgrade(self: &Self) -> Kind<Weak<dyn Subscriber + Send + Sync>>` — [`Kind`](#kind), [`Subscriber`](../index.md)
+- <span id="kind-upgrade"></span>`fn upgrade(&self) -> Option<Kind<Arc<dyn Subscriber + Send + Sync>>>` — [`Kind`](#kind), [`Subscriber`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for Kind<T>`
+##### `impl<T: clone::Clone> Clone for Kind<T>`
 
-- `fn clone(self: &Self) -> Kind<T>` — [`Kind`](#kind)
+- <span id="kind-clone"></span>`fn clone(&self) -> Kind<T>` — [`Kind`](#kind)
 
 ## Functions
 
@@ -456,7 +502,7 @@ fn get_global() -> &'static Dispatch
 ### `CURRENT_STATE`
 
 ```rust
-const CURRENT_STATE: $crate::thread::LocalKey<State>;
+const CURRENT_STATE: thread::LocalKey<State>;
 ```
 
 ### `UNINITIALIZED`

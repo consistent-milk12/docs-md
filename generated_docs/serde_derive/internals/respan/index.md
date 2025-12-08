@@ -4,6 +4,13 @@
 
 # Module `respan`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`respan`](#respan) | fn |  |
+| [`respan_token`](#respan_token) | fn |  |
+
 ## Functions
 
 ### `respan`

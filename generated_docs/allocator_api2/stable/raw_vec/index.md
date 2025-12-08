@@ -4,6 +4,33 @@
 
 # Module `raw_vec`
 
+## Contents
+
+- [Structs](#structs)
+  - [`TryReserveError`](#tryreserveerror)
+  - [`RawVec`](#rawvec)
+- [Enums](#enums)
+  - [`TryReserveErrorKind`](#tryreserveerrorkind)
+  - [`AllocInit`](#allocinit)
+- [Functions](#functions)
+  - [`finish_grow`](#finish_grow)
+  - [`handle_reserve`](#handle_reserve)
+  - [`alloc_guard`](#alloc_guard)
+  - [`capacity_overflow`](#capacity_overflow)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`TryReserveError`](#tryreserveerror) | struct | The error type for `try_reserve` methods. |
+| [`RawVec`](#rawvec) | struct | A low-level utility for more ergonomically allocating, reallocating, and deallocating |
+| [`TryReserveErrorKind`](#tryreserveerrorkind) | enum | Details of the allocation that caused a `TryReserveError` |
+| [`AllocInit`](#allocinit) | enum |  |
+| [`finish_grow`](#finish_grow) | fn |  |
+| [`handle_reserve`](#handle_reserve) | fn |  |
+| [`alloc_guard`](#alloc_guard) | fn |  |
+| [`capacity_overflow`](#capacity_overflow) | fn |  |
+
 ## Structs
 
 ### `TryReserveError`
@@ -18,33 +45,33 @@ The error type for `try_reserve` methods.
 
 #### Implementations
 
-- `fn kind(self: &Self) -> TryReserveErrorKind` — [`TryReserveErrorKind`](../collections/index.md)
+- <span id="tryreserveerror-kind"></span>`fn kind(&self) -> TryReserveErrorKind` — [`TryReserveErrorKind`](../collections/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for TryReserveError`
 
-- `fn clone(self: &Self) -> TryReserveError` — [`TryReserveError`](../collections/index.md)
+- <span id="tryreserveerror-clone"></span>`fn clone(&self) -> TryReserveError` — [`TryReserveError`](../collections/index.md)
 
 ##### `impl Debug for TryReserveError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="tryreserveerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for TryReserveError`
 
-- `fn fmt(self: &Self, fmt: &mut core::fmt::Formatter<'_>) -> core::result::Result<(), core::fmt::Error>`
+- <span id="tryreserveerror-fmt"></span>`fn fmt(&self, fmt: &mut core::fmt::Formatter<'_>) -> core::result::Result<(), core::fmt::Error>`
 
 ##### `impl Eq for TryReserveError`
 
 ##### `impl PartialEq for TryReserveError`
 
-- `fn eq(self: &Self, other: &TryReserveError) -> bool` — [`TryReserveError`](../collections/index.md)
+- <span id="tryreserveerror-eq"></span>`fn eq(&self, other: &TryReserveError) -> bool` — [`TryReserveError`](../collections/index.md)
 
 ##### `impl StructuralPartialEq for TryReserveError`
 
 ##### `impl<T> ToString for TryReserveError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="tryreserveerror-to-string"></span>`fn to_string(&self) -> String`
 
 ### `RawVec<T, A: Allocator>`
 
@@ -81,45 +108,21 @@ Note that the excess of a zero-sized types is always infinite, so `capacity()` a
 
 #### Implementations
 
-- `const MIN_NON_ZERO_CAP: usize`
+- <span id="rawvec-needs-to-grow"></span>`fn needs_to_grow(&self, len: usize, additional: usize) -> bool`
 
-- `const fn new_in(alloc: A) -> Self`
+- <span id="rawvec-set-ptr-and-cap"></span>`fn set_ptr_and_cap(&mut self, ptr: NonNull<[u8]>, cap: usize)`
 
-- `fn with_capacity_in(capacity: usize, alloc: A) -> Self`
+- <span id="rawvec-grow-amortized"></span>`fn grow_amortized(&mut self, len: usize, additional: usize) -> Result<(), TryReserveError>` — [`TryReserveError`](../collections/index.md)
 
-- `fn with_capacity_zeroed_in(capacity: usize, alloc: A) -> Self`
+- <span id="rawvec-grow-exact"></span>`fn grow_exact(&mut self, len: usize, additional: usize) -> Result<(), TryReserveError>` — [`TryReserveError`](../collections/index.md)
 
-- `unsafe fn into_box(self: Self, len: usize) -> Box<[MaybeUninit<T>], A>` — [`Box`](../boxed/index.md)
-
-- `fn allocate_in(capacity: usize, init: AllocInit, alloc: A) -> Self` — [`AllocInit`](#allocinit)
-
-- `unsafe fn from_raw_parts_in(ptr: *mut T, capacity: usize, alloc: A) -> Self`
-
-- `fn ptr(self: &Self) -> *mut T`
-
-- `fn capacity(self: &Self) -> usize`
-
-- `fn allocator(self: &Self) -> &A`
-
-- `fn current_memory(self: &Self) -> Option<(NonNull<u8>, Layout)>` — [`Layout`](../alloc/index.md)
-
-- `fn reserve(self: &mut Self, len: usize, additional: usize)`
-
-- `fn reserve_for_push(self: &mut Self, len: usize)`
-
-- `fn try_reserve(self: &mut Self, len: usize, additional: usize) -> Result<(), TryReserveError>` — [`TryReserveError`](../collections/index.md)
-
-- `fn reserve_exact(self: &mut Self, len: usize, additional: usize)`
-
-- `fn try_reserve_exact(self: &mut Self, len: usize, additional: usize) -> Result<(), TryReserveError>` — [`TryReserveError`](../collections/index.md)
-
-- `fn shrink_to_fit(self: &mut Self, cap: usize)`
+- <span id="rawvec-shrink"></span>`fn shrink(&mut self, cap: usize) -> Result<(), TryReserveError>` — [`TryReserveError`](../collections/index.md)
 
 #### Trait Implementations
 
 ##### `impl<T, A: Allocator> Drop for RawVec<T, A>`
 
-- `fn drop(self: &mut Self)`
+- <span id="rawvec-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<T, A> Send for RawVec<T, A>`
 
@@ -155,17 +158,17 @@ Details of the allocation that caused a `TryReserveError`
 
 ##### `impl Clone for TryReserveErrorKind`
 
-- `fn clone(self: &Self) -> TryReserveErrorKind` — [`TryReserveErrorKind`](../collections/index.md)
+- <span id="tryreserveerrorkind-clone"></span>`fn clone(&self) -> TryReserveErrorKind` — [`TryReserveErrorKind`](../collections/index.md)
 
 ##### `impl Debug for TryReserveErrorKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="tryreserveerrorkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for TryReserveErrorKind`
 
 ##### `impl PartialEq for TryReserveErrorKind`
 
-- `fn eq(self: &Self, other: &TryReserveErrorKind) -> bool` — [`TryReserveErrorKind`](../collections/index.md)
+- <span id="tryreserveerrorkind-eq"></span>`fn eq(&self, other: &TryReserveErrorKind) -> bool` — [`TryReserveErrorKind`](../collections/index.md)
 
 ##### `impl StructuralPartialEq for TryReserveErrorKind`
 

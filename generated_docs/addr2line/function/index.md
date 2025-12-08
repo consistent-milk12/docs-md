@@ -4,6 +4,36 @@
 
 # Module `function`
 
+## Contents
+
+- [Structs](#structs)
+  - [`LazyFunctions`](#lazyfunctions)
+  - [`Functions`](#functions)
+  - [`FunctionAddress`](#functionaddress)
+  - [`LazyFunction`](#lazyfunction)
+  - [`Function`](#function)
+  - [`InlinedFunctionAddress`](#inlinedfunctionaddress)
+  - [`InlinedFunction`](#inlinedfunction)
+  - [`InlinedState`](#inlinedstate)
+- [Functions](#functions)
+  - [`name_attr`](#name_attr)
+  - [`name_entry`](#name_entry)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`LazyFunctions`](#lazyfunctions) | struct |  |
+| [`Functions`](#functions) | struct |  |
+| [`FunctionAddress`](#functionaddress) | struct | A single address range for a function. |
+| [`LazyFunction`](#lazyfunction) | struct |  |
+| [`Function`](#function) | struct |  |
+| [`InlinedFunctionAddress`](#inlinedfunctionaddress) | struct |  |
+| [`InlinedFunction`](#inlinedfunction) | struct |  |
+| [`InlinedState`](#inlinedstate) | struct |  |
+| [`name_attr`](#name_attr) | fn |  |
+| [`name_entry`](#name_entry) | fn |  |
+
 ## Structs
 
 ### `LazyFunctions<R: gimli::Reader>`
@@ -14,9 +44,9 @@ struct LazyFunctions<R: gimli::Reader>(core::cell::OnceCell<Result<Functions<R>,
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="lazyfunctions-new"></span>`fn new() -> Self`
 
-- `fn borrow(self: &Self, unit: gimli::UnitRef<'_, R>) -> Result<&Functions<R>, gimli::Error>` — [`Functions`](#functions)
+- <span id="lazyfunctions-borrow"></span>`fn borrow(&self, unit: gimli::UnitRef<'_, R>) -> Result<&Functions<R>, gimli::Error>` — [`Functions`](#functions)
 
 ### `Functions<R: gimli::Reader>`
 
@@ -39,11 +69,11 @@ struct Functions<R: gimli::Reader> {
 
 #### Implementations
 
-- `fn parse(unit: gimli::UnitRef<'_, R>) -> Result<Functions<R>, gimli::Error>` — [`Functions`](#functions)
+- <span id="functions-parse"></span>`fn parse(unit: gimli::UnitRef<'_, R>) -> Result<Functions<R>, gimli::Error>` — [`Functions`](#functions)
 
-- `fn find_address(self: &Self, probe: u64) -> Option<usize>`
+- <span id="functions-find-address"></span>`fn find_address(&self, probe: u64) -> Option<usize>`
 
-- `fn parse_inlined_functions(self: &Self, file: DebugFile, unit: gimli::UnitRef<'_, R>, ctx: &Context<R>) -> Result<(), gimli::Error>` — [`DebugFile`](../index.md), [`Context`](../index.md)
+- <span id="functions-parse-inlined-functions"></span>`fn parse_inlined_functions(&self, file: DebugFile, unit: gimli::UnitRef<'_, R>, ctx: &Context<R>) -> Result<(), gimli::Error>` — [`DebugFile`](../index.md), [`Context`](../index.md)
 
 ### `FunctionAddress`
 
@@ -77,9 +107,9 @@ struct LazyFunction<R: gimli::Reader> {
 
 #### Implementations
 
-- `fn new(dw_die_offset: gimli::UnitOffset<<R as >::Offset>) -> Self`
+- <span id="lazyfunction-new"></span>`fn new(dw_die_offset: gimli::UnitOffset<<R as >::Offset>) -> Self`
 
-- `fn borrow(self: &Self, file: DebugFile, unit: gimli::UnitRef<'_, R>, ctx: &Context<R>) -> Result<&Function<R>, gimli::Error>` — [`DebugFile`](../index.md), [`Context`](../index.md), [`Function`](#function)
+- <span id="lazyfunction-borrow"></span>`fn borrow(&self, file: DebugFile, unit: gimli::UnitRef<'_, R>, ctx: &Context<R>) -> Result<&Function<R>, gimli::Error>` — [`DebugFile`](../index.md), [`Context`](../index.md), [`Function`](#function)
 
 ### `Function<R: gimli::Reader>`
 
@@ -104,13 +134,13 @@ struct Function<R: gimli::Reader> {
 
 #### Implementations
 
-- `fn parse(dw_die_offset: gimli::UnitOffset<<R as >::Offset>, file: DebugFile, unit: gimli::UnitRef<'_, R>, ctx: &Context<R>) -> Result<Self, gimli::Error>` — [`DebugFile`](../index.md), [`Context`](../index.md)
+- <span id="function-parse"></span>`fn parse(dw_die_offset: gimli::UnitOffset<<R as >::Offset>, file: DebugFile, unit: gimli::UnitRef<'_, R>, ctx: &Context<R>) -> Result<Self, gimli::Error>` — [`DebugFile`](../index.md), [`Context`](../index.md)
 
-- `fn parse_children(state: &mut InlinedState<'_, R>, depth: isize, inlined_depth: usize) -> Result<(), gimli::Error>` — [`InlinedState`](#inlinedstate)
+- <span id="function-parse-children"></span>`fn parse_children(state: &mut InlinedState<'_, R>, depth: isize, inlined_depth: usize) -> Result<(), gimli::Error>` — [`InlinedState`](#inlinedstate)
 
-- `fn skip(entries: &mut gimli::EntriesRaw<'_, '_, R>, abbrev: &gimli::Abbreviation, depth: isize) -> Result<(), gimli::Error>`
+- <span id="function-skip"></span>`fn skip(entries: &mut gimli::EntriesRaw<'_, '_, R>, abbrev: &gimli::Abbreviation, depth: isize) -> Result<(), gimli::Error>`
 
-- `fn find_inlined_functions(self: &Self, probe: u64) -> alloc::vec::Vec<&InlinedFunction<R>>` — [`InlinedFunction`](#inlinedfunction)
+- <span id="function-find-inlined-functions"></span>`fn find_inlined_functions(&self, probe: u64) -> alloc::vec::Vec<&InlinedFunction<R>>` — [`InlinedFunction`](#inlinedfunction)
 
 ### `InlinedFunctionAddress`
 
@@ -142,7 +172,7 @@ struct InlinedFunction<R: gimli::Reader> {
 
 #### Implementations
 
-- `fn parse(state: &mut InlinedState<'_, R>, dw_die_offset: gimli::UnitOffset<<R as >::Offset>, abbrev: &gimli::Abbreviation, depth: isize, inlined_depth: usize) -> Result<(), gimli::Error>` — [`InlinedState`](#inlinedstate)
+- <span id="inlinedfunction-parse"></span>`fn parse(state: &mut InlinedState<'_, R>, dw_die_offset: gimli::UnitOffset<<R as >::Offset>, abbrev: &gimli::Abbreviation, depth: isize, inlined_depth: usize) -> Result<(), gimli::Error>` — [`InlinedState`](#inlinedstate)
 
 ### `InlinedState<'a, R: gimli::Reader>`
 

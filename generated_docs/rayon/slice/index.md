@@ -10,6 +10,69 @@ You will rarely need to interact with this module directly unless you need
 to name one of the iterator types.
 
 
+## Contents
+
+- [Modules](#modules)
+  - [`chunk_by`](#chunk_by)
+  - [`chunks`](#chunks)
+  - [`rchunks`](#rchunks)
+  - [`sort`](#sort)
+- [Structs](#structs)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`Iter`](#iter)
+  - [`IterProducer`](#iterproducer)
+  - [`Windows`](#windows)
+  - [`WindowsProducer`](#windowsproducer)
+  - [`IterMut`](#itermut)
+  - [`IterMutProducer`](#itermutproducer)
+  - [`Split`](#split)
+  - [`SplitInclusive`](#splitinclusive)
+  - [`SplitMut`](#splitmut)
+  - [`SplitInclusiveMut`](#splitinclusivemut)
+- [Traits](#traits)
+  - [`ParallelSlice`](#parallelslice)
+  - [`ParallelSliceMut`](#parallelslicemut)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`chunk_by`](#chunk_by) | mod |  |
+| [`chunks`](#chunks) | mod |  |
+| [`rchunks`](#rchunks) | mod |  |
+| [`sort`](#sort) | mod | **Parallel** Slice sorting |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`Iter`](#iter) | struct | Parallel iterator over immutable items in a slice |
+| [`IterProducer`](#iterproducer) | struct |  |
+| [`Windows`](#windows) | struct | Parallel iterator over immutable overlapping windows of a slice |
+| [`WindowsProducer`](#windowsproducer) | struct |  |
+| [`IterMut`](#itermut) | struct | Parallel iterator over mutable items in a slice |
+| [`IterMutProducer`](#itermutproducer) | struct |  |
+| [`Split`](#split) | struct | Parallel iterator over slices separated by a predicate |
+| [`SplitInclusive`](#splitinclusive) | struct | Parallel iterator over slices separated by a predicate |
+| [`SplitMut`](#splitmut) | struct | Parallel iterator over mutable slices separated by a predicate |
+| [`SplitInclusiveMut`](#splitinclusivemut) | struct | Parallel iterator over mutable slices separated by a predicate |
+| [`ParallelSlice`](#parallelslice) | trait | Parallel extensions for slices. |
+| [`ParallelSliceMut`](#parallelslicemut) | trait | Parallel extensions for mutable slices. |
+
 ## Modules
 
 - [`chunk_by`](chunk_by/index.md) - 
@@ -35,47 +98,47 @@ This struct is created by the `par_chunk_by` method on `&[T]`.
 
 #### Implementations
 
-- `fn new(slice: &'data [T], pred: P) -> Self`
+- <span id="chunkby-new"></span>`fn new(slice: &'data [T], pred: P) -> Self`
 
 #### Trait Implementations
 
 ##### `impl<T, P: Clone> Clone for ChunkBy<'_, T, P>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="chunkby-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T: fmt::Debug, P> Debug for ChunkBy<'_, T, P>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="chunkby-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> IntoEither for ChunkBy<'data, T, P>`
 
 ##### `impl<T> IntoParallelIterator for ChunkBy<'data, T, P>`
 
-- `type Iter = T`
+- <span id="chunkby-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="chunkby-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="chunkby-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'data, T, P> ParallelIterator for ChunkBy<'data, T, P>`
 
-- `type Item = &'data [T]`
+- <span id="chunkby-item"></span>`type Item = &'data [T]`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="chunkby-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
 ##### `impl<T> Pointable for ChunkBy<'data, T, P>`
 
-- `const ALIGN: usize`
+- <span id="chunkby-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="chunkby-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="chunkby-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="chunkby-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="chunkby-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="chunkby-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `ChunkByMut<'data, T, P>`
 
@@ -94,43 +157,43 @@ This struct is created by the `par_chunk_by_mut` method on `&mut [T]`.
 
 #### Implementations
 
-- `fn new(slice: &'data mut [T], pred: P) -> Self`
+- <span id="chunkbymut-new"></span>`fn new(slice: &'data mut [T], pred: P) -> Self`
 
 #### Trait Implementations
 
 ##### `impl<T: fmt::Debug, P> Debug for ChunkByMut<'_, T, P>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="chunkbymut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> IntoEither for ChunkByMut<'data, T, P>`
 
 ##### `impl<T> IntoParallelIterator for ChunkByMut<'data, T, P>`
 
-- `type Iter = T`
+- <span id="chunkbymut-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="chunkbymut-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="chunkbymut-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'data, T, P> ParallelIterator for ChunkByMut<'data, T, P>`
 
-- `type Item = &'data mut [T]`
+- <span id="chunkbymut-item"></span>`type Item = &'data mut [T]`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="chunkbymut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
 ##### `impl<T> Pointable for ChunkByMut<'data, T, P>`
 
-- `const ALIGN: usize`
+- <span id="chunkbymut-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="chunkbymut-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="chunkbymut-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="chunkbymut-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="chunkbymut-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="chunkbymut-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `Chunks<'data, T>`
 
@@ -145,57 +208,57 @@ Parallel iterator over immutable non-overlapping chunks of a slice
 
 #### Implementations
 
-- `fn new(chunk_size: usize, slice: &'data [T]) -> Self`
+- <span id="chunks-new"></span>`fn new(chunk_size: usize, slice: &'data [T]) -> Self`
 
 #### Trait Implementations
 
 ##### `impl<T> Clone for Chunks<'_, T>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="chunks-clone"></span>`fn clone(&self) -> Self`
 
-##### `impl<'data, T: $crate::fmt::Debug> Debug for Chunks<'data, T>`
+##### `impl<'data, T: fmt::Debug> Debug for Chunks<'data, T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="chunks-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: Sync> IndexedParallelIterator for Chunks<'_, T>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="chunks-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-- `fn len(self: &Self) -> usize`
+- <span id="chunks-len"></span>`fn len(&self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md)
+- <span id="chunks-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md)
 
 ##### `impl<T> IntoEither for Chunks<'data, T>`
 
 ##### `impl<T> IntoParallelIterator for Chunks<'data, T>`
 
-- `type Iter = T`
+- <span id="chunks-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="chunks-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="chunks-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'data, T: Sync> ParallelIterator for Chunks<'data, T>`
 
-- `type Item = &'data [T]`
+- <span id="chunks-item"></span>`type Item = &'data [T]`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="chunks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-- `fn opt_len(self: &Self) -> Option<usize>`
+- <span id="chunks-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for Chunks<'data, T>`
 
-- `const ALIGN: usize`
+- <span id="chunks-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="chunks-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="chunks-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="chunks-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="chunks-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="chunks-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `ChunksExact<'data, T>`
 
@@ -211,59 +274,59 @@ Parallel iterator over immutable non-overlapping chunks of a slice
 
 #### Implementations
 
-- `fn new(chunk_size: usize, slice: &'data [T]) -> Self`
+- <span id="chunksexact-new"></span>`fn new(chunk_size: usize, slice: &'data [T]) -> Self`
 
-- `fn remainder(self: &Self) -> &'data [T]`
+- <span id="chunksexact-remainder"></span>`fn remainder(&self) -> &'data [T]`
 
 #### Trait Implementations
 
 ##### `impl<T> Clone for ChunksExact<'_, T>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="chunksexact-clone"></span>`fn clone(&self) -> Self`
 
-##### `impl<'data, T: $crate::fmt::Debug> Debug for ChunksExact<'data, T>`
+##### `impl<'data, T: fmt::Debug> Debug for ChunksExact<'data, T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="chunksexact-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: Sync> IndexedParallelIterator for ChunksExact<'_, T>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="chunksexact-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-- `fn len(self: &Self) -> usize`
+- <span id="chunksexact-len"></span>`fn len(&self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md)
+- <span id="chunksexact-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md)
 
 ##### `impl<T> IntoEither for ChunksExact<'data, T>`
 
 ##### `impl<T> IntoParallelIterator for ChunksExact<'data, T>`
 
-- `type Iter = T`
+- <span id="chunksexact-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="chunksexact-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="chunksexact-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'data, T: Sync> ParallelIterator for ChunksExact<'data, T>`
 
-- `type Item = &'data [T]`
+- <span id="chunksexact-item"></span>`type Item = &'data [T]`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="chunksexact-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-- `fn opt_len(self: &Self) -> Option<usize>`
+- <span id="chunksexact-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for ChunksExact<'data, T>`
 
-- `const ALIGN: usize`
+- <span id="chunksexact-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="chunksexact-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="chunksexact-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="chunksexact-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="chunksexact-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="chunksexact-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `ChunksExactMut<'data, T>`
 
@@ -279,59 +342,59 @@ Parallel iterator over mutable non-overlapping chunks of a slice
 
 #### Implementations
 
-- `fn new(chunk_size: usize, slice: &'data mut [T]) -> Self`
+- <span id="chunksexactmut-new"></span>`fn new(chunk_size: usize, slice: &'data mut [T]) -> Self`
 
-- `fn into_remainder(self: Self) -> &'data mut [T]`
+- <span id="chunksexactmut-into-remainder"></span>`fn into_remainder(self) -> &'data mut [T]`
 
-- `fn remainder(self: &mut Self) -> &mut [T]`
+- <span id="chunksexactmut-remainder"></span>`fn remainder(&mut self) -> &mut [T]`
 
-- `fn take_remainder(self: &mut Self) -> &'data mut [T]`
+- <span id="chunksexactmut-take-remainder"></span>`fn take_remainder(&mut self) -> &'data mut [T]`
 
 #### Trait Implementations
 
-##### `impl<'data, T: $crate::fmt::Debug> Debug for ChunksExactMut<'data, T>`
+##### `impl<'data, T: fmt::Debug> Debug for ChunksExactMut<'data, T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="chunksexactmut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: Send> IndexedParallelIterator for ChunksExactMut<'_, T>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="chunksexactmut-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-- `fn len(self: &Self) -> usize`
+- <span id="chunksexactmut-len"></span>`fn len(&self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md)
+- <span id="chunksexactmut-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md)
 
 ##### `impl<T> IntoEither for ChunksExactMut<'data, T>`
 
 ##### `impl<T> IntoParallelIterator for ChunksExactMut<'data, T>`
 
-- `type Iter = T`
+- <span id="chunksexactmut-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="chunksexactmut-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="chunksexactmut-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'data, T: Send> ParallelIterator for ChunksExactMut<'data, T>`
 
-- `type Item = &'data mut [T]`
+- <span id="chunksexactmut-item"></span>`type Item = &'data mut [T]`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="chunksexactmut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-- `fn opt_len(self: &Self) -> Option<usize>`
+- <span id="chunksexactmut-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for ChunksExactMut<'data, T>`
 
-- `const ALIGN: usize`
+- <span id="chunksexactmut-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="chunksexactmut-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="chunksexactmut-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="chunksexactmut-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="chunksexactmut-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="chunksexactmut-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `ChunksMut<'data, T>`
 
@@ -346,53 +409,53 @@ Parallel iterator over mutable non-overlapping chunks of a slice
 
 #### Implementations
 
-- `fn new(chunk_size: usize, slice: &'data mut [T]) -> Self`
+- <span id="chunksmut-new"></span>`fn new(chunk_size: usize, slice: &'data mut [T]) -> Self`
 
 #### Trait Implementations
 
-##### `impl<'data, T: $crate::fmt::Debug> Debug for ChunksMut<'data, T>`
+##### `impl<'data, T: fmt::Debug> Debug for ChunksMut<'data, T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="chunksmut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: Send> IndexedParallelIterator for ChunksMut<'_, T>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="chunksmut-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-- `fn len(self: &Self) -> usize`
+- <span id="chunksmut-len"></span>`fn len(&self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md)
+- <span id="chunksmut-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md)
 
 ##### `impl<T> IntoEither for ChunksMut<'data, T>`
 
 ##### `impl<T> IntoParallelIterator for ChunksMut<'data, T>`
 
-- `type Iter = T`
+- <span id="chunksmut-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="chunksmut-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="chunksmut-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'data, T: Send> ParallelIterator for ChunksMut<'data, T>`
 
-- `type Item = &'data mut [T]`
+- <span id="chunksmut-item"></span>`type Item = &'data mut [T]`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="chunksmut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-- `fn opt_len(self: &Self) -> Option<usize>`
+- <span id="chunksmut-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for ChunksMut<'data, T>`
 
-- `const ALIGN: usize`
+- <span id="chunksmut-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="chunksmut-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="chunksmut-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="chunksmut-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="chunksmut-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="chunksmut-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `RChunks<'data, T>`
 
@@ -407,57 +470,57 @@ Parallel iterator over immutable non-overlapping chunks of a slice, starting at 
 
 #### Implementations
 
-- `fn new(chunk_size: usize, slice: &'data [T]) -> Self`
+- <span id="rchunks-new"></span>`fn new(chunk_size: usize, slice: &'data [T]) -> Self`
 
 #### Trait Implementations
 
 ##### `impl<T> Clone for RChunks<'_, T>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="rchunks-clone"></span>`fn clone(&self) -> Self`
 
-##### `impl<'data, T: $crate::fmt::Debug> Debug for RChunks<'data, T>`
+##### `impl<'data, T: fmt::Debug> Debug for RChunks<'data, T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rchunks-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: Sync> IndexedParallelIterator for RChunks<'_, T>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="rchunks-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-- `fn len(self: &Self) -> usize`
+- <span id="rchunks-len"></span>`fn len(&self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md)
+- <span id="rchunks-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md)
 
 ##### `impl<T> IntoEither for RChunks<'data, T>`
 
 ##### `impl<T> IntoParallelIterator for RChunks<'data, T>`
 
-- `type Iter = T`
+- <span id="rchunks-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="rchunks-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="rchunks-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'data, T: Sync> ParallelIterator for RChunks<'data, T>`
 
-- `type Item = &'data [T]`
+- <span id="rchunks-item"></span>`type Item = &'data [T]`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="rchunks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-- `fn opt_len(self: &Self) -> Option<usize>`
+- <span id="rchunks-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for RChunks<'data, T>`
 
-- `const ALIGN: usize`
+- <span id="rchunks-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="rchunks-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="rchunks-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="rchunks-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="rchunks-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="rchunks-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `RChunksExact<'data, T>`
 
@@ -473,59 +536,59 @@ Parallel iterator over immutable non-overlapping chunks of a slice, starting at 
 
 #### Implementations
 
-- `fn new(chunk_size: usize, slice: &'data [T]) -> Self`
+- <span id="rchunksexact-new"></span>`fn new(chunk_size: usize, slice: &'data [T]) -> Self`
 
-- `fn remainder(self: &Self) -> &'data [T]`
+- <span id="rchunksexact-remainder"></span>`fn remainder(&self) -> &'data [T]`
 
 #### Trait Implementations
 
 ##### `impl<T> Clone for RChunksExact<'_, T>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="rchunksexact-clone"></span>`fn clone(&self) -> Self`
 
-##### `impl<'data, T: $crate::fmt::Debug> Debug for RChunksExact<'data, T>`
+##### `impl<'data, T: fmt::Debug> Debug for RChunksExact<'data, T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rchunksexact-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: Sync> IndexedParallelIterator for RChunksExact<'_, T>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="rchunksexact-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-- `fn len(self: &Self) -> usize`
+- <span id="rchunksexact-len"></span>`fn len(&self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md)
+- <span id="rchunksexact-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md)
 
 ##### `impl<T> IntoEither for RChunksExact<'data, T>`
 
 ##### `impl<T> IntoParallelIterator for RChunksExact<'data, T>`
 
-- `type Iter = T`
+- <span id="rchunksexact-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="rchunksexact-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="rchunksexact-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'data, T: Sync> ParallelIterator for RChunksExact<'data, T>`
 
-- `type Item = &'data [T]`
+- <span id="rchunksexact-item"></span>`type Item = &'data [T]`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="rchunksexact-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-- `fn opt_len(self: &Self) -> Option<usize>`
+- <span id="rchunksexact-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for RChunksExact<'data, T>`
 
-- `const ALIGN: usize`
+- <span id="rchunksexact-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="rchunksexact-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="rchunksexact-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="rchunksexact-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="rchunksexact-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="rchunksexact-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `RChunksExactMut<'data, T: Send>`
 
@@ -541,59 +604,59 @@ Parallel iterator over mutable non-overlapping chunks of a slice, starting at th
 
 #### Implementations
 
-- `fn new(chunk_size: usize, slice: &'data mut [T]) -> Self`
+- <span id="rchunksexactmut-new"></span>`fn new(chunk_size: usize, slice: &'data mut [T]) -> Self`
 
-- `fn into_remainder(self: Self) -> &'data mut [T]`
+- <span id="rchunksexactmut-into-remainder"></span>`fn into_remainder(self) -> &'data mut [T]`
 
-- `fn remainder(self: &mut Self) -> &mut [T]`
+- <span id="rchunksexactmut-remainder"></span>`fn remainder(&mut self) -> &mut [T]`
 
-- `fn take_remainder(self: &mut Self) -> &'data mut [T]`
+- <span id="rchunksexactmut-take-remainder"></span>`fn take_remainder(&mut self) -> &'data mut [T]`
 
 #### Trait Implementations
 
-##### `impl<'data, T: $crate::fmt::Debug + Send> Debug for RChunksExactMut<'data, T>`
+##### `impl<'data, T: fmt::Debug + Send> Debug for RChunksExactMut<'data, T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rchunksexactmut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, T: Send + 'data> IndexedParallelIterator for RChunksExactMut<'data, T>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="rchunksexactmut-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-- `fn len(self: &Self) -> usize`
+- <span id="rchunksexactmut-len"></span>`fn len(&self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md)
+- <span id="rchunksexactmut-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md)
 
 ##### `impl<T> IntoEither for RChunksExactMut<'data, T>`
 
 ##### `impl<T> IntoParallelIterator for RChunksExactMut<'data, T>`
 
-- `type Iter = T`
+- <span id="rchunksexactmut-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="rchunksexactmut-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="rchunksexactmut-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'data, T: Send + 'data> ParallelIterator for RChunksExactMut<'data, T>`
 
-- `type Item = &'data mut [T]`
+- <span id="rchunksexactmut-item"></span>`type Item = &'data mut [T]`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="rchunksexactmut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-- `fn opt_len(self: &Self) -> Option<usize>`
+- <span id="rchunksexactmut-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for RChunksExactMut<'data, T>`
 
-- `const ALIGN: usize`
+- <span id="rchunksexactmut-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="rchunksexactmut-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="rchunksexactmut-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="rchunksexactmut-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="rchunksexactmut-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="rchunksexactmut-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `RChunksMut<'data, T>`
 
@@ -608,53 +671,53 @@ Parallel iterator over mutable non-overlapping chunks of a slice, starting at th
 
 #### Implementations
 
-- `fn new(chunk_size: usize, slice: &'data mut [T]) -> Self`
+- <span id="rchunksmut-new"></span>`fn new(chunk_size: usize, slice: &'data mut [T]) -> Self`
 
 #### Trait Implementations
 
-##### `impl<'data, T: $crate::fmt::Debug> Debug for RChunksMut<'data, T>`
+##### `impl<'data, T: fmt::Debug> Debug for RChunksMut<'data, T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rchunksmut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: Send> IndexedParallelIterator for RChunksMut<'_, T>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="rchunksmut-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-- `fn len(self: &Self) -> usize`
+- <span id="rchunksmut-len"></span>`fn len(&self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md)
+- <span id="rchunksmut-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md)
 
 ##### `impl<T> IntoEither for RChunksMut<'data, T>`
 
 ##### `impl<T> IntoParallelIterator for RChunksMut<'data, T>`
 
-- `type Iter = T`
+- <span id="rchunksmut-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="rchunksmut-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="rchunksmut-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'data, T: Send> ParallelIterator for RChunksMut<'data, T>`
 
-- `type Item = &'data mut [T]`
+- <span id="rchunksmut-item"></span>`type Item = &'data mut [T]`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="rchunksmut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-- `fn opt_len(self: &Self) -> Option<usize>`
+- <span id="rchunksmut-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for RChunksMut<'data, T>`
 
-- `const ALIGN: usize`
+- <span id="rchunksmut-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="rchunksmut-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="rchunksmut-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="rchunksmut-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="rchunksmut-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="rchunksmut-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `Iter<'data, T>`
 
@@ -670,51 +733,51 @@ Parallel iterator over immutable items in a slice
 
 ##### `impl<T> Clone for Iter<'_, T>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="iter-clone"></span>`fn clone(&self) -> Self`
 
-##### `impl<'data, T: $crate::fmt::Debug> Debug for Iter<'data, T>`
+##### `impl<'data, T: fmt::Debug> Debug for Iter<'data, T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="iter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: Sync> IndexedParallelIterator for Iter<'_, T>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="iter-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-- `fn len(self: &Self) -> usize`
+- <span id="iter-len"></span>`fn len(&self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md)
+- <span id="iter-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md)
 
 ##### `impl<T> IntoEither for Iter<'data, T>`
 
 ##### `impl<T> IntoParallelIterator for Iter<'data, T>`
 
-- `type Iter = T`
+- <span id="iter-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="iter-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="iter-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'data, T: Sync> ParallelIterator for Iter<'data, T>`
 
-- `type Item = &'data T`
+- <span id="iter-item"></span>`type Item = &'data T`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="iter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-- `fn opt_len(self: &Self) -> Option<usize>`
+- <span id="iter-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for Iter<'data, T>`
 
-- `const ALIGN: usize`
+- <span id="iter-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="iter-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="iter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="iter-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="iter-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="iter-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `IterProducer<'data, T: Sync>`
 
@@ -730,27 +793,27 @@ struct IterProducer<'data, T: Sync> {
 
 ##### `impl<T> Pointable for IterProducer<'data, T>`
 
-- `const ALIGN: usize`
+- <span id="iterproducer-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="iterproducer-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="iterproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="iterproducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="iterproducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="iterproducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<'data, T: 'data + Sync> Producer for IterProducer<'data, T>`
 
-- `type Item = &'data T`
+- <span id="iterproducer-item"></span>`type Item = &'data T`
 
-- `type IntoIter = Iter<'data, T>`
+- <span id="iterproducer-intoiter"></span>`type IntoIter = Iter<'data, T>`
 
-- `fn into_iter(self: Self) -> <Self as >::IntoIter` — [`Producer`](../iter/plumbing/index.md)
+- <span id="iterproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../iter/plumbing/index.md)
 
-- `fn split_at(self: Self, index: usize) -> (Self, Self)`
+- <span id="iterproducer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
 
 ### `Windows<'data, T>`
 
@@ -767,51 +830,51 @@ Parallel iterator over immutable overlapping windows of a slice
 
 ##### `impl<T> Clone for Windows<'_, T>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="windows-clone"></span>`fn clone(&self) -> Self`
 
-##### `impl<'data, T: $crate::fmt::Debug> Debug for Windows<'data, T>`
+##### `impl<'data, T: fmt::Debug> Debug for Windows<'data, T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="windows-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: Sync> IndexedParallelIterator for Windows<'_, T>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="windows-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-- `fn len(self: &Self) -> usize`
+- <span id="windows-len"></span>`fn len(&self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md)
+- <span id="windows-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md)
 
 ##### `impl<T> IntoEither for Windows<'data, T>`
 
 ##### `impl<T> IntoParallelIterator for Windows<'data, T>`
 
-- `type Iter = T`
+- <span id="windows-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="windows-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="windows-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'data, T: Sync> ParallelIterator for Windows<'data, T>`
 
-- `type Item = &'data [T]`
+- <span id="windows-item"></span>`type Item = &'data [T]`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="windows-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-- `fn opt_len(self: &Self) -> Option<usize>`
+- <span id="windows-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for Windows<'data, T>`
 
-- `const ALIGN: usize`
+- <span id="windows-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="windows-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="windows-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="windows-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="windows-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="windows-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `WindowsProducer<'data, T: Sync>`
 
@@ -828,27 +891,27 @@ struct WindowsProducer<'data, T: Sync> {
 
 ##### `impl<T> Pointable for WindowsProducer<'data, T>`
 
-- `const ALIGN: usize`
+- <span id="windowsproducer-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="windowsproducer-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="windowsproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="windowsproducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="windowsproducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="windowsproducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<'data, T: 'data + Sync> Producer for WindowsProducer<'data, T>`
 
-- `type Item = &'data [T]`
+- <span id="windowsproducer-item"></span>`type Item = &'data [T]`
 
-- `type IntoIter = Windows<'data, T>`
+- <span id="windowsproducer-intoiter"></span>`type IntoIter = Windows<'data, T>`
 
-- `fn into_iter(self: Self) -> <Self as >::IntoIter` — [`Producer`](../iter/plumbing/index.md)
+- <span id="windowsproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../iter/plumbing/index.md)
 
-- `fn split_at(self: Self, index: usize) -> (Self, Self)`
+- <span id="windowsproducer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
 
 ### `IterMut<'data, T>`
 
@@ -862,49 +925,49 @@ Parallel iterator over mutable items in a slice
 
 #### Trait Implementations
 
-##### `impl<'data, T: $crate::fmt::Debug> Debug for IterMut<'data, T>`
+##### `impl<'data, T: fmt::Debug> Debug for IterMut<'data, T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="itermut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: Send> IndexedParallelIterator for IterMut<'_, T>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="itermut-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-- `fn len(self: &Self) -> usize`
+- <span id="itermut-len"></span>`fn len(&self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md)
+- <span id="itermut-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md)
 
 ##### `impl<T> IntoEither for IterMut<'data, T>`
 
 ##### `impl<T> IntoParallelIterator for IterMut<'data, T>`
 
-- `type Iter = T`
+- <span id="itermut-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="itermut-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="itermut-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'data, T: Send> ParallelIterator for IterMut<'data, T>`
 
-- `type Item = &'data mut T`
+- <span id="itermut-item"></span>`type Item = &'data mut T`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="itermut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-- `fn opt_len(self: &Self) -> Option<usize>`
+- <span id="itermut-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for IterMut<'data, T>`
 
-- `const ALIGN: usize`
+- <span id="itermut-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="itermut-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="itermut-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="itermut-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="itermut-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="itermut-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `IterMutProducer<'data, T: Send>`
 
@@ -920,27 +983,27 @@ struct IterMutProducer<'data, T: Send> {
 
 ##### `impl<T> Pointable for IterMutProducer<'data, T>`
 
-- `const ALIGN: usize`
+- <span id="itermutproducer-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="itermutproducer-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="itermutproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="itermutproducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="itermutproducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="itermutproducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<'data, T: 'data + Send> Producer for IterMutProducer<'data, T>`
 
-- `type Item = &'data mut T`
+- <span id="itermutproducer-item"></span>`type Item = &'data mut T`
 
-- `type IntoIter = IterMut<'data, T>`
+- <span id="itermutproducer-intoiter"></span>`type IntoIter = IterMut<'data, T>`
 
-- `fn into_iter(self: Self) -> <Self as >::IntoIter` — [`Producer`](../iter/plumbing/index.md)
+- <span id="itermutproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../iter/plumbing/index.md)
 
-- `fn split_at(self: Self, index: usize) -> (Self, Self)`
+- <span id="itermutproducer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
 
 ### `Split<'data, T, P>`
 
@@ -957,41 +1020,41 @@ Parallel iterator over slices separated by a predicate
 
 ##### `impl<T, P: Clone> Clone for Split<'_, T, P>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="split-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T: Debug, P> Debug for Split<'_, T, P>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="split-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> IntoEither for Split<'data, T, P>`
 
 ##### `impl<T> IntoParallelIterator for Split<'data, T, P>`
 
-- `type Iter = T`
+- <span id="split-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="split-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="split-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'data, T, P> ParallelIterator for Split<'data, T, P>`
 
-- `type Item = &'data [T]`
+- <span id="split-item"></span>`type Item = &'data [T]`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="split-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
 ##### `impl<T> Pointable for Split<'data, T, P>`
 
-- `const ALIGN: usize`
+- <span id="split-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="split-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="split-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="split-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="split-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="split-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `SplitInclusive<'data, T, P>`
 
@@ -1009,41 +1072,41 @@ including the matched part as a terminator.
 
 ##### `impl<T, P: Clone> Clone for SplitInclusive<'_, T, P>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="splitinclusive-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T: Debug, P> Debug for SplitInclusive<'_, T, P>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="splitinclusive-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> IntoEither for SplitInclusive<'data, T, P>`
 
 ##### `impl<T> IntoParallelIterator for SplitInclusive<'data, T, P>`
 
-- `type Iter = T`
+- <span id="splitinclusive-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="splitinclusive-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="splitinclusive-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'data, T, P> ParallelIterator for SplitInclusive<'data, T, P>`
 
-- `type Item = &'data [T]`
+- <span id="splitinclusive-item"></span>`type Item = &'data [T]`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="splitinclusive-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
 ##### `impl<T> Pointable for SplitInclusive<'data, T, P>`
 
-- `const ALIGN: usize`
+- <span id="splitinclusive-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="splitinclusive-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="splitinclusive-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="splitinclusive-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="splitinclusive-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="splitinclusive-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `SplitMut<'data, T, P>`
 
@@ -1060,37 +1123,37 @@ Parallel iterator over mutable slices separated by a predicate
 
 ##### `impl<T: Debug, P> Debug for SplitMut<'_, T, P>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="splitmut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> IntoEither for SplitMut<'data, T, P>`
 
 ##### `impl<T> IntoParallelIterator for SplitMut<'data, T, P>`
 
-- `type Iter = T`
+- <span id="splitmut-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="splitmut-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="splitmut-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'data, T, P> ParallelIterator for SplitMut<'data, T, P>`
 
-- `type Item = &'data mut [T]`
+- <span id="splitmut-item"></span>`type Item = &'data mut [T]`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="splitmut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
 ##### `impl<T> Pointable for SplitMut<'data, T, P>`
 
-- `const ALIGN: usize`
+- <span id="splitmut-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="splitmut-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="splitmut-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="splitmut-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="splitmut-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="splitmut-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `SplitInclusiveMut<'data, T, P>`
 
@@ -1108,37 +1171,37 @@ including the matched part as a terminator.
 
 ##### `impl<T: Debug, P> Debug for SplitInclusiveMut<'_, T, P>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="splitinclusivemut-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> IntoEither for SplitInclusiveMut<'data, T, P>`
 
 ##### `impl<T> IntoParallelIterator for SplitInclusiveMut<'data, T, P>`
 
-- `type Iter = T`
+- <span id="splitinclusivemut-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="splitinclusivemut-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="splitinclusivemut-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<'data, T, P> ParallelIterator for SplitInclusiveMut<'data, T, P>`
 
-- `type Item = &'data mut [T]`
+- <span id="splitinclusivemut-item"></span>`type Item = &'data mut [T]`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
+- <span id="splitinclusivemut-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
 ##### `impl<T> Pointable for SplitInclusiveMut<'data, T, P>`
 
-- `const ALIGN: usize`
+- <span id="splitinclusivemut-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="splitinclusivemut-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="splitinclusivemut-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="splitinclusivemut-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="splitinclusivemut-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="splitinclusivemut-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ## Traits
 
@@ -1152,39 +1215,39 @@ Parallel extensions for slices.
 
 #### Required Methods
 
-- `fn as_parallel_slice(self: &Self) -> &[T]`
+- `fn as_parallel_slice(&self) -> &[T]`
 
   Returns a plain slice, which is used to implement the rest of the
 
-- `fn par_split<P>(self: &Self, separator: P) -> Split<'_, T, P>`
+- `fn par_split<P>(&self, separator: P) -> Split<'_, T, P>`
 
   Returns a parallel iterator over subslices separated by elements that
 
-- `fn par_split_inclusive<P>(self: &Self, separator: P) -> SplitInclusive<'_, T, P>`
+- `fn par_split_inclusive<P>(&self, separator: P) -> SplitInclusive<'_, T, P>`
 
   Returns a parallel iterator over subslices separated by elements that
 
-- `fn par_windows(self: &Self, window_size: usize) -> Windows<'_, T>`
+- `fn par_windows(&self, window_size: usize) -> Windows<'_, T>`
 
   Returns a parallel iterator over all contiguous windows of length
 
-- `fn par_chunks(self: &Self, chunk_size: usize) -> Chunks<'_, T>`
+- `fn par_chunks(&self, chunk_size: usize) -> Chunks<'_, T>`
 
   Returns a parallel iterator over at most `chunk_size` elements of
 
-- `fn par_chunks_exact(self: &Self, chunk_size: usize) -> ChunksExact<'_, T>`
+- `fn par_chunks_exact(&self, chunk_size: usize) -> ChunksExact<'_, T>`
 
   Returns a parallel iterator over `chunk_size` elements of
 
-- `fn par_rchunks(self: &Self, chunk_size: usize) -> RChunks<'_, T>`
+- `fn par_rchunks(&self, chunk_size: usize) -> RChunks<'_, T>`
 
   Returns a parallel iterator over at most `chunk_size` elements of `self` at a time,
 
-- `fn par_rchunks_exact(self: &Self, chunk_size: usize) -> RChunksExact<'_, T>`
+- `fn par_rchunks_exact(&self, chunk_size: usize) -> RChunksExact<'_, T>`
 
   Returns a parallel iterator over `chunk_size` elements of `self` at a time,
 
-- `fn par_chunk_by<F>(self: &Self, pred: F) -> ChunkBy<'_, T, F>`
+- `fn par_chunk_by<F>(&self, pred: F) -> ChunkBy<'_, T, F>`
 
   Returns a parallel iterator over the slice producing non-overlapping runs
 
@@ -1198,63 +1261,63 @@ Parallel extensions for mutable slices.
 
 #### Required Methods
 
-- `fn as_parallel_slice_mut(self: &mut Self) -> &mut [T]`
+- `fn as_parallel_slice_mut(&mut self) -> &mut [T]`
 
   Returns a plain mutable slice, which is used to implement the rest of
 
-- `fn par_split_mut<P>(self: &mut Self, separator: P) -> SplitMut<'_, T, P>`
+- `fn par_split_mut<P>(&mut self, separator: P) -> SplitMut<'_, T, P>`
 
   Returns a parallel iterator over mutable subslices separated by
 
-- `fn par_split_inclusive_mut<P>(self: &mut Self, separator: P) -> SplitInclusiveMut<'_, T, P>`
+- `fn par_split_inclusive_mut<P>(&mut self, separator: P) -> SplitInclusiveMut<'_, T, P>`
 
   Returns a parallel iterator over mutable subslices separated by elements
 
-- `fn par_chunks_mut(self: &mut Self, chunk_size: usize) -> ChunksMut<'_, T>`
+- `fn par_chunks_mut(&mut self, chunk_size: usize) -> ChunksMut<'_, T>`
 
   Returns a parallel iterator over at most `chunk_size` elements of
 
-- `fn par_chunks_exact_mut(self: &mut Self, chunk_size: usize) -> ChunksExactMut<'_, T>`
+- `fn par_chunks_exact_mut(&mut self, chunk_size: usize) -> ChunksExactMut<'_, T>`
 
   Returns a parallel iterator over `chunk_size` elements of
 
-- `fn par_rchunks_mut(self: &mut Self, chunk_size: usize) -> RChunksMut<'_, T>`
+- `fn par_rchunks_mut(&mut self, chunk_size: usize) -> RChunksMut<'_, T>`
 
   Returns a parallel iterator over at most `chunk_size` elements of `self` at a time,
 
-- `fn par_rchunks_exact_mut(self: &mut Self, chunk_size: usize) -> RChunksExactMut<'_, T>`
+- `fn par_rchunks_exact_mut(&mut self, chunk_size: usize) -> RChunksExactMut<'_, T>`
 
   Returns a parallel iterator over `chunk_size` elements of `self` at a time,
 
-- `fn par_sort(self: &mut Self)`
+- `fn par_sort(&mut self)`
 
   Sorts the slice in parallel.
 
-- `fn par_sort_by<F>(self: &mut Self, compare: F)`
+- `fn par_sort_by<F>(&mut self, compare: F)`
 
   Sorts the slice in parallel with a comparator function.
 
-- `fn par_sort_by_key<K, F>(self: &mut Self, f: F)`
+- `fn par_sort_by_key<K, F>(&mut self, f: F)`
 
   Sorts the slice in parallel with a key extraction function.
 
-- `fn par_sort_by_cached_key<K, F>(self: &mut Self, f: F)`
+- `fn par_sort_by_cached_key<K, F>(&mut self, f: F)`
 
   Sorts the slice in parallel with a key extraction function.
 
-- `fn par_sort_unstable(self: &mut Self)`
+- `fn par_sort_unstable(&mut self)`
 
   Sorts the slice in parallel, but might not preserve the order of equal elements.
 
-- `fn par_sort_unstable_by<F>(self: &mut Self, compare: F)`
+- `fn par_sort_unstable_by<F>(&mut self, compare: F)`
 
   Sorts the slice in parallel with a comparator function, but might not preserve the order of
 
-- `fn par_sort_unstable_by_key<K, F>(self: &mut Self, f: F)`
+- `fn par_sort_unstable_by_key<K, F>(&mut self, f: F)`
 
   Sorts the slice in parallel with a key extraction function, but might not preserve the order
 
-- `fn par_chunk_by_mut<F>(self: &mut Self, pred: F) -> ChunkByMut<'_, T, F>`
+- `fn par_chunk_by_mut<F>(&mut self, pred: F) -> ChunkByMut<'_, T, F>`
 
   Returns a parallel iterator over the slice producing non-overlapping mutable
 

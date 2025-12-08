@@ -6,6 +6,13 @@
 
 Support for lookups based on minimal perfect hashing.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`my_hash`](#my_hash) | fn |  |
+| [`mph_lookup`](#mph_lookup) | fn | Do a lookup using minimal perfect hashing. |
+
 ## Functions
 
 ### `my_hash`

@@ -4,6 +4,12 @@
 
 # Module `unit`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`deserialize`](#deserialize) | fn | Generates `Deserialize::deserialize` body for a `struct Unit;` |
+
 ## Functions
 
 ### `deserialize`

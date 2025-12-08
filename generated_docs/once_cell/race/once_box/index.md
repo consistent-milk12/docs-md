@@ -4,6 +4,13 @@
 
 # Module `once_box`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`OnceBox`](#oncebox) | struct | A thread-safe cell which can be written to only once. |
+| [`_dummy`](#_dummy) | fn | ```compile_fail |
+
 ## Structs
 
 ### `OnceBox<T>`
@@ -19,37 +26,37 @@ A thread-safe cell which can be written to only once.
 
 #### Implementations
 
-- `const fn new() -> Self`
+- <span id="oncebox-new"></span>`const fn new() -> Self`
 
-- `fn with_value(value: Box<T>) -> Self`
+- <span id="oncebox-with-value"></span>`fn with_value(value: Box<T>) -> Self`
 
-- `fn get(self: &Self) -> Option<&T>`
+- <span id="oncebox-get"></span>`fn get(&self) -> Option<&T>`
 
-- `fn set(self: &Self, value: Box<T>) -> Result<(), Box<T>>`
+- <span id="oncebox-set"></span>`fn set(&self, value: Box<T>) -> Result<(), Box<T>>`
 
-- `fn get_or_init<F>(self: &Self, f: F) -> &T`
+- <span id="oncebox-get-or-init"></span>`fn get_or_init<F>(&self, f: F) -> &T`
 
-- `fn get_or_try_init<F, E>(self: &Self, f: F) -> Result<&T, E>`
+- <span id="oncebox-get-or-try-init"></span>`fn get_or_try_init<F, E>(&self, f: F) -> Result<&T, E>`
 
-- `fn init<E>(self: &Self, f: impl FnOnce() -> Result<Box<T>, E>) -> Result<&T, E>`
+- <span id="oncebox-init"></span>`fn init<E>(&self, f: impl FnOnce() -> Result<Box<T>, E>) -> Result<&T, E>`
 
 #### Trait Implementations
 
 ##### `impl<T: Clone> Clone for OnceBox<T>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="oncebox-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T> Debug for OnceBox<T>`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="oncebox-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl<T> Default for OnceBox<T>`
 
-- `fn default() -> Self`
+- <span id="oncebox-default"></span>`fn default() -> Self`
 
 ##### `impl<T> Drop for OnceBox<T>`
 
-- `fn drop(self: &mut Self)`
+- <span id="oncebox-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<T: Sync + Send> Sync for OnceBox<T>`
 

@@ -4,6 +4,13 @@
 
 # Module `usage`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Usage`](#usage) | struct |  |
+| [`USAGE_SEP`](#usage_sep) | const |  |
+
 ## Structs
 
 ### `Usage<'cmd>`
@@ -18,19 +25,15 @@ struct Usage<'cmd> {
 
 #### Implementations
 
-- `fn write_help_usage(self: &Self, styled: &mut StyledStr)` — [`StyledStr`](../../builder/index.md)
+- <span id="usage-new"></span>`fn new(cmd: &'cmd Command) -> Self` — [`Command`](../../index.md)
 
-- `fn write_smart_usage(self: &Self, styled: &mut StyledStr, used: &[Id])` — [`StyledStr`](../../builder/index.md), [`Id`](../../index.md)
+- <span id="usage-required"></span>`fn required(self, required: &'cmd ChildGraph<Id>) -> Self` — [`ChildGraph`](../../util/graph/index.md), [`Id`](../../index.md)
 
-- `fn write_arg_usage(self: &Self, styled: &mut StyledStr, used: &[Id], incl_reqs: bool)` — [`StyledStr`](../../builder/index.md), [`Id`](../../index.md)
+- <span id="usage-create-usage-with-title"></span>`fn create_usage_with_title(&self, used: &[Id]) -> Option<StyledStr>` — [`Id`](../../index.md), [`StyledStr`](../../builder/index.md)
 
-- `fn write_subcommand_usage(self: &Self, styled: &mut StyledStr)` — [`StyledStr`](../../builder/index.md)
+- <span id="usage-create-usage-no-title"></span>`fn create_usage_no_title(&self, used: &[Id]) -> Option<StyledStr>` — [`Id`](../../index.md), [`StyledStr`](../../builder/index.md)
 
-- `fn needs_options_tag(self: &Self) -> bool`
-
-- `fn write_args(self: &Self, styled: &mut StyledStr, incls: &[Id], force_optional: bool)` — [`StyledStr`](../../builder/index.md), [`Id`](../../index.md)
-
-- `fn get_required_usage_from(self: &Self, incls: &[Id], matcher: Option<&ArgMatcher>, incl_last: bool) -> Vec<StyledStr>` — [`Id`](../../index.md), [`ArgMatcher`](../../parser/arg_matcher/index.md), [`StyledStr`](../../builder/index.md)
+- <span id="usage-write-usage-no-title"></span>`fn write_usage_no_title(&self, styled: &mut StyledStr, used: &[Id]) -> bool` — [`StyledStr`](../../builder/index.md), [`Id`](../../index.md)
 
 ## Constants
 

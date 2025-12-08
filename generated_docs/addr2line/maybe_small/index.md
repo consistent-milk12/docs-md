@@ -4,6 +4,13 @@
 
 # Module `maybe_small`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Vec`](#vec) | type |  |
+| [`IntoIter`](#intoiter) | type |  |
+
 ## Type Aliases
 
 ### `Vec<T>`

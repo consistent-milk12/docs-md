@@ -4,6 +4,13 @@
 
 # Module `tuple`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`deserialize`](#deserialize) | fn | Generates `Deserialize::deserialize` body for a `struct Tuple(...);` including `struct Newtype(T);` |
+| [`deserialize_newtype_struct`](#deserialize_newtype_struct) | fn |  |
+
 ## Functions
 
 ### `deserialize`

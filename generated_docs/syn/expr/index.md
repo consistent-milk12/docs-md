@@ -4,6 +4,115 @@
 
 # Module `expr`
 
+## Contents
+
+- [Modules](#modules)
+  - [`parsing`](#parsing)
+  - [`printing`](#printing)
+- [Structs](#structs)
+  - [`ExprArray`](#exprarray)
+  - [`ExprAssign`](#exprassign)
+  - [`ExprAsync`](#exprasync)
+  - [`ExprAwait`](#exprawait)
+  - [`ExprBinary`](#exprbinary)
+  - [`ExprBlock`](#exprblock)
+  - [`ExprBreak`](#exprbreak)
+  - [`ExprCall`](#exprcall)
+  - [`ExprCast`](#exprcast)
+  - [`ExprClosure`](#exprclosure)
+  - [`ExprConst`](#exprconst)
+  - [`ExprContinue`](#exprcontinue)
+  - [`ExprField`](#exprfield)
+  - [`ExprForLoop`](#exprforloop)
+  - [`ExprGroup`](#exprgroup)
+  - [`ExprIf`](#exprif)
+  - [`ExprIndex`](#exprindex)
+  - [`ExprInfer`](#exprinfer)
+  - [`ExprLet`](#exprlet)
+  - [`ExprLit`](#exprlit)
+  - [`ExprLoop`](#exprloop)
+  - [`ExprMacro`](#exprmacro)
+  - [`ExprMatch`](#exprmatch)
+  - [`ExprMethodCall`](#exprmethodcall)
+  - [`ExprParen`](#exprparen)
+  - [`ExprPath`](#exprpath)
+  - [`ExprRange`](#exprrange)
+  - [`ExprRawAddr`](#exprrawaddr)
+  - [`ExprReference`](#exprreference)
+  - [`ExprRepeat`](#exprrepeat)
+  - [`ExprReturn`](#exprreturn)
+  - [`ExprStruct`](#exprstruct)
+  - [`ExprTry`](#exprtry)
+  - [`ExprTryBlock`](#exprtryblock)
+  - [`ExprTuple`](#exprtuple)
+  - [`ExprUnary`](#exprunary)
+  - [`ExprUnsafe`](#exprunsafe)
+  - [`ExprWhile`](#exprwhile)
+  - [`ExprYield`](#expryield)
+  - [`Index`](#index)
+  - [`FieldValue`](#fieldvalue)
+  - [`Label`](#label)
+  - [`Arm`](#arm)
+- [Enums](#enums)
+  - [`Expr`](#expr)
+  - [`Member`](#member)
+  - [`RangeLimits`](#rangelimits)
+  - [`PointerMutability`](#pointermutability)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`parsing`](#parsing) | mod |  |
+| [`printing`](#printing) | mod |  |
+| [`ExprArray`](#exprarray) | struct | A slice literal expression: `[a, b, c, d]`. |
+| [`ExprAssign`](#exprassign) | struct | An assignment expression: `a = compute()`. |
+| [`ExprAsync`](#exprasync) | struct | An async block: `async { ... |
+| [`ExprAwait`](#exprawait) | struct | An await expression: `fut.await`. |
+| [`ExprBinary`](#exprbinary) | struct | A binary operation: `a + b`, `a += b`. |
+| [`ExprBlock`](#exprblock) | struct | A blocked scope: `{ ... |
+| [`ExprBreak`](#exprbreak) | struct | A `break`, with an optional label to break and an optional |
+| [`ExprCall`](#exprcall) | struct | A function call expression: `invoke(a, b)`. |
+| [`ExprCast`](#exprcast) | struct | A cast expression: `foo as f64`. |
+| [`ExprClosure`](#exprclosure) | struct | A closure expression: `\|a, b\| a + b`. |
+| [`ExprConst`](#exprconst) | struct | A const block: `const { ... |
+| [`ExprContinue`](#exprcontinue) | struct | A `continue`, with an optional label. |
+| [`ExprField`](#exprfield) | struct | Access of a named struct field (`obj.k`) or unnamed tuple struct |
+| [`ExprForLoop`](#exprforloop) | struct | A for loop: `for pat in expr { ... |
+| [`ExprGroup`](#exprgroup) | struct | An expression contained within invisible delimiters. |
+| [`ExprIf`](#exprif) | struct | An `if` expression with an optional `else` block: `if expr { ... |
+| [`ExprIndex`](#exprindex) | struct | A square bracketed indexing expression: `vector[2]`. |
+| [`ExprInfer`](#exprinfer) | struct | The inferred value of a const generic argument, denoted `_`. |
+| [`ExprLet`](#exprlet) | struct | A `let` guard: `let Some(x) = opt`. |
+| [`ExprLit`](#exprlit) | struct | A literal in place of an expression: `1`, `"foo"`. |
+| [`ExprLoop`](#exprloop) | struct | Conditionless loop: `loop { ... |
+| [`ExprMacro`](#exprmacro) | struct | A macro invocation expression: `format!("{}", q)`. |
+| [`ExprMatch`](#exprmatch) | struct | A `match` expression: `match n { Some(n) => {}, None => {} }`. |
+| [`ExprMethodCall`](#exprmethodcall) | struct | A method call expression: `x.foo::<T>(a, b)`. |
+| [`ExprParen`](#exprparen) | struct | A parenthesized expression: `(a + b)`. |
+| [`ExprPath`](#exprpath) | struct | A path like `std::mem::replace` possibly containing generic |
+| [`ExprRange`](#exprrange) | struct | A range expression: `1..2`, `1..`, `..2`, `1..=2`, `..=2`. |
+| [`ExprRawAddr`](#exprrawaddr) | struct | Address-of operation: `&raw const place` or `&raw mut place`. |
+| [`ExprReference`](#exprreference) | struct | A referencing operation: `&a` or `&mut a`. |
+| [`ExprRepeat`](#exprrepeat) | struct | An array literal constructed from one repeated element: `[0u8; N]`. |
+| [`ExprReturn`](#exprreturn) | struct | A `return`, with an optional value to be returned. |
+| [`ExprStruct`](#exprstruct) | struct | A struct literal expression: `Point { x: 1, y: 1 }`. |
+| [`ExprTry`](#exprtry) | struct | A try-expression: `expr?`. |
+| [`ExprTryBlock`](#exprtryblock) | struct | A try block: `try { ... |
+| [`ExprTuple`](#exprtuple) | struct | A tuple expression: `(a, b, c, d)`. |
+| [`ExprUnary`](#exprunary) | struct | A unary operation: `!x`, `*x`. |
+| [`ExprUnsafe`](#exprunsafe) | struct | An unsafe block: `unsafe { ... |
+| [`ExprWhile`](#exprwhile) | struct | A while loop: `while expr { ... |
+| [`ExprYield`](#expryield) | struct | A yield expression: `yield expr`. |
+| [`Index`](#index) | struct | The index of an unnamed tuple struct field. |
+| [`FieldValue`](#fieldvalue) | struct | A field-value pair in a struct literal. |
+| [`Label`](#label) | struct | A lifetime labeling a `for`, `while`, or `loop`. |
+| [`Arm`](#arm) | struct | One arm of a `match` expression: `0..=10 => { return true; }`. |
+| [`Expr`](#expr) | enum | A Rust expression. |
+| [`Member`](#member) | enum | A struct or tuple struct field accessed in a struct literal or field |
+| [`RangeLimits`](#rangelimits) | enum | Limit types of a range, inclusive or exclusive. |
+| [`PointerMutability`](#pointermutability) | enum | Mutability of a raw pointer (`*const T`, `*mut T`), in which non-mutable |
+
 ## Modules
 
 - [`parsing`](parsing/index.md) - 
@@ -17,7 +126,7 @@
 struct ExprArray {
     pub attrs: Vec<crate::attr::Attribute>,
     pub bracket_token: token::Bracket,
-    pub elems: crate::punctuated::Punctuated<Expr, $crate::token::Comma>,
+    pub elems: crate::punctuated::Punctuated<Expr, token::Comma>,
 }
 ```
 
@@ -25,41 +134,41 @@ A slice literal expression: `[a, b, c, d]`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprarray-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprArray`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprarray-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprArray`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprarray-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprArray`
 
 ##### `impl Hash for crate::ExprArray`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprarray-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprArray`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprarray-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprArray`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprarray-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ExprArray`
 
 ##### `impl<T> Spanned for ExprArray`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprarray-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprArray`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprarray-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprAssign`
 
@@ -67,7 +176,7 @@ A slice literal expression: `[a, b, c, d]`.
 struct ExprAssign {
     pub attrs: Vec<crate::attr::Attribute>,
     pub left: Box<Expr>,
-    pub eq_token: $crate::token::Eq,
+    pub eq_token: token::Eq,
     pub right: Box<Expr>,
 }
 ```
@@ -76,49 +185,49 @@ An assignment expression: `a = compute()`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprassign-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprAssign`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprassign-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprAssign`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprassign-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprAssign`
 
 ##### `impl Hash for crate::ExprAssign`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprassign-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprAssign`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprassign-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprAssign`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprassign-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ExprAssign`
 
 ##### `impl<T> Spanned for ExprAssign`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprassign-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprAssign`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprassign-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprAsync`
 
 ```rust
 struct ExprAsync {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub async_token: $crate::token::Async,
-    pub capture: Option<$crate::token::Move>,
+    pub async_token: token::Async,
+    pub capture: Option<token::Move>,
     pub block: crate::stmt::Block,
 }
 ```
@@ -127,41 +236,41 @@ An async block: `async { ... }`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprasync-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprAsync`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprasync-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprAsync`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprasync-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprAsync`
 
 ##### `impl Hash for crate::ExprAsync`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprasync-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprAsync`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprasync-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprAsync`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprasync-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ExprAsync`
 
 ##### `impl<T> Spanned for ExprAsync`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprasync-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprAsync`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprasync-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprAwait`
 
@@ -169,8 +278,8 @@ An async block: `async { ... }`.
 struct ExprAwait {
     pub attrs: Vec<crate::attr::Attribute>,
     pub base: Box<Expr>,
-    pub dot_token: $crate::token::Dot,
-    pub await_token: $crate::token::Await,
+    pub dot_token: token::Dot,
+    pub await_token: token::Await,
 }
 ```
 
@@ -178,41 +287,41 @@ An await expression: `fut.await`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprawait-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprAwait`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprawait-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprAwait`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprawait-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprAwait`
 
 ##### `impl Hash for crate::ExprAwait`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprawait-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprAwait`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprawait-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprAwait`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprawait-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ExprAwait`
 
 ##### `impl<T> Spanned for ExprAwait`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprawait-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprAwait`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprawait-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprBinary`
 
@@ -229,41 +338,41 @@ A binary operation: `a + b`, `a += b`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprbinary-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprBinary`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprbinary-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprBinary`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprbinary-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprBinary`
 
 ##### `impl Hash for crate::ExprBinary`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprbinary-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprBinary`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprbinary-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprBinary`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprbinary-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ExprBinary`
 
 ##### `impl<T> Spanned for ExprBinary`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprbinary-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprBinary`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprbinary-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprBlock`
 
@@ -279,48 +388,48 @@ A blocked scope: `{ ... }`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprblock-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprBlock`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprblock-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprBlock`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprblock-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprBlock`
 
 ##### `impl Hash for crate::ExprBlock`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprblock-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprBlock`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprblock-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprBlock`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprblock-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ExprBlock`
 
 ##### `impl<T> Spanned for ExprBlock`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprblock-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprBlock`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprblock-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprBreak`
 
 ```rust
 struct ExprBreak {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub break_token: $crate::token::Break,
+    pub break_token: token::Break,
     pub label: Option<crate::lifetime::Lifetime>,
     pub expr: Option<Box<Expr>>,
 }
@@ -331,41 +440,41 @@ expression.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprbreak-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprBreak`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprbreak-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprBreak`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprbreak-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprBreak`
 
 ##### `impl Hash for crate::ExprBreak`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprbreak-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprBreak`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprbreak-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprBreak`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprbreak-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ExprBreak`
 
 ##### `impl<T> Spanned for ExprBreak`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprbreak-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprBreak`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprbreak-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprCall`
 
@@ -374,7 +483,7 @@ struct ExprCall {
     pub attrs: Vec<crate::attr::Attribute>,
     pub func: Box<Expr>,
     pub paren_token: token::Paren,
-    pub args: crate::punctuated::Punctuated<Expr, $crate::token::Comma>,
+    pub args: crate::punctuated::Punctuated<Expr, token::Comma>,
 }
 ```
 
@@ -382,41 +491,41 @@ A function call expression: `invoke(a, b)`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprcall-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprCall`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprcall-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprCall`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprcall-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprCall`
 
 ##### `impl Hash for crate::ExprCall`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprcall-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprCall`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprcall-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprCall`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprcall-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ExprCall`
 
 ##### `impl<T> Spanned for ExprCall`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprcall-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprCall`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprcall-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprCast`
 
@@ -424,7 +533,7 @@ A function call expression: `invoke(a, b)`.
 struct ExprCast {
     pub attrs: Vec<crate::attr::Attribute>,
     pub expr: Box<Expr>,
-    pub as_token: $crate::token::As,
+    pub as_token: token::As,
     pub ty: Box<crate::ty::Type>,
 }
 ```
@@ -433,41 +542,41 @@ A cast expression: `foo as f64`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprcast-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprCast`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprcast-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprCast`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprcast-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprCast`
 
 ##### `impl Hash for crate::ExprCast`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprcast-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprCast`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprcast-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprCast`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprcast-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ExprCast`
 
 ##### `impl<T> Spanned for ExprCast`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprcast-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprCast`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprcast-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprClosure`
 
@@ -475,13 +584,13 @@ A cast expression: `foo as f64`.
 struct ExprClosure {
     pub attrs: Vec<crate::attr::Attribute>,
     pub lifetimes: Option<crate::generics::BoundLifetimes>,
-    pub constness: Option<$crate::token::Const>,
-    pub movability: Option<$crate::token::Static>,
-    pub asyncness: Option<$crate::token::Async>,
-    pub capture: Option<$crate::token::Move>,
-    pub or1_token: $crate::token::Or,
-    pub inputs: crate::punctuated::Punctuated<crate::pat::Pat, $crate::token::Comma>,
-    pub or2_token: $crate::token::Or,
+    pub constness: Option<token::Const>,
+    pub movability: Option<token::Static>,
+    pub asyncness: Option<token::Async>,
+    pub capture: Option<token::Move>,
+    pub or1_token: token::Or,
+    pub inputs: crate::punctuated::Punctuated<crate::pat::Pat, token::Comma>,
+    pub or2_token: token::Or,
     pub output: crate::ty::ReturnType,
     pub body: Box<Expr>,
 }
@@ -491,48 +600,48 @@ A closure expression: `|a, b| a + b`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprclosure-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprClosure`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprclosure-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprClosure`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprclosure-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprClosure`
 
 ##### `impl Hash for crate::ExprClosure`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprclosure-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprClosure`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprclosure-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprClosure`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprclosure-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ExprClosure`
 
 ##### `impl<T> Spanned for ExprClosure`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprclosure-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprClosure`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprclosure-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprConst`
 
 ```rust
 struct ExprConst {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub const_token: $crate::token::Const,
+    pub const_token: token::Const,
     pub block: crate::stmt::Block,
 }
 ```
@@ -541,48 +650,48 @@ A const block: `const { ... }`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprconst-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprConst`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprconst-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprConst`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprconst-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprConst`
 
 ##### `impl Hash for crate::ExprConst`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprconst-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprConst`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprconst-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprConst`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprconst-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ExprConst`
 
 ##### `impl<T> Spanned for ExprConst`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprconst-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprConst`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprconst-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprContinue`
 
 ```rust
 struct ExprContinue {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub continue_token: $crate::token::Continue,
+    pub continue_token: token::Continue,
     pub label: Option<crate::lifetime::Lifetime>,
 }
 ```
@@ -591,41 +700,41 @@ A `continue`, with an optional label.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprcontinue-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprContinue`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprcontinue-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprContinue`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprcontinue-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprContinue`
 
 ##### `impl Hash for crate::ExprContinue`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprcontinue-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprContinue`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprcontinue-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprContinue`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprcontinue-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ExprContinue`
 
 ##### `impl<T> Spanned for ExprContinue`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprcontinue-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprContinue`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprcontinue-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprField`
 
@@ -633,7 +742,7 @@ A `continue`, with an optional label.
 struct ExprField {
     pub attrs: Vec<crate::attr::Attribute>,
     pub base: Box<Expr>,
-    pub dot_token: $crate::token::Dot,
+    pub dot_token: token::Dot,
     pub member: Member,
 }
 ```
@@ -643,41 +752,41 @@ field (`obj.0`).
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprfield-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprField`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprfield-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprField`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprfield-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprField`
 
 ##### `impl Hash for crate::ExprField`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprfield-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprField`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprfield-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprField`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprfield-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ExprField`
 
 ##### `impl<T> Spanned for ExprField`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprfield-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprField`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprfield-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprForLoop`
 
@@ -685,9 +794,9 @@ field (`obj.0`).
 struct ExprForLoop {
     pub attrs: Vec<crate::attr::Attribute>,
     pub label: Option<Label>,
-    pub for_token: $crate::token::For,
+    pub for_token: token::For,
     pub pat: Box<crate::pat::Pat>,
-    pub in_token: $crate::token::In,
+    pub in_token: token::In,
     pub expr: Box<Expr>,
     pub body: crate::stmt::Block,
 }
@@ -697,41 +806,41 @@ A for loop: `for pat in expr { ... }`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprforloop-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprForLoop`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprforloop-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprForLoop`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprforloop-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprForLoop`
 
 ##### `impl Hash for crate::ExprForLoop`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprforloop-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprForLoop`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprforloop-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprForLoop`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprforloop-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ExprForLoop`
 
 ##### `impl<T> Spanned for ExprForLoop`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprforloop-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprForLoop`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprforloop-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprGroup`
 
@@ -751,47 +860,47 @@ of expressions and is related to `None`-delimited spans in a
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprgroup-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprGroup`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprgroup-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprGroup`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprgroup-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprGroup`
 
 ##### `impl Hash for crate::ExprGroup`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprgroup-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::ExprGroup`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprgroup-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ExprGroup`
 
 ##### `impl<T> Spanned for ExprGroup`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprgroup-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprGroup`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprgroup-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprIf`
 
 ```rust
 struct ExprIf {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub if_token: $crate::token::If,
+    pub if_token: token::If,
     pub cond: Box<Expr>,
     pub then_branch: crate::stmt::Block,
-    pub else_branch: Option<($crate::token::Else, Box<Expr>)>,
+    pub else_branch: Option<(token::Else, Box<Expr>)>,
 }
 ```
 
@@ -803,41 +912,41 @@ expression, not any of the other types of expression.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprif-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprIf`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprif-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprIf`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprif-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprIf`
 
 ##### `impl Hash for crate::ExprIf`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprif-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprIf`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprif-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprIf`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprif-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ExprIf`
 
 ##### `impl<T> Spanned for ExprIf`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprif-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprIf`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprif-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprIndex`
 
@@ -854,48 +963,48 @@ A square bracketed indexing expression: `vector[2]`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprindex-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprIndex`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprindex-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprIndex`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprindex-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprIndex`
 
 ##### `impl Hash for crate::ExprIndex`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprindex-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprIndex`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprindex-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprIndex`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprindex-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ExprIndex`
 
 ##### `impl<T> Spanned for ExprIndex`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprindex-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprIndex`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprindex-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprInfer`
 
 ```rust
 struct ExprInfer {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub underscore_token: $crate::token::Underscore,
+    pub underscore_token: token::Underscore,
 }
 ```
 
@@ -903,50 +1012,50 @@ The inferred value of a const generic argument, denoted `_`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprinfer-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprInfer`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprinfer-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprInfer`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprinfer-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprInfer`
 
 ##### `impl Hash for crate::ExprInfer`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprinfer-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprInfer`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprinfer-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprInfer`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprinfer-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ExprInfer`
 
 ##### `impl<T> Spanned for ExprInfer`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprinfer-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprInfer`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprinfer-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprLet`
 
 ```rust
 struct ExprLet {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub let_token: $crate::token::Let,
+    pub let_token: token::Let,
     pub pat: Box<crate::pat::Pat>,
-    pub eq_token: $crate::token::Eq,
+    pub eq_token: token::Eq,
     pub expr: Box<Expr>,
 }
 ```
@@ -955,41 +1064,41 @@ A `let` guard: `let Some(x) = opt`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprlet-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprLet`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprlet-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprLet`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprlet-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprLet`
 
 ##### `impl Hash for crate::ExprLet`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprlet-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprLet`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprlet-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprLet`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprlet-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ExprLet`
 
 ##### `impl<T> Spanned for ExprLet`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprlet-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprLet`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprlet-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprLit`
 
@@ -1004,41 +1113,41 @@ A literal in place of an expression: `1`, `"foo"`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprlit-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprLit`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprlit-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprLit`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprlit-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprLit`
 
 ##### `impl Hash for crate::ExprLit`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprlit-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprLit`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprlit-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprLit`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprlit-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ExprLit`
 
 ##### `impl<T> Spanned for ExprLit`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprlit-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprLit`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprlit-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprLoop`
 
@@ -1046,7 +1155,7 @@ A literal in place of an expression: `1`, `"foo"`.
 struct ExprLoop {
     pub attrs: Vec<crate::attr::Attribute>,
     pub label: Option<Label>,
-    pub loop_token: $crate::token::Loop,
+    pub loop_token: token::Loop,
     pub body: crate::stmt::Block,
 }
 ```
@@ -1055,41 +1164,41 @@ Conditionless loop: `loop { ... }`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprloop-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprLoop`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprloop-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprLoop`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprloop-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprLoop`
 
 ##### `impl Hash for crate::ExprLoop`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprloop-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprLoop`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprloop-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprLoop`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprloop-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ExprLoop`
 
 ##### `impl<T> Spanned for ExprLoop`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprloop-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprLoop`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprloop-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprMacro`
 
@@ -1104,48 +1213,48 @@ A macro invocation expression: `format!("{}", q)`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprmacro-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprMacro`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprmacro-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprMacro`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprmacro-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprMacro`
 
 ##### `impl Hash for crate::ExprMacro`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprmacro-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprMacro`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprmacro-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprMacro`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprmacro-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ExprMacro`
 
 ##### `impl<T> Spanned for ExprMacro`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprmacro-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprMacro`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprmacro-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprMatch`
 
 ```rust
 struct ExprMatch {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub match_token: $crate::token::Match,
+    pub match_token: token::Match,
     pub expr: Box<Expr>,
     pub brace_token: token::Brace,
     pub arms: Vec<Arm>,
@@ -1156,41 +1265,41 @@ A `match` expression: `match n { Some(n) => {}, None => {} }`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprmatch-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprMatch`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprmatch-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprMatch`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprmatch-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprMatch`
 
 ##### `impl Hash for crate::ExprMatch`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprmatch-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprMatch`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprmatch-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprMatch`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprmatch-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ExprMatch`
 
 ##### `impl<T> Spanned for ExprMatch`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprmatch-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprMatch`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprmatch-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprMethodCall`
 
@@ -1198,11 +1307,11 @@ A `match` expression: `match n { Some(n) => {}, None => {} }`.
 struct ExprMethodCall {
     pub attrs: Vec<crate::attr::Attribute>,
     pub receiver: Box<Expr>,
-    pub dot_token: $crate::token::Dot,
+    pub dot_token: token::Dot,
     pub method: crate::ident::Ident,
     pub turbofish: Option<crate::path::AngleBracketedGenericArguments>,
     pub paren_token: token::Paren,
-    pub args: crate::punctuated::Punctuated<Expr, $crate::token::Comma>,
+    pub args: crate::punctuated::Punctuated<Expr, token::Comma>,
 }
 ```
 
@@ -1210,41 +1319,41 @@ A method call expression: `x.foo::<T>(a, b)`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprmethodcall-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprMethodCall`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprmethodcall-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprMethodCall`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprmethodcall-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprMethodCall`
 
 ##### `impl Hash for crate::ExprMethodCall`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprmethodcall-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprMethodCall`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprmethodcall-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprMethodCall`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprmethodcall-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ExprMethodCall`
 
 ##### `impl<T> Spanned for ExprMethodCall`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprmethodcall-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprMethodCall`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprmethodcall-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprParen`
 
@@ -1260,41 +1369,41 @@ A parenthesized expression: `(a + b)`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprparen-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprParen`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprparen-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprParen`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprparen-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprParen`
 
 ##### `impl Hash for crate::ExprParen`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprparen-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprParen`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprparen-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprParen`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprparen-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ExprParen`
 
 ##### `impl<T> Spanned for ExprParen`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprparen-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprParen`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprparen-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprPath`
 
@@ -1313,41 +1422,41 @@ A plain identifier like `x` is a path of length 1.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprpath-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprPath`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprpath-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprPath`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprpath-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprPath`
 
 ##### `impl Hash for crate::ExprPath`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprpath-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprPath`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprpath-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprPath`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprpath-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ExprPath`
 
 ##### `impl<T> Spanned for ExprPath`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprpath-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprPath`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprpath-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprRange`
 
@@ -1364,49 +1473,49 @@ A range expression: `1..2`, `1..`, `..2`, `1..=2`, `..=2`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprrange-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprRange`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprrange-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprRange`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprrange-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprRange`
 
 ##### `impl Hash for crate::ExprRange`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprrange-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprRange`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprrange-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprRange`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprrange-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ExprRange`
 
 ##### `impl<T> Spanned for ExprRange`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprrange-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprRange`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprrange-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprRawAddr`
 
 ```rust
 struct ExprRawAddr {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub and_token: $crate::token::And,
-    pub raw: $crate::token::Raw,
+    pub and_token: token::And,
+    pub raw: token::Raw,
     pub mutability: PointerMutability,
     pub expr: Box<Expr>,
 }
@@ -1416,49 +1525,49 @@ Address-of operation: `&raw const place` or `&raw mut place`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprrawaddr-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprRawAddr`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprrawaddr-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprRawAddr`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprrawaddr-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprRawAddr`
 
 ##### `impl Hash for crate::ExprRawAddr`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprrawaddr-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprRawAddr`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprrawaddr-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprRawAddr`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprrawaddr-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ExprRawAddr`
 
 ##### `impl<T> Spanned for ExprRawAddr`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprrawaddr-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprRawAddr`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprrawaddr-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprReference`
 
 ```rust
 struct ExprReference {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub and_token: $crate::token::And,
-    pub mutability: Option<$crate::token::Mut>,
+    pub and_token: token::And,
+    pub mutability: Option<token::Mut>,
     pub expr: Box<Expr>,
 }
 ```
@@ -1467,41 +1576,41 @@ A referencing operation: `&a` or `&mut a`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprreference-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprReference`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprreference-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprReference`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprreference-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprReference`
 
 ##### `impl Hash for crate::ExprReference`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprreference-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprReference`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprreference-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprReference`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprreference-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ExprReference`
 
 ##### `impl<T> Spanned for ExprReference`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprreference-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprReference`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprreference-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprRepeat`
 
@@ -1510,7 +1619,7 @@ struct ExprRepeat {
     pub attrs: Vec<crate::attr::Attribute>,
     pub bracket_token: token::Bracket,
     pub expr: Box<Expr>,
-    pub semi_token: $crate::token::Semi,
+    pub semi_token: token::Semi,
     pub len: Box<Expr>,
 }
 ```
@@ -1519,48 +1628,48 @@ An array literal constructed from one repeated element: `[0u8; N]`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprrepeat-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprRepeat`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprrepeat-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprRepeat`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprrepeat-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprRepeat`
 
 ##### `impl Hash for crate::ExprRepeat`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprrepeat-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprRepeat`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprrepeat-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprRepeat`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprrepeat-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ExprRepeat`
 
 ##### `impl<T> Spanned for ExprRepeat`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprrepeat-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprRepeat`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprrepeat-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprReturn`
 
 ```rust
 struct ExprReturn {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub return_token: $crate::token::Return,
+    pub return_token: token::Return,
     pub expr: Option<Box<Expr>>,
 }
 ```
@@ -1569,41 +1678,41 @@ A `return`, with an optional value to be returned.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprreturn-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprReturn`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprreturn-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprReturn`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprreturn-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprReturn`
 
 ##### `impl Hash for crate::ExprReturn`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprreturn-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprReturn`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprreturn-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprReturn`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprreturn-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ExprReturn`
 
 ##### `impl<T> Spanned for ExprReturn`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprreturn-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprReturn`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprreturn-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprStruct`
 
@@ -1613,8 +1722,8 @@ struct ExprStruct {
     pub qself: Option<crate::path::QSelf>,
     pub path: crate::path::Path,
     pub brace_token: token::Brace,
-    pub fields: crate::punctuated::Punctuated<FieldValue, $crate::token::Comma>,
-    pub dot2_token: Option<$crate::token::DotDot>,
+    pub fields: crate::punctuated::Punctuated<FieldValue, token::Comma>,
+    pub dot2_token: Option<token::DotDot>,
     pub rest: Option<Box<Expr>>,
 }
 ```
@@ -1626,41 +1735,41 @@ The `rest` provides the value of the remaining fields as in `S { a:
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprstruct-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprStruct`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprstruct-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprStruct`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprstruct-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprStruct`
 
 ##### `impl Hash for crate::ExprStruct`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprstruct-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprStruct`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprstruct-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprStruct`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprstruct-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ExprStruct`
 
 ##### `impl<T> Spanned for ExprStruct`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprstruct-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprStruct`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprstruct-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprTry`
 
@@ -1668,7 +1777,7 @@ The `rest` provides the value of the remaining fields as in `S { a:
 struct ExprTry {
     pub attrs: Vec<crate::attr::Attribute>,
     pub expr: Box<Expr>,
-    pub question_token: $crate::token::Question,
+    pub question_token: token::Question,
 }
 ```
 
@@ -1676,48 +1785,48 @@ A try-expression: `expr?`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprtry-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprTry`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprtry-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprTry`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprtry-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprTry`
 
 ##### `impl Hash for crate::ExprTry`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprtry-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprTry`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprtry-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprTry`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprtry-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ExprTry`
 
 ##### `impl<T> Spanned for ExprTry`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprtry-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprTry`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprtry-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprTryBlock`
 
 ```rust
 struct ExprTryBlock {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub try_token: $crate::token::Try,
+    pub try_token: token::Try,
     pub block: crate::stmt::Block,
 }
 ```
@@ -1726,41 +1835,41 @@ A try block: `try { ... }`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprtryblock-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprTryBlock`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprtryblock-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprTryBlock`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprtryblock-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprTryBlock`
 
 ##### `impl Hash for crate::ExprTryBlock`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprtryblock-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprTryBlock`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprtryblock-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprTryBlock`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprtryblock-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ExprTryBlock`
 
 ##### `impl<T> Spanned for ExprTryBlock`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprtryblock-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprTryBlock`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprtryblock-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprTuple`
 
@@ -1768,7 +1877,7 @@ A try block: `try { ... }`.
 struct ExprTuple {
     pub attrs: Vec<crate::attr::Attribute>,
     pub paren_token: token::Paren,
-    pub elems: crate::punctuated::Punctuated<Expr, $crate::token::Comma>,
+    pub elems: crate::punctuated::Punctuated<Expr, token::Comma>,
 }
 ```
 
@@ -1776,41 +1885,41 @@ A tuple expression: `(a, b, c, d)`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprtuple-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprTuple`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprtuple-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprTuple`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprtuple-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprTuple`
 
 ##### `impl Hash for crate::ExprTuple`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprtuple-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprTuple`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprtuple-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprTuple`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprtuple-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ExprTuple`
 
 ##### `impl<T> Spanned for ExprTuple`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprtuple-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprTuple`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprtuple-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprUnary`
 
@@ -1826,48 +1935,48 @@ A unary operation: `!x`, `*x`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprunary-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprUnary`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprunary-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprUnary`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprunary-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprUnary`
 
 ##### `impl Hash for crate::ExprUnary`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprunary-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprUnary`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprunary-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprUnary`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprunary-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ExprUnary`
 
 ##### `impl<T> Spanned for ExprUnary`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprunary-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprUnary`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprunary-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprUnsafe`
 
 ```rust
 struct ExprUnsafe {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub unsafe_token: $crate::token::Unsafe,
+    pub unsafe_token: token::Unsafe,
     pub block: crate::stmt::Block,
 }
 ```
@@ -1876,41 +1985,41 @@ An unsafe block: `unsafe { ... }`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprunsafe-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprUnsafe`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprunsafe-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprUnsafe`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprunsafe-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprUnsafe`
 
 ##### `impl Hash for crate::ExprUnsafe`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprunsafe-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprUnsafe`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprunsafe-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprUnsafe`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprunsafe-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ExprUnsafe`
 
 ##### `impl<T> Spanned for ExprUnsafe`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprunsafe-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprUnsafe`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprunsafe-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprWhile`
 
@@ -1918,7 +2027,7 @@ An unsafe block: `unsafe { ... }`.
 struct ExprWhile {
     pub attrs: Vec<crate::attr::Attribute>,
     pub label: Option<Label>,
-    pub while_token: $crate::token::While,
+    pub while_token: token::While,
     pub cond: Box<Expr>,
     pub body: crate::stmt::Block,
 }
@@ -1928,48 +2037,48 @@ A while loop: `while expr { ... }`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexprwhile-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprWhile`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexprwhile-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprWhile`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexprwhile-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprWhile`
 
 ##### `impl Hash for crate::ExprWhile`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexprwhile-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprWhile`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexprwhile-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprWhile`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexprwhile-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ExprWhile`
 
 ##### `impl<T> Spanned for ExprWhile`
 
-- `fn span(self: &Self) -> Span`
+- <span id="exprwhile-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprWhile`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexprwhile-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ExprYield`
 
 ```rust
 struct ExprYield {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub yield_token: $crate::token::Yield,
+    pub yield_token: token::Yield,
     pub expr: Option<Box<Expr>>,
 }
 ```
@@ -1978,41 +2087,41 @@ A yield expression: `yield expr`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="crateexpryield-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::ExprYield`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexpryield-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ExprYield`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexpryield-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ExprYield`
 
 ##### `impl Hash for crate::ExprYield`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexpryield-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::ExprYield`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexpryield-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprYield`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexpryield-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ExprYield`
 
 ##### `impl<T> Spanned for ExprYield`
 
-- `fn span(self: &Self) -> Span`
+- <span id="expryield-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::ExprYield`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprexpryield-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `Index`
 
@@ -2029,41 +2138,41 @@ The index of an unnamed tuple struct field.
 
 ##### `impl Clone for crate::Index`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateindex-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Index`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateindex-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Index`
 
 ##### `impl Hash for Index`
 
-- `fn hash<H: Hasher>(self: &Self, state: &mut H)`
+- <span id="index-hash"></span>`fn hash<H: Hasher>(&self, state: &mut H)`
 
 ##### `impl IdentFragment for Index`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="index-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- `fn span(self: &Self) -> Option<Span>`
+- <span id="index-span"></span>`fn span(&self) -> Option<Span>`
 
 ##### `impl Parse for crate::expr::Index`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprindex-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Index`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="index-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for Index`
 
 ##### `impl<T> Spanned for Index`
 
-- `fn span(self: &Self) -> Span`
+- <span id="index-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::Index`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprindex-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `FieldValue`
 
@@ -2071,7 +2180,7 @@ The index of an unnamed tuple struct field.
 struct FieldValue {
     pub attrs: Vec<crate::attr::Attribute>,
     pub member: Member,
-    pub colon_token: Option<$crate::token::Colon>,
+    pub colon_token: Option<token::Colon>,
     pub expr: Expr,
 }
 ```
@@ -2080,7 +2189,7 @@ A field-value pair in a struct literal.
 
 #### Fields
 
-- **`colon_token`**: `Option<$crate::token::Colon>`
+- **`colon_token`**: `Option<token::Colon>`
 
   The colon in `Struct { x: x }`. If written in shorthand like
   `Struct { x }`, there is no colon.
@@ -2089,42 +2198,42 @@ A field-value pair in a struct literal.
 
 ##### `impl Clone for crate::FieldValue`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratefieldvalue-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::FieldValue`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratefieldvalue-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::FieldValue`
 
 ##### `impl Hash for crate::FieldValue`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratefieldvalue-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::FieldValue`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprfieldvalue-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::FieldValue`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratefieldvalue-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for FieldValue`
 
 ##### `impl<T> Spanned for FieldValue`
 
-- `fn span(self: &Self) -> Span`
+- <span id="fieldvalue-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::FieldValue`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprfieldvalue-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `Label`
 
 ```rust
 struct Label {
     pub name: crate::lifetime::Lifetime,
-    pub colon_token: $crate::token::Colon,
+    pub colon_token: token::Colon,
 }
 ```
 
@@ -2134,35 +2243,35 @@ A lifetime labeling a `for`, `while`, or `loop`.
 
 ##### `impl Clone for crate::Label`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratelabel-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Label`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratelabel-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Label`
 
 ##### `impl Hash for crate::Label`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratelabel-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::Label`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprlabel-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::Label`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratelabel-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for Label`
 
 ##### `impl<T> Spanned for Label`
 
-- `fn span(self: &Self) -> Span`
+- <span id="label-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::Label`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprlabel-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `Arm`
 
@@ -2170,10 +2279,10 @@ A lifetime labeling a `for`, `while`, or `loop`.
 struct Arm {
     pub attrs: Vec<crate::attr::Attribute>,
     pub pat: crate::pat::Pat,
-    pub guard: Option<($crate::token::If, Box<Expr>)>,
-    pub fat_arrow_token: $crate::token::FatArrow,
+    pub guard: Option<(token::If, Box<Expr>)>,
+    pub fat_arrow_token: token::FatArrow,
     pub body: Box<Expr>,
-    pub comma: Option<$crate::token::Comma>,
+    pub comma: Option<token::Comma>,
 }
 ```
 
@@ -2197,41 +2306,41 @@ match n {
 
 #### Implementations
 
-- `fn parse_multiple(input: ParseStream<'_>) -> Result<Vec<Self>>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprarm-parse-multiple"></span>`fn parse_multiple(input: ParseStream<'_>) -> Result<Vec<Self>>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::Arm`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratearm-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Arm`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratearm-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Arm`
 
 ##### `impl Hash for crate::Arm`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratearm-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::Arm`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Arm>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md), [`Arm`](../index.md)
+- <span id="crateexprarm-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Arm>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md), [`Arm`](../index.md)
 
 ##### `impl PartialEq for crate::Arm`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratearm-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for Arm`
 
 ##### `impl<T> Spanned for Arm`
 
-- `fn span(self: &Self) -> Span`
+- <span id="arm-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::Arm`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprarm-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ## Enums
 
@@ -2537,49 +2646,49 @@ see names getting repeated in your code, like accessing
 
 #### Implementations
 
-- `const PLACEHOLDER: Self`
+- <span id="expr-placeholder"></span>`const PLACEHOLDER: Self`
 
-- `fn parse_without_eager_brace(input: ParseStream<'_>) -> Result<Expr>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md), [`Expr`](../index.md)
+- <span id="expr-parse-without-eager-brace"></span>`fn parse_without_eager_brace(input: ParseStream<'_>) -> Result<Expr>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md), [`Expr`](../index.md)
 
-- `fn parse_with_earlier_boundary_rule(input: ParseStream<'_>) -> Result<Expr>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md), [`Expr`](../index.md)
+- <span id="expr-parse-with-earlier-boundary-rule"></span>`fn parse_with_earlier_boundary_rule(input: ParseStream<'_>) -> Result<Expr>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md), [`Expr`](../index.md)
 
-- `fn peek(input: ParseStream<'_>) -> bool` — [`ParseStream`](../parse/index.md)
+- <span id="expr-peek"></span>`fn peek(input: ParseStream<'_>) -> bool` — [`ParseStream`](../parse/index.md)
 
-- `fn replace_attrs(self: &mut Self, new: Vec<Attribute>) -> Vec<Attribute>` — [`Attribute`](../index.md)
+- <span id="expr-replace-attrs"></span>`fn replace_attrs(&mut self, new: Vec<Attribute>) -> Vec<Attribute>` — [`Attribute`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::Expr`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateexpr-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Expr`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateexpr-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Expr`
 
 ##### `impl Hash for crate::Expr`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateexpr-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::Expr`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprexpr-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::Expr`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateexpr-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for Expr`
 
 ##### `impl<T> Spanned for Expr`
 
-- `fn span(self: &Self) -> Span`
+- <span id="expr-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for Expr`
 
-- `fn to_tokens(self: &Self, tokens: &mut ::proc_macro2::TokenStream)`
+- <span id="expr-to-tokens"></span>`fn to_tokens(&self, tokens: &mut ::proc_macro2::TokenStream)`
 
 ### `Member`
 
@@ -2605,54 +2714,54 @@ expression.
 
 #### Implementations
 
-- `fn is_named(self: &Self) -> bool`
+- <span id="member-is-named"></span>`fn is_named(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::Member`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratemember-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Member`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratemember-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Member`
 
 ##### `impl Hash for Member`
 
-- `fn hash<H: Hasher>(self: &Self, state: &mut H)`
+- <span id="member-hash"></span>`fn hash<H: Hasher>(&self, state: &mut H)`
 
 ##### `impl IdentFragment for Member`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="member-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- `fn span(self: &Self) -> Option<Span>`
+- <span id="member-span"></span>`fn span(&self) -> Option<Span>`
 
 ##### `impl Parse for crate::expr::Member`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprmember-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Member`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="member-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for Member`
 
 ##### `impl<T> Spanned for Member`
 
-- `fn span(self: &Self) -> Span`
+- <span id="member-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::Member`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprmember-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `RangeLimits`
 
 ```rust
 enum RangeLimits {
-    HalfOpen($crate::token::DotDot),
-    Closed($crate::token::DotDotEq),
+    HalfOpen(token::DotDot),
+    Closed(token::DotDotEq),
 }
 ```
 
@@ -2670,50 +2779,50 @@ Limit types of a range, inclusive or exclusive.
 
 #### Implementations
 
-- `fn parse_obsolete(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprrangelimits-parse-obsolete"></span>`fn parse_obsolete(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::RangeLimits`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="craterangelimits-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for crate::RangeLimits`
 
 ##### `impl Debug for crate::RangeLimits`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="craterangelimits-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::RangeLimits`
 
 ##### `impl Hash for crate::RangeLimits`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="craterangelimits-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::RangeLimits`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprrangelimits-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::RangeLimits`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="craterangelimits-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for RangeLimits`
 
 ##### `impl<T> Spanned for RangeLimits`
 
-- `fn span(self: &Self) -> Span`
+- <span id="rangelimits-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::RangeLimits`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprrangelimits-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `PointerMutability`
 
 ```rust
 enum PointerMutability {
-    Const($crate::token::Const),
-    Mut($crate::token::Mut),
+    Const(token::Const),
+    Mut(token::Mut),
 }
 ```
 
@@ -2724,33 +2833,33 @@ isn't the implicit default.
 
 ##### `impl Clone for crate::PointerMutability`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratepointermutability-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::PointerMutability`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratepointermutability-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::PointerMutability`
 
 ##### `impl Hash for crate::PointerMutability`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratepointermutability-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::expr::PointerMutability`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateexprpointermutability-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::PointerMutability`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratepointermutability-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for PointerMutability`
 
 ##### `impl<T> Spanned for PointerMutability`
 
-- `fn span(self: &Self) -> Span`
+- <span id="pointermutability-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::expr::PointerMutability`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateexprpointermutability-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 

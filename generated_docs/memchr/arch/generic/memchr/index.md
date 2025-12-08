@@ -6,6 +6,32 @@
 
 Generic crate-internal routines for the `memchr` family of functions.
 
+## Contents
+
+- [Structs](#structs)
+  - [`One`](#one)
+  - [`Two`](#two)
+  - [`Three`](#three)
+  - [`Iter`](#iter)
+- [Functions](#functions)
+  - [`search_slice_with_raw`](#search_slice_with_raw)
+  - [`fwd_byte_by_byte`](#fwd_byte_by_byte)
+  - [`rev_byte_by_byte`](#rev_byte_by_byte)
+  - [`count_byte_by_byte`](#count_byte_by_byte)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`One`](#one) | struct | Finds all occurrences of a single byte in a haystack. |
+| [`Two`](#two) | struct | Finds all occurrences of two bytes in a haystack. |
+| [`Three`](#three) | struct | Finds all occurrences of two bytes in a haystack. |
+| [`Iter`](#iter) | struct | An iterator over all occurrences of a set of bytes in a haystack. |
+| [`search_slice_with_raw`](#search_slice_with_raw) | fn | Search a slice using a function that operates on raw pointers. |
+| [`fwd_byte_by_byte`](#fwd_byte_by_byte) | fn | Performs a forward byte-at-a-time loop until either `ptr >= end_ptr` or |
+| [`rev_byte_by_byte`](#rev_byte_by_byte) | fn | Performs a reverse byte-at-a-time loop until either `ptr < start_ptr` or |
+| [`count_byte_by_byte`](#count_byte_by_byte) | fn | Performs a forward byte-at-a-time loop until `ptr >= end_ptr` and returns |
+
 ## Structs
 
 ### `One<V>`
@@ -21,31 +47,31 @@ Finds all occurrences of a single byte in a haystack.
 
 #### Implementations
 
-- `const LOOP_SIZE: usize`
+- <span id="one-loop-size"></span>`const LOOP_SIZE: usize`
 
-- `unsafe fn new(needle: u8) -> One<V>` — [`One`](#one)
+- <span id="one-new"></span>`unsafe fn new(needle: u8) -> One<V>` — [`One`](#one)
 
-- `fn needle1(self: &Self) -> u8`
+- <span id="one-needle1"></span>`fn needle1(&self) -> u8`
 
-- `unsafe fn find_raw(self: &Self, start: *const u8, end: *const u8) -> Option<*const u8>`
+- <span id="one-find-raw"></span>`unsafe fn find_raw(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
-- `unsafe fn rfind_raw(self: &Self, start: *const u8, end: *const u8) -> Option<*const u8>`
+- <span id="one-rfind-raw"></span>`unsafe fn rfind_raw(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
-- `unsafe fn count_raw(self: &Self, start: *const u8, end: *const u8) -> usize`
+- <span id="one-count-raw"></span>`unsafe fn count_raw(&self, start: *const u8, end: *const u8) -> usize`
 
-- `unsafe fn search_chunk(self: &Self, cur: *const u8, mask_to_offset: impl Fn(<V as >::Mask) -> usize) -> Option<*const u8>` — [`Vector`](../../../vector/index.md)
+- <span id="one-search-chunk"></span>`unsafe fn search_chunk(&self, cur: *const u8, mask_to_offset: impl Fn(<V as >::Mask) -> usize) -> Option<*const u8>` — [`Vector`](../../../vector/index.md)
 
 #### Trait Implementations
 
-##### `impl<V: $crate::clone::Clone> Clone for One<V>`
+##### `impl<V: clone::Clone> Clone for One<V>`
 
-- `fn clone(self: &Self) -> One<V>` — [`One`](#one)
+- <span id="one-clone"></span>`fn clone(&self) -> One<V>` — [`One`](#one)
 
-##### `impl<V: $crate::marker::Copy> Copy for One<V>`
+##### `impl<V: marker::Copy> Copy for One<V>`
 
-##### `impl<V: $crate::fmt::Debug> Debug for One<V>`
+##### `impl<V: fmt::Debug> Debug for One<V>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="one-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Two<V>`
 
@@ -66,31 +92,31 @@ searching for `a` or `b` in `afoobar` would report matches at offsets `0`,
 
 #### Implementations
 
-- `const LOOP_SIZE: usize`
+- <span id="two-loop-size"></span>`const LOOP_SIZE: usize`
 
-- `unsafe fn new(needle1: u8, needle2: u8) -> Two<V>` — [`Two`](#two)
+- <span id="two-new"></span>`unsafe fn new(needle1: u8, needle2: u8) -> Two<V>` — [`Two`](#two)
 
-- `fn needle1(self: &Self) -> u8`
+- <span id="two-needle1"></span>`fn needle1(&self) -> u8`
 
-- `fn needle2(self: &Self) -> u8`
+- <span id="two-needle2"></span>`fn needle2(&self) -> u8`
 
-- `unsafe fn find_raw(self: &Self, start: *const u8, end: *const u8) -> Option<*const u8>`
+- <span id="two-find-raw"></span>`unsafe fn find_raw(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
-- `unsafe fn rfind_raw(self: &Self, start: *const u8, end: *const u8) -> Option<*const u8>`
+- <span id="two-rfind-raw"></span>`unsafe fn rfind_raw(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
-- `unsafe fn search_chunk(self: &Self, cur: *const u8, mask_to_offset: impl Fn(<V as >::Mask) -> usize) -> Option<*const u8>` — [`Vector`](../../../vector/index.md)
+- <span id="two-search-chunk"></span>`unsafe fn search_chunk(&self, cur: *const u8, mask_to_offset: impl Fn(<V as >::Mask) -> usize) -> Option<*const u8>` — [`Vector`](../../../vector/index.md)
 
 #### Trait Implementations
 
-##### `impl<V: $crate::clone::Clone> Clone for Two<V>`
+##### `impl<V: clone::Clone> Clone for Two<V>`
 
-- `fn clone(self: &Self) -> Two<V>` — [`Two`](#two)
+- <span id="two-clone"></span>`fn clone(&self) -> Two<V>` — [`Two`](#two)
 
-##### `impl<V: $crate::marker::Copy> Copy for Two<V>`
+##### `impl<V: marker::Copy> Copy for Two<V>`
 
-##### `impl<V: $crate::fmt::Debug> Debug for Two<V>`
+##### `impl<V: fmt::Debug> Debug for Two<V>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="two-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Three<V>`
 
@@ -113,33 +139,33 @@ searching for `a` or `b` in `afoobar` would report matches at offsets `0`,
 
 #### Implementations
 
-- `const LOOP_SIZE: usize`
+- <span id="three-loop-size"></span>`const LOOP_SIZE: usize`
 
-- `unsafe fn new(needle1: u8, needle2: u8, needle3: u8) -> Three<V>` — [`Three`](#three)
+- <span id="three-new"></span>`unsafe fn new(needle1: u8, needle2: u8, needle3: u8) -> Three<V>` — [`Three`](#three)
 
-- `fn needle1(self: &Self) -> u8`
+- <span id="three-needle1"></span>`fn needle1(&self) -> u8`
 
-- `fn needle2(self: &Self) -> u8`
+- <span id="three-needle2"></span>`fn needle2(&self) -> u8`
 
-- `fn needle3(self: &Self) -> u8`
+- <span id="three-needle3"></span>`fn needle3(&self) -> u8`
 
-- `unsafe fn find_raw(self: &Self, start: *const u8, end: *const u8) -> Option<*const u8>`
+- <span id="three-find-raw"></span>`unsafe fn find_raw(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
-- `unsafe fn rfind_raw(self: &Self, start: *const u8, end: *const u8) -> Option<*const u8>`
+- <span id="three-rfind-raw"></span>`unsafe fn rfind_raw(&self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
-- `unsafe fn search_chunk(self: &Self, cur: *const u8, mask_to_offset: impl Fn(<V as >::Mask) -> usize) -> Option<*const u8>` — [`Vector`](../../../vector/index.md)
+- <span id="three-search-chunk"></span>`unsafe fn search_chunk(&self, cur: *const u8, mask_to_offset: impl Fn(<V as >::Mask) -> usize) -> Option<*const u8>` — [`Vector`](../../../vector/index.md)
 
 #### Trait Implementations
 
-##### `impl<V: $crate::clone::Clone> Clone for Three<V>`
+##### `impl<V: clone::Clone> Clone for Three<V>`
 
-- `fn clone(self: &Self) -> Three<V>` — [`Three`](#three)
+- <span id="three-clone"></span>`fn clone(&self) -> Three<V>` — [`Three`](#three)
 
-##### `impl<V: $crate::marker::Copy> Copy for Three<V>`
+##### `impl<V: marker::Copy> Copy for Three<V>`
 
-##### `impl<V: $crate::fmt::Debug> Debug for Three<V>`
+##### `impl<V: fmt::Debug> Debug for Three<V>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="three-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Iter<'h>`
 
@@ -192,25 +218,25 @@ respectively.
 
 #### Implementations
 
-- `fn new(haystack: &'h [u8]) -> Iter<'h>` — [`Iter`](#iter)
+- <span id="iter-new"></span>`fn new(haystack: &'h [u8]) -> Iter<'h>` — [`Iter`](#iter)
 
-- `unsafe fn next(self: &mut Self, find_raw: impl FnMut(*const u8, *const u8) -> Option<*const u8>) -> Option<usize>`
+- <span id="iter-next"></span>`unsafe fn next(&mut self, find_raw: impl FnMut(*const u8, *const u8) -> Option<*const u8>) -> Option<usize>`
 
-- `fn count(self: Self, count_raw: impl FnMut(*const u8, *const u8) -> usize) -> usize`
+- <span id="iter-count"></span>`fn count(self, count_raw: impl FnMut(*const u8, *const u8) -> usize) -> usize`
 
-- `unsafe fn next_back(self: &mut Self, rfind_raw: impl FnMut(*const u8, *const u8) -> Option<*const u8>) -> Option<usize>`
+- <span id="iter-next-back"></span>`unsafe fn next_back(&mut self, rfind_raw: impl FnMut(*const u8, *const u8) -> Option<*const u8>) -> Option<usize>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="iter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 #### Trait Implementations
 
 ##### `impl<'h> Clone for Iter<'h>`
 
-- `fn clone(self: &Self) -> Iter<'h>` — [`Iter`](#iter)
+- <span id="iter-clone"></span>`fn clone(&self) -> Iter<'h>` — [`Iter`](#iter)
 
 ##### `impl<'h> Debug for Iter<'h>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="iter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'h> Send for Iter<'h>`
 

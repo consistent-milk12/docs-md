@@ -4,6 +4,53 @@
 
 # Module `word_break`
 
+## Contents
+
+- [Constants](#constants)
+  - [`BY_NAME`](#by_name)
+  - [`ALETTER`](#aletter)
+  - [`CR`](#cr)
+  - [`DOUBLE_QUOTE`](#double_quote)
+  - [`EXTEND`](#extend)
+  - [`EXTENDNUMLET`](#extendnumlet)
+  - [`FORMAT`](#format)
+  - [`HEBREW_LETTER`](#hebrew_letter)
+  - [`KATAKANA`](#katakana)
+  - [`LF`](#lf)
+  - [`MIDLETTER`](#midletter)
+  - [`MIDNUM`](#midnum)
+  - [`MIDNUMLET`](#midnumlet)
+  - [`NEWLINE`](#newline)
+  - [`NUMERIC`](#numeric)
+  - [`REGIONAL_INDICATOR`](#regional_indicator)
+  - [`SINGLE_QUOTE`](#single_quote)
+  - [`WSEGSPACE`](#wsegspace)
+  - [`ZWJ`](#zwj)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`BY_NAME`](#by_name) | const |  |
+| [`ALETTER`](#aletter) | const |  |
+| [`CR`](#cr) | const |  |
+| [`DOUBLE_QUOTE`](#double_quote) | const |  |
+| [`EXTEND`](#extend) | const |  |
+| [`EXTENDNUMLET`](#extendnumlet) | const |  |
+| [`FORMAT`](#format) | const |  |
+| [`HEBREW_LETTER`](#hebrew_letter) | const |  |
+| [`KATAKANA`](#katakana) | const |  |
+| [`LF`](#lf) | const |  |
+| [`MIDLETTER`](#midletter) | const |  |
+| [`MIDNUM`](#midnum) | const |  |
+| [`MIDNUMLET`](#midnumlet) | const |  |
+| [`NEWLINE`](#newline) | const |  |
+| [`NUMERIC`](#numeric) | const |  |
+| [`REGIONAL_INDICATOR`](#regional_indicator) | const |  |
+| [`SINGLE_QUOTE`](#single_quote) | const |  |
+| [`WSEGSPACE`](#wsegspace) | const |  |
+| [`ZWJ`](#zwj) | const |  |
+
 ## Constants
 
 ### `BY_NAME`

@@ -6,6 +6,12 @@
 
 Default trait implementations for [`SourceCode`](../index.md).
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`context_info`](#context_info) | fn |  |
+
 ## Functions
 
 ### `context_info`

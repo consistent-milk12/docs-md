@@ -4,6 +4,12 @@
 
 # Module `replace`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Replacements`](#replacements) | struct | External iterator for replacements for a string's characters. |
+
 ## Structs
 
 ### `Replacements<I>`
@@ -19,51 +25,51 @@ External iterator for replacements for a string's characters.
 
 #### Implementations
 
-- `fn new_cjk_compat_variants(iter: I) -> Replacements<I>` — [`Replacements`](../index.md)
+- <span id="replacements-new-cjk-compat-variants"></span>`fn new_cjk_compat_variants(iter: I) -> Replacements<I>` — [`Replacements`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<I: $crate::clone::Clone> Clone for Replacements<I>`
+##### `impl<I: clone::Clone> Clone for Replacements<I>`
 
-- `fn clone(self: &Self) -> Replacements<I>` — [`Replacements`](../index.md)
+- <span id="replacements-clone"></span>`fn clone(&self) -> Replacements<I>` — [`Replacements`](../index.md)
 
 ##### `impl<I: Iterator<Item = char> + Clone> Display for Replacements<I>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="replacements-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I: Iterator<Item = char> + FusedIterator> FusedIterator for Replacements<I>`
 
 ##### `impl<I> IntoIterator for Replacements<I>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="replacements-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="replacements-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="replacements-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I: Iterator<Item = char>> Iterator for Replacements<I>`
 
-- `type Item = char`
+- <span id="replacements-item"></span>`type Item = char`
 
-- `fn next(self: &mut Self) -> Option<char>`
+- <span id="replacements-next"></span>`fn next(&mut self) -> Option<char>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="replacements-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ##### `impl<T> ToString for Replacements<I>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="replacements-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl<I> UnicodeNormalization for Replacements<I>`
 
-- `fn nfd(self: Self) -> Decompositions<I>` — [`Decompositions`](../index.md)
+- <span id="replacements-nfd"></span>`fn nfd(self) -> Decompositions<I>` — [`Decompositions`](../index.md)
 
-- `fn nfkd(self: Self) -> Decompositions<I>` — [`Decompositions`](../index.md)
+- <span id="replacements-nfkd"></span>`fn nfkd(self) -> Decompositions<I>` — [`Decompositions`](../index.md)
 
-- `fn nfc(self: Self) -> Recompositions<I>` — [`Recompositions`](../index.md)
+- <span id="replacements-nfc"></span>`fn nfc(self) -> Recompositions<I>` — [`Recompositions`](../index.md)
 
-- `fn nfkc(self: Self) -> Recompositions<I>` — [`Recompositions`](../index.md)
+- <span id="replacements-nfkc"></span>`fn nfkc(self) -> Recompositions<I>` — [`Recompositions`](../index.md)
 
-- `fn cjk_compat_variants(self: Self) -> Replacements<I>` — [`Replacements`](../index.md)
+- <span id="replacements-cjk-compat-variants"></span>`fn cjk_compat_variants(self) -> Replacements<I>` — [`Replacements`](../index.md)
 
-- `fn stream_safe(self: Self) -> StreamSafe<I>` — [`StreamSafe`](../index.md)
+- <span id="replacements-stream-safe"></span>`fn stream_safe(self) -> StreamSafe<I>` — [`StreamSafe`](../index.md)
 

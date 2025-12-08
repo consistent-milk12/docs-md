@@ -4,6 +4,15 @@
 
 # Module `vector`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`x86_64_ssse3`](#x86_64_ssse3) | mod |  |
+| [`x86_64_avx2`](#x86_64_avx2) | mod |  |
+| [`Vector`](#vector) | trait | A trait for describing vector operations used by vectorized searchers. |
+| [`FatVector`](#fatvector) | trait | This trait extends the `Vector` trait with additional operations to support |
+
 ## Modules
 
 - [`x86_64_ssse3`](x86_64_ssse3/index.md) - 
@@ -48,43 +57,43 @@ them as `#[inline(always)]` to ensure they get appropriately inlined.
 
   Read a vector-size number of bytes from the given pointer. The pointer
 
-- `fn is_zero(self: Self) -> bool`
+- `fn is_zero(self) -> bool`
 
   Returns true if and only if this vector has zero in all of its lanes.
 
-- `fn cmpeq(self: Self, vector2: Self) -> Self`
+- `fn cmpeq(self, vector2: Self) -> Self`
 
   Do an 8-bit pairwise equality check. If lane `i` is equal in this
 
-- `fn and(self: Self, vector2: Self) -> Self`
+- `fn and(self, vector2: Self) -> Self`
 
   Perform a bitwise 'and' of this vector and the one given and return
 
-- `fn or(self: Self, vector2: Self) -> Self`
+- `fn or(self, vector2: Self) -> Self`
 
   Perform a bitwise 'or' of this vector and the one given and return
 
-- `fn shift_8bit_lane_right<const BITS: i32>(self: Self) -> Self`
+- `fn shift_8bit_lane_right<const BITS: i32>(self) -> Self`
 
   Shift each 8-bit lane in this vector to the right by the number of
 
-- `fn shift_in_one_byte(self: Self, vector2: Self) -> Self`
+- `fn shift_in_one_byte(self, vector2: Self) -> Self`
 
   Shift this vector to the left by one byte and shift the most
 
-- `fn shift_in_two_bytes(self: Self, vector2: Self) -> Self`
+- `fn shift_in_two_bytes(self, vector2: Self) -> Self`
 
   Shift this vector to the left by two bytes and shift the two most
 
-- `fn shift_in_three_bytes(self: Self, vector2: Self) -> Self`
+- `fn shift_in_three_bytes(self, vector2: Self) -> Self`
 
   Shift this vector to the left by three bytes and shift the three most
 
-- `fn shuffle_bytes(self: Self, indices: Self) -> Self`
+- `fn shuffle_bytes(self, indices: Self) -> Self`
 
   Shuffles the bytes in this vector according to the indices in each of
 
-- `fn for_each_64bit_lane<T>(self: Self, f: impl FnMut(usize, u64) -> Option<T>) -> Option<T>`
+- `fn for_each_64bit_lane<T>(self, f: impl FnMut(usize, u64) -> Option<T>) -> Option<T>`
 
   Call the provided function for each 64-bit lane in this vector. The
 
@@ -126,31 +135,31 @@ operations.
 
   Read a half-vector-size number of bytes from the given pointer, and
 
-- `fn half_shift_in_one_byte(self: Self, vector2: Self) -> Self`
+- `fn half_shift_in_one_byte(self, vector2: Self) -> Self`
 
   Like `Vector::shift_in_one_byte`, except this is done for each half
 
-- `fn half_shift_in_two_bytes(self: Self, vector2: Self) -> Self`
+- `fn half_shift_in_two_bytes(self, vector2: Self) -> Self`
 
   Like `Vector::shift_in_two_bytes`, except this is done for each half
 
-- `fn half_shift_in_three_bytes(self: Self, vector2: Self) -> Self`
+- `fn half_shift_in_three_bytes(self, vector2: Self) -> Self`
 
   Like `Vector::shift_in_two_bytes`, except this is done for each half
 
-- `fn swap_halves(self: Self) -> Self`
+- `fn swap_halves(self) -> Self`
 
   Swap the 128-bit lanes in this vector.
 
-- `fn interleave_low_8bit_lanes(self: Self, vector2: Self) -> Self`
+- `fn interleave_low_8bit_lanes(self, vector2: Self) -> Self`
 
   Unpack and interleave the 8-bit lanes from the low 128 bits of each
 
-- `fn interleave_high_8bit_lanes(self: Self, vector2: Self) -> Self`
+- `fn interleave_high_8bit_lanes(self, vector2: Self) -> Self`
 
   Unpack and interleave the 8-bit lanes from the high 128 bits of each
 
-- `fn for_each_low_64bit_lane<T>(self: Self, vector2: Self, f: impl FnMut(usize, u64) -> Option<T>) -> Option<T>`
+- `fn for_each_low_64bit_lane<T>(self, vector2: Self, f: impl FnMut(usize, u64) -> Option<T>) -> Option<T>`
 
   Call the provided function for each 64-bit lane in the lower half
 

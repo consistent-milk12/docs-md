@@ -39,6 +39,86 @@ word.
 7. SHOUTY-KEBAB-CASE
 8. Train-Case
 
+## Contents
+
+- [Modules](#modules)
+  - [`kebab`](#kebab)
+  - [`lower_camel`](#lower_camel)
+  - [`shouty_kebab`](#shouty_kebab)
+  - [`shouty_snake`](#shouty_snake)
+  - [`snake`](#snake)
+  - [`title`](#title)
+  - [`train`](#train)
+  - [`upper_camel`](#upper_camel)
+- [Structs](#structs)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+- [Traits](#traits)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+- [Functions](#functions)
+  - [`transform`](#transform)
+  - [`lowercase`](#lowercase)
+  - [`uppercase`](#uppercase)
+  - [`capitalize`](#capitalize)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`kebab`](#kebab) | mod |  |
+| [`lower_camel`](#lower_camel) | mod |  |
+| [`shouty_kebab`](#shouty_kebab) | mod |  |
+| [`shouty_snake`](#shouty_snake) | mod |  |
+| [`snake`](#snake) | mod |  |
+| [`title`](#title) | mod |  |
+| [`train`](#train) | mod |  |
+| [`upper_camel`](#upper_camel) | mod |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | trait |  |
+| [`unnamed`](#unnamed) | trait |  |
+| [`unnamed`](#unnamed) | trait |  |
+| [`unnamed`](#unnamed) | trait |  |
+| [`unnamed`](#unnamed) | trait |  |
+| [`unnamed`](#unnamed) | trait |  |
+| [`unnamed`](#unnamed) | trait |  |
+| [`unnamed`](#unnamed) | trait |  |
+| [`unnamed`](#unnamed) | trait |  |
+| [`unnamed`](#unnamed) | trait |  |
+| [`unnamed`](#unnamed) | trait |  |
+| [`transform`](#transform) | fn |  |
+| [`lowercase`](#lowercase) | fn |  |
+| [`uppercase`](#uppercase) | fn |  |
+| [`capitalize`](#capitalize) | fn |  |
+
 ## Modules
 
 - [`kebab`](kebab/index.md) - 
@@ -58,7 +138,7 @@ word.
 struct AsKebabCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a kebab case conversion in [`fmt::Display`](../miette_derive/index.md).
+This wrapper performs a kebab case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
 
 ## Example:
 
@@ -73,11 +153,11 @@ assert_eq!(format!("{}", AsKebabCase(sentence)), "we-are-going-to-inherit-the-ea
 
 ##### `impl<T: AsRef<str>> Display for AsKebabCase<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="askebabcase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for AsKebabCase<T>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="askebabcase-to-string"></span>`fn to_string(&self) -> String`
 
 ### `AsLowerCamelCase<T: AsRef<str>>`
 
@@ -85,7 +165,7 @@ assert_eq!(format!("{}", AsKebabCase(sentence)), "we-are-going-to-inherit-the-ea
 struct AsLowerCamelCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a lower camel case conversion in [`fmt::Display`](../miette_derive/index.md).
+This wrapper performs a lower camel case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
 
 ## Example:
 
@@ -100,11 +180,11 @@ assert_eq!(format!("{}", AsLowerCamelCase(sentence)), "itIsWeWhoBuiltThesePalace
 
 ##### `impl<T: AsRef<str>> Display for AsLowerCamelCase<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="aslowercamelcase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for AsLowerCamelCase<T>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="aslowercamelcase-to-string"></span>`fn to_string(&self) -> String`
 
 ### `AsShoutyKebabCase<T: AsRef<str>>`
 
@@ -112,7 +192,7 @@ assert_eq!(format!("{}", AsLowerCamelCase(sentence)), "itIsWeWhoBuiltThesePalace
 struct AsShoutyKebabCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a kebab case conversion in [`fmt::Display`](../miette_derive/index.md).
+This wrapper performs a kebab case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
 
 ## Example:
 
@@ -127,11 +207,11 @@ assert_eq!(format!("{}", AsShoutyKebabCase(sentence)), "WE-ARE-GOING-TO-INHERIT-
 
 ##### `impl<T: AsRef<str>> Display for AsShoutyKebabCase<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="asshoutykebabcase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for AsShoutyKebabCase<T>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="asshoutykebabcase-to-string"></span>`fn to_string(&self) -> String`
 
 ### `AsShoutySnakeCase<T: AsRef<str>>`
 
@@ -139,7 +219,7 @@ assert_eq!(format!("{}", AsShoutyKebabCase(sentence)), "WE-ARE-GOING-TO-INHERIT-
 struct AsShoutySnakeCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a shouty snake  case conversion in [`fmt::Display`](../miette_derive/index.md).
+This wrapper performs a shouty snake  case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
 
 ## Example:
 
@@ -154,11 +234,11 @@ assert_eq!(format!("{}", AsShoutySnakeCase(sentence)), "THAT_WORLD_IS_GROWING_IN
 
 ##### `impl<T: AsRef<str>> Display for AsShoutySnakeCase<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="asshoutysnakecase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for AsShoutySnakeCase<T>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="asshoutysnakecase-to-string"></span>`fn to_string(&self) -> String`
 
 ### `AsShoutySnekCase<T: AsRef<str>>`
 
@@ -166,7 +246,7 @@ assert_eq!(format!("{}", AsShoutySnakeCase(sentence)), "THAT_WORLD_IS_GROWING_IN
 struct AsShoutySnekCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a shouty snake  case conversion in [`fmt::Display`](../miette_derive/index.md).
+This wrapper performs a shouty snake  case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
 
 ## Example:
 
@@ -181,11 +261,11 @@ assert_eq!(format!("{}", AsShoutySnakeCase(sentence)), "THAT_WORLD_IS_GROWING_IN
 
 ##### `impl<T: AsRef<str>> Display for AsShoutySnakeCase<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="asshoutysnakecase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for AsShoutySnakeCase<T>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="asshoutysnakecase-to-string"></span>`fn to_string(&self) -> String`
 
 ### `AsSnakeCase<T: AsRef<str>>`
 
@@ -193,7 +273,7 @@ assert_eq!(format!("{}", AsShoutySnakeCase(sentence)), "THAT_WORLD_IS_GROWING_IN
 struct AsSnakeCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a snake case conversion in [`fmt::Display`](../miette_derive/index.md).
+This wrapper performs a snake case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
 
 ## Example:
 
@@ -208,11 +288,11 @@ assert_eq!(format!("{}", AsSnakeCase(sentence)), "we_carry_a_new_world_here_in_o
 
 ##### `impl<T: AsRef<str>> Display for AsSnakeCase<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="assnakecase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for AsSnakeCase<T>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="assnakecase-to-string"></span>`fn to_string(&self) -> String`
 
 ### `AsSnekCase<T: AsRef<str>>`
 
@@ -220,7 +300,7 @@ assert_eq!(format!("{}", AsSnakeCase(sentence)), "we_carry_a_new_world_here_in_o
 struct AsSnekCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a snake case conversion in [`fmt::Display`](../miette_derive/index.md).
+This wrapper performs a snake case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
 
 ## Example:
 
@@ -235,11 +315,11 @@ assert_eq!(format!("{}", AsSnakeCase(sentence)), "we_carry_a_new_world_here_in_o
 
 ##### `impl<T: AsRef<str>> Display for AsSnakeCase<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="assnakecase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for AsSnakeCase<T>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="assnakecase-to-string"></span>`fn to_string(&self) -> String`
 
 ### `AsTitleCase<T: AsRef<str>>`
 
@@ -247,7 +327,7 @@ assert_eq!(format!("{}", AsSnakeCase(sentence)), "we_carry_a_new_world_here_in_o
 struct AsTitleCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a title case conversion in [`fmt::Display`](../miette_derive/index.md).
+This wrapper performs a title case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
 
 ## Example:
 
@@ -262,11 +342,11 @@ assert_eq!(format!("{}", AsTitleCase(sentence)), "We Have Always Lived In Slums 
 
 ##### `impl<T: AsRef<str>> Display for AsTitleCase<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="astitlecase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for AsTitleCase<T>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="astitlecase-to-string"></span>`fn to_string(&self) -> String`
 
 ### `AsTrainCase<T: AsRef<str>>`
 
@@ -274,7 +354,7 @@ assert_eq!(format!("{}", AsTitleCase(sentence)), "We Have Always Lived In Slums 
 struct AsTrainCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a train case conversion in [`fmt::Display`](../miette_derive/index.md).
+This wrapper performs a train case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
 
 ## Example:
 
@@ -289,11 +369,11 @@ assert_eq!(format!("{}", AsTrainCase(sentence)), "We-Are-Going-To-Inherit-The-Ea
 
 ##### `impl<T: AsRef<str>> Display for AsTrainCase<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="astraincase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for AsTrainCase<T>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="astraincase-to-string"></span>`fn to_string(&self) -> String`
 
 ### `AsUpperCamelCase<T: AsRef<str>>`
 
@@ -301,7 +381,7 @@ assert_eq!(format!("{}", AsTrainCase(sentence)), "We-Are-Going-To-Inherit-The-Ea
 struct AsUpperCamelCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a upper camel case conversion in [`fmt::Display`](../miette_derive/index.md).
+This wrapper performs a upper camel case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
 
 ## Example:
 
@@ -316,11 +396,11 @@ assert_eq!(format!("{}", AsUpperCamelCase(sentence)), "WeAreNotInTheLeastAfraidO
 
 ##### `impl<T: AsRef<str>> Display for AsUpperCamelCase<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="asuppercamelcase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for AsUpperCamelCase<T>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="asuppercamelcase-to-string"></span>`fn to_string(&self) -> String`
 
 ### `AsPascalCase<T: AsRef<str>>`
 
@@ -328,7 +408,7 @@ assert_eq!(format!("{}", AsUpperCamelCase(sentence)), "WeAreNotInTheLeastAfraidO
 struct AsPascalCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a upper camel case conversion in [`fmt::Display`](../miette_derive/index.md).
+This wrapper performs a upper camel case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
 
 ## Example:
 
@@ -343,11 +423,11 @@ assert_eq!(format!("{}", AsUpperCamelCase(sentence)), "WeAreNotInTheLeastAfraidO
 
 ##### `impl<T: AsRef<str>> Display for AsUpperCamelCase<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="asuppercamelcase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for AsUpperCamelCase<T>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="asuppercamelcase-to-string"></span>`fn to_string(&self) -> String`
 
 ## Traits
 

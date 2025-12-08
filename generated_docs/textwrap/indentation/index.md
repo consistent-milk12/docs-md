@@ -10,6 +10,13 @@ text.
 The functions here can be used to uniformly indent or dedent
 (unindent) word wrapped lines of text.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`indent`](#indent) | fn | Indent each line by the given prefix. |
+| [`dedent`](#dedent) | fn | Removes common leading whitespace from each line. |
+
 ## Functions
 
 ### `indent`

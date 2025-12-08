@@ -4,6 +4,14 @@
 
 # Module `upper_camel`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`AsUpperCamelCase`](#asuppercamelcase) | struct | This wrapper performs a upper camel case conversion in [`fmt::Display`]. |
+| [`ToUpperCamelCase`](#touppercamelcase) | trait | This trait defines an upper camel case conversion. |
+| [`ToPascalCase`](#topascalcase) | trait | `ToPascalCase` is an alias for [`ToUpperCamelCase`]. |
+
 ## Structs
 
 ### `AsUpperCamelCase<T: AsRef<str>>`
@@ -12,7 +20,7 @@
 struct AsUpperCamelCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a upper camel case conversion in [`fmt::Display`](../../miette_derive/index.md).
+This wrapper performs a upper camel case conversion in [`fmt::Display`](../../miette_derive/fmt/index.md).
 
 ## Example:
 
@@ -27,11 +35,11 @@ assert_eq!(format!("{}", AsUpperCamelCase(sentence)), "WeAreNotInTheLeastAfraidO
 
 ##### `impl<T: AsRef<str>> Display for AsUpperCamelCase<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="asuppercamelcase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for AsUpperCamelCase<T>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="asuppercamelcase-to-string"></span>`fn to_string(&self) -> String`
 
 ## Traits
 
@@ -57,7 +65,7 @@ assert_eq!(sentence.to_upper_camel_case(), "WeAreNotInTheLeastAfraidOfRuins");
 
 #### Required Methods
 
-- `fn to_upper_camel_case(self: &Self) -> <Self as >::Owned`
+- `fn to_upper_camel_case(&self) -> <Self as >::Owned`
 
   Convert this type to upper camel case.
 
@@ -72,7 +80,7 @@ documentation.
 
 #### Required Methods
 
-- `fn to_pascal_case(self: &Self) -> <Self as >::Owned`
+- `fn to_pascal_case(&self) -> <Self as >::Owned`
 
   Convert this type to upper camel case.
 

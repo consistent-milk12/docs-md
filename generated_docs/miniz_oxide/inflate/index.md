@@ -6,6 +6,42 @@
 
 This module contains functionality for decompression.
 
+## Contents
+
+- [Modules](#modules)
+  - [`core`](#core)
+  - [`output_buffer`](#output_buffer)
+  - [`stream`](#stream)
+- [Enums](#enums)
+  - [`TINFLStatus`](#tinflstatus)
+- [Functions](#functions)
+  - [`decompress_slice_iter_to_slice`](#decompress_slice_iter_to_slice)
+- [Constants](#constants)
+  - [`TINFL_STATUS_FAILED_CANNOT_MAKE_PROGRESS`](#tinfl_status_failed_cannot_make_progress)
+  - [`TINFL_STATUS_BAD_PARAM`](#tinfl_status_bad_param)
+  - [`TINFL_STATUS_ADLER32_MISMATCH`](#tinfl_status_adler32_mismatch)
+  - [`TINFL_STATUS_FAILED`](#tinfl_status_failed)
+  - [`TINFL_STATUS_DONE`](#tinfl_status_done)
+  - [`TINFL_STATUS_NEEDS_MORE_INPUT`](#tinfl_status_needs_more_input)
+  - [`TINFL_STATUS_HAS_MORE_OUTPUT`](#tinfl_status_has_more_output)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`core`](#core) | mod | Streaming decompression functionality. |
+| [`output_buffer`](#output_buffer) | mod |  |
+| [`stream`](#stream) | mod | Extra streaming decompression functionality. |
+| [`TINFLStatus`](#tinflstatus) | enum | Return status codes. |
+| [`decompress_slice_iter_to_slice`](#decompress_slice_iter_to_slice) | fn | Decompress one or more source slices from an iterator into the output slice. |
+| [`TINFL_STATUS_FAILED_CANNOT_MAKE_PROGRESS`](#tinfl_status_failed_cannot_make_progress) | const |  |
+| [`TINFL_STATUS_BAD_PARAM`](#tinfl_status_bad_param) | const |  |
+| [`TINFL_STATUS_ADLER32_MISMATCH`](#tinfl_status_adler32_mismatch) | const |  |
+| [`TINFL_STATUS_FAILED`](#tinfl_status_failed) | const |  |
+| [`TINFL_STATUS_DONE`](#tinfl_status_done) | const |  |
+| [`TINFL_STATUS_NEEDS_MORE_INPUT`](#tinfl_status_needs_more_input) | const |  |
+| [`TINFL_STATUS_HAS_MORE_OUTPUT`](#tinfl_status_has_more_output) | const |  |
+
 ## Modules
 
 - [`core`](core/index.md) - Streaming decompression functionality.
@@ -79,29 +115,29 @@ Return status codes.
 
 #### Implementations
 
-- `fn from_i32(value: i32) -> Option<TINFLStatus>` — [`TINFLStatus`](#tinflstatus)
+- <span id="tinflstatus-from-i32"></span>`fn from_i32(value: i32) -> Option<TINFLStatus>` — [`TINFLStatus`](#tinflstatus)
 
 #### Trait Implementations
 
 ##### `impl Clone for TINFLStatus`
 
-- `fn clone(self: &Self) -> TINFLStatus` — [`TINFLStatus`](#tinflstatus)
+- <span id="tinflstatus-clone"></span>`fn clone(&self) -> TINFLStatus` — [`TINFLStatus`](#tinflstatus)
 
 ##### `impl Copy for TINFLStatus`
 
 ##### `impl Debug for TINFLStatus`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="tinflstatus-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for TINFLStatus`
 
 ##### `impl Hash for TINFLStatus`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="tinflstatus-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for TINFLStatus`
 
-- `fn eq(self: &Self, other: &TINFLStatus) -> bool` — [`TINFLStatus`](#tinflstatus)
+- <span id="tinflstatus-eq"></span>`fn eq(&self, other: &TINFLStatus) -> bool` — [`TINFLStatus`](#tinflstatus)
 
 ##### `impl StructuralPartialEq for TINFLStatus`
 

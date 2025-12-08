@@ -4,6 +4,16 @@ Minor conveniences on top of the backtrace crate
 
 See [`short_frames_strict`][] for details.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Backtraceish`](#backtraceish) | trait |  |
+| [`Frameish`](#frameish) | trait |  |
+| [`Symbolish`](#symbolish) | trait |  |
+| [`short_frames_strict`](#short_frames_strict) | fn | Gets an iterator over the frames that are part of Rust's "short backtrace" range. |
+| [`short_frames_strict_impl`](#short_frames_strict_impl) | fn |  |
+
 ## Traits
 
 ### `Backtraceish`
@@ -16,7 +26,7 @@ trait Backtraceish { ... }
 
 - `type Frame: 1`
 
-- `fn frames(self: &Self) -> &[<Self as >::Frame]`
+- `fn frames(&self) -> &[<Self as >::Frame]`
 
 ### `Frameish`
 
@@ -28,7 +38,7 @@ trait Frameish { ... }
 
 - `type Symbol: 1`
 
-- `fn symbols(self: &Self) -> &[<Self as >::Symbol]`
+- `fn symbols(&self) -> &[<Self as >::Symbol]`
 
 ### `Symbolish`
 
@@ -38,7 +48,7 @@ trait Symbolish { ... }
 
 #### Required Methods
 
-- `fn name_str(self: &Self) -> Option<&str>`
+- `fn name_str(&self) -> Option<&str>`
 
 ## Functions
 

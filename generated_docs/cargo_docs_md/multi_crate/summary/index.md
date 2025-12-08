@@ -9,6 +9,12 @@ mdBook SUMMARY.md generator.
 This module provides [`SummaryGenerator`](../index.md) which creates a SUMMARY.md file
 compatible with mdBook for multi-crate documentation.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`SummaryGenerator`](#summarygenerator) | struct | Generates mdBook-compatible SUMMARY.md file. |
+
 ## Structs
 
 ### `SummaryGenerator<'a>`
@@ -54,11 +60,11 @@ Summary
 
 #### Implementations
 
-- `const fn new(crates: &'a CrateCollection, output_dir: &'a Path, include_private: bool) -> Self` — [`CrateCollection`](../../index.md)
+- <span id="summarygenerator-new"></span>`const fn new(crates: &'a CrateCollection, output_dir: &'a Path, include_private: bool) -> Self` — [`CrateCollection`](../../index.md)
 
-- `fn generate(self: &Self) -> Result<(), Error>` — [`Error`](../../error/index.md)
+- <span id="summarygenerator-generate"></span>`fn generate(&self) -> Result<(), Error>` — [`Error`](../../error/index.md)
 
-- `fn add_modules(self: &Self, content: &mut String, krate: &rustdoc_types::Crate, items: &[rustdoc_types::Id], path_prefix: &str, indent: usize)`
+- <span id="summarygenerator-add-modules"></span>`fn add_modules(&self, content: &mut String, krate: &rustdoc_types::Crate, items: &[rustdoc_types::Id], path_prefix: &str, indent: usize)`
 
 #### Trait Implementations
 
@@ -70,17 +76,17 @@ Summary
 
 ##### `impl<T> Pointable for SummaryGenerator<'a>`
 
-- `const ALIGN: usize`
+- <span id="summarygenerator-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="summarygenerator-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="summarygenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="summarygenerator-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="summarygenerator-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="summarygenerator-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T> WithSubscriber for SummaryGenerator<'a>`
 

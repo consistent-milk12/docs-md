@@ -4,6 +4,32 @@
 
 # Module `traits`
 
+## Contents
+
+- [Modules](#modules)
+  - [`__private`](#__private)
+- [Structs](#structs)
+  - [`Flag`](#flag)
+- [Traits](#traits)
+  - [`Flags`](#flags)
+  - [`Bits`](#bits)
+  - [`Primitive`](#primitive)
+  - [`PublicFlags`](#publicflags)
+- [Macros](#macros)
+  - [`impl_bits!`](#impl_bits)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`__private`](#__private) | mod |  |
+| [`Flag`](#flag) | struct | A defined flags value that may be named or unnamed. |
+| [`Flags`](#flags) | trait | A set of defined flags using a bits type as storage. |
+| [`Bits`](#bits) | trait | A bits type that can be used as storage for a flags type. |
+| [`Primitive`](#primitive) | trait |  |
+| [`PublicFlags`](#publicflags) | trait | A trait for referencing the `bitflags`-owned internal type |
+| [`impl_bits!`](#impl_bits) | macro |  |
+
 ## Modules
 
 - [`__private`](__private/index.md) - 
@@ -23,21 +49,21 @@ A defined flags value that may be named or unnamed.
 
 #### Implementations
 
-- `const fn new(name: &'static str, value: B) -> Self`
+- <span id="flag-new"></span>`const fn new(name: &'static str, value: B) -> Self`
 
-- `const fn name(self: &Self) -> &'static str`
+- <span id="flag-name"></span>`const fn name(&self) -> &'static str`
 
-- `const fn value(self: &Self) -> &B`
+- <span id="flag-value"></span>`const fn value(&self) -> &B`
 
-- `const fn is_named(self: &Self) -> bool`
+- <span id="flag-is-named"></span>`const fn is_named(&self) -> bool`
 
-- `const fn is_unnamed(self: &Self) -> bool`
+- <span id="flag-is-unnamed"></span>`const fn is_unnamed(&self) -> bool`
 
 #### Trait Implementations
 
-##### `impl<B: $crate::fmt::Debug> Debug for Flag<B>`
+##### `impl<B: fmt::Debug> Debug for Flag<B>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="flag-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Traits
 
@@ -127,11 +153,11 @@ assert_eq!(3, defined_flags::<MyFlags>());
 
   Get a flags value with all known bits set.
 
-- `fn contains_unknown_bits(self: &Self) -> bool`
+- `fn contains_unknown_bits(&self) -> bool`
 
   This method will return `true` if any unknown bits are set.
 
-- `fn bits(self: &Self) -> <Self as >::Bits`
+- `fn bits(&self) -> <Self as >::Bits`
 
   Get the underlying bits value.
 
@@ -151,11 +177,11 @@ assert_eq!(3, defined_flags::<MyFlags>());
 
   Get a flags value with the bits of a flag with the given name set.
 
-- `fn iter(self: &Self) -> iter::Iter<Self>`
+- `fn iter(&self) -> iter::Iter<Self>`
 
   Yield a set of contained flags values.
 
-- `fn iter_names(self: &Self) -> iter::IterNames<Self>`
+- `fn iter_names(&self) -> iter::IterNames<Self>`
 
   Yield a set of contained named flags values.
 
@@ -163,63 +189,63 @@ assert_eq!(3, defined_flags::<MyFlags>());
 
   Yield a set of all named flags defined by `Self::FLAGS`.
 
-- `fn is_empty(self: &Self) -> bool`
+- `fn is_empty(&self) -> bool`
 
   Whether all bits in this flags value are unset.
 
-- `fn is_all(self: &Self) -> bool`
+- `fn is_all(&self) -> bool`
 
   Whether all known bits in this flags value are set.
 
-- `fn intersects(self: &Self, other: Self) -> bool`
+- `fn intersects(&self, other: Self) -> bool`
 
   Whether any set bits in a source flags value are also set in a target flags value.
 
-- `fn contains(self: &Self, other: Self) -> bool`
+- `fn contains(&self, other: Self) -> bool`
 
   Whether all set bits in a source flags value are also set in a target flags value.
 
-- `fn truncate(self: &mut Self)`
+- `fn truncate(&mut self)`
 
   Remove any unknown bits from the flags.
 
-- `fn insert(self: &mut Self, other: Self)`
+- `fn insert(&mut self, other: Self)`
 
   The bitwise or (`|`) of the bits in two flags values.
 
-- `fn remove(self: &mut Self, other: Self)`
+- `fn remove(&mut self, other: Self)`
 
   The intersection of a source flags value with the complement of a target flags value (`&!`).
 
-- `fn toggle(self: &mut Self, other: Self)`
+- `fn toggle(&mut self, other: Self)`
 
   The bitwise exclusive-or (`^`) of the bits in two flags values.
 
-- `fn set(self: &mut Self, other: Self, value: bool)`
+- `fn set(&mut self, other: Self, value: bool)`
 
   Call `Flags::insert` when `value` is `true` or `Flags::remove` when `value` is `false`.
 
-- `fn clear(self: &mut Self)`
+- `fn clear(&mut self)`
 
   Unsets all bits in the flags.
 
-- `fn intersection(self: Self, other: Self) -> Self`
+- `fn intersection(self, other: Self) -> Self`
 
   The bitwise and (`&`) of the bits in two flags values.
 
-- `fn union(self: Self, other: Self) -> Self`
+- `fn union(self, other: Self) -> Self`
 
   The bitwise or (`|`) of the bits in two flags values.
 
-- `fn difference(self: Self, other: Self) -> Self`
+- `fn difference(self, other: Self) -> Self`
 
   The intersection of a source flags value with the complement of a target flags value (`&!`).
 
-- `fn symmetric_difference(self: Self, other: Self) -> Self`
+- `fn symmetric_difference(self, other: Self) -> Self`
 
   The bitwise exclusive-or (`^`) of the bits in two flags values.
 
-- `fn complement(self: Self) -> Self`
+- `fn complement(self) -> Self`
 
   The bitwise negation (`!`) of the bits in a flags value, truncating the result.
 

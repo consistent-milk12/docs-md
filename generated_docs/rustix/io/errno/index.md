@@ -10,6 +10,14 @@ We define the error constants as individual `const`s instead of an enum
 because we may not know about all of the host's error values and we don't
 want unrecognized values to create undefined behavior.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`unnamed`](#unnamed) | struct |  |
+| [`retry_on_intr`](#retry_on_intr) | fn | Call `f` until it either succeeds or fails other than [`Errno::INTR`]. |
+| [`Result`](#result) | type | A specialized [`Result`] type for `rustix` APIs. |
+
 ## Structs
 
 ### `Errno`
@@ -45,29 +53,23 @@ but only holds an OS error code, and no extra error value.
 
 #### Implementations
 
-- `fn from_io_error(io_err: &std::io::Error) -> Option<Self>`
-
-- `const fn raw_os_error(self: Self) -> i32`
-
-- `const fn from_raw_os_error(raw: i32) -> Self`
-
-- `const fn from_errno(raw: u32) -> Self`
+- <span id="errno-kind"></span>`fn kind(self) -> std::io::ErrorKind`
 
 #### Trait Implementations
 
 ##### `impl Clone for Errno`
 
-- `fn clone(self: &Self) -> Errno` — [`Errno`](../index.md)
+- <span id="errno-clone"></span>`fn clone(&self) -> Errno` — [`Errno`](../index.md)
 
 ##### `impl Copy for Errno`
 
 ##### `impl Debug for Errno`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="errno-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Errno`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="errno-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Errno`
 
@@ -75,17 +77,17 @@ but only holds an OS error code, and no extra error value.
 
 ##### `impl Hash for Errno`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="errno-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Errno`
 
-- `fn eq(self: &Self, other: &Errno) -> bool` — [`Errno`](../index.md)
+- <span id="errno-eq"></span>`fn eq(&self, other: &Errno) -> bool` — [`Errno`](../index.md)
 
 ##### `impl StructuralPartialEq for Errno`
 
 ##### `impl<T> ToString for Errno`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="errno-to-string"></span>`fn to_string(&self) -> String`
 
 ## Functions
 

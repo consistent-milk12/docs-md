@@ -4,6 +4,12 @@
 
 # Module `stash`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Stash`](#stash) | struct | A simple arena allocator for byte buffers. |
+
 ## Structs
 
 ### `Stash`
@@ -19,9 +25,9 @@ A simple arena allocator for byte buffers.
 
 #### Implementations
 
-- `fn new() -> Stash` — [`Stash`](#stash)
+- <span id="stash-new"></span>`fn new() -> Stash` — [`Stash`](#stash)
 
-- `fn allocate(self: &Self, size: usize) -> &mut [u8]`
+- <span id="stash-allocate"></span>`fn allocate(&self, size: usize) -> &mut [u8]`
 
-- `fn cache_mmap(self: &Self, map: Mmap) -> &[u8]` — [`Mmap`](../mmap/index.md)
+- <span id="stash-cache-mmap"></span>`fn cache_mmap(&self, map: Mmap) -> &[u8]` — [`Mmap`](../mmap/index.md)
 

@@ -17,6 +17,18 @@ Another allocator implementation is [talc].
 
 
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`malloc`](#malloc) | fn | See the [module comment](self). |
+| [`realloc`](#realloc) | fn | See the [module comment](self). |
+| [`calloc`](#calloc) | fn | See the [module comment](self). |
+| [`free`](#free) | fn | See the [module comment](self). |
+| [`posix_memalign`](#posix_memalign) | fn | See the [module comment](self). |
+| [`aligned_alloc`](#aligned_alloc) | fn | See the [module comment](self). |
+| [`malloc_usable_size`](#malloc_usable_size) | fn | See the [module comment](self). |
+
 ## Functions
 
 ### `malloc`

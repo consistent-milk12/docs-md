@@ -73,6 +73,75 @@ See the [`rayon_core`](../rayon_core/index.md) documentation for more informatio
 See [the Rayon FAQ][faq].
 
 
+## Contents
+
+- [Modules](#modules)
+  - [`delegate`](#delegate)
+  - [`private`](#private)
+  - [`split_producer`](#split_producer)
+  - [`array`](#array)
+  - [`collections`](#collections)
+  - [`iter`](#iter)
+  - [`option`](#option)
+  - [`prelude`](#prelude)
+  - [`range`](#range)
+  - [`range_inclusive`](#range_inclusive)
+  - [`result`](#result)
+  - [`slice`](#slice)
+  - [`str`](#str)
+  - [`string`](#string)
+  - [`vec`](#vec)
+  - [`math`](#math)
+  - [`par_either`](#par_either)
+  - [`compile_fail`](#compile_fail)
+- [Structs](#structs)
+  - [`SendPtr`](#sendptr)
+- [Functions](#functions)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`delegate`](#delegate) | mod | Macros for delegating newtype iterators to inner types. |
+| [`private`](#private) | mod | The public parts of this private module are used to create traits |
+| [`split_producer`](#split_producer) | mod | Common splitter for strings and slices |
+| [`array`](#array) | mod | Parallel iterator types for [arrays] (`[T; N]`) |
+| [`collections`](#collections) | mod | Parallel iterator types for [standard collections] |
+| [`iter`](#iter) | mod | Traits for writing parallel programs using an iterator-style interface |
+| [`option`](#option) | mod | Parallel iterator types for [options] |
+| [`prelude`](#prelude) | mod | The rayon prelude imports the various `ParallelIterator` traits. |
+| [`range`](#range) | mod | Parallel iterator types for [ranges] |
+| [`range_inclusive`](#range_inclusive) | mod | Parallel iterator types for [inclusive ranges] |
+| [`result`](#result) | mod | Parallel iterator types for [results] |
+| [`slice`](#slice) | mod | Parallel iterator types for [slices] |
+| [`str`](#str) | mod | Parallel iterator types for [strings] |
+| [`string`](#string) | mod | This module contains the parallel iterator types for owned strings |
+| [`vec`](#vec) | mod | Parallel iterator types for [vectors] (`Vec<T>`) |
+| [`math`](#math) | mod |  |
+| [`par_either`](#par_either) | mod |  |
+| [`compile_fail`](#compile_fail) | mod |  |
+| [`SendPtr`](#sendptr) | struct | We need to transmit raw pointers across threads. |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+
 ## Modules
 
 - [`delegate`](delegate/index.md) - Macros for delegating newtype iterators to inner types.
@@ -113,13 +182,13 @@ not unsound on its own, although it does partly lift the unconditional
 
 #### Implementations
 
-- `fn get(self: Self) -> *mut T`
+- <span id="sendptr-get"></span>`fn get(self) -> *mut T`
 
 #### Trait Implementations
 
 ##### `impl<T> Clone for SendPtr<T>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="sendptr-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T> Copy for SendPtr<T>`
 
@@ -127,17 +196,17 @@ not unsound on its own, although it does partly lift the unconditional
 
 ##### `impl<T> Pointable for SendPtr<T>`
 
-- `const ALIGN: usize`
+- <span id="sendptr-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="sendptr-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="sendptr-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="sendptr-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="sendptr-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="sendptr-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T: Send> Send for SendPtr<T>`
 

@@ -4,6 +4,33 @@
 
 # Module `frame`
 
+## Contents
+
+- [Structs](#structs)
+  - [`Location`](#location)
+  - [`Frame`](#frame)
+  - [`FrameIter`](#frameiter)
+  - [`FrameIterFrames`](#frameiterframes)
+  - [`FunctionName`](#functionname)
+- [Enums](#enums)
+  - [`FrameIterState`](#frameiterstate)
+- [Functions](#functions)
+  - [`demangle`](#demangle)
+  - [`demangle_auto`](#demangle_auto)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Location`](#location) | struct | A source location. |
+| [`Frame`](#frame) | struct | A function frame. |
+| [`FrameIter`](#frameiter) | struct | An iterator over function frames. |
+| [`FrameIterFrames`](#frameiterframes) | struct |  |
+| [`FunctionName`](#functionname) | struct | A function name. |
+| [`FrameIterState`](#frameiterstate) | enum |  |
+| [`demangle`](#demangle) | fn | Demangle a symbol name using the demangling scheme for the given language. |
+| [`demangle_auto`](#demangle_auto) | fn | Apply 'best effort' demangling of a symbol name. |
+
 ## Structs
 
 ### `Location<'a>`
@@ -72,13 +99,13 @@ An iterator over function frames.
 
 #### Implementations
 
-- `fn new_empty() -> Self`
+- <span id="frameiter-new-empty"></span>`fn new_empty() -> Self`
 
-- `fn new_location(location: Location<'ctx>) -> Self` — [`Location`](../index.md)
+- <span id="frameiter-new-location"></span>`fn new_location(location: Location<'ctx>) -> Self` — [`Location`](../index.md)
 
-- `fn new_frames(unit: &'ctx ResUnit<R>, sections: &'ctx gimli::Dwarf<R>, function: &'ctx Function<R>, inlined_functions: alloc::vec::Vec<&'ctx InlinedFunction<R>>, location: Option<Location<'ctx>>) -> Self` — [`ResUnit`](../unit/index.md), [`Function`](../function/index.md), [`InlinedFunction`](../function/index.md), [`Location`](../index.md)
+- <span id="frameiter-new-frames"></span>`fn new_frames(unit: &'ctx ResUnit<R>, sections: &'ctx gimli::Dwarf<R>, function: &'ctx Function<R>, inlined_functions: alloc::vec::Vec<&'ctx InlinedFunction<R>>, location: Option<Location<'ctx>>) -> Self` — [`ResUnit`](../unit/index.md), [`Function`](../function/index.md), [`InlinedFunction`](../function/index.md), [`Location`](../index.md)
 
-- `fn next(self: &mut Self) -> Result<Option<Frame<'ctx, R>>, gimli::Error>` — [`Frame`](../index.md)
+- <span id="frameiter-next"></span>`fn next(&mut self) -> Result<Option<Frame<'ctx, R>>, gimli::Error>` — [`Frame`](../index.md)
 
 ### `FrameIterFrames<'ctx, R>`
 
@@ -117,9 +144,9 @@ A function name.
 
 #### Implementations
 
-- `fn raw_name(self: &Self) -> Result<Cow<'_, str>, gimli::Error>`
+- <span id="functionname-raw-name"></span>`fn raw_name(&self) -> Result<Cow<'_, str>, gimli::Error>`
 
-- `fn demangle(self: &Self) -> Result<Cow<'_, str>, gimli::Error>`
+- <span id="functionname-demangle"></span>`fn demangle(&self) -> Result<Cow<'_, str>, gimli::Error>`
 
 ## Enums
 

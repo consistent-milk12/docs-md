@@ -9,6 +9,3244 @@ Definitions found commonly among almost all Unix derivatives
 More functions and definitions can be found in the more specific modules
 according to the platform in question.
 
+## Contents
+
+- [Modules](#modules)
+  - [`linux_like`](#linux_like)
+  - [`linux`](#linux)
+- [Structs](#structs)
+  - [`group`](#group)
+  - [`utimbuf`](#utimbuf)
+  - [`timeval`](#timeval)
+  - [`rlimit`](#rlimit)
+  - [`rusage`](#rusage)
+  - [`ipv6_mreq`](#ipv6_mreq)
+  - [`hostent`](#hostent)
+  - [`iovec`](#iovec)
+  - [`pollfd`](#pollfd)
+  - [`winsize`](#winsize)
+  - [`linger`](#linger)
+  - [`sigval`](#sigval)
+  - [`itimerval`](#itimerval)
+  - [`tms`](#tms)
+  - [`servent`](#servent)
+  - [`protoent`](#protoent)
+  - [`in6_addr`](#in6_addr)
+  - [`in_addr`](#in_addr)
+  - [`ip_mreq`](#ip_mreq)
+  - [`ip_mreqn`](#ip_mreqn)
+  - [`ip_mreq_source`](#ip_mreq_source)
+  - [`sockaddr`](#sockaddr)
+  - [`sockaddr_in`](#sockaddr_in)
+  - [`sockaddr_in6`](#sockaddr_in6)
+  - [`addrinfo`](#addrinfo)
+  - [`sockaddr_ll`](#sockaddr_ll)
+  - [`fd_set`](#fd_set)
+  - [`tm`](#tm)
+  - [`sched_param`](#sched_param)
+  - [`Dl_info`](#dl_info)
+  - [`lconv`](#lconv)
+  - [`in_pktinfo`](#in_pktinfo)
+  - [`ifaddrs`](#ifaddrs)
+  - [`in6_rtmsg`](#in6_rtmsg)
+  - [`arpreq`](#arpreq)
+  - [`arpreq_old`](#arpreq_old)
+  - [`arphdr`](#arphdr)
+  - [`mmsghdr`](#mmsghdr)
+  - [`sockaddr_un`](#sockaddr_un)
+  - [`sockaddr_storage`](#sockaddr_storage)
+  - [`utsname`](#utsname)
+  - [`file_clone_range`](#file_clone_range)
+  - [`sock_filter`](#sock_filter)
+  - [`sock_fprog`](#sock_fprog)
+  - [`statx`](#statx)
+  - [`statx_timestamp`](#statx_timestamp)
+  - [`epoll_event`](#epoll_event)
+  - [`sigevent`](#sigevent)
+- [Enums](#enums)
+  - [`DIR`](#dir)
+  - [`FILE`](#file)
+  - [`timezone`](#timezone)
+- [Functions](#functions)
+  - [`isalnum`](#isalnum)
+  - [`isalpha`](#isalpha)
+  - [`iscntrl`](#iscntrl)
+  - [`isdigit`](#isdigit)
+  - [`isgraph`](#isgraph)
+  - [`islower`](#islower)
+  - [`isprint`](#isprint)
+  - [`ispunct`](#ispunct)
+  - [`isspace`](#isspace)
+  - [`isupper`](#isupper)
+  - [`isxdigit`](#isxdigit)
+  - [`isblank`](#isblank)
+  - [`tolower`](#tolower)
+  - [`toupper`](#toupper)
+  - [`qsort`](#qsort)
+  - [`bsearch`](#bsearch)
+  - [`fopen`](#fopen)
+  - [`freopen`](#freopen)
+  - [`fflush`](#fflush)
+  - [`fclose`](#fclose)
+  - [`remove`](#remove)
+  - [`rename`](#rename)
+  - [`tmpfile`](#tmpfile)
+  - [`setvbuf`](#setvbuf)
+  - [`setbuf`](#setbuf)
+  - [`getchar`](#getchar)
+  - [`putchar`](#putchar)
+  - [`fgetc`](#fgetc)
+  - [`fgets`](#fgets)
+  - [`fputc`](#fputc)
+  - [`fputs`](#fputs)
+  - [`puts`](#puts)
+  - [`ungetc`](#ungetc)
+  - [`fread`](#fread)
+  - [`fwrite`](#fwrite)
+  - [`fseek`](#fseek)
+  - [`ftell`](#ftell)
+  - [`rewind`](#rewind)
+  - [`fgetpos`](#fgetpos)
+  - [`fsetpos`](#fsetpos)
+  - [`feof`](#feof)
+  - [`ferror`](#ferror)
+  - [`clearerr`](#clearerr)
+  - [`perror`](#perror)
+  - [`atof`](#atof)
+  - [`atoi`](#atoi)
+  - [`atol`](#atol)
+  - [`atoll`](#atoll)
+  - [`strtod`](#strtod)
+  - [`strtof`](#strtof)
+  - [`strtol`](#strtol)
+  - [`strtoll`](#strtoll)
+  - [`strtoul`](#strtoul)
+  - [`strtoull`](#strtoull)
+  - [`calloc`](#calloc)
+  - [`malloc`](#malloc)
+  - [`realloc`](#realloc)
+  - [`free`](#free)
+  - [`abort`](#abort)
+  - [`exit`](#exit)
+  - [`_exit`](#_exit)
+  - [`system`](#system)
+  - [`getenv`](#getenv)
+  - [`strcpy`](#strcpy)
+  - [`strncpy`](#strncpy)
+  - [`stpcpy`](#stpcpy)
+  - [`strcat`](#strcat)
+  - [`strncat`](#strncat)
+  - [`strcmp`](#strcmp)
+  - [`strncmp`](#strncmp)
+  - [`strcoll`](#strcoll)
+  - [`strchr`](#strchr)
+  - [`strrchr`](#strrchr)
+  - [`strspn`](#strspn)
+  - [`strcspn`](#strcspn)
+  - [`strdup`](#strdup)
+  - [`strndup`](#strndup)
+  - [`strpbrk`](#strpbrk)
+  - [`strstr`](#strstr)
+  - [`strcasecmp`](#strcasecmp)
+  - [`strncasecmp`](#strncasecmp)
+  - [`strlen`](#strlen)
+  - [`strnlen`](#strnlen)
+  - [`strerror`](#strerror)
+  - [`strtok`](#strtok)
+  - [`strtok_r`](#strtok_r)
+  - [`strxfrm`](#strxfrm)
+  - [`strsignal`](#strsignal)
+  - [`wcslen`](#wcslen)
+  - [`wcstombs`](#wcstombs)
+  - [`memchr`](#memchr)
+  - [`wmemchr`](#wmemchr)
+  - [`memcmp`](#memcmp)
+  - [`memcpy`](#memcpy)
+  - [`memmove`](#memmove)
+  - [`memset`](#memset)
+  - [`memccpy`](#memccpy)
+  - [`getpwnam`](#getpwnam)
+  - [`getpwuid`](#getpwuid)
+  - [`fprintf`](#fprintf)
+  - [`printf`](#printf)
+  - [`snprintf`](#snprintf)
+  - [`sprintf`](#sprintf)
+  - [`fscanf`](#fscanf)
+  - [`scanf`](#scanf)
+  - [`sscanf`](#sscanf)
+  - [`getchar_unlocked`](#getchar_unlocked)
+  - [`putchar_unlocked`](#putchar_unlocked)
+  - [`socket`](#socket)
+  - [`connect`](#connect)
+  - [`listen`](#listen)
+  - [`accept`](#accept)
+  - [`getpeername`](#getpeername)
+  - [`getsockname`](#getsockname)
+  - [`setsockopt`](#setsockopt)
+  - [`socketpair`](#socketpair)
+  - [`sendto`](#sendto)
+  - [`shutdown`](#shutdown)
+  - [`chmod`](#chmod)
+  - [`fchmod`](#fchmod)
+  - [`fstat`](#fstat)
+  - [`mkdir`](#mkdir)
+  - [`stat`](#stat)
+  - [`pclose`](#pclose)
+  - [`fdopen`](#fdopen)
+  - [`fileno`](#fileno)
+  - [`open`](#open)
+  - [`creat`](#creat)
+  - [`fcntl`](#fcntl)
+  - [`opendir`](#opendir)
+  - [`readdir`](#readdir)
+  - [`closedir`](#closedir)
+  - [`rewinddir`](#rewinddir)
+  - [`fchmodat`](#fchmodat)
+  - [`fchown`](#fchown)
+  - [`fchownat`](#fchownat)
+  - [`fstatat`](#fstatat)
+  - [`linkat`](#linkat)
+  - [`renameat`](#renameat)
+  - [`symlinkat`](#symlinkat)
+  - [`unlinkat`](#unlinkat)
+  - [`access`](#access)
+  - [`alarm`](#alarm)
+  - [`chdir`](#chdir)
+  - [`fchdir`](#fchdir)
+  - [`chown`](#chown)
+  - [`lchown`](#lchown)
+  - [`close`](#close)
+  - [`dup`](#dup)
+  - [`dup2`](#dup2)
+  - [`execl`](#execl)
+  - [`execle`](#execle)
+  - [`execlp`](#execlp)
+  - [`execv`](#execv)
+  - [`execve`](#execve)
+  - [`execvp`](#execvp)
+  - [`fork`](#fork)
+  - [`fpathconf`](#fpathconf)
+  - [`getcwd`](#getcwd)
+  - [`getegid`](#getegid)
+  - [`geteuid`](#geteuid)
+  - [`getgid`](#getgid)
+  - [`getgroups`](#getgroups)
+  - [`getlogin`](#getlogin)
+  - [`getopt`](#getopt)
+  - [`getpgid`](#getpgid)
+  - [`getpgrp`](#getpgrp)
+  - [`getpid`](#getpid)
+  - [`getppid`](#getppid)
+  - [`getuid`](#getuid)
+  - [`isatty`](#isatty)
+  - [`link`](#link)
+  - [`lseek`](#lseek)
+  - [`pathconf`](#pathconf)
+  - [`pipe`](#pipe)
+  - [`posix_memalign`](#posix_memalign)
+  - [`aligned_alloc`](#aligned_alloc)
+  - [`read`](#read)
+  - [`rmdir`](#rmdir)
+  - [`seteuid`](#seteuid)
+  - [`setegid`](#setegid)
+  - [`setgid`](#setgid)
+  - [`setpgid`](#setpgid)
+  - [`setsid`](#setsid)
+  - [`setuid`](#setuid)
+  - [`setreuid`](#setreuid)
+  - [`setregid`](#setregid)
+  - [`sleep`](#sleep)
+  - [`nanosleep`](#nanosleep)
+  - [`tcgetpgrp`](#tcgetpgrp)
+  - [`tcsetpgrp`](#tcsetpgrp)
+  - [`ttyname`](#ttyname)
+  - [`ttyname_r`](#ttyname_r)
+  - [`unlink`](#unlink)
+  - [`wait`](#wait)
+  - [`waitpid`](#waitpid)
+  - [`write`](#write)
+  - [`pread`](#pread)
+  - [`pwrite`](#pwrite)
+  - [`umask`](#umask)
+  - [`utime`](#utime)
+  - [`kill`](#kill)
+  - [`killpg`](#killpg)
+  - [`mlock`](#mlock)
+  - [`munlock`](#munlock)
+  - [`mlockall`](#mlockall)
+  - [`munlockall`](#munlockall)
+  - [`mmap`](#mmap)
+  - [`munmap`](#munmap)
+  - [`if_nametoindex`](#if_nametoindex)
+  - [`if_indextoname`](#if_indextoname)
+  - [`lstat`](#lstat)
+  - [`fsync`](#fsync)
+  - [`setenv`](#setenv)
+  - [`unsetenv`](#unsetenv)
+  - [`symlink`](#symlink)
+  - [`truncate`](#truncate)
+  - [`ftruncate`](#ftruncate)
+  - [`signal`](#signal)
+  - [`getrusage`](#getrusage)
+  - [`realpath`](#realpath)
+  - [`times`](#times)
+  - [`pthread_self`](#pthread_self)
+  - [`pthread_equal`](#pthread_equal)
+  - [`pthread_join`](#pthread_join)
+  - [`pthread_exit`](#pthread_exit)
+  - [`pthread_attr_init`](#pthread_attr_init)
+  - [`pthread_attr_destroy`](#pthread_attr_destroy)
+  - [`pthread_attr_getstacksize`](#pthread_attr_getstacksize)
+  - [`pthread_attr_setstacksize`](#pthread_attr_setstacksize)
+  - [`pthread_attr_setdetachstate`](#pthread_attr_setdetachstate)
+  - [`pthread_detach`](#pthread_detach)
+  - [`sched_yield`](#sched_yield)
+  - [`pthread_key_create`](#pthread_key_create)
+  - [`pthread_key_delete`](#pthread_key_delete)
+  - [`pthread_getspecific`](#pthread_getspecific)
+  - [`pthread_setspecific`](#pthread_setspecific)
+  - [`pthread_mutex_init`](#pthread_mutex_init)
+  - [`pthread_mutex_destroy`](#pthread_mutex_destroy)
+  - [`pthread_mutex_lock`](#pthread_mutex_lock)
+  - [`pthread_mutex_trylock`](#pthread_mutex_trylock)
+  - [`pthread_mutex_unlock`](#pthread_mutex_unlock)
+  - [`pthread_mutexattr_init`](#pthread_mutexattr_init)
+  - [`pthread_mutexattr_destroy`](#pthread_mutexattr_destroy)
+  - [`pthread_mutexattr_settype`](#pthread_mutexattr_settype)
+  - [`pthread_cond_init`](#pthread_cond_init)
+  - [`pthread_cond_wait`](#pthread_cond_wait)
+  - [`pthread_cond_timedwait`](#pthread_cond_timedwait)
+  - [`pthread_cond_signal`](#pthread_cond_signal)
+  - [`pthread_cond_broadcast`](#pthread_cond_broadcast)
+  - [`pthread_cond_destroy`](#pthread_cond_destroy)
+  - [`pthread_condattr_init`](#pthread_condattr_init)
+  - [`pthread_condattr_destroy`](#pthread_condattr_destroy)
+  - [`pthread_rwlock_init`](#pthread_rwlock_init)
+  - [`pthread_rwlock_destroy`](#pthread_rwlock_destroy)
+  - [`pthread_rwlock_rdlock`](#pthread_rwlock_rdlock)
+  - [`pthread_rwlock_tryrdlock`](#pthread_rwlock_tryrdlock)
+  - [`pthread_rwlock_wrlock`](#pthread_rwlock_wrlock)
+  - [`pthread_rwlock_trywrlock`](#pthread_rwlock_trywrlock)
+  - [`pthread_rwlock_unlock`](#pthread_rwlock_unlock)
+  - [`pthread_rwlockattr_init`](#pthread_rwlockattr_init)
+  - [`pthread_rwlockattr_destroy`](#pthread_rwlockattr_destroy)
+  - [`getsockopt`](#getsockopt)
+  - [`raise`](#raise)
+  - [`utimes`](#utimes)
+  - [`dlopen`](#dlopen)
+  - [`dlerror`](#dlerror)
+  - [`dlsym`](#dlsym)
+  - [`dlclose`](#dlclose)
+  - [`getaddrinfo`](#getaddrinfo)
+  - [`freeaddrinfo`](#freeaddrinfo)
+  - [`hstrerror`](#hstrerror)
+  - [`gai_strerror`](#gai_strerror)
+  - [`res_init`](#res_init)
+  - [`gmtime_r`](#gmtime_r)
+  - [`localtime_r`](#localtime_r)
+  - [`mktime`](#mktime)
+  - [`time`](#time)
+  - [`gmtime`](#gmtime)
+  - [`localtime`](#localtime)
+  - [`difftime`](#difftime)
+  - [`timegm`](#timegm)
+  - [`mknod`](#mknod)
+  - [`gethostname`](#gethostname)
+  - [`endservent`](#endservent)
+  - [`getservbyname`](#getservbyname)
+  - [`getservbyport`](#getservbyport)
+  - [`getservent`](#getservent)
+  - [`setservent`](#setservent)
+  - [`getprotobyname`](#getprotobyname)
+  - [`getprotobynumber`](#getprotobynumber)
+  - [`chroot`](#chroot)
+  - [`usleep`](#usleep)
+  - [`send`](#send)
+  - [`recv`](#recv)
+  - [`putenv`](#putenv)
+  - [`poll`](#poll)
+  - [`select`](#select)
+  - [`setlocale`](#setlocale)
+  - [`localeconv`](#localeconv)
+  - [`sem_wait`](#sem_wait)
+  - [`sem_trywait`](#sem_trywait)
+  - [`sem_post`](#sem_post)
+  - [`statvfs`](#statvfs)
+  - [`fstatvfs`](#fstatvfs)
+  - [`sigemptyset`](#sigemptyset)
+  - [`sigaddset`](#sigaddset)
+  - [`sigfillset`](#sigfillset)
+  - [`sigdelset`](#sigdelset)
+  - [`sigismember`](#sigismember)
+  - [`sigprocmask`](#sigprocmask)
+  - [`sigpending`](#sigpending)
+  - [`sysconf`](#sysconf)
+  - [`mkfifo`](#mkfifo)
+  - [`fseeko`](#fseeko)
+  - [`ftello`](#ftello)
+  - [`tcdrain`](#tcdrain)
+  - [`cfgetispeed`](#cfgetispeed)
+  - [`cfgetospeed`](#cfgetospeed)
+  - [`cfsetispeed`](#cfsetispeed)
+  - [`cfsetospeed`](#cfsetospeed)
+  - [`tcgetattr`](#tcgetattr)
+  - [`tcsetattr`](#tcsetattr)
+  - [`tcflow`](#tcflow)
+  - [`tcflush`](#tcflush)
+  - [`tcgetsid`](#tcgetsid)
+  - [`tcsendbreak`](#tcsendbreak)
+  - [`mkstemp`](#mkstemp)
+  - [`mkdtemp`](#mkdtemp)
+  - [`tmpnam`](#tmpnam)
+  - [`openlog`](#openlog)
+  - [`closelog`](#closelog)
+  - [`setlogmask`](#setlogmask)
+  - [`syslog`](#syslog)
+  - [`nice`](#nice)
+  - [`grantpt`](#grantpt)
+  - [`posix_openpt`](#posix_openpt)
+  - [`ptsname`](#ptsname)
+  - [`unlockpt`](#unlockpt)
+  - [`strcasestr`](#strcasestr)
+  - [`getline`](#getline)
+  - [`lockf`](#lockf)
+  - [`adjtime`](#adjtime)
+  - [`stpncpy`](#stpncpy)
+  - [`sigqueue`](#sigqueue)
+  - [`confstr`](#confstr)
+  - [`dladdr`](#dladdr)
+  - [`flock`](#flock)
+  - [`open_wmemstream`](#open_wmemstream)
+  - [`getsid`](#getsid)
+  - [`pause`](#pause)
+  - [`mkdirat`](#mkdirat)
+  - [`openat`](#openat)
+  - [`fdopendir`](#fdopendir)
+  - [`readdir_r`](#readdir_r)
+  - [`readlinkat`](#readlinkat)
+  - [`fmemopen`](#fmemopen)
+  - [`open_memstream`](#open_memstream)
+  - [`atexit`](#atexit)
+  - [`sigaction`](#sigaction)
+  - [`readlink`](#readlink)
+  - [`pselect`](#pselect)
+  - [`cfmakeraw`](#cfmakeraw)
+  - [`cfsetspeed`](#cfsetspeed)
+  - [`fnmatch`](#fnmatch)
+  - [`htonl`](#htonl)
+  - [`htons`](#htons)
+  - [`ntohl`](#ntohl)
+  - [`ntohs`](#ntohs)
+  - [`ioctl`](#ioctl)
+  - [`sem_destroy`](#sem_destroy)
+  - [`sem_init`](#sem_init)
+  - [`fdatasync`](#fdatasync)
+  - [`mincore`](#mincore)
+  - [`clock_getres`](#clock_getres)
+  - [`clock_gettime`](#clock_gettime)
+  - [`clock_settime`](#clock_settime)
+  - [`clock_getcpuclockid`](#clock_getcpuclockid)
+  - [`dirfd`](#dirfd)
+  - [`memalign`](#memalign)
+  - [`setgroups`](#setgroups)
+  - [`pipe2`](#pipe2)
+  - [`statfs`](#statfs)
+  - [`fstatfs`](#fstatfs)
+  - [`memrchr`](#memrchr)
+  - [`posix_fadvise`](#posix_fadvise)
+  - [`futimens`](#futimens)
+  - [`utimensat`](#utimensat)
+  - [`duplocale`](#duplocale)
+  - [`freelocale`](#freelocale)
+  - [`newlocale`](#newlocale)
+  - [`uselocale`](#uselocale)
+  - [`mknodat`](#mknodat)
+  - [`ptsname_r`](#ptsname_r)
+  - [`clearenv`](#clearenv)
+  - [`waitid`](#waitid)
+  - [`getresuid`](#getresuid)
+  - [`getresgid`](#getresgid)
+  - [`acct`](#acct)
+  - [`brk`](#brk)
+  - [`sbrk`](#sbrk)
+  - [`vfork`](#vfork)
+  - [`setresgid`](#setresgid)
+  - [`setresuid`](#setresuid)
+  - [`wait4`](#wait4)
+  - [`login_tty`](#login_tty)
+  - [`execvpe`](#execvpe)
+  - [`fexecve`](#fexecve)
+  - [`getifaddrs`](#getifaddrs)
+  - [`freeifaddrs`](#freeifaddrs)
+  - [`bind`](#bind)
+  - [`writev`](#writev)
+  - [`readv`](#readv)
+  - [`sendmsg`](#sendmsg)
+  - [`recvmsg`](#recvmsg)
+  - [`uname`](#uname)
+  - [`strchrnul`](#strchrnul)
+  - [`strftime`](#strftime)
+  - [`strftime_l`](#strftime_l)
+  - [`strptime`](#strptime)
+  - [`mkostemp`](#mkostemp)
+  - [`mkostemps`](#mkostemps)
+  - [`getdomainname`](#getdomainname)
+  - [`setdomainname`](#setdomainname)
+  - [`fstatfs64`](#fstatfs64)
+  - [`statvfs64`](#statvfs64)
+  - [`fstatvfs64`](#fstatvfs64)
+  - [`statfs64`](#statfs64)
+  - [`creat64`](#creat64)
+  - [`fstat64`](#fstat64)
+  - [`fstatat64`](#fstatat64)
+  - [`ftruncate64`](#ftruncate64)
+  - [`lseek64`](#lseek64)
+  - [`lstat64`](#lstat64)
+  - [`mmap64`](#mmap64)
+  - [`open64`](#open64)
+  - [`openat64`](#openat64)
+  - [`posix_fadvise64`](#posix_fadvise64)
+  - [`pread64`](#pread64)
+  - [`pwrite64`](#pwrite64)
+  - [`readdir64`](#readdir64)
+  - [`readdir64_r`](#readdir64_r)
+  - [`stat64`](#stat64)
+  - [`truncate64`](#truncate64)
+  - [`preadv64`](#preadv64)
+  - [`pwritev64`](#pwritev64)
+  - [`forkpty`](#forkpty)
+  - [`openpty`](#openpty)
+  - [`statx`](#statx)
+  - [`_IOC`](#_ioc)
+  - [`_IO`](#_io)
+  - [`_IOR`](#_ior)
+  - [`_IOW`](#_iow)
+  - [`_IOWR`](#_iowr)
+  - [`CMSG_ALIGN`](#cmsg_align)
+  - [`CMSG_FIRSTHDR`](#cmsg_firsthdr)
+  - [`CMSG_DATA`](#cmsg_data)
+  - [`CMSG_SPACE`](#cmsg_space)
+  - [`CMSG_LEN`](#cmsg_len)
+  - [`FD_CLR`](#fd_clr)
+  - [`FD_ISSET`](#fd_isset)
+  - [`FD_SET`](#fd_set)
+  - [`FD_ZERO`](#fd_zero)
+  - [`SIGRTMAX`](#sigrtmax)
+  - [`SIGRTMIN`](#sigrtmin)
+  - [`WIFSTOPPED`](#wifstopped)
+  - [`WSTOPSIG`](#wstopsig)
+  - [`WIFCONTINUED`](#wifcontinued)
+  - [`WIFSIGNALED`](#wifsignaled)
+  - [`WTERMSIG`](#wtermsig)
+  - [`WIFEXITED`](#wifexited)
+  - [`WEXITSTATUS`](#wexitstatus)
+  - [`WCOREDUMP`](#wcoredump)
+  - [`W_EXITCODE`](#w_exitcode)
+  - [`W_STOPCODE`](#w_stopcode)
+  - [`QCMD`](#qcmd)
+  - [`IPOPT_COPIED`](#ipopt_copied)
+  - [`IPOPT_CLASS`](#ipopt_class)
+  - [`IPOPT_NUMBER`](#ipopt_number)
+  - [`IPTOS_ECN`](#iptos_ecn)
+  - [`KERNEL_VERSION`](#kernel_version)
+- [Type Aliases](#type-aliases)
+  - [`intmax_t`](#intmax_t)
+  - [`uintmax_t`](#uintmax_t)
+  - [`size_t`](#size_t)
+  - [`ptrdiff_t`](#ptrdiff_t)
+  - [`intptr_t`](#intptr_t)
+  - [`uintptr_t`](#uintptr_t)
+  - [`ssize_t`](#ssize_t)
+  - [`pid_t`](#pid_t)
+  - [`in_addr_t`](#in_addr_t)
+  - [`in_port_t`](#in_port_t)
+  - [`sighandler_t`](#sighandler_t)
+  - [`cc_t`](#cc_t)
+  - [`uid_t`](#uid_t)
+  - [`gid_t`](#gid_t)
+  - [`locale_t`](#locale_t)
+  - [`sa_family_t`](#sa_family_t)
+  - [`speed_t`](#speed_t)
+  - [`tcflag_t`](#tcflag_t)
+  - [`clockid_t`](#clockid_t)
+  - [`timer_t`](#timer_t)
+  - [`key_t`](#key_t)
+  - [`id_t`](#id_t)
+- [Constants](#constants)
+  - [`INT_MIN`](#int_min)
+  - [`INT_MAX`](#int_max)
+  - [`SIG_DFL`](#sig_dfl)
+  - [`SIG_IGN`](#sig_ign)
+  - [`SIG_ERR`](#sig_err)
+  - [`DT_UNKNOWN`](#dt_unknown)
+  - [`DT_FIFO`](#dt_fifo)
+  - [`DT_CHR`](#dt_chr)
+  - [`DT_DIR`](#dt_dir)
+  - [`DT_BLK`](#dt_blk)
+  - [`DT_REG`](#dt_reg)
+  - [`DT_LNK`](#dt_lnk)
+  - [`DT_SOCK`](#dt_sock)
+  - [`FD_CLOEXEC`](#fd_cloexec)
+  - [`USRQUOTA`](#usrquota)
+  - [`GRPQUOTA`](#grpquota)
+  - [`SIGIOT`](#sigiot)
+  - [`S_ISUID`](#s_isuid)
+  - [`S_ISGID`](#s_isgid)
+  - [`S_ISVTX`](#s_isvtx)
+  - [`IF_NAMESIZE`](#if_namesize)
+  - [`IFNAMSIZ`](#ifnamsiz)
+  - [`LOG_EMERG`](#log_emerg)
+  - [`LOG_ALERT`](#log_alert)
+  - [`LOG_CRIT`](#log_crit)
+  - [`LOG_ERR`](#log_err)
+  - [`LOG_WARNING`](#log_warning)
+  - [`LOG_NOTICE`](#log_notice)
+  - [`LOG_INFO`](#log_info)
+  - [`LOG_DEBUG`](#log_debug)
+  - [`LOG_KERN`](#log_kern)
+  - [`LOG_USER`](#log_user)
+  - [`LOG_MAIL`](#log_mail)
+  - [`LOG_DAEMON`](#log_daemon)
+  - [`LOG_AUTH`](#log_auth)
+  - [`LOG_SYSLOG`](#log_syslog)
+  - [`LOG_LPR`](#log_lpr)
+  - [`LOG_NEWS`](#log_news)
+  - [`LOG_UUCP`](#log_uucp)
+  - [`LOG_LOCAL0`](#log_local0)
+  - [`LOG_LOCAL1`](#log_local1)
+  - [`LOG_LOCAL2`](#log_local2)
+  - [`LOG_LOCAL3`](#log_local3)
+  - [`LOG_LOCAL4`](#log_local4)
+  - [`LOG_LOCAL5`](#log_local5)
+  - [`LOG_LOCAL6`](#log_local6)
+  - [`LOG_LOCAL7`](#log_local7)
+  - [`LOG_PID`](#log_pid)
+  - [`LOG_CONS`](#log_cons)
+  - [`LOG_ODELAY`](#log_odelay)
+  - [`LOG_NDELAY`](#log_ndelay)
+  - [`LOG_NOWAIT`](#log_nowait)
+  - [`LOG_PRIMASK`](#log_primask)
+  - [`LOG_FACMASK`](#log_facmask)
+  - [`PRIO_MIN`](#prio_min)
+  - [`PRIO_MAX`](#prio_max)
+  - [`IPPROTO_ICMP`](#ipproto_icmp)
+  - [`IPPROTO_ICMPV6`](#ipproto_icmpv6)
+  - [`IPPROTO_TCP`](#ipproto_tcp)
+  - [`IPPROTO_UDP`](#ipproto_udp)
+  - [`IPPROTO_IP`](#ipproto_ip)
+  - [`IPPROTO_IPV6`](#ipproto_ipv6)
+  - [`INADDR_LOOPBACK`](#inaddr_loopback)
+  - [`INADDR_ANY`](#inaddr_any)
+  - [`INADDR_BROADCAST`](#inaddr_broadcast)
+  - [`INADDR_NONE`](#inaddr_none)
+  - [`IN6ADDR_LOOPBACK_INIT`](#in6addr_loopback_init)
+  - [`IN6ADDR_ANY_INIT`](#in6addr_any_init)
+  - [`ARPOP_REQUEST`](#arpop_request)
+  - [`ARPOP_REPLY`](#arpop_reply)
+  - [`ATF_COM`](#atf_com)
+  - [`ATF_PERM`](#atf_perm)
+  - [`ATF_PUBL`](#atf_publ)
+  - [`ATF_USETRAILERS`](#atf_usetrailers)
+  - [`FNM_PERIOD`](#fnm_period)
+  - [`FNM_NOMATCH`](#fnm_nomatch)
+  - [`FNM_CASEFOLD`](#fnm_casefold)
+  - [`FNM_PATHNAME`](#fnm_pathname)
+  - [`FNM_NOESCAPE`](#fnm_noescape)
+  - [`ULONG_SIZE`](#ulong_size)
+  - [`EXIT_FAILURE`](#exit_failure)
+  - [`EXIT_SUCCESS`](#exit_success)
+  - [`RAND_MAX`](#rand_max)
+  - [`EOF`](#eof)
+  - [`SEEK_SET`](#seek_set)
+  - [`SEEK_CUR`](#seek_cur)
+  - [`SEEK_END`](#seek_end)
+  - [`_IOFBF`](#_iofbf)
+  - [`_IONBF`](#_ionbf)
+  - [`_IOLBF`](#_iolbf)
+  - [`F_DUPFD`](#f_dupfd)
+  - [`F_GETFD`](#f_getfd)
+  - [`F_SETFD`](#f_setfd)
+  - [`F_GETFL`](#f_getfl)
+  - [`F_SETFL`](#f_setfl)
+  - [`F_SETLEASE`](#f_setlease)
+  - [`F_GETLEASE`](#f_getlease)
+  - [`F_NOTIFY`](#f_notify)
+  - [`F_CANCELLK`](#f_cancellk)
+  - [`F_DUPFD_CLOEXEC`](#f_dupfd_cloexec)
+  - [`F_SETPIPE_SZ`](#f_setpipe_sz)
+  - [`F_GETPIPE_SZ`](#f_getpipe_sz)
+  - [`F_ADD_SEALS`](#f_add_seals)
+  - [`F_GET_SEALS`](#f_get_seals)
+  - [`F_SEAL_SEAL`](#f_seal_seal)
+  - [`F_SEAL_SHRINK`](#f_seal_shrink)
+  - [`F_SEAL_GROW`](#f_seal_grow)
+  - [`F_SEAL_WRITE`](#f_seal_write)
+  - [`SIGTRAP`](#sigtrap)
+  - [`PTHREAD_CREATE_JOINABLE`](#pthread_create_joinable)
+  - [`PTHREAD_CREATE_DETACHED`](#pthread_create_detached)
+  - [`CLOCK_REALTIME`](#clock_realtime)
+  - [`CLOCK_MONOTONIC`](#clock_monotonic)
+  - [`CLOCK_PROCESS_CPUTIME_ID`](#clock_process_cputime_id)
+  - [`CLOCK_THREAD_CPUTIME_ID`](#clock_thread_cputime_id)
+  - [`CLOCK_MONOTONIC_RAW`](#clock_monotonic_raw)
+  - [`CLOCK_REALTIME_COARSE`](#clock_realtime_coarse)
+  - [`CLOCK_MONOTONIC_COARSE`](#clock_monotonic_coarse)
+  - [`CLOCK_BOOTTIME`](#clock_boottime)
+  - [`CLOCK_REALTIME_ALARM`](#clock_realtime_alarm)
+  - [`CLOCK_BOOTTIME_ALARM`](#clock_boottime_alarm)
+  - [`CLOCK_TAI`](#clock_tai)
+  - [`TIMER_ABSTIME`](#timer_abstime)
+  - [`RUSAGE_SELF`](#rusage_self)
+  - [`O_RDONLY`](#o_rdonly)
+  - [`O_WRONLY`](#o_wronly)
+  - [`O_RDWR`](#o_rdwr)
+  - [`SOCK_CLOEXEC`](#sock_cloexec)
+  - [`S_IFIFO`](#s_ififo)
+  - [`S_IFCHR`](#s_ifchr)
+  - [`S_IFBLK`](#s_ifblk)
+  - [`S_IFDIR`](#s_ifdir)
+  - [`S_IFREG`](#s_ifreg)
+  - [`S_IFLNK`](#s_iflnk)
+  - [`S_IFSOCK`](#s_ifsock)
+  - [`S_IFMT`](#s_ifmt)
+  - [`S_IRWXU`](#s_irwxu)
+  - [`S_IXUSR`](#s_ixusr)
+  - [`S_IWUSR`](#s_iwusr)
+  - [`S_IRUSR`](#s_irusr)
+  - [`S_IRWXG`](#s_irwxg)
+  - [`S_IXGRP`](#s_ixgrp)
+  - [`S_IWGRP`](#s_iwgrp)
+  - [`S_IRGRP`](#s_irgrp)
+  - [`S_IRWXO`](#s_irwxo)
+  - [`S_IXOTH`](#s_ixoth)
+  - [`S_IWOTH`](#s_iwoth)
+  - [`S_IROTH`](#s_iroth)
+  - [`F_OK`](#f_ok)
+  - [`R_OK`](#r_ok)
+  - [`W_OK`](#w_ok)
+  - [`X_OK`](#x_ok)
+  - [`SIGHUP`](#sighup)
+  - [`SIGINT`](#sigint)
+  - [`SIGQUIT`](#sigquit)
+  - [`SIGILL`](#sigill)
+  - [`SIGABRT`](#sigabrt)
+  - [`SIGFPE`](#sigfpe)
+  - [`SIGKILL`](#sigkill)
+  - [`SIGSEGV`](#sigsegv)
+  - [`SIGPIPE`](#sigpipe)
+  - [`SIGALRM`](#sigalrm)
+  - [`SIGTERM`](#sigterm)
+  - [`PROT_NONE`](#prot_none)
+  - [`PROT_READ`](#prot_read)
+  - [`PROT_WRITE`](#prot_write)
+  - [`PROT_EXEC`](#prot_exec)
+  - [`XATTR_CREATE`](#xattr_create)
+  - [`XATTR_REPLACE`](#xattr_replace)
+  - [`RLIM64_INFINITY`](#rlim64_infinity)
+  - [`LC_CTYPE`](#lc_ctype)
+  - [`LC_NUMERIC`](#lc_numeric)
+  - [`LC_TIME`](#lc_time)
+  - [`LC_COLLATE`](#lc_collate)
+  - [`LC_MONETARY`](#lc_monetary)
+  - [`LC_MESSAGES`](#lc_messages)
+  - [`LC_ALL`](#lc_all)
+  - [`LC_CTYPE_MASK`](#lc_ctype_mask)
+  - [`LC_NUMERIC_MASK`](#lc_numeric_mask)
+  - [`LC_TIME_MASK`](#lc_time_mask)
+  - [`LC_COLLATE_MASK`](#lc_collate_mask)
+  - [`LC_MONETARY_MASK`](#lc_monetary_mask)
+  - [`LC_MESSAGES_MASK`](#lc_messages_mask)
+  - [`MAP_FILE`](#map_file)
+  - [`MAP_SHARED`](#map_shared)
+  - [`MAP_PRIVATE`](#map_private)
+  - [`MAP_FIXED`](#map_fixed)
+  - [`MAP_FAILED`](#map_failed)
+  - [`MS_ASYNC`](#ms_async)
+  - [`MS_INVALIDATE`](#ms_invalidate)
+  - [`MS_SYNC`](#ms_sync)
+  - [`MS_RDONLY`](#ms_rdonly)
+  - [`MS_NOSUID`](#ms_nosuid)
+  - [`MS_NODEV`](#ms_nodev)
+  - [`MS_NOEXEC`](#ms_noexec)
+  - [`MS_SYNCHRONOUS`](#ms_synchronous)
+  - [`MS_REMOUNT`](#ms_remount)
+  - [`MS_MANDLOCK`](#ms_mandlock)
+  - [`MS_DIRSYNC`](#ms_dirsync)
+  - [`MS_NOSYMFOLLOW`](#ms_nosymfollow)
+  - [`MS_NOATIME`](#ms_noatime)
+  - [`MS_NODIRATIME`](#ms_nodiratime)
+  - [`MS_BIND`](#ms_bind)
+  - [`MS_MOVE`](#ms_move)
+  - [`MS_REC`](#ms_rec)
+  - [`MS_SILENT`](#ms_silent)
+  - [`MS_POSIXACL`](#ms_posixacl)
+  - [`MS_UNBINDABLE`](#ms_unbindable)
+  - [`MS_PRIVATE`](#ms_private)
+  - [`MS_SLAVE`](#ms_slave)
+  - [`MS_SHARED`](#ms_shared)
+  - [`MS_RELATIME`](#ms_relatime)
+  - [`MS_KERNMOUNT`](#ms_kernmount)
+  - [`MS_I_VERSION`](#ms_i_version)
+  - [`MS_STRICTATIME`](#ms_strictatime)
+  - [`MS_LAZYTIME`](#ms_lazytime)
+  - [`MS_ACTIVE`](#ms_active)
+  - [`MS_MGC_VAL`](#ms_mgc_val)
+  - [`MS_MGC_MSK`](#ms_mgc_msk)
+  - [`SCM_RIGHTS`](#scm_rights)
+  - [`SCM_CREDENTIALS`](#scm_credentials)
+  - [`PROT_GROWSDOWN`](#prot_growsdown)
+  - [`PROT_GROWSUP`](#prot_growsup)
+  - [`MAP_TYPE`](#map_type)
+  - [`MADV_NORMAL`](#madv_normal)
+  - [`MADV_RANDOM`](#madv_random)
+  - [`MADV_SEQUENTIAL`](#madv_sequential)
+  - [`MADV_WILLNEED`](#madv_willneed)
+  - [`MADV_DONTNEED`](#madv_dontneed)
+  - [`MADV_FREE`](#madv_free)
+  - [`MADV_REMOVE`](#madv_remove)
+  - [`MADV_DONTFORK`](#madv_dontfork)
+  - [`MADV_DOFORK`](#madv_dofork)
+  - [`MADV_MERGEABLE`](#madv_mergeable)
+  - [`MADV_UNMERGEABLE`](#madv_unmergeable)
+  - [`MADV_HUGEPAGE`](#madv_hugepage)
+  - [`MADV_NOHUGEPAGE`](#madv_nohugepage)
+  - [`MADV_DONTDUMP`](#madv_dontdump)
+  - [`MADV_DODUMP`](#madv_dodump)
+  - [`MADV_WIPEONFORK`](#madv_wipeonfork)
+  - [`MADV_KEEPONFORK`](#madv_keeponfork)
+  - [`MADV_COLD`](#madv_cold)
+  - [`MADV_PAGEOUT`](#madv_pageout)
+  - [`MADV_HWPOISON`](#madv_hwpoison)
+  - [`MADV_POPULATE_READ`](#madv_populate_read)
+  - [`MADV_POPULATE_WRITE`](#madv_populate_write)
+  - [`MADV_DONTNEED_LOCKED`](#madv_dontneed_locked)
+  - [`IFF_UP`](#iff_up)
+  - [`IFF_BROADCAST`](#iff_broadcast)
+  - [`IFF_DEBUG`](#iff_debug)
+  - [`IFF_LOOPBACK`](#iff_loopback)
+  - [`IFF_POINTOPOINT`](#iff_pointopoint)
+  - [`IFF_NOTRAILERS`](#iff_notrailers)
+  - [`IFF_RUNNING`](#iff_running)
+  - [`IFF_NOARP`](#iff_noarp)
+  - [`IFF_PROMISC`](#iff_promisc)
+  - [`IFF_ALLMULTI`](#iff_allmulti)
+  - [`IFF_MASTER`](#iff_master)
+  - [`IFF_SLAVE`](#iff_slave)
+  - [`IFF_MULTICAST`](#iff_multicast)
+  - [`IFF_PORTSEL`](#iff_portsel)
+  - [`IFF_AUTOMEDIA`](#iff_automedia)
+  - [`IFF_DYNAMIC`](#iff_dynamic)
+  - [`SOL_IP`](#sol_ip)
+  - [`SOL_TCP`](#sol_tcp)
+  - [`SOL_UDP`](#sol_udp)
+  - [`SOL_IPV6`](#sol_ipv6)
+  - [`SOL_ICMPV6`](#sol_icmpv6)
+  - [`SOL_RAW`](#sol_raw)
+  - [`SOL_DECNET`](#sol_decnet)
+  - [`SOL_X25`](#sol_x25)
+  - [`SOL_PACKET`](#sol_packet)
+  - [`SOL_ATM`](#sol_atm)
+  - [`SOL_AAL`](#sol_aal)
+  - [`SOL_IRDA`](#sol_irda)
+  - [`SOL_NETBEUI`](#sol_netbeui)
+  - [`SOL_LLC`](#sol_llc)
+  - [`SOL_DCCP`](#sol_dccp)
+  - [`SOL_NETLINK`](#sol_netlink)
+  - [`SOL_TIPC`](#sol_tipc)
+  - [`SOL_BLUETOOTH`](#sol_bluetooth)
+  - [`SOL_ALG`](#sol_alg)
+  - [`AF_UNSPEC`](#af_unspec)
+  - [`AF_UNIX`](#af_unix)
+  - [`AF_LOCAL`](#af_local)
+  - [`AF_INET`](#af_inet)
+  - [`AF_AX25`](#af_ax25)
+  - [`AF_IPX`](#af_ipx)
+  - [`AF_APPLETALK`](#af_appletalk)
+  - [`AF_NETROM`](#af_netrom)
+  - [`AF_BRIDGE`](#af_bridge)
+  - [`AF_ATMPVC`](#af_atmpvc)
+  - [`AF_X25`](#af_x25)
+  - [`AF_INET6`](#af_inet6)
+  - [`AF_ROSE`](#af_rose)
+  - [`AF_DECnet`](#af_decnet)
+  - [`AF_NETBEUI`](#af_netbeui)
+  - [`AF_SECURITY`](#af_security)
+  - [`AF_KEY`](#af_key)
+  - [`AF_NETLINK`](#af_netlink)
+  - [`AF_ROUTE`](#af_route)
+  - [`AF_PACKET`](#af_packet)
+  - [`AF_ASH`](#af_ash)
+  - [`AF_ECONET`](#af_econet)
+  - [`AF_ATMSVC`](#af_atmsvc)
+  - [`AF_RDS`](#af_rds)
+  - [`AF_SNA`](#af_sna)
+  - [`AF_IRDA`](#af_irda)
+  - [`AF_PPPOX`](#af_pppox)
+  - [`AF_WANPIPE`](#af_wanpipe)
+  - [`AF_LLC`](#af_llc)
+  - [`AF_CAN`](#af_can)
+  - [`AF_TIPC`](#af_tipc)
+  - [`AF_BLUETOOTH`](#af_bluetooth)
+  - [`AF_IUCV`](#af_iucv)
+  - [`AF_RXRPC`](#af_rxrpc)
+  - [`AF_ISDN`](#af_isdn)
+  - [`AF_PHONET`](#af_phonet)
+  - [`AF_IEEE802154`](#af_ieee802154)
+  - [`AF_CAIF`](#af_caif)
+  - [`AF_ALG`](#af_alg)
+  - [`PF_UNSPEC`](#pf_unspec)
+  - [`PF_UNIX`](#pf_unix)
+  - [`PF_LOCAL`](#pf_local)
+  - [`PF_INET`](#pf_inet)
+  - [`PF_AX25`](#pf_ax25)
+  - [`PF_IPX`](#pf_ipx)
+  - [`PF_APPLETALK`](#pf_appletalk)
+  - [`PF_NETROM`](#pf_netrom)
+  - [`PF_BRIDGE`](#pf_bridge)
+  - [`PF_ATMPVC`](#pf_atmpvc)
+  - [`PF_X25`](#pf_x25)
+  - [`PF_INET6`](#pf_inet6)
+  - [`PF_ROSE`](#pf_rose)
+  - [`PF_DECnet`](#pf_decnet)
+  - [`PF_NETBEUI`](#pf_netbeui)
+  - [`PF_SECURITY`](#pf_security)
+  - [`PF_KEY`](#pf_key)
+  - [`PF_NETLINK`](#pf_netlink)
+  - [`PF_ROUTE`](#pf_route)
+  - [`PF_PACKET`](#pf_packet)
+  - [`PF_ASH`](#pf_ash)
+  - [`PF_ECONET`](#pf_econet)
+  - [`PF_ATMSVC`](#pf_atmsvc)
+  - [`PF_RDS`](#pf_rds)
+  - [`PF_SNA`](#pf_sna)
+  - [`PF_IRDA`](#pf_irda)
+  - [`PF_PPPOX`](#pf_pppox)
+  - [`PF_WANPIPE`](#pf_wanpipe)
+  - [`PF_LLC`](#pf_llc)
+  - [`PF_CAN`](#pf_can)
+  - [`PF_TIPC`](#pf_tipc)
+  - [`PF_BLUETOOTH`](#pf_bluetooth)
+  - [`PF_IUCV`](#pf_iucv)
+  - [`PF_RXRPC`](#pf_rxrpc)
+  - [`PF_ISDN`](#pf_isdn)
+  - [`PF_PHONET`](#pf_phonet)
+  - [`PF_IEEE802154`](#pf_ieee802154)
+  - [`PF_CAIF`](#pf_caif)
+  - [`PF_ALG`](#pf_alg)
+  - [`MSG_OOB`](#msg_oob)
+  - [`MSG_PEEK`](#msg_peek)
+  - [`MSG_DONTROUTE`](#msg_dontroute)
+  - [`MSG_CTRUNC`](#msg_ctrunc)
+  - [`MSG_TRUNC`](#msg_trunc)
+  - [`MSG_DONTWAIT`](#msg_dontwait)
+  - [`MSG_EOR`](#msg_eor)
+  - [`MSG_WAITALL`](#msg_waitall)
+  - [`MSG_FIN`](#msg_fin)
+  - [`MSG_SYN`](#msg_syn)
+  - [`MSG_CONFIRM`](#msg_confirm)
+  - [`MSG_RST`](#msg_rst)
+  - [`MSG_ERRQUEUE`](#msg_errqueue)
+  - [`MSG_NOSIGNAL`](#msg_nosignal)
+  - [`MSG_MORE`](#msg_more)
+  - [`MSG_WAITFORONE`](#msg_waitforone)
+  - [`MSG_FASTOPEN`](#msg_fastopen)
+  - [`MSG_CMSG_CLOEXEC`](#msg_cmsg_cloexec)
+  - [`SCM_TIMESTAMP`](#scm_timestamp)
+  - [`SOCK_RAW`](#sock_raw)
+  - [`SOCK_RDM`](#sock_rdm)
+  - [`IP_TOS`](#ip_tos)
+  - [`IP_TTL`](#ip_ttl)
+  - [`IP_HDRINCL`](#ip_hdrincl)
+  - [`IP_OPTIONS`](#ip_options)
+  - [`IP_ROUTER_ALERT`](#ip_router_alert)
+  - [`IP_RECVOPTS`](#ip_recvopts)
+  - [`IP_RETOPTS`](#ip_retopts)
+  - [`IP_PKTINFO`](#ip_pktinfo)
+  - [`IP_PKTOPTIONS`](#ip_pktoptions)
+  - [`IP_MTU_DISCOVER`](#ip_mtu_discover)
+  - [`IP_RECVERR`](#ip_recverr)
+  - [`IP_RECVTTL`](#ip_recvttl)
+  - [`IP_RECVTOS`](#ip_recvtos)
+  - [`IP_MTU`](#ip_mtu)
+  - [`IP_FREEBIND`](#ip_freebind)
+  - [`IP_IPSEC_POLICY`](#ip_ipsec_policy)
+  - [`IP_XFRM_POLICY`](#ip_xfrm_policy)
+  - [`IP_PASSSEC`](#ip_passsec)
+  - [`IP_TRANSPARENT`](#ip_transparent)
+  - [`IP_ORIGDSTADDR`](#ip_origdstaddr)
+  - [`IP_RECVORIGDSTADDR`](#ip_recvorigdstaddr)
+  - [`IP_MINTTL`](#ip_minttl)
+  - [`IP_NODEFRAG`](#ip_nodefrag)
+  - [`IP_CHECKSUM`](#ip_checksum)
+  - [`IP_BIND_ADDRESS_NO_PORT`](#ip_bind_address_no_port)
+  - [`IP_MULTICAST_IF`](#ip_multicast_if)
+  - [`IP_MULTICAST_TTL`](#ip_multicast_ttl)
+  - [`IP_MULTICAST_LOOP`](#ip_multicast_loop)
+  - [`IP_ADD_MEMBERSHIP`](#ip_add_membership)
+  - [`IP_DROP_MEMBERSHIP`](#ip_drop_membership)
+  - [`IP_UNBLOCK_SOURCE`](#ip_unblock_source)
+  - [`IP_BLOCK_SOURCE`](#ip_block_source)
+  - [`IP_ADD_SOURCE_MEMBERSHIP`](#ip_add_source_membership)
+  - [`IP_DROP_SOURCE_MEMBERSHIP`](#ip_drop_source_membership)
+  - [`IP_MSFILTER`](#ip_msfilter)
+  - [`IP_MULTICAST_ALL`](#ip_multicast_all)
+  - [`IP_UNICAST_IF`](#ip_unicast_if)
+  - [`IP_DEFAULT_MULTICAST_TTL`](#ip_default_multicast_ttl)
+  - [`IP_DEFAULT_MULTICAST_LOOP`](#ip_default_multicast_loop)
+  - [`IP_PMTUDISC_DONT`](#ip_pmtudisc_dont)
+  - [`IP_PMTUDISC_WANT`](#ip_pmtudisc_want)
+  - [`IP_PMTUDISC_DO`](#ip_pmtudisc_do)
+  - [`IP_PMTUDISC_PROBE`](#ip_pmtudisc_probe)
+  - [`IP_PMTUDISC_INTERFACE`](#ip_pmtudisc_interface)
+  - [`IP_PMTUDISC_OMIT`](#ip_pmtudisc_omit)
+  - [`IPPROTO_HOPOPTS`](#ipproto_hopopts)
+  - [`IPPROTO_IGMP`](#ipproto_igmp)
+  - [`IPPROTO_IPIP`](#ipproto_ipip)
+  - [`IPPROTO_EGP`](#ipproto_egp)
+  - [`IPPROTO_PUP`](#ipproto_pup)
+  - [`IPPROTO_IDP`](#ipproto_idp)
+  - [`IPPROTO_TP`](#ipproto_tp)
+  - [`IPPROTO_DCCP`](#ipproto_dccp)
+  - [`IPPROTO_ROUTING`](#ipproto_routing)
+  - [`IPPROTO_FRAGMENT`](#ipproto_fragment)
+  - [`IPPROTO_RSVP`](#ipproto_rsvp)
+  - [`IPPROTO_GRE`](#ipproto_gre)
+  - [`IPPROTO_ESP`](#ipproto_esp)
+  - [`IPPROTO_AH`](#ipproto_ah)
+  - [`IPPROTO_NONE`](#ipproto_none)
+  - [`IPPROTO_DSTOPTS`](#ipproto_dstopts)
+  - [`IPPROTO_MTP`](#ipproto_mtp)
+  - [`IPPROTO_ENCAP`](#ipproto_encap)
+  - [`IPPROTO_PIM`](#ipproto_pim)
+  - [`IPPROTO_COMP`](#ipproto_comp)
+  - [`IPPROTO_SCTP`](#ipproto_sctp)
+  - [`IPPROTO_MH`](#ipproto_mh)
+  - [`IPPROTO_UDPLITE`](#ipproto_udplite)
+  - [`IPPROTO_RAW`](#ipproto_raw)
+  - [`IPPROTO_BEETPH`](#ipproto_beetph)
+  - [`IPPROTO_MPLS`](#ipproto_mpls)
+  - [`IPPROTO_MPTCP`](#ipproto_mptcp)
+  - [`IPPROTO_ETHERNET`](#ipproto_ethernet)
+  - [`MCAST_EXCLUDE`](#mcast_exclude)
+  - [`MCAST_INCLUDE`](#mcast_include)
+  - [`MCAST_JOIN_GROUP`](#mcast_join_group)
+  - [`MCAST_BLOCK_SOURCE`](#mcast_block_source)
+  - [`MCAST_UNBLOCK_SOURCE`](#mcast_unblock_source)
+  - [`MCAST_LEAVE_GROUP`](#mcast_leave_group)
+  - [`MCAST_JOIN_SOURCE_GROUP`](#mcast_join_source_group)
+  - [`MCAST_LEAVE_SOURCE_GROUP`](#mcast_leave_source_group)
+  - [`MCAST_MSFILTER`](#mcast_msfilter)
+  - [`IPV6_ADDRFORM`](#ipv6_addrform)
+  - [`IPV6_2292PKTINFO`](#ipv6_2292pktinfo)
+  - [`IPV6_2292HOPOPTS`](#ipv6_2292hopopts)
+  - [`IPV6_2292DSTOPTS`](#ipv6_2292dstopts)
+  - [`IPV6_2292RTHDR`](#ipv6_2292rthdr)
+  - [`IPV6_2292PKTOPTIONS`](#ipv6_2292pktoptions)
+  - [`IPV6_CHECKSUM`](#ipv6_checksum)
+  - [`IPV6_2292HOPLIMIT`](#ipv6_2292hoplimit)
+  - [`IPV6_NEXTHOP`](#ipv6_nexthop)
+  - [`IPV6_AUTHHDR`](#ipv6_authhdr)
+  - [`IPV6_UNICAST_HOPS`](#ipv6_unicast_hops)
+  - [`IPV6_MULTICAST_IF`](#ipv6_multicast_if)
+  - [`IPV6_MULTICAST_HOPS`](#ipv6_multicast_hops)
+  - [`IPV6_MULTICAST_LOOP`](#ipv6_multicast_loop)
+  - [`IPV6_ADD_MEMBERSHIP`](#ipv6_add_membership)
+  - [`IPV6_DROP_MEMBERSHIP`](#ipv6_drop_membership)
+  - [`IPV6_ROUTER_ALERT`](#ipv6_router_alert)
+  - [`IPV6_MTU_DISCOVER`](#ipv6_mtu_discover)
+  - [`IPV6_MTU`](#ipv6_mtu)
+  - [`IPV6_RECVERR`](#ipv6_recverr)
+  - [`IPV6_V6ONLY`](#ipv6_v6only)
+  - [`IPV6_JOIN_ANYCAST`](#ipv6_join_anycast)
+  - [`IPV6_LEAVE_ANYCAST`](#ipv6_leave_anycast)
+  - [`IPV6_IPSEC_POLICY`](#ipv6_ipsec_policy)
+  - [`IPV6_XFRM_POLICY`](#ipv6_xfrm_policy)
+  - [`IPV6_HDRINCL`](#ipv6_hdrincl)
+  - [`IPV6_RECVPKTINFO`](#ipv6_recvpktinfo)
+  - [`IPV6_PKTINFO`](#ipv6_pktinfo)
+  - [`IPV6_RECVHOPLIMIT`](#ipv6_recvhoplimit)
+  - [`IPV6_HOPLIMIT`](#ipv6_hoplimit)
+  - [`IPV6_RECVHOPOPTS`](#ipv6_recvhopopts)
+  - [`IPV6_HOPOPTS`](#ipv6_hopopts)
+  - [`IPV6_RTHDRDSTOPTS`](#ipv6_rthdrdstopts)
+  - [`IPV6_RECVRTHDR`](#ipv6_recvrthdr)
+  - [`IPV6_RTHDR`](#ipv6_rthdr)
+  - [`IPV6_RECVDSTOPTS`](#ipv6_recvdstopts)
+  - [`IPV6_DSTOPTS`](#ipv6_dstopts)
+  - [`IPV6_RECVPATHMTU`](#ipv6_recvpathmtu)
+  - [`IPV6_PATHMTU`](#ipv6_pathmtu)
+  - [`IPV6_DONTFRAG`](#ipv6_dontfrag)
+  - [`IPV6_RECVTCLASS`](#ipv6_recvtclass)
+  - [`IPV6_TCLASS`](#ipv6_tclass)
+  - [`IPV6_AUTOFLOWLABEL`](#ipv6_autoflowlabel)
+  - [`IPV6_ADDR_PREFERENCES`](#ipv6_addr_preferences)
+  - [`IPV6_MINHOPCOUNT`](#ipv6_minhopcount)
+  - [`IPV6_ORIGDSTADDR`](#ipv6_origdstaddr)
+  - [`IPV6_RECVORIGDSTADDR`](#ipv6_recvorigdstaddr)
+  - [`IPV6_TRANSPARENT`](#ipv6_transparent)
+  - [`IPV6_UNICAST_IF`](#ipv6_unicast_if)
+  - [`IPV6_PREFER_SRC_TMP`](#ipv6_prefer_src_tmp)
+  - [`IPV6_PREFER_SRC_PUBLIC`](#ipv6_prefer_src_public)
+  - [`IPV6_PREFER_SRC_PUBTMP_DEFAULT`](#ipv6_prefer_src_pubtmp_default)
+  - [`IPV6_PREFER_SRC_COA`](#ipv6_prefer_src_coa)
+  - [`IPV6_PREFER_SRC_HOME`](#ipv6_prefer_src_home)
+  - [`IPV6_PREFER_SRC_CGA`](#ipv6_prefer_src_cga)
+  - [`IPV6_PREFER_SRC_NONCGA`](#ipv6_prefer_src_noncga)
+  - [`IPV6_PMTUDISC_DONT`](#ipv6_pmtudisc_dont)
+  - [`IPV6_PMTUDISC_WANT`](#ipv6_pmtudisc_want)
+  - [`IPV6_PMTUDISC_DO`](#ipv6_pmtudisc_do)
+  - [`IPV6_PMTUDISC_PROBE`](#ipv6_pmtudisc_probe)
+  - [`IPV6_PMTUDISC_INTERFACE`](#ipv6_pmtudisc_interface)
+  - [`IPV6_PMTUDISC_OMIT`](#ipv6_pmtudisc_omit)
+  - [`TCP_NODELAY`](#tcp_nodelay)
+  - [`TCP_MAXSEG`](#tcp_maxseg)
+  - [`TCP_CORK`](#tcp_cork)
+  - [`TCP_KEEPIDLE`](#tcp_keepidle)
+  - [`TCP_KEEPINTVL`](#tcp_keepintvl)
+  - [`TCP_KEEPCNT`](#tcp_keepcnt)
+  - [`TCP_SYNCNT`](#tcp_syncnt)
+  - [`TCP_LINGER2`](#tcp_linger2)
+  - [`TCP_DEFER_ACCEPT`](#tcp_defer_accept)
+  - [`TCP_WINDOW_CLAMP`](#tcp_window_clamp)
+  - [`TCP_INFO`](#tcp_info)
+  - [`TCP_QUICKACK`](#tcp_quickack)
+  - [`TCP_CONGESTION`](#tcp_congestion)
+  - [`TCP_MD5SIG`](#tcp_md5sig)
+  - [`TCP_COOKIE_TRANSACTIONS`](#tcp_cookie_transactions)
+  - [`TCP_THIN_LINEAR_TIMEOUTS`](#tcp_thin_linear_timeouts)
+  - [`TCP_THIN_DUPACK`](#tcp_thin_dupack)
+  - [`TCP_USER_TIMEOUT`](#tcp_user_timeout)
+  - [`TCP_REPAIR`](#tcp_repair)
+  - [`TCP_REPAIR_QUEUE`](#tcp_repair_queue)
+  - [`TCP_QUEUE_SEQ`](#tcp_queue_seq)
+  - [`TCP_REPAIR_OPTIONS`](#tcp_repair_options)
+  - [`TCP_FASTOPEN`](#tcp_fastopen)
+  - [`TCP_TIMESTAMP`](#tcp_timestamp)
+  - [`TCP_NOTSENT_LOWAT`](#tcp_notsent_lowat)
+  - [`TCP_CC_INFO`](#tcp_cc_info)
+  - [`TCP_SAVE_SYN`](#tcp_save_syn)
+  - [`TCP_SAVED_SYN`](#tcp_saved_syn)
+  - [`TCP_REPAIR_WINDOW`](#tcp_repair_window)
+  - [`TCP_FASTOPEN_CONNECT`](#tcp_fastopen_connect)
+  - [`TCP_ULP`](#tcp_ulp)
+  - [`TCP_MD5SIG_EXT`](#tcp_md5sig_ext)
+  - [`TCP_FASTOPEN_KEY`](#tcp_fastopen_key)
+  - [`TCP_FASTOPEN_NO_COOKIE`](#tcp_fastopen_no_cookie)
+  - [`TCP_ZEROCOPY_RECEIVE`](#tcp_zerocopy_receive)
+  - [`TCP_INQ`](#tcp_inq)
+  - [`TCP_CM_INQ`](#tcp_cm_inq)
+  - [`TCP_MD5SIG_MAXKEYLEN`](#tcp_md5sig_maxkeylen)
+  - [`SO_DEBUG`](#so_debug)
+  - [`SHUT_RD`](#shut_rd)
+  - [`SHUT_WR`](#shut_wr)
+  - [`SHUT_RDWR`](#shut_rdwr)
+  - [`LOCK_SH`](#lock_sh)
+  - [`LOCK_EX`](#lock_ex)
+  - [`LOCK_NB`](#lock_nb)
+  - [`LOCK_UN`](#lock_un)
+  - [`SS_ONSTACK`](#ss_onstack)
+  - [`SS_DISABLE`](#ss_disable)
+  - [`PATH_MAX`](#path_max)
+  - [`UIO_MAXIOV`](#uio_maxiov)
+  - [`FD_SETSIZE`](#fd_setsize)
+  - [`EPOLLIN`](#epollin)
+  - [`EPOLLPRI`](#epollpri)
+  - [`EPOLLOUT`](#epollout)
+  - [`EPOLLERR`](#epollerr)
+  - [`EPOLLHUP`](#epollhup)
+  - [`EPOLLRDNORM`](#epollrdnorm)
+  - [`EPOLLRDBAND`](#epollrdband)
+  - [`EPOLLWRNORM`](#epollwrnorm)
+  - [`EPOLLWRBAND`](#epollwrband)
+  - [`EPOLLMSG`](#epollmsg)
+  - [`EPOLLRDHUP`](#epollrdhup)
+  - [`EPOLLEXCLUSIVE`](#epollexclusive)
+  - [`EPOLLWAKEUP`](#epollwakeup)
+  - [`EPOLLONESHOT`](#epolloneshot)
+  - [`EPOLLET`](#epollet)
+  - [`EPOLL_CTL_ADD`](#epoll_ctl_add)
+  - [`EPOLL_CTL_MOD`](#epoll_ctl_mod)
+  - [`EPOLL_CTL_DEL`](#epoll_ctl_del)
+  - [`MNT_FORCE`](#mnt_force)
+  - [`MNT_DETACH`](#mnt_detach)
+  - [`MNT_EXPIRE`](#mnt_expire)
+  - [`UMOUNT_NOFOLLOW`](#umount_nofollow)
+  - [`Q_GETFMT`](#q_getfmt)
+  - [`Q_GETINFO`](#q_getinfo)
+  - [`Q_SETINFO`](#q_setinfo)
+  - [`QIF_BLIMITS`](#qif_blimits)
+  - [`QIF_SPACE`](#qif_space)
+  - [`QIF_ILIMITS`](#qif_ilimits)
+  - [`QIF_INODES`](#qif_inodes)
+  - [`QIF_BTIME`](#qif_btime)
+  - [`QIF_ITIME`](#qif_itime)
+  - [`QIF_LIMITS`](#qif_limits)
+  - [`QIF_USAGE`](#qif_usage)
+  - [`QIF_TIMES`](#qif_times)
+  - [`QIF_ALL`](#qif_all)
+  - [`Q_SYNC`](#q_sync)
+  - [`Q_QUOTAON`](#q_quotaon)
+  - [`Q_QUOTAOFF`](#q_quotaoff)
+  - [`Q_GETQUOTA`](#q_getquota)
+  - [`Q_SETQUOTA`](#q_setquota)
+  - [`TCIOFF`](#tcioff)
+  - [`TCION`](#tcion)
+  - [`TCOOFF`](#tcooff)
+  - [`TCOON`](#tcoon)
+  - [`TCIFLUSH`](#tciflush)
+  - [`TCOFLUSH`](#tcoflush)
+  - [`TCIOFLUSH`](#tcioflush)
+  - [`NL0`](#nl0)
+  - [`NL1`](#nl1)
+  - [`TAB0`](#tab0)
+  - [`CR0`](#cr0)
+  - [`FF0`](#ff0)
+  - [`BS0`](#bs0)
+  - [`VT0`](#vt0)
+  - [`VERASE`](#verase)
+  - [`VKILL`](#vkill)
+  - [`VINTR`](#vintr)
+  - [`VQUIT`](#vquit)
+  - [`VLNEXT`](#vlnext)
+  - [`IGNBRK`](#ignbrk)
+  - [`BRKINT`](#brkint)
+  - [`IGNPAR`](#ignpar)
+  - [`PARMRK`](#parmrk)
+  - [`INPCK`](#inpck)
+  - [`ISTRIP`](#istrip)
+  - [`INLCR`](#inlcr)
+  - [`IGNCR`](#igncr)
+  - [`ICRNL`](#icrnl)
+  - [`IXANY`](#ixany)
+  - [`IMAXBEL`](#imaxbel)
+  - [`OPOST`](#opost)
+  - [`CS5`](#cs5)
+  - [`CRTSCTS`](#crtscts)
+  - [`ECHO`](#echo)
+  - [`OCRNL`](#ocrnl)
+  - [`ONOCR`](#onocr)
+  - [`ONLRET`](#onlret)
+  - [`OFILL`](#ofill)
+  - [`OFDEL`](#ofdel)
+  - [`CLONE_VM`](#clone_vm)
+  - [`CLONE_FS`](#clone_fs)
+  - [`CLONE_FILES`](#clone_files)
+  - [`CLONE_SIGHAND`](#clone_sighand)
+  - [`CLONE_PTRACE`](#clone_ptrace)
+  - [`CLONE_VFORK`](#clone_vfork)
+  - [`CLONE_PARENT`](#clone_parent)
+  - [`CLONE_THREAD`](#clone_thread)
+  - [`CLONE_NEWNS`](#clone_newns)
+  - [`CLONE_SYSVSEM`](#clone_sysvsem)
+  - [`CLONE_SETTLS`](#clone_settls)
+  - [`CLONE_PARENT_SETTID`](#clone_parent_settid)
+  - [`CLONE_CHILD_CLEARTID`](#clone_child_cleartid)
+  - [`CLONE_DETACHED`](#clone_detached)
+  - [`CLONE_UNTRACED`](#clone_untraced)
+  - [`CLONE_CHILD_SETTID`](#clone_child_settid)
+  - [`CLONE_NEWCGROUP`](#clone_newcgroup)
+  - [`CLONE_NEWUTS`](#clone_newuts)
+  - [`CLONE_NEWIPC`](#clone_newipc)
+  - [`CLONE_NEWUSER`](#clone_newuser)
+  - [`CLONE_NEWPID`](#clone_newpid)
+  - [`CLONE_NEWNET`](#clone_newnet)
+  - [`CLONE_IO`](#clone_io)
+  - [`WNOHANG`](#wnohang)
+  - [`WUNTRACED`](#wuntraced)
+  - [`WSTOPPED`](#wstopped)
+  - [`WEXITED`](#wexited)
+  - [`WCONTINUED`](#wcontinued)
+  - [`WNOWAIT`](#wnowait)
+  - [`ADDR_NO_RANDOMIZE`](#addr_no_randomize)
+  - [`MMAP_PAGE_ZERO`](#mmap_page_zero)
+  - [`ADDR_COMPAT_LAYOUT`](#addr_compat_layout)
+  - [`READ_IMPLIES_EXEC`](#read_implies_exec)
+  - [`ADDR_LIMIT_32BIT`](#addr_limit_32bit)
+  - [`SHORT_INODE`](#short_inode)
+  - [`WHOLE_SECONDS`](#whole_seconds)
+  - [`STICKY_TIMEOUTS`](#sticky_timeouts)
+  - [`ADDR_LIMIT_3GB`](#addr_limit_3gb)
+  - [`PTRACE_O_TRACESYSGOOD`](#ptrace_o_tracesysgood)
+  - [`PTRACE_O_TRACEFORK`](#ptrace_o_tracefork)
+  - [`PTRACE_O_TRACEVFORK`](#ptrace_o_tracevfork)
+  - [`PTRACE_O_TRACECLONE`](#ptrace_o_traceclone)
+  - [`PTRACE_O_TRACEEXEC`](#ptrace_o_traceexec)
+  - [`PTRACE_O_TRACEVFORKDONE`](#ptrace_o_tracevforkdone)
+  - [`PTRACE_O_TRACEEXIT`](#ptrace_o_traceexit)
+  - [`PTRACE_O_TRACESECCOMP`](#ptrace_o_traceseccomp)
+  - [`PTRACE_O_SUSPEND_SECCOMP`](#ptrace_o_suspend_seccomp)
+  - [`PTRACE_O_EXITKILL`](#ptrace_o_exitkill)
+  - [`PTRACE_O_MASK`](#ptrace_o_mask)
+  - [`PTRACE_EVENT_FORK`](#ptrace_event_fork)
+  - [`PTRACE_EVENT_VFORK`](#ptrace_event_vfork)
+  - [`PTRACE_EVENT_CLONE`](#ptrace_event_clone)
+  - [`PTRACE_EVENT_EXEC`](#ptrace_event_exec)
+  - [`PTRACE_EVENT_VFORK_DONE`](#ptrace_event_vfork_done)
+  - [`PTRACE_EVENT_EXIT`](#ptrace_event_exit)
+  - [`PTRACE_EVENT_SECCOMP`](#ptrace_event_seccomp)
+  - [`__WNOTHREAD`](#__wnothread)
+  - [`__WALL`](#__wall)
+  - [`__WCLONE`](#__wclone)
+  - [`SPLICE_F_MOVE`](#splice_f_move)
+  - [`SPLICE_F_NONBLOCK`](#splice_f_nonblock)
+  - [`SPLICE_F_MORE`](#splice_f_more)
+  - [`SPLICE_F_GIFT`](#splice_f_gift)
+  - [`RTLD_LOCAL`](#rtld_local)
+  - [`RTLD_LAZY`](#rtld_lazy)
+  - [`POSIX_FADV_NORMAL`](#posix_fadv_normal)
+  - [`POSIX_FADV_RANDOM`](#posix_fadv_random)
+  - [`POSIX_FADV_SEQUENTIAL`](#posix_fadv_sequential)
+  - [`POSIX_FADV_WILLNEED`](#posix_fadv_willneed)
+  - [`AT_FDCWD`](#at_fdcwd)
+  - [`AT_SYMLINK_NOFOLLOW`](#at_symlink_nofollow)
+  - [`AT_REMOVEDIR`](#at_removedir)
+  - [`AT_SYMLINK_FOLLOW`](#at_symlink_follow)
+  - [`AT_NO_AUTOMOUNT`](#at_no_automount)
+  - [`AT_EMPTY_PATH`](#at_empty_path)
+  - [`AT_RECURSIVE`](#at_recursive)
+  - [`LOG_CRON`](#log_cron)
+  - [`LOG_AUTHPRIV`](#log_authpriv)
+  - [`LOG_FTP`](#log_ftp)
+  - [`LOG_PERROR`](#log_perror)
+  - [`PIPE_BUF`](#pipe_buf)
+  - [`SI_LOAD_SHIFT`](#si_load_shift)
+  - [`SI_USER`](#si_user)
+  - [`SI_KERNEL`](#si_kernel)
+  - [`SI_QUEUE`](#si_queue)
+  - [`SI_TIMER`](#si_timer)
+  - [`SI_MESGQ`](#si_mesgq)
+  - [`SI_ASYNCIO`](#si_asyncio)
+  - [`SI_SIGIO`](#si_sigio)
+  - [`SI_TKILL`](#si_tkill)
+  - [`SI_ASYNCNL`](#si_asyncnl)
+  - [`BUS_ADRALN`](#bus_adraln)
+  - [`BUS_ADRERR`](#bus_adrerr)
+  - [`BUS_OBJERR`](#bus_objerr)
+  - [`BUS_MCEERR_AR`](#bus_mceerr_ar)
+  - [`BUS_MCEERR_AO`](#bus_mceerr_ao)
+  - [`TRAP_BRKPT`](#trap_brkpt)
+  - [`TRAP_TRACE`](#trap_trace)
+  - [`TRAP_BRANCH`](#trap_branch)
+  - [`TRAP_HWBKPT`](#trap_hwbkpt)
+  - [`TRAP_UNK`](#trap_unk)
+  - [`CLD_EXITED`](#cld_exited)
+  - [`CLD_KILLED`](#cld_killed)
+  - [`CLD_DUMPED`](#cld_dumped)
+  - [`CLD_TRAPPED`](#cld_trapped)
+  - [`CLD_STOPPED`](#cld_stopped)
+  - [`CLD_CONTINUED`](#cld_continued)
+  - [`SIGEV_SIGNAL`](#sigev_signal)
+  - [`SIGEV_NONE`](#sigev_none)
+  - [`SIGEV_THREAD`](#sigev_thread)
+  - [`P_ALL`](#p_all)
+  - [`P_PID`](#p_pid)
+  - [`P_PGID`](#p_pgid)
+  - [`P_PIDFD`](#p_pidfd)
+  - [`UTIME_OMIT`](#utime_omit)
+  - [`UTIME_NOW`](#utime_now)
+  - [`POLLIN`](#pollin)
+  - [`POLLPRI`](#pollpri)
+  - [`POLLOUT`](#pollout)
+  - [`POLLERR`](#pollerr)
+  - [`POLLHUP`](#pollhup)
+  - [`POLLNVAL`](#pollnval)
+  - [`POLLRDNORM`](#pollrdnorm)
+  - [`POLLRDBAND`](#pollrdband)
+  - [`POLLRDHUP`](#pollrdhup)
+  - [`IPTOS_LOWDELAY`](#iptos_lowdelay)
+  - [`IPTOS_THROUGHPUT`](#iptos_throughput)
+  - [`IPTOS_RELIABILITY`](#iptos_reliability)
+  - [`IPTOS_MINCOST`](#iptos_mincost)
+  - [`IPTOS_PREC_NETCONTROL`](#iptos_prec_netcontrol)
+  - [`IPTOS_PREC_INTERNETCONTROL`](#iptos_prec_internetcontrol)
+  - [`IPTOS_PREC_CRITIC_ECP`](#iptos_prec_critic_ecp)
+  - [`IPTOS_PREC_FLASHOVERRIDE`](#iptos_prec_flashoverride)
+  - [`IPTOS_PREC_FLASH`](#iptos_prec_flash)
+  - [`IPTOS_PREC_IMMEDIATE`](#iptos_prec_immediate)
+  - [`IPTOS_PREC_PRIORITY`](#iptos_prec_priority)
+  - [`IPTOS_PREC_ROUTINE`](#iptos_prec_routine)
+  - [`IPTOS_ECN_MASK`](#iptos_ecn_mask)
+  - [`IPTOS_ECN_ECT1`](#iptos_ecn_ect1)
+  - [`IPTOS_ECN_ECT0`](#iptos_ecn_ect0)
+  - [`IPTOS_ECN_CE`](#iptos_ecn_ce)
+  - [`IPOPT_COPY`](#ipopt_copy)
+  - [`IPOPT_CLASS_MASK`](#ipopt_class_mask)
+  - [`IPOPT_NUMBER_MASK`](#ipopt_number_mask)
+  - [`IPOPT_CONTROL`](#ipopt_control)
+  - [`IPOPT_RESERVED1`](#ipopt_reserved1)
+  - [`IPOPT_MEASUREMENT`](#ipopt_measurement)
+  - [`IPOPT_RESERVED2`](#ipopt_reserved2)
+  - [`IPOPT_END`](#ipopt_end)
+  - [`IPOPT_NOOP`](#ipopt_noop)
+  - [`IPOPT_SEC`](#ipopt_sec)
+  - [`IPOPT_LSRR`](#ipopt_lsrr)
+  - [`IPOPT_TIMESTAMP`](#ipopt_timestamp)
+  - [`IPOPT_RR`](#ipopt_rr)
+  - [`IPOPT_SID`](#ipopt_sid)
+  - [`IPOPT_SSRR`](#ipopt_ssrr)
+  - [`IPOPT_RA`](#ipopt_ra)
+  - [`IPVERSION`](#ipversion)
+  - [`MAXTTL`](#maxttl)
+  - [`IPDEFTTL`](#ipdefttl)
+  - [`IPOPT_OPTVAL`](#ipopt_optval)
+  - [`IPOPT_OLEN`](#ipopt_olen)
+  - [`IPOPT_OFFSET`](#ipopt_offset)
+  - [`IPOPT_MINOFF`](#ipopt_minoff)
+  - [`MAX_IPOPTLEN`](#max_ipoptlen)
+  - [`IPOPT_NOP`](#ipopt_nop)
+  - [`IPOPT_EOL`](#ipopt_eol)
+  - [`IPOPT_TS`](#ipopt_ts)
+  - [`IPOPT_TS_TSONLY`](#ipopt_ts_tsonly)
+  - [`IPOPT_TS_TSANDADDR`](#ipopt_ts_tsandaddr)
+  - [`IPOPT_TS_PRESPEC`](#ipopt_ts_prespec)
+  - [`ARPOP_RREQUEST`](#arpop_rrequest)
+  - [`ARPOP_RREPLY`](#arpop_rreply)
+  - [`ARPOP_InREQUEST`](#arpop_inrequest)
+  - [`ARPOP_InREPLY`](#arpop_inreply)
+  - [`ARPOP_NAK`](#arpop_nak)
+  - [`ATF_NETMASK`](#atf_netmask)
+  - [`ATF_DONTPUB`](#atf_dontpub)
+  - [`ARPHRD_NETROM`](#arphrd_netrom)
+  - [`ARPHRD_ETHER`](#arphrd_ether)
+  - [`ARPHRD_EETHER`](#arphrd_eether)
+  - [`ARPHRD_AX25`](#arphrd_ax25)
+  - [`ARPHRD_PRONET`](#arphrd_pronet)
+  - [`ARPHRD_CHAOS`](#arphrd_chaos)
+  - [`ARPHRD_IEEE802`](#arphrd_ieee802)
+  - [`ARPHRD_ARCNET`](#arphrd_arcnet)
+  - [`ARPHRD_APPLETLK`](#arphrd_appletlk)
+  - [`ARPHRD_DLCI`](#arphrd_dlci)
+  - [`ARPHRD_ATM`](#arphrd_atm)
+  - [`ARPHRD_METRICOM`](#arphrd_metricom)
+  - [`ARPHRD_IEEE1394`](#arphrd_ieee1394)
+  - [`ARPHRD_EUI64`](#arphrd_eui64)
+  - [`ARPHRD_INFINIBAND`](#arphrd_infiniband)
+  - [`ARPHRD_SLIP`](#arphrd_slip)
+  - [`ARPHRD_CSLIP`](#arphrd_cslip)
+  - [`ARPHRD_SLIP6`](#arphrd_slip6)
+  - [`ARPHRD_CSLIP6`](#arphrd_cslip6)
+  - [`ARPHRD_RSRVD`](#arphrd_rsrvd)
+  - [`ARPHRD_ADAPT`](#arphrd_adapt)
+  - [`ARPHRD_ROSE`](#arphrd_rose)
+  - [`ARPHRD_X25`](#arphrd_x25)
+  - [`ARPHRD_HWX25`](#arphrd_hwx25)
+  - [`ARPHRD_CAN`](#arphrd_can)
+  - [`ARPHRD_PPP`](#arphrd_ppp)
+  - [`ARPHRD_CISCO`](#arphrd_cisco)
+  - [`ARPHRD_HDLC`](#arphrd_hdlc)
+  - [`ARPHRD_LAPB`](#arphrd_lapb)
+  - [`ARPHRD_DDCMP`](#arphrd_ddcmp)
+  - [`ARPHRD_RAWHDLC`](#arphrd_rawhdlc)
+  - [`ARPHRD_TUNNEL`](#arphrd_tunnel)
+  - [`ARPHRD_TUNNEL6`](#arphrd_tunnel6)
+  - [`ARPHRD_FRAD`](#arphrd_frad)
+  - [`ARPHRD_SKIP`](#arphrd_skip)
+  - [`ARPHRD_LOOPBACK`](#arphrd_loopback)
+  - [`ARPHRD_LOCALTLK`](#arphrd_localtlk)
+  - [`ARPHRD_FDDI`](#arphrd_fddi)
+  - [`ARPHRD_BIF`](#arphrd_bif)
+  - [`ARPHRD_SIT`](#arphrd_sit)
+  - [`ARPHRD_IPDDP`](#arphrd_ipddp)
+  - [`ARPHRD_IPGRE`](#arphrd_ipgre)
+  - [`ARPHRD_PIMREG`](#arphrd_pimreg)
+  - [`ARPHRD_HIPPI`](#arphrd_hippi)
+  - [`ARPHRD_ASH`](#arphrd_ash)
+  - [`ARPHRD_ECONET`](#arphrd_econet)
+  - [`ARPHRD_IRDA`](#arphrd_irda)
+  - [`ARPHRD_FCPP`](#arphrd_fcpp)
+  - [`ARPHRD_FCAL`](#arphrd_fcal)
+  - [`ARPHRD_FCPL`](#arphrd_fcpl)
+  - [`ARPHRD_FCFABRIC`](#arphrd_fcfabric)
+  - [`ARPHRD_IEEE802_TR`](#arphrd_ieee802_tr)
+  - [`ARPHRD_IEEE80211`](#arphrd_ieee80211)
+  - [`ARPHRD_IEEE80211_PRISM`](#arphrd_ieee80211_prism)
+  - [`ARPHRD_IEEE80211_RADIOTAP`](#arphrd_ieee80211_radiotap)
+  - [`ARPHRD_IEEE802154`](#arphrd_ieee802154)
+  - [`ARPHRD_VOID`](#arphrd_void)
+  - [`ARPHRD_NONE`](#arphrd_none)
+  - [`IFF_TUN`](#iff_tun)
+  - [`IFF_TAP`](#iff_tap)
+  - [`IFF_NAPI`](#iff_napi)
+  - [`IFF_NAPI_FRAGS`](#iff_napi_frags)
+  - [`IFF_NO_CARRIER`](#iff_no_carrier)
+  - [`IFF_NO_PI`](#iff_no_pi)
+  - [`TUN_READQ_SIZE`](#tun_readq_size)
+  - [`TUN_TUN_DEV`](#tun_tun_dev)
+  - [`TUN_TAP_DEV`](#tun_tap_dev)
+  - [`TUN_TYPE_MASK`](#tun_type_mask)
+  - [`IFF_ONE_QUEUE`](#iff_one_queue)
+  - [`IFF_VNET_HDR`](#iff_vnet_hdr)
+  - [`IFF_TUN_EXCL`](#iff_tun_excl)
+  - [`IFF_MULTI_QUEUE`](#iff_multi_queue)
+  - [`IFF_ATTACH_QUEUE`](#iff_attach_queue)
+  - [`IFF_DETACH_QUEUE`](#iff_detach_queue)
+  - [`IFF_PERSIST`](#iff_persist)
+  - [`IFF_NOFILTER`](#iff_nofilter)
+  - [`TUN_TX_TIMESTAMP`](#tun_tx_timestamp)
+  - [`TUN_F_CSUM`](#tun_f_csum)
+  - [`TUN_F_TSO4`](#tun_f_tso4)
+  - [`TUN_F_TSO6`](#tun_f_tso6)
+  - [`TUN_F_TSO_ECN`](#tun_f_tso_ecn)
+  - [`TUN_F_UFO`](#tun_f_ufo)
+  - [`TUN_F_USO4`](#tun_f_uso4)
+  - [`TUN_F_USO6`](#tun_f_uso6)
+  - [`TUN_PKT_STRIP`](#tun_pkt_strip)
+  - [`TUN_FLT_ALLMULTI`](#tun_flt_allmulti)
+  - [`T_TYPE`](#t_type)
+  - [`TUNSETNOCSUM`](#tunsetnocsum)
+  - [`TUNSETDEBUG`](#tunsetdebug)
+  - [`TUNSETIFF`](#tunsetiff)
+  - [`TUNSETPERSIST`](#tunsetpersist)
+  - [`TUNSETOWNER`](#tunsetowner)
+  - [`TUNSETLINK`](#tunsetlink)
+  - [`TUNSETGROUP`](#tunsetgroup)
+  - [`TUNGETFEATURES`](#tungetfeatures)
+  - [`TUNSETOFFLOAD`](#tunsetoffload)
+  - [`TUNSETTXFILTER`](#tunsettxfilter)
+  - [`TUNGETIFF`](#tungetiff)
+  - [`TUNGETSNDBUF`](#tungetsndbuf)
+  - [`TUNSETSNDBUF`](#tunsetsndbuf)
+  - [`TUNATTACHFILTER`](#tunattachfilter)
+  - [`TUNDETACHFILTER`](#tundetachfilter)
+  - [`TUNGETVNETHDRSZ`](#tungetvnethdrsz)
+  - [`TUNSETVNETHDRSZ`](#tunsetvnethdrsz)
+  - [`TUNSETQUEUE`](#tunsetqueue)
+  - [`TUNSETIFINDEX`](#tunsetifindex)
+  - [`TUNGETFILTER`](#tungetfilter)
+  - [`TUNSETVNETLE`](#tunsetvnetle)
+  - [`TUNGETVNETLE`](#tungetvnetle)
+  - [`TUNSETVNETBE`](#tunsetvnetbe)
+  - [`TUNGETVNETBE`](#tungetvnetbe)
+  - [`TUNSETSTEERINGEBPF`](#tunsetsteeringebpf)
+  - [`TUNSETFILTEREBPF`](#tunsetfilterebpf)
+  - [`TUNSETCARRIER`](#tunsetcarrier)
+  - [`TUNGETDEVNETNS`](#tungetdevnetns)
+  - [`FS_IOC_GETFLAGS`](#fs_ioc_getflags)
+  - [`FS_IOC_SETFLAGS`](#fs_ioc_setflags)
+  - [`FS_IOC_GETVERSION`](#fs_ioc_getversion)
+  - [`FS_IOC_SETVERSION`](#fs_ioc_setversion)
+  - [`FS_IOC32_GETFLAGS`](#fs_ioc32_getflags)
+  - [`FS_IOC32_SETFLAGS`](#fs_ioc32_setflags)
+  - [`FS_IOC32_GETVERSION`](#fs_ioc32_getversion)
+  - [`FS_IOC32_SETVERSION`](#fs_ioc32_setversion)
+  - [`FICLONE`](#ficlone)
+  - [`FICLONERANGE`](#ficlonerange)
+  - [`ADFS_SUPER_MAGIC`](#adfs_super_magic)
+  - [`AFFS_SUPER_MAGIC`](#affs_super_magic)
+  - [`AFS_SUPER_MAGIC`](#afs_super_magic)
+  - [`AUTOFS_SUPER_MAGIC`](#autofs_super_magic)
+  - [`BPF_FS_MAGIC`](#bpf_fs_magic)
+  - [`BTRFS_SUPER_MAGIC`](#btrfs_super_magic)
+  - [`CGROUP2_SUPER_MAGIC`](#cgroup2_super_magic)
+  - [`CGROUP_SUPER_MAGIC`](#cgroup_super_magic)
+  - [`CODA_SUPER_MAGIC`](#coda_super_magic)
+  - [`CRAMFS_MAGIC`](#cramfs_magic)
+  - [`DEBUGFS_MAGIC`](#debugfs_magic)
+  - [`DEVPTS_SUPER_MAGIC`](#devpts_super_magic)
+  - [`ECRYPTFS_SUPER_MAGIC`](#ecryptfs_super_magic)
+  - [`EFS_SUPER_MAGIC`](#efs_super_magic)
+  - [`EXT2_SUPER_MAGIC`](#ext2_super_magic)
+  - [`EXT3_SUPER_MAGIC`](#ext3_super_magic)
+  - [`EXT4_SUPER_MAGIC`](#ext4_super_magic)
+  - [`F2FS_SUPER_MAGIC`](#f2fs_super_magic)
+  - [`FUSE_SUPER_MAGIC`](#fuse_super_magic)
+  - [`FUTEXFS_SUPER_MAGIC`](#futexfs_super_magic)
+  - [`HOSTFS_SUPER_MAGIC`](#hostfs_super_magic)
+  - [`HPFS_SUPER_MAGIC`](#hpfs_super_magic)
+  - [`HUGETLBFS_MAGIC`](#hugetlbfs_magic)
+  - [`ISOFS_SUPER_MAGIC`](#isofs_super_magic)
+  - [`JFFS2_SUPER_MAGIC`](#jffs2_super_magic)
+  - [`MINIX2_SUPER_MAGIC2`](#minix2_super_magic2)
+  - [`MINIX2_SUPER_MAGIC`](#minix2_super_magic)
+  - [`MINIX3_SUPER_MAGIC`](#minix3_super_magic)
+  - [`MINIX_SUPER_MAGIC2`](#minix_super_magic2)
+  - [`MINIX_SUPER_MAGIC`](#minix_super_magic)
+  - [`MSDOS_SUPER_MAGIC`](#msdos_super_magic)
+  - [`NCP_SUPER_MAGIC`](#ncp_super_magic)
+  - [`NFS_SUPER_MAGIC`](#nfs_super_magic)
+  - [`NILFS_SUPER_MAGIC`](#nilfs_super_magic)
+  - [`OCFS2_SUPER_MAGIC`](#ocfs2_super_magic)
+  - [`OPENPROM_SUPER_MAGIC`](#openprom_super_magic)
+  - [`OVERLAYFS_SUPER_MAGIC`](#overlayfs_super_magic)
+  - [`PROC_SUPER_MAGIC`](#proc_super_magic)
+  - [`QNX4_SUPER_MAGIC`](#qnx4_super_magic)
+  - [`QNX6_SUPER_MAGIC`](#qnx6_super_magic)
+  - [`RDTGROUP_SUPER_MAGIC`](#rdtgroup_super_magic)
+  - [`REISERFS_SUPER_MAGIC`](#reiserfs_super_magic)
+  - [`SECURITYFS_MAGIC`](#securityfs_magic)
+  - [`SELINUX_MAGIC`](#selinux_magic)
+  - [`SMACK_MAGIC`](#smack_magic)
+  - [`SMB_SUPER_MAGIC`](#smb_super_magic)
+  - [`SYSFS_MAGIC`](#sysfs_magic)
+  - [`TMPFS_MAGIC`](#tmpfs_magic)
+  - [`TRACEFS_MAGIC`](#tracefs_magic)
+  - [`UDF_SUPER_MAGIC`](#udf_super_magic)
+  - [`USBDEVICE_SUPER_MAGIC`](#usbdevice_super_magic)
+  - [`XENFS_SUPER_MAGIC`](#xenfs_super_magic)
+  - [`NSFS_MAGIC`](#nsfs_magic)
+  - [`AT_STATX_SYNC_TYPE`](#at_statx_sync_type)
+  - [`AT_STATX_SYNC_AS_STAT`](#at_statx_sync_as_stat)
+  - [`AT_STATX_FORCE_SYNC`](#at_statx_force_sync)
+  - [`AT_STATX_DONT_SYNC`](#at_statx_dont_sync)
+  - [`STATX_TYPE`](#statx_type)
+  - [`STATX_MODE`](#statx_mode)
+  - [`STATX_NLINK`](#statx_nlink)
+  - [`STATX_UID`](#statx_uid)
+  - [`STATX_GID`](#statx_gid)
+  - [`STATX_ATIME`](#statx_atime)
+  - [`STATX_MTIME`](#statx_mtime)
+  - [`STATX_CTIME`](#statx_ctime)
+  - [`STATX_INO`](#statx_ino)
+  - [`STATX_SIZE`](#statx_size)
+  - [`STATX_BLOCKS`](#statx_blocks)
+  - [`STATX_BASIC_STATS`](#statx_basic_stats)
+  - [`STATX_BTIME`](#statx_btime)
+  - [`STATX_ALL`](#statx_all)
+  - [`STATX_MNT_ID`](#statx_mnt_id)
+  - [`STATX_DIOALIGN`](#statx_dioalign)
+  - [`STATX__RESERVED`](#statx__reserved)
+  - [`STATX_ATTR_COMPRESSED`](#statx_attr_compressed)
+  - [`STATX_ATTR_IMMUTABLE`](#statx_attr_immutable)
+  - [`STATX_ATTR_APPEND`](#statx_attr_append)
+  - [`STATX_ATTR_NODUMP`](#statx_attr_nodump)
+  - [`STATX_ATTR_ENCRYPTED`](#statx_attr_encrypted)
+  - [`STATX_ATTR_AUTOMOUNT`](#statx_attr_automount)
+  - [`STATX_ATTR_MOUNT_ROOT`](#statx_attr_mount_root)
+  - [`STATX_ATTR_VERITY`](#statx_attr_verity)
+  - [`STATX_ATTR_DAX`](#statx_attr_dax)
+  - [`_IOC_NRBITS`](#_ioc_nrbits)
+  - [`_IOC_TYPEBITS`](#_ioc_typebits)
+  - [`_IOC_SIZEBITS`](#_ioc_sizebits)
+  - [`_IOC_DIRBITS`](#_ioc_dirbits)
+  - [`_IOC_NONE`](#_ioc_none)
+  - [`_IOC_WRITE`](#_ioc_write)
+  - [`_IOC_READ`](#_ioc_read)
+  - [`_IOC_NRMASK`](#_ioc_nrmask)
+  - [`_IOC_TYPEMASK`](#_ioc_typemask)
+  - [`_IOC_SIZEMASK`](#_ioc_sizemask)
+  - [`_IOC_DIRMASK`](#_ioc_dirmask)
+  - [`_IOC_NRSHIFT`](#_ioc_nrshift)
+  - [`_IOC_TYPESHIFT`](#_ioc_typeshift)
+  - [`_IOC_SIZESHIFT`](#_ioc_sizeshift)
+  - [`_IOC_DIRSHIFT`](#_ioc_dirshift)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`linux_like`](#linux_like) | mod |  |
+| [`linux`](#linux) | mod | Linux-specific definitions for linux-like values |
+| [`group`](#group) | struct |  |
+| [`utimbuf`](#utimbuf) | struct |  |
+| [`timeval`](#timeval) | struct |  |
+| [`rlimit`](#rlimit) | struct |  |
+| [`rusage`](#rusage) | struct |  |
+| [`ipv6_mreq`](#ipv6_mreq) | struct |  |
+| [`hostent`](#hostent) | struct |  |
+| [`iovec`](#iovec) | struct |  |
+| [`pollfd`](#pollfd) | struct |  |
+| [`winsize`](#winsize) | struct |  |
+| [`linger`](#linger) | struct |  |
+| [`sigval`](#sigval) | struct |  |
+| [`itimerval`](#itimerval) | struct |  |
+| [`tms`](#tms) | struct |  |
+| [`servent`](#servent) | struct |  |
+| [`protoent`](#protoent) | struct |  |
+| [`in6_addr`](#in6_addr) | struct |  |
+| [`in_addr`](#in_addr) | struct |  |
+| [`ip_mreq`](#ip_mreq) | struct |  |
+| [`ip_mreqn`](#ip_mreqn) | struct |  |
+| [`ip_mreq_source`](#ip_mreq_source) | struct |  |
+| [`sockaddr`](#sockaddr) | struct |  |
+| [`sockaddr_in`](#sockaddr_in) | struct |  |
+| [`sockaddr_in6`](#sockaddr_in6) | struct |  |
+| [`addrinfo`](#addrinfo) | struct |  |
+| [`sockaddr_ll`](#sockaddr_ll) | struct |  |
+| [`fd_set`](#fd_set) | struct |  |
+| [`tm`](#tm) | struct |  |
+| [`sched_param`](#sched_param) | struct |  |
+| [`Dl_info`](#dl_info) | struct |  |
+| [`lconv`](#lconv) | struct |  |
+| [`in_pktinfo`](#in_pktinfo) | struct |  |
+| [`ifaddrs`](#ifaddrs) | struct |  |
+| [`in6_rtmsg`](#in6_rtmsg) | struct |  |
+| [`arpreq`](#arpreq) | struct |  |
+| [`arpreq_old`](#arpreq_old) | struct |  |
+| [`arphdr`](#arphdr) | struct |  |
+| [`mmsghdr`](#mmsghdr) | struct |  |
+| [`sockaddr_un`](#sockaddr_un) | struct |  |
+| [`sockaddr_storage`](#sockaddr_storage) | struct |  |
+| [`utsname`](#utsname) | struct |  |
+| [`file_clone_range`](#file_clone_range) | struct |  |
+| [`sock_filter`](#sock_filter) | struct |  |
+| [`sock_fprog`](#sock_fprog) | struct |  |
+| [`statx`](#statx) | struct |  |
+| [`statx_timestamp`](#statx_timestamp) | struct |  |
+| [`epoll_event`](#epoll_event) | struct |  |
+| [`sigevent`](#sigevent) | struct |  |
+| [`DIR`](#dir) | enum |  |
+| [`FILE`](#file) | enum |  |
+| [`timezone`](#timezone) | enum |  |
+| [`isalnum`](#isalnum) | fn |  |
+| [`isalpha`](#isalpha) | fn |  |
+| [`iscntrl`](#iscntrl) | fn |  |
+| [`isdigit`](#isdigit) | fn |  |
+| [`isgraph`](#isgraph) | fn |  |
+| [`islower`](#islower) | fn |  |
+| [`isprint`](#isprint) | fn |  |
+| [`ispunct`](#ispunct) | fn |  |
+| [`isspace`](#isspace) | fn |  |
+| [`isupper`](#isupper) | fn |  |
+| [`isxdigit`](#isxdigit) | fn |  |
+| [`isblank`](#isblank) | fn |  |
+| [`tolower`](#tolower) | fn |  |
+| [`toupper`](#toupper) | fn |  |
+| [`qsort`](#qsort) | fn |  |
+| [`bsearch`](#bsearch) | fn |  |
+| [`fopen`](#fopen) | fn |  |
+| [`freopen`](#freopen) | fn |  |
+| [`fflush`](#fflush) | fn |  |
+| [`fclose`](#fclose) | fn |  |
+| [`remove`](#remove) | fn |  |
+| [`rename`](#rename) | fn |  |
+| [`tmpfile`](#tmpfile) | fn |  |
+| [`setvbuf`](#setvbuf) | fn |  |
+| [`setbuf`](#setbuf) | fn |  |
+| [`getchar`](#getchar) | fn |  |
+| [`putchar`](#putchar) | fn |  |
+| [`fgetc`](#fgetc) | fn |  |
+| [`fgets`](#fgets) | fn |  |
+| [`fputc`](#fputc) | fn |  |
+| [`fputs`](#fputs) | fn |  |
+| [`puts`](#puts) | fn |  |
+| [`ungetc`](#ungetc) | fn |  |
+| [`fread`](#fread) | fn |  |
+| [`fwrite`](#fwrite) | fn |  |
+| [`fseek`](#fseek) | fn |  |
+| [`ftell`](#ftell) | fn |  |
+| [`rewind`](#rewind) | fn |  |
+| [`fgetpos`](#fgetpos) | fn |  |
+| [`fsetpos`](#fsetpos) | fn |  |
+| [`feof`](#feof) | fn |  |
+| [`ferror`](#ferror) | fn |  |
+| [`clearerr`](#clearerr) | fn |  |
+| [`perror`](#perror) | fn |  |
+| [`atof`](#atof) | fn |  |
+| [`atoi`](#atoi) | fn |  |
+| [`atol`](#atol) | fn |  |
+| [`atoll`](#atoll) | fn |  |
+| [`strtod`](#strtod) | fn |  |
+| [`strtof`](#strtof) | fn |  |
+| [`strtol`](#strtol) | fn |  |
+| [`strtoll`](#strtoll) | fn |  |
+| [`strtoul`](#strtoul) | fn |  |
+| [`strtoull`](#strtoull) | fn |  |
+| [`calloc`](#calloc) | fn |  |
+| [`malloc`](#malloc) | fn |  |
+| [`realloc`](#realloc) | fn |  |
+| [`free`](#free) | fn |  |
+| [`abort`](#abort) | fn |  |
+| [`exit`](#exit) | fn |  |
+| [`_exit`](#_exit) | fn |  |
+| [`system`](#system) | fn |  |
+| [`getenv`](#getenv) | fn |  |
+| [`strcpy`](#strcpy) | fn |  |
+| [`strncpy`](#strncpy) | fn |  |
+| [`stpcpy`](#stpcpy) | fn |  |
+| [`strcat`](#strcat) | fn |  |
+| [`strncat`](#strncat) | fn |  |
+| [`strcmp`](#strcmp) | fn |  |
+| [`strncmp`](#strncmp) | fn |  |
+| [`strcoll`](#strcoll) | fn |  |
+| [`strchr`](#strchr) | fn |  |
+| [`strrchr`](#strrchr) | fn |  |
+| [`strspn`](#strspn) | fn |  |
+| [`strcspn`](#strcspn) | fn |  |
+| [`strdup`](#strdup) | fn |  |
+| [`strndup`](#strndup) | fn |  |
+| [`strpbrk`](#strpbrk) | fn |  |
+| [`strstr`](#strstr) | fn |  |
+| [`strcasecmp`](#strcasecmp) | fn |  |
+| [`strncasecmp`](#strncasecmp) | fn |  |
+| [`strlen`](#strlen) | fn |  |
+| [`strnlen`](#strnlen) | fn |  |
+| [`strerror`](#strerror) | fn |  |
+| [`strtok`](#strtok) | fn |  |
+| [`strtok_r`](#strtok_r) | fn |  |
+| [`strxfrm`](#strxfrm) | fn |  |
+| [`strsignal`](#strsignal) | fn |  |
+| [`wcslen`](#wcslen) | fn |  |
+| [`wcstombs`](#wcstombs) | fn |  |
+| [`memchr`](#memchr) | fn |  |
+| [`wmemchr`](#wmemchr) | fn |  |
+| [`memcmp`](#memcmp) | fn |  |
+| [`memcpy`](#memcpy) | fn |  |
+| [`memmove`](#memmove) | fn |  |
+| [`memset`](#memset) | fn |  |
+| [`memccpy`](#memccpy) | fn |  |
+| [`getpwnam`](#getpwnam) | fn |  |
+| [`getpwuid`](#getpwuid) | fn |  |
+| [`fprintf`](#fprintf) | fn |  |
+| [`printf`](#printf) | fn |  |
+| [`snprintf`](#snprintf) | fn |  |
+| [`sprintf`](#sprintf) | fn |  |
+| [`fscanf`](#fscanf) | fn |  |
+| [`scanf`](#scanf) | fn |  |
+| [`sscanf`](#sscanf) | fn |  |
+| [`getchar_unlocked`](#getchar_unlocked) | fn |  |
+| [`putchar_unlocked`](#putchar_unlocked) | fn |  |
+| [`socket`](#socket) | fn |  |
+| [`connect`](#connect) | fn |  |
+| [`listen`](#listen) | fn |  |
+| [`accept`](#accept) | fn |  |
+| [`getpeername`](#getpeername) | fn |  |
+| [`getsockname`](#getsockname) | fn |  |
+| [`setsockopt`](#setsockopt) | fn |  |
+| [`socketpair`](#socketpair) | fn |  |
+| [`sendto`](#sendto) | fn |  |
+| [`shutdown`](#shutdown) | fn |  |
+| [`chmod`](#chmod) | fn |  |
+| [`fchmod`](#fchmod) | fn |  |
+| [`fstat`](#fstat) | fn |  |
+| [`mkdir`](#mkdir) | fn |  |
+| [`stat`](#stat) | fn |  |
+| [`pclose`](#pclose) | fn |  |
+| [`fdopen`](#fdopen) | fn |  |
+| [`fileno`](#fileno) | fn |  |
+| [`open`](#open) | fn |  |
+| [`creat`](#creat) | fn |  |
+| [`fcntl`](#fcntl) | fn |  |
+| [`opendir`](#opendir) | fn |  |
+| [`readdir`](#readdir) | fn |  |
+| [`closedir`](#closedir) | fn |  |
+| [`rewinddir`](#rewinddir) | fn |  |
+| [`fchmodat`](#fchmodat) | fn |  |
+| [`fchown`](#fchown) | fn |  |
+| [`fchownat`](#fchownat) | fn |  |
+| [`fstatat`](#fstatat) | fn |  |
+| [`linkat`](#linkat) | fn |  |
+| [`renameat`](#renameat) | fn |  |
+| [`symlinkat`](#symlinkat) | fn |  |
+| [`unlinkat`](#unlinkat) | fn |  |
+| [`access`](#access) | fn |  |
+| [`alarm`](#alarm) | fn |  |
+| [`chdir`](#chdir) | fn |  |
+| [`fchdir`](#fchdir) | fn |  |
+| [`chown`](#chown) | fn |  |
+| [`lchown`](#lchown) | fn |  |
+| [`close`](#close) | fn |  |
+| [`dup`](#dup) | fn |  |
+| [`dup2`](#dup2) | fn |  |
+| [`execl`](#execl) | fn |  |
+| [`execle`](#execle) | fn |  |
+| [`execlp`](#execlp) | fn |  |
+| [`execv`](#execv) | fn |  |
+| [`execve`](#execve) | fn |  |
+| [`execvp`](#execvp) | fn |  |
+| [`fork`](#fork) | fn |  |
+| [`fpathconf`](#fpathconf) | fn |  |
+| [`getcwd`](#getcwd) | fn |  |
+| [`getegid`](#getegid) | fn |  |
+| [`geteuid`](#geteuid) | fn |  |
+| [`getgid`](#getgid) | fn |  |
+| [`getgroups`](#getgroups) | fn |  |
+| [`getlogin`](#getlogin) | fn |  |
+| [`getopt`](#getopt) | fn |  |
+| [`getpgid`](#getpgid) | fn |  |
+| [`getpgrp`](#getpgrp) | fn |  |
+| [`getpid`](#getpid) | fn |  |
+| [`getppid`](#getppid) | fn |  |
+| [`getuid`](#getuid) | fn |  |
+| [`isatty`](#isatty) | fn |  |
+| [`link`](#link) | fn |  |
+| [`lseek`](#lseek) | fn |  |
+| [`pathconf`](#pathconf) | fn |  |
+| [`pipe`](#pipe) | fn |  |
+| [`posix_memalign`](#posix_memalign) | fn |  |
+| [`aligned_alloc`](#aligned_alloc) | fn |  |
+| [`read`](#read) | fn |  |
+| [`rmdir`](#rmdir) | fn |  |
+| [`seteuid`](#seteuid) | fn |  |
+| [`setegid`](#setegid) | fn |  |
+| [`setgid`](#setgid) | fn |  |
+| [`setpgid`](#setpgid) | fn |  |
+| [`setsid`](#setsid) | fn |  |
+| [`setuid`](#setuid) | fn |  |
+| [`setreuid`](#setreuid) | fn |  |
+| [`setregid`](#setregid) | fn |  |
+| [`sleep`](#sleep) | fn |  |
+| [`nanosleep`](#nanosleep) | fn |  |
+| [`tcgetpgrp`](#tcgetpgrp) | fn |  |
+| [`tcsetpgrp`](#tcsetpgrp) | fn |  |
+| [`ttyname`](#ttyname) | fn |  |
+| [`ttyname_r`](#ttyname_r) | fn |  |
+| [`unlink`](#unlink) | fn |  |
+| [`wait`](#wait) | fn |  |
+| [`waitpid`](#waitpid) | fn |  |
+| [`write`](#write) | fn |  |
+| [`pread`](#pread) | fn |  |
+| [`pwrite`](#pwrite) | fn |  |
+| [`umask`](#umask) | fn |  |
+| [`utime`](#utime) | fn |  |
+| [`kill`](#kill) | fn |  |
+| [`killpg`](#killpg) | fn |  |
+| [`mlock`](#mlock) | fn |  |
+| [`munlock`](#munlock) | fn |  |
+| [`mlockall`](#mlockall) | fn |  |
+| [`munlockall`](#munlockall) | fn |  |
+| [`mmap`](#mmap) | fn |  |
+| [`munmap`](#munmap) | fn |  |
+| [`if_nametoindex`](#if_nametoindex) | fn |  |
+| [`if_indextoname`](#if_indextoname) | fn |  |
+| [`lstat`](#lstat) | fn |  |
+| [`fsync`](#fsync) | fn |  |
+| [`setenv`](#setenv) | fn |  |
+| [`unsetenv`](#unsetenv) | fn |  |
+| [`symlink`](#symlink) | fn |  |
+| [`truncate`](#truncate) | fn |  |
+| [`ftruncate`](#ftruncate) | fn |  |
+| [`signal`](#signal) | fn |  |
+| [`getrusage`](#getrusage) | fn |  |
+| [`realpath`](#realpath) | fn |  |
+| [`times`](#times) | fn |  |
+| [`pthread_self`](#pthread_self) | fn |  |
+| [`pthread_equal`](#pthread_equal) | fn |  |
+| [`pthread_join`](#pthread_join) | fn |  |
+| [`pthread_exit`](#pthread_exit) | fn |  |
+| [`pthread_attr_init`](#pthread_attr_init) | fn |  |
+| [`pthread_attr_destroy`](#pthread_attr_destroy) | fn |  |
+| [`pthread_attr_getstacksize`](#pthread_attr_getstacksize) | fn |  |
+| [`pthread_attr_setstacksize`](#pthread_attr_setstacksize) | fn |  |
+| [`pthread_attr_setdetachstate`](#pthread_attr_setdetachstate) | fn |  |
+| [`pthread_detach`](#pthread_detach) | fn |  |
+| [`sched_yield`](#sched_yield) | fn |  |
+| [`pthread_key_create`](#pthread_key_create) | fn |  |
+| [`pthread_key_delete`](#pthread_key_delete) | fn |  |
+| [`pthread_getspecific`](#pthread_getspecific) | fn |  |
+| [`pthread_setspecific`](#pthread_setspecific) | fn |  |
+| [`pthread_mutex_init`](#pthread_mutex_init) | fn |  |
+| [`pthread_mutex_destroy`](#pthread_mutex_destroy) | fn |  |
+| [`pthread_mutex_lock`](#pthread_mutex_lock) | fn |  |
+| [`pthread_mutex_trylock`](#pthread_mutex_trylock) | fn |  |
+| [`pthread_mutex_unlock`](#pthread_mutex_unlock) | fn |  |
+| [`pthread_mutexattr_init`](#pthread_mutexattr_init) | fn |  |
+| [`pthread_mutexattr_destroy`](#pthread_mutexattr_destroy) | fn |  |
+| [`pthread_mutexattr_settype`](#pthread_mutexattr_settype) | fn |  |
+| [`pthread_cond_init`](#pthread_cond_init) | fn |  |
+| [`pthread_cond_wait`](#pthread_cond_wait) | fn |  |
+| [`pthread_cond_timedwait`](#pthread_cond_timedwait) | fn |  |
+| [`pthread_cond_signal`](#pthread_cond_signal) | fn |  |
+| [`pthread_cond_broadcast`](#pthread_cond_broadcast) | fn |  |
+| [`pthread_cond_destroy`](#pthread_cond_destroy) | fn |  |
+| [`pthread_condattr_init`](#pthread_condattr_init) | fn |  |
+| [`pthread_condattr_destroy`](#pthread_condattr_destroy) | fn |  |
+| [`pthread_rwlock_init`](#pthread_rwlock_init) | fn |  |
+| [`pthread_rwlock_destroy`](#pthread_rwlock_destroy) | fn |  |
+| [`pthread_rwlock_rdlock`](#pthread_rwlock_rdlock) | fn |  |
+| [`pthread_rwlock_tryrdlock`](#pthread_rwlock_tryrdlock) | fn |  |
+| [`pthread_rwlock_wrlock`](#pthread_rwlock_wrlock) | fn |  |
+| [`pthread_rwlock_trywrlock`](#pthread_rwlock_trywrlock) | fn |  |
+| [`pthread_rwlock_unlock`](#pthread_rwlock_unlock) | fn |  |
+| [`pthread_rwlockattr_init`](#pthread_rwlockattr_init) | fn |  |
+| [`pthread_rwlockattr_destroy`](#pthread_rwlockattr_destroy) | fn |  |
+| [`getsockopt`](#getsockopt) | fn |  |
+| [`raise`](#raise) | fn |  |
+| [`utimes`](#utimes) | fn |  |
+| [`dlopen`](#dlopen) | fn |  |
+| [`dlerror`](#dlerror) | fn |  |
+| [`dlsym`](#dlsym) | fn |  |
+| [`dlclose`](#dlclose) | fn |  |
+| [`getaddrinfo`](#getaddrinfo) | fn |  |
+| [`freeaddrinfo`](#freeaddrinfo) | fn |  |
+| [`hstrerror`](#hstrerror) | fn |  |
+| [`gai_strerror`](#gai_strerror) | fn |  |
+| [`res_init`](#res_init) | fn |  |
+| [`gmtime_r`](#gmtime_r) | fn |  |
+| [`localtime_r`](#localtime_r) | fn |  |
+| [`mktime`](#mktime) | fn |  |
+| [`time`](#time) | fn |  |
+| [`gmtime`](#gmtime) | fn |  |
+| [`localtime`](#localtime) | fn |  |
+| [`difftime`](#difftime) | fn |  |
+| [`timegm`](#timegm) | fn |  |
+| [`mknod`](#mknod) | fn |  |
+| [`gethostname`](#gethostname) | fn |  |
+| [`endservent`](#endservent) | fn |  |
+| [`getservbyname`](#getservbyname) | fn |  |
+| [`getservbyport`](#getservbyport) | fn |  |
+| [`getservent`](#getservent) | fn |  |
+| [`setservent`](#setservent) | fn |  |
+| [`getprotobyname`](#getprotobyname) | fn |  |
+| [`getprotobynumber`](#getprotobynumber) | fn |  |
+| [`chroot`](#chroot) | fn |  |
+| [`usleep`](#usleep) | fn |  |
+| [`send`](#send) | fn |  |
+| [`recv`](#recv) | fn |  |
+| [`putenv`](#putenv) | fn |  |
+| [`poll`](#poll) | fn |  |
+| [`select`](#select) | fn |  |
+| [`setlocale`](#setlocale) | fn |  |
+| [`localeconv`](#localeconv) | fn |  |
+| [`sem_wait`](#sem_wait) | fn |  |
+| [`sem_trywait`](#sem_trywait) | fn |  |
+| [`sem_post`](#sem_post) | fn |  |
+| [`statvfs`](#statvfs) | fn |  |
+| [`fstatvfs`](#fstatvfs) | fn |  |
+| [`sigemptyset`](#sigemptyset) | fn |  |
+| [`sigaddset`](#sigaddset) | fn |  |
+| [`sigfillset`](#sigfillset) | fn |  |
+| [`sigdelset`](#sigdelset) | fn |  |
+| [`sigismember`](#sigismember) | fn |  |
+| [`sigprocmask`](#sigprocmask) | fn |  |
+| [`sigpending`](#sigpending) | fn |  |
+| [`sysconf`](#sysconf) | fn |  |
+| [`mkfifo`](#mkfifo) | fn |  |
+| [`fseeko`](#fseeko) | fn |  |
+| [`ftello`](#ftello) | fn |  |
+| [`tcdrain`](#tcdrain) | fn |  |
+| [`cfgetispeed`](#cfgetispeed) | fn |  |
+| [`cfgetospeed`](#cfgetospeed) | fn |  |
+| [`cfsetispeed`](#cfsetispeed) | fn |  |
+| [`cfsetospeed`](#cfsetospeed) | fn |  |
+| [`tcgetattr`](#tcgetattr) | fn |  |
+| [`tcsetattr`](#tcsetattr) | fn |  |
+| [`tcflow`](#tcflow) | fn |  |
+| [`tcflush`](#tcflush) | fn |  |
+| [`tcgetsid`](#tcgetsid) | fn |  |
+| [`tcsendbreak`](#tcsendbreak) | fn |  |
+| [`mkstemp`](#mkstemp) | fn |  |
+| [`mkdtemp`](#mkdtemp) | fn |  |
+| [`tmpnam`](#tmpnam) | fn |  |
+| [`openlog`](#openlog) | fn |  |
+| [`closelog`](#closelog) | fn |  |
+| [`setlogmask`](#setlogmask) | fn |  |
+| [`syslog`](#syslog) | fn |  |
+| [`nice`](#nice) | fn |  |
+| [`grantpt`](#grantpt) | fn |  |
+| [`posix_openpt`](#posix_openpt) | fn |  |
+| [`ptsname`](#ptsname) | fn |  |
+| [`unlockpt`](#unlockpt) | fn |  |
+| [`strcasestr`](#strcasestr) | fn |  |
+| [`getline`](#getline) | fn |  |
+| [`lockf`](#lockf) | fn |  |
+| [`adjtime`](#adjtime) | fn |  |
+| [`stpncpy`](#stpncpy) | fn |  |
+| [`sigqueue`](#sigqueue) | fn |  |
+| [`confstr`](#confstr) | fn |  |
+| [`dladdr`](#dladdr) | fn |  |
+| [`flock`](#flock) | fn |  |
+| [`open_wmemstream`](#open_wmemstream) | fn |  |
+| [`getsid`](#getsid) | fn |  |
+| [`pause`](#pause) | fn |  |
+| [`mkdirat`](#mkdirat) | fn |  |
+| [`openat`](#openat) | fn |  |
+| [`fdopendir`](#fdopendir) | fn |  |
+| [`readdir_r`](#readdir_r) | fn | The 64-bit libc on Solaris and illumos only has readdir_r. |
+| [`readlinkat`](#readlinkat) | fn |  |
+| [`fmemopen`](#fmemopen) | fn |  |
+| [`open_memstream`](#open_memstream) | fn |  |
+| [`atexit`](#atexit) | fn |  |
+| [`sigaction`](#sigaction) | fn |  |
+| [`readlink`](#readlink) | fn |  |
+| [`pselect`](#pselect) | fn |  |
+| [`cfmakeraw`](#cfmakeraw) | fn |  |
+| [`cfsetspeed`](#cfsetspeed) | fn |  |
+| [`fnmatch`](#fnmatch) | fn |  |
+| [`htonl`](#htonl) | fn |  |
+| [`htons`](#htons) | fn |  |
+| [`ntohl`](#ntohl) | fn |  |
+| [`ntohs`](#ntohs) | fn |  |
+| [`ioctl`](#ioctl) | fn |  |
+| [`sem_destroy`](#sem_destroy) | fn |  |
+| [`sem_init`](#sem_init) | fn |  |
+| [`fdatasync`](#fdatasync) | fn |  |
+| [`mincore`](#mincore) | fn |  |
+| [`clock_getres`](#clock_getres) | fn |  |
+| [`clock_gettime`](#clock_gettime) | fn |  |
+| [`clock_settime`](#clock_settime) | fn |  |
+| [`clock_getcpuclockid`](#clock_getcpuclockid) | fn |  |
+| [`dirfd`](#dirfd) | fn |  |
+| [`memalign`](#memalign) | fn |  |
+| [`setgroups`](#setgroups) | fn |  |
+| [`pipe2`](#pipe2) | fn |  |
+| [`statfs`](#statfs) | fn |  |
+| [`fstatfs`](#fstatfs) | fn |  |
+| [`memrchr`](#memrchr) | fn |  |
+| [`posix_fadvise`](#posix_fadvise) | fn |  |
+| [`futimens`](#futimens) | fn |  |
+| [`utimensat`](#utimensat) | fn |  |
+| [`duplocale`](#duplocale) | fn |  |
+| [`freelocale`](#freelocale) | fn |  |
+| [`newlocale`](#newlocale) | fn |  |
+| [`uselocale`](#uselocale) | fn |  |
+| [`mknodat`](#mknodat) | fn |  |
+| [`ptsname_r`](#ptsname_r) | fn |  |
+| [`clearenv`](#clearenv) | fn |  |
+| [`waitid`](#waitid) | fn |  |
+| [`getresuid`](#getresuid) | fn |  |
+| [`getresgid`](#getresgid) | fn |  |
+| [`acct`](#acct) | fn |  |
+| [`brk`](#brk) | fn |  |
+| [`sbrk`](#sbrk) | fn |  |
+| [`vfork`](#vfork) | fn |  |
+| [`setresgid`](#setresgid) | fn |  |
+| [`setresuid`](#setresuid) | fn |  |
+| [`wait4`](#wait4) | fn |  |
+| [`login_tty`](#login_tty) | fn |  |
+| [`execvpe`](#execvpe) | fn |  |
+| [`fexecve`](#fexecve) | fn |  |
+| [`getifaddrs`](#getifaddrs) | fn |  |
+| [`freeifaddrs`](#freeifaddrs) | fn |  |
+| [`bind`](#bind) | fn |  |
+| [`writev`](#writev) | fn |  |
+| [`readv`](#readv) | fn |  |
+| [`sendmsg`](#sendmsg) | fn |  |
+| [`recvmsg`](#recvmsg) | fn |  |
+| [`uname`](#uname) | fn |  |
+| [`strchrnul`](#strchrnul) | fn |  |
+| [`strftime`](#strftime) | fn |  |
+| [`strftime_l`](#strftime_l) | fn |  |
+| [`strptime`](#strptime) | fn |  |
+| [`mkostemp`](#mkostemp) | fn |  |
+| [`mkostemps`](#mkostemps) | fn |  |
+| [`getdomainname`](#getdomainname) | fn |  |
+| [`setdomainname`](#setdomainname) | fn |  |
+| [`fstatfs64`](#fstatfs64) | fn |  |
+| [`statvfs64`](#statvfs64) | fn |  |
+| [`fstatvfs64`](#fstatvfs64) | fn |  |
+| [`statfs64`](#statfs64) | fn |  |
+| [`creat64`](#creat64) | fn |  |
+| [`fstat64`](#fstat64) | fn |  |
+| [`fstatat64`](#fstatat64) | fn |  |
+| [`ftruncate64`](#ftruncate64) | fn |  |
+| [`lseek64`](#lseek64) | fn |  |
+| [`lstat64`](#lstat64) | fn |  |
+| [`mmap64`](#mmap64) | fn |  |
+| [`open64`](#open64) | fn |  |
+| [`openat64`](#openat64) | fn |  |
+| [`posix_fadvise64`](#posix_fadvise64) | fn |  |
+| [`pread64`](#pread64) | fn |  |
+| [`pwrite64`](#pwrite64) | fn |  |
+| [`readdir64`](#readdir64) | fn |  |
+| [`readdir64_r`](#readdir64_r) | fn |  |
+| [`stat64`](#stat64) | fn |  |
+| [`truncate64`](#truncate64) | fn |  |
+| [`preadv64`](#preadv64) | fn |  |
+| [`pwritev64`](#pwritev64) | fn |  |
+| [`forkpty`](#forkpty) | fn |  |
+| [`openpty`](#openpty) | fn |  |
+| [`statx`](#statx) | fn |  |
+| [`_IOC`](#_ioc) | fn | Build an ioctl number, analogous to the C macro of the same name. |
+| [`_IO`](#_io) | fn | Build an ioctl number for an argumentless ioctl. |
+| [`_IOR`](#_ior) | fn | Build an ioctl number for an read-only ioctl. |
+| [`_IOW`](#_iow) | fn | Build an ioctl number for an write-only ioctl. |
+| [`_IOWR`](#_iowr) | fn | Build an ioctl number for a read-write ioctl. |
+| [`CMSG_ALIGN`](#cmsg_align) | fn |  |
+| [`CMSG_FIRSTHDR`](#cmsg_firsthdr) | fn |  |
+| [`CMSG_DATA`](#cmsg_data) | fn |  |
+| [`CMSG_SPACE`](#cmsg_space) | fn |  |
+| [`CMSG_LEN`](#cmsg_len) | fn |  |
+| [`FD_CLR`](#fd_clr) | fn |  |
+| [`FD_ISSET`](#fd_isset) | fn |  |
+| [`FD_SET`](#fd_set) | fn |  |
+| [`FD_ZERO`](#fd_zero) | fn |  |
+| [`SIGRTMAX`](#sigrtmax) | fn |  |
+| [`SIGRTMIN`](#sigrtmin) | fn |  |
+| [`WIFSTOPPED`](#wifstopped) | fn |  |
+| [`WSTOPSIG`](#wstopsig) | fn |  |
+| [`WIFCONTINUED`](#wifcontinued) | fn |  |
+| [`WIFSIGNALED`](#wifsignaled) | fn |  |
+| [`WTERMSIG`](#wtermsig) | fn |  |
+| [`WIFEXITED`](#wifexited) | fn |  |
+| [`WEXITSTATUS`](#wexitstatus) | fn |  |
+| [`WCOREDUMP`](#wcoredump) | fn |  |
+| [`W_EXITCODE`](#w_exitcode) | fn |  |
+| [`W_STOPCODE`](#w_stopcode) | fn |  |
+| [`QCMD`](#qcmd) | fn |  |
+| [`IPOPT_COPIED`](#ipopt_copied) | fn |  |
+| [`IPOPT_CLASS`](#ipopt_class) | fn |  |
+| [`IPOPT_NUMBER`](#ipopt_number) | fn |  |
+| [`IPTOS_ECN`](#iptos_ecn) | fn |  |
+| [`KERNEL_VERSION`](#kernel_version) | fn |  |
+| [`intmax_t`](#intmax_t) | type |  |
+| [`uintmax_t`](#uintmax_t) | type |  |
+| [`size_t`](#size_t) | type |  |
+| [`ptrdiff_t`](#ptrdiff_t) | type |  |
+| [`intptr_t`](#intptr_t) | type |  |
+| [`uintptr_t`](#uintptr_t) | type |  |
+| [`ssize_t`](#ssize_t) | type |  |
+| [`pid_t`](#pid_t) | type |  |
+| [`in_addr_t`](#in_addr_t) | type |  |
+| [`in_port_t`](#in_port_t) | type |  |
+| [`sighandler_t`](#sighandler_t) | type |  |
+| [`cc_t`](#cc_t) | type |  |
+| [`uid_t`](#uid_t) | type |  |
+| [`gid_t`](#gid_t) | type |  |
+| [`locale_t`](#locale_t) | type |  |
+| [`sa_family_t`](#sa_family_t) | type |  |
+| [`speed_t`](#speed_t) | type |  |
+| [`tcflag_t`](#tcflag_t) | type |  |
+| [`clockid_t`](#clockid_t) | type |  |
+| [`timer_t`](#timer_t) | type |  |
+| [`key_t`](#key_t) | type |  |
+| [`id_t`](#id_t) | type |  |
+| [`INT_MIN`](#int_min) | const |  |
+| [`INT_MAX`](#int_max) | const |  |
+| [`SIG_DFL`](#sig_dfl) | const |  |
+| [`SIG_IGN`](#sig_ign) | const |  |
+| [`SIG_ERR`](#sig_err) | const |  |
+| [`DT_UNKNOWN`](#dt_unknown) | const |  |
+| [`DT_FIFO`](#dt_fifo) | const |  |
+| [`DT_CHR`](#dt_chr) | const |  |
+| [`DT_DIR`](#dt_dir) | const |  |
+| [`DT_BLK`](#dt_blk) | const |  |
+| [`DT_REG`](#dt_reg) | const |  |
+| [`DT_LNK`](#dt_lnk) | const |  |
+| [`DT_SOCK`](#dt_sock) | const |  |
+| [`FD_CLOEXEC`](#fd_cloexec) | const |  |
+| [`USRQUOTA`](#usrquota) | const |  |
+| [`GRPQUOTA`](#grpquota) | const |  |
+| [`SIGIOT`](#sigiot) | const |  |
+| [`S_ISUID`](#s_isuid) | const |  |
+| [`S_ISGID`](#s_isgid) | const |  |
+| [`S_ISVTX`](#s_isvtx) | const |  |
+| [`IF_NAMESIZE`](#if_namesize) | const |  |
+| [`IFNAMSIZ`](#ifnamsiz) | const |  |
+| [`LOG_EMERG`](#log_emerg) | const |  |
+| [`LOG_ALERT`](#log_alert) | const |  |
+| [`LOG_CRIT`](#log_crit) | const |  |
+| [`LOG_ERR`](#log_err) | const |  |
+| [`LOG_WARNING`](#log_warning) | const |  |
+| [`LOG_NOTICE`](#log_notice) | const |  |
+| [`LOG_INFO`](#log_info) | const |  |
+| [`LOG_DEBUG`](#log_debug) | const |  |
+| [`LOG_KERN`](#log_kern) | const |  |
+| [`LOG_USER`](#log_user) | const |  |
+| [`LOG_MAIL`](#log_mail) | const |  |
+| [`LOG_DAEMON`](#log_daemon) | const |  |
+| [`LOG_AUTH`](#log_auth) | const |  |
+| [`LOG_SYSLOG`](#log_syslog) | const |  |
+| [`LOG_LPR`](#log_lpr) | const |  |
+| [`LOG_NEWS`](#log_news) | const |  |
+| [`LOG_UUCP`](#log_uucp) | const |  |
+| [`LOG_LOCAL0`](#log_local0) | const |  |
+| [`LOG_LOCAL1`](#log_local1) | const |  |
+| [`LOG_LOCAL2`](#log_local2) | const |  |
+| [`LOG_LOCAL3`](#log_local3) | const |  |
+| [`LOG_LOCAL4`](#log_local4) | const |  |
+| [`LOG_LOCAL5`](#log_local5) | const |  |
+| [`LOG_LOCAL6`](#log_local6) | const |  |
+| [`LOG_LOCAL7`](#log_local7) | const |  |
+| [`LOG_PID`](#log_pid) | const |  |
+| [`LOG_CONS`](#log_cons) | const |  |
+| [`LOG_ODELAY`](#log_odelay) | const |  |
+| [`LOG_NDELAY`](#log_ndelay) | const |  |
+| [`LOG_NOWAIT`](#log_nowait) | const |  |
+| [`LOG_PRIMASK`](#log_primask) | const |  |
+| [`LOG_FACMASK`](#log_facmask) | const |  |
+| [`PRIO_MIN`](#prio_min) | const |  |
+| [`PRIO_MAX`](#prio_max) | const |  |
+| [`IPPROTO_ICMP`](#ipproto_icmp) | const |  |
+| [`IPPROTO_ICMPV6`](#ipproto_icmpv6) | const |  |
+| [`IPPROTO_TCP`](#ipproto_tcp) | const |  |
+| [`IPPROTO_UDP`](#ipproto_udp) | const |  |
+| [`IPPROTO_IP`](#ipproto_ip) | const |  |
+| [`IPPROTO_IPV6`](#ipproto_ipv6) | const |  |
+| [`INADDR_LOOPBACK`](#inaddr_loopback) | const |  |
+| [`INADDR_ANY`](#inaddr_any) | const |  |
+| [`INADDR_BROADCAST`](#inaddr_broadcast) | const |  |
+| [`INADDR_NONE`](#inaddr_none) | const |  |
+| [`IN6ADDR_LOOPBACK_INIT`](#in6addr_loopback_init) | const |  |
+| [`IN6ADDR_ANY_INIT`](#in6addr_any_init) | const |  |
+| [`ARPOP_REQUEST`](#arpop_request) | const |  |
+| [`ARPOP_REPLY`](#arpop_reply) | const |  |
+| [`ATF_COM`](#atf_com) | const |  |
+| [`ATF_PERM`](#atf_perm) | const |  |
+| [`ATF_PUBL`](#atf_publ) | const |  |
+| [`ATF_USETRAILERS`](#atf_usetrailers) | const |  |
+| [`FNM_PERIOD`](#fnm_period) | const |  |
+| [`FNM_NOMATCH`](#fnm_nomatch) | const |  |
+| [`FNM_CASEFOLD`](#fnm_casefold) | const |  |
+| [`FNM_PATHNAME`](#fnm_pathname) | const |  |
+| [`FNM_NOESCAPE`](#fnm_noescape) | const |  |
+| [`ULONG_SIZE`](#ulong_size) | const |  |
+| [`EXIT_FAILURE`](#exit_failure) | const |  |
+| [`EXIT_SUCCESS`](#exit_success) | const |  |
+| [`RAND_MAX`](#rand_max) | const |  |
+| [`EOF`](#eof) | const |  |
+| [`SEEK_SET`](#seek_set) | const |  |
+| [`SEEK_CUR`](#seek_cur) | const |  |
+| [`SEEK_END`](#seek_end) | const |  |
+| [`_IOFBF`](#_iofbf) | const |  |
+| [`_IONBF`](#_ionbf) | const |  |
+| [`_IOLBF`](#_iolbf) | const |  |
+| [`F_DUPFD`](#f_dupfd) | const |  |
+| [`F_GETFD`](#f_getfd) | const |  |
+| [`F_SETFD`](#f_setfd) | const |  |
+| [`F_GETFL`](#f_getfl) | const |  |
+| [`F_SETFL`](#f_setfl) | const |  |
+| [`F_SETLEASE`](#f_setlease) | const |  |
+| [`F_GETLEASE`](#f_getlease) | const |  |
+| [`F_NOTIFY`](#f_notify) | const |  |
+| [`F_CANCELLK`](#f_cancellk) | const |  |
+| [`F_DUPFD_CLOEXEC`](#f_dupfd_cloexec) | const |  |
+| [`F_SETPIPE_SZ`](#f_setpipe_sz) | const |  |
+| [`F_GETPIPE_SZ`](#f_getpipe_sz) | const |  |
+| [`F_ADD_SEALS`](#f_add_seals) | const |  |
+| [`F_GET_SEALS`](#f_get_seals) | const |  |
+| [`F_SEAL_SEAL`](#f_seal_seal) | const |  |
+| [`F_SEAL_SHRINK`](#f_seal_shrink) | const |  |
+| [`F_SEAL_GROW`](#f_seal_grow) | const |  |
+| [`F_SEAL_WRITE`](#f_seal_write) | const |  |
+| [`SIGTRAP`](#sigtrap) | const |  |
+| [`PTHREAD_CREATE_JOINABLE`](#pthread_create_joinable) | const |  |
+| [`PTHREAD_CREATE_DETACHED`](#pthread_create_detached) | const |  |
+| [`CLOCK_REALTIME`](#clock_realtime) | const |  |
+| [`CLOCK_MONOTONIC`](#clock_monotonic) | const |  |
+| [`CLOCK_PROCESS_CPUTIME_ID`](#clock_process_cputime_id) | const |  |
+| [`CLOCK_THREAD_CPUTIME_ID`](#clock_thread_cputime_id) | const |  |
+| [`CLOCK_MONOTONIC_RAW`](#clock_monotonic_raw) | const |  |
+| [`CLOCK_REALTIME_COARSE`](#clock_realtime_coarse) | const |  |
+| [`CLOCK_MONOTONIC_COARSE`](#clock_monotonic_coarse) | const |  |
+| [`CLOCK_BOOTTIME`](#clock_boottime) | const |  |
+| [`CLOCK_REALTIME_ALARM`](#clock_realtime_alarm) | const |  |
+| [`CLOCK_BOOTTIME_ALARM`](#clock_boottime_alarm) | const |  |
+| [`CLOCK_TAI`](#clock_tai) | const |  |
+| [`TIMER_ABSTIME`](#timer_abstime) | const |  |
+| [`RUSAGE_SELF`](#rusage_self) | const |  |
+| [`O_RDONLY`](#o_rdonly) | const |  |
+| [`O_WRONLY`](#o_wronly) | const |  |
+| [`O_RDWR`](#o_rdwr) | const |  |
+| [`SOCK_CLOEXEC`](#sock_cloexec) | const |  |
+| [`S_IFIFO`](#s_ififo) | const |  |
+| [`S_IFCHR`](#s_ifchr) | const |  |
+| [`S_IFBLK`](#s_ifblk) | const |  |
+| [`S_IFDIR`](#s_ifdir) | const |  |
+| [`S_IFREG`](#s_ifreg) | const |  |
+| [`S_IFLNK`](#s_iflnk) | const |  |
+| [`S_IFSOCK`](#s_ifsock) | const |  |
+| [`S_IFMT`](#s_ifmt) | const |  |
+| [`S_IRWXU`](#s_irwxu) | const |  |
+| [`S_IXUSR`](#s_ixusr) | const |  |
+| [`S_IWUSR`](#s_iwusr) | const |  |
+| [`S_IRUSR`](#s_irusr) | const |  |
+| [`S_IRWXG`](#s_irwxg) | const |  |
+| [`S_IXGRP`](#s_ixgrp) | const |  |
+| [`S_IWGRP`](#s_iwgrp) | const |  |
+| [`S_IRGRP`](#s_irgrp) | const |  |
+| [`S_IRWXO`](#s_irwxo) | const |  |
+| [`S_IXOTH`](#s_ixoth) | const |  |
+| [`S_IWOTH`](#s_iwoth) | const |  |
+| [`S_IROTH`](#s_iroth) | const |  |
+| [`F_OK`](#f_ok) | const |  |
+| [`R_OK`](#r_ok) | const |  |
+| [`W_OK`](#w_ok) | const |  |
+| [`X_OK`](#x_ok) | const |  |
+| [`SIGHUP`](#sighup) | const |  |
+| [`SIGINT`](#sigint) | const |  |
+| [`SIGQUIT`](#sigquit) | const |  |
+| [`SIGILL`](#sigill) | const |  |
+| [`SIGABRT`](#sigabrt) | const |  |
+| [`SIGFPE`](#sigfpe) | const |  |
+| [`SIGKILL`](#sigkill) | const |  |
+| [`SIGSEGV`](#sigsegv) | const |  |
+| [`SIGPIPE`](#sigpipe) | const |  |
+| [`SIGALRM`](#sigalrm) | const |  |
+| [`SIGTERM`](#sigterm) | const |  |
+| [`PROT_NONE`](#prot_none) | const |  |
+| [`PROT_READ`](#prot_read) | const |  |
+| [`PROT_WRITE`](#prot_write) | const |  |
+| [`PROT_EXEC`](#prot_exec) | const |  |
+| [`XATTR_CREATE`](#xattr_create) | const |  |
+| [`XATTR_REPLACE`](#xattr_replace) | const |  |
+| [`RLIM64_INFINITY`](#rlim64_infinity) | const |  |
+| [`LC_CTYPE`](#lc_ctype) | const |  |
+| [`LC_NUMERIC`](#lc_numeric) | const |  |
+| [`LC_TIME`](#lc_time) | const |  |
+| [`LC_COLLATE`](#lc_collate) | const |  |
+| [`LC_MONETARY`](#lc_monetary) | const |  |
+| [`LC_MESSAGES`](#lc_messages) | const |  |
+| [`LC_ALL`](#lc_all) | const |  |
+| [`LC_CTYPE_MASK`](#lc_ctype_mask) | const |  |
+| [`LC_NUMERIC_MASK`](#lc_numeric_mask) | const |  |
+| [`LC_TIME_MASK`](#lc_time_mask) | const |  |
+| [`LC_COLLATE_MASK`](#lc_collate_mask) | const |  |
+| [`LC_MONETARY_MASK`](#lc_monetary_mask) | const |  |
+| [`LC_MESSAGES_MASK`](#lc_messages_mask) | const |  |
+| [`MAP_FILE`](#map_file) | const |  |
+| [`MAP_SHARED`](#map_shared) | const |  |
+| [`MAP_PRIVATE`](#map_private) | const |  |
+| [`MAP_FIXED`](#map_fixed) | const |  |
+| [`MAP_FAILED`](#map_failed) | const |  |
+| [`MS_ASYNC`](#ms_async) | const |  |
+| [`MS_INVALIDATE`](#ms_invalidate) | const |  |
+| [`MS_SYNC`](#ms_sync) | const |  |
+| [`MS_RDONLY`](#ms_rdonly) | const |  |
+| [`MS_NOSUID`](#ms_nosuid) | const |  |
+| [`MS_NODEV`](#ms_nodev) | const |  |
+| [`MS_NOEXEC`](#ms_noexec) | const |  |
+| [`MS_SYNCHRONOUS`](#ms_synchronous) | const |  |
+| [`MS_REMOUNT`](#ms_remount) | const |  |
+| [`MS_MANDLOCK`](#ms_mandlock) | const |  |
+| [`MS_DIRSYNC`](#ms_dirsync) | const |  |
+| [`MS_NOSYMFOLLOW`](#ms_nosymfollow) | const |  |
+| [`MS_NOATIME`](#ms_noatime) | const |  |
+| [`MS_NODIRATIME`](#ms_nodiratime) | const |  |
+| [`MS_BIND`](#ms_bind) | const |  |
+| [`MS_MOVE`](#ms_move) | const |  |
+| [`MS_REC`](#ms_rec) | const |  |
+| [`MS_SILENT`](#ms_silent) | const |  |
+| [`MS_POSIXACL`](#ms_posixacl) | const |  |
+| [`MS_UNBINDABLE`](#ms_unbindable) | const |  |
+| [`MS_PRIVATE`](#ms_private) | const |  |
+| [`MS_SLAVE`](#ms_slave) | const |  |
+| [`MS_SHARED`](#ms_shared) | const |  |
+| [`MS_RELATIME`](#ms_relatime) | const |  |
+| [`MS_KERNMOUNT`](#ms_kernmount) | const |  |
+| [`MS_I_VERSION`](#ms_i_version) | const |  |
+| [`MS_STRICTATIME`](#ms_strictatime) | const |  |
+| [`MS_LAZYTIME`](#ms_lazytime) | const |  |
+| [`MS_ACTIVE`](#ms_active) | const |  |
+| [`MS_MGC_VAL`](#ms_mgc_val) | const |  |
+| [`MS_MGC_MSK`](#ms_mgc_msk) | const |  |
+| [`SCM_RIGHTS`](#scm_rights) | const |  |
+| [`SCM_CREDENTIALS`](#scm_credentials) | const |  |
+| [`PROT_GROWSDOWN`](#prot_growsdown) | const |  |
+| [`PROT_GROWSUP`](#prot_growsup) | const |  |
+| [`MAP_TYPE`](#map_type) | const |  |
+| [`MADV_NORMAL`](#madv_normal) | const |  |
+| [`MADV_RANDOM`](#madv_random) | const |  |
+| [`MADV_SEQUENTIAL`](#madv_sequential) | const |  |
+| [`MADV_WILLNEED`](#madv_willneed) | const |  |
+| [`MADV_DONTNEED`](#madv_dontneed) | const |  |
+| [`MADV_FREE`](#madv_free) | const |  |
+| [`MADV_REMOVE`](#madv_remove) | const |  |
+| [`MADV_DONTFORK`](#madv_dontfork) | const |  |
+| [`MADV_DOFORK`](#madv_dofork) | const |  |
+| [`MADV_MERGEABLE`](#madv_mergeable) | const |  |
+| [`MADV_UNMERGEABLE`](#madv_unmergeable) | const |  |
+| [`MADV_HUGEPAGE`](#madv_hugepage) | const |  |
+| [`MADV_NOHUGEPAGE`](#madv_nohugepage) | const |  |
+| [`MADV_DONTDUMP`](#madv_dontdump) | const |  |
+| [`MADV_DODUMP`](#madv_dodump) | const |  |
+| [`MADV_WIPEONFORK`](#madv_wipeonfork) | const |  |
+| [`MADV_KEEPONFORK`](#madv_keeponfork) | const |  |
+| [`MADV_COLD`](#madv_cold) | const |  |
+| [`MADV_PAGEOUT`](#madv_pageout) | const |  |
+| [`MADV_HWPOISON`](#madv_hwpoison) | const |  |
+| [`MADV_POPULATE_READ`](#madv_populate_read) | const |  |
+| [`MADV_POPULATE_WRITE`](#madv_populate_write) | const |  |
+| [`MADV_DONTNEED_LOCKED`](#madv_dontneed_locked) | const |  |
+| [`IFF_UP`](#iff_up) | const |  |
+| [`IFF_BROADCAST`](#iff_broadcast) | const |  |
+| [`IFF_DEBUG`](#iff_debug) | const |  |
+| [`IFF_LOOPBACK`](#iff_loopback) | const |  |
+| [`IFF_POINTOPOINT`](#iff_pointopoint) | const |  |
+| [`IFF_NOTRAILERS`](#iff_notrailers) | const |  |
+| [`IFF_RUNNING`](#iff_running) | const |  |
+| [`IFF_NOARP`](#iff_noarp) | const |  |
+| [`IFF_PROMISC`](#iff_promisc) | const |  |
+| [`IFF_ALLMULTI`](#iff_allmulti) | const |  |
+| [`IFF_MASTER`](#iff_master) | const |  |
+| [`IFF_SLAVE`](#iff_slave) | const |  |
+| [`IFF_MULTICAST`](#iff_multicast) | const |  |
+| [`IFF_PORTSEL`](#iff_portsel) | const |  |
+| [`IFF_AUTOMEDIA`](#iff_automedia) | const |  |
+| [`IFF_DYNAMIC`](#iff_dynamic) | const |  |
+| [`SOL_IP`](#sol_ip) | const |  |
+| [`SOL_TCP`](#sol_tcp) | const |  |
+| [`SOL_UDP`](#sol_udp) | const |  |
+| [`SOL_IPV6`](#sol_ipv6) | const |  |
+| [`SOL_ICMPV6`](#sol_icmpv6) | const |  |
+| [`SOL_RAW`](#sol_raw) | const |  |
+| [`SOL_DECNET`](#sol_decnet) | const |  |
+| [`SOL_X25`](#sol_x25) | const |  |
+| [`SOL_PACKET`](#sol_packet) | const |  |
+| [`SOL_ATM`](#sol_atm) | const |  |
+| [`SOL_AAL`](#sol_aal) | const |  |
+| [`SOL_IRDA`](#sol_irda) | const |  |
+| [`SOL_NETBEUI`](#sol_netbeui) | const |  |
+| [`SOL_LLC`](#sol_llc) | const |  |
+| [`SOL_DCCP`](#sol_dccp) | const |  |
+| [`SOL_NETLINK`](#sol_netlink) | const |  |
+| [`SOL_TIPC`](#sol_tipc) | const |  |
+| [`SOL_BLUETOOTH`](#sol_bluetooth) | const |  |
+| [`SOL_ALG`](#sol_alg) | const |  |
+| [`AF_UNSPEC`](#af_unspec) | const |  |
+| [`AF_UNIX`](#af_unix) | const |  |
+| [`AF_LOCAL`](#af_local) | const |  |
+| [`AF_INET`](#af_inet) | const |  |
+| [`AF_AX25`](#af_ax25) | const |  |
+| [`AF_IPX`](#af_ipx) | const |  |
+| [`AF_APPLETALK`](#af_appletalk) | const |  |
+| [`AF_NETROM`](#af_netrom) | const |  |
+| [`AF_BRIDGE`](#af_bridge) | const |  |
+| [`AF_ATMPVC`](#af_atmpvc) | const |  |
+| [`AF_X25`](#af_x25) | const |  |
+| [`AF_INET6`](#af_inet6) | const |  |
+| [`AF_ROSE`](#af_rose) | const |  |
+| [`AF_DECnet`](#af_decnet) | const |  |
+| [`AF_NETBEUI`](#af_netbeui) | const |  |
+| [`AF_SECURITY`](#af_security) | const |  |
+| [`AF_KEY`](#af_key) | const |  |
+| [`AF_NETLINK`](#af_netlink) | const |  |
+| [`AF_ROUTE`](#af_route) | const |  |
+| [`AF_PACKET`](#af_packet) | const |  |
+| [`AF_ASH`](#af_ash) | const |  |
+| [`AF_ECONET`](#af_econet) | const |  |
+| [`AF_ATMSVC`](#af_atmsvc) | const |  |
+| [`AF_RDS`](#af_rds) | const |  |
+| [`AF_SNA`](#af_sna) | const |  |
+| [`AF_IRDA`](#af_irda) | const |  |
+| [`AF_PPPOX`](#af_pppox) | const |  |
+| [`AF_WANPIPE`](#af_wanpipe) | const |  |
+| [`AF_LLC`](#af_llc) | const |  |
+| [`AF_CAN`](#af_can) | const |  |
+| [`AF_TIPC`](#af_tipc) | const |  |
+| [`AF_BLUETOOTH`](#af_bluetooth) | const |  |
+| [`AF_IUCV`](#af_iucv) | const |  |
+| [`AF_RXRPC`](#af_rxrpc) | const |  |
+| [`AF_ISDN`](#af_isdn) | const |  |
+| [`AF_PHONET`](#af_phonet) | const |  |
+| [`AF_IEEE802154`](#af_ieee802154) | const |  |
+| [`AF_CAIF`](#af_caif) | const |  |
+| [`AF_ALG`](#af_alg) | const |  |
+| [`PF_UNSPEC`](#pf_unspec) | const |  |
+| [`PF_UNIX`](#pf_unix) | const |  |
+| [`PF_LOCAL`](#pf_local) | const |  |
+| [`PF_INET`](#pf_inet) | const |  |
+| [`PF_AX25`](#pf_ax25) | const |  |
+| [`PF_IPX`](#pf_ipx) | const |  |
+| [`PF_APPLETALK`](#pf_appletalk) | const |  |
+| [`PF_NETROM`](#pf_netrom) | const |  |
+| [`PF_BRIDGE`](#pf_bridge) | const |  |
+| [`PF_ATMPVC`](#pf_atmpvc) | const |  |
+| [`PF_X25`](#pf_x25) | const |  |
+| [`PF_INET6`](#pf_inet6) | const |  |
+| [`PF_ROSE`](#pf_rose) | const |  |
+| [`PF_DECnet`](#pf_decnet) | const |  |
+| [`PF_NETBEUI`](#pf_netbeui) | const |  |
+| [`PF_SECURITY`](#pf_security) | const |  |
+| [`PF_KEY`](#pf_key) | const |  |
+| [`PF_NETLINK`](#pf_netlink) | const |  |
+| [`PF_ROUTE`](#pf_route) | const |  |
+| [`PF_PACKET`](#pf_packet) | const |  |
+| [`PF_ASH`](#pf_ash) | const |  |
+| [`PF_ECONET`](#pf_econet) | const |  |
+| [`PF_ATMSVC`](#pf_atmsvc) | const |  |
+| [`PF_RDS`](#pf_rds) | const |  |
+| [`PF_SNA`](#pf_sna) | const |  |
+| [`PF_IRDA`](#pf_irda) | const |  |
+| [`PF_PPPOX`](#pf_pppox) | const |  |
+| [`PF_WANPIPE`](#pf_wanpipe) | const |  |
+| [`PF_LLC`](#pf_llc) | const |  |
+| [`PF_CAN`](#pf_can) | const |  |
+| [`PF_TIPC`](#pf_tipc) | const |  |
+| [`PF_BLUETOOTH`](#pf_bluetooth) | const |  |
+| [`PF_IUCV`](#pf_iucv) | const |  |
+| [`PF_RXRPC`](#pf_rxrpc) | const |  |
+| [`PF_ISDN`](#pf_isdn) | const |  |
+| [`PF_PHONET`](#pf_phonet) | const |  |
+| [`PF_IEEE802154`](#pf_ieee802154) | const |  |
+| [`PF_CAIF`](#pf_caif) | const |  |
+| [`PF_ALG`](#pf_alg) | const |  |
+| [`MSG_OOB`](#msg_oob) | const |  |
+| [`MSG_PEEK`](#msg_peek) | const |  |
+| [`MSG_DONTROUTE`](#msg_dontroute) | const |  |
+| [`MSG_CTRUNC`](#msg_ctrunc) | const |  |
+| [`MSG_TRUNC`](#msg_trunc) | const |  |
+| [`MSG_DONTWAIT`](#msg_dontwait) | const |  |
+| [`MSG_EOR`](#msg_eor) | const |  |
+| [`MSG_WAITALL`](#msg_waitall) | const |  |
+| [`MSG_FIN`](#msg_fin) | const |  |
+| [`MSG_SYN`](#msg_syn) | const |  |
+| [`MSG_CONFIRM`](#msg_confirm) | const |  |
+| [`MSG_RST`](#msg_rst) | const |  |
+| [`MSG_ERRQUEUE`](#msg_errqueue) | const |  |
+| [`MSG_NOSIGNAL`](#msg_nosignal) | const |  |
+| [`MSG_MORE`](#msg_more) | const |  |
+| [`MSG_WAITFORONE`](#msg_waitforone) | const |  |
+| [`MSG_FASTOPEN`](#msg_fastopen) | const |  |
+| [`MSG_CMSG_CLOEXEC`](#msg_cmsg_cloexec) | const |  |
+| [`SCM_TIMESTAMP`](#scm_timestamp) | const |  |
+| [`SOCK_RAW`](#sock_raw) | const |  |
+| [`SOCK_RDM`](#sock_rdm) | const |  |
+| [`IP_TOS`](#ip_tos) | const |  |
+| [`IP_TTL`](#ip_ttl) | const |  |
+| [`IP_HDRINCL`](#ip_hdrincl) | const |  |
+| [`IP_OPTIONS`](#ip_options) | const |  |
+| [`IP_ROUTER_ALERT`](#ip_router_alert) | const |  |
+| [`IP_RECVOPTS`](#ip_recvopts) | const |  |
+| [`IP_RETOPTS`](#ip_retopts) | const |  |
+| [`IP_PKTINFO`](#ip_pktinfo) | const |  |
+| [`IP_PKTOPTIONS`](#ip_pktoptions) | const |  |
+| [`IP_MTU_DISCOVER`](#ip_mtu_discover) | const |  |
+| [`IP_RECVERR`](#ip_recverr) | const |  |
+| [`IP_RECVTTL`](#ip_recvttl) | const |  |
+| [`IP_RECVTOS`](#ip_recvtos) | const |  |
+| [`IP_MTU`](#ip_mtu) | const |  |
+| [`IP_FREEBIND`](#ip_freebind) | const |  |
+| [`IP_IPSEC_POLICY`](#ip_ipsec_policy) | const |  |
+| [`IP_XFRM_POLICY`](#ip_xfrm_policy) | const |  |
+| [`IP_PASSSEC`](#ip_passsec) | const |  |
+| [`IP_TRANSPARENT`](#ip_transparent) | const |  |
+| [`IP_ORIGDSTADDR`](#ip_origdstaddr) | const |  |
+| [`IP_RECVORIGDSTADDR`](#ip_recvorigdstaddr) | const |  |
+| [`IP_MINTTL`](#ip_minttl) | const |  |
+| [`IP_NODEFRAG`](#ip_nodefrag) | const |  |
+| [`IP_CHECKSUM`](#ip_checksum) | const |  |
+| [`IP_BIND_ADDRESS_NO_PORT`](#ip_bind_address_no_port) | const |  |
+| [`IP_MULTICAST_IF`](#ip_multicast_if) | const |  |
+| [`IP_MULTICAST_TTL`](#ip_multicast_ttl) | const |  |
+| [`IP_MULTICAST_LOOP`](#ip_multicast_loop) | const |  |
+| [`IP_ADD_MEMBERSHIP`](#ip_add_membership) | const |  |
+| [`IP_DROP_MEMBERSHIP`](#ip_drop_membership) | const |  |
+| [`IP_UNBLOCK_SOURCE`](#ip_unblock_source) | const |  |
+| [`IP_BLOCK_SOURCE`](#ip_block_source) | const |  |
+| [`IP_ADD_SOURCE_MEMBERSHIP`](#ip_add_source_membership) | const |  |
+| [`IP_DROP_SOURCE_MEMBERSHIP`](#ip_drop_source_membership) | const |  |
+| [`IP_MSFILTER`](#ip_msfilter) | const |  |
+| [`IP_MULTICAST_ALL`](#ip_multicast_all) | const |  |
+| [`IP_UNICAST_IF`](#ip_unicast_if) | const |  |
+| [`IP_DEFAULT_MULTICAST_TTL`](#ip_default_multicast_ttl) | const |  |
+| [`IP_DEFAULT_MULTICAST_LOOP`](#ip_default_multicast_loop) | const |  |
+| [`IP_PMTUDISC_DONT`](#ip_pmtudisc_dont) | const |  |
+| [`IP_PMTUDISC_WANT`](#ip_pmtudisc_want) | const |  |
+| [`IP_PMTUDISC_DO`](#ip_pmtudisc_do) | const |  |
+| [`IP_PMTUDISC_PROBE`](#ip_pmtudisc_probe) | const |  |
+| [`IP_PMTUDISC_INTERFACE`](#ip_pmtudisc_interface) | const |  |
+| [`IP_PMTUDISC_OMIT`](#ip_pmtudisc_omit) | const |  |
+| [`IPPROTO_HOPOPTS`](#ipproto_hopopts) | const | Hop-by-hop option header |
+| [`IPPROTO_IGMP`](#ipproto_igmp) | const | group mgmt protocol |
+| [`IPPROTO_IPIP`](#ipproto_ipip) | const | for compatibility |
+| [`IPPROTO_EGP`](#ipproto_egp) | const | exterior gateway protocol |
+| [`IPPROTO_PUP`](#ipproto_pup) | const | pup |
+| [`IPPROTO_IDP`](#ipproto_idp) | const | xns idp |
+| [`IPPROTO_TP`](#ipproto_tp) | const | tp-4 w/ class negotiation |
+| [`IPPROTO_DCCP`](#ipproto_dccp) | const | DCCP |
+| [`IPPROTO_ROUTING`](#ipproto_routing) | const | IP6 routing header |
+| [`IPPROTO_FRAGMENT`](#ipproto_fragment) | const | IP6 fragmentation header |
+| [`IPPROTO_RSVP`](#ipproto_rsvp) | const | resource reservation |
+| [`IPPROTO_GRE`](#ipproto_gre) | const | General Routing Encap. |
+| [`IPPROTO_ESP`](#ipproto_esp) | const | IP6 Encap Sec. |
+| [`IPPROTO_AH`](#ipproto_ah) | const | IP6 Auth Header |
+| [`IPPROTO_NONE`](#ipproto_none) | const | IP6 no next header |
+| [`IPPROTO_DSTOPTS`](#ipproto_dstopts) | const | IP6 destination option |
+| [`IPPROTO_MTP`](#ipproto_mtp) | const |  |
+| [`IPPROTO_ENCAP`](#ipproto_encap) | const | encapsulation header |
+| [`IPPROTO_PIM`](#ipproto_pim) | const | Protocol indep. |
+| [`IPPROTO_COMP`](#ipproto_comp) | const | IP Payload Comp. |
+| [`IPPROTO_SCTP`](#ipproto_sctp) | const | SCTP |
+| [`IPPROTO_MH`](#ipproto_mh) | const |  |
+| [`IPPROTO_UDPLITE`](#ipproto_udplite) | const |  |
+| [`IPPROTO_RAW`](#ipproto_raw) | const | raw IP packet |
+| [`IPPROTO_BEETPH`](#ipproto_beetph) | const |  |
+| [`IPPROTO_MPLS`](#ipproto_mpls) | const |  |
+| [`IPPROTO_MPTCP`](#ipproto_mptcp) | const | Multipath TCP |
+| [`IPPROTO_ETHERNET`](#ipproto_ethernet) | const | Ethernet-within-IPv6 encapsulation. |
+| [`MCAST_EXCLUDE`](#mcast_exclude) | const |  |
+| [`MCAST_INCLUDE`](#mcast_include) | const |  |
+| [`MCAST_JOIN_GROUP`](#mcast_join_group) | const |  |
+| [`MCAST_BLOCK_SOURCE`](#mcast_block_source) | const |  |
+| [`MCAST_UNBLOCK_SOURCE`](#mcast_unblock_source) | const |  |
+| [`MCAST_LEAVE_GROUP`](#mcast_leave_group) | const |  |
+| [`MCAST_JOIN_SOURCE_GROUP`](#mcast_join_source_group) | const |  |
+| [`MCAST_LEAVE_SOURCE_GROUP`](#mcast_leave_source_group) | const |  |
+| [`MCAST_MSFILTER`](#mcast_msfilter) | const |  |
+| [`IPV6_ADDRFORM`](#ipv6_addrform) | const |  |
+| [`IPV6_2292PKTINFO`](#ipv6_2292pktinfo) | const |  |
+| [`IPV6_2292HOPOPTS`](#ipv6_2292hopopts) | const |  |
+| [`IPV6_2292DSTOPTS`](#ipv6_2292dstopts) | const |  |
+| [`IPV6_2292RTHDR`](#ipv6_2292rthdr) | const |  |
+| [`IPV6_2292PKTOPTIONS`](#ipv6_2292pktoptions) | const |  |
+| [`IPV6_CHECKSUM`](#ipv6_checksum) | const |  |
+| [`IPV6_2292HOPLIMIT`](#ipv6_2292hoplimit) | const |  |
+| [`IPV6_NEXTHOP`](#ipv6_nexthop) | const |  |
+| [`IPV6_AUTHHDR`](#ipv6_authhdr) | const |  |
+| [`IPV6_UNICAST_HOPS`](#ipv6_unicast_hops) | const |  |
+| [`IPV6_MULTICAST_IF`](#ipv6_multicast_if) | const |  |
+| [`IPV6_MULTICAST_HOPS`](#ipv6_multicast_hops) | const |  |
+| [`IPV6_MULTICAST_LOOP`](#ipv6_multicast_loop) | const |  |
+| [`IPV6_ADD_MEMBERSHIP`](#ipv6_add_membership) | const |  |
+| [`IPV6_DROP_MEMBERSHIP`](#ipv6_drop_membership) | const |  |
+| [`IPV6_ROUTER_ALERT`](#ipv6_router_alert) | const |  |
+| [`IPV6_MTU_DISCOVER`](#ipv6_mtu_discover) | const |  |
+| [`IPV6_MTU`](#ipv6_mtu) | const |  |
+| [`IPV6_RECVERR`](#ipv6_recverr) | const |  |
+| [`IPV6_V6ONLY`](#ipv6_v6only) | const |  |
+| [`IPV6_JOIN_ANYCAST`](#ipv6_join_anycast) | const |  |
+| [`IPV6_LEAVE_ANYCAST`](#ipv6_leave_anycast) | const |  |
+| [`IPV6_IPSEC_POLICY`](#ipv6_ipsec_policy) | const |  |
+| [`IPV6_XFRM_POLICY`](#ipv6_xfrm_policy) | const |  |
+| [`IPV6_HDRINCL`](#ipv6_hdrincl) | const |  |
+| [`IPV6_RECVPKTINFO`](#ipv6_recvpktinfo) | const |  |
+| [`IPV6_PKTINFO`](#ipv6_pktinfo) | const |  |
+| [`IPV6_RECVHOPLIMIT`](#ipv6_recvhoplimit) | const |  |
+| [`IPV6_HOPLIMIT`](#ipv6_hoplimit) | const |  |
+| [`IPV6_RECVHOPOPTS`](#ipv6_recvhopopts) | const |  |
+| [`IPV6_HOPOPTS`](#ipv6_hopopts) | const |  |
+| [`IPV6_RTHDRDSTOPTS`](#ipv6_rthdrdstopts) | const |  |
+| [`IPV6_RECVRTHDR`](#ipv6_recvrthdr) | const |  |
+| [`IPV6_RTHDR`](#ipv6_rthdr) | const |  |
+| [`IPV6_RECVDSTOPTS`](#ipv6_recvdstopts) | const |  |
+| [`IPV6_DSTOPTS`](#ipv6_dstopts) | const |  |
+| [`IPV6_RECVPATHMTU`](#ipv6_recvpathmtu) | const |  |
+| [`IPV6_PATHMTU`](#ipv6_pathmtu) | const |  |
+| [`IPV6_DONTFRAG`](#ipv6_dontfrag) | const |  |
+| [`IPV6_RECVTCLASS`](#ipv6_recvtclass) | const |  |
+| [`IPV6_TCLASS`](#ipv6_tclass) | const |  |
+| [`IPV6_AUTOFLOWLABEL`](#ipv6_autoflowlabel) | const |  |
+| [`IPV6_ADDR_PREFERENCES`](#ipv6_addr_preferences) | const |  |
+| [`IPV6_MINHOPCOUNT`](#ipv6_minhopcount) | const |  |
+| [`IPV6_ORIGDSTADDR`](#ipv6_origdstaddr) | const |  |
+| [`IPV6_RECVORIGDSTADDR`](#ipv6_recvorigdstaddr) | const |  |
+| [`IPV6_TRANSPARENT`](#ipv6_transparent) | const |  |
+| [`IPV6_UNICAST_IF`](#ipv6_unicast_if) | const |  |
+| [`IPV6_PREFER_SRC_TMP`](#ipv6_prefer_src_tmp) | const |  |
+| [`IPV6_PREFER_SRC_PUBLIC`](#ipv6_prefer_src_public) | const |  |
+| [`IPV6_PREFER_SRC_PUBTMP_DEFAULT`](#ipv6_prefer_src_pubtmp_default) | const |  |
+| [`IPV6_PREFER_SRC_COA`](#ipv6_prefer_src_coa) | const |  |
+| [`IPV6_PREFER_SRC_HOME`](#ipv6_prefer_src_home) | const |  |
+| [`IPV6_PREFER_SRC_CGA`](#ipv6_prefer_src_cga) | const |  |
+| [`IPV6_PREFER_SRC_NONCGA`](#ipv6_prefer_src_noncga) | const |  |
+| [`IPV6_PMTUDISC_DONT`](#ipv6_pmtudisc_dont) | const |  |
+| [`IPV6_PMTUDISC_WANT`](#ipv6_pmtudisc_want) | const |  |
+| [`IPV6_PMTUDISC_DO`](#ipv6_pmtudisc_do) | const |  |
+| [`IPV6_PMTUDISC_PROBE`](#ipv6_pmtudisc_probe) | const |  |
+| [`IPV6_PMTUDISC_INTERFACE`](#ipv6_pmtudisc_interface) | const |  |
+| [`IPV6_PMTUDISC_OMIT`](#ipv6_pmtudisc_omit) | const |  |
+| [`TCP_NODELAY`](#tcp_nodelay) | const |  |
+| [`TCP_MAXSEG`](#tcp_maxseg) | const |  |
+| [`TCP_CORK`](#tcp_cork) | const |  |
+| [`TCP_KEEPIDLE`](#tcp_keepidle) | const |  |
+| [`TCP_KEEPINTVL`](#tcp_keepintvl) | const |  |
+| [`TCP_KEEPCNT`](#tcp_keepcnt) | const |  |
+| [`TCP_SYNCNT`](#tcp_syncnt) | const |  |
+| [`TCP_LINGER2`](#tcp_linger2) | const |  |
+| [`TCP_DEFER_ACCEPT`](#tcp_defer_accept) | const |  |
+| [`TCP_WINDOW_CLAMP`](#tcp_window_clamp) | const |  |
+| [`TCP_INFO`](#tcp_info) | const |  |
+| [`TCP_QUICKACK`](#tcp_quickack) | const |  |
+| [`TCP_CONGESTION`](#tcp_congestion) | const |  |
+| [`TCP_MD5SIG`](#tcp_md5sig) | const |  |
+| [`TCP_COOKIE_TRANSACTIONS`](#tcp_cookie_transactions) | const |  |
+| [`TCP_THIN_LINEAR_TIMEOUTS`](#tcp_thin_linear_timeouts) | const |  |
+| [`TCP_THIN_DUPACK`](#tcp_thin_dupack) | const |  |
+| [`TCP_USER_TIMEOUT`](#tcp_user_timeout) | const |  |
+| [`TCP_REPAIR`](#tcp_repair) | const |  |
+| [`TCP_REPAIR_QUEUE`](#tcp_repair_queue) | const |  |
+| [`TCP_QUEUE_SEQ`](#tcp_queue_seq) | const |  |
+| [`TCP_REPAIR_OPTIONS`](#tcp_repair_options) | const |  |
+| [`TCP_FASTOPEN`](#tcp_fastopen) | const |  |
+| [`TCP_TIMESTAMP`](#tcp_timestamp) | const |  |
+| [`TCP_NOTSENT_LOWAT`](#tcp_notsent_lowat) | const |  |
+| [`TCP_CC_INFO`](#tcp_cc_info) | const |  |
+| [`TCP_SAVE_SYN`](#tcp_save_syn) | const |  |
+| [`TCP_SAVED_SYN`](#tcp_saved_syn) | const |  |
+| [`TCP_REPAIR_WINDOW`](#tcp_repair_window) | const |  |
+| [`TCP_FASTOPEN_CONNECT`](#tcp_fastopen_connect) | const |  |
+| [`TCP_ULP`](#tcp_ulp) | const |  |
+| [`TCP_MD5SIG_EXT`](#tcp_md5sig_ext) | const |  |
+| [`TCP_FASTOPEN_KEY`](#tcp_fastopen_key) | const |  |
+| [`TCP_FASTOPEN_NO_COOKIE`](#tcp_fastopen_no_cookie) | const |  |
+| [`TCP_ZEROCOPY_RECEIVE`](#tcp_zerocopy_receive) | const |  |
+| [`TCP_INQ`](#tcp_inq) | const |  |
+| [`TCP_CM_INQ`](#tcp_cm_inq) | const |  |
+| [`TCP_MD5SIG_MAXKEYLEN`](#tcp_md5sig_maxkeylen) | const |  |
+| [`SO_DEBUG`](#so_debug) | const |  |
+| [`SHUT_RD`](#shut_rd) | const |  |
+| [`SHUT_WR`](#shut_wr) | const |  |
+| [`SHUT_RDWR`](#shut_rdwr) | const |  |
+| [`LOCK_SH`](#lock_sh) | const |  |
+| [`LOCK_EX`](#lock_ex) | const |  |
+| [`LOCK_NB`](#lock_nb) | const |  |
+| [`LOCK_UN`](#lock_un) | const |  |
+| [`SS_ONSTACK`](#ss_onstack) | const |  |
+| [`SS_DISABLE`](#ss_disable) | const |  |
+| [`PATH_MAX`](#path_max) | const |  |
+| [`UIO_MAXIOV`](#uio_maxiov) | const |  |
+| [`FD_SETSIZE`](#fd_setsize) | const |  |
+| [`EPOLLIN`](#epollin) | const |  |
+| [`EPOLLPRI`](#epollpri) | const |  |
+| [`EPOLLOUT`](#epollout) | const |  |
+| [`EPOLLERR`](#epollerr) | const |  |
+| [`EPOLLHUP`](#epollhup) | const |  |
+| [`EPOLLRDNORM`](#epollrdnorm) | const |  |
+| [`EPOLLRDBAND`](#epollrdband) | const |  |
+| [`EPOLLWRNORM`](#epollwrnorm) | const |  |
+| [`EPOLLWRBAND`](#epollwrband) | const |  |
+| [`EPOLLMSG`](#epollmsg) | const |  |
+| [`EPOLLRDHUP`](#epollrdhup) | const |  |
+| [`EPOLLEXCLUSIVE`](#epollexclusive) | const |  |
+| [`EPOLLWAKEUP`](#epollwakeup) | const |  |
+| [`EPOLLONESHOT`](#epolloneshot) | const |  |
+| [`EPOLLET`](#epollet) | const |  |
+| [`EPOLL_CTL_ADD`](#epoll_ctl_add) | const |  |
+| [`EPOLL_CTL_MOD`](#epoll_ctl_mod) | const |  |
+| [`EPOLL_CTL_DEL`](#epoll_ctl_del) | const |  |
+| [`MNT_FORCE`](#mnt_force) | const |  |
+| [`MNT_DETACH`](#mnt_detach) | const |  |
+| [`MNT_EXPIRE`](#mnt_expire) | const |  |
+| [`UMOUNT_NOFOLLOW`](#umount_nofollow) | const |  |
+| [`Q_GETFMT`](#q_getfmt) | const |  |
+| [`Q_GETINFO`](#q_getinfo) | const |  |
+| [`Q_SETINFO`](#q_setinfo) | const |  |
+| [`QIF_BLIMITS`](#qif_blimits) | const |  |
+| [`QIF_SPACE`](#qif_space) | const |  |
+| [`QIF_ILIMITS`](#qif_ilimits) | const |  |
+| [`QIF_INODES`](#qif_inodes) | const |  |
+| [`QIF_BTIME`](#qif_btime) | const |  |
+| [`QIF_ITIME`](#qif_itime) | const |  |
+| [`QIF_LIMITS`](#qif_limits) | const |  |
+| [`QIF_USAGE`](#qif_usage) | const |  |
+| [`QIF_TIMES`](#qif_times) | const |  |
+| [`QIF_ALL`](#qif_all) | const |  |
+| [`Q_SYNC`](#q_sync) | const |  |
+| [`Q_QUOTAON`](#q_quotaon) | const |  |
+| [`Q_QUOTAOFF`](#q_quotaoff) | const |  |
+| [`Q_GETQUOTA`](#q_getquota) | const |  |
+| [`Q_SETQUOTA`](#q_setquota) | const |  |
+| [`TCIOFF`](#tcioff) | const |  |
+| [`TCION`](#tcion) | const |  |
+| [`TCOOFF`](#tcooff) | const |  |
+| [`TCOON`](#tcoon) | const |  |
+| [`TCIFLUSH`](#tciflush) | const |  |
+| [`TCOFLUSH`](#tcoflush) | const |  |
+| [`TCIOFLUSH`](#tcioflush) | const |  |
+| [`NL0`](#nl0) | const |  |
+| [`NL1`](#nl1) | const |  |
+| [`TAB0`](#tab0) | const |  |
+| [`CR0`](#cr0) | const |  |
+| [`FF0`](#ff0) | const |  |
+| [`BS0`](#bs0) | const |  |
+| [`VT0`](#vt0) | const |  |
+| [`VERASE`](#verase) | const |  |
+| [`VKILL`](#vkill) | const |  |
+| [`VINTR`](#vintr) | const |  |
+| [`VQUIT`](#vquit) | const |  |
+| [`VLNEXT`](#vlnext) | const |  |
+| [`IGNBRK`](#ignbrk) | const |  |
+| [`BRKINT`](#brkint) | const |  |
+| [`IGNPAR`](#ignpar) | const |  |
+| [`PARMRK`](#parmrk) | const |  |
+| [`INPCK`](#inpck) | const |  |
+| [`ISTRIP`](#istrip) | const |  |
+| [`INLCR`](#inlcr) | const |  |
+| [`IGNCR`](#igncr) | const |  |
+| [`ICRNL`](#icrnl) | const |  |
+| [`IXANY`](#ixany) | const |  |
+| [`IMAXBEL`](#imaxbel) | const |  |
+| [`OPOST`](#opost) | const |  |
+| [`CS5`](#cs5) | const |  |
+| [`CRTSCTS`](#crtscts) | const |  |
+| [`ECHO`](#echo) | const |  |
+| [`OCRNL`](#ocrnl) | const |  |
+| [`ONOCR`](#onocr) | const |  |
+| [`ONLRET`](#onlret) | const |  |
+| [`OFILL`](#ofill) | const |  |
+| [`OFDEL`](#ofdel) | const |  |
+| [`CLONE_VM`](#clone_vm) | const |  |
+| [`CLONE_FS`](#clone_fs) | const |  |
+| [`CLONE_FILES`](#clone_files) | const |  |
+| [`CLONE_SIGHAND`](#clone_sighand) | const |  |
+| [`CLONE_PTRACE`](#clone_ptrace) | const |  |
+| [`CLONE_VFORK`](#clone_vfork) | const |  |
+| [`CLONE_PARENT`](#clone_parent) | const |  |
+| [`CLONE_THREAD`](#clone_thread) | const |  |
+| [`CLONE_NEWNS`](#clone_newns) | const |  |
+| [`CLONE_SYSVSEM`](#clone_sysvsem) | const |  |
+| [`CLONE_SETTLS`](#clone_settls) | const |  |
+| [`CLONE_PARENT_SETTID`](#clone_parent_settid) | const |  |
+| [`CLONE_CHILD_CLEARTID`](#clone_child_cleartid) | const |  |
+| [`CLONE_DETACHED`](#clone_detached) | const |  |
+| [`CLONE_UNTRACED`](#clone_untraced) | const |  |
+| [`CLONE_CHILD_SETTID`](#clone_child_settid) | const |  |
+| [`CLONE_NEWCGROUP`](#clone_newcgroup) | const |  |
+| [`CLONE_NEWUTS`](#clone_newuts) | const |  |
+| [`CLONE_NEWIPC`](#clone_newipc) | const |  |
+| [`CLONE_NEWUSER`](#clone_newuser) | const |  |
+| [`CLONE_NEWPID`](#clone_newpid) | const |  |
+| [`CLONE_NEWNET`](#clone_newnet) | const |  |
+| [`CLONE_IO`](#clone_io) | const |  |
+| [`WNOHANG`](#wnohang) | const |  |
+| [`WUNTRACED`](#wuntraced) | const |  |
+| [`WSTOPPED`](#wstopped) | const |  |
+| [`WEXITED`](#wexited) | const |  |
+| [`WCONTINUED`](#wcontinued) | const |  |
+| [`WNOWAIT`](#wnowait) | const |  |
+| [`ADDR_NO_RANDOMIZE`](#addr_no_randomize) | const |  |
+| [`MMAP_PAGE_ZERO`](#mmap_page_zero) | const |  |
+| [`ADDR_COMPAT_LAYOUT`](#addr_compat_layout) | const |  |
+| [`READ_IMPLIES_EXEC`](#read_implies_exec) | const |  |
+| [`ADDR_LIMIT_32BIT`](#addr_limit_32bit) | const |  |
+| [`SHORT_INODE`](#short_inode) | const |  |
+| [`WHOLE_SECONDS`](#whole_seconds) | const |  |
+| [`STICKY_TIMEOUTS`](#sticky_timeouts) | const |  |
+| [`ADDR_LIMIT_3GB`](#addr_limit_3gb) | const |  |
+| [`PTRACE_O_TRACESYSGOOD`](#ptrace_o_tracesysgood) | const |  |
+| [`PTRACE_O_TRACEFORK`](#ptrace_o_tracefork) | const |  |
+| [`PTRACE_O_TRACEVFORK`](#ptrace_o_tracevfork) | const |  |
+| [`PTRACE_O_TRACECLONE`](#ptrace_o_traceclone) | const |  |
+| [`PTRACE_O_TRACEEXEC`](#ptrace_o_traceexec) | const |  |
+| [`PTRACE_O_TRACEVFORKDONE`](#ptrace_o_tracevforkdone) | const |  |
+| [`PTRACE_O_TRACEEXIT`](#ptrace_o_traceexit) | const |  |
+| [`PTRACE_O_TRACESECCOMP`](#ptrace_o_traceseccomp) | const |  |
+| [`PTRACE_O_SUSPEND_SECCOMP`](#ptrace_o_suspend_seccomp) | const |  |
+| [`PTRACE_O_EXITKILL`](#ptrace_o_exitkill) | const |  |
+| [`PTRACE_O_MASK`](#ptrace_o_mask) | const |  |
+| [`PTRACE_EVENT_FORK`](#ptrace_event_fork) | const |  |
+| [`PTRACE_EVENT_VFORK`](#ptrace_event_vfork) | const |  |
+| [`PTRACE_EVENT_CLONE`](#ptrace_event_clone) | const |  |
+| [`PTRACE_EVENT_EXEC`](#ptrace_event_exec) | const |  |
+| [`PTRACE_EVENT_VFORK_DONE`](#ptrace_event_vfork_done) | const |  |
+| [`PTRACE_EVENT_EXIT`](#ptrace_event_exit) | const |  |
+| [`PTRACE_EVENT_SECCOMP`](#ptrace_event_seccomp) | const |  |
+| [`__WNOTHREAD`](#__wnothread) | const |  |
+| [`__WALL`](#__wall) | const |  |
+| [`__WCLONE`](#__wclone) | const |  |
+| [`SPLICE_F_MOVE`](#splice_f_move) | const |  |
+| [`SPLICE_F_NONBLOCK`](#splice_f_nonblock) | const |  |
+| [`SPLICE_F_MORE`](#splice_f_more) | const |  |
+| [`SPLICE_F_GIFT`](#splice_f_gift) | const |  |
+| [`RTLD_LOCAL`](#rtld_local) | const |  |
+| [`RTLD_LAZY`](#rtld_lazy) | const |  |
+| [`POSIX_FADV_NORMAL`](#posix_fadv_normal) | const |  |
+| [`POSIX_FADV_RANDOM`](#posix_fadv_random) | const |  |
+| [`POSIX_FADV_SEQUENTIAL`](#posix_fadv_sequential) | const |  |
+| [`POSIX_FADV_WILLNEED`](#posix_fadv_willneed) | const |  |
+| [`AT_FDCWD`](#at_fdcwd) | const |  |
+| [`AT_SYMLINK_NOFOLLOW`](#at_symlink_nofollow) | const |  |
+| [`AT_REMOVEDIR`](#at_removedir) | const |  |
+| [`AT_SYMLINK_FOLLOW`](#at_symlink_follow) | const |  |
+| [`AT_NO_AUTOMOUNT`](#at_no_automount) | const |  |
+| [`AT_EMPTY_PATH`](#at_empty_path) | const |  |
+| [`AT_RECURSIVE`](#at_recursive) | const |  |
+| [`LOG_CRON`](#log_cron) | const |  |
+| [`LOG_AUTHPRIV`](#log_authpriv) | const |  |
+| [`LOG_FTP`](#log_ftp) | const |  |
+| [`LOG_PERROR`](#log_perror) | const |  |
+| [`PIPE_BUF`](#pipe_buf) | const |  |
+| [`SI_LOAD_SHIFT`](#si_load_shift) | const |  |
+| [`SI_USER`](#si_user) | const |  |
+| [`SI_KERNEL`](#si_kernel) | const |  |
+| [`SI_QUEUE`](#si_queue) | const |  |
+| [`SI_TIMER`](#si_timer) | const |  |
+| [`SI_MESGQ`](#si_mesgq) | const |  |
+| [`SI_ASYNCIO`](#si_asyncio) | const |  |
+| [`SI_SIGIO`](#si_sigio) | const |  |
+| [`SI_TKILL`](#si_tkill) | const |  |
+| [`SI_ASYNCNL`](#si_asyncnl) | const |  |
+| [`BUS_ADRALN`](#bus_adraln) | const |  |
+| [`BUS_ADRERR`](#bus_adrerr) | const |  |
+| [`BUS_OBJERR`](#bus_objerr) | const |  |
+| [`BUS_MCEERR_AR`](#bus_mceerr_ar) | const |  |
+| [`BUS_MCEERR_AO`](#bus_mceerr_ao) | const |  |
+| [`TRAP_BRKPT`](#trap_brkpt) | const |  |
+| [`TRAP_TRACE`](#trap_trace) | const |  |
+| [`TRAP_BRANCH`](#trap_branch) | const |  |
+| [`TRAP_HWBKPT`](#trap_hwbkpt) | const |  |
+| [`TRAP_UNK`](#trap_unk) | const |  |
+| [`CLD_EXITED`](#cld_exited) | const |  |
+| [`CLD_KILLED`](#cld_killed) | const |  |
+| [`CLD_DUMPED`](#cld_dumped) | const |  |
+| [`CLD_TRAPPED`](#cld_trapped) | const |  |
+| [`CLD_STOPPED`](#cld_stopped) | const |  |
+| [`CLD_CONTINUED`](#cld_continued) | const |  |
+| [`SIGEV_SIGNAL`](#sigev_signal) | const |  |
+| [`SIGEV_NONE`](#sigev_none) | const |  |
+| [`SIGEV_THREAD`](#sigev_thread) | const |  |
+| [`P_ALL`](#p_all) | const |  |
+| [`P_PID`](#p_pid) | const |  |
+| [`P_PGID`](#p_pgid) | const |  |
+| [`P_PIDFD`](#p_pidfd) | const |  |
+| [`UTIME_OMIT`](#utime_omit) | const |  |
+| [`UTIME_NOW`](#utime_now) | const |  |
+| [`POLLIN`](#pollin) | const |  |
+| [`POLLPRI`](#pollpri) | const |  |
+| [`POLLOUT`](#pollout) | const |  |
+| [`POLLERR`](#pollerr) | const |  |
+| [`POLLHUP`](#pollhup) | const |  |
+| [`POLLNVAL`](#pollnval) | const |  |
+| [`POLLRDNORM`](#pollrdnorm) | const |  |
+| [`POLLRDBAND`](#pollrdband) | const |  |
+| [`POLLRDHUP`](#pollrdhup) | const |  |
+| [`IPTOS_LOWDELAY`](#iptos_lowdelay) | const |  |
+| [`IPTOS_THROUGHPUT`](#iptos_throughput) | const |  |
+| [`IPTOS_RELIABILITY`](#iptos_reliability) | const |  |
+| [`IPTOS_MINCOST`](#iptos_mincost) | const |  |
+| [`IPTOS_PREC_NETCONTROL`](#iptos_prec_netcontrol) | const |  |
+| [`IPTOS_PREC_INTERNETCONTROL`](#iptos_prec_internetcontrol) | const |  |
+| [`IPTOS_PREC_CRITIC_ECP`](#iptos_prec_critic_ecp) | const |  |
+| [`IPTOS_PREC_FLASHOVERRIDE`](#iptos_prec_flashoverride) | const |  |
+| [`IPTOS_PREC_FLASH`](#iptos_prec_flash) | const |  |
+| [`IPTOS_PREC_IMMEDIATE`](#iptos_prec_immediate) | const |  |
+| [`IPTOS_PREC_PRIORITY`](#iptos_prec_priority) | const |  |
+| [`IPTOS_PREC_ROUTINE`](#iptos_prec_routine) | const |  |
+| [`IPTOS_ECN_MASK`](#iptos_ecn_mask) | const |  |
+| [`IPTOS_ECN_ECT1`](#iptos_ecn_ect1) | const |  |
+| [`IPTOS_ECN_ECT0`](#iptos_ecn_ect0) | const |  |
+| [`IPTOS_ECN_CE`](#iptos_ecn_ce) | const |  |
+| [`IPOPT_COPY`](#ipopt_copy) | const |  |
+| [`IPOPT_CLASS_MASK`](#ipopt_class_mask) | const |  |
+| [`IPOPT_NUMBER_MASK`](#ipopt_number_mask) | const |  |
+| [`IPOPT_CONTROL`](#ipopt_control) | const |  |
+| [`IPOPT_RESERVED1`](#ipopt_reserved1) | const |  |
+| [`IPOPT_MEASUREMENT`](#ipopt_measurement) | const |  |
+| [`IPOPT_RESERVED2`](#ipopt_reserved2) | const |  |
+| [`IPOPT_END`](#ipopt_end) | const |  |
+| [`IPOPT_NOOP`](#ipopt_noop) | const |  |
+| [`IPOPT_SEC`](#ipopt_sec) | const |  |
+| [`IPOPT_LSRR`](#ipopt_lsrr) | const |  |
+| [`IPOPT_TIMESTAMP`](#ipopt_timestamp) | const |  |
+| [`IPOPT_RR`](#ipopt_rr) | const |  |
+| [`IPOPT_SID`](#ipopt_sid) | const |  |
+| [`IPOPT_SSRR`](#ipopt_ssrr) | const |  |
+| [`IPOPT_RA`](#ipopt_ra) | const |  |
+| [`IPVERSION`](#ipversion) | const |  |
+| [`MAXTTL`](#maxttl) | const |  |
+| [`IPDEFTTL`](#ipdefttl) | const |  |
+| [`IPOPT_OPTVAL`](#ipopt_optval) | const |  |
+| [`IPOPT_OLEN`](#ipopt_olen) | const |  |
+| [`IPOPT_OFFSET`](#ipopt_offset) | const |  |
+| [`IPOPT_MINOFF`](#ipopt_minoff) | const |  |
+| [`MAX_IPOPTLEN`](#max_ipoptlen) | const |  |
+| [`IPOPT_NOP`](#ipopt_nop) | const |  |
+| [`IPOPT_EOL`](#ipopt_eol) | const |  |
+| [`IPOPT_TS`](#ipopt_ts) | const |  |
+| [`IPOPT_TS_TSONLY`](#ipopt_ts_tsonly) | const |  |
+| [`IPOPT_TS_TSANDADDR`](#ipopt_ts_tsandaddr) | const |  |
+| [`IPOPT_TS_PRESPEC`](#ipopt_ts_prespec) | const |  |
+| [`ARPOP_RREQUEST`](#arpop_rrequest) | const |  |
+| [`ARPOP_RREPLY`](#arpop_rreply) | const |  |
+| [`ARPOP_InREQUEST`](#arpop_inrequest) | const |  |
+| [`ARPOP_InREPLY`](#arpop_inreply) | const |  |
+| [`ARPOP_NAK`](#arpop_nak) | const |  |
+| [`ATF_NETMASK`](#atf_netmask) | const |  |
+| [`ATF_DONTPUB`](#atf_dontpub) | const |  |
+| [`ARPHRD_NETROM`](#arphrd_netrom) | const |  |
+| [`ARPHRD_ETHER`](#arphrd_ether) | const |  |
+| [`ARPHRD_EETHER`](#arphrd_eether) | const |  |
+| [`ARPHRD_AX25`](#arphrd_ax25) | const |  |
+| [`ARPHRD_PRONET`](#arphrd_pronet) | const |  |
+| [`ARPHRD_CHAOS`](#arphrd_chaos) | const |  |
+| [`ARPHRD_IEEE802`](#arphrd_ieee802) | const |  |
+| [`ARPHRD_ARCNET`](#arphrd_arcnet) | const |  |
+| [`ARPHRD_APPLETLK`](#arphrd_appletlk) | const |  |
+| [`ARPHRD_DLCI`](#arphrd_dlci) | const |  |
+| [`ARPHRD_ATM`](#arphrd_atm) | const |  |
+| [`ARPHRD_METRICOM`](#arphrd_metricom) | const |  |
+| [`ARPHRD_IEEE1394`](#arphrd_ieee1394) | const |  |
+| [`ARPHRD_EUI64`](#arphrd_eui64) | const |  |
+| [`ARPHRD_INFINIBAND`](#arphrd_infiniband) | const |  |
+| [`ARPHRD_SLIP`](#arphrd_slip) | const |  |
+| [`ARPHRD_CSLIP`](#arphrd_cslip) | const |  |
+| [`ARPHRD_SLIP6`](#arphrd_slip6) | const |  |
+| [`ARPHRD_CSLIP6`](#arphrd_cslip6) | const |  |
+| [`ARPHRD_RSRVD`](#arphrd_rsrvd) | const |  |
+| [`ARPHRD_ADAPT`](#arphrd_adapt) | const |  |
+| [`ARPHRD_ROSE`](#arphrd_rose) | const |  |
+| [`ARPHRD_X25`](#arphrd_x25) | const |  |
+| [`ARPHRD_HWX25`](#arphrd_hwx25) | const |  |
+| [`ARPHRD_CAN`](#arphrd_can) | const |  |
+| [`ARPHRD_PPP`](#arphrd_ppp) | const |  |
+| [`ARPHRD_CISCO`](#arphrd_cisco) | const |  |
+| [`ARPHRD_HDLC`](#arphrd_hdlc) | const |  |
+| [`ARPHRD_LAPB`](#arphrd_lapb) | const |  |
+| [`ARPHRD_DDCMP`](#arphrd_ddcmp) | const |  |
+| [`ARPHRD_RAWHDLC`](#arphrd_rawhdlc) | const |  |
+| [`ARPHRD_TUNNEL`](#arphrd_tunnel) | const |  |
+| [`ARPHRD_TUNNEL6`](#arphrd_tunnel6) | const |  |
+| [`ARPHRD_FRAD`](#arphrd_frad) | const |  |
+| [`ARPHRD_SKIP`](#arphrd_skip) | const |  |
+| [`ARPHRD_LOOPBACK`](#arphrd_loopback) | const |  |
+| [`ARPHRD_LOCALTLK`](#arphrd_localtlk) | const |  |
+| [`ARPHRD_FDDI`](#arphrd_fddi) | const |  |
+| [`ARPHRD_BIF`](#arphrd_bif) | const |  |
+| [`ARPHRD_SIT`](#arphrd_sit) | const |  |
+| [`ARPHRD_IPDDP`](#arphrd_ipddp) | const |  |
+| [`ARPHRD_IPGRE`](#arphrd_ipgre) | const |  |
+| [`ARPHRD_PIMREG`](#arphrd_pimreg) | const |  |
+| [`ARPHRD_HIPPI`](#arphrd_hippi) | const |  |
+| [`ARPHRD_ASH`](#arphrd_ash) | const |  |
+| [`ARPHRD_ECONET`](#arphrd_econet) | const |  |
+| [`ARPHRD_IRDA`](#arphrd_irda) | const |  |
+| [`ARPHRD_FCPP`](#arphrd_fcpp) | const |  |
+| [`ARPHRD_FCAL`](#arphrd_fcal) | const |  |
+| [`ARPHRD_FCPL`](#arphrd_fcpl) | const |  |
+| [`ARPHRD_FCFABRIC`](#arphrd_fcfabric) | const |  |
+| [`ARPHRD_IEEE802_TR`](#arphrd_ieee802_tr) | const |  |
+| [`ARPHRD_IEEE80211`](#arphrd_ieee80211) | const |  |
+| [`ARPHRD_IEEE80211_PRISM`](#arphrd_ieee80211_prism) | const |  |
+| [`ARPHRD_IEEE80211_RADIOTAP`](#arphrd_ieee80211_radiotap) | const |  |
+| [`ARPHRD_IEEE802154`](#arphrd_ieee802154) | const |  |
+| [`ARPHRD_VOID`](#arphrd_void) | const |  |
+| [`ARPHRD_NONE`](#arphrd_none) | const |  |
+| [`IFF_TUN`](#iff_tun) | const |  |
+| [`IFF_TAP`](#iff_tap) | const |  |
+| [`IFF_NAPI`](#iff_napi) | const |  |
+| [`IFF_NAPI_FRAGS`](#iff_napi_frags) | const |  |
+| [`IFF_NO_CARRIER`](#iff_no_carrier) | const |  |
+| [`IFF_NO_PI`](#iff_no_pi) | const |  |
+| [`TUN_READQ_SIZE`](#tun_readq_size) | const |  |
+| [`TUN_TUN_DEV`](#tun_tun_dev) | const |  |
+| [`TUN_TAP_DEV`](#tun_tap_dev) | const |  |
+| [`TUN_TYPE_MASK`](#tun_type_mask) | const |  |
+| [`IFF_ONE_QUEUE`](#iff_one_queue) | const |  |
+| [`IFF_VNET_HDR`](#iff_vnet_hdr) | const |  |
+| [`IFF_TUN_EXCL`](#iff_tun_excl) | const |  |
+| [`IFF_MULTI_QUEUE`](#iff_multi_queue) | const |  |
+| [`IFF_ATTACH_QUEUE`](#iff_attach_queue) | const |  |
+| [`IFF_DETACH_QUEUE`](#iff_detach_queue) | const |  |
+| [`IFF_PERSIST`](#iff_persist) | const |  |
+| [`IFF_NOFILTER`](#iff_nofilter) | const |  |
+| [`TUN_TX_TIMESTAMP`](#tun_tx_timestamp) | const |  |
+| [`TUN_F_CSUM`](#tun_f_csum) | const |  |
+| [`TUN_F_TSO4`](#tun_f_tso4) | const |  |
+| [`TUN_F_TSO6`](#tun_f_tso6) | const |  |
+| [`TUN_F_TSO_ECN`](#tun_f_tso_ecn) | const |  |
+| [`TUN_F_UFO`](#tun_f_ufo) | const |  |
+| [`TUN_F_USO4`](#tun_f_uso4) | const |  |
+| [`TUN_F_USO6`](#tun_f_uso6) | const |  |
+| [`TUN_PKT_STRIP`](#tun_pkt_strip) | const |  |
+| [`TUN_FLT_ALLMULTI`](#tun_flt_allmulti) | const |  |
+| [`T_TYPE`](#t_type) | const |  |
+| [`TUNSETNOCSUM`](#tunsetnocsum) | const |  |
+| [`TUNSETDEBUG`](#tunsetdebug) | const |  |
+| [`TUNSETIFF`](#tunsetiff) | const |  |
+| [`TUNSETPERSIST`](#tunsetpersist) | const |  |
+| [`TUNSETOWNER`](#tunsetowner) | const |  |
+| [`TUNSETLINK`](#tunsetlink) | const |  |
+| [`TUNSETGROUP`](#tunsetgroup) | const |  |
+| [`TUNGETFEATURES`](#tungetfeatures) | const |  |
+| [`TUNSETOFFLOAD`](#tunsetoffload) | const |  |
+| [`TUNSETTXFILTER`](#tunsettxfilter) | const |  |
+| [`TUNGETIFF`](#tungetiff) | const |  |
+| [`TUNGETSNDBUF`](#tungetsndbuf) | const |  |
+| [`TUNSETSNDBUF`](#tunsetsndbuf) | const |  |
+| [`TUNATTACHFILTER`](#tunattachfilter) | const |  |
+| [`TUNDETACHFILTER`](#tundetachfilter) | const |  |
+| [`TUNGETVNETHDRSZ`](#tungetvnethdrsz) | const |  |
+| [`TUNSETVNETHDRSZ`](#tunsetvnethdrsz) | const |  |
+| [`TUNSETQUEUE`](#tunsetqueue) | const |  |
+| [`TUNSETIFINDEX`](#tunsetifindex) | const |  |
+| [`TUNGETFILTER`](#tungetfilter) | const |  |
+| [`TUNSETVNETLE`](#tunsetvnetle) | const |  |
+| [`TUNGETVNETLE`](#tungetvnetle) | const |  |
+| [`TUNSETVNETBE`](#tunsetvnetbe) | const |  |
+| [`TUNGETVNETBE`](#tungetvnetbe) | const |  |
+| [`TUNSETSTEERINGEBPF`](#tunsetsteeringebpf) | const |  |
+| [`TUNSETFILTEREBPF`](#tunsetfilterebpf) | const |  |
+| [`TUNSETCARRIER`](#tunsetcarrier) | const |  |
+| [`TUNGETDEVNETNS`](#tungetdevnetns) | const |  |
+| [`FS_IOC_GETFLAGS`](#fs_ioc_getflags) | const |  |
+| [`FS_IOC_SETFLAGS`](#fs_ioc_setflags) | const |  |
+| [`FS_IOC_GETVERSION`](#fs_ioc_getversion) | const |  |
+| [`FS_IOC_SETVERSION`](#fs_ioc_setversion) | const |  |
+| [`FS_IOC32_GETFLAGS`](#fs_ioc32_getflags) | const |  |
+| [`FS_IOC32_SETFLAGS`](#fs_ioc32_setflags) | const |  |
+| [`FS_IOC32_GETVERSION`](#fs_ioc32_getversion) | const |  |
+| [`FS_IOC32_SETVERSION`](#fs_ioc32_setversion) | const |  |
+| [`FICLONE`](#ficlone) | const |  |
+| [`FICLONERANGE`](#ficlonerange) | const |  |
+| [`ADFS_SUPER_MAGIC`](#adfs_super_magic) | const |  |
+| [`AFFS_SUPER_MAGIC`](#affs_super_magic) | const |  |
+| [`AFS_SUPER_MAGIC`](#afs_super_magic) | const |  |
+| [`AUTOFS_SUPER_MAGIC`](#autofs_super_magic) | const |  |
+| [`BPF_FS_MAGIC`](#bpf_fs_magic) | const |  |
+| [`BTRFS_SUPER_MAGIC`](#btrfs_super_magic) | const |  |
+| [`CGROUP2_SUPER_MAGIC`](#cgroup2_super_magic) | const |  |
+| [`CGROUP_SUPER_MAGIC`](#cgroup_super_magic) | const |  |
+| [`CODA_SUPER_MAGIC`](#coda_super_magic) | const |  |
+| [`CRAMFS_MAGIC`](#cramfs_magic) | const |  |
+| [`DEBUGFS_MAGIC`](#debugfs_magic) | const |  |
+| [`DEVPTS_SUPER_MAGIC`](#devpts_super_magic) | const |  |
+| [`ECRYPTFS_SUPER_MAGIC`](#ecryptfs_super_magic) | const |  |
+| [`EFS_SUPER_MAGIC`](#efs_super_magic) | const |  |
+| [`EXT2_SUPER_MAGIC`](#ext2_super_magic) | const |  |
+| [`EXT3_SUPER_MAGIC`](#ext3_super_magic) | const |  |
+| [`EXT4_SUPER_MAGIC`](#ext4_super_magic) | const |  |
+| [`F2FS_SUPER_MAGIC`](#f2fs_super_magic) | const |  |
+| [`FUSE_SUPER_MAGIC`](#fuse_super_magic) | const |  |
+| [`FUTEXFS_SUPER_MAGIC`](#futexfs_super_magic) | const |  |
+| [`HOSTFS_SUPER_MAGIC`](#hostfs_super_magic) | const |  |
+| [`HPFS_SUPER_MAGIC`](#hpfs_super_magic) | const |  |
+| [`HUGETLBFS_MAGIC`](#hugetlbfs_magic) | const |  |
+| [`ISOFS_SUPER_MAGIC`](#isofs_super_magic) | const |  |
+| [`JFFS2_SUPER_MAGIC`](#jffs2_super_magic) | const |  |
+| [`MINIX2_SUPER_MAGIC2`](#minix2_super_magic2) | const |  |
+| [`MINIX2_SUPER_MAGIC`](#minix2_super_magic) | const |  |
+| [`MINIX3_SUPER_MAGIC`](#minix3_super_magic) | const |  |
+| [`MINIX_SUPER_MAGIC2`](#minix_super_magic2) | const |  |
+| [`MINIX_SUPER_MAGIC`](#minix_super_magic) | const |  |
+| [`MSDOS_SUPER_MAGIC`](#msdos_super_magic) | const |  |
+| [`NCP_SUPER_MAGIC`](#ncp_super_magic) | const |  |
+| [`NFS_SUPER_MAGIC`](#nfs_super_magic) | const |  |
+| [`NILFS_SUPER_MAGIC`](#nilfs_super_magic) | const |  |
+| [`OCFS2_SUPER_MAGIC`](#ocfs2_super_magic) | const |  |
+| [`OPENPROM_SUPER_MAGIC`](#openprom_super_magic) | const |  |
+| [`OVERLAYFS_SUPER_MAGIC`](#overlayfs_super_magic) | const |  |
+| [`PROC_SUPER_MAGIC`](#proc_super_magic) | const |  |
+| [`QNX4_SUPER_MAGIC`](#qnx4_super_magic) | const |  |
+| [`QNX6_SUPER_MAGIC`](#qnx6_super_magic) | const |  |
+| [`RDTGROUP_SUPER_MAGIC`](#rdtgroup_super_magic) | const |  |
+| [`REISERFS_SUPER_MAGIC`](#reiserfs_super_magic) | const |  |
+| [`SECURITYFS_MAGIC`](#securityfs_magic) | const |  |
+| [`SELINUX_MAGIC`](#selinux_magic) | const |  |
+| [`SMACK_MAGIC`](#smack_magic) | const |  |
+| [`SMB_SUPER_MAGIC`](#smb_super_magic) | const |  |
+| [`SYSFS_MAGIC`](#sysfs_magic) | const |  |
+| [`TMPFS_MAGIC`](#tmpfs_magic) | const |  |
+| [`TRACEFS_MAGIC`](#tracefs_magic) | const |  |
+| [`UDF_SUPER_MAGIC`](#udf_super_magic) | const |  |
+| [`USBDEVICE_SUPER_MAGIC`](#usbdevice_super_magic) | const |  |
+| [`XENFS_SUPER_MAGIC`](#xenfs_super_magic) | const |  |
+| [`NSFS_MAGIC`](#nsfs_magic) | const |  |
+| [`AT_STATX_SYNC_TYPE`](#at_statx_sync_type) | const |  |
+| [`AT_STATX_SYNC_AS_STAT`](#at_statx_sync_as_stat) | const |  |
+| [`AT_STATX_FORCE_SYNC`](#at_statx_force_sync) | const |  |
+| [`AT_STATX_DONT_SYNC`](#at_statx_dont_sync) | const |  |
+| [`STATX_TYPE`](#statx_type) | const |  |
+| [`STATX_MODE`](#statx_mode) | const |  |
+| [`STATX_NLINK`](#statx_nlink) | const |  |
+| [`STATX_UID`](#statx_uid) | const |  |
+| [`STATX_GID`](#statx_gid) | const |  |
+| [`STATX_ATIME`](#statx_atime) | const |  |
+| [`STATX_MTIME`](#statx_mtime) | const |  |
+| [`STATX_CTIME`](#statx_ctime) | const |  |
+| [`STATX_INO`](#statx_ino) | const |  |
+| [`STATX_SIZE`](#statx_size) | const |  |
+| [`STATX_BLOCKS`](#statx_blocks) | const |  |
+| [`STATX_BASIC_STATS`](#statx_basic_stats) | const |  |
+| [`STATX_BTIME`](#statx_btime) | const |  |
+| [`STATX_ALL`](#statx_all) | const |  |
+| [`STATX_MNT_ID`](#statx_mnt_id) | const |  |
+| [`STATX_DIOALIGN`](#statx_dioalign) | const |  |
+| [`STATX__RESERVED`](#statx__reserved) | const |  |
+| [`STATX_ATTR_COMPRESSED`](#statx_attr_compressed) | const |  |
+| [`STATX_ATTR_IMMUTABLE`](#statx_attr_immutable) | const |  |
+| [`STATX_ATTR_APPEND`](#statx_attr_append) | const |  |
+| [`STATX_ATTR_NODUMP`](#statx_attr_nodump) | const |  |
+| [`STATX_ATTR_ENCRYPTED`](#statx_attr_encrypted) | const |  |
+| [`STATX_ATTR_AUTOMOUNT`](#statx_attr_automount) | const |  |
+| [`STATX_ATTR_MOUNT_ROOT`](#statx_attr_mount_root) | const |  |
+| [`STATX_ATTR_VERITY`](#statx_attr_verity) | const |  |
+| [`STATX_ATTR_DAX`](#statx_attr_dax) | const |  |
+| [`_IOC_NRBITS`](#_ioc_nrbits) | const |  |
+| [`_IOC_TYPEBITS`](#_ioc_typebits) | const |  |
+| [`_IOC_SIZEBITS`](#_ioc_sizebits) | const |  |
+| [`_IOC_DIRBITS`](#_ioc_dirbits) | const |  |
+| [`_IOC_NONE`](#_ioc_none) | const |  |
+| [`_IOC_WRITE`](#_ioc_write) | const |  |
+| [`_IOC_READ`](#_ioc_read) | const |  |
+| [`_IOC_NRMASK`](#_ioc_nrmask) | const |  |
+| [`_IOC_TYPEMASK`](#_ioc_typemask) | const |  |
+| [`_IOC_SIZEMASK`](#_ioc_sizemask) | const |  |
+| [`_IOC_DIRMASK`](#_ioc_dirmask) | const |  |
+| [`_IOC_NRSHIFT`](#_ioc_nrshift) | const |  |
+| [`_IOC_TYPESHIFT`](#_ioc_typeshift) | const |  |
+| [`_IOC_SIZESHIFT`](#_ioc_sizeshift) | const |  |
+| [`_IOC_DIRSHIFT`](#_ioc_dirshift) | const |  |
+
 ## Modules
 
 - [`linux_like`](linux_like/index.md) - 
@@ -31,13 +3269,13 @@ struct group {
 
 ##### `impl Clone for group`
 
-- `fn clone(self: &Self) -> group` — [`group`](../index.md)
+- <span id="group-clone"></span>`fn clone(&self) -> group` — [`group`](../index.md)
 
 ##### `impl Copy for group`
 
 ##### `impl Debug for group`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="group-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `utimbuf`
 
@@ -52,13 +3290,13 @@ struct utimbuf {
 
 ##### `impl Clone for utimbuf`
 
-- `fn clone(self: &Self) -> utimbuf` — [`utimbuf`](../index.md)
+- <span id="utimbuf-clone"></span>`fn clone(&self) -> utimbuf` — [`utimbuf`](../index.md)
 
 ##### `impl Copy for utimbuf`
 
 ##### `impl Debug for utimbuf`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="utimbuf-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `timeval`
 
@@ -73,13 +3311,13 @@ struct timeval {
 
 ##### `impl Clone for timeval`
 
-- `fn clone(self: &Self) -> timeval` — [`timeval`](../index.md)
+- <span id="timeval-clone"></span>`fn clone(&self) -> timeval` — [`timeval`](../index.md)
 
 ##### `impl Copy for timeval`
 
 ##### `impl Debug for timeval`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="timeval-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `rlimit`
 
@@ -94,13 +3332,13 @@ struct rlimit {
 
 ##### `impl Clone for rlimit`
 
-- `fn clone(self: &Self) -> rlimit` — [`rlimit`](../index.md)
+- <span id="rlimit-clone"></span>`fn clone(&self) -> rlimit` — [`rlimit`](../index.md)
 
 ##### `impl Copy for rlimit`
 
 ##### `impl Debug for rlimit`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rlimit-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `rusage`
 
@@ -129,13 +3367,13 @@ struct rusage {
 
 ##### `impl Clone for rusage`
 
-- `fn clone(self: &Self) -> rusage` — [`rusage`](../index.md)
+- <span id="rusage-clone"></span>`fn clone(&self) -> rusage` — [`rusage`](../index.md)
 
 ##### `impl Copy for rusage`
 
 ##### `impl Debug for rusage`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rusage-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ipv6_mreq`
 
@@ -150,13 +3388,13 @@ struct ipv6_mreq {
 
 ##### `impl Clone for ipv6_mreq`
 
-- `fn clone(self: &Self) -> ipv6_mreq` — [`ipv6_mreq`](../index.md)
+- <span id="ipv6-mreq-clone"></span>`fn clone(&self) -> ipv6_mreq` — [`ipv6_mreq`](../index.md)
 
 ##### `impl Copy for ipv6_mreq`
 
 ##### `impl Debug for ipv6_mreq`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="ipv6-mreq-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `hostent`
 
@@ -174,13 +3412,13 @@ struct hostent {
 
 ##### `impl Clone for hostent`
 
-- `fn clone(self: &Self) -> hostent` — [`hostent`](../index.md)
+- <span id="hostent-clone"></span>`fn clone(&self) -> hostent` — [`hostent`](../index.md)
 
 ##### `impl Copy for hostent`
 
 ##### `impl Debug for hostent`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="hostent-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `iovec`
 
@@ -195,13 +3433,13 @@ struct iovec {
 
 ##### `impl Clone for iovec`
 
-- `fn clone(self: &Self) -> iovec` — [`iovec`](../index.md)
+- <span id="iovec-clone"></span>`fn clone(&self) -> iovec` — [`iovec`](../index.md)
 
 ##### `impl Copy for iovec`
 
 ##### `impl Debug for iovec`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="iovec-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `pollfd`
 
@@ -217,13 +3455,13 @@ struct pollfd {
 
 ##### `impl Clone for pollfd`
 
-- `fn clone(self: &Self) -> pollfd` — [`pollfd`](../index.md)
+- <span id="pollfd-clone"></span>`fn clone(&self) -> pollfd` — [`pollfd`](../index.md)
 
 ##### `impl Copy for pollfd`
 
 ##### `impl Debug for pollfd`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pollfd-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `winsize`
 
@@ -240,13 +3478,13 @@ struct winsize {
 
 ##### `impl Clone for winsize`
 
-- `fn clone(self: &Self) -> winsize` — [`winsize`](../index.md)
+- <span id="winsize-clone"></span>`fn clone(&self) -> winsize` — [`winsize`](../index.md)
 
 ##### `impl Copy for winsize`
 
 ##### `impl Debug for winsize`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="winsize-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `linger`
 
@@ -261,13 +3499,13 @@ struct linger {
 
 ##### `impl Clone for linger`
 
-- `fn clone(self: &Self) -> linger` — [`linger`](../index.md)
+- <span id="linger-clone"></span>`fn clone(&self) -> linger` — [`linger`](../index.md)
 
 ##### `impl Copy for linger`
 
 ##### `impl Debug for linger`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="linger-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `sigval`
 
@@ -281,13 +3519,13 @@ struct sigval {
 
 ##### `impl Clone for sigval`
 
-- `fn clone(self: &Self) -> sigval` — [`sigval`](../index.md)
+- <span id="sigval-clone"></span>`fn clone(&self) -> sigval` — [`sigval`](../index.md)
 
 ##### `impl Copy for sigval`
 
 ##### `impl Debug for sigval`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sigval-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `itimerval`
 
@@ -302,13 +3540,13 @@ struct itimerval {
 
 ##### `impl Clone for itimerval`
 
-- `fn clone(self: &Self) -> itimerval` — [`itimerval`](../index.md)
+- <span id="itimerval-clone"></span>`fn clone(&self) -> itimerval` — [`itimerval`](../index.md)
 
 ##### `impl Copy for itimerval`
 
 ##### `impl Debug for itimerval`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="itimerval-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `tms`
 
@@ -325,13 +3563,13 @@ struct tms {
 
 ##### `impl Clone for tms`
 
-- `fn clone(self: &Self) -> tms` — [`tms`](../index.md)
+- <span id="tms-clone"></span>`fn clone(&self) -> tms` — [`tms`](../index.md)
 
 ##### `impl Copy for tms`
 
 ##### `impl Debug for tms`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="tms-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `servent`
 
@@ -348,13 +3586,13 @@ struct servent {
 
 ##### `impl Clone for servent`
 
-- `fn clone(self: &Self) -> servent` — [`servent`](../index.md)
+- <span id="servent-clone"></span>`fn clone(&self) -> servent` — [`servent`](../index.md)
 
 ##### `impl Copy for servent`
 
 ##### `impl Debug for servent`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="servent-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `protoent`
 
@@ -370,13 +3608,13 @@ struct protoent {
 
 ##### `impl Clone for protoent`
 
-- `fn clone(self: &Self) -> protoent` — [`protoent`](../index.md)
+- <span id="protoent-clone"></span>`fn clone(&self) -> protoent` — [`protoent`](../index.md)
 
 ##### `impl Copy for protoent`
 
 ##### `impl Debug for protoent`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="protoent-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `in6_addr`
 
@@ -390,13 +3628,13 @@ struct in6_addr {
 
 ##### `impl Clone for in6_addr`
 
-- `fn clone(self: &Self) -> in6_addr` — [`in6_addr`](../index.md)
+- <span id="in6-addr-clone"></span>`fn clone(&self) -> in6_addr` — [`in6_addr`](../index.md)
 
 ##### `impl Copy for in6_addr`
 
 ##### `impl Debug for in6_addr`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="in6-addr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `in_addr`
 
@@ -410,13 +3648,13 @@ struct in_addr {
 
 ##### `impl Clone for in_addr`
 
-- `fn clone(self: &Self) -> in_addr` — [`in_addr`](#in-addr)
+- <span id="in-addr-clone"></span>`fn clone(&self) -> in_addr` — [`in_addr`](#in-addr)
 
 ##### `impl Copy for in_addr`
 
 ##### `impl Debug for in_addr`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="in-addr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ip_mreq`
 
@@ -431,13 +3669,13 @@ struct ip_mreq {
 
 ##### `impl Clone for ip_mreq`
 
-- `fn clone(self: &Self) -> ip_mreq` — [`ip_mreq`](#ip-mreq)
+- <span id="ip-mreq-clone"></span>`fn clone(&self) -> ip_mreq` — [`ip_mreq`](#ip-mreq)
 
 ##### `impl Copy for ip_mreq`
 
 ##### `impl Debug for ip_mreq`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="ip-mreq-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ip_mreqn`
 
@@ -453,13 +3691,13 @@ struct ip_mreqn {
 
 ##### `impl Clone for ip_mreqn`
 
-- `fn clone(self: &Self) -> ip_mreqn` — [`ip_mreqn`](#ip-mreqn)
+- <span id="ip-mreqn-clone"></span>`fn clone(&self) -> ip_mreqn` — [`ip_mreqn`](#ip-mreqn)
 
 ##### `impl Copy for ip_mreqn`
 
 ##### `impl Debug for ip_mreqn`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="ip-mreqn-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ip_mreq_source`
 
@@ -475,13 +3713,13 @@ struct ip_mreq_source {
 
 ##### `impl Clone for ip_mreq_source`
 
-- `fn clone(self: &Self) -> ip_mreq_source` — [`ip_mreq_source`](#ip-mreq-source)
+- <span id="ip-mreq-source-clone"></span>`fn clone(&self) -> ip_mreq_source` — [`ip_mreq_source`](#ip-mreq-source)
 
 ##### `impl Copy for ip_mreq_source`
 
 ##### `impl Debug for ip_mreq_source`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="ip-mreq-source-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `sockaddr`
 
@@ -496,13 +3734,13 @@ struct sockaddr {
 
 ##### `impl Clone for sockaddr`
 
-- `fn clone(self: &Self) -> sockaddr` — [`sockaddr`](#sockaddr)
+- <span id="sockaddr-clone"></span>`fn clone(&self) -> sockaddr` — [`sockaddr`](#sockaddr)
 
 ##### `impl Copy for sockaddr`
 
 ##### `impl Debug for sockaddr`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sockaddr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `sockaddr_in`
 
@@ -519,13 +3757,13 @@ struct sockaddr_in {
 
 ##### `impl Clone for sockaddr_in`
 
-- `fn clone(self: &Self) -> sockaddr_in` — [`sockaddr_in`](#sockaddr-in)
+- <span id="sockaddr-in-clone"></span>`fn clone(&self) -> sockaddr_in` — [`sockaddr_in`](#sockaddr-in)
 
 ##### `impl Copy for sockaddr_in`
 
 ##### `impl Debug for sockaddr_in`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sockaddr-in-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `sockaddr_in6`
 
@@ -543,13 +3781,13 @@ struct sockaddr_in6 {
 
 ##### `impl Clone for sockaddr_in6`
 
-- `fn clone(self: &Self) -> sockaddr_in6` — [`sockaddr_in6`](#sockaddr-in6)
+- <span id="sockaddr-in6-clone"></span>`fn clone(&self) -> sockaddr_in6` — [`sockaddr_in6`](#sockaddr-in6)
 
 ##### `impl Copy for sockaddr_in6`
 
 ##### `impl Debug for sockaddr_in6`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sockaddr-in6-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `addrinfo`
 
@@ -570,13 +3808,13 @@ struct addrinfo {
 
 ##### `impl Clone for addrinfo`
 
-- `fn clone(self: &Self) -> addrinfo` — [`addrinfo`](#addrinfo)
+- <span id="addrinfo-clone"></span>`fn clone(&self) -> addrinfo` — [`addrinfo`](#addrinfo)
 
 ##### `impl Copy for addrinfo`
 
 ##### `impl Debug for addrinfo`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="addrinfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `sockaddr_ll`
 
@@ -596,13 +3834,13 @@ struct sockaddr_ll {
 
 ##### `impl Clone for sockaddr_ll`
 
-- `fn clone(self: &Self) -> sockaddr_ll` — [`sockaddr_ll`](#sockaddr-ll)
+- <span id="sockaddr-ll-clone"></span>`fn clone(&self) -> sockaddr_ll` — [`sockaddr_ll`](#sockaddr-ll)
 
 ##### `impl Copy for sockaddr_ll`
 
 ##### `impl Debug for sockaddr_ll`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sockaddr-ll-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `fd_set`
 
@@ -616,13 +3854,13 @@ struct fd_set {
 
 ##### `impl Clone for fd_set`
 
-- `fn clone(self: &Self) -> fd_set` — [`fd_set`](#fd-set)
+- <span id="fd-set-clone"></span>`fn clone(&self) -> fd_set` — [`fd_set`](#fd-set)
 
 ##### `impl Copy for fd_set`
 
 ##### `impl Debug for fd_set`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="fd-set-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `tm`
 
@@ -646,13 +3884,13 @@ struct tm {
 
 ##### `impl Clone for tm`
 
-- `fn clone(self: &Self) -> tm` — [`tm`](#tm)
+- <span id="tm-clone"></span>`fn clone(&self) -> tm` — [`tm`](#tm)
 
 ##### `impl Copy for tm`
 
 ##### `impl Debug for tm`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="tm-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `sched_param`
 
@@ -666,13 +3904,13 @@ struct sched_param {
 
 ##### `impl Clone for sched_param`
 
-- `fn clone(self: &Self) -> sched_param` — [`sched_param`](#sched-param)
+- <span id="sched-param-clone"></span>`fn clone(&self) -> sched_param` — [`sched_param`](#sched-param)
 
 ##### `impl Copy for sched_param`
 
 ##### `impl Debug for sched_param`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sched-param-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Dl_info`
 
@@ -689,13 +3927,13 @@ struct Dl_info {
 
 ##### `impl Clone for Dl_info`
 
-- `fn clone(self: &Self) -> Dl_info` — [`Dl_info`](#dl-info)
+- <span id="dl-info-clone"></span>`fn clone(&self) -> Dl_info` — [`Dl_info`](#dl-info)
 
 ##### `impl Copy for Dl_info`
 
 ##### `impl Debug for Dl_info`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dl-info-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `lconv`
 
@@ -732,13 +3970,13 @@ struct lconv {
 
 ##### `impl Clone for lconv`
 
-- `fn clone(self: &Self) -> lconv` — [`lconv`](#lconv)
+- <span id="lconv-clone"></span>`fn clone(&self) -> lconv` — [`lconv`](#lconv)
 
 ##### `impl Copy for lconv`
 
 ##### `impl Debug for lconv`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="lconv-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `in_pktinfo`
 
@@ -754,13 +3992,13 @@ struct in_pktinfo {
 
 ##### `impl Clone for in_pktinfo`
 
-- `fn clone(self: &Self) -> in_pktinfo` — [`in_pktinfo`](#in-pktinfo)
+- <span id="in-pktinfo-clone"></span>`fn clone(&self) -> in_pktinfo` — [`in_pktinfo`](#in-pktinfo)
 
 ##### `impl Copy for in_pktinfo`
 
 ##### `impl Debug for in_pktinfo`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="in-pktinfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ifaddrs`
 
@@ -780,13 +4018,13 @@ struct ifaddrs {
 
 ##### `impl Clone for ifaddrs`
 
-- `fn clone(self: &Self) -> ifaddrs` — [`ifaddrs`](#ifaddrs)
+- <span id="ifaddrs-clone"></span>`fn clone(&self) -> ifaddrs` — [`ifaddrs`](#ifaddrs)
 
 ##### `impl Copy for ifaddrs`
 
 ##### `impl Debug for ifaddrs`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="ifaddrs-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `in6_rtmsg`
 
@@ -809,13 +4047,13 @@ struct in6_rtmsg {
 
 ##### `impl Clone for in6_rtmsg`
 
-- `fn clone(self: &Self) -> in6_rtmsg` — [`in6_rtmsg`](#in6-rtmsg)
+- <span id="in6-rtmsg-clone"></span>`fn clone(&self) -> in6_rtmsg` — [`in6_rtmsg`](#in6-rtmsg)
 
 ##### `impl Copy for in6_rtmsg`
 
 ##### `impl Debug for in6_rtmsg`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="in6-rtmsg-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `arpreq`
 
@@ -833,13 +4071,13 @@ struct arpreq {
 
 ##### `impl Clone for arpreq`
 
-- `fn clone(self: &Self) -> arpreq` — [`arpreq`](#arpreq)
+- <span id="arpreq-clone"></span>`fn clone(&self) -> arpreq` — [`arpreq`](#arpreq)
 
 ##### `impl Copy for arpreq`
 
 ##### `impl Debug for arpreq`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="arpreq-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `arpreq_old`
 
@@ -856,13 +4094,13 @@ struct arpreq_old {
 
 ##### `impl Clone for arpreq_old`
 
-- `fn clone(self: &Self) -> arpreq_old` — [`arpreq_old`](#arpreq-old)
+- <span id="arpreq-old-clone"></span>`fn clone(&self) -> arpreq_old` — [`arpreq_old`](#arpreq-old)
 
 ##### `impl Copy for arpreq_old`
 
 ##### `impl Debug for arpreq_old`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="arpreq-old-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `arphdr`
 
@@ -880,13 +4118,13 @@ struct arphdr {
 
 ##### `impl Clone for arphdr`
 
-- `fn clone(self: &Self) -> arphdr` — [`arphdr`](#arphdr)
+- <span id="arphdr-clone"></span>`fn clone(&self) -> arphdr` — [`arphdr`](#arphdr)
 
 ##### `impl Copy for arphdr`
 
 ##### `impl Debug for arphdr`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="arphdr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `mmsghdr`
 
@@ -901,13 +4139,13 @@ struct mmsghdr {
 
 ##### `impl Clone for mmsghdr`
 
-- `fn clone(self: &Self) -> mmsghdr` — [`mmsghdr`](#mmsghdr)
+- <span id="mmsghdr-clone"></span>`fn clone(&self) -> mmsghdr` — [`mmsghdr`](#mmsghdr)
 
 ##### `impl Copy for mmsghdr`
 
 ##### `impl Debug for mmsghdr`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="mmsghdr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `sockaddr_un`
 
@@ -922,13 +4160,13 @@ struct sockaddr_un {
 
 ##### `impl Clone for sockaddr_un`
 
-- `fn clone(self: &Self) -> sockaddr_un` — [`sockaddr_un`](#sockaddr-un)
+- <span id="sockaddr-un-clone"></span>`fn clone(&self) -> sockaddr_un` — [`sockaddr_un`](#sockaddr-un)
 
 ##### `impl Copy for sockaddr_un`
 
 ##### `impl Debug for sockaddr_un`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sockaddr-un-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `sockaddr_storage`
 
@@ -944,13 +4182,13 @@ struct sockaddr_storage {
 
 ##### `impl Clone for sockaddr_storage`
 
-- `fn clone(self: &Self) -> sockaddr_storage` — [`sockaddr_storage`](#sockaddr-storage)
+- <span id="sockaddr-storage-clone"></span>`fn clone(&self) -> sockaddr_storage` — [`sockaddr_storage`](#sockaddr-storage)
 
 ##### `impl Copy for sockaddr_storage`
 
 ##### `impl Debug for sockaddr_storage`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sockaddr-storage-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `utsname`
 
@@ -969,13 +4207,13 @@ struct utsname {
 
 ##### `impl Clone for utsname`
 
-- `fn clone(self: &Self) -> utsname` — [`utsname`](#utsname)
+- <span id="utsname-clone"></span>`fn clone(&self) -> utsname` — [`utsname`](#utsname)
 
 ##### `impl Copy for utsname`
 
 ##### `impl Debug for utsname`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="utsname-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `file_clone_range`
 
@@ -992,13 +4230,13 @@ struct file_clone_range {
 
 ##### `impl Clone for file_clone_range`
 
-- `fn clone(self: &Self) -> file_clone_range` — [`file_clone_range`](#file-clone-range)
+- <span id="file-clone-range-clone"></span>`fn clone(&self) -> file_clone_range` — [`file_clone_range`](#file-clone-range)
 
 ##### `impl Copy for file_clone_range`
 
 ##### `impl Debug for file_clone_range`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="file-clone-range-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `sock_filter`
 
@@ -1015,13 +4253,13 @@ struct sock_filter {
 
 ##### `impl Clone for sock_filter`
 
-- `fn clone(self: &Self) -> sock_filter` — [`sock_filter`](#sock-filter)
+- <span id="sock-filter-clone"></span>`fn clone(&self) -> sock_filter` — [`sock_filter`](#sock-filter)
 
 ##### `impl Copy for sock_filter`
 
 ##### `impl Debug for sock_filter`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sock-filter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `sock_fprog`
 
@@ -1036,13 +4274,13 @@ struct sock_fprog {
 
 ##### `impl Clone for sock_fprog`
 
-- `fn clone(self: &Self) -> sock_fprog` — [`sock_fprog`](#sock-fprog)
+- <span id="sock-fprog-clone"></span>`fn clone(&self) -> sock_fprog` — [`sock_fprog`](#sock-fprog)
 
 ##### `impl Copy for sock_fprog`
 
 ##### `impl Debug for sock_fprog`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sock-fprog-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `statx`
 
@@ -1079,13 +4317,13 @@ struct statx {
 
 ##### `impl Clone for statx`
 
-- `fn clone(self: &Self) -> statx` — [`statx`](#statx)
+- <span id="statx-clone"></span>`fn clone(&self) -> statx` — [`statx`](#statx)
 
 ##### `impl Copy for statx`
 
 ##### `impl Debug for statx`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="statx-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `statx_timestamp`
 
@@ -1101,13 +4339,13 @@ struct statx_timestamp {
 
 ##### `impl Clone for statx_timestamp`
 
-- `fn clone(self: &Self) -> statx_timestamp` — [`statx_timestamp`](#statx-timestamp)
+- <span id="statx-timestamp-clone"></span>`fn clone(&self) -> statx_timestamp` — [`statx_timestamp`](#statx-timestamp)
 
 ##### `impl Copy for statx_timestamp`
 
 ##### `impl Debug for statx_timestamp`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="statx-timestamp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `epoll_event`
 
@@ -1122,13 +4360,13 @@ struct epoll_event {
 
 ##### `impl Clone for epoll_event`
 
-- `fn clone(self: &Self) -> epoll_event` — [`epoll_event`](#epoll-event)
+- <span id="epoll-event-clone"></span>`fn clone(&self) -> epoll_event` — [`epoll_event`](#epoll-event)
 
 ##### `impl Copy for epoll_event`
 
 ##### `impl Debug for epoll_event`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="epoll-event-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `sigevent`
 
@@ -1146,13 +4384,13 @@ struct sigevent {
 
 ##### `impl Clone for sigevent`
 
-- `fn clone(self: &Self) -> sigevent` — [`sigevent`](#sigevent)
+- <span id="sigevent-clone"></span>`fn clone(&self) -> sigevent` — [`sigevent`](#sigevent)
 
 ##### `impl Copy for sigevent`
 
 ##### `impl Debug for sigevent`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sigevent-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Enums
 
@@ -1167,13 +4405,13 @@ enum DIR {
 
 ##### `impl Clone for DIR`
 
-- `fn clone(self: &Self) -> DIR` — [`DIR`](../index.md)
+- <span id="dir-clone"></span>`fn clone(&self) -> DIR` — [`DIR`](../index.md)
 
 ##### `impl Copy for DIR`
 
 ##### `impl Debug for DIR`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dir-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `FILE`
 
@@ -1186,13 +4424,13 @@ enum FILE {
 
 ##### `impl Clone for FILE`
 
-- `fn clone(self: &Self) -> FILE` — [`FILE`](../index.md)
+- <span id="file-clone"></span>`fn clone(&self) -> FILE` — [`FILE`](../index.md)
 
 ##### `impl Copy for FILE`
 
 ##### `impl Debug for FILE`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="file-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `timezone`
 
@@ -1205,13 +4443,13 @@ enum timezone {
 
 ##### `impl Clone for timezone`
 
-- `fn clone(self: &Self) -> timezone` — [`timezone`](#timezone)
+- <span id="timezone-clone"></span>`fn clone(&self) -> timezone` — [`timezone`](#timezone)
 
 ##### `impl Copy for timezone`
 
 ##### `impl Debug for timezone`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="timezone-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Functions
 

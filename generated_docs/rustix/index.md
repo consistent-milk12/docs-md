@@ -54,7 +54,7 @@ rustix's APIs perform the following tasks:
  - Error values are translated to [`Result`](../clap_builder/error/index.md)s.
  - Buffers are passed as Rust slices.
  - Out-parameters are presented as return values.
- - Path arguments use `Arg`, so they accept any string type.
+ - Path arguments use [`Arg`](#arg), so they accept any string type.
  - File descriptors are passed and returned via [`AsFd`](fd/index.md) and [`OwnedFd`](fd/index.md)
    instead of bare integers, ensuring I/O safety.
  - Constants use `enum`s and [`bitflags`](../bitflags/index.md) types, and enable [support for
@@ -96,6 +96,44 @@ which does perform sandboxing and restricts ambient authorities.
 
 
 
+
+## Contents
+
+- [Modules](#modules)
+  - [`buffer`](#buffer)
+  - [`cstr`](#cstr)
+  - [`utils`](#utils)
+  - [`maybe_polyfill`](#maybe_polyfill)
+  - [`bitcast`](#bitcast)
+  - [`backend`](#backend)
+  - [`fd`](#fd)
+  - [`ffi`](#ffi)
+  - [`io`](#io)
+  - [`ioctl`](#ioctl)
+  - [`termios`](#termios)
+  - [`pid`](#pid)
+  - [`not_implemented`](#not_implemented)
+- [Macros](#macros)
+  - [`cstr!`](#cstr)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`buffer`](#buffer) | mod | Utilities for functions that return data via buffers. |
+| [`cstr`](#cstr) | mod |  |
+| [`utils`](#utils) | mod | Miscellaneous minor utilities. |
+| [`maybe_polyfill`](#maybe_polyfill) | mod | Imports from `std` that would be polyfilled for `no_std` builds (see |
+| [`bitcast`](#bitcast) | mod | The `bitcast` and `bitflags_bits` macros. |
+| [`backend`](#backend) | mod | The linux_raw backend. |
+| [`fd`](#fd) | mod | Export the `*Fd` types and traits that are used in rustix's public API. |
+| [`ffi`](#ffi) | mod | Utilities related to FFI bindings. |
+| [`io`](#io) | mod | I/O operations. |
+| [`ioctl`](#ioctl) | mod | Unsafe `ioctl` API. |
+| [`termios`](#termios) | mod | Terminal I/O stream operations. |
+| [`pid`](#pid) | mod | The `Pid` type. |
+| [`not_implemented`](#not_implemented) | mod | Documentation about unimplemented functions. |
+| [`cstr!`](#cstr) | macro | A macro for [`CStr`] literals. |
 
 ## Modules
 

@@ -4,6 +4,44 @@
 
 # Module `quick_check`
 
+## Contents
+
+- [Enums](#enums)
+  - [`IsNormalized`](#isnormalized)
+- [Functions](#functions)
+  - [`quick_check`](#quick_check)
+  - [`is_nfc_quick`](#is_nfc_quick)
+  - [`is_nfkc_quick`](#is_nfkc_quick)
+  - [`is_nfd_quick`](#is_nfd_quick)
+  - [`is_nfkd_quick`](#is_nfkd_quick)
+  - [`is_nfc_stream_safe_quick`](#is_nfc_stream_safe_quick)
+  - [`is_nfd_stream_safe_quick`](#is_nfd_stream_safe_quick)
+  - [`is_nfc`](#is_nfc)
+  - [`is_nfkc`](#is_nfkc)
+  - [`is_nfd`](#is_nfd)
+  - [`is_nfkd`](#is_nfkd)
+  - [`is_nfc_stream_safe`](#is_nfc_stream_safe)
+  - [`is_nfd_stream_safe`](#is_nfd_stream_safe)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`IsNormalized`](#isnormalized) | enum | QuickCheck quickly determines if a string is normalized, it can return |
+| [`quick_check`](#quick_check) | fn |  |
+| [`is_nfc_quick`](#is_nfc_quick) | fn | Quickly check if a string is in NFC, potentially returning |
+| [`is_nfkc_quick`](#is_nfkc_quick) | fn | Quickly check if a string is in NFKC. |
+| [`is_nfd_quick`](#is_nfd_quick) | fn | Quickly check if a string is in NFD. |
+| [`is_nfkd_quick`](#is_nfkd_quick) | fn | Quickly check if a string is in NFKD. |
+| [`is_nfc_stream_safe_quick`](#is_nfc_stream_safe_quick) | fn | Quickly check if a string is Stream-Safe NFC. |
+| [`is_nfd_stream_safe_quick`](#is_nfd_stream_safe_quick) | fn | Quickly check if a string is Stream-Safe NFD. |
+| [`is_nfc`](#is_nfc) | fn | Authoritatively check if a string is in NFC. |
+| [`is_nfkc`](#is_nfkc) | fn | Authoritatively check if a string is in NFKC. |
+| [`is_nfd`](#is_nfd) | fn | Authoritatively check if a string is in NFD. |
+| [`is_nfkd`](#is_nfkd) | fn | Authoritatively check if a string is in NFKD. |
+| [`is_nfc_stream_safe`](#is_nfc_stream_safe) | fn | Authoritatively check if a string is Stream-Safe NFC. |
+| [`is_nfd_stream_safe`](#is_nfd_stream_safe) | fn | Authoritatively check if a string is Stream-Safe NFD. |
+
 ## Enums
 
 ### `IsNormalized`
@@ -41,13 +79,13 @@ return `Maybe` when a full decomposition and recomposition is necessary.
 
 ##### `impl Debug for IsNormalized`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="isnormalized-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for IsNormalized`
 
 ##### `impl PartialEq for IsNormalized`
 
-- `fn eq(self: &Self, other: &IsNormalized) -> bool` — [`IsNormalized`](../index.md)
+- <span id="isnormalized-eq"></span>`fn eq(&self, other: &IsNormalized) -> bool` — [`IsNormalized`](../index.md)
 
 ##### `impl StructuralPartialEq for IsNormalized`
 

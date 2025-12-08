@@ -11,6 +11,12 @@ difference is that it (by default) uses a background distribution of byte
 frequencies to heuristically select the pair of bytes to search for.
 
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Finder`](#finder) | struct | A "packed pair" finder that uses 128-bit vector operations. |
+
 ## Structs
 
 ### `Finder`
@@ -29,35 +35,35 @@ are reported whenever the [`Pair`](../../../all/packedpair/index.md) of bytes gi
 
 #### Implementations
 
-- `fn new(needle: &[u8]) -> Option<Finder>` — [`Finder`](#finder)
+- <span id="finder-new"></span>`fn new(needle: &[u8]) -> Option<Finder>` — [`Finder`](#finder)
 
-- `fn with_pair(needle: &[u8], pair: Pair) -> Option<Finder>` — [`Pair`](../../../all/packedpair/index.md), [`Finder`](#finder)
+- <span id="finder-with-pair"></span>`fn with_pair(needle: &[u8], pair: Pair) -> Option<Finder>` — [`Pair`](../../../all/packedpair/index.md), [`Finder`](#finder)
 
-- `unsafe fn with_pair_impl(needle: &[u8], pair: Pair) -> Finder` — [`Pair`](../../../all/packedpair/index.md), [`Finder`](#finder)
+- <span id="finder-with-pair-impl"></span>`unsafe fn with_pair_impl(needle: &[u8], pair: Pair) -> Finder` — [`Pair`](../../../all/packedpair/index.md), [`Finder`](#finder)
 
-- `fn is_available() -> bool`
+- <span id="finder-is-available"></span>`fn is_available() -> bool`
 
-- `fn find(self: &Self, haystack: &[u8], needle: &[u8]) -> Option<usize>`
+- <span id="finder-find"></span>`fn find(&self, haystack: &[u8], needle: &[u8]) -> Option<usize>`
 
-- `fn find_prefilter(self: &Self, haystack: &[u8]) -> Option<usize>`
+- <span id="finder-find-prefilter"></span>`fn find_prefilter(&self, haystack: &[u8]) -> Option<usize>`
 
-- `unsafe fn find_impl(self: &Self, haystack: &[u8], needle: &[u8]) -> Option<usize>`
+- <span id="finder-find-impl"></span>`unsafe fn find_impl(&self, haystack: &[u8], needle: &[u8]) -> Option<usize>`
 
-- `unsafe fn find_prefilter_impl(self: &Self, haystack: &[u8]) -> Option<usize>`
+- <span id="finder-find-prefilter-impl"></span>`unsafe fn find_prefilter_impl(&self, haystack: &[u8]) -> Option<usize>`
 
-- `fn pair(self: &Self) -> &Pair` — [`Pair`](../../../all/packedpair/index.md)
+- <span id="finder-pair"></span>`fn pair(&self) -> &Pair` — [`Pair`](../../../all/packedpair/index.md)
 
-- `fn min_haystack_len(self: &Self) -> usize`
+- <span id="finder-min-haystack-len"></span>`fn min_haystack_len(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Clone for Finder`
 
-- `fn clone(self: &Self) -> Finder` — [`Finder`](#finder)
+- <span id="finder-clone"></span>`fn clone(&self) -> Finder` — [`Finder`](#finder)
 
 ##### `impl Copy for Finder`
 
 ##### `impl Debug for Finder`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="finder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

@@ -4,6 +4,88 @@
 
 # Module `symbol`
 
+## Contents
+
+- [Structs](#structs)
+  - [`Symbol`](#symbol)
+- [Constants](#constants)
+  - [`ALIAS`](#alias)
+  - [`BORROW`](#borrow)
+  - [`BOUND`](#bound)
+  - [`CONTENT`](#content)
+  - [`CRATE`](#crate)
+  - [`DEFAULT`](#default)
+  - [`DENY_UNKNOWN_FIELDS`](#deny_unknown_fields)
+  - [`DESERIALIZE`](#deserialize)
+  - [`DESERIALIZE_WITH`](#deserialize_with)
+  - [`EXPECTING`](#expecting)
+  - [`FIELD_IDENTIFIER`](#field_identifier)
+  - [`FLATTEN`](#flatten)
+  - [`FROM`](#from)
+  - [`GETTER`](#getter)
+  - [`INTO`](#into)
+  - [`NON_EXHAUSTIVE`](#non_exhaustive)
+  - [`OTHER`](#other)
+  - [`REMOTE`](#remote)
+  - [`RENAME`](#rename)
+  - [`RENAME_ALL`](#rename_all)
+  - [`RENAME_ALL_FIELDS`](#rename_all_fields)
+  - [`REPR`](#repr)
+  - [`SERDE`](#serde)
+  - [`SERIALIZE`](#serialize)
+  - [`SERIALIZE_WITH`](#serialize_with)
+  - [`SKIP`](#skip)
+  - [`SKIP_DESERIALIZING`](#skip_deserializing)
+  - [`SKIP_SERIALIZING`](#skip_serializing)
+  - [`SKIP_SERIALIZING_IF`](#skip_serializing_if)
+  - [`TAG`](#tag)
+  - [`TRANSPARENT`](#transparent)
+  - [`TRY_FROM`](#try_from)
+  - [`UNTAGGED`](#untagged)
+  - [`VARIANT_IDENTIFIER`](#variant_identifier)
+  - [`WITH`](#with)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Symbol`](#symbol) | struct |  |
+| [`ALIAS`](#alias) | const |  |
+| [`BORROW`](#borrow) | const |  |
+| [`BOUND`](#bound) | const |  |
+| [`CONTENT`](#content) | const |  |
+| [`CRATE`](#crate) | const |  |
+| [`DEFAULT`](#default) | const |  |
+| [`DENY_UNKNOWN_FIELDS`](#deny_unknown_fields) | const |  |
+| [`DESERIALIZE`](#deserialize) | const |  |
+| [`DESERIALIZE_WITH`](#deserialize_with) | const |  |
+| [`EXPECTING`](#expecting) | const |  |
+| [`FIELD_IDENTIFIER`](#field_identifier) | const |  |
+| [`FLATTEN`](#flatten) | const |  |
+| [`FROM`](#from) | const |  |
+| [`GETTER`](#getter) | const |  |
+| [`INTO`](#into) | const |  |
+| [`NON_EXHAUSTIVE`](#non_exhaustive) | const |  |
+| [`OTHER`](#other) | const |  |
+| [`REMOTE`](#remote) | const |  |
+| [`RENAME`](#rename) | const |  |
+| [`RENAME_ALL`](#rename_all) | const |  |
+| [`RENAME_ALL_FIELDS`](#rename_all_fields) | const |  |
+| [`REPR`](#repr) | const |  |
+| [`SERDE`](#serde) | const |  |
+| [`SERIALIZE`](#serialize) | const |  |
+| [`SERIALIZE_WITH`](#serialize_with) | const |  |
+| [`SKIP`](#skip) | const |  |
+| [`SKIP_DESERIALIZING`](#skip_deserializing) | const |  |
+| [`SKIP_SERIALIZING`](#skip_serializing) | const |  |
+| [`SKIP_SERIALIZING_IF`](#skip_serializing_if) | const |  |
+| [`TAG`](#tag) | const |  |
+| [`TRANSPARENT`](#transparent) | const |  |
+| [`TRY_FROM`](#try_from) | const |  |
+| [`UNTAGGED`](#untagged) | const |  |
+| [`VARIANT_IDENTIFIER`](#variant_identifier) | const |  |
+| [`WITH`](#with) | const |  |
+
 ## Structs
 
 ### `Symbol`
@@ -16,17 +98,17 @@ struct Symbol(&'static str);
 
 ##### `impl Clone for Symbol`
 
-- `fn clone(self: &Self) -> Symbol` — [`Symbol`](#symbol)
+- <span id="symbol-clone"></span>`fn clone(&self) -> Symbol` — [`Symbol`](#symbol)
 
 ##### `impl Copy for Symbol`
 
 ##### `impl Display for Symbol`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="symbol-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for Symbol`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="symbol-to-string"></span>`fn to_string(&self) -> String`
 
 ## Constants
 

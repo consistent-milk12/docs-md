@@ -117,6 +117,32 @@ thread::scope(|s| {
 }).unwrap();
 ```
 
+## Contents
+
+- [Modules](#modules)
+  - [`unix`](#unix)
+- [Structs](#structs)
+  - [`Scope`](#scope)
+  - [`ScopedThreadBuilder`](#scopedthreadbuilder)
+  - [`ScopedJoinHandle`](#scopedjoinhandle)
+- [Functions](#functions)
+  - [`scope`](#scope)
+- [Type Aliases](#type-aliases)
+  - [`SharedVec`](#sharedvec)
+  - [`SharedOption`](#sharedoption)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`unix`](#unix) | mod | Unix-specific extensions. |
+| [`Scope`](#scope) | struct | A scope for spawning threads. |
+| [`ScopedThreadBuilder`](#scopedthreadbuilder) | struct | Configures the properties of a new thread. |
+| [`ScopedJoinHandle`](#scopedjoinhandle) | struct | A handle that can be used to join its scoped thread. |
+| [`scope`](#scope) | fn | Creates a new scope for spawning threads. |
+| [`SharedVec`](#sharedvec) | type |  |
+| [`SharedOption`](#sharedoption) | type |  |
+
 ## Modules
 
 - [`unix`](unix/index.md) - Unix-specific extensions.
@@ -151,15 +177,15 @@ A scope for spawning threads.
 
 #### Implementations
 
-- `fn spawn<'scope, F, T>(self: &'scope Self, f: F) -> ScopedJoinHandle<'scope, T>` — [`ScopedJoinHandle`](#scopedjoinhandle)
+- <span id="scope-spawn"></span>`fn spawn<'scope, F, T>(self: &'scope Self, f: F) -> ScopedJoinHandle<'scope, T>` — [`ScopedJoinHandle`](#scopedjoinhandle)
 
-- `fn builder<'scope>(self: &'scope Self) -> ScopedThreadBuilder<'scope, 'env>` — [`ScopedThreadBuilder`](#scopedthreadbuilder)
+- <span id="scope-builder"></span>`fn builder<'scope>(self: &'scope Self) -> ScopedThreadBuilder<'scope, 'env>` — [`ScopedThreadBuilder`](#scopedthreadbuilder)
 
 #### Trait Implementations
 
 ##### `impl Debug for Scope<'_>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="scope-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Sync for Scope<'_>`
 
@@ -206,17 +232,17 @@ thread::scope(|s| {
 
 #### Implementations
 
-- `fn name(self: Self, name: String) -> ScopedThreadBuilder<'scope, 'env>` — [`ScopedThreadBuilder`](#scopedthreadbuilder)
+- <span id="scopedthreadbuilder-name"></span>`fn name(self, name: String) -> ScopedThreadBuilder<'scope, 'env>` — [`ScopedThreadBuilder`](#scopedthreadbuilder)
 
-- `fn stack_size(self: Self, size: usize) -> ScopedThreadBuilder<'scope, 'env>` — [`ScopedThreadBuilder`](#scopedthreadbuilder)
+- <span id="scopedthreadbuilder-stack-size"></span>`fn stack_size(self, size: usize) -> ScopedThreadBuilder<'scope, 'env>` — [`ScopedThreadBuilder`](#scopedthreadbuilder)
 
-- `fn spawn<F, T>(self: Self, f: F) -> io::Result<ScopedJoinHandle<'scope, T>>` — [`ScopedJoinHandle`](#scopedjoinhandle)
+- <span id="scopedthreadbuilder-spawn"></span>`fn spawn<F, T>(self, f: F) -> io::Result<ScopedJoinHandle<'scope, T>>` — [`ScopedJoinHandle`](#scopedjoinhandle)
 
 #### Trait Implementations
 
 ##### `impl<'scope, 'env> Debug for ScopedThreadBuilder<'scope, 'env>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="scopedthreadbuilder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ScopedJoinHandle<'scope, T>`
 
@@ -254,21 +280,21 @@ This struct is created by the `Scope::spawn` method and the
 
 #### Implementations
 
-- `fn join(self: Self) -> thread::Result<T>`
+- <span id="scopedjoinhandle-join"></span>`fn join(self) -> thread::Result<T>`
 
-- `fn thread(self: &Self) -> &thread::Thread`
+- <span id="scopedjoinhandle-thread"></span>`fn thread(&self) -> &thread::Thread`
 
 #### Trait Implementations
 
 ##### `impl<T> Debug for ScopedJoinHandle<'_, T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="scopedjoinhandle-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> JoinHandleExt for super::ScopedJoinHandle<'_, T>`
 
-- `fn as_pthread_t(self: &Self) -> RawPthread`
+- <span id="superscopedjoinhandle-as-pthread-t"></span>`fn as_pthread_t(&self) -> RawPthread`
 
-- `fn into_pthread_t(self: Self) -> RawPthread`
+- <span id="superscopedjoinhandle-into-pthread-t"></span>`fn into_pthread_t(self) -> RawPthread`
 
 ##### `impl<T> Send for ScopedJoinHandle<'_, T>`
 

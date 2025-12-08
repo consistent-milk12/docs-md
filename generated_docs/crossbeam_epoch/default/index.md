@@ -10,6 +10,17 @@ For each thread, a participant is lazily initialized on its first use, when the 
 is registered in the default collector.  If initialized, the thread's participant will get
 destructed on thread exit, which in turn unregisters the thread.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`collector`](#collector) | fn |  |
+| [`pin`](#pin) | fn | Pins the current thread. |
+| [`is_pinned`](#is_pinned) | fn | Returns `true` if the current thread is pinned. |
+| [`default_collector`](#default_collector) | fn | Returns the default global collector. |
+| [`with_handle`](#with_handle) | fn |  |
+| [`HANDLE`](#handle) | const | The per-thread participant for the default garbage collector. |
+
 ## Functions
 
 ### `collector`
@@ -55,7 +66,7 @@ where
 ### `HANDLE`
 
 ```rust
-const HANDLE: $crate::thread::LocalKey<crate::collector::LocalHandle>;
+const HANDLE: thread::LocalKey<crate::collector::LocalHandle>;
 ```
 
 The per-thread participant for the default garbage collector.

@@ -49,6 +49,31 @@ module, it is impossible for a replacement string to be invalid. A replacement
 string may not have the intended semantics, but the interpolation procedure
 itself can never fail.
 
+## Contents
+
+- [Structs](#structs)
+  - [`CaptureRef`](#captureref)
+- [Enums](#enums)
+  - [`Ref`](#ref)
+- [Functions](#functions)
+  - [`string`](#string)
+  - [`bytes`](#bytes)
+  - [`find_cap_ref`](#find_cap_ref)
+  - [`find_cap_ref_braced`](#find_cap_ref_braced)
+  - [`is_valid_cap_letter`](#is_valid_cap_letter)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`CaptureRef`](#captureref) | struct | `CaptureRef` represents a reference to a capture group inside some text. |
+| [`Ref`](#ref) | enum | A reference to a capture group in some text. |
+| [`string`](#string) | fn | Accepts a replacement string and interpolates capture references with their |
+| [`bytes`](#bytes) | fn | Accepts a replacement byte string and interpolates capture references with |
+| [`find_cap_ref`](#find_cap_ref) | fn | Parses a possible reference to a capture group name in the given text |
+| [`find_cap_ref_braced`](#find_cap_ref_braced) | fn | Looks for a braced reference, e.g., `${foo1}`. |
+| [`is_valid_cap_letter`](#is_valid_cap_letter) | fn | Returns true if and only if the given byte is allowed in a capture name |
+
 ## Structs
 
 ### `CaptureRef<'a>`
@@ -70,19 +95,19 @@ capture reference.
 
 ##### `impl<'a> Clone for CaptureRef<'a>`
 
-- `fn clone(self: &Self) -> CaptureRef<'a>` — [`CaptureRef`](#captureref)
+- <span id="captureref-clone"></span>`fn clone(&self) -> CaptureRef<'a>` — [`CaptureRef`](#captureref)
 
 ##### `impl<'a> Copy for CaptureRef<'a>`
 
 ##### `impl<'a> Debug for CaptureRef<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="captureref-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'a> Eq for CaptureRef<'a>`
 
 ##### `impl<'a> PartialEq for CaptureRef<'a>`
 
-- `fn eq(self: &Self, other: &CaptureRef<'a>) -> bool` — [`CaptureRef`](#captureref)
+- <span id="captureref-eq"></span>`fn eq(&self, other: &CaptureRef<'a>) -> bool` — [`CaptureRef`](#captureref)
 
 ##### `impl<'a> StructuralPartialEq for CaptureRef<'a>`
 
@@ -105,19 +130,19 @@ e.g., `$2`, `$foo`, `${foo}`.
 
 ##### `impl<'a> Clone for Ref<'a>`
 
-- `fn clone(self: &Self) -> Ref<'a>` — [`Ref`](#ref)
+- <span id="ref-clone"></span>`fn clone(&self) -> Ref<'a>` — [`Ref`](#ref)
 
 ##### `impl<'a> Copy for Ref<'a>`
 
 ##### `impl<'a> Debug for Ref<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="ref-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'a> Eq for Ref<'a>`
 
 ##### `impl<'a> PartialEq for Ref<'a>`
 
-- `fn eq(self: &Self, other: &Ref<'a>) -> bool` — [`Ref`](#ref)
+- <span id="ref-eq"></span>`fn eq(&self, other: &Ref<'a>) -> bool` — [`Ref`](#ref)
 
 ##### `impl<'a> StructuralPartialEq for Ref<'a>`
 

@@ -4,6 +4,12 @@
 
 # Module `teddy`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Teddy`](#teddy) | struct |  |
+
 ## Structs
 
 ### `Teddy`
@@ -49,25 +55,25 @@ struct Teddy {
 
 #### Implementations
 
-- `fn new<B: AsRef<[u8]>>(kind: MatchKind, needles: &[B]) -> Option<Teddy>` — [`MatchKind`](../../../index.md), [`Teddy`](#teddy)
+- <span id="teddy-new"></span>`fn new<B: AsRef<[u8]>>(kind: MatchKind, needles: &[B]) -> Option<Teddy>` — [`MatchKind`](../../../index.md), [`Teddy`](#teddy)
 
 #### Trait Implementations
 
 ##### `impl Clone for Teddy`
 
-- `fn clone(self: &Self) -> Teddy` — [`Teddy`](#teddy)
+- <span id="teddy-clone"></span>`fn clone(&self) -> Teddy` — [`Teddy`](#teddy)
 
 ##### `impl Debug for Teddy`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="teddy-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl PrefilterI for Teddy`
 
-- `fn find(self: &Self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
+- <span id="teddy-find"></span>`fn find(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
 
-- `fn prefix(self: &Self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
+- <span id="teddy-prefix"></span>`fn prefix(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../index.md)
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="teddy-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- `fn is_fast(self: &Self) -> bool`
+- <span id="teddy-is-fast"></span>`fn is_fast(&self) -> bool`
 

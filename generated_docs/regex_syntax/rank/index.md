@@ -4,6 +4,12 @@
 
 # Module `rank`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`BYTE_FREQUENCIES`](#byte_frequencies) | const |  |
+
 ## Constants
 
 ### `BYTE_FREQUENCIES`

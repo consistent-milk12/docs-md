@@ -4,6 +4,16 @@
 
 # Module `restriction`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`parsing`](#parsing) | mod |  |
+| [`printing`](#printing) | mod |  |
+| [`VisRestricted`](#visrestricted) | struct | A visibility level restricted to some path: `pub(self)` or |
+| [`Visibility`](#visibility) | enum | The visibility level of an item: inherited or `pub` or |
+| [`FieldMutability`](#fieldmutability) | enum | Unused, but reserved for RFC 3323 restrictions. |
+
 ## Modules
 
 - [`parsing`](parsing/index.md) - 
@@ -15,9 +25,9 @@
 
 ```rust
 struct VisRestricted {
-    pub pub_token: $crate::token::Pub,
+    pub pub_token: token::Pub,
     pub paren_token: token::Paren,
-    pub in_token: Option<$crate::token::In>,
+    pub in_token: Option<token::In>,
     pub path: Box<crate::path::Path>,
 }
 ```
@@ -27,37 +37,37 @@ A visibility level restricted to some path: `pub(self)` or
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratevisrestricted-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::VisRestricted`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratevisrestricted-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::VisRestricted`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratevisrestricted-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::VisRestricted`
 
 ##### `impl Hash for crate::VisRestricted`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratevisrestricted-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::VisRestricted`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratevisrestricted-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for VisRestricted`
 
 ##### `impl<T> Spanned for VisRestricted`
 
-- `fn span(self: &Self) -> Span`
+- <span id="visrestricted-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::restriction::VisRestricted`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="craterestrictionvisrestricted-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ## Enums
 
@@ -65,7 +75,7 @@ A visibility level restricted to some path: `pub(self)` or
 
 ```rust
 enum Visibility {
-    Public($crate::token::Pub),
+    Public(token::Pub),
     Restricted(VisRestricted),
     Inherited,
 }
@@ -96,41 +106,41 @@ This type is a [syntax tree enum].
 
 #### Implementations
 
-- `fn is_inherited(self: &Self) -> bool`
+- <span id="craterestrictionvisibility-is-inherited"></span>`fn is_inherited(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::Visibility`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratevisibility-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Visibility`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratevisibility-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Visibility`
 
 ##### `impl Hash for crate::Visibility`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratevisibility-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::restriction::Visibility`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="craterestrictionvisibility-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::Visibility`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratevisibility-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for Visibility`
 
 ##### `impl<T> Spanned for Visibility`
 
-- `fn span(self: &Self) -> Span`
+- <span id="visibility-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::restriction::Visibility`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="craterestrictionvisibility-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `FieldMutability`
 
@@ -146,19 +156,19 @@ Unused, but reserved for RFC 3323 restrictions.
 
 ##### `impl Clone for crate::FieldMutability`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratefieldmutability-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::FieldMutability`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratefieldmutability-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::FieldMutability`
 
 ##### `impl Hash for crate::FieldMutability`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratefieldmutability-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::FieldMutability`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratefieldmutability-eq"></span>`fn eq(&self, other: &Self) -> bool`
 

@@ -4,6 +4,41 @@
 
 # Module `stable`
 
+## Contents
+
+- [Modules](#modules)
+  - [`alloc`](#alloc)
+  - [`boxed`](#boxed)
+  - [`raw_vec`](#raw_vec)
+  - [`vec`](#vec)
+  - [`macros`](#macros)
+  - [`slice`](#slice)
+  - [`unique`](#unique)
+  - [`collections`](#collections)
+- [Traits](#traits)
+  - [`unnamed`](#unnamed)
+- [Functions](#functions)
+  - [`assume`](#assume)
+  - [`addr`](#addr)
+  - [`invalid_mut`](#invalid_mut)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`alloc`](#alloc) | mod | Memory allocation APIs |
+| [`boxed`](#boxed) | mod | The `Box<T>` type for heap allocation. |
+| [`raw_vec`](#raw_vec) | mod |  |
+| [`vec`](#vec) | mod | A contiguous growable array type with heap-allocated contents, written |
+| [`macros`](#macros) | mod |  |
+| [`slice`](#slice) | mod |  |
+| [`unique`](#unique) | mod |  |
+| [`collections`](#collections) | mod |  |
+| [`unnamed`](#unnamed) | trait |  |
+| [`assume`](#assume) | fn |  |
+| [`addr`](#addr) | fn |  |
+| [`invalid_mut`](#invalid_mut) | fn |  |
+
 ## Modules
 
 - [`alloc`](alloc/index.md) - Memory allocation APIs

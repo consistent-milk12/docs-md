@@ -10,6 +10,12 @@ The unsafe `close` for raw file descriptors.
 
 Operating on raw file descriptors is unsafe.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`close`](#close) | fn | `close(raw_fd)`—Closes a `RawFd` directly. |
+
 ## Functions
 
 ### `close`

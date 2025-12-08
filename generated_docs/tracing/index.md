@@ -901,6 +901,75 @@
 
 
 
+## Contents
+
+- [Modules](#modules)
+  - [`macros`](#macros)
+  - [`dispatcher`](#dispatcher)
+  - [`field`](#field)
+  - [`instrument`](#instrument)
+  - [`level_filters`](#level_filters)
+  - [`span`](#span)
+  - [`subscriber`](#subscriber)
+  - [`sealed`](#sealed)
+- [Structs](#structs)
+  - [`unnamed`](#unnamed)
+- [Traits](#traits)
+  - [`unnamed`](#unnamed)
+- [Functions](#functions)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+- [Macros](#macros)
+  - [`event!`](#event)
+  - [`span!`](#span)
+  - [`record_all!`](#record_all)
+  - [`trace_span!`](#trace_span)
+  - [`debug_span!`](#debug_span)
+  - [`info_span!`](#info_span)
+  - [`warn_span!`](#warn_span)
+  - [`error_span!`](#error_span)
+  - [`event_enabled!`](#event_enabled)
+  - [`span_enabled!`](#span_enabled)
+  - [`enabled!`](#enabled)
+  - [`trace!`](#trace)
+  - [`debug!`](#debug)
+  - [`info!`](#info)
+  - [`warn!`](#warn)
+  - [`error!`](#error)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`macros`](#macros) | mod |  |
+| [`dispatcher`](#dispatcher) | mod | Dispatches trace events to [`Subscriber`]s. |
+| [`field`](#field) | mod | `Span` and `Event` key-value data. |
+| [`instrument`](#instrument) | mod | Attach a span to a `std::future::Future`. |
+| [`level_filters`](#level_filters) | mod | Trace verbosity level filtering. |
+| [`span`](#span) | mod | Spans represent periods of time in which a program was executing in a |
+| [`subscriber`](#subscriber) | mod | Collects and records trace data. |
+| [`sealed`](#sealed) | mod |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | trait |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`event!`](#event) | macro | Constructs a new `Event`. |
+| [`span!`](#span) | macro | Constructs a new span. |
+| [`record_all!`](#record_all) | macro | Records multiple values on a span in a single call. |
+| [`trace_span!`](#trace_span) | macro | Constructs a span at the trace level. |
+| [`debug_span!`](#debug_span) | macro | Constructs a span at the debug level. |
+| [`info_span!`](#info_span) | macro | Constructs a span at the info level. |
+| [`warn_span!`](#warn_span) | macro | Constructs a span at the warn level. |
+| [`error_span!`](#error_span) | macro | Constructs a span at the error level. |
+| [`event_enabled!`](#event_enabled) | macro | Tests whether an event with the specified level and target would be enabled. |
+| [`span_enabled!`](#span_enabled) | macro | Tests whether a span with the specified level and target would be enabled. |
+| [`enabled!`](#enabled) | macro | Checks whether a span or event is [enabled] based on the provided [metadata]. |
+| [`trace!`](#trace) | macro | Constructs an event at the trace level. |
+| [`debug!`](#debug) | macro | Constructs an event at the debug level. |
+| [`info!`](#info) | macro | Constructs an event at the info level. |
+| [`warn!`](#warn) | macro | Constructs an event at the warn level. |
+| [`error!`](#error) | macro | Constructs an event at the error level. |
+
 ## Modules
 
 - [`macros`](macros/index.md) - 
@@ -947,73 +1016,73 @@ manner regardless of whether or not the trace is currently being collected.
 
 #### Implementations
 
-- `fn new(meta: &'static Metadata<'static>, values: &field::ValueSet<'_>) -> Span` — [`Metadata`](#metadata), [`Span`](#span)
+- <span id="span-new"></span>`fn new(meta: &'static Metadata<'static>, values: &field::ValueSet<'_>) -> Span` — [`Metadata`](#metadata), [`Span`](#span)
 
-- `fn new_root(meta: &'static Metadata<'static>, values: &field::ValueSet<'_>) -> Span` — [`Metadata`](#metadata), [`Span`](#span)
+- <span id="span-new-root"></span>`fn new_root(meta: &'static Metadata<'static>, values: &field::ValueSet<'_>) -> Span` — [`Metadata`](#metadata), [`Span`](#span)
 
-- `fn child_of(parent: impl Into<Option<Id>>, meta: &'static Metadata<'static>, values: &field::ValueSet<'_>) -> Span` — [`Id`](span/index.md), [`Metadata`](#metadata), [`Span`](#span)
+- <span id="span-child-of"></span>`fn child_of(parent: impl Into<Option<Id>>, meta: &'static Metadata<'static>, values: &field::ValueSet<'_>) -> Span` — [`Id`](span/index.md), [`Metadata`](#metadata), [`Span`](#span)
 
-- `fn new_disabled(meta: &'static Metadata<'static>) -> Span` — [`Metadata`](#metadata), [`Span`](#span)
+- <span id="span-new-disabled"></span>`fn new_disabled(meta: &'static Metadata<'static>) -> Span` — [`Metadata`](#metadata), [`Span`](#span)
 
-- `const fn none() -> Span` — [`Span`](#span)
+- <span id="span-none"></span>`const fn none() -> Span` — [`Span`](#span)
 
-- `fn current() -> Span` — [`Span`](#span)
+- <span id="span-current"></span>`fn current() -> Span` — [`Span`](#span)
 
-- `fn make_with(meta: &'static Metadata<'static>, new_span: Attributes<'_>, dispatch: &Dispatch) -> Span` — [`Metadata`](#metadata), [`Attributes`](span/index.md), [`Dispatch`](#dispatch), [`Span`](#span)
+- <span id="span-make-with"></span>`fn make_with(meta: &'static Metadata<'static>, new_span: Attributes<'_>, dispatch: &Dispatch) -> Span` — [`Metadata`](#metadata), [`Attributes`](span/index.md), [`Dispatch`](#dispatch), [`Span`](#span)
 
-- `fn enter(self: &Self) -> Entered<'_>` — [`Entered`](span/index.md)
+- <span id="span-enter"></span>`fn enter(&self) -> Entered<'_>` — [`Entered`](span/index.md)
 
-- `fn entered(self: Self) -> EnteredSpan` — [`EnteredSpan`](span/index.md)
+- <span id="span-entered"></span>`fn entered(self) -> EnteredSpan` — [`EnteredSpan`](span/index.md)
 
-- `fn or_current(self: Self) -> Self`
+- <span id="span-or-current"></span>`fn or_current(self) -> Self`
 
-- `fn do_enter(self: &Self)`
+- <span id="span-do-enter"></span>`fn do_enter(&self)`
 
-- `fn do_exit(self: &Self)`
+- <span id="span-do-exit"></span>`fn do_exit(&self)`
 
-- `fn in_scope<F: FnOnce() -> T, T>(self: &Self, f: F) -> T`
+- <span id="span-in-scope"></span>`fn in_scope<F: FnOnce() -> T, T>(&self, f: F) -> T`
 
-- `fn field<Q: field::AsField + ?Sized>(self: &Self, field: &Q) -> Option<field::Field>`
+- <span id="span-field"></span>`fn field<Q: field::AsField + ?Sized>(&self, field: &Q) -> Option<field::Field>`
 
-- `fn has_field<Q: field::AsField + ?Sized>(self: &Self, field: &Q) -> bool`
+- <span id="span-has-field"></span>`fn has_field<Q: field::AsField + ?Sized>(&self, field: &Q) -> bool`
 
-- `fn record<Q: field::AsField + ?Sized, V: field::Value>(self: &Self, field: &Q, value: V) -> &Self`
+- <span id="span-record"></span>`fn record<Q: field::AsField + ?Sized, V: field::Value>(&self, field: &Q, value: V) -> &Self`
 
-- `fn is_disabled(self: &Self) -> bool`
+- <span id="span-is-disabled"></span>`fn is_disabled(&self) -> bool`
 
-- `fn is_none(self: &Self) -> bool`
+- <span id="span-is-none"></span>`fn is_none(&self) -> bool`
 
-- `fn follows_from(self: &Self, from: impl Into<Option<Id>>) -> &Self` — [`Id`](span/index.md)
+- <span id="span-follows-from"></span>`fn follows_from(&self, from: impl Into<Option<Id>>) -> &Self` — [`Id`](span/index.md)
 
-- `fn id(self: &Self) -> Option<Id>` — [`Id`](span/index.md)
+- <span id="span-id"></span>`fn id(&self) -> Option<Id>` — [`Id`](span/index.md)
 
-- `fn metadata(self: &Self) -> Option<&'static Metadata<'static>>` — [`Metadata`](#metadata)
+- <span id="span-metadata"></span>`fn metadata(&self) -> Option<&'static Metadata<'static>>` — [`Metadata`](#metadata)
 
-- `fn with_subscriber<T>(self: &Self, f: impl FnOnce((&Id, &Dispatch)) -> T) -> Option<T>` — [`Id`](span/index.md), [`Dispatch`](#dispatch)
+- <span id="span-with-subscriber"></span>`fn with_subscriber<T>(&self, f: impl FnOnce((&Id, &Dispatch)) -> T) -> Option<T>` — [`Id`](span/index.md), [`Dispatch`](#dispatch)
 
 #### Trait Implementations
 
 ##### `impl Clone for Span`
 
-- `fn clone(self: &Self) -> Span` — [`Span`](#span)
+- <span id="span-clone"></span>`fn clone(&self) -> Span` — [`Span`](#span)
 
 ##### `impl Debug for Span`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="span-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Drop for Span`
 
-- `fn drop(self: &mut Self)`
+- <span id="span-drop"></span>`fn drop(&mut self)`
 
 ##### `impl Hash for Span`
 
-- `fn hash<H: Hasher>(self: &Self, hasher: &mut H)`
+- <span id="span-hash"></span>`fn hash<H: Hasher>(&self, hasher: &mut H)`
 
 ##### `impl<T> Instrument for Span`
 
 ##### `impl PartialEq for Span`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="span-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> WithSubscriber for Span`
 

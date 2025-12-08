@@ -11,6 +11,12 @@ hand, if you have a solid use case for implementing the trait yourself,
 please file an issue and we can discuss it. This was *mostly* done as a
 conservative step.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Sealed`](#sealed) | trait |  |
+
 ## Traits
 
 ### `Sealed`

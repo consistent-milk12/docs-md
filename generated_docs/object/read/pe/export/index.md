@@ -4,6 +4,15 @@
 
 # Module `export`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Export`](#export) | struct | An export from a PE file. |
+| [`ExportTable`](#exporttable) | struct | A partially parsed PE export table. |
+| [`ExportTarget`](#exporttarget) | enum | Where an export is pointing to. |
+| [`parse_ordinal`](#parse_ordinal) | fn |  |
+
 ## Structs
 
 ### `Export<'data>`
@@ -40,13 +49,13 @@ There are multiple kinds of PE exports (with or without a name, and local or for
 
 ##### `impl<'data> Clone for Export<'data>`
 
-- `fn clone(self: &Self) -> Export<'data>` — [`Export`](../index.md)
+- <span id="export-clone"></span>`fn clone(&self) -> Export<'data>` — [`Export`](../index.md)
 
 ##### `impl<'data> Copy for Export<'data>`
 
 ##### `impl<'a> Debug for Export<'a>`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::result::Result<(), core::fmt::Error>`
+- <span id="export-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::result::Result<(), core::fmt::Error>`
 
 ### `ExportTable<'data>`
 
@@ -67,51 +76,51 @@ Returned by [`DataDirectories::export_table`](super::DataDirectories::export_tab
 
 #### Implementations
 
-- `fn parse(data: &'data [u8], virtual_address: u32) -> Result<Self>` — [`Result`](../../../index.md)
+- <span id="exporttable-parse"></span>`fn parse(data: &'data [u8], virtual_address: u32) -> Result<Self>` — [`Result`](../../../index.md)
 
-- `fn parse_directory(data: &'data [u8]) -> Result<&'data pe::ImageExportDirectory>` — [`Result`](../../../index.md), [`ImageExportDirectory`](../../../pe/index.md)
+- <span id="exporttable-parse-directory"></span>`fn parse_directory(data: &'data [u8]) -> Result<&'data pe::ImageExportDirectory>` — [`Result`](../../../index.md), [`ImageExportDirectory`](../../../pe/index.md)
 
-- `fn directory(self: &Self) -> &'data pe::ImageExportDirectory` — [`ImageExportDirectory`](../../../pe/index.md)
+- <span id="exporttable-directory"></span>`fn directory(&self) -> &'data pe::ImageExportDirectory` — [`ImageExportDirectory`](../../../pe/index.md)
 
-- `fn ordinal_base(self: &Self) -> u32`
+- <span id="exporttable-ordinal-base"></span>`fn ordinal_base(&self) -> u32`
 
-- `fn addresses(self: &Self) -> &'data [U32Bytes<LE>]` — [`U32Bytes`](../../../index.md), [`LittleEndian`](../../../index.md)
+- <span id="exporttable-addresses"></span>`fn addresses(&self) -> &'data [U32Bytes<LE>]` — [`U32Bytes`](../../../index.md), [`LittleEndian`](../../../index.md)
 
-- `fn name_pointers(self: &Self) -> &'data [U32Bytes<LE>]` — [`U32Bytes`](../../../index.md), [`LittleEndian`](../../../index.md)
+- <span id="exporttable-name-pointers"></span>`fn name_pointers(&self) -> &'data [U32Bytes<LE>]` — [`U32Bytes`](../../../index.md), [`LittleEndian`](../../../index.md)
 
-- `fn name_ordinals(self: &Self) -> &'data [U16Bytes<LE>]` — [`U16Bytes`](../../../index.md), [`LittleEndian`](../../../index.md)
+- <span id="exporttable-name-ordinals"></span>`fn name_ordinals(&self) -> &'data [U16Bytes<LE>]` — [`U16Bytes`](../../../index.md), [`LittleEndian`](../../../index.md)
 
-- `fn name_iter(self: &Self) -> impl Iterator<Item = (u32, u16)> + 'data`
+- <span id="exporttable-name-iter"></span>`fn name_iter(&self) -> impl Iterator<Item = (u32, u16)> + 'data`
 
-- `fn address_by_index(self: &Self, index: u32) -> Result<u32>` — [`Result`](../../../index.md)
+- <span id="exporttable-address-by-index"></span>`fn address_by_index(&self, index: u32) -> Result<u32>` — [`Result`](../../../index.md)
 
-- `fn address_by_ordinal(self: &Self, ordinal: u32) -> Result<u32>` — [`Result`](../../../index.md)
+- <span id="exporttable-address-by-ordinal"></span>`fn address_by_ordinal(&self, ordinal: u32) -> Result<u32>` — [`Result`](../../../index.md)
 
-- `fn target_by_index(self: &Self, index: u32) -> Result<ExportTarget<'data>>` — [`Result`](../../../index.md), [`ExportTarget`](../index.md)
+- <span id="exporttable-target-by-index"></span>`fn target_by_index(&self, index: u32) -> Result<ExportTarget<'data>>` — [`Result`](../../../index.md), [`ExportTarget`](../index.md)
 
-- `fn target_by_ordinal(self: &Self, ordinal: u32) -> Result<ExportTarget<'data>>` — [`Result`](../../../index.md), [`ExportTarget`](../index.md)
+- <span id="exporttable-target-by-ordinal"></span>`fn target_by_ordinal(&self, ordinal: u32) -> Result<ExportTarget<'data>>` — [`Result`](../../../index.md), [`ExportTarget`](../index.md)
 
-- `fn target_from_address(self: &Self, address: u32) -> Result<ExportTarget<'data>>` — [`Result`](../../../index.md), [`ExportTarget`](../index.md)
+- <span id="exporttable-target-from-address"></span>`fn target_from_address(&self, address: u32) -> Result<ExportTarget<'data>>` — [`Result`](../../../index.md), [`ExportTarget`](../index.md)
 
-- `fn forward_offset(self: &Self, address: u32) -> Option<usize>`
+- <span id="exporttable-forward-offset"></span>`fn forward_offset(&self, address: u32) -> Option<usize>`
 
-- `fn is_forward(self: &Self, address: u32) -> bool`
+- <span id="exporttable-is-forward"></span>`fn is_forward(&self, address: u32) -> bool`
 
-- `fn forward_string(self: &Self, address: u32) -> Result<Option<&'data [u8]>>` — [`Result`](../../../index.md)
+- <span id="exporttable-forward-string"></span>`fn forward_string(&self, address: u32) -> Result<Option<&'data [u8]>>` — [`Result`](../../../index.md)
 
-- `fn name_from_pointer(self: &Self, name_pointer: u32) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
+- <span id="exporttable-name-from-pointer"></span>`fn name_from_pointer(&self, name_pointer: u32) -> Result<&'data [u8]>` — [`Result`](../../../index.md)
 
-- `fn exports(self: &Self) -> Result<Vec<Export<'data>>>` — [`Result`](../../../index.md), [`Export`](../index.md)
+- <span id="exporttable-exports"></span>`fn exports(&self) -> Result<Vec<Export<'data>>>` — [`Result`](../../../index.md), [`Export`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'data> Clone for ExportTable<'data>`
 
-- `fn clone(self: &Self) -> ExportTable<'data>` — [`ExportTable`](../index.md)
+- <span id="exporttable-clone"></span>`fn clone(&self) -> ExportTable<'data>` — [`ExportTable`](../index.md)
 
 ##### `impl<'data> Debug for ExportTable<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="exporttable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Enums
 
@@ -147,21 +156,21 @@ Where an export is pointing to.
 
 #### Implementations
 
-- `fn is_address(self: &Self) -> bool`
+- <span id="exporttarget-is-address"></span>`fn is_address(&self) -> bool`
 
-- `fn is_forward(self: &Self) -> bool`
+- <span id="exporttarget-is-forward"></span>`fn is_forward(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl<'data> Clone for ExportTarget<'data>`
 
-- `fn clone(self: &Self) -> ExportTarget<'data>` — [`ExportTarget`](../index.md)
+- <span id="exporttarget-clone"></span>`fn clone(&self) -> ExportTarget<'data>` — [`ExportTarget`](../index.md)
 
 ##### `impl<'data> Copy for ExportTarget<'data>`
 
 ##### `impl<'a> Debug for ExportTarget<'a>`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::result::Result<(), core::fmt::Error>`
+- <span id="exporttarget-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::result::Result<(), core::fmt::Error>`
 
 ## Functions
 

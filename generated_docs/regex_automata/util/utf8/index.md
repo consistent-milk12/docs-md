@@ -9,6 +9,17 @@ Utilities for dealing with UTF-8.
 This module provides some UTF-8 related helper routines, including an
 incremental decoder.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`is_word_byte`](#is_word_byte) | fn | Returns true if and only if the given byte is considered a word character. |
+| [`decode`](#decode) | fn | Decodes the next UTF-8 encoded codepoint from the given byte slice. |
+| [`decode_last`](#decode_last) | fn | Decodes the last UTF-8 encoded codepoint from the given byte slice. |
+| [`len`](#len) | fn | Given a UTF-8 leading byte, this returns the total number of code units |
+| [`is_boundary`](#is_boundary) | fn | Returns true if and only if the given offset in the given bytes falls on a |
+| [`is_leading_or_invalid_byte`](#is_leading_or_invalid_byte) | fn | Returns true if and only if the given byte is either a valid leading UTF-8 |
+
 ## Functions
 
 ### `is_word_byte`

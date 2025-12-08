@@ -18,6 +18,52 @@ This module provides an unsafe interface to write your own `ioctl` API. To
 start, create a type that implements [`Ioctl`](#ioctl). Then, pass it to [`ioctl`](#ioctl)
 to make the `ioctl` call.
 
+## Contents
+
+- [Modules](#modules)
+  - [`patterns`](#patterns)
+  - [`linux`](#linux)
+  - [`opcode`](#opcode)
+- [Structs](#structs)
+  - [`NoArg`](#noarg)
+  - [`Getter`](#getter)
+  - [`Setter`](#setter)
+  - [`Updater`](#updater)
+  - [`IntegerSetter`](#integersetter)
+- [Enums](#enums)
+  - [`Direction`](#direction)
+- [Traits](#traits)
+  - [`Ioctl`](#ioctl)
+- [Functions](#functions)
+  - [`ioctl`](#ioctl)
+  - [`_ioctl`](#_ioctl)
+  - [`_ioctl_readonly`](#_ioctl_readonly)
+- [Type Aliases](#type-aliases)
+  - [`IoctlOutput`](#ioctloutput)
+  - [`Opcode`](#opcode)
+  - [`_Opcode`](#_opcode)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`patterns`](#patterns) | mod | Implements typical patterns for `ioctl` usage. |
+| [`linux`](#linux) | mod | `ioctl` opcode behavior for Linux platforms. |
+| [`opcode`](#opcode) | mod | Const functions for computing opcode values. |
+| [`NoArg`](#noarg) | struct | Implements an `ioctl` with no real arguments. |
+| [`Getter`](#getter) | struct | Implements the traditional “getter” pattern for `ioctl`s. |
+| [`Setter`](#setter) | struct | Implements the pattern for `ioctl`s where a pointer argument is given to |
+| [`Updater`](#updater) | struct | Implements an “updater” pattern for `ioctl`s. |
+| [`IntegerSetter`](#integersetter) | struct | Implements an `ioctl` that passes an integer into the `ioctl`. |
+| [`Direction`](#direction) | enum | The direction that an `ioctl` is going. |
+| [`Ioctl`](#ioctl) | trait | A trait defining the properties of an `ioctl` command. |
+| [`ioctl`](#ioctl) | fn | Perform an `ioctl` call. |
+| [`_ioctl`](#_ioctl) | fn |  |
+| [`_ioctl_readonly`](#_ioctl_readonly) | fn |  |
+| [`IoctlOutput`](#ioctloutput) | type | The type used by the `ioctl` to signify the output. |
+| [`Opcode`](#opcode) | type | The type used by the `ioctl` to signify the command. |
+| [`_Opcode`](#_opcode) | type |  |
+
 ## Modules
 
 - [`patterns`](patterns/index.md) - Implements typical patterns for `ioctl` usage.
@@ -41,25 +87,25 @@ To compute a value for the `OPCODE` argument, see the functions in the
 
 #### Implementations
 
-- `const unsafe fn new() -> Self`
+- <span id="noarg-new"></span>`const unsafe fn new() -> Self`
 
 #### Trait Implementations
 
 ##### `impl<const OPCODE: super::Opcode> Debug for NoArg<OPCODE>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="noarg-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<const OPCODE: super::Opcode> Ioctl for NoArg<OPCODE>`
 
-- `type Output = ()`
+- <span id="noarg-output"></span>`type Output = ()`
 
-- `const IS_MUTATING: bool`
+- <span id="noarg-is-mutating"></span>`const IS_MUTATING: bool`
 
-- `fn opcode(self: &Self) -> self::Opcode` — [`Opcode`](#opcode)
+- <span id="noarg-opcode"></span>`fn opcode(&self) -> self::Opcode` — [`Opcode`](#opcode)
 
-- `fn as_ptr(self: &mut Self) -> *mut c::c_void`
+- <span id="noarg-as-ptr"></span>`fn as_ptr(&mut self) -> *mut c::c_void`
 
-- `unsafe fn output_from_ptr(_: IoctlOutput, _: *mut c::c_void) -> Result<<Self as >::Output>` — [`IoctlOutput`](#ioctloutput), [`Result`](../io/index.md), [`Ioctl`](#ioctl)
+- <span id="noarg-output-from-ptr"></span>`unsafe fn output_from_ptr(_: IoctlOutput, _: *mut c::c_void) -> Result<<Self as >::Output>` — [`IoctlOutput`](#ioctloutput), [`Result`](../io/index.md), [`Ioctl`](#ioctl)
 
 ### `Getter<const OPCODE: super::Opcode, Output>`
 
@@ -86,25 +132,25 @@ To compute a value for the `OPCODE` argument, see the functions in the
 
 #### Implementations
 
-- `const unsafe fn new() -> Self`
+- <span id="getter-new"></span>`const unsafe fn new() -> Self`
 
 #### Trait Implementations
 
 ##### `impl<const OPCODE: super::Opcode, Output> Debug for Getter<OPCODE, Output>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="getter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<const OPCODE: super::Opcode, Output> Ioctl for Getter<OPCODE, Output>`
 
-- `type Output = Output`
+- <span id="getter-output"></span>`type Output = Output`
 
-- `const IS_MUTATING: bool`
+- <span id="getter-is-mutating"></span>`const IS_MUTATING: bool`
 
-- `fn opcode(self: &Self) -> self::Opcode` — [`Opcode`](#opcode)
+- <span id="getter-opcode"></span>`fn opcode(&self) -> self::Opcode` — [`Opcode`](#opcode)
 
-- `fn as_ptr(self: &mut Self) -> *mut c::c_void`
+- <span id="getter-as-ptr"></span>`fn as_ptr(&mut self) -> *mut c::c_void`
 
-- `unsafe fn output_from_ptr(_: IoctlOutput, ptr: *mut c::c_void) -> Result<<Self as >::Output>` — [`IoctlOutput`](#ioctloutput), [`Result`](../io/index.md), [`Ioctl`](#ioctl)
+- <span id="getter-output-from-ptr"></span>`unsafe fn output_from_ptr(_: IoctlOutput, ptr: *mut c::c_void) -> Result<<Self as >::Output>` — [`IoctlOutput`](#ioctloutput), [`Result`](../io/index.md), [`Ioctl`](#ioctl)
 
 ### `Setter<const OPCODE: super::Opcode, Input>`
 
@@ -131,25 +177,25 @@ To compute a value for the `OPCODE` argument, see the functions in the
 
 #### Implementations
 
-- `const unsafe fn new(input: Input) -> Self`
+- <span id="setter-new"></span>`const unsafe fn new(input: Input) -> Self`
 
 #### Trait Implementations
 
 ##### `impl<const OPCODE: super::Opcode, Input: fmt::Debug> Debug for Setter<OPCODE, Input>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="setter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<const OPCODE: super::Opcode, Input> Ioctl for Setter<OPCODE, Input>`
 
-- `type Output = ()`
+- <span id="setter-output"></span>`type Output = ()`
 
-- `const IS_MUTATING: bool`
+- <span id="setter-is-mutating"></span>`const IS_MUTATING: bool`
 
-- `fn opcode(self: &Self) -> self::Opcode` — [`Opcode`](#opcode)
+- <span id="setter-opcode"></span>`fn opcode(&self) -> self::Opcode` — [`Opcode`](#opcode)
 
-- `fn as_ptr(self: &mut Self) -> *mut c::c_void`
+- <span id="setter-as-ptr"></span>`fn as_ptr(&mut self) -> *mut c::c_void`
 
-- `unsafe fn output_from_ptr(_: IoctlOutput, _: *mut c::c_void) -> Result<<Self as >::Output>` — [`IoctlOutput`](#ioctloutput), [`Result`](../io/index.md), [`Ioctl`](#ioctl)
+- <span id="setter-output-from-ptr"></span>`unsafe fn output_from_ptr(_: IoctlOutput, _: *mut c::c_void) -> Result<<Self as >::Output>` — [`IoctlOutput`](#ioctloutput), [`Result`](../io/index.md), [`Ioctl`](#ioctl)
 
 ### `Updater<'a, const OPCODE: super::Opcode, Value>`
 
@@ -176,21 +222,21 @@ To compute a value for the `OPCODE` argument, see the functions in the
 
 #### Implementations
 
-- `unsafe fn new(value: &'a mut Value) -> Self`
+- <span id="updater-new"></span>`unsafe fn new(value: &'a mut Value) -> Self`
 
 #### Trait Implementations
 
 ##### `impl<'a, const OPCODE: super::Opcode, T> Ioctl for Updater<'a, OPCODE, T>`
 
-- `type Output = ()`
+- <span id="updater-output"></span>`type Output = ()`
 
-- `const IS_MUTATING: bool`
+- <span id="updater-is-mutating"></span>`const IS_MUTATING: bool`
 
-- `fn opcode(self: &Self) -> self::Opcode` — [`Opcode`](#opcode)
+- <span id="updater-opcode"></span>`fn opcode(&self) -> self::Opcode` — [`Opcode`](#opcode)
 
-- `fn as_ptr(self: &mut Self) -> *mut c::c_void`
+- <span id="updater-as-ptr"></span>`fn as_ptr(&mut self) -> *mut c::c_void`
 
-- `unsafe fn output_from_ptr(_output: IoctlOutput, _ptr: *mut c::c_void) -> Result<()>` — [`IoctlOutput`](#ioctloutput), [`Result`](../io/index.md)
+- <span id="updater-output-from-ptr"></span>`unsafe fn output_from_ptr(_output: IoctlOutput, _ptr: *mut c::c_void) -> Result<()>` — [`IoctlOutput`](#ioctloutput), [`Result`](../io/index.md)
 
 ### `IntegerSetter<const OPCODE: super::Opcode>`
 
@@ -216,23 +262,23 @@ To compute a value for the `OPCODE` argument, see the functions in the
 
 #### Implementations
 
-- `const unsafe fn new_usize(value: usize) -> Self`
+- <span id="integersetter-new-usize"></span>`const unsafe fn new_usize(value: usize) -> Self`
 
-- `const unsafe fn new_pointer(value: *mut c::c_void) -> Self`
+- <span id="integersetter-new-pointer"></span>`const unsafe fn new_pointer(value: *mut c::c_void) -> Self`
 
 #### Trait Implementations
 
 ##### `impl<const OPCODE: super::Opcode> Ioctl for IntegerSetter<OPCODE>`
 
-- `type Output = ()`
+- <span id="integersetter-output"></span>`type Output = ()`
 
-- `const IS_MUTATING: bool`
+- <span id="integersetter-is-mutating"></span>`const IS_MUTATING: bool`
 
-- `fn opcode(self: &Self) -> self::Opcode` — [`Opcode`](#opcode)
+- <span id="integersetter-opcode"></span>`fn opcode(&self) -> self::Opcode` — [`Opcode`](#opcode)
 
-- `fn as_ptr(self: &mut Self) -> *mut c::c_void`
+- <span id="integersetter-as-ptr"></span>`fn as_ptr(&mut self) -> *mut c::c_void`
 
-- `unsafe fn output_from_ptr(_out: IoctlOutput, _extract_output: *mut c::c_void) -> Result<<Self as >::Output>` — [`IoctlOutput`](#ioctloutput), [`Result`](../io/index.md), [`Ioctl`](#ioctl)
+- <span id="integersetter-output-from-ptr"></span>`unsafe fn output_from_ptr(_out: IoctlOutput, _extract_output: *mut c::c_void) -> Result<<Self as >::Output>` — [`IoctlOutput`](#ioctloutput), [`Result`](../io/index.md), [`Ioctl`](#ioctl)
 
 ## Enums
 
@@ -274,31 +320,31 @@ kernel, and `Write` means the kernel writing data to userspace.
 
 ##### `impl Clone for Direction`
 
-- `fn clone(self: &Self) -> Direction` — [`Direction`](#direction)
+- <span id="direction-clone"></span>`fn clone(&self) -> Direction` — [`Direction`](#direction)
 
 ##### `impl Copy for Direction`
 
 ##### `impl Debug for Direction`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="direction-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Direction`
 
 ##### `impl Hash for Direction`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="direction-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for Direction`
 
-- `fn cmp(self: &Self, other: &Direction) -> $crate::cmp::Ordering` — [`Direction`](#direction)
+- <span id="direction-cmp"></span>`fn cmp(&self, other: &Direction) -> cmp::Ordering` — [`Direction`](#direction)
 
 ##### `impl PartialEq for Direction`
 
-- `fn eq(self: &Self, other: &Direction) -> bool` — [`Direction`](#direction)
+- <span id="direction-eq"></span>`fn eq(&self, other: &Direction) -> bool` — [`Direction`](#direction)
 
 ##### `impl PartialOrd for Direction`
 
-- `fn partial_cmp(self: &Self, other: &Direction) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Direction`](#direction)
+- <span id="direction-partial-cmp"></span>`fn partial_cmp(&self, other: &Direction) -> option::Option<cmp::Ordering>` — [`Direction`](#direction)
 
 ##### `impl StructuralPartialEq for Direction`
 
@@ -343,11 +389,11 @@ By implementing this trait, you guarantee that:
 
 - `const IS_MUTATING: bool`
 
-- `fn opcode(self: &Self) -> Opcode`
+- `fn opcode(&self) -> Opcode`
 
   Get the opcode used by this `ioctl` command.
 
-- `fn as_ptr(self: &mut Self) -> *mut c::c_void`
+- `fn as_ptr(&mut self) -> *mut c::c_void`
 
   Get a pointer to the data to be passed to the `ioctl` command.
 

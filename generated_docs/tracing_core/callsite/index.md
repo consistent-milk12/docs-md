@@ -102,6 +102,38 @@ additional performance optimizations.
 
 
 
+## Contents
+
+- [Modules](#modules)
+  - [`private`](#private)
+  - [`dispatchers`](#dispatchers)
+- [Structs](#structs)
+  - [`Identifier`](#identifier)
+  - [`DefaultCallsite`](#defaultcallsite)
+  - [`Callsites`](#callsites)
+- [Traits](#traits)
+  - [`Callsite`](#callsite)
+- [Functions](#functions)
+  - [`rebuild_interest_cache`](#rebuild_interest_cache)
+  - [`register`](#register)
+  - [`register_dispatch`](#register_dispatch)
+  - [`rebuild_callsite_interest`](#rebuild_callsite_interest)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`private`](#private) | mod |  |
+| [`dispatchers`](#dispatchers) | mod |  |
+| [`Identifier`](#identifier) | struct | Uniquely identifies a [`Callsite`] |
+| [`DefaultCallsite`](#defaultcallsite) | struct | A default [`Callsite`] implementation. |
+| [`Callsites`](#callsites) | struct |  |
+| [`Callsite`](#callsite) | trait | Trait implemented by callsites. |
+| [`rebuild_interest_cache`](#rebuild_interest_cache) | fn | Clear and reregister interest on every [`Callsite`] |
+| [`register`](#register) | fn | Register a new [`Callsite`] with the global registry. |
+| [`register_dispatch`](#register_dispatch) | fn |  |
+| [`rebuild_callsite_interest`](#rebuild_callsite_interest) | fn |  |
+
 ## Modules
 
 - [`private`](private/index.md) - 
@@ -124,21 +156,21 @@ Two `Identifier`s are equal if they both refer to the same callsite.
 
 ##### `impl Clone for Identifier`
 
-- `fn clone(self: &Self) -> Identifier` — [`Identifier`](#identifier)
+- <span id="identifier-clone"></span>`fn clone(&self) -> Identifier` — [`Identifier`](#identifier)
 
 ##### `impl Debug for Identifier`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="identifier-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Identifier`
 
 ##### `impl Hash for Identifier`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="identifier-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for Identifier`
 
-- `fn eq(self: &Self, other: &Identifier) -> bool` — [`Identifier`](#identifier)
+- <span id="identifier-eq"></span>`fn eq(&self, other: &Identifier) -> bool` — [`Identifier`](#identifier)
 
 ### `DefaultCallsite`
 
@@ -155,35 +187,35 @@ A default [`Callsite`](../index.md) implementation.
 
 #### Implementations
 
-- `const UNREGISTERED: u8`
+- <span id="defaultcallsite-unregistered"></span>`const UNREGISTERED: u8`
 
-- `const REGISTERING: u8`
+- <span id="defaultcallsite-registering"></span>`const REGISTERING: u8`
 
-- `const REGISTERED: u8`
+- <span id="defaultcallsite-registered"></span>`const REGISTERED: u8`
 
-- `const INTEREST_NEVER: u8`
+- <span id="defaultcallsite-interest-never"></span>`const INTEREST_NEVER: u8`
 
-- `const INTEREST_SOMETIMES: u8`
+- <span id="defaultcallsite-interest-sometimes"></span>`const INTEREST_SOMETIMES: u8`
 
-- `const INTEREST_ALWAYS: u8`
+- <span id="defaultcallsite-interest-always"></span>`const INTEREST_ALWAYS: u8`
 
-- `const fn new(meta: &'static Metadata<'static>) -> Self` — [`Metadata`](../index.md)
+- <span id="defaultcallsite-new"></span>`const fn new(meta: &'static Metadata<'static>) -> Self` — [`Metadata`](../index.md)
 
-- `fn register(self: &'static Self) -> Interest` — [`Interest`](../index.md)
+- <span id="defaultcallsite-register"></span>`fn register(self: &'static Self) -> Interest` — [`Interest`](../index.md)
 
-- `fn interest(self: &'static Self) -> Interest` — [`Interest`](../index.md)
+- <span id="defaultcallsite-interest"></span>`fn interest(self: &'static Self) -> Interest` — [`Interest`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Callsite for DefaultCallsite`
 
-- `fn set_interest(self: &Self, interest: Interest)` — [`Interest`](../index.md)
+- <span id="defaultcallsite-set-interest"></span>`fn set_interest(&self, interest: Interest)` — [`Interest`](../index.md)
 
-- `fn metadata(self: &Self) -> &Metadata<'static>` — [`Metadata`](../index.md)
+- <span id="defaultcallsite-metadata"></span>`fn metadata(&self) -> &Metadata<'static>` — [`Metadata`](../index.md)
 
 ##### `impl Debug for DefaultCallsite`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="defaultcallsite-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Callsites`
 
@@ -196,13 +228,13 @@ struct Callsites {
 
 #### Implementations
 
-- `fn rebuild_interest(self: &Self, dispatchers: dispatchers::Rebuilder<'_>)` — [`Rebuilder`](dispatchers/index.md)
+- <span id="callsites-rebuild-interest"></span>`fn rebuild_interest(&self, dispatchers: dispatchers::Rebuilder<'_>)` — [`Rebuilder`](dispatchers/index.md)
 
-- `fn push_dyn(self: &Self, callsite: &'static dyn Callsite)` — [`Callsite`](../index.md)
+- <span id="callsites-push-dyn"></span>`fn push_dyn(&self, callsite: &'static dyn Callsite)` — [`Callsite`](../index.md)
 
-- `fn push_default(self: &Self, callsite: &'static DefaultCallsite)` — [`DefaultCallsite`](#defaultcallsite)
+- <span id="callsites-push-default"></span>`fn push_default(&self, callsite: &'static DefaultCallsite)` — [`DefaultCallsite`](#defaultcallsite)
 
-- `fn for_each(self: &Self, f: impl FnMut(&'static dyn Callsite))` — [`Callsite`](../index.md)
+- <span id="callsites-for-each"></span>`fn for_each(&self, f: impl FnMut(&'static dyn Callsite))` — [`Callsite`](../index.md)
 
 ## Traits
 
@@ -222,11 +254,11 @@ callsites.
 
 #### Required Methods
 
-- `fn set_interest(self: &Self, interest: Interest)`
+- `fn set_interest(&self, interest: Interest)`
 
   Sets the [`Interest`](../index.md) for this callsite.
 
-- `fn metadata(self: &Self) -> &Metadata<'_>`
+- `fn metadata(&self) -> &Metadata<'_>`
 
   Returns the [`metadata`](../metadata/index.md) associated with the callsite.
 

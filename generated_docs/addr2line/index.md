@@ -27,6 +27,62 @@ The crate has a CLI wrapper around the library which provides some of
 the functionality of the `addr2line` command line tool distributed with
 [GNU binutils](https://sourceware.org/binutils/docs/binutils/addr2line.html).
 
+## Contents
+
+- [Modules](#modules)
+  - [`maybe_small`](#maybe_small)
+  - [`frame`](#frame)
+  - [`function`](#function)
+  - [`line`](#line)
+  - [`lookup`](#lookup)
+  - [`unit`](#unit)
+- [Structs](#structs)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`Context`](#context)
+  - [`RangeAttributes`](#rangeattributes)
+- [Enums](#enums)
+  - [`unnamed`](#unnamed)
+  - [`DebugFile`](#debugfile)
+- [Traits](#traits)
+  - [`unnamed`](#unnamed)
+- [Functions](#functions)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+- [Type Aliases](#type-aliases)
+  - [`Error`](#error)
+  - [`LazyResult`](#lazyresult)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`maybe_small`](#maybe_small) | mod |  |
+| [`frame`](#frame) | mod |  |
+| [`function`](#function) | mod |  |
+| [`line`](#line) | mod |  |
+| [`lookup`](#lookup) | mod |  |
+| [`unit`](#unit) | mod |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`Context`](#context) | struct | The state necessary to perform address to line translation. |
+| [`RangeAttributes`](#rangeattributes) | struct |  |
+| [`unnamed`](#unnamed) | enum |  |
+| [`DebugFile`](#debugfile) | enum |  |
+| [`unnamed`](#unnamed) | trait |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`Error`](#error) | type |  |
+| [`LazyResult`](#lazyresult) | type |  |
+
 ## Modules
 
 - [`maybe_small`](maybe_small/index.md) - 
@@ -76,13 +132,13 @@ An iterator over function frames.
 
 #### Implementations
 
-- `fn new_empty() -> Self`
+- <span id="frameiter-new-empty"></span>`fn new_empty() -> Self`
 
-- `fn new_location(location: Location<'ctx>) -> Self` — [`Location`](#location)
+- <span id="frameiter-new-location"></span>`fn new_location(location: Location<'ctx>) -> Self` — [`Location`](#location)
 
-- `fn new_frames(unit: &'ctx ResUnit<R>, sections: &'ctx gimli::Dwarf<R>, function: &'ctx Function<R>, inlined_functions: alloc::vec::Vec<&'ctx InlinedFunction<R>>, location: Option<Location<'ctx>>) -> Self` — [`ResUnit`](unit/index.md), [`Function`](function/index.md), [`InlinedFunction`](function/index.md), [`Location`](#location)
+- <span id="frameiter-new-frames"></span>`fn new_frames(unit: &'ctx ResUnit<R>, sections: &'ctx gimli::Dwarf<R>, function: &'ctx Function<R>, inlined_functions: alloc::vec::Vec<&'ctx InlinedFunction<R>>, location: Option<Location<'ctx>>) -> Self` — [`ResUnit`](unit/index.md), [`Function`](function/index.md), [`InlinedFunction`](function/index.md), [`Location`](#location)
 
-- `fn next(self: &mut Self) -> Result<Option<Frame<'ctx, R>>, gimli::Error>` — [`Frame`](#frame)
+- <span id="frameiter-next"></span>`fn next(&mut self) -> Result<Option<Frame<'ctx, R>>, gimli::Error>` — [`Frame`](#frame)
 
 ### `FunctionName<R: gimli::Reader>`
 
@@ -107,9 +163,9 @@ A function name.
 
 #### Implementations
 
-- `fn raw_name(self: &Self) -> Result<Cow<'_, str>, gimli::Error>`
+- <span id="functionname-raw-name"></span>`fn raw_name(&self) -> Result<Cow<'_, str>, gimli::Error>`
 
-- `fn demangle(self: &Self) -> Result<Cow<'_, str>, gimli::Error>`
+- <span id="functionname-demangle"></span>`fn demangle(&self) -> Result<Cow<'_, str>, gimli::Error>`
 
 ### `Location<'a>`
 
@@ -190,23 +246,23 @@ Iterator over `Location`s in a range of addresses, returned by `Context::find_lo
 
 #### Implementations
 
-- `fn next_loc(self: &mut Self) -> Result<Option<(u64, u64, Location<'ctx>)>, gimli::Error>` — [`Location`](#location)
+- <span id="locationrangeiter-next-loc"></span>`fn next_loc(&mut self) -> Result<Option<(u64, u64, Location<'ctx>)>, gimli::Error>` — [`Location`](#location)
 
 #### Trait Implementations
 
 ##### `impl<I> IntoIterator for LocationRangeIter<'ctx, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="locationrangeiter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="locationrangeiter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="locationrangeiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'ctx, R> Iterator for LocationRangeIter<'ctx, R>`
 
-- `type Item = (u64, u64, Location<'ctx>)`
+- <span id="locationrangeiter-item"></span>`type Item = (u64, u64, Location<'ctx>)`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="locationrangeiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `Context<R: gimli::Reader>`
 
@@ -225,7 +281,15 @@ when performing lookups for many addresses in the same executable.
 
 #### Implementations
 
-- `fn find_unit(self: &Self, offset: gimli::DebugInfoOffset<<R as >::Offset>, file: DebugFile) -> Result<(&gimli::Unit<R>, gimli::UnitOffset<<R as >::Offset>), gimli::Error>` — [`DebugFile`](#debugfile)
+- <span id="context-find-dwarf-and-unit"></span>`fn find_dwarf_and_unit(&self, probe: u64) -> LookupResult<impl LookupContinuation<Output = Option<gimli::UnitRef<'_, R>>, Buf = R>>` — [`LookupResult`](#lookupresult), [`LookupContinuation`](#lookupcontinuation)
+
+- <span id="context-find-location"></span>`fn find_location(&self, probe: u64) -> Result<Option<Location<'_>>, gimli::Error>` — [`Location`](#location)
+
+- <span id="context-find-location-range"></span>`fn find_location_range(&self, probe_low: u64, probe_high: u64) -> Result<LocationRangeIter<'_, R>, gimli::Error>` — [`LocationRangeIter`](#locationrangeiter)
+
+- <span id="context-find-frames"></span>`fn find_frames(&self, probe: u64) -> LookupResult<impl LookupContinuation<Output = Result<FrameIter<'_, R>, gimli::Error>, Buf = R>>` — [`LookupResult`](#lookupresult), [`LookupContinuation`](#lookupcontinuation), [`FrameIter`](#frameiter)
+
+- <span id="context-preload-units"></span>`fn preload_units(&self, probe: u64) -> impl Iterator<Item = (SplitDwarfLoad<R>, impl FnOnce(Option<Arc<gimli::Dwarf<R>>>) -> Result<(), gimli::Error> + '_)>` — [`SplitDwarfLoad`](#splitdwarfload)
 
 ### `RangeAttributes<R: gimli::Reader>`
 
@@ -240,13 +304,13 @@ struct RangeAttributes<R: gimli::Reader> {
 
 #### Implementations
 
-- `fn for_each_range<F: FnMut(gimli::Range)>(self: &Self, unit: gimli::UnitRef<'_, R>, f: F) -> Result<bool, gimli::Error>`
+- <span id="rangeattributes-for-each-range"></span>`fn for_each_range<F: FnMut(gimli::Range)>(&self, unit: gimli::UnitRef<'_, R>, f: F) -> Result<bool, gimli::Error>`
 
 #### Trait Implementations
 
 ##### `impl<R: gimli::Reader> Default for RangeAttributes<R>`
 
-- `fn default() -> Self`
+- <span id="rangeattributes-default"></span>`fn default() -> Self`
 
 ## Enums
 
@@ -299,11 +363,11 @@ This enum is intended to be used in a loop like so:
 
 #### Implementations
 
-- `fn skip_all_loads(self: Self) -> <L as >::Output` — [`LookupContinuation`](#lookupcontinuation)
+- <span id="lookupresult-skip-all-loads"></span>`fn skip_all_loads(self) -> <L as >::Output` — [`LookupContinuation`](#lookupcontinuation)
 
-- `fn map<T, F: FnOnce(<L as >::Output) -> T>(self: Self, f: F) -> LookupResult<MappedLookup<T, L, F>>` — [`LookupResult`](#lookupresult), [`MappedLookup`](lookup/index.md)
+- <span id="lookupresult-map"></span>`fn map<T, F: FnOnce(<L as >::Output) -> T>(self, f: F) -> LookupResult<MappedLookup<T, L, F>>` — [`LookupResult`](#lookupresult), [`MappedLookup`](lookup/index.md)
 
-- `fn unwrap(self: Self) -> <L as >::Output` — [`LookupContinuation`](#lookupcontinuation)
+- <span id="lookupresult-unwrap"></span>`fn unwrap(self) -> <L as >::Output` — [`LookupContinuation`](#lookupcontinuation)
 
 ### `DebugFile`
 
@@ -319,19 +383,19 @@ enum DebugFile {
 
 ##### `impl Clone for DebugFile`
 
-- `fn clone(self: &Self) -> DebugFile` — [`DebugFile`](#debugfile)
+- <span id="debugfile-clone"></span>`fn clone(&self) -> DebugFile` — [`DebugFile`](#debugfile)
 
 ##### `impl Copy for DebugFile`
 
 ##### `impl Debug for DebugFile`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugfile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for DebugFile`
 
 ##### `impl PartialEq for DebugFile`
 
-- `fn eq(self: &Self, other: &DebugFile) -> bool` — [`DebugFile`](#debugfile)
+- <span id="debugfile-eq"></span>`fn eq(&self, other: &DebugFile) -> bool` — [`DebugFile`](#debugfile)
 
 ##### `impl StructuralPartialEq for DebugFile`
 

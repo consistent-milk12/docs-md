@@ -45,6 +45,40 @@ make use of [`ByteClasses`](#byteclasses) to visit each element in the DFA's alp
 of just visiting every distinct `u8` value. The latter isn't necessarily wrong,
 but it could be potentially very wasteful.
 
+## Contents
+
+- [Structs](#structs)
+  - [`Unit`](#unit)
+  - [`ByteClasses`](#byteclasses)
+  - [`ByteClassIter`](#byteclassiter)
+  - [`ByteClassRepresentatives`](#byteclassrepresentatives)
+  - [`ByteClassElements`](#byteclasselements)
+  - [`ByteClassElementRanges`](#byteclasselementranges)
+  - [`ByteClassSet`](#byteclassset)
+  - [`ByteSet`](#byteset)
+  - [`BitSet`](#bitset)
+  - [`ByteSetIter`](#bytesetiter)
+  - [`ByteSetRangeIter`](#bytesetrangeiter)
+- [Enums](#enums)
+  - [`UnitKind`](#unitkind)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Unit`](#unit) | struct | Unit represents a single unit of haystack for DFA based regex engines. |
+| [`ByteClasses`](#byteclasses) | struct | A representation of byte oriented equivalence classes. |
+| [`ByteClassIter`](#byteclassiter) | struct | An iterator over each equivalence class. |
+| [`ByteClassRepresentatives`](#byteclassrepresentatives) | struct | An iterator over representative bytes from each equivalence class. |
+| [`ByteClassElements`](#byteclasselements) | struct | An iterator over all elements in an equivalence class. |
+| [`ByteClassElementRanges`](#byteclasselementranges) | struct | An iterator over all elements in an equivalence class expressed as a |
+| [`ByteClassSet`](#byteclassset) | struct | A partitioning of bytes into equivalence classes. |
+| [`ByteSet`](#byteset) | struct | A simple set of bytes that is reasonably cheap to copy and allocation free. |
+| [`BitSet`](#bitset) | struct | The representation of a byte set. |
+| [`ByteSetIter`](#bytesetiter) | struct |  |
+| [`ByteSetRangeIter`](#bytesetrangeiter) | struct |  |
+| [`UnitKind`](#unitkind) | enum |  |
+
 ## Structs
 
 ### `Unit`
@@ -86,47 +120,47 @@ singleton equivalence class.
 
 #### Implementations
 
-- `fn u8(byte: u8) -> Unit` — [`Unit`](#unit)
+- <span id="unit-u8"></span>`fn u8(byte: u8) -> Unit` — [`Unit`](#unit)
 
-- `fn eoi(num_byte_equiv_classes: usize) -> Unit` — [`Unit`](#unit)
+- <span id="unit-eoi"></span>`fn eoi(num_byte_equiv_classes: usize) -> Unit` — [`Unit`](#unit)
 
-- `fn as_u8(self: Self) -> Option<u8>`
+- <span id="unit-as-u8"></span>`fn as_u8(self) -> Option<u8>`
 
-- `fn as_eoi(self: Self) -> Option<u16>`
+- <span id="unit-as-eoi"></span>`fn as_eoi(self) -> Option<u16>`
 
-- `fn as_usize(self: Self) -> usize`
+- <span id="unit-as-usize"></span>`fn as_usize(self) -> usize`
 
-- `fn is_byte(self: Self, byte: u8) -> bool`
+- <span id="unit-is-byte"></span>`fn is_byte(self, byte: u8) -> bool`
 
-- `fn is_eoi(self: Self) -> bool`
+- <span id="unit-is-eoi"></span>`fn is_eoi(self) -> bool`
 
-- `fn is_word_byte(self: Self) -> bool`
+- <span id="unit-is-word-byte"></span>`fn is_word_byte(self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for Unit`
 
-- `fn clone(self: &Self) -> Unit` — [`Unit`](#unit)
+- <span id="unit-clone"></span>`fn clone(&self) -> Unit` — [`Unit`](#unit)
 
 ##### `impl Copy for Unit`
 
 ##### `impl Debug for Unit`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="unit-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq for Unit`
 
 ##### `impl Ord for Unit`
 
-- `fn cmp(self: &Self, other: &Unit) -> $crate::cmp::Ordering` — [`Unit`](#unit)
+- <span id="unit-cmp"></span>`fn cmp(&self, other: &Unit) -> cmp::Ordering` — [`Unit`](#unit)
 
 ##### `impl PartialEq for Unit`
 
-- `fn eq(self: &Self, other: &Unit) -> bool` — [`Unit`](#unit)
+- <span id="unit-eq"></span>`fn eq(&self, other: &Unit) -> bool` — [`Unit`](#unit)
 
 ##### `impl PartialOrd for Unit`
 
-- `fn partial_cmp(self: &Self, other: &Unit) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Unit`](#unit)
+- <span id="unit-partial-cmp"></span>`fn partial_cmp(&self, other: &Unit) -> option::Option<cmp::Ordering>` — [`Unit`](#unit)
 
 ##### `impl StructuralPartialEq for Unit`
 
@@ -168,53 +202,53 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn empty() -> ByteClasses` — [`ByteClasses`](#byteclasses)
+- <span id="byteclasses-empty"></span>`fn empty() -> ByteClasses` — [`ByteClasses`](#byteclasses)
 
-- `fn singletons() -> ByteClasses` — [`ByteClasses`](#byteclasses)
+- <span id="byteclasses-singletons"></span>`fn singletons() -> ByteClasses` — [`ByteClasses`](#byteclasses)
 
-- `fn from_bytes(slice: &[u8]) -> Result<(ByteClasses, usize), DeserializeError>` — [`ByteClasses`](#byteclasses), [`DeserializeError`](../wire/index.md)
+- <span id="byteclasses-from-bytes"></span>`fn from_bytes(slice: &[u8]) -> Result<(ByteClasses, usize), DeserializeError>` — [`ByteClasses`](#byteclasses), [`DeserializeError`](../wire/index.md)
 
-- `fn write_to(self: &Self, dst: &mut [u8]) -> Result<usize, SerializeError>` — [`SerializeError`](../wire/index.md)
+- <span id="byteclasses-write-to"></span>`fn write_to(&self, dst: &mut [u8]) -> Result<usize, SerializeError>` — [`SerializeError`](../wire/index.md)
 
-- `fn write_to_len(self: &Self) -> usize`
+- <span id="byteclasses-write-to-len"></span>`fn write_to_len(&self) -> usize`
 
-- `fn set(self: &mut Self, byte: u8, class: u8)`
+- <span id="byteclasses-set"></span>`fn set(&mut self, byte: u8, class: u8)`
 
-- `fn get(self: &Self, byte: u8) -> u8`
+- <span id="byteclasses-get"></span>`fn get(&self, byte: u8) -> u8`
 
-- `fn get_by_unit(self: &Self, unit: Unit) -> usize` — [`Unit`](#unit)
+- <span id="byteclasses-get-by-unit"></span>`fn get_by_unit(&self, unit: Unit) -> usize` — [`Unit`](#unit)
 
-- `fn eoi(self: &Self) -> Unit` — [`Unit`](#unit)
+- <span id="byteclasses-eoi"></span>`fn eoi(&self) -> Unit` — [`Unit`](#unit)
 
-- `fn alphabet_len(self: &Self) -> usize`
+- <span id="byteclasses-alphabet-len"></span>`fn alphabet_len(&self) -> usize`
 
-- `fn stride2(self: &Self) -> usize`
+- <span id="byteclasses-stride2"></span>`fn stride2(&self) -> usize`
 
-- `fn is_singleton(self: &Self) -> bool`
+- <span id="byteclasses-is-singleton"></span>`fn is_singleton(&self) -> bool`
 
-- `fn iter(self: &Self) -> ByteClassIter<'_>` — [`ByteClassIter`](#byteclassiter)
+- <span id="byteclasses-iter"></span>`fn iter(&self) -> ByteClassIter<'_>` — [`ByteClassIter`](#byteclassiter)
 
-- `fn representatives<R: core::ops::RangeBounds<u8>>(self: &Self, range: R) -> ByteClassRepresentatives<'_>` — [`ByteClassRepresentatives`](#byteclassrepresentatives)
+- <span id="byteclasses-representatives"></span>`fn representatives<R: core::ops::RangeBounds<u8>>(&self, range: R) -> ByteClassRepresentatives<'_>` — [`ByteClassRepresentatives`](#byteclassrepresentatives)
 
-- `fn elements(self: &Self, class: Unit) -> ByteClassElements<'_>` — [`Unit`](#unit), [`ByteClassElements`](#byteclasselements)
+- <span id="byteclasses-elements"></span>`fn elements(&self, class: Unit) -> ByteClassElements<'_>` — [`Unit`](#unit), [`ByteClassElements`](#byteclasselements)
 
-- `fn element_ranges(self: &Self, class: Unit) -> ByteClassElementRanges<'_>` — [`Unit`](#unit), [`ByteClassElementRanges`](#byteclasselementranges)
+- <span id="byteclasses-element-ranges"></span>`fn element_ranges(&self, class: Unit) -> ByteClassElementRanges<'_>` — [`Unit`](#unit), [`ByteClassElementRanges`](#byteclasselementranges)
 
 #### Trait Implementations
 
 ##### `impl Clone for ByteClasses`
 
-- `fn clone(self: &Self) -> ByteClasses` — [`ByteClasses`](#byteclasses)
+- <span id="byteclasses-clone"></span>`fn clone(&self) -> ByteClasses` — [`ByteClasses`](#byteclasses)
 
 ##### `impl Copy for ByteClasses`
 
 ##### `impl Debug for ByteClasses`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="byteclasses-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Default for ByteClasses`
 
-- `fn default() -> ByteClasses` — [`ByteClasses`](#byteclasses)
+- <span id="byteclasses-default"></span>`fn default() -> ByteClasses` — [`ByteClasses`](#byteclasses)
 
 ### `ByteClassIter<'a>`
 
@@ -238,21 +272,21 @@ iterator was created from.
 
 ##### `impl<'a> Debug for ByteClassIter<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="byteclassiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for ByteClassIter<'a>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="byteclassiter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="byteclassiter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="byteclassiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a> Iterator for ByteClassIter<'a>`
 
-- `type Item = Unit`
+- <span id="byteclassiter-item"></span>`type Item = Unit`
 
-- `fn next(self: &mut Self) -> Option<Unit>` — [`Unit`](#unit)
+- <span id="byteclassiter-next"></span>`fn next(&mut self) -> Option<Unit>` — [`Unit`](#unit)
 
 ### `ByteClassRepresentatives<'a>`
 
@@ -276,21 +310,21 @@ iterator was created from.
 
 ##### `impl<'a> Debug for ByteClassRepresentatives<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="byteclassrepresentatives-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for ByteClassRepresentatives<'a>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="byteclassrepresentatives-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="byteclassrepresentatives-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="byteclassrepresentatives-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a> Iterator for ByteClassRepresentatives<'a>`
 
-- `type Item = Unit`
+- <span id="byteclassrepresentatives-item"></span>`type Item = Unit`
 
-- `fn next(self: &mut Self) -> Option<Unit>` — [`Unit`](#unit)
+- <span id="byteclassrepresentatives-next"></span>`fn next(&mut self) -> Option<Unit>` — [`Unit`](#unit)
 
 ### `ByteClassElements<'a>`
 
@@ -313,21 +347,21 @@ iterator was created from.
 
 ##### `impl<'a> Debug for ByteClassElements<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="byteclasselements-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for ByteClassElements<'a>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="byteclasselements-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="byteclasselements-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="byteclasselements-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a> Iterator for ByteClassElements<'a>`
 
-- `type Item = Unit`
+- <span id="byteclasselements-item"></span>`type Item = Unit`
 
-- `fn next(self: &mut Self) -> Option<Unit>` — [`Unit`](#unit)
+- <span id="byteclasselements-next"></span>`fn next(&mut self) -> Option<Unit>` — [`Unit`](#unit)
 
 ### `ByteClassElementRanges<'a>`
 
@@ -345,21 +379,21 @@ sequence of contiguous ranges.
 
 ##### `impl<'a> Debug for ByteClassElementRanges<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="byteclasselementranges-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for ByteClassElementRanges<'a>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="byteclasselementranges-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="byteclasselementranges-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="byteclasselementranges-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a> Iterator for ByteClassElementRanges<'a>`
 
-- `type Item = (Unit, Unit)`
+- <span id="byteclasselementranges-item"></span>`type Item = (Unit, Unit)`
 
-- `fn next(self: &mut Self) -> Option<(Unit, Unit)>` — [`Unit`](#unit)
+- <span id="byteclasselementranges-next"></span>`fn next(&mut self) -> Option<(Unit, Unit)>` — [`Unit`](#unit)
 
 ### `ByteClassSet`
 
@@ -392,27 +426,27 @@ same equivalence class.)
 
 #### Implementations
 
-- `fn empty() -> Self`
+- <span id="byteclassset-empty"></span>`fn empty() -> Self`
 
-- `fn set_range(self: &mut Self, start: u8, end: u8)`
+- <span id="byteclassset-set-range"></span>`fn set_range(&mut self, start: u8, end: u8)`
 
-- `fn add_set(self: &mut Self, set: &ByteSet)` — [`ByteSet`](#byteset)
+- <span id="byteclassset-add-set"></span>`fn add_set(&mut self, set: &ByteSet)` — [`ByteSet`](#byteset)
 
-- `fn byte_classes(self: &Self) -> ByteClasses` — [`ByteClasses`](#byteclasses)
+- <span id="byteclassset-byte-classes"></span>`fn byte_classes(&self) -> ByteClasses` — [`ByteClasses`](#byteclasses)
 
 #### Trait Implementations
 
 ##### `impl Clone for ByteClassSet`
 
-- `fn clone(self: &Self) -> ByteClassSet` — [`ByteClassSet`](#byteclassset)
+- <span id="byteclassset-clone"></span>`fn clone(&self) -> ByteClassSet` — [`ByteClassSet`](#byteclassset)
 
 ##### `impl Debug for ByteClassSet`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="byteclassset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for ByteClassSet`
 
-- `fn default() -> ByteClassSet` — [`ByteClassSet`](#byteclassset)
+- <span id="byteclassset-default"></span>`fn default() -> ByteClassSet` — [`ByteClassSet`](#byteclassset)
 
 ### `ByteSet`
 
@@ -426,49 +460,49 @@ A simple set of bytes that is reasonably cheap to copy and allocation free.
 
 #### Implementations
 
-- `fn empty() -> ByteSet` — [`ByteSet`](#byteset)
+- <span id="byteset-empty"></span>`fn empty() -> ByteSet` — [`ByteSet`](#byteset)
 
-- `fn add(self: &mut Self, byte: u8)`
+- <span id="byteset-add"></span>`fn add(&mut self, byte: u8)`
 
-- `fn remove(self: &mut Self, byte: u8)`
+- <span id="byteset-remove"></span>`fn remove(&mut self, byte: u8)`
 
-- `fn contains(self: &Self, byte: u8) -> bool`
+- <span id="byteset-contains"></span>`fn contains(&self, byte: u8) -> bool`
 
-- `fn contains_range(self: &Self, start: u8, end: u8) -> bool`
+- <span id="byteset-contains-range"></span>`fn contains_range(&self, start: u8, end: u8) -> bool`
 
-- `fn iter(self: &Self) -> ByteSetIter<'_>` — [`ByteSetIter`](#bytesetiter)
+- <span id="byteset-iter"></span>`fn iter(&self) -> ByteSetIter<'_>` — [`ByteSetIter`](#bytesetiter)
 
-- `fn iter_ranges(self: &Self) -> ByteSetRangeIter<'_>` — [`ByteSetRangeIter`](#bytesetrangeiter)
+- <span id="byteset-iter-ranges"></span>`fn iter_ranges(&self) -> ByteSetRangeIter<'_>` — [`ByteSetRangeIter`](#bytesetrangeiter)
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="byteset-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn from_bytes(slice: &[u8]) -> Result<(ByteSet, usize), DeserializeError>` — [`ByteSet`](#byteset), [`DeserializeError`](../wire/index.md)
+- <span id="byteset-from-bytes"></span>`fn from_bytes(slice: &[u8]) -> Result<(ByteSet, usize), DeserializeError>` — [`ByteSet`](#byteset), [`DeserializeError`](../wire/index.md)
 
-- `fn write_to<E: crate::util::wire::Endian>(self: &Self, dst: &mut [u8]) -> Result<usize, SerializeError>` — [`SerializeError`](../wire/index.md)
+- <span id="byteset-write-to"></span>`fn write_to<E: crate::util::wire::Endian>(&self, dst: &mut [u8]) -> Result<usize, SerializeError>` — [`SerializeError`](../wire/index.md)
 
-- `fn write_to_len(self: &Self) -> usize`
+- <span id="byteset-write-to-len"></span>`fn write_to_len(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Clone for ByteSet`
 
-- `fn clone(self: &Self) -> ByteSet` — [`ByteSet`](#byteset)
+- <span id="byteset-clone"></span>`fn clone(&self) -> ByteSet` — [`ByteSet`](#byteset)
 
 ##### `impl Copy for ByteSet`
 
 ##### `impl Debug for ByteSet`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="byteset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for ByteSet`
 
-- `fn default() -> ByteSet` — [`ByteSet`](#byteset)
+- <span id="byteset-default"></span>`fn default() -> ByteSet` — [`ByteSet`](#byteset)
 
 ##### `impl Eq for ByteSet`
 
 ##### `impl PartialEq for ByteSet`
 
-- `fn eq(self: &Self, other: &ByteSet) -> bool` — [`ByteSet`](#byteset)
+- <span id="byteset-eq"></span>`fn eq(&self, other: &ByteSet) -> bool` — [`ByteSet`](#byteset)
 
 ##### `impl StructuralPartialEq for ByteSet`
 
@@ -485,23 +519,23 @@ convenient Debug impl for it while keeping "ByteSet" in the output.
 
 ##### `impl Clone for BitSet`
 
-- `fn clone(self: &Self) -> BitSet` — [`BitSet`](#bitset)
+- <span id="bitset-clone"></span>`fn clone(&self) -> BitSet` — [`BitSet`](#bitset)
 
 ##### `impl Copy for BitSet`
 
 ##### `impl Debug for BitSet`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="bitset-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Default for BitSet`
 
-- `fn default() -> BitSet` — [`BitSet`](#bitset)
+- <span id="bitset-default"></span>`fn default() -> BitSet` — [`BitSet`](#bitset)
 
 ##### `impl Eq for BitSet`
 
 ##### `impl PartialEq for BitSet`
 
-- `fn eq(self: &Self, other: &BitSet) -> bool` — [`BitSet`](#bitset)
+- <span id="bitset-eq"></span>`fn eq(&self, other: &BitSet) -> bool` — [`BitSet`](#bitset)
 
 ##### `impl StructuralPartialEq for BitSet`
 
@@ -518,21 +552,21 @@ struct ByteSetIter<'a> {
 
 ##### `impl<'a> Debug for ByteSetIter<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="bytesetiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for ByteSetIter<'a>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="bytesetiter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="bytesetiter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="bytesetiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a> Iterator for ByteSetIter<'a>`
 
-- `type Item = u8`
+- <span id="bytesetiter-item"></span>`type Item = u8`
 
-- `fn next(self: &mut Self) -> Option<u8>`
+- <span id="bytesetiter-next"></span>`fn next(&mut self) -> Option<u8>`
 
 ### `ByteSetRangeIter<'a>`
 
@@ -547,21 +581,21 @@ struct ByteSetRangeIter<'a> {
 
 ##### `impl<'a> Debug for ByteSetRangeIter<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="bytesetrangeiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for ByteSetRangeIter<'a>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="bytesetrangeiter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="bytesetrangeiter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="bytesetrangeiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a> Iterator for ByteSetRangeIter<'a>`
 
-- `type Item = (u8, u8)`
+- <span id="bytesetrangeiter-item"></span>`type Item = (u8, u8)`
 
-- `fn next(self: &mut Self) -> Option<(u8, u8)>`
+- <span id="bytesetrangeiter-next"></span>`fn next(&mut self) -> Option<(u8, u8)>`
 
 ## Enums
 
@@ -592,7 +626,7 @@ enum UnitKind {
 
 ##### `impl Clone for UnitKind`
 
-- `fn clone(self: &Self) -> UnitKind` — [`UnitKind`](#unitkind)
+- <span id="unitkind-clone"></span>`fn clone(&self) -> UnitKind` — [`UnitKind`](#unitkind)
 
 ##### `impl Copy for UnitKind`
 
@@ -600,15 +634,15 @@ enum UnitKind {
 
 ##### `impl Ord for UnitKind`
 
-- `fn cmp(self: &Self, other: &UnitKind) -> $crate::cmp::Ordering` — [`UnitKind`](#unitkind)
+- <span id="unitkind-cmp"></span>`fn cmp(&self, other: &UnitKind) -> cmp::Ordering` — [`UnitKind`](#unitkind)
 
 ##### `impl PartialEq for UnitKind`
 
-- `fn eq(self: &Self, other: &UnitKind) -> bool` — [`UnitKind`](#unitkind)
+- <span id="unitkind-eq"></span>`fn eq(&self, other: &UnitKind) -> bool` — [`UnitKind`](#unitkind)
 
 ##### `impl PartialOrd for UnitKind`
 
-- `fn partial_cmp(self: &Self, other: &UnitKind) -> $crate::option::Option<$crate::cmp::Ordering>` — [`UnitKind`](#unitkind)
+- <span id="unitkind-partial-cmp"></span>`fn partial_cmp(&self, other: &UnitKind) -> option::Option<cmp::Ordering>` — [`UnitKind`](#unitkind)
 
 ##### `impl StructuralPartialEq for UnitKind`
 

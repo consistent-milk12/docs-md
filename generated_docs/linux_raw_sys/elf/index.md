@@ -12,6 +12,145 @@ pointer width: instead of `elf32_phdr` and `elf64_phdr` there's only [`Elf_Phdr`
 
 
 
+## Contents
+
+- [Structs](#structs)
+  - [`Elf_Ehdr`](#elf_ehdr)
+  - [`Elf_Phdr`](#elf_phdr)
+  - [`Elf_Sym`](#elf_sym)
+  - [`Elf_Verdef`](#elf_verdef)
+  - [`Elf_Verdaux`](#elf_verdaux)
+  - [`Elf_Dyn`](#elf_dyn)
+  - [`Elf_Rela`](#elf_rela)
+  - [`Elf_Rel`](#elf_rel)
+  - [`Elf_auxv_t`](#elf_auxv_t)
+- [Functions](#functions)
+  - [`ELF_ST_VISIBILITY`](#elf_st_visibility)
+  - [`ELF_ST_BIND`](#elf_st_bind)
+  - [`ELF_ST_TYPE`](#elf_st_type)
+- [Constants](#constants)
+  - [`SELFMAG`](#selfmag)
+  - [`ELFMAG`](#elfmag)
+  - [`EI_CLASS`](#ei_class)
+  - [`EI_DATA`](#ei_data)
+  - [`EI_VERSION`](#ei_version)
+  - [`EI_OSABI`](#ei_osabi)
+  - [`EI_ABIVERSION`](#ei_abiversion)
+  - [`EV_CURRENT`](#ev_current)
+  - [`ELFCLASS`](#elfclass)
+  - [`ELFDATA`](#elfdata)
+  - [`ELFOSABI_SYSV`](#elfosabi_sysv)
+  - [`ELFOSABI_LINUX`](#elfosabi_linux)
+  - [`ELFABIVERSION`](#elfabiversion)
+  - [`ET_DYN`](#et_dyn)
+  - [`EI_NIDENT`](#ei_nident)
+  - [`SHN_UNDEF`](#shn_undef)
+  - [`SHN_ABS`](#shn_abs)
+  - [`PN_XNUM`](#pn_xnum)
+  - [`PT_LOAD`](#pt_load)
+  - [`PT_DYNAMIC`](#pt_dynamic)
+  - [`PT_INTERP`](#pt_interp)
+  - [`PT_PHDR`](#pt_phdr)
+  - [`PT_TLS`](#pt_tls)
+  - [`PT_GNU_STACK`](#pt_gnu_stack)
+  - [`PT_GNU_RELRO`](#pt_gnu_relro)
+  - [`PF_X`](#pf_x)
+  - [`PF_W`](#pf_w)
+  - [`PF_R`](#pf_r)
+  - [`DT_NULL`](#dt_null)
+  - [`DT_HASH`](#dt_hash)
+  - [`DT_STRTAB`](#dt_strtab)
+  - [`DT_SYMTAB`](#dt_symtab)
+  - [`DT_RELA`](#dt_rela)
+  - [`DT_RELASZ`](#dt_relasz)
+  - [`DT_RELAENT`](#dt_relaent)
+  - [`DT_REL`](#dt_rel)
+  - [`DT_RELSZ`](#dt_relsz)
+  - [`DT_RELENT`](#dt_relent)
+  - [`DT_SYMENT`](#dt_syment)
+  - [`DT_GNU_HASH`](#dt_gnu_hash)
+  - [`DT_VERSYM`](#dt_versym)
+  - [`DT_VERDEF`](#dt_verdef)
+  - [`STB_WEAK`](#stb_weak)
+  - [`STB_GLOBAL`](#stb_global)
+  - [`STT_NOTYPE`](#stt_notype)
+  - [`STT_FUNC`](#stt_func)
+  - [`STN_UNDEF`](#stn_undef)
+  - [`VER_FLG_BASE`](#ver_flg_base)
+  - [`VER_DEF_CURRENT`](#ver_def_current)
+  - [`STV_DEFAULT`](#stv_default)
+  - [`EM_CURRENT`](#em_current)
+  - [`R_RELATIVE`](#r_relative)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Elf_Ehdr`](#elf_ehdr) | struct |  |
+| [`Elf_Phdr`](#elf_phdr) | struct |  |
+| [`Elf_Sym`](#elf_sym) | struct |  |
+| [`Elf_Verdef`](#elf_verdef) | struct |  |
+| [`Elf_Verdaux`](#elf_verdaux) | struct |  |
+| [`Elf_Dyn`](#elf_dyn) | struct |  |
+| [`Elf_Rela`](#elf_rela) | struct |  |
+| [`Elf_Rel`](#elf_rel) | struct |  |
+| [`Elf_auxv_t`](#elf_auxv_t) | struct |  |
+| [`ELF_ST_VISIBILITY`](#elf_st_visibility) | fn |  |
+| [`ELF_ST_BIND`](#elf_st_bind) | fn |  |
+| [`ELF_ST_TYPE`](#elf_st_type) | fn |  |
+| [`SELFMAG`](#selfmag) | const |  |
+| [`ELFMAG`](#elfmag) | const |  |
+| [`EI_CLASS`](#ei_class) | const |  |
+| [`EI_DATA`](#ei_data) | const |  |
+| [`EI_VERSION`](#ei_version) | const |  |
+| [`EI_OSABI`](#ei_osabi) | const |  |
+| [`EI_ABIVERSION`](#ei_abiversion) | const |  |
+| [`EV_CURRENT`](#ev_current) | const |  |
+| [`ELFCLASS`](#elfclass) | const |  |
+| [`ELFDATA`](#elfdata) | const |  |
+| [`ELFOSABI_SYSV`](#elfosabi_sysv) | const |  |
+| [`ELFOSABI_LINUX`](#elfosabi_linux) | const |  |
+| [`ELFABIVERSION`](#elfabiversion) | const |  |
+| [`ET_DYN`](#et_dyn) | const |  |
+| [`EI_NIDENT`](#ei_nident) | const |  |
+| [`SHN_UNDEF`](#shn_undef) | const |  |
+| [`SHN_ABS`](#shn_abs) | const |  |
+| [`PN_XNUM`](#pn_xnum) | const |  |
+| [`PT_LOAD`](#pt_load) | const |  |
+| [`PT_DYNAMIC`](#pt_dynamic) | const |  |
+| [`PT_INTERP`](#pt_interp) | const |  |
+| [`PT_PHDR`](#pt_phdr) | const |  |
+| [`PT_TLS`](#pt_tls) | const |  |
+| [`PT_GNU_STACK`](#pt_gnu_stack) | const |  |
+| [`PT_GNU_RELRO`](#pt_gnu_relro) | const |  |
+| [`PF_X`](#pf_x) | const |  |
+| [`PF_W`](#pf_w) | const |  |
+| [`PF_R`](#pf_r) | const |  |
+| [`DT_NULL`](#dt_null) | const |  |
+| [`DT_HASH`](#dt_hash) | const |  |
+| [`DT_STRTAB`](#dt_strtab) | const |  |
+| [`DT_SYMTAB`](#dt_symtab) | const |  |
+| [`DT_RELA`](#dt_rela) | const |  |
+| [`DT_RELASZ`](#dt_relasz) | const |  |
+| [`DT_RELAENT`](#dt_relaent) | const |  |
+| [`DT_REL`](#dt_rel) | const |  |
+| [`DT_RELSZ`](#dt_relsz) | const |  |
+| [`DT_RELENT`](#dt_relent) | const |  |
+| [`DT_SYMENT`](#dt_syment) | const |  |
+| [`DT_GNU_HASH`](#dt_gnu_hash) | const |  |
+| [`DT_VERSYM`](#dt_versym) | const |  |
+| [`DT_VERDEF`](#dt_verdef) | const |  |
+| [`STB_WEAK`](#stb_weak) | const |  |
+| [`STB_GLOBAL`](#stb_global) | const |  |
+| [`STT_NOTYPE`](#stt_notype) | const |  |
+| [`STT_FUNC`](#stt_func) | const |  |
+| [`STN_UNDEF`](#stn_undef) | const |  |
+| [`VER_FLG_BASE`](#ver_flg_base) | const |  |
+| [`VER_DEF_CURRENT`](#ver_def_current) | const |  |
+| [`STV_DEFAULT`](#stv_default) | const |  |
+| [`EM_CURRENT`](#em_current) | const |  |
+| [`R_RELATIVE`](#r_relative) | const |  |
+
 ## Structs
 
 ### `Elf_Ehdr`
@@ -99,7 +238,7 @@ struct Elf_Dyn {
 
 ##### `impl Clone for Elf_Dyn`
 
-- `fn clone(self: &Self) -> Elf_Dyn` — [`Elf_Dyn`](#elf-dyn)
+- <span id="elf-dyn-clone"></span>`fn clone(&self) -> Elf_Dyn` — [`Elf_Dyn`](#elf-dyn)
 
 ##### `impl Copy for Elf_Dyn`
 
@@ -115,7 +254,7 @@ struct Elf_Rela {
 
 #### Implementations
 
-- `fn type_(self: &Self) -> u32`
+- <span id="elf-rela-type"></span>`fn type_(&self) -> u32`
 
 ### `Elf_Rel`
 
@@ -128,7 +267,7 @@ struct Elf_Rel {
 
 #### Implementations
 
-- `fn type_(self: &Self) -> u32`
+- <span id="elf-rel-type"></span>`fn type_(&self) -> u32`
 
 ### `Elf_auxv_t`
 
@@ -143,7 +282,7 @@ struct Elf_auxv_t {
 
 ##### `impl Clone for Elf_auxv_t`
 
-- `fn clone(self: &Self) -> Elf_auxv_t` — [`Elf_auxv_t`](#elf-auxv-t)
+- <span id="elf-auxv-t-clone"></span>`fn clone(&self) -> Elf_auxv_t` — [`Elf_auxv_t`](#elf-auxv-t)
 
 ## Functions
 

@@ -4,6 +4,15 @@
 
 # Module `mkeymap`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Key`](#key) | struct |  |
+| [`MKeyMap`](#mkeymap) | struct |  |
+| [`KeyType`](#keytype) | enum |  |
+| [`append_keys`](#append_keys) | fn | Generate key types for an specific Arg. |
+
 ## Structs
 
 ### `Key`
@@ -19,17 +28,17 @@ struct Key {
 
 ##### `impl Clone for Key`
 
-- `fn clone(self: &Self) -> Key` — [`Key`](#key)
+- <span id="key-clone"></span>`fn clone(&self) -> Key` — [`Key`](#key)
 
 ##### `impl Debug for Key`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="key-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Key`
 
 ##### `impl PartialEq for Key`
 
-- `fn eq(self: &Self, other: &Key) -> bool` — [`Key`](#key)
+- <span id="key-eq"></span>`fn eq(&self, other: &Key) -> bool` — [`Key`](#key)
 
 ##### `impl StructuralPartialEq for Key`
 
@@ -54,49 +63,49 @@ struct MKeyMap {
 
 #### Implementations
 
-- `fn contains<K>(self: &Self, key: K) -> bool`
+- <span id="mkeymap-contains"></span>`fn contains<K>(&self, key: K) -> bool`
 
-- `fn push(self: &mut Self, new_arg: Arg)` — [`Arg`](../index.md)
+- <span id="mkeymap-push"></span>`fn push(&mut self, new_arg: Arg)` — [`Arg`](../index.md)
 
-- `fn get<K: ?Sized>(self: &Self, key: &K) -> Option<&Arg>` — [`Arg`](../index.md)
+- <span id="mkeymap-get"></span>`fn get<K: ?Sized>(&self, key: &K) -> Option<&Arg>` — [`Arg`](../index.md)
 
-- `fn keys(self: &Self) -> impl Iterator<Item = &KeyType>` — [`KeyType`](#keytype)
+- <span id="mkeymap-keys"></span>`fn keys(&self) -> impl Iterator<Item = &KeyType>` — [`KeyType`](#keytype)
 
-- `fn args(self: &Self) -> impl Iterator<Item = &Arg>` — [`Arg`](../index.md)
+- <span id="mkeymap-args"></span>`fn args(&self) -> impl Iterator<Item = &Arg>` — [`Arg`](../index.md)
 
-- `fn args_mut(self: &mut Self) -> impl Iterator<Item = &mut Arg>` — [`Arg`](../index.md)
+- <span id="mkeymap-args-mut"></span>`fn args_mut(&mut self) -> impl Iterator<Item = &mut Arg>` — [`Arg`](../index.md)
 
-- `fn mut_args<F>(self: &mut Self, f: F)`
+- <span id="mkeymap-mut-args"></span>`fn mut_args<F>(&mut self, f: F)`
 
-- `fn _build(self: &mut Self)`
+- <span id="mkeymap-build"></span>`fn _build(&mut self)`
 
-- `fn remove_by_name(self: &mut Self, name: &str) -> Option<Arg>` — [`Arg`](../index.md)
+- <span id="mkeymap-remove-by-name"></span>`fn remove_by_name(&mut self, name: &str) -> Option<Arg>` — [`Arg`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for MKeyMap`
 
-- `fn clone(self: &Self) -> MKeyMap` — [`MKeyMap`](#mkeymap)
+- <span id="mkeymap-clone"></span>`fn clone(&self) -> MKeyMap` — [`MKeyMap`](#mkeymap)
 
 ##### `impl Debug for MKeyMap`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="mkeymap-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for MKeyMap`
 
-- `fn default() -> MKeyMap` — [`MKeyMap`](#mkeymap)
+- <span id="mkeymap-default"></span>`fn default() -> MKeyMap` — [`MKeyMap`](#mkeymap)
 
 ##### `impl Eq for MKeyMap`
 
 ##### `impl Index for MKeyMap`
 
-- `type Output = Arg`
+- <span id="mkeymap-output"></span>`type Output = Arg`
 
-- `fn index(self: &Self, key: &KeyType) -> &<Self as >::Output` — [`KeyType`](#keytype)
+- <span id="mkeymap-index"></span>`fn index(&self, key: &KeyType) -> &<Self as >::Output` — [`KeyType`](#keytype)
 
 ##### `impl PartialEq for MKeyMap`
 
-- `fn eq(self: &Self, other: &MKeyMap) -> bool` — [`MKeyMap`](#mkeymap)
+- <span id="mkeymap-eq"></span>`fn eq(&self, other: &MKeyMap) -> bool` — [`MKeyMap`](#mkeymap)
 
 ##### `impl StructuralPartialEq for MKeyMap`
 
@@ -114,27 +123,27 @@ enum KeyType {
 
 #### Implementations
 
-- `fn is_position(self: &Self) -> bool`
+- <span id="keytype-is-position"></span>`fn is_position(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for KeyType`
 
-- `fn clone(self: &Self) -> KeyType` — [`KeyType`](#keytype)
+- <span id="keytype-clone"></span>`fn clone(&self) -> KeyType` — [`KeyType`](#keytype)
 
 ##### `impl Debug for KeyType`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="keytype-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for KeyType`
 
 ##### `impl Hash for KeyType`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="keytype-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for KeyType`
 
-- `fn eq(self: &Self, rhs: &str) -> bool`
+- <span id="keytype-eq"></span>`fn eq(&self, rhs: &usize) -> bool`
 
 ##### `impl StructuralPartialEq for KeyType`
 

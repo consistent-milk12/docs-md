@@ -4,6 +4,45 @@
 
 # Module `v0`
 
+## Contents
+
+- [Structs](#structs)
+  - [`Demangle`](#demangle)
+  - [`Ident`](#ident)
+  - [`HexNibbles`](#hexnibbles)
+  - [`Parser`](#parser)
+  - [`Printer`](#printer)
+- [Enums](#enums)
+  - [`ParseError`](#parseerror)
+- [Functions](#functions)
+  - [`demangle`](#demangle)
+  - [`basic_type`](#basic_type)
+- [Constants](#constants)
+  - [`MAX_DEPTH`](#max_depth)
+  - [`SMALL_PUNYCODE_LEN`](#small_punycode_len)
+- [Macros](#macros)
+  - [`write!`](#write)
+  - [`invalid!`](#invalid)
+  - [`parse!`](#parse)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Demangle`](#demangle) | struct | Representation of a demangled symbol name. |
+| [`Ident`](#ident) | struct |  |
+| [`HexNibbles`](#hexnibbles) | struct | Sequence of lowercase hexadecimal nibbles (`0-9a-f`), used by leaf consts. |
+| [`Parser`](#parser) | struct |  |
+| [`Printer`](#printer) | struct |  |
+| [`ParseError`](#parseerror) | enum |  |
+| [`demangle`](#demangle) | fn | De-mangles a Rust symbol into a more readable version |
+| [`basic_type`](#basic_type) | fn |  |
+| [`MAX_DEPTH`](#max_depth) | const |  |
+| [`SMALL_PUNYCODE_LEN`](#small_punycode_len) | const |  |
+| [`write!`](#write) | macro |  |
+| [`invalid!`](#invalid) | macro | Mark the parser as errored (with `ParseError::Invalid`), print the |
+| [`parse!`](#parse) | macro | Call a parser method (if the parser hasn't errored yet) |
+
 ## Structs
 
 ### `Demangle<'a>`
@@ -20,7 +59,7 @@ Representation of a demangled symbol name.
 
 ##### `impl<'s> Display for Demangle<'s>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="demangle-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Ident<'s>`
 
@@ -43,15 +82,15 @@ struct Ident<'s> {
 
 #### Implementations
 
-- `fn try_small_punycode_decode<F: FnOnce(&[char]) -> R, R>(self: &Self, f: F) -> Option<R>`
+- <span id="ident-try-small-punycode-decode"></span>`fn try_small_punycode_decode<F: FnOnce(&[char]) -> R, R>(&self, f: F) -> Option<R>`
 
-- `fn punycode_decode<F: FnMut(usize, char) -> Result<(), ()>>(self: &Self, insert: F) -> Result<(), ()>`
+- <span id="ident-punycode-decode"></span>`fn punycode_decode<F: FnMut(usize, char) -> Result<(), ()>>(&self, insert: F) -> Result<(), ()>`
 
 #### Trait Implementations
 
 ##### `impl<'s> Display for Ident<'s>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="ident-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `HexNibbles<'s>`
 
@@ -65,9 +104,9 @@ Sequence of lowercase hexadecimal nibbles (`0-9a-f`), used by leaf consts.
 
 #### Implementations
 
-- `fn try_parse_uint(self: &Self) -> Option<u64>`
+- <span id="hexnibbles-try-parse-uint"></span>`fn try_parse_uint(&self) -> Option<u64>`
 
-- `fn try_parse_str_chars(self: &Self) -> Option<impl Iterator<Item = char> + 's>`
+- <span id="hexnibbles-try-parse-str-chars"></span>`fn try_parse_str_chars(&self) -> Option<impl Iterator<Item = char> + 's>`
 
 ### `Parser<'s>`
 
@@ -81,33 +120,33 @@ struct Parser<'s> {
 
 #### Implementations
 
-- `fn push_depth(self: &mut Self) -> Result<(), ParseError>` — [`ParseError`](#parseerror)
+- <span id="parser-push-depth"></span>`fn push_depth(&mut self) -> Result<(), ParseError>` — [`ParseError`](#parseerror)
 
-- `fn pop_depth(self: &mut Self)`
+- <span id="parser-pop-depth"></span>`fn pop_depth(&mut self)`
 
-- `fn peek(self: &Self) -> Option<u8>`
+- <span id="parser-peek"></span>`fn peek(&self) -> Option<u8>`
 
-- `fn eat(self: &mut Self, b: u8) -> bool`
+- <span id="parser-eat"></span>`fn eat(&mut self, b: u8) -> bool`
 
-- `fn next(self: &mut Self) -> Result<u8, ParseError>` — [`ParseError`](#parseerror)
+- <span id="parser-next"></span>`fn next(&mut self) -> Result<u8, ParseError>` — [`ParseError`](#parseerror)
 
-- `fn hex_nibbles(self: &mut Self) -> Result<HexNibbles<'s>, ParseError>` — [`HexNibbles`](#hexnibbles), [`ParseError`](#parseerror)
+- <span id="parser-hex-nibbles"></span>`fn hex_nibbles(&mut self) -> Result<HexNibbles<'s>, ParseError>` — [`HexNibbles`](#hexnibbles), [`ParseError`](#parseerror)
 
-- `fn digit_10(self: &mut Self) -> Result<u8, ParseError>` — [`ParseError`](#parseerror)
+- <span id="parser-digit-10"></span>`fn digit_10(&mut self) -> Result<u8, ParseError>` — [`ParseError`](#parseerror)
 
-- `fn digit_62(self: &mut Self) -> Result<u8, ParseError>` — [`ParseError`](#parseerror)
+- <span id="parser-digit-62"></span>`fn digit_62(&mut self) -> Result<u8, ParseError>` — [`ParseError`](#parseerror)
 
-- `fn integer_62(self: &mut Self) -> Result<u64, ParseError>` — [`ParseError`](#parseerror)
+- <span id="parser-integer-62"></span>`fn integer_62(&mut self) -> Result<u64, ParseError>` — [`ParseError`](#parseerror)
 
-- `fn opt_integer_62(self: &mut Self, tag: u8) -> Result<u64, ParseError>` — [`ParseError`](#parseerror)
+- <span id="parser-opt-integer-62"></span>`fn opt_integer_62(&mut self, tag: u8) -> Result<u64, ParseError>` — [`ParseError`](#parseerror)
 
-- `fn disambiguator(self: &mut Self) -> Result<u64, ParseError>` — [`ParseError`](#parseerror)
+- <span id="parser-disambiguator"></span>`fn disambiguator(&mut self) -> Result<u64, ParseError>` — [`ParseError`](#parseerror)
 
-- `fn namespace(self: &mut Self) -> Result<Option<char>, ParseError>` — [`ParseError`](#parseerror)
+- <span id="parser-namespace"></span>`fn namespace(&mut self) -> Result<Option<char>, ParseError>` — [`ParseError`](#parseerror)
 
-- `fn backref(self: &mut Self) -> Result<Parser<'s>, ParseError>` — [`Parser`](#parser), [`ParseError`](#parseerror)
+- <span id="parser-backref"></span>`fn backref(&mut self) -> Result<Parser<'s>, ParseError>` — [`Parser`](#parser), [`ParseError`](#parseerror)
 
-- `fn ident(self: &mut Self) -> Result<Ident<'s>, ParseError>` — [`Ident`](#ident), [`ParseError`](#parseerror)
+- <span id="parser-ident"></span>`fn ident(&mut self) -> Result<Ident<'s>, ParseError>` — [`Ident`](#ident), [`ParseError`](#parseerror)
 
 ### `Printer<'a, 'b: 'a, 's>`
 
@@ -142,41 +181,41 @@ struct Printer<'a, 'b: 'a, 's> {
 
 #### Implementations
 
-- `fn eat(self: &mut Self, b: u8) -> bool`
+- <span id="printer-eat"></span>`fn eat(&mut self, b: u8) -> bool`
 
-- `fn skipping_printing<F>(self: &mut Self, f: F)`
+- <span id="printer-skipping-printing"></span>`fn skipping_printing<F>(&mut self, f: F)`
 
-- `fn print_backref<F>(self: &mut Self, f: F) -> fmt::Result`
+- <span id="printer-print-backref"></span>`fn print_backref<F>(&mut self, f: F) -> fmt::Result`
 
-- `fn pop_depth(self: &mut Self)`
+- <span id="printer-pop-depth"></span>`fn pop_depth(&mut self)`
 
-- `fn print(self: &mut Self, x: impl fmt::Display) -> fmt::Result`
+- <span id="printer-print"></span>`fn print(&mut self, x: impl fmt::Display) -> fmt::Result`
 
-- `fn print_quoted_escaped_chars(self: &mut Self, quote: char, chars: impl Iterator<Item = char>) -> fmt::Result`
+- <span id="printer-print-quoted-escaped-chars"></span>`fn print_quoted_escaped_chars(&mut self, quote: char, chars: impl Iterator<Item = char>) -> fmt::Result`
 
-- `fn print_lifetime_from_index(self: &mut Self, lt: u64) -> fmt::Result`
+- <span id="printer-print-lifetime-from-index"></span>`fn print_lifetime_from_index(&mut self, lt: u64) -> fmt::Result`
 
-- `fn in_binder<F>(self: &mut Self, f: F) -> fmt::Result`
+- <span id="printer-in-binder"></span>`fn in_binder<F>(&mut self, f: F) -> fmt::Result`
 
-- `fn print_sep_list<F>(self: &mut Self, f: F, sep: &str) -> Result<usize, fmt::Error>`
+- <span id="printer-print-sep-list"></span>`fn print_sep_list<F>(&mut self, f: F, sep: &str) -> Result<usize, fmt::Error>`
 
-- `fn print_path(self: &mut Self, in_value: bool) -> fmt::Result`
+- <span id="printer-print-path"></span>`fn print_path(&mut self, in_value: bool) -> fmt::Result`
 
-- `fn print_generic_arg(self: &mut Self) -> fmt::Result`
+- <span id="printer-print-generic-arg"></span>`fn print_generic_arg(&mut self) -> fmt::Result`
 
-- `fn print_type(self: &mut Self) -> fmt::Result`
+- <span id="printer-print-type"></span>`fn print_type(&mut self) -> fmt::Result`
 
-- `fn print_path_maybe_open_generics(self: &mut Self) -> Result<bool, fmt::Error>`
+- <span id="printer-print-path-maybe-open-generics"></span>`fn print_path_maybe_open_generics(&mut self) -> Result<bool, fmt::Error>`
 
-- `fn print_dyn_trait(self: &mut Self) -> fmt::Result`
+- <span id="printer-print-dyn-trait"></span>`fn print_dyn_trait(&mut self) -> fmt::Result`
 
-- `fn print_pat(self: &mut Self) -> fmt::Result`
+- <span id="printer-print-pat"></span>`fn print_pat(&mut self) -> fmt::Result`
 
-- `fn print_const(self: &mut Self, in_value: bool) -> fmt::Result`
+- <span id="printer-print-const"></span>`fn print_const(&mut self, in_value: bool) -> fmt::Result`
 
-- `fn print_const_uint(self: &mut Self, ty_tag: u8) -> fmt::Result`
+- <span id="printer-print-const-uint"></span>`fn print_const_uint(&mut self, ty_tag: u8) -> fmt::Result`
 
-- `fn print_const_str_literal(self: &mut Self) -> fmt::Result`
+- <span id="printer-print-const-str-literal"></span>`fn print_const_str_literal(&mut self) -> fmt::Result`
 
 ## Enums
 
@@ -201,19 +240,19 @@ enum ParseError {
 
 #### Implementations
 
-- `fn message(self: &Self) -> &str`
+- <span id="parseerror-message"></span>`fn message(&self) -> &str`
 
 #### Trait Implementations
 
 ##### `impl Debug for ParseError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="parseerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ParseError`
 
 ##### `impl PartialEq for ParseError`
 
-- `fn eq(self: &Self, other: &ParseError) -> bool` — [`ParseError`](#parseerror)
+- <span id="parseerror-eq"></span>`fn eq(&self, other: &ParseError) -> bool` — [`ParseError`](#parseerror)
 
 ##### `impl StructuralPartialEq for ParseError`
 

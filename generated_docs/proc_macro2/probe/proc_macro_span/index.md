@@ -4,6 +4,33 @@
 
 # Module `proc_macro_span`
 
+## Contents
+
+- [Functions](#functions)
+  - [`byte_range`](#byte_range)
+  - [`start`](#start)
+  - [`end`](#end)
+  - [`line`](#line)
+  - [`column`](#column)
+  - [`file`](#file)
+  - [`local_file`](#local_file)
+  - [`join`](#join)
+  - [`subspan`](#subspan)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`byte_range`](#byte_range) | fn |  |
+| [`start`](#start) | fn |  |
+| [`end`](#end) | fn |  |
+| [`line`](#line) | fn |  |
+| [`column`](#column) | fn |  |
+| [`file`](#file) | fn |  |
+| [`local_file`](#local_file) | fn |  |
+| [`join`](#join) | fn |  |
+| [`subspan`](#subspan) | fn |  |
+
 ## Functions
 
 ### `byte_range`

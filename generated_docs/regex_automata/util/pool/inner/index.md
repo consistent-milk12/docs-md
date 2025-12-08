@@ -4,6 +4,16 @@
 
 # Module `inner`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`CacheLine`](#cacheline) | struct | This puts each stack in the pool below into its own cache line. |
+| [`Pool`](#pool) | struct | A thread safe pool utilizing std-only features. |
+| [`PoolGuard`](#poolguard) | struct | A guard that is returned when a caller requests a value from the pool. |
+| [`MAX_POOL_STACKS`](#max_pool_stacks) | const | The number of stacks we use inside of the pool. |
+| [`THREAD_ID`](#thread_id) | const | A thread local used to assign an ID to a thread. |
+
 ## Structs
 
 ### `CacheLine<T>`
@@ -22,9 +32,9 @@ contention are greatly reduced.
 
 #### Trait Implementations
 
-##### `impl<T: $crate::fmt::Debug> Debug for CacheLine<T>`
+##### `impl<T: fmt::Debug> Debug for CacheLine<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="cacheline-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Pool<T, F>`
 
@@ -82,13 +92,23 @@ faster by avoiding mutex unlocking.
 
 #### Implementations
 
-- `fn new(create: F) -> Pool<T, F>` — [`Pool`](#pool)
+- <span id="pool-get"></span>`fn get(&self) -> PoolGuard<'_, T, F>` — [`PoolGuard`](#poolguard)
+
+- <span id="pool-get-slow"></span>`fn get_slow(&self, caller: usize, owner: usize) -> PoolGuard<'_, T, F>` — [`PoolGuard`](#poolguard)
+
+- <span id="pool-put-value"></span>`fn put_value(&self, value: Box<T>)`
+
+- <span id="pool-guard-owned"></span>`fn guard_owned(&self, caller: usize) -> PoolGuard<'_, T, F>` — [`PoolGuard`](#poolguard)
+
+- <span id="pool-guard-stack"></span>`fn guard_stack(&self, value: Box<T>) -> PoolGuard<'_, T, F>` — [`PoolGuard`](#poolguard)
+
+- <span id="pool-guard-stack-transient"></span>`fn guard_stack_transient(&self, value: Box<T>) -> PoolGuard<'_, T, F>` — [`PoolGuard`](#poolguard)
 
 #### Trait Implementations
 
 ##### `impl<T: core::fmt::Debug, F> Debug for Pool<T, F>`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="pool-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl<T: UnwindSafe, F: UnwindSafe + RefUnwindSafe> RefUnwindSafe for Pool<T, F>`
 
@@ -131,23 +151,23 @@ A guard that is returned when a caller requests a value from the pool.
 
 #### Implementations
 
-- `fn value(self: &Self) -> &T`
+- <span id="poolguard-value"></span>`fn value(&self) -> &T`
 
-- `fn value_mut(self: &mut Self) -> &mut T`
+- <span id="poolguard-value-mut"></span>`fn value_mut(&mut self) -> &mut T`
 
-- `fn put(this: PoolGuard<'_, T, F>)` — [`PoolGuard`](#poolguard)
+- <span id="poolguard-put"></span>`fn put(this: PoolGuard<'_, T, F>)` — [`PoolGuard`](#poolguard)
 
-- `fn put_imp(self: &mut Self)`
+- <span id="poolguard-put-imp"></span>`fn put_imp(&mut self)`
 
 #### Trait Implementations
 
 ##### `impl<'a, T: Send + core::fmt::Debug, F: Fn() -> T> Debug for PoolGuard<'a, T, F>`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="poolguard-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl<'a, T: Send, F: Fn() -> T> Drop for PoolGuard<'a, T, F>`
 
-- `fn drop(self: &mut Self)`
+- <span id="poolguard-drop"></span>`fn drop(&mut self)`
 
 ## Constants
 
@@ -217,7 +237,7 @@ https://github.com/rust-lang/regex/issues/934
 ### `THREAD_ID`
 
 ```rust
-const THREAD_ID: $crate::thread::LocalKey<usize>;
+const THREAD_ID: thread::LocalKey<usize>;
 ```
 
 A thread local used to assign an ID to a thread.

@@ -10,6 +10,57 @@ The `Automaton` trait provides a way to write generic code over any
 Aho-Corasick automaton. It also provides access to lower level APIs that
 permit walking the state transitions of an Aho-Corasick automaton manually.
 
+## Contents
+
+- [Modules](#modules)
+  - [`private`](#private)
+- [Structs](#structs)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`OverlappingState`](#overlappingstate)
+  - [`FindIter`](#finditer)
+  - [`FindOverlappingIter`](#findoverlappingiter)
+  - [`StreamFindIter`](#streamfinditer)
+  - [`StreamChunkIter`](#streamchunkiter)
+- [Enums](#enums)
+  - [`unnamed`](#unnamed)
+  - [`StreamChunk`](#streamchunk)
+- [Traits](#traits)
+  - [`Automaton`](#automaton)
+- [Functions](#functions)
+  - [`try_find_fwd`](#try_find_fwd)
+  - [`try_find_fwd_imp`](#try_find_fwd_imp)
+  - [`try_find_overlapping_fwd`](#try_find_overlapping_fwd)
+  - [`try_find_overlapping_fwd_imp`](#try_find_overlapping_fwd_imp)
+  - [`get_match`](#get_match)
+  - [`fmt_state_indicator`](#fmt_state_indicator)
+  - [`sparse_transitions`](#sparse_transitions)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`private`](#private) | mod | We seal the `Automaton` trait for now. |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`OverlappingState`](#overlappingstate) | struct | Represents the current state of an overlapping search. |
+| [`FindIter`](#finditer) | struct | An iterator of non-overlapping matches in a particular haystack. |
+| [`FindOverlappingIter`](#findoverlappingiter) | struct | An iterator of overlapping matches in a particular haystack. |
+| [`StreamFindIter`](#streamfinditer) | struct | An iterator that reports matches in a stream. |
+| [`StreamChunkIter`](#streamchunkiter) | struct | An iterator that reports matches in a stream. |
+| [`unnamed`](#unnamed) | enum |  |
+| [`StreamChunk`](#streamchunk) | enum | A single chunk yielded by the stream chunk iterator. |
+| [`Automaton`](#automaton) | trait | A trait that abstracts over Aho-Corasick automata. |
+| [`try_find_fwd`](#try_find_fwd) | fn |  |
+| [`try_find_fwd_imp`](#try_find_fwd_imp) | fn |  |
+| [`try_find_overlapping_fwd`](#try_find_overlapping_fwd) | fn |  |
+| [`try_find_overlapping_fwd_imp`](#try_find_overlapping_fwd_imp) | fn |  |
+| [`get_match`](#get_match) | fn |  |
+| [`fmt_state_indicator`](#fmt_state_indicator) | fn | Write a prefix "state" indicator for fmt::Debug impls. |
+| [`sparse_transitions`](#sparse_transitions) | fn | Return an iterator of transitions in a sparse format given an iterator |
+
 ## Modules
 
 - [`private`](private/index.md) - We seal the `Automaton` trait for now. It's a big trait, and it's
@@ -42,19 +93,19 @@ much else. If you have a use case for more APIs, please submit an issue.
 
 #### Implementations
 
-- `fn find_in(self: &Self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../index.md), [`Candidate`](../util/prefilter/index.md)
+- <span id="prefilter-find-in"></span>`fn find_in(&self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../index.md), [`Candidate`](../util/prefilter/index.md)
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="prefilter-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Clone for Prefilter`
 
-- `fn clone(self: &Self) -> Prefilter` — [`Prefilter`](../util/prefilter/index.md)
+- <span id="prefilter-clone"></span>`fn clone(&self) -> Prefilter` — [`Prefilter`](../util/prefilter/index.md)
 
 ##### `impl Debug for Prefilter`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="prefilter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `StateID`
 
@@ -82,73 +133,73 @@ panics or silent logical errors.
 
 #### Implementations
 
-- `const MAX: StateID`
+- <span id="stateid-max"></span>`const MAX: StateID`
 
-- `const LIMIT: usize`
+- <span id="stateid-limit"></span>`const LIMIT: usize`
 
-- `const ZERO: StateID`
+- <span id="stateid-zero"></span>`const ZERO: StateID`
 
-- `const SIZE: usize`
+- <span id="stateid-size"></span>`const SIZE: usize`
 
-- `fn new(value: usize) -> Result<StateID, StateIDError>` — [`StateID`](../util/primitives/index.md), [`StateIDError`](../util/primitives/index.md)
+- <span id="stateid-new"></span>`fn new(value: usize) -> Result<StateID, StateIDError>` — [`StateID`](../util/primitives/index.md), [`StateIDError`](../util/primitives/index.md)
 
-- `const fn new_unchecked(value: usize) -> StateID` — [`StateID`](../util/primitives/index.md)
+- <span id="stateid-new-unchecked"></span>`const fn new_unchecked(value: usize) -> StateID` — [`StateID`](../util/primitives/index.md)
 
-- `const fn from_u32_unchecked(index: u32) -> StateID` — [`StateID`](../util/primitives/index.md)
+- <span id="stateid-from-u32-unchecked"></span>`const fn from_u32_unchecked(index: u32) -> StateID` — [`StateID`](../util/primitives/index.md)
 
-- `fn must(value: usize) -> StateID` — [`StateID`](../util/primitives/index.md)
+- <span id="stateid-must"></span>`fn must(value: usize) -> StateID` — [`StateID`](../util/primitives/index.md)
 
-- `const fn as_usize(self: &Self) -> usize`
+- <span id="stateid-as-usize"></span>`const fn as_usize(&self) -> usize`
 
-- `const fn as_u64(self: &Self) -> u64`
+- <span id="stateid-as-u64"></span>`const fn as_u64(&self) -> u64`
 
-- `const fn as_u32(self: &Self) -> u32`
+- <span id="stateid-as-u32"></span>`const fn as_u32(&self) -> u32`
 
-- `const fn as_i32(self: &Self) -> i32`
+- <span id="stateid-as-i32"></span>`const fn as_i32(&self) -> i32`
 
-- `fn one_more(self: &Self) -> usize`
+- <span id="stateid-one-more"></span>`fn one_more(&self) -> usize`
 
-- `fn from_ne_bytes(bytes: [u8; 4]) -> Result<StateID, StateIDError>` — [`StateID`](../util/primitives/index.md), [`StateIDError`](../util/primitives/index.md)
+- <span id="stateid-from-ne-bytes"></span>`fn from_ne_bytes(bytes: [u8; 4]) -> Result<StateID, StateIDError>` — [`StateID`](../util/primitives/index.md), [`StateIDError`](../util/primitives/index.md)
 
-- `fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> StateID` — [`StateID`](../util/primitives/index.md)
+- <span id="stateid-from-ne-bytes-unchecked"></span>`fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> StateID` — [`StateID`](../util/primitives/index.md)
 
-- `fn to_ne_bytes(self: &Self) -> [u8; 4]`
+- <span id="stateid-to-ne-bytes"></span>`fn to_ne_bytes(&self) -> [u8; 4]`
 
-- `fn iter(len: usize) -> StateIDIter` — [`StateIDIter`](../util/primitives/index.md)
+- <span id="stateid-iter"></span>`fn iter(len: usize) -> StateIDIter` — [`StateIDIter`](../util/primitives/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for StateID`
 
-- `fn clone(self: &Self) -> StateID` — [`StateID`](../util/primitives/index.md)
+- <span id="stateid-clone"></span>`fn clone(&self) -> StateID` — [`StateID`](../util/primitives/index.md)
 
 ##### `impl Copy for StateID`
 
 ##### `impl Debug for StateID`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="stateid-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Default for StateID`
 
-- `fn default() -> StateID` — [`StateID`](../util/primitives/index.md)
+- <span id="stateid-default"></span>`fn default() -> StateID` — [`StateID`](../util/primitives/index.md)
 
 ##### `impl Eq for StateID`
 
 ##### `impl Hash for StateID`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="stateid-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for StateID`
 
-- `fn cmp(self: &Self, other: &StateID) -> $crate::cmp::Ordering` — [`StateID`](../util/primitives/index.md)
+- <span id="stateid-cmp"></span>`fn cmp(&self, other: &StateID) -> cmp::Ordering` — [`StateID`](../util/primitives/index.md)
 
 ##### `impl PartialEq for StateID`
 
-- `fn eq(self: &Self, other: &StateID) -> bool` — [`StateID`](../util/primitives/index.md)
+- <span id="stateid-eq"></span>`fn eq(&self, other: &StateID) -> bool` — [`StateID`](../util/primitives/index.md)
 
 ##### `impl PartialOrd for StateID`
 
-- `fn partial_cmp(self: &Self, other: &StateID) -> $crate::option::Option<$crate::cmp::Ordering>` — [`StateID`](../util/primitives/index.md)
+- <span id="stateid-partial-cmp"></span>`fn partial_cmp(&self, other: &StateID) -> option::Option<cmp::Ordering>` — [`StateID`](../util/primitives/index.md)
 
 ##### `impl StructuralPartialEq for StateID`
 
@@ -168,21 +219,21 @@ trait.
 
 #### Implementations
 
-- `fn attempted(self: &Self) -> u64`
+- <span id="stateiderror-attempted"></span>`fn attempted(&self) -> u64`
 
 #### Trait Implementations
 
 ##### `impl Clone for StateIDError`
 
-- `fn clone(self: &Self) -> StateIDError` — [`StateIDError`](../util/primitives/index.md)
+- <span id="stateiderror-clone"></span>`fn clone(&self) -> StateIDError` — [`StateIDError`](../util/primitives/index.md)
 
 ##### `impl Debug for StateIDError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="stateiderror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for StateIDError`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="stateiderror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq for StateIDError`
 
@@ -190,13 +241,13 @@ trait.
 
 ##### `impl PartialEq for StateIDError`
 
-- `fn eq(self: &Self, other: &StateIDError) -> bool` — [`StateIDError`](../util/primitives/index.md)
+- <span id="stateiderror-eq"></span>`fn eq(&self, other: &StateIDError) -> bool` — [`StateIDError`](../util/primitives/index.md)
 
 ##### `impl StructuralPartialEq for StateIDError`
 
 ##### `impl<T> ToString for StateIDError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="stateiderror-to-string"></span>`fn to_string(&self) -> String`
 
 ### `OverlappingState`
 
@@ -308,19 +359,19 @@ assert_eq!(expected, matches);
 
 #### Implementations
 
-- `fn start() -> OverlappingState` — [`OverlappingState`](#overlappingstate)
+- <span id="overlappingstate-start"></span>`fn start() -> OverlappingState` — [`OverlappingState`](#overlappingstate)
 
-- `fn get_match(self: &Self) -> Option<Match>` — [`Match`](../index.md)
+- <span id="overlappingstate-get-match"></span>`fn get_match(&self) -> Option<Match>` — [`Match`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for OverlappingState`
 
-- `fn clone(self: &Self) -> OverlappingState` — [`OverlappingState`](#overlappingstate)
+- <span id="overlappingstate-clone"></span>`fn clone(&self) -> OverlappingState` — [`OverlappingState`](#overlappingstate)
 
 ##### `impl Debug for OverlappingState`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="overlappingstate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `FindIter<'a, 'h, A>`
 
@@ -367,31 +418,31 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 #### Implementations
 
-- `fn new(aut: &'a A, input: Input<'h>) -> Result<FindIter<'a, 'h, A>, MatchError>` — [`Input`](../index.md), [`FindIter`](#finditer), [`MatchError`](../index.md)
+- <span id="finditer-new"></span>`fn new(aut: &'a A, input: Input<'h>) -> Result<FindIter<'a, 'h, A>, MatchError>` — [`Input`](../index.md), [`FindIter`](#finditer), [`MatchError`](../index.md)
 
-- `fn search(self: &Self) -> Option<Match>` — [`Match`](../index.md)
+- <span id="finditer-search"></span>`fn search(&self) -> Option<Match>` — [`Match`](../index.md)
 
-- `fn handle_overlapping_empty_match(self: &mut Self, m: Match) -> Option<Match>` — [`Match`](../index.md)
+- <span id="finditer-handle-overlapping-empty-match"></span>`fn handle_overlapping_empty_match(&mut self, m: Match) -> Option<Match>` — [`Match`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<'a, 'h, A: $crate::fmt::Debug> Debug for FindIter<'a, 'h, A>`
+##### `impl<'a, 'h, A: fmt::Debug> Debug for FindIter<'a, 'h, A>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="finditer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for FindIter<'a, 'h, A>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="finditer-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="finditer-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="finditer-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, 'h, A: Automaton> Iterator for FindIter<'a, 'h, A>`
 
-- `type Item = Match`
+- <span id="finditer-item"></span>`type Item = Match`
 
-- `fn next(self: &mut Self) -> Option<Match>` — [`Match`](../index.md)
+- <span id="finditer-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../index.md)
 
 ### `FindOverlappingIter<'a, 'h, A>`
 
@@ -421,23 +472,23 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 #### Trait Implementations
 
-##### `impl<'a, 'h, A: $crate::fmt::Debug> Debug for FindOverlappingIter<'a, 'h, A>`
+##### `impl<'a, 'h, A: fmt::Debug> Debug for FindOverlappingIter<'a, 'h, A>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="findoverlappingiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for FindOverlappingIter<'a, 'h, A>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="findoverlappingiter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="findoverlappingiter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="findoverlappingiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, 'h, A: Automaton> Iterator for FindOverlappingIter<'a, 'h, A>`
 
-- `type Item = Match`
+- <span id="findoverlappingiter-item"></span>`type Item = Match`
 
-- `fn next(self: &mut Self) -> Option<Match>` — [`Match`](../index.md)
+- <span id="findoverlappingiter-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../index.md)
 
 ### `StreamFindIter<'a, A, R>`
 
@@ -467,23 +518,23 @@ implementation.
 
 #### Trait Implementations
 
-##### `impl<'a, A: $crate::fmt::Debug, R: $crate::fmt::Debug> Debug for StreamFindIter<'a, A, R>`
+##### `impl<'a, A: fmt::Debug, R: fmt::Debug> Debug for StreamFindIter<'a, A, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="streamfinditer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for StreamFindIter<'a, A, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="streamfinditer-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="streamfinditer-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="streamfinditer-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a, A: Automaton, R: std::io::Read> Iterator for StreamFindIter<'a, A, R>`
 
-- `type Item = Result<Match, Error>`
+- <span id="streamfinditer-item"></span>`type Item = Result<Match, Error>`
 
-- `fn next(self: &mut Self) -> Option<std::io::Result<Match>>` — [`Match`](../index.md)
+- <span id="streamfinditer-next"></span>`fn next(&mut self) -> Option<std::io::Result<Match>>` — [`Match`](../index.md)
 
 ### `StreamChunkIter<'a, A, R>`
 
@@ -566,25 +617,25 @@ chunks it can copy and which it needs to replace.
 
 #### Implementations
 
-- `fn new(aut: &'a A, rdr: R) -> Result<StreamChunkIter<'a, A, R>, MatchError>` — [`StreamChunkIter`](#streamchunkiter), [`MatchError`](../index.md)
+- <span id="streamchunkiter-new"></span>`fn new(aut: &'a A, rdr: R) -> Result<StreamChunkIter<'a, A, R>, MatchError>` — [`StreamChunkIter`](#streamchunkiter), [`MatchError`](../index.md)
 
-- `fn next(self: &mut Self) -> Option<std::io::Result<StreamChunk<'_>>>` — [`StreamChunk`](#streamchunk)
+- <span id="streamchunkiter-next"></span>`fn next(&mut self) -> Option<std::io::Result<StreamChunk<'_>>>` — [`StreamChunk`](#streamchunk)
 
-- `fn get_match_chunk(self: &Self, mat: Match) -> core::ops::Range<usize>` — [`Match`](../index.md)
+- <span id="streamchunkiter-get-match-chunk"></span>`fn get_match_chunk(&self, mat: Match) -> core::ops::Range<usize>` — [`Match`](../index.md)
 
-- `fn get_non_match_chunk(self: &Self, mat: Match) -> Option<core::ops::Range<usize>>` — [`Match`](../index.md)
+- <span id="streamchunkiter-get-non-match-chunk"></span>`fn get_non_match_chunk(&self, mat: Match) -> Option<core::ops::Range<usize>>` — [`Match`](../index.md)
 
-- `fn get_pre_roll_non_match_chunk(self: &Self) -> Option<core::ops::Range<usize>>`
+- <span id="streamchunkiter-get-pre-roll-non-match-chunk"></span>`fn get_pre_roll_non_match_chunk(&self) -> Option<core::ops::Range<usize>>`
 
-- `fn get_eof_non_match_chunk(self: &Self) -> Option<core::ops::Range<usize>>`
+- <span id="streamchunkiter-get-eof-non-match-chunk"></span>`fn get_eof_non_match_chunk(&self) -> Option<core::ops::Range<usize>>`
 
-- `fn get_match(self: &Self) -> Match` — [`Match`](../index.md)
+- <span id="streamchunkiter-get-match"></span>`fn get_match(&self) -> Match` — [`Match`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<'a, A: $crate::fmt::Debug, R: $crate::fmt::Debug> Debug for StreamChunkIter<'a, A, R>`
+##### `impl<'a, A: fmt::Debug, R: fmt::Debug> Debug for StreamChunkIter<'a, A, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="streamchunkiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Enums
 
@@ -632,17 +683,17 @@ implementations are permitted to return false positives.
 
 #### Implementations
 
-- `fn into_option(self: Self) -> Option<usize>`
+- <span id="candidate-into-option"></span>`fn into_option(self) -> Option<usize>`
 
 #### Trait Implementations
 
 ##### `impl Clone for Candidate`
 
-- `fn clone(self: &Self) -> Candidate` — [`Candidate`](../util/prefilter/index.md)
+- <span id="candidate-clone"></span>`fn clone(&self) -> Candidate` — [`Candidate`](../util/prefilter/index.md)
 
 ##### `impl Debug for Candidate`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="candidate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `StreamChunk<'r>`
 
@@ -676,7 +727,7 @@ The `'r` lifetime refers to the lifetime of the stream chunk iterator.
 
 ##### `impl<'r> Debug for StreamChunk<'r>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="streamchunk-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Traits
 
@@ -850,71 +901,71 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Required Methods
 
-- `fn start_state(self: &Self, anchored: Anchored) -> Result<StateID, MatchError>`
+- `fn start_state(&self, anchored: Anchored) -> Result<StateID, MatchError>`
 
   Returns the starting state for the given anchor mode.
 
-- `fn next_state(self: &Self, anchored: Anchored, sid: StateID, byte: u8) -> StateID`
+- `fn next_state(&self, anchored: Anchored, sid: StateID, byte: u8) -> StateID`
 
   Performs a state transition from `sid` for `byte` and returns the next
 
-- `fn is_special(self: &Self, sid: StateID) -> bool`
+- `fn is_special(&self, sid: StateID) -> bool`
 
   Returns true if the given ID represents a "special" state. A special
 
-- `fn is_dead(self: &Self, sid: StateID) -> bool`
+- `fn is_dead(&self, sid: StateID) -> bool`
 
   Returns true if the given ID represents a dead state.
 
-- `fn is_match(self: &Self, sid: StateID) -> bool`
+- `fn is_match(&self, sid: StateID) -> bool`
 
   Returns true if the given ID represents a match state.
 
-- `fn is_start(self: &Self, sid: StateID) -> bool`
+- `fn is_start(&self, sid: StateID) -> bool`
 
   Returns true if the given ID represents a start state.
 
-- `fn match_kind(self: &Self) -> MatchKind`
+- `fn match_kind(&self) -> MatchKind`
 
   Returns the match semantics that this automaton was built with.
 
-- `fn match_len(self: &Self, sid: StateID) -> usize`
+- `fn match_len(&self, sid: StateID) -> usize`
 
   Returns the total number of matches for the given state ID.
 
-- `fn match_pattern(self: &Self, sid: StateID, index: usize) -> PatternID`
+- `fn match_pattern(&self, sid: StateID, index: usize) -> PatternID`
 
   Returns the pattern ID for the match state given by `sid` at the
 
-- `fn patterns_len(self: &Self) -> usize`
+- `fn patterns_len(&self) -> usize`
 
   Returns the total number of patterns compiled into this automaton.
 
-- `fn pattern_len(self: &Self, pid: PatternID) -> usize`
+- `fn pattern_len(&self, pid: PatternID) -> usize`
 
   Returns the length of the pattern for the given ID.
 
-- `fn min_pattern_len(self: &Self) -> usize`
+- `fn min_pattern_len(&self) -> usize`
 
   Returns the length, in bytes, of the shortest pattern in this
 
-- `fn max_pattern_len(self: &Self) -> usize`
+- `fn max_pattern_len(&self) -> usize`
 
   Returns the length, in bytes, of the longest pattern in this automaton.
 
-- `fn memory_usage(self: &Self) -> usize`
+- `fn memory_usage(&self) -> usize`
 
   Returns the heap memory usage, in bytes, used by this automaton.
 
-- `fn prefilter(self: &Self) -> Option<&Prefilter>`
+- `fn prefilter(&self) -> Option<&Prefilter>`
 
   Returns a prefilter, if available, that can be used to accelerate
 
-- `fn try_find(self: &Self, input: &Input<'_>) -> Result<Option<Match>, MatchError>`
+- `fn try_find(&self, input: &Input<'_>) -> Result<Option<Match>, MatchError>`
 
   Executes a non-overlapping search with this automaton using the given
 
-- `fn try_find_overlapping(self: &Self, input: &Input<'_>, state: &mut OverlappingState) -> Result<(), MatchError>`
+- `fn try_find_overlapping(&self, input: &Input<'_>, state: &mut OverlappingState) -> Result<(), MatchError>`
 
   Executes a overlapping search with this automaton using the given
 
@@ -926,19 +977,19 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
   Returns an iterator of overlapping matches with this automaton
 
-- `fn try_replace_all<B>(self: &Self, haystack: &str, replace_with: &[B]) -> Result<String, MatchError>`
+- `fn try_replace_all<B>(&self, haystack: &str, replace_with: &[B]) -> Result<String, MatchError>`
 
   Replaces all non-overlapping matches in `haystack` with
 
-- `fn try_replace_all_bytes<B>(self: &Self, haystack: &[u8], replace_with: &[B]) -> Result<Vec<u8>, MatchError>`
+- `fn try_replace_all_bytes<B>(&self, haystack: &[u8], replace_with: &[B]) -> Result<Vec<u8>, MatchError>`
 
   Replaces all non-overlapping matches in `haystack` with
 
-- `fn try_replace_all_with<F>(self: &Self, haystack: &str, dst: &mut String, replace_with: F) -> Result<(), MatchError>`
+- `fn try_replace_all_with<F>(&self, haystack: &str, dst: &mut String, replace_with: F) -> Result<(), MatchError>`
 
   Replaces all non-overlapping matches in `haystack` by calling the
 
-- `fn try_replace_all_with_bytes<F>(self: &Self, haystack: &[u8], dst: &mut Vec<u8>, replace_with: F) -> Result<(), MatchError>`
+- `fn try_replace_all_with_bytes<F>(&self, haystack: &[u8], dst: &mut Vec<u8>, replace_with: F) -> Result<(), MatchError>`
 
   Replaces all non-overlapping matches in `haystack` by calling the
 
@@ -946,11 +997,11 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
   Returns an iterator of non-overlapping matches with this automaton
 
-- `fn try_stream_replace_all<R, W, B>(self: &Self, rdr: R, wtr: W, replace_with: &[B]) -> std::io::Result<()>`
+- `fn try_stream_replace_all<R, W, B>(&self, rdr: R, wtr: W, replace_with: &[B]) -> std::io::Result<()>`
 
   Replaces all non-overlapping matches in `rdr` with strings from
 
-- `fn try_stream_replace_all_with<R, W, F>(self: &Self, rdr: R, wtr: W, replace_with: F) -> std::io::Result<()>`
+- `fn try_stream_replace_all_with<R, W, F>(&self, rdr: R, wtr: W, replace_with: F) -> std::io::Result<()>`
 
   Replaces all non-overlapping matches in `rdr` by calling the
 

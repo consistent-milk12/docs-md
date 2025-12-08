@@ -4,6 +4,17 @@
 
 # Module `common`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`decimal_length9`](#decimal_length9) | fn |  |
+| [`log2_pow5`](#log2_pow5) | fn |  |
+| [`pow5bits`](#pow5bits) | fn |  |
+| [`ceil_log2_pow5`](#ceil_log2_pow5) | fn |  |
+| [`log10_pow2`](#log10_pow2) | fn |  |
+| [`log10_pow5`](#log10_pow5) | fn |  |
+
 ## Functions
 
 ### `decimal_length9`

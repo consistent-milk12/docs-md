@@ -6,6 +6,13 @@
 
 Line ending detection and conversion.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`NonEmptyLines`](#nonemptylines) | struct | An iterator over the lines of a string, as tuples of string slice |
+| [`LineEnding`](#lineending) | enum | Supported line endings. |
+
 ## Structs
 
 ### `NonEmptyLines<'a>`
@@ -24,27 +31,27 @@ This struct is used internally by the library.
 
 ##### `impl<'a> Clone for NonEmptyLines<'a>`
 
-- `fn clone(self: &Self) -> NonEmptyLines<'a>` — [`NonEmptyLines`](#nonemptylines)
+- <span id="nonemptylines-clone"></span>`fn clone(&self) -> NonEmptyLines<'a>` — [`NonEmptyLines`](#nonemptylines)
 
 ##### `impl<'a> Copy for NonEmptyLines<'a>`
 
 ##### `impl<'a> Debug for NonEmptyLines<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="nonemptylines-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for NonEmptyLines<'a>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="nonemptylines-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="nonemptylines-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="nonemptylines-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a> Iterator for NonEmptyLines<'a>`
 
-- `type Item = (&'a str, Option<LineEnding>)`
+- <span id="nonemptylines-item"></span>`type Item = (&'a str, Option<LineEnding>)`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="nonemptylines-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ## Enums
 
@@ -75,25 +82,25 @@ endings are supported: `\r\n` and `\n`
 
 #### Implementations
 
-- `const fn as_str(self: &Self) -> &'static str`
+- <span id="lineending-as-str"></span>`const fn as_str(&self) -> &'static str`
 
 #### Trait Implementations
 
 ##### `impl Clone for LineEnding`
 
-- `fn clone(self: &Self) -> LineEnding` — [`LineEnding`](../index.md)
+- <span id="lineending-clone"></span>`fn clone(&self) -> LineEnding` — [`LineEnding`](../index.md)
 
 ##### `impl Copy for LineEnding`
 
 ##### `impl Debug for LineEnding`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="lineending-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for LineEnding`
 
 ##### `impl PartialEq for LineEnding`
 
-- `fn eq(self: &Self, other: &LineEnding) -> bool` — [`LineEnding`](../index.md)
+- <span id="lineending-eq"></span>`fn eq(&self, other: &LineEnding) -> bool` — [`LineEnding`](../index.md)
 
 ##### `impl StructuralPartialEq for LineEnding`
 

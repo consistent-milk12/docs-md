@@ -4,6 +4,12 @@
 
 # Module `perl_word`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`PERL_WORD`](#perl_word) | const |  |
+
 ## Constants
 
 ### `PERL_WORD`

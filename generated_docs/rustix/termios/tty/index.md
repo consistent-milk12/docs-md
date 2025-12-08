@@ -6,6 +6,12 @@
 
 Functions which operate on file descriptors which might be terminals.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`isatty`](#isatty) | fn | `isatty(fd)`—Tests whether a file descriptor refers to a terminal. |
+
 ## Functions
 
 ### `isatty`

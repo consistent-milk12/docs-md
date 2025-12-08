@@ -237,6 +237,42 @@ bitflags! {
 The result of `Flags::A ^ Flags::B` is `0b0000_0010`, which doesn't correspond to either
 `Flags::A` or `Flags::B` even though it's still a known bit.
 
+## Contents
+
+- [Modules](#modules)
+  - [`iter`](#iter)
+  - [`parser`](#parser)
+  - [`traits`](#traits)
+  - [`public`](#public)
+  - [`internal`](#internal)
+  - [`external`](#external)
+  - [`__private`](#__private)
+- [Structs](#structs)
+  - [`unnamed`](#unnamed)
+- [Traits](#traits)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+- [Macros](#macros)
+  - [`bitflags!`](#bitflags)
+  - [`bitflags_match!`](#bitflags_match)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`iter`](#iter) | mod | Yield the bits of a source flags value in a set of contained flags values. |
+| [`parser`](#parser) | mod | Parsing flags from text. |
+| [`traits`](#traits) | mod |  |
+| [`public`](#public) | mod | Generate the user-facing flags type. |
+| [`internal`](#internal) | mod | Generate the internal `bitflags`-facing flags type. |
+| [`external`](#external) | mod | Conditional trait implementations for external libraries. |
+| [`__private`](#__private) | mod |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | trait |  |
+| [`unnamed`](#unnamed) | trait |  |
+| [`bitflags!`](#bitflags) | macro | Generate a flags type. |
+| [`bitflags_match!`](#bitflags_match) | macro | A macro that matches flags values, similar to Rust's `match` statement. |
+
 ## Modules
 
 - [`iter`](iter/index.md) - Yield the bits of a source flags value in a set of contained flags values.
@@ -262,21 +298,21 @@ A defined flags value that may be named or unnamed.
 
 #### Implementations
 
-- `const fn new(name: &'static str, value: B) -> Self`
+- <span id="flag-new"></span>`const fn new(name: &'static str, value: B) -> Self`
 
-- `const fn name(self: &Self) -> &'static str`
+- <span id="flag-name"></span>`const fn name(&self) -> &'static str`
 
-- `const fn value(self: &Self) -> &B`
+- <span id="flag-value"></span>`const fn value(&self) -> &B`
 
-- `const fn is_named(self: &Self) -> bool`
+- <span id="flag-is-named"></span>`const fn is_named(&self) -> bool`
 
-- `const fn is_unnamed(self: &Self) -> bool`
+- <span id="flag-is-unnamed"></span>`const fn is_unnamed(&self) -> bool`
 
 #### Trait Implementations
 
-##### `impl<B: $crate::fmt::Debug> Debug for Flag<B>`
+##### `impl<B: fmt::Debug> Debug for Flag<B>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="flag-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Traits
 

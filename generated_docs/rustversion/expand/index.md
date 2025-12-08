@@ -4,6 +4,15 @@
 
 # Module `expand`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`cfg`](#cfg) | fn |  |
+| [`try_cfg`](#try_cfg) | fn |  |
+| [`try_attr`](#try_attr) | fn |  |
+| [`allow_incompatible_msrv`](#allow_incompatible_msrv) | fn |  |
+
 ## Functions
 
 ### `cfg`

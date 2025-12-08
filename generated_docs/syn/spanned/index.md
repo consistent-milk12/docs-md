@@ -82,6 +82,13 @@ able to span the error correctly under the complete syntax tree node without
 needing the unstable `join`.
 
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`private`](#private) | mod |  |
+| [`Spanned`](#spanned) | trait | A trait that can provide the `Span` of the complete contents of a syntax |
+
 ## Modules
 
 - [`private`](private/index.md) - 
@@ -105,7 +112,7 @@ See the [module documentation] for an example.
 
 #### Required Methods
 
-- `fn span(self: &Self) -> Span`
+- `fn span(&self) -> Span`
 
   Returns a `Span` covering the complete contents of this syntax tree
 

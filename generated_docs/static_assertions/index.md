@@ -77,6 +77,72 @@ and thousands of others.
 
 
 
+## Contents
+
+- [Modules](#modules)
+  - [`assert_cfg`](#assert_cfg)
+  - [`assert_eq_align`](#assert_eq_align)
+  - [`assert_eq_size`](#assert_eq_size)
+  - [`assert_fields`](#assert_fields)
+  - [`assert_impl`](#assert_impl)
+  - [`assert_obj_safe`](#assert_obj_safe)
+  - [`assert_trait`](#assert_trait)
+  - [`assert_type`](#assert_type)
+  - [`const_assert`](#const_assert)
+- [Macros](#macros)
+  - [`assert_cfg!`](#assert_cfg)
+  - [`assert_eq_align!`](#assert_eq_align)
+  - [`assert_eq_size!`](#assert_eq_size)
+  - [`assert_eq_size_ptr!`](#assert_eq_size_ptr)
+  - [`assert_eq_size_val!`](#assert_eq_size_val)
+  - [`assert_fields!`](#assert_fields)
+  - [`assert_impl_one!`](#assert_impl_one)
+  - [`assert_impl_all!`](#assert_impl_all)
+  - [`assert_impl_any!`](#assert_impl_any)
+  - [`assert_not_impl_all!`](#assert_not_impl_all)
+  - [`assert_not_impl_any!`](#assert_not_impl_any)
+  - [`assert_obj_safe!`](#assert_obj_safe)
+  - [`assert_trait_sub_all!`](#assert_trait_sub_all)
+  - [`assert_trait_super_all!`](#assert_trait_super_all)
+  - [`assert_type_eq_all!`](#assert_type_eq_all)
+  - [`assert_type_ne_all!`](#assert_type_ne_all)
+  - [`const_assert!`](#const_assert)
+  - [`const_assert_eq!`](#const_assert_eq)
+  - [`const_assert_ne!`](#const_assert_ne)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`assert_cfg`](#assert_cfg) | mod |  |
+| [`assert_eq_align`](#assert_eq_align) | mod |  |
+| [`assert_eq_size`](#assert_eq_size) | mod |  |
+| [`assert_fields`](#assert_fields) | mod |  |
+| [`assert_impl`](#assert_impl) | mod |  |
+| [`assert_obj_safe`](#assert_obj_safe) | mod |  |
+| [`assert_trait`](#assert_trait) | mod |  |
+| [`assert_type`](#assert_type) | mod |  |
+| [`const_assert`](#const_assert) | mod |  |
+| [`assert_cfg!`](#assert_cfg) | macro | Asserts that a given configuration is set. |
+| [`assert_eq_align!`](#assert_eq_align) | macro | Asserts that types are equal in alignment. |
+| [`assert_eq_size!`](#assert_eq_size) | macro | Asserts that types are equal in size. |
+| [`assert_eq_size_ptr!`](#assert_eq_size_ptr) | macro | Asserts that values pointed to are equal in size. |
+| [`assert_eq_size_val!`](#assert_eq_size_val) | macro | Asserts that values are equal in size. |
+| [`assert_fields!`](#assert_fields) | macro | Asserts that the type has the given fields. |
+| [`assert_impl_one!`](#assert_impl_one) | macro | Asserts that the type implements exactly one in a set of traits. |
+| [`assert_impl_all!`](#assert_impl_all) | macro | Asserts that the type implements _all_ of the given traits. |
+| [`assert_impl_any!`](#assert_impl_any) | macro | Asserts that the type implements _any_ of the given traits. |
+| [`assert_not_impl_all!`](#assert_not_impl_all) | macro | Asserts that the type does **not** implement _all_ of the given traits. |
+| [`assert_not_impl_any!`](#assert_not_impl_any) | macro | Asserts that the type does **not** implement _any_ of the given traits. |
+| [`assert_obj_safe!`](#assert_obj_safe) | macro | Asserts that the traits support dynamic dispatch |
+| [`assert_trait_sub_all!`](#assert_trait_sub_all) | macro | Asserts that the trait is a child of all of the other traits. |
+| [`assert_trait_super_all!`](#assert_trait_super_all) | macro | Asserts that the trait is a parent of all of the other traits. |
+| [`assert_type_eq_all!`](#assert_type_eq_all) | macro | Asserts that _all_ types in a list are equal to each other. |
+| [`assert_type_ne_all!`](#assert_type_ne_all) | macro | Asserts that _all_ types are **not** equal to each other. |
+| [`const_assert!`](#const_assert) | macro | Asserts that constant expressions evaluate to `true`. |
+| [`const_assert_eq!`](#const_assert_eq) | macro | Asserts that constants are equal in value. |
+| [`const_assert_ne!`](#const_assert_ne) | macro | Asserts that constants are **not** equal in value. |
+
 ## Modules
 
 - [`assert_cfg`](assert_cfg/index.md) - 

@@ -4,6 +4,15 @@
 
 # Module `attr`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ClapAttr`](#clapattr) | struct |  |
+| [`MagicAttrName`](#magicattrname) | enum |  |
+| [`AttrValue`](#attrvalue) | enum |  |
+| [`AttrKind`](#attrkind) | enum |  |
+
 ## Structs
 
 ### `ClapAttr`
@@ -19,21 +28,21 @@ struct ClapAttr {
 
 #### Implementations
 
-- `fn parse_all(all_attrs: &[Attribute]) -> Result<Vec<Self>, syn::Error>`
+- <span id="clapattr-parse-all"></span>`fn parse_all(all_attrs: &[Attribute]) -> Result<Vec<Self>, syn::Error>`
 
-- `fn value_or_abort(self: &Self) -> Result<&AttrValue, syn::Error>` — [`AttrValue`](#attrvalue)
+- <span id="clapattr-value-or-abort"></span>`fn value_or_abort(&self) -> Result<&AttrValue, syn::Error>` — [`AttrValue`](#attrvalue)
 
-- `fn lit_str_or_abort(self: &Self) -> Result<&LitStr, syn::Error>`
+- <span id="clapattr-lit-str-or-abort"></span>`fn lit_str_or_abort(&self) -> Result<&LitStr, syn::Error>`
 
 #### Trait Implementations
 
 ##### `impl Clone for ClapAttr`
 
-- `fn clone(self: &Self) -> ClapAttr` — [`ClapAttr`](#clapattr)
+- <span id="clapattr-clone"></span>`fn clone(&self) -> ClapAttr` — [`ClapAttr`](#clapattr)
 
 ##### `impl Parse for ClapAttr`
 
-- `fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
+- <span id="clapattr-parse"></span>`fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
 
 ## Enums
 
@@ -73,7 +82,7 @@ enum MagicAttrName {
 
 ##### `impl Clone for MagicAttrName`
 
-- `fn clone(self: &Self) -> MagicAttrName` — [`MagicAttrName`](#magicattrname)
+- <span id="magicattrname-clone"></span>`fn clone(&self) -> MagicAttrName` — [`MagicAttrName`](#magicattrname)
 
 ##### `impl Copy for MagicAttrName`
 
@@ -81,7 +90,7 @@ enum MagicAttrName {
 
 ##### `impl PartialEq for MagicAttrName`
 
-- `fn eq(self: &Self, other: &MagicAttrName) -> bool` — [`MagicAttrName`](#magicattrname)
+- <span id="magicattrname-eq"></span>`fn eq(&self, other: &MagicAttrName) -> bool` — [`MagicAttrName`](#magicattrname)
 
 ##### `impl StructuralPartialEq for MagicAttrName`
 
@@ -99,15 +108,15 @@ enum AttrValue {
 
 ##### `impl Clone for AttrValue`
 
-- `fn clone(self: &Self) -> AttrValue` — [`AttrValue`](#attrvalue)
+- <span id="attrvalue-clone"></span>`fn clone(&self) -> AttrValue` — [`AttrValue`](#attrvalue)
 
 ##### `impl<T> Spanned for AttrValue`
 
-- `fn span(self: &Self) -> Span`
+- <span id="attrvalue-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for AttrValue`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="attrvalue-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `AttrKind`
 
@@ -124,13 +133,13 @@ enum AttrKind {
 
 #### Implementations
 
-- `fn as_str(self: &Self) -> &'static str`
+- <span id="attrkind-as-str"></span>`fn as_str(&self) -> &'static str`
 
 #### Trait Implementations
 
 ##### `impl Clone for AttrKind`
 
-- `fn clone(self: &Self) -> AttrKind` — [`AttrKind`](#attrkind)
+- <span id="attrkind-clone"></span>`fn clone(&self) -> AttrKind` — [`AttrKind`](#attrkind)
 
 ##### `impl Copy for AttrKind`
 
@@ -138,7 +147,7 @@ enum AttrKind {
 
 ##### `impl PartialEq for AttrKind`
 
-- `fn eq(self: &Self, other: &AttrKind) -> bool` — [`AttrKind`](#attrkind)
+- <span id="attrkind-eq"></span>`fn eq(&self, other: &AttrKind) -> bool` — [`AttrKind`](#attrkind)
 
 ##### `impl StructuralPartialEq for AttrKind`
 

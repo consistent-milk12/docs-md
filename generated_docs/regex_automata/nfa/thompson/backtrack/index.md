@@ -14,6 +14,37 @@ In exchange, it can only be used on "short" haystacks. Its advantage is that
 is can be faster than the [`PikeVM`](thompson::pikevm::PikeVM) in many cases
 because it does less book-keeping.
 
+## Contents
+
+- [Structs](#structs)
+  - [`Config`](#config)
+  - [`Builder`](#builder)
+  - [`BoundedBacktracker`](#boundedbacktracker)
+  - [`TryFindMatches`](#tryfindmatches)
+  - [`TryCapturesMatches`](#trycapturesmatches)
+  - [`Cache`](#cache)
+  - [`Visited`](#visited)
+- [Enums](#enums)
+  - [`Frame`](#frame)
+- [Functions](#functions)
+  - [`min_visited_capacity`](#min_visited_capacity)
+  - [`div_ceil`](#div_ceil)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Config`](#config) | struct | The configuration used for building a bounded backtracker. |
+| [`Builder`](#builder) | struct | A builder for a bounded backtracker. |
+| [`BoundedBacktracker`](#boundedbacktracker) | struct | A backtracking regex engine that bounds its execution to avoid exponential |
+| [`TryFindMatches`](#tryfindmatches) | struct | An iterator over all non-overlapping matches for a fallible search. |
+| [`TryCapturesMatches`](#trycapturesmatches) | struct | An iterator over all non-overlapping leftmost matches, with their capturing |
+| [`Cache`](#cache) | struct | A cache represents mutable state that a [`BoundedBacktracker`] requires |
+| [`Visited`](#visited) | struct | A bitset that keeps track of whether a particular (StateID, offset) has |
+| [`Frame`](#frame) | enum | Represents a stack frame on the heap while doing backtracking. |
+| [`min_visited_capacity`](#min_visited_capacity) | fn | Returns the minimum visited capacity for the given haystack. |
+| [`div_ceil`](#div_ceil) | fn | Integer division, but rounds up instead of down. |
+
 ## Structs
 
 ### `Config`
@@ -32,31 +63,31 @@ typically used with `Builder::configure`.
 
 #### Implementations
 
-- `fn new() -> Config` — [`Config`](#config)
+- <span id="config-new"></span>`fn new() -> Config` — [`Config`](#config)
 
-- `fn prefilter(self: Self, pre: Option<Prefilter>) -> Config` — [`Prefilter`](../../../util/prefilter/index.md), [`Config`](#config)
+- <span id="config-prefilter"></span>`fn prefilter(self, pre: Option<Prefilter>) -> Config` — [`Prefilter`](../../../util/prefilter/index.md), [`Config`](#config)
 
-- `fn visited_capacity(self: Self, capacity: usize) -> Config` — [`Config`](#config)
+- <span id="config-visited-capacity"></span>`fn visited_capacity(self, capacity: usize) -> Config` — [`Config`](#config)
 
-- `fn get_prefilter(self: &Self) -> Option<&Prefilter>` — [`Prefilter`](../../../util/prefilter/index.md)
+- <span id="config-get-prefilter"></span>`fn get_prefilter(&self) -> Option<&Prefilter>` — [`Prefilter`](../../../util/prefilter/index.md)
 
-- `fn get_visited_capacity(self: &Self) -> usize`
+- <span id="config-get-visited-capacity"></span>`fn get_visited_capacity(&self) -> usize`
 
-- `fn overwrite(self: &Self, o: Config) -> Config` — [`Config`](#config)
+- <span id="config-overwrite"></span>`fn overwrite(&self, o: Config) -> Config` — [`Config`](#config)
 
 #### Trait Implementations
 
 ##### `impl Clone for Config`
 
-- `fn clone(self: &Self) -> Config` — [`Config`](#config)
+- <span id="config-clone"></span>`fn clone(&self) -> Config` — [`Config`](#config)
 
 ##### `impl Debug for Config`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="config-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Config`
 
-- `fn default() -> Config` — [`Config`](#config)
+- <span id="config-default"></span>`fn default() -> Config` — [`Config`](#config)
 
 ### `Builder`
 
@@ -123,29 +154,29 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new() -> Builder` — [`Builder`](#builder)
+- <span id="builder-new"></span>`fn new() -> Builder` — [`Builder`](#builder)
 
-- `fn build(self: &Self, pattern: &str) -> Result<BoundedBacktracker, BuildError>` — [`BoundedBacktracker`](#boundedbacktracker), [`BuildError`](../index.md)
+- <span id="builder-build"></span>`fn build(&self, pattern: &str) -> Result<BoundedBacktracker, BuildError>` — [`BoundedBacktracker`](#boundedbacktracker), [`BuildError`](../index.md)
 
-- `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<BoundedBacktracker, BuildError>` — [`BoundedBacktracker`](#boundedbacktracker), [`BuildError`](../index.md)
+- <span id="builder-build-many"></span>`fn build_many<P: AsRef<str>>(&self, patterns: &[P]) -> Result<BoundedBacktracker, BuildError>` — [`BoundedBacktracker`](#boundedbacktracker), [`BuildError`](../index.md)
 
-- `fn build_from_nfa(self: &Self, nfa: NFA) -> Result<BoundedBacktracker, BuildError>` — [`NFA`](../index.md), [`BoundedBacktracker`](#boundedbacktracker), [`BuildError`](../index.md)
+- <span id="builder-build-from-nfa"></span>`fn build_from_nfa(&self, nfa: NFA) -> Result<BoundedBacktracker, BuildError>` — [`NFA`](../index.md), [`BoundedBacktracker`](#boundedbacktracker), [`BuildError`](../index.md)
 
-- `fn configure(self: &mut Self, config: Config) -> &mut Builder` — [`Config`](#config), [`Builder`](#builder)
+- <span id="builder-configure"></span>`fn configure(&mut self, config: Config) -> &mut Builder` — [`Config`](#config), [`Builder`](#builder)
 
-- `fn syntax(self: &mut Self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../../util/syntax/index.md), [`Builder`](#builder)
+- <span id="builder-syntax"></span>`fn syntax(&mut self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../../util/syntax/index.md), [`Builder`](#builder)
 
-- `fn thompson(self: &mut Self, config: thompson::Config) -> &mut Builder` — [`Config`](../index.md), [`Builder`](#builder)
+- <span id="builder-thompson"></span>`fn thompson(&mut self, config: thompson::Config) -> &mut Builder` — [`Config`](../index.md), [`Builder`](#builder)
 
 #### Trait Implementations
 
 ##### `impl Clone for Builder`
 
-- `fn clone(self: &Self) -> Builder` — [`Builder`](#builder)
+- <span id="builder-clone"></span>`fn clone(&self) -> Builder` — [`Builder`](#builder)
 
 ##### `impl Debug for Builder`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="builder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `BoundedBacktracker`
 
@@ -239,27 +270,27 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn try_search(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures) -> Result<(), MatchError>` — [`Cache`](#cache), [`Input`](../../../index.md), [`Captures`](../../../util/captures/index.md), [`MatchError`](../../../index.md)
+- <span id="boundedbacktracker-try-search"></span>`fn try_search(&self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures) -> Result<(), MatchError>` — [`Cache`](#cache), [`Input`](../../../index.md), [`Captures`](../../../util/captures/index.md), [`MatchError`](../../../index.md)
 
-- `fn try_search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<PatternID>, MatchError>` — [`Cache`](#cache), [`Input`](../../../index.md), [`NonMaxUsize`](../../../util/primitives/index.md), [`PatternID`](../../../index.md), [`MatchError`](../../../index.md)
+- <span id="boundedbacktracker-try-search-slots"></span>`fn try_search_slots(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<PatternID>, MatchError>` — [`Cache`](#cache), [`Input`](../../../index.md), [`NonMaxUsize`](../../../util/primitives/index.md), [`PatternID`](../../../index.md), [`MatchError`](../../../index.md)
 
-- `fn try_search_slots_imp(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<HalfMatch>, MatchError>` — [`Cache`](#cache), [`Input`](../../../index.md), [`NonMaxUsize`](../../../util/primitives/index.md), [`HalfMatch`](../../../index.md), [`MatchError`](../../../index.md)
+- <span id="boundedbacktracker-try-search-slots-imp"></span>`fn try_search_slots_imp(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<HalfMatch>, MatchError>` — [`Cache`](#cache), [`Input`](../../../index.md), [`NonMaxUsize`](../../../util/primitives/index.md), [`HalfMatch`](../../../index.md), [`MatchError`](../../../index.md)
 
-- `fn search_imp(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<HalfMatch>, MatchError>` — [`Cache`](#cache), [`Input`](../../../index.md), [`NonMaxUsize`](../../../util/primitives/index.md), [`HalfMatch`](../../../index.md), [`MatchError`](../../../index.md)
+- <span id="boundedbacktracker-search-imp"></span>`fn search_imp(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<HalfMatch>, MatchError>` — [`Cache`](#cache), [`Input`](../../../index.md), [`NonMaxUsize`](../../../util/primitives/index.md), [`HalfMatch`](../../../index.md), [`MatchError`](../../../index.md)
 
-- `fn backtrack(self: &Self, cache: &mut Cache, input: &Input<'_>, at: usize, start_id: StateID, slots: &mut [Option<NonMaxUsize>]) -> Option<HalfMatch>` — [`Cache`](#cache), [`Input`](../../../index.md), [`StateID`](../../../util/primitives/index.md), [`NonMaxUsize`](../../../util/primitives/index.md), [`HalfMatch`](../../../index.md)
+- <span id="boundedbacktracker-backtrack"></span>`fn backtrack(&self, cache: &mut Cache, input: &Input<'_>, at: usize, start_id: StateID, slots: &mut [Option<NonMaxUsize>]) -> Option<HalfMatch>` — [`Cache`](#cache), [`Input`](../../../index.md), [`StateID`](../../../util/primitives/index.md), [`NonMaxUsize`](../../../util/primitives/index.md), [`HalfMatch`](../../../index.md)
 
-- `fn step(self: &Self, cache: &mut Cache, input: &Input<'_>, sid: StateID, at: usize, slots: &mut [Option<NonMaxUsize>]) -> Option<HalfMatch>` — [`Cache`](#cache), [`Input`](../../../index.md), [`StateID`](../../../util/primitives/index.md), [`NonMaxUsize`](../../../util/primitives/index.md), [`HalfMatch`](../../../index.md)
+- <span id="boundedbacktracker-step"></span>`fn step(&self, cache: &mut Cache, input: &Input<'_>, sid: StateID, at: usize, slots: &mut [Option<NonMaxUsize>]) -> Option<HalfMatch>` — [`Cache`](#cache), [`Input`](../../../index.md), [`StateID`](../../../util/primitives/index.md), [`NonMaxUsize`](../../../util/primitives/index.md), [`HalfMatch`](../../../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for BoundedBacktracker`
 
-- `fn clone(self: &Self) -> BoundedBacktracker` — [`BoundedBacktracker`](#boundedbacktracker)
+- <span id="boundedbacktracker-clone"></span>`fn clone(&self) -> BoundedBacktracker` — [`BoundedBacktracker`](#boundedbacktracker)
 
 ##### `impl Debug for BoundedBacktracker`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="boundedbacktracker-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `TryFindMatches<'r, 'c, 'h>`
 
@@ -290,21 +321,21 @@ method.
 
 ##### `impl<'r, 'c, 'h> Debug for TryFindMatches<'r, 'c, 'h>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="tryfindmatches-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for TryFindMatches<'r, 'c, 'h>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="tryfindmatches-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="tryfindmatches-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="tryfindmatches-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'r, 'c, 'h> Iterator for TryFindMatches<'r, 'c, 'h>`
 
-- `type Item = Result<Match, MatchError>`
+- <span id="tryfindmatches-item"></span>`type Item = Result<Match, MatchError>`
 
-- `fn next(self: &mut Self) -> Option<Result<Match, MatchError>>` — [`Match`](../../../index.md), [`MatchError`](../../../index.md)
+- <span id="tryfindmatches-next"></span>`fn next(&mut self) -> Option<Result<Match, MatchError>>` — [`Match`](../../../index.md), [`MatchError`](../../../index.md)
 
 ### `TryCapturesMatches<'r, 'c, 'h>`
 
@@ -336,21 +367,21 @@ This iterator can be created with the
 
 ##### `impl<'r, 'c, 'h> Debug for TryCapturesMatches<'r, 'c, 'h>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="trycapturesmatches-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for TryCapturesMatches<'r, 'c, 'h>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="trycapturesmatches-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="trycapturesmatches-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="trycapturesmatches-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'r, 'c, 'h> Iterator for TryCapturesMatches<'r, 'c, 'h>`
 
-- `type Item = Result<Captures, MatchError>`
+- <span id="trycapturesmatches-item"></span>`type Item = Result<Captures, MatchError>`
 
-- `fn next(self: &mut Self) -> Option<Result<Captures, MatchError>>` — [`Captures`](../../../util/captures/index.md), [`MatchError`](../../../index.md)
+- <span id="trycapturesmatches-next"></span>`fn next(&mut self) -> Option<Result<Captures, MatchError>>` — [`Captures`](../../../util/captures/index.md), [`MatchError`](../../../index.md)
 
 ### `Cache`
 
@@ -393,23 +424,23 @@ one).
 
 #### Implementations
 
-- `fn new(re: &BoundedBacktracker) -> Cache` — [`BoundedBacktracker`](#boundedbacktracker), [`Cache`](#cache)
+- <span id="cache-new"></span>`fn new(re: &BoundedBacktracker) -> Cache` — [`BoundedBacktracker`](#boundedbacktracker), [`Cache`](#cache)
 
-- `fn reset(self: &mut Self, re: &BoundedBacktracker)` — [`BoundedBacktracker`](#boundedbacktracker)
+- <span id="cache-reset"></span>`fn reset(&mut self, re: &BoundedBacktracker)` — [`BoundedBacktracker`](#boundedbacktracker)
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="cache-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- `fn setup_search(self: &mut Self, re: &BoundedBacktracker, input: &Input<'_>) -> Result<(), MatchError>` — [`BoundedBacktracker`](#boundedbacktracker), [`Input`](../../../index.md), [`MatchError`](../../../index.md)
+- <span id="cache-setup-search"></span>`fn setup_search(&mut self, re: &BoundedBacktracker, input: &Input<'_>) -> Result<(), MatchError>` — [`BoundedBacktracker`](#boundedbacktracker), [`Input`](../../../index.md), [`MatchError`](../../../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Cache`
 
-- `fn clone(self: &Self) -> Cache` — [`Cache`](#cache)
+- <span id="cache-clone"></span>`fn clone(&self) -> Cache` — [`Cache`](#cache)
 
 ##### `impl Debug for Cache`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="cache-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Visited`
 
@@ -453,27 +484,27 @@ backtracking skips it. This is what gives backtracking its "bound."
 
 #### Implementations
 
-- `const BLOCK_SIZE: usize`
+- <span id="visited-block-size"></span>`const BLOCK_SIZE: usize`
 
-- `fn new(re: &BoundedBacktracker) -> Visited` — [`BoundedBacktracker`](#boundedbacktracker), [`Visited`](#visited)
+- <span id="visited-new"></span>`fn new(re: &BoundedBacktracker) -> Visited` — [`BoundedBacktracker`](#boundedbacktracker), [`Visited`](#visited)
 
-- `fn insert(self: &mut Self, sid: StateID, at: usize) -> bool` — [`StateID`](../../../util/primitives/index.md)
+- <span id="visited-insert"></span>`fn insert(&mut self, sid: StateID, at: usize) -> bool` — [`StateID`](../../../util/primitives/index.md)
 
-- `fn reset(self: &mut Self, _: &BoundedBacktracker)` — [`BoundedBacktracker`](#boundedbacktracker)
+- <span id="visited-reset"></span>`fn reset(&mut self, _: &BoundedBacktracker)` — [`BoundedBacktracker`](#boundedbacktracker)
 
-- `fn setup_search(self: &mut Self, re: &BoundedBacktracker, input: &Input<'_>) -> Result<(), MatchError>` — [`BoundedBacktracker`](#boundedbacktracker), [`Input`](../../../index.md), [`MatchError`](../../../index.md)
+- <span id="visited-setup-search"></span>`fn setup_search(&mut self, re: &BoundedBacktracker, input: &Input<'_>) -> Result<(), MatchError>` — [`BoundedBacktracker`](#boundedbacktracker), [`Input`](../../../index.md), [`MatchError`](../../../index.md)
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="visited-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Clone for Visited`
 
-- `fn clone(self: &Self) -> Visited` — [`Visited`](#visited)
+- <span id="visited-clone"></span>`fn clone(&self) -> Visited` — [`Visited`](#visited)
 
 ##### `impl Debug for Visited`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="visited-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Enums
 
@@ -519,11 +550,11 @@ backtracking branch turns out to not lead to a match.
 
 ##### `impl Clone for Frame`
 
-- `fn clone(self: &Self) -> Frame` — [`Frame`](#frame)
+- <span id="frame-clone"></span>`fn clone(&self) -> Frame` — [`Frame`](#frame)
 
 ##### `impl Debug for Frame`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="frame-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Functions
 

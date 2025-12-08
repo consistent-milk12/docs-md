@@ -9,6 +9,43 @@ low-level details -- users of parallel iterators should not need to
 interact with them directly.  See [the `plumbing` README][r] for a general overview.
 
 
+## Contents
+
+- [Structs](#structs)
+  - [`Splitter`](#splitter)
+  - [`LengthSplitter`](#lengthsplitter)
+- [Traits](#traits)
+  - [`ProducerCallback`](#producercallback)
+  - [`Producer`](#producer)
+  - [`Consumer`](#consumer)
+  - [`Folder`](#folder)
+  - [`Reducer`](#reducer)
+  - [`UnindexedConsumer`](#unindexedconsumer)
+  - [`UnindexedProducer`](#unindexedproducer)
+- [Functions](#functions)
+  - [`bridge`](#bridge)
+  - [`bridge_producer_consumer`](#bridge_producer_consumer)
+  - [`bridge_unindexed`](#bridge_unindexed)
+  - [`bridge_unindexed_producer_consumer`](#bridge_unindexed_producer_consumer)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Splitter`](#splitter) | struct | A splitter controls the policy for splitting into smaller work items. |
+| [`LengthSplitter`](#lengthsplitter) | struct | The length splitter is built on thief-splitting, but additionally takes |
+| [`ProducerCallback`](#producercallback) | trait | The `ProducerCallback` trait is a kind of generic closure |
+| [`Producer`](#producer) | trait | A `Producer` is effectively a "splittable `IntoIterator`". |
+| [`Consumer`](#consumer) | trait | A consumer is effectively a [generalized "fold" operation][fold] |
+| [`Folder`](#folder) | trait | The `Folder` trait encapsulates [the standard fold |
+| [`Reducer`](#reducer) | trait | The reducer is the final step of a `Consumer` -- after a consumer |
+| [`UnindexedConsumer`](#unindexedconsumer) | trait | A stateless consumer can be freely copied. |
+| [`UnindexedProducer`](#unindexedproducer) | trait | A variant on `Producer` which does not know its exact length or |
+| [`bridge`](#bridge) | fn | This helper function is used to "connect" a parallel iterator to a |
+| [`bridge_producer_consumer`](#bridge_producer_consumer) | fn | This helper function is used to "connect" a producer and a |
+| [`bridge_unindexed`](#bridge_unindexed) | fn | A variant of [`bridge_producer_consumer()`] where the producer is an unindexed producer. |
+| [`bridge_unindexed_producer_consumer`](#bridge_unindexed_producer_consumer) | fn |  |
+
 ## Structs
 
 ### `Splitter`
@@ -35,15 +72,15 @@ job is actually stolen into a different thread.
 
 #### Implementations
 
-- `fn new() -> Splitter` — [`Splitter`](#splitter)
+- <span id="splitter-new"></span>`fn new() -> Splitter` — [`Splitter`](#splitter)
 
-- `fn try_split(self: &mut Self, stolen: bool) -> bool`
+- <span id="splitter-try-split"></span>`fn try_split(&mut self, stolen: bool) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for Splitter`
 
-- `fn clone(self: &Self) -> Splitter` — [`Splitter`](#splitter)
+- <span id="splitter-clone"></span>`fn clone(&self) -> Splitter` — [`Splitter`](#splitter)
 
 ##### `impl Copy for Splitter`
 
@@ -51,17 +88,17 @@ job is actually stolen into a different thread.
 
 ##### `impl<T> Pointable for Splitter`
 
-- `const ALIGN: usize`
+- <span id="splitter-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="splitter-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="splitter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="splitter-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="splitter-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="splitter-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `LengthSplitter`
 
@@ -84,15 +121,15 @@ into account the remaining length of the iterator.
 
 #### Implementations
 
-- `fn new(min: usize, max: usize, len: usize) -> LengthSplitter` — [`LengthSplitter`](#lengthsplitter)
+- <span id="lengthsplitter-new"></span>`fn new(min: usize, max: usize, len: usize) -> LengthSplitter` — [`LengthSplitter`](#lengthsplitter)
 
-- `fn try_split(self: &mut Self, len: usize, stolen: bool) -> bool`
+- <span id="lengthsplitter-try-split"></span>`fn try_split(&mut self, len: usize, stolen: bool) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for LengthSplitter`
 
-- `fn clone(self: &Self) -> LengthSplitter` — [`LengthSplitter`](#lengthsplitter)
+- <span id="lengthsplitter-clone"></span>`fn clone(&self) -> LengthSplitter` — [`LengthSplitter`](#lengthsplitter)
 
 ##### `impl Copy for LengthSplitter`
 
@@ -100,17 +137,17 @@ into account the remaining length of the iterator.
 
 ##### `impl<T> Pointable for LengthSplitter`
 
-- `const ALIGN: usize`
+- <span id="lengthsplitter-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="lengthsplitter-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="lengthsplitter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="lengthsplitter-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="lengthsplitter-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="lengthsplitter-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ## Traits
 
@@ -130,7 +167,7 @@ the plumbing README][r] for more details.
 
 - `type Output`
 
-- `fn callback<P>(self: Self, producer: P) -> <Self as >::Output`
+- `fn callback<P>(self, producer: P) -> <Self as >::Output`
 
   Invokes the callback with the given producer as argument. The
 
@@ -170,23 +207,23 @@ IntoIterator here until that issue is fixed.
 
 - `type IntoIter: 3`
 
-- `fn into_iter(self: Self) -> <Self as >::IntoIter`
+- `fn into_iter(self) -> <Self as >::IntoIter`
 
   Convert `self` into an iterator; at this point, no more parallel splits
 
-- `fn min_len(self: &Self) -> usize`
+- `fn min_len(&self) -> usize`
 
   The minimum number of items that we will process
 
-- `fn max_len(self: &Self) -> usize`
+- `fn max_len(&self) -> usize`
 
   The maximum number of items that we will process
 
-- `fn split_at(self: Self, index: usize) -> (Self, Self)`
+- `fn split_at(self, index: usize) -> (Self, Self)`
 
   Split into two producers; one produces items `0..index`, the
 
-- `fn fold_with<F>(self: Self, folder: F) -> F`
+- `fn fold_with<F>(self, folder: F) -> F`
 
   Iterate the producer, feeding each element to `folder`, and
 
@@ -216,15 +253,15 @@ README][r] for further details.
 
 - `type Result: 1`
 
-- `fn split_at(self: Self, index: usize) -> (Self, Self, <Self as >::Reducer)`
+- `fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)`
 
   Divide the consumer into two consumers, one processing items
 
-- `fn into_folder(self: Self) -> <Self as >::Folder`
+- `fn into_folder(self) -> <Self as >::Folder`
 
   Convert the consumer into a folder that can consume items
 
-- `fn full(self: &Self) -> bool`
+- `fn full(&self) -> bool`
 
   Hint whether this `Consumer` would like to stop processing
 
@@ -244,19 +281,19 @@ be converted (using `complete`) into a final value.
 
 - `type Result`
 
-- `fn consume(self: Self, item: Item) -> Self`
+- `fn consume(self, item: Item) -> Self`
 
   Consume next item and return new sequential state.
 
-- `fn consume_iter<I>(self: Self, iter: I) -> Self`
+- `fn consume_iter<I>(self, iter: I) -> Self`
 
   Consume items from the iterator until full, and return new sequential state.
 
-- `fn complete(self: Self) -> <Self as >::Result`
+- `fn complete(self) -> <Self as >::Result`
 
   Finish consuming items, produce final result.
 
-- `fn full(self: &Self) -> bool`
+- `fn full(&self) -> bool`
 
   Hint whether this `Folder` would like to stop processing
 
@@ -275,7 +312,7 @@ README][r] for further details.
 
 #### Required Methods
 
-- `fn reduce(self: Self, left: Result, right: Result) -> Result`
+- `fn reduce(self, left: Result, right: Result) -> Result`
 
   Reduce two final results into one; this is executed after a
 
@@ -293,11 +330,11 @@ produces an unindexed consumer).
 
 #### Required Methods
 
-- `fn split_off_left(self: &Self) -> Self`
+- `fn split_off_left(&self) -> Self`
 
   Splits off a "left" consumer and returns it. The `self`
 
-- `fn to_reducer(self: &Self) -> <Self as >::Reducer`
+- `fn to_reducer(&self) -> <Self as >::Reducer`
 
   Creates a reducer that can be used to combine the results from
 
@@ -320,11 +357,11 @@ own length with them.)
 
 - `type Item`
 
-- `fn split(self: Self) -> (Self, Option<Self>)`
+- `fn split(self) -> (Self, Option<Self>)`
 
   Split midway into a new producer if possible, otherwise return `None`.
 
-- `fn fold_with<F>(self: Self, folder: F) -> F`
+- `fn fold_with<F>(self, folder: F) -> F`
 
   Iterate the producer, feeding each element to `folder`, and
 

@@ -4,6 +4,59 @@
 
 # Module `read`
 
+## Contents
+
+- [Modules](#modules)
+  - [`private`](#private)
+- [Structs](#structs)
+  - [`Position`](#position)
+  - [`IoRead`](#ioread)
+  - [`SliceRead`](#sliceread)
+  - [`StrRead`](#strread)
+- [Enums](#enums)
+  - [`Reference`](#reference)
+- [Traits](#traits)
+  - [`Read`](#read)
+  - [`Fused`](#fused)
+- [Functions](#functions)
+  - [`is_escape`](#is_escape)
+  - [`next_or_eof`](#next_or_eof)
+  - [`peek_or_eof`](#peek_or_eof)
+  - [`error`](#error)
+  - [`as_str`](#as_str)
+  - [`parse_escape`](#parse_escape)
+  - [`parse_unicode_escape`](#parse_unicode_escape)
+  - [`push_wtf8_codepoint`](#push_wtf8_codepoint)
+  - [`ignore_escape`](#ignore_escape)
+  - [`decode_hex_val_slow`](#decode_hex_val_slow)
+  - [`build_hex_table`](#build_hex_table)
+  - [`decode_four_hex_digits`](#decode_four_hex_digits)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`private`](#private) | mod |  |
+| [`Position`](#position) | struct |  |
+| [`IoRead`](#ioread) | struct | JSON input source that reads from a std::io input stream. |
+| [`SliceRead`](#sliceread) | struct | JSON input source that reads from a slice of bytes. |
+| [`StrRead`](#strread) | struct | JSON input source that reads from a UTF-8 string. |
+| [`Reference`](#reference) | enum |  |
+| [`Read`](#read) | trait | Trait used by the deserializer for iterating over input. |
+| [`Fused`](#fused) | trait | Marker for whether StreamDeserializer can implement FusedIterator. |
+| [`is_escape`](#is_escape) | fn |  |
+| [`next_or_eof`](#next_or_eof) | fn |  |
+| [`peek_or_eof`](#peek_or_eof) | fn |  |
+| [`error`](#error) | fn |  |
+| [`as_str`](#as_str) | fn |  |
+| [`parse_escape`](#parse_escape) | fn | Parses a JSON escape sequence and appends it into the scratch space. |
+| [`parse_unicode_escape`](#parse_unicode_escape) | fn | Parses a JSON \u escape and appends it into the scratch space. |
+| [`push_wtf8_codepoint`](#push_wtf8_codepoint) | fn | Adds a WTF-8 codepoint to the end of the buffer. |
+| [`ignore_escape`](#ignore_escape) | fn | Parses a JSON escape sequence and discards the value. |
+| [`decode_hex_val_slow`](#decode_hex_val_slow) | fn |  |
+| [`build_hex_table`](#build_hex_table) | fn |  |
+| [`decode_four_hex_digits`](#decode_four_hex_digits) | fn |  |
+
 ## Modules
 
 - [`private`](private/index.md) - 
@@ -40,7 +93,7 @@ JSON input source that reads from a std::io input stream.
 
 #### Implementations
 
-- `fn parse_str_bytes<'s, T, F>(self: &'s mut Self, scratch: &'s mut Vec<u8>, validate: bool, result: F) -> Result<T>` — [`Result`](../index.md)
+- <span id="ioread-new"></span>`fn new(reader: R) -> Self`
 
 #### Trait Implementations
 
@@ -67,15 +120,15 @@ JSON input source that reads from a slice of bytes.
 
 #### Implementations
 
-- `fn new(slice: &'a [u8]) -> Self`
+- <span id="sliceread-new"></span>`fn new(slice: &'a [u8]) -> Self`
 
-- `fn position_of_index(self: &Self, i: usize) -> Position` — [`Position`](#position)
+- <span id="sliceread-position-of-index"></span>`fn position_of_index(&self, i: usize) -> Position` — [`Position`](#position)
 
-- `fn skip_to_escape(self: &mut Self, forbid_control_characters: bool)`
+- <span id="sliceread-skip-to-escape"></span>`fn skip_to_escape(&mut self, forbid_control_characters: bool)`
 
-- `fn skip_to_escape_slow(self: &mut Self)`
+- <span id="sliceread-skip-to-escape-slow"></span>`fn skip_to_escape_slow(&mut self)`
 
-- `fn parse_str_bytes<'s, T, F>(self: &'s mut Self, scratch: &'s mut Vec<u8>, validate: bool, result: F) -> Result<Reference<'a, 's, T>>` — [`Result`](../index.md), [`Reference`](#reference)
+- <span id="sliceread-parse-str-bytes"></span>`fn parse_str_bytes<'s, T, F>(self: &'s mut Self, scratch: &'s mut Vec<u8>, validate: bool, result: F) -> Result<Reference<'a, 's, T>>` — [`Result`](../index.md), [`Reference`](#reference)
 
 #### Trait Implementations
 
@@ -97,7 +150,7 @@ JSON input source that reads from a UTF-8 string.
 
 #### Implementations
 
-- `fn new(s: &'a str) -> Self`
+- <span id="strread-new"></span>`fn new(s: &'a str) -> Self`
 
 #### Trait Implementations
 
@@ -124,13 +177,13 @@ where
 
 ##### `impl<'b, 'c, T> Deref for Reference<'b, 'c, T>`
 
-- `type Target = T`
+- <span id="reference-target"></span>`type Target = T`
 
-- `fn deref(self: &Self) -> &<Self as >::Target`
+- <span id="reference-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl<P, T> Receiver for Reference<'b, 'c, T>`
 
-- `type Target = T`
+- <span id="reference-target"></span>`type Target = T`
 
 ## Traits
 

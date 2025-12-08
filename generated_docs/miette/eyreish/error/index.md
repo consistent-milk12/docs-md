@@ -4,6 +4,49 @@
 
 # Module `error`
 
+## Contents
+
+- [Structs](#structs)
+  - [`ErrorVTable`](#errorvtable)
+  - [`ErrorImpl`](#errorimpl)
+  - [`ContextError`](#contexterror)
+- [Functions](#functions)
+  - [`object_drop`](#object_drop)
+  - [`object_drop_front`](#object_drop_front)
+  - [`object_ref`](#object_ref)
+  - [`object_ref_stderr`](#object_ref_stderr)
+  - [`object_boxed`](#object_boxed)
+  - [`object_boxed_stderr`](#object_boxed_stderr)
+  - [`object_downcast`](#object_downcast)
+  - [`context_downcast`](#context_downcast)
+  - [`context_drop_rest`](#context_drop_rest)
+  - [`context_chain_downcast`](#context_chain_downcast)
+  - [`context_chain_drop_rest`](#context_chain_drop_rest)
+  - [`vtable`](#vtable)
+- [Type Aliases](#type-aliases)
+  - [`ErasedErrorImpl`](#erasederrorimpl)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ErrorVTable`](#errorvtable) | struct |  |
+| [`ErrorImpl`](#errorimpl) | struct |  |
+| [`ContextError`](#contexterror) | struct |  |
+| [`object_drop`](#object_drop) | fn |  |
+| [`object_drop_front`](#object_drop_front) | fn |  |
+| [`object_ref`](#object_ref) | fn |  |
+| [`object_ref_stderr`](#object_ref_stderr) | fn |  |
+| [`object_boxed`](#object_boxed) | fn |  |
+| [`object_boxed_stderr`](#object_boxed_stderr) | fn |  |
+| [`object_downcast`](#object_downcast) | fn |  |
+| [`context_downcast`](#context_downcast) | fn |  |
+| [`context_drop_rest`](#context_drop_rest) | fn |  |
+| [`context_chain_downcast`](#context_chain_downcast) | fn |  |
+| [`context_chain_drop_rest`](#context_chain_drop_rest) | fn |  |
+| [`vtable`](#vtable) | fn |  |
+| [`ErasedErrorImpl`](#erasederrorimpl) | type |  |
+
 ## Structs
 
 ### `ErrorVTable`
@@ -36,23 +79,29 @@ struct ErrorImpl<E> {
 
 #### Implementations
 
-- `fn erase(self: &Self) -> Ref<'_, ErrorImpl<()>>` — [`Ref`](../ptr/index.md), [`ErrorImpl`](#errorimpl)
+- <span id="errorimpl-error"></span>`unsafe fn error<'a>(this: Ref<'a, Self>) -> &'a dyn StdError + Send + Sync` — [`Ref`](../ptr/index.md)
+
+- <span id="errorimpl-diagnostic"></span>`unsafe fn diagnostic<'a>(this: Ref<'a, Self>) -> &'a dyn Diagnostic + Send + Sync` — [`Ref`](../ptr/index.md), [`Diagnostic`](../../index.md)
+
+- <span id="errorimpl-diagnostic-mut"></span>`unsafe fn diagnostic_mut<'a>(this: Mut<'a, Self>) -> &'a mut dyn Diagnostic + Send + Sync` — [`Mut`](../ptr/index.md), [`Diagnostic`](../../index.md)
+
+- <span id="errorimpl-chain"></span>`unsafe fn chain(this: Ref<'_, Self>) -> Chain<'_>` — [`Ref`](../ptr/index.md), [`Chain`](../../chain/index.md)
 
 #### Trait Implementations
 
 ##### `impl<E> Debug for ErrorImpl<E>`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="errorimpl-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E> Display for ErrorImpl<E>`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="errorimpl-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<D> OwoColorize for ErrorImpl<E>`
 
 ##### `impl<T> ToString for ErrorImpl<E>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="errorimpl-to-string"></span>`fn to_string(&self) -> String`
 
 ### `ContextError<D, E>`
 
@@ -67,41 +116,41 @@ struct ContextError<D, E> {
 
 ##### `impl<D, E> Debug for super::error::ContextError<D, E>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="supererrorcontexterror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E> Diag for ContextError<D, E>`
 
-- `fn ext_report<D>(self: Self, msg: D) -> Report` — [`Report`](../../index.md)
+- <span id="contexterror-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../../index.md)
 
 ##### `impl<D> Diagnostic for super::error::ContextError<D, super::Report>`
 
-- `fn code<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
+- <span id="supererrorcontexterror-code"></span>`fn code<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
-- `fn severity(self: &Self) -> Option<crate::Severity>` — [`Severity`](../../index.md)
+- <span id="supererrorcontexterror-severity"></span>`fn severity(&self) -> Option<crate::Severity>` — [`Severity`](../../index.md)
 
-- `fn help<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
+- <span id="supererrorcontexterror-help"></span>`fn help<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
-- `fn url<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
+- <span id="supererrorcontexterror-url"></span>`fn url<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
-- `fn labels<'a>(self: &'a Self) -> Option<Box<dyn Iterator<Item = LabeledSpan>>>` — [`LabeledSpan`](../../index.md)
+- <span id="supererrorcontexterror-labels"></span>`fn labels<'a>(self: &'a Self) -> Option<Box<dyn Iterator<Item = LabeledSpan>>>` — [`LabeledSpan`](../../index.md)
 
-- `fn source_code(self: &Self) -> Option<&dyn crate::SourceCode>` — [`SourceCode`](../../index.md)
+- <span id="supererrorcontexterror-source-code"></span>`fn source_code(&self) -> Option<&dyn crate::SourceCode>` — [`SourceCode`](../../index.md)
 
-- `fn related<'a>(self: &'a Self) -> Option<Box<dyn Iterator<Item = &'a dyn Diagnostic>>>` — [`Diagnostic`](../../index.md)
+- <span id="supererrorcontexterror-related"></span>`fn related<'a>(self: &'a Self) -> Option<Box<dyn Iterator<Item = &'a dyn Diagnostic>>>` — [`Diagnostic`](../../index.md)
 
 ##### `impl<D, E> Display for super::error::ContextError<D, E>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="supererrorcontexterror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<D, E> Error for super::error::ContextError<D, E>`
+##### `impl<D> Error for super::error::ContextError<D, super::Report>`
 
-- `fn source(self: &Self) -> Option<&dyn StdError>`
+- <span id="supererrorcontexterror-source"></span>`fn source(&self) -> Option<&dyn StdError>`
 
 ##### `impl<D> OwoColorize for ContextError<D, E>`
 
 ##### `impl<T> ToString for ContextError<D, E>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="contexterror-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl<E> TraitKind for ContextError<D, E>`
 

@@ -4,6 +4,12 @@
 
 # Module `bigint`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`BigInt`](#bigint) | struct |  |
+
 ## Structs
 
 ### `BigInt`
@@ -16,19 +22,19 @@ struct BigInt {
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="bigint-new"></span>`fn new() -> Self`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="bigint-to-string"></span>`fn to_string(&self) -> String`
 
-- `fn reserve_two_digits(self: &mut Self)`
+- <span id="bigint-reserve-two-digits"></span>`fn reserve_two_digits(&mut self)`
 
 #### Trait Implementations
 
 ##### `impl AddAssign for BigInt`
 
-- `fn add_assign(self: &mut Self, increment: u8)`
+- <span id="bigint-add-assign"></span>`fn add_assign(&mut self, increment: u8)`
 
 ##### `impl MulAssign for BigInt`
 
-- `fn mul_assign(self: &mut Self, base: u8)`
+- <span id="bigint-mul-assign"></span>`fn mul_assign(&mut self, base: u8)`
 

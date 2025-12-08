@@ -4,6 +4,41 @@
 
 # Module `search`
 
+## Contents
+
+- [Functions](#functions)
+  - [`find_fwd`](#find_fwd)
+  - [`find_fwd_imp`](#find_fwd_imp)
+  - [`find_rev`](#find_rev)
+  - [`find_rev_imp`](#find_rev_imp)
+  - [`find_overlapping_fwd`](#find_overlapping_fwd)
+  - [`find_overlapping_fwd_imp`](#find_overlapping_fwd_imp)
+  - [`find_overlapping_rev`](#find_overlapping_rev)
+  - [`init_fwd`](#init_fwd)
+  - [`init_rev`](#init_rev)
+  - [`eoi_fwd`](#eoi_fwd)
+  - [`eoi_rev`](#eoi_rev)
+  - [`prefilter_restart`](#prefilter_restart)
+  - [`gave_up`](#gave_up)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`find_fwd`](#find_fwd) | fn |  |
+| [`find_fwd_imp`](#find_fwd_imp) | fn |  |
+| [`find_rev`](#find_rev) | fn |  |
+| [`find_rev_imp`](#find_rev_imp) | fn |  |
+| [`find_overlapping_fwd`](#find_overlapping_fwd) | fn |  |
+| [`find_overlapping_fwd_imp`](#find_overlapping_fwd_imp) | fn |  |
+| [`find_overlapping_rev`](#find_overlapping_rev) | fn |  |
+| [`init_fwd`](#init_fwd) | fn |  |
+| [`init_rev`](#init_rev) | fn |  |
+| [`eoi_fwd`](#eoi_fwd) | fn |  |
+| [`eoi_rev`](#eoi_rev) | fn |  |
+| [`prefilter_restart`](#prefilter_restart) | fn | Re-compute the starting state that a DFA should be in after finding a |
+| [`gave_up`](#gave_up) | fn | A convenience routine for constructing a "gave up" match error. |
+
 ## Functions
 
 ### `find_fwd`

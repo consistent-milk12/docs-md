@@ -10,6 +10,13 @@ To wrap text into lines, long words sometimes need to be split
 across lines. The [`WordSplitter`](../index.md) enum defines this
 functionality.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`WordSplitter`](#wordsplitter) | enum | The `WordSplitter` enum describes where words can be split. |
+| [`split_words`](#split_words) | fn | Split words into smaller words according to the split points given |
+
 ## Enums
 
 ### `WordSplitter`
@@ -107,21 +114,21 @@ details.
 
 #### Implementations
 
-- `fn split_points(self: &Self, word: &str) -> Vec<usize>`
+- <span id="wordsplitter-split-points"></span>`fn split_points(&self, word: &str) -> Vec<usize>`
 
 #### Trait Implementations
 
 ##### `impl Clone for WordSplitter`
 
-- `fn clone(self: &Self) -> WordSplitter` — [`WordSplitter`](../index.md)
+- <span id="wordsplitter-clone"></span>`fn clone(&self) -> WordSplitter` — [`WordSplitter`](../index.md)
 
 ##### `impl Debug for WordSplitter`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="wordsplitter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl PartialEq for WordSplitter`
 
-- `fn eq(self: &Self, other: &WordSplitter) -> bool` — [`WordSplitter`](../index.md)
+- <span id="wordsplitter-eq"></span>`fn eq(&self, other: &WordSplitter) -> bool` — [`WordSplitter`](../index.md)
 
 ## Functions
 

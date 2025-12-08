@@ -16,15 +16,18 @@ use tracing::{debug, info, info_span, instrument};
 
 use crate::Args;
 use crate::error::Error;
+use crate::generator::config::RenderConfig;
 use crate::generator::breadcrumbs::BreadcrumbGenerator;
 use crate::generator::impls::is_blanket_impl;
+use crate::generator::quick_ref::{QuickRefEntry, QuickRefGenerator, extract_summary};
+use crate::generator::toc::{TocEntry, TocGenerator};
 use crate::generator::render_shared::{
     append_docs, impl_sort_key, render_constant_definition, render_enum_definition,
     render_enum_variants_docs, render_function_definition, render_impl_items, render_macro_heading,
     render_struct_definition, render_struct_fields, render_trait_definition, render_trait_item,
     render_type_alias_definition,
 };
-use crate::generator::{ItemFilter, LinkResolver};
+use crate::generator::{ItemAccess, ItemFilter, LinkResolver};
 use crate::multi_crate::context::SingleCrateView;
 use crate::multi_crate::search::SearchIndexGenerator;
 use crate::multi_crate::summary::SummaryGenerator;
@@ -65,9 +68,10 @@ impl<'a> MultiCrateGenerator<'a> {
     ///
     /// * `crates` - Collection of parsed crates
     /// * `args` - CLI arguments
+    /// * `config` - Rendering configuration options
     #[must_use]
-    pub fn new(crates: &'a CrateCollection, args: &'a Args) -> Self {
-        let ctx = MultiCrateContext::new(crates, args);
+    pub fn new(crates: &'a CrateCollection, args: &'a Args, config: RenderConfig) -> Self {
+        let ctx = MultiCrateContext::new(crates, args, config);
         Self { ctx, args }
     }
 
@@ -600,6 +604,27 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             return;
         }
 
+        // === Table of Contents (if above threshold) ===
+        let config = self.view.render_config();
+        let toc_gen = TocGenerator::new(config.toc_threshold);
+        let toc_entries = self.build_toc_entries(
+            &modules, &structs, &enums, &traits, &functions, &types, &constants, &macros,
+        );
+        if let Some(toc) = toc_gen.generate(&toc_entries) {
+            md.push_str(&toc);
+        }
+
+        // === Quick Reference (if enabled) ===
+        if config.quick_reference {
+            let quick_ref_entries = self.build_quick_ref_entries(
+                &modules, &structs, &enums, &traits, &functions, &types, &constants, &macros,
+            );
+            if !quick_ref_entries.is_empty() {
+                let quick_ref_gen = QuickRefGenerator::new();
+                md.push_str(&quick_ref_gen.generate(&quick_ref_entries));
+            }
+        }
+
         // Render sections with full detail
         Self::render_modules_section(md, &modules);
         self.render_structs_section(md, &structs);
@@ -732,6 +757,199 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             let summary = docs.lines().next().unwrap_or("").to_string();
             (name, summary)
         }
+    }
+
+    /// Build TOC entries from categorized module items.
+    #[expect(clippy::too_many_arguments, reason = "Matches categorization structure")]
+    fn build_toc_entries(
+        &self,
+        modules: &[&Item],
+        structs: &[(&Id, &Item)],
+        enums: &[(&Id, &Item)],
+        traits: &[&Item],
+        functions: &[&Item],
+        types: &[&Item],
+        constants: &[&Item],
+        macros: &[&Item],
+    ) -> Vec<TocEntry> {
+        let mut entries = Vec::new();
+
+        // Modules section
+        if !modules.is_empty() {
+            let children: Vec<TocEntry> = modules
+                .iter()
+                .map(|item| {
+                    let name = item.name.as_deref().unwrap_or("unnamed");
+                    TocEntry::new(format!("`{name}`"), name.to_lowercase())
+                })
+                .collect();
+            entries.push(TocEntry::with_children("Modules", "modules", children));
+        }
+
+        // Structs section
+        if !structs.is_empty() {
+            let children: Vec<TocEntry> = structs
+                .iter()
+                .map(|(_, item)| {
+                    let name = item.name.as_deref().unwrap_or("unnamed");
+                    TocEntry::new(format!("`{name}`"), name.to_lowercase())
+                })
+                .collect();
+            entries.push(TocEntry::with_children("Structs", "structs", children));
+        }
+
+        // Enums section
+        if !enums.is_empty() {
+            let children: Vec<TocEntry> = enums
+                .iter()
+                .map(|(_, item)| {
+                    let name = item.name.as_deref().unwrap_or("unnamed");
+                    TocEntry::new(format!("`{name}`"), name.to_lowercase())
+                })
+                .collect();
+            entries.push(TocEntry::with_children("Enums", "enums", children));
+        }
+
+        // Traits section
+        if !traits.is_empty() {
+            let children: Vec<TocEntry> = traits
+                .iter()
+                .map(|item| {
+                    let name = item.name.as_deref().unwrap_or("unnamed");
+                    TocEntry::new(format!("`{name}`"), name.to_lowercase())
+                })
+                .collect();
+            entries.push(TocEntry::with_children("Traits", "traits", children));
+        }
+
+        // Functions section
+        if !functions.is_empty() {
+            let children: Vec<TocEntry> = functions
+                .iter()
+                .map(|item| {
+                    let name = item.name.as_deref().unwrap_or("unnamed");
+                    TocEntry::new(format!("`{name}`"), name.to_lowercase())
+                })
+                .collect();
+            entries.push(TocEntry::with_children("Functions", "functions", children));
+        }
+
+        // Type Aliases section
+        if !types.is_empty() {
+            let children: Vec<TocEntry> = types
+                .iter()
+                .map(|item| {
+                    let name = item.name.as_deref().unwrap_or("unnamed");
+                    TocEntry::new(format!("`{name}`"), name.to_lowercase())
+                })
+                .collect();
+            entries.push(TocEntry::with_children("Type Aliases", "type-aliases", children));
+        }
+
+        // Constants section
+        if !constants.is_empty() {
+            let children: Vec<TocEntry> = constants
+                .iter()
+                .map(|item| {
+                    let name = item.name.as_deref().unwrap_or("unnamed");
+                    TocEntry::new(format!("`{name}`"), name.to_lowercase())
+                })
+                .collect();
+            entries.push(TocEntry::with_children("Constants", "constants", children));
+        }
+
+        // Macros section
+        if !macros.is_empty() {
+            let children: Vec<TocEntry> = macros
+                .iter()
+                .map(|item| {
+                    let name = item.name.as_deref().unwrap_or("unnamed");
+                    TocEntry::new(format!("`{name}!`"), name.to_lowercase())
+                })
+                .collect();
+            entries.push(TocEntry::with_children("Macros", "macros", children));
+        }
+
+        entries
+    }
+
+    /// Build Quick Reference entries from categorized module items.
+    #[expect(clippy::too_many_arguments, reason = "Matches categorization structure")]
+    fn build_quick_ref_entries(
+        &self,
+        modules: &[&Item],
+        structs: &[(&Id, &Item)],
+        enums: &[(&Id, &Item)],
+        traits: &[&Item],
+        functions: &[&Item],
+        types: &[&Item],
+        constants: &[&Item],
+        macros: &[&Item],
+    ) -> Vec<QuickRefEntry> {
+        let mut entries = Vec::new();
+
+        // Modules
+        for item in modules {
+            let name = item.name.as_deref().unwrap_or("unnamed");
+            let summary = extract_summary(item.docs.as_deref());
+            entries.push(QuickRefEntry::new(name, "mod", name.to_lowercase(), summary));
+        }
+
+        // Structs
+        for (_, item) in structs {
+            let name = item.name.as_deref().unwrap_or("unnamed");
+            let summary = extract_summary(item.docs.as_deref());
+            entries.push(QuickRefEntry::new(name, "struct", name.to_lowercase(), summary));
+        }
+
+        // Enums
+        for (_, item) in enums {
+            let name = item.name.as_deref().unwrap_or("unnamed");
+            let summary = extract_summary(item.docs.as_deref());
+            entries.push(QuickRefEntry::new(name, "enum", name.to_lowercase(), summary));
+        }
+
+        // Traits
+        for item in traits {
+            let name = item.name.as_deref().unwrap_or("unnamed");
+            let summary = extract_summary(item.docs.as_deref());
+            entries.push(QuickRefEntry::new(name, "trait", name.to_lowercase(), summary));
+        }
+
+        // Functions
+        for item in functions {
+            let name = item.name.as_deref().unwrap_or("unnamed");
+            let summary = extract_summary(item.docs.as_deref());
+            entries.push(QuickRefEntry::new(name, "fn", name.to_lowercase(), summary));
+        }
+
+        // Type aliases
+        for item in types {
+            let name = item.name.as_deref().unwrap_or("unnamed");
+            let summary = extract_summary(item.docs.as_deref());
+            entries.push(QuickRefEntry::new(name, "type", name.to_lowercase(), summary));
+        }
+
+        // Constants
+        for item in constants {
+            let name = item.name.as_deref().unwrap_or("unnamed");
+            let summary = extract_summary(item.docs.as_deref());
+            entries.push(QuickRefEntry::new(name, "const", name.to_lowercase(), summary));
+        }
+
+        // Macros
+        for item in macros {
+            let name = item.name.as_deref().unwrap_or("unnamed");
+            let summary = extract_summary(item.docs.as_deref());
+            entries.push(QuickRefEntry::new(
+                format!("{name}!"),
+                "macro",
+                name.to_lowercase(),
+                summary,
+            ));
+        }
+
+        entries
     }
 
     /// Render a struct definition to markdown.
@@ -1095,6 +1313,9 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             _ = write!(md, "#### Implementations\n\n");
 
             for impl_block in inherent {
+                // Extract type name for method anchor generation
+                let type_name = type_renderer.render_type(&impl_block.for_);
+
                 render_impl_items(
                     md,
                     impl_block,
@@ -1104,6 +1325,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                     &Some(|id: rustdoc_types::Id| {
                         LinkResolver::create_link(self.view, id, self.file_path)
                     }),
+                    Some(type_name.as_ref()),
                 );
             }
         }
@@ -1113,6 +1335,9 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             _ = write!(md, "#### Trait Implementations\n\n");
 
             for impl_block in trait_impls {
+                // Extract type name for method anchor generation
+                let for_type = type_renderer.render_type(&impl_block.for_);
+
                 if let Some(trait_path) = &impl_block.trait_ {
                     // Build trait name with generic args
                     let trait_name = trait_path
@@ -1122,7 +1347,6 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                         .unwrap_or(&trait_path.path);
 
                     let generics = type_renderer.render_generics(&impl_block.generics.params);
-                    let for_type = type_renderer.render_type(&impl_block.for_);
 
                     // Include unsafe/negative markers like single-crate mode
                     let unsafe_str = if impl_block.is_unsafe { "unsafe " } else { "" };
@@ -1143,6 +1367,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                     &Some(|id: rustdoc_types::Id| {
                         LinkResolver::create_link(self.view, id, self.file_path)
                     }),
+                    Some(for_type.as_ref()),
                 );
             }
         }

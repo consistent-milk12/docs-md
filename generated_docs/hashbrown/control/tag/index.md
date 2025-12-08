@@ -4,6 +4,13 @@
 
 # Module `tag`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Tag`](#tag) | struct | Single tag in a control group. |
+| [`TagSliceExt`](#tagsliceext) | trait | Extension trait for slices of tags. |
+
 ## Structs
 
 ### `Tag`
@@ -16,39 +23,39 @@ Single tag in a control group.
 
 #### Implementations
 
-- `const EMPTY: Tag`
+- <span id="tag-empty"></span>`const EMPTY: Tag`
 
-- `const DELETED: Tag`
+- <span id="tag-deleted"></span>`const DELETED: Tag`
 
-- `const fn is_full(self: Self) -> bool`
+- <span id="tag-is-full"></span>`const fn is_full(self) -> bool`
 
-- `const fn is_special(self: Self) -> bool`
+- <span id="tag-is-special"></span>`const fn is_special(self) -> bool`
 
-- `const fn special_is_empty(self: Self) -> bool`
+- <span id="tag-special-is-empty"></span>`const fn special_is_empty(self) -> bool`
 
-- `const fn full(hash: u64) -> Tag` — [`Tag`](#tag)
+- <span id="tag-full"></span>`const fn full(hash: u64) -> Tag` — [`Tag`](#tag)
 
 #### Trait Implementations
 
 ##### `impl Clone for Tag`
 
-- `fn clone(self: &Self) -> Tag` — [`Tag`](#tag)
+- <span id="tag-clone"></span>`fn clone(&self) -> Tag` — [`Tag`](#tag)
 
 ##### `impl Copy for Tag`
 
 ##### `impl Debug for Tag`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="tag-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Tag`
 
 ##### `impl<Q, K> Equivalent for Tag`
 
-- `fn equivalent(self: &Self, key: &K) -> bool`
+- <span id="tag-equivalent"></span>`fn equivalent(&self, key: &K) -> bool`
 
 ##### `impl PartialEq for Tag`
 
-- `fn eq(self: &Self, other: &Tag) -> bool` — [`Tag`](#tag)
+- <span id="tag-eq"></span>`fn eq(&self, other: &Tag) -> bool` — [`Tag`](#tag)
 
 ##### `impl StructuralPartialEq for Tag`
 
@@ -64,11 +71,11 @@ Extension trait for slices of tags.
 
 #### Required Methods
 
-- `fn fill_tag(self: &mut Self, tag: Tag)`
+- `fn fill_tag(&mut self, tag: Tag)`
 
   Fills the control with the given tag.
 
-- `fn fill_empty(self: &mut Self)`
+- `fn fill_empty(&mut self)`
 
   Clears out the control.
 

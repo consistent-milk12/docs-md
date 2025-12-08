@@ -4,6 +4,49 @@
 
 # Module `value`
 
+## Contents
+
+- [Functions](#functions)
+  - [`byte`](#byte)
+  - [`next_chr`](#next_chr)
+  - [`parse_lit_str`](#parse_lit_str)
+  - [`parse_lit_str_cooked`](#parse_lit_str_cooked)
+  - [`parse_lit_str_raw`](#parse_lit_str_raw)
+  - [`parse_lit_byte_str`](#parse_lit_byte_str)
+  - [`parse_lit_byte_str_cooked`](#parse_lit_byte_str_cooked)
+  - [`parse_lit_byte_str_raw`](#parse_lit_byte_str_raw)
+  - [`parse_lit_c_str`](#parse_lit_c_str)
+  - [`parse_lit_c_str_cooked`](#parse_lit_c_str_cooked)
+  - [`parse_lit_c_str_raw`](#parse_lit_c_str_raw)
+  - [`parse_lit_byte`](#parse_lit_byte)
+  - [`parse_lit_char`](#parse_lit_char)
+  - [`backslash_x`](#backslash_x)
+  - [`backslash_u`](#backslash_u)
+  - [`parse_lit_int`](#parse_lit_int)
+  - [`parse_lit_float`](#parse_lit_float)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`byte`](#byte) | fn | Get the byte at offset idx, or a default of `b'\0'` if we're looking |
+| [`next_chr`](#next_chr) | fn |  |
+| [`parse_lit_str`](#parse_lit_str) | fn |  |
+| [`parse_lit_str_cooked`](#parse_lit_str_cooked) | fn |  |
+| [`parse_lit_str_raw`](#parse_lit_str_raw) | fn |  |
+| [`parse_lit_byte_str`](#parse_lit_byte_str) | fn |  |
+| [`parse_lit_byte_str_cooked`](#parse_lit_byte_str_cooked) | fn |  |
+| [`parse_lit_byte_str_raw`](#parse_lit_byte_str_raw) | fn |  |
+| [`parse_lit_c_str`](#parse_lit_c_str) | fn |  |
+| [`parse_lit_c_str_cooked`](#parse_lit_c_str_cooked) | fn |  |
+| [`parse_lit_c_str_raw`](#parse_lit_c_str_raw) | fn |  |
+| [`parse_lit_byte`](#parse_lit_byte) | fn |  |
+| [`parse_lit_char`](#parse_lit_char) | fn |  |
+| [`backslash_x`](#backslash_x) | fn |  |
+| [`backslash_u`](#backslash_u) | fn |  |
+| [`parse_lit_int`](#parse_lit_int) | fn |  |
+| [`parse_lit_float`](#parse_lit_float) | fn |  |
+
 ## Functions
 
 ### `byte`

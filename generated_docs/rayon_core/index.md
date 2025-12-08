@@ -54,6 +54,110 @@ restrictive tilde or inequality requirements for `rayon-core`.  The
 conflicting requirements will need to be resolved before the build will
 succeed.
 
+## Contents
+
+- [Modules](#modules)
+  - [`private`](#private)
+  - [`broadcast`](#broadcast)
+  - [`job`](#job)
+  - [`join`](#join)
+  - [`latch`](#latch)
+  - [`registry`](#registry)
+  - [`scope`](#scope)
+  - [`sleep`](#sleep)
+  - [`spawn`](#spawn)
+  - [`thread_pool`](#thread_pool)
+  - [`unwind`](#unwind)
+  - [`compile_fail`](#compile_fail)
+- [Structs](#structs)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`ThreadPoolBuildError`](#threadpoolbuilderror)
+  - [`ThreadPoolBuilder`](#threadpoolbuilder)
+  - [`Configuration`](#configuration)
+  - [`FnContext`](#fncontext)
+- [Enums](#enums)
+  - [`unnamed`](#unnamed)
+  - [`ErrorKind`](#errorkind)
+- [Functions](#functions)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`max_num_threads`](#max_num_threads)
+  - [`current_num_threads`](#current_num_threads)
+  - [`initialize`](#initialize)
+- [Type Aliases](#type-aliases)
+  - [`PanicHandler`](#panichandler)
+  - [`StartHandler`](#starthandler)
+  - [`ExitHandler`](#exithandler)
+- [Constants](#constants)
+  - [`GLOBAL_POOL_ALREADY_INITIALIZED`](#global_pool_already_initialized)
+  - [`CURRENT_THREAD_ALREADY_IN_POOL`](#current_thread_already_in_pool)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`private`](#private) | mod | The public parts of this private module are used to create traits |
+| [`broadcast`](#broadcast) | mod |  |
+| [`job`](#job) | mod |  |
+| [`join`](#join) | mod |  |
+| [`latch`](#latch) | mod |  |
+| [`registry`](#registry) | mod |  |
+| [`scope`](#scope) | mod | Methods for custom fork-join scopes, created by the [`scope()`] |
+| [`sleep`](#sleep) | mod | Code that decides when workers should go to sleep. |
+| [`spawn`](#spawn) | mod |  |
+| [`thread_pool`](#thread_pool) | mod | Contains support for user-managed thread pools, represented by the |
+| [`unwind`](#unwind) | mod | Package up unwind recovery. |
+| [`compile_fail`](#compile_fail) | mod |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`ThreadPoolBuildError`](#threadpoolbuilderror) | struct | Error when initializing a thread pool. |
+| [`ThreadPoolBuilder`](#threadpoolbuilder) | struct | Used to create a new [`ThreadPool`] or to configure the global rayon thread pool. |
+| [`Configuration`](#configuration) | struct | Contains the rayon thread pool configuration. |
+| [`FnContext`](#fncontext) | struct | Provides the calling context to a closure called by `join_context`. |
+| [`unnamed`](#unnamed) | enum |  |
+| [`ErrorKind`](#errorkind) | enum |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`max_num_threads`](#max_num_threads) | fn | Returns the maximum number of threads that Rayon supports in a single thread pool. |
+| [`current_num_threads`](#current_num_threads) | fn | Returns the number of threads in the current registry. |
+| [`initialize`](#initialize) | fn | Deprecated in favor of `ThreadPoolBuilder::build_global`. |
+| [`PanicHandler`](#panichandler) | type | The type for a panic-handling closure. |
+| [`StartHandler`](#starthandler) | type | The type for a closure that gets invoked when a thread starts. |
+| [`ExitHandler`](#exithandler) | type | The type for a closure that gets invoked when a thread exits. |
+| [`GLOBAL_POOL_ALREADY_INITIALIZED`](#global_pool_already_initialized) | const |  |
+| [`CURRENT_THREAD_ALREADY_IN_POOL`](#current_thread_already_in_pool) | const |  |
+
 ## Modules
 
 - [`private`](private/index.md) - The public parts of this private module are used to create traits
@@ -90,31 +194,31 @@ Provides context to a closure called by `broadcast`.
 
 #### Implementations
 
-- `fn with<R>(f: impl FnOnce(BroadcastContext<'_>) -> R) -> R` — [`BroadcastContext`](#broadcastcontext)
+- <span id="broadcastcontext-with"></span>`fn with<R>(f: impl FnOnce(BroadcastContext<'_>) -> R) -> R` — [`BroadcastContext`](#broadcastcontext)
 
-- `fn index(self: &Self) -> usize`
+- <span id="broadcastcontext-index"></span>`fn index(&self) -> usize`
 
-- `fn num_threads(self: &Self) -> usize`
+- <span id="broadcastcontext-num-threads"></span>`fn num_threads(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl<'a> Debug for BroadcastContext<'a>`
 
-- `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="broadcastcontext-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> Pointable for BroadcastContext<'a>`
 
-- `const ALIGN: usize`
+- <span id="broadcastcontext-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="broadcastcontext-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="broadcastcontext-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="broadcastcontext-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="broadcastcontext-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="broadcastcontext-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `ThreadBuilder`
 
@@ -133,33 +237,33 @@ Thread builder used for customization via `ThreadPoolBuilder::spawn_handler()`.
 
 #### Implementations
 
-- `fn index(self: &Self) -> usize`
+- <span id="threadbuilder-index"></span>`fn index(&self) -> usize`
 
-- `fn name(self: &Self) -> Option<&str>`
+- <span id="threadbuilder-name"></span>`fn name(&self) -> Option<&str>`
 
-- `fn stack_size(self: &Self) -> Option<usize>`
+- <span id="threadbuilder-stack-size"></span>`fn stack_size(&self) -> Option<usize>`
 
-- `fn run(self: Self)`
+- <span id="threadbuilder-run"></span>`fn run(self)`
 
 #### Trait Implementations
 
 ##### `impl Debug for ThreadBuilder`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="threadbuilder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> Pointable for ThreadBuilder`
 
-- `const ALIGN: usize`
+- <span id="threadbuilder-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="threadbuilder-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="threadbuilder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="threadbuilder-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="threadbuilder-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="threadbuilder-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `Scope<'scope>`
 
@@ -174,31 +278,31 @@ See [`scope()`](#scope) for more information.
 
 #### Implementations
 
-- `fn new(owner: Option<&WorkerThread>, registry: Option<&Arc<Registry>>) -> Self` — [`WorkerThread`](registry/index.md), [`Registry`](registry/index.md)
+- <span id="scope-new"></span>`fn new(owner: Option<&WorkerThread>, registry: Option<&Arc<Registry>>) -> Self` — [`WorkerThread`](registry/index.md), [`Registry`](registry/index.md)
 
-- `fn spawn<BODY>(self: &Self, body: BODY)`
+- <span id="scope-spawn"></span>`fn spawn<BODY>(&self, body: BODY)`
 
-- `fn spawn_broadcast<BODY>(self: &Self, body: BODY)`
+- <span id="scope-spawn-broadcast"></span>`fn spawn_broadcast<BODY>(&self, body: BODY)`
 
 #### Trait Implementations
 
 ##### `impl<'scope> Debug for Scope<'scope>`
 
-- `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="scope-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> Pointable for Scope<'scope>`
 
-- `const ALIGN: usize`
+- <span id="scope-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="scope-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="scope-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="scope-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="scope-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="scope-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `ScopeFifo<'scope>`
 
@@ -215,31 +319,31 @@ See [`scope_fifo()`](#scope-fifo) for more information.
 
 #### Implementations
 
-- `fn new(owner: Option<&WorkerThread>, registry: Option<&Arc<Registry>>) -> Self` — [`WorkerThread`](registry/index.md), [`Registry`](registry/index.md)
+- <span id="scopefifo-new"></span>`fn new(owner: Option<&WorkerThread>, registry: Option<&Arc<Registry>>) -> Self` — [`WorkerThread`](registry/index.md), [`Registry`](registry/index.md)
 
-- `fn spawn_fifo<BODY>(self: &Self, body: BODY)`
+- <span id="scopefifo-spawn-fifo"></span>`fn spawn_fifo<BODY>(&self, body: BODY)`
 
-- `fn spawn_broadcast<BODY>(self: &Self, body: BODY)`
+- <span id="scopefifo-spawn-broadcast"></span>`fn spawn_broadcast<BODY>(&self, body: BODY)`
 
 #### Trait Implementations
 
 ##### `impl<'scope> Debug for ScopeFifo<'scope>`
 
-- `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="scopefifo-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> Pointable for ScopeFifo<'scope>`
 
-- `const ALIGN: usize`
+- <span id="scopefifo-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="scopefifo-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="scopefifo-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="scopefifo-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="scopefifo-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="scopefifo-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `ThreadPool`
 
@@ -278,63 +382,63 @@ terminate.
 
 #### Implementations
 
-- `fn new(configuration: crate::Configuration) -> Result<ThreadPool, Box<dyn Error>>` — [`Configuration`](#configuration), [`ThreadPool`](#threadpool)
+- <span id="threadpool-new"></span>`fn new(configuration: crate::Configuration) -> Result<ThreadPool, Box<dyn Error>>` — [`Configuration`](#configuration), [`ThreadPool`](#threadpool)
 
-- `fn build<S>(builder: ThreadPoolBuilder<S>) -> Result<ThreadPool, ThreadPoolBuildError>` — [`ThreadPoolBuilder`](#threadpoolbuilder), [`ThreadPool`](#threadpool), [`ThreadPoolBuildError`](#threadpoolbuilderror)
+- <span id="threadpool-build"></span>`fn build<S>(builder: ThreadPoolBuilder<S>) -> Result<ThreadPool, ThreadPoolBuildError>` — [`ThreadPoolBuilder`](#threadpoolbuilder), [`ThreadPool`](#threadpool), [`ThreadPoolBuildError`](#threadpoolbuilderror)
 
-- `fn install<OP, R>(self: &Self, op: OP) -> R`
+- <span id="threadpool-install"></span>`fn install<OP, R>(&self, op: OP) -> R`
 
-- `fn broadcast<OP, R>(self: &Self, op: OP) -> Vec<R>`
+- <span id="threadpool-broadcast"></span>`fn broadcast<OP, R>(&self, op: OP) -> Vec<R>`
 
-- `fn current_num_threads(self: &Self) -> usize`
+- <span id="threadpool-current-num-threads"></span>`fn current_num_threads(&self) -> usize`
 
-- `fn current_thread_index(self: &Self) -> Option<usize>`
+- <span id="threadpool-current-thread-index"></span>`fn current_thread_index(&self) -> Option<usize>`
 
-- `fn current_thread_has_pending_tasks(self: &Self) -> Option<bool>`
+- <span id="threadpool-current-thread-has-pending-tasks"></span>`fn current_thread_has_pending_tasks(&self) -> Option<bool>`
 
-- `fn join<A, B, RA, RB>(self: &Self, oper_a: A, oper_b: B) -> (RA, RB)`
+- <span id="threadpool-join"></span>`fn join<A, B, RA, RB>(&self, oper_a: A, oper_b: B) -> (RA, RB)`
 
-- `fn scope<'scope, OP, R>(self: &Self, op: OP) -> R`
+- <span id="threadpool-scope"></span>`fn scope<'scope, OP, R>(&self, op: OP) -> R`
 
-- `fn scope_fifo<'scope, OP, R>(self: &Self, op: OP) -> R`
+- <span id="threadpool-scope-fifo"></span>`fn scope_fifo<'scope, OP, R>(&self, op: OP) -> R`
 
-- `fn in_place_scope<'scope, OP, R>(self: &Self, op: OP) -> R`
+- <span id="threadpool-in-place-scope"></span>`fn in_place_scope<'scope, OP, R>(&self, op: OP) -> R`
 
-- `fn in_place_scope_fifo<'scope, OP, R>(self: &Self, op: OP) -> R`
+- <span id="threadpool-in-place-scope-fifo"></span>`fn in_place_scope_fifo<'scope, OP, R>(&self, op: OP) -> R`
 
-- `fn spawn<OP>(self: &Self, op: OP)`
+- <span id="threadpool-spawn"></span>`fn spawn<OP>(&self, op: OP)`
 
-- `fn spawn_fifo<OP>(self: &Self, op: OP)`
+- <span id="threadpool-spawn-fifo"></span>`fn spawn_fifo<OP>(&self, op: OP)`
 
-- `fn spawn_broadcast<OP>(self: &Self, op: OP)`
+- <span id="threadpool-spawn-broadcast"></span>`fn spawn_broadcast<OP>(&self, op: OP)`
 
-- `fn yield_now(self: &Self) -> Option<Yield>` — [`Yield`](#yield)
+- <span id="threadpool-yield-now"></span>`fn yield_now(&self) -> Option<Yield>` — [`Yield`](#yield)
 
-- `fn yield_local(self: &Self) -> Option<Yield>` — [`Yield`](#yield)
+- <span id="threadpool-yield-local"></span>`fn yield_local(&self) -> Option<Yield>` — [`Yield`](#yield)
 
 #### Trait Implementations
 
 ##### `impl Debug for ThreadPool`
 
-- `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="threadpool-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Drop for ThreadPool`
 
-- `fn drop(self: &mut Self)`
+- <span id="threadpool-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<T> Pointable for ThreadPool`
 
-- `const ALIGN: usize`
+- <span id="threadpool-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="threadpool-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="threadpool-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="threadpool-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="threadpool-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="threadpool-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `ThreadPoolBuildError`
 
@@ -348,43 +452,43 @@ Error when initializing a thread pool.
 
 #### Implementations
 
-- `fn new(kind: ErrorKind) -> ThreadPoolBuildError` — [`ErrorKind`](#errorkind), [`ThreadPoolBuildError`](#threadpoolbuilderror)
+- <span id="threadpoolbuilderror-new"></span>`fn new(kind: ErrorKind) -> ThreadPoolBuildError` — [`ErrorKind`](#errorkind), [`ThreadPoolBuildError`](#threadpoolbuilderror)
 
-- `fn is_unsupported(self: &Self) -> bool`
+- <span id="threadpoolbuilderror-is-unsupported"></span>`fn is_unsupported(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Debug for ThreadPoolBuildError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="threadpoolbuilderror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for ThreadPoolBuildError`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="threadpoolbuilderror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Error for ThreadPoolBuildError`
 
-- `fn description(self: &Self) -> &str`
+- <span id="threadpoolbuilderror-description"></span>`fn description(&self) -> &str`
 
-- `fn source(self: &Self) -> Option<&dyn Error>`
+- <span id="threadpoolbuilderror-source"></span>`fn source(&self) -> Option<&dyn Error>`
 
 ##### `impl<T> Pointable for ThreadPoolBuildError`
 
-- `const ALIGN: usize`
+- <span id="threadpoolbuilderror-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="threadpoolbuilderror-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="threadpoolbuilderror-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="threadpoolbuilderror-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="threadpoolbuilderror-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="threadpoolbuilderror-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T> ToString for ThreadPoolBuildError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="threadpoolbuilderror-to-string"></span>`fn to_string(&self) -> String`
 
 ### `ThreadPoolBuilder<S>`
 
@@ -464,63 +568,33 @@ rayon::ThreadPoolBuilder::new().num_threads(22).build_global().unwrap();
 
 #### Implementations
 
-- `fn spawn_handler<F>(self: Self, spawn: F) -> ThreadPoolBuilder<CustomSpawn<F>>` — [`ThreadPoolBuilder`](#threadpoolbuilder), [`CustomSpawn`](registry/index.md)
+- <span id="threadpoolbuilder-build"></span>`fn build(self) -> Result<ThreadPool, ThreadPoolBuildError>` — [`ThreadPool`](#threadpool), [`ThreadPoolBuildError`](#threadpoolbuilderror)
 
-- `fn get_spawn_handler(self: &mut Self) -> &mut S`
-
-- `fn get_num_threads(self: &Self) -> usize`
-
-- `fn get_thread_name(self: &mut Self, index: usize) -> Option<String>`
-
-- `fn thread_name<F>(self: Self, closure: F) -> Self`
-
-- `fn num_threads(self: Self, num_threads: usize) -> Self`
-
-- `fn use_current_thread(self: Self) -> Self`
-
-- `fn take_panic_handler(self: &mut Self) -> Option<Box<dyn Fn(Box<dyn Any + Send>) + Send + Sync>>`
-
-- `fn panic_handler<H>(self: Self, panic_handler: H) -> Self`
-
-- `fn get_stack_size(self: &Self) -> Option<usize>`
-
-- `fn stack_size(self: Self, stack_size: usize) -> Self`
-
-- `fn breadth_first(self: Self) -> Self`
-
-- `fn get_breadth_first(self: &Self) -> bool`
-
-- `fn take_start_handler(self: &mut Self) -> Option<Box<dyn Fn(usize) + Send + Sync>>`
-
-- `fn start_handler<H>(self: Self, start_handler: H) -> Self`
-
-- `fn take_exit_handler(self: &mut Self) -> Option<Box<dyn Fn(usize) + Send + Sync>>`
-
-- `fn exit_handler<H>(self: Self, exit_handler: H) -> Self`
+- <span id="threadpoolbuilder-build-global"></span>`fn build_global(self) -> Result<(), ThreadPoolBuildError>` — [`ThreadPoolBuildError`](#threadpoolbuilderror)
 
 #### Trait Implementations
 
 ##### `impl<S> Debug for ThreadPoolBuilder<S>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="threadpoolbuilder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for ThreadPoolBuilder`
 
-- `fn default() -> Self`
+- <span id="threadpoolbuilder-default"></span>`fn default() -> Self`
 
 ##### `impl<T> Pointable for ThreadPoolBuilder<S>`
 
-- `const ALIGN: usize`
+- <span id="threadpoolbuilder-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="threadpoolbuilder-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="threadpoolbuilder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="threadpoolbuilder-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="threadpoolbuilder-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="threadpoolbuilder-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `Configuration`
 
@@ -534,49 +608,49 @@ Contains the rayon thread pool configuration. Use [`ThreadPoolBuilder`](#threadp
 
 #### Implementations
 
-- `fn new() -> Configuration` — [`Configuration`](#configuration)
+- <span id="configuration-new"></span>`fn new() -> Configuration` — [`Configuration`](#configuration)
 
-- `fn build(self: Self) -> Result<ThreadPool, Box<dyn Error>>` — [`ThreadPool`](#threadpool)
+- <span id="configuration-build"></span>`fn build(self) -> Result<ThreadPool, Box<dyn Error>>` — [`ThreadPool`](#threadpool)
 
-- `fn thread_name<F>(self: Self, closure: F) -> Self`
+- <span id="configuration-thread-name"></span>`fn thread_name<F>(self, closure: F) -> Self`
 
-- `fn num_threads(self: Self, num_threads: usize) -> Configuration` — [`Configuration`](#configuration)
+- <span id="configuration-num-threads"></span>`fn num_threads(self, num_threads: usize) -> Configuration` — [`Configuration`](#configuration)
 
-- `fn panic_handler<H>(self: Self, panic_handler: H) -> Configuration` — [`Configuration`](#configuration)
+- <span id="configuration-panic-handler"></span>`fn panic_handler<H>(self, panic_handler: H) -> Configuration` — [`Configuration`](#configuration)
 
-- `fn stack_size(self: Self, stack_size: usize) -> Self`
+- <span id="configuration-stack-size"></span>`fn stack_size(self, stack_size: usize) -> Self`
 
-- `fn breadth_first(self: Self) -> Self`
+- <span id="configuration-breadth-first"></span>`fn breadth_first(self) -> Self`
 
-- `fn start_handler<H>(self: Self, start_handler: H) -> Configuration` — [`Configuration`](#configuration)
+- <span id="configuration-start-handler"></span>`fn start_handler<H>(self, start_handler: H) -> Configuration` — [`Configuration`](#configuration)
 
-- `fn exit_handler<H>(self: Self, exit_handler: H) -> Configuration` — [`Configuration`](#configuration)
+- <span id="configuration-exit-handler"></span>`fn exit_handler<H>(self, exit_handler: H) -> Configuration` — [`Configuration`](#configuration)
 
-- `fn into_builder(self: Self) -> ThreadPoolBuilder` — [`ThreadPoolBuilder`](#threadpoolbuilder)
+- <span id="configuration-into-builder"></span>`fn into_builder(self) -> ThreadPoolBuilder` — [`ThreadPoolBuilder`](#threadpoolbuilder)
 
 #### Trait Implementations
 
 ##### `impl Debug for Configuration`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="configuration-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Configuration`
 
-- `fn default() -> Configuration` — [`Configuration`](#configuration)
+- <span id="configuration-default"></span>`fn default() -> Configuration` — [`Configuration`](#configuration)
 
 ##### `impl<T> Pointable for Configuration`
 
-- `const ALIGN: usize`
+- <span id="configuration-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="configuration-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="configuration-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="configuration-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="configuration-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="configuration-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `FnContext`
 
@@ -597,27 +671,27 @@ Provides the calling context to a closure called by `join_context`.
 
 #### Implementations
 
-- `fn migrated(self: &Self) -> bool`
+- <span id="fncontext-new"></span>`fn new(migrated: bool) -> Self`
 
 #### Trait Implementations
 
 ##### `impl Debug for FnContext`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="fncontext-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> Pointable for FnContext`
 
-- `const ALIGN: usize`
+- <span id="fncontext-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="fncontext-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="fncontext-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="fncontext-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="fncontext-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="fncontext-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ## Enums
 
@@ -646,33 +720,33 @@ Result of [`yield_now()`](#yield-now) or [`yield_local()`](#yield-local).
 
 ##### `impl Clone for Yield`
 
-- `fn clone(self: &Self) -> Yield` — [`Yield`](#yield)
+- <span id="yield-clone"></span>`fn clone(&self) -> Yield` — [`Yield`](#yield)
 
 ##### `impl Copy for Yield`
 
 ##### `impl Debug for Yield`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="yield-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Yield`
 
 ##### `impl PartialEq for Yield`
 
-- `fn eq(self: &Self, other: &Yield) -> bool` — [`Yield`](#yield)
+- <span id="yield-eq"></span>`fn eq(&self, other: &Yield) -> bool` — [`Yield`](#yield)
 
 ##### `impl<T> Pointable for Yield`
 
-- `const ALIGN: usize`
+- <span id="yield-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="yield-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="yield-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="yield-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="yield-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="yield-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl StructuralPartialEq for Yield`
 
@@ -690,21 +764,21 @@ enum ErrorKind {
 
 ##### `impl Debug for ErrorKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="errorkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> Pointable for ErrorKind`
 
-- `const ALIGN: usize`
+- <span id="errorkind-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="errorkind-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="errorkind-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="errorkind-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="errorkind-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="errorkind-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ## Functions
 

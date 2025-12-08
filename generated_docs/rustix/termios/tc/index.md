@@ -4,6 +4,40 @@
 
 # Module `tc`
 
+## Contents
+
+- [Structs](#structs)
+  - [`unnamed`](#unnamed)
+- [Functions](#functions)
+  - [`tcgetattr`](#tcgetattr)
+  - [`tcgetwinsize`](#tcgetwinsize)
+  - [`tcgetpgrp`](#tcgetpgrp)
+  - [`tcsetpgrp`](#tcsetpgrp)
+  - [`tcsetattr`](#tcsetattr)
+  - [`tcsendbreak`](#tcsendbreak)
+  - [`tcdrain`](#tcdrain)
+  - [`tcflush`](#tcflush)
+  - [`tcflow`](#tcflow)
+  - [`tcgetsid`](#tcgetsid)
+  - [`tcsetwinsize`](#tcsetwinsize)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`unnamed`](#unnamed) | struct |  |
+| [`tcgetattr`](#tcgetattr) | fn | `tcgetattr(fd)`—Get terminal attributes. |
+| [`tcgetwinsize`](#tcgetwinsize) | fn | `tcgetwinsize(fd)`—Get the current terminal window size. |
+| [`tcgetpgrp`](#tcgetpgrp) | fn | `tcgetpgrp(fd)`—Get the terminal foreground process group. |
+| [`tcsetpgrp`](#tcsetpgrp) | fn | `tcsetpgrp(fd, pid)`—Set the terminal foreground process group. |
+| [`tcsetattr`](#tcsetattr) | fn | `tcsetattr(fd)`—Set terminal attributes. |
+| [`tcsendbreak`](#tcsendbreak) | fn | `tcsendbreak(fd, 0)`—Transmit zero-valued bits. |
+| [`tcdrain`](#tcdrain) | fn | `tcdrain(fd, duration)`—Wait until all pending output has been written. |
+| [`tcflush`](#tcflush) | fn | `tcflush(fd, queue_selector)`—Wait until all pending output has been |
+| [`tcflow`](#tcflow) | fn | `tcflow(fd, action)`—Suspend or resume transmission or reception. |
+| [`tcgetsid`](#tcgetsid) | fn | `tcgetsid(fd)`—Return the session ID of the current session with `fd` as |
+| [`tcsetwinsize`](#tcsetwinsize) | fn | `tcsetwinsize(fd)`—Set the current terminal window size. |
+
 ## Structs
 
 ### `Pid`
@@ -22,77 +56,77 @@ On Linux, `Pid` values are also used to identify threads.
 
 #### Implementations
 
-- `const INIT: Self`
+- <span id="pid-init"></span>`const INIT: Self`
 
-- `const fn from_raw(raw: i32) -> Option<Self>`
+- <span id="pid-from-raw"></span>`const fn from_raw(raw: i32) -> Option<Self>`
 
-- `const unsafe fn from_raw_unchecked(raw: i32) -> Self`
+- <span id="pid-from-raw-unchecked"></span>`const unsafe fn from_raw_unchecked(raw: i32) -> Self`
 
-- `fn from_child(child: &std::process::Child) -> Self`
+- <span id="pid-from-child"></span>`fn from_child(child: &std::process::Child) -> Self`
 
-- `const fn as_raw_nonzero(self: Self) -> NonZeroI32`
+- <span id="pid-as-raw-nonzero"></span>`const fn as_raw_nonzero(self) -> NonZeroI32`
 
-- `const fn as_raw_pid(self: Self) -> i32`
+- <span id="pid-as-raw-pid"></span>`const fn as_raw_pid(self) -> i32`
 
-- `const fn as_raw(pid: Option<Self>) -> i32`
+- <span id="pid-as-raw"></span>`const fn as_raw(pid: Option<Self>) -> i32`
 
-- `const fn is_init(self: Self) -> bool`
+- <span id="pid-is-init"></span>`const fn is_init(self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Binary for Pid`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Clone for Pid`
 
-- `fn clone(self: &Self) -> Pid` — [`Pid`](../../pid/index.md)
+- <span id="pid-clone"></span>`fn clone(&self) -> Pid` — [`Pid`](../../pid/index.md)
 
 ##### `impl Copy for Pid`
 
 ##### `impl Debug for Pid`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Pid`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Pid`
 
 ##### `impl Hash for Pid`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="pid-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl LowerExp for Pid`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl LowerHex for Pid`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Octal for Pid`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl PartialEq for Pid`
 
-- `fn eq(self: &Self, other: &Pid) -> bool` — [`Pid`](../../pid/index.md)
+- <span id="pid-eq"></span>`fn eq(&self, other: &Pid) -> bool` — [`Pid`](../../pid/index.md)
 
 ##### `impl StructuralPartialEq for Pid`
 
 ##### `impl<T> ToString for Pid`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="pid-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl UpperExp for Pid`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl UpperHex for Pid`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Functions
 

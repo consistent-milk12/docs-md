@@ -37,6 +37,12 @@ When the `simd-json` feature is enabled, parsing uses SIMD-accelerated
 JSON parsing which is significantly faster for large rustdoc JSON files
 (10-50MB+). This requires AVX2/SSE4.2 on x86 platforms.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Parser`](#parser) | struct | Parser for rustdoc JSON files. |
+
 ## Structs
 
 ### `Parser`
@@ -52,11 +58,11 @@ into the `rustdoc_types::Crate` structure.
 
 #### Implementations
 
-- `fn parse_json(json: &str) -> Result<Crate, Error>` — [`Error`](../error/index.md)
+- <span id="parser-parse-json"></span>`fn parse_json(json: &str) -> Result<Crate, Error>` — [`Error`](../error/index.md)
 
-- `fn parse_file(path: impl AsRef<std::path::Path>) -> Result<Crate, Error>` — [`Error`](../error/index.md)
+- <span id="parser-parse-file"></span>`fn parse_file(path: impl AsRef<std::path::Path>) -> Result<Crate, Error>` — [`Error`](../error/index.md)
 
-- `fn parse_json_string(content: &str) -> Result<Crate, Error>` — [`Error`](../error/index.md)
+- <span id="parser-parse-json-string"></span>`fn parse_json_string(content: &str) -> Result<Crate, Error>` — [`Error`](../error/index.md)
 
 #### Trait Implementations
 
@@ -68,17 +74,17 @@ into the `rustdoc_types::Crate` structure.
 
 ##### `impl<T> Pointable for Parser`
 
-- `const ALIGN: usize`
+- <span id="parser-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="parser-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="parser-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="parser-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="parser-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="parser-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T> WithSubscriber for Parser`
 

@@ -26,6 +26,43 @@ fn main() -> Result<(), Box<dyn Error>> {
 }
 ```
 
+## Contents
+
+- [Structs](#structs)
+  - [`ArchiveFile`](#archivefile)
+  - [`ArchiveMemberIterator`](#archivememberiterator)
+  - [`ArchiveMember`](#archivemember)
+  - [`ArchiveOffset`](#archiveoffset)
+  - [`ArchiveSymbolIterator`](#archivesymboliterator)
+  - [`ArchiveSymbol`](#archivesymbol)
+- [Enums](#enums)
+  - [`ArchiveKind`](#archivekind)
+  - [`Members`](#members)
+  - [`MemberHeader`](#memberheader)
+  - [`SymbolIteratorInternal`](#symboliteratorinternal)
+- [Functions](#functions)
+  - [`parse_u64_digits`](#parse_u64_digits)
+  - [`parse_sysv_extended_name`](#parse_sysv_extended_name)
+  - [`parse_bsd_extended_name`](#parse_bsd_extended_name)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ArchiveFile`](#archivefile) | struct | A partially parsed archive file. |
+| [`ArchiveMemberIterator`](#archivememberiterator) | struct | An iterator over the members of an archive. |
+| [`ArchiveMember`](#archivemember) | struct | A partially parsed archive member. |
+| [`ArchiveOffset`](#archiveoffset) | struct | An offset of a member in an archive. |
+| [`ArchiveSymbolIterator`](#archivesymboliterator) | struct | An iterator over the symbols in the archive symbol table. |
+| [`ArchiveSymbol`](#archivesymbol) | struct | A symbol in the archive symbol table. |
+| [`ArchiveKind`](#archivekind) | enum | The kind of archive format. |
+| [`Members`](#members) | enum | The list of members in the archive. |
+| [`MemberHeader`](#memberheader) | enum | An archive member header. |
+| [`SymbolIteratorInternal`](#symboliteratorinternal) | enum |  |
+| [`parse_u64_digits`](#parse_u64_digits) | fn |  |
+| [`parse_sysv_extended_name`](#parse_sysv_extended_name) | fn | Digits are a decimal offset into the extended name table. |
+| [`parse_bsd_extended_name`](#parse_bsd_extended_name) | fn | Digits are a decimal length of the extended name, which is contained |
+
 ## Structs
 
 ### `ArchiveFile<'data, R: ReadRef<'data>>`
@@ -45,31 +82,31 @@ A partially parsed archive file.
 
 #### Implementations
 
-- `fn parse(data: R) -> read::Result<Self>` — [`Result`](../../index.md)
+- <span id="archivefile-parse"></span>`fn parse(data: R) -> read::Result<Self>` — [`Result`](../../index.md)
 
-- `fn parse_aixbig(data: R) -> read::Result<Self>` — [`Result`](../../index.md)
+- <span id="archivefile-parse-aixbig"></span>`fn parse_aixbig(data: R) -> read::Result<Self>` — [`Result`](../../index.md)
 
-- `fn kind(self: &Self) -> ArchiveKind` — [`ArchiveKind`](#archivekind)
+- <span id="archivefile-kind"></span>`fn kind(&self) -> ArchiveKind` — [`ArchiveKind`](#archivekind)
 
-- `fn is_thin(self: &Self) -> bool`
+- <span id="archivefile-is-thin"></span>`fn is_thin(&self) -> bool`
 
-- `fn members(self: &Self) -> ArchiveMemberIterator<'data, R>` — [`ArchiveMemberIterator`](#archivememberiterator)
+- <span id="archivefile-members"></span>`fn members(&self) -> ArchiveMemberIterator<'data, R>` — [`ArchiveMemberIterator`](#archivememberiterator)
 
-- `fn member(self: &Self, member: ArchiveOffset) -> read::Result<ArchiveMember<'data>>` — [`ArchiveOffset`](#archiveoffset), [`Result`](../../index.md), [`ArchiveMember`](#archivemember)
+- <span id="archivefile-member"></span>`fn member(&self, member: ArchiveOffset) -> read::Result<ArchiveMember<'data>>` — [`ArchiveOffset`](#archiveoffset), [`Result`](../../index.md), [`ArchiveMember`](#archivemember)
 
-- `fn symbols(self: &Self) -> read::Result<Option<ArchiveSymbolIterator<'data>>>` — [`Result`](../../index.md), [`ArchiveSymbolIterator`](#archivesymboliterator)
+- <span id="archivefile-symbols"></span>`fn symbols(&self) -> read::Result<Option<ArchiveSymbolIterator<'data>>>` — [`Result`](../../index.md), [`ArchiveSymbolIterator`](#archivesymboliterator)
 
 #### Trait Implementations
 
-##### `impl<'data, R: $crate::clone::Clone + ReadRef<'data>> Clone for ArchiveFile<'data, R>`
+##### `impl<'data, R: clone::Clone + ReadRef<'data>> Clone for ArchiveFile<'data, R>`
 
-- `fn clone(self: &Self) -> ArchiveFile<'data, R>` — [`ArchiveFile`](#archivefile)
+- <span id="archivefile-clone"></span>`fn clone(&self) -> ArchiveFile<'data, R>` — [`ArchiveFile`](#archivefile)
 
-##### `impl<'data, R: $crate::marker::Copy + ReadRef<'data>> Copy for ArchiveFile<'data, R>`
+##### `impl<'data, R: marker::Copy + ReadRef<'data>> Copy for ArchiveFile<'data, R>`
 
-##### `impl<'data, R: $crate::fmt::Debug + ReadRef<'data>> Debug for ArchiveFile<'data, R>`
+##### `impl<'data, R: fmt::Debug + ReadRef<'data>> Debug for ArchiveFile<'data, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="archivefile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ArchiveMemberIterator<'data, R: ReadRef<'data>>`
 
@@ -86,23 +123,23 @@ An iterator over the members of an archive.
 
 #### Trait Implementations
 
-##### `impl<'data, R: $crate::fmt::Debug + ReadRef<'data>> Debug for ArchiveMemberIterator<'data, R>`
+##### `impl<'data, R: fmt::Debug + ReadRef<'data>> Debug for ArchiveMemberIterator<'data, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="archivememberiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for ArchiveMemberIterator<'data, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="archivememberiterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="archivememberiterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="archivememberiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, R: ReadRef<'data>> Iterator for ArchiveMemberIterator<'data, R>`
 
-- `type Item = Result<ArchiveMember<'data>, Error>`
+- <span id="archivememberiterator-item"></span>`type Item = Result<ArchiveMember<'data>, Error>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="archivememberiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `ArchiveMember<'data>`
 
@@ -119,39 +156,39 @@ A partially parsed archive member.
 
 #### Implementations
 
-- `fn parse<R: ReadRef<'data>>(data: R, offset: &mut u64, names: &'data [u8], thin: bool) -> read::Result<Self>` — [`Result`](../../index.md)
+- <span id="archivemember-parse"></span>`fn parse<R: ReadRef<'data>>(data: R, offset: &mut u64, names: &'data [u8], thin: bool) -> read::Result<Self>` — [`Result`](../../index.md)
 
-- `fn parse_aixbig_index<R: ReadRef<'data>>(data: R, index: &archive::AixMemberOffset) -> read::Result<Self>` — [`AixMemberOffset`](../../archive/index.md), [`Result`](../../index.md)
+- <span id="archivemember-parse-aixbig-index"></span>`fn parse_aixbig_index<R: ReadRef<'data>>(data: R, index: &archive::AixMemberOffset) -> read::Result<Self>` — [`AixMemberOffset`](../../archive/index.md), [`Result`](../../index.md)
 
-- `fn parse_aixbig<R: ReadRef<'data>>(data: R, offset: u64) -> read::Result<Self>` — [`Result`](../../index.md)
+- <span id="archivemember-parse-aixbig"></span>`fn parse_aixbig<R: ReadRef<'data>>(data: R, offset: u64) -> read::Result<Self>` — [`Result`](../../index.md)
 
-- `fn header(self: &Self) -> Option<&'data archive::Header>` — [`Header`](../../archive/index.md)
+- <span id="archivemember-header"></span>`fn header(&self) -> Option<&'data archive::Header>` — [`Header`](../../archive/index.md)
 
-- `fn aix_header(self: &Self) -> Option<&'data archive::AixHeader>` — [`AixHeader`](../../archive/index.md)
+- <span id="archivemember-aix-header"></span>`fn aix_header(&self) -> Option<&'data archive::AixHeader>` — [`AixHeader`](../../archive/index.md)
 
-- `fn name(self: &Self) -> &'data [u8]`
+- <span id="archivemember-name"></span>`fn name(&self) -> &'data [u8]`
 
-- `fn date(self: &Self) -> Option<u64>`
+- <span id="archivemember-date"></span>`fn date(&self) -> Option<u64>`
 
-- `fn uid(self: &Self) -> Option<u64>`
+- <span id="archivemember-uid"></span>`fn uid(&self) -> Option<u64>`
 
-- `fn gid(self: &Self) -> Option<u64>`
+- <span id="archivemember-gid"></span>`fn gid(&self) -> Option<u64>`
 
-- `fn mode(self: &Self) -> Option<u64>`
+- <span id="archivemember-mode"></span>`fn mode(&self) -> Option<u64>`
 
-- `fn size(self: &Self) -> u64`
+- <span id="archivemember-size"></span>`fn size(&self) -> u64`
 
-- `fn file_range(self: &Self) -> (u64, u64)`
+- <span id="archivemember-file-range"></span>`fn file_range(&self) -> (u64, u64)`
 
-- `fn is_thin(self: &Self) -> bool`
+- <span id="archivemember-is-thin"></span>`fn is_thin(&self) -> bool`
 
-- `fn data<R: ReadRef<'data>>(self: &Self, data: R) -> read::Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="archivemember-data"></span>`fn data<R: ReadRef<'data>>(&self, data: R) -> read::Result<&'data [u8]>` — [`Result`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'data> Debug for ArchiveMember<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="archivemember-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ArchiveOffset`
 
@@ -165,13 +202,13 @@ An offset of a member in an archive.
 
 ##### `impl Clone for ArchiveOffset`
 
-- `fn clone(self: &Self) -> ArchiveOffset` — [`ArchiveOffset`](#archiveoffset)
+- <span id="archiveoffset-clone"></span>`fn clone(&self) -> ArchiveOffset` — [`ArchiveOffset`](#archiveoffset)
 
 ##### `impl Copy for ArchiveOffset`
 
 ##### `impl Debug for ArchiveOffset`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="archiveoffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ArchiveSymbolIterator<'data>`
 
@@ -183,33 +220,33 @@ An iterator over the symbols in the archive symbol table.
 
 #### Implementations
 
-- `fn new<R: ReadRef<'data>>(kind: ArchiveKind, data: R, offset: u64, size: u64) -> Result<Self, ()>` — [`ArchiveKind`](#archivekind)
+- <span id="archivesymboliterator-new"></span>`fn new<R: ReadRef<'data>>(kind: ArchiveKind, data: R, offset: u64, size: u64) -> Result<Self, ()>` — [`ArchiveKind`](#archivekind)
 
 #### Trait Implementations
 
 ##### `impl<'data> Clone for ArchiveSymbolIterator<'data>`
 
-- `fn clone(self: &Self) -> ArchiveSymbolIterator<'data>` — [`ArchiveSymbolIterator`](#archivesymboliterator)
+- <span id="archivesymboliterator-clone"></span>`fn clone(&self) -> ArchiveSymbolIterator<'data>` — [`ArchiveSymbolIterator`](#archivesymboliterator)
 
 ##### `impl<'data> Debug for ArchiveSymbolIterator<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="archivesymboliterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for ArchiveSymbolIterator<'data>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="archivesymboliterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="archivesymboliterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="archivesymboliterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data> Iterator for ArchiveSymbolIterator<'data>`
 
-- `type Item = Result<ArchiveSymbol<'data>, Error>`
+- <span id="archivesymboliterator-item"></span>`type Item = Result<ArchiveSymbol<'data>, Error>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="archivesymboliterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="archivesymboliterator-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ### `ArchiveSymbol<'data>`
 
@@ -226,21 +263,21 @@ This is used to find the member containing the symbol.
 
 #### Implementations
 
-- `fn name(self: &Self) -> &'data [u8]`
+- <span id="archivesymbol-name"></span>`fn name(&self) -> &'data [u8]`
 
-- `fn offset(self: &Self) -> ArchiveOffset` — [`ArchiveOffset`](#archiveoffset)
+- <span id="archivesymbol-offset"></span>`fn offset(&self) -> ArchiveOffset` — [`ArchiveOffset`](#archiveoffset)
 
 #### Trait Implementations
 
 ##### `impl<'data> Clone for ArchiveSymbol<'data>`
 
-- `fn clone(self: &Self) -> ArchiveSymbol<'data>` — [`ArchiveSymbol`](#archivesymbol)
+- <span id="archivesymbol-clone"></span>`fn clone(&self) -> ArchiveSymbol<'data>` — [`ArchiveSymbol`](#archivesymbol)
 
 ##### `impl<'data> Copy for ArchiveSymbol<'data>`
 
 ##### `impl<'data> Debug for ArchiveSymbol<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="archivesymbol-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Enums
 
@@ -296,23 +333,23 @@ The kind of archive format.
 
 ##### `impl Clone for ArchiveKind`
 
-- `fn clone(self: &Self) -> ArchiveKind` — [`ArchiveKind`](#archivekind)
+- <span id="archivekind-clone"></span>`fn clone(&self) -> ArchiveKind` — [`ArchiveKind`](#archivekind)
 
 ##### `impl Copy for ArchiveKind`
 
 ##### `impl Debug for ArchiveKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="archivekind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ArchiveKind`
 
 ##### `impl Hash for ArchiveKind`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="archivekind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for ArchiveKind`
 
-- `fn eq(self: &Self, other: &ArchiveKind) -> bool` — [`ArchiveKind`](#archivekind)
+- <span id="archivekind-eq"></span>`fn eq(&self, other: &ArchiveKind) -> bool` — [`ArchiveKind`](#archivekind)
 
 ##### `impl StructuralPartialEq for ArchiveKind`
 
@@ -336,13 +373,13 @@ The list of members in the archive.
 
 ##### `impl<'data> Clone for Members<'data>`
 
-- `fn clone(self: &Self) -> Members<'data>` — [`Members`](#members)
+- <span id="members-clone"></span>`fn clone(&self) -> Members<'data>` — [`Members`](#members)
 
 ##### `impl<'data> Copy for Members<'data>`
 
 ##### `impl<'data> Debug for Members<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="members-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `MemberHeader<'data>`
 
@@ -369,13 +406,13 @@ An archive member header.
 
 ##### `impl<'data> Clone for MemberHeader<'data>`
 
-- `fn clone(self: &Self) -> MemberHeader<'data>` — [`MemberHeader`](#memberheader)
+- <span id="memberheader-clone"></span>`fn clone(&self) -> MemberHeader<'data>` — [`MemberHeader`](#memberheader)
 
 ##### `impl<'data> Copy for MemberHeader<'data>`
 
 ##### `impl<'data> Debug for MemberHeader<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="memberheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `SymbolIteratorInternal<'data>`
 
@@ -467,11 +504,11 @@ enum SymbolIteratorInternal<'data> {
 
 ##### `impl<'data> Clone for SymbolIteratorInternal<'data>`
 
-- `fn clone(self: &Self) -> SymbolIteratorInternal<'data>` — [`SymbolIteratorInternal`](#symboliteratorinternal)
+- <span id="symboliteratorinternal-clone"></span>`fn clone(&self) -> SymbolIteratorInternal<'data>` — [`SymbolIteratorInternal`](#symboliteratorinternal)
 
 ##### `impl<'data> Debug for SymbolIteratorInternal<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="symboliteratorinternal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Functions
 

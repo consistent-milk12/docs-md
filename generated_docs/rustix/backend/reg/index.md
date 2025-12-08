@@ -16,6 +16,54 @@ The `ToAsm` and `FromAsm` traits are unsafe to use; they should only be
 used by the syscall code which executes actual syscall machine
 instructions.
 
+## Contents
+
+- [Modules](#modules)
+  - [`private`](#private)
+- [Structs](#structs)
+  - [`Opaque`](#opaque)
+  - [`A0`](#a0)
+  - [`A1`](#a1)
+  - [`A2`](#a2)
+  - [`A3`](#a3)
+  - [`A4`](#a4)
+  - [`A5`](#a5)
+  - [`R0`](#r0)
+  - [`ArgReg`](#argreg)
+  - [`RetReg`](#retreg)
+  - [`SyscallNumber`](#syscallnumber)
+- [Traits](#traits)
+  - [`ToAsm`](#toasm)
+  - [`FromAsm`](#fromasm)
+  - [`ArgNumber`](#argnumber)
+  - [`RetNumber`](#retnumber)
+- [Functions](#functions)
+  - [`raw_arg`](#raw_arg)
+  - [`nr`](#nr)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`private`](#private) | mod | Seal our various traits using the technique documented [here]. |
+| [`Opaque`](#opaque) | struct | To preserve provenance, syscall arguments and return values are passed as |
+| [`A0`](#a0) | struct |  |
+| [`A1`](#a1) | struct |  |
+| [`A2`](#a2) | struct |  |
+| [`A3`](#a3) | struct |  |
+| [`A4`](#a4) | struct |  |
+| [`A5`](#a5) | struct |  |
+| [`R0`](#r0) | struct |  |
+| [`ArgReg`](#argreg) | struct | Syscall arguments use register-sized types. |
+| [`RetReg`](#retreg) | struct | Syscall return values use register-sized types. |
+| [`SyscallNumber`](#syscallnumber) | struct |  |
+| [`ToAsm`](#toasm) | trait |  |
+| [`FromAsm`](#fromasm) | trait |  |
+| [`ArgNumber`](#argnumber) | trait |  |
+| [`RetNumber`](#retnumber) | trait |  |
+| [`raw_arg`](#raw_arg) | fn | Encode a system call argument as an `ArgReg`. |
+| [`nr`](#nr) | fn | Encode a system call number (a `__NR_*` constant) as a `SyscallNumber`. |
+
 ## Modules
 
 - [`private`](private/index.md) - Seal our various traits using the technique documented [here].
@@ -138,7 +186,7 @@ it might be pointing to.
 
 ##### `impl<'a, Num: ArgNumber> ToAsm for ArgReg<'a, Num>`
 
-- `unsafe fn to_asm(self: Self) -> *mut Opaque` — [`Opaque`](#opaque)
+- <span id="argreg-to-asm"></span>`unsafe fn to_asm(self) -> *mut Opaque` — [`Opaque`](#opaque)
 
 ### `RetReg<Num: RetNumber>`
 
@@ -157,33 +205,33 @@ once.
 
 #### Implementations
 
-- `fn decode_usize(self: Self) -> usize`
+- <span id="retreg-decode-usize"></span>`fn decode_usize(self) -> usize`
 
-- `fn decode_raw_fd(self: Self) -> RawFd` — [`RawFd`](../../maybe_polyfill/os/fd/index.md)
+- <span id="retreg-decode-raw-fd"></span>`fn decode_raw_fd(self) -> RawFd` — [`RawFd`](../../maybe_polyfill/os/fd/index.md)
 
-- `fn decode_c_int(self: Self) -> c::c_int`
+- <span id="retreg-decode-c-int"></span>`fn decode_c_int(self) -> c::c_int`
 
-- `fn decode_c_uint(self: Self) -> c::c_uint`
+- <span id="retreg-decode-c-uint"></span>`fn decode_c_uint(self) -> c::c_uint`
 
-- `fn decode_void_star(self: Self) -> *mut c::c_void`
+- <span id="retreg-decode-void-star"></span>`fn decode_void_star(self) -> *mut c::c_void`
 
-- `fn decode_u64(self: Self) -> u64`
+- <span id="retreg-decode-u64"></span>`fn decode_u64(self) -> u64`
 
-- `fn decode_void(self: Self)`
+- <span id="retreg-decode-void"></span>`fn decode_void(self)`
 
-- `fn decode_error_code(self: Self) -> u16`
+- <span id="retreg-decode-error-code"></span>`fn decode_error_code(self) -> u16`
 
-- `fn is_nonzero(self: &Self) -> bool`
+- <span id="retreg-is-nonzero"></span>`fn is_nonzero(&self) -> bool`
 
-- `fn is_negative(self: &Self) -> bool`
+- <span id="retreg-is-negative"></span>`fn is_negative(&self) -> bool`
 
-- `fn is_in_range(self: &Self, range: Range<isize>) -> bool`
+- <span id="retreg-is-in-range"></span>`fn is_in_range(&self, range: Range<isize>) -> bool`
 
 #### Trait Implementations
 
 ##### `impl<Num: RetNumber> FromAsm for RetReg<Num>`
 
-- `unsafe fn from_asm(raw: *mut Opaque) -> Self` — [`Opaque`](#opaque)
+- <span id="retreg-from-asm"></span>`unsafe fn from_asm(raw: *mut Opaque) -> Self` — [`Opaque`](#opaque)
 
 ##### `impl<Num: super::RetNumber> Sealed for super::RetReg<Num>`
 
@@ -202,7 +250,7 @@ struct SyscallNumber<'a> {
 
 ##### `impl<'a> ToAsm for SyscallNumber<'a>`
 
-- `unsafe fn to_asm(self: Self) -> *mut Opaque` — [`Opaque`](#opaque)
+- <span id="syscallnumber-to-asm"></span>`unsafe fn to_asm(self) -> *mut Opaque` — [`Opaque`](#opaque)
 
 ## Traits
 
@@ -214,7 +262,7 @@ trait ToAsm: private::Sealed { ... }
 
 #### Required Methods
 
-- `fn to_asm(self: Self) -> *mut Opaque`
+- `fn to_asm(self) -> *mut Opaque`
 
   Convert `self` to a `usize` ready to be passed to a syscall
 

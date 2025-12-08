@@ -4,6 +4,13 @@
 
 # Module `buffer`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Buffer`](#buffer) | struct | A fairly simple roll buffer for supporting stream searches. |
+| [`DEFAULT_BUFFER_CAPACITY`](#default_buffer_capacity) | const | The default buffer capacity that we use for the stream buffer. |
+
 ## Structs
 
 ### `Buffer`
@@ -63,23 +70,23 @@ second read call whether a match exists or not.
 
 #### Implementations
 
-- `fn new(min_buffer_len: usize) -> Buffer` — [`Buffer`](#buffer)
+- <span id="buffer-new"></span>`fn new(min_buffer_len: usize) -> Buffer` — [`Buffer`](#buffer)
 
-- `fn buffer(self: &Self) -> &[u8]`
+- <span id="buffer-buffer"></span>`fn buffer(&self) -> &[u8]`
 
-- `fn min_buffer_len(self: &Self) -> usize`
+- <span id="buffer-min-buffer-len"></span>`fn min_buffer_len(&self) -> usize`
 
-- `fn free_buffer(self: &mut Self) -> &mut [u8]`
+- <span id="buffer-free-buffer"></span>`fn free_buffer(&mut self) -> &mut [u8]`
 
-- `fn fill<R: std::io::Read>(self: &mut Self, rdr: R) -> std::io::Result<bool>`
+- <span id="buffer-fill"></span>`fn fill<R: std::io::Read>(&mut self, rdr: R) -> std::io::Result<bool>`
 
-- `fn roll(self: &mut Self)`
+- <span id="buffer-roll"></span>`fn roll(&mut self)`
 
 #### Trait Implementations
 
 ##### `impl Debug for Buffer`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="buffer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Constants
 

@@ -6,6 +6,61 @@
 
 Deserialize JSON data to a Rust data structure.
 
+## Contents
+
+- [Structs](#structs)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`Deserializer`](#deserializer)
+  - [`SeqAccess`](#seqaccess)
+  - [`MapAccess`](#mapaccess)
+  - [`VariantAccess`](#variantaccess)
+  - [`UnitVariantAccess`](#unitvariantaccess)
+  - [`MapKey`](#mapkey)
+  - [`StreamDeserializer`](#streamdeserializer)
+- [Enums](#enums)
+  - [`ParserNumber`](#parsernumber)
+- [Traits](#traits)
+  - [`unnamed`](#unnamed)
+- [Functions](#functions)
+  - [`from_trait`](#from_trait)
+  - [`from_reader`](#from_reader)
+  - [`from_slice`](#from_slice)
+  - [`from_str`](#from_str)
+- [Macros](#macros)
+  - [`overflow!`](#overflow)
+  - [`deserialize_number!`](#deserialize_number)
+  - [`if_checking_recursion_limit!`](#if_checking_recursion_limit)
+  - [`check_recursion!`](#check_recursion)
+  - [`deserialize_numeric_key!`](#deserialize_numeric_key)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`Deserializer`](#deserializer) | struct | A structure that deserializes JSON into Rust values. |
+| [`SeqAccess`](#seqaccess) | struct |  |
+| [`MapAccess`](#mapaccess) | struct |  |
+| [`VariantAccess`](#variantaccess) | struct |  |
+| [`UnitVariantAccess`](#unitvariantaccess) | struct |  |
+| [`MapKey`](#mapkey) | struct | Only deserialize from this after peeking a '"' byte! Otherwise it may |
+| [`StreamDeserializer`](#streamdeserializer) | struct | Iterator that deserializes a stream into multiple JSON values. |
+| [`ParserNumber`](#parsernumber) | enum |  |
+| [`unnamed`](#unnamed) | trait |  |
+| [`from_trait`](#from_trait) | fn |  |
+| [`from_reader`](#from_reader) | fn | Deserialize an instance of type `T` from an I/O stream of JSON. |
+| [`from_slice`](#from_slice) | fn | Deserialize an instance of type `T` from bytes of JSON text. |
+| [`from_str`](#from_str) | fn | Deserialize an instance of type `T` from a string of JSON text. |
+| [`overflow!`](#overflow) | macro |  |
+| [`deserialize_number!`](#deserialize_number) | macro |  |
+| [`if_checking_recursion_limit!`](#if_checking_recursion_limit) | macro |  |
+| [`check_recursion!`](#check_recursion) | macro |  |
+| [`deserialize_numeric_key!`](#deserialize_numeric_key) | macro |  |
+
 ## Structs
 
 ### `SliceRead<'a>`
@@ -27,15 +82,15 @@ JSON input source that reads from a slice of bytes.
 
 #### Implementations
 
-- `fn new(slice: &'a [u8]) -> Self`
+- <span id="sliceread-new"></span>`fn new(slice: &'a [u8]) -> Self`
 
-- `fn position_of_index(self: &Self, i: usize) -> Position` — [`Position`](../read/index.md)
+- <span id="sliceread-position-of-index"></span>`fn position_of_index(&self, i: usize) -> Position` — [`Position`](../read/index.md)
 
-- `fn skip_to_escape(self: &mut Self, forbid_control_characters: bool)`
+- <span id="sliceread-skip-to-escape"></span>`fn skip_to_escape(&mut self, forbid_control_characters: bool)`
 
-- `fn skip_to_escape_slow(self: &mut Self)`
+- <span id="sliceread-skip-to-escape-slow"></span>`fn skip_to_escape_slow(&mut self)`
 
-- `fn parse_str_bytes<'s, T, F>(self: &'s mut Self, scratch: &'s mut Vec<u8>, validate: bool, result: F) -> Result<Reference<'a, 's, T>>` — [`Result`](../index.md), [`Reference`](../read/index.md)
+- <span id="sliceread-parse-str-bytes"></span>`fn parse_str_bytes<'s, T, F>(self: &'s mut Self, scratch: &'s mut Vec<u8>, validate: bool, result: F) -> Result<Reference<'a, 's, T>>` — [`Result`](../index.md), [`Reference`](../read/index.md)
 
 #### Trait Implementations
 
@@ -57,7 +112,7 @@ JSON input source that reads from a UTF-8 string.
 
 #### Implementations
 
-- `fn new(s: &'a str) -> Self`
+- <span id="strread-new"></span>`fn new(s: &'a str) -> Self`
 
 #### Trait Implementations
 
@@ -88,7 +143,7 @@ JSON input source that reads from a std::io input stream.
 
 #### Implementations
 
-- `fn parse_str_bytes<'s, T, F>(self: &'s mut Self, scratch: &'s mut Vec<u8>, validate: bool, result: F) -> Result<T>` — [`Result`](../index.md)
+- <span id="ioread-new"></span>`fn new(reader: R) -> Self`
 
 #### Trait Implementations
 
@@ -110,73 +165,7 @@ A structure that deserializes JSON into Rust values.
 
 #### Implementations
 
-- `fn end(self: &mut Self) -> Result<()>` — [`Result`](../index.md)
-
-- `fn into_iter<T>(self: Self) -> StreamDeserializer<'de, R, T>` — [`StreamDeserializer`](../index.md)
-
-- `fn peek(self: &mut Self) -> Result<Option<u8>>` — [`Result`](../index.md)
-
-- `fn peek_or_null(self: &mut Self) -> Result<u8>` — [`Result`](../index.md)
-
-- `fn eat_char(self: &mut Self)`
-
-- `fn next_char(self: &mut Self) -> Result<Option<u8>>` — [`Result`](../index.md)
-
-- `fn next_char_or_null(self: &mut Self) -> Result<u8>` — [`Result`](../index.md)
-
-- `fn error(self: &Self, reason: ErrorCode) -> Error` — [`ErrorCode`](../error/index.md), [`Error`](../index.md)
-
-- `fn peek_error(self: &Self, reason: ErrorCode) -> Error` — [`ErrorCode`](../error/index.md), [`Error`](../index.md)
-
-- `fn parse_whitespace(self: &mut Self) -> Result<Option<u8>>` — [`Result`](../index.md)
-
-- `fn peek_invalid_type(self: &mut Self, exp: &dyn Expected) -> Error` — [`Error`](../index.md)
-
-- `fn deserialize_number<'any, V>(self: &mut Self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
-
-- `fn do_deserialize_i128<'any, V>(self: &mut Self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
-
-- `fn do_deserialize_u128<'any, V>(self: &mut Self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
-
-- `fn scan_integer128(self: &mut Self, buf: &mut String) -> Result<()>` — [`Result`](../index.md)
-
-- `fn fix_position(self: &Self, err: Error) -> Error` — [`Error`](../index.md)
-
-- `fn parse_ident(self: &mut Self, ident: &[u8]) -> Result<()>` — [`Result`](../index.md)
-
-- `fn parse_integer(self: &mut Self, positive: bool) -> Result<ParserNumber>` — [`Result`](../index.md), [`ParserNumber`](#parsernumber)
-
-- `fn parse_number(self: &mut Self, positive: bool, significand: u64) -> Result<ParserNumber>` — [`Result`](../index.md), [`ParserNumber`](#parsernumber)
-
-- `fn parse_decimal(self: &mut Self, positive: bool, significand: u64, exponent_before_decimal_point: i32) -> Result<f64>` — [`Result`](../index.md)
-
-- `fn parse_exponent(self: &mut Self, positive: bool, significand: u64, starting_exp: i32) -> Result<f64>` — [`Result`](../index.md)
-
-- `fn f64_from_parts(self: &mut Self, positive: bool, significand: u64, exponent: i32) -> Result<f64>` — [`Result`](../index.md)
-
-- `fn parse_long_integer(self: &mut Self, positive: bool, significand: u64) -> Result<f64>` — [`Result`](../index.md)
-
-- `fn parse_decimal_overflow(self: &mut Self, positive: bool, significand: u64, exponent: i32) -> Result<f64>` — [`Result`](../index.md)
-
-- `fn parse_exponent_overflow(self: &mut Self, positive: bool, zero_significand: bool, positive_exp: bool) -> Result<f64>` — [`Result`](../index.md)
-
-- `fn parse_any_signed_number(self: &mut Self) -> Result<ParserNumber>` — [`Result`](../index.md), [`ParserNumber`](#parsernumber)
-
-- `fn parse_any_number(self: &mut Self, positive: bool) -> Result<ParserNumber>` — [`Result`](../index.md), [`ParserNumber`](#parsernumber)
-
-- `fn parse_object_colon(self: &mut Self) -> Result<()>` — [`Result`](../index.md)
-
-- `fn end_seq(self: &mut Self) -> Result<()>` — [`Result`](../index.md)
-
-- `fn end_map(self: &mut Self) -> Result<()>` — [`Result`](../index.md)
-
-- `fn ignore_value(self: &mut Self) -> Result<()>` — [`Result`](../index.md)
-
-- `fn ignore_integer(self: &mut Self) -> Result<()>` — [`Result`](../index.md)
-
-- `fn ignore_decimal(self: &mut Self) -> Result<()>` — [`Result`](../index.md)
-
-- `fn ignore_exponent(self: &mut Self) -> Result<()>` — [`Result`](../index.md)
+- <span id="deserializer-from-slice"></span>`fn from_slice(bytes: &'a [u8]) -> Self`
 
 ### `SeqAccess<'a, R: 'a>`
 
@@ -189,15 +178,15 @@ struct SeqAccess<'a, R: 'a> {
 
 #### Implementations
 
-- `fn new(de: &'a mut Deserializer<R>) -> Self` — [`Deserializer`](../index.md)
+- <span id="seqaccess-new"></span>`fn new(de: &'a mut Deserializer<R>) -> Self` — [`Deserializer`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'de, 'a, R: Read<'de> + 'a> SeqAccess for SeqAccess<'a, R>`
 
-- `type Error = Error`
+- <span id="seqaccess-error"></span>`type Error = Error`
 
-- `fn next_element_seed<T>(self: &mut Self, seed: T) -> Result<Option<<T as >::Value>>` — [`Result`](../index.md)
+- <span id="seqaccess-next-element-seed"></span>`fn next_element_seed<T>(&mut self, seed: T) -> Result<Option<<T as >::Value>>` — [`Result`](../index.md)
 
 ### `MapAccess<'a, R: 'a>`
 
@@ -210,17 +199,17 @@ struct MapAccess<'a, R: 'a> {
 
 #### Implementations
 
-- `fn new(de: &'a mut Deserializer<R>) -> Self` — [`Deserializer`](../index.md)
+- <span id="mapaccess-new"></span>`fn new(de: &'a mut Deserializer<R>) -> Self` — [`Deserializer`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'de, 'a, R: Read<'de> + 'a> MapAccess for MapAccess<'a, R>`
 
-- `type Error = Error`
+- <span id="mapaccess-error"></span>`type Error = Error`
 
-- `fn next_key_seed<K>(self: &mut Self, seed: K) -> Result<Option<<K as >::Value>>` — [`Result`](../index.md)
+- <span id="mapaccess-next-key-seed"></span>`fn next_key_seed<K>(&mut self, seed: K) -> Result<Option<<K as >::Value>>` — [`Result`](../index.md)
 
-- `fn next_value_seed<V>(self: &mut Self, seed: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
+- <span id="mapaccess-next-value-seed"></span>`fn next_value_seed<V>(&mut self, seed: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
 
 ### `VariantAccess<'a, R: 'a>`
 
@@ -232,29 +221,29 @@ struct VariantAccess<'a, R: 'a> {
 
 #### Implementations
 
-- `fn new(de: &'a mut Deserializer<R>) -> Self` — [`Deserializer`](../index.md)
+- <span id="variantaccess-new"></span>`fn new(de: &'a mut Deserializer<R>) -> Self` — [`Deserializer`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'de, 'a, R: Read<'de> + 'a> EnumAccess for VariantAccess<'a, R>`
 
-- `type Error = Error`
+- <span id="variantaccess-error"></span>`type Error = Error`
 
-- `type Variant = VariantAccess<'a, R>`
+- <span id="variantaccess-variant"></span>`type Variant = VariantAccess<'a, R>`
 
-- `fn variant_seed<V>(self: Self, seed: V) -> Result<(<V as >::Value, Self)>` — [`Result`](../index.md)
+- <span id="variantaccess-variant-seed"></span>`fn variant_seed<V>(self, seed: V) -> Result<(<V as >::Value, Self)>` — [`Result`](../index.md)
 
 ##### `impl<'de, 'a, R: Read<'de> + 'a> VariantAccess for VariantAccess<'a, R>`
 
-- `type Error = Error`
+- <span id="variantaccess-error"></span>`type Error = Error`
 
-- `fn unit_variant(self: Self) -> Result<()>` — [`Result`](../index.md)
+- <span id="variantaccess-unit-variant"></span>`fn unit_variant(self) -> Result<()>` — [`Result`](../index.md)
 
-- `fn newtype_variant_seed<T>(self: Self, seed: T) -> Result<<T as >::Value>` — [`Result`](../index.md)
+- <span id="variantaccess-newtype-variant-seed"></span>`fn newtype_variant_seed<T>(self, seed: T) -> Result<<T as >::Value>` — [`Result`](../index.md)
 
-- `fn tuple_variant<V>(self: Self, _len: usize, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
+- <span id="variantaccess-tuple-variant"></span>`fn tuple_variant<V>(self, _len: usize, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
 
-- `fn struct_variant<V>(self: Self, fields: &'static [&'static str], visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
+- <span id="variantaccess-struct-variant"></span>`fn struct_variant<V>(self, fields: &'static [&'static str], visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
 
 ### `UnitVariantAccess<'a, R: 'a>`
 
@@ -266,29 +255,29 @@ struct UnitVariantAccess<'a, R: 'a> {
 
 #### Implementations
 
-- `fn new(de: &'a mut Deserializer<R>) -> Self` — [`Deserializer`](../index.md)
+- <span id="unitvariantaccess-new"></span>`fn new(de: &'a mut Deserializer<R>) -> Self` — [`Deserializer`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'de, 'a, R: Read<'de> + 'a> EnumAccess for UnitVariantAccess<'a, R>`
 
-- `type Error = Error`
+- <span id="unitvariantaccess-error"></span>`type Error = Error`
 
-- `type Variant = UnitVariantAccess<'a, R>`
+- <span id="unitvariantaccess-variant"></span>`type Variant = UnitVariantAccess<'a, R>`
 
-- `fn variant_seed<V>(self: Self, seed: V) -> Result<(<V as >::Value, Self)>` — [`Result`](../index.md)
+- <span id="unitvariantaccess-variant-seed"></span>`fn variant_seed<V>(self, seed: V) -> Result<(<V as >::Value, Self)>` — [`Result`](../index.md)
 
 ##### `impl<'de, 'a, R: Read<'de> + 'a> VariantAccess for UnitVariantAccess<'a, R>`
 
-- `type Error = Error`
+- <span id="unitvariantaccess-error"></span>`type Error = Error`
 
-- `fn unit_variant(self: Self) -> Result<()>` — [`Result`](../index.md)
+- <span id="unitvariantaccess-unit-variant"></span>`fn unit_variant(self) -> Result<()>` — [`Result`](../index.md)
 
-- `fn newtype_variant_seed<T>(self: Self, _seed: T) -> Result<<T as >::Value>` — [`Result`](../index.md)
+- <span id="unitvariantaccess-newtype-variant-seed"></span>`fn newtype_variant_seed<T>(self, _seed: T) -> Result<<T as >::Value>` — [`Result`](../index.md)
 
-- `fn tuple_variant<V>(self: Self, _len: usize, _visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
+- <span id="unitvariantaccess-tuple-variant"></span>`fn tuple_variant<V>(self, _len: usize, _visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
 
-- `fn struct_variant<V>(self: Self, _fields: &'static [&'static str], _visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
+- <span id="unitvariantaccess-struct-variant"></span>`fn struct_variant<V>(self, _fields: &'static [&'static str], _visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
 
 ### `MapKey<'a, R: 'a>`
 
@@ -303,75 +292,75 @@ deserialize invalid JSON successfully.
 
 #### Implementations
 
-- `fn deserialize_number<V>(self: Self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
+- <span id="mapkey-deserialize-number"></span>`fn deserialize_number<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'de, 'a, R> Deserializer for MapKey<'a, R>`
 
-- `type Error = Error`
+- <span id="mapkey-error"></span>`type Error = Error`
 
-- `fn deserialize_any<V>(self: Self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
+- <span id="mapkey-deserialize-any"></span>`fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
 
-- `fn deserialize_i8<V>(self: Self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
+- <span id="mapkey-deserialize-i8"></span>`fn deserialize_i8<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
 
-- `fn deserialize_i16<V>(self: Self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
+- <span id="mapkey-deserialize-i16"></span>`fn deserialize_i16<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
 
-- `fn deserialize_i32<V>(self: Self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
+- <span id="mapkey-deserialize-i32"></span>`fn deserialize_i32<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
 
-- `fn deserialize_i64<V>(self: Self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
+- <span id="mapkey-deserialize-i64"></span>`fn deserialize_i64<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
 
-- `fn deserialize_i128<V>(self: Self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
+- <span id="mapkey-deserialize-i128"></span>`fn deserialize_i128<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
 
-- `fn deserialize_u8<V>(self: Self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
+- <span id="mapkey-deserialize-u8"></span>`fn deserialize_u8<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
 
-- `fn deserialize_u16<V>(self: Self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
+- <span id="mapkey-deserialize-u16"></span>`fn deserialize_u16<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
 
-- `fn deserialize_u32<V>(self: Self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
+- <span id="mapkey-deserialize-u32"></span>`fn deserialize_u32<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
 
-- `fn deserialize_u64<V>(self: Self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
+- <span id="mapkey-deserialize-u64"></span>`fn deserialize_u64<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
 
-- `fn deserialize_u128<V>(self: Self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
+- <span id="mapkey-deserialize-u128"></span>`fn deserialize_u128<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
 
-- `fn deserialize_f32<V>(self: Self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
+- <span id="mapkey-deserialize-f32"></span>`fn deserialize_f32<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
 
-- `fn deserialize_f64<V>(self: Self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
+- <span id="mapkey-deserialize-f64"></span>`fn deserialize_f64<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
 
-- `fn deserialize_bool<V>(self: Self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
+- <span id="mapkey-deserialize-bool"></span>`fn deserialize_bool<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
 
-- `fn deserialize_option<V>(self: Self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
+- <span id="mapkey-deserialize-option"></span>`fn deserialize_option<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
 
-- `fn deserialize_newtype_struct<V>(self: Self, name: &'static str, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
+- <span id="mapkey-deserialize-newtype-struct"></span>`fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
 
-- `fn deserialize_enum<V>(self: Self, name: &'static str, variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
+- <span id="mapkey-deserialize-enum"></span>`fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
 
-- `fn deserialize_bytes<V>(self: Self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
+- <span id="mapkey-deserialize-bytes"></span>`fn deserialize_bytes<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
 
-- `fn deserialize_byte_buf<V>(self: Self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
+- <span id="mapkey-deserialize-byte-buf"></span>`fn deserialize_byte_buf<V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
 
-- `fn deserialize_char<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="mapkey-deserialize-char"></span>`fn deserialize_char<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
-- `fn deserialize_str<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="mapkey-deserialize-str"></span>`fn deserialize_str<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
-- `fn deserialize_string<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="mapkey-deserialize-string"></span>`fn deserialize_string<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
-- `fn deserialize_unit<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="mapkey-deserialize-unit"></span>`fn deserialize_unit<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
-- `fn deserialize_unit_struct<V>(self: Self, name: &'static str, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="mapkey-deserialize-unit-struct"></span>`fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
-- `fn deserialize_seq<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="mapkey-deserialize-seq"></span>`fn deserialize_seq<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
-- `fn deserialize_tuple<V>(self: Self, len: usize, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="mapkey-deserialize-tuple"></span>`fn deserialize_tuple<V>(self, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
-- `fn deserialize_tuple_struct<V>(self: Self, name: &'static str, len: usize, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="mapkey-deserialize-tuple-struct"></span>`fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
-- `fn deserialize_map<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="mapkey-deserialize-map"></span>`fn deserialize_map<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
-- `fn deserialize_struct<V>(self: Self, name: &'static str, fields: &'static [&'static str], visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="mapkey-deserialize-struct"></span>`fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
-- `fn deserialize_identifier<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="mapkey-deserialize-identifier"></span>`fn deserialize_identifier<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
-- `fn deserialize_ignored_any<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
+- <span id="mapkey-deserialize-ignored-any"></span>`fn deserialize_ignored_any<V>(self, visitor: V) -> __private::Result<<V as >::Value, <Self as de::Deserializer>::Error>`
 
 ### `StreamDeserializer<'de, R, T>`
 
@@ -409,11 +398,11 @@ fn main() {
 
 #### Implementations
 
-- `fn new(read: R) -> Self`
+- <span id="streamdeserializer-new"></span>`fn new(read: R) -> Self`
 
-- `fn byte_offset(self: &Self) -> usize`
+- <span id="streamdeserializer-byte-offset"></span>`fn byte_offset(&self) -> usize`
 
-- `fn peek_end_of_value(self: &mut Self) -> Result<()>` — [`Result`](../index.md)
+- <span id="streamdeserializer-peek-end-of-value"></span>`fn peek_end_of_value(&mut self) -> Result<()>` — [`Result`](../index.md)
 
 #### Trait Implementations
 
@@ -421,17 +410,17 @@ fn main() {
 
 ##### `impl<I> IntoIterator for StreamDeserializer<'de, R, T>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="streamdeserializer-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="streamdeserializer-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="streamdeserializer-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'de, R, T> Iterator for StreamDeserializer<'de, R, T>`
 
-- `type Item = Result<T, Error>`
+- <span id="streamdeserializer-item"></span>`type Item = Result<T, Error>`
 
-- `fn next(self: &mut Self) -> Option<Result<T>>` — [`Result`](../index.md)
+- <span id="streamdeserializer-next"></span>`fn next(&mut self) -> Option<Result<T>>` — [`Result`](../index.md)
 
 ## Enums
 
@@ -447,9 +436,9 @@ enum ParserNumber {
 
 #### Implementations
 
-- `fn visit<'de, V>(self: Self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
+- <span id="parsernumber-visit"></span>`fn visit<'de, V>(self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
 
-- `fn invalid_type(self: Self, exp: &dyn Expected) -> Error` — [`Error`](../index.md)
+- <span id="parsernumber-invalid-type"></span>`fn invalid_type(self, exp: &dyn Expected) -> Error` — [`Error`](../index.md)
 
 ## Traits
 

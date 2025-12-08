@@ -9,6 +9,12 @@ Crate collection for multi-crate documentation.
 This module provides [`CrateCollection`](../../index.md), a container for multiple parsed
 rustdoc crates that maintains a consistent processing order.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`CrateCollection`](#cratecollection) | struct | Collection of parsed crates ready for documentation generation. |
+
 ## Structs
 
 ### `CrateCollection`
@@ -48,33 +54,33 @@ for (name, krate) in collection.iter() {
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="cratecollection-new"></span>`fn new() -> Self`
 
-- `fn insert(self: &mut Self, name: String, krate: Crate) -> Option<Crate>`
+- <span id="cratecollection-insert"></span>`fn insert(&mut self, name: String, krate: Crate) -> Option<Crate>`
 
-- `fn get(self: &Self, name: &str) -> Option<&Crate>`
+- <span id="cratecollection-get"></span>`fn get(&self, name: &str) -> Option<&Crate>`
 
-- `fn get_with_name(self: &Self, name: &str) -> Option<(&str, &Crate)>`
+- <span id="cratecollection-get-with-name"></span>`fn get_with_name(&self, name: &str) -> Option<(&str, &Crate)>`
 
-- `fn contains(self: &Self, name: &str) -> bool`
+- <span id="cratecollection-contains"></span>`fn contains(&self, name: &str) -> bool`
 
-- `fn iter(self: &Self) -> impl Iterator<Item = (&String, &Crate)>`
+- <span id="cratecollection-iter"></span>`fn iter(&self) -> impl Iterator<Item = (&String, &Crate)>`
 
-- `fn len(self: &Self) -> usize`
+- <span id="cratecollection-len"></span>`fn len(&self) -> usize`
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="cratecollection-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn names(self: &Self) -> Vec<&String>`
+- <span id="cratecollection-names"></span>`fn names(&self) -> Vec<&String>`
 
 #### Trait Implementations
 
 ##### `impl Debug for CrateCollection`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="cratecollection-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for CrateCollection`
 
-- `fn default() -> CrateCollection` — [`CrateCollection`](../../index.md)
+- <span id="cratecollection-default"></span>`fn default() -> CrateCollection` — [`CrateCollection`](../../index.md)
 
 ##### `impl<T> Instrument for CrateCollection`
 
@@ -84,17 +90,17 @@ for (name, krate) in collection.iter() {
 
 ##### `impl<T> Pointable for CrateCollection`
 
-- `const ALIGN: usize`
+- <span id="cratecollection-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="cratecollection-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="cratecollection-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="cratecollection-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="cratecollection-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="cratecollection-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T> WithSubscriber for CrateCollection`
 

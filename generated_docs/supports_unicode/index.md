@@ -24,6 +24,15 @@ if supports_unicode::on(Stream::Stdout) {
 
 This crate requires rustc 1.70.0 or later.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Stream`](#stream) | enum | possible stream sources |
+| [`is_a_tty`](#is_a_tty) | fn |  |
+| [`on`](#on) | fn | Returns true if `stream` is a TTY or the current terminal |
+| [`supports_unicode`](#supports_unicode) | fn | Returns true if the current terminal, detected through various environment |
+
 ## Enums
 
 ### `Stream`
@@ -41,13 +50,13 @@ possible stream sources
 
 ##### `impl Clone for Stream`
 
-- `fn clone(self: &Self) -> Stream` — [`Stream`](#stream)
+- <span id="stream-clone"></span>`fn clone(&self) -> Stream` — [`Stream`](#stream)
 
 ##### `impl Copy for Stream`
 
 ##### `impl Debug for Stream`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="stream-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Functions
 

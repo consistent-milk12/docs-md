@@ -4,6 +4,12 @@
 
 # Module `windows_console`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`enable_ansi_colors`](#enable_ansi_colors) | fn |  |
+
 ## Functions
 
 ### `enable_ansi_colors`

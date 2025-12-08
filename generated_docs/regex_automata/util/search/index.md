@@ -10,6 +10,38 @@ This sub-module isn't exposed directly, but rather, its contents are exported
 at the crate root due to the universality of most of the types and routines in
 this module.
 
+## Contents
+
+- [Structs](#structs)
+  - [`Input`](#input)
+  - [`Span`](#span)
+  - [`HalfMatch`](#halfmatch)
+  - [`Match`](#match)
+  - [`PatternSet`](#patternset)
+  - [`PatternSetInsertError`](#patternsetinserterror)
+  - [`PatternSetIter`](#patternsetiter)
+  - [`MatchError`](#matcherror)
+- [Enums](#enums)
+  - [`Anchored`](#anchored)
+  - [`MatchKind`](#matchkind)
+  - [`MatchErrorKind`](#matcherrorkind)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Input`](#input) | struct | The parameters for a regex search including the haystack to search. |
+| [`Span`](#span) | struct | A representation of a span reported by a regex engine. |
+| [`HalfMatch`](#halfmatch) | struct | A representation of "half" of a match reported by a DFA. |
+| [`Match`](#match) | struct | A representation of a match reported by a regex engine. |
+| [`PatternSet`](#patternset) | struct | A set of `PatternID`s. |
+| [`PatternSetInsertError`](#patternsetinserterror) | struct | An error that occurs when a `PatternID` failed to insert into a |
+| [`PatternSetIter`](#patternsetiter) | struct | An iterator over all pattern identifiers in a [`PatternSet`]. |
+| [`MatchError`](#matcherror) | struct | An error indicating that a search stopped before reporting whether a |
+| [`Anchored`](#anchored) | enum | The type of anchored search to perform. |
+| [`MatchKind`](#matchkind) | enum | The kind of match semantics to use for a regex pattern. |
+| [`MatchErrorKind`](#matcherrorkind) | enum | The underlying kind of a [`MatchError`]. |
+
 ## Structs
 
 ### `Input<'h>`
@@ -114,55 +146,55 @@ results in no match being reported.
 
 #### Implementations
 
-- `fn new<H: ?Sized + AsRef<[u8]>>(haystack: &'h H) -> Input<'h>` — [`Input`](../../index.md)
+- <span id="input-new"></span>`fn new<H: ?Sized + AsRef<[u8]>>(haystack: &'h H) -> Input<'h>` — [`Input`](../../index.md)
 
-- `fn span<S: Into<Span>>(self: Self, span: S) -> Input<'h>` — [`Input`](../../index.md)
+- <span id="input-span"></span>`fn span<S: Into<Span>>(self, span: S) -> Input<'h>` — [`Input`](../../index.md)
 
-- `fn range<R: RangeBounds<usize>>(self: Self, range: R) -> Input<'h>` — [`Input`](../../index.md)
+- <span id="input-range"></span>`fn range<R: RangeBounds<usize>>(self, range: R) -> Input<'h>` — [`Input`](../../index.md)
 
-- `fn anchored(self: Self, mode: Anchored) -> Input<'h>` — [`Anchored`](../../index.md), [`Input`](../../index.md)
+- <span id="input-anchored"></span>`fn anchored(self, mode: Anchored) -> Input<'h>` — [`Anchored`](../../index.md), [`Input`](../../index.md)
 
-- `fn earliest(self: Self, yes: bool) -> Input<'h>` — [`Input`](../../index.md)
+- <span id="input-earliest"></span>`fn earliest(self, yes: bool) -> Input<'h>` — [`Input`](../../index.md)
 
-- `fn set_span<S: Into<Span>>(self: &mut Self, span: S)`
+- <span id="input-set-span"></span>`fn set_span<S: Into<Span>>(&mut self, span: S)`
 
-- `fn set_range<R: RangeBounds<usize>>(self: &mut Self, range: R)`
+- <span id="input-set-range"></span>`fn set_range<R: RangeBounds<usize>>(&mut self, range: R)`
 
-- `fn set_start(self: &mut Self, start: usize)`
+- <span id="input-set-start"></span>`fn set_start(&mut self, start: usize)`
 
-- `fn set_end(self: &mut Self, end: usize)`
+- <span id="input-set-end"></span>`fn set_end(&mut self, end: usize)`
 
-- `fn set_anchored(self: &mut Self, mode: Anchored)` — [`Anchored`](../../index.md)
+- <span id="input-set-anchored"></span>`fn set_anchored(&mut self, mode: Anchored)` — [`Anchored`](../../index.md)
 
-- `fn set_earliest(self: &mut Self, yes: bool)`
+- <span id="input-set-earliest"></span>`fn set_earliest(&mut self, yes: bool)`
 
-- `fn haystack(self: &Self) -> &'h [u8]`
+- <span id="input-haystack"></span>`fn haystack(&self) -> &'h [u8]`
 
-- `fn start(self: &Self) -> usize`
+- <span id="input-start"></span>`fn start(&self) -> usize`
 
-- `fn end(self: &Self) -> usize`
+- <span id="input-end"></span>`fn end(&self) -> usize`
 
-- `fn get_span(self: &Self) -> Span` — [`Span`](../../index.md)
+- <span id="input-get-span"></span>`fn get_span(&self) -> Span` — [`Span`](../../index.md)
 
-- `fn get_range(self: &Self) -> Range<usize>`
+- <span id="input-get-range"></span>`fn get_range(&self) -> Range<usize>`
 
-- `fn get_anchored(self: &Self) -> Anchored` — [`Anchored`](../../index.md)
+- <span id="input-get-anchored"></span>`fn get_anchored(&self) -> Anchored` — [`Anchored`](../../index.md)
 
-- `fn get_earliest(self: &Self) -> bool`
+- <span id="input-get-earliest"></span>`fn get_earliest(&self) -> bool`
 
-- `fn is_done(self: &Self) -> bool`
+- <span id="input-is-done"></span>`fn is_done(&self) -> bool`
 
-- `fn is_char_boundary(self: &Self, offset: usize) -> bool`
+- <span id="input-is-char-boundary"></span>`fn is_char_boundary(&self, offset: usize) -> bool`
 
 #### Trait Implementations
 
 ##### `impl<'h> Clone for Input<'h>`
 
-- `fn clone(self: &Self) -> Input<'h>` — [`Input`](../../index.md)
+- <span id="input-clone"></span>`fn clone(&self) -> Input<'h>` — [`Input`](../../index.md)
 
 ##### `impl<'h> Debug for Input<'h>`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="input-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ### `Span`
 
@@ -201,37 +233,37 @@ which means things like `Span::from(5..10)` work.
 
 #### Implementations
 
-- `fn range(self: &Self) -> Range<usize>`
+- <span id="span-range"></span>`fn range(&self) -> Range<usize>`
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="span-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn len(self: &Self) -> usize`
+- <span id="span-len"></span>`fn len(&self) -> usize`
 
-- `fn contains(self: &Self, offset: usize) -> bool`
+- <span id="span-contains"></span>`fn contains(&self, offset: usize) -> bool`
 
-- `fn offset(self: &Self, offset: usize) -> Span` — [`Span`](../../index.md)
+- <span id="span-offset"></span>`fn offset(&self, offset: usize) -> Span` — [`Span`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Span`
 
-- `fn clone(self: &Self) -> Span` — [`Span`](../../index.md)
+- <span id="span-clone"></span>`fn clone(&self) -> Span` — [`Span`](../../index.md)
 
 ##### `impl Copy for Span`
 
 ##### `impl Debug for Span`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="span-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq for Span`
 
 ##### `impl Hash for Span`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="span-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Span`
 
-- `fn eq(self: &Self, other: &Span) -> bool` — [`Span`](../../index.md)
+- <span id="span-eq"></span>`fn eq(&self, other: &Span) -> bool` — [`Span`](../../index.md)
 
 ##### `impl StructuralPartialEq for Span`
 
@@ -272,35 +304,35 @@ have a pattern ID of `0`.
 
 #### Implementations
 
-- `fn new(pattern: PatternID, offset: usize) -> HalfMatch` — [`PatternID`](../../index.md), [`HalfMatch`](../../index.md)
+- <span id="halfmatch-new"></span>`fn new(pattern: PatternID, offset: usize) -> HalfMatch` — [`PatternID`](../../index.md), [`HalfMatch`](../../index.md)
 
-- `fn must(pattern: usize, offset: usize) -> HalfMatch` — [`HalfMatch`](../../index.md)
+- <span id="halfmatch-must"></span>`fn must(pattern: usize, offset: usize) -> HalfMatch` — [`HalfMatch`](../../index.md)
 
-- `fn pattern(self: &Self) -> PatternID` — [`PatternID`](../../index.md)
+- <span id="halfmatch-pattern"></span>`fn pattern(&self) -> PatternID` — [`PatternID`](../../index.md)
 
-- `fn offset(self: &Self) -> usize`
+- <span id="halfmatch-offset"></span>`fn offset(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Clone for HalfMatch`
 
-- `fn clone(self: &Self) -> HalfMatch` — [`HalfMatch`](../../index.md)
+- <span id="halfmatch-clone"></span>`fn clone(&self) -> HalfMatch` — [`HalfMatch`](../../index.md)
 
 ##### `impl Copy for HalfMatch`
 
 ##### `impl Debug for HalfMatch`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="halfmatch-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for HalfMatch`
 
 ##### `impl Hash for HalfMatch`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="halfmatch-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for HalfMatch`
 
-- `fn eq(self: &Self, other: &HalfMatch) -> bool` — [`HalfMatch`](../../index.md)
+- <span id="halfmatch-eq"></span>`fn eq(&self, other: &HalfMatch) -> bool` — [`HalfMatch`](../../index.md)
 
 ##### `impl StructuralPartialEq for HalfMatch`
 
@@ -338,45 +370,45 @@ start offset as less than or equal to its end offset.
 
 #### Implementations
 
-- `fn new<S: Into<Span>>(pattern: PatternID, span: S) -> Match` — [`PatternID`](../../index.md), [`Match`](../../index.md)
+- <span id="match-new"></span>`fn new<S: Into<Span>>(pattern: PatternID, span: S) -> Match` — [`PatternID`](../../index.md), [`Match`](../../index.md)
 
-- `fn must<S: Into<Span>>(pattern: usize, span: S) -> Match` — [`Match`](../../index.md)
+- <span id="match-must"></span>`fn must<S: Into<Span>>(pattern: usize, span: S) -> Match` — [`Match`](../../index.md)
 
-- `fn pattern(self: &Self) -> PatternID` — [`PatternID`](../../index.md)
+- <span id="match-pattern"></span>`fn pattern(&self) -> PatternID` — [`PatternID`](../../index.md)
 
-- `fn start(self: &Self) -> usize`
+- <span id="match-start"></span>`fn start(&self) -> usize`
 
-- `fn end(self: &Self) -> usize`
+- <span id="match-end"></span>`fn end(&self) -> usize`
 
-- `fn range(self: &Self) -> core::ops::Range<usize>`
+- <span id="match-range"></span>`fn range(&self) -> core::ops::Range<usize>`
 
-- `fn span(self: &Self) -> Span` — [`Span`](../../index.md)
+- <span id="match-span"></span>`fn span(&self) -> Span` — [`Span`](../../index.md)
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="match-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn len(self: &Self) -> usize`
+- <span id="match-len"></span>`fn len(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Clone for Match`
 
-- `fn clone(self: &Self) -> Match` — [`Match`](../../index.md)
+- <span id="match-clone"></span>`fn clone(&self) -> Match` — [`Match`](../../index.md)
 
 ##### `impl Copy for Match`
 
 ##### `impl Debug for Match`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="match-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Match`
 
 ##### `impl Hash for Match`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="match-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Match`
 
-- `fn eq(self: &Self, other: &Match) -> bool` — [`Match`](../../index.md)
+- <span id="match-eq"></span>`fn eq(&self, other: &Match) -> bool` — [`Match`](../../index.md)
 
 ##### `impl StructuralPartialEq for Match`
 
@@ -453,41 +485,41 @@ assert!(set.is_empty());
 
 #### Implementations
 
-- `fn new(capacity: usize) -> PatternSet` — [`PatternSet`](../../index.md)
+- <span id="patternset-new"></span>`fn new(capacity: usize) -> PatternSet` — [`PatternSet`](../../index.md)
 
-- `fn clear(self: &mut Self)`
+- <span id="patternset-clear"></span>`fn clear(&mut self)`
 
-- `fn contains(self: &Self, pid: PatternID) -> bool` — [`PatternID`](../../index.md)
+- <span id="patternset-contains"></span>`fn contains(&self, pid: PatternID) -> bool` — [`PatternID`](../../index.md)
 
-- `fn insert(self: &mut Self, pid: PatternID) -> bool` — [`PatternID`](../../index.md)
+- <span id="patternset-insert"></span>`fn insert(&mut self, pid: PatternID) -> bool` — [`PatternID`](../../index.md)
 
-- `fn try_insert(self: &mut Self, pid: PatternID) -> Result<bool, PatternSetInsertError>` — [`PatternID`](../../index.md), [`PatternSetInsertError`](../../index.md)
+- <span id="patternset-try-insert"></span>`fn try_insert(&mut self, pid: PatternID) -> Result<bool, PatternSetInsertError>` — [`PatternID`](../../index.md), [`PatternSetInsertError`](../../index.md)
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="patternset-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn is_full(self: &Self) -> bool`
+- <span id="patternset-is-full"></span>`fn is_full(&self) -> bool`
 
-- `fn len(self: &Self) -> usize`
+- <span id="patternset-len"></span>`fn len(&self) -> usize`
 
-- `fn capacity(self: &Self) -> usize`
+- <span id="patternset-capacity"></span>`fn capacity(&self) -> usize`
 
-- `fn iter(self: &Self) -> PatternSetIter<'_>` — [`PatternSetIter`](../../index.md)
+- <span id="patternset-iter"></span>`fn iter(&self) -> PatternSetIter<'_>` — [`PatternSetIter`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for PatternSet`
 
-- `fn clone(self: &Self) -> PatternSet` — [`PatternSet`](../../index.md)
+- <span id="patternset-clone"></span>`fn clone(&self) -> PatternSet` — [`PatternSet`](../../index.md)
 
 ##### `impl Debug for PatternSet`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="patternset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for PatternSet`
 
 ##### `impl PartialEq for PatternSet`
 
-- `fn eq(self: &Self, other: &PatternSet) -> bool` — [`PatternSet`](../../index.md)
+- <span id="patternset-eq"></span>`fn eq(&self, other: &PatternSet) -> bool` — [`PatternSet`](../../index.md)
 
 ##### `impl StructuralPartialEq for PatternSet`
 
@@ -512,21 +544,21 @@ This error is created by the `PatternSet::try_insert` routine.
 
 ##### `impl Clone for PatternSetInsertError`
 
-- `fn clone(self: &Self) -> PatternSetInsertError` — [`PatternSetInsertError`](../../index.md)
+- <span id="patternsetinserterror-clone"></span>`fn clone(&self) -> PatternSetInsertError` — [`PatternSetInsertError`](../../index.md)
 
 ##### `impl Debug for PatternSetInsertError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="patternsetinserterror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for PatternSetInsertError`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="patternsetinserterror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for PatternSetInsertError`
 
 ##### `impl<T> ToString for PatternSetInsertError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="patternsetinserterror-to-string"></span>`fn to_string(&self) -> String`
 
 ### `PatternSetIter<'a>`
 
@@ -547,31 +579,31 @@ This iterator is created by the `PatternSet::iter` method.
 
 ##### `impl<'a> Clone for PatternSetIter<'a>`
 
-- `fn clone(self: &Self) -> PatternSetIter<'a>` — [`PatternSetIter`](../../index.md)
+- <span id="patternsetiter-clone"></span>`fn clone(&self) -> PatternSetIter<'a>` — [`PatternSetIter`](../../index.md)
 
 ##### `impl<'a> Debug for PatternSetIter<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="patternsetiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'a> DoubleEndedIterator for PatternSetIter<'a>`
 
-- `fn next_back(self: &mut Self) -> Option<PatternID>` — [`PatternID`](../../index.md)
+- <span id="patternsetiter-next-back"></span>`fn next_back(&mut self) -> Option<PatternID>` — [`PatternID`](../../index.md)
 
 ##### `impl<I> IntoIterator for PatternSetIter<'a>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="patternsetiter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="patternsetiter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="patternsetiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a> Iterator for PatternSetIter<'a>`
 
-- `type Item = PatternID`
+- <span id="patternsetiter-item"></span>`type Item = PatternID`
 
-- `fn next(self: &mut Self) -> Option<PatternID>` — [`PatternID`](../../index.md)
+- <span id="patternsetiter-next"></span>`fn next(&mut self) -> Option<PatternID>` — [`PatternID`](../../index.md)
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="patternsetiter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ### `MatchError`
 
@@ -629,31 +661,31 @@ with a [one-pass DFA](crate::dfa::onepass).
 
 #### Implementations
 
-- `fn new(kind: MatchErrorKind) -> MatchError` — [`MatchErrorKind`](../../index.md), [`MatchError`](../../index.md)
+- <span id="matcherror-new"></span>`fn new(kind: MatchErrorKind) -> MatchError` — [`MatchErrorKind`](../../index.md), [`MatchError`](../../index.md)
 
-- `fn kind(self: &Self) -> &MatchErrorKind` — [`MatchErrorKind`](../../index.md)
+- <span id="matcherror-kind"></span>`fn kind(&self) -> &MatchErrorKind` — [`MatchErrorKind`](../../index.md)
 
-- `fn quit(byte: u8, offset: usize) -> MatchError` — [`MatchError`](../../index.md)
+- <span id="matcherror-quit"></span>`fn quit(byte: u8, offset: usize) -> MatchError` — [`MatchError`](../../index.md)
 
-- `fn gave_up(offset: usize) -> MatchError` — [`MatchError`](../../index.md)
+- <span id="matcherror-gave-up"></span>`fn gave_up(offset: usize) -> MatchError` — [`MatchError`](../../index.md)
 
-- `fn haystack_too_long(len: usize) -> MatchError` — [`MatchError`](../../index.md)
+- <span id="matcherror-haystack-too-long"></span>`fn haystack_too_long(len: usize) -> MatchError` — [`MatchError`](../../index.md)
 
-- `fn unsupported_anchored(mode: Anchored) -> MatchError` — [`Anchored`](../../index.md), [`MatchError`](../../index.md)
+- <span id="matcherror-unsupported-anchored"></span>`fn unsupported_anchored(mode: Anchored) -> MatchError` — [`Anchored`](../../index.md), [`MatchError`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for MatchError`
 
-- `fn clone(self: &Self) -> MatchError` — [`MatchError`](../../index.md)
+- <span id="matcherror-clone"></span>`fn clone(&self) -> MatchError` — [`MatchError`](../../index.md)
 
 ##### `impl Debug for MatchError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="matcherror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for MatchError`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="matcherror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq for MatchError`
 
@@ -661,13 +693,13 @@ with a [one-pass DFA](crate::dfa::onepass).
 
 ##### `impl PartialEq for MatchError`
 
-- `fn eq(self: &Self, other: &MatchError) -> bool` — [`MatchError`](../../index.md)
+- <span id="matcherror-eq"></span>`fn eq(&self, other: &MatchError) -> bool` — [`MatchError`](../../index.md)
 
 ##### `impl StructuralPartialEq for MatchError`
 
 ##### `impl<T> ToString for MatchError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="matcherror-to-string"></span>`fn to_string(&self) -> String`
 
 ## Enums
 
@@ -800,27 +832,27 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn is_anchored(self: &Self) -> bool`
+- <span id="anchored-is-anchored"></span>`fn is_anchored(&self) -> bool`
 
-- `fn pattern(self: &Self) -> Option<PatternID>` — [`PatternID`](../../index.md)
+- <span id="anchored-pattern"></span>`fn pattern(&self) -> Option<PatternID>` — [`PatternID`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Anchored`
 
-- `fn clone(self: &Self) -> Anchored` — [`Anchored`](../../index.md)
+- <span id="anchored-clone"></span>`fn clone(&self) -> Anchored` — [`Anchored`](../../index.md)
 
 ##### `impl Copy for Anchored`
 
 ##### `impl Debug for Anchored`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="anchored-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Anchored`
 
 ##### `impl PartialEq for Anchored`
 
-- `fn eq(self: &Self, other: &Anchored) -> bool` — [`Anchored`](../../index.md)
+- <span id="anchored-eq"></span>`fn eq(&self, other: &Anchored) -> bool` — [`Anchored`](../../index.md)
 
 ##### `impl StructuralPartialEq for Anchored`
 
@@ -982,29 +1014,29 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn continue_past_first_match(self: &Self) -> bool`
+- <span id="matchkind-continue-past-first-match"></span>`fn continue_past_first_match(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for MatchKind`
 
-- `fn clone(self: &Self) -> MatchKind` — [`MatchKind`](../../index.md)
+- <span id="matchkind-clone"></span>`fn clone(&self) -> MatchKind` — [`MatchKind`](../../index.md)
 
 ##### `impl Copy for MatchKind`
 
 ##### `impl Debug for MatchKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="matchkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for MatchKind`
 
-- `fn default() -> MatchKind` — [`MatchKind`](../../index.md)
+- <span id="matchkind-default"></span>`fn default() -> MatchKind` — [`MatchKind`](../../index.md)
 
 ##### `impl Eq for MatchKind`
 
 ##### `impl PartialEq for MatchKind`
 
-- `fn eq(self: &Self, other: &MatchKind) -> bool` — [`MatchKind`](../../index.md)
+- <span id="matchkind-eq"></span>`fn eq(&self, other: &MatchKind) -> bool` — [`MatchKind`](../../index.md)
 
 ##### `impl StructuralPartialEq for MatchKind`
 
@@ -1072,17 +1104,17 @@ a semver-compatible release.
 
 ##### `impl Clone for MatchErrorKind`
 
-- `fn clone(self: &Self) -> MatchErrorKind` — [`MatchErrorKind`](../../index.md)
+- <span id="matcherrorkind-clone"></span>`fn clone(&self) -> MatchErrorKind` — [`MatchErrorKind`](../../index.md)
 
 ##### `impl Debug for MatchErrorKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="matcherrorkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for MatchErrorKind`
 
 ##### `impl PartialEq for MatchErrorKind`
 
-- `fn eq(self: &Self, other: &MatchErrorKind) -> bool` — [`MatchErrorKind`](../../index.md)
+- <span id="matcherrorkind-eq"></span>`fn eq(&self, other: &MatchErrorKind) -> bool` — [`MatchErrorKind`](../../index.md)
 
 ##### `impl StructuralPartialEq for MatchErrorKind`
 

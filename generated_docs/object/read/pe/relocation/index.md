@@ -4,6 +4,14 @@
 
 # Module `relocation`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`RelocationBlockIterator`](#relocationblockiterator) | struct | An iterator over the relocation blocks in the `.reloc` section of a PE file. |
+| [`RelocationIterator`](#relocationiterator) | struct | An iterator of the relocations in a block in the `.reloc` section of a PE file. |
+| [`Relocation`](#relocation) | struct | A relocation in the `.reloc` section of a PE file. |
+
 ## Structs
 
 ### `RelocationBlockIterator<'data>`
@@ -20,41 +28,41 @@ Returned by [`DataDirectories::relocation_blocks`](super::DataDirectories::reloc
 
 #### Implementations
 
-- `fn new(data: &'data [u8]) -> Self`
+- <span id="relocationblockiterator-new"></span>`fn new(data: &'data [u8]) -> Self`
 
-- `fn next(self: &mut Self) -> Result<Option<RelocationIterator<'data>>>` — [`Result`](../../../index.md), [`RelocationIterator`](../index.md)
+- <span id="relocationblockiterator-next"></span>`fn next(&mut self) -> Result<Option<RelocationIterator<'data>>>` — [`Result`](../../../index.md), [`RelocationIterator`](../index.md)
 
-- `fn parse(self: &mut Self) -> Result<RelocationIterator<'data>>` — [`Result`](../../../index.md), [`RelocationIterator`](../index.md)
+- <span id="relocationblockiterator-parse"></span>`fn parse(&mut self) -> Result<RelocationIterator<'data>>` — [`Result`](../../../index.md), [`RelocationIterator`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'data> Clone for RelocationBlockIterator<'data>`
 
-- `fn clone(self: &Self) -> RelocationBlockIterator<'data>` — [`RelocationBlockIterator`](../index.md)
+- <span id="relocationblockiterator-clone"></span>`fn clone(&self) -> RelocationBlockIterator<'data>` — [`RelocationBlockIterator`](../index.md)
 
 ##### `impl<'data> Copy for RelocationBlockIterator<'data>`
 
 ##### `impl<'data> Debug for RelocationBlockIterator<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="relocationblockiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data> Default for RelocationBlockIterator<'data>`
 
-- `fn default() -> RelocationBlockIterator<'data>` — [`RelocationBlockIterator`](../index.md)
+- <span id="relocationblockiterator-default"></span>`fn default() -> RelocationBlockIterator<'data>` — [`RelocationBlockIterator`](../index.md)
 
 ##### `impl<I> IntoIterator for RelocationBlockIterator<'data>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="relocationblockiterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="relocationblockiterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="relocationblockiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data> Iterator for RelocationBlockIterator<'data>`
 
-- `type Item = Result<RelocationIterator<'data>, Error>`
+- <span id="relocationblockiterator-item"></span>`type Item = Result<RelocationIterator<'data>, Error>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="relocationblockiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `RelocationIterator<'data>`
 
@@ -70,33 +78,33 @@ An iterator of the relocations in a block in the `.reloc` section of a PE file.
 
 #### Implementations
 
-- `fn virtual_address(self: &Self) -> u32`
+- <span id="relocationiterator-virtual-address"></span>`fn virtual_address(&self) -> u32`
 
-- `fn size(self: &Self) -> u32`
+- <span id="relocationiterator-size"></span>`fn size(&self) -> u32`
 
 #### Trait Implementations
 
 ##### `impl<'data> Clone for RelocationIterator<'data>`
 
-- `fn clone(self: &Self) -> RelocationIterator<'data>` — [`RelocationIterator`](../index.md)
+- <span id="relocationiterator-clone"></span>`fn clone(&self) -> RelocationIterator<'data>` — [`RelocationIterator`](../index.md)
 
 ##### `impl<'data> Debug for RelocationIterator<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="relocationiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for RelocationIterator<'data>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="relocationiterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="relocationiterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="relocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data> Iterator for RelocationIterator<'data>`
 
-- `type Item = Relocation`
+- <span id="relocationiterator-item"></span>`type Item = Relocation`
 
-- `fn next(self: &mut Self) -> Option<Relocation>` — [`Relocation`](../index.md)
+- <span id="relocationiterator-next"></span>`fn next(&mut self) -> Option<Relocation>` — [`Relocation`](../index.md)
 
 ### `Relocation`
 
@@ -123,15 +131,15 @@ A relocation in the `.reloc` section of a PE file.
 
 ##### `impl Clone for Relocation`
 
-- `fn clone(self: &Self) -> Relocation` — [`Relocation`](../index.md)
+- <span id="relocation-clone"></span>`fn clone(&self) -> Relocation` — [`Relocation`](../index.md)
 
 ##### `impl Copy for Relocation`
 
 ##### `impl Debug for Relocation`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="relocation-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Relocation`
 
-- `fn default() -> Relocation` — [`Relocation`](../index.md)
+- <span id="relocation-default"></span>`fn default() -> Relocation` — [`Relocation`](../index.md)
 

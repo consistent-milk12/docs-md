@@ -4,6 +4,12 @@
 
 # Module `set_len_on_drop`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`SetLenOnDrop`](#setlenondrop) | struct |  |
+
 ## Structs
 
 ### `SetLenOnDrop<'a>`
@@ -17,13 +23,13 @@ struct SetLenOnDrop<'a> {
 
 #### Implementations
 
-- `fn new(len: &'a mut usize) -> Self`
+- <span id="setlenondrop-new"></span>`fn new(len: &'a mut usize) -> Self`
 
-- `fn increment_len(self: &mut Self, increment: usize)`
+- <span id="setlenondrop-increment-len"></span>`fn increment_len(&mut self, increment: usize)`
 
 #### Trait Implementations
 
 ##### `impl Drop for SetLenOnDrop<'_>`
 
-- `fn drop(self: &mut Self)`
+- <span id="setlenondrop-drop"></span>`fn drop(&mut self)`
 

@@ -4,6 +4,43 @@
 
 # Module `check`
 
+## Contents
+
+- [Functions](#functions)
+  - [`check`](#check)
+  - [`check_default_on_tuple`](#check_default_on_tuple)
+  - [`check_remote_generic`](#check_remote_generic)
+  - [`check_getter`](#check_getter)
+  - [`check_flatten`](#check_flatten)
+  - [`check_flatten_field`](#check_flatten_field)
+  - [`check_identifier`](#check_identifier)
+  - [`check_variant_skip_attrs`](#check_variant_skip_attrs)
+  - [`check_internal_tag_field_name_conflict`](#check_internal_tag_field_name_conflict)
+  - [`check_adjacent_tag_conflict`](#check_adjacent_tag_conflict)
+  - [`check_transparent`](#check_transparent)
+  - [`member_message`](#member_message)
+  - [`allow_transparent`](#allow_transparent)
+  - [`check_from_and_try_from`](#check_from_and_try_from)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`check`](#check) | fn |  |
+| [`check_default_on_tuple`](#check_default_on_tuple) | fn |  |
+| [`check_remote_generic`](#check_remote_generic) | fn |  |
+| [`check_getter`](#check_getter) | fn |  |
+| [`check_flatten`](#check_flatten) | fn |  |
+| [`check_flatten_field`](#check_flatten_field) | fn |  |
+| [`check_identifier`](#check_identifier) | fn |  |
+| [`check_variant_skip_attrs`](#check_variant_skip_attrs) | fn |  |
+| [`check_internal_tag_field_name_conflict`](#check_internal_tag_field_name_conflict) | fn |  |
+| [`check_adjacent_tag_conflict`](#check_adjacent_tag_conflict) | fn |  |
+| [`check_transparent`](#check_transparent) | fn |  |
+| [`member_message`](#member_message) | fn |  |
+| [`allow_transparent`](#allow_transparent) | fn |  |
+| [`check_from_and_try_from`](#check_from_and_try_from) | fn |  |
+
 ## Functions
 
 ### `check`

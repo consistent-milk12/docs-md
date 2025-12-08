@@ -4,6 +4,18 @@
 
 # Module `time`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`today`](#today) | fn |  |
+| [`try_today`](#try_today) | fn |  |
+| [`BASE`](#base) | const |  |
+| [`BASE_YEAR`](#base_year) | const |  |
+| [`BASE_MONTH`](#base_month) | const |  |
+| [`CYCLE`](#cycle) | const |  |
+| [`DAYS_BY_MONTH`](#days_by_month) | const |  |
+
 ## Functions
 
 ### `today`

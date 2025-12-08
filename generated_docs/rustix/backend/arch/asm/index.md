@@ -6,6 +6,43 @@
 
 x86-64 Linux system calls.
 
+## Contents
+
+- [Functions](#functions)
+  - [`syscall0_readonly`](#syscall0_readonly)
+  - [`syscall1`](#syscall1)
+  - [`syscall1_readonly`](#syscall1_readonly)
+  - [`syscall1_noreturn`](#syscall1_noreturn)
+  - [`syscall2`](#syscall2)
+  - [`syscall2_readonly`](#syscall2_readonly)
+  - [`syscall3`](#syscall3)
+  - [`syscall3_readonly`](#syscall3_readonly)
+  - [`syscall4`](#syscall4)
+  - [`syscall4_readonly`](#syscall4_readonly)
+  - [`syscall5`](#syscall5)
+  - [`syscall5_readonly`](#syscall5_readonly)
+  - [`syscall6`](#syscall6)
+  - [`syscall6_readonly`](#syscall6_readonly)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`syscall0_readonly`](#syscall0_readonly) | fn |  |
+| [`syscall1`](#syscall1) | fn |  |
+| [`syscall1_readonly`](#syscall1_readonly) | fn |  |
+| [`syscall1_noreturn`](#syscall1_noreturn) | fn |  |
+| [`syscall2`](#syscall2) | fn |  |
+| [`syscall2_readonly`](#syscall2_readonly) | fn |  |
+| [`syscall3`](#syscall3) | fn |  |
+| [`syscall3_readonly`](#syscall3_readonly) | fn |  |
+| [`syscall4`](#syscall4) | fn |  |
+| [`syscall4_readonly`](#syscall4_readonly) | fn |  |
+| [`syscall5`](#syscall5) | fn |  |
+| [`syscall5_readonly`](#syscall5_readonly) | fn |  |
+| [`syscall6`](#syscall6) | fn |  |
+| [`syscall6_readonly`](#syscall6_readonly) | fn |  |
+
 ## Functions
 
 ### `syscall0_readonly`

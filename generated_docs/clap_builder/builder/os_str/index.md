@@ -4,6 +4,13 @@
 
 # Module `os_str`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`inner`](#inner) | mod |  |
+| [`OsStr`](#osstr) | struct | A UTF-8-encoded fixed string |
+
 ## Modules
 
 - [`inner`](inner/index.md) - 
@@ -29,61 +36,61 @@ feature
 
 #### Implementations
 
-- `fn from_static_ref(name: &'static std::ffi::OsStr) -> Self`
+- <span id="osstr-from-static-ref"></span>`fn from_static_ref(name: &'static std::ffi::OsStr) -> Self`
 
-- `fn as_os_str(self: &Self) -> &std::ffi::OsStr`
+- <span id="osstr-as-os-str"></span>`fn as_os_str(&self) -> &std::ffi::OsStr`
 
-- `fn to_os_string(self: &Self) -> std::ffi::OsString`
+- <span id="osstr-to-os-string"></span>`fn to_os_string(&self) -> std::ffi::OsString`
 
 #### Trait Implementations
 
 ##### `impl AsRef for OsStr`
 
-- `fn as_ref(self: &Self) -> &std::path::Path`
+- <span id="osstr-as-ref"></span>`fn as_ref(&self) -> &std::ffi::OsStr`
 
 ##### `impl Clone for OsStr`
 
-- `fn clone(self: &Self) -> OsStr` — [`OsStr`](../index.md)
+- <span id="osstr-clone"></span>`fn clone(&self) -> OsStr` — [`OsStr`](../index.md)
 
 ##### `impl Debug for OsStr`
 
-- `fn fmt(self: &Self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="osstr-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
 ##### `impl Default for OsStr`
 
-- `fn default() -> OsStr` — [`OsStr`](../index.md)
+- <span id="osstr-default"></span>`fn default() -> OsStr` — [`OsStr`](../index.md)
 
 ##### `impl Deref for OsStr`
 
-- `type Target = OsStr`
+- <span id="osstr-target"></span>`type Target = OsStr`
 
-- `fn deref(self: &Self) -> &std::ffi::OsStr`
+- <span id="osstr-deref"></span>`fn deref(&self) -> &std::ffi::OsStr`
 
 ##### `impl Eq for OsStr`
 
 ##### `impl Hash for OsStr`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="osstr-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl<I> IntoResettable for OsStr`
 
-- `fn into_resettable(self: Self) -> Resettable<OsStr>` — [`Resettable`](../index.md), [`OsStr`](../index.md)
+- <span id="osstr-into-resettable"></span>`fn into_resettable(self) -> Resettable<OsStr>` — [`Resettable`](../index.md), [`OsStr`](../index.md)
 
 ##### `impl Ord for OsStr`
 
-- `fn cmp(self: &Self, other: &OsStr) -> $crate::cmp::Ordering` — [`OsStr`](../index.md)
+- <span id="osstr-cmp"></span>`fn cmp(&self, other: &OsStr) -> cmp::Ordering` — [`OsStr`](../index.md)
 
 ##### `impl PartialEq for OsStr`
 
-- `fn eq(self: &Self, other: &std::ffi::OsString) -> bool`
+- <span id="osstr-eq"></span>`fn eq(&self, other: &&std::ffi::OsStr) -> bool`
 
 ##### `impl PartialOrd for OsStr`
 
-- `fn partial_cmp(self: &Self, other: &OsStr) -> $crate::option::Option<$crate::cmp::Ordering>` — [`OsStr`](../index.md)
+- <span id="osstr-partial-cmp"></span>`fn partial_cmp(&self, other: &OsStr) -> option::Option<cmp::Ordering>` — [`OsStr`](../index.md)
 
 ##### `impl<P, T> Receiver for OsStr`
 
-- `type Target = T`
+- <span id="osstr-target"></span>`type Target = T`
 
 ##### `impl StructuralPartialEq for OsStr`
 

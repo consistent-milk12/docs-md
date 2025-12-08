@@ -4,6 +4,46 @@
 
 # Module `strip`
 
+## Contents
+
+- [Structs](#structs)
+  - [`StrippedStr`](#strippedstr)
+  - [`StripStr`](#stripstr)
+  - [`StripStrIter`](#stripstriter)
+  - [`StrippedBytes`](#strippedbytes)
+  - [`StripBytes`](#stripbytes)
+  - [`StripBytesIter`](#stripbytesiter)
+  - [`Utf8Parser`](#utf8parser)
+  - [`VtUtf8Receiver`](#vtutf8receiver)
+- [Functions](#functions)
+  - [`strip_str`](#strip_str)
+  - [`next_str`](#next_str)
+  - [`from_utf8_unchecked`](#from_utf8_unchecked)
+  - [`is_utf8_continuation`](#is_utf8_continuation)
+  - [`strip_bytes`](#strip_bytes)
+  - [`next_bytes`](#next_bytes)
+  - [`is_printable_bytes`](#is_printable_bytes)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`StrippedStr`](#strippedstr) | struct | See [`strip_str`] |
+| [`StripStr`](#stripstr) | struct | Incrementally strip non-contiguous data |
+| [`StripStrIter`](#stripstriter) | struct | See [`StripStr`] |
+| [`StrippedBytes`](#strippedbytes) | struct | See [`strip_bytes`] |
+| [`StripBytes`](#stripbytes) | struct | Incrementally strip non-contiguous data |
+| [`StripBytesIter`](#stripbytesiter) | struct | See [`StripBytes`] |
+| [`Utf8Parser`](#utf8parser) | struct |  |
+| [`VtUtf8Receiver`](#vtutf8receiver) | struct |  |
+| [`strip_str`](#strip_str) | fn | Strip ANSI escapes from a `&str`, returning the printable content |
+| [`next_str`](#next_str) | fn |  |
+| [`from_utf8_unchecked`](#from_utf8_unchecked) | fn |  |
+| [`is_utf8_continuation`](#is_utf8_continuation) | fn |  |
+| [`strip_bytes`](#strip_bytes) | fn | Strip ANSI escapes from bytes, returning the printable content |
+| [`next_bytes`](#next_bytes) | fn |  |
+| [`is_printable_bytes`](#is_printable_bytes) | fn |  |
+
 ## Structs
 
 ### `StrippedStr<'s>`
@@ -19,53 +59,53 @@ See [`strip_str`](../index.md)
 
 #### Implementations
 
-- `fn new(data: &'s str) -> Self`
+- <span id="strippedstr-new"></span>`fn new(data: &'s str) -> Self`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="strippedstr-to-string"></span>`fn to_string(&self) -> String`
 
 #### Trait Implementations
 
 ##### `impl<'s> Clone for StrippedStr<'s>`
 
-- `fn clone(self: &Self) -> StrippedStr<'s>` — [`StrippedStr`](../index.md)
+- <span id="strippedstr-clone"></span>`fn clone(&self) -> StrippedStr<'s>` — [`StrippedStr`](../index.md)
 
 ##### `impl<'s> Debug for StrippedStr<'s>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="strippedstr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'s> Default for StrippedStr<'s>`
 
-- `fn default() -> StrippedStr<'s>` — [`StrippedStr`](../index.md)
+- <span id="strippedstr-default"></span>`fn default() -> StrippedStr<'s>` — [`StrippedStr`](../index.md)
 
 ##### `impl Display for StrippedStr<'_>`
 
-- `fn fmt(self: &Self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="strippedstr-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
 ##### `impl<'s> Eq for StrippedStr<'s>`
 
 ##### `impl<I> IntoIterator for StrippedStr<'s>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="strippedstr-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="strippedstr-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="strippedstr-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'s> Iterator for StrippedStr<'s>`
 
-- `type Item = &'s str`
+- <span id="strippedstr-item"></span>`type Item = &'s str`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="strippedstr-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ##### `impl<'s> PartialEq for StrippedStr<'s>`
 
-- `fn eq(self: &Self, other: &StrippedStr<'s>) -> bool` — [`StrippedStr`](../index.md)
+- <span id="strippedstr-eq"></span>`fn eq(&self, other: &StrippedStr<'s>) -> bool` — [`StrippedStr`](../index.md)
 
 ##### `impl<'s> StructuralPartialEq for StrippedStr<'s>`
 
 ##### `impl<T> ToString for StrippedStr<'s>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="strippedstr-to-string"></span>`fn to_string(&self) -> String`
 
 ### `StripStr`
 
@@ -79,29 +119,29 @@ Incrementally strip non-contiguous data
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="stripstr-new"></span>`fn new() -> Self`
 
-- `fn strip_next<'s>(self: &'s mut Self, data: &'s str) -> StripStrIter<'s>` — [`StripStrIter`](../index.md)
+- <span id="stripstr-strip-next"></span>`fn strip_next<'s>(self: &'s mut Self, data: &'s str) -> StripStrIter<'s>` — [`StripStrIter`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for StripStr`
 
-- `fn clone(self: &Self) -> StripStr` — [`StripStr`](../index.md)
+- <span id="stripstr-clone"></span>`fn clone(&self) -> StripStr` — [`StripStr`](../index.md)
 
 ##### `impl Debug for StripStr`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="stripstr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for StripStr`
 
-- `fn default() -> StripStr` — [`StripStr`](../index.md)
+- <span id="stripstr-default"></span>`fn default() -> StripStr` — [`StripStr`](../index.md)
 
 ##### `impl Eq for StripStr`
 
 ##### `impl PartialEq for StripStr`
 
-- `fn eq(self: &Self, other: &StripStr) -> bool` — [`StripStr`](../index.md)
+- <span id="stripstr-eq"></span>`fn eq(&self, other: &StripStr) -> bool` — [`StripStr`](../index.md)
 
 ##### `impl StructuralPartialEq for StripStr`
 
@@ -120,27 +160,27 @@ See [`StripStr`](../index.md)
 
 ##### `impl<'s> Debug for StripStrIter<'s>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="stripstriter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'s> Eq for StripStrIter<'s>`
 
 ##### `impl<I> IntoIterator for StripStrIter<'s>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="stripstriter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="stripstriter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="stripstriter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'s> Iterator for StripStrIter<'s>`
 
-- `type Item = &'s str`
+- <span id="stripstriter-item"></span>`type Item = &'s str`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="stripstriter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ##### `impl<'s> PartialEq for StripStrIter<'s>`
 
-- `fn eq(self: &Self, other: &StripStrIter<'s>) -> bool` — [`StripStrIter`](../index.md)
+- <span id="stripstriter-eq"></span>`fn eq(&self, other: &StripStrIter<'s>) -> bool` — [`StripStrIter`](../index.md)
 
 ##### `impl<'s> StructuralPartialEq for StripStrIter<'s>`
 
@@ -158,47 +198,47 @@ See [`strip_bytes`](../index.md)
 
 #### Implementations
 
-- `fn new(bytes: &'s [u8]) -> Self`
+- <span id="strippedbytes-new"></span>`fn new(bytes: &'s [u8]) -> Self`
 
-- `fn extend(self: &mut Self, bytes: &'s [u8])`
+- <span id="strippedbytes-extend"></span>`fn extend(&mut self, bytes: &'s [u8])`
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="strippedbytes-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn into_vec(self: Self) -> Vec<u8>`
+- <span id="strippedbytes-into-vec"></span>`fn into_vec(self) -> Vec<u8>`
 
 #### Trait Implementations
 
 ##### `impl<'s> Clone for StrippedBytes<'s>`
 
-- `fn clone(self: &Self) -> StrippedBytes<'s>` — [`StrippedBytes`](../index.md)
+- <span id="strippedbytes-clone"></span>`fn clone(&self) -> StrippedBytes<'s>` — [`StrippedBytes`](../index.md)
 
 ##### `impl<'s> Debug for StrippedBytes<'s>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="strippedbytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'s> Default for StrippedBytes<'s>`
 
-- `fn default() -> StrippedBytes<'s>` — [`StrippedBytes`](../index.md)
+- <span id="strippedbytes-default"></span>`fn default() -> StrippedBytes<'s>` — [`StrippedBytes`](../index.md)
 
 ##### `impl<'s> Eq for StrippedBytes<'s>`
 
 ##### `impl<I> IntoIterator for StrippedBytes<'s>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="strippedbytes-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="strippedbytes-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="strippedbytes-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'s> Iterator for StrippedBytes<'s>`
 
-- `type Item = &'s [u8]`
+- <span id="strippedbytes-item"></span>`type Item = &'s [u8]`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="strippedbytes-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ##### `impl<'s> PartialEq for StrippedBytes<'s>`
 
-- `fn eq(self: &Self, other: &StrippedBytes<'s>) -> bool` — [`StrippedBytes`](../index.md)
+- <span id="strippedbytes-eq"></span>`fn eq(&self, other: &StrippedBytes<'s>) -> bool` — [`StrippedBytes`](../index.md)
 
 ##### `impl<'s> StructuralPartialEq for StrippedBytes<'s>`
 
@@ -215,29 +255,29 @@ Incrementally strip non-contiguous data
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="stripbytes-new"></span>`fn new() -> Self`
 
-- `fn strip_next<'s>(self: &'s mut Self, bytes: &'s [u8]) -> StripBytesIter<'s>` — [`StripBytesIter`](../index.md)
+- <span id="stripbytes-strip-next"></span>`fn strip_next<'s>(self: &'s mut Self, bytes: &'s [u8]) -> StripBytesIter<'s>` — [`StripBytesIter`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for StripBytes`
 
-- `fn clone(self: &Self) -> StripBytes` — [`StripBytes`](../index.md)
+- <span id="stripbytes-clone"></span>`fn clone(&self) -> StripBytes` — [`StripBytes`](../index.md)
 
 ##### `impl Debug for StripBytes`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="stripbytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for StripBytes`
 
-- `fn default() -> StripBytes` — [`StripBytes`](../index.md)
+- <span id="stripbytes-default"></span>`fn default() -> StripBytes` — [`StripBytes`](../index.md)
 
 ##### `impl Eq for StripBytes`
 
 ##### `impl PartialEq for StripBytes`
 
-- `fn eq(self: &Self, other: &StripBytes) -> bool` — [`StripBytes`](../index.md)
+- <span id="stripbytes-eq"></span>`fn eq(&self, other: &StripBytes) -> bool` — [`StripBytes`](../index.md)
 
 ##### `impl StructuralPartialEq for StripBytes`
 
@@ -257,27 +297,27 @@ See [`StripBytes`](../index.md)
 
 ##### `impl<'s> Debug for StripBytesIter<'s>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="stripbytesiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'s> Eq for StripBytesIter<'s>`
 
 ##### `impl<I> IntoIterator for StripBytesIter<'s>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="stripbytesiter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="stripbytesiter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="stripbytesiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'s> Iterator for StripBytesIter<'s>`
 
-- `type Item = &'s [u8]`
+- <span id="stripbytesiter-item"></span>`type Item = &'s [u8]`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="stripbytesiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ##### `impl<'s> PartialEq for StripBytesIter<'s>`
 
-- `fn eq(self: &Self, other: &StripBytesIter<'s>) -> bool` — [`StripBytesIter`](../index.md)
+- <span id="stripbytesiter-eq"></span>`fn eq(&self, other: &StripBytesIter<'s>) -> bool` — [`StripBytesIter`](../index.md)
 
 ##### `impl<'s> StructuralPartialEq for StripBytesIter<'s>`
 
@@ -291,27 +331,27 @@ struct Utf8Parser {
 
 #### Implementations
 
-- `fn add(self: &mut Self, byte: u8) -> bool`
+- <span id="utf8parser-add"></span>`fn add(&mut self, byte: u8) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for Utf8Parser`
 
-- `fn clone(self: &Self) -> Utf8Parser` — [`Utf8Parser`](#utf8parser)
+- <span id="utf8parser-clone"></span>`fn clone(&self) -> Utf8Parser` — [`Utf8Parser`](#utf8parser)
 
 ##### `impl Debug for Utf8Parser`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="utf8parser-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Utf8Parser`
 
-- `fn default() -> Utf8Parser` — [`Utf8Parser`](#utf8parser)
+- <span id="utf8parser-default"></span>`fn default() -> Utf8Parser` — [`Utf8Parser`](#utf8parser)
 
 ##### `impl Eq for Utf8Parser`
 
 ##### `impl PartialEq for Utf8Parser`
 
-- `fn eq(self: &Self, other: &Utf8Parser) -> bool` — [`Utf8Parser`](#utf8parser)
+- <span id="utf8parser-eq"></span>`fn eq(&self, other: &Utf8Parser) -> bool` — [`Utf8Parser`](#utf8parser)
 
 ##### `impl StructuralPartialEq for Utf8Parser`
 
@@ -325,9 +365,9 @@ struct VtUtf8Receiver<'a>(&'a mut bool);
 
 ##### `impl Receiver for VtUtf8Receiver<'_>`
 
-- `fn codepoint(self: &mut Self, _: char)`
+- <span id="vtutf8receiver-codepoint"></span>`fn codepoint(&mut self, _: char)`
 
-- `fn invalid_sequence(self: &mut Self)`
+- <span id="vtutf8receiver-invalid-sequence"></span>`fn invalid_sequence(&mut self)`
 
 ## Functions
 

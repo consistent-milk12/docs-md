@@ -4,6 +4,12 @@
 
 # Module `print`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`TokensOrDefault`](#tokensordefault) | struct |  |
+
 ## Structs
 
 ### `TokensOrDefault<'a, T: 'a>`
@@ -18,9 +24,9 @@ struct TokensOrDefault<'a, T: 'a>(&'a Option<T>);
 
 ##### `impl<T> Spanned for TokensOrDefault<'a, T>`
 
-- `fn span(self: &Self) -> Span`
+- <span id="tokensordefault-span"></span>`fn span(&self) -> Span`
 
 ##### `impl<'a, T> ToTokens for TokensOrDefault<'a, T>`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="tokensordefault-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 

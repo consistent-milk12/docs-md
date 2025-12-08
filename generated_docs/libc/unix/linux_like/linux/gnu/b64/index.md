@@ -6,6 +6,857 @@
 
 64-bit specific definitions for linux-like values
 
+## Contents
+
+- [Modules](#modules)
+  - [`x86_64`](#x86_64)
+  - [`not_x32`](#not_x32)
+- [Structs](#structs)
+  - [`sigset_t`](#sigset_t)
+  - [`sysinfo`](#sysinfo)
+  - [`msqid_ds`](#msqid_ds)
+  - [`semid_ds`](#semid_ds)
+  - [`timex`](#timex)
+  - [`sigaction`](#sigaction)
+  - [`statfs`](#statfs)
+  - [`flock`](#flock)
+  - [`flock64`](#flock64)
+  - [`siginfo_t`](#siginfo_t)
+  - [`stack_t`](#stack_t)
+  - [`stat`](#stat)
+  - [`stat64`](#stat64)
+  - [`statfs64`](#statfs64)
+  - [`statvfs64`](#statvfs64)
+  - [`pthread_attr_t`](#pthread_attr_t)
+  - [`_libc_fpxreg`](#_libc_fpxreg)
+  - [`_libc_xmmreg`](#_libc_xmmreg)
+  - [`_libc_fpstate`](#_libc_fpstate)
+  - [`user_regs_struct`](#user_regs_struct)
+  - [`user`](#user)
+  - [`mcontext_t`](#mcontext_t)
+  - [`ipc_perm`](#ipc_perm)
+  - [`shmid_ds`](#shmid_ds)
+  - [`ptrace_rseq_configuration`](#ptrace_rseq_configuration)
+  - [`clone_args`](#clone_args)
+  - [`user_fpregs_struct`](#user_fpregs_struct)
+  - [`ucontext_t`](#ucontext_t)
+  - [`max_align_t`](#max_align_t)
+- [Functions](#functions)
+  - [`getcontext`](#getcontext)
+  - [`setcontext`](#setcontext)
+  - [`makecontext`](#makecontext)
+  - [`swapcontext`](#swapcontext)
+- [Type Aliases](#type-aliases)
+  - [`ino_t`](#ino_t)
+  - [`off_t`](#off_t)
+  - [`blkcnt_t`](#blkcnt_t)
+  - [`shmatt_t`](#shmatt_t)
+  - [`msgqnum_t`](#msgqnum_t)
+  - [`msglen_t`](#msglen_t)
+  - [`fsblkcnt_t`](#fsblkcnt_t)
+  - [`fsfilcnt_t`](#fsfilcnt_t)
+  - [`rlim_t`](#rlim_t)
+  - [`__syscall_ulong_t`](#__syscall_ulong_t)
+  - [`__fsword_t`](#__fsword_t)
+  - [`clock_t`](#clock_t)
+  - [`time_t`](#time_t)
+  - [`wchar_t`](#wchar_t)
+  - [`nlink_t`](#nlink_t)
+  - [`blksize_t`](#blksize_t)
+  - [`greg_t`](#greg_t)
+  - [`suseconds_t`](#suseconds_t)
+  - [`__u64`](#__u64)
+  - [`__s64`](#__s64)
+- [Constants](#constants)
+  - [`__SIZEOF_PTHREAD_RWLOCKATTR_T`](#__sizeof_pthread_rwlockattr_t)
+  - [`O_LARGEFILE`](#o_largefile)
+  - [`POSIX_FADV_DONTNEED`](#posix_fadv_dontneed)
+  - [`POSIX_FADV_NOREUSE`](#posix_fadv_noreuse)
+  - [`VEOF`](#veof)
+  - [`RTLD_DEEPBIND`](#rtld_deepbind)
+  - [`RTLD_GLOBAL`](#rtld_global)
+  - [`RTLD_NOLOAD`](#rtld_noload)
+  - [`O_APPEND`](#o_append)
+  - [`O_CREAT`](#o_creat)
+  - [`O_EXCL`](#o_excl)
+  - [`O_NOCTTY`](#o_noctty)
+  - [`O_NONBLOCK`](#o_nonblock)
+  - [`O_SYNC`](#o_sync)
+  - [`O_RSYNC`](#o_rsync)
+  - [`O_DSYNC`](#o_dsync)
+  - [`O_FSYNC`](#o_fsync)
+  - [`O_NOATIME`](#o_noatime)
+  - [`O_PATH`](#o_path)
+  - [`O_TMPFILE`](#o_tmpfile)
+  - [`MADV_SOFT_OFFLINE`](#madv_soft_offline)
+  - [`MAP_GROWSDOWN`](#map_growsdown)
+  - [`EDEADLK`](#edeadlk)
+  - [`ENAMETOOLONG`](#enametoolong)
+  - [`ENOLCK`](#enolck)
+  - [`ENOSYS`](#enosys)
+  - [`ENOTEMPTY`](#enotempty)
+  - [`ELOOP`](#eloop)
+  - [`ENOMSG`](#enomsg)
+  - [`EIDRM`](#eidrm)
+  - [`ECHRNG`](#echrng)
+  - [`EL2NSYNC`](#el2nsync)
+  - [`EL3HLT`](#el3hlt)
+  - [`EL3RST`](#el3rst)
+  - [`ELNRNG`](#elnrng)
+  - [`EUNATCH`](#eunatch)
+  - [`ENOCSI`](#enocsi)
+  - [`EL2HLT`](#el2hlt)
+  - [`EBADE`](#ebade)
+  - [`EBADR`](#ebadr)
+  - [`EXFULL`](#exfull)
+  - [`ENOANO`](#enoano)
+  - [`EBADRQC`](#ebadrqc)
+  - [`EBADSLT`](#ebadslt)
+  - [`EMULTIHOP`](#emultihop)
+  - [`EOVERFLOW`](#eoverflow)
+  - [`ENOTUNIQ`](#enotuniq)
+  - [`EBADFD`](#ebadfd)
+  - [`EBADMSG`](#ebadmsg)
+  - [`EREMCHG`](#eremchg)
+  - [`ELIBACC`](#elibacc)
+  - [`ELIBBAD`](#elibbad)
+  - [`ELIBSCN`](#elibscn)
+  - [`ELIBMAX`](#elibmax)
+  - [`ELIBEXEC`](#elibexec)
+  - [`EILSEQ`](#eilseq)
+  - [`ERESTART`](#erestart)
+  - [`ESTRPIPE`](#estrpipe)
+  - [`EUSERS`](#eusers)
+  - [`ENOTSOCK`](#enotsock)
+  - [`EDESTADDRREQ`](#edestaddrreq)
+  - [`EMSGSIZE`](#emsgsize)
+  - [`EPROTOTYPE`](#eprototype)
+  - [`ENOPROTOOPT`](#enoprotoopt)
+  - [`EPROTONOSUPPORT`](#eprotonosupport)
+  - [`ESOCKTNOSUPPORT`](#esocktnosupport)
+  - [`EOPNOTSUPP`](#eopnotsupp)
+  - [`EPFNOSUPPORT`](#epfnosupport)
+  - [`EAFNOSUPPORT`](#eafnosupport)
+  - [`EADDRINUSE`](#eaddrinuse)
+  - [`EADDRNOTAVAIL`](#eaddrnotavail)
+  - [`ENETDOWN`](#enetdown)
+  - [`ENETUNREACH`](#enetunreach)
+  - [`ENETRESET`](#enetreset)
+  - [`ECONNABORTED`](#econnaborted)
+  - [`ECONNRESET`](#econnreset)
+  - [`ENOBUFS`](#enobufs)
+  - [`EISCONN`](#eisconn)
+  - [`ENOTCONN`](#enotconn)
+  - [`ESHUTDOWN`](#eshutdown)
+  - [`ETOOMANYREFS`](#etoomanyrefs)
+  - [`ETIMEDOUT`](#etimedout)
+  - [`ECONNREFUSED`](#econnrefused)
+  - [`EHOSTDOWN`](#ehostdown)
+  - [`EHOSTUNREACH`](#ehostunreach)
+  - [`EALREADY`](#ealready)
+  - [`EINPROGRESS`](#einprogress)
+  - [`ESTALE`](#estale)
+  - [`EDQUOT`](#edquot)
+  - [`ENOMEDIUM`](#enomedium)
+  - [`EMEDIUMTYPE`](#emediumtype)
+  - [`ECANCELED`](#ecanceled)
+  - [`ENOKEY`](#enokey)
+  - [`EKEYEXPIRED`](#ekeyexpired)
+  - [`EKEYREVOKED`](#ekeyrevoked)
+  - [`EKEYREJECTED`](#ekeyrejected)
+  - [`EOWNERDEAD`](#eownerdead)
+  - [`ENOTRECOVERABLE`](#enotrecoverable)
+  - [`EHWPOISON`](#ehwpoison)
+  - [`ERFKILL`](#erfkill)
+  - [`SOCK_STREAM`](#sock_stream)
+  - [`SOCK_DGRAM`](#sock_dgram)
+  - [`SA_ONSTACK`](#sa_onstack)
+  - [`SA_SIGINFO`](#sa_siginfo)
+  - [`SA_NOCLDWAIT`](#sa_nocldwait)
+  - [`SIGTTIN`](#sigttin)
+  - [`SIGTTOU`](#sigttou)
+  - [`SIGXCPU`](#sigxcpu)
+  - [`SIGXFSZ`](#sigxfsz)
+  - [`SIGVTALRM`](#sigvtalrm)
+  - [`SIGPROF`](#sigprof)
+  - [`SIGWINCH`](#sigwinch)
+  - [`SIGCHLD`](#sigchld)
+  - [`SIGBUS`](#sigbus)
+  - [`SIGUSR1`](#sigusr1)
+  - [`SIGUSR2`](#sigusr2)
+  - [`SIGCONT`](#sigcont)
+  - [`SIGSTOP`](#sigstop)
+  - [`SIGTSTP`](#sigtstp)
+  - [`SIGURG`](#sigurg)
+  - [`SIGIO`](#sigio)
+  - [`SIGSYS`](#sigsys)
+  - [`SIGSTKFLT`](#sigstkflt)
+  - [`SIGUNUSED`](#sigunused)
+  - [`SIGPOLL`](#sigpoll)
+  - [`SIGPWR`](#sigpwr)
+  - [`SIG_SETMASK`](#sig_setmask)
+  - [`SIG_BLOCK`](#sig_block)
+  - [`SIG_UNBLOCK`](#sig_unblock)
+  - [`POLLWRNORM`](#pollwrnorm)
+  - [`POLLWRBAND`](#pollwrband)
+  - [`O_ASYNC`](#o_async)
+  - [`O_NDELAY`](#o_ndelay)
+  - [`PTRACE_DETACH`](#ptrace_detach)
+  - [`PTRACE_GET_RSEQ_CONFIGURATION`](#ptrace_get_rseq_configuration)
+  - [`EFD_NONBLOCK`](#efd_nonblock)
+  - [`F_GETLK`](#f_getlk)
+  - [`F_GETOWN`](#f_getown)
+  - [`F_SETOWN`](#f_setown)
+  - [`F_SETLK`](#f_setlk)
+  - [`F_SETLKW`](#f_setlkw)
+  - [`F_OFD_GETLK`](#f_ofd_getlk)
+  - [`F_OFD_SETLK`](#f_ofd_setlk)
+  - [`F_OFD_SETLKW`](#f_ofd_setlkw)
+  - [`F_RDLCK`](#f_rdlck)
+  - [`F_WRLCK`](#f_wrlck)
+  - [`F_UNLCK`](#f_unlck)
+  - [`SFD_NONBLOCK`](#sfd_nonblock)
+  - [`TCSANOW`](#tcsanow)
+  - [`TCSADRAIN`](#tcsadrain)
+  - [`TCSAFLUSH`](#tcsaflush)
+  - [`SFD_CLOEXEC`](#sfd_cloexec)
+  - [`NCCS`](#nccs)
+  - [`O_TRUNC`](#o_trunc)
+  - [`O_CLOEXEC`](#o_cloexec)
+  - [`EBFONT`](#ebfont)
+  - [`ENOSTR`](#enostr)
+  - [`ENODATA`](#enodata)
+  - [`ETIME`](#etime)
+  - [`ENOSR`](#enosr)
+  - [`ENONET`](#enonet)
+  - [`ENOPKG`](#enopkg)
+  - [`EREMOTE`](#eremote)
+  - [`ENOLINK`](#enolink)
+  - [`EADV`](#eadv)
+  - [`ESRMNT`](#esrmnt)
+  - [`ECOMM`](#ecomm)
+  - [`EPROTO`](#eproto)
+  - [`EDOTDOT`](#edotdot)
+  - [`SA_NODEFER`](#sa_nodefer)
+  - [`SA_RESETHAND`](#sa_resethand)
+  - [`SA_RESTART`](#sa_restart)
+  - [`SA_NOCLDSTOP`](#sa_nocldstop)
+  - [`EPOLL_CLOEXEC`](#epoll_cloexec)
+  - [`EFD_CLOEXEC`](#efd_cloexec)
+  - [`__SIZEOF_PTHREAD_CONDATTR_T`](#__sizeof_pthread_condattr_t)
+  - [`__SIZEOF_PTHREAD_MUTEXATTR_T`](#__sizeof_pthread_mutexattr_t)
+  - [`__SIZEOF_PTHREAD_BARRIERATTR_T`](#__sizeof_pthread_barrierattr_t)
+  - [`O_DIRECT`](#o_direct)
+  - [`O_DIRECTORY`](#o_directory)
+  - [`O_NOFOLLOW`](#o_nofollow)
+  - [`MAP_HUGETLB`](#map_hugetlb)
+  - [`MAP_LOCKED`](#map_locked)
+  - [`MAP_NORESERVE`](#map_noreserve)
+  - [`MAP_32BIT`](#map_32bit)
+  - [`MAP_ANON`](#map_anon)
+  - [`MAP_ANONYMOUS`](#map_anonymous)
+  - [`MAP_DENYWRITE`](#map_denywrite)
+  - [`MAP_EXECUTABLE`](#map_executable)
+  - [`MAP_POPULATE`](#map_populate)
+  - [`MAP_NONBLOCK`](#map_nonblock)
+  - [`MAP_STACK`](#map_stack)
+  - [`MAP_SYNC`](#map_sync)
+  - [`EDEADLOCK`](#edeadlock)
+  - [`EUCLEAN`](#euclean)
+  - [`ENOTNAM`](#enotnam)
+  - [`ENAVAIL`](#enavail)
+  - [`EISNAM`](#eisnam)
+  - [`EREMOTEIO`](#eremoteio)
+  - [`PTRACE_GETFPREGS`](#ptrace_getfpregs)
+  - [`PTRACE_SETFPREGS`](#ptrace_setfpregs)
+  - [`PTRACE_GETFPXREGS`](#ptrace_getfpxregs)
+  - [`PTRACE_SETFPXREGS`](#ptrace_setfpxregs)
+  - [`PTRACE_GETREGS`](#ptrace_getregs)
+  - [`PTRACE_SETREGS`](#ptrace_setregs)
+  - [`PTRACE_PEEKSIGINFO_SHARED`](#ptrace_peeksiginfo_shared)
+  - [`PTRACE_SYSEMU`](#ptrace_sysemu)
+  - [`PTRACE_SYSEMU_SINGLESTEP`](#ptrace_sysemu_singlestep)
+  - [`PR_GET_SPECULATION_CTRL`](#pr_get_speculation_ctrl)
+  - [`PR_SET_SPECULATION_CTRL`](#pr_set_speculation_ctrl)
+  - [`PR_SPEC_NOT_AFFECTED`](#pr_spec_not_affected)
+  - [`PR_SPEC_PRCTL`](#pr_spec_prctl)
+  - [`PR_SPEC_ENABLE`](#pr_spec_enable)
+  - [`PR_SPEC_DISABLE`](#pr_spec_disable)
+  - [`PR_SPEC_FORCE_DISABLE`](#pr_spec_force_disable)
+  - [`PR_SPEC_DISABLE_NOEXEC`](#pr_spec_disable_noexec)
+  - [`PR_SPEC_STORE_BYPASS`](#pr_spec_store_bypass)
+  - [`PR_SPEC_INDIRECT_BRANCH`](#pr_spec_indirect_branch)
+  - [`MCL_CURRENT`](#mcl_current)
+  - [`MCL_FUTURE`](#mcl_future)
+  - [`MCL_ONFAULT`](#mcl_onfault)
+  - [`SIGSTKSZ`](#sigstksz)
+  - [`MINSIGSTKSZ`](#minsigstksz)
+  - [`CBAUD`](#cbaud)
+  - [`TAB1`](#tab1)
+  - [`TAB2`](#tab2)
+  - [`TAB3`](#tab3)
+  - [`CR1`](#cr1)
+  - [`CR2`](#cr2)
+  - [`CR3`](#cr3)
+  - [`FF1`](#ff1)
+  - [`BS1`](#bs1)
+  - [`VT1`](#vt1)
+  - [`VWERASE`](#vwerase)
+  - [`VREPRINT`](#vreprint)
+  - [`VSUSP`](#vsusp)
+  - [`VSTART`](#vstart)
+  - [`VSTOP`](#vstop)
+  - [`VDISCARD`](#vdiscard)
+  - [`VTIME`](#vtime)
+  - [`IXON`](#ixon)
+  - [`IXOFF`](#ixoff)
+  - [`ONLCR`](#onlcr)
+  - [`CSIZE`](#csize)
+  - [`CS6`](#cs6)
+  - [`CS7`](#cs7)
+  - [`CS8`](#cs8)
+  - [`CSTOPB`](#cstopb)
+  - [`CREAD`](#cread)
+  - [`PARENB`](#parenb)
+  - [`PARODD`](#parodd)
+  - [`HUPCL`](#hupcl)
+  - [`CLOCAL`](#clocal)
+  - [`ECHOKE`](#echoke)
+  - [`ECHOE`](#echoe)
+  - [`ECHOK`](#echok)
+  - [`ECHONL`](#echonl)
+  - [`ECHOPRT`](#echoprt)
+  - [`ECHOCTL`](#echoctl)
+  - [`ISIG`](#isig)
+  - [`ICANON`](#icanon)
+  - [`PENDIN`](#pendin)
+  - [`NOFLSH`](#noflsh)
+  - [`CIBAUD`](#cibaud)
+  - [`CBAUDEX`](#cbaudex)
+  - [`VSWTC`](#vswtc)
+  - [`OLCUC`](#olcuc)
+  - [`NLDLY`](#nldly)
+  - [`CRDLY`](#crdly)
+  - [`TABDLY`](#tabdly)
+  - [`BSDLY`](#bsdly)
+  - [`FFDLY`](#ffdly)
+  - [`VTDLY`](#vtdly)
+  - [`XTABS`](#xtabs)
+  - [`B0`](#b0)
+  - [`B50`](#b50)
+  - [`B75`](#b75)
+  - [`B110`](#b110)
+  - [`B134`](#b134)
+  - [`B150`](#b150)
+  - [`B200`](#b200)
+  - [`B300`](#b300)
+  - [`B600`](#b600)
+  - [`B1200`](#b1200)
+  - [`B1800`](#b1800)
+  - [`B2400`](#b2400)
+  - [`B4800`](#b4800)
+  - [`B9600`](#b9600)
+  - [`B19200`](#b19200)
+  - [`B38400`](#b38400)
+  - [`EXTA`](#exta)
+  - [`EXTB`](#extb)
+  - [`B57600`](#b57600)
+  - [`B115200`](#b115200)
+  - [`B230400`](#b230400)
+  - [`B460800`](#b460800)
+  - [`B500000`](#b500000)
+  - [`B576000`](#b576000)
+  - [`B921600`](#b921600)
+  - [`B1000000`](#b1000000)
+  - [`B1152000`](#b1152000)
+  - [`B1500000`](#b1500000)
+  - [`B2000000`](#b2000000)
+  - [`B2500000`](#b2500000)
+  - [`B3000000`](#b3000000)
+  - [`B3500000`](#b3500000)
+  - [`B4000000`](#b4000000)
+  - [`VEOL`](#veol)
+  - [`VEOL2`](#veol2)
+  - [`VMIN`](#vmin)
+  - [`IEXTEN`](#iexten)
+  - [`TOSTOP`](#tostop)
+  - [`FLUSHO`](#flusho)
+  - [`EXTPROC`](#extproc)
+  - [`R15`](#r15)
+  - [`R14`](#r14)
+  - [`R13`](#r13)
+  - [`R12`](#r12)
+  - [`RBP`](#rbp)
+  - [`RBX`](#rbx)
+  - [`R11`](#r11)
+  - [`R10`](#r10)
+  - [`R9`](#r9)
+  - [`R8`](#r8)
+  - [`RAX`](#rax)
+  - [`RCX`](#rcx)
+  - [`RDX`](#rdx)
+  - [`RSI`](#rsi)
+  - [`RDI`](#rdi)
+  - [`ORIG_RAX`](#orig_rax)
+  - [`RIP`](#rip)
+  - [`CS`](#cs)
+  - [`EFLAGS`](#eflags)
+  - [`RSP`](#rsp)
+  - [`SS`](#ss)
+  - [`FS_BASE`](#fs_base)
+  - [`GS_BASE`](#gs_base)
+  - [`DS`](#ds)
+  - [`ES`](#es)
+  - [`FS`](#fs)
+  - [`GS`](#gs)
+  - [`REG_R8`](#reg_r8)
+  - [`REG_R9`](#reg_r9)
+  - [`REG_R10`](#reg_r10)
+  - [`REG_R11`](#reg_r11)
+  - [`REG_R12`](#reg_r12)
+  - [`REG_R13`](#reg_r13)
+  - [`REG_R14`](#reg_r14)
+  - [`REG_R15`](#reg_r15)
+  - [`REG_RDI`](#reg_rdi)
+  - [`REG_RSI`](#reg_rsi)
+  - [`REG_RBP`](#reg_rbp)
+  - [`REG_RBX`](#reg_rbx)
+  - [`REG_RDX`](#reg_rdx)
+  - [`REG_RAX`](#reg_rax)
+  - [`REG_RCX`](#reg_rcx)
+  - [`REG_RSP`](#reg_rsp)
+  - [`REG_RIP`](#reg_rip)
+  - [`REG_EFL`](#reg_efl)
+  - [`REG_CSGSFS`](#reg_csgsfs)
+  - [`REG_ERR`](#reg_err)
+  - [`REG_TRAPNO`](#reg_trapno)
+  - [`REG_OLDMASK`](#reg_oldmask)
+  - [`REG_CR2`](#reg_cr2)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`x86_64`](#x86_64) | mod | x86_64-specific definitions for 64-bit linux-like values |
+| [`not_x32`](#not_x32) | mod |  |
+| [`sigset_t`](#sigset_t) | struct |  |
+| [`sysinfo`](#sysinfo) | struct |  |
+| [`msqid_ds`](#msqid_ds) | struct |  |
+| [`semid_ds`](#semid_ds) | struct |  |
+| [`timex`](#timex) | struct |  |
+| [`sigaction`](#sigaction) | struct |  |
+| [`statfs`](#statfs) | struct |  |
+| [`flock`](#flock) | struct |  |
+| [`flock64`](#flock64) | struct |  |
+| [`siginfo_t`](#siginfo_t) | struct |  |
+| [`stack_t`](#stack_t) | struct |  |
+| [`stat`](#stat) | struct |  |
+| [`stat64`](#stat64) | struct |  |
+| [`statfs64`](#statfs64) | struct |  |
+| [`statvfs64`](#statvfs64) | struct |  |
+| [`pthread_attr_t`](#pthread_attr_t) | struct |  |
+| [`_libc_fpxreg`](#_libc_fpxreg) | struct |  |
+| [`_libc_xmmreg`](#_libc_xmmreg) | struct |  |
+| [`_libc_fpstate`](#_libc_fpstate) | struct |  |
+| [`user_regs_struct`](#user_regs_struct) | struct |  |
+| [`user`](#user) | struct |  |
+| [`mcontext_t`](#mcontext_t) | struct |  |
+| [`ipc_perm`](#ipc_perm) | struct |  |
+| [`shmid_ds`](#shmid_ds) | struct |  |
+| [`ptrace_rseq_configuration`](#ptrace_rseq_configuration) | struct |  |
+| [`clone_args`](#clone_args) | struct |  |
+| [`user_fpregs_struct`](#user_fpregs_struct) | struct |  |
+| [`ucontext_t`](#ucontext_t) | struct |  |
+| [`max_align_t`](#max_align_t) | struct |  |
+| [`getcontext`](#getcontext) | fn |  |
+| [`setcontext`](#setcontext) | fn |  |
+| [`makecontext`](#makecontext) | fn |  |
+| [`swapcontext`](#swapcontext) | fn |  |
+| [`ino_t`](#ino_t) | type |  |
+| [`off_t`](#off_t) | type |  |
+| [`blkcnt_t`](#blkcnt_t) | type |  |
+| [`shmatt_t`](#shmatt_t) | type |  |
+| [`msgqnum_t`](#msgqnum_t) | type |  |
+| [`msglen_t`](#msglen_t) | type |  |
+| [`fsblkcnt_t`](#fsblkcnt_t) | type |  |
+| [`fsfilcnt_t`](#fsfilcnt_t) | type |  |
+| [`rlim_t`](#rlim_t) | type |  |
+| [`__syscall_ulong_t`](#__syscall_ulong_t) | type |  |
+| [`__fsword_t`](#__fsword_t) | type |  |
+| [`clock_t`](#clock_t) | type |  |
+| [`time_t`](#time_t) | type |  |
+| [`wchar_t`](#wchar_t) | type |  |
+| [`nlink_t`](#nlink_t) | type |  |
+| [`blksize_t`](#blksize_t) | type |  |
+| [`greg_t`](#greg_t) | type |  |
+| [`suseconds_t`](#suseconds_t) | type |  |
+| [`__u64`](#__u64) | type |  |
+| [`__s64`](#__s64) | type |  |
+| [`__SIZEOF_PTHREAD_RWLOCKATTR_T`](#__sizeof_pthread_rwlockattr_t) | const |  |
+| [`O_LARGEFILE`](#o_largefile) | const |  |
+| [`POSIX_FADV_DONTNEED`](#posix_fadv_dontneed) | const |  |
+| [`POSIX_FADV_NOREUSE`](#posix_fadv_noreuse) | const |  |
+| [`VEOF`](#veof) | const |  |
+| [`RTLD_DEEPBIND`](#rtld_deepbind) | const |  |
+| [`RTLD_GLOBAL`](#rtld_global) | const |  |
+| [`RTLD_NOLOAD`](#rtld_noload) | const |  |
+| [`O_APPEND`](#o_append) | const |  |
+| [`O_CREAT`](#o_creat) | const |  |
+| [`O_EXCL`](#o_excl) | const |  |
+| [`O_NOCTTY`](#o_noctty) | const |  |
+| [`O_NONBLOCK`](#o_nonblock) | const |  |
+| [`O_SYNC`](#o_sync) | const |  |
+| [`O_RSYNC`](#o_rsync) | const |  |
+| [`O_DSYNC`](#o_dsync) | const |  |
+| [`O_FSYNC`](#o_fsync) | const |  |
+| [`O_NOATIME`](#o_noatime) | const |  |
+| [`O_PATH`](#o_path) | const |  |
+| [`O_TMPFILE`](#o_tmpfile) | const |  |
+| [`MADV_SOFT_OFFLINE`](#madv_soft_offline) | const |  |
+| [`MAP_GROWSDOWN`](#map_growsdown) | const |  |
+| [`EDEADLK`](#edeadlk) | const |  |
+| [`ENAMETOOLONG`](#enametoolong) | const |  |
+| [`ENOLCK`](#enolck) | const |  |
+| [`ENOSYS`](#enosys) | const |  |
+| [`ENOTEMPTY`](#enotempty) | const |  |
+| [`ELOOP`](#eloop) | const |  |
+| [`ENOMSG`](#enomsg) | const |  |
+| [`EIDRM`](#eidrm) | const |  |
+| [`ECHRNG`](#echrng) | const |  |
+| [`EL2NSYNC`](#el2nsync) | const |  |
+| [`EL3HLT`](#el3hlt) | const |  |
+| [`EL3RST`](#el3rst) | const |  |
+| [`ELNRNG`](#elnrng) | const |  |
+| [`EUNATCH`](#eunatch) | const |  |
+| [`ENOCSI`](#enocsi) | const |  |
+| [`EL2HLT`](#el2hlt) | const |  |
+| [`EBADE`](#ebade) | const |  |
+| [`EBADR`](#ebadr) | const |  |
+| [`EXFULL`](#exfull) | const |  |
+| [`ENOANO`](#enoano) | const |  |
+| [`EBADRQC`](#ebadrqc) | const |  |
+| [`EBADSLT`](#ebadslt) | const |  |
+| [`EMULTIHOP`](#emultihop) | const |  |
+| [`EOVERFLOW`](#eoverflow) | const |  |
+| [`ENOTUNIQ`](#enotuniq) | const |  |
+| [`EBADFD`](#ebadfd) | const |  |
+| [`EBADMSG`](#ebadmsg) | const |  |
+| [`EREMCHG`](#eremchg) | const |  |
+| [`ELIBACC`](#elibacc) | const |  |
+| [`ELIBBAD`](#elibbad) | const |  |
+| [`ELIBSCN`](#elibscn) | const |  |
+| [`ELIBMAX`](#elibmax) | const |  |
+| [`ELIBEXEC`](#elibexec) | const |  |
+| [`EILSEQ`](#eilseq) | const |  |
+| [`ERESTART`](#erestart) | const |  |
+| [`ESTRPIPE`](#estrpipe) | const |  |
+| [`EUSERS`](#eusers) | const |  |
+| [`ENOTSOCK`](#enotsock) | const |  |
+| [`EDESTADDRREQ`](#edestaddrreq) | const |  |
+| [`EMSGSIZE`](#emsgsize) | const |  |
+| [`EPROTOTYPE`](#eprototype) | const |  |
+| [`ENOPROTOOPT`](#enoprotoopt) | const |  |
+| [`EPROTONOSUPPORT`](#eprotonosupport) | const |  |
+| [`ESOCKTNOSUPPORT`](#esocktnosupport) | const |  |
+| [`EOPNOTSUPP`](#eopnotsupp) | const |  |
+| [`EPFNOSUPPORT`](#epfnosupport) | const |  |
+| [`EAFNOSUPPORT`](#eafnosupport) | const |  |
+| [`EADDRINUSE`](#eaddrinuse) | const |  |
+| [`EADDRNOTAVAIL`](#eaddrnotavail) | const |  |
+| [`ENETDOWN`](#enetdown) | const |  |
+| [`ENETUNREACH`](#enetunreach) | const |  |
+| [`ENETRESET`](#enetreset) | const |  |
+| [`ECONNABORTED`](#econnaborted) | const |  |
+| [`ECONNRESET`](#econnreset) | const |  |
+| [`ENOBUFS`](#enobufs) | const |  |
+| [`EISCONN`](#eisconn) | const |  |
+| [`ENOTCONN`](#enotconn) | const |  |
+| [`ESHUTDOWN`](#eshutdown) | const |  |
+| [`ETOOMANYREFS`](#etoomanyrefs) | const |  |
+| [`ETIMEDOUT`](#etimedout) | const |  |
+| [`ECONNREFUSED`](#econnrefused) | const |  |
+| [`EHOSTDOWN`](#ehostdown) | const |  |
+| [`EHOSTUNREACH`](#ehostunreach) | const |  |
+| [`EALREADY`](#ealready) | const |  |
+| [`EINPROGRESS`](#einprogress) | const |  |
+| [`ESTALE`](#estale) | const |  |
+| [`EDQUOT`](#edquot) | const |  |
+| [`ENOMEDIUM`](#enomedium) | const |  |
+| [`EMEDIUMTYPE`](#emediumtype) | const |  |
+| [`ECANCELED`](#ecanceled) | const |  |
+| [`ENOKEY`](#enokey) | const |  |
+| [`EKEYEXPIRED`](#ekeyexpired) | const |  |
+| [`EKEYREVOKED`](#ekeyrevoked) | const |  |
+| [`EKEYREJECTED`](#ekeyrejected) | const |  |
+| [`EOWNERDEAD`](#eownerdead) | const |  |
+| [`ENOTRECOVERABLE`](#enotrecoverable) | const |  |
+| [`EHWPOISON`](#ehwpoison) | const |  |
+| [`ERFKILL`](#erfkill) | const |  |
+| [`SOCK_STREAM`](#sock_stream) | const |  |
+| [`SOCK_DGRAM`](#sock_dgram) | const |  |
+| [`SA_ONSTACK`](#sa_onstack) | const |  |
+| [`SA_SIGINFO`](#sa_siginfo) | const |  |
+| [`SA_NOCLDWAIT`](#sa_nocldwait) | const |  |
+| [`SIGTTIN`](#sigttin) | const |  |
+| [`SIGTTOU`](#sigttou) | const |  |
+| [`SIGXCPU`](#sigxcpu) | const |  |
+| [`SIGXFSZ`](#sigxfsz) | const |  |
+| [`SIGVTALRM`](#sigvtalrm) | const |  |
+| [`SIGPROF`](#sigprof) | const |  |
+| [`SIGWINCH`](#sigwinch) | const |  |
+| [`SIGCHLD`](#sigchld) | const |  |
+| [`SIGBUS`](#sigbus) | const |  |
+| [`SIGUSR1`](#sigusr1) | const |  |
+| [`SIGUSR2`](#sigusr2) | const |  |
+| [`SIGCONT`](#sigcont) | const |  |
+| [`SIGSTOP`](#sigstop) | const |  |
+| [`SIGTSTP`](#sigtstp) | const |  |
+| [`SIGURG`](#sigurg) | const |  |
+| [`SIGIO`](#sigio) | const |  |
+| [`SIGSYS`](#sigsys) | const |  |
+| [`SIGSTKFLT`](#sigstkflt) | const |  |
+| [`SIGUNUSED`](#sigunused) | const |  |
+| [`SIGPOLL`](#sigpoll) | const |  |
+| [`SIGPWR`](#sigpwr) | const |  |
+| [`SIG_SETMASK`](#sig_setmask) | const |  |
+| [`SIG_BLOCK`](#sig_block) | const |  |
+| [`SIG_UNBLOCK`](#sig_unblock) | const |  |
+| [`POLLWRNORM`](#pollwrnorm) | const |  |
+| [`POLLWRBAND`](#pollwrband) | const |  |
+| [`O_ASYNC`](#o_async) | const |  |
+| [`O_NDELAY`](#o_ndelay) | const |  |
+| [`PTRACE_DETACH`](#ptrace_detach) | const |  |
+| [`PTRACE_GET_RSEQ_CONFIGURATION`](#ptrace_get_rseq_configuration) | const |  |
+| [`EFD_NONBLOCK`](#efd_nonblock) | const |  |
+| [`F_GETLK`](#f_getlk) | const |  |
+| [`F_GETOWN`](#f_getown) | const |  |
+| [`F_SETOWN`](#f_setown) | const |  |
+| [`F_SETLK`](#f_setlk) | const |  |
+| [`F_SETLKW`](#f_setlkw) | const |  |
+| [`F_OFD_GETLK`](#f_ofd_getlk) | const |  |
+| [`F_OFD_SETLK`](#f_ofd_setlk) | const |  |
+| [`F_OFD_SETLKW`](#f_ofd_setlkw) | const |  |
+| [`F_RDLCK`](#f_rdlck) | const |  |
+| [`F_WRLCK`](#f_wrlck) | const |  |
+| [`F_UNLCK`](#f_unlck) | const |  |
+| [`SFD_NONBLOCK`](#sfd_nonblock) | const |  |
+| [`TCSANOW`](#tcsanow) | const |  |
+| [`TCSADRAIN`](#tcsadrain) | const |  |
+| [`TCSAFLUSH`](#tcsaflush) | const |  |
+| [`SFD_CLOEXEC`](#sfd_cloexec) | const |  |
+| [`NCCS`](#nccs) | const |  |
+| [`O_TRUNC`](#o_trunc) | const |  |
+| [`O_CLOEXEC`](#o_cloexec) | const |  |
+| [`EBFONT`](#ebfont) | const |  |
+| [`ENOSTR`](#enostr) | const |  |
+| [`ENODATA`](#enodata) | const |  |
+| [`ETIME`](#etime) | const |  |
+| [`ENOSR`](#enosr) | const |  |
+| [`ENONET`](#enonet) | const |  |
+| [`ENOPKG`](#enopkg) | const |  |
+| [`EREMOTE`](#eremote) | const |  |
+| [`ENOLINK`](#enolink) | const |  |
+| [`EADV`](#eadv) | const |  |
+| [`ESRMNT`](#esrmnt) | const |  |
+| [`ECOMM`](#ecomm) | const |  |
+| [`EPROTO`](#eproto) | const |  |
+| [`EDOTDOT`](#edotdot) | const |  |
+| [`SA_NODEFER`](#sa_nodefer) | const |  |
+| [`SA_RESETHAND`](#sa_resethand) | const |  |
+| [`SA_RESTART`](#sa_restart) | const |  |
+| [`SA_NOCLDSTOP`](#sa_nocldstop) | const |  |
+| [`EPOLL_CLOEXEC`](#epoll_cloexec) | const |  |
+| [`EFD_CLOEXEC`](#efd_cloexec) | const |  |
+| [`__SIZEOF_PTHREAD_CONDATTR_T`](#__sizeof_pthread_condattr_t) | const |  |
+| [`__SIZEOF_PTHREAD_MUTEXATTR_T`](#__sizeof_pthread_mutexattr_t) | const |  |
+| [`__SIZEOF_PTHREAD_BARRIERATTR_T`](#__sizeof_pthread_barrierattr_t) | const |  |
+| [`O_DIRECT`](#o_direct) | const |  |
+| [`O_DIRECTORY`](#o_directory) | const |  |
+| [`O_NOFOLLOW`](#o_nofollow) | const |  |
+| [`MAP_HUGETLB`](#map_hugetlb) | const |  |
+| [`MAP_LOCKED`](#map_locked) | const |  |
+| [`MAP_NORESERVE`](#map_noreserve) | const |  |
+| [`MAP_32BIT`](#map_32bit) | const |  |
+| [`MAP_ANON`](#map_anon) | const |  |
+| [`MAP_ANONYMOUS`](#map_anonymous) | const |  |
+| [`MAP_DENYWRITE`](#map_denywrite) | const |  |
+| [`MAP_EXECUTABLE`](#map_executable) | const |  |
+| [`MAP_POPULATE`](#map_populate) | const |  |
+| [`MAP_NONBLOCK`](#map_nonblock) | const |  |
+| [`MAP_STACK`](#map_stack) | const |  |
+| [`MAP_SYNC`](#map_sync) | const |  |
+| [`EDEADLOCK`](#edeadlock) | const |  |
+| [`EUCLEAN`](#euclean) | const |  |
+| [`ENOTNAM`](#enotnam) | const |  |
+| [`ENAVAIL`](#enavail) | const |  |
+| [`EISNAM`](#eisnam) | const |  |
+| [`EREMOTEIO`](#eremoteio) | const |  |
+| [`PTRACE_GETFPREGS`](#ptrace_getfpregs) | const |  |
+| [`PTRACE_SETFPREGS`](#ptrace_setfpregs) | const |  |
+| [`PTRACE_GETFPXREGS`](#ptrace_getfpxregs) | const |  |
+| [`PTRACE_SETFPXREGS`](#ptrace_setfpxregs) | const |  |
+| [`PTRACE_GETREGS`](#ptrace_getregs) | const |  |
+| [`PTRACE_SETREGS`](#ptrace_setregs) | const |  |
+| [`PTRACE_PEEKSIGINFO_SHARED`](#ptrace_peeksiginfo_shared) | const |  |
+| [`PTRACE_SYSEMU`](#ptrace_sysemu) | const |  |
+| [`PTRACE_SYSEMU_SINGLESTEP`](#ptrace_sysemu_singlestep) | const |  |
+| [`PR_GET_SPECULATION_CTRL`](#pr_get_speculation_ctrl) | const |  |
+| [`PR_SET_SPECULATION_CTRL`](#pr_set_speculation_ctrl) | const |  |
+| [`PR_SPEC_NOT_AFFECTED`](#pr_spec_not_affected) | const |  |
+| [`PR_SPEC_PRCTL`](#pr_spec_prctl) | const |  |
+| [`PR_SPEC_ENABLE`](#pr_spec_enable) | const |  |
+| [`PR_SPEC_DISABLE`](#pr_spec_disable) | const |  |
+| [`PR_SPEC_FORCE_DISABLE`](#pr_spec_force_disable) | const |  |
+| [`PR_SPEC_DISABLE_NOEXEC`](#pr_spec_disable_noexec) | const |  |
+| [`PR_SPEC_STORE_BYPASS`](#pr_spec_store_bypass) | const |  |
+| [`PR_SPEC_INDIRECT_BRANCH`](#pr_spec_indirect_branch) | const |  |
+| [`MCL_CURRENT`](#mcl_current) | const |  |
+| [`MCL_FUTURE`](#mcl_future) | const |  |
+| [`MCL_ONFAULT`](#mcl_onfault) | const |  |
+| [`SIGSTKSZ`](#sigstksz) | const |  |
+| [`MINSIGSTKSZ`](#minsigstksz) | const |  |
+| [`CBAUD`](#cbaud) | const |  |
+| [`TAB1`](#tab1) | const |  |
+| [`TAB2`](#tab2) | const |  |
+| [`TAB3`](#tab3) | const |  |
+| [`CR1`](#cr1) | const |  |
+| [`CR2`](#cr2) | const |  |
+| [`CR3`](#cr3) | const |  |
+| [`FF1`](#ff1) | const |  |
+| [`BS1`](#bs1) | const |  |
+| [`VT1`](#vt1) | const |  |
+| [`VWERASE`](#vwerase) | const |  |
+| [`VREPRINT`](#vreprint) | const |  |
+| [`VSUSP`](#vsusp) | const |  |
+| [`VSTART`](#vstart) | const |  |
+| [`VSTOP`](#vstop) | const |  |
+| [`VDISCARD`](#vdiscard) | const |  |
+| [`VTIME`](#vtime) | const |  |
+| [`IXON`](#ixon) | const |  |
+| [`IXOFF`](#ixoff) | const |  |
+| [`ONLCR`](#onlcr) | const |  |
+| [`CSIZE`](#csize) | const |  |
+| [`CS6`](#cs6) | const |  |
+| [`CS7`](#cs7) | const |  |
+| [`CS8`](#cs8) | const |  |
+| [`CSTOPB`](#cstopb) | const |  |
+| [`CREAD`](#cread) | const |  |
+| [`PARENB`](#parenb) | const |  |
+| [`PARODD`](#parodd) | const |  |
+| [`HUPCL`](#hupcl) | const |  |
+| [`CLOCAL`](#clocal) | const |  |
+| [`ECHOKE`](#echoke) | const |  |
+| [`ECHOE`](#echoe) | const |  |
+| [`ECHOK`](#echok) | const |  |
+| [`ECHONL`](#echonl) | const |  |
+| [`ECHOPRT`](#echoprt) | const |  |
+| [`ECHOCTL`](#echoctl) | const |  |
+| [`ISIG`](#isig) | const |  |
+| [`ICANON`](#icanon) | const |  |
+| [`PENDIN`](#pendin) | const |  |
+| [`NOFLSH`](#noflsh) | const |  |
+| [`CIBAUD`](#cibaud) | const |  |
+| [`CBAUDEX`](#cbaudex) | const |  |
+| [`VSWTC`](#vswtc) | const |  |
+| [`OLCUC`](#olcuc) | const |  |
+| [`NLDLY`](#nldly) | const |  |
+| [`CRDLY`](#crdly) | const |  |
+| [`TABDLY`](#tabdly) | const |  |
+| [`BSDLY`](#bsdly) | const |  |
+| [`FFDLY`](#ffdly) | const |  |
+| [`VTDLY`](#vtdly) | const |  |
+| [`XTABS`](#xtabs) | const |  |
+| [`B0`](#b0) | const |  |
+| [`B50`](#b50) | const |  |
+| [`B75`](#b75) | const |  |
+| [`B110`](#b110) | const |  |
+| [`B134`](#b134) | const |  |
+| [`B150`](#b150) | const |  |
+| [`B200`](#b200) | const |  |
+| [`B300`](#b300) | const |  |
+| [`B600`](#b600) | const |  |
+| [`B1200`](#b1200) | const |  |
+| [`B1800`](#b1800) | const |  |
+| [`B2400`](#b2400) | const |  |
+| [`B4800`](#b4800) | const |  |
+| [`B9600`](#b9600) | const |  |
+| [`B19200`](#b19200) | const |  |
+| [`B38400`](#b38400) | const |  |
+| [`EXTA`](#exta) | const |  |
+| [`EXTB`](#extb) | const |  |
+| [`B57600`](#b57600) | const |  |
+| [`B115200`](#b115200) | const |  |
+| [`B230400`](#b230400) | const |  |
+| [`B460800`](#b460800) | const |  |
+| [`B500000`](#b500000) | const |  |
+| [`B576000`](#b576000) | const |  |
+| [`B921600`](#b921600) | const |  |
+| [`B1000000`](#b1000000) | const |  |
+| [`B1152000`](#b1152000) | const |  |
+| [`B1500000`](#b1500000) | const |  |
+| [`B2000000`](#b2000000) | const |  |
+| [`B2500000`](#b2500000) | const |  |
+| [`B3000000`](#b3000000) | const |  |
+| [`B3500000`](#b3500000) | const |  |
+| [`B4000000`](#b4000000) | const |  |
+| [`VEOL`](#veol) | const |  |
+| [`VEOL2`](#veol2) | const |  |
+| [`VMIN`](#vmin) | const |  |
+| [`IEXTEN`](#iexten) | const |  |
+| [`TOSTOP`](#tostop) | const |  |
+| [`FLUSHO`](#flusho) | const |  |
+| [`EXTPROC`](#extproc) | const |  |
+| [`R15`](#r15) | const |  |
+| [`R14`](#r14) | const |  |
+| [`R13`](#r13) | const |  |
+| [`R12`](#r12) | const |  |
+| [`RBP`](#rbp) | const |  |
+| [`RBX`](#rbx) | const |  |
+| [`R11`](#r11) | const |  |
+| [`R10`](#r10) | const |  |
+| [`R9`](#r9) | const |  |
+| [`R8`](#r8) | const |  |
+| [`RAX`](#rax) | const |  |
+| [`RCX`](#rcx) | const |  |
+| [`RDX`](#rdx) | const |  |
+| [`RSI`](#rsi) | const |  |
+| [`RDI`](#rdi) | const |  |
+| [`ORIG_RAX`](#orig_rax) | const |  |
+| [`RIP`](#rip) | const |  |
+| [`CS`](#cs) | const |  |
+| [`EFLAGS`](#eflags) | const |  |
+| [`RSP`](#rsp) | const |  |
+| [`SS`](#ss) | const |  |
+| [`FS_BASE`](#fs_base) | const |  |
+| [`GS_BASE`](#gs_base) | const |  |
+| [`DS`](#ds) | const |  |
+| [`ES`](#es) | const |  |
+| [`FS`](#fs) | const |  |
+| [`GS`](#gs) | const |  |
+| [`REG_R8`](#reg_r8) | const |  |
+| [`REG_R9`](#reg_r9) | const |  |
+| [`REG_R10`](#reg_r10) | const |  |
+| [`REG_R11`](#reg_r11) | const |  |
+| [`REG_R12`](#reg_r12) | const |  |
+| [`REG_R13`](#reg_r13) | const |  |
+| [`REG_R14`](#reg_r14) | const |  |
+| [`REG_R15`](#reg_r15) | const |  |
+| [`REG_RDI`](#reg_rdi) | const |  |
+| [`REG_RSI`](#reg_rsi) | const |  |
+| [`REG_RBP`](#reg_rbp) | const |  |
+| [`REG_RBX`](#reg_rbx) | const |  |
+| [`REG_RDX`](#reg_rdx) | const |  |
+| [`REG_RAX`](#reg_rax) | const |  |
+| [`REG_RCX`](#reg_rcx) | const |  |
+| [`REG_RSP`](#reg_rsp) | const |  |
+| [`REG_RIP`](#reg_rip) | const |  |
+| [`REG_EFL`](#reg_efl) | const |  |
+| [`REG_CSGSFS`](#reg_csgsfs) | const |  |
+| [`REG_ERR`](#reg_err) | const |  |
+| [`REG_TRAPNO`](#reg_trapno) | const |  |
+| [`REG_OLDMASK`](#reg_oldmask) | const |  |
+| [`REG_CR2`](#reg_cr2) | const |  |
+
 ## Modules
 
 - [`x86_64`](x86_64/index.md) - x86_64-specific definitions for 64-bit linux-like values
@@ -25,13 +876,13 @@ struct sigset_t {
 
 ##### `impl Clone for sigset_t`
 
-- `fn clone(self: &Self) -> sigset_t` — [`sigset_t`](../index.md)
+- <span id="sigset-t-clone"></span>`fn clone(&self) -> sigset_t` — [`sigset_t`](../index.md)
 
 ##### `impl Copy for sigset_t`
 
 ##### `impl Debug for sigset_t`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sigset-t-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `sysinfo`
 
@@ -58,13 +909,13 @@ struct sysinfo {
 
 ##### `impl Clone for sysinfo`
 
-- `fn clone(self: &Self) -> sysinfo` — [`sysinfo`](../index.md)
+- <span id="sysinfo-clone"></span>`fn clone(&self) -> sysinfo` — [`sysinfo`](../index.md)
 
 ##### `impl Copy for sysinfo`
 
 ##### `impl Debug for sysinfo`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sysinfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `msqid_ds`
 
@@ -88,13 +939,13 @@ struct msqid_ds {
 
 ##### `impl Clone for msqid_ds`
 
-- `fn clone(self: &Self) -> msqid_ds` — [`msqid_ds`](../index.md)
+- <span id="msqid-ds-clone"></span>`fn clone(&self) -> msqid_ds` — [`msqid_ds`](../index.md)
 
 ##### `impl Copy for msqid_ds`
 
 ##### `impl Debug for msqid_ds`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="msqid-ds-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `semid_ds`
 
@@ -115,13 +966,13 @@ struct semid_ds {
 
 ##### `impl Clone for semid_ds`
 
-- `fn clone(self: &Self) -> semid_ds` — [`semid_ds`](../index.md)
+- <span id="semid-ds-clone"></span>`fn clone(&self) -> semid_ds` — [`semid_ds`](../index.md)
 
 ##### `impl Copy for semid_ds`
 
 ##### `impl Debug for semid_ds`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="semid-ds-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `timex`
 
@@ -165,13 +1016,13 @@ struct timex {
 
 ##### `impl Clone for timex`
 
-- `fn clone(self: &Self) -> timex` — [`timex`](../index.md)
+- <span id="timex-clone"></span>`fn clone(&self) -> timex` — [`timex`](../index.md)
 
 ##### `impl Copy for timex`
 
 ##### `impl Debug for timex`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="timex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `sigaction`
 
@@ -188,13 +1039,13 @@ struct sigaction {
 
 ##### `impl Clone for sigaction`
 
-- `fn clone(self: &Self) -> sigaction` — [`sigaction`](#sigaction)
+- <span id="sigaction-clone"></span>`fn clone(&self) -> sigaction` — [`sigaction`](#sigaction)
 
 ##### `impl Copy for sigaction`
 
 ##### `impl Debug for sigaction`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sigaction-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `statfs`
 
@@ -218,13 +1069,13 @@ struct statfs {
 
 ##### `impl Clone for statfs`
 
-- `fn clone(self: &Self) -> statfs` — [`statfs`](#statfs)
+- <span id="statfs-clone"></span>`fn clone(&self) -> statfs` — [`statfs`](#statfs)
 
 ##### `impl Copy for statfs`
 
 ##### `impl Debug for statfs`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="statfs-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `flock`
 
@@ -242,13 +1093,13 @@ struct flock {
 
 ##### `impl Clone for flock`
 
-- `fn clone(self: &Self) -> flock` — [`flock`](#flock)
+- <span id="flock-clone"></span>`fn clone(&self) -> flock` — [`flock`](#flock)
 
 ##### `impl Copy for flock`
 
 ##### `impl Debug for flock`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="flock-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `flock64`
 
@@ -266,13 +1117,13 @@ struct flock64 {
 
 ##### `impl Clone for flock64`
 
-- `fn clone(self: &Self) -> flock64` — [`flock64`](#flock64)
+- <span id="flock64-clone"></span>`fn clone(&self) -> flock64` — [`flock64`](#flock64)
 
 ##### `impl Copy for flock64`
 
 ##### `impl Debug for flock64`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="flock64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `siginfo_t`
 
@@ -288,21 +1139,21 @@ struct siginfo_t {
 
 #### Implementations
 
-- `unsafe fn si_addr(self: &Self) -> *mut c_void` — [`c_void`](../../../../../index.md)
+- <span id="siginfo-t-si-addr"></span>`unsafe fn si_addr(&self) -> *mut c_void` — [`c_void`](../../../../../index.md)
 
-- `unsafe fn si_value(self: &Self) -> crate::sigval` — [`sigval`](../../../../../index.md)
+- <span id="siginfo-t-si-value"></span>`unsafe fn si_value(&self) -> crate::sigval` — [`sigval`](../../../../../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for siginfo_t`
 
-- `fn clone(self: &Self) -> siginfo_t` — [`siginfo_t`](#siginfo-t)
+- <span id="siginfo-t-clone"></span>`fn clone(&self) -> siginfo_t` — [`siginfo_t`](#siginfo-t)
 
 ##### `impl Copy for siginfo_t`
 
 ##### `impl Debug for siginfo_t`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="siginfo-t-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `stack_t`
 
@@ -318,13 +1169,13 @@ struct stack_t {
 
 ##### `impl Clone for stack_t`
 
-- `fn clone(self: &Self) -> stack_t` — [`stack_t`](#stack-t)
+- <span id="stack-t-clone"></span>`fn clone(&self) -> stack_t` — [`stack_t`](#stack-t)
 
 ##### `impl Copy for stack_t`
 
 ##### `impl Debug for stack_t`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="stack-t-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `stat`
 
@@ -355,13 +1206,13 @@ struct stat {
 
 ##### `impl Clone for stat`
 
-- `fn clone(self: &Self) -> stat` — [`stat`](#stat)
+- <span id="stat-clone"></span>`fn clone(&self) -> stat` — [`stat`](#stat)
 
 ##### `impl Copy for stat`
 
 ##### `impl Debug for stat`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="stat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `stat64`
 
@@ -392,13 +1243,13 @@ struct stat64 {
 
 ##### `impl Clone for stat64`
 
-- `fn clone(self: &Self) -> stat64` — [`stat64`](#stat64)
+- <span id="stat64-clone"></span>`fn clone(&self) -> stat64` — [`stat64`](#stat64)
 
 ##### `impl Copy for stat64`
 
 ##### `impl Debug for stat64`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="stat64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `statfs64`
 
@@ -423,13 +1274,13 @@ struct statfs64 {
 
 ##### `impl Clone for statfs64`
 
-- `fn clone(self: &Self) -> statfs64` — [`statfs64`](#statfs64)
+- <span id="statfs64-clone"></span>`fn clone(&self) -> statfs64` — [`statfs64`](#statfs64)
 
 ##### `impl Copy for statfs64`
 
 ##### `impl Debug for statfs64`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="statfs64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `statvfs64`
 
@@ -454,13 +1305,13 @@ struct statvfs64 {
 
 ##### `impl Clone for statvfs64`
 
-- `fn clone(self: &Self) -> statvfs64` — [`statvfs64`](#statvfs64)
+- <span id="statvfs64-clone"></span>`fn clone(&self) -> statvfs64` — [`statvfs64`](#statvfs64)
 
 ##### `impl Copy for statvfs64`
 
 ##### `impl Debug for statvfs64`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="statvfs64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `pthread_attr_t`
 
@@ -474,13 +1325,13 @@ struct pthread_attr_t {
 
 ##### `impl Clone for pthread_attr_t`
 
-- `fn clone(self: &Self) -> pthread_attr_t` — [`pthread_attr_t`](#pthread-attr-t)
+- <span id="pthread-attr-t-clone"></span>`fn clone(&self) -> pthread_attr_t` — [`pthread_attr_t`](#pthread-attr-t)
 
 ##### `impl Copy for pthread_attr_t`
 
 ##### `impl Debug for pthread_attr_t`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pthread-attr-t-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `_libc_fpxreg`
 
@@ -496,13 +1347,13 @@ struct _libc_fpxreg {
 
 ##### `impl Clone for _libc_fpxreg`
 
-- `fn clone(self: &Self) -> _libc_fpxreg` — [`_libc_fpxreg`](#libc-fpxreg)
+- <span id="libc-fpxreg-clone"></span>`fn clone(&self) -> _libc_fpxreg` — [`_libc_fpxreg`](#libc-fpxreg)
 
 ##### `impl Copy for _libc_fpxreg`
 
 ##### `impl Debug for _libc_fpxreg`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="libc-fpxreg-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `_libc_xmmreg`
 
@@ -516,13 +1367,13 @@ struct _libc_xmmreg {
 
 ##### `impl Clone for _libc_xmmreg`
 
-- `fn clone(self: &Self) -> _libc_xmmreg` — [`_libc_xmmreg`](#libc-xmmreg)
+- <span id="libc-xmmreg-clone"></span>`fn clone(&self) -> _libc_xmmreg` — [`_libc_xmmreg`](#libc-xmmreg)
 
 ##### `impl Copy for _libc_xmmreg`
 
 ##### `impl Debug for _libc_xmmreg`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="libc-xmmreg-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `_libc_fpstate`
 
@@ -546,13 +1397,13 @@ struct _libc_fpstate {
 
 ##### `impl Clone for _libc_fpstate`
 
-- `fn clone(self: &Self) -> _libc_fpstate` — [`_libc_fpstate`](#libc-fpstate)
+- <span id="libc-fpstate-clone"></span>`fn clone(&self) -> _libc_fpstate` — [`_libc_fpstate`](#libc-fpstate)
 
 ##### `impl Copy for _libc_fpstate`
 
 ##### `impl Debug for _libc_fpstate`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="libc-fpstate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `user_regs_struct`
 
@@ -592,13 +1443,13 @@ struct user_regs_struct {
 
 ##### `impl Clone for user_regs_struct`
 
-- `fn clone(self: &Self) -> user_regs_struct` — [`user_regs_struct`](#user-regs-struct)
+- <span id="user-regs-struct-clone"></span>`fn clone(&self) -> user_regs_struct` — [`user_regs_struct`](#user-regs-struct)
 
 ##### `impl Copy for user_regs_struct`
 
 ##### `impl Debug for user_regs_struct`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="user-regs-struct-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `user`
 
@@ -626,13 +1477,13 @@ struct user {
 
 ##### `impl Clone for user`
 
-- `fn clone(self: &Self) -> user` — [`user`](#user)
+- <span id="user-clone"></span>`fn clone(&self) -> user` — [`user`](#user)
 
 ##### `impl Copy for user`
 
 ##### `impl Debug for user`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="user-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `mcontext_t`
 
@@ -648,13 +1499,13 @@ struct mcontext_t {
 
 ##### `impl Clone for mcontext_t`
 
-- `fn clone(self: &Self) -> mcontext_t` — [`mcontext_t`](#mcontext-t)
+- <span id="mcontext-t-clone"></span>`fn clone(&self) -> mcontext_t` — [`mcontext_t`](#mcontext-t)
 
 ##### `impl Copy for mcontext_t`
 
 ##### `impl Debug for mcontext_t`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="mcontext-t-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ipc_perm`
 
@@ -678,13 +1529,13 @@ struct ipc_perm {
 
 ##### `impl Clone for ipc_perm`
 
-- `fn clone(self: &Self) -> ipc_perm` — [`ipc_perm`](#ipc-perm)
+- <span id="ipc-perm-clone"></span>`fn clone(&self) -> ipc_perm` — [`ipc_perm`](#ipc-perm)
 
 ##### `impl Copy for ipc_perm`
 
 ##### `impl Debug for ipc_perm`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="ipc-perm-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `shmid_ds`
 
@@ -707,13 +1558,13 @@ struct shmid_ds {
 
 ##### `impl Clone for shmid_ds`
 
-- `fn clone(self: &Self) -> shmid_ds` — [`shmid_ds`](#shmid-ds)
+- <span id="shmid-ds-clone"></span>`fn clone(&self) -> shmid_ds` — [`shmid_ds`](#shmid-ds)
 
 ##### `impl Copy for shmid_ds`
 
 ##### `impl Debug for shmid_ds`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="shmid-ds-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ptrace_rseq_configuration`
 
@@ -731,13 +1582,13 @@ struct ptrace_rseq_configuration {
 
 ##### `impl Clone for ptrace_rseq_configuration`
 
-- `fn clone(self: &Self) -> ptrace_rseq_configuration` — [`ptrace_rseq_configuration`](#ptrace-rseq-configuration)
+- <span id="ptrace-rseq-configuration-clone"></span>`fn clone(&self) -> ptrace_rseq_configuration` — [`ptrace_rseq_configuration`](#ptrace-rseq-configuration)
 
 ##### `impl Copy for ptrace_rseq_configuration`
 
 ##### `impl Debug for ptrace_rseq_configuration`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="ptrace-rseq-configuration-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `clone_args`
 
@@ -761,13 +1612,13 @@ struct clone_args {
 
 ##### `impl Clone for clone_args`
 
-- `fn clone(self: &Self) -> clone_args` — [`clone_args`](#clone-args)
+- <span id="clone-args-clone"></span>`fn clone(&self) -> clone_args` — [`clone_args`](#clone-args)
 
 ##### `impl Copy for clone_args`
 
 ##### `impl Debug for clone_args`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="clone-args-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `user_fpregs_struct`
 
@@ -791,13 +1642,13 @@ struct user_fpregs_struct {
 
 ##### `impl Clone for user_fpregs_struct`
 
-- `fn clone(self: &Self) -> user_fpregs_struct` — [`user_fpregs_struct`](#user-fpregs-struct)
+- <span id="user-fpregs-struct-clone"></span>`fn clone(&self) -> user_fpregs_struct` — [`user_fpregs_struct`](#user-fpregs-struct)
 
 ##### `impl Copy for user_fpregs_struct`
 
 ##### `impl Debug for user_fpregs_struct`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="user-fpregs-struct-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ucontext_t`
 
@@ -817,13 +1668,13 @@ struct ucontext_t {
 
 ##### `impl Clone for ucontext_t`
 
-- `fn clone(self: &Self) -> ucontext_t` — [`ucontext_t`](#ucontext-t)
+- <span id="ucontext-t-clone"></span>`fn clone(&self) -> ucontext_t` — [`ucontext_t`](#ucontext-t)
 
 ##### `impl Copy for ucontext_t`
 
 ##### `impl Debug for ucontext_t`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="ucontext-t-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `max_align_t`
 
@@ -837,13 +1688,13 @@ struct max_align_t {
 
 ##### `impl Clone for max_align_t`
 
-- `fn clone(self: &Self) -> max_align_t` — [`max_align_t`](#max-align-t)
+- <span id="max-align-t-clone"></span>`fn clone(&self) -> max_align_t` — [`max_align_t`](#max-align-t)
 
 ##### `impl Copy for max_align_t`
 
 ##### `impl Debug for max_align_t`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="max-align-t-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Functions
 

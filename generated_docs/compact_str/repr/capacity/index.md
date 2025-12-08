@@ -4,6 +4,16 @@
 
 # Module `capacity`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Capacity`](#capacity) | struct | An integer type that uses `core::mem::size_of::<usize>() - 1` bytes to store the capacity of |
+| [`USIZE_SIZE`](#usize_size) | const |  |
+| [`VALID_MASK`](#valid_mask) | const | Mask of bits in [`Capacity`] that encode the value. |
+| [`HEAP_MARKER`](#heap_marker) | const | Mask of bits that are set in [`Capacity`] if the string data is stored on the heap. |
+| [`MAX_VALUE`](#max_value) | const | The maximum value we're able to store, e.g. on 64-bit arch this is 2^56 - 2. |
+
 ## Structs
 
 ### `Capacity`
@@ -32,29 +42,29 @@ string larger than 16 megabytes probably isn't that uncommon.
 
 #### Implementations
 
-- `const fn new(capacity: usize) -> Self`
+- <span id="capacity-new"></span>`const fn new(capacity: usize) -> Self`
 
-- `unsafe fn as_usize(self: Self) -> usize`
+- <span id="capacity-as-usize"></span>`unsafe fn as_usize(self) -> usize`
 
-- `fn is_heap(self: Self) -> bool`
+- <span id="capacity-is-heap"></span>`fn is_heap(self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for Capacity`
 
-- `fn clone(self: &Self) -> Capacity` — [`Capacity`](#capacity)
+- <span id="capacity-clone"></span>`fn clone(&self) -> Capacity` — [`Capacity`](#capacity)
 
 ##### `impl Copy for Capacity`
 
 ##### `impl Debug for Capacity`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="capacity-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Capacity`
 
 ##### `impl PartialEq for Capacity`
 
-- `fn eq(self: &Self, other: &Capacity) -> bool` — [`Capacity`](#capacity)
+- <span id="capacity-eq"></span>`fn eq(&self, other: &Capacity) -> bool` — [`Capacity`](#capacity)
 
 ##### `impl StructuralPartialEq for Capacity`
 

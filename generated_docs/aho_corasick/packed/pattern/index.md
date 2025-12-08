@@ -4,6 +4,16 @@
 
 # Module `pattern`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Patterns`](#patterns) | struct | A non-empty collection of non-empty patterns to search for. |
+| [`PatternIter`](#patterniter) | struct | An iterator over the patterns in the `Patterns` collection. |
+| [`Pattern`](#pattern) | struct | A pattern that is used in packed searching. |
+| [`is_prefix`](#is_prefix) | fn | Returns true if and only if `needle` is a prefix of `haystack`. |
+| [`is_equal_raw`](#is_equal_raw) | fn | Compare `n` bytes at the given pointers for equality. |
+
 ## Structs
 
 ### `Patterns`
@@ -62,39 +72,39 @@ than once.
 
 #### Implementations
 
-- `fn new() -> Patterns` — [`Patterns`](#patterns)
+- <span id="patterns-new"></span>`fn new() -> Patterns` — [`Patterns`](#patterns)
 
-- `fn add(self: &mut Self, bytes: &[u8])`
+- <span id="patterns-add"></span>`fn add(&mut self, bytes: &[u8])`
 
-- `fn set_match_kind(self: &mut Self, kind: MatchKind)` — [`MatchKind`](../index.md)
+- <span id="patterns-set-match-kind"></span>`fn set_match_kind(&mut self, kind: MatchKind)` — [`MatchKind`](../index.md)
 
-- `fn len(self: &Self) -> usize`
+- <span id="patterns-len"></span>`fn len(&self) -> usize`
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="patterns-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="patterns-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- `fn reset(self: &mut Self)`
+- <span id="patterns-reset"></span>`fn reset(&mut self)`
 
-- `fn minimum_len(self: &Self) -> usize`
+- <span id="patterns-minimum-len"></span>`fn minimum_len(&self) -> usize`
 
-- `fn match_kind(self: &Self) -> &MatchKind` — [`MatchKind`](../index.md)
+- <span id="patterns-match-kind"></span>`fn match_kind(&self) -> &MatchKind` — [`MatchKind`](../index.md)
 
-- `fn get(self: &Self, id: PatternID) -> Pattern<'_>` — [`PatternID`](../../index.md), [`Pattern`](#pattern)
+- <span id="patterns-get"></span>`fn get(&self, id: PatternID) -> Pattern<'_>` — [`PatternID`](../../index.md), [`Pattern`](#pattern)
 
-- `unsafe fn get_unchecked(self: &Self, id: PatternID) -> Pattern<'_>` — [`PatternID`](../../index.md), [`Pattern`](#pattern)
+- <span id="patterns-get-unchecked"></span>`unsafe fn get_unchecked(&self, id: PatternID) -> Pattern<'_>` — [`PatternID`](../../index.md), [`Pattern`](#pattern)
 
-- `fn iter(self: &Self) -> PatternIter<'_>` — [`PatternIter`](#patterniter)
+- <span id="patterns-iter"></span>`fn iter(&self) -> PatternIter<'_>` — [`PatternIter`](#patterniter)
 
 #### Trait Implementations
 
 ##### `impl Clone for Patterns`
 
-- `fn clone(self: &Self) -> Patterns` — [`Patterns`](#patterns)
+- <span id="patterns-clone"></span>`fn clone(&self) -> Patterns` — [`Patterns`](#patterns)
 
 ##### `impl Debug for Patterns`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="patterns-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `PatternIter<'p>`
 
@@ -117,21 +127,21 @@ this is iterating over.
 
 ##### `impl<'p> Debug for PatternIter<'p>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="patterniter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for PatternIter<'p>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="patterniter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="patterniter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="patterniter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'p> Iterator for PatternIter<'p>`
 
-- `type Item = (PatternID, Pattern<'p>)`
+- <span id="patterniter-item"></span>`type Item = (PatternID, Pattern<'p>)`
 
-- `fn next(self: &mut Self) -> Option<(PatternID, Pattern<'p>)>` — [`PatternID`](../../index.md), [`Pattern`](#pattern)
+- <span id="patterniter-next"></span>`fn next(&mut self) -> Option<(PatternID, Pattern<'p>)>` — [`PatternID`](../../index.md), [`Pattern`](#pattern)
 
 ### `Pattern<'a>`
 
@@ -143,25 +153,25 @@ A pattern that is used in packed searching.
 
 #### Implementations
 
-- `fn len(self: &Self) -> usize`
+- <span id="pattern-len"></span>`fn len(&self) -> usize`
 
-- `fn bytes(self: &Self) -> &[u8]`
+- <span id="pattern-bytes"></span>`fn bytes(&self) -> &[u8]`
 
-- `fn low_nybbles(self: &Self, len: usize) -> Box<[u8]>`
+- <span id="pattern-low-nybbles"></span>`fn low_nybbles(&self, len: usize) -> Box<[u8]>`
 
-- `fn is_prefix(self: &Self, bytes: &[u8]) -> bool`
+- <span id="pattern-is-prefix"></span>`fn is_prefix(&self, bytes: &[u8]) -> bool`
 
-- `unsafe fn is_prefix_raw(self: &Self, start: *const u8, end: *const u8) -> bool`
+- <span id="pattern-is-prefix-raw"></span>`unsafe fn is_prefix_raw(&self, start: *const u8, end: *const u8) -> bool`
 
 #### Trait Implementations
 
 ##### `impl<'a> Clone for Pattern<'a>`
 
-- `fn clone(self: &Self) -> Pattern<'a>` — [`Pattern`](#pattern)
+- <span id="pattern-clone"></span>`fn clone(&self) -> Pattern<'a>` — [`Pattern`](#pattern)
 
 ##### `impl<'a> Debug for Pattern<'a>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="pattern-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Functions
 

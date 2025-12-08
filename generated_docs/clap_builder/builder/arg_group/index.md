@@ -4,6 +4,12 @@
 
 # Module `arg_group`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ArgGroup`](#arggroup) | struct | Specifies a logical group of [arguments] |
+
 ## Structs
 
 ### `ArgGroup`
@@ -84,29 +90,49 @@ assert_eq!(matches
 
 #### Implementations
 
-- `fn get_id(self: &Self) -> &Id` — [`Id`](../../index.md)
+- <span id="arggroup-new"></span>`fn new(id: impl Into<Id>) -> Self` — [`Id`](../../index.md)
 
-- `fn is_required_set(self: &Self) -> bool`
+- <span id="arggroup-id"></span>`fn id(self, id: impl Into<Id>) -> Self` — [`Id`](../../index.md)
+
+- <span id="arggroup-arg"></span>`fn arg(self, arg_id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](../index.md), [`Id`](../../index.md)
+
+- <span id="arggroup-args"></span>`fn args(self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../../index.md)
+
+- <span id="arggroup-get-args"></span>`fn get_args(&self) -> impl Iterator<Item = &Id>` — [`Id`](../../index.md)
+
+- <span id="arggroup-multiple"></span>`fn multiple(self, yes: bool) -> Self`
+
+- <span id="arggroup-is-multiple"></span>`fn is_multiple(&mut self) -> bool`
+
+- <span id="arggroup-required"></span>`fn required(self, yes: bool) -> Self`
+
+- <span id="arggroup-requires"></span>`fn requires(self, id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](../index.md), [`Id`](../../index.md)
+
+- <span id="arggroup-requires-all"></span>`fn requires_all(self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../../index.md)
+
+- <span id="arggroup-conflicts-with"></span>`fn conflicts_with(self, id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](../index.md), [`Id`](../../index.md)
+
+- <span id="arggroup-conflicts-with-all"></span>`fn conflicts_with_all(self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for ArgGroup`
 
-- `fn clone(self: &Self) -> ArgGroup` — [`ArgGroup`](../../index.md)
+- <span id="arggroup-clone"></span>`fn clone(&self) -> ArgGroup` — [`ArgGroup`](../../index.md)
 
 ##### `impl Debug for ArgGroup`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="arggroup-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for ArgGroup`
 
-- `fn default() -> ArgGroup` — [`ArgGroup`](../../index.md)
+- <span id="arggroup-default"></span>`fn default() -> ArgGroup` — [`ArgGroup`](../../index.md)
 
 ##### `impl Eq for ArgGroup`
 
 ##### `impl PartialEq for ArgGroup`
 
-- `fn eq(self: &Self, other: &ArgGroup) -> bool` — [`ArgGroup`](../../index.md)
+- <span id="arggroup-eq"></span>`fn eq(&self, other: &ArgGroup) -> bool` — [`ArgGroup`](../../index.md)
 
 ##### `impl StructuralPartialEq for ArgGroup`
 

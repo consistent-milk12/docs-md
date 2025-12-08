@@ -39,6 +39,8 @@ use rustdoc_types::{
     GenericParamDef, GenericParamDefKind, Term, TraitBoundModifier, Type,
 };
 
+use crate::generator::render_shared::sanitize_path;
+
 /// Type renderer for converting rustdoc types to Rust syntax strings.
 ///
 /// This struct holds a reference to the crate context and provides methods
@@ -110,11 +112,12 @@ impl<'a> TypeRenderer<'a> {
         match ty {
             // Named type path like `Vec<T>` or `std::collections::HashMap<K, V>`
             Type::ResolvedPath(path) => {
-                // If no generic args, borrow the path directly
-                if path.args.is_none() {
+                let sanitized = sanitize_path(&path.path);
+                // If no generic args and no sanitization needed, borrow the path directly
+                if path.args.is_none() && matches!(sanitized, Cow::Borrowed(_)) {
                     return Cow::Borrowed(&path.path);
                 }
-                let mut result = path.path.clone();
+                let mut result = sanitized.into_owned();
                 // Append generic arguments if present
                 if let Some(args) = &path.args {
                     result.push_str(&self.render_generic_args(args));
@@ -124,18 +127,19 @@ impl<'a> TypeRenderer<'a> {
 
             // Trait object: `dyn Trait + OtherTrait`
             Type::DynTrait(dyn_trait) => {
-                let traits: Vec<Cow<str>> = dyn_trait
+                let traits: Vec<String> = dyn_trait
                     .traits
                     .iter()
                     .map(|pt| {
+                        let sanitized = sanitize_path(&pt.trait_.path);
                         if pt.trait_.args.is_none() {
-                            Cow::Borrowed(pt.trait_.path.as_str())
+                            sanitized.into_owned()
                         } else {
-                            let mut s = pt.trait_.path.clone();
+                            let mut s = sanitized.into_owned();
                             if let Some(args) = &pt.trait_.args {
                                 s.push_str(&self.render_generic_args(args));
                             }
-                            Cow::Owned(s)
+                            s
                         }
                     })
                     .collect();
@@ -228,7 +232,10 @@ impl<'a> TypeRenderer<'a> {
                 let self_ty = self.render_type(self_type);
                 Cow::Owned(trait_.as_ref().map_or_else(
                     || format!("{self_ty}::{name}"),
-                    |trait_path| format!("<{self_ty} as {}>::{name}", trait_path.path),
+                    |trait_path| {
+                        let sanitized_trait = sanitize_path(&trait_path.path);
+                        format!("<{self_ty} as {sanitized_trait}>::{name}")
+                    },
                 ))
             },
         }
@@ -359,8 +366,12 @@ impl<'a> TypeRenderer<'a> {
             GenericBound::TraitBound {
                 trait_, modifier, ..
             } => {
-                // Simple case: no modifier and no generic args - borrow directly
-                if matches!(modifier, TraitBoundModifier::None) && trait_.args.is_none() {
+                let sanitized = sanitize_path(&trait_.path);
+                // Simple case: no modifier, no generic args, no sanitization - borrow directly
+                if matches!(modifier, TraitBoundModifier::None)
+                    && trait_.args.is_none()
+                    && matches!(sanitized, Cow::Borrowed(_))
+                {
                     return Cow::Borrowed(&trait_.path);
                 }
 
@@ -372,7 +383,7 @@ impl<'a> TypeRenderer<'a> {
                 };
 
                 // Build the trait path with any generic args
-                let mut result = format!("{modifier_str}{}", trait_.path);
+                let mut result = format!("{modifier_str}{sanitized}");
 
                 if let Some(args) = &trait_.args {
                     result.push_str(&self.render_generic_args(args));

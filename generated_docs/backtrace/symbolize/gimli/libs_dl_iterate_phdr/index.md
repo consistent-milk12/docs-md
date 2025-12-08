@@ -4,6 +4,15 @@
 
 # Module `libs_dl_iterate_phdr`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`CallbackData`](#callbackdata) | struct |  |
+| [`native_libraries`](#native_libraries) | fn |  |
+| [`infer_current_exe`](#infer_current_exe) | fn |  |
+| [`callback`](#callback) | fn | # Safety |
+
 ## Structs
 
 ### `CallbackData`

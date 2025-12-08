@@ -17,6 +17,17 @@ Currently supported syntax highlighters and their feature flags:
 * `syntect-highlighter` - Enables [`syntect`](https://docs.rs/syntect/latest/syntect/) syntax highlighting support via the `SyntectHighlighter`
 
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`blank`](#blank) | mod |  |
+| [`MietteHighlighter`](#miettehighlighter) | struct | Arcified trait object for Highlighter. |
+| [`BlankHighlighter`](#blankhighlighter) | struct | The default syntax highlighter. |
+| [`BlankHighlighterState`](#blankhighlighterstate) | struct | The default highlighter state. |
+| [`Highlighter`](#highlighter) | trait | A syntax highlighter for highlighting miette [`SourceCode`](crate::SourceCode) snippets. |
+| [`HighlighterState`](#highlighterstate) | trait | A stateful highlighter that incrementally highlights lines of a particular |
+
 ## Modules
 
 - [`blank`](blank/index.md) - 
@@ -35,33 +46,33 @@ Wrapping the trait object in this way allows us to implement `Debug` and `Clone`
 
 #### Implementations
 
-- `fn nocolor() -> Self`
+- <span id="miettehighlighter-nocolor"></span>`fn nocolor() -> Self`
 
 #### Trait Implementations
 
 ##### `impl Clone for MietteHighlighter`
 
-- `fn clone(self: &Self) -> MietteHighlighter` — [`MietteHighlighter`](#miettehighlighter)
+- <span id="miettehighlighter-clone"></span>`fn clone(&self) -> MietteHighlighter` — [`MietteHighlighter`](#miettehighlighter)
 
 ##### `impl Debug for MietteHighlighter`
 
-- `fn fmt(self: &Self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="miettehighlighter-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
 ##### `impl Default for MietteHighlighter`
 
-- `fn default() -> Self`
+- <span id="miettehighlighter-default"></span>`fn default() -> Self`
 
 ##### `impl Deref for MietteHighlighter`
 
-- `type Target = dyn Highlighter + Send + Sync`
+- <span id="miettehighlighter-target"></span>`type Target = dyn Highlighter + Send + Sync`
 
-- `fn deref(self: &Self) -> &<Self as >::Target`
+- <span id="miettehighlighter-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl<D> OwoColorize for MietteHighlighter`
 
 ##### `impl<P, T> Receiver for MietteHighlighter`
 
-- `type Target = T`
+- <span id="miettehighlighter-target"></span>`type Target = T`
 
 ### `BlankHighlighter`
 
@@ -76,19 +87,19 @@ This is used by default when no syntax highlighting features are enabled.
 
 ##### `impl Clone for BlankHighlighter`
 
-- `fn clone(self: &Self) -> BlankHighlighter` — [`BlankHighlighter`](#blankhighlighter)
+- <span id="blankhighlighter-clone"></span>`fn clone(&self) -> BlankHighlighter` — [`BlankHighlighter`](#blankhighlighter)
 
 ##### `impl Debug for BlankHighlighter`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="blankhighlighter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for BlankHighlighter`
 
-- `fn default() -> Self`
+- <span id="blankhighlighter-default"></span>`fn default() -> Self`
 
 ##### `impl Highlighter for BlankHighlighter`
 
-- `fn start_highlighter_state<'h>(self: &'h Self, _source: &dyn SpanContents<'_>) -> Box<dyn super::HighlighterState>` — [`SpanContents`](../index.md), [`HighlighterState`](#highlighterstate)
+- <span id="blankhighlighter-start-highlighter-state"></span>`fn start_highlighter_state<'h>(self: &'h Self, _source: &dyn SpanContents<'_>) -> Box<dyn super::HighlighterState>` — [`SpanContents`](../index.md), [`HighlighterState`](#highlighterstate)
 
 ##### `impl<D> OwoColorize for BlankHighlighter`
 
@@ -105,15 +116,15 @@ This is used by default when no syntax highlighting features are enabled.
 
 ##### `impl Clone for BlankHighlighterState`
 
-- `fn clone(self: &Self) -> BlankHighlighterState` — [`BlankHighlighterState`](#blankhighlighterstate)
+- <span id="blankhighlighterstate-clone"></span>`fn clone(&self) -> BlankHighlighterState` — [`BlankHighlighterState`](#blankhighlighterstate)
 
 ##### `impl Debug for BlankHighlighterState`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="blankhighlighterstate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl HighlighterState for BlankHighlighterState`
 
-- `fn highlight_line<'s>(self: &mut Self, line: &'s str) -> Vec<owo_colors::Styled<&'s str>>`
+- <span id="blankhighlighterstate-highlight-line"></span>`fn highlight_line<'s>(&mut self, line: &'s str) -> Vec<owo_colors::Styled<&'s str>>`
 
 ##### `impl<D> OwoColorize for BlankHighlighterState`
 
@@ -152,7 +163,7 @@ mutable parsing and highlighting state.
 
 #### Required Methods
 
-- `fn highlight_line<'s>(self: &mut Self, line: &'s str) -> Vec<Styled<&'s str>>`
+- `fn highlight_line<'s>(&mut self, line: &'s str) -> Vec<Styled<&'s str>>`
 
   Highlight an individual line from the source code by returning a vector of [Styled]
 

@@ -25,6 +25,32 @@ Miscellaneous tools for concurrent programming.
 
 
 
+## Contents
+
+- [Modules](#modules)
+  - [`primitive`](#primitive)
+  - [`atomic`](#atomic)
+  - [`cache_padded`](#cache_padded)
+  - [`backoff`](#backoff)
+  - [`sync`](#sync)
+  - [`thread`](#thread)
+- [Structs](#structs)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`primitive`](#primitive) | mod |  |
+| [`atomic`](#atomic) | mod | Atomic types. |
+| [`cache_padded`](#cache_padded) | mod |  |
+| [`backoff`](#backoff) | mod |  |
+| [`sync`](#sync) | mod | Thread synchronization primitives. |
+| [`thread`](#thread) | mod | Threads that can borrow variables from the stack. |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+
 ## Modules
 
 - [`primitive`](primitive/index.md) - 
@@ -105,53 +131,53 @@ struct Queue<T> {
 
 #### Implementations
 
-- `const fn new(t: T) -> CachePadded<T>` — [`CachePadded`](#cachepadded)
+- <span id="cachepadded-new"></span>`const fn new(t: T) -> CachePadded<T>` — [`CachePadded`](#cachepadded)
 
-- `fn into_inner(self: Self) -> T`
+- <span id="cachepadded-into-inner"></span>`fn into_inner(self) -> T`
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for CachePadded<T>`
+##### `impl<T: clone::Clone> Clone for CachePadded<T>`
 
-- `fn clone(self: &Self) -> CachePadded<T>` — [`CachePadded`](#cachepadded)
+- <span id="cachepadded-clone"></span>`fn clone(&self) -> CachePadded<T>` — [`CachePadded`](#cachepadded)
 
-##### `impl<T: $crate::marker::Copy> Copy for CachePadded<T>`
+##### `impl<T: marker::Copy> Copy for CachePadded<T>`
 
 ##### `impl<T: fmt::Debug> Debug for CachePadded<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cachepadded-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::default::Default> Default for CachePadded<T>`
+##### `impl<T: default::Default> Default for CachePadded<T>`
 
-- `fn default() -> CachePadded<T>` — [`CachePadded`](#cachepadded)
+- <span id="cachepadded-default"></span>`fn default() -> CachePadded<T>` — [`CachePadded`](#cachepadded)
 
 ##### `impl<T> Deref for CachePadded<T>`
 
-- `type Target = T`
+- <span id="cachepadded-target"></span>`type Target = T`
 
-- `fn deref(self: &Self) -> &T`
+- <span id="cachepadded-deref"></span>`fn deref(&self) -> &T`
 
 ##### `impl<T> DerefMut for CachePadded<T>`
 
-- `fn deref_mut(self: &mut Self) -> &mut T`
+- <span id="cachepadded-deref-mut"></span>`fn deref_mut(&mut self) -> &mut T`
 
 ##### `impl<T: fmt::Display> Display for CachePadded<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cachepadded-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq> Eq for CachePadded<T>`
+##### `impl<T: cmp::Eq> Eq for CachePadded<T>`
 
-##### `impl<T: $crate::hash::Hash> Hash for CachePadded<T>`
+##### `impl<T: hash::Hash> Hash for CachePadded<T>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="cachepadded-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<T: $crate::cmp::PartialEq> PartialEq for CachePadded<T>`
+##### `impl<T: cmp::PartialEq> PartialEq for CachePadded<T>`
 
-- `fn eq(self: &Self, other: &CachePadded<T>) -> bool` — [`CachePadded`](#cachepadded)
+- <span id="cachepadded-eq"></span>`fn eq(&self, other: &CachePadded<T>) -> bool` — [`CachePadded`](#cachepadded)
 
 ##### `impl<P, T> Receiver for CachePadded<T>`
 
-- `type Target = T`
+- <span id="cachepadded-target"></span>`type Target = T`
 
 ##### `impl<T: Send> Send for CachePadded<T>`
 
@@ -161,7 +187,7 @@ struct Queue<T> {
 
 ##### `impl<T> ToString for CachePadded<T>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="cachepadded-to-string"></span>`fn to_string(&self) -> String`
 
 ### `Backoff`
 
@@ -243,23 +269,23 @@ fn blocking_wait(ready: &AtomicBool) {
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="backoff-new"></span>`fn new() -> Self`
 
-- `fn reset(self: &Self)`
+- <span id="backoff-reset"></span>`fn reset(&self)`
 
-- `fn spin(self: &Self)`
+- <span id="backoff-spin"></span>`fn spin(&self)`
 
-- `fn snooze(self: &Self)`
+- <span id="backoff-snooze"></span>`fn snooze(&self)`
 
-- `fn is_completed(self: &Self) -> bool`
+- <span id="backoff-is-completed"></span>`fn is_completed(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Debug for Backoff`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="backoff-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Backoff`
 
-- `fn default() -> Backoff` — [`Backoff`](#backoff)
+- <span id="backoff-default"></span>`fn default() -> Backoff` — [`Backoff`](#backoff)
 

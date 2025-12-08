@@ -6,6 +6,13 @@
 
 Functionality for unfilling and refilling text.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`unfill`](#unfill) | fn | Unpack a paragraph of already-wrapped text. |
+| [`refill`](#refill) | fn | Refill a paragraph of wrapped text with a new width. |
+
 ## Functions
 
 ### `unfill`

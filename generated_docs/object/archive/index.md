@@ -9,6 +9,32 @@ Archive definitions.
 These definitions are independent of read/write support, although we do implement
 some traits useful for those.
 
+## Contents
+
+- [Structs](#structs)
+  - [`Header`](#header)
+  - [`AixHeader`](#aixheader)
+  - [`AixFileHeader`](#aixfileheader)
+  - [`AixMemberOffset`](#aixmemberoffset)
+- [Constants](#constants)
+  - [`MAGIC`](#magic)
+  - [`AIX_BIG_MAGIC`](#aix_big_magic)
+  - [`THIN_MAGIC`](#thin_magic)
+  - [`TERMINATOR`](#terminator)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Header`](#header) | struct | The header at the start of an archive member. |
+| [`AixHeader`](#aixheader) | struct | The header at the start of an AIX big archive member, without name. |
+| [`AixFileHeader`](#aixfileheader) | struct | The AIX big archive's fixed length header at file beginning. |
+| [`AixMemberOffset`](#aixmemberoffset) | struct | Offset of a member in an AIX big archive. |
+| [`MAGIC`](#magic) | const | File identification bytes stored at the beginning of the file. |
+| [`AIX_BIG_MAGIC`](#aix_big_magic) | const | File identification bytes at the beginning of AIX big archive. |
+| [`THIN_MAGIC`](#thin_magic) | const | File identification bytes stored at the beginning of a thin archive. |
+| [`TERMINATOR`](#terminator) | const | The terminator for each archive member header. |
+
 ## Structs
 
 ### `Header`
@@ -61,13 +87,13 @@ The header at the start of an archive member.
 
 ##### `impl Clone for Header`
 
-- `fn clone(self: &Self) -> Header` — [`Header`](#header)
+- <span id="header-clone"></span>`fn clone(&self) -> Header` — [`Header`](#header)
 
 ##### `impl Copy for Header`
 
 ##### `impl Debug for Header`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="header-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for Header`
 
@@ -126,13 +152,13 @@ The header at the start of an AIX big archive member, without name.
 
 ##### `impl Clone for AixHeader`
 
-- `fn clone(self: &Self) -> AixHeader` — [`AixHeader`](#aixheader)
+- <span id="aixheader-clone"></span>`fn clone(&self) -> AixHeader` — [`AixHeader`](#aixheader)
 
 ##### `impl Copy for AixHeader`
 
 ##### `impl Debug for AixHeader`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="aixheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for AixHeader`
 
@@ -186,13 +212,13 @@ The AIX big archive's fixed length header at file beginning.
 
 ##### `impl Clone for AixFileHeader`
 
-- `fn clone(self: &Self) -> AixFileHeader` — [`AixFileHeader`](#aixfileheader)
+- <span id="aixfileheader-clone"></span>`fn clone(&self) -> AixFileHeader` — [`AixFileHeader`](#aixfileheader)
 
 ##### `impl Copy for AixFileHeader`
 
 ##### `impl Debug for AixFileHeader`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="aixfileheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for AixFileHeader`
 
@@ -210,13 +236,13 @@ This is used in the member index.
 
 ##### `impl Clone for AixMemberOffset`
 
-- `fn clone(self: &Self) -> AixMemberOffset` — [`AixMemberOffset`](#aixmemberoffset)
+- <span id="aixmemberoffset-clone"></span>`fn clone(&self) -> AixMemberOffset` — [`AixMemberOffset`](#aixmemberoffset)
 
 ##### `impl Copy for AixMemberOffset`
 
 ##### `impl Debug for AixMemberOffset`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="aixmemberoffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for AixMemberOffset`
 

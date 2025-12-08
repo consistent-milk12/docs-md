@@ -12,6 +12,13 @@ these traits on the item type, the compiler can see a more direct constraint to 
 They have to be `pub` since they're seen in the public `impl ParallelIterator` constraints, but
 we put them in a private modules so they're not actually reachable in our public API.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`RangeInteger`](#rangeinteger) | trait | Implementation details of `ParallelIterator for Iter<Self>` |
+| [`IndexedRangeInteger`](#indexedrangeinteger) | trait | Implementation details of `IndexedParallelIterator for Iter<Self>` |
+
 ## Traits
 
 ### `RangeInteger`

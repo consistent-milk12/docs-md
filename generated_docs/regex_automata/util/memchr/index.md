@@ -8,6 +8,12 @@ This module defines simple wrapper routines for the memchr functions from the
 `memchr` crate. Basically, when the `memchr` crate is available, we use it,
 otherwise we use a naive implementation which is still pretty fast.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`inner`](#inner) | mod |  |
+
 ## Modules
 
 - [`inner`](inner/index.md) - 

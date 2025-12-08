@@ -4,6 +4,15 @@
 
 # Module `select_macros`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`FD_CLR`](#fd_clr) | fn |  |
+| [`FD_SET`](#fd_set) | fn |  |
+| [`FD_ISSET`](#fd_isset) | fn |  |
+| [`FD_ZERO`](#fd_zero) | fn |  |
+
 ## Functions
 
 ### `FD_CLR`

@@ -2,6 +2,13 @@
 
 Global override of color control
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`AtomicChoice`](#atomicchoice) | struct |  |
+| [`ColorChoice`](#colorchoice) | enum | Selection for overriding color output |
+
 ## Structs
 
 ### `AtomicChoice`
@@ -12,25 +19,25 @@ struct AtomicChoice(core::sync::atomic::AtomicUsize);
 
 #### Implementations
 
-- `const fn new() -> Self`
+- <span id="atomicchoice-new"></span>`const fn new() -> Self`
 
-- `fn get(self: &Self) -> ColorChoice` — [`ColorChoice`](#colorchoice)
+- <span id="atomicchoice-get"></span>`fn get(&self) -> ColorChoice` — [`ColorChoice`](#colorchoice)
 
-- `fn set(self: &Self, choice: ColorChoice)` — [`ColorChoice`](#colorchoice)
+- <span id="atomicchoice-set"></span>`fn set(&self, choice: ColorChoice)` — [`ColorChoice`](#colorchoice)
 
-- `const fn from_choice(choice: ColorChoice) -> usize` — [`ColorChoice`](#colorchoice)
+- <span id="atomicchoice-from-choice"></span>`const fn from_choice(choice: ColorChoice) -> usize` — [`ColorChoice`](#colorchoice)
 
-- `const fn to_choice(choice: usize) -> Option<ColorChoice>` — [`ColorChoice`](#colorchoice)
+- <span id="atomicchoice-to-choice"></span>`const fn to_choice(choice: usize) -> Option<ColorChoice>` — [`ColorChoice`](#colorchoice)
 
 #### Trait Implementations
 
 ##### `impl Debug for AtomicChoice`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="atomicchoice-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for AtomicChoice`
 
-- `fn default() -> Self`
+- <span id="atomicchoice-default"></span>`fn default() -> Self`
 
 ## Enums
 
@@ -70,31 +77,31 @@ Selection for overriding color output
 
 #### Implementations
 
-- `fn global() -> Self`
+- <span id="colorchoice-global"></span>`fn global() -> Self`
 
-- `fn write_global(self: Self)`
+- <span id="colorchoice-write-global"></span>`fn write_global(self)`
 
 #### Trait Implementations
 
 ##### `impl Clone for ColorChoice`
 
-- `fn clone(self: &Self) -> ColorChoice` — [`ColorChoice`](#colorchoice)
+- <span id="colorchoice-clone"></span>`fn clone(&self) -> ColorChoice` — [`ColorChoice`](#colorchoice)
 
 ##### `impl Copy for ColorChoice`
 
 ##### `impl Debug for ColorChoice`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="colorchoice-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for ColorChoice`
 
-- `fn default() -> Self`
+- <span id="colorchoice-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for ColorChoice`
 
 ##### `impl PartialEq for ColorChoice`
 
-- `fn eq(self: &Self, other: &ColorChoice) -> bool` — [`ColorChoice`](#colorchoice)
+- <span id="colorchoice-eq"></span>`fn eq(&self, other: &ColorChoice) -> bool` — [`ColorChoice`](#colorchoice)
 
 ##### `impl StructuralPartialEq for ColorChoice`
 

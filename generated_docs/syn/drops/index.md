@@ -4,6 +4,13 @@
 
 # Module `drops`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`NoDrop`](#nodrop) | struct |  |
+| [`TrivialDrop`](#trivialdrop) | trait |  |
+
 ## Structs
 
 ### `NoDrop<T: ?Sized>`
@@ -14,23 +21,23 @@ struct NoDrop<T: ?Sized>(std::mem::ManuallyDrop<T>);
 
 #### Implementations
 
-- `fn new(value: T) -> Self`
+- <span id="nodrop-new"></span>`fn new(value: T) -> Self`
 
 #### Trait Implementations
 
 ##### `impl<T: ?Sized> Deref for NoDrop<T>`
 
-- `type Target = T`
+- <span id="nodrop-target"></span>`type Target = T`
 
-- `fn deref(self: &Self) -> &<Self as >::Target`
+- <span id="nodrop-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl<T: ?Sized> DerefMut for NoDrop<T>`
 
-- `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+- <span id="nodrop-deref-mut"></span>`fn deref_mut(&mut self) -> &mut <Self as >::Target`
 
 ##### `impl<P, T> Receiver for NoDrop<T>`
 
-- `type Target = T`
+- <span id="nodrop-target"></span>`type Target = T`
 
 ## Traits
 

@@ -4,6 +4,12 @@
 
 # Module `verbatim`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`between`](#between) | fn |  |
+
 ## Functions
 
 ### `between`

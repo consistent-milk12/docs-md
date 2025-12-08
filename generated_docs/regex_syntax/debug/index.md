@@ -4,6 +4,14 @@
 
 # Module `debug`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Byte`](#byte) | struct | A type that wraps a single byte with a convenient fmt::Debug impl that |
+| [`Bytes`](#bytes) | struct | A type that provides a human readable debug impl for arbitrary bytes. |
+| [`utf8_decode`](#utf8_decode) | fn | Decodes the next UTF-8 encoded codepoint from the given byte slice. |
+
 ## Structs
 
 ### `Byte`
@@ -19,7 +27,7 @@ escapes the byte.
 
 ##### `impl Debug for Byte`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="byte-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ### `Bytes<'a>`
 
@@ -38,7 +46,7 @@ N.B. This is copied nearly verbatim from regex-automata. Sigh.
 
 ##### `impl<'a> Debug for Bytes<'a>`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="bytes-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ## Functions
 

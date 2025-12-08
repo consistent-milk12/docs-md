@@ -4,6 +4,15 @@
 
 # Module `imp`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`core_atomic`](#core_atomic) | mod |  |
+| [`x86`](#x86) | mod |  |
+| [`atomic128`](#atomic128) | mod |  |
+| [`fallback`](#fallback) | mod |  |
+
 ## Modules
 
 - [`core_atomic`](core_atomic/index.md) - 

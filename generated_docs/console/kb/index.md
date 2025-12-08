@@ -4,6 +4,12 @@
 
 # Module `kb`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Key`](#key) | enum | Key mapping |
+
 ## Enums
 
 ### `Key`
@@ -49,21 +55,21 @@ from the keyboard.
 
 ##### `impl Clone for Key`
 
-- `fn clone(self: &Self) -> Key` — [`Key`](../index.md)
+- <span id="key-clone"></span>`fn clone(&self) -> Key` — [`Key`](../index.md)
 
 ##### `impl Debug for Key`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="key-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Key`
 
 ##### `impl Hash for Key`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="key-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Key`
 
-- `fn eq(self: &Self, other: &Key) -> bool` — [`Key`](../index.md)
+- <span id="key-eq"></span>`fn eq(&self, other: &Key) -> bool` — [`Key`](../index.md)
 
 ##### `impl StructuralPartialEq for Key`
 

@@ -4,6 +4,16 @@
 
 # Module `consts`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`NONE`](#none) | const |  |
+| [`READ`](#read) | const |  |
+| [`WRITE`](#write) | const |  |
+| [`SIZE_BITS`](#size_bits) | const |  |
+| [`DIR_BITS`](#dir_bits) | const |  |
+
 ## Constants
 
 ### `NONE`

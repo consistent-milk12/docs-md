@@ -112,6 +112,51 @@ website][data formats].
 
 
 
+## Contents
+
+- [Modules](#modules)
+  - [`fmt`](#fmt)
+  - [`impls`](#impls)
+  - [`impossible`](#impossible)
+- [Structs](#structs)
+  - [`unnamed`](#unnamed)
+- [Traits](#traits)
+  - [`Error`](#error)
+  - [`Serialize`](#serialize)
+  - [`Serializer`](#serializer)
+  - [`SerializeSeq`](#serializeseq)
+  - [`SerializeTuple`](#serializetuple)
+  - [`SerializeTupleStruct`](#serializetuplestruct)
+  - [`SerializeTupleVariant`](#serializetuplevariant)
+  - [`SerializeMap`](#serializemap)
+  - [`SerializeStruct`](#serializestruct)
+  - [`SerializeStructVariant`](#serializestructvariant)
+- [Functions](#functions)
+  - [`iterator_len_hint`](#iterator_len_hint)
+- [Macros](#macros)
+  - [`declare_error_trait!`](#declare_error_trait)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`fmt`](#fmt) | mod |  |
+| [`impls`](#impls) | mod |  |
+| [`impossible`](#impossible) | mod | This module contains `Impossible` serializer and its implementations. |
+| [`unnamed`](#unnamed) | struct |  |
+| [`Error`](#error) | trait | Trait used by `Serialize` implementations to generically construct |
+| [`Serialize`](#serialize) | trait | A **data structure** that can be serialized into any data format supported |
+| [`Serializer`](#serializer) | trait | A **data format** that can serialize any data structure supported by Serde. |
+| [`SerializeSeq`](#serializeseq) | trait | Returned from `Serializer::serialize_seq`. |
+| [`SerializeTuple`](#serializetuple) | trait | Returned from `Serializer::serialize_tuple`. |
+| [`SerializeTupleStruct`](#serializetuplestruct) | trait | Returned from `Serializer::serialize_tuple_struct`. |
+| [`SerializeTupleVariant`](#serializetuplevariant) | trait | Returned from `Serializer::serialize_tuple_variant`. |
+| [`SerializeMap`](#serializemap) | trait | Returned from `Serializer::serialize_map`. |
+| [`SerializeStruct`](#serializestruct) | trait | Returned from `Serializer::serialize_struct`. |
+| [`SerializeStructVariant`](#serializestructvariant) | trait | Returned from `Serializer::serialize_struct_variant`. |
+| [`iterator_len_hint`](#iterator_len_hint) | fn |  |
+| [`declare_error_trait!`](#declare_error_trait) | macro |  |
+
 ## Modules
 
 - [`fmt`](fmt/index.md) - 
@@ -184,75 +229,75 @@ impl Serializer for MySerializer {
 
 ##### `impl<Ok, Error> SerializeMap for Impossible<Ok, Error>`
 
-- `type Ok = Ok`
+- <span id="impossible-ok"></span>`type Ok = Ok`
 
-- `type Error = Error`
+- <span id="impossible-error"></span>`type Error = Error`
 
-- `fn serialize_key<T>(self: &mut Self, key: &T) -> Result<(), Error>`
+- <span id="impossible-serialize-key"></span>`fn serialize_key<T>(&mut self, key: &T) -> Result<(), Error>`
 
-- `fn serialize_value<T>(self: &mut Self, value: &T) -> Result<(), Error>`
+- <span id="impossible-serialize-value"></span>`fn serialize_value<T>(&mut self, value: &T) -> Result<(), Error>`
 
-- `fn end(self: Self) -> Result<Ok, Error>`
+- <span id="impossible-end"></span>`fn end(self) -> Result<Ok, Error>`
 
 ##### `impl<Ok, Error> SerializeSeq for Impossible<Ok, Error>`
 
-- `type Ok = Ok`
+- <span id="impossible-ok"></span>`type Ok = Ok`
 
-- `type Error = Error`
+- <span id="impossible-error"></span>`type Error = Error`
 
-- `fn serialize_element<T>(self: &mut Self, value: &T) -> Result<(), Error>`
+- <span id="impossible-serialize-element"></span>`fn serialize_element<T>(&mut self, value: &T) -> Result<(), Error>`
 
-- `fn end(self: Self) -> Result<Ok, Error>`
+- <span id="impossible-end"></span>`fn end(self) -> Result<Ok, Error>`
 
 ##### `impl<Ok, Error> SerializeStruct for Impossible<Ok, Error>`
 
-- `type Ok = Ok`
+- <span id="impossible-ok"></span>`type Ok = Ok`
 
-- `type Error = Error`
+- <span id="impossible-error"></span>`type Error = Error`
 
-- `fn serialize_field<T>(self: &mut Self, key: &'static str, value: &T) -> Result<(), Error>`
+- <span id="impossible-serialize-field"></span>`fn serialize_field<T>(&mut self, key: &'static str, value: &T) -> Result<(), Error>`
 
-- `fn end(self: Self) -> Result<Ok, Error>`
+- <span id="impossible-end"></span>`fn end(self) -> Result<Ok, Error>`
 
 ##### `impl<Ok, Error> SerializeStructVariant for Impossible<Ok, Error>`
 
-- `type Ok = Ok`
+- <span id="impossible-ok"></span>`type Ok = Ok`
 
-- `type Error = Error`
+- <span id="impossible-error"></span>`type Error = Error`
 
-- `fn serialize_field<T>(self: &mut Self, key: &'static str, value: &T) -> Result<(), Error>`
+- <span id="impossible-serialize-field"></span>`fn serialize_field<T>(&mut self, key: &'static str, value: &T) -> Result<(), Error>`
 
-- `fn end(self: Self) -> Result<Ok, Error>`
+- <span id="impossible-end"></span>`fn end(self) -> Result<Ok, Error>`
 
 ##### `impl<Ok, Error> SerializeTuple for Impossible<Ok, Error>`
 
-- `type Ok = Ok`
+- <span id="impossible-ok"></span>`type Ok = Ok`
 
-- `type Error = Error`
+- <span id="impossible-error"></span>`type Error = Error`
 
-- `fn serialize_element<T>(self: &mut Self, value: &T) -> Result<(), Error>`
+- <span id="impossible-serialize-element"></span>`fn serialize_element<T>(&mut self, value: &T) -> Result<(), Error>`
 
-- `fn end(self: Self) -> Result<Ok, Error>`
+- <span id="impossible-end"></span>`fn end(self) -> Result<Ok, Error>`
 
 ##### `impl<Ok, Error> SerializeTupleStruct for Impossible<Ok, Error>`
 
-- `type Ok = Ok`
+- <span id="impossible-ok"></span>`type Ok = Ok`
 
-- `type Error = Error`
+- <span id="impossible-error"></span>`type Error = Error`
 
-- `fn serialize_field<T>(self: &mut Self, value: &T) -> Result<(), Error>`
+- <span id="impossible-serialize-field"></span>`fn serialize_field<T>(&mut self, value: &T) -> Result<(), Error>`
 
-- `fn end(self: Self) -> Result<Ok, Error>`
+- <span id="impossible-end"></span>`fn end(self) -> Result<Ok, Error>`
 
 ##### `impl<Ok, Error> SerializeTupleVariant for Impossible<Ok, Error>`
 
-- `type Ok = Ok`
+- <span id="impossible-ok"></span>`type Ok = Ok`
 
-- `type Error = Error`
+- <span id="impossible-error"></span>`type Error = Error`
 
-- `fn serialize_field<T>(self: &mut Self, value: &T) -> Result<(), Error>`
+- <span id="impossible-serialize-field"></span>`fn serialize_field<T>(&mut self, value: &T) -> Result<(), Error>`
 
-- `fn end(self: Self) -> Result<Ok, Error>`
+- <span id="impossible-end"></span>`fn end(self) -> Result<Ok, Error>`
 
 ## Traits
 
@@ -311,7 +356,7 @@ provides an implementation of `Serialize` for it.
 
 #### Required Methods
 
-- `fn serialize<S>(self: &Self, serializer: S) -> Result<<S as >::Ok, <S as >::Error>`
+- `fn serialize<S>(&self, serializer: S) -> Result<<S as >::Ok, <S as >::Error>`
 
   Serialize this value into the given Serde serializer.
 
@@ -416,139 +461,139 @@ a basic JSON `Serializer`.
 
 - `type SerializeStructVariant: 1`
 
-- `fn serialize_bool(self: Self, v: bool) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn serialize_bool(self, v: bool) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a `bool` value.
 
-- `fn serialize_i8(self: Self, v: i8) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn serialize_i8(self, v: i8) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize an `i8` value.
 
-- `fn serialize_i16(self: Self, v: i16) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn serialize_i16(self, v: i16) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize an `i16` value.
 
-- `fn serialize_i32(self: Self, v: i32) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn serialize_i32(self, v: i32) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize an `i32` value.
 
-- `fn serialize_i64(self: Self, v: i64) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn serialize_i64(self, v: i64) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize an `i64` value.
 
-- `fn serialize_i128(self: Self, v: i128) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn serialize_i128(self, v: i128) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize an `i128` value.
 
-- `fn serialize_u8(self: Self, v: u8) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn serialize_u8(self, v: u8) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a `u8` value.
 
-- `fn serialize_u16(self: Self, v: u16) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn serialize_u16(self, v: u16) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a `u16` value.
 
-- `fn serialize_u32(self: Self, v: u32) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn serialize_u32(self, v: u32) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a `u32` value.
 
-- `fn serialize_u64(self: Self, v: u64) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn serialize_u64(self, v: u64) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a `u64` value.
 
-- `fn serialize_u128(self: Self, v: u128) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn serialize_u128(self, v: u128) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a `u128` value.
 
-- `fn serialize_f32(self: Self, v: f32) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn serialize_f32(self, v: f32) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize an `f32` value.
 
-- `fn serialize_f64(self: Self, v: f64) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn serialize_f64(self, v: f64) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize an `f64` value.
 
-- `fn serialize_char(self: Self, v: char) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn serialize_char(self, v: char) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a character.
 
-- `fn serialize_str(self: Self, v: &str) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn serialize_str(self, v: &str) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a `&str`.
 
-- `fn serialize_bytes(self: Self, v: &[u8]) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn serialize_bytes(self, v: &[u8]) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a chunk of raw byte data.
 
-- `fn serialize_none(self: Self) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn serialize_none(self) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a `None` value.
 
-- `fn serialize_some<T>(self: Self, value: &T) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn serialize_some<T>(self, value: &T) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a `Some(T)` value.
 
-- `fn serialize_unit(self: Self) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn serialize_unit(self) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a `()` value.
 
-- `fn serialize_unit_struct(self: Self, name: &'static str) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn serialize_unit_struct(self, name: &'static str) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a unit struct like `struct Unit` or `PhantomData<T>`.
 
-- `fn serialize_unit_variant(self: Self, name: &'static str, variant_index: u32, variant: &'static str) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn serialize_unit_variant(self, name: &'static str, variant_index: u32, variant: &'static str) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a unit variant like `E::A` in `enum E { A, B }`.
 
-- `fn serialize_newtype_struct<T>(self: Self, name: &'static str, value: &T) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn serialize_newtype_struct<T>(self, name: &'static str, value: &T) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a newtype struct like `struct Millimeters(u8)`.
 
-- `fn serialize_newtype_variant<T>(self: Self, name: &'static str, variant_index: u32, variant: &'static str, value: &T) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn serialize_newtype_variant<T>(self, name: &'static str, variant_index: u32, variant: &'static str, value: &T) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a newtype variant like `E::N` in `enum E { N(u8) }`.
 
-- `fn serialize_seq(self: Self, len: Option<usize>) -> Result<<Self as >::SerializeSeq, <Self as >::Error>`
+- `fn serialize_seq(self, len: Option<usize>) -> Result<<Self as >::SerializeSeq, <Self as >::Error>`
 
   Begin to serialize a variably sized sequence. This call must be
 
-- `fn serialize_tuple(self: Self, len: usize) -> Result<<Self as >::SerializeTuple, <Self as >::Error>`
+- `fn serialize_tuple(self, len: usize) -> Result<<Self as >::SerializeTuple, <Self as >::Error>`
 
   Begin to serialize a statically sized sequence whose length will be
 
-- `fn serialize_tuple_struct(self: Self, name: &'static str, len: usize) -> Result<<Self as >::SerializeTupleStruct, <Self as >::Error>`
+- `fn serialize_tuple_struct(self, name: &'static str, len: usize) -> Result<<Self as >::SerializeTupleStruct, <Self as >::Error>`
 
   Begin to serialize a tuple struct like `struct Rgb(u8, u8, u8)`. This
 
-- `fn serialize_tuple_variant(self: Self, name: &'static str, variant_index: u32, variant: &'static str, len: usize) -> Result<<Self as >::SerializeTupleVariant, <Self as >::Error>`
+- `fn serialize_tuple_variant(self, name: &'static str, variant_index: u32, variant: &'static str, len: usize) -> Result<<Self as >::SerializeTupleVariant, <Self as >::Error>`
 
   Begin to serialize a tuple variant like `E::T` in `enum E { T(u8, u8)
 
-- `fn serialize_map(self: Self, len: Option<usize>) -> Result<<Self as >::SerializeMap, <Self as >::Error>`
+- `fn serialize_map(self, len: Option<usize>) -> Result<<Self as >::SerializeMap, <Self as >::Error>`
 
   Begin to serialize a map. This call must be followed by zero or more
 
-- `fn serialize_struct(self: Self, name: &'static str, len: usize) -> Result<<Self as >::SerializeStruct, <Self as >::Error>`
+- `fn serialize_struct(self, name: &'static str, len: usize) -> Result<<Self as >::SerializeStruct, <Self as >::Error>`
 
   Begin to serialize a struct like `struct Rgb { r: u8, g: u8, b: u8 }`.
 
-- `fn serialize_struct_variant(self: Self, name: &'static str, variant_index: u32, variant: &'static str, len: usize) -> Result<<Self as >::SerializeStructVariant, <Self as >::Error>`
+- `fn serialize_struct_variant(self, name: &'static str, variant_index: u32, variant: &'static str, len: usize) -> Result<<Self as >::SerializeStructVariant, <Self as >::Error>`
 
   Begin to serialize a struct variant like `E::S` in `enum E { S { r: u8,
 
-- `fn collect_seq<I>(self: Self, iter: I) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn collect_seq<I>(self, iter: I) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Collect an iterator as a sequence.
 
-- `fn collect_map<K, V, I>(self: Self, iter: I) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn collect_map<K, V, I>(self, iter: I) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Collect an iterator as a map.
 
-- `fn collect_str<T>(self: Self, value: &T) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn collect_str<T>(self, value: &T) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a string produced by an implementation of `Display`.
 
-- `fn is_human_readable(self: &Self) -> bool`
+- `fn is_human_readable(&self) -> bool`
 
   Determine whether `Serialize` implementations should serialize in
 
@@ -612,11 +657,11 @@ implementation of `SerializeSeq` for a basic JSON data format.
 
 - `type Error: 1`
 
-- `fn serialize_element<T>(self: &mut Self, value: &T) -> Result<(), <Self as >::Error>`
+- `fn serialize_element<T>(&mut self, value: &T) -> Result<(), <Self as >::Error>`
 
   Serialize a sequence element.
 
-- `fn end(self: Self) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn end(self) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Finish serializing a sequence.
 
@@ -716,11 +761,11 @@ implementation of `SerializeTuple` for a basic JSON data format.
 
 - `type Error: 1`
 
-- `fn serialize_element<T>(self: &mut Self, value: &T) -> Result<(), <Self as >::Error>`
+- `fn serialize_element<T>(&mut self, value: &T) -> Result<(), <Self as >::Error>`
 
   Serialize a tuple element.
 
-- `fn end(self: Self) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn end(self) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Finish serializing a tuple.
 
@@ -765,11 +810,11 @@ implementation of `SerializeTupleStruct` for a basic JSON data format.
 
 - `type Error: 1`
 
-- `fn serialize_field<T>(self: &mut Self, value: &T) -> Result<(), <Self as >::Error>`
+- `fn serialize_field<T>(&mut self, value: &T) -> Result<(), <Self as >::Error>`
 
   Serialize a tuple struct field.
 
-- `fn end(self: Self) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn end(self) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Finish serializing a tuple struct.
 
@@ -827,11 +872,11 @@ implementation of `SerializeTupleVariant` for a basic JSON data format.
 
 - `type Error: 1`
 
-- `fn serialize_field<T>(self: &mut Self, value: &T) -> Result<(), <Self as >::Error>`
+- `fn serialize_field<T>(&mut self, value: &T) -> Result<(), <Self as >::Error>`
 
   Serialize a tuple variant field.
 
-- `fn end(self: Self) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn end(self) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Finish serializing a tuple variant.
 
@@ -897,19 +942,19 @@ implementation of `SerializeMap` for a basic JSON data format.
 
 - `type Error: 1`
 
-- `fn serialize_key<T>(self: &mut Self, key: &T) -> Result<(), <Self as >::Error>`
+- `fn serialize_key<T>(&mut self, key: &T) -> Result<(), <Self as >::Error>`
 
   Serialize a map key.
 
-- `fn serialize_value<T>(self: &mut Self, value: &T) -> Result<(), <Self as >::Error>`
+- `fn serialize_value<T>(&mut self, value: &T) -> Result<(), <Self as >::Error>`
 
   Serialize a map value.
 
-- `fn serialize_entry<K, V>(self: &mut Self, key: &K, value: &V) -> Result<(), <Self as >::Error>`
+- `fn serialize_entry<K, V>(&mut self, key: &K, value: &V) -> Result<(), <Self as >::Error>`
 
   Serialize a map entry consisting of a key and a value.
 
-- `fn end(self: Self) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn end(self) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Finish serializing a map.
 
@@ -958,15 +1003,15 @@ implementation of `SerializeStruct` for a basic JSON data format.
 
 - `type Error: 1`
 
-- `fn serialize_field<T>(self: &mut Self, key: &'static str, value: &T) -> Result<(), <Self as >::Error>`
+- `fn serialize_field<T>(&mut self, key: &'static str, value: &T) -> Result<(), <Self as >::Error>`
 
   Serialize a struct field.
 
-- `fn skip_field(self: &mut Self, key: &'static str) -> Result<(), <Self as >::Error>`
+- `fn skip_field(&mut self, key: &'static str) -> Result<(), <Self as >::Error>`
 
   Indicate that a struct field has been skipped.
 
-- `fn end(self: Self) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn end(self) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Finish serializing a struct.
 
@@ -1021,15 +1066,15 @@ implementation of `SerializeStructVariant` for a basic JSON data format.
 
 - `type Error: 1`
 
-- `fn serialize_field<T>(self: &mut Self, key: &'static str, value: &T) -> Result<(), <Self as >::Error>`
+- `fn serialize_field<T>(&mut self, key: &'static str, value: &T) -> Result<(), <Self as >::Error>`
 
   Serialize a struct variant field.
 
-- `fn skip_field(self: &mut Self, key: &'static str) -> Result<(), <Self as >::Error>`
+- `fn skip_field(&mut self, key: &'static str) -> Result<(), <Self as >::Error>`
 
   Indicate that a struct variant field has been skipped.
 
-- `fn end(self: Self) -> Result<<Self as >::Ok, <Self as >::Error>`
+- `fn end(self) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Finish serializing a struct variant.
 

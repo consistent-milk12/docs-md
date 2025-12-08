@@ -4,6 +4,12 @@
 
 # Module `arg`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Arg`](#arg) | struct | The abstract representation of a command line argument. |
+
 ## Structs
 
 ### `Arg`
@@ -73,125 +79,75 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 
 #### Implementations
 
-- `fn get_id(self: &Self) -> &Id` — [`Id`](../../index.md)
+- <span id="arg-group"></span>`fn group(self, group_id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](../index.md), [`Id`](../../index.md)
 
-- `fn get_help(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](../index.md)
+- <span id="arg-groups"></span>`fn groups(self, group_ids: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../../index.md)
 
-- `fn get_long_help(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](../index.md)
+- <span id="arg-default-value-if"></span>`fn default_value_if(self, arg_id: impl Into<Id>, predicate: impl Into<ArgPredicate>, default: impl IntoResettable<OsStr>) -> Self` — [`Id`](../../index.md), [`ArgPredicate`](../index.md), [`IntoResettable`](../index.md), [`OsStr`](../index.md)
 
-- `fn get_display_order(self: &Self) -> usize`
+- <span id="arg-default-values-if"></span>`fn default_values_if(self, arg_id: impl Into<Id>, predicate: impl Into<ArgPredicate>, defaults: impl IntoIterator<Item = impl Into<OsStr>>) -> Self` — [`Id`](../../index.md), [`ArgPredicate`](../index.md), [`OsStr`](../index.md)
 
-- `fn get_help_heading(self: &Self) -> Option<&str>`
+- <span id="arg-default-value-ifs"></span>`fn default_value_ifs(self, ifs: impl IntoIterator<Item = (impl Into<Id>, impl Into<ArgPredicate>, impl IntoResettable<OsStr>)>) -> Self` — [`Id`](../../index.md), [`ArgPredicate`](../index.md), [`IntoResettable`](../index.md), [`OsStr`](../index.md)
 
-- `fn get_short(self: &Self) -> Option<char>`
+- <span id="arg-default-values-ifs"></span>`fn default_values_ifs(self, ifs: impl IntoIterator<Item = (impl Into<Id>, impl Into<ArgPredicate>, impl IntoIterator<Item = impl Into<OsStr>>)>) -> Self` — [`Id`](../../index.md), [`ArgPredicate`](../index.md), [`OsStr`](../index.md)
 
-- `fn get_visible_short_aliases(self: &Self) -> Option<Vec<char>>`
+- <span id="arg-required-unless-present"></span>`fn required_unless_present(self, arg_id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](../index.md), [`Id`](../../index.md)
 
-- `fn get_all_short_aliases(self: &Self) -> Option<Vec<char>>`
+- <span id="arg-required-unless-present-all"></span>`fn required_unless_present_all(self, names: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../../index.md)
 
-- `fn get_short_and_visible_aliases(self: &Self) -> Option<Vec<char>>`
+- <span id="arg-required-unless-present-any"></span>`fn required_unless_present_any(self, names: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../../index.md)
 
-- `fn get_long(self: &Self) -> Option<&str>`
+- <span id="arg-required-if-eq"></span>`fn required_if_eq(self, arg_id: impl Into<Id>, val: impl Into<OsStr>) -> Self` — [`Id`](../../index.md), [`OsStr`](../index.md)
 
-- `fn get_visible_aliases(self: &Self) -> Option<Vec<&str>>`
+- <span id="arg-required-if-eq-any"></span>`fn required_if_eq_any(self, ifs: impl IntoIterator<Item = (impl Into<Id>, impl Into<OsStr>)>) -> Self` — [`Id`](../../index.md), [`OsStr`](../index.md)
 
-- `fn get_all_aliases(self: &Self) -> Option<Vec<&str>>`
+- <span id="arg-required-if-eq-all"></span>`fn required_if_eq_all(self, ifs: impl IntoIterator<Item = (impl Into<Id>, impl Into<OsStr>)>) -> Self` — [`Id`](../../index.md), [`OsStr`](../index.md)
 
-- `fn get_long_and_visible_aliases(self: &Self) -> Option<Vec<&str>>`
+- <span id="arg-requires-if"></span>`fn requires_if(self, val: impl Into<ArgPredicate>, arg_id: impl Into<Id>) -> Self` — [`ArgPredicate`](../index.md), [`Id`](../../index.md)
 
-- `fn get_aliases(self: &Self) -> Option<Vec<&str>>`
+- <span id="arg-requires-ifs"></span>`fn requires_ifs(self, ifs: impl IntoIterator<Item = (impl Into<ArgPredicate>, impl Into<Id>)>) -> Self` — [`ArgPredicate`](../index.md), [`Id`](../../index.md)
 
-- `fn get_possible_values(self: &Self) -> Vec<PossibleValue>` — [`PossibleValue`](../index.md)
+- <span id="arg-conflicts-with"></span>`fn conflicts_with(self, arg_id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](../index.md), [`Id`](../../index.md)
 
-- `fn get_value_names(self: &Self) -> Option<&[Str]>` — [`Str`](../index.md)
+- <span id="arg-conflicts-with-all"></span>`fn conflicts_with_all(self, names: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../../index.md)
 
-- `fn get_num_args(self: &Self) -> Option<ValueRange>` — [`ValueRange`](../index.md)
+- <span id="arg-overrides-with"></span>`fn overrides_with(self, arg_id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](../index.md), [`Id`](../../index.md)
 
-- `fn get_min_vals(self: &Self) -> usize`
-
-- `fn get_value_delimiter(self: &Self) -> Option<char>`
-
-- `fn get_value_terminator(self: &Self) -> Option<&Str>` — [`Str`](../index.md)
-
-- `fn get_index(self: &Self) -> Option<usize>`
-
-- `fn get_value_hint(self: &Self) -> ValueHint` — [`ValueHint`](../../index.md)
-
-- `fn get_default_values(self: &Self) -> &[OsStr]` — [`OsStr`](../index.md)
-
-- `fn is_positional(self: &Self) -> bool`
-
-- `fn is_required_set(self: &Self) -> bool`
-
-- `fn is_multiple_values_set(self: &Self) -> bool`
-
-- `fn is_takes_value_set(self: &Self) -> bool`
-
-- `fn is_allow_hyphen_values_set(self: &Self) -> bool`
-
-- `fn is_allow_negative_numbers_set(self: &Self) -> bool`
-
-- `fn get_action(self: &Self) -> &ArgAction` — [`ArgAction`](../../index.md)
-
-- `fn get_value_parser(self: &Self) -> &super::ValueParser` — [`ValueParser`](../index.md)
-
-- `fn is_global_set(self: &Self) -> bool`
-
-- `fn is_next_line_help_set(self: &Self) -> bool`
-
-- `fn is_hide_set(self: &Self) -> bool`
-
-- `fn is_hide_default_value_set(self: &Self) -> bool`
-
-- `fn is_hide_possible_values_set(self: &Self) -> bool`
-
-- `fn is_hide_short_help_set(self: &Self) -> bool`
-
-- `fn is_hide_long_help_set(self: &Self) -> bool`
-
-- `fn is_require_equals_set(self: &Self) -> bool`
-
-- `fn is_exclusive_set(self: &Self) -> bool`
-
-- `fn is_trailing_var_arg_set(self: &Self) -> bool`
-
-- `fn is_last_set(self: &Self) -> bool`
-
-- `fn is_ignore_case_set(self: &Self) -> bool`
+- <span id="arg-overrides-with-all"></span>`fn overrides_with_all(self, names: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Arg`
 
-- `fn clone(self: &Self) -> Arg` — [`Arg`](../../index.md)
+- <span id="arg-clone"></span>`fn clone(&self) -> Arg` — [`Arg`](../../index.md)
 
 ##### `impl Debug for Arg`
 
-- `fn fmt(self: &Self, f: &mut Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="arg-fmt"></span>`fn fmt(&self, f: &mut Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Default for Arg`
 
-- `fn default() -> Arg` — [`Arg`](../../index.md)
+- <span id="arg-default"></span>`fn default() -> Arg` — [`Arg`](../../index.md)
 
 ##### `impl Display for Arg`
 
-- `fn fmt(self: &Self, f: &mut Formatter<'_>) -> fmt::Result`
+- <span id="arg-fmt"></span>`fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Arg`
 
 ##### `impl Ord for Arg`
 
-- `fn cmp(self: &Self, other: &Arg) -> Ordering` — [`Arg`](../../index.md)
+- <span id="arg-cmp"></span>`fn cmp(&self, other: &Arg) -> Ordering` — [`Arg`](../../index.md)
 
 ##### `impl PartialEq for Arg`
 
-- `fn eq(self: &Self, other: &Arg) -> bool` — [`Arg`](../../index.md)
+- <span id="arg-eq"></span>`fn eq(&self, other: &Arg) -> bool` — [`Arg`](../../index.md)
 
 ##### `impl PartialOrd for Arg`
 
-- `fn partial_cmp(self: &Self, other: &Self) -> Option<Ordering>`
+- <span id="arg-partial-cmp"></span>`fn partial_cmp(&self, other: &Self) -> Option<Ordering>`
 
 ##### `impl<T> ToString for Arg`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="arg-to-string"></span>`fn to_string(&self) -> String`
 

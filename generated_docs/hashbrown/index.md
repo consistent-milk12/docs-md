@@ -10,6 +10,57 @@ The original C++ version of [SwissTable] can be found [here], and this
 
 
 
+## Contents
+
+- [Modules](#modules)
+  - [`macros`](#macros)
+  - [`control`](#control)
+  - [`hasher`](#hasher)
+  - [`raw`](#raw)
+  - [`util`](#util)
+  - [`external_trait_impls`](#external_trait_impls)
+  - [`map`](#map)
+  - [`raw_entry`](#raw_entry)
+  - [`scopeguard`](#scopeguard)
+  - [`set`](#set)
+  - [`table`](#table)
+  - [`hash_map`](#hash_map)
+  - [`hash_set`](#hash_set)
+  - [`hash_table`](#hash_table)
+- [Structs](#structs)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+- [Enums](#enums)
+  - [`TryReserveError`](#tryreserveerror)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`macros`](#macros) | mod |  |
+| [`control`](#control) | mod |  |
+| [`hasher`](#hasher) | mod |  |
+| [`raw`](#raw) | mod |  |
+| [`util`](#util) | mod |  |
+| [`external_trait_impls`](#external_trait_impls) | mod |  |
+| [`map`](#map) | mod |  |
+| [`raw_entry`](#raw_entry) | mod |  |
+| [`scopeguard`](#scopeguard) | mod |  |
+| [`set`](#set) | mod |  |
+| [`table`](#table) | mod |  |
+| [`hash_map`](#hash_map) | mod | A hash map implemented with quadratic probing and SIMD lookup. |
+| [`hash_set`](#hash_set) | mod | A hash set implemented as a `HashMap` where the value is `()`. |
+| [`hash_table`](#hash_table) | mod | A hash table implemented with quadratic probing and SIMD lookup. |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`TryReserveError`](#tryreserveerror) | enum | The error type for `try_reserve` methods. |
+
 ## Modules
 
 - [`macros`](macros/index.md) - 
@@ -48,21 +99,21 @@ must be used to have a fully functional `HashMap` or `HashSet`.
 
 ##### `impl BuildHasher for DefaultHashBuilder`
 
-- `type Hasher = DefaultHasher`
+- <span id="defaulthashbuilder-hasher"></span>`type Hasher = DefaultHasher`
 
-- `fn build_hasher(self: &Self) -> <Self as >::Hasher`
+- <span id="defaulthashbuilder-build-hasher"></span>`fn build_hasher(&self) -> <Self as >::Hasher`
 
 ##### `impl Clone for DefaultHashBuilder`
 
-- `fn clone(self: &Self) -> DefaultHashBuilder` — [`DefaultHashBuilder`](#defaulthashbuilder)
+- <span id="defaulthashbuilder-clone"></span>`fn clone(&self) -> DefaultHashBuilder` — [`DefaultHashBuilder`](#defaulthashbuilder)
 
 ##### `impl Debug for DefaultHashBuilder`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="defaulthashbuilder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for DefaultHashBuilder`
 
-- `fn default() -> DefaultHashBuilder` — [`DefaultHashBuilder`](#defaulthashbuilder)
+- <span id="defaulthashbuilder-default"></span>`fn default() -> DefaultHashBuilder` — [`DefaultHashBuilder`](#defaulthashbuilder)
 
 ### `DefaultHasher`
 
@@ -78,37 +129,37 @@ Default hasher for [`HashMap`](crate::HashMap) and [`HashSet`](crate::HashSet).
 
 ##### `impl Clone for DefaultHasher`
 
-- `fn clone(self: &Self) -> DefaultHasher` — [`DefaultHasher`](#defaulthasher)
+- <span id="defaulthasher-clone"></span>`fn clone(&self) -> DefaultHasher` — [`DefaultHasher`](#defaulthasher)
 
 ##### `impl Hasher for DefaultHasher`
 
-- `fn write(self: &mut Self, arg: &[u8])`
+- <span id="defaulthasher-write"></span>`fn write(&mut self, arg: &[u8])`
 
-- `fn write_u8(self: &mut Self, arg: u8)`
+- <span id="defaulthasher-write-u8"></span>`fn write_u8(&mut self, arg: u8)`
 
-- `fn write_u16(self: &mut Self, arg: u16)`
+- <span id="defaulthasher-write-u16"></span>`fn write_u16(&mut self, arg: u16)`
 
-- `fn write_u32(self: &mut Self, arg: u32)`
+- <span id="defaulthasher-write-u32"></span>`fn write_u32(&mut self, arg: u32)`
 
-- `fn write_u64(self: &mut Self, arg: u64)`
+- <span id="defaulthasher-write-u64"></span>`fn write_u64(&mut self, arg: u64)`
 
-- `fn write_u128(self: &mut Self, arg: u128)`
+- <span id="defaulthasher-write-u128"></span>`fn write_u128(&mut self, arg: u128)`
 
-- `fn write_usize(self: &mut Self, arg: usize)`
+- <span id="defaulthasher-write-usize"></span>`fn write_usize(&mut self, arg: usize)`
 
-- `fn write_i8(self: &mut Self, arg: i8)`
+- <span id="defaulthasher-write-i8"></span>`fn write_i8(&mut self, arg: i8)`
 
-- `fn write_i16(self: &mut Self, arg: i16)`
+- <span id="defaulthasher-write-i16"></span>`fn write_i16(&mut self, arg: i16)`
 
-- `fn write_i32(self: &mut Self, arg: i32)`
+- <span id="defaulthasher-write-i32"></span>`fn write_i32(&mut self, arg: i32)`
 
-- `fn write_i64(self: &mut Self, arg: i64)`
+- <span id="defaulthasher-write-i64"></span>`fn write_i64(&mut self, arg: i64)`
 
-- `fn write_i128(self: &mut Self, arg: i128)`
+- <span id="defaulthasher-write-i128"></span>`fn write_i128(&mut self, arg: i128)`
 
-- `fn write_isize(self: &mut Self, arg: isize)`
+- <span id="defaulthasher-write-isize"></span>`fn write_isize(&mut self, arg: isize)`
 
-- `fn finish(self: &Self) -> u64`
+- <span id="defaulthasher-finish"></span>`fn finish(&self) -> u64`
 
 ### `HashMap<K, V, S, A: Allocator>`
 
@@ -289,89 +340,57 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
 
 #### Implementations
 
-- `fn allocator(self: &Self) -> &A`
+- <span id="hashmap-new"></span>`fn new() -> Self`
 
-- `const fn with_hasher_in(hash_builder: S, alloc: A) -> Self`
-
-- `fn with_capacity_and_hasher_in(capacity: usize, hash_builder: S, alloc: A) -> Self`
-
-- `fn hasher(self: &Self) -> &S`
-
-- `fn capacity(self: &Self) -> usize`
-
-- `fn keys(self: &Self) -> Keys<'_, K, V>` — [`Keys`](hash_map/index.md)
-
-- `fn values(self: &Self) -> Values<'_, K, V>` — [`Values`](hash_map/index.md)
-
-- `fn values_mut(self: &mut Self) -> ValuesMut<'_, K, V>` — [`ValuesMut`](hash_map/index.md)
-
-- `fn iter(self: &Self) -> Iter<'_, K, V>` — [`Iter`](hash_map/index.md)
-
-- `fn iter_mut(self: &mut Self) -> IterMut<'_, K, V>` — [`IterMut`](hash_map/index.md)
-
-- `fn len(self: &Self) -> usize`
-
-- `fn is_empty(self: &Self) -> bool`
-
-- `fn drain(self: &mut Self) -> Drain<'_, K, V, A>` — [`Drain`](hash_map/index.md)
-
-- `fn retain<F>(self: &mut Self, f: F)`
-
-- `fn extract_if<F>(self: &mut Self, f: F) -> ExtractIf<'_, K, V, F, A>` — [`ExtractIf`](hash_map/index.md)
-
-- `fn clear(self: &mut Self)`
-
-- `fn into_keys(self: Self) -> IntoKeys<K, V, A>` — [`IntoKeys`](hash_map/index.md)
-
-- `fn into_values(self: Self) -> IntoValues<K, V, A>` — [`IntoValues`](hash_map/index.md)
+- <span id="hashmap-with-capacity"></span>`fn with_capacity(capacity: usize) -> Self`
 
 #### Trait Implementations
 
 ##### `impl<K: Clone, V: Clone, S: Clone, A: Allocator + Clone> Clone for HashMap<K, V, S, A>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="hashmap-clone"></span>`fn clone(&self) -> Self`
 
-- `fn clone_from(self: &mut Self, source: &Self)`
+- <span id="hashmap-clone-from"></span>`fn clone_from(&mut self, source: &Self)`
 
 ##### `impl<K, V, S, A> Debug for HashMap<K, V, S, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="hashmap-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<K, V, S, A> Default for HashMap<K, V, S, A>`
 
-- `fn default() -> Self`
+- <span id="hashmap-default"></span>`fn default() -> Self`
 
 ##### `impl<K, V, S, A> Eq for HashMap<K, V, S, A>`
 
 ##### `impl<Q, K> Equivalent for HashMap<K, V, S, A>`
 
-- `fn equivalent(self: &Self, key: &K) -> bool`
+- <span id="hashmap-equivalent"></span>`fn equivalent(&self, key: &K) -> bool`
 
 ##### `impl<K, V, S, A> Extend for HashMap<K, V, S, A>`
 
-- `fn extend<T: IntoIterator<Item = (K, V)>>(self: &mut Self, iter: T)`
+- <span id="hashmap-extend"></span>`fn extend<T: IntoIterator<Item = (K, V)>>(&mut self, iter: T)`
 
 ##### `impl<K, V, S, A> FromIterator for HashMap<K, V, S, A>`
 
-- `fn from_iter<T: IntoIterator<Item = (K, V)>>(iter: T) -> Self`
+- <span id="hashmap-from-iter"></span>`fn from_iter<T: IntoIterator<Item = (K, V)>>(iter: T) -> Self`
 
 ##### `impl<K, Q, V, S, A> Index for HashMap<K, V, S, A>`
 
-- `type Output = V`
+- <span id="hashmap-output"></span>`type Output = V`
 
-- `fn index(self: &Self, key: &Q) -> &V`
+- <span id="hashmap-index"></span>`fn index(&self, key: &Q) -> &V`
 
 ##### `impl<K, V, S, A: Allocator> IntoIterator for HashMap<K, V, S, A>`
 
-- `type Item = (K, V)`
+- <span id="hashmap-item"></span>`type Item = (K, V)`
 
-- `type IntoIter = IntoIter<K, V, A>`
+- <span id="hashmap-intoiter"></span>`type IntoIter = IntoIter<K, V, A>`
 
-- `fn into_iter(self: Self) -> IntoIter<K, V, A>` — [`IntoIter`](hash_map/index.md)
+- <span id="hashmap-into-iter"></span>`fn into_iter(self) -> IntoIter<K, V, A>` — [`IntoIter`](hash_map/index.md)
 
 ##### `impl<K, V, S, A> PartialEq for HashMap<K, V, S, A>`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="hashmap-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ### `HashSet<T, S, A: Allocator>`
 
@@ -478,79 +497,71 @@ let viking_names: HashSet<&'static str> =
 
 #### Implementations
 
-- `fn capacity(self: &Self) -> usize`
+- <span id="hashset-allocator"></span>`fn allocator(&self) -> &A`
 
-- `fn iter(self: &Self) -> Iter<'_, T>` — [`Iter`](hash_set/index.md)
+- <span id="hashset-with-hasher-in"></span>`const fn with_hasher_in(hasher: S, alloc: A) -> Self`
 
-- `fn len(self: &Self) -> usize`
+- <span id="hashset-with-capacity-and-hasher-in"></span>`fn with_capacity_and_hasher_in(capacity: usize, hasher: S, alloc: A) -> Self`
 
-- `fn is_empty(self: &Self) -> bool`
-
-- `fn drain(self: &mut Self) -> Drain<'_, T, A>` — [`Drain`](hash_set/index.md)
-
-- `fn retain<F>(self: &mut Self, f: F)`
-
-- `fn extract_if<F>(self: &mut Self, f: F) -> ExtractIf<'_, T, F, A>` — [`ExtractIf`](hash_set/index.md)
-
-- `fn clear(self: &mut Self)`
+- <span id="hashset-hasher"></span>`fn hasher(&self) -> &S`
 
 #### Trait Implementations
 
 ##### `impl<T, S, A> BitAndAssign for HashSet<T, S, A>`
 
-- `fn bitand_assign(self: &mut Self, rhs: &HashSet<T, S, A>)` — [`HashSet`](#hashset)
+- <span id="hashset-bitand-assign"></span>`fn bitand_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](#hashset)
 
 ##### `impl<T, S, A> BitOrAssign for HashSet<T, S, A>`
 
-- `fn bitor_assign(self: &mut Self, rhs: &HashSet<T, S, A>)` — [`HashSet`](#hashset)
+- <span id="hashset-bitor-assign"></span>`fn bitor_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](#hashset)
 
 ##### `impl<T, S, A> BitXorAssign for HashSet<T, S, A>`
 
-- `fn bitxor_assign(self: &mut Self, rhs: &HashSet<T, S, A>)` — [`HashSet`](#hashset)
+- <span id="hashset-bitxor-assign"></span>`fn bitxor_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](#hashset)
 
 ##### `impl<T: Clone, S: Clone, A: Allocator + Clone> Clone for HashSet<T, S, A>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="hashset-clone"></span>`fn clone(&self) -> Self`
 
-- `fn clone_from(self: &mut Self, source: &Self)`
+- <span id="hashset-clone-from"></span>`fn clone_from(&mut self, source: &Self)`
 
 ##### `impl<T, S, A> Debug for HashSet<T, S, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="hashset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T, S, A> Default for HashSet<T, S, A>`
 
-- `fn default() -> Self`
+- <span id="hashset-default"></span>`fn default() -> Self`
 
 ##### `impl<T, S, A> Eq for HashSet<T, S, A>`
 
 ##### `impl<Q, K> Equivalent for HashSet<T, S, A>`
 
-- `fn equivalent(self: &Self, key: &K) -> bool`
+- <span id="hashset-equivalent"></span>`fn equivalent(&self, key: &K) -> bool`
 
 ##### `impl<T, S, A> Extend for HashSet<T, S, A>`
 
-- `fn extend<I: IntoIterator<Item = T>>(self: &mut Self, iter: I)`
+- <span id="hashset-extend"></span>`fn extend<I: IntoIterator<Item = T>>(&mut self, iter: I)`
 
 ##### `impl<T, S, A> FromIterator for HashSet<T, S, A>`
 
-- `fn from_iter<I: IntoIterator<Item = T>>(iter: I) -> Self`
+- <span id="hashset-from-iter"></span>`fn from_iter<I: IntoIterator<Item = T>>(iter: I) -> Self`
 
 ##### `impl<T, S, A: Allocator> IntoIterator for HashSet<T, S, A>`
 
-- `type Item = T`
+- <span id="hashset-item"></span>`type Item = T`
 
-- `type IntoIter = IntoIter<T, A>`
+- <span id="hashset-intoiter"></span>`type IntoIter = IntoIter<T, A>`
 
-- `fn into_iter(self: Self) -> IntoIter<T, A>` — [`IntoIter`](hash_set/index.md)
+- <span id="hashset-into-iter"></span>`fn into_iter(self) -> IntoIter<T, A>` — [`IntoIter`](hash_set/index.md)
 
 ##### `impl<T, S, A> PartialEq for HashSet<T, S, A>`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="hashset-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T, S, A> SubAssign for HashSet<T, S, A>`
 
-- `fn sub_assign(self: &mut Self, rhs: &HashSet<T, S, A>)` — [`HashSet`](#hashset)
+- <span id="hashset-sub-assign"></span>`fn sub_assign(&mut self, rhs: &HashSet<T, S, A>)` — [`HashSet`](#hashset)
 
 ### `HashTable<T, A>`
 
@@ -600,31 +611,31 @@ doing this because it changes the runtime of hash table operations from
 
 #### Implementations
 
-- `const fn new() -> Self`
+- <span id="hashtable-new"></span>`const fn new() -> Self`
 
-- `fn with_capacity(capacity: usize) -> Self`
+- <span id="hashtable-with-capacity"></span>`fn with_capacity(capacity: usize) -> Self`
 
 #### Trait Implementations
 
 ##### `impl<T, A> Clone for HashTable<T, A>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="hashtable-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T, A> Debug for HashTable<T, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="hashtable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T, A> Default for HashTable<T, A>`
 
-- `fn default() -> Self`
+- <span id="hashtable-default"></span>`fn default() -> Self`
 
 ##### `impl<T, A> IntoIterator for HashTable<T, A>`
 
-- `type Item = T`
+- <span id="hashtable-item"></span>`type Item = T`
 
-- `type IntoIter = IntoIter<T, A>`
+- <span id="hashtable-intoiter"></span>`type IntoIter = IntoIter<T, A>`
 
-- `fn into_iter(self: Self) -> IntoIter<T, A>` — [`IntoIter`](hash_table/index.md)
+- <span id="hashtable-into-iter"></span>`fn into_iter(self) -> IntoIter<T, A>` — [`IntoIter`](hash_table/index.md)
 
 ## Enums
 
@@ -656,21 +667,21 @@ The error type for `try_reserve` methods.
 
 ##### `impl Clone for TryReserveError`
 
-- `fn clone(self: &Self) -> TryReserveError` — [`TryReserveError`](#tryreserveerror)
+- <span id="tryreserveerror-clone"></span>`fn clone(&self) -> TryReserveError` — [`TryReserveError`](#tryreserveerror)
 
 ##### `impl Debug for TryReserveError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="tryreserveerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for TryReserveError`
 
 ##### `impl<Q, K> Equivalent for TryReserveError`
 
-- `fn equivalent(self: &Self, key: &K) -> bool`
+- <span id="tryreserveerror-equivalent"></span>`fn equivalent(&self, key: &K) -> bool`
 
 ##### `impl PartialEq for TryReserveError`
 
-- `fn eq(self: &Self, other: &TryReserveError) -> bool` — [`TryReserveError`](#tryreserveerror)
+- <span id="tryreserveerror-eq"></span>`fn eq(&self, other: &TryReserveError) -> bool` — [`TryReserveError`](#tryreserveerror)
 
 ##### `impl StructuralPartialEq for TryReserveError`
 

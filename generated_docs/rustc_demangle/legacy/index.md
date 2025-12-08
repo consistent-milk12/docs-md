@@ -4,6 +4,14 @@
 
 # Module `legacy`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Demangle`](#demangle) | struct | Representation of a demangled symbol name. |
+| [`demangle`](#demangle) | fn | De-mangles a Rust symbol into a more readable version |
+| [`is_rust_hash`](#is_rust_hash) | fn |  |
+
 ## Structs
 
 ### `Demangle<'a>`
@@ -27,7 +35,7 @@ Representation of a demangled symbol name.
 
 ##### `impl<'a> Display for Demangle<'a>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="demangle-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Functions
 

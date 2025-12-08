@@ -4,6 +4,15 @@
 
 # Module `blocks`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`BlocksCallback`](#blockscallback) | struct |  |
+| [`ExponentialBlocks`](#exponentialblocks) | struct | `ExponentialBlocks` is a parallel iterator that consumes itself as a sequence |
+| [`UniformBlocks`](#uniformblocks) | struct | `UniformBlocks` is a parallel iterator that consumes itself as a sequence |
+| [`exponential_size`](#exponential_size) | fn |  |
+
 ## Structs
 
 ### `BlocksCallback<S, C>`
@@ -22,23 +31,23 @@ struct BlocksCallback<S, C> {
 
 ##### `impl<T> Pointable for BlocksCallback<S, C>`
 
-- `const ALIGN: usize`
+- <span id="blockscallback-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="blockscallback-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="blockscallback-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="blockscallback-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="blockscallback-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="blockscallback-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T, S, C> ProducerCallback for BlocksCallback<S, C>`
 
-- `type Output = <C as Consumer>::Result`
+- <span id="blockscallback-output"></span>`type Output = <C as Consumer>::Result`
 
-- `fn callback<P: Producer<Item = T>>(self: Self, producer: P) -> <Self as >::Output` — [`ProducerCallback`](../plumbing/index.md)
+- <span id="blockscallback-callback"></span>`fn callback<P: Producer<Item = T>>(self, producer: P) -> <Self as >::Output` — [`ProducerCallback`](../plumbing/index.md)
 
 ### `ExponentialBlocks<I>`
 
@@ -56,47 +65,47 @@ This struct is created by the `by_exponential_blocks()` method on [`IndexedParal
 
 #### Implementations
 
-- `fn new(base: I) -> Self`
+- <span id="exponentialblocks-new"></span>`fn new(base: I) -> Self`
 
 #### Trait Implementations
 
-##### `impl<I: $crate::clone::Clone> Clone for ExponentialBlocks<I>`
+##### `impl<I: clone::Clone> Clone for ExponentialBlocks<I>`
 
-- `fn clone(self: &Self) -> ExponentialBlocks<I>` — [`ExponentialBlocks`](../index.md)
+- <span id="exponentialblocks-clone"></span>`fn clone(&self) -> ExponentialBlocks<I>` — [`ExponentialBlocks`](../index.md)
 
-##### `impl<I: $crate::fmt::Debug> Debug for ExponentialBlocks<I>`
+##### `impl<I: fmt::Debug> Debug for ExponentialBlocks<I>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="exponentialblocks-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> IntoEither for ExponentialBlocks<I>`
 
 ##### `impl<T> IntoParallelIterator for ExponentialBlocks<I>`
 
-- `type Iter = T`
+- <span id="exponentialblocks-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="exponentialblocks-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="exponentialblocks-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for ExponentialBlocks<I>`
 
-- `type Item = <I as ParallelIterator>::Item`
+- <span id="exponentialblocks-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="exponentialblocks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
 ##### `impl<T> Pointable for ExponentialBlocks<I>`
 
-- `const ALIGN: usize`
+- <span id="exponentialblocks-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="exponentialblocks-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="exponentialblocks-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="exponentialblocks-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="exponentialblocks-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="exponentialblocks-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `UniformBlocks<I>`
 
@@ -115,47 +124,47 @@ This struct is created by the `by_uniform_blocks()` method on [`IndexedParallelI
 
 #### Implementations
 
-- `fn new(base: I, block_size: usize) -> Self`
+- <span id="uniformblocks-new"></span>`fn new(base: I, block_size: usize) -> Self`
 
 #### Trait Implementations
 
-##### `impl<I: $crate::clone::Clone> Clone for UniformBlocks<I>`
+##### `impl<I: clone::Clone> Clone for UniformBlocks<I>`
 
-- `fn clone(self: &Self) -> UniformBlocks<I>` — [`UniformBlocks`](../index.md)
+- <span id="uniformblocks-clone"></span>`fn clone(&self) -> UniformBlocks<I>` — [`UniformBlocks`](../index.md)
 
-##### `impl<I: $crate::fmt::Debug> Debug for UniformBlocks<I>`
+##### `impl<I: fmt::Debug> Debug for UniformBlocks<I>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="uniformblocks-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> IntoEither for UniformBlocks<I>`
 
 ##### `impl<T> IntoParallelIterator for UniformBlocks<I>`
 
-- `type Iter = T`
+- <span id="uniformblocks-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="uniformblocks-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="uniformblocks-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I> ParallelIterator for UniformBlocks<I>`
 
-- `type Item = <I as ParallelIterator>::Item`
+- <span id="uniformblocks-item"></span>`type Item = <I as ParallelIterator>::Item`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="uniformblocks-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
 ##### `impl<T> Pointable for UniformBlocks<I>`
 
-- `const ALIGN: usize`
+- <span id="uniformblocks-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="uniformblocks-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="uniformblocks-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="uniformblocks-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="uniformblocks-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="uniformblocks-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ## Functions
 

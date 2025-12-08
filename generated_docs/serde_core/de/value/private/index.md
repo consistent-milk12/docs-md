@@ -4,6 +4,36 @@
 
 # Module `private`
 
+## Contents
+
+- [Structs](#structs)
+  - [`UnitOnly`](#unitonly)
+  - [`MapAsEnum`](#mapasenum)
+  - [`SeedTupleVariant`](#seedtuplevariant)
+  - [`SeedStructVariant`](#seedstructvariant)
+- [Traits](#traits)
+  - [`Pair`](#pair)
+- [Functions](#functions)
+  - [`unit_only`](#unit_only)
+  - [`map_as_enum`](#map_as_enum)
+- [Type Aliases](#type-aliases)
+  - [`First`](#first)
+  - [`Second`](#second)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`UnitOnly`](#unitonly) | struct |  |
+| [`MapAsEnum`](#mapasenum) | struct |  |
+| [`SeedTupleVariant`](#seedtuplevariant) | struct |  |
+| [`SeedStructVariant`](#seedstructvariant) | struct |  |
+| [`Pair`](#pair) | trait | Avoid having to restate the generic types on `MapDeserializer`. |
+| [`unit_only`](#unit_only) | fn |  |
+| [`map_as_enum`](#map_as_enum) | fn |  |
+| [`First`](#first) | type |  |
+| [`Second`](#second) | type |  |
+
 ## Structs
 
 ### `UnitOnly<E>`
@@ -18,15 +48,15 @@ struct UnitOnly<E> {
 
 ##### `impl<'de, E> VariantAccess for UnitOnly<E>`
 
-- `type Error = E`
+- <span id="unitonly-error"></span>`type Error = E`
 
-- `fn unit_variant(self: Self) -> Result<(), <Self as >::Error>` — [`VariantAccess`](../../index.md)
+- <span id="unitonly-unit-variant"></span>`fn unit_variant(self) -> Result<(), <Self as >::Error>` — [`VariantAccess`](../../index.md)
 
-- `fn newtype_variant_seed<T>(self: Self, _seed: T) -> Result<<T as >::Value, <Self as >::Error>` — [`DeserializeSeed`](../../index.md)
+- <span id="unitonly-newtype-variant-seed"></span>`fn newtype_variant_seed<T>(self, _seed: T) -> Result<<T as >::Value, <Self as >::Error>` — [`DeserializeSeed`](../../index.md)
 
-- `fn tuple_variant<V>(self: Self, _len: usize, _visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../../index.md)
+- <span id="unitonly-tuple-variant"></span>`fn tuple_variant<V>(self, _len: usize, _visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../../index.md)
 
-- `fn struct_variant<V>(self: Self, _fields: &'static [&'static str], _visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../../index.md)
+- <span id="unitonly-struct-variant"></span>`fn struct_variant<V>(self, _fields: &'static [&'static str], _visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../../index.md)
 
 ### `MapAsEnum<A>`
 
@@ -40,15 +70,15 @@ struct MapAsEnum<A> {
 
 ##### `impl<'de, A> VariantAccess for MapAsEnum<A>`
 
-- `type Error = <A as MapAccess>::Error`
+- <span id="mapasenum-error"></span>`type Error = <A as MapAccess>::Error`
 
-- `fn unit_variant(self: Self) -> Result<(), <Self as >::Error>` — [`VariantAccess`](../../index.md)
+- <span id="mapasenum-unit-variant"></span>`fn unit_variant(self) -> Result<(), <Self as >::Error>` — [`VariantAccess`](../../index.md)
 
-- `fn newtype_variant_seed<T>(self: Self, seed: T) -> Result<<T as >::Value, <Self as >::Error>` — [`DeserializeSeed`](../../index.md)
+- <span id="mapasenum-newtype-variant-seed"></span>`fn newtype_variant_seed<T>(self, seed: T) -> Result<<T as >::Value, <Self as >::Error>` — [`DeserializeSeed`](../../index.md)
 
-- `fn tuple_variant<V>(self: Self, len: usize, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../../index.md)
+- <span id="mapasenum-tuple-variant"></span>`fn tuple_variant<V>(self, len: usize, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../../index.md)
 
-- `fn struct_variant<V>(self: Self, _fields: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../../index.md)
+- <span id="mapasenum-struct-variant"></span>`fn struct_variant<V>(self, _fields: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../../index.md)
 
 ### `SeedTupleVariant<V>`
 
@@ -63,9 +93,9 @@ struct SeedTupleVariant<V> {
 
 ##### `impl<'de, V> DeserializeSeed for SeedTupleVariant<V>`
 
-- `type Value = <V as Visitor>::Value`
+- <span id="seedtuplevariant-value"></span>`type Value = <V as Visitor>::Value`
 
-- `fn deserialize<D>(self: Self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>` — [`DeserializeSeed`](../../index.md)
+- <span id="seedtuplevariant-deserialize"></span>`fn deserialize<D>(self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>` — [`DeserializeSeed`](../../index.md)
 
 ### `SeedStructVariant<V>`
 
@@ -79,9 +109,9 @@ struct SeedStructVariant<V> {
 
 ##### `impl<'de, V> DeserializeSeed for SeedStructVariant<V>`
 
-- `type Value = <V as Visitor>::Value`
+- <span id="seedstructvariant-value"></span>`type Value = <V as Visitor>::Value`
 
-- `fn deserialize<D>(self: Self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>` — [`DeserializeSeed`](../../index.md)
+- <span id="seedstructvariant-deserialize"></span>`fn deserialize<D>(self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>` — [`DeserializeSeed`](../../index.md)
 
 ## Traits
 
@@ -100,7 +130,7 @@ Avoid having to restate the generic types on `MapDeserializer`. The
 
 - `type Second`
 
-- `fn split(self: Self) -> (<Self as >::First, <Self as >::Second)`
+- `fn split(self) -> (<Self as >::First, <Self as >::Second)`
 
 ## Functions
 

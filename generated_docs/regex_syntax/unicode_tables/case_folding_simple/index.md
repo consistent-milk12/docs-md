@@ -4,6 +4,12 @@
 
 # Module `case_folding_simple`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`CASE_FOLDING_SIMPLE`](#case_folding_simple) | const |  |
+
 ## Constants
 
 ### `CASE_FOLDING_SIMPLE`

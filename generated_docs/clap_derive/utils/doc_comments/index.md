@@ -9,6 +9,18 @@ The preprocessing we apply to doc comments.
 #[derive(Parser)] works in terms of "paragraphs". Paragraph is a sequence of
 non-empty adjacent lines, delimited by sequences of blank (whitespace only) lines.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`extract_doc_comment`](#extract_doc_comment) | fn |  |
+| [`format_doc_comment`](#format_doc_comment) | fn |  |
+| [`split_paragraphs`](#split_paragraphs) | fn |  |
+| [`remove_period`](#remove_period) | fn |  |
+| [`is_blank`](#is_blank) | fn |  |
+| [`merge_lines`](#merge_lines) | fn |  |
+| [`parse_markdown`](#parse_markdown) | fn |  |
+
 ## Functions
 
 ### `extract_doc_comment`

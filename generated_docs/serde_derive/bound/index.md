@@ -4,6 +4,19 @@
 
 # Module `bound`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`without_defaults`](#without_defaults) | fn |  |
+| [`with_where_predicates`](#with_where_predicates) | fn |  |
+| [`with_where_predicates_from_fields`](#with_where_predicates_from_fields) | fn |  |
+| [`with_where_predicates_from_variants`](#with_where_predicates_from_variants) | fn |  |
+| [`with_bound`](#with_bound) | fn |  |
+| [`with_self_bound`](#with_self_bound) | fn |  |
+| [`with_lifetime_bound`](#with_lifetime_bound) | fn |  |
+| [`type_of_item`](#type_of_item) | fn |  |
+
 ## Functions
 
 ### `without_defaults`

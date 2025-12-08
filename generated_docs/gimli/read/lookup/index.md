@@ -4,6 +4,17 @@
 
 # Module `lookup`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`DebugLookup`](#debuglookup) | struct |  |
+| [`LookupEntryIter`](#lookupentryiter) | struct |  |
+| [`PubStuffHeader`](#pubstuffheader) | struct |  |
+| [`PubStuffParser`](#pubstuffparser) | struct |  |
+| [`LookupParser`](#lookupparser) | trait |  |
+| [`PubStuffEntry`](#pubstuffentry) | trait |  |
+
 ## Structs
 
 ### `DebugLookup<R, Parser>`
@@ -20,19 +31,19 @@ where
 
 #### Implementations
 
-- `fn items(self: &Self) -> LookupEntryIter<R, Parser>` — [`LookupEntryIter`](#lookupentryiter)
+- <span id="debuglookup-items"></span>`fn items(&self) -> LookupEntryIter<R, Parser>` — [`LookupEntryIter`](#lookupentryiter)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="debuglookup-reader"></span>`fn reader(&self) -> &R`
 
 #### Trait Implementations
 
 ##### `impl<R, Parser> Clone for DebugLookup<R, Parser>`
 
-- `fn clone(self: &Self) -> DebugLookup<R, Parser>` — [`DebugLookup`](#debuglookup)
+- <span id="debuglookup-clone"></span>`fn clone(&self) -> DebugLookup<R, Parser>` — [`DebugLookup`](#debuglookup)
 
 ##### `impl<R, Parser> Debug for DebugLookup<R, Parser>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debuglookup-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `LookupEntryIter<R, Parser>`
 
@@ -48,17 +59,17 @@ where
 
 #### Implementations
 
-- `fn next(self: &mut Self) -> Result<Option<<Parser as >::Entry>>` — [`Result`](../../index.md), [`LookupParser`](#lookupparser)
+- <span id="lookupentryiter-next"></span>`fn next(&mut self) -> Result<Option<<Parser as >::Entry>>` — [`Result`](../../index.md), [`LookupParser`](#lookupparser)
 
 #### Trait Implementations
 
 ##### `impl<R, Parser> Clone for LookupEntryIter<R, Parser>`
 
-- `fn clone(self: &Self) -> LookupEntryIter<R, Parser>` — [`LookupEntryIter`](#lookupentryiter)
+- <span id="lookupentryiter-clone"></span>`fn clone(&self) -> LookupEntryIter<R, Parser>` — [`LookupEntryIter`](#lookupentryiter)
 
 ##### `impl<R, Parser> Debug for LookupEntryIter<R, Parser>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="lookupentryiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `PubStuffHeader<T>`
 
@@ -74,19 +85,19 @@ struct PubStuffHeader<T> {
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for PubStuffHeader<T>`
+##### `impl<T: clone::Clone> Clone for PubStuffHeader<T>`
 
-- `fn clone(self: &Self) -> PubStuffHeader<T>` — [`PubStuffHeader`](#pubstuffheader)
+- <span id="pubstuffheader-clone"></span>`fn clone(&self) -> PubStuffHeader<T>` — [`PubStuffHeader`](#pubstuffheader)
 
-##### `impl<T: $crate::fmt::Debug> Debug for PubStuffHeader<T>`
+##### `impl<T: fmt::Debug> Debug for PubStuffHeader<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pubstuffheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq> Eq for PubStuffHeader<T>`
+##### `impl<T: cmp::Eq> Eq for PubStuffHeader<T>`
 
-##### `impl<T: $crate::cmp::PartialEq> PartialEq for PubStuffHeader<T>`
+##### `impl<T: cmp::PartialEq> PartialEq for PubStuffHeader<T>`
 
-- `fn eq(self: &Self, other: &PubStuffHeader<T>) -> bool` — [`PubStuffHeader`](#pubstuffheader)
+- <span id="pubstuffheader-eq"></span>`fn eq(&self, other: &PubStuffHeader<T>) -> bool` — [`PubStuffHeader`](#pubstuffheader)
 
 ##### `impl<T> StructuralPartialEq for PubStuffHeader<T>`
 
@@ -105,21 +116,21 @@ where
 
 ##### `impl<R, Entry> Clone for PubStuffParser<R, Entry>`
 
-- `fn clone(self: &Self) -> PubStuffParser<R, Entry>` — [`PubStuffParser`](#pubstuffparser)
+- <span id="pubstuffparser-clone"></span>`fn clone(&self) -> PubStuffParser<R, Entry>` — [`PubStuffParser`](#pubstuffparser)
 
 ##### `impl<R, Entry> Debug for PubStuffParser<R, Entry>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pubstuffparser-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, Entry> LookupParser for PubStuffParser<R, Entry>`
 
-- `type Header = PubStuffHeader<<R as Reader>::Offset>`
+- <span id="pubstuffparser-header"></span>`type Header = PubStuffHeader<<R as Reader>::Offset>`
 
-- `type Entry = Entry`
+- <span id="pubstuffparser-entry"></span>`type Entry = Entry`
 
-- `fn parse_header(input: &mut R) -> Result<(R, <Self as >::Header)>` — [`Result`](../../index.md), [`LookupParser`](#lookupparser)
+- <span id="pubstuffparser-parse-header"></span>`fn parse_header(input: &mut R) -> Result<(R, <Self as >::Header)>` — [`Result`](../../index.md), [`LookupParser`](#lookupparser)
 
-- `fn parse_entry(input: &mut R, header: &<Self as >::Header) -> Result<Option<<Self as >::Entry>>` — [`LookupParser`](#lookupparser), [`Result`](../../index.md)
+- <span id="pubstuffparser-parse-entry"></span>`fn parse_entry(input: &mut R, header: &<Self as >::Header) -> Result<Option<<Self as >::Entry>>` — [`LookupParser`](#lookupparser), [`Result`](../../index.md)
 
 ## Traits
 

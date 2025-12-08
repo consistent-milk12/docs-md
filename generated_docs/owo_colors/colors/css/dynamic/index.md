@@ -4,6 +4,12 @@
 
 # Module `dynamic`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`CssColors`](#csscolors) | enum | Available CSS colors for use with [`OwoColorize::color`](OwoColorize::color) |
+
 ## Enums
 
 ### `CssColors`
@@ -167,23 +173,23 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 ##### `impl Clone for CssColors`
 
-- `fn clone(self: &Self) -> CssColors` — [`CssColors`](../../../index.md)
+- <span id="csscolors-clone"></span>`fn clone(&self) -> CssColors` — [`CssColors`](../../../index.md)
 
 ##### `impl Copy for CssColors`
 
 ##### `impl Debug for CssColors`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="csscolors-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl DynColor for CssColors`
 
-- `fn fmt_ansi_fg(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="csscolors-fmt-ansi-fg"></span>`fn fmt_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- `fn fmt_ansi_bg(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="csscolors-fmt-ansi-bg"></span>`fn fmt_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- `fn fmt_raw_ansi_fg(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="csscolors-fmt-raw-ansi-fg"></span>`fn fmt_raw_ansi_fg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- `fn fmt_raw_ansi_bg(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="csscolors-fmt-raw-ansi-bg"></span>`fn fmt_raw_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for CssColors`
 
@@ -191,7 +197,7 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 ##### `impl PartialEq for CssColors`
 
-- `fn eq(self: &Self, other: &CssColors) -> bool` — [`CssColors`](../../../index.md)
+- <span id="csscolors-eq"></span>`fn eq(&self, other: &CssColors) -> bool` — [`CssColors`](../../../index.md)
 
 ##### `impl StructuralPartialEq for CssColors`
 

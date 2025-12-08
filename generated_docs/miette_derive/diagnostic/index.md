@@ -4,6 +4,15 @@
 
 # Module `diagnostic`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`DiagnosticDef`](#diagnosticdef) | struct |  |
+| [`DiagnosticConcreteArgs`](#diagnosticconcreteargs) | struct |  |
+| [`Diagnostic`](#diagnostic) | enum |  |
+| [`DiagnosticDefArgs`](#diagnosticdefargs) | enum |  |
+
 ## Structs
 
 ### `DiagnosticDef`
@@ -34,15 +43,15 @@ struct DiagnosticConcreteArgs {
 
 #### Implementations
 
-- `fn for_fields(fields: &syn::Fields) -> Result<Self, syn::Error>`
+- <span id="diagnosticconcreteargs-for-fields"></span>`fn for_fields(fields: &syn::Fields) -> Result<Self, syn::Error>`
 
-- `fn add_args(self: &mut Self, attr: &syn::Attribute, args: impl Iterator<Item = DiagnosticArg>, errors: &mut Vec<syn::Error>)` — [`DiagnosticArg`](../diagnostic_arg/index.md)
+- <span id="diagnosticconcreteargs-add-args"></span>`fn add_args(&mut self, attr: &syn::Attribute, args: impl Iterator<Item = DiagnosticArg>, errors: &mut Vec<syn::Error>)` — [`DiagnosticArg`](../diagnostic_arg/index.md)
 
 #### Trait Implementations
 
 ##### `impl Default for DiagnosticConcreteArgs`
 
-- `fn default() -> DiagnosticConcreteArgs` — [`DiagnosticConcreteArgs`](#diagnosticconcreteargs)
+- <span id="diagnosticconcreteargs-default"></span>`fn default() -> DiagnosticConcreteArgs` — [`DiagnosticConcreteArgs`](#diagnosticconcreteargs)
 
 ## Enums
 
@@ -66,9 +75,9 @@ enum Diagnostic {
 
 #### Implementations
 
-- `fn from_derive_input(input: DeriveInput) -> Result<Self, syn::Error>`
+- <span id="diagnostic-from-derive-input"></span>`fn from_derive_input(input: DeriveInput) -> Result<Self, syn::Error>`
 
-- `fn gen(self: &Self) -> TokenStream`
+- <span id="diagnostic-gen"></span>`fn gen(&self) -> TokenStream`
 
 ### `DiagnosticDefArgs`
 
@@ -81,5 +90,5 @@ enum DiagnosticDefArgs {
 
 #### Implementations
 
-- `fn forward_or_override_enum(self: &Self, variant: &syn::Ident, which_fn: WhichFn, f: impl FnMut(&DiagnosticConcreteArgs) -> Option<TokenStream>) -> Option<TokenStream>` — [`WhichFn`](../forward/index.md), [`DiagnosticConcreteArgs`](#diagnosticconcreteargs)
+- <span id="diagnosticdefargs-forward-or-override-enum"></span>`fn forward_or_override_enum(&self, variant: &syn::Ident, which_fn: WhichFn, f: impl FnMut(&DiagnosticConcreteArgs) -> Option<TokenStream>) -> Option<TokenStream>` — [`WhichFn`](../forward/index.md), [`DiagnosticConcreteArgs`](#diagnosticconcreteargs)
 

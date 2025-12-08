@@ -4,6 +4,16 @@
 
 # Module `broadcast`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`BroadcastContext`](#broadcastcontext) | struct | Provides context to a closure called by `broadcast`. |
+| [`broadcast`](#broadcast) | fn | Executes `op` within every thread in the current thread pool. |
+| [`spawn_broadcast`](#spawn_broadcast) | fn | Spawns an asynchronous task on every thread in this thread pool. |
+| [`broadcast_in`](#broadcast_in) | fn | Execute `op` on every thread in the pool. |
+| [`spawn_broadcast_in`](#spawn_broadcast_in) | fn | Execute `op` on every thread in the pool. |
+
 ## Structs
 
 ### `BroadcastContext<'a>`
@@ -25,31 +35,31 @@ Provides context to a closure called by `broadcast`.
 
 #### Implementations
 
-- `fn with<R>(f: impl FnOnce(BroadcastContext<'_>) -> R) -> R` — [`BroadcastContext`](../index.md)
+- <span id="broadcastcontext-with"></span>`fn with<R>(f: impl FnOnce(BroadcastContext<'_>) -> R) -> R` — [`BroadcastContext`](../index.md)
 
-- `fn index(self: &Self) -> usize`
+- <span id="broadcastcontext-index"></span>`fn index(&self) -> usize`
 
-- `fn num_threads(self: &Self) -> usize`
+- <span id="broadcastcontext-num-threads"></span>`fn num_threads(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl<'a> Debug for BroadcastContext<'a>`
 
-- `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="broadcastcontext-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> Pointable for BroadcastContext<'a>`
 
-- `const ALIGN: usize`
+- <span id="broadcastcontext-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="broadcastcontext-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="broadcastcontext-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="broadcastcontext-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="broadcastcontext-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="broadcastcontext-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ## Functions
 

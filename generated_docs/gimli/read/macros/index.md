@@ -4,6 +4,17 @@
 
 # Module `macros`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`DebugMacinfo`](#debugmacinfo) | struct | The raw contents of the `.debug_macinfo` section. |
+| [`DebugMacro`](#debugmacro) | struct | The raw contents of the `.debug_macro` section. |
+| [`MacroUnitHeader`](#macrounitheader) | struct |  |
+| [`MacroIter`](#macroiter) | struct | Iterator over the entries in the `.debug_macro` section. |
+| [`MacroString`](#macrostring) | enum | A string in a macro entry. |
+| [`MacroEntry`](#macroentry) | enum | an Entry in the `.debug_macro` section. |
+
 ## Structs
 
 ### `DebugMacinfo<R>`
@@ -18,29 +29,29 @@ The raw contents of the `.debug_macinfo` section.
 
 #### Implementations
 
-- `fn get_macinfo(self: &Self, offset: DebugMacinfoOffset<<R as >::Offset>) -> Result<MacroIter<R>>` — [`DebugMacinfoOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`MacroIter`](../index.md)
+- <span id="debugmacinfo-get-macinfo"></span>`fn get_macinfo(&self, offset: DebugMacinfoOffset<<R as >::Offset>) -> Result<MacroIter<R>>` — [`DebugMacinfoOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`MacroIter`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone> Clone for DebugMacinfo<R>`
+##### `impl<R: clone::Clone> Clone for DebugMacinfo<R>`
 
-- `fn clone(self: &Self) -> DebugMacinfo<R>` — [`DebugMacinfo`](../index.md)
+- <span id="debugmacinfo-clone"></span>`fn clone(&self) -> DebugMacinfo<R>` — [`DebugMacinfo`](../index.md)
 
-##### `impl<R: $crate::marker::Copy> Copy for DebugMacinfo<R>`
+##### `impl<R: marker::Copy> Copy for DebugMacinfo<R>`
 
-##### `impl<R: $crate::fmt::Debug> Debug for DebugMacinfo<R>`
+##### `impl<R: fmt::Debug> Debug for DebugMacinfo<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugmacinfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::default::Default> Default for DebugMacinfo<R>`
+##### `impl<R: default::Default> Default for DebugMacinfo<R>`
 
-- `fn default() -> DebugMacinfo<R>` — [`DebugMacinfo`](../index.md)
+- <span id="debugmacinfo-default"></span>`fn default() -> DebugMacinfo<R>` — [`DebugMacinfo`](../index.md)
 
 ##### `impl<R> Section for DebugMacinfo<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../../index.md)
+- <span id="debugmacinfo-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="debugmacinfo-reader"></span>`fn reader(&self) -> &R`
 
 ### `DebugMacro<R>`
 
@@ -54,29 +65,29 @@ The raw contents of the `.debug_macro` section.
 
 #### Implementations
 
-- `fn new(macro_section: &'input [u8], endian: Endian) -> Self`
+- <span id="debugmacro-get-macros"></span>`fn get_macros(&self, offset: DebugMacroOffset<<R as >::Offset>) -> Result<MacroIter<R>>` — [`DebugMacroOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`MacroIter`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone> Clone for DebugMacro<R>`
+##### `impl<R: clone::Clone> Clone for DebugMacro<R>`
 
-- `fn clone(self: &Self) -> DebugMacro<R>` — [`DebugMacro`](../index.md)
+- <span id="debugmacro-clone"></span>`fn clone(&self) -> DebugMacro<R>` — [`DebugMacro`](../index.md)
 
-##### `impl<R: $crate::marker::Copy> Copy for DebugMacro<R>`
+##### `impl<R: marker::Copy> Copy for DebugMacro<R>`
 
-##### `impl<R: $crate::fmt::Debug> Debug for DebugMacro<R>`
+##### `impl<R: fmt::Debug> Debug for DebugMacro<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugmacro-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::default::Default> Default for DebugMacro<R>`
+##### `impl<R: default::Default> Default for DebugMacro<R>`
 
-- `fn default() -> DebugMacro<R>` — [`DebugMacro`](../index.md)
+- <span id="debugmacro-default"></span>`fn default() -> DebugMacro<R>` — [`DebugMacro`](../index.md)
 
 ##### `impl<R> Section for DebugMacro<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../../index.md)
+- <span id="debugmacro-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="debugmacro-reader"></span>`fn reader(&self) -> &R`
 
 ### `MacroUnitHeader<R: Reader>`
 
@@ -96,25 +107,25 @@ struct MacroUnitHeader<R: Reader> {
 
 #### Implementations
 
-- `const OFFSET_SIZE_FLAG: u8`
+- <span id="macrounitheader-offset-size-flag"></span>`const OFFSET_SIZE_FLAG: u8`
 
-- `const DEBUG_LINE_OFFSET_FLAG: u8`
+- <span id="macrounitheader-debug-line-offset-flag"></span>`const DEBUG_LINE_OFFSET_FLAG: u8`
 
-- `const OPCODE_OPERANDS_TABLE_FLAG: u8`
+- <span id="macrounitheader-opcode-operands-table-flag"></span>`const OPCODE_OPERANDS_TABLE_FLAG: u8`
 
-- `fn parse(input: &mut R) -> Result<Self>` — [`Result`](../../index.md)
+- <span id="macrounitheader-parse"></span>`fn parse(input: &mut R) -> Result<Self>` — [`Result`](../../index.md)
 
-- `fn format(self: &Self) -> Format` — [`Format`](../../index.md)
+- <span id="macrounitheader-format"></span>`fn format(&self) -> Format` — [`Format`](../../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for MacroUnitHeader<R>`
+##### `impl<R: clone::Clone + Reader> Clone for MacroUnitHeader<R>`
 
-- `fn clone(self: &Self) -> MacroUnitHeader<R>` — [`MacroUnitHeader`](#macrounitheader)
+- <span id="macrounitheader-clone"></span>`fn clone(&self) -> MacroUnitHeader<R>` — [`MacroUnitHeader`](#macrounitheader)
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for MacroUnitHeader<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for MacroUnitHeader<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="macrounitheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `MacroIter<R: Reader>`
 
@@ -130,17 +141,17 @@ Iterator over the entries in the `.debug_macro` section.
 
 #### Implementations
 
-- `fn next(self: &mut Self) -> Result<Option<MacroEntry<R>>>` — [`Result`](../../index.md), [`MacroEntry`](../index.md)
+- <span id="macroiter-next"></span>`fn next(&mut self) -> Result<Option<MacroEntry<R>>>` — [`Result`](../../index.md), [`MacroEntry`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for MacroIter<R>`
+##### `impl<R: clone::Clone + Reader> Clone for MacroIter<R>`
 
-- `fn clone(self: &Self) -> MacroIter<R>` — [`MacroIter`](../index.md)
+- <span id="macroiter-clone"></span>`fn clone(&self) -> MacroIter<R>` — [`MacroIter`](../index.md)
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for MacroIter<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for MacroIter<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="macroiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Enums
 
@@ -181,23 +192,23 @@ A string in a macro entry.
 
 #### Implementations
 
-- `fn string(self: &Self, unit: UnitRef<'_, R>) -> Result<R>` — [`UnitRef`](../index.md), [`Result`](../../index.md)
+- <span id="macrostring-string"></span>`fn string(&self, unit: UnitRef<'_, R>) -> Result<R>` — [`UnitRef`](../index.md), [`Result`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl<R, Offset> Clone for MacroString<R, Offset>`
 
-- `fn clone(self: &Self) -> MacroString<R, Offset>` — [`MacroString`](../index.md)
+- <span id="macrostring-clone"></span>`fn clone(&self) -> MacroString<R, Offset>` — [`MacroString`](../index.md)
 
 ##### `impl<R, Offset> Debug for MacroString<R, Offset>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="macrostring-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, Offset> Eq for MacroString<R, Offset>`
 
 ##### `impl<R, Offset> PartialEq for MacroString<R, Offset>`
 
-- `fn eq(self: &Self, other: &MacroString<R, Offset>) -> bool` — [`MacroString`](../index.md)
+- <span id="macrostring-eq"></span>`fn eq(&self, other: &MacroString<R, Offset>) -> bool` — [`MacroString`](../index.md)
 
 ##### `impl<R, Offset> StructuralPartialEq for MacroString<R, Offset>`
 
@@ -270,17 +281,17 @@ an Entry in the `.debug_macro` section.
 
 ##### `impl<R, Offset> Clone for MacroEntry<R, Offset>`
 
-- `fn clone(self: &Self) -> MacroEntry<R, Offset>` — [`MacroEntry`](../index.md)
+- <span id="macroentry-clone"></span>`fn clone(&self) -> MacroEntry<R, Offset>` — [`MacroEntry`](../index.md)
 
 ##### `impl<R, Offset> Debug for MacroEntry<R, Offset>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="macroentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, Offset> Eq for MacroEntry<R, Offset>`
 
 ##### `impl<R, Offset> PartialEq for MacroEntry<R, Offset>`
 
-- `fn eq(self: &Self, other: &MacroEntry<R, Offset>) -> bool` — [`MacroEntry`](../index.md)
+- <span id="macroentry-eq"></span>`fn eq(&self, other: &MacroEntry<R, Offset>) -> bool` — [`MacroEntry`](../index.md)
 
 ##### `impl<R, Offset> StructuralPartialEq for MacroEntry<R, Offset>`
 

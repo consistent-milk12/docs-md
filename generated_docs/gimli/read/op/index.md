@@ -6,6 +6,46 @@
 
 Functions for parsing and evaluating DWARF expressions.
 
+## Contents
+
+- [Structs](#structs)
+  - [`Piece`](#piece)
+  - [`Expression`](#expression)
+  - [`OperationIter`](#operationiter)
+  - [`Evaluation`](#evaluation)
+- [Enums](#enums)
+  - [`DieReference`](#diereference)
+  - [`Operation`](#operation)
+  - [`OperationEvaluationResult`](#operationevaluationresult)
+  - [`Location`](#location)
+  - [`EvaluationState`](#evaluationstate)
+  - [`EvaluationWaiting`](#evaluationwaiting)
+  - [`EvaluationResult`](#evaluationresult)
+- [Traits](#traits)
+  - [`EvaluationStorage`](#evaluationstorage)
+- [Functions](#functions)
+  - [`compute_pc`](#compute_pc)
+  - [`generic_type`](#generic_type)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Piece`](#piece) | struct | The description of a single piece of the result of a DWARF |
+| [`Expression`](#expression) | struct | The bytecode for a DWARF expression or location description. |
+| [`OperationIter`](#operationiter) | struct | An iterator for the operations in an expression. |
+| [`Evaluation`](#evaluation) | struct | A DWARF expression evaluator. |
+| [`DieReference`](#diereference) | enum | A reference to a DIE, either relative to the current CU or |
+| [`Operation`](#operation) | enum | A single decoded DWARF expression operation. |
+| [`OperationEvaluationResult`](#operationevaluationresult) | enum |  |
+| [`Location`](#location) | enum | A single location of a piece of the result of a DWARF expression. |
+| [`EvaluationState`](#evaluationstate) | enum |  |
+| [`EvaluationWaiting`](#evaluationwaiting) | enum |  |
+| [`EvaluationResult`](#evaluationresult) | enum | The state of an `Evaluation` after evaluating a DWARF expression. |
+| [`EvaluationStorage`](#evaluationstorage) | trait | Specification of what storage should be used for [`Evaluation`]. |
+| [`compute_pc`](#compute_pc) | fn |  |
+| [`generic_type`](#generic_type) | fn |  |
+
 ## Structs
 
 ### `Piece<R, Offset>`
@@ -53,17 +93,17 @@ expression.
 
 ##### `impl<R, Offset> Clone for Piece<R, Offset>`
 
-- `fn clone(self: &Self) -> Piece<R, Offset>` — [`Piece`](../index.md)
+- <span id="piece-clone"></span>`fn clone(&self) -> Piece<R, Offset>` — [`Piece`](../index.md)
 
 ##### `impl<R, Offset> Copy for Piece<R, Offset>`
 
 ##### `impl<R, Offset> Debug for Piece<R, Offset>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="piece-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, Offset> PartialEq for Piece<R, Offset>`
 
-- `fn eq(self: &Self, other: &Piece<R, Offset>) -> bool` — [`Piece`](../index.md)
+- <span id="piece-eq"></span>`fn eq(&self, other: &Piece<R, Offset>) -> bool` — [`Piece`](../index.md)
 
 ##### `impl<R, Offset> StructuralPartialEq for Piece<R, Offset>`
 
@@ -77,31 +117,31 @@ The bytecode for a DWARF expression or location description.
 
 #### Implementations
 
-- `fn evaluation(self: Self, encoding: Encoding) -> Evaluation<R>` — [`Encoding`](../../index.md), [`Evaluation`](../index.md)
+- <span id="expression-evaluation"></span>`fn evaluation(self, encoding: Encoding) -> Evaluation<R>` — [`Encoding`](../../index.md), [`Evaluation`](../index.md)
 
-- `fn operations(self: Self, encoding: Encoding) -> OperationIter<R>` — [`Encoding`](../../index.md), [`OperationIter`](../index.md)
+- <span id="expression-operations"></span>`fn operations(self, encoding: Encoding) -> OperationIter<R>` — [`Encoding`](../../index.md), [`OperationIter`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for Expression<R>`
+##### `impl<R: clone::Clone + Reader> Clone for Expression<R>`
 
-- `fn clone(self: &Self) -> Expression<R>` — [`Expression`](../index.md)
+- <span id="expression-clone"></span>`fn clone(&self) -> Expression<R>` — [`Expression`](../index.md)
 
-##### `impl<R: $crate::marker::Copy + Reader> Copy for Expression<R>`
+##### `impl<R: marker::Copy + Reader> Copy for Expression<R>`
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for Expression<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for Expression<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="expression-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::cmp::Eq + Reader> Eq for Expression<R>`
+##### `impl<R: cmp::Eq + Reader> Eq for Expression<R>`
 
-##### `impl<R: $crate::hash::Hash + Reader> Hash for Expression<R>`
+##### `impl<R: hash::Hash + Reader> Hash for Expression<R>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="expression-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<R: $crate::cmp::PartialEq + Reader> PartialEq for Expression<R>`
+##### `impl<R: cmp::PartialEq + Reader> PartialEq for Expression<R>`
 
-- `fn eq(self: &Self, other: &Expression<R>) -> bool` — [`Expression`](../index.md)
+- <span id="expression-eq"></span>`fn eq(&self, other: &Expression<R>) -> bool` — [`Expression`](../index.md)
 
 ##### `impl<R: Reader> StructuralPartialEq for Expression<R>`
 
@@ -118,21 +158,21 @@ An iterator for the operations in an expression.
 
 #### Implementations
 
-- `fn next(self: &mut Self) -> Result<Option<Operation<R>>>` — [`Result`](../../index.md), [`Operation`](../index.md)
+- <span id="operationiter-next"></span>`fn next(&mut self) -> Result<Option<Operation<R>>>` — [`Result`](../../index.md), [`Operation`](../index.md)
 
-- `fn offset_from(self: &Self, expression: &Expression<R>) -> <R as >::Offset` — [`Expression`](../index.md), [`Reader`](../index.md)
+- <span id="operationiter-offset-from"></span>`fn offset_from(&self, expression: &Expression<R>) -> <R as >::Offset` — [`Expression`](../index.md), [`Reader`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for OperationIter<R>`
+##### `impl<R: clone::Clone + Reader> Clone for OperationIter<R>`
 
-- `fn clone(self: &Self) -> OperationIter<R>` — [`OperationIter`](../index.md)
+- <span id="operationiter-clone"></span>`fn clone(&self) -> OperationIter<R>` — [`OperationIter`](../index.md)
 
-##### `impl<R: $crate::marker::Copy + Reader> Copy for OperationIter<R>`
+##### `impl<R: marker::Copy + Reader> Copy for OperationIter<R>`
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for OperationIter<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for OperationIter<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="operationiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Evaluation<R: Reader, S: EvaluationStorage<R>>`
 
@@ -201,57 +241,15 @@ println!("{:?}", result);
 
 #### Implementations
 
-- `fn new_in(bytecode: R, encoding: Encoding) -> Self` — [`Encoding`](../../index.md)
+- <span id="evaluation-new"></span>`fn new(bytecode: R, encoding: Encoding) -> Self` — [`Encoding`](../../index.md)
 
-- `fn set_initial_value(self: &mut Self, value: u64)`
-
-- `fn set_object_address(self: &mut Self, value: u64)`
-
-- `fn set_max_iterations(self: &mut Self, value: u32)`
-
-- `fn pop(self: &mut Self) -> Result<Value>` — [`Result`](../../index.md), [`Value`](../index.md)
-
-- `fn push(self: &mut Self, value: Value) -> Result<()>` — [`Value`](../index.md), [`Result`](../../index.md)
-
-- `fn evaluate_one_operation(self: &mut Self) -> Result<OperationEvaluationResult<R>>` — [`Result`](../../index.md), [`OperationEvaluationResult`](#operationevaluationresult)
-
-- `fn value_result(self: &Self) -> Option<Value>` — [`Value`](../index.md)
-
-- `fn as_result(self: &Self) -> &[Piece<R>]` — [`Piece`](../index.md)
-
-- `fn evaluate(self: &mut Self) -> Result<EvaluationResult<R>>` — [`Result`](../../index.md), [`EvaluationResult`](../index.md)
-
-- `fn resume_with_memory(self: &mut Self, value: Value) -> Result<EvaluationResult<R>>` — [`Value`](../index.md), [`Result`](../../index.md), [`EvaluationResult`](../index.md)
-
-- `fn resume_with_register(self: &mut Self, value: Value) -> Result<EvaluationResult<R>>` — [`Value`](../index.md), [`Result`](../../index.md), [`EvaluationResult`](../index.md)
-
-- `fn resume_with_frame_base(self: &mut Self, frame_base: u64) -> Result<EvaluationResult<R>>` — [`Result`](../../index.md), [`EvaluationResult`](../index.md)
-
-- `fn resume_with_tls(self: &mut Self, value: u64) -> Result<EvaluationResult<R>>` — [`Result`](../../index.md), [`EvaluationResult`](../index.md)
-
-- `fn resume_with_call_frame_cfa(self: &mut Self, cfa: u64) -> Result<EvaluationResult<R>>` — [`Result`](../../index.md), [`EvaluationResult`](../index.md)
-
-- `fn resume_with_at_location(self: &mut Self, bytes: R) -> Result<EvaluationResult<R>>` — [`Result`](../../index.md), [`EvaluationResult`](../index.md)
-
-- `fn resume_with_entry_value(self: &mut Self, entry_value: Value) -> Result<EvaluationResult<R>>` — [`Value`](../index.md), [`Result`](../../index.md), [`EvaluationResult`](../index.md)
-
-- `fn resume_with_parameter_ref(self: &mut Self, parameter_value: u64) -> Result<EvaluationResult<R>>` — [`Result`](../../index.md), [`EvaluationResult`](../index.md)
-
-- `fn resume_with_relocated_address(self: &mut Self, address: u64) -> Result<EvaluationResult<R>>` — [`Result`](../../index.md), [`EvaluationResult`](../index.md)
-
-- `fn resume_with_indexed_address(self: &mut Self, address: u64) -> Result<EvaluationResult<R>>` — [`Result`](../../index.md), [`EvaluationResult`](../index.md)
-
-- `fn resume_with_base_type(self: &mut Self, base_type: ValueType) -> Result<EvaluationResult<R>>` — [`ValueType`](../index.md), [`Result`](../../index.md), [`EvaluationResult`](../index.md)
-
-- `fn end_of_expression(self: &mut Self) -> bool`
-
-- `fn evaluate_internal(self: &mut Self) -> Result<EvaluationResult<R>>` — [`Result`](../../index.md), [`EvaluationResult`](../index.md)
+- <span id="evaluation-result"></span>`fn result(self) -> Vec<Piece<R>>` — [`Piece`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::fmt::Debug + Reader, S: $crate::fmt::Debug + EvaluationStorage<R>> Debug for Evaluation<R, S>`
+##### `impl<R: fmt::Debug + Reader, S: fmt::Debug + EvaluationStorage<R>> Debug for Evaluation<R, S>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="evaluation-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Enums
 
@@ -279,21 +277,21 @@ relative to the section.
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for DieReference<T>`
+##### `impl<T: clone::Clone> Clone for DieReference<T>`
 
-- `fn clone(self: &Self) -> DieReference<T>` — [`DieReference`](../index.md)
+- <span id="diereference-clone"></span>`fn clone(&self) -> DieReference<T>` — [`DieReference`](../index.md)
 
-##### `impl<T: $crate::marker::Copy> Copy for DieReference<T>`
+##### `impl<T: marker::Copy> Copy for DieReference<T>`
 
-##### `impl<T: $crate::fmt::Debug> Debug for DieReference<T>`
+##### `impl<T: fmt::Debug> Debug for DieReference<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="diereference-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq> Eq for DieReference<T>`
+##### `impl<T: cmp::Eq> Eq for DieReference<T>`
 
-##### `impl<T: $crate::cmp::PartialEq> PartialEq for DieReference<T>`
+##### `impl<T: cmp::PartialEq> PartialEq for DieReference<T>`
 
-- `fn eq(self: &Self, other: &DieReference<T>) -> bool` — [`DieReference`](../index.md)
+- <span id="diereference-eq"></span>`fn eq(&self, other: &DieReference<T>) -> bool` — [`DieReference`](../index.md)
 
 ##### `impl<T> StructuralPartialEq for DieReference<T>`
 
@@ -701,25 +699,25 @@ using `Operation::Deref`.
 
 #### Implementations
 
-- `fn parse(bytes: &mut R, encoding: Encoding) -> Result<Operation<R, Offset>>` — [`Encoding`](../../index.md), [`Result`](../../index.md), [`Operation`](../index.md)
+- <span id="operation-parse"></span>`fn parse(bytes: &mut R, encoding: Encoding) -> Result<Operation<R, Offset>>` — [`Encoding`](../../index.md), [`Result`](../../index.md), [`Operation`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<R, Offset> Clone for Operation<R, Offset>`
 
-- `fn clone(self: &Self) -> Operation<R, Offset>` — [`Operation`](../index.md)
+- <span id="operation-clone"></span>`fn clone(&self) -> Operation<R, Offset>` — [`Operation`](../index.md)
 
 ##### `impl<R, Offset> Copy for Operation<R, Offset>`
 
 ##### `impl<R, Offset> Debug for Operation<R, Offset>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="operation-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, Offset> Eq for Operation<R, Offset>`
 
 ##### `impl<R, Offset> PartialEq for Operation<R, Offset>`
 
-- `fn eq(self: &Self, other: &Operation<R, Offset>) -> bool` — [`Operation`](../index.md)
+- <span id="operation-eq"></span>`fn eq(&self, other: &Operation<R, Offset>) -> bool` — [`Operation`](../index.md)
 
 ##### `impl<R, Offset> StructuralPartialEq for Operation<R, Offset>`
 
@@ -738,9 +736,9 @@ enum OperationEvaluationResult<R: Reader> {
 
 #### Trait Implementations
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for OperationEvaluationResult<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for OperationEvaluationResult<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="operationevaluationresult-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Location<R, Offset>`
 
@@ -800,23 +798,23 @@ A single location of a piece of the result of a DWARF expression.
 
 #### Implementations
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="location-is-empty"></span>`fn is_empty(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl<R, Offset> Clone for Location<R, Offset>`
 
-- `fn clone(self: &Self) -> Location<R, Offset>` — [`Location`](../index.md)
+- <span id="location-clone"></span>`fn clone(&self) -> Location<R, Offset>` — [`Location`](../index.md)
 
 ##### `impl<R, Offset> Copy for Location<R, Offset>`
 
 ##### `impl<R, Offset> Debug for Location<R, Offset>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="location-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, Offset> PartialEq for Location<R, Offset>`
 
-- `fn eq(self: &Self, other: &Location<R, Offset>) -> bool` — [`Location`](../index.md)
+- <span id="location-eq"></span>`fn eq(&self, other: &Location<R, Offset>) -> bool` — [`Location`](../index.md)
 
 ##### `impl<R, Offset> StructuralPartialEq for Location<R, Offset>`
 
@@ -834,9 +832,9 @@ enum EvaluationState<R: Reader> {
 
 #### Trait Implementations
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for EvaluationState<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for EvaluationState<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="evaluationstate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `EvaluationWaiting<R: Reader>`
 
@@ -866,9 +864,9 @@ enum EvaluationWaiting<R: Reader> {
 
 #### Trait Implementations
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for EvaluationWaiting<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for EvaluationWaiting<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="evaluationwaiting-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `EvaluationResult<R: Reader>`
 
@@ -985,13 +983,13 @@ to continue, as described by the variant.
 
 #### Trait Implementations
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for EvaluationResult<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for EvaluationResult<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="evaluationresult-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::cmp::PartialEq + Reader> PartialEq for EvaluationResult<R>`
+##### `impl<R: cmp::PartialEq + Reader> PartialEq for EvaluationResult<R>`
 
-- `fn eq(self: &Self, other: &EvaluationResult<R>) -> bool` — [`EvaluationResult`](../index.md)
+- <span id="evaluationresult-eq"></span>`fn eq(&self, other: &EvaluationResult<R>) -> bool` — [`EvaluationResult`](../index.md)
 
 ##### `impl<R: Reader> StructuralPartialEq for EvaluationResult<R>`
 

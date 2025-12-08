@@ -6,6 +6,13 @@
 
 The `bitcast` and `bitflags_bits` macros.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`bitcast!`](#bitcast) | macro |  |
+| [`bitflags_bits!`](#bitflags_bits) | macro | Return a [`bitcast`] of the value of `$x.bits()`, where `$x` is a |
+
 ## Macros
 
 ### `bitcast!`

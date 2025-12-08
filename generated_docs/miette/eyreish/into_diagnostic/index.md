@@ -4,6 +4,13 @@
 
 # Module `into_diagnostic`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`DiagnosticError`](#diagnosticerror) | struct | Convenience [`Diagnostic`] that can be used as an "anonymous" wrapper for |
+| [`IntoDiagnostic`](#intodiagnostic) | trait | Convenience trait that adds a [`.into_diagnostic()`](IntoDiagnostic::into_diagnostic) method that converts a type implementing |
+
 ## Structs
 
 ### `DiagnosticError`
@@ -19,27 +26,27 @@ Errors. This is intended to be paired with [`IntoDiagnostic`](../index.md).
 
 ##### `impl Debug for DiagnosticError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="diagnosticerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E> Diag for DiagnosticError`
 
-- `fn ext_report<D>(self: Self, msg: D) -> Report` — [`Report`](../../index.md)
+- <span id="diagnosticerror-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../../index.md)
 
 ##### `impl Diagnostic for DiagnosticError`
 
 ##### `impl Display for DiagnosticError`
 
-- `fn fmt(self: &Self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="diagnosticerror-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
 ##### `impl Error for DiagnosticError`
 
-- `fn source(self: &Self) -> Option<&dyn Error>`
+- <span id="diagnosticerror-source"></span>`fn source(&self) -> Option<&dyn Error>`
 
 ##### `impl<D> OwoColorize for DiagnosticError`
 
 ##### `impl<T> ToString for DiagnosticError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="diagnosticerror-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl<E> TraitKind for DiagnosticError`
 
@@ -63,7 +70,7 @@ inaccessible. If you have a type implementing [`Diagnostic`](../../index.md) con
 
 #### Required Methods
 
-- `fn into_diagnostic(self: Self) -> Result<T, Report>`
+- `fn into_diagnostic(self) -> Result<T, Report>`
 
   Converts [`Result`](../../../clap_builder/error/index.md) types that return regular [`std::error::Error`](../../../addr2line/index.md)s
 

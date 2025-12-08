@@ -6,6 +6,15 @@
 
 Utilities for functions that return data via buffers.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`private`](#private) | mod |  |
+| [`SpareCapacity`](#sparecapacity) | struct | A type that implements [`Buffer`] by appending to a `Vec`, up to its |
+| [`Buffer`](#buffer) | trait | A memory buffer that may be uninitialized. |
+| [`spare_capacity`](#spare_capacity) | fn | Construct an [`SpareCapacity`], which implements [`Buffer`]. |
+
 ## Modules
 
 - [`private`](private/index.md) - 
@@ -32,11 +41,11 @@ have some non-empty spare capacity.
 
 ##### `impl<'a, T> Sealed for SpareCapacity<'a, T>`
 
-- `type Output = usize`
+- <span id="sparecapacity-output"></span>`type Output = usize`
 
-- `fn parts_mut(self: &mut Self) -> (*mut T, usize)`
+- <span id="sparecapacity-parts-mut"></span>`fn parts_mut(&mut self) -> (*mut T, usize)`
 
-- `unsafe fn assume_init(self: Self, len: usize) -> <Self as >::Output` — [`Sealed`](private/index.md)
+- <span id="sparecapacity-assume-init"></span>`unsafe fn assume_init(self, len: usize) -> <Self as >::Output` — [`Sealed`](private/index.md)
 
 ## Traits
 

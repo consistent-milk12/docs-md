@@ -4,6 +4,34 @@
 
 # Module `attr`
 
+## Contents
+
+- [Modules](#modules)
+  - [`parsing`](#parsing)
+  - [`printing`](#printing)
+- [Structs](#structs)
+  - [`Attribute`](#attribute)
+  - [`MetaList`](#metalist)
+  - [`MetaNameValue`](#metanamevalue)
+- [Enums](#enums)
+  - [`AttrStyle`](#attrstyle)
+  - [`Meta`](#meta)
+- [Traits](#traits)
+  - [`FilterAttrs`](#filterattrs)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`parsing`](#parsing) | mod |  |
+| [`printing`](#printing) | mod |  |
+| [`Attribute`](#attribute) | struct | An attribute, like `#[repr(transparent)]`. |
+| [`MetaList`](#metalist) | struct | A structured list within an attribute, like `derive(Copy, Clone)`. |
+| [`MetaNameValue`](#metanamevalue) | struct | A name-value pair within an attribute, like `feature = "nightly"`. |
+| [`AttrStyle`](#attrstyle) | enum | Distinguishes between attributes that decorate an item and attributes |
+| [`Meta`](#meta) | enum | Content of a compile-time structured attribute. |
+| [`FilterAttrs`](#filterattrs) | trait |  |
+
 ## Modules
 
 - [`parsing`](parsing/index.md) - 
@@ -15,7 +43,7 @@
 
 ```rust
 struct Attribute {
-    pub pound_token: $crate::token::Pound,
+    pub pound_token: token::Pound,
     pub style: AttrStyle,
     pub bracket_token: token::Bracket,
     pub meta: Meta,
@@ -173,47 +201,47 @@ assert_eq!(doc, attr);
 
 #### Implementations
 
-- `fn path(self: &Self) -> &Path` — [`Path`](../index.md)
+- <span id="attribute-path"></span>`fn path(&self) -> &Path` — [`Path`](../index.md)
 
-- `fn parse_args<T: Parse>(self: &Self) -> Result<T>` — [`Result`](../index.md)
+- <span id="attribute-parse-args"></span>`fn parse_args<T: Parse>(&self) -> Result<T>` — [`Result`](../index.md)
 
-- `fn parse_args_with<F: Parser>(self: &Self, parser: F) -> Result<<F as >::Output>` — [`Result`](../index.md), [`Parser`](../parse/index.md)
+- <span id="attribute-parse-args-with"></span>`fn parse_args_with<F: Parser>(&self, parser: F) -> Result<<F as >::Output>` — [`Result`](../index.md), [`Parser`](../parse/index.md)
 
-- `fn parse_nested_meta(self: &Self, logic: impl FnMut(ParseNestedMeta<'_>) -> Result<()>) -> Result<()>` — [`ParseNestedMeta`](../meta/index.md), [`Result`](../index.md)
+- <span id="attribute-parse-nested-meta"></span>`fn parse_nested_meta(&self, logic: impl FnMut(ParseNestedMeta<'_>) -> Result<()>) -> Result<()>` — [`ParseNestedMeta`](../meta/index.md), [`Result`](../index.md)
 
-- `fn parse_outer(input: ParseStream<'_>) -> Result<Vec<Self>>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="attribute-parse-outer"></span>`fn parse_outer(input: ParseStream<'_>) -> Result<Vec<Self>>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
-- `fn parse_inner(input: ParseStream<'_>) -> Result<Vec<Self>>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="attribute-parse-inner"></span>`fn parse_inner(input: ParseStream<'_>) -> Result<Vec<Self>>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::Attribute`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateattribute-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Attribute`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateattribute-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Attribute`
 
 ##### `impl Hash for crate::Attribute`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateattribute-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::Attribute`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateattribute-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for Attribute`
 
 ##### `impl<T> Spanned for Attribute`
 
-- `fn span(self: &Self) -> Span`
+- <span id="attribute-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::attr::Attribute`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateattrattribute-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `MetaList`
 
@@ -229,48 +257,48 @@ A structured list within an attribute, like `derive(Copy, Clone)`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratemetalist-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::MetaList`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratemetalist-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::MetaList`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratemetalist-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::MetaList`
 
 ##### `impl Hash for crate::MetaList`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratemetalist-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::attr::MetaList`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateattrmetalist-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::MetaList`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratemetalist-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for MetaList`
 
 ##### `impl<T> Spanned for MetaList`
 
-- `fn span(self: &Self) -> Span`
+- <span id="metalist-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::attr::MetaList`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateattrmetalist-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `MetaNameValue`
 
 ```rust
 struct MetaNameValue {
     pub path: crate::path::Path,
-    pub eq_token: $crate::token::Eq,
+    pub eq_token: token::Eq,
     pub value: crate::expr::Expr,
 }
 ```
@@ -279,41 +307,41 @@ A name-value pair within an attribute, like `feature = "nightly"`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratemetanamevalue-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::MetaNameValue`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratemetanamevalue-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::MetaNameValue`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratemetanamevalue-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::MetaNameValue`
 
 ##### `impl Hash for crate::MetaNameValue`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratemetanamevalue-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::attr::MetaNameValue`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateattrmetanamevalue-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::MetaNameValue`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratemetanamevalue-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for MetaNameValue`
 
 ##### `impl<T> Spanned for MetaNameValue`
 
-- `fn span(self: &Self) -> Span`
+- <span id="metanamevalue-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::attr::MetaNameValue`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateattrmetanamevalue-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ## Enums
 
@@ -322,7 +350,7 @@ A name-value pair within an attribute, like `feature = "nightly"`.
 ```rust
 enum AttrStyle {
     Outer,
-    Inner($crate::token::Not),
+    Inner(token::Not),
 }
 ```
 
@@ -345,23 +373,23 @@ that are contained within an item.
 
 ##### `impl Clone for crate::AttrStyle`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateattrstyle-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for crate::AttrStyle`
 
 ##### `impl Debug for crate::AttrStyle`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateattrstyle-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::AttrStyle`
 
 ##### `impl Hash for crate::AttrStyle`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateattrstyle-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::AttrStyle`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateattrstyle-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ### `Meta`
 
@@ -405,47 +433,47 @@ This type is a [syntax tree enum].
 
 #### Implementations
 
-- `fn path(self: &Self) -> &Path` — [`Path`](../index.md)
+- <span id="meta-path"></span>`fn path(&self) -> &Path` — [`Path`](../index.md)
 
-- `fn require_path_only(self: &Self) -> Result<&Path>` — [`Result`](../index.md), [`Path`](../index.md)
+- <span id="meta-require-path-only"></span>`fn require_path_only(&self) -> Result<&Path>` — [`Result`](../index.md), [`Path`](../index.md)
 
-- `fn require_list(self: &Self) -> Result<&MetaList>` — [`Result`](../index.md), [`MetaList`](../index.md)
+- <span id="meta-require-list"></span>`fn require_list(&self) -> Result<&MetaList>` — [`Result`](../index.md), [`MetaList`](../index.md)
 
-- `fn require_name_value(self: &Self) -> Result<&MetaNameValue>` — [`Result`](../index.md), [`MetaNameValue`](../index.md)
+- <span id="meta-require-name-value"></span>`fn require_name_value(&self) -> Result<&MetaNameValue>` — [`Result`](../index.md), [`MetaNameValue`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::Meta`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratemeta-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Meta`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratemeta-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Meta`
 
 ##### `impl Hash for crate::Meta`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratemeta-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::attr::Meta`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crateattrmeta-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::Meta`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratemeta-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for Meta`
 
 ##### `impl<T> Spanned for Meta`
 
-- `fn span(self: &Self) -> Span`
+- <span id="meta-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::attr::Meta`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crateattrmeta-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ## Traits
 
@@ -459,7 +487,7 @@ trait FilterAttrs<'a> { ... }
 
 - `type Ret: 1`
 
-- `fn outer(self: Self) -> <Self as >::Ret`
+- `fn outer(self) -> <Self as >::Ret`
 
-- `fn inner(self: Self) -> <Self as >::Ret`
+- `fn inner(self) -> <Self as >::Ret`
 

@@ -4,6 +4,15 @@
 
 # Module `reader`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ReaderOffsetId`](#readeroffsetid) | struct | An identifier for an offset within a section reader. |
+| [`ReaderOffset`](#readeroffset) | trait | A trait for offsets with a DWARF section. |
+| [`ReaderAddress`](#readeraddress) | trait | A trait for addresses within a DWARF section. |
+| [`Reader`](#reader) | trait | A trait for reading the data from a DWARF section. |
+
 ## Structs
 
 ### `ReaderOffsetId`
@@ -22,19 +31,19 @@ all readers. If values are not unique then errors may point to the wrong reader.
 
 ##### `impl Clone for ReaderOffsetId`
 
-- `fn clone(self: &Self) -> ReaderOffsetId` — [`ReaderOffsetId`](../index.md)
+- <span id="readeroffsetid-clone"></span>`fn clone(&self) -> ReaderOffsetId` — [`ReaderOffsetId`](../index.md)
 
 ##### `impl Copy for ReaderOffsetId`
 
 ##### `impl Debug for ReaderOffsetId`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="readeroffsetid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ReaderOffsetId`
 
 ##### `impl PartialEq for ReaderOffsetId`
 
-- `fn eq(self: &Self, other: &ReaderOffsetId) -> bool` — [`ReaderOffsetId`](../index.md)
+- <span id="readeroffsetid-eq"></span>`fn eq(&self, other: &ReaderOffsetId) -> bool` — [`ReaderOffsetId`](../index.md)
 
 ##### `impl StructuralPartialEq for ReaderOffsetId`
 
@@ -72,15 +81,15 @@ This allows consumers to choose a size that is appropriate for their address spa
 
   Convert a u64 to an offset.
 
-- `fn into_u64(self: Self) -> u64`
+- `fn into_u64(self) -> u64`
 
   Convert an offset to a u64.
 
-- `fn wrapping_add(self: Self, other: Self) -> Self`
+- `fn wrapping_add(self, other: Self) -> Self`
 
   Wrapping (modular) addition. Computes `self + other`.
 
-- `fn checked_sub(self: Self, other: Self) -> Option<Self>`
+- `fn checked_sub(self, other: Self) -> Option<Self>`
 
   Checked subtraction. Computes `self - other`.
 
@@ -97,11 +106,11 @@ in the future to support user-defined address types.
 
 #### Required Methods
 
-- `fn add_sized(self: Self, length: u64, size: u8) -> Result<Self>`
+- `fn add_sized(self, length: u64, size: u8) -> Result<Self>`
 
   Add a length to an address of the given size.
 
-- `fn wrapping_add_sized(self: Self, length: u64, size: u8) -> Self`
+- `fn wrapping_add_sized(self, length: u64, size: u8) -> Self`
 
   Add a length to an address of the given size.
 
@@ -149,163 +158,163 @@ thread safe or not.
 
 - `type Offset: 1`
 
-- `fn endian(self: &Self) -> <Self as >::Endian`
+- `fn endian(&self) -> <Self as >::Endian`
 
   Return the endianity of bytes that are read.
 
-- `fn len(self: &Self) -> <Self as >::Offset`
+- `fn len(&self) -> <Self as >::Offset`
 
   Return the number of bytes remaining.
 
-- `fn empty(self: &mut Self)`
+- `fn empty(&mut self)`
 
   Set the number of bytes remaining to zero.
 
-- `fn truncate(self: &mut Self, len: <Self as >::Offset) -> Result<()>`
+- `fn truncate(&mut self, len: <Self as >::Offset) -> Result<()>`
 
   Set the number of bytes remaining to the specified length.
 
-- `fn offset_from(self: &Self, base: &Self) -> <Self as >::Offset`
+- `fn offset_from(&self, base: &Self) -> <Self as >::Offset`
 
   Return the offset of this reader's data relative to the start of
 
-- `fn offset_id(self: &Self) -> ReaderOffsetId`
+- `fn offset_id(&self) -> ReaderOffsetId`
 
   Return an identifier for the current reader offset.
 
-- `fn lookup_offset_id(self: &Self, id: ReaderOffsetId) -> Option<<Self as >::Offset>`
+- `fn lookup_offset_id(&self, id: ReaderOffsetId) -> Option<<Self as >::Offset>`
 
   Return the offset corresponding to the given `id` if
 
-- `fn find(self: &Self, byte: u8) -> Result<<Self as >::Offset>`
+- `fn find(&self, byte: u8) -> Result<<Self as >::Offset>`
 
   Find the index of the first occurrence of the given byte.
 
-- `fn skip(self: &mut Self, len: <Self as >::Offset) -> Result<()>`
+- `fn skip(&mut self, len: <Self as >::Offset) -> Result<()>`
 
   Discard the specified number of bytes.
 
-- `fn split(self: &mut Self, len: <Self as >::Offset) -> Result<Self>`
+- `fn split(&mut self, len: <Self as >::Offset) -> Result<Self>`
 
   Split a reader in two.
 
-- `fn to_slice(self: &Self) -> Result<Cow<'_, [u8]>>`
+- `fn to_slice(&self) -> Result<Cow<'_, [u8]>>`
 
   Return all remaining data as a clone-on-write slice.
 
-- `fn to_string(self: &Self) -> Result<Cow<'_, str>>`
+- `fn to_string(&self) -> Result<Cow<'_, str>>`
 
   Convert all remaining data to a clone-on-write string.
 
-- `fn to_string_lossy(self: &Self) -> Result<Cow<'_, str>>`
+- `fn to_string_lossy(&self) -> Result<Cow<'_, str>>`
 
   Convert all remaining data to a clone-on-write string, including invalid characters.
 
-- `fn read_slice(self: &mut Self, buf: &mut [u8]) -> Result<()>`
+- `fn read_slice(&mut self, buf: &mut [u8]) -> Result<()>`
 
   Read exactly `buf.len()` bytes into `buf`.
 
-- `fn read_u8_array<A>(self: &mut Self) -> Result<A>`
+- `fn read_u8_array<A>(&mut self) -> Result<A>`
 
   Read a u8 array.
 
-- `fn is_empty(self: &Self) -> bool`
+- `fn is_empty(&self) -> bool`
 
   Return true if the number of bytes remaining is zero.
 
-- `fn read_u8(self: &mut Self) -> Result<u8>`
+- `fn read_u8(&mut self) -> Result<u8>`
 
   Read a u8.
 
-- `fn read_i8(self: &mut Self) -> Result<i8>`
+- `fn read_i8(&mut self) -> Result<i8>`
 
   Read an i8.
 
-- `fn read_u16(self: &mut Self) -> Result<u16>`
+- `fn read_u16(&mut self) -> Result<u16>`
 
   Read a u16.
 
-- `fn read_i16(self: &mut Self) -> Result<i16>`
+- `fn read_i16(&mut self) -> Result<i16>`
 
   Read an i16.
 
-- `fn read_u32(self: &mut Self) -> Result<u32>`
+- `fn read_u32(&mut self) -> Result<u32>`
 
   Read a u32.
 
-- `fn read_i32(self: &mut Self) -> Result<i32>`
+- `fn read_i32(&mut self) -> Result<i32>`
 
   Read an i32.
 
-- `fn read_u64(self: &mut Self) -> Result<u64>`
+- `fn read_u64(&mut self) -> Result<u64>`
 
   Read a u64.
 
-- `fn read_i64(self: &mut Self) -> Result<i64>`
+- `fn read_i64(&mut self) -> Result<i64>`
 
   Read an i64.
 
-- `fn read_f32(self: &mut Self) -> Result<f32>`
+- `fn read_f32(&mut self) -> Result<f32>`
 
   Read a f32.
 
-- `fn read_f64(self: &mut Self) -> Result<f64>`
+- `fn read_f64(&mut self) -> Result<f64>`
 
   Read a f64.
 
-- `fn read_uint(self: &mut Self, n: usize) -> Result<u64>`
+- `fn read_uint(&mut self, n: usize) -> Result<u64>`
 
   Read an unsigned n-bytes integer u64.
 
-- `fn read_null_terminated_slice(self: &mut Self) -> Result<Self>`
+- `fn read_null_terminated_slice(&mut self) -> Result<Self>`
 
   Read a null-terminated slice, and return it (excluding the null).
 
-- `fn skip_leb128(self: &mut Self) -> Result<()>`
+- `fn skip_leb128(&mut self) -> Result<()>`
 
   Skip a LEB128 encoded integer.
 
-- `fn read_uleb128(self: &mut Self) -> Result<u64>`
+- `fn read_uleb128(&mut self) -> Result<u64>`
 
   Read an unsigned LEB128 encoded integer.
 
-- `fn read_uleb128_u32(self: &mut Self) -> Result<u32>`
+- `fn read_uleb128_u32(&mut self) -> Result<u32>`
 
   Read an unsigned LEB128 encoded u32.
 
-- `fn read_uleb128_u16(self: &mut Self) -> Result<u16>`
+- `fn read_uleb128_u16(&mut self) -> Result<u16>`
 
   Read an unsigned LEB128 encoded u16.
 
-- `fn read_sleb128(self: &mut Self) -> Result<i64>`
+- `fn read_sleb128(&mut self) -> Result<i64>`
 
   Read a signed LEB128 encoded integer.
 
-- `fn read_initial_length(self: &mut Self) -> Result<(<Self as >::Offset, Format)>`
+- `fn read_initial_length(&mut self) -> Result<(<Self as >::Offset, Format)>`
 
   Read an initial length field.
 
-- `fn read_address_size(self: &mut Self) -> Result<u8>`
+- `fn read_address_size(&mut self) -> Result<u8>`
 
   Read a byte and validate it as an address size.
 
-- `fn read_address(self: &mut Self, address_size: u8) -> Result<u64>`
+- `fn read_address(&mut self, address_size: u8) -> Result<u64>`
 
   Read an address-sized integer, and return it as a `u64`.
 
-- `fn read_word(self: &mut Self, format: Format) -> Result<<Self as >::Offset>`
+- `fn read_word(&mut self, format: Format) -> Result<<Self as >::Offset>`
 
   Parse a word-sized integer according to the DWARF format.
 
-- `fn read_length(self: &mut Self, format: Format) -> Result<<Self as >::Offset>`
+- `fn read_length(&mut self, format: Format) -> Result<<Self as >::Offset>`
 
   Parse a word-sized section length according to the DWARF format.
 
-- `fn read_offset(self: &mut Self, format: Format) -> Result<<Self as >::Offset>`
+- `fn read_offset(&mut self, format: Format) -> Result<<Self as >::Offset>`
 
   Parse a word-sized section offset according to the DWARF format.
 
-- `fn read_sized_offset(self: &mut Self, size: u8) -> Result<<Self as >::Offset>`
+- `fn read_sized_offset(&mut self, size: u8) -> Result<<Self as >::Offset>`
 
   Parse a section offset of the given size.
 

@@ -4,6 +4,281 @@
 
 # Module `errno`
 
+## Contents
+
+- [Constants](#constants)
+  - [`EPERM`](#eperm)
+  - [`ENOENT`](#enoent)
+  - [`ESRCH`](#esrch)
+  - [`EINTR`](#eintr)
+  - [`EIO`](#eio)
+  - [`ENXIO`](#enxio)
+  - [`E2BIG`](#e2big)
+  - [`ENOEXEC`](#enoexec)
+  - [`EBADF`](#ebadf)
+  - [`ECHILD`](#echild)
+  - [`EAGAIN`](#eagain)
+  - [`ENOMEM`](#enomem)
+  - [`EACCES`](#eacces)
+  - [`EFAULT`](#efault)
+  - [`ENOTBLK`](#enotblk)
+  - [`EBUSY`](#ebusy)
+  - [`EEXIST`](#eexist)
+  - [`EXDEV`](#exdev)
+  - [`ENODEV`](#enodev)
+  - [`ENOTDIR`](#enotdir)
+  - [`EISDIR`](#eisdir)
+  - [`EINVAL`](#einval)
+  - [`ENFILE`](#enfile)
+  - [`EMFILE`](#emfile)
+  - [`ENOTTY`](#enotty)
+  - [`ETXTBSY`](#etxtbsy)
+  - [`EFBIG`](#efbig)
+  - [`ENOSPC`](#enospc)
+  - [`ESPIPE`](#espipe)
+  - [`EROFS`](#erofs)
+  - [`EMLINK`](#emlink)
+  - [`EPIPE`](#epipe)
+  - [`EDOM`](#edom)
+  - [`ERANGE`](#erange)
+  - [`EDEADLK`](#edeadlk)
+  - [`ENAMETOOLONG`](#enametoolong)
+  - [`ENOLCK`](#enolck)
+  - [`ENOSYS`](#enosys)
+  - [`ENOTEMPTY`](#enotempty)
+  - [`ELOOP`](#eloop)
+  - [`EWOULDBLOCK`](#ewouldblock)
+  - [`ENOMSG`](#enomsg)
+  - [`EIDRM`](#eidrm)
+  - [`ECHRNG`](#echrng)
+  - [`EL2NSYNC`](#el2nsync)
+  - [`EL3HLT`](#el3hlt)
+  - [`EL3RST`](#el3rst)
+  - [`ELNRNG`](#elnrng)
+  - [`EUNATCH`](#eunatch)
+  - [`ENOCSI`](#enocsi)
+  - [`EL2HLT`](#el2hlt)
+  - [`EBADE`](#ebade)
+  - [`EBADR`](#ebadr)
+  - [`EXFULL`](#exfull)
+  - [`ENOANO`](#enoano)
+  - [`EBADRQC`](#ebadrqc)
+  - [`EBADSLT`](#ebadslt)
+  - [`EDEADLOCK`](#edeadlock)
+  - [`EBFONT`](#ebfont)
+  - [`ENOSTR`](#enostr)
+  - [`ENODATA`](#enodata)
+  - [`ETIME`](#etime)
+  - [`ENOSR`](#enosr)
+  - [`ENONET`](#enonet)
+  - [`ENOPKG`](#enopkg)
+  - [`EREMOTE`](#eremote)
+  - [`ENOLINK`](#enolink)
+  - [`EADV`](#eadv)
+  - [`ESRMNT`](#esrmnt)
+  - [`ECOMM`](#ecomm)
+  - [`EPROTO`](#eproto)
+  - [`EMULTIHOP`](#emultihop)
+  - [`EDOTDOT`](#edotdot)
+  - [`EBADMSG`](#ebadmsg)
+  - [`EOVERFLOW`](#eoverflow)
+  - [`ENOTUNIQ`](#enotuniq)
+  - [`EBADFD`](#ebadfd)
+  - [`EREMCHG`](#eremchg)
+  - [`ELIBACC`](#elibacc)
+  - [`ELIBBAD`](#elibbad)
+  - [`ELIBSCN`](#elibscn)
+  - [`ELIBMAX`](#elibmax)
+  - [`ELIBEXEC`](#elibexec)
+  - [`EILSEQ`](#eilseq)
+  - [`ERESTART`](#erestart)
+  - [`ESTRPIPE`](#estrpipe)
+  - [`EUSERS`](#eusers)
+  - [`ENOTSOCK`](#enotsock)
+  - [`EDESTADDRREQ`](#edestaddrreq)
+  - [`EMSGSIZE`](#emsgsize)
+  - [`EPROTOTYPE`](#eprototype)
+  - [`ENOPROTOOPT`](#enoprotoopt)
+  - [`EPROTONOSUPPORT`](#eprotonosupport)
+  - [`ESOCKTNOSUPPORT`](#esocktnosupport)
+  - [`EOPNOTSUPP`](#eopnotsupp)
+  - [`EPFNOSUPPORT`](#epfnosupport)
+  - [`EAFNOSUPPORT`](#eafnosupport)
+  - [`EADDRINUSE`](#eaddrinuse)
+  - [`EADDRNOTAVAIL`](#eaddrnotavail)
+  - [`ENETDOWN`](#enetdown)
+  - [`ENETUNREACH`](#enetunreach)
+  - [`ENETRESET`](#enetreset)
+  - [`ECONNABORTED`](#econnaborted)
+  - [`ECONNRESET`](#econnreset)
+  - [`ENOBUFS`](#enobufs)
+  - [`EISCONN`](#eisconn)
+  - [`ENOTCONN`](#enotconn)
+  - [`ESHUTDOWN`](#eshutdown)
+  - [`ETOOMANYREFS`](#etoomanyrefs)
+  - [`ETIMEDOUT`](#etimedout)
+  - [`ECONNREFUSED`](#econnrefused)
+  - [`EHOSTDOWN`](#ehostdown)
+  - [`EHOSTUNREACH`](#ehostunreach)
+  - [`EALREADY`](#ealready)
+  - [`EINPROGRESS`](#einprogress)
+  - [`ESTALE`](#estale)
+  - [`EUCLEAN`](#euclean)
+  - [`ENOTNAM`](#enotnam)
+  - [`ENAVAIL`](#enavail)
+  - [`EISNAM`](#eisnam)
+  - [`EREMOTEIO`](#eremoteio)
+  - [`EDQUOT`](#edquot)
+  - [`ENOMEDIUM`](#enomedium)
+  - [`EMEDIUMTYPE`](#emediumtype)
+  - [`ECANCELED`](#ecanceled)
+  - [`ENOKEY`](#enokey)
+  - [`EKEYEXPIRED`](#ekeyexpired)
+  - [`EKEYREVOKED`](#ekeyrevoked)
+  - [`EKEYREJECTED`](#ekeyrejected)
+  - [`EOWNERDEAD`](#eownerdead)
+  - [`ENOTRECOVERABLE`](#enotrecoverable)
+  - [`ERFKILL`](#erfkill)
+  - [`EHWPOISON`](#ehwpoison)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`EPERM`](#eperm) | const |  |
+| [`ENOENT`](#enoent) | const |  |
+| [`ESRCH`](#esrch) | const |  |
+| [`EINTR`](#eintr) | const |  |
+| [`EIO`](#eio) | const |  |
+| [`ENXIO`](#enxio) | const |  |
+| [`E2BIG`](#e2big) | const |  |
+| [`ENOEXEC`](#enoexec) | const |  |
+| [`EBADF`](#ebadf) | const |  |
+| [`ECHILD`](#echild) | const |  |
+| [`EAGAIN`](#eagain) | const |  |
+| [`ENOMEM`](#enomem) | const |  |
+| [`EACCES`](#eacces) | const |  |
+| [`EFAULT`](#efault) | const |  |
+| [`ENOTBLK`](#enotblk) | const |  |
+| [`EBUSY`](#ebusy) | const |  |
+| [`EEXIST`](#eexist) | const |  |
+| [`EXDEV`](#exdev) | const |  |
+| [`ENODEV`](#enodev) | const |  |
+| [`ENOTDIR`](#enotdir) | const |  |
+| [`EISDIR`](#eisdir) | const |  |
+| [`EINVAL`](#einval) | const |  |
+| [`ENFILE`](#enfile) | const |  |
+| [`EMFILE`](#emfile) | const |  |
+| [`ENOTTY`](#enotty) | const |  |
+| [`ETXTBSY`](#etxtbsy) | const |  |
+| [`EFBIG`](#efbig) | const |  |
+| [`ENOSPC`](#enospc) | const |  |
+| [`ESPIPE`](#espipe) | const |  |
+| [`EROFS`](#erofs) | const |  |
+| [`EMLINK`](#emlink) | const |  |
+| [`EPIPE`](#epipe) | const |  |
+| [`EDOM`](#edom) | const |  |
+| [`ERANGE`](#erange) | const |  |
+| [`EDEADLK`](#edeadlk) | const |  |
+| [`ENAMETOOLONG`](#enametoolong) | const |  |
+| [`ENOLCK`](#enolck) | const |  |
+| [`ENOSYS`](#enosys) | const |  |
+| [`ENOTEMPTY`](#enotempty) | const |  |
+| [`ELOOP`](#eloop) | const |  |
+| [`EWOULDBLOCK`](#ewouldblock) | const |  |
+| [`ENOMSG`](#enomsg) | const |  |
+| [`EIDRM`](#eidrm) | const |  |
+| [`ECHRNG`](#echrng) | const |  |
+| [`EL2NSYNC`](#el2nsync) | const |  |
+| [`EL3HLT`](#el3hlt) | const |  |
+| [`EL3RST`](#el3rst) | const |  |
+| [`ELNRNG`](#elnrng) | const |  |
+| [`EUNATCH`](#eunatch) | const |  |
+| [`ENOCSI`](#enocsi) | const |  |
+| [`EL2HLT`](#el2hlt) | const |  |
+| [`EBADE`](#ebade) | const |  |
+| [`EBADR`](#ebadr) | const |  |
+| [`EXFULL`](#exfull) | const |  |
+| [`ENOANO`](#enoano) | const |  |
+| [`EBADRQC`](#ebadrqc) | const |  |
+| [`EBADSLT`](#ebadslt) | const |  |
+| [`EDEADLOCK`](#edeadlock) | const |  |
+| [`EBFONT`](#ebfont) | const |  |
+| [`ENOSTR`](#enostr) | const |  |
+| [`ENODATA`](#enodata) | const |  |
+| [`ETIME`](#etime) | const |  |
+| [`ENOSR`](#enosr) | const |  |
+| [`ENONET`](#enonet) | const |  |
+| [`ENOPKG`](#enopkg) | const |  |
+| [`EREMOTE`](#eremote) | const |  |
+| [`ENOLINK`](#enolink) | const |  |
+| [`EADV`](#eadv) | const |  |
+| [`ESRMNT`](#esrmnt) | const |  |
+| [`ECOMM`](#ecomm) | const |  |
+| [`EPROTO`](#eproto) | const |  |
+| [`EMULTIHOP`](#emultihop) | const |  |
+| [`EDOTDOT`](#edotdot) | const |  |
+| [`EBADMSG`](#ebadmsg) | const |  |
+| [`EOVERFLOW`](#eoverflow) | const |  |
+| [`ENOTUNIQ`](#enotuniq) | const |  |
+| [`EBADFD`](#ebadfd) | const |  |
+| [`EREMCHG`](#eremchg) | const |  |
+| [`ELIBACC`](#elibacc) | const |  |
+| [`ELIBBAD`](#elibbad) | const |  |
+| [`ELIBSCN`](#elibscn) | const |  |
+| [`ELIBMAX`](#elibmax) | const |  |
+| [`ELIBEXEC`](#elibexec) | const |  |
+| [`EILSEQ`](#eilseq) | const |  |
+| [`ERESTART`](#erestart) | const |  |
+| [`ESTRPIPE`](#estrpipe) | const |  |
+| [`EUSERS`](#eusers) | const |  |
+| [`ENOTSOCK`](#enotsock) | const |  |
+| [`EDESTADDRREQ`](#edestaddrreq) | const |  |
+| [`EMSGSIZE`](#emsgsize) | const |  |
+| [`EPROTOTYPE`](#eprototype) | const |  |
+| [`ENOPROTOOPT`](#enoprotoopt) | const |  |
+| [`EPROTONOSUPPORT`](#eprotonosupport) | const |  |
+| [`ESOCKTNOSUPPORT`](#esocktnosupport) | const |  |
+| [`EOPNOTSUPP`](#eopnotsupp) | const |  |
+| [`EPFNOSUPPORT`](#epfnosupport) | const |  |
+| [`EAFNOSUPPORT`](#eafnosupport) | const |  |
+| [`EADDRINUSE`](#eaddrinuse) | const |  |
+| [`EADDRNOTAVAIL`](#eaddrnotavail) | const |  |
+| [`ENETDOWN`](#enetdown) | const |  |
+| [`ENETUNREACH`](#enetunreach) | const |  |
+| [`ENETRESET`](#enetreset) | const |  |
+| [`ECONNABORTED`](#econnaborted) | const |  |
+| [`ECONNRESET`](#econnreset) | const |  |
+| [`ENOBUFS`](#enobufs) | const |  |
+| [`EISCONN`](#eisconn) | const |  |
+| [`ENOTCONN`](#enotconn) | const |  |
+| [`ESHUTDOWN`](#eshutdown) | const |  |
+| [`ETOOMANYREFS`](#etoomanyrefs) | const |  |
+| [`ETIMEDOUT`](#etimedout) | const |  |
+| [`ECONNREFUSED`](#econnrefused) | const |  |
+| [`EHOSTDOWN`](#ehostdown) | const |  |
+| [`EHOSTUNREACH`](#ehostunreach) | const |  |
+| [`EALREADY`](#ealready) | const |  |
+| [`EINPROGRESS`](#einprogress) | const |  |
+| [`ESTALE`](#estale) | const |  |
+| [`EUCLEAN`](#euclean) | const |  |
+| [`ENOTNAM`](#enotnam) | const |  |
+| [`ENAVAIL`](#enavail) | const |  |
+| [`EISNAM`](#eisnam) | const |  |
+| [`EREMOTEIO`](#eremoteio) | const |  |
+| [`EDQUOT`](#edquot) | const |  |
+| [`ENOMEDIUM`](#enomedium) | const |  |
+| [`EMEDIUMTYPE`](#emediumtype) | const |  |
+| [`ECANCELED`](#ecanceled) | const |  |
+| [`ENOKEY`](#enokey) | const |  |
+| [`EKEYEXPIRED`](#ekeyexpired) | const |  |
+| [`EKEYREVOKED`](#ekeyrevoked) | const |  |
+| [`EKEYREJECTED`](#ekeyrejected) | const |  |
+| [`EOWNERDEAD`](#eownerdead) | const |  |
+| [`ENOTRECOVERABLE`](#enotrecoverable) | const |  |
+| [`ERFKILL`](#erfkill) | const |  |
+| [`EHWPOISON`](#ehwpoison) | const |  |
+
 ## Constants
 
 ### `EPERM`

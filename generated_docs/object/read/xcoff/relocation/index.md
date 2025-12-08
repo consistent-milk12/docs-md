@@ -4,6 +4,15 @@
 
 # Module `relocation`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`XcoffRelocationIterator`](#xcoffrelocationiterator) | struct | An iterator for the relocations in an [`XcoffSection`](super::XcoffSection). |
+| [`Rel`](#rel) | trait | A trait for generic access to [`xcoff::Rel32`] and [`xcoff::Rel64`]. |
+| [`XcoffRelocationIterator32`](#xcoffrelocationiterator32) | type | An iterator for the relocations in an [`XcoffSection32`](super::XcoffSection32). |
+| [`XcoffRelocationIterator64`](#xcoffrelocationiterator64) | type | An iterator for the relocations in an [`XcoffSection64`](super::XcoffSection64). |
+
 ## Structs
 
 ### `XcoffRelocationIterator<'data, 'file, Xcoff, R>`
@@ -24,21 +33,21 @@ An iterator for the relocations in an [`XcoffSection`](super::XcoffSection).
 
 ##### `impl<'data, 'file, Xcoff, R> Debug for XcoffRelocationIterator<'data, 'file, Xcoff, R>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="xcoffrelocationiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for XcoffRelocationIterator<'data, 'file, Xcoff, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="xcoffrelocationiterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="xcoffrelocationiterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="xcoffrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Xcoff, R> Iterator for XcoffRelocationIterator<'data, 'file, Xcoff, R>`
 
-- `type Item = (u64, Relocation)`
+- <span id="xcoffrelocationiterator-item"></span>`type Item = (u64, Relocation)`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="xcoffrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ## Traits
 
@@ -54,15 +63,15 @@ A trait for generic access to [`xcoff::Rel32`](../../../xcoff/index.md) and [`xc
 
 - `type Word: 1`
 
-- `fn r_vaddr(self: &Self) -> <Self as >::Word`
+- `fn r_vaddr(&self) -> <Self as >::Word`
 
-- `fn r_symndx(self: &Self) -> u32`
+- `fn r_symndx(&self) -> u32`
 
-- `fn r_rsize(self: &Self) -> u8`
+- `fn r_rsize(&self) -> u8`
 
-- `fn r_rtype(self: &Self) -> u8`
+- `fn r_rtype(&self) -> u8`
 
-- `fn symbol(self: &Self) -> SymbolIndex`
+- `fn symbol(&self) -> SymbolIndex`
 
 ## Type Aliases
 

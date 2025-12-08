@@ -10,6 +10,12 @@ This module provides the [`FlatGenerator`](#flatgenerator) struct which generate
 documentation with a flat file structure where all files are in a single
 directory and module hierarchy is encoded in filenames.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`FlatGenerator`](#flatgenerator) | struct | Generates documentation with flat file structure. |
+
 ## Structs
 
 ### `FlatGenerator<'a>`
@@ -54,13 +60,13 @@ output/
 
 #### Implementations
 
-- `const fn new(ctx: &'a GeneratorContext<'a>, output_dir: &'a Path, progress: &'a ProgressBar) -> Self` — [`GeneratorContext`](../index.md)
+- <span id="flatgenerator-new"></span>`const fn new(ctx: &'a GeneratorContext<'a>, output_dir: &'a Path, progress: &'a ProgressBar) -> Self` — [`GeneratorContext`](../index.md)
 
-- `fn generate(self: &Self, root: &Item) -> Result<(), Error>` — [`Error`](../../error/index.md)
+- <span id="flatgenerator-generate"></span>`fn generate(&self, root: &Item) -> Result<(), Error>` — [`Error`](../../error/index.md)
 
-- `fn generate_module(self: &Self, item: &Item) -> Result<(), Error>` — [`Error`](../../error/index.md)
+- <span id="flatgenerator-generate-module"></span>`fn generate_module(&self, item: &Item) -> Result<(), Error>` — [`Error`](../../error/index.md)
 
-- `fn generate_module_recursive(self: &Self, item: &Item, prefix: &str) -> Result<(), Error>` — [`Error`](../../error/index.md)
+- <span id="flatgenerator-generate-module-recursive"></span>`fn generate_module_recursive(&self, item: &Item, prefix: &str) -> Result<(), Error>` — [`Error`](../../error/index.md)
 
 #### Trait Implementations
 
@@ -72,17 +78,17 @@ output/
 
 ##### `impl<T> Pointable for FlatGenerator<'a>`
 
-- `const ALIGN: usize`
+- <span id="flatgenerator-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="flatgenerator-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="flatgenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="flatgenerator-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="flatgenerator-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="flatgenerator-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T> WithSubscriber for FlatGenerator<'a>`
 

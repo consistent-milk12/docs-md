@@ -4,6 +4,59 @@
 
 # Module `printing`
 
+## Contents
+
+- [Functions](#functions)
+  - [`outer_attrs_to_tokens`](#outer_attrs_to_tokens)
+  - [`inner_attrs_to_tokens`](#inner_attrs_to_tokens)
+  - [`print_subexpression`](#print_subexpression)
+  - [`print_expr`](#print_expr)
+  - [`print_expr_assign`](#print_expr_assign)
+  - [`print_expr_await`](#print_expr_await)
+  - [`print_expr_binary`](#print_expr_binary)
+  - [`print_expr_break`](#print_expr_break)
+  - [`print_expr_call`](#print_expr_call)
+  - [`print_expr_cast`](#print_expr_cast)
+  - [`print_expr_closure`](#print_expr_closure)
+  - [`print_expr_field`](#print_expr_field)
+  - [`print_expr_index`](#print_expr_index)
+  - [`print_expr_let`](#print_expr_let)
+  - [`print_expr_method_call`](#print_expr_method_call)
+  - [`print_expr_range`](#print_expr_range)
+  - [`print_expr_raw_addr`](#print_expr_raw_addr)
+  - [`print_expr_reference`](#print_expr_reference)
+  - [`print_expr_return`](#print_expr_return)
+  - [`print_expr_try`](#print_expr_try)
+  - [`print_expr_unary`](#print_expr_unary)
+  - [`print_expr_yield`](#print_expr_yield)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`outer_attrs_to_tokens`](#outer_attrs_to_tokens) | fn |  |
+| [`inner_attrs_to_tokens`](#inner_attrs_to_tokens) | fn |  |
+| [`print_subexpression`](#print_subexpression) | fn |  |
+| [`print_expr`](#print_expr) | fn |  |
+| [`print_expr_assign`](#print_expr_assign) | fn |  |
+| [`print_expr_await`](#print_expr_await) | fn |  |
+| [`print_expr_binary`](#print_expr_binary) | fn |  |
+| [`print_expr_break`](#print_expr_break) | fn |  |
+| [`print_expr_call`](#print_expr_call) | fn |  |
+| [`print_expr_cast`](#print_expr_cast) | fn |  |
+| [`print_expr_closure`](#print_expr_closure) | fn |  |
+| [`print_expr_field`](#print_expr_field) | fn |  |
+| [`print_expr_index`](#print_expr_index) | fn |  |
+| [`print_expr_let`](#print_expr_let) | fn |  |
+| [`print_expr_method_call`](#print_expr_method_call) | fn |  |
+| [`print_expr_range`](#print_expr_range) | fn |  |
+| [`print_expr_raw_addr`](#print_expr_raw_addr) | fn |  |
+| [`print_expr_reference`](#print_expr_reference) | fn |  |
+| [`print_expr_return`](#print_expr_return) | fn |  |
+| [`print_expr_try`](#print_expr_try) | fn |  |
+| [`print_expr_unary`](#print_expr_unary) | fn |  |
+| [`print_expr_yield`](#print_expr_yield) | fn |  |
+
 ## Functions
 
 ### `outer_attrs_to_tokens`

@@ -4,6 +4,13 @@
 
 # Module `from_par_iter`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`collect_extended`](#collect_extended) | fn | Creates an empty default collection and extends it. |
+| [`collect_string!`](#collect_string) | macro |  |
+
 ## Functions
 
 ### `collect_extended`

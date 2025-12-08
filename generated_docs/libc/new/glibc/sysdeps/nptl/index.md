@@ -10,6 +10,12 @@ Native POSIX threading library.
 
 <https://github.com/bminor/glibc/tree/master/sysdeps/nptl>
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`pthread`](#pthread) | mod | Source header: `sysdeps/nptl/pthread.h` |
+
 ## Modules
 
 - [`pthread`](pthread/index.md) - Source header: `sysdeps/nptl/pthread.h`

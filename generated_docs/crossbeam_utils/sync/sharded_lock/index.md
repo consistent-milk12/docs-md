@@ -4,6 +4,37 @@
 
 # Module `sharded_lock`
 
+## Contents
+
+- [Structs](#structs)
+  - [`Shard`](#shard)
+  - [`ShardedLock`](#shardedlock)
+  - [`ShardedLockReadGuard`](#shardedlockreadguard)
+  - [`ShardedLockWriteGuard`](#shardedlockwriteguard)
+  - [`ThreadIndices`](#threadindices)
+  - [`Registration`](#registration)
+- [Functions](#functions)
+  - [`current_index`](#current_index)
+  - [`thread_indices`](#thread_indices)
+- [Constants](#constants)
+  - [`NUM_SHARDS`](#num_shards)
+  - [`REGISTRATION`](#registration)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Shard`](#shard) | struct | A shard containing a single reader-writer lock. |
+| [`ShardedLock`](#shardedlock) | struct | A sharded reader-writer lock. |
+| [`ShardedLockReadGuard`](#shardedlockreadguard) | struct | A guard used to release the shared read access of a [`ShardedLock`] when dropped. |
+| [`ShardedLockWriteGuard`](#shardedlockwriteguard) | struct | A guard used to release the exclusive write access of a [`ShardedLock`] when dropped. |
+| [`ThreadIndices`](#threadindices) | struct | The global registry keeping track of registered threads and indices. |
+| [`Registration`](#registration) | struct | A registration of a thread with an index. |
+| [`current_index`](#current_index) | fn | Returns a `usize` that identifies the current thread. |
+| [`thread_indices`](#thread_indices) | fn |  |
+| [`NUM_SHARDS`](#num_shards) | const | The number of shards per sharded lock. |
+| [`REGISTRATION`](#registration) | const |  |
+
 ## Structs
 
 ### `Shard`
@@ -97,19 +128,27 @@ let lock = ShardedLock::new(5);
 
 #### Implementations
 
-- `fn new(value: T) -> ShardedLock<T>` — [`ShardedLock`](../index.md)
+- <span id="shardedlock-is-poisoned"></span>`fn is_poisoned(&self) -> bool`
 
-- `fn into_inner(self: Self) -> LockResult<T>`
+- <span id="shardedlock-get-mut"></span>`fn get_mut(&mut self) -> LockResult<&mut T>`
+
+- <span id="shardedlock-try-read"></span>`fn try_read(&self) -> TryLockResult<ShardedLockReadGuard<'_, T>>` — [`ShardedLockReadGuard`](../index.md)
+
+- <span id="shardedlock-read"></span>`fn read(&self) -> LockResult<ShardedLockReadGuard<'_, T>>` — [`ShardedLockReadGuard`](../index.md)
+
+- <span id="shardedlock-try-write"></span>`fn try_write(&self) -> TryLockResult<ShardedLockWriteGuard<'_, T>>` — [`ShardedLockWriteGuard`](../index.md)
+
+- <span id="shardedlock-write"></span>`fn write(&self) -> LockResult<ShardedLockWriteGuard<'_, T>>` — [`ShardedLockWriteGuard`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<T: ?Sized + fmt::Debug> Debug for ShardedLock<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="shardedlock-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: Default> Default for ShardedLock<T>`
 
-- `fn default() -> ShardedLock<T>` — [`ShardedLock`](../index.md)
+- <span id="shardedlock-default"></span>`fn default() -> ShardedLock<T>` — [`ShardedLock`](../index.md)
 
 ##### `impl<T: ?Sized> RefUnwindSafe for ShardedLock<T>`
 
@@ -135,27 +174,27 @@ A guard used to release the shared read access of a [`ShardedLock`](../index.md)
 
 ##### `impl<T: fmt::Debug> Debug for ShardedLockReadGuard<'_, T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="shardedlockreadguard-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized> Deref for ShardedLockReadGuard<'_, T>`
 
-- `type Target = T`
+- <span id="shardedlockreadguard-target"></span>`type Target = T`
 
-- `fn deref(self: &Self) -> &T`
+- <span id="shardedlockreadguard-deref"></span>`fn deref(&self) -> &T`
 
 ##### `impl<T: ?Sized + fmt::Display> Display for ShardedLockReadGuard<'_, T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="shardedlockreadguard-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<P, T> Receiver for ShardedLockReadGuard<'a, T>`
 
-- `type Target = T`
+- <span id="shardedlockreadguard-target"></span>`type Target = T`
 
 ##### `impl<T: ?Sized + Sync> Sync for ShardedLockReadGuard<'_, T>`
 
 ##### `impl<T> ToString for ShardedLockReadGuard<'a, T>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="shardedlockreadguard-to-string"></span>`fn to_string(&self) -> String`
 
 ### `ShardedLockWriteGuard<'a, T: ?Sized>`
 
@@ -172,35 +211,35 @@ A guard used to release the exclusive write access of a [`ShardedLock`](../index
 
 ##### `impl<T: fmt::Debug> Debug for ShardedLockWriteGuard<'_, T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="shardedlockwriteguard-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized> Deref for ShardedLockWriteGuard<'_, T>`
 
-- `type Target = T`
+- <span id="shardedlockwriteguard-target"></span>`type Target = T`
 
-- `fn deref(self: &Self) -> &T`
+- <span id="shardedlockwriteguard-deref"></span>`fn deref(&self) -> &T`
 
 ##### `impl<T: ?Sized> DerefMut for ShardedLockWriteGuard<'_, T>`
 
-- `fn deref_mut(self: &mut Self) -> &mut T`
+- <span id="shardedlockwriteguard-deref-mut"></span>`fn deref_mut(&mut self) -> &mut T`
 
 ##### `impl<T: ?Sized + fmt::Display> Display for ShardedLockWriteGuard<'_, T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="shardedlockwriteguard-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ?Sized> Drop for ShardedLockWriteGuard<'_, T>`
 
-- `fn drop(self: &mut Self)`
+- <span id="shardedlockwriteguard-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<P, T> Receiver for ShardedLockWriteGuard<'a, T>`
 
-- `type Target = T`
+- <span id="shardedlockwriteguard-target"></span>`type Target = T`
 
 ##### `impl<T: ?Sized + Sync> Sync for ShardedLockWriteGuard<'_, T>`
 
 ##### `impl<T> ToString for ShardedLockWriteGuard<'a, T>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="shardedlockwriteguard-to-string"></span>`fn to_string(&self) -> String`
 
 ### `ThreadIndices`
 
@@ -245,7 +284,7 @@ When dropped, unregisters the thread and frees the reserved index.
 
 ##### `impl Drop for Registration`
 
-- `fn drop(self: &mut Self)`
+- <span id="registration-drop"></span>`fn drop(&mut self)`
 
 ## Functions
 
@@ -282,6 +321,6 @@ The number of shards per sharded lock. Must be a power of two.
 ### `REGISTRATION`
 
 ```rust
-const REGISTRATION: $crate::thread::LocalKey<Registration>;
+const REGISTRATION: thread::LocalKey<Registration>;
 ```
 

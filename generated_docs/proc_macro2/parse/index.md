@@ -4,6 +4,107 @@
 
 # Module `parse`
 
+## Contents
+
+- [Structs](#structs)
+  - [`Cursor`](#cursor)
+  - [`Reject`](#reject)
+- [Functions](#functions)
+  - [`skip_whitespace`](#skip_whitespace)
+  - [`block_comment`](#block_comment)
+  - [`is_whitespace`](#is_whitespace)
+  - [`word_break`](#word_break)
+  - [`token_stream`](#token_stream)
+  - [`lex_error`](#lex_error)
+  - [`leaf_token`](#leaf_token)
+  - [`ident`](#ident)
+  - [`ident_any`](#ident_any)
+  - [`ident_not_raw`](#ident_not_raw)
+  - [`literal`](#literal)
+  - [`literal_nocapture`](#literal_nocapture)
+  - [`literal_suffix`](#literal_suffix)
+  - [`string`](#string)
+  - [`cooked_string`](#cooked_string)
+  - [`raw_string`](#raw_string)
+  - [`byte_string`](#byte_string)
+  - [`cooked_byte_string`](#cooked_byte_string)
+  - [`delimiter_of_raw_string`](#delimiter_of_raw_string)
+  - [`raw_byte_string`](#raw_byte_string)
+  - [`c_string`](#c_string)
+  - [`raw_c_string`](#raw_c_string)
+  - [`cooked_c_string`](#cooked_c_string)
+  - [`byte`](#byte)
+  - [`character`](#character)
+  - [`backslash_x_char`](#backslash_x_char)
+  - [`backslash_x_byte`](#backslash_x_byte)
+  - [`backslash_x_nonzero`](#backslash_x_nonzero)
+  - [`backslash_u`](#backslash_u)
+  - [`trailing_backslash`](#trailing_backslash)
+  - [`float`](#float)
+  - [`float_digits`](#float_digits)
+  - [`int`](#int)
+  - [`digits`](#digits)
+  - [`punct`](#punct)
+  - [`punct_char`](#punct_char)
+  - [`doc_comment`](#doc_comment)
+  - [`doc_comment_contents`](#doc_comment_contents)
+  - [`take_until_newline_or_eof`](#take_until_newline_or_eof)
+- [Type Aliases](#type-aliases)
+  - [`PResult`](#presult)
+- [Constants](#constants)
+  - [`ERROR`](#error)
+- [Macros](#macros)
+  - [`next_ch!`](#next_ch)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Cursor`](#cursor) | struct |  |
+| [`Reject`](#reject) | struct |  |
+| [`skip_whitespace`](#skip_whitespace) | fn |  |
+| [`block_comment`](#block_comment) | fn |  |
+| [`is_whitespace`](#is_whitespace) | fn |  |
+| [`word_break`](#word_break) | fn |  |
+| [`token_stream`](#token_stream) | fn |  |
+| [`lex_error`](#lex_error) | fn |  |
+| [`leaf_token`](#leaf_token) | fn |  |
+| [`ident`](#ident) | fn |  |
+| [`ident_any`](#ident_any) | fn |  |
+| [`ident_not_raw`](#ident_not_raw) | fn |  |
+| [`literal`](#literal) | fn |  |
+| [`literal_nocapture`](#literal_nocapture) | fn |  |
+| [`literal_suffix`](#literal_suffix) | fn |  |
+| [`string`](#string) | fn |  |
+| [`cooked_string`](#cooked_string) | fn |  |
+| [`raw_string`](#raw_string) | fn |  |
+| [`byte_string`](#byte_string) | fn |  |
+| [`cooked_byte_string`](#cooked_byte_string) | fn |  |
+| [`delimiter_of_raw_string`](#delimiter_of_raw_string) | fn |  |
+| [`raw_byte_string`](#raw_byte_string) | fn |  |
+| [`c_string`](#c_string) | fn |  |
+| [`raw_c_string`](#raw_c_string) | fn |  |
+| [`cooked_c_string`](#cooked_c_string) | fn |  |
+| [`byte`](#byte) | fn |  |
+| [`character`](#character) | fn |  |
+| [`backslash_x_char`](#backslash_x_char) | fn |  |
+| [`backslash_x_byte`](#backslash_x_byte) | fn |  |
+| [`backslash_x_nonzero`](#backslash_x_nonzero) | fn |  |
+| [`backslash_u`](#backslash_u) | fn |  |
+| [`trailing_backslash`](#trailing_backslash) | fn |  |
+| [`float`](#float) | fn |  |
+| [`float_digits`](#float_digits) | fn |  |
+| [`int`](#int) | fn |  |
+| [`digits`](#digits) | fn |  |
+| [`punct`](#punct) | fn |  |
+| [`punct_char`](#punct_char) | fn |  |
+| [`doc_comment`](#doc_comment) | fn |  |
+| [`doc_comment_contents`](#doc_comment_contents) | fn |  |
+| [`take_until_newline_or_eof`](#take_until_newline_or_eof) | fn |  |
+| [`PResult`](#presult) | type |  |
+| [`ERROR`](#error) | const |  |
+| [`next_ch!`](#next_ch) | macro |  |
+
 ## Structs
 
 ### `Cursor<'a>`
@@ -16,33 +117,33 @@ struct Cursor<'a> {
 
 #### Implementations
 
-- `fn advance(self: &Self, bytes: usize) -> Cursor<'a>` — [`Cursor`](#cursor)
+- <span id="cursor-advance"></span>`fn advance(&self, bytes: usize) -> Cursor<'a>` — [`Cursor`](#cursor)
 
-- `fn starts_with(self: &Self, s: &str) -> bool`
+- <span id="cursor-starts-with"></span>`fn starts_with(&self, s: &str) -> bool`
 
-- `fn starts_with_char(self: &Self, ch: char) -> bool`
+- <span id="cursor-starts-with-char"></span>`fn starts_with_char(&self, ch: char) -> bool`
 
-- `fn starts_with_fn<Pattern>(self: &Self, f: Pattern) -> bool`
+- <span id="cursor-starts-with-fn"></span>`fn starts_with_fn<Pattern>(&self, f: Pattern) -> bool`
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="cursor-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn len(self: &Self) -> usize`
+- <span id="cursor-len"></span>`fn len(&self) -> usize`
 
-- `fn as_bytes(self: &Self) -> &'a [u8]`
+- <span id="cursor-as-bytes"></span>`fn as_bytes(&self) -> &'a [u8]`
 
-- `fn bytes(self: &Self) -> Bytes<'a>`
+- <span id="cursor-bytes"></span>`fn bytes(&self) -> Bytes<'a>`
 
-- `fn chars(self: &Self) -> Chars<'a>`
+- <span id="cursor-chars"></span>`fn chars(&self) -> Chars<'a>`
 
-- `fn char_indices(self: &Self) -> CharIndices<'a>`
+- <span id="cursor-char-indices"></span>`fn char_indices(&self) -> CharIndices<'a>`
 
-- `fn parse(self: &Self, tag: &str) -> Result<Cursor<'a>, Reject>` — [`Cursor`](#cursor), [`Reject`](#reject)
+- <span id="cursor-parse"></span>`fn parse(&self, tag: &str) -> Result<Cursor<'a>, Reject>` — [`Cursor`](#cursor), [`Reject`](#reject)
 
 #### Trait Implementations
 
 ##### `impl<'a> Clone for Cursor<'a>`
 
-- `fn clone(self: &Self) -> Cursor<'a>` — [`Cursor`](#cursor)
+- <span id="cursor-clone"></span>`fn clone(&self) -> Cursor<'a>` — [`Cursor`](#cursor)
 
 ##### `impl<'a> Copy for Cursor<'a>`
 
@@ -50,7 +151,7 @@ struct Cursor<'a> {
 
 ##### `impl<'a> PartialEq for Cursor<'a>`
 
-- `fn eq(self: &Self, other: &Cursor<'a>) -> bool` — [`Cursor`](#cursor)
+- <span id="cursor-eq"></span>`fn eq(&self, other: &Cursor<'a>) -> bool` — [`Cursor`](#cursor)
 
 ##### `impl<'a> StructuralPartialEq for Cursor<'a>`
 

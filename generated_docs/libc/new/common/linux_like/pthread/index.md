@@ -4,6 +4,16 @@
 
 # Module `pthread`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`pthread_getaffinity_np`](#pthread_getaffinity_np) | fn |  |
+| [`pthread_getattr_np`](#pthread_getattr_np) | fn |  |
+| [`pthread_getname_np`](#pthread_getname_np) | fn |  |
+| [`pthread_setaffinity_np`](#pthread_setaffinity_np) | fn |  |
+| [`pthread_setname_np`](#pthread_setname_np) | fn |  |
+
 ## Functions
 
 ### `pthread_getaffinity_np`

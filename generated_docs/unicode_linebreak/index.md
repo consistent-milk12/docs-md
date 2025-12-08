@@ -19,6 +19,59 @@ assert!(linebreaks(text).eq([
 ```
 
 
+## Contents
+
+- [Enums](#enums)
+  - [`BreakClass`](#breakclass)
+  - [`BreakOpportunity`](#breakopportunity)
+- [Functions](#functions)
+  - [`is_safe_pair`](#is_safe_pair)
+  - [`break_property`](#break_property)
+  - [`linebreaks`](#linebreaks)
+  - [`split_at_safe`](#split_at_safe)
+- [Constants](#constants)
+  - [`UNICODE_VERSION`](#unicode_version)
+  - [`BMP_LIMIT`](#bmp_limit)
+  - [`SHIFT_3`](#shift_3)
+  - [`SHIFT_2`](#shift_2)
+  - [`SHIFT_1`](#shift_1)
+  - [`BMP_SHIFT`](#bmp_shift)
+  - [`INDEX_2_BLOCK_LENGTH`](#index_2_block_length)
+  - [`INDEX_3_BLOCK_LENGTH`](#index_3_block_length)
+  - [`SMALL_DATA_BLOCK_LENGTH`](#small_data_block_length)
+  - [`BMP_DATA_BLOCK_LENGTH`](#bmp_data_block_length)
+  - [`ALLOWED_BREAK_BIT`](#allowed_break_bit)
+  - [`MANDATORY_BREAK_BIT`](#mandatory_break_bit)
+  - [`eot`](#eot)
+  - [`sot`](#sot)
+  - [`BREAK_PROP_TRIE_HIGH_START`](#break_prop_trie_high_start)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`BreakClass`](#breakclass) | enum | Unicode line breaking class. |
+| [`BreakOpportunity`](#breakopportunity) | enum | Break opportunity type. |
+| [`is_safe_pair`](#is_safe_pair) | fn |  |
+| [`break_property`](#break_property) | fn | Returns the line break property of the specified code point. |
+| [`linebreaks`](#linebreaks) | fn | Returns an iterator over line break opportunities in the specified string. |
+| [`split_at_safe`](#split_at_safe) | fn | Divides the string at the last index where further breaks do not depend on prior context. |
+| [`UNICODE_VERSION`](#unicode_version) | const | The [Unicode version](https://www.unicode.org/versions/) conformed to. |
+| [`BMP_LIMIT`](#bmp_limit) | const | Ceiling for code points in the Basic Multilingual Place (BMP). |
+| [`SHIFT_3`](#shift_3) | const | Shift size for getting index-3 table offset. |
+| [`SHIFT_2`](#shift_2) | const | Shift size for getting index-2 table offset. |
+| [`SHIFT_1`](#shift_1) | const | Shift size for getting index-1 table offset. |
+| [`BMP_SHIFT`](#bmp_shift) | const | Shift size for getting BMP block start. |
+| [`INDEX_2_BLOCK_LENGTH`](#index_2_block_length) | const |  |
+| [`INDEX_3_BLOCK_LENGTH`](#index_3_block_length) | const |  |
+| [`SMALL_DATA_BLOCK_LENGTH`](#small_data_block_length) | const |  |
+| [`BMP_DATA_BLOCK_LENGTH`](#bmp_data_block_length) | const |  |
+| [`ALLOWED_BREAK_BIT`](#allowed_break_bit) | const |  |
+| [`MANDATORY_BREAK_BIT`](#mandatory_break_bit) | const |  |
+| [`eot`](#eot) | const |  |
+| [`sot`](#sot) | const |  |
+| [`BREAK_PROP_TRIE_HIGH_START`](#break_prop_trie_high_start) | const |  |
+
 ## Enums
 
 ### `BreakClass`
@@ -251,23 +304,23 @@ Unicode line breaking class.
 
 ##### `impl Clone for BreakClass`
 
-- `fn clone(self: &Self) -> BreakClass` — [`BreakClass`](#breakclass)
+- <span id="breakclass-clone"></span>`fn clone(&self) -> BreakClass` — [`BreakClass`](#breakclass)
 
 ##### `impl Copy for BreakClass`
 
 ##### `impl Debug for BreakClass`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="breakclass-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for BreakClass`
 
 ##### `impl Hash for BreakClass`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="breakclass-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for BreakClass`
 
-- `fn eq(self: &Self, other: &BreakClass) -> bool` — [`BreakClass`](#breakclass)
+- <span id="breakclass-eq"></span>`fn eq(&self, other: &BreakClass) -> bool` — [`BreakClass`](#breakclass)
 
 ##### `impl StructuralPartialEq for BreakClass`
 
@@ -296,19 +349,19 @@ Break opportunity type.
 
 ##### `impl Clone for BreakOpportunity`
 
-- `fn clone(self: &Self) -> BreakOpportunity` — [`BreakOpportunity`](#breakopportunity)
+- <span id="breakopportunity-clone"></span>`fn clone(&self) -> BreakOpportunity` — [`BreakOpportunity`](#breakopportunity)
 
 ##### `impl Copy for BreakOpportunity`
 
 ##### `impl Debug for BreakOpportunity`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="breakopportunity-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for BreakOpportunity`
 
 ##### `impl PartialEq for BreakOpportunity`
 
-- `fn eq(self: &Self, other: &BreakOpportunity) -> bool` — [`BreakOpportunity`](#breakopportunity)
+- <span id="breakopportunity-eq"></span>`fn eq(&self, other: &BreakOpportunity) -> bool` — [`BreakOpportunity`](#breakopportunity)
 
 ##### `impl StructuralPartialEq for BreakOpportunity`
 

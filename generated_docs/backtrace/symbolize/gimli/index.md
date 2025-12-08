@@ -8,6 +8,55 @@ Support for symbolication using the `gimli` crate on crates.io
 
 This is the default symbolication implementation for Rust.
 
+## Contents
+
+- [Modules](#modules)
+  - [`mmap`](#mmap)
+  - [`lru`](#lru)
+  - [`stash`](#stash)
+  - [`elf`](#elf)
+  - [`libs_dl_iterate_phdr`](#libs_dl_iterate_phdr)
+  - [`parse_running_mmaps`](#parse_running_mmaps)
+- [Structs](#structs)
+  - [`Mapping`](#mapping)
+  - [`Context`](#context)
+  - [`Cache`](#cache)
+  - [`Library`](#library)
+  - [`LibrarySegment`](#librarysegment)
+- [Enums](#enums)
+  - [`Either`](#either)
+  - [`Symbol`](#symbol)
+- [Functions](#functions)
+  - [`mmap`](#mmap)
+  - [`create_mapping`](#create_mapping)
+  - [`clear_symbol_cache`](#clear_symbol_cache)
+  - [`resolve`](#resolve)
+- [Constants](#constants)
+  - [`MAPPINGS_CACHE_SIZE`](#mappings_cache_size)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`mmap`](#mmap) | mod |  |
+| [`lru`](#lru) | mod |  |
+| [`stash`](#stash) | mod |  |
+| [`elf`](#elf) | mod |  |
+| [`libs_dl_iterate_phdr`](#libs_dl_iterate_phdr) | mod |  |
+| [`parse_running_mmaps`](#parse_running_mmaps) | mod |  |
+| [`Mapping`](#mapping) | struct |  |
+| [`Context`](#context) | struct |  |
+| [`Cache`](#cache) | struct |  |
+| [`Library`](#library) | struct |  |
+| [`LibrarySegment`](#librarysegment) | struct |  |
+| [`Either`](#either) | enum |  |
+| [`Symbol`](#symbol) | enum |  |
+| [`mmap`](#mmap) | fn |  |
+| [`create_mapping`](#create_mapping) | fn |  |
+| [`clear_symbol_cache`](#clear_symbol_cache) | fn |  |
+| [`resolve`](#resolve) | fn |  |
+| [`MAPPINGS_CACHE_SIZE`](#mappings_cache_size) | const |  |
+
 ## Modules
 
 - [`mmap`](mmap/index.md) - 
@@ -31,11 +80,9 @@ struct Mapping {
 
 #### Implementations
 
-- `fn new(path: &Path) -> Option<Mapping>` — [`Mapping`](#mapping)
+- <span id="mapping-mk"></span>`fn mk<F>(data: Mmap, mk: F) -> Option<Mapping>` — [`Mmap`](mmap/index.md), [`Mapping`](#mapping)
 
-- `fn new_debug(original_path: &Path, path: PathBuf, crc: Option<u32>) -> Option<Mapping>` — [`Mapping`](#mapping)
-
-- `fn load_dwarf_package<'data>(path: &Path, stash: &'data Stash) -> Option<Object<'data>>` — [`Stash`](stash/index.md), [`Object`](elf/index.md)
+- <span id="mapping-mk-or-other"></span>`fn mk_or_other<F>(data: Mmap, mk: F) -> Option<Mapping>` — [`Mmap`](mmap/index.md), [`Mapping`](#mapping)
 
 ### `Context<'a>`
 
@@ -49,9 +96,9 @@ struct Context<'a> {
 
 #### Implementations
 
-- `fn new(stash: &'data Stash, object: Object<'data>, sup: Option<Object<'data>>, dwp: Option<Object<'data>>) -> Option<Context<'data>>` — [`Stash`](stash/index.md), [`Object`](elf/index.md), [`Context`](#context)
+- <span id="context-new"></span>`fn new(stash: &'data Stash, object: Object<'data>, sup: Option<Object<'data>>, dwp: Option<Object<'data>>) -> Option<Context<'data>>` — [`Stash`](stash/index.md), [`Object`](elf/index.md), [`Context`](#context)
 
-- `fn find_frames(self: &Self, stash: &'data Stash, probe: u64) -> gimli::Result<addr2line::FrameIter<'_, EndianSlice<'data, Endian>>>` — [`Stash`](stash/index.md)
+- <span id="context-find-frames"></span>`fn find_frames(&self, stash: &'data Stash, probe: u64) -> gimli::Result<addr2line::FrameIter<'_, EndianSlice<'data, Endian>>>` — [`Stash`](stash/index.md)
 
 ### `Cache`
 
@@ -82,19 +129,19 @@ struct Cache {
 
 #### Implementations
 
-- `fn new() -> Cache` — [`Cache`](#cache)
+- <span id="cache-new"></span>`fn new() -> Cache` — [`Cache`](#cache)
 
-- `unsafe fn with_global(f: impl FnOnce(&mut Self))`
+- <span id="cache-with-global"></span>`unsafe fn with_global(f: impl FnOnce(&mut Self))`
 
-- `fn avma_to_svma(self: &Self, addr: *const u8) -> Option<(usize, *const u8)>`
+- <span id="cache-avma-to-svma"></span>`fn avma_to_svma(&self, addr: *const u8) -> Option<(usize, *const u8)>`
 
-- `fn mapping_for_lib<'a>(self: &'a mut Self, lib: usize) -> Option<(&'a mut Context<'a>, &'a Stash)>` — [`Context`](#context), [`Stash`](stash/index.md)
+- <span id="cache-mapping-for-lib"></span>`fn mapping_for_lib<'a>(self: &'a mut Self, lib: usize) -> Option<(&'a mut Context<'a>, &'a Stash)>` — [`Context`](#context), [`Stash`](stash/index.md)
 
 #### Trait Implementations
 
 ##### `impl Default for Cache`
 
-- `fn default() -> Cache` — [`Cache`](#cache)
+- <span id="cache-default"></span>`fn default() -> Cache` — [`Cache`](#cache)
 
 ### `Library`
 
@@ -181,17 +228,17 @@ enum Symbol<'a> {
 
 #### Implementations
 
-- `fn name(self: &Self) -> Option<SymbolName<'_>>` — [`SymbolName`](../../index.md)
+- <span id="symbol-name"></span>`fn name(&self) -> Option<SymbolName<'_>>` — [`SymbolName`](../../index.md)
 
-- `fn addr(self: &Self) -> Option<*mut c_void>`
+- <span id="symbol-addr"></span>`fn addr(&self) -> Option<*mut c_void>`
 
-- `fn filename_raw(self: &Self) -> Option<BytesOrWideString<'_>>` — [`BytesOrWideString`](../../index.md)
+- <span id="symbol-filename-raw"></span>`fn filename_raw(&self) -> Option<BytesOrWideString<'_>>` — [`BytesOrWideString`](../../index.md)
 
-- `fn filename(self: &Self) -> Option<&Path>`
+- <span id="symbol-filename"></span>`fn filename(&self) -> Option<&Path>`
 
-- `fn lineno(self: &Self) -> Option<u32>`
+- <span id="symbol-lineno"></span>`fn lineno(&self) -> Option<u32>`
 
-- `fn colno(self: &Self) -> Option<u32>`
+- <span id="symbol-colno"></span>`fn colno(&self) -> Option<u32>`
 
 ## Functions
 

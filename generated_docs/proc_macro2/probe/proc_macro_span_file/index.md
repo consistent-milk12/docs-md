@@ -4,6 +4,13 @@
 
 # Module `proc_macro_span_file`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`file`](#file) | fn |  |
+| [`local_file`](#local_file) | fn |  |
+
 ## Functions
 
 ### `file`

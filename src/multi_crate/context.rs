@@ -13,6 +13,7 @@ use rustdoc_types::{Crate, Id, Impl, Item, ItemEnum, Visibility};
 use tracing::{debug, instrument, trace};
 
 use crate::Args;
+use crate::generator::config::RenderConfig;
 use crate::generator::doc_links::{
     convert_html_links, convert_path_reference_links, strip_duplicate_title,
     strip_reference_definitions, unhide_code_lines,
@@ -45,6 +46,9 @@ pub struct MultiCrateContext<'a> {
     /// CLI arguments.
     args: &'a Args,
 
+    /// Rendering configuration options.
+    config: RenderConfig,
+
     /// Pre-computed cross-crate impl blocks.
     ///
     /// Maps target crate name -> type name -> impl blocks from other crates.
@@ -56,9 +60,15 @@ impl<'a> MultiCrateContext<'a> {
     /// Create a new multi-crate context.
     ///
     /// Builds the unified link registry and pre-computes cross-crate impls.
+    ///
+    /// # Arguments
+    ///
+    /// * `crates` - Collection of parsed crates
+    /// * `args` - CLI arguments
+    /// * `config` - Rendering configuration options
     #[must_use]
-    #[instrument(skip(crates, args), fields(crate_count = crates.names().len()))]
-    pub fn new(crates: &'a CrateCollection, args: &'a Args) -> Self {
+    #[instrument(skip(crates, args, config), fields(crate_count = crates.names().len()))]
+    pub fn new(crates: &'a CrateCollection, args: &'a Args, config: RenderConfig) -> Self {
         debug!("Creating multi-crate context");
 
         let primary = args.primary_crate.as_deref();
@@ -77,6 +87,7 @@ impl<'a> MultiCrateContext<'a> {
             crates,
             registry,
             args,
+            config,
             cross_crate_impls,
         }
     }
@@ -1557,6 +1568,10 @@ impl ItemAccess for SingleCrateView<'_> {
 
     fn crate_version(&self) -> Option<&str> {
         self.krate.crate_version.as_deref()
+    }
+
+    fn render_config(&self) -> &RenderConfig {
+        &self.ctx.config
     }
 }
 

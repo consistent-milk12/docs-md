@@ -4,6 +4,14 @@
 
 # Module `x86`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ptr_modifier!`](#ptr_modifier) | macro |  |
+| [`atomic_int!`](#atomic_int) | macro |  |
+| [`atomic_bit_opts!`](#atomic_bit_opts) | macro |  |
+
 ## Macros
 
 ### `ptr_modifier!`

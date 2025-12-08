@@ -725,3 +725,89 @@ fn test_glob_reexports_in_link_registry() {
         }
     }
 }
+
+// =============================================================================
+// Method Anchor Tests
+// =============================================================================
+
+#[test]
+fn test_method_anchors_present_in_output() {
+    if !fixture_exists() {
+        eprintln!("Skipping test: fixture not found. Run `cargo doc --output-format json`");
+        return;
+    }
+
+    let krate = load_fixture();
+    let capture = Generator::generate_to_capture(&krate, CliOutputFormat::Flat, false)
+        .expect("Generation failed");
+
+    // Count method anchors in the generated output
+    // Method anchors use the format: <span id="typename-methodname">
+    let anchor_pattern = regex::Regex::new(r#"<span id="([a-z0-9]+-[a-z0-9_-]+)">"#).unwrap();
+    let mut total_anchors = 0;
+
+    for path in capture.paths() {
+        let content = capture.get(path).unwrap();
+        for cap in anchor_pattern.captures_iter(content) {
+            let anchor_id = &cap[1];
+            // Verify anchor format: should contain a hyphen separating type and method
+            assert!(
+                anchor_id.contains('-'),
+                "Method anchor '{anchor_id}' should contain hyphen separator"
+            );
+            total_anchors += 1;
+        }
+    }
+
+    eprintln!("Found {total_anchors} method anchors in generated output");
+
+    // The fixture should have at least some methods with anchors
+    // (Generator, Parser, etc. all have methods)
+    assert!(
+        total_anchors > 0,
+        "Generated docs should contain method anchors for deep linking"
+    );
+}
+
+#[test]
+fn test_method_anchor_format() {
+    use cargo_docs_md::linker::method_anchor;
+
+    // Test that method_anchor produces expected format
+    assert_eq!(method_anchor("HashMap", "new"), "hashmap-new");
+    assert_eq!(method_anchor("Vec", "push"), "vec-push");
+    assert_eq!(method_anchor("Option", "unwrap_or"), "option-unwrap-or");
+
+    // Test with generics stripped by slugify_anchor (angle brackets removed)
+    assert_eq!(method_anchor("Vec<T>", "push"), "vec-push");
+    assert_eq!(method_anchor("HashMap<K, V>", "insert"), "hashmap-insert");
+}
+
+#[test]
+fn test_method_anchors_are_unique_per_type() {
+    if !fixture_exists() {
+        eprintln!("Skipping test: fixture not found. Run `cargo doc --output-format json`");
+        return;
+    }
+
+    let krate = load_fixture();
+    let capture = Generator::generate_to_capture(&krate, CliOutputFormat::Flat, false)
+        .expect("Generation failed");
+
+    // For each file, verify that method anchors within it are unique
+    let anchor_pattern = regex::Regex::new(r#"<span id="([^"]+)">"#).unwrap();
+
+    for path in capture.paths() {
+        let content = capture.get(path).unwrap();
+        let mut anchors_in_file: std::collections::HashSet<String> =
+            std::collections::HashSet::new();
+
+        for cap in anchor_pattern.captures_iter(content) {
+            let anchor_id = cap[1].to_string();
+            assert!(
+                anchors_in_file.insert(anchor_id.clone()),
+                "Duplicate method anchor '{anchor_id}' found in file '{path}'"
+            );
+        }
+    }
+}

@@ -56,6 +56,13 @@ max level features][`log` crate].
 
 
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`get_max_level_inner`](#get_max_level_inner) | fn |  |
+| [`STATIC_MAX_LEVEL`](#static_max_level) | const | The statically configured maximum trace level. |
+
 ## Functions
 
 ### `get_max_level_inner`

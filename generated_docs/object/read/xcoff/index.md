@@ -48,6 +48,122 @@ fn main() -> Result<(), Box<dyn Error>> {
 }
 ```
 
+## Contents
+
+- [Modules](#modules)
+  - [`file`](#file)
+  - [`section`](#section)
+  - [`symbol`](#symbol)
+  - [`relocation`](#relocation)
+  - [`comdat`](#comdat)
+  - [`segment`](#segment)
+- [Structs](#structs)
+  - [`XcoffFile`](#xcofffile)
+  - [`XcoffSectionIterator`](#xcoffsectioniterator)
+  - [`XcoffSection`](#xcoffsection)
+  - [`SectionTable`](#sectiontable)
+  - [`SymbolTable`](#symboltable)
+  - [`SymbolIterator`](#symboliterator)
+  - [`XcoffSymbolTable`](#xcoffsymboltable)
+  - [`XcoffSymbolIterator`](#xcoffsymboliterator)
+  - [`XcoffSymbol`](#xcoffsymbol)
+  - [`XcoffRelocationIterator`](#xcoffrelocationiterator)
+  - [`XcoffComdatIterator`](#xcoffcomdatiterator)
+  - [`XcoffComdat`](#xcoffcomdat)
+  - [`XcoffComdatSectionIterator`](#xcoffcomdatsectioniterator)
+  - [`XcoffSegmentIterator`](#xcoffsegmentiterator)
+  - [`XcoffSegment`](#xcoffsegment)
+- [Traits](#traits)
+  - [`FileHeader`](#fileheader)
+  - [`AuxHeader`](#auxheader)
+  - [`SectionHeader`](#sectionheader)
+  - [`Symbol`](#symbol)
+  - [`FileAux`](#fileaux)
+  - [`CsectAux`](#csectaux)
+  - [`Rel`](#rel)
+- [Type Aliases](#type-aliases)
+  - [`XcoffFile32`](#xcofffile32)
+  - [`XcoffFile64`](#xcofffile64)
+  - [`XcoffSectionIterator32`](#xcoffsectioniterator32)
+  - [`XcoffSectionIterator64`](#xcoffsectioniterator64)
+  - [`XcoffSection32`](#xcoffsection32)
+  - [`XcoffSection64`](#xcoffsection64)
+  - [`XcoffSymbolTable32`](#xcoffsymboltable32)
+  - [`XcoffSymbolTable64`](#xcoffsymboltable64)
+  - [`XcoffSymbolIterator32`](#xcoffsymboliterator32)
+  - [`XcoffSymbolIterator64`](#xcoffsymboliterator64)
+  - [`XcoffSymbol32`](#xcoffsymbol32)
+  - [`XcoffSymbol64`](#xcoffsymbol64)
+  - [`XcoffRelocationIterator32`](#xcoffrelocationiterator32)
+  - [`XcoffRelocationIterator64`](#xcoffrelocationiterator64)
+  - [`XcoffComdatIterator32`](#xcoffcomdatiterator32)
+  - [`XcoffComdatIterator64`](#xcoffcomdatiterator64)
+  - [`XcoffComdat32`](#xcoffcomdat32)
+  - [`XcoffComdat64`](#xcoffcomdat64)
+  - [`XcoffComdatSectionIterator32`](#xcoffcomdatsectioniterator32)
+  - [`XcoffComdatSectionIterator64`](#xcoffcomdatsectioniterator64)
+  - [`XcoffSegmentIterator32`](#xcoffsegmentiterator32)
+  - [`XcoffSegmentIterator64`](#xcoffsegmentiterator64)
+  - [`XcoffSegment32`](#xcoffsegment32)
+  - [`XcoffSegment64`](#xcoffsegment64)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`file`](#file) | mod |  |
+| [`section`](#section) | mod |  |
+| [`symbol`](#symbol) | mod |  |
+| [`relocation`](#relocation) | mod |  |
+| [`comdat`](#comdat) | mod | XCOFF doesn't support the COMDAT section. |
+| [`segment`](#segment) | mod | TODO: Support the segment for XCOFF when auxiliary file header and loader section is ready. |
+| [`XcoffFile`](#xcofffile) | struct | A partially parsed XCOFF file. |
+| [`XcoffSectionIterator`](#xcoffsectioniterator) | struct | An iterator for the sections in an [`XcoffFile`]. |
+| [`XcoffSection`](#xcoffsection) | struct | A section in an [`XcoffFile`]. |
+| [`SectionTable`](#sectiontable) | struct | The table of section headers in an XCOFF file. |
+| [`SymbolTable`](#symboltable) | struct | A table of symbol entries in an XCOFF file. |
+| [`SymbolIterator`](#symboliterator) | struct | An iterator for symbol entries in an XCOFF file. |
+| [`XcoffSymbolTable`](#xcoffsymboltable) | struct | A symbol table in an [`XcoffFile`]. |
+| [`XcoffSymbolIterator`](#xcoffsymboliterator) | struct | An iterator for the symbols in an [`XcoffFile`]. |
+| [`XcoffSymbol`](#xcoffsymbol) | struct | A symbol in an [`XcoffFile`]. |
+| [`XcoffRelocationIterator`](#xcoffrelocationiterator) | struct | An iterator for the relocations in an [`XcoffSection`](super::XcoffSection). |
+| [`XcoffComdatIterator`](#xcoffcomdatiterator) | struct | An iterator for the COMDAT section groups in a [`XcoffFile`]. |
+| [`XcoffComdat`](#xcoffcomdat) | struct | A COMDAT section group in a [`XcoffFile`]. |
+| [`XcoffComdatSectionIterator`](#xcoffcomdatsectioniterator) | struct | An iterator for the sections in a COMDAT section group in a [`XcoffFile`]. |
+| [`XcoffSegmentIterator`](#xcoffsegmentiterator) | struct | An iterator for the segments in an [`XcoffFile`]. |
+| [`XcoffSegment`](#xcoffsegment) | struct | A loadable section in an [`XcoffFile`]. |
+| [`FileHeader`](#fileheader) | trait | A trait for generic access to [`xcoff::FileHeader32`] and [`xcoff::FileHeader64`]. |
+| [`AuxHeader`](#auxheader) | trait | A trait for generic access to [`xcoff::AuxHeader32`] and [`xcoff::AuxHeader64`]. |
+| [`SectionHeader`](#sectionheader) | trait | A trait for generic access to [`xcoff::SectionHeader32`] and [`xcoff::SectionHeader64`]. |
+| [`Symbol`](#symbol) | trait | A trait for generic access to [`xcoff::Symbol32`] and [`xcoff::Symbol64`]. |
+| [`FileAux`](#fileaux) | trait | A trait for generic access to [`xcoff::FileAux32`] and [`xcoff::FileAux64`]. |
+| [`CsectAux`](#csectaux) | trait | A trait for generic access to [`xcoff::CsectAux32`] and [`xcoff::CsectAux64`]. |
+| [`Rel`](#rel) | trait | A trait for generic access to [`xcoff::Rel32`] and [`xcoff::Rel64`]. |
+| [`XcoffFile32`](#xcofffile32) | type | A 32-bit XCOFF object file. |
+| [`XcoffFile64`](#xcofffile64) | type | A 64-bit XCOFF object file. |
+| [`XcoffSectionIterator32`](#xcoffsectioniterator32) | type | An iterator for the sections in an [`XcoffFile32`](super::XcoffFile32). |
+| [`XcoffSectionIterator64`](#xcoffsectioniterator64) | type | An iterator for the sections in an [`XcoffFile64`](super::XcoffFile64). |
+| [`XcoffSection32`](#xcoffsection32) | type | A section in an [`XcoffFile32`](super::XcoffFile32). |
+| [`XcoffSection64`](#xcoffsection64) | type | A section in an [`XcoffFile64`](super::XcoffFile64). |
+| [`XcoffSymbolTable32`](#xcoffsymboltable32) | type | A symbol table in an [`XcoffFile32`](super::XcoffFile32). |
+| [`XcoffSymbolTable64`](#xcoffsymboltable64) | type | A symbol table in an [`XcoffFile64`](super::XcoffFile64). |
+| [`XcoffSymbolIterator32`](#xcoffsymboliterator32) | type | An iterator for the symbols in an [`XcoffFile32`](super::XcoffFile32). |
+| [`XcoffSymbolIterator64`](#xcoffsymboliterator64) | type | An iterator for the symbols in an [`XcoffFile64`](super::XcoffFile64). |
+| [`XcoffSymbol32`](#xcoffsymbol32) | type | A symbol in an [`XcoffFile32`](super::XcoffFile32). |
+| [`XcoffSymbol64`](#xcoffsymbol64) | type | A symbol in an [`XcoffFile64`](super::XcoffFile64). |
+| [`XcoffRelocationIterator32`](#xcoffrelocationiterator32) | type | An iterator for the relocations in an [`XcoffSection32`](super::XcoffSection32). |
+| [`XcoffRelocationIterator64`](#xcoffrelocationiterator64) | type | An iterator for the relocations in an [`XcoffSection64`](super::XcoffSection64). |
+| [`XcoffComdatIterator32`](#xcoffcomdatiterator32) | type | An iterator for the COMDAT section groups in a [`XcoffFile32`](super::XcoffFile32). |
+| [`XcoffComdatIterator64`](#xcoffcomdatiterator64) | type | An iterator for the COMDAT section groups in a [`XcoffFile64`](super::XcoffFile64). |
+| [`XcoffComdat32`](#xcoffcomdat32) | type | A COMDAT section group in a [`XcoffFile32`](super::XcoffFile32). |
+| [`XcoffComdat64`](#xcoffcomdat64) | type | A COMDAT section group in a [`XcoffFile64`](super::XcoffFile64). |
+| [`XcoffComdatSectionIterator32`](#xcoffcomdatsectioniterator32) | type | An iterator for the sections in a COMDAT section group in a [`XcoffFile32`](super::XcoffFile32). |
+| [`XcoffComdatSectionIterator64`](#xcoffcomdatsectioniterator64) | type | An iterator for the sections in a COMDAT section group in a [`XcoffFile64`](super::XcoffFile64). |
+| [`XcoffSegmentIterator32`](#xcoffsegmentiterator32) | type | An iterator for the segments in an [`XcoffFile32`](super::XcoffFile32). |
+| [`XcoffSegmentIterator64`](#xcoffsegmentiterator64) | type | An iterator for the segments in an [`XcoffFile64`](super::XcoffFile64). |
+| [`XcoffSegment32`](#xcoffsegment32) | type | A segment in an [`XcoffFile32`](super::XcoffFile32). |
+| [`XcoffSegment64`](#xcoffsegment64) | type | A segment in an [`XcoffFile64`](super::XcoffFile64). |
+
 ## Modules
 
 - [`file`](file/index.md) - 
@@ -80,89 +196,89 @@ Most functionality is provided by the [`Object`](../index.md) trait implementati
 
 #### Implementations
 
-- `fn parse(data: R) -> Result<Self>` — [`Result`](../../index.md)
+- <span id="xcofffile-parse"></span>`fn parse(data: R) -> Result<Self>` — [`Result`](../../index.md)
 
-- `fn data(self: &Self) -> R`
+- <span id="xcofffile-data"></span>`fn data(&self) -> R`
 
-- `fn raw_header(self: &Self) -> &'data Xcoff`
+- <span id="xcofffile-raw-header"></span>`fn raw_header(&self) -> &'data Xcoff`
 
-- `fn xcoff_header(self: &Self) -> &'data Xcoff`
+- <span id="xcofffile-xcoff-header"></span>`fn xcoff_header(&self) -> &'data Xcoff`
 
-- `fn xcoff_aux_header(self: &Self) -> Option<&'data <Xcoff as >::AuxHeader>` — [`FileHeader`](#fileheader)
+- <span id="xcofffile-xcoff-aux-header"></span>`fn xcoff_aux_header(&self) -> Option<&'data <Xcoff as >::AuxHeader>` — [`FileHeader`](#fileheader)
 
-- `fn xcoff_section_table(self: &Self) -> &SectionTable<'data, Xcoff>` — [`SectionTable`](#sectiontable)
+- <span id="xcofffile-xcoff-section-table"></span>`fn xcoff_section_table(&self) -> &SectionTable<'data, Xcoff>` — [`SectionTable`](#sectiontable)
 
-- `fn xcoff_symbol_table(self: &Self) -> &SymbolTable<'data, Xcoff, R>` — [`SymbolTable`](#symboltable)
+- <span id="xcofffile-xcoff-symbol-table"></span>`fn xcoff_symbol_table(&self) -> &SymbolTable<'data, Xcoff, R>` — [`SymbolTable`](#symboltable)
 
 #### Trait Implementations
 
 ##### `impl<'data, Xcoff, R> Debug for XcoffFile<'data, Xcoff, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="xcofffile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, Xcoff, R> Object for XcoffFile<'data, Xcoff, R>`
 
-- `type Segment = XcoffSegment<'data, 'file, Xcoff, R>`
+- <span id="xcofffile-segment"></span>`type Segment = XcoffSegment<'data, 'file, Xcoff, R>`
 
-- `type SegmentIterator = XcoffSegmentIterator<'data, 'file, Xcoff, R>`
+- <span id="xcofffile-segmentiterator"></span>`type SegmentIterator = XcoffSegmentIterator<'data, 'file, Xcoff, R>`
 
-- `type Section = XcoffSection<'data, 'file, Xcoff, R>`
+- <span id="xcofffile-section"></span>`type Section = XcoffSection<'data, 'file, Xcoff, R>`
 
-- `type SectionIterator = XcoffSectionIterator<'data, 'file, Xcoff, R>`
+- <span id="xcofffile-sectioniterator"></span>`type SectionIterator = XcoffSectionIterator<'data, 'file, Xcoff, R>`
 
-- `type Comdat = XcoffComdat<'data, 'file, Xcoff, R>`
+- <span id="xcofffile-comdat"></span>`type Comdat = XcoffComdat<'data, 'file, Xcoff, R>`
 
-- `type ComdatIterator = XcoffComdatIterator<'data, 'file, Xcoff, R>`
+- <span id="xcofffile-comdatiterator"></span>`type ComdatIterator = XcoffComdatIterator<'data, 'file, Xcoff, R>`
 
-- `type Symbol = XcoffSymbol<'data, 'file, Xcoff, R>`
+- <span id="xcofffile-symbol"></span>`type Symbol = XcoffSymbol<'data, 'file, Xcoff, R>`
 
-- `type SymbolIterator = XcoffSymbolIterator<'data, 'file, Xcoff, R>`
+- <span id="xcofffile-symboliterator"></span>`type SymbolIterator = XcoffSymbolIterator<'data, 'file, Xcoff, R>`
 
-- `type SymbolTable = XcoffSymbolTable<'data, 'file, Xcoff, R>`
+- <span id="xcofffile-symboltable"></span>`type SymbolTable = XcoffSymbolTable<'data, 'file, Xcoff, R>`
 
-- `type DynamicRelocationIterator = NoDynamicRelocationIterator`
+- <span id="xcofffile-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = NoDynamicRelocationIterator`
 
-- `fn architecture(self: &Self) -> Architecture` — [`Architecture`](../../index.md)
+- <span id="xcofffile-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../index.md)
 
-- `fn is_little_endian(self: &Self) -> bool`
+- <span id="xcofffile-is-little-endian"></span>`fn is_little_endian(&self) -> bool`
 
-- `fn is_64(self: &Self) -> bool`
+- <span id="xcofffile-is-64"></span>`fn is_64(&self) -> bool`
 
-- `fn kind(self: &Self) -> ObjectKind` — [`ObjectKind`](../../index.md)
+- <span id="xcofffile-kind"></span>`fn kind(&self) -> ObjectKind` — [`ObjectKind`](../../index.md)
 
-- `fn segments(self: &Self) -> XcoffSegmentIterator<'data, '_, Xcoff, R>` — [`XcoffSegmentIterator`](#xcoffsegmentiterator)
+- <span id="xcofffile-segments"></span>`fn segments(&self) -> XcoffSegmentIterator<'data, '_, Xcoff, R>` — [`XcoffSegmentIterator`](#xcoffsegmentiterator)
 
-- `fn section_by_name_bytes<'file>(self: &'file Self, section_name: &[u8]) -> Option<XcoffSection<'data, 'file, Xcoff, R>>` — [`XcoffSection`](#xcoffsection)
+- <span id="xcofffile-section-by-name-bytes"></span>`fn section_by_name_bytes<'file>(self: &'file Self, section_name: &[u8]) -> Option<XcoffSection<'data, 'file, Xcoff, R>>` — [`XcoffSection`](#xcoffsection)
 
-- `fn section_by_index(self: &Self, index: SectionIndex) -> Result<XcoffSection<'data, '_, Xcoff, R>>` — [`SectionIndex`](../../index.md), [`Result`](../../index.md), [`XcoffSection`](#xcoffsection)
+- <span id="xcofffile-section-by-index"></span>`fn section_by_index(&self, index: SectionIndex) -> Result<XcoffSection<'data, '_, Xcoff, R>>` — [`SectionIndex`](../../index.md), [`Result`](../../index.md), [`XcoffSection`](#xcoffsection)
 
-- `fn sections(self: &Self) -> XcoffSectionIterator<'data, '_, Xcoff, R>` — [`XcoffSectionIterator`](#xcoffsectioniterator)
+- <span id="xcofffile-sections"></span>`fn sections(&self) -> XcoffSectionIterator<'data, '_, Xcoff, R>` — [`XcoffSectionIterator`](#xcoffsectioniterator)
 
-- `fn comdats(self: &Self) -> XcoffComdatIterator<'data, '_, Xcoff, R>` — [`XcoffComdatIterator`](#xcoffcomdatiterator)
+- <span id="xcofffile-comdats"></span>`fn comdats(&self) -> XcoffComdatIterator<'data, '_, Xcoff, R>` — [`XcoffComdatIterator`](#xcoffcomdatiterator)
 
-- `fn symbol_table(self: &Self) -> Option<XcoffSymbolTable<'data, '_, Xcoff, R>>` — [`XcoffSymbolTable`](#xcoffsymboltable)
+- <span id="xcofffile-symbol-table"></span>`fn symbol_table(&self) -> Option<XcoffSymbolTable<'data, '_, Xcoff, R>>` — [`XcoffSymbolTable`](#xcoffsymboltable)
 
-- `fn symbol_by_index(self: &Self, index: SymbolIndex) -> Result<XcoffSymbol<'data, '_, Xcoff, R>>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md), [`XcoffSymbol`](#xcoffsymbol)
+- <span id="xcofffile-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> Result<XcoffSymbol<'data, '_, Xcoff, R>>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md), [`XcoffSymbol`](#xcoffsymbol)
 
-- `fn symbols(self: &Self) -> XcoffSymbolIterator<'data, '_, Xcoff, R>` — [`XcoffSymbolIterator`](#xcoffsymboliterator)
+- <span id="xcofffile-symbols"></span>`fn symbols(&self) -> XcoffSymbolIterator<'data, '_, Xcoff, R>` — [`XcoffSymbolIterator`](#xcoffsymboliterator)
 
-- `fn dynamic_symbol_table<'file>(self: &'file Self) -> Option<XcoffSymbolTable<'data, 'file, Xcoff, R>>` — [`XcoffSymbolTable`](#xcoffsymboltable)
+- <span id="xcofffile-dynamic-symbol-table"></span>`fn dynamic_symbol_table<'file>(self: &'file Self) -> Option<XcoffSymbolTable<'data, 'file, Xcoff, R>>` — [`XcoffSymbolTable`](#xcoffsymboltable)
 
-- `fn dynamic_symbols(self: &Self) -> XcoffSymbolIterator<'data, '_, Xcoff, R>` — [`XcoffSymbolIterator`](#xcoffsymboliterator)
+- <span id="xcofffile-dynamic-symbols"></span>`fn dynamic_symbols(&self) -> XcoffSymbolIterator<'data, '_, Xcoff, R>` — [`XcoffSymbolIterator`](#xcoffsymboliterator)
 
-- `fn dynamic_relocations(self: &Self) -> Option<<Self as >::DynamicRelocationIterator>` — [`Object`](../index.md)
+- <span id="xcofffile-dynamic-relocations"></span>`fn dynamic_relocations(&self) -> Option<<Self as >::DynamicRelocationIterator>` — [`Object`](../index.md)
 
-- `fn imports(self: &Self) -> Result<alloc::vec::Vec<Import<'data>>>` — [`Result`](../../index.md), [`Import`](../../index.md)
+- <span id="xcofffile-imports"></span>`fn imports(&self) -> Result<alloc::vec::Vec<Import<'data>>>` — [`Result`](../../index.md), [`Import`](../../index.md)
 
-- `fn exports(self: &Self) -> Result<alloc::vec::Vec<Export<'data>>>` — [`Result`](../../index.md), [`Export`](../../index.md)
+- <span id="xcofffile-exports"></span>`fn exports(&self) -> Result<alloc::vec::Vec<Export<'data>>>` — [`Result`](../../index.md), [`Export`](../../index.md)
 
-- `fn has_debug_symbols(self: &Self) -> bool`
+- <span id="xcofffile-has-debug-symbols"></span>`fn has_debug_symbols(&self) -> bool`
 
-- `fn relative_address_base(self: &Self) -> u64`
+- <span id="xcofffile-relative-address-base"></span>`fn relative_address_base(&self) -> u64`
 
-- `fn entry(self: &Self) -> u64`
+- <span id="xcofffile-entry"></span>`fn entry(&self) -> u64`
 
-- `fn flags(self: &Self) -> FileFlags` — [`FileFlags`](../../index.md)
+- <span id="xcofffile-flags"></span>`fn flags(&self) -> FileFlags` — [`FileFlags`](../../index.md)
 
 ##### `impl<'data, Xcoff, R> Sealed for XcoffFile<'data, Xcoff, R>`
 
@@ -184,21 +300,21 @@ An iterator for the sections in an [`XcoffFile`](#xcofffile).
 
 ##### `impl<'data, 'file, Xcoff, R> Debug for XcoffSectionIterator<'data, 'file, Xcoff, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="xcoffsectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for XcoffSectionIterator<'data, 'file, Xcoff, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="xcoffsectioniterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="xcoffsectioniterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="xcoffsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Xcoff, R> Iterator for XcoffSectionIterator<'data, 'file, Xcoff, R>`
 
-- `type Item = XcoffSection<'data, 'file, Xcoff, R>`
+- <span id="xcoffsectioniterator-item"></span>`type Item = XcoffSection<'data, 'file, Xcoff, R>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="xcoffsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `XcoffSection<'data, 'file, Xcoff, R>`
 
@@ -219,59 +335,59 @@ Most functionality is provided by the [`ObjectSection`](../index.md) trait imple
 
 #### Implementations
 
-- `fn xcoff_file(self: &Self) -> &'file XcoffFile<'data, Xcoff, R>` — [`XcoffFile`](#xcofffile)
+- <span id="xcoffsection-xcoff-file"></span>`fn xcoff_file(&self) -> &'file XcoffFile<'data, Xcoff, R>` — [`XcoffFile`](#xcofffile)
 
-- `fn xcoff_section(self: &Self) -> &'data <Xcoff as >::SectionHeader` — [`FileHeader`](#fileheader)
+- <span id="xcoffsection-xcoff-section"></span>`fn xcoff_section(&self) -> &'data <Xcoff as >::SectionHeader` — [`FileHeader`](#fileheader)
 
-- `fn xcoff_relocations(self: &Self) -> Result<&'data [<Xcoff as >::Rel]>` — [`Result`](../../index.md), [`FileHeader`](#fileheader)
+- <span id="xcoffsection-xcoff-relocations"></span>`fn xcoff_relocations(&self) -> Result<&'data [<Xcoff as >::Rel]>` — [`Result`](../../index.md), [`FileHeader`](#fileheader)
 
-- `fn bytes(self: &Self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="xcoffsection-bytes"></span>`fn bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'data, 'file, Xcoff, R> Debug for XcoffSection<'data, 'file, Xcoff, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="xcoffsection-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, 'file, Xcoff, R> ObjectSection for XcoffSection<'data, 'file, Xcoff, R>`
 
-- `type RelocationIterator = XcoffRelocationIterator<'data, 'file, Xcoff, R>`
+- <span id="xcoffsection-relocationiterator"></span>`type RelocationIterator = XcoffRelocationIterator<'data, 'file, Xcoff, R>`
 
-- `fn index(self: &Self) -> SectionIndex` — [`SectionIndex`](../../index.md)
+- <span id="xcoffsection-index"></span>`fn index(&self) -> SectionIndex` — [`SectionIndex`](../../index.md)
 
-- `fn address(self: &Self) -> u64`
+- <span id="xcoffsection-address"></span>`fn address(&self) -> u64`
 
-- `fn size(self: &Self) -> u64`
+- <span id="xcoffsection-size"></span>`fn size(&self) -> u64`
 
-- `fn align(self: &Self) -> u64`
+- <span id="xcoffsection-align"></span>`fn align(&self) -> u64`
 
-- `fn file_range(self: &Self) -> Option<(u64, u64)>`
+- <span id="xcoffsection-file-range"></span>`fn file_range(&self) -> Option<(u64, u64)>`
 
-- `fn data(self: &Self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="xcoffsection-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
 
-- `fn data_range(self: &Self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../index.md)
+- <span id="xcoffsection-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../index.md)
 
-- `fn compressed_file_range(self: &Self) -> Result<CompressedFileRange>` — [`Result`](../../index.md), [`CompressedFileRange`](../../index.md)
+- <span id="xcoffsection-compressed-file-range"></span>`fn compressed_file_range(&self) -> Result<CompressedFileRange>` — [`Result`](../../index.md), [`CompressedFileRange`](../../index.md)
 
-- `fn compressed_data(self: &Self) -> Result<CompressedData<'data>>` — [`Result`](../../index.md), [`CompressedData`](../../index.md)
+- <span id="xcoffsection-compressed-data"></span>`fn compressed_data(&self) -> Result<CompressedData<'data>>` — [`Result`](../../index.md), [`CompressedData`](../../index.md)
 
-- `fn name_bytes(self: &Self) -> read::Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="xcoffsection-name-bytes"></span>`fn name_bytes(&self) -> read::Result<&'data [u8]>` — [`Result`](../../index.md)
 
-- `fn name(self: &Self) -> read::Result<&'data str>` — [`Result`](../../index.md)
+- <span id="xcoffsection-name"></span>`fn name(&self) -> read::Result<&'data str>` — [`Result`](../../index.md)
 
-- `fn segment_name_bytes(self: &Self) -> Result<Option<&[u8]>>` — [`Result`](../../index.md)
+- <span id="xcoffsection-segment-name-bytes"></span>`fn segment_name_bytes(&self) -> Result<Option<&[u8]>>` — [`Result`](../../index.md)
 
-- `fn segment_name(self: &Self) -> Result<Option<&str>>` — [`Result`](../../index.md)
+- <span id="xcoffsection-segment-name"></span>`fn segment_name(&self) -> Result<Option<&str>>` — [`Result`](../../index.md)
 
-- `fn kind(self: &Self) -> SectionKind` — [`SectionKind`](../../index.md)
+- <span id="xcoffsection-kind"></span>`fn kind(&self) -> SectionKind` — [`SectionKind`](../../index.md)
 
-- `fn relocations(self: &Self) -> <Self as >::RelocationIterator` — [`ObjectSection`](../index.md)
+- <span id="xcoffsection-relocations"></span>`fn relocations(&self) -> <Self as >::RelocationIterator` — [`ObjectSection`](../index.md)
 
-- `fn relocation_map(self: &Self) -> read::Result<RelocationMap>` — [`Result`](../../index.md), [`RelocationMap`](../../index.md)
+- <span id="xcoffsection-relocation-map"></span>`fn relocation_map(&self) -> read::Result<RelocationMap>` — [`Result`](../../index.md), [`RelocationMap`](../../index.md)
 
-- `fn flags(self: &Self) -> SectionFlags` — [`SectionFlags`](../../index.md)
+- <span id="xcoffsection-flags"></span>`fn flags(&self) -> SectionFlags` — [`SectionFlags`](../../index.md)
 
-- `fn uncompressed_data(self: &Self) -> Result<alloc::borrow::Cow<'data, [u8]>>` — [`Result`](../../index.md)
+- <span id="xcoffsection-uncompressed-data"></span>`fn uncompressed_data(&self) -> Result<alloc::borrow::Cow<'data, [u8]>>` — [`Result`](../../index.md)
 
 ##### `impl<'data, 'file, Xcoff, R> Sealed for XcoffSection<'data, 'file, Xcoff, R>`
 
@@ -289,31 +405,31 @@ Returned by `FileHeader::sections`.
 
 #### Implementations
 
-- `fn parse<R: ReadRef<'data>>(header: &Xcoff, data: R, offset: &mut u64) -> Result<Self>` — [`Result`](../../index.md)
+- <span id="sectiontable-parse"></span>`fn parse<R: ReadRef<'data>>(header: &Xcoff, data: R, offset: &mut u64) -> Result<Self>` — [`Result`](../../index.md)
 
-- `fn iter(self: &Self) -> slice::Iter<'data, <Xcoff as >::SectionHeader>` — [`FileHeader`](#fileheader)
+- <span id="sectiontable-iter"></span>`fn iter(&self) -> slice::Iter<'data, <Xcoff as >::SectionHeader>` — [`FileHeader`](#fileheader)
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="sectiontable-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn len(self: &Self) -> usize`
+- <span id="sectiontable-len"></span>`fn len(&self) -> usize`
 
-- `fn section(self: &Self, index: SectionIndex) -> read::Result<&'data <Xcoff as >::SectionHeader>` — [`SectionIndex`](../../index.md), [`Result`](../../index.md), [`FileHeader`](#fileheader)
+- <span id="sectiontable-section"></span>`fn section(&self, index: SectionIndex) -> read::Result<&'data <Xcoff as >::SectionHeader>` — [`SectionIndex`](../../index.md), [`Result`](../../index.md), [`FileHeader`](#fileheader)
 
 #### Trait Implementations
 
-##### `impl<'data, Xcoff: $crate::clone::Clone + FileHeader> Clone for SectionTable<'data, Xcoff>`
+##### `impl<'data, Xcoff: clone::Clone + FileHeader> Clone for SectionTable<'data, Xcoff>`
 
-- `fn clone(self: &Self) -> SectionTable<'data, Xcoff>` — [`SectionTable`](#sectiontable)
+- <span id="sectiontable-clone"></span>`fn clone(&self) -> SectionTable<'data, Xcoff>` — [`SectionTable`](#sectiontable)
 
-##### `impl<'data, Xcoff: $crate::marker::Copy + FileHeader> Copy for SectionTable<'data, Xcoff>`
+##### `impl<'data, Xcoff: marker::Copy + FileHeader> Copy for SectionTable<'data, Xcoff>`
 
-##### `impl<'data, Xcoff: $crate::fmt::Debug + FileHeader> Debug for SectionTable<'data, Xcoff>`
+##### `impl<'data, Xcoff: fmt::Debug + FileHeader> Debug for SectionTable<'data, Xcoff>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sectiontable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, Xcoff> Default for SectionTable<'data, Xcoff>`
 
-- `fn default() -> Self`
+- <span id="sectiontable-default"></span>`fn default() -> Self`
 
 ### `SymbolTable<'data, Xcoff, R>`
 
@@ -336,37 +452,37 @@ Returned by `FileHeader::symbols`.
 
 #### Implementations
 
-- `fn parse(header: Xcoff, data: R) -> Result<Self>` — [`Result`](../../index.md)
+- <span id="symboltable-parse"></span>`fn parse(header: Xcoff, data: R) -> Result<Self>` — [`Result`](../../index.md)
 
-- `fn strings(self: &Self) -> StringTable<'data, R>` — [`StringTable`](../index.md)
+- <span id="symboltable-strings"></span>`fn strings(&self) -> StringTable<'data, R>` — [`StringTable`](../index.md)
 
-- `fn iter<'table>(self: &'table Self) -> SymbolIterator<'data, 'table, Xcoff, R>` — [`SymbolIterator`](#symboliterator)
+- <span id="symboltable-iter"></span>`fn iter<'table>(self: &'table Self) -> SymbolIterator<'data, 'table, Xcoff, R>` — [`SymbolIterator`](#symboliterator)
 
-- `fn iter_none<'table>(self: &'table Self) -> SymbolIterator<'data, 'table, Xcoff, R>` — [`SymbolIterator`](#symboliterator)
+- <span id="symboltable-iter-none"></span>`fn iter_none<'table>(self: &'table Self) -> SymbolIterator<'data, 'table, Xcoff, R>` — [`SymbolIterator`](#symboliterator)
 
-- `fn get<T: Pod>(self: &Self, index: SymbolIndex, offset: usize) -> Result<&'data T>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md)
+- <span id="symboltable-get"></span>`fn get<T: Pod>(&self, index: SymbolIndex, offset: usize) -> Result<&'data T>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md)
 
-- `fn symbol_unchecked(self: &Self, index: SymbolIndex) -> Result<&'data <Xcoff as >::Symbol>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md), [`FileHeader`](#fileheader)
+- <span id="symboltable-symbol-unchecked"></span>`fn symbol_unchecked(&self, index: SymbolIndex) -> Result<&'data <Xcoff as >::Symbol>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md), [`FileHeader`](#fileheader)
 
-- `fn symbol(self: &Self, index: SymbolIndex) -> Result<&'data <Xcoff as >::Symbol>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md), [`FileHeader`](#fileheader)
+- <span id="symboltable-symbol"></span>`fn symbol(&self, index: SymbolIndex) -> Result<&'data <Xcoff as >::Symbol>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md), [`FileHeader`](#fileheader)
 
-- `fn aux_file(self: &Self, index: SymbolIndex, offset: usize) -> Result<&'data <Xcoff as >::FileAux>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md), [`FileHeader`](#fileheader)
+- <span id="symboltable-aux-file"></span>`fn aux_file(&self, index: SymbolIndex, offset: usize) -> Result<&'data <Xcoff as >::FileAux>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md), [`FileHeader`](#fileheader)
 
-- `fn aux_csect(self: &Self, index: SymbolIndex, offset: usize) -> Result<&'data <Xcoff as >::CsectAux>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md), [`FileHeader`](#fileheader)
+- <span id="symboltable-aux-csect"></span>`fn aux_csect(&self, index: SymbolIndex, offset: usize) -> Result<&'data <Xcoff as >::CsectAux>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md), [`FileHeader`](#fileheader)
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="symboltable-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn len(self: &Self) -> usize`
+- <span id="symboltable-len"></span>`fn len(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl<'data, Xcoff, R> Debug for SymbolTable<'data, Xcoff, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="symboltable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, Xcoff, R> Default for SymbolTable<'data, Xcoff, R>`
 
-- `fn default() -> Self`
+- <span id="symboltable-default"></span>`fn default() -> Self`
 
 ### `SymbolIterator<'data, 'table, Xcoff, R>`
 
@@ -388,21 +504,21 @@ Yields the index and symbol structure for each symbol.
 
 ##### `impl<'data, 'table, Xcoff, R> Debug for SymbolIterator<'data, 'table, Xcoff, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="symboliterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for SymbolIterator<'data, 'table, Xcoff, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="symboliterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="symboliterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="symboliterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'table, Xcoff: FileHeader, R: ReadRef<'data>> Iterator for SymbolIterator<'data, 'table, Xcoff, R>`
 
-- `type Item = (SymbolIndex, &'data <Xcoff as FileHeader>::Symbol)`
+- <span id="symboliterator-item"></span>`type Item = (SymbolIndex, &'data <Xcoff as FileHeader>::Symbol)`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="symboliterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `XcoffSymbolTable<'data, 'file, Xcoff, R>`
 
@@ -422,23 +538,23 @@ A symbol table in an [`XcoffFile`](#xcofffile).
 
 ##### `impl<'data, 'file, Xcoff, R> Clone for XcoffSymbolTable<'data, 'file, Xcoff, R>`
 
-- `fn clone(self: &Self) -> XcoffSymbolTable<'data, 'file, Xcoff, R>` — [`XcoffSymbolTable`](#xcoffsymboltable)
+- <span id="xcoffsymboltable-clone"></span>`fn clone(&self) -> XcoffSymbolTable<'data, 'file, Xcoff, R>` — [`XcoffSymbolTable`](#xcoffsymboltable)
 
 ##### `impl<'data, 'file, Xcoff, R> Copy for XcoffSymbolTable<'data, 'file, Xcoff, R>`
 
 ##### `impl<'data, 'file, Xcoff, R> Debug for XcoffSymbolTable<'data, 'file, Xcoff, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="xcoffsymboltable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, 'file, Xcoff: FileHeader, R: ReadRef<'data>> ObjectSymbolTable for XcoffSymbolTable<'data, 'file, Xcoff, R>`
 
-- `type Symbol = XcoffSymbol<'data, 'file, Xcoff, R>`
+- <span id="xcoffsymboltable-symbol"></span>`type Symbol = XcoffSymbol<'data, 'file, Xcoff, R>`
 
-- `type SymbolIterator = XcoffSymbolIterator<'data, 'file, Xcoff, R>`
+- <span id="xcoffsymboltable-symboliterator"></span>`type SymbolIterator = XcoffSymbolIterator<'data, 'file, Xcoff, R>`
 
-- `fn symbols(self: &Self) -> <Self as >::SymbolIterator` — [`ObjectSymbolTable`](../index.md)
+- <span id="xcoffsymboltable-symbols"></span>`fn symbols(&self) -> <Self as >::SymbolIterator` — [`ObjectSymbolTable`](../index.md)
 
-- `fn symbol_by_index(self: &Self, index: SymbolIndex) -> read::Result<<Self as >::Symbol>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md), [`ObjectSymbolTable`](../index.md)
+- <span id="xcoffsymboltable-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> read::Result<<Self as >::Symbol>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md), [`ObjectSymbolTable`](../index.md)
 
 ##### `impl<'data, 'file, Xcoff: FileHeader, R: ReadRef<'data>> Sealed for XcoffSymbolTable<'data, 'file, Xcoff, R>`
 
@@ -460,21 +576,21 @@ An iterator for the symbols in an [`XcoffFile`](#xcofffile).
 
 ##### `impl<'data, 'file, Xcoff: FileHeader, R: ReadRef<'data>> Debug for XcoffSymbolIterator<'data, 'file, Xcoff, R>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="xcoffsymboliterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for XcoffSymbolIterator<'data, 'file, Xcoff, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="xcoffsymboliterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="xcoffsymboliterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="xcoffsymboliterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Xcoff: FileHeader, R: ReadRef<'data>> Iterator for XcoffSymbolIterator<'data, 'file, Xcoff, R>`
 
-- `type Item = XcoffSymbol<'data, 'file, Xcoff, R>`
+- <span id="xcoffsymboliterator-item"></span>`type Item = XcoffSymbol<'data, 'file, Xcoff, R>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="xcoffsymboliterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `XcoffSymbol<'data, 'file, Xcoff, R>`
 
@@ -496,53 +612,53 @@ Most functionality is provided by the [`ObjectSymbol`](../index.md) trait implem
 
 #### Implementations
 
-- `fn xcoff_file(self: &Self) -> &'file XcoffFile<'data, Xcoff, R>` — [`XcoffFile`](#xcofffile)
+- <span id="xcoffsymbol-xcoff-file"></span>`fn xcoff_file(&self) -> &'file XcoffFile<'data, Xcoff, R>` — [`XcoffFile`](#xcofffile)
 
-- `fn xcoff_symbol(self: &Self) -> &'data <Xcoff as >::Symbol` — [`FileHeader`](#fileheader)
+- <span id="xcoffsymbol-xcoff-symbol"></span>`fn xcoff_symbol(&self) -> &'data <Xcoff as >::Symbol` — [`FileHeader`](#fileheader)
 
 #### Trait Implementations
 
 ##### `impl<'data, 'file, Xcoff, R> Clone for XcoffSymbol<'data, 'file, Xcoff, R>`
 
-- `fn clone(self: &Self) -> XcoffSymbol<'data, 'file, Xcoff, R>` — [`XcoffSymbol`](#xcoffsymbol)
+- <span id="xcoffsymbol-clone"></span>`fn clone(&self) -> XcoffSymbol<'data, 'file, Xcoff, R>` — [`XcoffSymbol`](#xcoffsymbol)
 
 ##### `impl<'data, 'file, Xcoff, R> Copy for XcoffSymbol<'data, 'file, Xcoff, R>`
 
 ##### `impl<'data, 'file, Xcoff, R> Debug for XcoffSymbol<'data, 'file, Xcoff, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="xcoffsymbol-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, 'file, Xcoff: FileHeader, R: ReadRef<'data>> ObjectSymbol for XcoffSymbol<'data, 'file, Xcoff, R>`
 
-- `fn index(self: &Self) -> SymbolIndex` — [`SymbolIndex`](../../index.md)
+- <span id="xcoffsymbol-index"></span>`fn index(&self) -> SymbolIndex` — [`SymbolIndex`](../../index.md)
 
-- `fn name_bytes(self: &Self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="xcoffsymbol-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
 
-- `fn name(self: &Self) -> Result<&'data str>` — [`Result`](../../index.md)
+- <span id="xcoffsymbol-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../index.md)
 
-- `fn address(self: &Self) -> u64`
+- <span id="xcoffsymbol-address"></span>`fn address(&self) -> u64`
 
-- `fn size(self: &Self) -> u64`
+- <span id="xcoffsymbol-size"></span>`fn size(&self) -> u64`
 
-- `fn kind(self: &Self) -> SymbolKind` — [`SymbolKind`](../../index.md)
+- <span id="xcoffsymbol-kind"></span>`fn kind(&self) -> SymbolKind` — [`SymbolKind`](../../index.md)
 
-- `fn section(self: &Self) -> SymbolSection` — [`SymbolSection`](../../index.md)
+- <span id="xcoffsymbol-section"></span>`fn section(&self) -> SymbolSection` — [`SymbolSection`](../../index.md)
 
-- `fn is_undefined(self: &Self) -> bool`
+- <span id="xcoffsymbol-is-undefined"></span>`fn is_undefined(&self) -> bool`
 
-- `fn is_definition(self: &Self) -> bool`
+- <span id="xcoffsymbol-is-definition"></span>`fn is_definition(&self) -> bool`
 
-- `fn is_common(self: &Self) -> bool`
+- <span id="xcoffsymbol-is-common"></span>`fn is_common(&self) -> bool`
 
-- `fn is_weak(self: &Self) -> bool`
+- <span id="xcoffsymbol-is-weak"></span>`fn is_weak(&self) -> bool`
 
-- `fn scope(self: &Self) -> SymbolScope` — [`SymbolScope`](../../index.md)
+- <span id="xcoffsymbol-scope"></span>`fn scope(&self) -> SymbolScope` — [`SymbolScope`](../../index.md)
 
-- `fn is_global(self: &Self) -> bool`
+- <span id="xcoffsymbol-is-global"></span>`fn is_global(&self) -> bool`
 
-- `fn is_local(self: &Self) -> bool`
+- <span id="xcoffsymbol-is-local"></span>`fn is_local(&self) -> bool`
 
-- `fn flags(self: &Self) -> SymbolFlags<SectionIndex, SymbolIndex>` — [`SymbolFlags`](../../index.md), [`SectionIndex`](../../index.md), [`SymbolIndex`](../../index.md)
+- <span id="xcoffsymbol-flags"></span>`fn flags(&self) -> SymbolFlags<SectionIndex, SymbolIndex>` — [`SymbolFlags`](../../index.md), [`SectionIndex`](../../index.md), [`SymbolIndex`](../../index.md)
 
 ##### `impl<'data, 'file, Xcoff: FileHeader, R: ReadRef<'data>> Sealed for XcoffSymbol<'data, 'file, Xcoff, R>`
 
@@ -564,21 +680,21 @@ An iterator for the relocations in an [`XcoffSection`](super::XcoffSection).
 
 ##### `impl<'data, 'file, Xcoff, R> Debug for XcoffRelocationIterator<'data, 'file, Xcoff, R>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="xcoffrelocationiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for XcoffRelocationIterator<'data, 'file, Xcoff, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="xcoffrelocationiterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="xcoffrelocationiterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="xcoffrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Xcoff, R> Iterator for XcoffRelocationIterator<'data, 'file, Xcoff, R>`
 
-- `type Item = (u64, Relocation)`
+- <span id="xcoffrelocationiterator-item"></span>`type Item = (u64, Relocation)`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="xcoffrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `XcoffComdatIterator<'data, 'file, Xcoff, R>`
 
@@ -599,21 +715,21 @@ This is a stub that doesn't implement any functionality.
 
 ##### `impl<'data, 'file, Xcoff, R> Debug for XcoffComdatIterator<'data, 'file, Xcoff, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="xcoffcomdatiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for XcoffComdatIterator<'data, 'file, Xcoff, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="xcoffcomdatiterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="xcoffcomdatiterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="xcoffcomdatiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Xcoff, R> Iterator for XcoffComdatIterator<'data, 'file, Xcoff, R>`
 
-- `type Item = XcoffComdat<'data, 'file, Xcoff, R>`
+- <span id="xcoffcomdatiterator-item"></span>`type Item = XcoffComdat<'data, 'file, Xcoff, R>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="xcoffcomdatiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `XcoffComdat<'data, 'file, Xcoff, R>`
 
@@ -634,21 +750,21 @@ This is a stub that doesn't implement any functionality.
 
 ##### `impl<'data, 'file, Xcoff, R> Debug for XcoffComdat<'data, 'file, Xcoff, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="xcoffcomdat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, 'file, Xcoff, R> ObjectComdat for XcoffComdat<'data, 'file, Xcoff, R>`
 
-- `type SectionIterator = XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
+- <span id="xcoffcomdat-sectioniterator"></span>`type SectionIterator = XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
 
-- `fn kind(self: &Self) -> ComdatKind` — [`ComdatKind`](../../index.md)
+- <span id="xcoffcomdat-kind"></span>`fn kind(&self) -> ComdatKind` — [`ComdatKind`](../../index.md)
 
-- `fn symbol(self: &Self) -> SymbolIndex` — [`SymbolIndex`](../../index.md)
+- <span id="xcoffcomdat-symbol"></span>`fn symbol(&self) -> SymbolIndex` — [`SymbolIndex`](../../index.md)
 
-- `fn name_bytes(self: &Self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="xcoffcomdat-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
 
-- `fn name(self: &Self) -> Result<&'data str>` — [`Result`](../../index.md)
+- <span id="xcoffcomdat-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../index.md)
 
-- `fn sections(self: &Self) -> <Self as >::SectionIterator` — [`ObjectComdat`](../index.md)
+- <span id="xcoffcomdat-sections"></span>`fn sections(&self) -> <Self as >::SectionIterator` — [`ObjectComdat`](../index.md)
 
 ##### `impl<'data, 'file, Xcoff, R> Sealed for XcoffComdat<'data, 'file, Xcoff, R>`
 
@@ -671,21 +787,21 @@ This is a stub that doesn't implement any functionality.
 
 ##### `impl<'data, 'file, Xcoff, R> Debug for XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="xcoffcomdatsectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="xcoffcomdatsectioniterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="xcoffcomdatsectioniterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="xcoffcomdatsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Xcoff, R> Iterator for XcoffComdatSectionIterator<'data, 'file, Xcoff, R>`
 
-- `type Item = SectionIndex`
+- <span id="xcoffcomdatsectioniterator-item"></span>`type Item = SectionIndex`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="xcoffcomdatsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `XcoffSegmentIterator<'data, 'file, Xcoff, R>`
 
@@ -706,21 +822,21 @@ This is a stub that doesn't implement any functionality.
 
 ##### `impl<'data, 'file, Xcoff, R> Debug for XcoffSegmentIterator<'data, 'file, Xcoff, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="xcoffsegmentiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for XcoffSegmentIterator<'data, 'file, Xcoff, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="xcoffsegmentiterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="xcoffsegmentiterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="xcoffsegmentiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Xcoff, R> Iterator for XcoffSegmentIterator<'data, 'file, Xcoff, R>`
 
-- `type Item = XcoffSegment<'data, 'file, Xcoff, R>`
+- <span id="xcoffsegmentiterator-item"></span>`type Item = XcoffSegment<'data, 'file, Xcoff, R>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="xcoffsegmentiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `XcoffSegment<'data, 'file, Xcoff, R>`
 
@@ -741,27 +857,27 @@ This is a stub that doesn't implement any functionality.
 
 ##### `impl<'data, 'file, Xcoff, R> Debug for XcoffSegment<'data, 'file, Xcoff, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="xcoffsegment-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, 'file, Xcoff, R> ObjectSegment for XcoffSegment<'data, 'file, Xcoff, R>`
 
-- `fn address(self: &Self) -> u64`
+- <span id="xcoffsegment-address"></span>`fn address(&self) -> u64`
 
-- `fn size(self: &Self) -> u64`
+- <span id="xcoffsegment-size"></span>`fn size(&self) -> u64`
 
-- `fn align(self: &Self) -> u64`
+- <span id="xcoffsegment-align"></span>`fn align(&self) -> u64`
 
-- `fn file_range(self: &Self) -> (u64, u64)`
+- <span id="xcoffsegment-file-range"></span>`fn file_range(&self) -> (u64, u64)`
 
-- `fn data(self: &Self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="xcoffsegment-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
 
-- `fn data_range(self: &Self, _address: u64, _size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../index.md)
+- <span id="xcoffsegment-data-range"></span>`fn data_range(&self, _address: u64, _size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../index.md)
 
-- `fn name_bytes(self: &Self) -> Result<Option<&[u8]>>` — [`Result`](../../index.md)
+- <span id="xcoffsegment-name-bytes"></span>`fn name_bytes(&self) -> Result<Option<&[u8]>>` — [`Result`](../../index.md)
 
-- `fn name(self: &Self) -> Result<Option<&str>>` — [`Result`](../../index.md)
+- <span id="xcoffsegment-name"></span>`fn name(&self) -> Result<Option<&str>>` — [`Result`](../../index.md)
 
-- `fn flags(self: &Self) -> SegmentFlags` — [`SegmentFlags`](../../index.md)
+- <span id="xcoffsegment-flags"></span>`fn flags(&self) -> SegmentFlags` — [`SegmentFlags`](../../index.md)
 
 ##### `impl<'data, 'file, Xcoff, R> Sealed for XcoffSegment<'data, 'file, Xcoff, R>`
 
@@ -791,39 +907,39 @@ A trait for generic access to [`xcoff::FileHeader32`](../../xcoff/index.md) and 
 
 - `type Rel: 1`
 
-- `fn is_type_64(self: &Self) -> bool`
+- `fn is_type_64(&self) -> bool`
 
   Return true if this type is a 64-bit header.
 
-- `fn f_magic(self: &Self) -> u16`
+- `fn f_magic(&self) -> u16`
 
-- `fn f_nscns(self: &Self) -> u16`
+- `fn f_nscns(&self) -> u16`
 
-- `fn f_timdat(self: &Self) -> u32`
+- `fn f_timdat(&self) -> u32`
 
-- `fn f_symptr(self: &Self) -> <Self as >::Word`
+- `fn f_symptr(&self) -> <Self as >::Word`
 
-- `fn f_nsyms(self: &Self) -> u32`
+- `fn f_nsyms(&self) -> u32`
 
-- `fn f_opthdr(self: &Self) -> u16`
+- `fn f_opthdr(&self) -> u16`
 
-- `fn f_flags(self: &Self) -> u16`
+- `fn f_flags(&self) -> u16`
 
 - `fn parse<'data, R: ReadRef<'data>>(data: R, offset: &mut u64) -> Result<&'data Self>`
 
   Read the file header.
 
-- `fn is_supported(self: &Self) -> bool`
+- `fn is_supported(&self) -> bool`
 
-- `fn aux_header<'data, R: ReadRef<'data>>(self: &Self, data: R, offset: &mut u64) -> Result<Option<&'data <Self as >::AuxHeader>>`
+- `fn aux_header<'data, R: ReadRef<'data>>(&self, data: R, offset: &mut u64) -> Result<Option<&'data <Self as >::AuxHeader>>`
 
   Read the auxiliary file header.
 
-- `fn sections<'data, R: ReadRef<'data>>(self: &Self, data: R, offset: &mut u64) -> Result<SectionTable<'data, Self>>`
+- `fn sections<'data, R: ReadRef<'data>>(&self, data: R, offset: &mut u64) -> Result<SectionTable<'data, Self>>`
 
   Read the section table.
 
-- `fn symbols<'data, R: ReadRef<'data>>(self: &Self, data: R) -> Result<SymbolTable<'data, Self, R>>`
+- `fn symbols<'data, R: ReadRef<'data>>(&self, data: R) -> Result<SymbolTable<'data, Self, R>>`
 
   Return the symbol table.
 
@@ -839,65 +955,65 @@ A trait for generic access to [`xcoff::AuxHeader32`](../../xcoff/index.md) and [
 
 - `type Word: 1`
 
-- `fn o_mflag(self: &Self) -> u16`
+- `fn o_mflag(&self) -> u16`
 
-- `fn o_vstamp(self: &Self) -> u16`
+- `fn o_vstamp(&self) -> u16`
 
-- `fn o_tsize(self: &Self) -> <Self as >::Word`
+- `fn o_tsize(&self) -> <Self as >::Word`
 
-- `fn o_dsize(self: &Self) -> <Self as >::Word`
+- `fn o_dsize(&self) -> <Self as >::Word`
 
-- `fn o_bsize(self: &Self) -> <Self as >::Word`
+- `fn o_bsize(&self) -> <Self as >::Word`
 
-- `fn o_entry(self: &Self) -> <Self as >::Word`
+- `fn o_entry(&self) -> <Self as >::Word`
 
-- `fn o_text_start(self: &Self) -> <Self as >::Word`
+- `fn o_text_start(&self) -> <Self as >::Word`
 
-- `fn o_data_start(self: &Self) -> <Self as >::Word`
+- `fn o_data_start(&self) -> <Self as >::Word`
 
-- `fn o_toc(self: &Self) -> <Self as >::Word`
+- `fn o_toc(&self) -> <Self as >::Word`
 
-- `fn o_snentry(self: &Self) -> u16`
+- `fn o_snentry(&self) -> u16`
 
-- `fn o_sntext(self: &Self) -> u16`
+- `fn o_sntext(&self) -> u16`
 
-- `fn o_sndata(self: &Self) -> u16`
+- `fn o_sndata(&self) -> u16`
 
-- `fn o_sntoc(self: &Self) -> u16`
+- `fn o_sntoc(&self) -> u16`
 
-- `fn o_snloader(self: &Self) -> u16`
+- `fn o_snloader(&self) -> u16`
 
-- `fn o_snbss(self: &Self) -> u16`
+- `fn o_snbss(&self) -> u16`
 
-- `fn o_algntext(self: &Self) -> u16`
+- `fn o_algntext(&self) -> u16`
 
-- `fn o_algndata(self: &Self) -> u16`
+- `fn o_algndata(&self) -> u16`
 
-- `fn o_modtype(self: &Self) -> u16`
+- `fn o_modtype(&self) -> u16`
 
-- `fn o_cpuflag(self: &Self) -> u8`
+- `fn o_cpuflag(&self) -> u8`
 
-- `fn o_cputype(self: &Self) -> u8`
+- `fn o_cputype(&self) -> u8`
 
-- `fn o_maxstack(self: &Self) -> <Self as >::Word`
+- `fn o_maxstack(&self) -> <Self as >::Word`
 
-- `fn o_maxdata(self: &Self) -> <Self as >::Word`
+- `fn o_maxdata(&self) -> <Self as >::Word`
 
-- `fn o_debugger(self: &Self) -> u32`
+- `fn o_debugger(&self) -> u32`
 
-- `fn o_textpsize(self: &Self) -> u8`
+- `fn o_textpsize(&self) -> u8`
 
-- `fn o_datapsize(self: &Self) -> u8`
+- `fn o_datapsize(&self) -> u8`
 
-- `fn o_stackpsize(self: &Self) -> u8`
+- `fn o_stackpsize(&self) -> u8`
 
-- `fn o_flags(self: &Self) -> u8`
+- `fn o_flags(&self) -> u8`
 
-- `fn o_sntdata(self: &Self) -> u16`
+- `fn o_sntdata(&self) -> u16`
 
-- `fn o_sntbss(self: &Self) -> u16`
+- `fn o_sntbss(&self) -> u16`
 
-- `fn o_x64flags(self: &Self) -> Option<u16>`
+- `fn o_x64flags(&self) -> Option<u16>`
 
 ### `SectionHeader`
 
@@ -917,39 +1033,39 @@ A trait for generic access to [`xcoff::SectionHeader32`](../../xcoff/index.md) a
 
 - `type Rel: 1`
 
-- `fn s_name(self: &Self) -> &[u8; 8]`
+- `fn s_name(&self) -> &[u8; 8]`
 
-- `fn s_paddr(self: &Self) -> <Self as >::Word`
+- `fn s_paddr(&self) -> <Self as >::Word`
 
-- `fn s_vaddr(self: &Self) -> <Self as >::Word`
+- `fn s_vaddr(&self) -> <Self as >::Word`
 
-- `fn s_size(self: &Self) -> <Self as >::Word`
+- `fn s_size(&self) -> <Self as >::Word`
 
-- `fn s_scnptr(self: &Self) -> <Self as >::Word`
+- `fn s_scnptr(&self) -> <Self as >::Word`
 
-- `fn s_relptr(self: &Self) -> <Self as >::Word`
+- `fn s_relptr(&self) -> <Self as >::Word`
 
-- `fn s_lnnoptr(self: &Self) -> <Self as >::Word`
+- `fn s_lnnoptr(&self) -> <Self as >::Word`
 
-- `fn s_nreloc(self: &Self) -> <Self as >::HalfWord`
+- `fn s_nreloc(&self) -> <Self as >::HalfWord`
 
-- `fn s_nlnno(self: &Self) -> <Self as >::HalfWord`
+- `fn s_nlnno(&self) -> <Self as >::HalfWord`
 
-- `fn s_flags(self: &Self) -> u32`
+- `fn s_flags(&self) -> u32`
 
-- `fn name(self: &Self) -> &[u8]`
+- `fn name(&self) -> &[u8]`
 
   Return the section name.
 
-- `fn file_range(self: &Self) -> Option<(u64, u64)>`
+- `fn file_range(&self) -> Option<(u64, u64)>`
 
   Return the offset and size of the section in the file.
 
-- `fn data<'data, R: ReadRef<'data>>(self: &Self, data: R) -> result::Result<&'data [u8], ()>`
+- `fn data<'data, R: ReadRef<'data>>(&self, data: R) -> result::Result<&'data [u8], ()>`
 
   Return the section data.
 
-- `fn relocations<'data, R: ReadRef<'data>>(self: &Self, data: R) -> read::Result<&'data [<Self as >::Rel]>`
+- `fn relocations<'data, R: ReadRef<'data>>(&self, data: R) -> read::Result<&'data [<Self as >::Rel]>`
 
   Read the relocations.
 
@@ -965,37 +1081,37 @@ A trait for generic access to [`xcoff::Symbol32`](../../xcoff/index.md) and [`xc
 
 - `type Word: 1`
 
-- `fn n_value(self: &Self) -> <Self as >::Word`
+- `fn n_value(&self) -> <Self as >::Word`
 
-- `fn n_scnum(self: &Self) -> i16`
+- `fn n_scnum(&self) -> i16`
 
-- `fn n_type(self: &Self) -> u16`
+- `fn n_type(&self) -> u16`
 
-- `fn n_sclass(self: &Self) -> u8`
+- `fn n_sclass(&self) -> u8`
 
-- `fn n_numaux(self: &Self) -> u8`
+- `fn n_numaux(&self) -> u8`
 
-- `fn name_offset(self: &Self) -> Option<u32>`
+- `fn name_offset(&self) -> Option<u32>`
 
 - `fn name<'data, R: ReadRef<'data>>(self: &'data Self, strings: StringTable<'data, R>) -> Result<&'data [u8]>`
 
-- `fn section(self: &Self) -> Option<SectionIndex>`
+- `fn section(&self) -> Option<SectionIndex>`
 
   Return the section index for the symbol.
 
-- `fn is_null(self: &Self) -> bool`
+- `fn is_null(&self) -> bool`
 
   Return true if the symbol is a null placeholder.
 
-- `fn is_undefined(self: &Self) -> bool`
+- `fn is_undefined(&self) -> bool`
 
   Return true if the symbol is undefined.
 
-- `fn has_aux_file(self: &Self) -> bool`
+- `fn has_aux_file(&self) -> bool`
 
   Return true if the symbol has file auxiliary entry.
 
-- `fn has_aux_csect(self: &Self) -> bool`
+- `fn has_aux_csect(&self) -> bool`
 
   Return true if the symbol has csect auxiliary entry.
 
@@ -1009,13 +1125,13 @@ A trait for generic access to [`xcoff::FileAux32`](../../xcoff/index.md) and [`x
 
 #### Required Methods
 
-- `fn x_fname(self: &Self) -> &[u8; 8]`
+- `fn x_fname(&self) -> &[u8; 8]`
 
-- `fn x_ftype(self: &Self) -> u8`
+- `fn x_ftype(&self) -> u8`
 
-- `fn x_auxtype(self: &Self) -> Option<u8>`
+- `fn x_auxtype(&self) -> Option<u8>`
 
-- `fn name_offset(self: &Self) -> Option<u32>`
+- `fn name_offset(&self) -> Option<u32>`
 
 - `fn fname<'data, R: ReadRef<'data>>(self: &'data Self, strings: StringTable<'data, R>) -> Result<&'data [u8]>`
 
@@ -1031,25 +1147,25 @@ A trait for generic access to [`xcoff::CsectAux32`](../../xcoff/index.md) and [`
 
 #### Required Methods
 
-- `fn x_scnlen(self: &Self) -> u64`
+- `fn x_scnlen(&self) -> u64`
 
-- `fn x_parmhash(self: &Self) -> u32`
+- `fn x_parmhash(&self) -> u32`
 
-- `fn x_snhash(self: &Self) -> u16`
+- `fn x_snhash(&self) -> u16`
 
-- `fn x_smtyp(self: &Self) -> u8`
+- `fn x_smtyp(&self) -> u8`
 
-- `fn x_smclas(self: &Self) -> u8`
+- `fn x_smclas(&self) -> u8`
 
-- `fn x_stab(self: &Self) -> Option<u32>`
+- `fn x_stab(&self) -> Option<u32>`
 
-- `fn x_snstab(self: &Self) -> Option<u16>`
+- `fn x_snstab(&self) -> Option<u16>`
 
-- `fn x_auxtype(self: &Self) -> Option<u8>`
+- `fn x_auxtype(&self) -> Option<u8>`
 
-- `fn alignment(self: &Self) -> u8`
+- `fn alignment(&self) -> u8`
 
-- `fn sym_type(self: &Self) -> u8`
+- `fn sym_type(&self) -> u8`
 
 ### `Rel`
 
@@ -1063,15 +1179,15 @@ A trait for generic access to [`xcoff::Rel32`](../../xcoff/index.md) and [`xcoff
 
 - `type Word: 1`
 
-- `fn r_vaddr(self: &Self) -> <Self as >::Word`
+- `fn r_vaddr(&self) -> <Self as >::Word`
 
-- `fn r_symndx(self: &Self) -> u32`
+- `fn r_symndx(&self) -> u32`
 
-- `fn r_rsize(self: &Self) -> u8`
+- `fn r_rsize(&self) -> u8`
 
-- `fn r_rtype(self: &Self) -> u8`
+- `fn r_rtype(&self) -> u8`
 
-- `fn symbol(self: &Self) -> SymbolIndex`
+- `fn symbol(&self) -> SymbolIndex`
 
 ## Type Aliases
 

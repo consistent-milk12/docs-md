@@ -4,6 +4,13 @@
 
 # Module `wait_group`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`WaitGroup`](#waitgroup) | struct | Enables threads to synchronize the beginning or end of some computation. |
+| [`Inner`](#inner) | struct | Inner state of a `WaitGroup`. |
+
 ## Structs
 
 ### `WaitGroup`
@@ -58,27 +65,27 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="waitgroup-new"></span>`fn new() -> Self`
 
-- `fn wait(self: Self)`
+- <span id="waitgroup-wait"></span>`fn wait(self)`
 
 #### Trait Implementations
 
 ##### `impl Clone for WaitGroup`
 
-- `fn clone(self: &Self) -> WaitGroup` — [`WaitGroup`](../index.md)
+- <span id="waitgroup-clone"></span>`fn clone(&self) -> WaitGroup` — [`WaitGroup`](../index.md)
 
 ##### `impl Debug for WaitGroup`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="waitgroup-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for WaitGroup`
 
-- `fn default() -> Self`
+- <span id="waitgroup-default"></span>`fn default() -> Self`
 
 ##### `impl Drop for WaitGroup`
 
-- `fn drop(self: &mut Self)`
+- <span id="waitgroup-drop"></span>`fn drop(&mut self)`
 
 ### `Inner`
 

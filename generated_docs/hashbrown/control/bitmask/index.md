@@ -4,6 +4,13 @@
 
 # Module `bitmask`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`BitMask`](#bitmask) | struct | A bit mask which contains the result of a `Match` operation on a `Group` and |
+| [`BitMaskIter`](#bitmaskiter) | struct | Iterator over the contents of a `BitMask`, returning the indices of set |
+
 ## Structs
 
 ### `BitMask`
@@ -31,35 +38,35 @@ mask bits.
 
 #### Implementations
 
-- `fn invert(self: Self) -> Self`
+- <span id="bitmask-invert"></span>`fn invert(self) -> Self`
 
-- `fn remove_lowest_bit(self: Self) -> Self`
+- <span id="bitmask-remove-lowest-bit"></span>`fn remove_lowest_bit(self) -> Self`
 
-- `fn any_bit_set(self: Self) -> bool`
+- <span id="bitmask-any-bit-set"></span>`fn any_bit_set(self) -> bool`
 
-- `fn lowest_set_bit(self: Self) -> Option<usize>`
+- <span id="bitmask-lowest-set-bit"></span>`fn lowest_set_bit(self) -> Option<usize>`
 
-- `fn trailing_zeros(self: Self) -> usize`
+- <span id="bitmask-trailing-zeros"></span>`fn trailing_zeros(self) -> usize`
 
-- `fn nonzero_trailing_zeros(nonzero: core::num::NonZeroU16) -> usize`
+- <span id="bitmask-nonzero-trailing-zeros"></span>`fn nonzero_trailing_zeros(nonzero: core::num::NonZeroU16) -> usize`
 
-- `fn leading_zeros(self: Self) -> usize`
+- <span id="bitmask-leading-zeros"></span>`fn leading_zeros(self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Clone for BitMask`
 
-- `fn clone(self: &Self) -> BitMask` — [`BitMask`](#bitmask)
+- <span id="bitmask-clone"></span>`fn clone(&self) -> BitMask` — [`BitMask`](#bitmask)
 
 ##### `impl Copy for BitMask`
 
 ##### `impl IntoIterator for BitMask`
 
-- `type Item = usize`
+- <span id="bitmask-item"></span>`type Item = usize`
 
-- `type IntoIter = BitMaskIter`
+- <span id="bitmask-intoiter"></span>`type IntoIter = BitMaskIter`
 
-- `fn into_iter(self: Self) -> BitMaskIter` — [`BitMaskIter`](#bitmaskiter)
+- <span id="bitmask-into-iter"></span>`fn into_iter(self) -> BitMaskIter` — [`BitMaskIter`](#bitmaskiter)
 
 ### `BitMaskIter`
 
@@ -74,19 +81,19 @@ bits.
 
 ##### `impl Clone for BitMaskIter`
 
-- `fn clone(self: &Self) -> BitMaskIter` — [`BitMaskIter`](#bitmaskiter)
+- <span id="bitmaskiter-clone"></span>`fn clone(&self) -> BitMaskIter` — [`BitMaskIter`](#bitmaskiter)
 
 ##### `impl<I> IntoIterator for BitMaskIter`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="bitmaskiter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="bitmaskiter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="bitmaskiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for BitMaskIter`
 
-- `type Item = usize`
+- <span id="bitmaskiter-item"></span>`type Item = usize`
 
-- `fn next(self: &mut Self) -> Option<usize>`
+- <span id="bitmaskiter-next"></span>`fn next(&mut self) -> Option<usize>`
 

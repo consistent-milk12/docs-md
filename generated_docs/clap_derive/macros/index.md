@@ -4,6 +4,14 @@
 
 # Module `macros`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`format_err!`](#format_err) | macro |  |
+| [`abort!`](#abort) | macro |  |
+| [`abort_call_site!`](#abort_call_site) | macro |  |
+
 ## Macros
 
 ### `format_err!`

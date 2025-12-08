@@ -4,6 +4,12 @@
 
 # Module `private`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ValidLen`](#validlen) | trait | Restrictions on `ValueSet` lengths were removed in #2508 but this type remains for backwards compatibility. |
+
 ## Traits
 
 ### `ValidLen<'a>`

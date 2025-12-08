@@ -358,6 +358,15 @@ Don't use `lazy_static`.
 * [generic_once_cell](https://crates.io/crates/generic_once_cell) (bring
   your own mutex)
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`imp`](#imp) | mod |  |
+| [`unsync`](#unsync) | mod | Single-threaded version of `OnceCell`. |
+| [`sync`](#sync) | mod | Thread-safe, blocking version of `OnceCell`. |
+| [`race`](#race) | mod | Thread-safe, non-blocking, "first one wins" flavor of `OnceCell`. |
+
 ## Modules
 
 - [`imp`](imp/index.md) - 

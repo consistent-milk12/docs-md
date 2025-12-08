@@ -4,6 +4,15 @@
 
 # Module `file`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`unix`](#unix) | mod |  |
+| [`File`](#file) | struct | Wrapper around [`std::fs::File`][std::fs::File] which adds more helpful |
+| [`open`](#open) | fn |  |
+| [`create`](#create) | fn |  |
+
 ## Modules
 
 - [`unix`](unix/index.md) - 
@@ -25,65 +34,59 @@ information to all errors.
 
 #### Implementations
 
-- `fn from_parts<P>(file: fs::File, path: P) -> Self`
+- <span id="file-lock"></span>`fn lock(&self) -> Result<(), io::Error>`
 
-- `fn into_parts(self: Self) -> (fs::File, PathBuf)`
+- <span id="file-lock-shared"></span>`fn lock_shared(&self) -> Result<(), io::Error>`
 
-- `fn into_file(self: Self) -> fs::File`
+- <span id="file-try-lock"></span>`fn try_lock(&self) -> Result<(), fs::TryLockError>`
 
-- `fn into_path(self: Self) -> PathBuf`
+- <span id="file-try-lock-shared"></span>`fn try_lock_shared(&self) -> Result<(), fs::TryLockError>`
 
-- `fn file(self: &Self) -> &fs::File`
-
-- `fn file_mut(self: &mut Self) -> &mut fs::File`
-
-- `fn path(self: &Self) -> &Path`
-
-- `fn error(self: &Self, source: io::Error, kind: ErrorKind) -> io::Error` — [`ErrorKind`](../errors/index.md)
+- <span id="file-unlock"></span>`fn unlock(&self) -> Result<(), io::Error>`
 
 #### Trait Implementations
 
 ##### `impl AsFd for crate::File`
 
-- `fn as_fd(self: &Self) -> BorrowedFd<'_>`
+- <span id="cratefile-as-fd"></span>`fn as_fd(&self) -> BorrowedFd<'_>`
 
 ##### `impl AsRawFd for crate::File`
 
-- `fn as_raw_fd(self: &Self) -> RawFd`
+- <span id="cratefile-as-raw-fd"></span>`fn as_raw_fd(&self) -> RawFd`
 
 ##### `impl Debug for File`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="file-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl FileExt for crate::File`
 
-- `fn read_at(self: &Self, buf: &mut [u8], offset: u64) -> io::Result<usize>`
+- <span id="cratefile-read-at"></span>`fn read_at(&self, buf: &mut [u8], offset: u64) -> io::Result<usize>`
 
-- `fn write_at(self: &Self, buf: &[u8], offset: u64) -> io::Result<usize>`
+- <span id="cratefile-write-at"></span>`fn write_at(&self, buf: &[u8], offset: u64) -> io::Result<usize>`
 
 ##### `impl IntoRawFd for crate::File`
 
-- `fn into_raw_fd(self: Self) -> RawFd`
+- <span id="cratefile-into-raw-fd"></span>`fn into_raw_fd(self) -> RawFd`
 
 ##### `impl Read for File`
 
-- `fn read(self: &mut Self, buf: &mut [u8]) -> std::io::Result<usize>`
+- <span id="file-read"></span>`fn read(&mut self, buf: &mut [u8]) -> std::io::Result<usize>`
 
-- `fn read_vectored(self: &mut Self, bufs: &mut [std::io::IoSliceMut<'_>]) -> std::io::Result<usize>`
+- <span id="file-read-vectored"></span>`fn read_vectored(&mut self, bufs: &mut [std::io::IoSliceMut<'_>]) -> std::io::Result<usize>`
 
 ##### `impl Sealed for crate::File`
 
 ##### `impl Seek for File`
 
-- `fn seek(self: &mut Self, pos: std::io::SeekFrom) -> std::io::Result<u64>`
+- <span id="file-seek"></span>`fn seek(&mut self, pos: std::io::SeekFrom) -> std::io::Result<u64>`
 
 ##### `impl Write for File`
 
-- `fn write(self: &mut Self, buf: &[u8]) -> std::io::Result<usize>`
+- <span id="file-write"></span>`fn write(&mut self, buf: &[u8]) -> std::io::Result<usize>`
 
-- `fn write_vectored(self: &mut Self, bufs: &[std::io::IoSlice<'_>]) -> std::io::Result<usize>`
+- <span id="file-write-vectored"></span>`fn write_vectored(&mut self, bufs: &[std::io::IoSlice<'_>]) -> std::io::Result<usize>`
 
-- `fn flush(self: &mut Self) -> std::io::Result<()>`
+- <span id="file-flush"></span>`fn flush(&mut self) -> std::io::Result<()>`
 
 ## Functions
 

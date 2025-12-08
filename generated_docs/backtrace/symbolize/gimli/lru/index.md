@@ -4,6 +4,12 @@
 
 # Module `lru`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Lru`](#lru) | struct | least-recently-used cache with static size |
+
 ## Structs
 
 ### `Lru<T, const N: usize>`
@@ -19,17 +25,17 @@ least-recently-used cache with static size
 
 #### Implementations
 
-- `fn clear(self: &mut Self)`
+- <span id="lru-clear"></span>`fn clear(&mut self)`
 
-- `fn iter(self: &Self) -> impl Iterator<Item = &T>`
+- <span id="lru-iter"></span>`fn iter(&self) -> impl Iterator<Item = &T>`
 
-- `fn push_front(self: &mut Self, value: T) -> Option<&mut T>`
+- <span id="lru-push-front"></span>`fn push_front(&mut self, value: T) -> Option<&mut T>`
 
-- `fn move_to_front(self: &mut Self, idx: usize) -> Option<&mut T>`
+- <span id="lru-move-to-front"></span>`fn move_to_front(&mut self, idx: usize) -> Option<&mut T>`
 
 #### Trait Implementations
 
 ##### `impl<T, const N: usize> Default for Lru<T, N>`
 
-- `fn default() -> Self`
+- <span id="lru-default"></span>`fn default() -> Self`
 

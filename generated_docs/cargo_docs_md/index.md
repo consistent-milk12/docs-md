@@ -6,6 +6,73 @@ This module exposes the core functionality of docs-md as a library,
 allowing integration tests and external tools to use the markdown
 generation capabilities programmatically.
 
+## Contents
+
+- [Modules](#modules)
+  - [`error`](#error)
+  - [`generator`](#generator)
+  - [`linker`](#linker)
+  - [`multi_crate`](#multi_crate)
+  - [`parser`](#parser)
+  - [`types`](#types)
+- [Structs](#structs)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`Cli`](#cli)
+  - [`DocsArgs`](#docsargs)
+  - [`GenerateArgs`](#generateargs)
+- [Enums](#enums)
+  - [`OutputFormat`](#outputformat)
+  - [`Cargo`](#cargo)
+  - [`Command`](#command)
+  - [`CliOutputFormat`](#clioutputformat)
+- [Functions](#functions)
+  - [`unnamed`](#unnamed)
+- [Type Aliases](#type-aliases)
+  - [`Args`](#args)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`error`](#error) | mod | Error types for docs-md. |
+| [`generator`](#generator) | mod | Markdown documentation generator for rustdoc JSON. |
+| [`linker`](#linker) | mod | Cross-reference linking for markdown documentation. |
+| [`multi_crate`](#multi_crate) | mod | Multi-crate documentation generation. |
+| [`parser`](#parser) | mod | Rustdoc JSON parsing module. |
+| [`types`](#types) | mod | Type rendering utilities for converting rustdoc types to string representations. |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`Cli`](#cli) | struct | Top-level CLI for docs-md. |
+| [`DocsArgs`](#docsargs) | struct | Arguments for the `docs` subcommand (build + generate). |
+| [`GenerateArgs`](#generateargs) | struct | Command-line arguments for direct generation (no subcommand). |
+| [`OutputFormat`](#outputformat) | enum | Output format for the generated markdown documentation. |
+| [`Cargo`](#cargo) | enum | Cargo wrapper for subcommand invocation. |
+| [`Command`](#command) | enum | Available subcommands |
+| [`CliOutputFormat`](#clioutputformat) | enum | CLI-compatible output format enum (for clap `ValueEnum` derive). |
+| [`unnamed`](#unnamed) | fn |  |
+| [`Args`](#args) | type | Backwards-compatible type alias for existing code. |
+
 ## Modules
 
 - [`error`](error/index.md) - Error types for docs-md.
@@ -56,21 +123,21 @@ generator.generate()?;
 
 #### Implementations
 
-- `fn new(krate: &'a Crate, args: &'a Args) -> Result<Self, Error>` — [`Args`](#args), [`Error`](error/index.md)
+- <span id="generator-new"></span>`fn new(krate: &'a Crate, args: &'a Args, config: RenderConfig) -> Result<Self, Error>` — [`Args`](#args), [`RenderConfig`](#renderconfig), [`Error`](error/index.md)
 
-- `fn generate(self: &Self) -> Result<(), Error>` — [`Error`](error/index.md)
+- <span id="generator-generate"></span>`fn generate(&self) -> Result<(), Error>` — [`Error`](error/index.md)
 
-- `fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](error/index.md)
+- <span id="generator-create-progress-bar"></span>`fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](error/index.md)
 
-- `fn generate_to_capture(krate: &Crate, format: CliOutputFormat, include_private: bool) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](#clioutputformat), [`MarkdownCapture`](#markdowncapture), [`Error`](error/index.md)
+- <span id="generator-generate-to-capture"></span>`fn generate_to_capture(krate: &Crate, format: CliOutputFormat, include_private: bool) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](#clioutputformat), [`MarkdownCapture`](#markdowncapture), [`Error`](error/index.md)
 
-- `fn generate_flat_to_capture(ctx: &GeneratorContext<'_>, root: &Item, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](generator/index.md), [`MarkdownCapture`](#markdowncapture), [`Error`](error/index.md)
+- <span id="generator-generate-flat-to-capture"></span>`fn generate_flat_to_capture(ctx: &GeneratorContext<'_>, root: &Item, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](generator/index.md), [`MarkdownCapture`](#markdowncapture), [`Error`](error/index.md)
 
-- `fn generate_flat_recursive_capture(ctx: &GeneratorContext<'_>, item: &Item, prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](generator/index.md), [`MarkdownCapture`](#markdowncapture), [`Error`](error/index.md)
+- <span id="generator-generate-flat-recursive-capture"></span>`fn generate_flat_recursive_capture(ctx: &GeneratorContext<'_>, item: &Item, prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](generator/index.md), [`MarkdownCapture`](#markdowncapture), [`Error`](error/index.md)
 
-- `fn generate_nested_to_capture(ctx: &GeneratorContext<'_>, root: &Item, path_prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](generator/index.md), [`MarkdownCapture`](#markdowncapture), [`Error`](error/index.md)
+- <span id="generator-generate-nested-to-capture"></span>`fn generate_nested_to_capture(ctx: &GeneratorContext<'_>, root: &Item, path_prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](generator/index.md), [`MarkdownCapture`](#markdowncapture), [`Error`](error/index.md)
 
-- `fn run(krate: &'a Crate, args: &'a Args) -> Result<(), Error>` — [`Args`](#args), [`Error`](error/index.md)
+- <span id="generator-run"></span>`fn run(krate: &'a Crate, args: &'a Args) -> Result<(), Error>` — [`Args`](#args), [`Error`](error/index.md)
 
 #### Trait Implementations
 
@@ -82,17 +149,17 @@ generator.generate()?;
 
 ##### `impl<T> Pointable for Generator<'a>`
 
-- `const ALIGN: usize`
+- <span id="generator-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="generator-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="generator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="generator-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="generator-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="generator-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T> WithSubscriber for Generator<'a>`
 
@@ -119,31 +186,31 @@ side effects.
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="markdowncapture-new"></span>`fn new() -> Self`
 
-- `fn insert(self: &mut Self, path: String, content: String)`
+- <span id="markdowncapture-insert"></span>`fn insert(&mut self, path: String, content: String)`
 
-- `fn get(self: &Self, path: &str) -> Option<&String>`
+- <span id="markdowncapture-get"></span>`fn get(&self, path: &str) -> Option<&String>`
 
-- `fn paths(self: &Self) -> Vec<&String>`
+- <span id="markdowncapture-paths"></span>`fn paths(&self) -> Vec<&String>`
 
-- `fn len(self: &Self) -> usize`
+- <span id="markdowncapture-len"></span>`fn len(&self) -> usize`
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="markdowncapture-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn to_snapshot_string(self: &Self) -> String`
+- <span id="markdowncapture-to-snapshot-string"></span>`fn to_snapshot_string(&self) -> String`
 
-- `fn into_inner(self: Self) -> HashMap<String, String>`
+- <span id="markdowncapture-into-inner"></span>`fn into_inner(self) -> HashMap<String, String>`
 
 #### Trait Implementations
 
 ##### `impl Debug for MarkdownCapture`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="markdowncapture-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for MarkdownCapture`
 
-- `fn default() -> MarkdownCapture` — [`MarkdownCapture`](#markdowncapture)
+- <span id="markdowncapture-default"></span>`fn default() -> MarkdownCapture` — [`MarkdownCapture`](#markdowncapture)
 
 ##### `impl<T> Instrument for MarkdownCapture`
 
@@ -153,19 +220,165 @@ side effects.
 
 ##### `impl<T> Pointable for MarkdownCapture`
 
-- `const ALIGN: usize`
+- <span id="markdowncapture-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="markdowncapture-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="markdowncapture-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="markdowncapture-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="markdowncapture-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="markdowncapture-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T> WithSubscriber for MarkdownCapture`
+
+### `RenderConfig`
+
+```rust
+struct RenderConfig {
+    pub toc_threshold: usize,
+    pub quick_reference: bool,
+    pub group_impls: bool,
+    pub hide_trivial_derives: bool,
+    pub method_anchors: bool,
+    pub include_source: SourceConfig,
+}
+```
+
+Configuration options for markdown rendering.
+
+#### Fields
+
+- **`toc_threshold`**: `usize`
+
+  Generate table of contents for modules with more than this many items.
+
+- **`quick_reference`**: `bool`
+
+  Generate quick reference tables at the top of modules.
+
+- **`group_impls`**: `bool`
+
+  Group impl blocks by category (Derive, Conversion, Iterator, etc.).
+
+- **`hide_trivial_derives`**: `bool`
+
+  Hide trivial derive implementations (Clone, Copy, Debug, etc.).
+
+- **`method_anchors`**: `bool`
+
+  Generate method-level anchors for deep linking.
+
+- **`include_source`**: `SourceConfig`
+
+  Source code integration options.
+
+#### Trait Implementations
+
+##### `impl Clone for RenderConfig`
+
+- <span id="renderconfig-clone"></span>`fn clone(&self) -> RenderConfig` — [`RenderConfig`](#renderconfig)
+
+##### `impl Debug for RenderConfig`
+
+- <span id="renderconfig-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl Default for RenderConfig`
+
+- <span id="renderconfig-default"></span>`fn default() -> Self`
+
+##### `impl<T> Instrument for RenderConfig`
+
+##### `impl<T> IntoEither for RenderConfig`
+
+##### `impl<D> OwoColorize for RenderConfig`
+
+##### `impl<T> Pointable for RenderConfig`
+
+- <span id="renderconfig-align"></span>`const ALIGN: usize`
+
+- <span id="renderconfig-init"></span>`type Init = T`
+
+- <span id="renderconfig-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- <span id="renderconfig-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- <span id="renderconfig-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- <span id="renderconfig-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for RenderConfig`
+
+### `SourceConfig`
+
+```rust
+struct SourceConfig {
+    pub function_bodies: bool,
+    pub const_values: bool,
+    pub private_items: bool,
+    pub source_locations: bool,
+}
+```
+
+Configuration for source code integration.
+
+Requires the `source-parsing` feature to have any effect.
+
+#### Fields
+
+- **`function_bodies`**: `bool`
+
+  Include function bodies in collapsible sections.
+
+- **`const_values`**: `bool`
+
+  Show actual values for constants and statics.
+
+- **`private_items`**: `bool`
+
+  Include private items in a separate section.
+
+- **`source_locations`**: `bool`
+
+  Add file:line references to items.
+
+#### Trait Implementations
+
+##### `impl Clone for SourceConfig`
+
+- <span id="sourceconfig-clone"></span>`fn clone(&self) -> SourceConfig` — [`SourceConfig`](#sourceconfig)
+
+##### `impl Debug for SourceConfig`
+
+- <span id="sourceconfig-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl Default for SourceConfig`
+
+- <span id="sourceconfig-default"></span>`fn default() -> Self`
+
+##### `impl<T> Instrument for SourceConfig`
+
+##### `impl<T> IntoEither for SourceConfig`
+
+##### `impl<D> OwoColorize for SourceConfig`
+
+##### `impl<T> Pointable for SourceConfig`
+
+- <span id="sourceconfig-align"></span>`const ALIGN: usize`
+
+- <span id="sourceconfig-init"></span>`type Init = T`
+
+- <span id="sourceconfig-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- <span id="sourceconfig-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- <span id="sourceconfig-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- <span id="sourceconfig-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for SourceConfig`
 
 ### `LinkRegistry`
 
@@ -200,29 +413,29 @@ create links between items.
 
 #### Implementations
 
-- `fn build(krate: &Crate, flat_format: bool, include_private: bool) -> Self`
+- <span id="linkregistry-build"></span>`fn build(krate: &Crate, flat_format: bool, include_private: bool) -> Self`
 
-- `fn register_module_items(self: &mut Self, krate: &Crate, module_id: Id, module_item: &rustdoc_types::Item, path: &str, module_prefix: &str, flat_format: bool, include_private: bool)`
+- <span id="linkregistry-register-module-items"></span>`fn register_module_items(&mut self, krate: &Crate, module_id: Id, module_item: &rustdoc_types::Item, path: &str, module_prefix: &str, flat_format: bool, include_private: bool)`
 
-- `fn register_glob_items(self: &mut Self, krate: &Crate, use_item: &rustdoc_types::Use, path: &str, include_private: bool)`
+- <span id="linkregistry-register-glob-items"></span>`fn register_glob_items(&mut self, krate: &Crate, use_item: &rustdoc_types::Use, path: &str, include_private: bool)`
 
-- `fn get_path(self: &Self, id: Id) -> Option<&String>`
+- <span id="linkregistry-get-path"></span>`fn get_path(&self, id: Id) -> Option<&String>`
 
-- `fn get_name(self: &Self, id: Id) -> Option<&String>`
+- <span id="linkregistry-get-name"></span>`fn get_name(&self, id: Id) -> Option<&String>`
 
-- `fn create_link(self: &Self, id: Id, from_path: &str) -> Option<String>`
+- <span id="linkregistry-create-link"></span>`fn create_link(&self, id: Id, from_path: &str) -> Option<String>`
 
-- `fn compute_relative_path(from: &str, to: &str) -> String`
+- <span id="linkregistry-compute-relative-path"></span>`fn compute_relative_path(from: &str, to: &str) -> String`
 
 #### Trait Implementations
 
 ##### `impl Debug for LinkRegistry`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="linkregistry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for LinkRegistry`
 
-- `fn default() -> LinkRegistry` — [`LinkRegistry`](#linkregistry)
+- <span id="linkregistry-default"></span>`fn default() -> LinkRegistry` — [`LinkRegistry`](#linkregistry)
 
 ##### `impl<T> Instrument for LinkRegistry`
 
@@ -232,17 +445,17 @@ create links between items.
 
 ##### `impl<T> Pointable for LinkRegistry`
 
-- `const ALIGN: usize`
+- <span id="linkregistry-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="linkregistry-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="linkregistry-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="linkregistry-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="linkregistry-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="linkregistry-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T> WithSubscriber for LinkRegistry`
 
@@ -283,33 +496,33 @@ for (name, krate) in collection.iter() {
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="cratecollection-new"></span>`fn new() -> Self`
 
-- `fn insert(self: &mut Self, name: String, krate: Crate) -> Option<Crate>`
+- <span id="cratecollection-insert"></span>`fn insert(&mut self, name: String, krate: Crate) -> Option<Crate>`
 
-- `fn get(self: &Self, name: &str) -> Option<&Crate>`
+- <span id="cratecollection-get"></span>`fn get(&self, name: &str) -> Option<&Crate>`
 
-- `fn get_with_name(self: &Self, name: &str) -> Option<(&str, &Crate)>`
+- <span id="cratecollection-get-with-name"></span>`fn get_with_name(&self, name: &str) -> Option<(&str, &Crate)>`
 
-- `fn contains(self: &Self, name: &str) -> bool`
+- <span id="cratecollection-contains"></span>`fn contains(&self, name: &str) -> bool`
 
-- `fn iter(self: &Self) -> impl Iterator<Item = (&String, &Crate)>`
+- <span id="cratecollection-iter"></span>`fn iter(&self) -> impl Iterator<Item = (&String, &Crate)>`
 
-- `fn len(self: &Self) -> usize`
+- <span id="cratecollection-len"></span>`fn len(&self) -> usize`
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="cratecollection-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn names(self: &Self) -> Vec<&String>`
+- <span id="cratecollection-names"></span>`fn names(&self) -> Vec<&String>`
 
 #### Trait Implementations
 
 ##### `impl Debug for CrateCollection`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="cratecollection-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for CrateCollection`
 
-- `fn default() -> CrateCollection` — [`CrateCollection`](#cratecollection)
+- <span id="cratecollection-default"></span>`fn default() -> CrateCollection` — [`CrateCollection`](#cratecollection)
 
 ##### `impl<T> Instrument for CrateCollection`
 
@@ -319,17 +532,17 @@ for (name, krate) in collection.iter() {
 
 ##### `impl<T> Pointable for CrateCollection`
 
-- `const ALIGN: usize`
+- <span id="cratecollection-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="cratecollection-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="cratecollection-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="cratecollection-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="cratecollection-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="cratecollection-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T> WithSubscriber for CrateCollection`
 
@@ -340,6 +553,7 @@ struct MultiCrateContext<'a> {
     crates: &'a crate::multi_crate::CrateCollection,
     registry: crate::multi_crate::UnifiedLinkRegistry,
     args: &'a crate::Args,
+    config: crate::generator::config::RenderConfig,
     cross_crate_impls: std::collections::HashMap<String, std::collections::HashMap<String, Vec<&'a rustdoc_types::Impl>>>,
 }
 ```
@@ -365,6 +579,10 @@ generation across crates.
 
   CLI arguments.
 
+- **`config`**: `crate::generator::config::RenderConfig`
+
+  Rendering configuration options.
+
 - **`cross_crate_impls`**: `std::collections::HashMap<String, std::collections::HashMap<String, Vec<&'a rustdoc_types::Impl>>>`
 
   Pre-computed cross-crate impl blocks.
@@ -374,23 +592,23 @@ generation across crates.
 
 #### Implementations
 
-- `fn new(crates: &'a CrateCollection, args: &'a Args) -> Self` — [`CrateCollection`](#cratecollection), [`Args`](#args)
+- <span id="multicratecontext-new"></span>`fn new(crates: &'a CrateCollection, args: &'a Args, config: RenderConfig) -> Self` — [`CrateCollection`](#cratecollection), [`Args`](#args), [`RenderConfig`](#renderconfig)
 
-- `fn build_cross_crate_impls(crates: &'a CrateCollection) -> HashMap<String, HashMap<String, Vec<&'a Impl>>>` — [`CrateCollection`](#cratecollection)
+- <span id="multicratecontext-build-cross-crate-impls"></span>`fn build_cross_crate_impls(crates: &'a CrateCollection) -> HashMap<String, HashMap<String, Vec<&'a Impl>>>` — [`CrateCollection`](#cratecollection)
 
-- `const fn crates(self: &Self) -> &CrateCollection` — [`CrateCollection`](#cratecollection)
+- <span id="multicratecontext-crates"></span>`const fn crates(&self) -> &CrateCollection` — [`CrateCollection`](#cratecollection)
 
-- `const fn registry(self: &Self) -> &UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](#unifiedlinkregistry)
+- <span id="multicratecontext-registry"></span>`const fn registry(&self) -> &UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](#unifiedlinkregistry)
 
-- `const fn args(self: &Self) -> &Args` — [`Args`](#args)
+- <span id="multicratecontext-args"></span>`const fn args(&self) -> &Args` — [`Args`](#args)
 
-- `fn single_crate_view(self: &'a Self, crate_name: &str) -> Option<SingleCrateView<'a>>` — [`SingleCrateView`](multi_crate/index.md)
+- <span id="multicratecontext-single-crate-view"></span>`fn single_crate_view(self: &'a Self, crate_name: &str) -> Option<SingleCrateView<'a>>` — [`SingleCrateView`](multi_crate/index.md)
 
-- `fn find_item(self: &Self, id: &Id) -> Option<(&str, &Item)>`
+- <span id="multicratecontext-find-item"></span>`fn find_item(&self, id: &Id) -> Option<(&str, &Item)>`
 
-- `fn get_cross_crate_impls(self: &Self, target_crate: &str) -> Option<&HashMap<String, Vec<&'a Impl>>>`
+- <span id="multicratecontext-get-cross-crate-impls"></span>`fn get_cross_crate_impls(&self, target_crate: &str) -> Option<&HashMap<String, Vec<&'a Impl>>>`
 
-- `fn get_impl_target_path(impl_block: &Impl) -> Option<String>`
+- <span id="multicratecontext-get-impl-target-path"></span>`fn get_impl_target_path(impl_block: &Impl) -> Option<String>`
 
 #### Trait Implementations
 
@@ -402,17 +620,17 @@ generation across crates.
 
 ##### `impl<T> Pointable for MultiCrateContext<'a>`
 
-- `const ALIGN: usize`
+- <span id="multicratecontext-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="multicratecontext-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="multicratecontext-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="multicratecontext-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="multicratecontext-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="multicratecontext-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T> WithSubscriber for MultiCrateContext<'a>`
 
@@ -457,21 +675,21 @@ output/
 
 #### Implementations
 
-- `fn new(crates: &'a CrateCollection, args: &'a Args) -> Self` — [`CrateCollection`](#cratecollection), [`Args`](#args)
+- <span id="multicrategenerator-new"></span>`fn new(crates: &'a CrateCollection, args: &'a Args, config: RenderConfig) -> Self` — [`CrateCollection`](#cratecollection), [`Args`](#args), [`RenderConfig`](#renderconfig)
 
-- `fn generate(self: &Self) -> Result<(), Error>` — [`Error`](error/index.md)
+- <span id="multicrategenerator-generate"></span>`fn generate(&self) -> Result<(), Error>` — [`Error`](error/index.md)
 
-- `fn collect_rendered_items(self: &Self) -> HashMap<String, HashSet<Id>>`
+- <span id="multicrategenerator-collect-rendered-items"></span>`fn collect_rendered_items(&self) -> HashMap<String, HashSet<Id>>`
 
-- `fn collect_crate_items(view: &SingleCrateView<'_>, ids: &mut HashSet<Id>)` — [`SingleCrateView`](multi_crate/index.md)
+- <span id="multicrategenerator-collect-crate-items"></span>`fn collect_crate_items(view: &SingleCrateView<'_>, ids: &mut HashSet<Id>)` — [`SingleCrateView`](multi_crate/index.md)
 
-- `fn collect_module_items(view: &SingleCrateView<'_>, item: &Item, ids: &mut HashSet<Id>)` — [`SingleCrateView`](multi_crate/index.md)
+- <span id="multicrategenerator-collect-module-items"></span>`fn collect_module_items(view: &SingleCrateView<'_>, item: &Item, ids: &mut HashSet<Id>)` — [`SingleCrateView`](multi_crate/index.md)
 
-- `fn generate_crate(self: &Self, view: &SingleCrateView<'_>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](multi_crate/index.md), [`Error`](error/index.md)
+- <span id="multicrategenerator-generate-crate"></span>`fn generate_crate(&self, view: &SingleCrateView<'_>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](multi_crate/index.md), [`Error`](error/index.md)
 
-- `fn generate_module(view: &SingleCrateView<'_>, item: &Item, parent_dir: &Path, module_path: Vec<String>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](multi_crate/index.md), [`Error`](error/index.md)
+- <span id="multicrategenerator-generate-module"></span>`fn generate_module(view: &SingleCrateView<'_>, item: &Item, parent_dir: &Path, module_path: Vec<String>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](multi_crate/index.md), [`Error`](error/index.md)
 
-- `fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](error/index.md)
+- <span id="multicrategenerator-create-progress-bar"></span>`fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](error/index.md)
 
 #### Trait Implementations
 
@@ -483,17 +701,17 @@ output/
 
 ##### `impl<T> Pointable for MultiCrateGenerator<'a>`
 
-- `const ALIGN: usize`
+- <span id="multicrategenerator-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="multicrategenerator-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="multicrategenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="multicrategenerator-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="multicrategenerator-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="multicrategenerator-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T> WithSubscriber for MultiCrateGenerator<'a>`
 
@@ -517,9 +735,9 @@ println!("Found {} crates", crates.len());
 
 #### Implementations
 
-- `fn parse_directory(dir: &Path) -> Result<CrateCollection, Error>` — [`CrateCollection`](#cratecollection), [`Error`](error/index.md)
+- <span id="multicrateparser-parse-directory"></span>`fn parse_directory(dir: &Path) -> Result<CrateCollection, Error>` — [`CrateCollection`](#cratecollection), [`Error`](error/index.md)
 
-- `fn extract_crate_name(krate: &rustdoc_types::Crate, path: &Path) -> Result<String, Error>` — [`Error`](error/index.md)
+- <span id="multicrateparser-extract-crate-name"></span>`fn extract_crate_name(krate: &rustdoc_types::Crate, path: &Path) -> Result<String, Error>` — [`Error`](error/index.md)
 
 #### Trait Implementations
 
@@ -531,17 +749,17 @@ println!("Found {} crates", crates.len());
 
 ##### `impl<T> Pointable for MultiCrateParser`
 
-- `const ALIGN: usize`
+- <span id="multicrateparser-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="multicrateparser-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="multicrateparser-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="multicrateparser-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="multicrateparser-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="multicrateparser-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T> WithSubscriber for MultiCrateParser`
 
@@ -567,7 +785,7 @@ Serialized to `search_index.json` for client-side consumption.
 
 ##### `impl Debug for SearchIndex`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="searchindex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> Instrument for SearchIndex`
 
@@ -577,21 +795,21 @@ Serialized to `search_index.json` for client-side consumption.
 
 ##### `impl<T> Pointable for SearchIndex`
 
-- `const ALIGN: usize`
+- <span id="searchindex-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="searchindex-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="searchindex-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="searchindex-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="searchindex-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="searchindex-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl Serialize for SearchIndex`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="searchindex-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl<T> WithSubscriber for SearchIndex`
 
@@ -641,17 +859,17 @@ generator.write(Path::new("generated_docs/"))?;
 
 #### Implementations
 
-- `const fn new(crates: &'a CrateCollection, include_private: bool, rendered_items: HashMap<String, HashSet<Id>>) -> Self` — [`CrateCollection`](#cratecollection)
+- <span id="searchindexgenerator-new"></span>`const fn new(crates: &'a CrateCollection, include_private: bool, rendered_items: HashMap<String, HashSet<Id>>) -> Self` — [`CrateCollection`](#cratecollection)
 
-- `fn generate(self: &Self) -> SearchIndex` — [`SearchIndex`](#searchindex)
+- <span id="searchindexgenerator-generate"></span>`fn generate(&self) -> SearchIndex` — [`SearchIndex`](#searchindex)
 
-- `fn write(self: &Self, output_dir: &Path) -> std::io::Result<()>`
+- <span id="searchindexgenerator-write"></span>`fn write(&self, output_dir: &Path) -> std::io::Result<()>`
 
-- `fn index_crate(self: &Self, items: &mut Vec<SearchEntry>, crate_name: &str, krate: &Crate)` — [`SearchEntry`](multi_crate/search/index.md)
+- <span id="searchindexgenerator-index-crate"></span>`fn index_crate(&self, items: &mut Vec<SearchEntry>, crate_name: &str, krate: &Crate)` — [`SearchEntry`](multi_crate/search/index.md)
 
-- `fn build_path_map(krate: &Crate) -> HashMap<Id, String>`
+- <span id="searchindexgenerator-build-path-map"></span>`fn build_path_map(krate: &Crate) -> HashMap<Id, String>`
 
-- `fn compute_file_path(crate_name: &str, module_path: &str, kind: &str) -> String`
+- <span id="searchindexgenerator-compute-file-path"></span>`fn compute_file_path(crate_name: &str, module_path: &str, kind: &str) -> String`
 
 #### Trait Implementations
 
@@ -663,17 +881,17 @@ generator.write(Path::new("generated_docs/"))?;
 
 ##### `impl<T> Pointable for SearchIndexGenerator<'a>`
 
-- `const ALIGN: usize`
+- <span id="searchindexgenerator-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="searchindexgenerator-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="searchindexgenerator-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="searchindexgenerator-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="searchindexgenerator-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="searchindexgenerator-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T> WithSubscriber for SearchIndexGenerator<'a>`
 
@@ -747,51 +965,51 @@ This avoids allocating a `String` for the crate name on every lookup.
 
 #### Implementations
 
-- `fn build(crates: &CrateCollection, primary_crate: Option<&str>) -> Self` — [`CrateCollection`](#cratecollection)
+- <span id="unifiedlinkregistry-build"></span>`fn build(crates: &CrateCollection, primary_crate: Option<&str>) -> Self` — [`CrateCollection`](#cratecollection)
 
-- `fn register_crate(self: &mut Self, crate_name: &str, krate: &Crate)`
+- <span id="unifiedlinkregistry-register-crate"></span>`fn register_crate(&mut self, crate_name: &str, krate: &Crate)`
 
-- `fn register_from_paths(self: &mut Self, crate_name: &str, krate: &Crate)`
+- <span id="unifiedlinkregistry-register-from-paths"></span>`fn register_from_paths(&mut self, crate_name: &str, krate: &Crate)`
 
-- `fn item_enum_to_kind(inner: &ItemEnum) -> ItemKind`
+- <span id="unifiedlinkregistry-item-enum-to-kind"></span>`const fn item_enum_to_kind(inner: &ItemEnum) -> ItemKind`
 
-- `fn register_item_recursive(self: &mut Self, krate: &Crate, crate_name: &str, item_id: Id, item: &rustdoc_types::Item, parent_path: &str)`
+- <span id="unifiedlinkregistry-register-item-recursive"></span>`fn register_item_recursive(&mut self, krate: &Crate, crate_name: &str, item_id: Id, item: &rustdoc_types::Item, parent_path: &str)`
 
-- `fn register_item(self: &mut Self, crate_name: &str, id: Id, name: &str, path: &str, kind: ItemKind)`
+- <span id="unifiedlinkregistry-register-item"></span>`fn register_item(&mut self, crate_name: &str, id: Id, name: &str, path: &str, kind: ItemKind)`
 
-- `fn get_path(self: &Self, crate_name: &str, id: Id) -> Option<&compact_str::CompactString>`
+- <span id="unifiedlinkregistry-get-path"></span>`fn get_path(&self, crate_name: &str, id: Id) -> Option<&compact_str::CompactString>`
 
-- `fn get_name(self: &Self, crate_name: &str, id: Id) -> Option<&compact_str::CompactString>`
+- <span id="unifiedlinkregistry-get-name"></span>`fn get_name(&self, crate_name: &str, id: Id) -> Option<&compact_str::CompactString>`
 
-- `fn get_re_export_source(self: &Self, crate_name: &str, id: Id) -> Option<&compact_str::CompactString>`
+- <span id="unifiedlinkregistry-get-re-export-source"></span>`fn get_re_export_source(&self, crate_name: &str, id: Id) -> Option<&compact_str::CompactString>`
 
-- `fn resolve_reexport(self: &Self, crate_name: &str, id: Id) -> Option<(compact_str::CompactString, Id)>`
+- <span id="unifiedlinkregistry-resolve-reexport"></span>`fn resolve_reexport(&self, crate_name: &str, id: Id) -> Option<(compact_str::CompactString, Id)>`
 
-- `fn resolve_name(self: &Self, name: &str, current_crate: &str) -> Option<(compact_str::CompactString, Id)>`
+- <span id="unifiedlinkregistry-resolve-name"></span>`fn resolve_name(&self, name: &str, current_crate: &str) -> Option<(compact_str::CompactString, Id)>`
 
-- `fn resolve_path(self: &Self, path: &str) -> Option<(compact_str::CompactString, Id)>`
+- <span id="unifiedlinkregistry-resolve-path"></span>`fn resolve_path(&self, path: &str) -> Option<(compact_str::CompactString, Id)>`
 
-- `fn create_link(self: &Self, from_crate: &str, from_path: &str, to_crate: &str, to_id: Id) -> Option<String>`
+- <span id="unifiedlinkregistry-create-link"></span>`fn create_link(&self, from_crate: &str, from_path: &str, to_crate: &str, to_id: Id) -> Option<String>`
 
-- `fn compute_cross_crate_path(from: &str, to: &str) -> String`
+- <span id="unifiedlinkregistry-compute-cross-crate-path"></span>`fn compute_cross_crate_path(from: &str, to: &str) -> String`
 
-- `fn get_anchor(self: &Self, crate_name: &str, id: Id) -> Option<String>`
+- <span id="unifiedlinkregistry-get-anchor"></span>`fn get_anchor(&self, crate_name: &str, id: Id) -> Option<String>`
 
-- `fn contains(self: &Self, crate_name: &str, id: Id) -> bool`
+- <span id="unifiedlinkregistry-contains"></span>`fn contains(&self, crate_name: &str, id: Id) -> bool`
 
-- `fn len(self: &Self) -> usize`
+- <span id="unifiedlinkregistry-len"></span>`fn len(&self) -> usize`
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="unifiedlinkregistry-is-empty"></span>`fn is_empty(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Debug for UnifiedLinkRegistry`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="unifiedlinkregistry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for UnifiedLinkRegistry`
 
-- `fn default() -> UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](#unifiedlinkregistry)
+- <span id="unifiedlinkregistry-default"></span>`fn default() -> UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](#unifiedlinkregistry)
 
 ##### `impl<T> Instrument for UnifiedLinkRegistry`
 
@@ -801,17 +1019,17 @@ This avoids allocating a `String` for the crate name on every lookup.
 
 ##### `impl<T> Pointable for UnifiedLinkRegistry`
 
-- `const ALIGN: usize`
+- <span id="unifiedlinkregistry-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="unifiedlinkregistry-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="unifiedlinkregistry-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="unifiedlinkregistry-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="unifiedlinkregistry-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="unifiedlinkregistry-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T> WithSubscriber for UnifiedLinkRegistry`
 
@@ -840,31 +1058,31 @@ Top-level CLI for docs-md.
 
 ##### `impl Args for Cli`
 
-- `fn group_id() -> Option<clap::Id>`
+- <span id="cli-group-id"></span>`fn group_id() -> Option<clap::Id>`
 
-- `fn augment_args<'b>(__clap_app: clap::Command) -> clap::Command`
+- <span id="cli-augment-args"></span>`fn augment_args<'b>(__clap_app: clap::Command) -> clap::Command`
 
-- `fn augment_args_for_update<'b>(__clap_app: clap::Command) -> clap::Command`
+- <span id="cli-augment-args-for-update"></span>`fn augment_args_for_update<'b>(__clap_app: clap::Command) -> clap::Command`
 
 ##### `impl CommandFactory for Cli`
 
-- `fn command<'b>() -> clap::Command`
+- <span id="cli-command"></span>`fn command<'b>() -> clap::Command`
 
-- `fn command_for_update<'b>() -> clap::Command`
+- <span id="cli-command-for-update"></span>`fn command_for_update<'b>() -> clap::Command`
 
 ##### `impl Debug for Cli`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="cli-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl FromArgMatches for Cli`
 
-- `fn from_arg_matches(__clap_arg_matches: &clap::ArgMatches) -> ::std::result::Result<Self, clap::Error>`
+- <span id="cli-from-arg-matches"></span>`fn from_arg_matches(__clap_arg_matches: &clap::ArgMatches) -> ::std::result::Result<Self, clap::Error>`
 
-- `fn from_arg_matches_mut(__clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<Self, clap::Error>`
+- <span id="cli-from-arg-matches-mut"></span>`fn from_arg_matches_mut(__clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<Self, clap::Error>`
 
-- `fn update_from_arg_matches(self: &mut Self, __clap_arg_matches: &clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
+- <span id="cli-update-from-arg-matches"></span>`fn update_from_arg_matches(&mut self, __clap_arg_matches: &clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
 
-- `fn update_from_arg_matches_mut(self: &mut Self, __clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
+- <span id="cli-update-from-arg-matches-mut"></span>`fn update_from_arg_matches_mut(&mut self, __clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
 
 ##### `impl<T> Instrument for Cli`
 
@@ -876,17 +1094,17 @@ Top-level CLI for docs-md.
 
 ##### `impl<T> Pointable for Cli`
 
-- `const ALIGN: usize`
+- <span id="cli-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="cli-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="cli-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="cli-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="cli-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="cli-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T> WithSubscriber for Cli`
 
@@ -959,31 +1177,31 @@ Arguments for the `docs` subcommand (build + generate).
 
 ##### `impl Args for DocsArgs`
 
-- `fn group_id() -> Option<clap::Id>`
+- <span id="docsargs-group-id"></span>`fn group_id() -> Option<clap::Id>`
 
-- `fn augment_args<'b>(__clap_app: clap::Command) -> clap::Command`
+- <span id="docsargs-augment-args"></span>`fn augment_args<'b>(__clap_app: clap::Command) -> clap::Command`
 
-- `fn augment_args_for_update<'b>(__clap_app: clap::Command) -> clap::Command`
+- <span id="docsargs-augment-args-for-update"></span>`fn augment_args_for_update<'b>(__clap_app: clap::Command) -> clap::Command`
 
 ##### `impl CommandFactory for DocsArgs`
 
-- `fn command<'b>() -> clap::Command`
+- <span id="docsargs-command"></span>`fn command<'b>() -> clap::Command`
 
-- `fn command_for_update<'b>() -> clap::Command`
+- <span id="docsargs-command-for-update"></span>`fn command_for_update<'b>() -> clap::Command`
 
 ##### `impl Debug for DocsArgs`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="docsargs-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl FromArgMatches for DocsArgs`
 
-- `fn from_arg_matches(__clap_arg_matches: &clap::ArgMatches) -> ::std::result::Result<Self, clap::Error>`
+- <span id="docsargs-from-arg-matches"></span>`fn from_arg_matches(__clap_arg_matches: &clap::ArgMatches) -> ::std::result::Result<Self, clap::Error>`
 
-- `fn from_arg_matches_mut(__clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<Self, clap::Error>`
+- <span id="docsargs-from-arg-matches-mut"></span>`fn from_arg_matches_mut(__clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<Self, clap::Error>`
 
-- `fn update_from_arg_matches(self: &mut Self, __clap_arg_matches: &clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
+- <span id="docsargs-update-from-arg-matches"></span>`fn update_from_arg_matches(&mut self, __clap_arg_matches: &clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
 
-- `fn update_from_arg_matches_mut(self: &mut Self, __clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
+- <span id="docsargs-update-from-arg-matches-mut"></span>`fn update_from_arg_matches_mut(&mut self, __clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
 
 ##### `impl<T> Instrument for DocsArgs`
 
@@ -995,17 +1213,17 @@ Arguments for the `docs` subcommand (build + generate).
 
 ##### `impl<T> Pointable for DocsArgs`
 
-- `const ALIGN: usize`
+- <span id="docsargs-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="docsargs-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="docsargs-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="docsargs-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="docsargs-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="docsargs-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T> WithSubscriber for DocsArgs`
 
@@ -1115,35 +1333,35 @@ The tool accepts input from two mutually exclusive sources:
 
 ##### `impl Args for GenerateArgs`
 
-- `fn group_id() -> Option<clap::Id>`
+- <span id="generateargs-group-id"></span>`fn group_id() -> Option<clap::Id>`
 
-- `fn augment_args<'b>(__clap_app: clap::Command) -> clap::Command`
+- <span id="generateargs-augment-args"></span>`fn augment_args<'b>(__clap_app: clap::Command) -> clap::Command`
 
-- `fn augment_args_for_update<'b>(__clap_app: clap::Command) -> clap::Command`
+- <span id="generateargs-augment-args-for-update"></span>`fn augment_args_for_update<'b>(__clap_app: clap::Command) -> clap::Command`
 
 ##### `impl CommandFactory for GenerateArgs`
 
-- `fn command<'b>() -> clap::Command`
+- <span id="generateargs-command"></span>`fn command<'b>() -> clap::Command`
 
-- `fn command_for_update<'b>() -> clap::Command`
+- <span id="generateargs-command-for-update"></span>`fn command_for_update<'b>() -> clap::Command`
 
 ##### `impl Debug for GenerateArgs`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="generateargs-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for GenerateArgs`
 
-- `fn default() -> GenerateArgs` — [`GenerateArgs`](#generateargs)
+- <span id="generateargs-default"></span>`fn default() -> GenerateArgs` — [`GenerateArgs`](#generateargs)
 
 ##### `impl FromArgMatches for GenerateArgs`
 
-- `fn from_arg_matches(__clap_arg_matches: &clap::ArgMatches) -> ::std::result::Result<Self, clap::Error>`
+- <span id="generateargs-from-arg-matches"></span>`fn from_arg_matches(__clap_arg_matches: &clap::ArgMatches) -> ::std::result::Result<Self, clap::Error>`
 
-- `fn from_arg_matches_mut(__clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<Self, clap::Error>`
+- <span id="generateargs-from-arg-matches-mut"></span>`fn from_arg_matches_mut(__clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<Self, clap::Error>`
 
-- `fn update_from_arg_matches(self: &mut Self, __clap_arg_matches: &clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
+- <span id="generateargs-update-from-arg-matches"></span>`fn update_from_arg_matches(&mut self, __clap_arg_matches: &clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
 
-- `fn update_from_arg_matches_mut(self: &mut Self, __clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
+- <span id="generateargs-update-from-arg-matches-mut"></span>`fn update_from_arg_matches_mut(&mut self, __clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
 
 ##### `impl<T> Instrument for GenerateArgs`
 
@@ -1155,17 +1373,17 @@ The tool accepts input from two mutually exclusive sources:
 
 ##### `impl<T> Pointable for GenerateArgs`
 
-- `const ALIGN: usize`
+- <span id="generateargs-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="generateargs-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="generateargs-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="generateargs-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="generateargs-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="generateargs-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T> WithSubscriber for GenerateArgs`
 
@@ -1204,17 +1422,17 @@ Controls how module files are organized in the output directory.
 
 ##### `impl Clone for OutputFormat`
 
-- `fn clone(self: &Self) -> OutputFormat` — [`OutputFormat`](#outputformat)
+- <span id="outputformat-clone"></span>`fn clone(&self) -> OutputFormat` — [`OutputFormat`](#outputformat)
 
 ##### `impl Copy for OutputFormat`
 
 ##### `impl Debug for OutputFormat`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="outputformat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for OutputFormat`
 
-- `fn default() -> OutputFormat` — [`OutputFormat`](#outputformat)
+- <span id="outputformat-default"></span>`fn default() -> OutputFormat` — [`OutputFormat`](#outputformat)
 
 ##### `impl<T> Instrument for OutputFormat`
 
@@ -1224,23 +1442,23 @@ Controls how module files are organized in the output directory.
 
 ##### `impl<T> Pointable for OutputFormat`
 
-- `const ALIGN: usize`
+- <span id="outputformat-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="outputformat-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="outputformat-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="outputformat-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="outputformat-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="outputformat-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl ValueEnum for OutputFormat`
 
-- `fn value_variants<'a>() -> &'a [Self]`
+- <span id="outputformat-value-variants"></span>`fn value_variants<'a>() -> &'a [Self]`
 
-- `fn to_possible_value<'a>(self: &Self) -> ::std::option::Option<clap::builder::PossibleValue>`
+- <span id="outputformat-to-possible-value"></span>`fn to_possible_value<'a>(&self) -> ::std::option::Option<clap::builder::PossibleValue>`
 
 ##### `impl<T> WithSubscriber for OutputFormat`
 
@@ -1267,23 +1485,23 @@ This wrapper handles that by making `docs-md` a subcommand that contains the rea
 
 ##### `impl CommandFactory for Cargo`
 
-- `fn command<'b>() -> clap::Command`
+- <span id="cargo-command"></span>`fn command<'b>() -> clap::Command`
 
-- `fn command_for_update<'b>() -> clap::Command`
+- <span id="cargo-command-for-update"></span>`fn command_for_update<'b>() -> clap::Command`
 
 ##### `impl Debug for Cargo`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="cargo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl FromArgMatches for Cargo`
 
-- `fn from_arg_matches(__clap_arg_matches: &clap::ArgMatches) -> ::std::result::Result<Self, clap::Error>`
+- <span id="cargo-from-arg-matches"></span>`fn from_arg_matches(__clap_arg_matches: &clap::ArgMatches) -> ::std::result::Result<Self, clap::Error>`
 
-- `fn from_arg_matches_mut(__clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<Self, clap::Error>`
+- <span id="cargo-from-arg-matches-mut"></span>`fn from_arg_matches_mut(__clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<Self, clap::Error>`
 
-- `fn update_from_arg_matches(self: &mut Self, __clap_arg_matches: &clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
+- <span id="cargo-update-from-arg-matches"></span>`fn update_from_arg_matches(&mut self, __clap_arg_matches: &clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
 
-- `fn update_from_arg_matches_mut<'b>(self: &mut Self, __clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
+- <span id="cargo-update-from-arg-matches-mut"></span>`fn update_from_arg_matches_mut<'b>(&mut self, __clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
 
 ##### `impl<T> Instrument for Cargo`
 
@@ -1295,25 +1513,25 @@ This wrapper handles that by making `docs-md` a subcommand that contains the rea
 
 ##### `impl<T> Pointable for Cargo`
 
-- `const ALIGN: usize`
+- <span id="cargo-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="cargo-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="cargo-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="cargo-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="cargo-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="cargo-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl Subcommand for Cargo`
 
-- `fn augment_subcommands<'b>(__clap_app: clap::Command) -> clap::Command`
+- <span id="cargo-augment-subcommands"></span>`fn augment_subcommands<'b>(__clap_app: clap::Command) -> clap::Command`
 
-- `fn augment_subcommands_for_update<'b>(__clap_app: clap::Command) -> clap::Command`
+- <span id="cargo-augment-subcommands-for-update"></span>`fn augment_subcommands_for_update<'b>(__clap_app: clap::Command) -> clap::Command`
 
-- `fn has_subcommand(__clap_name: &str) -> bool`
+- <span id="cargo-has-subcommand"></span>`fn has_subcommand(__clap_name: &str) -> bool`
 
 ##### `impl<T> WithSubscriber for Cargo`
 
@@ -1342,17 +1560,17 @@ Available subcommands
 
 ##### `impl Debug for Command`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="command-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl FromArgMatches for Command`
 
-- `fn from_arg_matches(__clap_arg_matches: &clap::ArgMatches) -> ::std::result::Result<Self, clap::Error>`
+- <span id="command-from-arg-matches"></span>`fn from_arg_matches(__clap_arg_matches: &clap::ArgMatches) -> ::std::result::Result<Self, clap::Error>`
 
-- `fn from_arg_matches_mut(__clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<Self, clap::Error>`
+- <span id="command-from-arg-matches-mut"></span>`fn from_arg_matches_mut(__clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<Self, clap::Error>`
 
-- `fn update_from_arg_matches(self: &mut Self, __clap_arg_matches: &clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
+- <span id="command-update-from-arg-matches"></span>`fn update_from_arg_matches(&mut self, __clap_arg_matches: &clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
 
-- `fn update_from_arg_matches_mut<'b>(self: &mut Self, __clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
+- <span id="command-update-from-arg-matches-mut"></span>`fn update_from_arg_matches_mut<'b>(&mut self, __clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
 
 ##### `impl<T> Instrument for Command`
 
@@ -1362,25 +1580,25 @@ Available subcommands
 
 ##### `impl<T> Pointable for Command`
 
-- `const ALIGN: usize`
+- <span id="command-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="command-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="command-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="command-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="command-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="command-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl Subcommand for Command`
 
-- `fn augment_subcommands<'b>(__clap_app: clap::Command) -> clap::Command`
+- <span id="command-augment-subcommands"></span>`fn augment_subcommands<'b>(__clap_app: clap::Command) -> clap::Command`
 
-- `fn augment_subcommands_for_update<'b>(__clap_app: clap::Command) -> clap::Command`
+- <span id="command-augment-subcommands-for-update"></span>`fn augment_subcommands_for_update<'b>(__clap_app: clap::Command) -> clap::Command`
 
-- `fn has_subcommand(__clap_name: &str) -> bool`
+- <span id="command-has-subcommand"></span>`fn has_subcommand(__clap_name: &str) -> bool`
 
 ##### `impl<T> WithSubscriber for Command`
 
@@ -1409,17 +1627,17 @@ CLI-compatible output format enum (for clap `ValueEnum` derive).
 
 ##### `impl Clone for CliOutputFormat`
 
-- `fn clone(self: &Self) -> CliOutputFormat` — [`CliOutputFormat`](#clioutputformat)
+- <span id="clioutputformat-clone"></span>`fn clone(&self) -> CliOutputFormat` — [`CliOutputFormat`](#clioutputformat)
 
 ##### `impl Copy for CliOutputFormat`
 
 ##### `impl Debug for CliOutputFormat`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="clioutputformat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for CliOutputFormat`
 
-- `fn default() -> CliOutputFormat` — [`CliOutputFormat`](#clioutputformat)
+- <span id="clioutputformat-default"></span>`fn default() -> CliOutputFormat` — [`CliOutputFormat`](#clioutputformat)
 
 ##### `impl<T> Instrument for CliOutputFormat`
 
@@ -1429,23 +1647,23 @@ CLI-compatible output format enum (for clap `ValueEnum` derive).
 
 ##### `impl<T> Pointable for CliOutputFormat`
 
-- `const ALIGN: usize`
+- <span id="clioutputformat-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="clioutputformat-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="clioutputformat-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="clioutputformat-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="clioutputformat-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="clioutputformat-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl ValueEnum for CliOutputFormat`
 
-- `fn value_variants<'a>() -> &'a [Self]`
+- <span id="clioutputformat-value-variants"></span>`fn value_variants<'a>() -> &'a [Self]`
 
-- `fn to_possible_value<'a>(self: &Self) -> ::std::option::Option<clap::builder::PossibleValue>`
+- <span id="clioutputformat-to-possible-value"></span>`fn to_possible_value<'a>(&self) -> ::std::option::Option<clap::builder::PossibleValue>`
 
 ##### `impl<T> WithSubscriber for CliOutputFormat`
 

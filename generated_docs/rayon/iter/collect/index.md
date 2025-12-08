@@ -4,6 +4,16 @@
 
 # Module `collect`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`consumer`](#consumer) | mod |  |
+| [`collect_into_vec`](#collect_into_vec) | fn | Collects the results of the exact iterator into the specified vector. |
+| [`special_extend`](#special_extend) | fn | Collects the results of the iterator into the specified vector. |
+| [`unzip_into_vecs`](#unzip_into_vecs) | fn | Unzips the results of the exact iterator into the specified vectors. |
+| [`collect_with_consumer`](#collect_with_consumer) | fn | Create a consumer on the slice of memory we are collecting into. |
+
 ## Modules
 
 - [`consumer`](consumer/index.md) - 

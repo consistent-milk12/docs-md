@@ -16,6 +16,127 @@ increase the number of collisions.
 
 
 
+## Contents
+
+- [Structs](#structs)
+  - [`Crate`](#crate)
+  - [`Target`](#target)
+  - [`TargetFeature`](#targetfeature)
+  - [`ExternalCrate`](#externalcrate)
+  - [`ItemSummary`](#itemsummary)
+  - [`Item`](#item)
+  - [`AttributeRepr`](#attributerepr)
+  - [`Span`](#span)
+  - [`Deprecation`](#deprecation)
+  - [`DynTrait`](#dyntrait)
+  - [`PolyTrait`](#polytrait)
+  - [`Constant`](#constant)
+  - [`AssocItemConstraint`](#associtemconstraint)
+  - [`Id`](#id)
+  - [`Module`](#module)
+  - [`Union`](#union)
+  - [`Struct`](#struct)
+  - [`Enum`](#enum)
+  - [`Variant`](#variant)
+  - [`Discriminant`](#discriminant)
+  - [`FunctionHeader`](#functionheader)
+  - [`Function`](#function)
+  - [`Generics`](#generics)
+  - [`GenericParamDef`](#genericparamdef)
+  - [`Path`](#path)
+  - [`FunctionPointer`](#functionpointer)
+  - [`FunctionSignature`](#functionsignature)
+  - [`Trait`](#trait)
+  - [`TraitAlias`](#traitalias)
+  - [`Impl`](#impl)
+  - [`Use`](#use)
+  - [`ProcMacro`](#procmacro)
+  - [`TypeAlias`](#typealias)
+  - [`Static`](#static)
+  - [`Primitive`](#primitive)
+- [Enums](#enums)
+  - [`Attribute`](#attribute)
+  - [`ReprKind`](#reprkind)
+  - [`Visibility`](#visibility)
+  - [`GenericArgs`](#genericargs)
+  - [`GenericArg`](#genericarg)
+  - [`AssocItemConstraintKind`](#associtemconstraintkind)
+  - [`ItemKind`](#itemkind)
+  - [`ItemEnum`](#itemenum)
+  - [`StructKind`](#structkind)
+  - [`VariantKind`](#variantkind)
+  - [`Abi`](#abi)
+  - [`GenericParamDefKind`](#genericparamdefkind)
+  - [`WherePredicate`](#wherepredicate)
+  - [`GenericBound`](#genericbound)
+  - [`TraitBoundModifier`](#traitboundmodifier)
+  - [`PreciseCapturingArg`](#precisecapturingarg)
+  - [`Term`](#term)
+  - [`Type`](#type)
+  - [`MacroKind`](#macrokind)
+- [Constants](#constants)
+  - [`FORMAT_VERSION`](#format_version)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Crate`](#crate) | struct | The root of the emitted JSON blob. |
+| [`Target`](#target) | struct | Information about a target |
+| [`TargetFeature`](#targetfeature) | struct | Information about a target feature. |
+| [`ExternalCrate`](#externalcrate) | struct | Metadata of a crate, either the same crate on which `rustdoc` was invoked, or its dependency. |
+| [`ItemSummary`](#itemsummary) | struct | Information about an external (not defined in the local crate) [`Item`]. |
+| [`Item`](#item) | struct | Anything that can hold documentation - modules, structs, enums, functions, traits, etc. |
+| [`AttributeRepr`](#attributerepr) | struct | The contents of a `#[repr(...)]` attribute. |
+| [`Span`](#span) | struct | A range of source code. |
+| [`Deprecation`](#deprecation) | struct | Information about the deprecation of an [`Item`]. |
+| [`DynTrait`](#dyntrait) | struct | Dynamic trait object type (`dyn Trait`). |
+| [`PolyTrait`](#polytrait) | struct | A trait and potential HRTBs |
+| [`Constant`](#constant) | struct | A constant. |
+| [`AssocItemConstraint`](#associtemconstraint) | struct | Describes a bound applied to an associated type/constant. |
+| [`Id`](#id) | struct | An opaque identifier for an item. |
+| [`Module`](#module) | struct | A module declaration, e.g. `mod foo;` or `mod foo {}`. |
+| [`Union`](#union) | struct | A `union`. |
+| [`Struct`](#struct) | struct | A `struct`. |
+| [`Enum`](#enum) | struct | An `enum`. |
+| [`Variant`](#variant) | struct | A variant of an enum. |
+| [`Discriminant`](#discriminant) | struct | The value that distinguishes a variant in an [`Enum`] from other variants. |
+| [`FunctionHeader`](#functionheader) | struct | A set of fundamental properties of a function. |
+| [`Function`](#function) | struct | A function declaration (including methods and other associated functions). |
+| [`Generics`](#generics) | struct | Generic parameters accepted by an item and `where` clauses imposed on it and the parameters. |
+| [`GenericParamDef`](#genericparamdef) | struct | One generic parameter accepted by an item. |
+| [`Path`](#path) | struct | A type that has a simple path to it. |
+| [`FunctionPointer`](#functionpointer) | struct | A type that is a function pointer. |
+| [`FunctionSignature`](#functionsignature) | struct | The signature of a function. |
+| [`Trait`](#trait) | struct | A `trait` declaration. |
+| [`TraitAlias`](#traitalias) | struct | A trait alias declaration, e.g. `trait Int = Add + Sub + Mul + Div;` |
+| [`Impl`](#impl) | struct | An `impl` block. |
+| [`Use`](#use) | struct | A `use` statement. |
+| [`ProcMacro`](#procmacro) | struct | A procedural macro. |
+| [`TypeAlias`](#typealias) | struct | A type alias declaration, e.g. `type Pig = std::borrow::Cow<'static, str>;` |
+| [`Static`](#static) | struct | A `static` declaration. |
+| [`Primitive`](#primitive) | struct | A primitive type declaration. |
+| [`Attribute`](#attribute) | enum | An attribute, e.g. `#[repr(C)]` |
+| [`ReprKind`](#reprkind) | enum | The kind of `#[repr]`. |
+| [`Visibility`](#visibility) | enum | Visibility of an [`Item`]. |
+| [`GenericArgs`](#genericargs) | enum | A set of generic arguments provided to a path segment, e.g. |
+| [`GenericArg`](#genericarg) | enum | One argument in a list of generic arguments to a path segment. |
+| [`AssocItemConstraintKind`](#associtemconstraintkind) | enum | The way in which an associate type/constant is bound. |
+| [`ItemKind`](#itemkind) | enum | The fundamental kind of an item. |
+| [`ItemEnum`](#itemenum) | enum | Specific fields of an item. |
+| [`StructKind`](#structkind) | enum | The kind of a [`Struct`] and the data specific to it, i.e. fields. |
+| [`VariantKind`](#variantkind) | enum | The kind of an [`Enum`] [`Variant`] and the data specific to it, i.e. fields. |
+| [`Abi`](#abi) | enum | The ABI (Application Binary Interface) used by a function. |
+| [`GenericParamDefKind`](#genericparamdefkind) | enum | The kind of a [`GenericParamDef`]. |
+| [`WherePredicate`](#wherepredicate) | enum | One `where` clause. |
+| [`GenericBound`](#genericbound) | enum | Either a trait bound or a lifetime bound. |
+| [`TraitBoundModifier`](#traitboundmodifier) | enum | A set of modifiers applied to a trait. |
+| [`PreciseCapturingArg`](#precisecapturingarg) | enum | One precise capturing argument. |
+| [`Term`](#term) | enum | Either a type or a constant, usually stored as the right-hand side of an equation in places like |
+| [`Type`](#type) | enum | A type. |
+| [`MacroKind`](#macrokind) | enum | The way a [`ProcMacro`] is declared to be used. |
+| [`FORMAT_VERSION`](#format_version) | const | The version of JSON output that this crate represents. |
+
 ## Structs
 
 ### `Crate`
@@ -79,15 +200,15 @@ tools to find or link to them.
 
 ##### `impl Clone for Crate`
 
-- `fn clone(self: &Self) -> Crate` — [`Crate`](#crate)
+- <span id="crate-clone"></span>`fn clone(&self) -> Crate` — [`Crate`](#crate)
 
 ##### `impl Debug for Crate`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="crate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for Crate`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="crate-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for Crate`
 
@@ -95,11 +216,11 @@ tools to find or link to them.
 
 ##### `impl PartialEq for Crate`
 
-- `fn eq(self: &Self, other: &Crate) -> bool` — [`Crate`](#crate)
+- <span id="crate-eq"></span>`fn eq(&self, other: &Crate) -> bool` — [`Crate`](#crate)
 
 ##### `impl Serialize for Crate`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="crate-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Crate`
 
@@ -129,15 +250,15 @@ Information about a target
 
 ##### `impl Clone for Target`
 
-- `fn clone(self: &Self) -> Target` — [`Target`](#target)
+- <span id="target-clone"></span>`fn clone(&self) -> Target` — [`Target`](#target)
 
 ##### `impl Debug for Target`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="target-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for Target`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="target-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for Target`
 
@@ -145,11 +266,11 @@ Information about a target
 
 ##### `impl PartialEq for Target`
 
-- `fn eq(self: &Self, other: &Target) -> bool` — [`Target`](#target)
+- <span id="target-eq"></span>`fn eq(&self, other: &Target) -> bool` — [`Target`](#target)
 
 ##### `impl Serialize for Target`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="target-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Target`
 
@@ -217,15 +338,15 @@ context.
 
 ##### `impl Clone for TargetFeature`
 
-- `fn clone(self: &Self) -> TargetFeature` — [`TargetFeature`](#targetfeature)
+- <span id="targetfeature-clone"></span>`fn clone(&self) -> TargetFeature` — [`TargetFeature`](#targetfeature)
 
 ##### `impl Debug for TargetFeature`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="targetfeature-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for TargetFeature`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="targetfeature-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for TargetFeature`
 
@@ -233,11 +354,11 @@ context.
 
 ##### `impl PartialEq for TargetFeature`
 
-- `fn eq(self: &Self, other: &TargetFeature) -> bool` — [`TargetFeature`](#targetfeature)
+- <span id="targetfeature-eq"></span>`fn eq(&self, other: &TargetFeature) -> bool` — [`TargetFeature`](#targetfeature)
 
 ##### `impl Serialize for TargetFeature`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="targetfeature-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for TargetFeature`
 
@@ -280,15 +401,15 @@ Metadata of a crate, either the same crate on which `rustdoc` was invoked, or it
 
 ##### `impl Clone for ExternalCrate`
 
-- `fn clone(self: &Self) -> ExternalCrate` — [`ExternalCrate`](#externalcrate)
+- <span id="externalcrate-clone"></span>`fn clone(&self) -> ExternalCrate` — [`ExternalCrate`](#externalcrate)
 
 ##### `impl Debug for ExternalCrate`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="externalcrate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for ExternalCrate`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="externalcrate-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for ExternalCrate`
 
@@ -296,15 +417,15 @@ Metadata of a crate, either the same crate on which `rustdoc` was invoked, or it
 
 ##### `impl Hash for ExternalCrate`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="externalcrate-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for ExternalCrate`
 
-- `fn eq(self: &Self, other: &ExternalCrate) -> bool` — [`ExternalCrate`](#externalcrate)
+- <span id="externalcrate-eq"></span>`fn eq(&self, other: &ExternalCrate) -> bool` — [`ExternalCrate`](#externalcrate)
 
 ##### `impl Serialize for ExternalCrate`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="externalcrate-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for ExternalCrate`
 
@@ -350,15 +471,15 @@ the actual item definition with all the relevant info.
 
 ##### `impl Clone for ItemSummary`
 
-- `fn clone(self: &Self) -> ItemSummary` — [`ItemSummary`](#itemsummary)
+- <span id="itemsummary-clone"></span>`fn clone(&self) -> ItemSummary` — [`ItemSummary`](#itemsummary)
 
 ##### `impl Debug for ItemSummary`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="itemsummary-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for ItemSummary`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="itemsummary-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for ItemSummary`
 
@@ -366,15 +487,15 @@ the actual item definition with all the relevant info.
 
 ##### `impl Hash for ItemSummary`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="itemsummary-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for ItemSummary`
 
-- `fn eq(self: &Self, other: &ItemSummary) -> bool` — [`ItemSummary`](#itemsummary)
+- <span id="itemsummary-eq"></span>`fn eq(&self, other: &ItemSummary) -> bool` — [`ItemSummary`](#itemsummary)
 
 ##### `impl Serialize for ItemSummary`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="itemsummary-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for ItemSummary`
 
@@ -460,15 +581,15 @@ and leaves kind-specific details (like function args or enum variants) to the `i
 
 ##### `impl Clone for Item`
 
-- `fn clone(self: &Self) -> Item` — [`Item`](#item)
+- <span id="item-clone"></span>`fn clone(&self) -> Item` — [`Item`](#item)
 
 ##### `impl Debug for Item`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="item-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for Item`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="item-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for Item`
 
@@ -476,11 +597,11 @@ and leaves kind-specific details (like function args or enum variants) to the `i
 
 ##### `impl PartialEq for Item`
 
-- `fn eq(self: &Self, other: &Item) -> bool` — [`Item`](#item)
+- <span id="item-eq"></span>`fn eq(&self, other: &Item) -> bool` — [`Item`](#item)
 
 ##### `impl Serialize for Item`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="item-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Item`
 
@@ -523,15 +644,15 @@ Used in [`Attribute::Repr`](#attributerepr).
 
 ##### `impl Clone for AttributeRepr`
 
-- `fn clone(self: &Self) -> AttributeRepr` — [`AttributeRepr`](#attributerepr)
+- <span id="attributerepr-clone"></span>`fn clone(&self) -> AttributeRepr` — [`AttributeRepr`](#attributerepr)
 
 ##### `impl Debug for AttributeRepr`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="attributerepr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for AttributeRepr`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="attributerepr-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for AttributeRepr`
 
@@ -539,11 +660,11 @@ Used in [`Attribute::Repr`](#attributerepr).
 
 ##### `impl PartialEq for AttributeRepr`
 
-- `fn eq(self: &Self, other: &AttributeRepr) -> bool` — [`AttributeRepr`](#attributerepr)
+- <span id="attributerepr-eq"></span>`fn eq(&self, other: &AttributeRepr) -> bool` — [`AttributeRepr`](#attributerepr)
 
 ##### `impl Serialize for AttributeRepr`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="attributerepr-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for AttributeRepr`
 
@@ -577,15 +698,15 @@ A range of source code.
 
 ##### `impl Clone for Span`
 
-- `fn clone(self: &Self) -> Span` — [`Span`](#span)
+- <span id="span-clone"></span>`fn clone(&self) -> Span` — [`Span`](#span)
 
 ##### `impl Debug for Span`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="span-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for Span`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="span-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for Span`
 
@@ -593,15 +714,15 @@ A range of source code.
 
 ##### `impl Hash for Span`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="span-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Span`
 
-- `fn eq(self: &Self, other: &Span) -> bool` — [`Span`](#span)
+- <span id="span-eq"></span>`fn eq(&self, other: &Span) -> bool` — [`Span`](#span)
 
 ##### `impl Serialize for Span`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="span-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Span`
 
@@ -630,15 +751,15 @@ Information about the deprecation of an [`Item`](#item).
 
 ##### `impl Clone for Deprecation`
 
-- `fn clone(self: &Self) -> Deprecation` — [`Deprecation`](#deprecation)
+- <span id="deprecation-clone"></span>`fn clone(&self) -> Deprecation` — [`Deprecation`](#deprecation)
 
 ##### `impl Debug for Deprecation`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="deprecation-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for Deprecation`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="deprecation-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for Deprecation`
 
@@ -646,15 +767,15 @@ Information about the deprecation of an [`Item`](#item).
 
 ##### `impl Hash for Deprecation`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="deprecation-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Deprecation`
 
-- `fn eq(self: &Self, other: &Deprecation) -> bool` — [`Deprecation`](#deprecation)
+- <span id="deprecation-eq"></span>`fn eq(&self, other: &Deprecation) -> bool` — [`Deprecation`](#deprecation)
 
 ##### `impl Serialize for Deprecation`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="deprecation-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Deprecation`
 
@@ -689,15 +810,15 @@ Dynamic trait object type (`dyn Trait`).
 
 ##### `impl Clone for DynTrait`
 
-- `fn clone(self: &Self) -> DynTrait` — [`DynTrait`](#dyntrait)
+- <span id="dyntrait-clone"></span>`fn clone(&self) -> DynTrait` — [`DynTrait`](#dyntrait)
 
 ##### `impl Debug for DynTrait`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dyntrait-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for DynTrait`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="dyntrait-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for DynTrait`
 
@@ -705,15 +826,15 @@ Dynamic trait object type (`dyn Trait`).
 
 ##### `impl Hash for DynTrait`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dyntrait-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for DynTrait`
 
-- `fn eq(self: &Self, other: &DynTrait) -> bool` — [`DynTrait`](#dyntrait)
+- <span id="dyntrait-eq"></span>`fn eq(&self, other: &DynTrait) -> bool` — [`DynTrait`](#dyntrait)
 
 ##### `impl Serialize for DynTrait`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="dyntrait-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for DynTrait`
 
@@ -746,15 +867,15 @@ A trait and potential HRTBs
 
 ##### `impl Clone for PolyTrait`
 
-- `fn clone(self: &Self) -> PolyTrait` — [`PolyTrait`](#polytrait)
+- <span id="polytrait-clone"></span>`fn clone(&self) -> PolyTrait` — [`PolyTrait`](#polytrait)
 
 ##### `impl Debug for PolyTrait`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="polytrait-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for PolyTrait`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="polytrait-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for PolyTrait`
 
@@ -762,15 +883,15 @@ A trait and potential HRTBs
 
 ##### `impl Hash for PolyTrait`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="polytrait-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for PolyTrait`
 
-- `fn eq(self: &Self, other: &PolyTrait) -> bool` — [`PolyTrait`](#polytrait)
+- <span id="polytrait-eq"></span>`fn eq(&self, other: &PolyTrait) -> bool` — [`PolyTrait`](#polytrait)
 
 ##### `impl Serialize for PolyTrait`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="polytrait-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for PolyTrait`
 
@@ -806,15 +927,15 @@ A constant.
 
 ##### `impl Clone for Constant`
 
-- `fn clone(self: &Self) -> Constant` — [`Constant`](#constant)
+- <span id="constant-clone"></span>`fn clone(&self) -> Constant` — [`Constant`](#constant)
 
 ##### `impl Debug for Constant`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="constant-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for Constant`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="constant-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for Constant`
 
@@ -822,15 +943,15 @@ A constant.
 
 ##### `impl Hash for Constant`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="constant-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Constant`
 
-- `fn eq(self: &Self, other: &Constant) -> bool` — [`Constant`](#constant)
+- <span id="constant-eq"></span>`fn eq(&self, other: &Constant) -> bool` — [`Constant`](#constant)
 
 ##### `impl Serialize for Constant`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="constant-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Constant`
 
@@ -870,15 +991,15 @@ IntoIterator<Item = u32, IntoIter: Clone>
 
 ##### `impl Clone for AssocItemConstraint`
 
-- `fn clone(self: &Self) -> AssocItemConstraint` — [`AssocItemConstraint`](#associtemconstraint)
+- <span id="associtemconstraint-clone"></span>`fn clone(&self) -> AssocItemConstraint` — [`AssocItemConstraint`](#associtemconstraint)
 
 ##### `impl Debug for AssocItemConstraint`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="associtemconstraint-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for AssocItemConstraint`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="associtemconstraint-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for AssocItemConstraint`
 
@@ -886,15 +1007,15 @@ IntoIterator<Item = u32, IntoIter: Clone>
 
 ##### `impl Hash for AssocItemConstraint`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="associtemconstraint-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for AssocItemConstraint`
 
-- `fn eq(self: &Self, other: &AssocItemConstraint) -> bool` — [`AssocItemConstraint`](#associtemconstraint)
+- <span id="associtemconstraint-eq"></span>`fn eq(&self, other: &AssocItemConstraint) -> bool` — [`AssocItemConstraint`](#associtemconstraint)
 
 ##### `impl Serialize for AssocItemConstraint`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="associtemconstraint-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for AssocItemConstraint`
 
@@ -920,17 +1041,17 @@ to parse them, or otherwise depend on any implementation details.
 
 ##### `impl Clone for Id`
 
-- `fn clone(self: &Self) -> Id` — [`Id`](#id)
+- <span id="id-clone"></span>`fn clone(&self) -> Id` — [`Id`](#id)
 
 ##### `impl Copy for Id`
 
 ##### `impl Debug for Id`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="id-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for Id`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="id-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for Id`
 
@@ -938,23 +1059,23 @@ to parse them, or otherwise depend on any implementation details.
 
 ##### `impl Hash for Id`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="id-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for Id`
 
-- `fn cmp(self: &Self, other: &Id) -> $crate::cmp::Ordering` — [`Id`](#id)
+- <span id="id-cmp"></span>`fn cmp(&self, other: &Id) -> cmp::Ordering` — [`Id`](#id)
 
 ##### `impl PartialEq for Id`
 
-- `fn eq(self: &Self, other: &Id) -> bool` — [`Id`](#id)
+- <span id="id-eq"></span>`fn eq(&self, other: &Id) -> bool` — [`Id`](#id)
 
 ##### `impl PartialOrd for Id`
 
-- `fn partial_cmp(self: &Self, other: &Id) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Id`](#id)
+- <span id="id-partial-cmp"></span>`fn partial_cmp(&self, other: &Id) -> option::Option<cmp::Ordering>` — [`Id`](#id)
 
 ##### `impl Serialize for Id`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="id-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Id`
 
@@ -992,15 +1113,15 @@ A module declaration, e.g. `mod foo;` or `mod foo {}`.
 
 ##### `impl Clone for Module`
 
-- `fn clone(self: &Self) -> Module` — [`Module`](#module)
+- <span id="module-clone"></span>`fn clone(&self) -> Module` — [`Module`](#module)
 
 ##### `impl Debug for Module`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="module-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for Module`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="module-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for Module`
 
@@ -1008,15 +1129,15 @@ A module declaration, e.g. `mod foo;` or `mod foo {}`.
 
 ##### `impl Hash for Module`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="module-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Module`
 
-- `fn eq(self: &Self, other: &Module) -> bool` — [`Module`](#module)
+- <span id="module-eq"></span>`fn eq(&self, other: &Module) -> bool` — [`Module`](#module)
 
 ##### `impl Serialize for Module`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="module-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Module`
 
@@ -1059,15 +1180,15 @@ A `union`.
 
 ##### `impl Clone for Union`
 
-- `fn clone(self: &Self) -> Union` — [`Union`](#union)
+- <span id="union-clone"></span>`fn clone(&self) -> Union` — [`Union`](#union)
 
 ##### `impl Debug for Union`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="union-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for Union`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="union-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for Union`
 
@@ -1075,15 +1196,15 @@ A `union`.
 
 ##### `impl Hash for Union`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="union-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Union`
 
-- `fn eq(self: &Self, other: &Union) -> bool` — [`Union`](#union)
+- <span id="union-eq"></span>`fn eq(&self, other: &Union) -> bool` — [`Union`](#union)
 
 ##### `impl Serialize for Union`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="union-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Union`
 
@@ -1119,15 +1240,15 @@ A `struct`.
 
 ##### `impl Clone for Struct`
 
-- `fn clone(self: &Self) -> Struct` — [`Struct`](#struct)
+- <span id="struct-clone"></span>`fn clone(&self) -> Struct` — [`Struct`](#struct)
 
 ##### `impl Debug for Struct`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="struct-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for Struct`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="struct-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for Struct`
 
@@ -1135,15 +1256,15 @@ A `struct`.
 
 ##### `impl Hash for Struct`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="struct-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Struct`
 
-- `fn eq(self: &Self, other: &Struct) -> bool` — [`Struct`](#struct)
+- <span id="struct-eq"></span>`fn eq(&self, other: &Struct) -> bool` — [`Struct`](#struct)
 
 ##### `impl Serialize for Struct`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="struct-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Struct`
 
@@ -1184,15 +1305,15 @@ An `enum`.
 
 ##### `impl Clone for Enum`
 
-- `fn clone(self: &Self) -> Enum` — [`Enum`](#enum)
+- <span id="enum-clone"></span>`fn clone(&self) -> Enum` — [`Enum`](#enum)
 
 ##### `impl Debug for Enum`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="enum-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for Enum`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="enum-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for Enum`
 
@@ -1200,15 +1321,15 @@ An `enum`.
 
 ##### `impl Hash for Enum`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="enum-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Enum`
 
-- `fn eq(self: &Self, other: &Enum) -> bool` — [`Enum`](#enum)
+- <span id="enum-eq"></span>`fn eq(&self, other: &Enum) -> bool` — [`Enum`](#enum)
 
 ##### `impl Serialize for Enum`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="enum-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Enum`
 
@@ -1237,15 +1358,15 @@ A variant of an enum.
 
 ##### `impl Clone for Variant`
 
-- `fn clone(self: &Self) -> Variant` — [`Variant`](#variant)
+- <span id="variant-clone"></span>`fn clone(&self) -> Variant` — [`Variant`](#variant)
 
 ##### `impl Debug for Variant`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="variant-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for Variant`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="variant-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for Variant`
 
@@ -1253,15 +1374,15 @@ A variant of an enum.
 
 ##### `impl Hash for Variant`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="variant-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Variant`
 
-- `fn eq(self: &Self, other: &Variant) -> bool` — [`Variant`](#variant)
+- <span id="variant-eq"></span>`fn eq(&self, other: &Variant) -> bool` — [`Variant`](#variant)
 
 ##### `impl Serialize for Variant`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="variant-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Variant`
 
@@ -1299,15 +1420,15 @@ The value that distinguishes a variant in an [`Enum`](#enum) from other variants
 
 ##### `impl Clone for Discriminant`
 
-- `fn clone(self: &Self) -> Discriminant` — [`Discriminant`](#discriminant)
+- <span id="discriminant-clone"></span>`fn clone(&self) -> Discriminant` — [`Discriminant`](#discriminant)
 
 ##### `impl Debug for Discriminant`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="discriminant-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for Discriminant`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="discriminant-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for Discriminant`
 
@@ -1315,15 +1436,15 @@ The value that distinguishes a variant in an [`Enum`](#enum) from other variants
 
 ##### `impl Hash for Discriminant`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="discriminant-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Discriminant`
 
-- `fn eq(self: &Self, other: &Discriminant) -> bool` — [`Discriminant`](#discriminant)
+- <span id="discriminant-eq"></span>`fn eq(&self, other: &Discriminant) -> bool` — [`Discriminant`](#discriminant)
 
 ##### `impl Serialize for Discriminant`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="discriminant-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Discriminant`
 
@@ -1362,15 +1483,15 @@ A set of fundamental properties of a function.
 
 ##### `impl Clone for FunctionHeader`
 
-- `fn clone(self: &Self) -> FunctionHeader` — [`FunctionHeader`](#functionheader)
+- <span id="functionheader-clone"></span>`fn clone(&self) -> FunctionHeader` — [`FunctionHeader`](#functionheader)
 
 ##### `impl Debug for FunctionHeader`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="functionheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for FunctionHeader`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="functionheader-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for FunctionHeader`
 
@@ -1378,15 +1499,15 @@ A set of fundamental properties of a function.
 
 ##### `impl Hash for FunctionHeader`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="functionheader-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for FunctionHeader`
 
-- `fn eq(self: &Self, other: &FunctionHeader) -> bool` — [`FunctionHeader`](#functionheader)
+- <span id="functionheader-eq"></span>`fn eq(&self, other: &FunctionHeader) -> bool` — [`FunctionHeader`](#functionheader)
 
 ##### `impl Serialize for FunctionHeader`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="functionheader-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for FunctionHeader`
 
@@ -1425,15 +1546,15 @@ A function declaration (including methods and other associated functions).
 
 ##### `impl Clone for Function`
 
-- `fn clone(self: &Self) -> Function` — [`Function`](#function)
+- <span id="function-clone"></span>`fn clone(&self) -> Function` — [`Function`](#function)
 
 ##### `impl Debug for Function`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="function-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for Function`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="function-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for Function`
 
@@ -1441,15 +1562,15 @@ A function declaration (including methods and other associated functions).
 
 ##### `impl Hash for Function`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="function-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Function`
 
-- `fn eq(self: &Self, other: &Function) -> bool` — [`Function`](#function)
+- <span id="function-eq"></span>`fn eq(&self, other: &Function) -> bool` — [`Function`](#function)
 
 ##### `impl Serialize for Function`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="function-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Function`
 
@@ -1478,15 +1599,15 @@ Generic parameters accepted by an item and `where` clauses imposed on it and the
 
 ##### `impl Clone for Generics`
 
-- `fn clone(self: &Self) -> Generics` — [`Generics`](#generics)
+- <span id="generics-clone"></span>`fn clone(&self) -> Generics` — [`Generics`](#generics)
 
 ##### `impl Debug for Generics`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="generics-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for Generics`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="generics-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for Generics`
 
@@ -1494,15 +1615,15 @@ Generic parameters accepted by an item and `where` clauses imposed on it and the
 
 ##### `impl Hash for Generics`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="generics-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Generics`
 
-- `fn eq(self: &Self, other: &Generics) -> bool` — [`Generics`](#generics)
+- <span id="generics-eq"></span>`fn eq(&self, other: &Generics) -> bool` — [`Generics`](#generics)
 
 ##### `impl Serialize for Generics`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="generics-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Generics`
 
@@ -1536,15 +1657,15 @@ One generic parameter accepted by an item.
 
 ##### `impl Clone for GenericParamDef`
 
-- `fn clone(self: &Self) -> GenericParamDef` — [`GenericParamDef`](#genericparamdef)
+- <span id="genericparamdef-clone"></span>`fn clone(&self) -> GenericParamDef` — [`GenericParamDef`](#genericparamdef)
 
 ##### `impl Debug for GenericParamDef`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="genericparamdef-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for GenericParamDef`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="genericparamdef-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for GenericParamDef`
 
@@ -1552,15 +1673,15 @@ One generic parameter accepted by an item.
 
 ##### `impl Hash for GenericParamDef`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="genericparamdef-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for GenericParamDef`
 
-- `fn eq(self: &Self, other: &GenericParamDef) -> bool` — [`GenericParamDef`](#genericparamdef)
+- <span id="genericparamdef-eq"></span>`fn eq(&self, other: &GenericParamDef) -> bool` — [`GenericParamDef`](#genericparamdef)
 
 ##### `impl Serialize for GenericParamDef`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="genericparamdef-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for GenericParamDef`
 
@@ -1609,15 +1730,15 @@ A type that has a simple path to it. This is the kind of type of structs, unions
 
 ##### `impl Clone for Path`
 
-- `fn clone(self: &Self) -> Path` — [`Path`](#path)
+- <span id="path-clone"></span>`fn clone(&self) -> Path` — [`Path`](#path)
 
 ##### `impl Debug for Path`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="path-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for Path`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="path-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for Path`
 
@@ -1625,15 +1746,15 @@ A type that has a simple path to it. This is the kind of type of structs, unions
 
 ##### `impl Hash for Path`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="path-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Path`
 
-- `fn eq(self: &Self, other: &Path) -> bool` — [`Path`](#path)
+- <span id="path-eq"></span>`fn eq(&self, other: &Path) -> bool` — [`Path`](#path)
 
 ##### `impl Serialize for Path`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="path-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Path`
 
@@ -1672,15 +1793,15 @@ A type that is a function pointer.
 
 ##### `impl Clone for FunctionPointer`
 
-- `fn clone(self: &Self) -> FunctionPointer` — [`FunctionPointer`](#functionpointer)
+- <span id="functionpointer-clone"></span>`fn clone(&self) -> FunctionPointer` — [`FunctionPointer`](#functionpointer)
 
 ##### `impl Debug for FunctionPointer`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="functionpointer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for FunctionPointer`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="functionpointer-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for FunctionPointer`
 
@@ -1688,15 +1809,15 @@ A type that is a function pointer.
 
 ##### `impl Hash for FunctionPointer`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="functionpointer-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for FunctionPointer`
 
-- `fn eq(self: &Self, other: &FunctionPointer) -> bool` — [`FunctionPointer`](#functionpointer)
+- <span id="functionpointer-eq"></span>`fn eq(&self, other: &FunctionPointer) -> bool` — [`FunctionPointer`](#functionpointer)
 
 ##### `impl Serialize for FunctionPointer`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="functionpointer-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for FunctionPointer`
 
@@ -1737,15 +1858,15 @@ The signature of a function.
 
 ##### `impl Clone for FunctionSignature`
 
-- `fn clone(self: &Self) -> FunctionSignature` — [`FunctionSignature`](#functionsignature)
+- <span id="functionsignature-clone"></span>`fn clone(&self) -> FunctionSignature` — [`FunctionSignature`](#functionsignature)
 
 ##### `impl Debug for FunctionSignature`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="functionsignature-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for FunctionSignature`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="functionsignature-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for FunctionSignature`
 
@@ -1753,15 +1874,15 @@ The signature of a function.
 
 ##### `impl Hash for FunctionSignature`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="functionsignature-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for FunctionSignature`
 
-- `fn eq(self: &Self, other: &FunctionSignature) -> bool` — [`FunctionSignature`](#functionsignature)
+- <span id="functionsignature-eq"></span>`fn eq(&self, other: &FunctionSignature) -> bool` — [`FunctionSignature`](#functionsignature)
 
 ##### `impl Serialize for FunctionSignature`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="functionsignature-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for FunctionSignature`
 
@@ -1818,15 +1939,15 @@ A `trait` declaration.
 
 ##### `impl Clone for Trait`
 
-- `fn clone(self: &Self) -> Trait` — [`Trait`](#trait)
+- <span id="trait-clone"></span>`fn clone(&self) -> Trait` — [`Trait`](#trait)
 
 ##### `impl Debug for Trait`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="trait-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for Trait`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="trait-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for Trait`
 
@@ -1834,15 +1955,15 @@ A `trait` declaration.
 
 ##### `impl Hash for Trait`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="trait-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Trait`
 
-- `fn eq(self: &Self, other: &Trait) -> bool` — [`Trait`](#trait)
+- <span id="trait-eq"></span>`fn eq(&self, other: &Trait) -> bool` — [`Trait`](#trait)
 
 ##### `impl Serialize for Trait`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="trait-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Trait`
 
@@ -1873,15 +1994,15 @@ See [the tracking issue](https://github.com/rust-lang/rust/issues/41517)
 
 ##### `impl Clone for TraitAlias`
 
-- `fn clone(self: &Self) -> TraitAlias` — [`TraitAlias`](#traitalias)
+- <span id="traitalias-clone"></span>`fn clone(&self) -> TraitAlias` — [`TraitAlias`](#traitalias)
 
 ##### `impl Debug for TraitAlias`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="traitalias-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for TraitAlias`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="traitalias-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for TraitAlias`
 
@@ -1889,15 +2010,15 @@ See [the tracking issue](https://github.com/rust-lang/rust/issues/41517)
 
 ##### `impl Hash for TraitAlias`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="traitalias-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for TraitAlias`
 
-- `fn eq(self: &Self, other: &TraitAlias) -> bool` — [`TraitAlias`](#traitalias)
+- <span id="traitalias-eq"></span>`fn eq(&self, other: &TraitAlias) -> bool` — [`TraitAlias`](#traitalias)
 
 ##### `impl Serialize for TraitAlias`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="traitalias-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for TraitAlias`
 
@@ -1970,15 +2091,15 @@ An `impl` block.
 
 ##### `impl Clone for Impl`
 
-- `fn clone(self: &Self) -> Impl` — [`Impl`](#impl)
+- <span id="impl-clone"></span>`fn clone(&self) -> Impl` — [`Impl`](#impl)
 
 ##### `impl Debug for Impl`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="impl-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for Impl`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="impl-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for Impl`
 
@@ -1986,15 +2107,15 @@ An `impl` block.
 
 ##### `impl Hash for Impl`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="impl-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Impl`
 
-- `fn eq(self: &Self, other: &Impl) -> bool` — [`Impl`](#impl)
+- <span id="impl-eq"></span>`fn eq(&self, other: &Impl) -> bool` — [`Impl`](#impl)
 
 ##### `impl Serialize for Impl`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="impl-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Impl`
 
@@ -2037,15 +2158,15 @@ A `use` statement.
 
 ##### `impl Clone for Use`
 
-- `fn clone(self: &Self) -> Use` — [`Use`](#use)
+- <span id="use-clone"></span>`fn clone(&self) -> Use` — [`Use`](#use)
 
 ##### `impl Debug for Use`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="use-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for Use`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="use-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for Use`
 
@@ -2053,15 +2174,15 @@ A `use` statement.
 
 ##### `impl Hash for Use`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="use-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Use`
 
-- `fn eq(self: &Self, other: &Use) -> bool` — [`Use`](#use)
+- <span id="use-eq"></span>`fn eq(&self, other: &Use) -> bool` — [`Use`](#use)
 
 ##### `impl Serialize for Use`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="use-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Use`
 
@@ -2104,15 +2225,15 @@ A procedural macro.
 
 ##### `impl Clone for ProcMacro`
 
-- `fn clone(self: &Self) -> ProcMacro` — [`ProcMacro`](#procmacro)
+- <span id="procmacro-clone"></span>`fn clone(&self) -> ProcMacro` — [`ProcMacro`](#procmacro)
 
 ##### `impl Debug for ProcMacro`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="procmacro-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for ProcMacro`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="procmacro-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for ProcMacro`
 
@@ -2120,15 +2241,15 @@ A procedural macro.
 
 ##### `impl Hash for ProcMacro`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="procmacro-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for ProcMacro`
 
-- `fn eq(self: &Self, other: &ProcMacro) -> bool` — [`ProcMacro`](#procmacro)
+- <span id="procmacro-eq"></span>`fn eq(&self, other: &ProcMacro) -> bool` — [`ProcMacro`](#procmacro)
 
 ##### `impl Serialize for ProcMacro`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="procmacro-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for ProcMacro`
 
@@ -2157,15 +2278,15 @@ A type alias declaration, e.g. `type Pig = std::borrow::Cow<'static, str>;`
 
 ##### `impl Clone for TypeAlias`
 
-- `fn clone(self: &Self) -> TypeAlias` — [`TypeAlias`](#typealias)
+- <span id="typealias-clone"></span>`fn clone(&self) -> TypeAlias` — [`TypeAlias`](#typealias)
 
 ##### `impl Debug for TypeAlias`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="typealias-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for TypeAlias`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="typealias-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for TypeAlias`
 
@@ -2173,15 +2294,15 @@ A type alias declaration, e.g. `type Pig = std::borrow::Cow<'static, str>;`
 
 ##### `impl Hash for TypeAlias`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="typealias-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for TypeAlias`
 
-- `fn eq(self: &Self, other: &TypeAlias) -> bool` — [`TypeAlias`](#typealias)
+- <span id="typealias-eq"></span>`fn eq(&self, other: &TypeAlias) -> bool` — [`TypeAlias`](#typealias)
 
 ##### `impl Serialize for TypeAlias`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="typealias-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for TypeAlias`
 
@@ -2235,15 +2356,15 @@ A `static` declaration.
 
 ##### `impl Clone for Static`
 
-- `fn clone(self: &Self) -> Static` — [`Static`](#static)
+- <span id="static-clone"></span>`fn clone(&self) -> Static` — [`Static`](#static)
 
 ##### `impl Debug for Static`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="static-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for Static`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="static-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for Static`
 
@@ -2251,15 +2372,15 @@ A `static` declaration.
 
 ##### `impl Hash for Static`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="static-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Static`
 
-- `fn eq(self: &Self, other: &Static) -> bool` — [`Static`](#static)
+- <span id="static-eq"></span>`fn eq(&self, other: &Static) -> bool` — [`Static`](#static)
 
 ##### `impl Serialize for Static`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="static-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Static`
 
@@ -2288,15 +2409,15 @@ A primitive type declaration. Declarations of this kind can only come from the c
 
 ##### `impl Clone for Primitive`
 
-- `fn clone(self: &Self) -> Primitive` — [`Primitive`](#primitive)
+- <span id="primitive-clone"></span>`fn clone(&self) -> Primitive` — [`Primitive`](#primitive)
 
 ##### `impl Debug for Primitive`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="primitive-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for Primitive`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="primitive-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for Primitive`
 
@@ -2304,15 +2425,15 @@ A primitive type declaration. Declarations of this kind can only come from the c
 
 ##### `impl Hash for Primitive`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="primitive-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Primitive`
 
-- `fn eq(self: &Self, other: &Primitive) -> bool` — [`Primitive`](#primitive)
+- <span id="primitive-eq"></span>`fn eq(&self, other: &Primitive) -> bool` — [`Primitive`](#primitive)
 
 ##### `impl Serialize for Primitive`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="primitive-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Primitive`
 
@@ -2399,15 +2520,15 @@ This doesn't include:
 
 ##### `impl Clone for Attribute`
 
-- `fn clone(self: &Self) -> Attribute` — [`Attribute`](#attribute)
+- <span id="attribute-clone"></span>`fn clone(&self) -> Attribute` — [`Attribute`](#attribute)
 
 ##### `impl Debug for Attribute`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="attribute-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for Attribute`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="attribute-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for Attribute`
 
@@ -2415,11 +2536,11 @@ This doesn't include:
 
 ##### `impl PartialEq for Attribute`
 
-- `fn eq(self: &Self, other: &Attribute) -> bool` — [`Attribute`](#attribute)
+- <span id="attribute-eq"></span>`fn eq(&self, other: &Attribute) -> bool` — [`Attribute`](#attribute)
 
 ##### `impl Serialize for Attribute`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="attribute-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Attribute`
 
@@ -2462,15 +2583,15 @@ See [AttributeRepr::kind]`.
 
 ##### `impl Clone for ReprKind`
 
-- `fn clone(self: &Self) -> ReprKind` — [`ReprKind`](#reprkind)
+- <span id="reprkind-clone"></span>`fn clone(&self) -> ReprKind` — [`ReprKind`](#reprkind)
 
 ##### `impl Debug for ReprKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="reprkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for ReprKind`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="reprkind-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for ReprKind`
 
@@ -2478,11 +2599,11 @@ See [AttributeRepr::kind]`.
 
 ##### `impl PartialEq for ReprKind`
 
-- `fn eq(self: &Self, other: &ReprKind) -> bool` — [`ReprKind`](#reprkind)
+- <span id="reprkind-eq"></span>`fn eq(&self, other: &ReprKind) -> bool` — [`ReprKind`](#reprkind)
 
 ##### `impl Serialize for ReprKind`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="reprkind-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for ReprKind`
 
@@ -2525,15 +2646,15 @@ Visibility of an [`Item`](#item).
 
 ##### `impl Clone for Visibility`
 
-- `fn clone(self: &Self) -> Visibility` — [`Visibility`](#visibility)
+- <span id="visibility-clone"></span>`fn clone(&self) -> Visibility` — [`Visibility`](#visibility)
 
 ##### `impl Debug for Visibility`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="visibility-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for Visibility`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="visibility-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for Visibility`
 
@@ -2541,15 +2662,15 @@ Visibility of an [`Item`](#item).
 
 ##### `impl Hash for Visibility`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="visibility-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Visibility`
 
-- `fn eq(self: &Self, other: &Visibility) -> bool` — [`Visibility`](#visibility)
+- <span id="visibility-eq"></span>`fn eq(&self, other: &Visibility) -> bool` — [`Visibility`](#visibility)
 
 ##### `impl Serialize for Visibility`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="visibility-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Visibility`
 
@@ -2594,15 +2715,15 @@ std::option::Option<u32>
 
 ##### `impl Clone for GenericArgs`
 
-- `fn clone(self: &Self) -> GenericArgs` — [`GenericArgs`](#genericargs)
+- <span id="genericargs-clone"></span>`fn clone(&self) -> GenericArgs` — [`GenericArgs`](#genericargs)
 
 ##### `impl Debug for GenericArgs`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="genericargs-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for GenericArgs`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="genericargs-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for GenericArgs`
 
@@ -2610,15 +2731,15 @@ std::option::Option<u32>
 
 ##### `impl Hash for GenericArgs`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="genericargs-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for GenericArgs`
 
-- `fn eq(self: &Self, other: &GenericArgs) -> bool` — [`GenericArgs`](#genericargs)
+- <span id="genericargs-eq"></span>`fn eq(&self, other: &GenericArgs) -> bool` — [`GenericArgs`](#genericargs)
 
 ##### `impl Serialize for GenericArgs`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="genericargs-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for GenericArgs`
 
@@ -2675,15 +2796,15 @@ Part of [`GenericArgs`](#genericargs).
 
 ##### `impl Clone for GenericArg`
 
-- `fn clone(self: &Self) -> GenericArg` — [`GenericArg`](#genericarg)
+- <span id="genericarg-clone"></span>`fn clone(&self) -> GenericArg` — [`GenericArg`](#genericarg)
 
 ##### `impl Debug for GenericArg`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="genericarg-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for GenericArg`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="genericarg-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for GenericArg`
 
@@ -2691,15 +2812,15 @@ Part of [`GenericArgs`](#genericargs).
 
 ##### `impl Hash for GenericArg`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="genericarg-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for GenericArg`
 
-- `fn eq(self: &Self, other: &GenericArg) -> bool` — [`GenericArg`](#genericarg)
+- <span id="genericarg-eq"></span>`fn eq(&self, other: &GenericArg) -> bool` — [`GenericArg`](#genericarg)
 
 ##### `impl Serialize for GenericArg`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="genericarg-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for GenericArg`
 
@@ -2736,15 +2857,15 @@ The way in which an associate type/constant is bound.
 
 ##### `impl Clone for AssocItemConstraintKind`
 
-- `fn clone(self: &Self) -> AssocItemConstraintKind` — [`AssocItemConstraintKind`](#associtemconstraintkind)
+- <span id="associtemconstraintkind-clone"></span>`fn clone(&self) -> AssocItemConstraintKind` — [`AssocItemConstraintKind`](#associtemconstraintkind)
 
 ##### `impl Debug for AssocItemConstraintKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="associtemconstraintkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for AssocItemConstraintKind`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="associtemconstraintkind-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for AssocItemConstraintKind`
 
@@ -2752,15 +2873,15 @@ The way in which an associate type/constant is bound.
 
 ##### `impl Hash for AssocItemConstraintKind`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="associtemconstraintkind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for AssocItemConstraintKind`
 
-- `fn eq(self: &Self, other: &AssocItemConstraintKind) -> bool` — [`AssocItemConstraintKind`](#associtemconstraintkind)
+- <span id="associtemconstraintkind-eq"></span>`fn eq(&self, other: &AssocItemConstraintKind) -> bool` — [`AssocItemConstraintKind`](#associtemconstraintkind)
 
 ##### `impl Serialize for AssocItemConstraintKind`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="associtemconstraintkind-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for AssocItemConstraintKind`
 
@@ -2920,17 +3041,17 @@ Part of [`ItemSummary`](#itemsummary).
 
 ##### `impl Clone for ItemKind`
 
-- `fn clone(self: &Self) -> ItemKind` — [`ItemKind`](#itemkind)
+- <span id="itemkind-clone"></span>`fn clone(&self) -> ItemKind` — [`ItemKind`](#itemkind)
 
 ##### `impl Copy for ItemKind`
 
 ##### `impl Debug for ItemKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="itemkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for ItemKind`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="itemkind-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for ItemKind`
 
@@ -2938,15 +3059,15 @@ Part of [`ItemSummary`](#itemsummary).
 
 ##### `impl Hash for ItemKind`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="itemkind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for ItemKind`
 
-- `fn eq(self: &Self, other: &ItemKind) -> bool` — [`ItemKind`](#itemkind)
+- <span id="itemkind-eq"></span>`fn eq(&self, other: &ItemKind) -> bool` — [`ItemKind`](#itemkind)
 
 ##### `impl Serialize for ItemKind`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="itemkind-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for ItemKind`
 
@@ -3092,15 +3213,15 @@ Part of [`Item`](#item).
 
 ##### `impl Clone for ItemEnum`
 
-- `fn clone(self: &Self) -> ItemEnum` — [`ItemEnum`](#itemenum)
+- <span id="itemenum-clone"></span>`fn clone(&self) -> ItemEnum` — [`ItemEnum`](#itemenum)
 
 ##### `impl Debug for ItemEnum`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="itemenum-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for ItemEnum`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="itemenum-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for ItemEnum`
 
@@ -3108,15 +3229,15 @@ Part of [`Item`](#item).
 
 ##### `impl Hash for ItemEnum`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="itemenum-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for ItemEnum`
 
-- `fn eq(self: &Self, other: &ItemEnum) -> bool` — [`ItemEnum`](#itemenum)
+- <span id="itemenum-eq"></span>`fn eq(&self, other: &ItemEnum) -> bool` — [`ItemEnum`](#itemenum)
 
 ##### `impl Serialize for ItemEnum`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="itemenum-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for ItemEnum`
 
@@ -3171,15 +3292,15 @@ The kind of a [`Struct`](#struct) and the data specific to it, i.e. fields.
 
 ##### `impl Clone for StructKind`
 
-- `fn clone(self: &Self) -> StructKind` — [`StructKind`](#structkind)
+- <span id="structkind-clone"></span>`fn clone(&self) -> StructKind` — [`StructKind`](#structkind)
 
 ##### `impl Debug for StructKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="structkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for StructKind`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="structkind-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for StructKind`
 
@@ -3187,15 +3308,15 @@ The kind of a [`Struct`](#struct) and the data specific to it, i.e. fields.
 
 ##### `impl Hash for StructKind`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="structkind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for StructKind`
 
-- `fn eq(self: &Self, other: &StructKind) -> bool` — [`StructKind`](#structkind)
+- <span id="structkind-eq"></span>`fn eq(&self, other: &StructKind) -> bool` — [`StructKind`](#structkind)
 
 ##### `impl Serialize for StructKind`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="structkind-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for StructKind`
 
@@ -3257,15 +3378,15 @@ The kind of an [`Enum`](#enum) [`Variant`](#variant) and the data specific to it
 
 ##### `impl Clone for VariantKind`
 
-- `fn clone(self: &Self) -> VariantKind` — [`VariantKind`](#variantkind)
+- <span id="variantkind-clone"></span>`fn clone(&self) -> VariantKind` — [`VariantKind`](#variantkind)
 
 ##### `impl Debug for VariantKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="variantkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for VariantKind`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="variantkind-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for VariantKind`
 
@@ -3273,15 +3394,15 @@ The kind of an [`Enum`](#enum) [`Variant`](#variant) and the data specific to it
 
 ##### `impl Hash for VariantKind`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="variantkind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for VariantKind`
 
-- `fn eq(self: &Self, other: &VariantKind) -> bool` — [`VariantKind`](#variantkind)
+- <span id="variantkind-eq"></span>`fn eq(&self, other: &VariantKind) -> bool` — [`VariantKind`](#variantkind)
 
 ##### `impl Serialize for VariantKind`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="variantkind-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for VariantKind`
 
@@ -3373,15 +3494,15 @@ on unwinding for more info.
 
 ##### `impl Clone for Abi`
 
-- `fn clone(self: &Self) -> Abi` — [`Abi`](#abi)
+- <span id="abi-clone"></span>`fn clone(&self) -> Abi` — [`Abi`](#abi)
 
 ##### `impl Debug for Abi`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="abi-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for Abi`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="abi-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for Abi`
 
@@ -3389,15 +3510,15 @@ on unwinding for more info.
 
 ##### `impl Hash for Abi`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="abi-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Abi`
 
-- `fn eq(self: &Self, other: &Abi) -> bool` — [`Abi`](#abi)
+- <span id="abi-eq"></span>`fn eq(&self, other: &Abi) -> bool` — [`Abi`](#abi)
 
 ##### `impl Serialize for Abi`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="abi-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Abi`
 
@@ -3440,15 +3561,15 @@ The kind of a [`GenericParamDef`](#genericparamdef).
 
 ##### `impl Clone for GenericParamDefKind`
 
-- `fn clone(self: &Self) -> GenericParamDefKind` — [`GenericParamDefKind`](#genericparamdefkind)
+- <span id="genericparamdefkind-clone"></span>`fn clone(&self) -> GenericParamDefKind` — [`GenericParamDefKind`](#genericparamdefkind)
 
 ##### `impl Debug for GenericParamDefKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="genericparamdefkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for GenericParamDefKind`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="genericparamdefkind-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for GenericParamDefKind`
 
@@ -3456,15 +3577,15 @@ The kind of a [`GenericParamDef`](#genericparamdef).
 
 ##### `impl Hash for GenericParamDefKind`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="genericparamdefkind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for GenericParamDefKind`
 
-- `fn eq(self: &Self, other: &GenericParamDefKind) -> bool` — [`GenericParamDefKind`](#genericparamdefkind)
+- <span id="genericparamdefkind-eq"></span>`fn eq(&self, other: &GenericParamDefKind) -> bool` — [`GenericParamDefKind`](#genericparamdefkind)
 
 ##### `impl Serialize for GenericParamDefKind`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="genericparamdefkind-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for GenericParamDefKind`
 
@@ -3512,15 +3633,15 @@ fn default<T>() -> T where T: Default { T::default() }
 
 ##### `impl Clone for WherePredicate`
 
-- `fn clone(self: &Self) -> WherePredicate` — [`WherePredicate`](#wherepredicate)
+- <span id="wherepredicate-clone"></span>`fn clone(&self) -> WherePredicate` — [`WherePredicate`](#wherepredicate)
 
 ##### `impl Debug for WherePredicate`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="wherepredicate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for WherePredicate`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="wherepredicate-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for WherePredicate`
 
@@ -3528,15 +3649,15 @@ fn default<T>() -> T where T: Default { T::default() }
 
 ##### `impl Hash for WherePredicate`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="wherepredicate-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for WherePredicate`
 
-- `fn eq(self: &Self, other: &WherePredicate) -> bool` — [`WherePredicate`](#wherepredicate)
+- <span id="wherepredicate-eq"></span>`fn eq(&self, other: &WherePredicate) -> bool` — [`WherePredicate`](#wherepredicate)
 
 ##### `impl Serialize for WherePredicate`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="wherepredicate-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for WherePredicate`
 
@@ -3578,15 +3699,15 @@ Either a trait bound or a lifetime bound.
 
 ##### `impl Clone for GenericBound`
 
-- `fn clone(self: &Self) -> GenericBound` — [`GenericBound`](#genericbound)
+- <span id="genericbound-clone"></span>`fn clone(&self) -> GenericBound` — [`GenericBound`](#genericbound)
 
 ##### `impl Debug for GenericBound`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="genericbound-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for GenericBound`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="genericbound-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for GenericBound`
 
@@ -3594,15 +3715,15 @@ Either a trait bound or a lifetime bound.
 
 ##### `impl Hash for GenericBound`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="genericbound-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for GenericBound`
 
-- `fn eq(self: &Self, other: &GenericBound) -> bool` — [`GenericBound`](#genericbound)
+- <span id="genericbound-eq"></span>`fn eq(&self, other: &GenericBound) -> bool` — [`GenericBound`](#genericbound)
 
 ##### `impl Serialize for GenericBound`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="genericbound-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for GenericBound`
 
@@ -3639,17 +3760,17 @@ A set of modifiers applied to a trait.
 
 ##### `impl Clone for TraitBoundModifier`
 
-- `fn clone(self: &Self) -> TraitBoundModifier` — [`TraitBoundModifier`](#traitboundmodifier)
+- <span id="traitboundmodifier-clone"></span>`fn clone(&self) -> TraitBoundModifier` — [`TraitBoundModifier`](#traitboundmodifier)
 
 ##### `impl Copy for TraitBoundModifier`
 
 ##### `impl Debug for TraitBoundModifier`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="traitboundmodifier-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for TraitBoundModifier`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="traitboundmodifier-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for TraitBoundModifier`
 
@@ -3657,15 +3778,15 @@ A set of modifiers applied to a trait.
 
 ##### `impl Hash for TraitBoundModifier`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="traitboundmodifier-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for TraitBoundModifier`
 
-- `fn eq(self: &Self, other: &TraitBoundModifier) -> bool` — [`TraitBoundModifier`](#traitboundmodifier)
+- <span id="traitboundmodifier-eq"></span>`fn eq(&self, other: &TraitBoundModifier) -> bool` — [`TraitBoundModifier`](#traitboundmodifier)
 
 ##### `impl Serialize for TraitBoundModifier`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="traitboundmodifier-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for TraitBoundModifier`
 
@@ -3700,15 +3821,15 @@ One precise capturing argument. See [the rust reference](https://doc.rust-lang.o
 
 ##### `impl Clone for PreciseCapturingArg`
 
-- `fn clone(self: &Self) -> PreciseCapturingArg` — [`PreciseCapturingArg`](#precisecapturingarg)
+- <span id="precisecapturingarg-clone"></span>`fn clone(&self) -> PreciseCapturingArg` — [`PreciseCapturingArg`](#precisecapturingarg)
 
 ##### `impl Debug for PreciseCapturingArg`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="precisecapturingarg-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for PreciseCapturingArg`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="precisecapturingarg-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for PreciseCapturingArg`
 
@@ -3716,15 +3837,15 @@ One precise capturing argument. See [the rust reference](https://doc.rust-lang.o
 
 ##### `impl Hash for PreciseCapturingArg`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="precisecapturingarg-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for PreciseCapturingArg`
 
-- `fn eq(self: &Self, other: &PreciseCapturingArg) -> bool` — [`PreciseCapturingArg`](#precisecapturingarg)
+- <span id="precisecapturingarg-eq"></span>`fn eq(&self, other: &PreciseCapturingArg) -> bool` — [`PreciseCapturingArg`](#precisecapturingarg)
 
 ##### `impl Serialize for PreciseCapturingArg`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="precisecapturingarg-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for PreciseCapturingArg`
 
@@ -3768,15 +3889,15 @@ Either a type or a constant, usually stored as the right-hand side of an equatio
 
 ##### `impl Clone for Term`
 
-- `fn clone(self: &Self) -> Term` — [`Term`](#term)
+- <span id="term-clone"></span>`fn clone(&self) -> Term` — [`Term`](#term)
 
 ##### `impl Debug for Term`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="term-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for Term`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="term-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for Term`
 
@@ -3784,15 +3905,15 @@ Either a type or a constant, usually stored as the right-hand side of an equatio
 
 ##### `impl Hash for Term`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="term-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Term`
 
-- `fn eq(self: &Self, other: &Term) -> bool` — [`Term`](#term)
+- <span id="term-eq"></span>`fn eq(&self, other: &Term) -> bool` — [`Term`](#term)
 
 ##### `impl Serialize for Term`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="term-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Term`
 
@@ -3901,15 +4022,15 @@ A type.
 
 ##### `impl Clone for Type`
 
-- `fn clone(self: &Self) -> Type` — [`Type`](#type)
+- <span id="type-clone"></span>`fn clone(&self) -> Type` — [`Type`](#type)
 
 ##### `impl Debug for Type`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="type-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for Type`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="type-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for Type`
 
@@ -3917,15 +4038,15 @@ A type.
 
 ##### `impl Hash for Type`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="type-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Type`
 
-- `fn eq(self: &Self, other: &Type) -> bool` — [`Type`](#type)
+- <span id="type-eq"></span>`fn eq(&self, other: &Type) -> bool` — [`Type`](#type)
 
 ##### `impl Serialize for Type`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="type-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for Type`
 
@@ -3959,17 +4080,17 @@ The way a [`ProcMacro`](#procmacro) is declared to be used.
 
 ##### `impl Clone for MacroKind`
 
-- `fn clone(self: &Self) -> MacroKind` — [`MacroKind`](#macrokind)
+- <span id="macrokind-clone"></span>`fn clone(&self) -> MacroKind` — [`MacroKind`](#macrokind)
 
 ##### `impl Copy for MacroKind`
 
 ##### `impl Debug for MacroKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="macrokind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de> Deserialize for MacroKind`
 
-- `fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
+- <span id="macrokind-deserialize"></span>`fn deserialize<__D>(__deserializer: __D) -> _serde::__private228::Result<Self, <__D as >::Error>`
 
 ##### `impl<T> DeserializeOwned for MacroKind`
 
@@ -3977,15 +4098,15 @@ The way a [`ProcMacro`](#procmacro) is declared to be used.
 
 ##### `impl Hash for MacroKind`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="macrokind-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for MacroKind`
 
-- `fn eq(self: &Self, other: &MacroKind) -> bool` — [`MacroKind`](#macrokind)
+- <span id="macrokind-eq"></span>`fn eq(&self, other: &MacroKind) -> bool` — [`MacroKind`](#macrokind)
 
 ##### `impl Serialize for MacroKind`
 
-- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+- <span id="macrokind-serialize"></span>`fn serialize<__S>(&self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
 ##### `impl StructuralPartialEq for MacroKind`
 

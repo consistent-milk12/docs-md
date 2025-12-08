@@ -4,6 +4,14 @@
 
 # Module `private`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`PeekFn`](#peekfn) | struct |  |
+| [`IdentAny`](#identany) | struct |  |
+| [`Sealed`](#sealed) | trait |  |
+
 ## Structs
 
 ### `PeekFn`
@@ -16,7 +24,7 @@ struct PeekFn;
 
 ##### `impl Clone for PeekFn`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="peekfn-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for PeekFn`
 
@@ -36,9 +44,9 @@ struct IdentAny;
 
 ##### `impl<T> Token for IdentAny`
 
-- `fn peek(cursor: Cursor<'_>) -> bool` — [`Cursor`](../../buffer/index.md)
+- <span id="identany-peek"></span>`fn peek(cursor: Cursor<'_>) -> bool` — [`Cursor`](../../buffer/index.md)
 
-- `fn display() -> &'static str`
+- <span id="identany-display"></span>`fn display() -> &'static str`
 
 ## Traits
 

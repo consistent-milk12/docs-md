@@ -4,6 +4,12 @@
 
 # Module `dummy`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`wrap_in_const`](#wrap_in_const) | fn |  |
+
 ## Functions
 
 ### `wrap_in_const`

@@ -7,6 +7,15 @@
 A module for reading signed and unsigned integers that have been LEB128
 encoded.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`skip`](#skip) | fn | Read bytes until the LEB128 continuation bit is not set. |
+| [`unsigned`](#unsigned) | fn | Read an unsigned LEB128 number from the given `Reader` and |
+| [`u16`](#u16) | fn | Read an LEB128 u16 from the given `Reader` and |
+| [`signed`](#signed) | fn | Read a signed LEB128 number from the given `Reader` and |
+
 ## Functions
 
 ### `skip`

@@ -61,6 +61,13 @@ fn main() {
 }
 ```
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Equivalent`](#equivalent) | trait | Key equivalence trait. |
+| [`Comparable`](#comparable) | trait | Key ordering trait. |
+
 ## Traits
 
 ### `Equivalent<K: ?Sized>`
@@ -82,7 +89,7 @@ The implementor **must** hash like `K`, if it is hashable.
 
 #### Required Methods
 
-- `fn equivalent(self: &Self, key: &K) -> bool`
+- `fn equivalent(&self, key: &K) -> bool`
 
   Compare self to `key` and return `true` if they are equal.
 
@@ -101,7 +108,7 @@ like `BTreeMap` does, so that you can pass `&str` to lookup into a map with
 
 #### Required Methods
 
-- `fn compare(self: &Self, key: &K) -> Ordering`
+- `fn compare(&self, key: &K) -> Ordering`
 
   Compare self to `key` and return their ordering.
 

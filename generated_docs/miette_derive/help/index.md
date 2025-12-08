@@ -4,6 +4,12 @@
 
 # Module `help`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Help`](#help) | enum |  |
+
 ## Enums
 
 ### `Help`
@@ -17,17 +23,17 @@ enum Help {
 
 #### Implementations
 
-- `fn from_fields(fields: &syn::Fields) -> syn::Result<Option<Self>>`
+- <span id="help-from-fields"></span>`fn from_fields(fields: &syn::Fields) -> syn::Result<Option<Self>>`
 
-- `fn from_fields_vec(fields: Vec<&syn::Field>) -> syn::Result<Option<Self>>`
+- <span id="help-from-fields-vec"></span>`fn from_fields_vec(fields: Vec<&syn::Field>) -> syn::Result<Option<Self>>`
 
-- `fn gen_enum(variants: &[DiagnosticDef]) -> Option<TokenStream>` — [`DiagnosticDef`](../diagnostic/index.md)
+- <span id="help-gen-enum"></span>`fn gen_enum(variants: &[DiagnosticDef]) -> Option<TokenStream>` — [`DiagnosticDef`](../diagnostic/index.md)
 
-- `fn gen_struct(self: &Self, fields: &Fields) -> Option<TokenStream>`
+- <span id="help-gen-struct"></span>`fn gen_struct(&self, fields: &Fields) -> Option<TokenStream>`
 
 #### Trait Implementations
 
 ##### `impl Parse for Help`
 
-- `fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
+- <span id="help-parse"></span>`fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
 

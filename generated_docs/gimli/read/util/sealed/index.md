@@ -4,6 +4,13 @@
 
 # Module `sealed`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`CapacityFull`](#capacityfull) | struct |  |
+| [`Sealed`](#sealed) | trait | # Safety |
+
 ## Structs
 
 ### `CapacityFull`
@@ -16,13 +23,13 @@ struct CapacityFull;
 
 ##### `impl Clone for CapacityFull`
 
-- `fn clone(self: &Self) -> CapacityFull` — [`CapacityFull`](#capacityfull)
+- <span id="capacityfull-clone"></span>`fn clone(&self) -> CapacityFull` — [`CapacityFull`](#capacityfull)
 
 ##### `impl Copy for CapacityFull`
 
 ##### `impl Debug for CapacityFull`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="capacityfull-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Traits
 

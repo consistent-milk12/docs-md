@@ -4,6 +4,12 @@
 
 # Module `value_hint`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ValueHint`](#valuehint) | enum | Provide shell with hint on how to complete an argument. |
+
 ## Enums
 
 ### `ValueHint`
@@ -119,37 +125,37 @@ Overview of which hints are supported by which shell:
 
 ##### `impl Clone for ValueHint`
 
-- `fn clone(self: &Self) -> ValueHint` — [`ValueHint`](../../index.md)
+- <span id="valuehint-clone"></span>`fn clone(&self) -> ValueHint` — [`ValueHint`](../../index.md)
 
 ##### `impl Copy for ValueHint`
 
 ##### `impl Debug for ValueHint`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="valuehint-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for ValueHint`
 
-- `fn default() -> ValueHint` — [`ValueHint`](../../index.md)
+- <span id="valuehint-default"></span>`fn default() -> ValueHint` — [`ValueHint`](../../index.md)
 
 ##### `impl Eq for ValueHint`
 
 ##### `impl FromStr for ValueHint`
 
-- `type Err = String`
+- <span id="valuehint-err"></span>`type Err = String`
 
-- `fn from_str(s: &str) -> Result<Self, <Self as FromStr>::Err>`
+- <span id="valuehint-from-str"></span>`fn from_str(s: &str) -> Result<Self, <Self as FromStr>::Err>`
 
 ##### `impl Hash for ValueHint`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="valuehint-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl IntoResettable for crate::builder::ValueHint`
 
-- `fn into_resettable(self: Self) -> Resettable<ValueHint>` — [`Resettable`](../index.md), [`ValueHint`](../../index.md)
+- <span id="cratebuildervaluehint-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueHint>` — [`Resettable`](../index.md), [`ValueHint`](../../index.md)
 
 ##### `impl PartialEq for ValueHint`
 
-- `fn eq(self: &Self, other: &ValueHint) -> bool` — [`ValueHint`](../../index.md)
+- <span id="valuehint-eq"></span>`fn eq(&self, other: &ValueHint) -> bool` — [`ValueHint`](../../index.md)
 
 ##### `impl StructuralPartialEq for ValueHint`
 

@@ -4,6 +4,15 @@
 
 # Module `error`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`BuildError`](#builderror) | struct | An error that occurs when initial construction of a lazy DFA fails. |
+| [`CacheError`](#cacheerror) | struct | An error that occurs when cache usage has become inefficient. |
+| [`BuildErrorKind`](#builderrorkind) | enum |  |
+| [`StartError`](#starterror) | enum | An error that can occur when computing the start state for a search. |
+
 ## Structs
 
 ### `BuildError`
@@ -36,35 +45,35 @@ trait.
 
 #### Implementations
 
-- `fn nfa(err: nfa::thompson::BuildError) -> BuildError` — [`BuildError`](../../nfa/thompson/index.md)
+- <span id="builderror-nfa"></span>`fn nfa(err: nfa::thompson::BuildError) -> BuildError` — [`BuildError`](../../nfa/thompson/index.md)
 
-- `fn insufficient_cache_capacity(minimum: usize, given: usize) -> BuildError` — [`BuildError`](../index.md)
+- <span id="builderror-insufficient-cache-capacity"></span>`fn insufficient_cache_capacity(minimum: usize, given: usize) -> BuildError` — [`BuildError`](../index.md)
 
-- `fn insufficient_state_id_capacity(err: LazyStateIDError) -> BuildError` — [`LazyStateIDError`](../id/index.md), [`BuildError`](../index.md)
+- <span id="builderror-insufficient-state-id-capacity"></span>`fn insufficient_state_id_capacity(err: LazyStateIDError) -> BuildError` — [`LazyStateIDError`](../id/index.md), [`BuildError`](../index.md)
 
-- `fn unsupported_dfa_word_boundary_unicode() -> BuildError` — [`BuildError`](../index.md)
+- <span id="builderror-unsupported-dfa-word-boundary-unicode"></span>`fn unsupported_dfa_word_boundary_unicode() -> BuildError` — [`BuildError`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for BuildError`
 
-- `fn clone(self: &Self) -> BuildError` — [`BuildError`](../index.md)
+- <span id="builderror-clone"></span>`fn clone(&self) -> BuildError` — [`BuildError`](../index.md)
 
 ##### `impl Debug for BuildError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="builderror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for BuildError`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="builderror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for BuildError`
 
-- `fn source(self: &Self) -> Option<&dyn std::error::Error>`
+- <span id="builderror-source"></span>`fn source(&self) -> Option<&dyn std::error::Error>`
 
 ##### `impl<T> ToString for BuildError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="builderror-to-string"></span>`fn to_string(&self) -> String`
 
 ### `CacheError`
 
@@ -92,29 +101,29 @@ trait.
 
 #### Implementations
 
-- `fn too_many_cache_clears() -> CacheError` — [`CacheError`](../index.md)
+- <span id="cacheerror-too-many-cache-clears"></span>`fn too_many_cache_clears() -> CacheError` — [`CacheError`](../index.md)
 
-- `fn bad_efficiency() -> CacheError` — [`CacheError`](../index.md)
+- <span id="cacheerror-bad-efficiency"></span>`fn bad_efficiency() -> CacheError` — [`CacheError`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for CacheError`
 
-- `fn clone(self: &Self) -> CacheError` — [`CacheError`](../index.md)
+- <span id="cacheerror-clone"></span>`fn clone(&self) -> CacheError` — [`CacheError`](../index.md)
 
 ##### `impl Debug for CacheError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="cacheerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for CacheError`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="cacheerror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for CacheError`
 
 ##### `impl<T> ToString for CacheError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="cacheerror-to-string"></span>`fn to_string(&self) -> String`
 
 ## Enums
 
@@ -138,11 +147,11 @@ enum BuildErrorKind {
 
 ##### `impl Clone for BuildErrorKind`
 
-- `fn clone(self: &Self) -> BuildErrorKind` — [`BuildErrorKind`](#builderrorkind)
+- <span id="builderrorkind-clone"></span>`fn clone(&self) -> BuildErrorKind` — [`BuildErrorKind`](#builderrorkind)
 
 ##### `impl Debug for BuildErrorKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="builderrorkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `StartError`
 
@@ -198,31 +207,31 @@ semver compatible release.
 
 #### Implementations
 
-- `fn cache(err: CacheError) -> StartError` — [`CacheError`](../index.md), [`StartError`](../index.md)
+- <span id="starterror-cache"></span>`fn cache(err: CacheError) -> StartError` — [`CacheError`](../index.md), [`StartError`](../index.md)
 
-- `fn quit(byte: u8) -> StartError` — [`StartError`](../index.md)
+- <span id="starterror-quit"></span>`fn quit(byte: u8) -> StartError` — [`StartError`](../index.md)
 
-- `fn unsupported_anchored(mode: Anchored) -> StartError` — [`Anchored`](../../index.md), [`StartError`](../index.md)
+- <span id="starterror-unsupported-anchored"></span>`fn unsupported_anchored(mode: Anchored) -> StartError` — [`Anchored`](../../index.md), [`StartError`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for StartError`
 
-- `fn clone(self: &Self) -> StartError` — [`StartError`](../index.md)
+- <span id="starterror-clone"></span>`fn clone(&self) -> StartError` — [`StartError`](../index.md)
 
 ##### `impl Debug for StartError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="starterror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for StartError`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="starterror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for StartError`
 
-- `fn source(self: &Self) -> Option<&dyn std::error::Error>`
+- <span id="starterror-source"></span>`fn source(&self) -> Option<&dyn std::error::Error>`
 
 ##### `impl<T> ToString for StartError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="starterror-to-string"></span>`fn to_string(&self) -> String`
 

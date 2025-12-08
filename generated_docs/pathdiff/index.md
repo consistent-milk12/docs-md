@@ -1,5 +1,11 @@
 # Crate `pathdiff`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`diff_paths`](#diff_paths) | fn | Construct a relative path from a provided base directory path to the provided path. |
+
 ## Functions
 
 ### `diff_paths`

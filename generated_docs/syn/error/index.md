@@ -4,6 +4,33 @@
 
 # Module `error`
 
+## Contents
+
+- [Structs](#structs)
+  - [`Error`](#error)
+  - [`ErrorMessage`](#errormessage)
+  - [`SpanRange`](#spanrange)
+  - [`IntoIter`](#intoiter)
+  - [`Iter`](#iter)
+- [Functions](#functions)
+  - [`new_at`](#new_at)
+  - [`new2`](#new2)
+- [Type Aliases](#type-aliases)
+  - [`Result`](#result)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Error`](#error) | struct | Error returned when a Syn parser cannot parse the input tokens. |
+| [`ErrorMessage`](#errormessage) | struct |  |
+| [`SpanRange`](#spanrange) | struct |  |
+| [`IntoIter`](#intoiter) | struct |  |
+| [`Iter`](#iter) | struct |  |
+| [`new_at`](#new_at) | fn |  |
+| [`new2`](#new2) | fn |  |
+| [`Result`](#result) | type | The result of a Syn parser. |
+
 ## Structs
 
 ### `Error`
@@ -95,49 +122,49 @@ mod expand {
 
 #### Implementations
 
-- `fn new<T: Display>(span: Span, message: T) -> Self`
+- <span id="error-new"></span>`fn new<T: Display>(span: Span, message: T) -> Self`
 
-- `fn new_spanned<T: ToTokens, U: Display>(tokens: T, message: U) -> Self`
+- <span id="error-new-spanned"></span>`fn new_spanned<T: ToTokens, U: Display>(tokens: T, message: U) -> Self`
 
-- `fn span(self: &Self) -> Span`
+- <span id="error-span"></span>`fn span(&self) -> Span`
 
-- `fn to_compile_error(self: &Self) -> TokenStream`
+- <span id="error-to-compile-error"></span>`fn to_compile_error(&self) -> TokenStream`
 
-- `fn into_compile_error(self: Self) -> TokenStream`
+- <span id="error-into-compile-error"></span>`fn into_compile_error(self) -> TokenStream`
 
-- `fn combine(self: &mut Self, another: Error)` — [`Error`](../index.md)
+- <span id="error-combine"></span>`fn combine(&mut self, another: Error)` — [`Error`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Error`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="error-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for Error`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="error-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Error`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="error-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Error for Error`
 
 ##### `impl Extend for Error`
 
-- `fn extend<T: IntoIterator<Item = Error>>(self: &mut Self, iter: T)`
+- <span id="error-extend"></span>`fn extend<T: IntoIterator<Item = Error>>(&mut self, iter: T)`
 
 ##### `impl IntoIterator for Error`
 
-- `type Item = Error`
+- <span id="error-item"></span>`type Item = Error`
 
-- `type IntoIter = IntoIter`
+- <span id="error-intoiter"></span>`type IntoIter = IntoIter`
 
-- `fn into_iter(self: Self) -> <Self as >::IntoIter`
+- <span id="error-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
 ##### `impl<T> ToString for Error`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="error-to-string"></span>`fn to_string(&self) -> String`
 
 ### `ErrorMessage`
 
@@ -150,17 +177,17 @@ struct ErrorMessage {
 
 #### Implementations
 
-- `fn to_compile_error(self: &Self, tokens: &mut TokenStream)`
+- <span id="errormessage-to-compile-error"></span>`fn to_compile_error(&self, tokens: &mut TokenStream)`
 
 #### Trait Implementations
 
 ##### `impl Clone for ErrorMessage`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="errormessage-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for ErrorMessage`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="errormessage-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `SpanRange`
 
@@ -175,7 +202,7 @@ struct SpanRange {
 
 ##### `impl Clone for SpanRange`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="spanrange-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for SpanRange`
 
@@ -191,17 +218,17 @@ struct IntoIter {
 
 ##### `impl<I> IntoIterator for IntoIter`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="intoiter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="intoiter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="intoiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for IntoIter`
 
-- `type Item = Error`
+- <span id="intoiter-item"></span>`type Item = Error`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="intoiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `Iter<'a>`
 
@@ -215,17 +242,17 @@ struct Iter<'a> {
 
 ##### `impl<I> IntoIterator for Iter<'a>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="iter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="iter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="iter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a> Iterator for Iter<'a>`
 
-- `type Item = Error`
+- <span id="iter-item"></span>`type Item = Error`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="iter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ## Functions
 

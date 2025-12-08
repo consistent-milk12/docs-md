@@ -23,6 +23,34 @@ The processor applies transformations in this order:
 
 Links inside code blocks are protected from transformation.
 
+## Contents
+
+- [Structs](#structs)
+  - [`DocLinkProcessor`](#doclinkprocessor)
+- [Functions](#functions)
+  - [`convert_html_links`](#convert_html_links)
+  - [`strip_duplicate_title`](#strip_duplicate_title)
+  - [`strip_reference_definitions`](#strip_reference_definitions)
+  - [`unhide_code_lines`](#unhide_code_lines)
+  - [`detect_fence`](#detect_fence)
+  - [`convert_path_reference_links`](#convert_path_reference_links)
+  - [`replace_with_regex`](#replace_with_regex)
+  - [`replace_with_regex_checked`](#replace_with_regex_checked)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`DocLinkProcessor`](#doclinkprocessor) | struct | Processes doc comments to resolve intra-doc links to markdown links. |
+| [`convert_html_links`](#convert_html_links) | fn | Convert HTML-style rustdoc links to markdown anchors. |
+| [`strip_duplicate_title`](#strip_duplicate_title) | fn | Strip duplicate title from documentation. |
+| [`strip_reference_definitions`](#strip_reference_definitions) | fn | Strip markdown reference definition lines. |
+| [`unhide_code_lines`](#unhide_code_lines) | fn | Unhide rustdoc hidden lines in code blocks and add language identifiers. |
+| [`detect_fence`](#detect_fence) | fn | Detect a code fence and return the fence string. |
+| [`convert_path_reference_links`](#convert_path_reference_links) | fn | Convert path-style reference links to inline code. |
+| [`replace_with_regex`](#replace_with_regex) | fn | Replace regex matches using a closure. |
+| [`replace_with_regex_checked`](#replace_with_regex_checked) | fn | Replace regex matches with access to the text after the match. |
+
 ## Structs
 
 ### `DocLinkProcessor<'a>`
@@ -80,45 +108,45 @@ Links inside fenced code blocks are not processed.
 
 #### Implementations
 
-- `fn new(krate: &'a Crate, link_registry: &'a LinkRegistry, current_file: &'a str) -> Self` — [`LinkRegistry`](../../index.md)
+- <span id="doclinkprocessor-new"></span>`fn new(krate: &'a Crate, link_registry: &'a LinkRegistry, current_file: &'a str) -> Self` — [`LinkRegistry`](../../index.md)
 
-- `fn process(self: &Self, docs: &str, item_links: &HashMap<String, Id>) -> String`
+- <span id="doclinkprocessor-process"></span>`fn process(&self, docs: &str, item_links: &HashMap<String, Id>) -> String`
 
-- `fn process_links_protected(self: &Self, docs: &str, item_links: &HashMap<String, Id>) -> String`
+- <span id="doclinkprocessor-process-links-protected"></span>`fn process_links_protected(&self, docs: &str, item_links: &HashMap<String, Id>) -> String`
 
-- `fn process_line(self: &Self, line: &str, item_links: &HashMap<String, Id>) -> String`
+- <span id="doclinkprocessor-process-line"></span>`fn process_line(&self, line: &str, item_links: &HashMap<String, Id>) -> String`
 
-- `fn process_reference_links(self: &Self, text: &str, item_links: &HashMap<String, Id>) -> String`
+- <span id="doclinkprocessor-process-reference-links"></span>`fn process_reference_links(&self, text: &str, item_links: &HashMap<String, Id>) -> String`
 
-- `fn process_path_reference_links(self: &Self, text: &str, item_links: &HashMap<String, Id>) -> String`
+- <span id="doclinkprocessor-process-path-reference-links"></span>`fn process_path_reference_links(&self, text: &str, item_links: &HashMap<String, Id>) -> String`
 
-- `fn process_method_links(self: &Self, text: &str, item_links: &HashMap<String, Id>) -> String`
+- <span id="doclinkprocessor-process-method-links"></span>`fn process_method_links(&self, text: &str, item_links: &HashMap<String, Id>) -> String`
 
-- `fn process_backtick_links(self: &Self, text: &str, item_links: &HashMap<String, Id>) -> String`
+- <span id="doclinkprocessor-process-backtick-links"></span>`fn process_backtick_links(&self, text: &str, item_links: &HashMap<String, Id>) -> String`
 
-- `fn process_plain_links(self: &Self, text: &str, item_links: &HashMap<String, Id>) -> String`
+- <span id="doclinkprocessor-process-plain-links"></span>`fn process_plain_links(&self, text: &str, item_links: &HashMap<String, Id>) -> String`
 
-- `fn process_html_links_with_context(self: &Self, text: &str, item_links: &HashMap<String, Id>) -> String`
+- <span id="doclinkprocessor-process-html-links-with-context"></span>`fn process_html_links_with_context(&self, text: &str, item_links: &HashMap<String, Id>) -> String`
 
-- `fn resolve_html_link_to_url(self: &Self, item_name: &str, item_kind: &str, item_links: &HashMap<String, Id>) -> Option<String>`
+- <span id="doclinkprocessor-resolve-html-link-to-url"></span>`fn resolve_html_link_to_url(&self, item_name: &str, item_kind: &str, item_links: &HashMap<String, Id>) -> Option<String>`
 
-- `fn kind_matches(html_kind: &str, item_kind: ItemKind) -> bool`
+- <span id="doclinkprocessor-kind-matches"></span>`fn kind_matches(html_kind: &str, item_kind: ItemKind) -> bool`
 
-- `fn clean_blank_lines(docs: &str) -> String`
+- <span id="doclinkprocessor-clean-blank-lines"></span>`fn clean_blank_lines(docs: &str) -> String`
 
-- `fn resolve_to_url(self: &Self, link_text: &str, item_links: &HashMap<String, Id>) -> Option<String>`
+- <span id="doclinkprocessor-resolve-to-url"></span>`fn resolve_to_url(&self, link_text: &str, item_links: &HashMap<String, Id>) -> Option<String>`
 
-- `fn get_url_for_id(self: &Self, id: Id) -> Option<String>`
+- <span id="doclinkprocessor-get-url-for-id"></span>`fn get_url_for_id(&self, id: Id) -> Option<String>`
 
-- `fn get_docs_rs_url(path_info: &rustdoc_types::ItemSummary) -> Option<String>`
+- <span id="doclinkprocessor-get-docs-rs-url"></span>`fn get_docs_rs_url(path_info: &rustdoc_types::ItemSummary) -> Option<String>`
 
-- `fn resolve_method_link(self: &Self, type_name: &str, method_name: &str, item_links: &HashMap<String, Id>) -> Option<String>`
+- <span id="doclinkprocessor-resolve-method-link"></span>`fn resolve_method_link(&self, type_name: &str, method_name: &str, item_links: &HashMap<String, Id>) -> Option<String>`
 
-- `fn resolve_link(self: &Self, link_text: &str, item_links: &HashMap<String, Id>) -> String`
+- <span id="doclinkprocessor-resolve-link"></span>`fn resolve_link(&self, link_text: &str, item_links: &HashMap<String, Id>) -> String`
 
-- `fn create_link_for_id(self: &Self, id: Id, display_name: &str) -> Option<String>`
+- <span id="doclinkprocessor-create-link-for-id"></span>`fn create_link_for_id(&self, id: Id, display_name: &str) -> Option<String>`
 
-- `fn create_docs_rs_link(path_info: &rustdoc_types::ItemSummary, display_name: &str) -> Option<String>`
+- <span id="doclinkprocessor-create-docs-rs-link"></span>`fn create_docs_rs_link(path_info: &rustdoc_types::ItemSummary, display_name: &str) -> Option<String>`
 
 #### Trait Implementations
 
@@ -130,17 +158,17 @@ Links inside fenced code blocks are not processed.
 
 ##### `impl<T> Pointable for DocLinkProcessor<'a>`
 
-- `const ALIGN: usize`
+- <span id="doclinkprocessor-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="doclinkprocessor-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="doclinkprocessor-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="doclinkprocessor-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="doclinkprocessor-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="doclinkprocessor-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T> WithSubscriber for DocLinkProcessor<'a>`
 
@@ -156,7 +184,7 @@ Convert HTML-style rustdoc links to markdown anchors.
 
 Transforms links like:
 - `(#numberprefix)` -> `(#numberprefix)`
-- `` -> removes the link (methods don't have anchors)
+- `(#foo-bar)` -> `(#foo-bar)` (type-method anchor)
 
 This is useful for multi-crate documentation where the full processor
 context may not be available.

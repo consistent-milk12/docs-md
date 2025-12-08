@@ -4,6 +4,12 @@
 
 # Module `alloc`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`inner`](#inner) | mod |  |
+
 ## Modules
 
 - [`inner`](inner/index.md) - 

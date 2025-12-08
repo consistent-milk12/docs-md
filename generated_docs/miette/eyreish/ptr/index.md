@@ -4,6 +4,15 @@
 
 # Module `ptr`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Own`](#own) | struct | A raw pointer that owns its pointee |
+| [`Ref`](#ref) | struct | A raw pointer that represents a shared borrow of its pointee |
+| [`Mut`](#mut) | struct | A raw pointer that represents a unique borrow of its pointee |
+| [`CastTo`](#castto) | trait |  |
+
 ## Structs
 
 ### `Own<T>`
@@ -20,21 +29,21 @@ A raw pointer that owns its pointee
 
 #### Implementations
 
-- `fn new(ptr: Box<T>) -> Self`
+- <span id="own-new"></span>`fn new(ptr: Box<T>) -> Self`
 
-- `fn cast<U: CastTo>(self: Self) -> Own<<U as >::Target>` — [`Own`](#own), [`CastTo`](#castto)
+- <span id="own-cast"></span>`fn cast<U: CastTo>(self) -> Own<<U as >::Target>` — [`Own`](#own), [`CastTo`](#castto)
 
-- `unsafe fn boxed(self: Self) -> Box<T>`
+- <span id="own-boxed"></span>`unsafe fn boxed(self) -> Box<T>`
 
-- `const fn by_ref<'a>(self: &Self) -> Ref<'a, T>` — [`Ref`](#ref)
+- <span id="own-by-ref"></span>`const fn by_ref<'a>(&self) -> Ref<'a, T>` — [`Ref`](#ref)
 
-- `fn by_mut<'a>(self: Self) -> Mut<'a, T>` — [`Mut`](#mut)
+- <span id="own-by-mut"></span>`fn by_mut<'a>(self) -> Mut<'a, T>` — [`Mut`](#mut)
 
 #### Trait Implementations
 
 ##### `impl<T> Clone for Own<T>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="own-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T> Copy for Own<T>`
 
@@ -59,23 +68,23 @@ A raw pointer that represents a shared borrow of its pointee
 
 #### Implementations
 
-- `fn new(ptr: &'a T) -> Self`
+- <span id="ref-new"></span>`fn new(ptr: &'a T) -> Self`
 
-- `const fn from_raw(ptr: NonNull<T>) -> Self`
+- <span id="ref-from-raw"></span>`const fn from_raw(ptr: NonNull<T>) -> Self`
 
-- `fn cast<U: CastTo>(self: Self) -> Ref<'a, <U as >::Target>` — [`Ref`](#ref), [`CastTo`](#castto)
+- <span id="ref-cast"></span>`fn cast<U: CastTo>(self) -> Ref<'a, <U as >::Target>` — [`Ref`](#ref), [`CastTo`](#castto)
 
-- `fn by_mut(self: Self) -> Mut<'a, T>` — [`Mut`](#mut)
+- <span id="ref-by-mut"></span>`fn by_mut(self) -> Mut<'a, T>` — [`Mut`](#mut)
 
-- `const fn as_ptr(self: Self) -> *const T`
+- <span id="ref-as-ptr"></span>`const fn as_ptr(self) -> *const T`
 
-- `unsafe fn deref(self: Self) -> &'a T`
+- <span id="ref-deref"></span>`unsafe fn deref(self) -> &'a T`
 
 #### Trait Implementations
 
 ##### `impl<T> Clone for Ref<'_, T>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="ref-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T> Copy for Ref<'_, T>`
 
@@ -96,13 +105,13 @@ A raw pointer that represents a unique borrow of its pointee
 
 #### Implementations
 
-- `unsafe fn read(self: Self) -> T`
+- <span id="mut-read"></span>`unsafe fn read(self) -> T`
 
 #### Trait Implementations
 
 ##### `impl<T> Clone for Mut<'_, T>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="mut-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T> Copy for Mut<'_, T>`
 

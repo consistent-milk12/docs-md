@@ -8,6 +8,33 @@ Extra streaming decompression functionality.
 
 As of now this is mainly intended for use to build a higher-level wrapper.
 
+## Contents
+
+- [Structs](#structs)
+  - [`MinReset`](#minreset)
+  - [`ZeroReset`](#zeroreset)
+  - [`FullReset`](#fullreset)
+  - [`InflateState`](#inflatestate)
+- [Traits](#traits)
+  - [`ResetPolicy`](#resetpolicy)
+- [Functions](#functions)
+  - [`inflate`](#inflate)
+  - [`inflate_loop`](#inflate_loop)
+  - [`push_dict_out`](#push_dict_out)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`MinReset`](#minreset) | struct | Resets state, without performing expensive ops (e.g. zeroing buffer) |
+| [`ZeroReset`](#zeroreset) | struct | Resets state and zero memory, continuing to use the same data format. |
+| [`FullReset`](#fullreset) | struct | Full reset of the state, including zeroing memory. |
+| [`InflateState`](#inflatestate) | struct | A struct that compbines a decompressor with extra data for streaming decompression. |
+| [`ResetPolicy`](#resetpolicy) | trait | Tag that determines reset policy of [InflateState](struct.InflateState.html) |
+| [`inflate`](#inflate) | fn | Try to decompress from `input` to `output` with the given [`InflateState`] |
+| [`inflate_loop`](#inflate_loop) | fn |  |
+| [`push_dict_out`](#push_dict_out) | fn |  |
+
 ## Structs
 
 ### `MinReset`
@@ -24,7 +51,7 @@ Note that not zeroing buffer can lead to security issues when dealing with untru
 
 ##### `impl ResetPolicy for MinReset`
 
-- `fn reset(self: &Self, state: &mut InflateState)` — [`InflateState`](#inflatestate)
+- <span id="minreset-reset"></span>`fn reset(&self, state: &mut InflateState)` — [`InflateState`](#inflatestate)
 
 ### `ZeroReset`
 
@@ -38,7 +65,7 @@ Resets state and zero memory, continuing to use the same data format.
 
 ##### `impl ResetPolicy for ZeroReset`
 
-- `fn reset(self: &Self, state: &mut InflateState)` — [`InflateState`](#inflatestate)
+- <span id="zeroreset-reset"></span>`fn reset(&self, state: &mut InflateState)` — [`InflateState`](#inflatestate)
 
 ### `FullReset`
 
@@ -54,7 +81,7 @@ Requires to provide new data format.
 
 ##### `impl ResetPolicy for FullReset`
 
-- `fn reset(self: &Self, state: &mut InflateState)` — [`InflateState`](#inflatestate)
+- <span id="fullreset-reset"></span>`fn reset(&self, state: &mut InflateState)` — [`InflateState`](#inflatestate)
 
 ### `InflateState`
 
@@ -103,25 +130,25 @@ A struct that compbines a decompressor with extra data for streaming decompressi
 
 #### Implementations
 
-- `fn new(data_format: DataFormat) -> InflateState` — [`DataFormat`](../../index.md), [`InflateState`](#inflatestate)
+- <span id="inflatestate-new"></span>`fn new(data_format: DataFormat) -> InflateState` — [`DataFormat`](../../index.md), [`InflateState`](#inflatestate)
 
-- `fn decompressor(self: &mut Self) -> &mut DecompressorOxide` — [`DecompressorOxide`](../core/index.md)
+- <span id="inflatestate-decompressor"></span>`fn decompressor(&mut self) -> &mut DecompressorOxide` — [`DecompressorOxide`](../core/index.md)
 
-- `const fn last_status(self: &Self) -> TINFLStatus` — [`TINFLStatus`](../index.md)
+- <span id="inflatestate-last-status"></span>`const fn last_status(&self) -> TINFLStatus` — [`TINFLStatus`](../index.md)
 
-- `fn reset(self: &mut Self, data_format: DataFormat)` — [`DataFormat`](../../index.md)
+- <span id="inflatestate-reset"></span>`fn reset(&mut self, data_format: DataFormat)` — [`DataFormat`](../../index.md)
 
-- `fn reset_as<T: ResetPolicy>(self: &mut Self, policy: T)`
+- <span id="inflatestate-reset-as"></span>`fn reset_as<T: ResetPolicy>(&mut self, policy: T)`
 
 #### Trait Implementations
 
 ##### `impl Clone for InflateState`
 
-- `fn clone(self: &Self) -> InflateState` — [`InflateState`](#inflatestate)
+- <span id="inflatestate-clone"></span>`fn clone(&self) -> InflateState` — [`InflateState`](#inflatestate)
 
 ##### `impl Default for InflateState`
 
-- `fn default() -> Self`
+- <span id="inflatestate-default"></span>`fn default() -> Self`
 
 ## Traits
 
@@ -135,7 +162,7 @@ Tag that determines reset policy of [InflateState](#inflatestate)
 
 #### Required Methods
 
-- `fn reset(self: &Self, state: &mut InflateState)`
+- `fn reset(&self, state: &mut InflateState)`
 
   Performs reset
 

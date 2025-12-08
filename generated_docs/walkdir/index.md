@@ -96,6 +96,48 @@ Ok(())
 ```
 
 
+## Contents
+
+- [Modules](#modules)
+  - [`dent`](#dent)
+  - [`error`](#error)
+  - [`util`](#util)
+- [Structs](#structs)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`WalkDir`](#walkdir)
+  - [`WalkDirOptions`](#walkdiroptions)
+  - [`IntoIter`](#intoiter)
+  - [`Ancestor`](#ancestor)
+  - [`FilterEntry`](#filterentry)
+- [Enums](#enums)
+  - [`DirList`](#dirlist)
+- [Traits](#traits)
+  - [`unnamed`](#unnamed)
+- [Type Aliases](#type-aliases)
+  - [`Result`](#result)
+- [Macros](#macros)
+  - [`itry!`](#itry)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`dent`](#dent) | mod |  |
+| [`error`](#error) | mod |  |
+| [`util`](#util) | mod |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`WalkDir`](#walkdir) | struct | A builder to create an iterator for recursively walking a directory. |
+| [`WalkDirOptions`](#walkdiroptions) | struct |  |
+| [`IntoIter`](#intoiter) | struct | An iterator for recursively descending into a directory. |
+| [`Ancestor`](#ancestor) | struct | An ancestor is an item in the directory tree traversed by walkdir, and is |
+| [`FilterEntry`](#filterentry) | struct | A recursive directory iterator that skips entries. |
+| [`DirList`](#dirlist) | enum | A sequence of unconsumed directory entries. |
+| [`unnamed`](#unnamed) | trait |  |
+| [`Result`](#result) | type | A result type for walkdir operations. |
+| [`itry!`](#itry) | macro | Like try, but for iterators that return [`Option<Result<_, _>>`]. |
+
 ## Modules
 
 - [`dent`](dent/index.md) - 
@@ -169,41 +211,41 @@ operations operate on the symbolic link.
 
 #### Implementations
 
-- `fn path(self: &Self) -> &Path`
+- <span id="direntry-path"></span>`fn path(&self) -> &Path`
 
-- `fn into_path(self: Self) -> PathBuf`
+- <span id="direntry-into-path"></span>`fn into_path(self) -> PathBuf`
 
-- `fn path_is_symlink(self: &Self) -> bool`
+- <span id="direntry-path-is-symlink"></span>`fn path_is_symlink(&self) -> bool`
 
-- `fn metadata(self: &Self) -> Result<fs::Metadata>` — [`Result`](#result)
+- <span id="direntry-metadata"></span>`fn metadata(&self) -> Result<fs::Metadata>` — [`Result`](#result)
 
-- `fn metadata_internal(self: &Self) -> Result<fs::Metadata>` — [`Result`](#result)
+- <span id="direntry-metadata-internal"></span>`fn metadata_internal(&self) -> Result<fs::Metadata>` — [`Result`](#result)
 
-- `fn file_type(self: &Self) -> fs::FileType`
+- <span id="direntry-file-type"></span>`fn file_type(&self) -> fs::FileType`
 
-- `fn file_name(self: &Self) -> &OsStr`
+- <span id="direntry-file-name"></span>`fn file_name(&self) -> &OsStr`
 
-- `fn depth(self: &Self) -> usize`
+- <span id="direntry-depth"></span>`fn depth(&self) -> usize`
 
-- `fn is_dir(self: &Self) -> bool`
+- <span id="direntry-is-dir"></span>`fn is_dir(&self) -> bool`
 
-- `fn from_entry(depth: usize, ent: &fs::DirEntry) -> Result<DirEntry>` — [`Result`](#result)
+- <span id="direntry-from-entry"></span>`fn from_entry(depth: usize, ent: &fs::DirEntry) -> Result<DirEntry>` — [`Result`](#result)
 
-- `fn from_path(depth: usize, pb: PathBuf, follow: bool) -> Result<DirEntry>` — [`Result`](#result), [`DirEntry`](#direntry)
+- <span id="direntry-from-path"></span>`fn from_path(depth: usize, pb: PathBuf, follow: bool) -> Result<DirEntry>` — [`Result`](#result), [`DirEntry`](#direntry)
 
 #### Trait Implementations
 
 ##### `impl Clone for DirEntry`
 
-- `fn clone(self: &Self) -> DirEntry` — [`DirEntry`](#direntry)
+- <span id="direntry-clone"></span>`fn clone(&self) -> DirEntry` — [`DirEntry`](#direntry)
 
 ##### `impl Debug for DirEntry`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="direntry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl DirEntryExt for DirEntry`
 
-- `fn ino(self: &Self) -> u64`
+- <span id="direntry-ino"></span>`fn ino(&self) -> u64`
 
 ### `Error`
 
@@ -235,45 +277,45 @@ accessing the underlying error data in a structured form.
 
 #### Implementations
 
-- `fn path(self: &Self) -> Option<&Path>`
+- <span id="error-path"></span>`fn path(&self) -> Option<&Path>`
 
-- `fn loop_ancestor(self: &Self) -> Option<&Path>`
+- <span id="error-loop-ancestor"></span>`fn loop_ancestor(&self) -> Option<&Path>`
 
-- `fn depth(self: &Self) -> usize`
+- <span id="error-depth"></span>`fn depth(&self) -> usize`
 
-- `fn io_error(self: &Self) -> Option<&io::Error>`
+- <span id="error-io-error"></span>`fn io_error(&self) -> Option<&io::Error>`
 
-- `fn into_io_error(self: Self) -> Option<io::Error>`
+- <span id="error-into-io-error"></span>`fn into_io_error(self) -> Option<io::Error>`
 
-- `fn from_path(depth: usize, pb: PathBuf, err: io::Error) -> Self`
+- <span id="error-from-path"></span>`fn from_path(depth: usize, pb: PathBuf, err: io::Error) -> Self`
 
-- `fn from_entry(dent: &DirEntry, err: io::Error) -> Self` — [`DirEntry`](#direntry)
+- <span id="error-from-entry"></span>`fn from_entry(dent: &DirEntry, err: io::Error) -> Self` — [`DirEntry`](#direntry)
 
-- `fn from_io(depth: usize, err: io::Error) -> Self`
+- <span id="error-from-io"></span>`fn from_io(depth: usize, err: io::Error) -> Self`
 
-- `fn from_loop(depth: usize, ancestor: &Path, child: &Path) -> Self`
+- <span id="error-from-loop"></span>`fn from_loop(depth: usize, ancestor: &Path, child: &Path) -> Self`
 
 #### Trait Implementations
 
 ##### `impl Debug for Error`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="error-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Error`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="error-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Error for Error`
 
-- `fn description(self: &Self) -> &str`
+- <span id="error-description"></span>`fn description(&self) -> &str`
 
-- `fn cause(self: &Self) -> Option<&dyn error::Error>`
+- <span id="error-cause"></span>`fn cause(&self) -> Option<&dyn error::Error>`
 
-- `fn source(self: &Self) -> Option<&dyn error::Error>`
+- <span id="error-source"></span>`fn source(&self) -> Option<&dyn error::Error>`
 
 ##### `impl<T> ToString for Error`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="error-to-string"></span>`fn to_string(&self) -> String`
 
 ### `WalkDir`
 
@@ -355,41 +397,41 @@ error is reported.
 
 #### Implementations
 
-- `fn new<P: AsRef<Path>>(root: P) -> Self`
+- <span id="walkdir-new"></span>`fn new<P: AsRef<Path>>(root: P) -> Self`
 
-- `fn min_depth(self: Self, depth: usize) -> Self`
+- <span id="walkdir-min-depth"></span>`fn min_depth(self, depth: usize) -> Self`
 
-- `fn max_depth(self: Self, depth: usize) -> Self`
+- <span id="walkdir-max-depth"></span>`fn max_depth(self, depth: usize) -> Self`
 
-- `fn follow_links(self: Self, yes: bool) -> Self`
+- <span id="walkdir-follow-links"></span>`fn follow_links(self, yes: bool) -> Self`
 
-- `fn follow_root_links(self: Self, yes: bool) -> Self`
+- <span id="walkdir-follow-root-links"></span>`fn follow_root_links(self, yes: bool) -> Self`
 
-- `fn max_open(self: Self, n: usize) -> Self`
+- <span id="walkdir-max-open"></span>`fn max_open(self, n: usize) -> Self`
 
-- `fn sort_by<F>(self: Self, cmp: F) -> Self`
+- <span id="walkdir-sort-by"></span>`fn sort_by<F>(self, cmp: F) -> Self`
 
-- `fn sort_by_key<K, F>(self: Self, cmp: F) -> Self`
+- <span id="walkdir-sort-by-key"></span>`fn sort_by_key<K, F>(self, cmp: F) -> Self`
 
-- `fn sort_by_file_name(self: Self) -> Self`
+- <span id="walkdir-sort-by-file-name"></span>`fn sort_by_file_name(self) -> Self`
 
-- `fn contents_first(self: Self, yes: bool) -> Self`
+- <span id="walkdir-contents-first"></span>`fn contents_first(self, yes: bool) -> Self`
 
-- `fn same_file_system(self: Self, yes: bool) -> Self`
+- <span id="walkdir-same-file-system"></span>`fn same_file_system(self, yes: bool) -> Self`
 
 #### Trait Implementations
 
 ##### `impl Debug for WalkDir`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="walkdir-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl IntoIterator for WalkDir`
 
-- `type Item = Result<DirEntry, Error>`
+- <span id="walkdir-item"></span>`type Item = Result<DirEntry, Error>`
 
-- `type IntoIter = IntoIter`
+- <span id="walkdir-intoiter"></span>`type IntoIter = IntoIter`
 
-- `fn into_iter(self: Self) -> IntoIter` — [`IntoIter`](#intoiter)
+- <span id="walkdir-into-iter"></span>`fn into_iter(self) -> IntoIter` — [`IntoIter`](#intoiter)
 
 ### `WalkDirOptions`
 
@@ -410,7 +452,7 @@ struct WalkDirOptions {
 
 ##### `impl Debug for WalkDirOptions`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> result::Result<(), fmt::Error>`
+- <span id="walkdiroptions-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> result::Result<(), fmt::Error>`
 
 ### `IntoIter`
 
@@ -495,47 +537,47 @@ The order of elements yielded by this iterator is unspecified.
 
 #### Implementations
 
-- `fn skip_current_dir(self: &mut Self)`
+- <span id="intoiter-skip-current-dir"></span>`fn skip_current_dir(&mut self)`
 
-- `fn filter_entry<P>(self: Self, predicate: P) -> FilterEntry<Self, P>` — [`FilterEntry`](#filterentry)
+- <span id="intoiter-filter-entry"></span>`fn filter_entry<P>(self, predicate: P) -> FilterEntry<Self, P>` — [`FilterEntry`](#filterentry)
 
-- `fn handle_entry(self: &mut Self, dent: DirEntry) -> Option<Result<DirEntry>>` — [`DirEntry`](#direntry), [`Result`](#result)
+- <span id="intoiter-handle-entry"></span>`fn handle_entry(&mut self, dent: DirEntry) -> Option<Result<DirEntry>>` — [`DirEntry`](#direntry), [`Result`](#result)
 
-- `fn get_deferred_dir(self: &mut Self) -> Option<DirEntry>` — [`DirEntry`](#direntry)
+- <span id="intoiter-get-deferred-dir"></span>`fn get_deferred_dir(&mut self) -> Option<DirEntry>` — [`DirEntry`](#direntry)
 
-- `fn push(self: &mut Self, dent: &DirEntry) -> Result<()>` — [`DirEntry`](#direntry), [`Result`](#result)
+- <span id="intoiter-push"></span>`fn push(&mut self, dent: &DirEntry) -> Result<()>` — [`DirEntry`](#direntry), [`Result`](#result)
 
-- `fn pop(self: &mut Self)`
+- <span id="intoiter-pop"></span>`fn pop(&mut self)`
 
-- `fn follow(self: &Self, dent: DirEntry) -> Result<DirEntry>` — [`DirEntry`](#direntry), [`Result`](#result)
+- <span id="intoiter-follow"></span>`fn follow(&self, dent: DirEntry) -> Result<DirEntry>` — [`DirEntry`](#direntry), [`Result`](#result)
 
-- `fn check_loop<P: AsRef<Path>>(self: &Self, child: P) -> Result<()>` — [`Result`](#result)
+- <span id="intoiter-check-loop"></span>`fn check_loop<P: AsRef<Path>>(&self, child: P) -> Result<()>` — [`Result`](#result)
 
-- `fn is_same_file_system(self: &mut Self, dent: &DirEntry) -> Result<bool>` — [`DirEntry`](#direntry), [`Result`](#result)
+- <span id="intoiter-is-same-file-system"></span>`fn is_same_file_system(&mut self, dent: &DirEntry) -> Result<bool>` — [`DirEntry`](#direntry), [`Result`](#result)
 
-- `fn skippable(self: &Self) -> bool`
+- <span id="intoiter-skippable"></span>`fn skippable(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Debug for IntoIter`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="intoiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl FusedIterator for IntoIter`
 
 ##### `impl<I> IntoIterator for IntoIter`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="intoiter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="intoiter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="intoiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for IntoIter`
 
-- `type Item = Result<DirEntry, Error>`
+- <span id="intoiter-item"></span>`type Item = Result<DirEntry, Error>`
 
-- `fn next(self: &mut Self) -> Option<Result<DirEntry>>` — [`Result`](#result), [`DirEntry`](#direntry)
+- <span id="intoiter-next"></span>`fn next(&mut self) -> Option<Result<DirEntry>>` — [`Result`](#result), [`DirEntry`](#direntry)
 
 ### `Ancestor`
 
@@ -556,15 +598,15 @@ used to check for loops in the tree when traversing symlinks.
 
 #### Implementations
 
-- `fn new(dent: &DirEntry) -> io::Result<Ancestor>` — [`DirEntry`](#direntry), [`Ancestor`](#ancestor)
+- <span id="ancestor-new"></span>`fn new(dent: &DirEntry) -> io::Result<Ancestor>` — [`DirEntry`](#direntry), [`Ancestor`](#ancestor)
 
-- `fn is_same(self: &Self, child: &Handle) -> io::Result<bool>`
+- <span id="ancestor-is-same"></span>`fn is_same(&self, child: &Handle) -> io::Result<bool>`
 
 #### Trait Implementations
 
 ##### `impl Debug for Ancestor`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="ancestor-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `FilterEntry<I, P>`
 
@@ -598,31 +640,31 @@ predicate, which is usually `FnMut(&DirEntry) -> bool`.
 
 #### Implementations
 
-- `fn filter_entry(self: Self, predicate: P) -> FilterEntry<Self, P>` — [`FilterEntry`](#filterentry)
+- <span id="filterentry-filter-entry"></span>`fn filter_entry(self, predicate: P) -> FilterEntry<Self, P>` — [`FilterEntry`](#filterentry)
 
-- `fn skip_current_dir(self: &mut Self)`
+- <span id="filterentry-skip-current-dir"></span>`fn skip_current_dir(&mut self)`
 
 #### Trait Implementations
 
-##### `impl<I: $crate::fmt::Debug, P: $crate::fmt::Debug> Debug for FilterEntry<I, P>`
+##### `impl<I: fmt::Debug, P: fmt::Debug> Debug for FilterEntry<I, P>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="filterentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<P> FusedIterator for FilterEntry<IntoIter, P>`
 
 ##### `impl<I> IntoIterator for FilterEntry<I, P>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="filterentry-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="filterentry-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="filterentry-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<P> Iterator for FilterEntry<IntoIter, P>`
 
-- `type Item = Result<DirEntry, Error>`
+- <span id="filterentry-item"></span>`type Item = Result<DirEntry, Error>`
 
-- `fn next(self: &mut Self) -> Option<Result<DirEntry>>` — [`Result`](#result), [`DirEntry`](#direntry)
+- <span id="filterentry-next"></span>`fn next(&mut self) -> Option<Result<DirEntry>>` — [`Result`](#result), [`DirEntry`](#direntry)
 
 ## Enums
 
@@ -669,27 +711,27 @@ proceeds over a `Vec<fs::DirEntry>`.
 
 #### Implementations
 
-- `fn close(self: &mut Self)`
+- <span id="dirlist-close"></span>`fn close(&mut self)`
 
 #### Trait Implementations
 
 ##### `impl Debug for DirList`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dirlist-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for DirList`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="dirlist-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="dirlist-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="dirlist-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for DirList`
 
-- `type Item = Result<DirEntry, Error>`
+- <span id="dirlist-item"></span>`type Item = Result<DirEntry, Error>`
 
-- `fn next(self: &mut Self) -> Option<Result<DirEntry>>` — [`Result`](#result), [`DirEntry`](#direntry)
+- <span id="dirlist-next"></span>`fn next(&mut self) -> Option<Result<DirEntry>>` — [`Result`](#result), [`DirEntry`](#direntry)
 
 ## Traits
 

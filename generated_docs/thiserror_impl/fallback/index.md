@@ -4,6 +4,12 @@
 
 # Module `fallback`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`expand`](#expand) | fn |  |
+
 ## Functions
 
 ### `expand`

@@ -4,6 +4,37 @@
 
 # Module `common_term`
 
+## Contents
+
+- [Functions](#functions)
+  - [`move_cursor_down`](#move_cursor_down)
+  - [`move_cursor_up`](#move_cursor_up)
+  - [`move_cursor_left`](#move_cursor_left)
+  - [`move_cursor_right`](#move_cursor_right)
+  - [`move_cursor_to`](#move_cursor_to)
+  - [`clear_chars`](#clear_chars)
+  - [`clear_line`](#clear_line)
+  - [`clear_screen`](#clear_screen)
+  - [`clear_to_end_of_screen`](#clear_to_end_of_screen)
+  - [`show_cursor`](#show_cursor)
+  - [`hide_cursor`](#hide_cursor)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`move_cursor_down`](#move_cursor_down) | fn |  |
+| [`move_cursor_up`](#move_cursor_up) | fn |  |
+| [`move_cursor_left`](#move_cursor_left) | fn |  |
+| [`move_cursor_right`](#move_cursor_right) | fn |  |
+| [`move_cursor_to`](#move_cursor_to) | fn |  |
+| [`clear_chars`](#clear_chars) | fn |  |
+| [`clear_line`](#clear_line) | fn |  |
+| [`clear_screen`](#clear_screen) | fn |  |
+| [`clear_to_end_of_screen`](#clear_to_end_of_screen) | fn |  |
+| [`show_cursor`](#show_cursor) | fn |  |
+| [`hide_cursor`](#hide_cursor) | fn |  |
+
 ## Functions
 
 ### `move_cursor_down`

@@ -36,6 +36,37 @@ directly, but for example, if you've compiled an Thompson NFA, then you can use
 [`thompson::NFA::group_info`](crate::nfa::thompson::NFA::group_info) to get its
 underlying `GroupInfo`.
 
+## Contents
+
+- [Structs](#structs)
+  - [`Captures`](#captures)
+  - [`CapturesDebugMap`](#capturesdebugmap)
+  - [`CapturesPatternIter`](#capturespatterniter)
+  - [`GroupInfo`](#groupinfo)
+  - [`GroupInfoInner`](#groupinfoinner)
+  - [`GroupInfoError`](#groupinfoerror)
+  - [`GroupInfoPatternNames`](#groupinfopatternnames)
+  - [`GroupInfoAllNames`](#groupinfoallnames)
+- [Enums](#enums)
+  - [`GroupInfoErrorKind`](#groupinfoerrorkind)
+- [Type Aliases](#type-aliases)
+  - [`CaptureNameMap`](#capturenamemap)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Captures`](#captures) | struct | The span offsets of capturing groups after a match has been found. |
+| [`CapturesDebugMap`](#capturesdebugmap) | struct | A little helper type to provide a nice map-like debug representation for |
+| [`CapturesPatternIter`](#capturespatterniter) | struct | An iterator over all capturing groups in a `Captures` value. |
+| [`GroupInfo`](#groupinfo) | struct | Represents information about capturing groups in a compiled regex. |
+| [`GroupInfoInner`](#groupinfoinner) | struct | The inner guts of `GroupInfo`. |
+| [`GroupInfoError`](#groupinfoerror) | struct | An error that may occur when building a `GroupInfo`. |
+| [`GroupInfoPatternNames`](#groupinfopatternnames) | struct | An iterator over capturing groups and their names for a specific pattern. |
+| [`GroupInfoAllNames`](#groupinfoallnames) | struct | An iterator over capturing groups and their names for a `GroupInfo`. |
+| [`GroupInfoErrorKind`](#groupinfoerrorkind) | enum | The kind of error that occurs when building a `GroupInfo` fails. |
+| [`CaptureNameMap`](#capturenamemap) | type | A map from capture group name to its corresponding capture group index. |
+
 ## Structs
 
 ### `Captures`
@@ -185,23 +216,49 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn clear(self: &mut Self)`
+- <span id="captures-all"></span>`fn all(group_info: GroupInfo) -> Captures` — [`GroupInfo`](#groupinfo), [`Captures`](#captures)
 
-- `fn set_pattern(self: &mut Self, pid: Option<PatternID>)` — [`PatternID`](../../index.md)
+- <span id="captures-matches"></span>`fn matches(group_info: GroupInfo) -> Captures` — [`GroupInfo`](#groupinfo), [`Captures`](#captures)
 
-- `fn slots(self: &Self) -> &[Option<NonMaxUsize>]` — [`NonMaxUsize`](../primitives/index.md)
+- <span id="captures-empty"></span>`fn empty(group_info: GroupInfo) -> Captures` — [`GroupInfo`](#groupinfo), [`Captures`](#captures)
 
-- `fn slots_mut(self: &mut Self) -> &mut [Option<NonMaxUsize>]` — [`NonMaxUsize`](../primitives/index.md)
+- <span id="captures-is-match"></span>`fn is_match(&self) -> bool`
+
+- <span id="captures-pattern"></span>`fn pattern(&self) -> Option<PatternID>` — [`PatternID`](../../index.md)
+
+- <span id="captures-get-match"></span>`fn get_match(&self) -> Option<Match>` — [`Match`](../../index.md)
+
+- <span id="captures-get-group"></span>`fn get_group(&self, index: usize) -> Option<Span>` — [`Span`](../../index.md)
+
+- <span id="captures-get-group-by-name"></span>`fn get_group_by_name(&self, name: &str) -> Option<Span>` — [`Span`](../../index.md)
+
+- <span id="captures-iter"></span>`fn iter(&self) -> CapturesPatternIter<'_>` — [`CapturesPatternIter`](#capturespatterniter)
+
+- <span id="captures-group-len"></span>`fn group_len(&self) -> usize`
+
+- <span id="captures-group-info"></span>`fn group_info(&self) -> &GroupInfo` — [`GroupInfo`](#groupinfo)
+
+- <span id="captures-interpolate-string"></span>`fn interpolate_string(&self, haystack: &str, replacement: &str) -> String`
+
+- <span id="captures-interpolate-string-into"></span>`fn interpolate_string_into(&self, haystack: &str, replacement: &str, dst: &mut String)`
+
+- <span id="captures-interpolate-bytes"></span>`fn interpolate_bytes(&self, haystack: &[u8], replacement: &[u8]) -> Vec<u8>`
+
+- <span id="captures-interpolate-bytes-into"></span>`fn interpolate_bytes_into(&self, haystack: &[u8], replacement: &[u8], dst: &mut Vec<u8>)`
+
+- <span id="captures-extract"></span>`fn extract<'h, const N: usize>(&self, haystack: &'h str) -> (&'h str, [&'h str; N])`
+
+- <span id="captures-extract-bytes"></span>`fn extract_bytes<'h, const N: usize>(&self, haystack: &'h [u8]) -> (&'h [u8], [&'h [u8]; N])`
 
 #### Trait Implementations
 
 ##### `impl Clone for Captures`
 
-- `fn clone(self: &Self) -> Captures` — [`Captures`](#captures)
+- <span id="captures-clone"></span>`fn clone(&self) -> Captures` — [`Captures`](#captures)
 
 ##### `impl Debug for Captures`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="captures-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ### `CapturesDebugMap<'a>`
 
@@ -219,7 +276,7 @@ our capturing group spans.
 
 ##### `impl<'a> Debug for CapturesDebugMap<'a>`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="capturesdebugmap-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ### `CapturesPatternIter<'a>`
 
@@ -243,11 +300,11 @@ The lifetime parameter `'a` refers to the lifetime of the underlying
 
 ##### `impl<'a> Clone for CapturesPatternIter<'a>`
 
-- `fn clone(self: &Self) -> CapturesPatternIter<'a>` — [`CapturesPatternIter`](#capturespatterniter)
+- <span id="capturespatterniter-clone"></span>`fn clone(&self) -> CapturesPatternIter<'a>` — [`CapturesPatternIter`](#capturespatterniter)
 
 ##### `impl<'a> Debug for CapturesPatternIter<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="capturespatterniter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'a> ExactSizeIterator for CapturesPatternIter<'a>`
 
@@ -255,21 +312,21 @@ The lifetime parameter `'a` refers to the lifetime of the underlying
 
 ##### `impl<I> IntoIterator for CapturesPatternIter<'a>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="capturespatterniter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="capturespatterniter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="capturespatterniter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a> Iterator for CapturesPatternIter<'a>`
 
-- `type Item = Option<Span>`
+- <span id="capturespatterniter-item"></span>`type Item = Option<Span>`
 
-- `fn next(self: &mut Self) -> Option<Option<Span>>` — [`Span`](../../index.md)
+- <span id="capturespatterniter-next"></span>`fn next(&mut self) -> Option<Option<Span>>` — [`Span`](../../index.md)
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="capturespatterniter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- `fn count(self: Self) -> usize`
+- <span id="capturespatterniter-count"></span>`fn count(self) -> usize`
 
 ### `GroupInfo`
 
@@ -447,49 +504,49 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new<P, G, N>(pattern_groups: P) -> Result<GroupInfo, GroupInfoError>` — [`GroupInfo`](#groupinfo), [`GroupInfoError`](#groupinfoerror)
+- <span id="groupinfo-new"></span>`fn new<P, G, N>(pattern_groups: P) -> Result<GroupInfo, GroupInfoError>` — [`GroupInfo`](#groupinfo), [`GroupInfoError`](#groupinfoerror)
 
-- `fn empty() -> GroupInfo` — [`GroupInfo`](#groupinfo)
+- <span id="groupinfo-empty"></span>`fn empty() -> GroupInfo` — [`GroupInfo`](#groupinfo)
 
-- `fn to_index(self: &Self, pid: PatternID, name: &str) -> Option<usize>` — [`PatternID`](../../index.md)
+- <span id="groupinfo-to-index"></span>`fn to_index(&self, pid: PatternID, name: &str) -> Option<usize>` — [`PatternID`](../../index.md)
 
-- `fn to_name(self: &Self, pid: PatternID, group_index: usize) -> Option<&str>` — [`PatternID`](../../index.md)
+- <span id="groupinfo-to-name"></span>`fn to_name(&self, pid: PatternID, group_index: usize) -> Option<&str>` — [`PatternID`](../../index.md)
 
-- `fn pattern_names(self: &Self, pid: PatternID) -> GroupInfoPatternNames<'_>` — [`PatternID`](../../index.md), [`GroupInfoPatternNames`](#groupinfopatternnames)
+- <span id="groupinfo-pattern-names"></span>`fn pattern_names(&self, pid: PatternID) -> GroupInfoPatternNames<'_>` — [`PatternID`](../../index.md), [`GroupInfoPatternNames`](#groupinfopatternnames)
 
-- `fn all_names(self: &Self) -> GroupInfoAllNames<'_>` — [`GroupInfoAllNames`](#groupinfoallnames)
+- <span id="groupinfo-all-names"></span>`fn all_names(&self) -> GroupInfoAllNames<'_>` — [`GroupInfoAllNames`](#groupinfoallnames)
 
-- `fn slots(self: &Self, pid: PatternID, group_index: usize) -> Option<(usize, usize)>` — [`PatternID`](../../index.md)
+- <span id="groupinfo-slots"></span>`fn slots(&self, pid: PatternID, group_index: usize) -> Option<(usize, usize)>` — [`PatternID`](../../index.md)
 
-- `fn slot(self: &Self, pid: PatternID, group_index: usize) -> Option<usize>` — [`PatternID`](../../index.md)
+- <span id="groupinfo-slot"></span>`fn slot(&self, pid: PatternID, group_index: usize) -> Option<usize>` — [`PatternID`](../../index.md)
 
-- `fn pattern_len(self: &Self) -> usize`
+- <span id="groupinfo-pattern-len"></span>`fn pattern_len(&self) -> usize`
 
-- `fn group_len(self: &Self, pid: PatternID) -> usize` — [`PatternID`](../../index.md)
+- <span id="groupinfo-group-len"></span>`fn group_len(&self, pid: PatternID) -> usize` — [`PatternID`](../../index.md)
 
-- `fn all_group_len(self: &Self) -> usize`
+- <span id="groupinfo-all-group-len"></span>`fn all_group_len(&self) -> usize`
 
-- `fn slot_len(self: &Self) -> usize`
+- <span id="groupinfo-slot-len"></span>`fn slot_len(&self) -> usize`
 
-- `fn implicit_slot_len(self: &Self) -> usize`
+- <span id="groupinfo-implicit-slot-len"></span>`fn implicit_slot_len(&self) -> usize`
 
-- `fn explicit_slot_len(self: &Self) -> usize`
+- <span id="groupinfo-explicit-slot-len"></span>`fn explicit_slot_len(&self) -> usize`
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="groupinfo-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Clone for GroupInfo`
 
-- `fn clone(self: &Self) -> GroupInfo` — [`GroupInfo`](#groupinfo)
+- <span id="groupinfo-clone"></span>`fn clone(&self) -> GroupInfo` — [`GroupInfo`](#groupinfo)
 
 ##### `impl Debug for GroupInfo`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="groupinfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for GroupInfo`
 
-- `fn default() -> GroupInfo` — [`GroupInfo`](#groupinfo)
+- <span id="groupinfo-default"></span>`fn default() -> GroupInfo` — [`GroupInfo`](#groupinfo)
 
 ### `GroupInfoInner`
 
@@ -507,27 +564,27 @@ be wrapped in an `Arc` to make `GroupInfo` reference counted.
 
 #### Implementations
 
-- `fn add_first_group(self: &mut Self, pid: PatternID)` — [`PatternID`](../../index.md)
+- <span id="groupinfoinner-add-first-group"></span>`fn add_first_group(&mut self, pid: PatternID)` — [`PatternID`](../../index.md)
 
-- `fn add_explicit_group<N: AsRef<str>>(self: &mut Self, pid: PatternID, group: SmallIndex, maybe_name: Option<N>) -> Result<(), GroupInfoError>` — [`PatternID`](../../index.md), [`SmallIndex`](../primitives/index.md), [`GroupInfoError`](#groupinfoerror)
+- <span id="groupinfoinner-add-explicit-group"></span>`fn add_explicit_group<N: AsRef<str>>(&mut self, pid: PatternID, group: SmallIndex, maybe_name: Option<N>) -> Result<(), GroupInfoError>` — [`PatternID`](../../index.md), [`SmallIndex`](../primitives/index.md), [`GroupInfoError`](#groupinfoerror)
 
-- `fn fixup_slot_ranges(self: &mut Self) -> Result<(), GroupInfoError>` — [`GroupInfoError`](#groupinfoerror)
+- <span id="groupinfoinner-fixup-slot-ranges"></span>`fn fixup_slot_ranges(&mut self) -> Result<(), GroupInfoError>` — [`GroupInfoError`](#groupinfoerror)
 
-- `fn pattern_len(self: &Self) -> usize`
+- <span id="groupinfoinner-pattern-len"></span>`fn pattern_len(&self) -> usize`
 
-- `fn group_len(self: &Self, pid: PatternID) -> usize` — [`PatternID`](../../index.md)
+- <span id="groupinfoinner-group-len"></span>`fn group_len(&self, pid: PatternID) -> usize` — [`PatternID`](../../index.md)
 
-- `fn small_slot_len(self: &Self) -> SmallIndex` — [`SmallIndex`](../primitives/index.md)
+- <span id="groupinfoinner-small-slot-len"></span>`fn small_slot_len(&self) -> SmallIndex` — [`SmallIndex`](../primitives/index.md)
 
 #### Trait Implementations
 
 ##### `impl Debug for GroupInfoInner`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="groupinfoinner-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for GroupInfoInner`
 
-- `fn default() -> GroupInfoInner` — [`GroupInfoInner`](#groupinfoinner)
+- <span id="groupinfoinner-default"></span>`fn default() -> GroupInfoInner` — [`GroupInfoInner`](#groupinfoinner)
 
 ### `GroupInfoError`
 
@@ -546,37 +603,37 @@ there are no duplicate capture groups for a specific pattern.
 
 #### Implementations
 
-- `fn too_many_patterns(err: PatternIDError) -> GroupInfoError` — [`PatternIDError`](../primitives/index.md), [`GroupInfoError`](#groupinfoerror)
+- <span id="groupinfoerror-too-many-patterns"></span>`fn too_many_patterns(err: PatternIDError) -> GroupInfoError` — [`PatternIDError`](../primitives/index.md), [`GroupInfoError`](#groupinfoerror)
 
-- `fn too_many_groups(pattern: PatternID, minimum: usize) -> GroupInfoError` — [`PatternID`](../../index.md), [`GroupInfoError`](#groupinfoerror)
+- <span id="groupinfoerror-too-many-groups"></span>`fn too_many_groups(pattern: PatternID, minimum: usize) -> GroupInfoError` — [`PatternID`](../../index.md), [`GroupInfoError`](#groupinfoerror)
 
-- `fn missing_groups(pattern: PatternID) -> GroupInfoError` — [`PatternID`](../../index.md), [`GroupInfoError`](#groupinfoerror)
+- <span id="groupinfoerror-missing-groups"></span>`fn missing_groups(pattern: PatternID) -> GroupInfoError` — [`PatternID`](../../index.md), [`GroupInfoError`](#groupinfoerror)
 
-- `fn first_must_be_unnamed(pattern: PatternID) -> GroupInfoError` — [`PatternID`](../../index.md), [`GroupInfoError`](#groupinfoerror)
+- <span id="groupinfoerror-first-must-be-unnamed"></span>`fn first_must_be_unnamed(pattern: PatternID) -> GroupInfoError` — [`PatternID`](../../index.md), [`GroupInfoError`](#groupinfoerror)
 
-- `fn duplicate(pattern: PatternID, name: &str) -> GroupInfoError` — [`PatternID`](../../index.md), [`GroupInfoError`](#groupinfoerror)
+- <span id="groupinfoerror-duplicate"></span>`fn duplicate(pattern: PatternID, name: &str) -> GroupInfoError` — [`PatternID`](../../index.md), [`GroupInfoError`](#groupinfoerror)
 
 #### Trait Implementations
 
 ##### `impl Clone for GroupInfoError`
 
-- `fn clone(self: &Self) -> GroupInfoError` — [`GroupInfoError`](#groupinfoerror)
+- <span id="groupinfoerror-clone"></span>`fn clone(&self) -> GroupInfoError` — [`GroupInfoError`](#groupinfoerror)
 
 ##### `impl Debug for GroupInfoError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="groupinfoerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for GroupInfoError`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="groupinfoerror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for GroupInfoError`
 
-- `fn source(self: &Self) -> Option<&dyn std::error::Error>`
+- <span id="groupinfoerror-source"></span>`fn source(&self) -> Option<&dyn std::error::Error>`
 
 ##### `impl<T> ToString for GroupInfoError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="groupinfoerror-to-string"></span>`fn to_string(&self) -> String`
 
 ### `GroupInfoPatternNames<'a>`
 
@@ -595,17 +652,17 @@ from which this iterator was created.
 
 #### Implementations
 
-- `fn empty() -> GroupInfoPatternNames<'static>` — [`GroupInfoPatternNames`](#groupinfopatternnames)
+- <span id="groupinfopatternnames-empty"></span>`fn empty() -> GroupInfoPatternNames<'static>` — [`GroupInfoPatternNames`](#groupinfopatternnames)
 
 #### Trait Implementations
 
 ##### `impl<'a> Clone for GroupInfoPatternNames<'a>`
 
-- `fn clone(self: &Self) -> GroupInfoPatternNames<'a>` — [`GroupInfoPatternNames`](#groupinfopatternnames)
+- <span id="groupinfopatternnames-clone"></span>`fn clone(&self) -> GroupInfoPatternNames<'a>` — [`GroupInfoPatternNames`](#groupinfopatternnames)
 
 ##### `impl<'a> Debug for GroupInfoPatternNames<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="groupinfopatternnames-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'a> ExactSizeIterator for GroupInfoPatternNames<'a>`
 
@@ -613,21 +670,21 @@ from which this iterator was created.
 
 ##### `impl<I> IntoIterator for GroupInfoPatternNames<'a>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="groupinfopatternnames-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="groupinfopatternnames-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="groupinfopatternnames-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a> Iterator for GroupInfoPatternNames<'a>`
 
-- `type Item = Option<&'a str>`
+- <span id="groupinfopatternnames-item"></span>`type Item = Option<&'a str>`
 
-- `fn next(self: &mut Self) -> Option<Option<&'a str>>`
+- <span id="groupinfopatternnames-next"></span>`fn next(&mut self) -> Option<Option<&'a str>>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="groupinfopatternnames-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
-- `fn count(self: Self) -> usize`
+- <span id="groupinfopatternnames-count"></span>`fn count(self) -> usize`
 
 ### `GroupInfoAllNames<'a>`
 
@@ -651,21 +708,21 @@ from which this iterator was created.
 
 ##### `impl<'a> Debug for GroupInfoAllNames<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="groupinfoallnames-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for GroupInfoAllNames<'a>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="groupinfoallnames-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="groupinfoallnames-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="groupinfoallnames-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a> Iterator for GroupInfoAllNames<'a>`
 
-- `type Item = (PatternID, usize, Option<&'a str>)`
+- <span id="groupinfoallnames-item"></span>`type Item = (PatternID, usize, Option<&'a str>)`
 
-- `fn next(self: &mut Self) -> Option<(PatternID, usize, Option<&'a str>)>` — [`PatternID`](../../index.md)
+- <span id="groupinfoallnames-next"></span>`fn next(&mut self) -> Option<(PatternID, usize, Option<&'a str>)>` — [`PatternID`](../../index.md)
 
 ## Enums
 
@@ -736,11 +793,11 @@ export it.
 
 ##### `impl Clone for GroupInfoErrorKind`
 
-- `fn clone(self: &Self) -> GroupInfoErrorKind` — [`GroupInfoErrorKind`](#groupinfoerrorkind)
+- <span id="groupinfoerrorkind-clone"></span>`fn clone(&self) -> GroupInfoErrorKind` — [`GroupInfoErrorKind`](#groupinfoerrorkind)
 
 ##### `impl Debug for GroupInfoErrorKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="groupinfoerrorkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Type Aliases
 

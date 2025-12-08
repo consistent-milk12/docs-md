@@ -4,6 +4,12 @@
 
 # Module `splice`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Splice`](#splice) | struct | A splicing iterator for `Vec`. |
+
 ## Structs
 
 ### `Splice<'a, I: Iterator + 'a, A: Allocator + 'a>`
@@ -30,33 +36,33 @@ let iter: std::vec::Splice<_> = v.splice(1.., new);
 
 #### Trait Implementations
 
-##### `impl<'a, I: $crate::fmt::Debug + Iterator + 'a, A: $crate::fmt::Debug + Allocator + 'a> Debug for Splice<'a, I, A>`
+##### `impl<'a, I: fmt::Debug + Iterator + 'a, A: fmt::Debug + Allocator + 'a> Debug for Splice<'a, I, A>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="splice-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I: Iterator, A: Allocator> DoubleEndedIterator for Splice<'_, I, A>`
 
-- `fn next_back(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="splice-next-back"></span>`fn next_back(&mut self) -> Option<<Self as >::Item>`
 
 ##### `impl<I: Iterator, A: Allocator> Drop for Splice<'_, I, A>`
 
-- `fn drop(self: &mut Self)`
+- <span id="splice-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<I: Iterator, A: Allocator> ExactSizeIterator for Splice<'_, I, A>`
 
 ##### `impl<I> IntoIterator for Splice<'a, I, A>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="splice-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="splice-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="splice-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<I: Iterator, A: Allocator> Iterator for Splice<'_, I, A>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="splice-item"></span>`type Item = <I as Iterator>::Item`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="splice-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="splice-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 

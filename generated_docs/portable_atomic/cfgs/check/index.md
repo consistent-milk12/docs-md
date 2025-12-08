@@ -4,6 +4,18 @@
 
 # Module `check`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`_Atomic8`](#_atomic8) | type |  |
+| [`_Atomic16`](#_atomic16) | type |  |
+| [`_Atomic32`](#_atomic32) | type |  |
+| [`_Atomic64`](#_atomic64) | type |  |
+| [`_Atomic128`](#_atomic128) | type |  |
+| [`_AtomicPtr`](#_atomicptr) | type |  |
+| [`__AtomicPtr`](#__atomicptr) | type |  |
+
 ## Type Aliases
 
 ### `_Atomic8`

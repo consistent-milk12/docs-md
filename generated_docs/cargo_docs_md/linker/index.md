@@ -33,6 +33,17 @@ let link = registry.create_link(&some_id, "index.md");
 // Returns: Some("[`ItemName`](module.md)")
 ```
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`LinkRegistry`](#linkregistry) | struct | Registry mapping item IDs to their documentation file paths. |
+| [`method_anchor`](#method_anchor) | fn | Generate a compound anchor for a method on a type. |
+| [`slugify_anchor`](#slugify_anchor) | fn | Convert a name to a GitHub-style markdown anchor slug. |
+| [`slugify_anchor_ascii`](#slugify_anchor_ascii) | fn | Fast ASCII-only slugification (no allocation for normalization). |
+| [`slugify_anchor_impl`](#slugify_anchor_impl) | fn | Unicode-aware slugification with full lowercase support. |
+| [`item_has_anchor`](#item_has_anchor) | fn | Check if an item kind generates a heading anchor in markdown. |
+
 ## Structs
 
 ### `LinkRegistry`
@@ -68,29 +79,29 @@ create links between items.
 
 #### Implementations
 
-- `fn build(krate: &Crate, flat_format: bool, include_private: bool) -> Self`
+- <span id="linkregistry-build"></span>`fn build(krate: &Crate, flat_format: bool, include_private: bool) -> Self`
 
-- `fn register_module_items(self: &mut Self, krate: &Crate, module_id: Id, module_item: &rustdoc_types::Item, path: &str, module_prefix: &str, flat_format: bool, include_private: bool)`
+- <span id="linkregistry-register-module-items"></span>`fn register_module_items(&mut self, krate: &Crate, module_id: Id, module_item: &rustdoc_types::Item, path: &str, module_prefix: &str, flat_format: bool, include_private: bool)`
 
-- `fn register_glob_items(self: &mut Self, krate: &Crate, use_item: &rustdoc_types::Use, path: &str, include_private: bool)`
+- <span id="linkregistry-register-glob-items"></span>`fn register_glob_items(&mut self, krate: &Crate, use_item: &rustdoc_types::Use, path: &str, include_private: bool)`
 
-- `fn get_path(self: &Self, id: Id) -> Option<&String>`
+- <span id="linkregistry-get-path"></span>`fn get_path(&self, id: Id) -> Option<&String>`
 
-- `fn get_name(self: &Self, id: Id) -> Option<&String>`
+- <span id="linkregistry-get-name"></span>`fn get_name(&self, id: Id) -> Option<&String>`
 
-- `fn create_link(self: &Self, id: Id, from_path: &str) -> Option<String>`
+- <span id="linkregistry-create-link"></span>`fn create_link(&self, id: Id, from_path: &str) -> Option<String>`
 
-- `fn compute_relative_path(from: &str, to: &str) -> String`
+- <span id="linkregistry-compute-relative-path"></span>`fn compute_relative_path(from: &str, to: &str) -> String`
 
 #### Trait Implementations
 
 ##### `impl Debug for LinkRegistry`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="linkregistry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for LinkRegistry`
 
-- `fn default() -> LinkRegistry` — [`LinkRegistry`](../index.md)
+- <span id="linkregistry-default"></span>`fn default() -> LinkRegistry` — [`LinkRegistry`](../index.md)
 
 ##### `impl<T> Instrument for LinkRegistry`
 
@@ -100,21 +111,46 @@ create links between items.
 
 ##### `impl<T> Pointable for LinkRegistry`
 
-- `const ALIGN: usize`
+- <span id="linkregistry-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="linkregistry-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="linkregistry-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="linkregistry-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="linkregistry-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="linkregistry-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T> WithSubscriber for LinkRegistry`
 
 ## Functions
+
+### `method_anchor`
+
+```rust
+fn method_anchor(type_name: &str, method_name: &str) -> String
+```
+
+Generate a compound anchor for a method on a type.
+
+This creates a unique anchor that combines the type name and method name,
+enabling deep linking to specific methods. The format is `typename-methodname`,
+where both parts are slugified.
+
+# Arguments
+
+* `type_name` - The name of the type (struct, enum, trait, etc.)
+* `method_name` - The name of the method or associated item
+
+# Examples
+
+```ignore
+assert_eq!(method_anchor("Parser", "parse"), "parser-parse");
+assert_eq!(method_anchor("HashMap", "new"), "hashmap-new");
+assert_eq!(method_anchor("Vec<T>", "push"), "vec-push");
+```
 
 ### `slugify_anchor`
 
@@ -167,12 +203,12 @@ Unicode-aware slugification with full lowercase support.
 ### `item_has_anchor`
 
 ```rust
-fn item_has_anchor(kind: rustdoc_types::ItemKind) -> bool
+const fn item_has_anchor(kind: rustdoc_types::ItemKind) -> bool
 ```
 
 Check if an item kind generates a heading anchor in markdown.
 
-Only certain item types get `### \`Name\`` headings in the generated output.
+Only certain item types get `### \`Name\` headings in the generated output.
 Other items (methods, fields, variants) are rendered as bullet points
 without heading anchors.
 

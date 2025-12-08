@@ -4,6 +4,12 @@
 
 # Module `error`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`MatchesError`](#matcheserror) | enum | Violation of [`ArgMatches`][crate::ArgMatches] assumptions |
+
 ## Enums
 
 ### `MatchesError`
@@ -33,25 +39,25 @@ Violation of `ArgMatches` assumptions
 
 #### Implementations
 
-- `fn unwrap<T>(id: &str, r: Result<T, MatchesError>) -> T` — [`MatchesError`](../index.md)
+- <span id="matcheserror-unwrap"></span>`fn unwrap<T>(id: &str, r: Result<T, MatchesError>) -> T` — [`MatchesError`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for MatchesError`
 
-- `fn clone(self: &Self) -> MatchesError` — [`MatchesError`](../index.md)
+- <span id="matcheserror-clone"></span>`fn clone(&self) -> MatchesError` — [`MatchesError`](../index.md)
 
 ##### `impl Debug for MatchesError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="matcheserror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for MatchesError`
 
-- `fn fmt(self: &Self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="matcheserror-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
 ##### `impl Error for MatchesError`
 
 ##### `impl<T> ToString for MatchesError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="matcheserror-to-string"></span>`fn to_string(&self) -> String`
 

@@ -4,6 +4,12 @@
 
 # Module `arg_predicate`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ArgPredicate`](#argpredicate) | enum | Operations to perform on argument values |
+
 ## Enums
 
 ### `ArgPredicate`
@@ -33,17 +39,17 @@ These do not apply to `ValueSource::DefaultValue`
 
 ##### `impl Clone for ArgPredicate`
 
-- `fn clone(self: &Self) -> ArgPredicate` — [`ArgPredicate`](../index.md)
+- <span id="argpredicate-clone"></span>`fn clone(&self) -> ArgPredicate` — [`ArgPredicate`](../index.md)
 
 ##### `impl Debug for ArgPredicate`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="argpredicate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ArgPredicate`
 
 ##### `impl PartialEq for ArgPredicate`
 
-- `fn eq(self: &Self, other: &ArgPredicate) -> bool` — [`ArgPredicate`](../index.md)
+- <span id="argpredicate-eq"></span>`fn eq(&self, other: &ArgPredicate) -> bool` — [`ArgPredicate`](../index.md)
 
 ##### `impl StructuralPartialEq for ArgPredicate`
 

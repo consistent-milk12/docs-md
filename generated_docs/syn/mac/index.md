@@ -4,6 +4,16 @@
 
 # Module `mac`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`parsing`](#parsing) | mod |  |
+| [`printing`](#printing) | mod |  |
+| [`Macro`](#macro) | struct | A macro invocation: `println!("{}", mac)`. |
+| [`MacroDelimiter`](#macrodelimiter) | enum | A grouping token that surrounds a macro body: `m!(...)` or `m!{...}` or `m![...]`. |
+| [`parse_delimiter`](#parse_delimiter) | fn |  |
+
 ## Modules
 
 - [`parsing`](parsing/index.md) - 
@@ -16,7 +26,7 @@
 ```rust
 struct Macro {
     pub path: crate::path::Path,
-    pub bang_token: $crate::token::Not,
+    pub bang_token: token::Not,
     pub delimiter: MacroDelimiter,
     pub tokens: proc_macro2::TokenStream,
 }
@@ -26,43 +36,43 @@ A macro invocation: `println!("{}", mac)`.
 
 #### Implementations
 
-- `fn parse_body<T: Parse>(self: &Self) -> Result<T>` — [`Result`](../index.md)
+- <span id="macro-parse-body"></span>`fn parse_body<T: Parse>(&self) -> Result<T>` — [`Result`](../index.md)
 
-- `fn parse_body_with<F: Parser>(self: &Self, parser: F) -> Result<<F as >::Output>` — [`Result`](../index.md), [`Parser`](../parse/index.md)
+- <span id="macro-parse-body-with"></span>`fn parse_body_with<F: Parser>(&self, parser: F) -> Result<<F as >::Output>` — [`Result`](../index.md), [`Parser`](../parse/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::Macro`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratemacro-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Macro`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratemacro-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Macro`
 
 ##### `impl Hash for crate::Macro`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratemacro-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::mac::Macro`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratemacmacro-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::Macro`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratemacro-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for Macro`
 
 ##### `impl<T> Spanned for Macro`
 
-- `fn span(self: &Self) -> Span`
+- <span id="macro-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::mac::Macro`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratemacmacro-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ## Enums
 
@@ -80,27 +90,29 @@ A grouping token that surrounds a macro body: `m!(...)` or `m!{...}` or `m![...]
 
 #### Implementations
 
-- `fn surround(self: &Self, tokens: &mut TokenStream, inner: TokenStream)`
+- <span id="macrodelimiter-span"></span>`fn span(&self) -> &DelimSpan`
+
+- <span id="macrodelimiter-is-brace"></span>`fn is_brace(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::MacroDelimiter`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratemacrodelimiter-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::MacroDelimiter`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratemacrodelimiter-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::MacroDelimiter`
 
 ##### `impl Hash for crate::MacroDelimiter`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratemacrodelimiter-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::MacroDelimiter`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratemacrodelimiter-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ## Functions
 

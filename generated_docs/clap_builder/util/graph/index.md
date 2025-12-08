@@ -4,6 +4,13 @@
 
 # Module `graph`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Child`](#child) | struct |  |
+| [`ChildGraph`](#childgraph) | struct |  |
+
 ## Structs
 
 ### `Child<T>`
@@ -17,13 +24,13 @@ struct Child<T> {
 
 #### Implementations
 
-- `fn new(id: T) -> Self`
+- <span id="child-new"></span>`fn new(id: T) -> Self`
 
 #### Trait Implementations
 
-##### `impl<T: $crate::fmt::Debug> Debug for Child<T>`
+##### `impl<T: fmt::Debug> Debug for Child<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="child-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ChildGraph<T>`
 
@@ -33,19 +40,19 @@ struct ChildGraph<T>(Vec<Child<T>>);
 
 #### Implementations
 
-- `fn with_capacity(s: usize) -> Self`
+- <span id="childgraph-with-capacity"></span>`fn with_capacity(s: usize) -> Self`
 
-- `fn insert(self: &mut Self, req: T) -> usize`
+- <span id="childgraph-insert"></span>`fn insert(&mut self, req: T) -> usize`
 
-- `fn insert_child(self: &mut Self, parent: usize, child: T) -> usize`
+- <span id="childgraph-insert-child"></span>`fn insert_child(&mut self, parent: usize, child: T) -> usize`
 
-- `fn iter(self: &Self) -> impl Iterator<Item = &T>`
+- <span id="childgraph-iter"></span>`fn iter(&self) -> impl Iterator<Item = &T>`
 
-- `fn contains(self: &Self, req: &T) -> bool`
+- <span id="childgraph-contains"></span>`fn contains(&self, req: &T) -> bool`
 
 #### Trait Implementations
 
-##### `impl<T: $crate::fmt::Debug> Debug for ChildGraph<T>`
+##### `impl<T: fmt::Debug> Debug for ChildGraph<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="childgraph-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

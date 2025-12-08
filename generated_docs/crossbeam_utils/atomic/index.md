@@ -9,6 +9,16 @@ Atomic types.
 * [`AtomicCell`](#atomiccell), a thread-safe mutable memory location.
 * [`AtomicConsume`](#atomicconsume), for reading from primitive atomic types with "consume" ordering.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`seq_lock`](#seq_lock) | mod |  |
+| [`atomic_cell`](#atomic_cell) | mod |  |
+| [`consume`](#consume) | mod |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | trait |  |
+
 ## Modules
 
 - [`seq_lock`](seq_lock/index.md) - 
@@ -59,35 +69,35 @@ Atomic loads use the `Acquire` ordering and atomic stores use the `Release` orde
 
 #### Implementations
 
-- `fn fetch_add(self: &Self, val: u128) -> u128`
+- <span id="atomiccell-fetch-add"></span>`fn fetch_add(&self, val: u128) -> u128`
 
-- `fn fetch_sub(self: &Self, val: u128) -> u128`
+- <span id="atomiccell-fetch-sub"></span>`fn fetch_sub(&self, val: u128) -> u128`
 
-- `fn fetch_and(self: &Self, val: u128) -> u128`
+- <span id="atomiccell-fetch-and"></span>`fn fetch_and(&self, val: u128) -> u128`
 
-- `fn fetch_nand(self: &Self, val: u128) -> u128`
+- <span id="atomiccell-fetch-nand"></span>`fn fetch_nand(&self, val: u128) -> u128`
 
-- `fn fetch_or(self: &Self, val: u128) -> u128`
+- <span id="atomiccell-fetch-or"></span>`fn fetch_or(&self, val: u128) -> u128`
 
-- `fn fetch_xor(self: &Self, val: u128) -> u128`
+- <span id="atomiccell-fetch-xor"></span>`fn fetch_xor(&self, val: u128) -> u128`
 
-- `fn fetch_max(self: &Self, val: u128) -> u128`
+- <span id="atomiccell-fetch-max"></span>`fn fetch_max(&self, val: u128) -> u128`
 
-- `fn fetch_min(self: &Self, val: u128) -> u128`
+- <span id="atomiccell-fetch-min"></span>`fn fetch_min(&self, val: u128) -> u128`
 
 #### Trait Implementations
 
 ##### `impl<T: Copy + fmt::Debug> Debug for AtomicCell<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="atomiccell-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: Default> Default for AtomicCell<T>`
 
-- `fn default() -> AtomicCell<T>` — [`AtomicCell`](#atomiccell)
+- <span id="atomiccell-default"></span>`fn default() -> AtomicCell<T>` — [`AtomicCell`](#atomiccell)
 
 ##### `impl<T> Drop for AtomicCell<T>`
 
-- `fn drop(self: &mut Self)`
+- <span id="atomiccell-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<T> RefUnwindSafe for AtomicCell<T>`
 

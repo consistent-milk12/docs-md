@@ -4,6 +4,31 @@
 
 # Module `fat`
 
+## Contents
+
+- [Structs](#structs)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`MachOFatFile`](#machofatfile)
+- [Traits](#traits)
+  - [`FatArch`](#fatarch)
+- [Type Aliases](#type-aliases)
+  - [`MachOFatFile32`](#machofatfile32)
+  - [`MachOFatFile64`](#machofatfile64)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`MachOFatFile`](#machofatfile) | struct | A Mach-O universal binary. |
+| [`FatArch`](#fatarch) | trait | A trait for generic access to [`macho::FatArch32`] and [`macho::FatArch64`]. |
+| [`MachOFatFile32`](#machofatfile32) | type | A 32-bit Mach-O universal binary. |
+| [`MachOFatFile64`](#machofatfile64) | type | A 64-bit Mach-O universal binary. |
+
 ## Structs
 
 ### `FatArch32`
@@ -44,29 +69,29 @@ struct FatArch32 {
 
 ##### `impl Clone for FatArch32`
 
-- `fn clone(self: &Self) -> FatArch32` — [`FatArch32`](../../../macho/index.md)
+- <span id="fatarch32-clone"></span>`fn clone(&self) -> FatArch32` — [`FatArch32`](../../../macho/index.md)
 
 ##### `impl Copy for FatArch32`
 
 ##### `impl Debug for FatArch32`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="fatarch32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl FatArch for FatArch32`
 
-- `type Word = u32`
+- <span id="fatarch32-word"></span>`type Word = u32`
 
-- `const MAGIC: u32`
+- <span id="fatarch32-magic"></span>`const MAGIC: u32`
 
-- `fn cputype(self: &Self) -> u32`
+- <span id="fatarch32-cputype"></span>`fn cputype(&self) -> u32`
 
-- `fn cpusubtype(self: &Self) -> u32`
+- <span id="fatarch32-cpusubtype"></span>`fn cpusubtype(&self) -> u32`
 
-- `fn offset(self: &Self) -> <Self as >::Word` — [`FatArch`](../index.md)
+- <span id="fatarch32-offset"></span>`fn offset(&self) -> <Self as >::Word` — [`FatArch`](../index.md)
 
-- `fn size(self: &Self) -> <Self as >::Word` — [`FatArch`](../index.md)
+- <span id="fatarch32-size"></span>`fn size(&self) -> <Self as >::Word` — [`FatArch`](../index.md)
 
-- `fn align(self: &Self) -> u32`
+- <span id="fatarch32-align"></span>`fn align(&self) -> u32`
 
 ##### `impl Pod for FatArch32`
 
@@ -113,29 +138,29 @@ struct FatArch64 {
 
 ##### `impl Clone for FatArch64`
 
-- `fn clone(self: &Self) -> FatArch64` — [`FatArch64`](../../../macho/index.md)
+- <span id="fatarch64-clone"></span>`fn clone(&self) -> FatArch64` — [`FatArch64`](../../../macho/index.md)
 
 ##### `impl Copy for FatArch64`
 
 ##### `impl Debug for FatArch64`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="fatarch64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl FatArch for FatArch64`
 
-- `type Word = u64`
+- <span id="fatarch64-word"></span>`type Word = u64`
 
-- `const MAGIC: u32`
+- <span id="fatarch64-magic"></span>`const MAGIC: u32`
 
-- `fn cputype(self: &Self) -> u32`
+- <span id="fatarch64-cputype"></span>`fn cputype(&self) -> u32`
 
-- `fn cpusubtype(self: &Self) -> u32`
+- <span id="fatarch64-cpusubtype"></span>`fn cpusubtype(&self) -> u32`
 
-- `fn offset(self: &Self) -> <Self as >::Word` — [`FatArch`](../index.md)
+- <span id="fatarch64-offset"></span>`fn offset(&self) -> <Self as >::Word` — [`FatArch`](../index.md)
 
-- `fn size(self: &Self) -> <Self as >::Word` — [`FatArch`](../index.md)
+- <span id="fatarch64-size"></span>`fn size(&self) -> <Self as >::Word` — [`FatArch`](../index.md)
 
-- `fn align(self: &Self) -> u32`
+- <span id="fatarch64-align"></span>`fn align(&self) -> u32`
 
 ##### `impl Pod for FatArch64`
 
@@ -162,13 +187,13 @@ struct FatHeader {
 
 ##### `impl Clone for FatHeader`
 
-- `fn clone(self: &Self) -> FatHeader` — [`FatHeader`](../../../macho/index.md)
+- <span id="fatheader-clone"></span>`fn clone(&self) -> FatHeader` — [`FatHeader`](../../../macho/index.md)
 
 ##### `impl Copy for FatHeader`
 
 ##### `impl Debug for FatHeader`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="fatheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Pod for FatHeader`
 
@@ -188,21 +213,21 @@ to [`crate::FileKind::MachOFat32`](../../../index.md) or [`crate::FileKind::Mach
 
 #### Implementations
 
-- `fn parse<R: ReadRef<'data>>(data: R) -> Result<Self>` — [`Result`](../../../index.md)
+- <span id="machofatfile-parse"></span>`fn parse<R: ReadRef<'data>>(data: R) -> Result<Self>` — [`Result`](../../../index.md)
 
-- `fn header(self: &Self) -> &'data macho::FatHeader` — [`FatHeader`](../../../macho/index.md)
+- <span id="machofatfile-header"></span>`fn header(&self) -> &'data macho::FatHeader` — [`FatHeader`](../../../macho/index.md)
 
-- `fn arches(self: &Self) -> &'data [Fat]`
+- <span id="machofatfile-arches"></span>`fn arches(&self) -> &'data [Fat]`
 
 #### Trait Implementations
 
-##### `impl<'data, Fat: $crate::clone::Clone + FatArch> Clone for MachOFatFile<'data, Fat>`
+##### `impl<'data, Fat: clone::Clone + FatArch> Clone for MachOFatFile<'data, Fat>`
 
-- `fn clone(self: &Self) -> MachOFatFile<'data, Fat>` — [`MachOFatFile`](../index.md)
+- <span id="machofatfile-clone"></span>`fn clone(&self) -> MachOFatFile<'data, Fat>` — [`MachOFatFile`](../index.md)
 
-##### `impl<'data, Fat: $crate::fmt::Debug + FatArch> Debug for MachOFatFile<'data, Fat>`
+##### `impl<'data, Fat: fmt::Debug + FatArch> Debug for MachOFatFile<'data, Fat>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="machofatfile-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Traits
 
@@ -220,21 +245,21 @@ A trait for generic access to [`macho::FatArch32`](../../../macho/index.md) and 
 
 - `const MAGIC: u32`
 
-- `fn cputype(self: &Self) -> u32`
+- `fn cputype(&self) -> u32`
 
-- `fn cpusubtype(self: &Self) -> u32`
+- `fn cpusubtype(&self) -> u32`
 
-- `fn offset(self: &Self) -> <Self as >::Word`
+- `fn offset(&self) -> <Self as >::Word`
 
-- `fn size(self: &Self) -> <Self as >::Word`
+- `fn size(&self) -> <Self as >::Word`
 
-- `fn align(self: &Self) -> u32`
+- `fn align(&self) -> u32`
 
-- `fn architecture(self: &Self) -> Architecture`
+- `fn architecture(&self) -> Architecture`
 
-- `fn file_range(self: &Self) -> (u64, u64)`
+- `fn file_range(&self) -> (u64, u64)`
 
-- `fn data<'data, R: ReadRef<'data>>(self: &Self, file: R) -> Result<&'data [u8]>`
+- `fn data<'data, R: ReadRef<'data>>(&self, file: R) -> Result<&'data [u8]>`
 
 ## Type Aliases
 

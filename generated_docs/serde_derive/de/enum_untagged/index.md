@@ -11,6 +11,14 @@ Deserialization for untagged enums:
 enum Enum {}
 ```
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`deserialize`](#deserialize) | fn | Generates `Deserialize::deserialize` body for an `enum Enum {...}` with `#[serde(untagged)]` attribute |
+| [`deserialize_variant`](#deserialize_variant) | fn |  |
+| [`deserialize_newtype_variant`](#deserialize_newtype_variant) | fn |  |
+
 ## Functions
 
 ### `deserialize`

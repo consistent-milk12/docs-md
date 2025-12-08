@@ -4,6 +4,13 @@
 
 # Module `array`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`const_generic_impl`](#const_generic_impl) | mod |  |
+| [`Array`](#array) | trait | A trait for types that are an array. |
+
 ## Modules
 
 - [`const_generic_impl`](const_generic_impl/index.md) - 
@@ -40,11 +47,11 @@ Just a reminder: this trait is 100% safe, which means that `unsafe` code
 
 - `const CAPACITY: usize`
 
-- `fn as_slice(self: &Self) -> &[<Self as >::Item]`
+- `fn as_slice(&self) -> &[<Self as >::Item]`
 
   Gives a shared slice over the whole thing.
 
-- `fn as_slice_mut(self: &mut Self) -> &mut [<Self as >::Item]`
+- `fn as_slice_mut(&mut self) -> &mut [<Self as >::Item]`
 
   Gives a unique slice over the whole thing.
 

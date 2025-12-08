@@ -4,6 +4,16 @@
 
 # Module `multi`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`MultiProgress`](#multiprogress) | struct | Manages multiple progress bars from different threads |
+| [`MultiState`](#multistate) | struct |  |
+| [`MultiStateMember`](#multistatemember) | struct |  |
+| [`MultiProgressAlignment`](#multiprogressalignment) | enum | Vertical alignment of a multi progress. |
+| [`InsertLocation`](#insertlocation) | enum |  |
+
 ## Structs
 
 ### `MultiProgress`
@@ -18,51 +28,51 @@ Manages multiple progress bars from different threads
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="multiprogress-new"></span>`fn new() -> Self`
 
-- `fn with_draw_target(draw_target: ProgressDrawTarget) -> Self` — [`ProgressDrawTarget`](../index.md)
+- <span id="multiprogress-with-draw-target"></span>`fn with_draw_target(draw_target: ProgressDrawTarget) -> Self` — [`ProgressDrawTarget`](../index.md)
 
-- `fn set_draw_target(self: &Self, target: ProgressDrawTarget)` — [`ProgressDrawTarget`](../index.md)
+- <span id="multiprogress-set-draw-target"></span>`fn set_draw_target(&self, target: ProgressDrawTarget)` — [`ProgressDrawTarget`](../index.md)
 
-- `fn set_move_cursor(self: &Self, move_cursor: bool)`
+- <span id="multiprogress-set-move-cursor"></span>`fn set_move_cursor(&self, move_cursor: bool)`
 
-- `fn set_alignment(self: &Self, alignment: MultiProgressAlignment)` — [`MultiProgressAlignment`](../index.md)
+- <span id="multiprogress-set-alignment"></span>`fn set_alignment(&self, alignment: MultiProgressAlignment)` — [`MultiProgressAlignment`](../index.md)
 
-- `fn add(self: &Self, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../index.md)
+- <span id="multiprogress-add"></span>`fn add(&self, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../index.md)
 
-- `fn insert(self: &Self, index: usize, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../index.md)
+- <span id="multiprogress-insert"></span>`fn insert(&self, index: usize, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../index.md)
 
-- `fn insert_from_back(self: &Self, index: usize, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../index.md)
+- <span id="multiprogress-insert-from-back"></span>`fn insert_from_back(&self, index: usize, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../index.md)
 
-- `fn insert_before(self: &Self, before: &ProgressBar, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../index.md)
+- <span id="multiprogress-insert-before"></span>`fn insert_before(&self, before: &ProgressBar, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../index.md)
 
-- `fn insert_after(self: &Self, after: &ProgressBar, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../index.md)
+- <span id="multiprogress-insert-after"></span>`fn insert_after(&self, after: &ProgressBar, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../index.md)
 
-- `fn remove(self: &Self, pb: &ProgressBar)` — [`ProgressBar`](../index.md)
+- <span id="multiprogress-remove"></span>`fn remove(&self, pb: &ProgressBar)` — [`ProgressBar`](../index.md)
 
-- `fn internalize(self: &Self, location: InsertLocation, pb: ProgressBar) -> ProgressBar` — [`InsertLocation`](#insertlocation), [`ProgressBar`](../index.md)
+- <span id="multiprogress-internalize"></span>`fn internalize(&self, location: InsertLocation, pb: ProgressBar) -> ProgressBar` — [`InsertLocation`](#insertlocation), [`ProgressBar`](../index.md)
 
-- `fn println<I: AsRef<str>>(self: &Self, msg: I) -> io::Result<()>`
+- <span id="multiprogress-println"></span>`fn println<I: AsRef<str>>(&self, msg: I) -> io::Result<()>`
 
-- `fn suspend<F: FnOnce() -> R, R>(self: &Self, f: F) -> R`
+- <span id="multiprogress-suspend"></span>`fn suspend<F: FnOnce() -> R, R>(&self, f: F) -> R`
 
-- `fn clear(self: &Self) -> io::Result<()>`
+- <span id="multiprogress-clear"></span>`fn clear(&self) -> io::Result<()>`
 
-- `fn is_hidden(self: &Self) -> bool`
+- <span id="multiprogress-is-hidden"></span>`fn is_hidden(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for MultiProgress`
 
-- `fn clone(self: &Self) -> MultiProgress` — [`MultiProgress`](../index.md)
+- <span id="multiprogress-clone"></span>`fn clone(&self) -> MultiProgress` — [`MultiProgress`](../index.md)
 
 ##### `impl Debug for MultiProgress`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="multiprogress-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for MultiProgress`
 
-- `fn default() -> Self`
+- <span id="multiprogress-default"></span>`fn default() -> Self`
 
 ### `MultiState`
 
@@ -112,35 +122,35 @@ struct MultiState {
 
 #### Implementations
 
-- `fn new(draw_target: ProgressDrawTarget) -> Self` — [`ProgressDrawTarget`](../index.md)
+- <span id="multistate-new"></span>`fn new(draw_target: ProgressDrawTarget) -> Self` — [`ProgressDrawTarget`](../index.md)
 
-- `fn mark_zombie(self: &mut Self, index: usize)`
+- <span id="multistate-mark-zombie"></span>`fn mark_zombie(&mut self, index: usize)`
 
-- `fn draw(self: &mut Self, force_draw: bool, extra_lines: Option<Vec<LineType>>, now: Instant) -> io::Result<()>` — [`LineType`](../draw_target/index.md)
+- <span id="multistate-draw"></span>`fn draw(&mut self, force_draw: bool, extra_lines: Option<Vec<LineType>>, now: Instant) -> io::Result<()>` — [`LineType`](../draw_target/index.md)
 
-- `fn println<I: AsRef<str>>(self: &mut Self, msg: I, now: Instant) -> io::Result<()>`
+- <span id="multistate-println"></span>`fn println<I: AsRef<str>>(&mut self, msg: I, now: Instant) -> io::Result<()>`
 
-- `fn draw_state(self: &mut Self, idx: usize) -> DrawStateWrapper<'_>` — [`DrawStateWrapper`](../draw_target/index.md)
+- <span id="multistate-draw-state"></span>`fn draw_state(&mut self, idx: usize) -> DrawStateWrapper<'_>` — [`DrawStateWrapper`](../draw_target/index.md)
 
-- `fn is_hidden(self: &Self) -> bool`
+- <span id="multistate-is-hidden"></span>`fn is_hidden(&self) -> bool`
 
-- `fn suspend<F: FnOnce() -> R, R>(self: &mut Self, f: F, now: Instant) -> R`
+- <span id="multistate-suspend"></span>`fn suspend<F: FnOnce() -> R, R>(&mut self, f: F, now: Instant) -> R`
 
-- `fn width(self: &Self) -> Option<u16>`
+- <span id="multistate-width"></span>`fn width(&self) -> Option<u16>`
 
-- `fn insert(self: &mut Self, location: InsertLocation) -> usize` — [`InsertLocation`](#insertlocation)
+- <span id="multistate-insert"></span>`fn insert(&mut self, location: InsertLocation) -> usize` — [`InsertLocation`](#insertlocation)
 
-- `fn clear(self: &mut Self, now: Instant) -> io::Result<()>`
+- <span id="multistate-clear"></span>`fn clear(&mut self, now: Instant) -> io::Result<()>`
 
-- `fn remove_idx(self: &mut Self, idx: usize)`
+- <span id="multistate-remove-idx"></span>`fn remove_idx(&mut self, idx: usize)`
 
-- `fn len(self: &Self) -> usize`
+- <span id="multistate-len"></span>`fn len(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Debug for MultiState`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="multistate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `MultiStateMember`
 
@@ -166,11 +176,11 @@ struct MultiStateMember {
 
 ##### `impl Debug for MultiStateMember`
 
-- `fn fmt(self: &Self, f: &mut Formatter<'_>) -> std::fmt::Result`
+- <span id="multistatemember-fmt"></span>`fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result`
 
 ##### `impl Default for MultiStateMember`
 
-- `fn default() -> MultiStateMember` — [`MultiStateMember`](#multistatemember)
+- <span id="multistatemember-default"></span>`fn default() -> MultiStateMember` — [`MultiStateMember`](#multistatemember)
 
 ## Enums
 
@@ -204,17 +214,17 @@ E.g. [`Top`](MultiProgressAlignment::Top) alignment (default), when _progress ba
 
 ##### `impl Clone for MultiProgressAlignment`
 
-- `fn clone(self: &Self) -> MultiProgressAlignment` — [`MultiProgressAlignment`](../index.md)
+- <span id="multiprogressalignment-clone"></span>`fn clone(&self) -> MultiProgressAlignment` — [`MultiProgressAlignment`](../index.md)
 
 ##### `impl Copy for MultiProgressAlignment`
 
 ##### `impl Debug for MultiProgressAlignment`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="multiprogressalignment-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for MultiProgressAlignment`
 
-- `fn default() -> MultiProgressAlignment` — [`MultiProgressAlignment`](../index.md)
+- <span id="multiprogressalignment-default"></span>`fn default() -> MultiProgressAlignment` — [`MultiProgressAlignment`](../index.md)
 
 ### `InsertLocation`
 

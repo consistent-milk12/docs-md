@@ -4,6 +4,45 @@
 allocator-api2 crate.
 
 
+## Contents
+
+- [Modules](#modules)
+  - [`stable`](#stable)
+  - [`alloc`](#alloc)
+  - [`boxed`](#boxed)
+  - [`raw_vec`](#raw_vec)
+  - [`vec`](#vec)
+  - [`macros`](#macros)
+  - [`slice`](#slice)
+  - [`unique`](#unique)
+  - [`collections`](#collections)
+- [Functions](#functions)
+  - [`assume`](#assume)
+  - [`addr`](#addr)
+  - [`invalid_mut`](#invalid_mut)
+- [Macros](#macros)
+  - [`vec!`](#vec)
+  - [`unsize_box!`](#unsize_box)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`stable`](#stable) | mod |  |
+| [`alloc`](#alloc) | mod | Memory allocation APIs |
+| [`boxed`](#boxed) | mod | The `Box<T>` type for heap allocation. |
+| [`raw_vec`](#raw_vec) | mod |  |
+| [`vec`](#vec) | mod | A contiguous growable array type with heap-allocated contents, written |
+| [`macros`](#macros) | mod |  |
+| [`slice`](#slice) | mod |  |
+| [`unique`](#unique) | mod |  |
+| [`collections`](#collections) | mod |  |
+| [`assume`](#assume) | fn |  |
+| [`addr`](#addr) | fn |  |
+| [`invalid_mut`](#invalid_mut) | fn |  |
+| [`vec!`](#vec) | macro | Creates a [`Vec`] containing the arguments. |
+| [`unsize_box!`](#unsize_box) | macro | Allows turning a [`Box<T: Sized, A>`][boxed::Box] into a [`Box<U: ?Sized, A>`][boxed::Box] where `T` can be unsizing-coerced into a `U`. |
+
 ## Modules
 
 - [`stable`](stable/index.md) - 

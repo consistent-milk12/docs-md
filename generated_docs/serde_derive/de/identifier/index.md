@@ -7,6 +7,14 @@
 Deserialization of struct field identifiers and enum variant identifiers by
 way of a Rust enum.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`deserialize_custom`](#deserialize_custom) | fn |  |
+| [`deserialize_generated`](#deserialize_generated) | fn |  |
+| [`deserialize_identifier`](#deserialize_identifier) | fn |  |
+
 ## Functions
 
 ### `deserialize_custom`

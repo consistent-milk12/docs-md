@@ -6,6 +6,16 @@
 
 Types for compile-time and run-time endianity.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`LittleEndian`](#littleendian) | struct | Little endian byte order. |
+| [`BigEndian`](#bigendian) | struct | Big endian byte order. |
+| [`RunTimeEndian`](#runtimeendian) | enum | Byte order that is selectable at runtime. |
+| [`Endianity`](#endianity) | trait | A trait describing the endianity of some buffer. |
+| [`NativeEndian`](#nativeendian) | type | The native endianity for the target platform. |
+
 ## Structs
 
 ### `LittleEndian`
@@ -20,31 +30,31 @@ Little endian byte order.
 
 ##### `impl Clone for LittleEndian`
 
-- `fn clone(self: &Self) -> LittleEndian` — [`LittleEndian`](../index.md)
+- <span id="littleendian-clone"></span>`fn clone(&self) -> LittleEndian` — [`LittleEndian`](../index.md)
 
 ##### `impl Copy for LittleEndian`
 
 ##### `impl Debug for LittleEndian`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="littleendian-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for LittleEndian`
 
-- `fn default() -> LittleEndian` — [`LittleEndian`](../index.md)
+- <span id="littleendian-default"></span>`fn default() -> LittleEndian` — [`LittleEndian`](../index.md)
 
 ##### `impl Endianity for LittleEndian`
 
-- `fn is_big_endian(self: Self) -> bool`
+- <span id="littleendian-is-big-endian"></span>`fn is_big_endian(self) -> bool`
 
 ##### `impl Eq for LittleEndian`
 
 ##### `impl Hash for LittleEndian`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="littleendian-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for LittleEndian`
 
-- `fn eq(self: &Self, other: &LittleEndian) -> bool` — [`LittleEndian`](../index.md)
+- <span id="littleendian-eq"></span>`fn eq(&self, other: &LittleEndian) -> bool` — [`LittleEndian`](../index.md)
 
 ##### `impl StructuralPartialEq for LittleEndian`
 
@@ -60,31 +70,31 @@ Big endian byte order.
 
 ##### `impl Clone for BigEndian`
 
-- `fn clone(self: &Self) -> BigEndian` — [`BigEndian`](../index.md)
+- <span id="bigendian-clone"></span>`fn clone(&self) -> BigEndian` — [`BigEndian`](../index.md)
 
 ##### `impl Copy for BigEndian`
 
 ##### `impl Debug for BigEndian`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="bigendian-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for BigEndian`
 
-- `fn default() -> BigEndian` — [`BigEndian`](../index.md)
+- <span id="bigendian-default"></span>`fn default() -> BigEndian` — [`BigEndian`](../index.md)
 
 ##### `impl Endianity for BigEndian`
 
-- `fn is_big_endian(self: Self) -> bool`
+- <span id="bigendian-is-big-endian"></span>`fn is_big_endian(self) -> bool`
 
 ##### `impl Eq for BigEndian`
 
 ##### `impl Hash for BigEndian`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="bigendian-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for BigEndian`
 
-- `fn eq(self: &Self, other: &BigEndian) -> bool` — [`BigEndian`](../index.md)
+- <span id="bigendian-eq"></span>`fn eq(&self, other: &BigEndian) -> bool` — [`BigEndian`](../index.md)
 
 ##### `impl StructuralPartialEq for BigEndian`
 
@@ -115,31 +125,31 @@ Byte order that is selectable at runtime.
 
 ##### `impl Clone for RunTimeEndian`
 
-- `fn clone(self: &Self) -> RunTimeEndian` — [`RunTimeEndian`](../index.md)
+- <span id="runtimeendian-clone"></span>`fn clone(&self) -> RunTimeEndian` — [`RunTimeEndian`](../index.md)
 
 ##### `impl Copy for RunTimeEndian`
 
 ##### `impl Debug for RunTimeEndian`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="runtimeendian-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for RunTimeEndian`
 
-- `fn default() -> RunTimeEndian` — [`RunTimeEndian`](../index.md)
+- <span id="runtimeendian-default"></span>`fn default() -> RunTimeEndian` — [`RunTimeEndian`](../index.md)
 
 ##### `impl Endianity for RunTimeEndian`
 
-- `fn is_big_endian(self: Self) -> bool`
+- <span id="runtimeendian-is-big-endian"></span>`fn is_big_endian(self) -> bool`
 
 ##### `impl Eq for RunTimeEndian`
 
 ##### `impl Hash for RunTimeEndian`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="runtimeendian-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for RunTimeEndian`
 
-- `fn eq(self: &Self, other: &RunTimeEndian) -> bool` — [`RunTimeEndian`](../index.md)
+- <span id="runtimeendian-eq"></span>`fn eq(&self, other: &RunTimeEndian) -> bool` — [`RunTimeEndian`](../index.md)
 
 ##### `impl StructuralPartialEq for RunTimeEndian`
 
@@ -155,59 +165,59 @@ A trait describing the endianity of some buffer.
 
 #### Required Methods
 
-- `fn is_big_endian(self: Self) -> bool`
+- `fn is_big_endian(self) -> bool`
 
   Return true for big endian byte order.
 
-- `fn is_little_endian(self: Self) -> bool`
+- `fn is_little_endian(self) -> bool`
 
   Return true for little endian byte order.
 
-- `fn read_u16(self: Self, buf: &[u8]) -> u16`
+- `fn read_u16(self, buf: &[u8]) -> u16`
 
   Reads an unsigned 16 bit integer from `buf`.
 
-- `fn read_u32(self: Self, buf: &[u8]) -> u32`
+- `fn read_u32(self, buf: &[u8]) -> u32`
 
   Reads an unsigned 32 bit integer from `buf`.
 
-- `fn read_u64(self: Self, buf: &[u8]) -> u64`
+- `fn read_u64(self, buf: &[u8]) -> u64`
 
   Reads an unsigned 64 bit integer from `buf`.
 
-- `fn read_uint(self: &mut Self, buf: &[u8]) -> u64`
+- `fn read_uint(&mut self, buf: &[u8]) -> u64`
 
   Read an unsigned n-bytes integer u64.
 
-- `fn read_i16(self: Self, buf: &[u8]) -> i16`
+- `fn read_i16(self, buf: &[u8]) -> i16`
 
   Reads a signed 16 bit integer from `buf`.
 
-- `fn read_i32(self: Self, buf: &[u8]) -> i32`
+- `fn read_i32(self, buf: &[u8]) -> i32`
 
   Reads a signed 32 bit integer from `buf`.
 
-- `fn read_i64(self: Self, buf: &[u8]) -> i64`
+- `fn read_i64(self, buf: &[u8]) -> i64`
 
   Reads a signed 64 bit integer from `buf`.
 
-- `fn read_f32(self: Self, buf: &[u8]) -> f32`
+- `fn read_f32(self, buf: &[u8]) -> f32`
 
   Reads a 32 bit floating point number from `buf`.
 
-- `fn read_f64(self: Self, buf: &[u8]) -> f64`
+- `fn read_f64(self, buf: &[u8]) -> f64`
 
   Reads a 32 bit floating point number from `buf`.
 
-- `fn write_u16(self: Self, buf: &mut [u8], n: u16)`
+- `fn write_u16(self, buf: &mut [u8], n: u16)`
 
   Writes an unsigned 16 bit integer `n` to `buf`.
 
-- `fn write_u32(self: Self, buf: &mut [u8], n: u32)`
+- `fn write_u32(self, buf: &mut [u8], n: u32)`
 
   Writes an unsigned 32 bit integer `n` to `buf`.
 
-- `fn write_u64(self: Self, buf: &mut [u8], n: u64)`
+- `fn write_u64(self, buf: &mut [u8], n: u64)`
 
   Writes an unsigned 64 bit integer `n` to `buf`.
 

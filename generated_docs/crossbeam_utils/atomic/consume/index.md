@@ -4,6 +4,14 @@
 
 # Module `consume`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`AtomicConsume`](#atomicconsume) | trait | Trait which allows reading from primitive atomic types with "consume" ordering. |
+| [`impl_consume!`](#impl_consume) | macro |  |
+| [`impl_atomic!`](#impl_atomic) | macro |  |
+
 ## Traits
 
 ### `AtomicConsume`
@@ -18,7 +26,7 @@ Trait which allows reading from primitive atomic types with "consume" ordering.
 
 - `type Val`
 
-- `fn load_consume(self: &Self) -> <Self as >::Val`
+- `fn load_consume(&self) -> <Self as >::Val`
 
   Loads a value from the atomic using a "consume" memory ordering.
 

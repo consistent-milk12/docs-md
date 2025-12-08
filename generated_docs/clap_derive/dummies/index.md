@@ -6,6 +6,17 @@
 
 Dummy implementations that we emit along with an error.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`parser`](#parser) | fn |  |
+| [`into_app`](#into_app) | fn |  |
+| [`from_arg_matches`](#from_arg_matches) | fn |  |
+| [`subcommand`](#subcommand) | fn |  |
+| [`args`](#args) | fn |  |
+| [`value_enum`](#value_enum) | fn |  |
+
 ## Functions
 
 ### `parser`

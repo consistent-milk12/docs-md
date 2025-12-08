@@ -4,6 +4,12 @@
 
 # Module `literal`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`alternation_literals`](#alternation_literals) | fn | Pull out an alternation of literals from the given sequence of HIR |
+
 ## Functions
 
 ### `alternation_literals`

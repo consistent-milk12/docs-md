@@ -12,6 +12,15 @@ dedicated static type signatures.
 Some ioctls, such as those related to filesystems, terminals, and
 processes, live in other top-level API modules.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ioctl_fioclex`](#ioctl_fioclex) | fn | `ioctl(fd, FIOCLEX, NULL)`—Set the close-on-exec flag. |
+| [`ioctl_fionclex`](#ioctl_fionclex) | fn | `ioctl(fd, FIONCLEX, NULL)`—Remove the close-on-exec flag. |
+| [`ioctl_fionbio`](#ioctl_fionbio) | fn | `ioctl(fd, FIONBIO, &value)`—Enables or disables non-blocking mode. |
+| [`ioctl_fionread`](#ioctl_fionread) | fn | `ioctl(fd, FIONREAD)`—Returns the number of bytes ready to be read. |
+
 ## Functions
 
 ### `ioctl_fioclex`

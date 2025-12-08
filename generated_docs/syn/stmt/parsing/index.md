@@ -4,6 +4,16 @@
 
 # Module `parsing`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`AllowNoSemi`](#allownosemi) | struct |  |
+| [`parse_stmt`](#parse_stmt) | fn |  |
+| [`stmt_mac`](#stmt_mac) | fn |  |
+| [`stmt_local`](#stmt_local) | fn |  |
+| [`stmt_expr`](#stmt_expr) | fn |  |
+
 ## Structs
 
 ### `AllowNoSemi`

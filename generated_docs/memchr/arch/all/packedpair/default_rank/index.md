@@ -4,6 +4,12 @@
 
 # Module `default_rank`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`RANK`](#rank) | const |  |
+
 ## Constants
 
 ### `RANK`

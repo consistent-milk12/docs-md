@@ -4,6 +4,96 @@
 
 # Module `attr`
 
+## Contents
+
+- [Structs](#structs)
+  - [`Attr`](#attr)
+  - [`BoolAttr`](#boolattr)
+  - [`VecAttr`](#vecattr)
+  - [`RenameAllRules`](#renameallrules)
+  - [`Container`](#container)
+  - [`Variant`](#variant)
+  - [`BorrowAttribute`](#borrowattribute)
+  - [`Field`](#field)
+- [Enums](#enums)
+  - [`unnamed`](#unnamed)
+  - [`TagType`](#tagtype)
+  - [`Identifier`](#identifier)
+  - [`Default`](#default)
+- [Functions](#functions)
+  - [`unraw`](#unraw)
+  - [`decide_tag`](#decide_tag)
+  - [`decide_identifier`](#decide_identifier)
+  - [`get_ser_and_de`](#get_ser_and_de)
+  - [`get_renames`](#get_renames)
+  - [`get_multiple_renames`](#get_multiple_renames)
+  - [`get_where_predicates`](#get_where_predicates)
+  - [`get_lit_str`](#get_lit_str)
+  - [`get_lit_str2`](#get_lit_str2)
+  - [`parse_lit_into_path`](#parse_lit_into_path)
+  - [`parse_lit_into_expr_path`](#parse_lit_into_expr_path)
+  - [`parse_lit_into_where`](#parse_lit_into_where)
+  - [`parse_lit_into_ty`](#parse_lit_into_ty)
+  - [`parse_lit_into_lifetimes`](#parse_lit_into_lifetimes)
+  - [`is_implicitly_borrowed`](#is_implicitly_borrowed)
+  - [`is_implicitly_borrowed_reference`](#is_implicitly_borrowed_reference)
+  - [`is_cow`](#is_cow)
+  - [`is_option`](#is_option)
+  - [`is_reference`](#is_reference)
+  - [`is_str`](#is_str)
+  - [`is_slice_u8`](#is_slice_u8)
+  - [`is_primitive_type`](#is_primitive_type)
+  - [`is_primitive_path`](#is_primitive_path)
+  - [`borrowable_lifetimes`](#borrowable_lifetimes)
+  - [`collect_lifetimes`](#collect_lifetimes)
+  - [`collect_lifetimes_from_tokens`](#collect_lifetimes_from_tokens)
+- [Type Aliases](#type-aliases)
+  - [`SerAndDe`](#serandde)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Attr`](#attr) | struct |  |
+| [`BoolAttr`](#boolattr) | struct |  |
+| [`VecAttr`](#vecattr) | struct |  |
+| [`RenameAllRules`](#renameallrules) | struct |  |
+| [`Container`](#container) | struct | Represents struct or enum attribute information. |
+| [`Variant`](#variant) | struct | Represents variant attribute information |
+| [`BorrowAttribute`](#borrowattribute) | struct |  |
+| [`Field`](#field) | struct | Represents field attribute information |
+| [`unnamed`](#unnamed) | enum |  |
+| [`TagType`](#tagtype) | enum | Styles of representing an enum. |
+| [`Identifier`](#identifier) | enum | Whether this enum represents the fields of a struct or the variants of an |
+| [`Default`](#default) | enum | Represents the default to use for a field when deserializing. |
+| [`unraw`](#unraw) | fn |  |
+| [`decide_tag`](#decide_tag) | fn |  |
+| [`decide_identifier`](#decide_identifier) | fn |  |
+| [`get_ser_and_de`](#get_ser_and_de) | fn |  |
+| [`get_renames`](#get_renames) | fn |  |
+| [`get_multiple_renames`](#get_multiple_renames) | fn |  |
+| [`get_where_predicates`](#get_where_predicates) | fn |  |
+| [`get_lit_str`](#get_lit_str) | fn |  |
+| [`get_lit_str2`](#get_lit_str2) | fn |  |
+| [`parse_lit_into_path`](#parse_lit_into_path) | fn |  |
+| [`parse_lit_into_expr_path`](#parse_lit_into_expr_path) | fn |  |
+| [`parse_lit_into_where`](#parse_lit_into_where) | fn |  |
+| [`parse_lit_into_ty`](#parse_lit_into_ty) | fn |  |
+| [`parse_lit_into_lifetimes`](#parse_lit_into_lifetimes) | fn |  |
+| [`is_implicitly_borrowed`](#is_implicitly_borrowed) | fn |  |
+| [`is_implicitly_borrowed_reference`](#is_implicitly_borrowed_reference) | fn |  |
+| [`is_cow`](#is_cow) | fn |  |
+| [`is_option`](#is_option) | fn |  |
+| [`is_reference`](#is_reference) | fn |  |
+| [`is_str`](#is_str) | fn |  |
+| [`is_slice_u8`](#is_slice_u8) | fn |  |
+| [`is_primitive_type`](#is_primitive_type) | fn |  |
+| [`is_primitive_path`](#is_primitive_path) | fn |  |
+| [`borrowable_lifetimes`](#borrowable_lifetimes) | fn |  |
+| [`collect_lifetimes`](#collect_lifetimes) | fn |  |
+| [`collect_lifetimes_from_tokens`](#collect_lifetimes_from_tokens) | fn |  |
+| [`SerAndDe`](#serandde) | type |  |
+
 ## Structs
 
 ### `Attr<'c, T>`
@@ -19,17 +109,17 @@ struct Attr<'c, T> {
 
 #### Implementations
 
-- `fn none(cx: &'c Ctxt, name: Symbol) -> Self` — [`Ctxt`](../index.md), [`Symbol`](../symbol/index.md)
+- <span id="attr-none"></span>`fn none(cx: &'c Ctxt, name: Symbol) -> Self` — [`Ctxt`](../index.md), [`Symbol`](../symbol/index.md)
 
-- `fn set<A: ToTokens>(self: &mut Self, obj: A, value: T)`
+- <span id="attr-set"></span>`fn set<A: ToTokens>(&mut self, obj: A, value: T)`
 
-- `fn set_opt<A: ToTokens>(self: &mut Self, obj: A, value: Option<T>)`
+- <span id="attr-set-opt"></span>`fn set_opt<A: ToTokens>(&mut self, obj: A, value: Option<T>)`
 
-- `fn set_if_none(self: &mut Self, value: T)`
+- <span id="attr-set-if-none"></span>`fn set_if_none(&mut self, value: T)`
 
-- `fn get(self: Self) -> Option<T>`
+- <span id="attr-get"></span>`fn get(self) -> Option<T>`
 
-- `fn get_with_tokens(self: Self) -> Option<(TokenStream, T)>`
+- <span id="attr-get-with-tokens"></span>`fn get_with_tokens(self) -> Option<(TokenStream, T)>`
 
 ### `BoolAttr<'c>`
 
@@ -39,11 +129,11 @@ struct BoolAttr<'c>(Attr<'c, ()>);
 
 #### Implementations
 
-- `fn none(cx: &'c Ctxt, name: Symbol) -> Self` — [`Ctxt`](../index.md), [`Symbol`](../symbol/index.md)
+- <span id="boolattr-none"></span>`fn none(cx: &'c Ctxt, name: Symbol) -> Self` — [`Ctxt`](../index.md), [`Symbol`](../symbol/index.md)
 
-- `fn set_true<A: ToTokens>(self: &mut Self, obj: A)`
+- <span id="boolattr-set-true"></span>`fn set_true<A: ToTokens>(&mut self, obj: A)`
 
-- `fn get(self: &Self) -> bool`
+- <span id="boolattr-get"></span>`fn get(&self) -> bool`
 
 ### `VecAttr<'c, T>`
 
@@ -58,13 +148,13 @@ struct VecAttr<'c, T> {
 
 #### Implementations
 
-- `fn none(cx: &'c Ctxt, name: Symbol) -> Self` — [`Ctxt`](../index.md), [`Symbol`](../symbol/index.md)
+- <span id="vecattr-none"></span>`fn none(cx: &'c Ctxt, name: Symbol) -> Self` — [`Ctxt`](../index.md), [`Symbol`](../symbol/index.md)
 
-- `fn insert<A: ToTokens>(self: &mut Self, obj: A, value: T)`
+- <span id="vecattr-insert"></span>`fn insert<A: ToTokens>(&mut self, obj: A, value: T)`
 
-- `fn at_most_one(self: Self) -> Option<T>`
+- <span id="vecattr-at-most-one"></span>`fn at_most_one(self) -> Option<T>`
 
-- `fn get(self: Self) -> Vec<T>`
+- <span id="vecattr-get"></span>`fn get(self) -> Vec<T>`
 
 ### `RenameAllRules`
 
@@ -77,13 +167,13 @@ struct RenameAllRules {
 
 #### Implementations
 
-- `fn or(self: Self, other_rules: Self) -> Self`
+- <span id="renameallrules-or"></span>`fn or(self, other_rules: Self) -> Self`
 
 #### Trait Implementations
 
 ##### `impl Clone for RenameAllRules`
 
-- `fn clone(self: &Self) -> RenameAllRules` — [`RenameAllRules`](#renameallrules)
+- <span id="renameallrules-clone"></span>`fn clone(&self) -> RenameAllRules` — [`RenameAllRules`](#renameallrules)
 
 ##### `impl Copy for RenameAllRules`
 
@@ -122,43 +212,43 @@ Represents struct or enum attribute information.
 
 #### Implementations
 
-- `fn from_ast(cx: &Ctxt, item: &syn::DeriveInput) -> Self` — [`Ctxt`](../index.md)
+- <span id="container-from-ast"></span>`fn from_ast(cx: &Ctxt, item: &syn::DeriveInput) -> Self` — [`Ctxt`](../index.md)
 
-- `fn name(self: &Self) -> &MultiName` — [`MultiName`](../name/index.md)
+- <span id="container-name"></span>`fn name(&self) -> &MultiName` — [`MultiName`](../name/index.md)
 
-- `fn rename_all_rules(self: &Self) -> RenameAllRules` — [`RenameAllRules`](#renameallrules)
+- <span id="container-rename-all-rules"></span>`fn rename_all_rules(&self) -> RenameAllRules` — [`RenameAllRules`](#renameallrules)
 
-- `fn rename_all_fields_rules(self: &Self) -> RenameAllRules` — [`RenameAllRules`](#renameallrules)
+- <span id="container-rename-all-fields-rules"></span>`fn rename_all_fields_rules(&self) -> RenameAllRules` — [`RenameAllRules`](#renameallrules)
 
-- `fn transparent(self: &Self) -> bool`
+- <span id="container-transparent"></span>`fn transparent(&self) -> bool`
 
-- `fn deny_unknown_fields(self: &Self) -> bool`
+- <span id="container-deny-unknown-fields"></span>`fn deny_unknown_fields(&self) -> bool`
 
-- `fn default(self: &Self) -> &Default` — [`Default`](#default)
+- <span id="container-default"></span>`fn default(&self) -> &Default` — [`Default`](#default)
 
-- `fn ser_bound(self: &Self) -> Option<&[syn::WherePredicate]>`
+- <span id="container-ser-bound"></span>`fn ser_bound(&self) -> Option<&[syn::WherePredicate]>`
 
-- `fn de_bound(self: &Self) -> Option<&[syn::WherePredicate]>`
+- <span id="container-de-bound"></span>`fn de_bound(&self) -> Option<&[syn::WherePredicate]>`
 
-- `fn tag(self: &Self) -> &TagType` — [`TagType`](#tagtype)
+- <span id="container-tag"></span>`fn tag(&self) -> &TagType` — [`TagType`](#tagtype)
 
-- `fn type_from(self: &Self) -> Option<&syn::Type>`
+- <span id="container-type-from"></span>`fn type_from(&self) -> Option<&syn::Type>`
 
-- `fn type_try_from(self: &Self) -> Option<&syn::Type>`
+- <span id="container-type-try-from"></span>`fn type_try_from(&self) -> Option<&syn::Type>`
 
-- `fn type_into(self: &Self) -> Option<&syn::Type>`
+- <span id="container-type-into"></span>`fn type_into(&self) -> Option<&syn::Type>`
 
-- `fn remote(self: &Self) -> Option<&syn::Path>`
+- <span id="container-remote"></span>`fn remote(&self) -> Option<&syn::Path>`
 
-- `fn is_packed(self: &Self) -> bool`
+- <span id="container-is-packed"></span>`fn is_packed(&self) -> bool`
 
-- `fn identifier(self: &Self) -> Identifier` — [`Identifier`](#identifier)
+- <span id="container-identifier"></span>`fn identifier(&self) -> Identifier` — [`Identifier`](#identifier)
 
-- `fn custom_serde_path(self: &Self) -> Option<&syn::Path>`
+- <span id="container-custom-serde-path"></span>`fn custom_serde_path(&self) -> Option<&syn::Path>`
 
-- `fn expecting(self: &Self) -> Option<&str>`
+- <span id="container-expecting"></span>`fn expecting(&self) -> Option<&str>`
 
-- `fn non_exhaustive(self: &Self) -> bool`
+- <span id="container-non-exhaustive"></span>`fn non_exhaustive(&self) -> bool`
 
 ### `Variant`
 
@@ -182,31 +272,31 @@ Represents variant attribute information
 
 #### Implementations
 
-- `fn from_ast(cx: &Ctxt, variant: &syn::Variant) -> Self` — [`Ctxt`](../index.md)
+- <span id="variant-from-ast"></span>`fn from_ast(cx: &Ctxt, variant: &syn::Variant) -> Self` — [`Ctxt`](../index.md)
 
-- `fn name(self: &Self) -> &MultiName` — [`MultiName`](../name/index.md)
+- <span id="variant-name"></span>`fn name(&self) -> &MultiName` — [`MultiName`](../name/index.md)
 
-- `fn aliases(self: &Self) -> &BTreeSet<Name>` — [`Name`](../name/index.md)
+- <span id="variant-aliases"></span>`fn aliases(&self) -> &BTreeSet<Name>` — [`Name`](../name/index.md)
 
-- `fn rename_by_rules(self: &mut Self, rules: RenameAllRules)` — [`RenameAllRules`](#renameallrules)
+- <span id="variant-rename-by-rules"></span>`fn rename_by_rules(&mut self, rules: RenameAllRules)` — [`RenameAllRules`](#renameallrules)
 
-- `fn rename_all_rules(self: &Self) -> RenameAllRules` — [`RenameAllRules`](#renameallrules)
+- <span id="variant-rename-all-rules"></span>`fn rename_all_rules(&self) -> RenameAllRules` — [`RenameAllRules`](#renameallrules)
 
-- `fn ser_bound(self: &Self) -> Option<&[syn::WherePredicate]>`
+- <span id="variant-ser-bound"></span>`fn ser_bound(&self) -> Option<&[syn::WherePredicate]>`
 
-- `fn de_bound(self: &Self) -> Option<&[syn::WherePredicate]>`
+- <span id="variant-de-bound"></span>`fn de_bound(&self) -> Option<&[syn::WherePredicate]>`
 
-- `fn skip_deserializing(self: &Self) -> bool`
+- <span id="variant-skip-deserializing"></span>`fn skip_deserializing(&self) -> bool`
 
-- `fn skip_serializing(self: &Self) -> bool`
+- <span id="variant-skip-serializing"></span>`fn skip_serializing(&self) -> bool`
 
-- `fn other(self: &Self) -> bool`
+- <span id="variant-other"></span>`fn other(&self) -> bool`
 
-- `fn serialize_with(self: &Self) -> Option<&syn::ExprPath>`
+- <span id="variant-serialize-with"></span>`fn serialize_with(&self) -> Option<&syn::ExprPath>`
 
-- `fn deserialize_with(self: &Self) -> Option<&syn::ExprPath>`
+- <span id="variant-deserialize-with"></span>`fn deserialize_with(&self) -> Option<&syn::ExprPath>`
 
-- `fn untagged(self: &Self) -> bool`
+- <span id="variant-untagged"></span>`fn untagged(&self) -> bool`
 
 ### `BorrowAttribute`
 
@@ -241,39 +331,39 @@ Represents field attribute information
 
 #### Implementations
 
-- `fn from_ast(cx: &Ctxt, index: usize, field: &syn::Field, attrs: Option<&Variant>, container_default: &Default, private: &Ident) -> Self` — [`Ctxt`](../index.md), [`Variant`](#variant), [`Default`](#default)
+- <span id="field-from-ast"></span>`fn from_ast(cx: &Ctxt, index: usize, field: &syn::Field, attrs: Option<&Variant>, container_default: &Default, private: &Ident) -> Self` — [`Ctxt`](../index.md), [`Variant`](#variant), [`Default`](#default)
 
-- `fn name(self: &Self) -> &MultiName` — [`MultiName`](../name/index.md)
+- <span id="field-name"></span>`fn name(&self) -> &MultiName` — [`MultiName`](../name/index.md)
 
-- `fn aliases(self: &Self) -> &BTreeSet<Name>` — [`Name`](../name/index.md)
+- <span id="field-aliases"></span>`fn aliases(&self) -> &BTreeSet<Name>` — [`Name`](../name/index.md)
 
-- `fn rename_by_rules(self: &mut Self, rules: RenameAllRules)` — [`RenameAllRules`](#renameallrules)
+- <span id="field-rename-by-rules"></span>`fn rename_by_rules(&mut self, rules: RenameAllRules)` — [`RenameAllRules`](#renameallrules)
 
-- `fn skip_serializing(self: &Self) -> bool`
+- <span id="field-skip-serializing"></span>`fn skip_serializing(&self) -> bool`
 
-- `fn skip_deserializing(self: &Self) -> bool`
+- <span id="field-skip-deserializing"></span>`fn skip_deserializing(&self) -> bool`
 
-- `fn skip_serializing_if(self: &Self) -> Option<&syn::ExprPath>`
+- <span id="field-skip-serializing-if"></span>`fn skip_serializing_if(&self) -> Option<&syn::ExprPath>`
 
-- `fn default(self: &Self) -> &Default` — [`Default`](#default)
+- <span id="field-default"></span>`fn default(&self) -> &Default` — [`Default`](#default)
 
-- `fn serialize_with(self: &Self) -> Option<&syn::ExprPath>`
+- <span id="field-serialize-with"></span>`fn serialize_with(&self) -> Option<&syn::ExprPath>`
 
-- `fn deserialize_with(self: &Self) -> Option<&syn::ExprPath>`
+- <span id="field-deserialize-with"></span>`fn deserialize_with(&self) -> Option<&syn::ExprPath>`
 
-- `fn ser_bound(self: &Self) -> Option<&[syn::WherePredicate]>`
+- <span id="field-ser-bound"></span>`fn ser_bound(&self) -> Option<&[syn::WherePredicate]>`
 
-- `fn de_bound(self: &Self) -> Option<&[syn::WherePredicate]>`
+- <span id="field-de-bound"></span>`fn de_bound(&self) -> Option<&[syn::WherePredicate]>`
 
-- `fn borrowed_lifetimes(self: &Self) -> &BTreeSet<syn::Lifetime>`
+- <span id="field-borrowed-lifetimes"></span>`fn borrowed_lifetimes(&self) -> &BTreeSet<syn::Lifetime>`
 
-- `fn getter(self: &Self) -> Option<&syn::ExprPath>`
+- <span id="field-getter"></span>`fn getter(&self) -> Option<&syn::ExprPath>`
 
-- `fn flatten(self: &Self) -> bool`
+- <span id="field-flatten"></span>`fn flatten(&self) -> bool`
 
-- `fn transparent(self: &Self) -> bool`
+- <span id="field-transparent"></span>`fn transparent(&self) -> bool`
 
-- `fn mark_transparent(self: &mut Self)`
+- <span id="field-mark-transparent"></span>`fn mark_transparent(&mut self)`
 
 ## Enums
 
@@ -338,25 +428,25 @@ The different possible ways to change case of fields in a struct, or variants in
 
 #### Implementations
 
-- `fn from_str(rename_all_str: &str) -> Result<Self, ParseError<'_>>` — [`ParseError`](../case/index.md)
+- <span id="renamerule-from-str"></span>`fn from_str(rename_all_str: &str) -> Result<Self, ParseError<'_>>` — [`ParseError`](../case/index.md)
 
-- `fn apply_to_variant(self: Self, variant: &str) -> String`
+- <span id="renamerule-apply-to-variant"></span>`fn apply_to_variant(self, variant: &str) -> String`
 
-- `fn apply_to_field(self: Self, field: &str) -> String`
+- <span id="renamerule-apply-to-field"></span>`fn apply_to_field(self, field: &str) -> String`
 
-- `fn or(self: Self, rule_b: Self) -> Self`
+- <span id="renamerule-or"></span>`fn or(self, rule_b: Self) -> Self`
 
 #### Trait Implementations
 
 ##### `impl Clone for RenameRule`
 
-- `fn clone(self: &Self) -> RenameRule` — [`RenameRule`](../case/index.md)
+- <span id="renamerule-clone"></span>`fn clone(&self) -> RenameRule` — [`RenameRule`](../case/index.md)
 
 ##### `impl Copy for RenameRule`
 
 ##### `impl PartialEq for RenameRule`
 
-- `fn eq(self: &Self, other: &RenameRule) -> bool` — [`RenameRule`](../case/index.md)
+- <span id="renamerule-eq"></span>`fn eq(&self, other: &RenameRule) -> bool` — [`RenameRule`](../case/index.md)
 
 ##### `impl StructuralPartialEq for RenameRule`
 
@@ -446,7 +536,7 @@ enum.
 
 ##### `impl Clone for Identifier`
 
-- `fn clone(self: &Self) -> Identifier` — [`Identifier`](#identifier)
+- <span id="identifier-clone"></span>`fn clone(&self) -> Identifier` — [`Identifier`](#identifier)
 
 ##### `impl Copy for Identifier`
 
@@ -478,7 +568,7 @@ Represents the default to use for a field when deserializing.
 
 #### Implementations
 
-- `fn is_none(self: &Self) -> bool`
+- <span id="default-is-none"></span>`fn is_none(&self) -> bool`
 
 ## Functions
 

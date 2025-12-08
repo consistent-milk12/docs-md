@@ -32,6 +32,38 @@ Note that identifiers are *case-sensitive*, so the following is *not equivalent*
 a|b|0x0C
 ```
 
+## Contents
+
+- [Structs](#structs)
+  - [`ParseError`](#parseerror)
+- [Enums](#enums)
+  - [`ParseErrorKind`](#parseerrorkind)
+- [Traits](#traits)
+  - [`WriteHex`](#writehex)
+  - [`ParseHex`](#parsehex)
+- [Functions](#functions)
+  - [`to_writer`](#to_writer)
+  - [`from_str`](#from_str)
+  - [`to_writer_truncate`](#to_writer_truncate)
+  - [`from_str_truncate`](#from_str_truncate)
+  - [`to_writer_strict`](#to_writer_strict)
+  - [`from_str_strict`](#from_str_strict)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ParseError`](#parseerror) | struct | An error encountered while parsing flags from text. |
+| [`ParseErrorKind`](#parseerrorkind) | enum |  |
+| [`WriteHex`](#writehex) | trait | Encode a value as a hex string. |
+| [`ParseHex`](#parsehex) | trait | Parse a value from a hex string. |
+| [`to_writer`](#to_writer) | fn | Write a flags value as text. |
+| [`from_str`](#from_str) | fn | Parse a flags value from text. |
+| [`to_writer_truncate`](#to_writer_truncate) | fn | Write a flags value as text, ignoring any unknown bits. |
+| [`from_str_truncate`](#from_str_truncate) | fn | Parse a flags value from text. |
+| [`to_writer_strict`](#to_writer_strict) | fn | Write only the contained, defined, named flags in a flags value as text. |
+| [`from_str_strict`](#from_str_strict) | fn | Parse a flags value from text. |
+
 ## Structs
 
 ### `ParseError`
@@ -44,27 +76,27 @@ An error encountered while parsing flags from text.
 
 #### Implementations
 
-- `fn invalid_hex_flag(flag: impl fmt::Display) -> Self`
+- <span id="parseerror-invalid-hex-flag"></span>`fn invalid_hex_flag(flag: impl fmt::Display) -> Self`
 
-- `fn invalid_named_flag(flag: impl fmt::Display) -> Self`
+- <span id="parseerror-invalid-named-flag"></span>`fn invalid_named_flag(flag: impl fmt::Display) -> Self`
 
-- `const fn empty_flag() -> Self`
+- <span id="parseerror-empty-flag"></span>`const fn empty_flag() -> Self`
 
 #### Trait Implementations
 
 ##### `impl Debug for ParseError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="parseerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for ParseError`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="parseerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Error for ParseError`
 
 ##### `impl<T> ToString for ParseError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="parseerror-to-string"></span>`fn to_string(&self) -> String`
 
 ## Enums
 
@@ -86,7 +118,7 @@ enum ParseErrorKind {
 
 ##### `impl Debug for ParseErrorKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="parseerrorkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Traits
 
@@ -102,7 +134,7 @@ Implementors of this trait should not write the `0x` prefix.
 
 #### Required Methods
 
-- `fn write_hex<W: fmt::Write>(self: &Self, writer: W) -> fmt::Result`
+- `fn write_hex<W: fmt::Write>(&self, writer: W) -> fmt::Result`
 
   Write the value as hex.
 

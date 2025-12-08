@@ -19,6 +19,14 @@ These sets are principally used when traversing an NFA state graph. This
 happens at search time, for example, in the PikeVM. It also happens during DFA
 determinization.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`SparseSets`](#sparsesets) | struct | A pair of sparse sets. |
+| [`SparseSet`](#sparseset) | struct | A sparse set used for representing ordered NFA states. |
+| [`SparseSetIter`](#sparsesetiter) | struct | An iterator over all elements in a sparse set. |
+
 ## Structs
 
 ### `SparseSets`
@@ -46,25 +54,25 @@ time.
 
 #### Implementations
 
-- `fn new(capacity: usize) -> SparseSets` — [`SparseSets`](#sparsesets)
+- <span id="sparsesets-new"></span>`fn new(capacity: usize) -> SparseSets` — [`SparseSets`](#sparsesets)
 
-- `fn resize(self: &mut Self, new_capacity: usize)`
+- <span id="sparsesets-resize"></span>`fn resize(&mut self, new_capacity: usize)`
 
-- `fn clear(self: &mut Self)`
+- <span id="sparsesets-clear"></span>`fn clear(&mut self)`
 
-- `fn swap(self: &mut Self)`
+- <span id="sparsesets-swap"></span>`fn swap(&mut self)`
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="sparsesets-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Clone for SparseSets`
 
-- `fn clone(self: &Self) -> SparseSets` — [`SparseSets`](#sparsesets)
+- <span id="sparsesets-clone"></span>`fn clone(&self) -> SparseSets` — [`SparseSets`](#sparsesets)
 
 ##### `impl Debug for SparseSets`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sparsesets-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `SparseSet`
 
@@ -111,35 +119,35 @@ other properties listed above are extremely useful.
 
 #### Implementations
 
-- `fn new(capacity: usize) -> SparseSet` — [`SparseSet`](#sparseset)
+- <span id="sparseset-new"></span>`fn new(capacity: usize) -> SparseSet` — [`SparseSet`](#sparseset)
 
-- `fn resize(self: &mut Self, new_capacity: usize)`
+- <span id="sparseset-resize"></span>`fn resize(&mut self, new_capacity: usize)`
 
-- `fn capacity(self: &Self) -> usize`
+- <span id="sparseset-capacity"></span>`fn capacity(&self) -> usize`
 
-- `fn len(self: &Self) -> usize`
+- <span id="sparseset-len"></span>`fn len(&self) -> usize`
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="sparseset-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn insert(self: &mut Self, id: StateID) -> bool` — [`StateID`](../primitives/index.md)
+- <span id="sparseset-insert"></span>`fn insert(&mut self, id: StateID) -> bool` — [`StateID`](../primitives/index.md)
 
-- `fn contains(self: &Self, id: StateID) -> bool` — [`StateID`](../primitives/index.md)
+- <span id="sparseset-contains"></span>`fn contains(&self, id: StateID) -> bool` — [`StateID`](../primitives/index.md)
 
-- `fn clear(self: &mut Self)`
+- <span id="sparseset-clear"></span>`fn clear(&mut self)`
 
-- `fn iter(self: &Self) -> SparseSetIter<'_>` — [`SparseSetIter`](#sparsesetiter)
+- <span id="sparseset-iter"></span>`fn iter(&self) -> SparseSetIter<'_>` — [`SparseSetIter`](#sparsesetiter)
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="sparseset-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Clone for SparseSet`
 
-- `fn clone(self: &Self) -> SparseSet` — [`SparseSet`](#sparseset)
+- <span id="sparseset-clone"></span>`fn clone(&self) -> SparseSet` — [`SparseSet`](#sparseset)
 
 ##### `impl Debug for SparseSet`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="sparseset-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ### `SparseSetIter<'a>`
 
@@ -155,19 +163,19 @@ The lifetime `'a` refers to the lifetime of the set being iterated over.
 
 ##### `impl<'a> Debug for SparseSetIter<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sparsesetiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for SparseSetIter<'a>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="sparsesetiter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="sparsesetiter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="sparsesetiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a> Iterator for SparseSetIter<'a>`
 
-- `type Item = StateID`
+- <span id="sparsesetiter-item"></span>`type Item = StateID`
 
-- `fn next(self: &mut Self) -> Option<StateID>` — [`StateID`](../primitives/index.md)
+- <span id="sparsesetiter-next"></span>`fn next(&mut self) -> Option<StateID>` — [`StateID`](../primitives/index.md)
 

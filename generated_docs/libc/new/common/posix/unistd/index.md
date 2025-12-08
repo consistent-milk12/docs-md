@@ -8,6 +8,14 @@ Header: `unistd.h`
 
 <https://pubs.opengroup.org/onlinepubs/007904975/basedefs/unistd.h.html>
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`STDIN_FILENO`](#stdin_fileno) | const |  |
+| [`STDOUT_FILENO`](#stdout_fileno) | const |  |
+| [`STDERR_FILENO`](#stderr_fileno) | const |  |
+
 ## Constants
 
 ### `STDIN_FILENO`

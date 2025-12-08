@@ -113,6 +113,62 @@ long as doing so complies with this policy.
 
 
 
+## Contents
+
+- [Modules](#modules)
+  - [`lazy`](#lazy)
+  - [`callsite`](#callsite)
+  - [`dispatcher`](#dispatcher)
+  - [`event`](#event)
+  - [`field`](#field)
+  - [`metadata`](#metadata)
+  - [`parent`](#parent)
+  - [`span`](#span)
+  - [`subscriber`](#subscriber)
+  - [`sealed`](#sealed)
+- [Structs](#structs)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+- [Traits](#traits)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+- [Macros](#macros)
+  - [`identify_callsite!`](#identify_callsite)
+  - [`metadata!`](#metadata)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`lazy`](#lazy) | mod |  |
+| [`callsite`](#callsite) | mod | Callsites represent the source locations from which spans or events |
+| [`dispatcher`](#dispatcher) | mod | Dispatches trace events to [`Subscriber`]s. |
+| [`event`](#event) | mod | Events represent single points in time during the execution of a program. |
+| [`field`](#field) | mod | `Span` and `Event` key-value data. |
+| [`metadata`](#metadata) | mod | Metadata describing trace data. |
+| [`parent`](#parent) | mod |  |
+| [`span`](#span) | mod | Spans represent periods of time in the execution of a program. |
+| [`subscriber`](#subscriber) | mod | Collectors collect and record trace data. |
+| [`sealed`](#sealed) | mod |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | trait |  |
+| [`unnamed`](#unnamed) | trait |  |
+| [`identify_callsite!`](#identify_callsite) | macro | Statically constructs an [`Identifier`] for the provided [`Callsite`]. |
+| [`metadata!`](#metadata) | macro | Statically constructs new span [metadata]. |
+
 ## Modules
 
 - [`lazy`](lazy/index.md) - 
@@ -140,59 +196,59 @@ struct Dispatch {
 
 #### Implementations
 
-- `fn none() -> Self`
+- <span id="dispatch-none"></span>`fn none() -> Self`
 
-- `fn new<S>(subscriber: S) -> Self`
+- <span id="dispatch-new"></span>`fn new<S>(subscriber: S) -> Self`
 
-- `fn registrar(self: &Self) -> Registrar` — [`Registrar`](dispatcher/index.md)
+- <span id="dispatch-registrar"></span>`fn registrar(&self) -> Registrar` — [`Registrar`](dispatcher/index.md)
 
-- `fn downgrade(self: &Self) -> WeakDispatch` — [`WeakDispatch`](dispatcher/index.md)
+- <span id="dispatch-downgrade"></span>`fn downgrade(&self) -> WeakDispatch` — [`WeakDispatch`](dispatcher/index.md)
 
-- `fn subscriber(self: &Self) -> &dyn Subscriber + Send + Sync` — [`Subscriber`](#subscriber)
+- <span id="dispatch-subscriber"></span>`fn subscriber(&self) -> &dyn Subscriber + Send + Sync` — [`Subscriber`](#subscriber)
 
-- `fn register_callsite(self: &Self, metadata: &'static Metadata<'static>) -> subscriber::Interest` — [`Metadata`](#metadata), [`Interest`](#interest)
+- <span id="dispatch-register-callsite"></span>`fn register_callsite(&self, metadata: &'static Metadata<'static>) -> subscriber::Interest` — [`Metadata`](#metadata), [`Interest`](#interest)
 
-- `fn max_level_hint(self: &Self) -> Option<LevelFilter>` — [`LevelFilter`](#levelfilter)
+- <span id="dispatch-max-level-hint"></span>`fn max_level_hint(&self) -> Option<LevelFilter>` — [`LevelFilter`](#levelfilter)
 
-- `fn new_span(self: &Self, span: &span::Attributes<'_>) -> span::Id` — [`Attributes`](span/index.md), [`Id`](span/index.md)
+- <span id="dispatch-new-span"></span>`fn new_span(&self, span: &span::Attributes<'_>) -> span::Id` — [`Attributes`](span/index.md), [`Id`](span/index.md)
 
-- `fn record(self: &Self, span: &span::Id, values: &span::Record<'_>)` — [`Id`](span/index.md), [`Record`](span/index.md)
+- <span id="dispatch-record"></span>`fn record(&self, span: &span::Id, values: &span::Record<'_>)` — [`Id`](span/index.md), [`Record`](span/index.md)
 
-- `fn record_follows_from(self: &Self, span: &span::Id, follows: &span::Id)` — [`Id`](span/index.md)
+- <span id="dispatch-record-follows-from"></span>`fn record_follows_from(&self, span: &span::Id, follows: &span::Id)` — [`Id`](span/index.md)
 
-- `fn enabled(self: &Self, metadata: &Metadata<'_>) -> bool` — [`Metadata`](#metadata)
+- <span id="dispatch-enabled"></span>`fn enabled(&self, metadata: &Metadata<'_>) -> bool` — [`Metadata`](#metadata)
 
-- `fn event(self: &Self, event: &Event<'_>)` — [`Event`](#event)
+- <span id="dispatch-event"></span>`fn event(&self, event: &Event<'_>)` — [`Event`](#event)
 
-- `fn enter(self: &Self, span: &span::Id)` — [`Id`](span/index.md)
+- <span id="dispatch-enter"></span>`fn enter(&self, span: &span::Id)` — [`Id`](span/index.md)
 
-- `fn exit(self: &Self, span: &span::Id)` — [`Id`](span/index.md)
+- <span id="dispatch-exit"></span>`fn exit(&self, span: &span::Id)` — [`Id`](span/index.md)
 
-- `fn clone_span(self: &Self, id: &span::Id) -> span::Id` — [`Id`](span/index.md)
+- <span id="dispatch-clone-span"></span>`fn clone_span(&self, id: &span::Id) -> span::Id` — [`Id`](span/index.md)
 
-- `fn drop_span(self: &Self, id: span::Id)` — [`Id`](span/index.md)
+- <span id="dispatch-drop-span"></span>`fn drop_span(&self, id: span::Id)` — [`Id`](span/index.md)
 
-- `fn try_close(self: &Self, id: span::Id) -> bool` — [`Id`](span/index.md)
+- <span id="dispatch-try-close"></span>`fn try_close(&self, id: span::Id) -> bool` — [`Id`](span/index.md)
 
-- `fn current_span(self: &Self) -> span::Current` — [`Current`](span/index.md)
+- <span id="dispatch-current-span"></span>`fn current_span(&self) -> span::Current` — [`Current`](span/index.md)
 
-- `fn is<T: Any>(self: &Self) -> bool`
+- <span id="dispatch-is"></span>`fn is<T: Any>(&self) -> bool`
 
-- `fn downcast_ref<T: Any>(self: &Self) -> Option<&T>`
+- <span id="dispatch-downcast-ref"></span>`fn downcast_ref<T: Any>(&self) -> Option<&T>`
 
 #### Trait Implementations
 
 ##### `impl Clone for Dispatch`
 
-- `fn clone(self: &Self) -> Dispatch` — [`Dispatch`](#dispatch)
+- <span id="dispatch-clone"></span>`fn clone(&self) -> Dispatch` — [`Dispatch`](#dispatch)
 
 ##### `impl Debug for Dispatch`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="dispatch-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Dispatch`
 
-- `fn default() -> Self`
+- <span id="dispatch-default"></span>`fn default() -> Self`
 
 ### `Event<'a>`
 
@@ -222,31 +278,31 @@ two key differences:
 
 #### Implementations
 
-- `fn dispatch(metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'_>)` — [`Metadata`](#metadata), [`ValueSet`](field/index.md)
+- <span id="event-dispatch"></span>`fn dispatch(metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'_>)` — [`Metadata`](#metadata), [`ValueSet`](field/index.md)
 
-- `fn new(metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'a>) -> Self` — [`Metadata`](#metadata), [`ValueSet`](field/index.md)
+- <span id="event-new"></span>`fn new(metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'a>) -> Self` — [`Metadata`](#metadata), [`ValueSet`](field/index.md)
 
-- `fn new_child_of(parent: impl Into<Option<Id>>, metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'a>) -> Self` — [`Id`](span/index.md), [`Metadata`](#metadata), [`ValueSet`](field/index.md)
+- <span id="event-new-child-of"></span>`fn new_child_of(parent: impl Into<Option<Id>>, metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'a>) -> Self` — [`Id`](span/index.md), [`Metadata`](#metadata), [`ValueSet`](field/index.md)
 
-- `fn child_of(parent: impl Into<Option<Id>>, metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'_>)` — [`Id`](span/index.md), [`Metadata`](#metadata), [`ValueSet`](field/index.md)
+- <span id="event-child-of"></span>`fn child_of(parent: impl Into<Option<Id>>, metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'_>)` — [`Id`](span/index.md), [`Metadata`](#metadata), [`ValueSet`](field/index.md)
 
-- `fn record(self: &Self, visitor: &mut dyn field::Visit)` — [`Visit`](field/index.md)
+- <span id="event-record"></span>`fn record(&self, visitor: &mut dyn field::Visit)` — [`Visit`](field/index.md)
 
-- `fn fields(self: &Self) -> field::Iter` — [`Iter`](field/index.md)
+- <span id="event-fields"></span>`fn fields(&self) -> field::Iter` — [`Iter`](field/index.md)
 
-- `fn metadata(self: &Self) -> &'static Metadata<'static>` — [`Metadata`](#metadata)
+- <span id="event-metadata"></span>`fn metadata(&self) -> &'static Metadata<'static>` — [`Metadata`](#metadata)
 
-- `fn is_root(self: &Self) -> bool`
+- <span id="event-is-root"></span>`fn is_root(&self) -> bool`
 
-- `fn is_contextual(self: &Self) -> bool`
+- <span id="event-is-contextual"></span>`fn is_contextual(&self) -> bool`
 
-- `fn parent(self: &Self) -> Option<&Id>` — [`Id`](span/index.md)
+- <span id="event-parent"></span>`fn parent(&self) -> Option<&Id>` — [`Id`](span/index.md)
 
 #### Trait Implementations
 
 ##### `impl<'a> Debug for Event<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="event-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Field`
 
@@ -268,43 +324,43 @@ and use the key for that name for all other accesses.
 
 #### Implementations
 
-- `fn callsite(self: &Self) -> callsite::Identifier` — [`Identifier`](callsite/index.md)
+- <span id="field-callsite"></span>`fn callsite(&self) -> callsite::Identifier` — [`Identifier`](callsite/index.md)
 
-- `fn name(self: &Self) -> &'static str`
+- <span id="field-name"></span>`fn name(&self) -> &'static str`
 
-- `fn index(self: &Self) -> usize`
+- <span id="field-index"></span>`fn index(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl AsRef for Field`
 
-- `fn as_ref(self: &Self) -> &str`
+- <span id="field-as-ref"></span>`fn as_ref(&self) -> &str`
 
 ##### `impl Clone for Field`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="field-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for Field`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="field-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Field`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="field-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Field`
 
 ##### `impl Hash for Field`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="field-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for Field`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="field-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> ToString for Field`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="field-to-string"></span>`fn to_string(&self) -> String`
 
 ### `Level`
 
@@ -442,71 +498,71 @@ recorded in.
 
 #### Implementations
 
-- `const ERROR: Level`
+- <span id="level-error"></span>`const ERROR: Level`
 
-- `const WARN: Level`
+- <span id="level-warn"></span>`const WARN: Level`
 
-- `const INFO: Level`
+- <span id="level-info"></span>`const INFO: Level`
 
-- `const DEBUG: Level`
+- <span id="level-debug"></span>`const DEBUG: Level`
 
-- `const TRACE: Level`
+- <span id="level-trace"></span>`const TRACE: Level`
 
-- `fn as_str(self: &Self) -> &'static str`
+- <span id="level-as-str"></span>`fn as_str(&self) -> &'static str`
 
 #### Trait Implementations
 
 ##### `impl Clone for Level`
 
-- `fn clone(self: &Self) -> Level` — [`Level`](#level)
+- <span id="level-clone"></span>`fn clone(&self) -> Level` — [`Level`](#level)
 
 ##### `impl Copy for Level`
 
 ##### `impl Debug for Level`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="level-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Level`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="level-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Level`
 
 ##### `impl FromStr for Level`
 
-- `type Err = ParseLevelError`
+- <span id="level-err"></span>`type Err = ParseLevelError`
 
-- `fn from_str(s: &str) -> Result<Self, ParseLevelError>` — [`ParseLevelError`](metadata/index.md)
+- <span id="level-from-str"></span>`fn from_str(s: &str) -> Result<Self, ParseLevelError>` — [`ParseLevelError`](metadata/index.md)
 
 ##### `impl Hash for Level`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="level-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for Level`
 
-- `fn cmp(self: &Self, other: &Self) -> cmp::Ordering`
+- <span id="level-cmp"></span>`fn cmp(&self, other: &Self) -> cmp::Ordering`
 
 ##### `impl PartialEq for Level`
 
-- `fn eq(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
+- <span id="level-eq"></span>`fn eq(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
 
 ##### `impl PartialOrd for Level`
 
-- `fn partial_cmp(self: &Self, other: &LevelFilter) -> Option<cmp::Ordering>` — [`LevelFilter`](#levelfilter)
+- <span id="level-partial-cmp"></span>`fn partial_cmp(&self, other: &LevelFilter) -> Option<cmp::Ordering>` — [`LevelFilter`](#levelfilter)
 
-- `fn lt(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
+- <span id="level-lt"></span>`fn lt(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
 
-- `fn le(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
+- <span id="level-le"></span>`fn le(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
 
-- `fn gt(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
+- <span id="level-gt"></span>`fn gt(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
 
-- `fn ge(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
+- <span id="level-ge"></span>`fn ge(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
 
 ##### `impl StructuralPartialEq for Level`
 
 ##### `impl<T> ToString for Level`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="level-to-string"></span>`fn to_string(&self) -> String`
 
 ### `LevelFilter`
 
@@ -530,91 +586,91 @@ and `LevelFilter`s interact.
 
 #### Implementations
 
-- `const OFF: LevelFilter`
+- <span id="levelfilter-off"></span>`const OFF: LevelFilter`
 
-- `const ERROR: LevelFilter`
+- <span id="levelfilter-error"></span>`const ERROR: LevelFilter`
 
-- `const WARN: LevelFilter`
+- <span id="levelfilter-warn"></span>`const WARN: LevelFilter`
 
-- `const INFO: LevelFilter`
+- <span id="levelfilter-info"></span>`const INFO: LevelFilter`
 
-- `const DEBUG: LevelFilter`
+- <span id="levelfilter-debug"></span>`const DEBUG: LevelFilter`
 
-- `const TRACE: LevelFilter`
+- <span id="levelfilter-trace"></span>`const TRACE: LevelFilter`
 
-- `const fn from_level(level: Level) -> Self` — [`Level`](#level)
+- <span id="levelfilter-from-level"></span>`const fn from_level(level: Level) -> Self` — [`Level`](#level)
 
-- `const fn into_level(self: Self) -> Option<Level>` — [`Level`](#level)
+- <span id="levelfilter-into-level"></span>`const fn into_level(self) -> Option<Level>` — [`Level`](#level)
 
-- `const ERROR_USIZE: usize`
+- <span id="levelfilter-error-usize"></span>`const ERROR_USIZE: usize`
 
-- `const WARN_USIZE: usize`
+- <span id="levelfilter-warn-usize"></span>`const WARN_USIZE: usize`
 
-- `const INFO_USIZE: usize`
+- <span id="levelfilter-info-usize"></span>`const INFO_USIZE: usize`
 
-- `const DEBUG_USIZE: usize`
+- <span id="levelfilter-debug-usize"></span>`const DEBUG_USIZE: usize`
 
-- `const TRACE_USIZE: usize`
+- <span id="levelfilter-trace-usize"></span>`const TRACE_USIZE: usize`
 
-- `const OFF_USIZE: usize`
+- <span id="levelfilter-off-usize"></span>`const OFF_USIZE: usize`
 
-- `fn current() -> Self`
+- <span id="levelfilter-current"></span>`fn current() -> Self`
 
-- `fn set_max(LevelFilter: LevelFilter)` — [`LevelFilter`](#levelfilter)
+- <span id="levelfilter-set-max"></span>`fn set_max(LevelFilter: LevelFilter)` — [`LevelFilter`](#levelfilter)
 
 #### Trait Implementations
 
 ##### `impl Clone for LevelFilter`
 
-- `fn clone(self: &Self) -> LevelFilter` — [`LevelFilter`](#levelfilter)
+- <span id="levelfilter-clone"></span>`fn clone(&self) -> LevelFilter` — [`LevelFilter`](#levelfilter)
 
 ##### `impl Copy for LevelFilter`
 
 ##### `impl Debug for LevelFilter`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="levelfilter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for LevelFilter`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="levelfilter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for LevelFilter`
 
 ##### `impl FromStr for LevelFilter`
 
-- `type Err = ParseLevelFilterError`
+- <span id="levelfilter-err"></span>`type Err = ParseLevelFilterError`
 
-- `fn from_str(from: &str) -> Result<Self, <Self as >::Err>`
+- <span id="levelfilter-from-str"></span>`fn from_str(from: &str) -> Result<Self, <Self as >::Err>`
 
 ##### `impl Hash for LevelFilter`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="levelfilter-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for LevelFilter`
 
-- `fn cmp(self: &Self, other: &Self) -> cmp::Ordering`
+- <span id="levelfilter-cmp"></span>`fn cmp(&self, other: &Self) -> cmp::Ordering`
 
 ##### `impl PartialEq for LevelFilter`
 
-- `fn eq(self: &Self, other: &Level) -> bool` — [`Level`](#level)
+- <span id="levelfilter-eq"></span>`fn eq(&self, other: &Level) -> bool` — [`Level`](#level)
 
 ##### `impl PartialOrd for LevelFilter`
 
-- `fn partial_cmp(self: &Self, other: &Level) -> Option<cmp::Ordering>` — [`Level`](#level)
+- <span id="levelfilter-partial-cmp"></span>`fn partial_cmp(&self, other: &Level) -> Option<cmp::Ordering>` — [`Level`](#level)
 
-- `fn lt(self: &Self, other: &Level) -> bool` — [`Level`](#level)
+- <span id="levelfilter-lt"></span>`fn lt(&self, other: &Level) -> bool` — [`Level`](#level)
 
-- `fn le(self: &Self, other: &Level) -> bool` — [`Level`](#level)
+- <span id="levelfilter-le"></span>`fn le(&self, other: &Level) -> bool` — [`Level`](#level)
 
-- `fn gt(self: &Self, other: &Level) -> bool` — [`Level`](#level)
+- <span id="levelfilter-gt"></span>`fn gt(&self, other: &Level) -> bool` — [`Level`](#level)
 
-- `fn ge(self: &Self, other: &Level) -> bool` — [`Level`](#level)
+- <span id="levelfilter-ge"></span>`fn ge(&self, other: &Level) -> bool` — [`Level`](#level)
 
 ##### `impl StructuralPartialEq for LevelFilter`
 
 ##### `impl<T> ToString for LevelFilter`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="levelfilter-to-string"></span>`fn to_string(&self) -> String`
 
 ### `Metadata<'a>`
 
@@ -720,39 +776,39 @@ of `Metadata`'s other fields is checked in debug builds.
 
 #### Implementations
 
-- `const fn new(name: &'static str, target: &'a str, level: Level, file: Option<&'a str>, line: Option<u32>, module_path: Option<&'a str>, fields: field::FieldSet, kind: Kind) -> Self` — [`Level`](#level), [`FieldSet`](field/index.md), [`Kind`](#kind)
+- <span id="metadata-new"></span>`const fn new(name: &'static str, target: &'a str, level: Level, file: Option<&'a str>, line: Option<u32>, module_path: Option<&'a str>, fields: field::FieldSet, kind: Kind) -> Self` — [`Level`](#level), [`FieldSet`](field/index.md), [`Kind`](#kind)
 
-- `fn fields(self: &Self) -> &field::FieldSet` — [`FieldSet`](field/index.md)
+- <span id="metadata-fields"></span>`fn fields(&self) -> &field::FieldSet` — [`FieldSet`](field/index.md)
 
-- `fn level(self: &Self) -> &Level` — [`Level`](#level)
+- <span id="metadata-level"></span>`fn level(&self) -> &Level` — [`Level`](#level)
 
-- `fn name(self: &Self) -> &'static str`
+- <span id="metadata-name"></span>`fn name(&self) -> &'static str`
 
-- `fn target(self: &Self) -> &'a str`
+- <span id="metadata-target"></span>`fn target(&self) -> &'a str`
 
-- `fn module_path(self: &Self) -> Option<&'a str>`
+- <span id="metadata-module-path"></span>`fn module_path(&self) -> Option<&'a str>`
 
-- `fn file(self: &Self) -> Option<&'a str>`
+- <span id="metadata-file"></span>`fn file(&self) -> Option<&'a str>`
 
-- `fn line(self: &Self) -> Option<u32>`
+- <span id="metadata-line"></span>`fn line(&self) -> Option<u32>`
 
-- `fn callsite(self: &Self) -> callsite::Identifier` — [`Identifier`](callsite/index.md)
+- <span id="metadata-callsite"></span>`fn callsite(&self) -> callsite::Identifier` — [`Identifier`](callsite/index.md)
 
-- `fn is_event(self: &Self) -> bool`
+- <span id="metadata-is-event"></span>`fn is_event(&self) -> bool`
 
-- `fn is_span(self: &Self) -> bool`
+- <span id="metadata-is-span"></span>`fn is_span(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Debug for Metadata<'_>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="metadata-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Metadata<'_>`
 
 ##### `impl PartialEq for Metadata<'_>`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="metadata-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ### `Kind`
 
@@ -764,41 +820,41 @@ Indicates whether the callsite is a span or event.
 
 #### Implementations
 
-- `const EVENT_BIT: u8`
+- <span id="kind-event-bit"></span>`const EVENT_BIT: u8`
 
-- `const SPAN_BIT: u8`
+- <span id="kind-span-bit"></span>`const SPAN_BIT: u8`
 
-- `const HINT_BIT: u8`
+- <span id="kind-hint-bit"></span>`const HINT_BIT: u8`
 
-- `const EVENT: Kind`
+- <span id="kind-event"></span>`const EVENT: Kind`
 
-- `const SPAN: Kind`
+- <span id="kind-span"></span>`const SPAN: Kind`
 
-- `const HINT: Kind`
+- <span id="kind-hint"></span>`const HINT: Kind`
 
-- `fn is_span(self: &Self) -> bool`
+- <span id="kind-is-span"></span>`fn is_span(&self) -> bool`
 
-- `fn is_event(self: &Self) -> bool`
+- <span id="kind-is-event"></span>`fn is_event(&self) -> bool`
 
-- `fn is_hint(self: &Self) -> bool`
+- <span id="kind-is-hint"></span>`fn is_hint(&self) -> bool`
 
-- `const fn hint(self: Self) -> Self`
+- <span id="kind-hint"></span>`const fn hint(self) -> Self`
 
 #### Trait Implementations
 
 ##### `impl Clone for Kind`
 
-- `fn clone(self: &Self) -> Kind` — [`Kind`](#kind)
+- <span id="kind-clone"></span>`fn clone(&self) -> Kind` — [`Kind`](#kind)
 
 ##### `impl Debug for Kind`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="kind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Kind`
 
 ##### `impl PartialEq for Kind`
 
-- `fn eq(self: &Self, other: &Kind) -> bool` — [`Kind`](#kind)
+- <span id="kind-eq"></span>`fn eq(&self, other: &Kind) -> bool` — [`Kind`](#kind)
 
 ##### `impl StructuralPartialEq for Kind`
 
@@ -817,29 +873,29 @@ in order to determine whether that span should be enabled or disabled.
 
 #### Implementations
 
-- `fn never() -> Self`
+- <span id="interest-never"></span>`fn never() -> Self`
 
-- `fn sometimes() -> Self`
+- <span id="interest-sometimes"></span>`fn sometimes() -> Self`
 
-- `fn always() -> Self`
+- <span id="interest-always"></span>`fn always() -> Self`
 
-- `fn is_never(self: &Self) -> bool`
+- <span id="interest-is-never"></span>`fn is_never(&self) -> bool`
 
-- `fn is_sometimes(self: &Self) -> bool`
+- <span id="interest-is-sometimes"></span>`fn is_sometimes(&self) -> bool`
 
-- `fn is_always(self: &Self) -> bool`
+- <span id="interest-is-always"></span>`fn is_always(&self) -> bool`
 
-- `fn and(self: Self, rhs: Interest) -> Self` — [`Interest`](#interest)
+- <span id="interest-and"></span>`fn and(self, rhs: Interest) -> Self` — [`Interest`](#interest)
 
 #### Trait Implementations
 
 ##### `impl Clone for Interest`
 
-- `fn clone(self: &Self) -> Interest` — [`Interest`](#interest)
+- <span id="interest-clone"></span>`fn clone(&self) -> Interest` — [`Interest`](#interest)
 
 ##### `impl Debug for Interest`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="interest-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Traits
 

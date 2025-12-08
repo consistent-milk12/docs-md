@@ -11,6 +11,42 @@ This module is the home of a [one-pass DFA](DFA).
 This module also contains a [`Builder`](#builder) and a [`Config`](#config) for building and
 configuring a one-pass DFA.
 
+## Contents
+
+- [Structs](#structs)
+  - [`Config`](#config)
+  - [`Builder`](#builder)
+  - [`InternalBuilder`](#internalbuilder)
+  - [`DFA`](#dfa)
+  - [`SparseTransitionIter`](#sparsetransitioniter)
+  - [`Cache`](#cache)
+  - [`Transition`](#transition)
+  - [`PatternEpsilons`](#patternepsilons)
+  - [`Epsilons`](#epsilons)
+  - [`Slots`](#slots)
+  - [`SlotsIter`](#slotsiter)
+  - [`BuildError`](#builderror)
+- [Enums](#enums)
+  - [`BuildErrorKind`](#builderrorkind)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Config`](#config) | struct | The configuration used for building a [one-pass DFA](DFA). |
+| [`Builder`](#builder) | struct | A builder for a [one-pass DFA](DFA). |
+| [`InternalBuilder`](#internalbuilder) | struct | An internal builder for encapsulating the state necessary to build a |
+| [`DFA`](#dfa) | struct | A one-pass DFA for executing a subset of anchored regex searches while |
+| [`SparseTransitionIter`](#sparsetransitioniter) | struct | An iterator over groups of consecutive equivalent transitions in a single |
+| [`Cache`](#cache) | struct | A cache represents mutable state that a one-pass [`DFA`] requires during a |
+| [`Transition`](#transition) | struct | Represents a single transition in a one-pass DFA. |
+| [`PatternEpsilons`](#patternepsilons) | struct | A representation of a match state's pattern ID along with the epsilons for |
+| [`Epsilons`](#epsilons) | struct | Epsilons represents all of the NFA epsilons transitions that went into a |
+| [`Slots`](#slots) | struct | The set of epsilon transitions indicating that the current position in a |
+| [`SlotsIter`](#slotsiter) | struct | An iterator over all of the bits set in a slot set. |
+| [`BuildError`](#builderror) | struct | An error that occurred during the construction of a one-pass DFA. |
+| [`BuildErrorKind`](#builderrorkind) | enum | The kind of error that occurred during the construction of a one-pass DFA. |
+
 ## Structs
 
 ### `Config`
@@ -34,39 +70,39 @@ perhaps more conveniently, with `DFA::config`.
 
 #### Implementations
 
-- `fn new() -> Config` — [`Config`](#config)
+- <span id="config-new"></span>`fn new() -> Config` — [`Config`](#config)
 
-- `fn match_kind(self: Self, kind: MatchKind) -> Config` — [`MatchKind`](../../index.md), [`Config`](#config)
+- <span id="config-match-kind"></span>`fn match_kind(self, kind: MatchKind) -> Config` — [`MatchKind`](../../index.md), [`Config`](#config)
 
-- `fn starts_for_each_pattern(self: Self, yes: bool) -> Config` — [`Config`](#config)
+- <span id="config-starts-for-each-pattern"></span>`fn starts_for_each_pattern(self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn byte_classes(self: Self, yes: bool) -> Config` — [`Config`](#config)
+- <span id="config-byte-classes"></span>`fn byte_classes(self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn size_limit(self: Self, limit: Option<usize>) -> Config` — [`Config`](#config)
+- <span id="config-size-limit"></span>`fn size_limit(self, limit: Option<usize>) -> Config` — [`Config`](#config)
 
-- `fn get_match_kind(self: &Self) -> MatchKind` — [`MatchKind`](../../index.md)
+- <span id="config-get-match-kind"></span>`fn get_match_kind(&self) -> MatchKind` — [`MatchKind`](../../index.md)
 
-- `fn get_starts_for_each_pattern(self: &Self) -> bool`
+- <span id="config-get-starts-for-each-pattern"></span>`fn get_starts_for_each_pattern(&self) -> bool`
 
-- `fn get_byte_classes(self: &Self) -> bool`
+- <span id="config-get-byte-classes"></span>`fn get_byte_classes(&self) -> bool`
 
-- `fn get_size_limit(self: &Self) -> Option<usize>`
+- <span id="config-get-size-limit"></span>`fn get_size_limit(&self) -> Option<usize>`
 
-- `fn overwrite(self: &Self, o: Config) -> Config` — [`Config`](#config)
+- <span id="config-overwrite"></span>`fn overwrite(&self, o: Config) -> Config` — [`Config`](#config)
 
 #### Trait Implementations
 
 ##### `impl Clone for Config`
 
-- `fn clone(self: &Self) -> Config` — [`Config`](#config)
+- <span id="config-clone"></span>`fn clone(&self) -> Config` — [`Config`](#config)
 
 ##### `impl Debug for Config`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="config-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Config`
 
-- `fn default() -> Config` — [`Config`](#config)
+- <span id="config-default"></span>`fn default() -> Config` — [`Config`](#config)
 
 ### `Builder`
 
@@ -132,29 +168,29 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new() -> Builder` — [`Builder`](#builder)
+- <span id="builder-new"></span>`fn new() -> Builder` — [`Builder`](#builder)
 
-- `fn build(self: &Self, pattern: &str) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](#builderror)
+- <span id="builder-build"></span>`fn build(&self, pattern: &str) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](#builderror)
 
-- `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](#builderror)
+- <span id="builder-build-many"></span>`fn build_many<P: AsRef<str>>(&self, patterns: &[P]) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](#builderror)
 
-- `fn build_from_nfa(self: &Self, nfa: NFA) -> Result<DFA, BuildError>` — [`NFA`](../../nfa/thompson/index.md), [`DFA`](#dfa), [`BuildError`](#builderror)
+- <span id="builder-build-from-nfa"></span>`fn build_from_nfa(&self, nfa: NFA) -> Result<DFA, BuildError>` — [`NFA`](../../nfa/thompson/index.md), [`DFA`](#dfa), [`BuildError`](#builderror)
 
-- `fn configure(self: &mut Self, config: Config) -> &mut Builder` — [`Config`](#config), [`Builder`](#builder)
+- <span id="builder-configure"></span>`fn configure(&mut self, config: Config) -> &mut Builder` — [`Config`](#config), [`Builder`](#builder)
 
-- `fn syntax(self: &mut Self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../util/syntax/index.md), [`Builder`](#builder)
+- <span id="builder-syntax"></span>`fn syntax(&mut self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../util/syntax/index.md), [`Builder`](#builder)
 
-- `fn thompson(self: &mut Self, config: thompson::Config) -> &mut Builder` — [`Config`](../../nfa/thompson/index.md), [`Builder`](#builder)
+- <span id="builder-thompson"></span>`fn thompson(&mut self, config: thompson::Config) -> &mut Builder` — [`Config`](../../nfa/thompson/index.md), [`Builder`](#builder)
 
 #### Trait Implementations
 
 ##### `impl Clone for Builder`
 
-- `fn clone(self: &Self) -> Builder` — [`Builder`](#builder)
+- <span id="builder-clone"></span>`fn clone(&self) -> Builder` — [`Builder`](#builder)
 
 ##### `impl Debug for Builder`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="builder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `InternalBuilder<'a>`
 
@@ -259,27 +295,27 @@ because the duplication is cheap.
 
 #### Implementations
 
-- `fn new(config: Config, nfa: &'a NFA) -> InternalBuilder<'a>` — [`Config`](#config), [`NFA`](../../nfa/thompson/index.md), [`InternalBuilder`](#internalbuilder)
+- <span id="internalbuilder-new"></span>`fn new(config: Config, nfa: &'a NFA) -> InternalBuilder<'a>` — [`Config`](#config), [`NFA`](../../nfa/thompson/index.md), [`InternalBuilder`](#internalbuilder)
 
-- `fn build(self: Self) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](#builderror)
+- <span id="internalbuilder-build"></span>`fn build(self) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](#builderror)
 
-- `fn shuffle_states(self: &mut Self)`
+- <span id="internalbuilder-shuffle-states"></span>`fn shuffle_states(&mut self)`
 
-- `fn compile_transition(self: &mut Self, dfa_id: StateID, trans: &thompson::Transition, epsilons: Epsilons) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md), [`Transition`](../../nfa/thompson/index.md), [`Epsilons`](#epsilons), [`BuildError`](#builderror)
+- <span id="internalbuilder-compile-transition"></span>`fn compile_transition(&mut self, dfa_id: StateID, trans: &thompson::Transition, epsilons: Epsilons) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md), [`Transition`](../../nfa/thompson/index.md), [`Epsilons`](#epsilons), [`BuildError`](#builderror)
 
-- `fn add_start_state(self: &mut Self, pid: Option<PatternID>, nfa_id: StateID) -> Result<StateID, BuildError>` — [`PatternID`](../../index.md), [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
+- <span id="internalbuilder-add-start-state"></span>`fn add_start_state(&mut self, pid: Option<PatternID>, nfa_id: StateID) -> Result<StateID, BuildError>` — [`PatternID`](../../index.md), [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
 
-- `fn add_dfa_state_for_nfa_state(self: &mut Self, nfa_id: StateID) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
+- <span id="internalbuilder-add-dfa-state-for-nfa-state"></span>`fn add_dfa_state_for_nfa_state(&mut self, nfa_id: StateID) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
 
-- `fn add_empty_state(self: &mut Self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
+- <span id="internalbuilder-add-empty-state"></span>`fn add_empty_state(&mut self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
 
-- `fn stack_push(self: &mut Self, nfa_id: StateID, epsilons: Epsilons) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md), [`Epsilons`](#epsilons), [`BuildError`](#builderror)
+- <span id="internalbuilder-stack-push"></span>`fn stack_push(&mut self, nfa_id: StateID, epsilons: Epsilons) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md), [`Epsilons`](#epsilons), [`BuildError`](#builderror)
 
 #### Trait Implementations
 
 ##### `impl<'a> Debug for InternalBuilder<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="internalbuilder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `DFA`
 
@@ -541,47 +577,37 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn start(self: &Self) -> StateID` — [`StateID`](../../util/primitives/index.md)
+- <span id="dfa-is-match"></span>`fn is_match<'h, I: Into<Input<'h>>>(&self, cache: &mut Cache, input: I) -> bool` — [`Cache`](#cache)
 
-- `fn start_pattern(self: &Self, pid: PatternID) -> Result<StateID, MatchError>` — [`PatternID`](../../index.md), [`StateID`](../../util/primitives/index.md), [`MatchError`](../../index.md)
+- <span id="dfa-find"></span>`fn find<'h, I: Into<Input<'h>>>(&self, cache: &mut Cache, input: I) -> Option<Match>` — [`Cache`](#cache), [`Match`](../../index.md)
 
-- `fn transition(self: &Self, sid: StateID, byte: u8) -> Transition` — [`StateID`](../../util/primitives/index.md), [`Transition`](#transition)
+- <span id="dfa-captures"></span>`fn captures<'h, I: Into<Input<'h>>>(&self, cache: &mut Cache, input: I, caps: &mut Captures)` — [`Cache`](#cache), [`Captures`](../../util/captures/index.md)
 
-- `fn set_transition(self: &mut Self, sid: StateID, byte: u8, to: Transition)` — [`StateID`](../../util/primitives/index.md), [`Transition`](#transition)
+- <span id="dfa-try-search"></span>`fn try_search(&self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures) -> Result<(), MatchError>` — [`Cache`](#cache), [`Input`](../../index.md), [`Captures`](../../util/captures/index.md), [`MatchError`](../../index.md)
 
-- `fn sparse_transitions(self: &Self, sid: StateID) -> SparseTransitionIter<'_>` — [`StateID`](../../util/primitives/index.md), [`SparseTransitionIter`](#sparsetransitioniter)
+- <span id="dfa-try-search-slots"></span>`fn try_search_slots(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<PatternID>, MatchError>` — [`Cache`](#cache), [`Input`](../../index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../index.md), [`MatchError`](../../index.md)
 
-- `fn pattern_epsilons(self: &Self, sid: StateID) -> PatternEpsilons` — [`StateID`](../../util/primitives/index.md), [`PatternEpsilons`](#patternepsilons)
-
-- `fn set_pattern_epsilons(self: &mut Self, sid: StateID, pateps: PatternEpsilons)` — [`StateID`](../../util/primitives/index.md), [`PatternEpsilons`](#patternepsilons)
-
-- `fn prev_state_id(self: &Self, id: StateID) -> Option<StateID>` — [`StateID`](../../util/primitives/index.md)
-
-- `fn last_state_id(self: &Self) -> StateID` — [`StateID`](../../util/primitives/index.md)
-
-- `fn swap_states(self: &mut Self, id1: StateID, id2: StateID)` — [`StateID`](../../util/primitives/index.md)
-
-- `fn remap(self: &mut Self, map: impl Fn(StateID) -> StateID)` — [`StateID`](../../util/primitives/index.md)
+- <span id="dfa-try-search-slots-imp"></span>`fn try_search_slots_imp(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<PatternID>, MatchError>` — [`Cache`](#cache), [`Input`](../../index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../index.md), [`MatchError`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for DFA`
 
-- `fn clone(self: &Self) -> DFA` — [`DFA`](#dfa)
+- <span id="dfa-clone"></span>`fn clone(&self) -> DFA` — [`DFA`](#dfa)
 
 ##### `impl Debug for DFA`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="dfa-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Remappable for crate::dfa::onepass::DFA`
 
-- `fn state_len(self: &Self) -> usize`
+- <span id="cratedfaonepassdfa-state-len"></span>`fn state_len(&self) -> usize`
 
-- `fn stride2(self: &Self) -> usize`
+- <span id="cratedfaonepassdfa-stride2"></span>`fn stride2(&self) -> usize`
 
-- `fn swap_states(self: &mut Self, id1: StateID, id2: StateID)` — [`StateID`](../../util/primitives/index.md)
+- <span id="cratedfaonepassdfa-swap-states"></span>`fn swap_states(&mut self, id1: StateID, id2: StateID)` — [`StateID`](../../util/primitives/index.md)
 
-- `fn remap(self: &mut Self, map: impl Fn(StateID) -> StateID)` — [`StateID`](../../util/primitives/index.md)
+- <span id="cratedfaonepassdfa-remap"></span>`fn remap(&mut self, map: impl Fn(StateID) -> StateID)` — [`StateID`](../../util/primitives/index.md)
 
 ### `SparseTransitionIter<'a>`
 
@@ -599,21 +625,21 @@ state.
 
 ##### `impl<'a> Debug for SparseTransitionIter<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sparsetransitioniter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for SparseTransitionIter<'a>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="sparsetransitioniter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="sparsetransitioniter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="sparsetransitioniter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a> Iterator for SparseTransitionIter<'a>`
 
-- `type Item = (u8, u8, Transition)`
+- <span id="sparsetransitioniter-item"></span>`type Item = (u8, u8, Transition)`
 
-- `fn next(self: &mut Self) -> Option<(u8, u8, Transition)>` — [`Transition`](#transition)
+- <span id="sparsetransitioniter-next"></span>`fn next(&mut self) -> Option<(u8, u8, Transition)>` — [`Transition`](#transition)
 
 ### `Cache`
 
@@ -655,25 +681,25 @@ only be used with the new one-pass DFA (and not the old one).
 
 #### Implementations
 
-- `fn new(re: &DFA) -> Cache` — [`DFA`](#dfa), [`Cache`](#cache)
+- <span id="cache-new"></span>`fn new(re: &DFA) -> Cache` — [`DFA`](#dfa), [`Cache`](#cache)
 
-- `fn reset(self: &mut Self, re: &DFA)` — [`DFA`](#dfa)
+- <span id="cache-reset"></span>`fn reset(&mut self, re: &DFA)` — [`DFA`](#dfa)
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="cache-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- `fn explicit_slots(self: &mut Self) -> &mut [Option<NonMaxUsize>]` — [`NonMaxUsize`](../../util/primitives/index.md)
+- <span id="cache-explicit-slots"></span>`fn explicit_slots(&mut self) -> &mut [Option<NonMaxUsize>]` — [`NonMaxUsize`](../../util/primitives/index.md)
 
-- `fn setup_search(self: &mut Self, explicit_slot_len: usize)`
+- <span id="cache-setup-search"></span>`fn setup_search(&mut self, explicit_slot_len: usize)`
 
 #### Trait Implementations
 
 ##### `impl Clone for Cache`
 
-- `fn clone(self: &Self) -> Cache` — [`Cache`](#cache)
+- <span id="cache-clone"></span>`fn clone(&self) -> Cache` — [`Cache`](#cache)
 
 ##### `impl Debug for Cache`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="cache-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Transition`
 
@@ -691,45 +717,45 @@ must be satisfied in order to follow this transition.
 
 #### Implementations
 
-- `const STATE_ID_BITS: u64`
+- <span id="transition-state-id-bits"></span>`const STATE_ID_BITS: u64`
 
-- `const STATE_ID_SHIFT: u64`
+- <span id="transition-state-id-shift"></span>`const STATE_ID_SHIFT: u64`
 
-- `const STATE_ID_LIMIT: u64`
+- <span id="transition-state-id-limit"></span>`const STATE_ID_LIMIT: u64`
 
-- `const MATCH_WINS_SHIFT: u64`
+- <span id="transition-match-wins-shift"></span>`const MATCH_WINS_SHIFT: u64`
 
-- `const INFO_MASK: u64`
+- <span id="transition-info-mask"></span>`const INFO_MASK: u64`
 
-- `fn new(match_wins: bool, sid: StateID, epsilons: Epsilons) -> Transition` — [`StateID`](../../util/primitives/index.md), [`Epsilons`](#epsilons), [`Transition`](#transition)
+- <span id="transition-new"></span>`fn new(match_wins: bool, sid: StateID, epsilons: Epsilons) -> Transition` — [`StateID`](../../util/primitives/index.md), [`Epsilons`](#epsilons), [`Transition`](#transition)
 
-- `fn is_dead(self: Self) -> bool`
+- <span id="transition-is-dead"></span>`fn is_dead(self) -> bool`
 
-- `fn match_wins(self: &Self) -> bool`
+- <span id="transition-match-wins"></span>`fn match_wins(&self) -> bool`
 
-- `fn state_id(self: &Self) -> StateID` — [`StateID`](../../util/primitives/index.md)
+- <span id="transition-state-id"></span>`fn state_id(&self) -> StateID` — [`StateID`](../../util/primitives/index.md)
 
-- `fn set_state_id(self: &mut Self, sid: StateID)` — [`StateID`](../../util/primitives/index.md)
+- <span id="transition-set-state-id"></span>`fn set_state_id(&mut self, sid: StateID)` — [`StateID`](../../util/primitives/index.md)
 
-- `fn epsilons(self: &Self) -> Epsilons` — [`Epsilons`](#epsilons)
+- <span id="transition-epsilons"></span>`fn epsilons(&self) -> Epsilons` — [`Epsilons`](#epsilons)
 
 #### Trait Implementations
 
 ##### `impl Clone for Transition`
 
-- `fn clone(self: &Self) -> Transition` — [`Transition`](#transition)
+- <span id="transition-clone"></span>`fn clone(&self) -> Transition` — [`Transition`](#transition)
 
 ##### `impl Copy for Transition`
 
 ##### `impl Debug for Transition`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="transition-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq for Transition`
 
 ##### `impl PartialEq for Transition`
 
-- `fn eq(self: &Self, other: &Transition) -> bool` — [`Transition`](#transition)
+- <span id="transition-eq"></span>`fn eq(&self, other: &Transition) -> bool` — [`Transition`](#transition)
 
 ##### `impl StructuralPartialEq for Transition`
 
@@ -756,43 +782,43 @@ ever non-empty for match states.
 
 #### Implementations
 
-- `const PATTERN_ID_BITS: u64`
+- <span id="patternepsilons-pattern-id-bits"></span>`const PATTERN_ID_BITS: u64`
 
-- `const PATTERN_ID_SHIFT: u64`
+- <span id="patternepsilons-pattern-id-shift"></span>`const PATTERN_ID_SHIFT: u64`
 
-- `const PATTERN_ID_NONE: u64`
+- <span id="patternepsilons-pattern-id-none"></span>`const PATTERN_ID_NONE: u64`
 
-- `const PATTERN_ID_LIMIT: u64`
+- <span id="patternepsilons-pattern-id-limit"></span>`const PATTERN_ID_LIMIT: u64`
 
-- `const PATTERN_ID_MASK: u64`
+- <span id="patternepsilons-pattern-id-mask"></span>`const PATTERN_ID_MASK: u64`
 
-- `const EPSILONS_MASK: u64`
+- <span id="patternepsilons-epsilons-mask"></span>`const EPSILONS_MASK: u64`
 
-- `fn empty() -> PatternEpsilons` — [`PatternEpsilons`](#patternepsilons)
+- <span id="patternepsilons-empty"></span>`fn empty() -> PatternEpsilons` — [`PatternEpsilons`](#patternepsilons)
 
-- `fn is_empty(self: Self) -> bool`
+- <span id="patternepsilons-is-empty"></span>`fn is_empty(self) -> bool`
 
-- `fn pattern_id(self: Self) -> Option<PatternID>` — [`PatternID`](../../index.md)
+- <span id="patternepsilons-pattern-id"></span>`fn pattern_id(self) -> Option<PatternID>` — [`PatternID`](../../index.md)
 
-- `fn pattern_id_unchecked(self: Self) -> PatternID` — [`PatternID`](../../index.md)
+- <span id="patternepsilons-pattern-id-unchecked"></span>`fn pattern_id_unchecked(self) -> PatternID` — [`PatternID`](../../index.md)
 
-- `fn set_pattern_id(self: Self, pid: PatternID) -> PatternEpsilons` — [`PatternID`](../../index.md), [`PatternEpsilons`](#patternepsilons)
+- <span id="patternepsilons-set-pattern-id"></span>`fn set_pattern_id(self, pid: PatternID) -> PatternEpsilons` — [`PatternID`](../../index.md), [`PatternEpsilons`](#patternepsilons)
 
-- `fn epsilons(self: Self) -> Epsilons` — [`Epsilons`](#epsilons)
+- <span id="patternepsilons-epsilons"></span>`fn epsilons(self) -> Epsilons` — [`Epsilons`](#epsilons)
 
-- `fn set_epsilons(self: Self, epsilons: Epsilons) -> PatternEpsilons` — [`Epsilons`](#epsilons), [`PatternEpsilons`](#patternepsilons)
+- <span id="patternepsilons-set-epsilons"></span>`fn set_epsilons(self, epsilons: Epsilons) -> PatternEpsilons` — [`Epsilons`](#epsilons), [`PatternEpsilons`](#patternepsilons)
 
 #### Trait Implementations
 
 ##### `impl Clone for PatternEpsilons`
 
-- `fn clone(self: &Self) -> PatternEpsilons` — [`PatternEpsilons`](#patternepsilons)
+- <span id="patternepsilons-clone"></span>`fn clone(&self) -> PatternEpsilons` — [`PatternEpsilons`](#patternepsilons)
 
 ##### `impl Copy for PatternEpsilons`
 
 ##### `impl Debug for PatternEpsilons`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="patternepsilons-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ### `Epsilons`
 
@@ -819,35 +845,35 @@ the lower 42 bits of a `Transition`. (Where the high 22 bits contains a
 
 #### Implementations
 
-- `const SLOT_MASK: u64`
+- <span id="epsilons-slot-mask"></span>`const SLOT_MASK: u64`
 
-- `const SLOT_SHIFT: u64`
+- <span id="epsilons-slot-shift"></span>`const SLOT_SHIFT: u64`
 
-- `const LOOK_MASK: u64`
+- <span id="epsilons-look-mask"></span>`const LOOK_MASK: u64`
 
-- `fn empty() -> Epsilons` — [`Epsilons`](#epsilons)
+- <span id="epsilons-empty"></span>`fn empty() -> Epsilons` — [`Epsilons`](#epsilons)
 
-- `fn is_empty(self: Self) -> bool`
+- <span id="epsilons-is-empty"></span>`fn is_empty(self) -> bool`
 
-- `fn slots(self: Self) -> Slots` — [`Slots`](#slots)
+- <span id="epsilons-slots"></span>`fn slots(self) -> Slots` — [`Slots`](#slots)
 
-- `fn set_slots(self: Self, slots: Slots) -> Epsilons` — [`Slots`](#slots), [`Epsilons`](#epsilons)
+- <span id="epsilons-set-slots"></span>`fn set_slots(self, slots: Slots) -> Epsilons` — [`Slots`](#slots), [`Epsilons`](#epsilons)
 
-- `fn looks(self: Self) -> LookSet` — [`LookSet`](../../util/look/index.md)
+- <span id="epsilons-looks"></span>`fn looks(self) -> LookSet` — [`LookSet`](../../util/look/index.md)
 
-- `fn set_looks(self: Self, look_set: LookSet) -> Epsilons` — [`LookSet`](../../util/look/index.md), [`Epsilons`](#epsilons)
+- <span id="epsilons-set-looks"></span>`fn set_looks(self, look_set: LookSet) -> Epsilons` — [`LookSet`](../../util/look/index.md), [`Epsilons`](#epsilons)
 
 #### Trait Implementations
 
 ##### `impl Clone for Epsilons`
 
-- `fn clone(self: &Self) -> Epsilons` — [`Epsilons`](#epsilons)
+- <span id="epsilons-clone"></span>`fn clone(&self) -> Epsilons` — [`Epsilons`](#epsilons)
 
 ##### `impl Copy for Epsilons`
 
 ##### `impl Debug for Epsilons`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="epsilons-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ### `Slots`
 
@@ -890,29 +916,29 @@ index in the corresponding NFA.
 
 #### Implementations
 
-- `const LIMIT: usize`
+- <span id="slots-limit"></span>`const LIMIT: usize`
 
-- `fn insert(self: Self, slot: usize) -> Slots` — [`Slots`](#slots)
+- <span id="slots-insert"></span>`fn insert(self, slot: usize) -> Slots` — [`Slots`](#slots)
 
-- `fn remove(self: Self, slot: usize) -> Slots` — [`Slots`](#slots)
+- <span id="slots-remove"></span>`fn remove(self, slot: usize) -> Slots` — [`Slots`](#slots)
 
-- `fn is_empty(self: Self) -> bool`
+- <span id="slots-is-empty"></span>`fn is_empty(self) -> bool`
 
-- `fn iter(self: Self) -> SlotsIter` — [`SlotsIter`](#slotsiter)
+- <span id="slots-iter"></span>`fn iter(self) -> SlotsIter` — [`SlotsIter`](#slotsiter)
 
-- `fn apply(self: Self, at: usize, caller_explicit_slots: &mut [Option<NonMaxUsize>])` — [`NonMaxUsize`](../../util/primitives/index.md)
+- <span id="slots-apply"></span>`fn apply(self, at: usize, caller_explicit_slots: &mut [Option<NonMaxUsize>])` — [`NonMaxUsize`](../../util/primitives/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Slots`
 
-- `fn clone(self: &Self) -> Slots` — [`Slots`](#slots)
+- <span id="slots-clone"></span>`fn clone(&self) -> Slots` — [`Slots`](#slots)
 
 ##### `impl Copy for Slots`
 
 ##### `impl Debug for Slots`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="slots-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ### `SlotsIter`
 
@@ -931,21 +957,21 @@ to get the actual NFA slot index.
 
 ##### `impl Debug for SlotsIter`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="slotsiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for SlotsIter`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="slotsiter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="slotsiter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="slotsiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for SlotsIter`
 
-- `type Item = usize`
+- <span id="slotsiter-item"></span>`type Item = usize`
 
-- `fn next(self: &mut Self) -> Option<usize>`
+- <span id="slotsiter-next"></span>`fn next(&mut self) -> Option<usize>`
 
 ### `BuildError`
 
@@ -971,41 +997,41 @@ trait.
 
 #### Implementations
 
-- `fn nfa(err: crate::nfa::thompson::BuildError) -> BuildError` — [`BuildError`](../../nfa/thompson/index.md)
+- <span id="builderror-nfa"></span>`fn nfa(err: crate::nfa::thompson::BuildError) -> BuildError` — [`BuildError`](../../nfa/thompson/index.md)
 
-- `fn word(err: UnicodeWordBoundaryError) -> BuildError` — [`UnicodeWordBoundaryError`](../../util/look/index.md), [`BuildError`](#builderror)
+- <span id="builderror-word"></span>`fn word(err: UnicodeWordBoundaryError) -> BuildError` — [`UnicodeWordBoundaryError`](../../util/look/index.md), [`BuildError`](#builderror)
 
-- `fn too_many_states(limit: u64) -> BuildError` — [`BuildError`](#builderror)
+- <span id="builderror-too-many-states"></span>`fn too_many_states(limit: u64) -> BuildError` — [`BuildError`](#builderror)
 
-- `fn too_many_patterns(limit: u64) -> BuildError` — [`BuildError`](#builderror)
+- <span id="builderror-too-many-patterns"></span>`fn too_many_patterns(limit: u64) -> BuildError` — [`BuildError`](#builderror)
 
-- `fn unsupported_look(look: Look) -> BuildError` — [`Look`](../../util/look/index.md), [`BuildError`](#builderror)
+- <span id="builderror-unsupported-look"></span>`fn unsupported_look(look: Look) -> BuildError` — [`Look`](../../util/look/index.md), [`BuildError`](#builderror)
 
-- `fn exceeded_size_limit(limit: usize) -> BuildError` — [`BuildError`](#builderror)
+- <span id="builderror-exceeded-size-limit"></span>`fn exceeded_size_limit(limit: usize) -> BuildError` — [`BuildError`](#builderror)
 
-- `fn not_one_pass(msg: &'static str) -> BuildError` — [`BuildError`](#builderror)
+- <span id="builderror-not-one-pass"></span>`fn not_one_pass(msg: &'static str) -> BuildError` — [`BuildError`](#builderror)
 
 #### Trait Implementations
 
 ##### `impl Clone for BuildError`
 
-- `fn clone(self: &Self) -> BuildError` — [`BuildError`](#builderror)
+- <span id="builderror-clone"></span>`fn clone(&self) -> BuildError` — [`BuildError`](#builderror)
 
 ##### `impl Debug for BuildError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="builderror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for BuildError`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="builderror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for BuildError`
 
-- `fn source(self: &Self) -> Option<&dyn std::error::Error>`
+- <span id="builderror-source"></span>`fn source(&self) -> Option<&dyn std::error::Error>`
 
 ##### `impl<T> ToString for BuildError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="builderror-to-string"></span>`fn to_string(&self) -> String`
 
 ## Enums
 
@@ -1039,9 +1065,9 @@ The kind of error that occurred during the construction of a one-pass DFA.
 
 ##### `impl Clone for BuildErrorKind`
 
-- `fn clone(self: &Self) -> BuildErrorKind` — [`BuildErrorKind`](#builderrorkind)
+- <span id="builderrorkind-clone"></span>`fn clone(&self) -> BuildErrorKind` — [`BuildErrorKind`](#builderrorkind)
 
 ##### `impl Debug for BuildErrorKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="builderrorkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

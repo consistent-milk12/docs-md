@@ -181,6 +181,461 @@ fn find_sum_of_address_range_lengths(aranges: DebugAranges<EndianSlice<LittleEnd
 fn main() {}
 ```
 
+## Contents
+
+- [Modules](#modules)
+  - [`util`](#util)
+  - [`addr`](#addr)
+  - [`cfi`](#cfi)
+  - [`dwarf`](#dwarf)
+  - [`endian_slice`](#endian_slice)
+  - [`reader`](#reader)
+  - [`relocate`](#relocate)
+  - [`abbrev`](#abbrev)
+  - [`aranges`](#aranges)
+  - [`index`](#index)
+  - [`line`](#line)
+  - [`lists`](#lists)
+  - [`loclists`](#loclists)
+  - [`lookup`](#lookup)
+  - [`macros`](#macros)
+  - [`op`](#op)
+  - [`pubnames`](#pubnames)
+  - [`pubtypes`](#pubtypes)
+  - [`rnglists`](#rnglists)
+  - [`str`](#str)
+  - [`unit`](#unit)
+  - [`value`](#value)
+  - [`sealed`](#sealed)
+- [Structs](#structs)
+  - [`UnitOffset`](#unitoffset)
+  - [`StoreOnHeap`](#storeonheap)
+  - [`ArrayVec`](#arrayvec)
+  - [`DebugAddr`](#debugaddr)
+  - [`AddrHeaderIter`](#addrheaderiter)
+  - [`AddrHeader`](#addrheader)
+  - [`AddrEntryIter`](#addrentryiter)
+  - [`DebugFrame`](#debugframe)
+  - [`EhFrameHdr`](#ehframehdr)
+  - [`ParsedEhFrameHdr`](#parsedehframehdr)
+  - [`EhHdrTableIter`](#ehhdrtableiter)
+  - [`EhHdrTable`](#ehhdrtable)
+  - [`EhFrame`](#ehframe)
+  - [`BaseAddresses`](#baseaddresses)
+  - [`SectionBaseAddresses`](#sectionbaseaddresses)
+  - [`CfiEntriesIter`](#cfientriesiter)
+  - [`Augmentation`](#augmentation)
+  - [`AugmentationData`](#augmentationdata)
+  - [`CommonInformationEntry`](#commoninformationentry)
+  - [`PartialFrameDescriptionEntry`](#partialframedescriptionentry)
+  - [`FrameDescriptionEntry`](#framedescriptionentry)
+  - [`UnwindContext`](#unwindcontext)
+  - [`UnwindTable`](#unwindtable)
+  - [`RegisterRuleMap`](#registerrulemap)
+  - [`RegisterRuleIter`](#registerruleiter)
+  - [`UnwindTableRow`](#unwindtablerow)
+  - [`CallFrameInstructionIter`](#callframeinstructioniter)
+  - [`UnwindExpression`](#unwindexpression)
+  - [`PointerEncodingParameters`](#pointerencodingparameters)
+  - [`DwarfSections`](#dwarfsections)
+  - [`Dwarf`](#dwarf)
+  - [`DwarfPackageSections`](#dwarfpackagesections)
+  - [`DwarfPackage`](#dwarfpackage)
+  - [`Unit`](#unit)
+  - [`UnitRef`](#unitref)
+  - [`RangeIter`](#rangeiter)
+  - [`EndianSlice`](#endianslice)
+  - [`DebugBytes`](#debugbytes)
+  - [`DebugByte`](#debugbyte)
+  - [`DebugLen`](#debuglen)
+  - [`ReaderOffsetId`](#readeroffsetid)
+  - [`RelocateReader`](#relocatereader)
+  - [`DebugAbbrev`](#debugabbrev)
+  - [`AbbreviationsCache`](#abbreviationscache)
+  - [`Abbreviations`](#abbreviations)
+  - [`Abbreviation`](#abbreviation)
+  - [`AttributeSpecification`](#attributespecification)
+  - [`DebugAranges`](#debugaranges)
+  - [`ArangeHeaderIter`](#arangeheaderiter)
+  - [`ArangeHeader`](#arangeheader)
+  - [`ArangeEntryIter`](#arangeentryiter)
+  - [`ArangeEntry`](#arangeentry)
+  - [`DebugCuIndex`](#debugcuindex)
+  - [`DebugTuIndex`](#debugtuindex)
+  - [`UnitIndex`](#unitindex)
+  - [`UnitIndexSectionIterator`](#unitindexsectioniterator)
+  - [`UnitIndexSection`](#unitindexsection)
+  - [`DebugLine`](#debugline)
+  - [`LineRows`](#linerows)
+  - [`LineInstructions`](#lineinstructions)
+  - [`LineRow`](#linerow)
+  - [`LineSequence`](#linesequence)
+  - [`LineProgramHeader`](#lineprogramheader)
+  - [`IncompleteLineProgram`](#incompletelineprogram)
+  - [`CompleteLineProgram`](#completelineprogram)
+  - [`FileEntry`](#fileentry)
+  - [`FileEntryFormat`](#fileentryformat)
+  - [`DebugLoc`](#debugloc)
+  - [`DebugLocLists`](#debugloclists)
+  - [`LocationLists`](#locationlists)
+  - [`RawLocListIter`](#rawloclistiter)
+  - [`LocListIter`](#loclistiter)
+  - [`LocationListEntry`](#locationlistentry)
+  - [`DebugMacinfo`](#debugmacinfo)
+  - [`DebugMacro`](#debugmacro)
+  - [`MacroUnitHeader`](#macrounitheader)
+  - [`MacroIter`](#macroiter)
+  - [`Piece`](#piece)
+  - [`Expression`](#expression)
+  - [`OperationIter`](#operationiter)
+  - [`Evaluation`](#evaluation)
+  - [`PubNamesEntry`](#pubnamesentry)
+  - [`DebugPubNames`](#debugpubnames)
+  - [`PubNamesEntryIter`](#pubnamesentryiter)
+  - [`PubTypesEntry`](#pubtypesentry)
+  - [`DebugPubTypes`](#debugpubtypes)
+  - [`PubTypesEntryIter`](#pubtypesentryiter)
+  - [`DebugRanges`](#debugranges)
+  - [`DebugRngLists`](#debugrnglists)
+  - [`RangeLists`](#rangelists)
+  - [`RawRngListIter`](#rawrnglistiter)
+  - [`RngListIter`](#rnglistiter)
+  - [`RawRange`](#rawrange)
+  - [`Range`](#range)
+  - [`DebugStr`](#debugstr)
+  - [`DebugStrOffsets`](#debugstroffsets)
+  - [`DebugLineStr`](#debuglinestr)
+  - [`DebugInfo`](#debuginfo)
+  - [`DebugInfoUnitHeadersIter`](#debuginfounitheadersiter)
+  - [`UnitHeader`](#unitheader)
+  - [`DebuggingInformationEntry`](#debugginginformationentry)
+  - [`Attribute`](#attribute)
+  - [`AttrsIter`](#attrsiter)
+  - [`EntriesRaw`](#entriesraw)
+  - [`EntriesCursor`](#entriescursor)
+  - [`EntriesTree`](#entriestree)
+  - [`EntriesTreeNode`](#entriestreenode)
+  - [`EntriesTreeIter`](#entriestreeiter)
+  - [`DebugTypes`](#debugtypes)
+  - [`DebugTypesUnitHeadersIter`](#debugtypesunitheadersiter)
+- [Enums](#enums)
+  - [`Error`](#error)
+  - [`CieOrFde`](#cieorfde)
+  - [`CfaRule`](#cfarule)
+  - [`RegisterRule`](#registerrule)
+  - [`CallFrameInstruction`](#callframeinstruction)
+  - [`Pointer`](#pointer)
+  - [`RangeIterInner`](#rangeiterinner)
+  - [`AbbreviationsCacheStrategy`](#abbreviationscachestrategy)
+  - [`Attributes`](#attributes)
+  - [`IndexSectionId`](#indexsectionid)
+  - [`LineInstruction`](#lineinstruction)
+  - [`ColumnType`](#columntype)
+  - [`LocListsFormat`](#loclistsformat)
+  - [`RawLocListEntry`](#rawloclistentry)
+  - [`MacroString`](#macrostring)
+  - [`MacroEntry`](#macroentry)
+  - [`DieReference`](#diereference)
+  - [`Operation`](#operation)
+  - [`OperationEvaluationResult`](#operationevaluationresult)
+  - [`Location`](#location)
+  - [`EvaluationState`](#evaluationstate)
+  - [`EvaluationWaiting`](#evaluationwaiting)
+  - [`EvaluationResult`](#evaluationresult)
+  - [`RangeListsFormat`](#rangelistsformat)
+  - [`RawRngListEntry`](#rawrnglistentry)
+  - [`UnitType`](#unittype)
+  - [`AttributeValue`](#attributevalue)
+  - [`ValueType`](#valuetype)
+  - [`Value`](#value)
+- [Traits](#traits)
+  - [`Section`](#section)
+  - [`ArrayLike`](#arraylike)
+  - [`UnwindOffset`](#unwindoffset)
+  - [`UnwindSection`](#unwindsection)
+  - [`UnwindContextStorage`](#unwindcontextstorage)
+  - [`ReaderOffset`](#readeroffset)
+  - [`ReaderAddress`](#readeraddress)
+  - [`Reader`](#reader)
+  - [`Relocate`](#relocate)
+  - [`LineProgram`](#lineprogram)
+  - [`EvaluationStorage`](#evaluationstorage)
+- [Functions](#functions)
+  - [`parse_cfi_entry`](#parse_cfi_entry)
+  - [`parse_encoded_pointer`](#parse_encoded_pointer)
+  - [`parse_encoded_value`](#parse_encoded_value)
+  - [`get_attribute_size`](#get_attribute_size)
+  - [`parse_directory_v5`](#parse_directory_v5)
+  - [`parse_file_v5`](#parse_file_v5)
+  - [`parse_attribute`](#parse_attribute)
+  - [`parse_data`](#parse_data)
+  - [`compute_pc`](#compute_pc)
+  - [`generic_type`](#generic_type)
+  - [`parse_unit_type`](#parse_unit_type)
+  - [`parse_debug_abbrev_offset`](#parse_debug_abbrev_offset)
+  - [`parse_debug_info_offset`](#parse_debug_info_offset)
+  - [`parse_unit_header`](#parse_unit_header)
+  - [`parse_dwo_id`](#parse_dwo_id)
+  - [`length_u8_value`](#length_u8_value)
+  - [`length_u16_value`](#length_u16_value)
+  - [`length_u32_value`](#length_u32_value)
+  - [`length_uleb128_value`](#length_uleb128_value)
+  - [`allow_section_offset`](#allow_section_offset)
+  - [`parse_attribute`](#parse_attribute)
+  - [`skip_attributes`](#skip_attributes)
+  - [`parse_type_signature`](#parse_type_signature)
+  - [`parse_type_offset`](#parse_type_offset)
+  - [`sign_extend`](#sign_extend)
+  - [`mask_bit_size`](#mask_bit_size)
+- [Type Aliases](#type-aliases)
+  - [`EndianBuf`](#endianbuf)
+  - [`Result`](#result)
+  - [`LineNumberProgram`](#linenumberprogram)
+  - [`StateMachine`](#statemachine)
+  - [`OneShotLineRows`](#oneshotlinerows)
+  - [`ResumedLineRows`](#resumedlinerows)
+  - [`Opcode`](#opcode)
+  - [`OpcodesIter`](#opcodesiter)
+  - [`LineNumberRow`](#linenumberrow)
+  - [`LineNumberSequence`](#linenumbersequence)
+  - [`LineNumberProgramHeader`](#linenumberprogramheader)
+  - [`IncompleteLineNumberProgram`](#incompletelinenumberprogram)
+  - [`CompleteLineNumberProgram`](#completelinenumberprogram)
+  - [`LocListsHeader`](#loclistsheader)
+  - [`RngListsHeader`](#rnglistsheader)
+- [Constants](#constants)
+  - [`MAX_RULES`](#max_rules)
+  - [`MAX_UNWIND_STACK_DEPTH`](#max_unwind_stack_depth)
+  - [`CFI_INSTRUCTION_HIGH_BITS_MASK`](#cfi_instruction_high_bits_mask)
+  - [`CFI_INSTRUCTION_LOW_BITS_MASK`](#cfi_instruction_low_bits_mask)
+  - [`MAX_ATTRIBUTES_INLINE`](#max_attributes_inline)
+  - [`SECTION_COUNT_MAX`](#section_count_max)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`util`](#util) | mod |  |
+| [`addr`](#addr) | mod |  |
+| [`cfi`](#cfi) | mod |  |
+| [`dwarf`](#dwarf) | mod |  |
+| [`endian_slice`](#endian_slice) | mod | Working with byte slices that have an associated endianity. |
+| [`reader`](#reader) | mod |  |
+| [`relocate`](#relocate) | mod |  |
+| [`abbrev`](#abbrev) | mod | Functions for parsing DWARF debugging abbreviations. |
+| [`aranges`](#aranges) | mod |  |
+| [`index`](#index) | mod |  |
+| [`line`](#line) | mod |  |
+| [`lists`](#lists) | mod |  |
+| [`loclists`](#loclists) | mod |  |
+| [`lookup`](#lookup) | mod |  |
+| [`macros`](#macros) | mod |  |
+| [`op`](#op) | mod | Functions for parsing and evaluating DWARF expressions. |
+| [`pubnames`](#pubnames) | mod |  |
+| [`pubtypes`](#pubtypes) | mod |  |
+| [`rnglists`](#rnglists) | mod |  |
+| [`str`](#str) | mod |  |
+| [`unit`](#unit) | mod | Functions for parsing DWARF `.debug_info` and `.debug_types` sections. |
+| [`value`](#value) | mod | Definitions for values used in DWARF expressions. |
+| [`sealed`](#sealed) | mod |  |
+| [`UnitOffset`](#unitoffset) | struct | An offset into the current compilation or type unit. |
+| [`StoreOnHeap`](#storeonheap) | struct | Indicates that storage should be allocated on heap. |
+| [`ArrayVec`](#arrayvec) | struct |  |
+| [`DebugAddr`](#debugaddr) | struct | The raw contents of the `.debug_addr` section. |
+| [`AddrHeaderIter`](#addrheaderiter) | struct | An iterator over the headers of a `.debug_addr` section. |
+| [`AddrHeader`](#addrheader) | struct | A header for a set of entries in the `.debug_addr` section. |
+| [`AddrEntryIter`](#addrentryiter) | struct | An iterator over the addresses from a `.debug_addr` section. |
+| [`DebugFrame`](#debugframe) | struct | `DebugFrame` contains the `.debug_frame` section's frame unwinding |
+| [`EhFrameHdr`](#ehframehdr) | struct | `EhFrameHdr` contains the information about the `.eh_frame_hdr` section. |
+| [`ParsedEhFrameHdr`](#parsedehframehdr) | struct | `ParsedEhFrameHdr` contains the parsed information from the `.eh_frame_hdr` section. |
+| [`EhHdrTableIter`](#ehhdrtableiter) | struct | An iterator for `.eh_frame_hdr` section's binary search table. |
+| [`EhHdrTable`](#ehhdrtable) | struct | The CFI binary search table that is an optional part of the `.eh_frame_hdr` section. |
+| [`EhFrame`](#ehframe) | struct | `EhFrame` contains the frame unwinding information needed during exception |
+| [`BaseAddresses`](#baseaddresses) | struct | Optional base addresses for the relative `DW_EH_PE_*` encoded pointers. |
+| [`SectionBaseAddresses`](#sectionbaseaddresses) | struct | Optional base addresses for the relative `DW_EH_PE_*` encoded pointers |
+| [`CfiEntriesIter`](#cfientriesiter) | struct | An iterator over CIE and FDE entries in a `.debug_frame` or `.eh_frame` |
+| [`Augmentation`](#augmentation) | struct | We support the z-style augmentation [defined by `.eh_frame`][ehframe]. |
+| [`AugmentationData`](#augmentationdata) | struct | Parsed augmentation data for a `FrameDescriptEntry`. |
+| [`CommonInformationEntry`](#commoninformationentry) | struct | > A Common Information Entry holds information that is shared among many |
+| [`PartialFrameDescriptionEntry`](#partialframedescriptionentry) | struct | A partially parsed `FrameDescriptionEntry`. |
+| [`FrameDescriptionEntry`](#framedescriptionentry) | struct | A `FrameDescriptionEntry` is a set of CFA instructions for an address range. |
+| [`UnwindContext`](#unwindcontext) | struct | Common context needed when evaluating the call frame unwinding information. |
+| [`UnwindTable`](#unwindtable) | struct | The `UnwindTable` iteratively evaluates a `FrameDescriptionEntry`'s |
+| [`RegisterRuleMap`](#registerrulemap) | struct |  |
+| [`RegisterRuleIter`](#registerruleiter) | struct | An unordered iterator for register rules. |
+| [`UnwindTableRow`](#unwindtablerow) | struct | A row in the virtual unwind table that describes how to find the values of |
+| [`CallFrameInstructionIter`](#callframeinstructioniter) | struct | A lazy iterator parsing call frame instructions. |
+| [`UnwindExpression`](#unwindexpression) | struct | The location of a DWARF expression within an unwind section. |
+| [`PointerEncodingParameters`](#pointerencodingparameters) | struct |  |
+| [`DwarfSections`](#dwarfsections) | struct | All of the commonly used DWARF sections. |
+| [`Dwarf`](#dwarf) | struct | All of the commonly used DWARF sections, and other common information. |
+| [`DwarfPackageSections`](#dwarfpackagesections) | struct | The sections from a `.dwp` file. |
+| [`DwarfPackage`](#dwarfpackage) | struct | The sections from a `.dwp` file, with parsed indices. |
+| [`Unit`](#unit) | struct | All of the commonly used information for a unit in the `.debug_info` or `.debug_types` |
+| [`UnitRef`](#unitref) | struct | A reference to a `Unit` and its associated `Dwarf`. |
+| [`RangeIter`](#rangeiter) | struct | An iterator for the address ranges of a `DebuggingInformationEntry`. |
+| [`EndianSlice`](#endianslice) | struct | A `&[u8]` slice with endianity metadata. |
+| [`DebugBytes`](#debugbytes) | struct |  |
+| [`DebugByte`](#debugbyte) | struct |  |
+| [`DebugLen`](#debuglen) | struct |  |
+| [`ReaderOffsetId`](#readeroffsetid) | struct | An identifier for an offset within a section reader. |
+| [`RelocateReader`](#relocatereader) | struct | A `Reader` which applies relocations to addresses and offsets. |
+| [`DebugAbbrev`](#debugabbrev) | struct | The `DebugAbbrev` struct represents the abbreviations describing |
+| [`AbbreviationsCache`](#abbreviationscache) | struct | A cache of previously parsed `Abbreviations`. |
+| [`Abbreviations`](#abbreviations) | struct | A set of type abbreviations. |
+| [`Abbreviation`](#abbreviation) | struct | An abbreviation describes the shape of a `DebuggingInformationEntry`'s type |
+| [`AttributeSpecification`](#attributespecification) | struct | The description of an attribute in an abbreviated type. |
+| [`DebugAranges`](#debugaranges) | struct | The `DebugAranges` struct represents the DWARF address range information |
+| [`ArangeHeaderIter`](#arangeheaderiter) | struct | An iterator over the headers of a `.debug_aranges` section. |
+| [`ArangeHeader`](#arangeheader) | struct | A header for a set of entries in the `.debug_arange` section. |
+| [`ArangeEntryIter`](#arangeentryiter) | struct | An iterator over the aranges from a `.debug_aranges` section. |
+| [`ArangeEntry`](#arangeentry) | struct | A single parsed arange. |
+| [`DebugCuIndex`](#debugcuindex) | struct | The data in the `.debug_cu_index` section of a `.dwp` file. |
+| [`DebugTuIndex`](#debugtuindex) | struct | The data in the `.debug_tu_index` section of a `.dwp` file. |
+| [`UnitIndex`](#unitindex) | struct | The partially parsed index from a `DebugCuIndex` or `DebugTuIndex`. |
+| [`UnitIndexSectionIterator`](#unitindexsectioniterator) | struct | An iterator over the section offsets and sizes for a row in a `UnitIndex`. |
+| [`UnitIndexSection`](#unitindexsection) | struct | Information about a unit's contribution to a section in a `.dwp` file. |
+| [`DebugLine`](#debugline) | struct | The `DebugLine` struct contains the source location to instruction mapping |
+| [`LineRows`](#linerows) | struct | Executes a `LineProgram` to iterate over the rows in the matrix of line number information. |
+| [`LineInstructions`](#lineinstructions) | struct | An iterator yielding parsed instructions. |
+| [`LineRow`](#linerow) | struct | A row in the line number program's resulting matrix. |
+| [`LineSequence`](#linesequence) | struct | A sequence within a line number program. |
+| [`LineProgramHeader`](#lineprogramheader) | struct | A header for a line number program in the `.debug_line` section, as defined |
+| [`IncompleteLineProgram`](#incompletelineprogram) | struct | A line number program that has not been run to completion. |
+| [`CompleteLineProgram`](#completelineprogram) | struct | A line number program that has previously been run to completion. |
+| [`FileEntry`](#fileentry) | struct | An entry in the `LineProgramHeader`'s `file_names` set. |
+| [`FileEntryFormat`](#fileentryformat) | struct | The format of a component of an include directory or file name entry. |
+| [`DebugLoc`](#debugloc) | struct | The raw contents of the `.debug_loc` section. |
+| [`DebugLocLists`](#debugloclists) | struct | The `DebugLocLists` struct represents the DWARF data |
+| [`LocationLists`](#locationlists) | struct | The DWARF data found in `.debug_loc` and `.debug_loclists` sections. |
+| [`RawLocListIter`](#rawloclistiter) | struct | A raw iterator over a location list. |
+| [`LocListIter`](#loclistiter) | struct | An iterator over a location list. |
+| [`LocationListEntry`](#locationlistentry) | struct | A location list entry from the `.debug_loc` or `.debug_loclists` sections. |
+| [`DebugMacinfo`](#debugmacinfo) | struct | The raw contents of the `.debug_macinfo` section. |
+| [`DebugMacro`](#debugmacro) | struct | The raw contents of the `.debug_macro` section. |
+| [`MacroUnitHeader`](#macrounitheader) | struct |  |
+| [`MacroIter`](#macroiter) | struct | Iterator over the entries in the `.debug_macro` section. |
+| [`Piece`](#piece) | struct | The description of a single piece of the result of a DWARF |
+| [`Expression`](#expression) | struct | The bytecode for a DWARF expression or location description. |
+| [`OperationIter`](#operationiter) | struct | An iterator for the operations in an expression. |
+| [`Evaluation`](#evaluation) | struct | A DWARF expression evaluator. |
+| [`PubNamesEntry`](#pubnamesentry) | struct | A single parsed pubname. |
+| [`DebugPubNames`](#debugpubnames) | struct | The `DebugPubNames` struct represents the DWARF public names information |
+| [`PubNamesEntryIter`](#pubnamesentryiter) | struct | An iterator over the pubnames from a `.debug_pubnames` section. |
+| [`PubTypesEntry`](#pubtypesentry) | struct | A single parsed pubtype. |
+| [`DebugPubTypes`](#debugpubtypes) | struct | The `DebugPubTypes` struct represents the DWARF public types information |
+| [`PubTypesEntryIter`](#pubtypesentryiter) | struct | An iterator over the pubtypes from a `.debug_pubtypes` section. |
+| [`DebugRanges`](#debugranges) | struct | The raw contents of the `.debug_ranges` section. |
+| [`DebugRngLists`](#debugrnglists) | struct | The `DebugRngLists` struct represents the contents of the |
+| [`RangeLists`](#rangelists) | struct | The DWARF data found in `.debug_ranges` and `.debug_rnglists` sections. |
+| [`RawRngListIter`](#rawrnglistiter) | struct | A raw iterator over an address range list. |
+| [`RngListIter`](#rnglistiter) | struct | An iterator over an address range list. |
+| [`RawRange`](#rawrange) | struct | A raw address range from the `.debug_ranges` section. |
+| [`Range`](#range) | struct | An address range from the `.debug_ranges`, `.debug_rnglists`, or `.debug_aranges` sections. |
+| [`DebugStr`](#debugstr) | struct | The `DebugStr` struct represents the DWARF strings |
+| [`DebugStrOffsets`](#debugstroffsets) | struct | The raw contents of the `.debug_str_offsets` section. |
+| [`DebugLineStr`](#debuglinestr) | struct | The `DebugLineStr` struct represents the DWARF strings |
+| [`DebugInfo`](#debuginfo) | struct | The `DebugInfo` struct represents the DWARF debugging information found in |
+| [`DebugInfoUnitHeadersIter`](#debuginfounitheadersiter) | struct | An iterator over the units of a .debug_info section. |
+| [`UnitHeader`](#unitheader) | struct | The common fields for the headers of compilation units and |
+| [`DebuggingInformationEntry`](#debugginginformationentry) | struct | A Debugging Information Entry (DIE). |
+| [`Attribute`](#attribute) | struct | An attribute in a `DebuggingInformationEntry`, consisting of a name and |
+| [`AttrsIter`](#attrsiter) | struct | An iterator over a particular entry's attributes. |
+| [`EntriesRaw`](#entriesraw) | struct | A raw reader of the data that defines the Debugging Information Entries. |
+| [`EntriesCursor`](#entriescursor) | struct | A cursor into the Debugging Information Entries tree for a compilation unit. |
+| [`EntriesTree`](#entriestree) | struct | The state information for a tree view of the Debugging Information Entries. |
+| [`EntriesTreeNode`](#entriestreenode) | struct | A node in the Debugging Information Entry tree. |
+| [`EntriesTreeIter`](#entriestreeiter) | struct | An iterator that allows traversal of the children of an |
+| [`DebugTypes`](#debugtypes) | struct | The `DebugTypes` struct represents the DWARF type information |
+| [`DebugTypesUnitHeadersIter`](#debugtypesunitheadersiter) | struct | An iterator over the type-units of this `.debug_types` section. |
+| [`Error`](#error) | enum | An error that occurred when parsing. |
+| [`CieOrFde`](#cieorfde) | enum | Either a `CommonInformationEntry` (CIE) or a `FrameDescriptionEntry` (FDE). |
+| [`CfaRule`](#cfarule) | enum | The canonical frame address (CFA) recovery rules. |
+| [`RegisterRule`](#registerrule) | enum | An entry in the abstract CFI table that describes how to find the value of a |
+| [`CallFrameInstruction`](#callframeinstruction) | enum | A parsed call frame instruction. |
+| [`Pointer`](#pointer) | enum | A decoded pointer. |
+| [`RangeIterInner`](#rangeiterinner) | enum |  |
+| [`AbbreviationsCacheStrategy`](#abbreviationscachestrategy) | enum | The strategy to use for caching abbreviations. |
+| [`Attributes`](#attributes) | enum | A list of attributes found in an `Abbreviation` |
+| [`IndexSectionId`](#indexsectionid) | enum | Section kinds which are permitted in a `.dwp` index. |
+| [`LineInstruction`](#lineinstruction) | enum | A parsed line number program instruction. |
+| [`ColumnType`](#columntype) | enum | The type of column that a row is referring to. |
+| [`LocListsFormat`](#loclistsformat) | enum |  |
+| [`RawLocListEntry`](#rawloclistentry) | enum | A raw entry in .debug_loclists. |
+| [`MacroString`](#macrostring) | enum | A string in a macro entry. |
+| [`MacroEntry`](#macroentry) | enum | an Entry in the `.debug_macro` section. |
+| [`DieReference`](#diereference) | enum | A reference to a DIE, either relative to the current CU or |
+| [`Operation`](#operation) | enum | A single decoded DWARF expression operation. |
+| [`OperationEvaluationResult`](#operationevaluationresult) | enum |  |
+| [`Location`](#location) | enum | A single location of a piece of the result of a DWARF expression. |
+| [`EvaluationState`](#evaluationstate) | enum |  |
+| [`EvaluationWaiting`](#evaluationwaiting) | enum |  |
+| [`EvaluationResult`](#evaluationresult) | enum | The state of an `Evaluation` after evaluating a DWARF expression. |
+| [`RangeListsFormat`](#rangelistsformat) | enum |  |
+| [`RawRngListEntry`](#rawrnglistentry) | enum | A raw entry in .debug_rnglists |
+| [`UnitType`](#unittype) | enum | This enum specifies the type of the unit and any type |
+| [`AttributeValue`](#attributevalue) | enum | The value of an attribute in a `DebuggingInformationEntry`. |
+| [`ValueType`](#valuetype) | enum | The type of an entry on the DWARF stack. |
+| [`Value`](#value) | enum | The value of an entry on the DWARF stack. |
+| [`Section`](#section) | trait | A convenience trait for loading DWARF sections from object files. |
+| [`ArrayLike`](#arraylike) | trait | Marker trait for types that can be used as backing storage when a growable array type is needed. |
+| [`UnwindOffset`](#unwindoffset) | trait | An offset into an `UnwindSection`. |
+| [`UnwindSection`](#unwindsection) | trait | A section holding unwind information: either `.debug_frame` or |
+| [`UnwindContextStorage`](#unwindcontextstorage) | trait | Specification of what storage should be used for [`UnwindContext`]. |
+| [`ReaderOffset`](#readeroffset) | trait | A trait for offsets with a DWARF section. |
+| [`ReaderAddress`](#readeraddress) | trait | A trait for addresses within a DWARF section. |
+| [`Reader`](#reader) | trait | A trait for reading the data from a DWARF section. |
+| [`Relocate`](#relocate) | trait | Trait for relocating addresses and offsets while reading a section. |
+| [`LineProgram`](#lineprogram) | trait | A `LineProgram` provides access to a `LineProgramHeader` and |
+| [`EvaluationStorage`](#evaluationstorage) | trait | Specification of what storage should be used for [`Evaluation`]. |
+| [`parse_cfi_entry`](#parse_cfi_entry) | fn |  |
+| [`parse_encoded_pointer`](#parse_encoded_pointer) | fn |  |
+| [`parse_encoded_value`](#parse_encoded_value) | fn |  |
+| [`get_attribute_size`](#get_attribute_size) | fn |  |
+| [`parse_directory_v5`](#parse_directory_v5) | fn |  |
+| [`parse_file_v5`](#parse_file_v5) | fn |  |
+| [`parse_attribute`](#parse_attribute) | fn |  |
+| [`parse_data`](#parse_data) | fn |  |
+| [`compute_pc`](#compute_pc) | fn |  |
+| [`generic_type`](#generic_type) | fn |  |
+| [`parse_unit_type`](#parse_unit_type) | fn | Parse the unit type from the unit header. |
+| [`parse_debug_abbrev_offset`](#parse_debug_abbrev_offset) | fn | Parse the `debug_abbrev_offset` in the compilation unit header. |
+| [`parse_debug_info_offset`](#parse_debug_info_offset) | fn | Parse the `debug_info_offset` in the arange header. |
+| [`parse_unit_header`](#parse_unit_header) | fn | Parse a unit header. |
+| [`parse_dwo_id`](#parse_dwo_id) | fn | Parse a dwo_id from a header |
+| [`length_u8_value`](#length_u8_value) | fn |  |
+| [`length_u16_value`](#length_u16_value) | fn |  |
+| [`length_u32_value`](#length_u32_value) | fn |  |
+| [`length_uleb128_value`](#length_uleb128_value) | fn |  |
+| [`allow_section_offset`](#allow_section_offset) | fn |  |
+| [`parse_attribute`](#parse_attribute) | fn |  |
+| [`skip_attributes`](#skip_attributes) | fn |  |
+| [`parse_type_signature`](#parse_type_signature) | fn | Parse a type unit header's unique type signature. |
+| [`parse_type_offset`](#parse_type_offset) | fn | Parse a type unit header's type offset. |
+| [`sign_extend`](#sign_extend) | fn | Convert a u64 to an i64, with sign extension if required. |
+| [`mask_bit_size`](#mask_bit_size) | fn |  |
+| [`EndianBuf`](#endianbuf) | type | `EndianBuf` has been renamed to `EndianSlice`. |
+| [`Result`](#result) | type | The result of a parse. |
+| [`LineNumberProgram`](#linenumberprogram) | type | Deprecated. |
+| [`StateMachine`](#statemachine) | type | Deprecated. |
+| [`OneShotLineRows`](#oneshotlinerows) | type |  |
+| [`ResumedLineRows`](#resumedlinerows) | type |  |
+| [`Opcode`](#opcode) | type | Deprecated. |
+| [`OpcodesIter`](#opcodesiter) | type | Deprecated. |
+| [`LineNumberRow`](#linenumberrow) | type | Deprecated. |
+| [`LineNumberSequence`](#linenumbersequence) | type | Deprecated. |
+| [`LineNumberProgramHeader`](#linenumberprogramheader) | type | Deprecated. |
+| [`IncompleteLineNumberProgram`](#incompletelinenumberprogram) | type | Deprecated. |
+| [`CompleteLineNumberProgram`](#completelinenumberprogram) | type | Deprecated. |
+| [`LocListsHeader`](#loclistsheader) | type |  |
+| [`RngListsHeader`](#rnglistsheader) | type |  |
+| [`MAX_RULES`](#max_rules) | const |  |
+| [`MAX_UNWIND_STACK_DEPTH`](#max_unwind_stack_depth) | const |  |
+| [`CFI_INSTRUCTION_HIGH_BITS_MASK`](#cfi_instruction_high_bits_mask) | const |  |
+| [`CFI_INSTRUCTION_LOW_BITS_MASK`](#cfi_instruction_low_bits_mask) | const |  |
+| [`MAX_ATTRIBUTES_INLINE`](#max_attributes_inline) | const |  |
+| [`SECTION_COUNT_MAX`](#section_count_max) | const |  |
+
 ## Modules
 
 - [`util`](util/index.md) - 
@@ -219,37 +674,39 @@ An offset into the current compilation or type unit.
 
 #### Implementations
 
-- `fn to_unit_section_offset<R>(self: &Self, unit: &Unit<R>) -> UnitSectionOffset<T>` — [`Unit`](#unit), [`UnitSectionOffset`](../index.md)
+- <span id="cratereadunitoffset-to-debug-info-offset"></span>`fn to_debug_info_offset<R>(&self, unit: &UnitHeader<R>) -> Option<DebugInfoOffset<T>>` — [`UnitHeader`](#unitheader), [`DebugInfoOffset`](../index.md)
+
+- <span id="cratereadunitoffset-to-debug-types-offset"></span>`fn to_debug_types_offset<R>(&self, unit: &UnitHeader<R>) -> Option<DebugTypesOffset<T>>` — [`UnitHeader`](#unitheader), [`DebugTypesOffset`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for UnitOffset<T>`
+##### `impl<T: clone::Clone> Clone for UnitOffset<T>`
 
-- `fn clone(self: &Self) -> UnitOffset<T>` — [`UnitOffset`](../index.md)
+- <span id="unitoffset-clone"></span>`fn clone(&self) -> UnitOffset<T>` — [`UnitOffset`](../index.md)
 
-##### `impl<T: $crate::marker::Copy> Copy for UnitOffset<T>`
+##### `impl<T: marker::Copy> Copy for UnitOffset<T>`
 
-##### `impl<T: $crate::fmt::Debug> Debug for UnitOffset<T>`
+##### `impl<T: fmt::Debug> Debug for UnitOffset<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="unitoffset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq> Eq for UnitOffset<T>`
+##### `impl<T: cmp::Eq> Eq for UnitOffset<T>`
 
-##### `impl<T: $crate::hash::Hash> Hash for UnitOffset<T>`
+##### `impl<T: hash::Hash> Hash for UnitOffset<T>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="unitoffset-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<T: $crate::cmp::Ord> Ord for UnitOffset<T>`
+##### `impl<T: cmp::Ord> Ord for UnitOffset<T>`
 
-- `fn cmp(self: &Self, other: &UnitOffset<T>) -> $crate::cmp::Ordering` — [`UnitOffset`](../index.md)
+- <span id="unitoffset-cmp"></span>`fn cmp(&self, other: &UnitOffset<T>) -> cmp::Ordering` — [`UnitOffset`](../index.md)
 
-##### `impl<T: $crate::cmp::PartialEq> PartialEq for UnitOffset<T>`
+##### `impl<T: cmp::PartialEq> PartialEq for UnitOffset<T>`
 
-- `fn eq(self: &Self, other: &UnitOffset<T>) -> bool` — [`UnitOffset`](../index.md)
+- <span id="unitoffset-eq"></span>`fn eq(&self, other: &UnitOffset<T>) -> bool` — [`UnitOffset`](../index.md)
 
-##### `impl<T: $crate::cmp::PartialOrd> PartialOrd for UnitOffset<T>`
+##### `impl<T: cmp::PartialOrd> PartialOrd for UnitOffset<T>`
 
-- `fn partial_cmp(self: &Self, other: &UnitOffset<T>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`UnitOffset`](../index.md)
+- <span id="unitoffset-partial-cmp"></span>`fn partial_cmp(&self, other: &UnitOffset<T>) -> option::Option<cmp::Ordering>` — [`UnitOffset`](../index.md)
 
 ##### `impl<T> StructuralPartialEq for UnitOffset<T>`
 
@@ -265,35 +722,35 @@ Indicates that storage should be allocated on heap.
 
 ##### `impl Clone for StoreOnHeap`
 
-- `fn clone(self: &Self) -> StoreOnHeap` — [`StoreOnHeap`](../index.md)
+- <span id="storeonheap-clone"></span>`fn clone(&self) -> StoreOnHeap` — [`StoreOnHeap`](../index.md)
 
 ##### `impl Copy for StoreOnHeap`
 
 ##### `impl Debug for StoreOnHeap`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="storeonheap-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for StoreOnHeap`
 
 ##### `impl<R: Reader> EvaluationStorage for crate::read::StoreOnHeap`
 
-- `type Stack = Vec<Value>`
+- <span id="cratereadstoreonheap-stack"></span>`type Stack = Vec<Value>`
 
-- `type ExpressionStack = Vec<(R, R)>`
+- <span id="cratereadstoreonheap-expressionstack"></span>`type ExpressionStack = Vec<(R, R)>`
 
-- `type Result = Vec<Piece<R>>`
+- <span id="cratereadstoreonheap-result"></span>`type Result = Vec<Piece<R>>`
 
 ##### `impl PartialEq for StoreOnHeap`
 
-- `fn eq(self: &Self, other: &StoreOnHeap) -> bool` — [`StoreOnHeap`](../index.md)
+- <span id="storeonheap-eq"></span>`fn eq(&self, other: &StoreOnHeap) -> bool` — [`StoreOnHeap`](../index.md)
 
 ##### `impl StructuralPartialEq for StoreOnHeap`
 
 ##### `impl<T: ReaderOffset> UnwindContextStorage for crate::read::StoreOnHeap`
 
-- `type Rules = [(Register, RegisterRule<T>); 192]`
+- <span id="cratereadstoreonheap-rules"></span>`type Rules = [(Register, RegisterRule<T>); 192]`
 
-- `type Stack = Box<[UnwindTableRow<T>; 4]>`
+- <span id="cratereadstoreonheap-stack"></span>`type Stack = Box<[UnwindTableRow<T>; 4]>`
 
 ### `ArrayVec<A: ArrayLike>`
 
@@ -306,55 +763,45 @@ struct ArrayVec<A: ArrayLike> {
 
 #### Implementations
 
-- `fn new() -> Self`
-
-- `fn clear(self: &mut Self)`
-
-- `fn try_push(self: &mut Self, value: <A as >::Item) -> Result<(), CapacityFull>` — [`ArrayLike`](#arraylike), [`CapacityFull`](util/sealed/index.md)
-
-- `fn try_insert(self: &mut Self, index: usize, element: <A as >::Item) -> Result<(), CapacityFull>` — [`ArrayLike`](#arraylike), [`CapacityFull`](util/sealed/index.md)
-
-- `fn pop(self: &mut Self) -> Option<<A as >::Item>` — [`ArrayLike`](#arraylike)
-
-- `fn swap_remove(self: &mut Self, index: usize) -> <A as >::Item` — [`ArrayLike`](#arraylike)
+- <span id="arrayvec-into-vec"></span>`fn into_vec(self) -> Vec<T>`
 
 #### Trait Implementations
 
 ##### `impl<A: ArrayLike> Clone for ArrayVec<A>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="arrayvec-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<A: ArrayLike> Debug for ArrayVec<A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="arrayvec-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<A: ArrayLike> Default for ArrayVec<A>`
 
-- `fn default() -> Self`
+- <span id="arrayvec-default"></span>`fn default() -> Self`
 
 ##### `impl<A: ArrayLike> Deref for ArrayVec<A>`
 
-- `type Target = [<A as ArrayLike>::Item]`
+- <span id="arrayvec-target"></span>`type Target = [<A as ArrayLike>::Item]`
 
-- `fn deref(self: &Self) -> &[<A as >::Item]` — [`ArrayLike`](#arraylike)
+- <span id="arrayvec-deref"></span>`fn deref(&self) -> &[<A as >::Item]` — [`ArrayLike`](#arraylike)
 
 ##### `impl<A: ArrayLike> DerefMut for ArrayVec<A>`
 
-- `fn deref_mut(self: &mut Self) -> &mut [<A as >::Item]` — [`ArrayLike`](#arraylike)
+- <span id="arrayvec-deref-mut"></span>`fn deref_mut(&mut self) -> &mut [<A as >::Item]` — [`ArrayLike`](#arraylike)
 
 ##### `impl<A: ArrayLike> Drop for ArrayVec<A>`
 
-- `fn drop(self: &mut Self)`
+- <span id="arrayvec-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<A: ArrayLike> Eq for ArrayVec<A>`
 
 ##### `impl<A: ArrayLike> PartialEq for ArrayVec<A>`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="arrayvec-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<P, T> Receiver for ArrayVec<A>`
 
-- `type Target = T`
+- <span id="arrayvec-target"></span>`type Target = T`
 
 ### `DebugAddr<R>`
 
@@ -368,29 +815,29 @@ The raw contents of the `.debug_addr` section.
 
 #### Implementations
 
-- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugAddr<R>` — [`DebugAddr`](#debugaddr)
+- <span id="debugaddr-borrow"></span>`fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugAddr<R>` — [`DebugAddr`](#debugaddr)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone> Clone for DebugAddr<R>`
+##### `impl<R: clone::Clone> Clone for DebugAddr<R>`
 
-- `fn clone(self: &Self) -> DebugAddr<R>` — [`DebugAddr`](#debugaddr)
+- <span id="debugaddr-clone"></span>`fn clone(&self) -> DebugAddr<R>` — [`DebugAddr`](#debugaddr)
 
-##### `impl<R: $crate::marker::Copy> Copy for DebugAddr<R>`
+##### `impl<R: marker::Copy> Copy for DebugAddr<R>`
 
-##### `impl<R: $crate::fmt::Debug> Debug for DebugAddr<R>`
+##### `impl<R: fmt::Debug> Debug for DebugAddr<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugaddr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::default::Default> Default for DebugAddr<R>`
+##### `impl<R: default::Default> Default for DebugAddr<R>`
 
-- `fn default() -> DebugAddr<R>` — [`DebugAddr`](#debugaddr)
+- <span id="debugaddr-default"></span>`fn default() -> DebugAddr<R>` — [`DebugAddr`](#debugaddr)
 
 ##### `impl<R> Section for DebugAddr<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../index.md)
+- <span id="debugaddr-id"></span>`fn id() -> SectionId` — [`SectionId`](../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="debugaddr-reader"></span>`fn reader(&self) -> &R`
 
 ### `AddrHeaderIter<R: Reader>`
 
@@ -405,17 +852,17 @@ An iterator over the headers of a `.debug_addr` section.
 
 #### Implementations
 
-- `fn next(self: &mut Self) -> Result<Option<AddrHeader<R>>>` — [`Result`](../index.md), [`AddrHeader`](#addrheader)
+- <span id="addrheaderiter-next"></span>`fn next(&mut self) -> Result<Option<AddrHeader<R>>>` — [`Result`](../index.md), [`AddrHeader`](#addrheader)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for AddrHeaderIter<R>`
+##### `impl<R: clone::Clone + Reader> Clone for AddrHeaderIter<R>`
 
-- `fn clone(self: &Self) -> AddrHeaderIter<R>` — [`AddrHeaderIter`](#addrheaderiter)
+- <span id="addrheaderiter-clone"></span>`fn clone(&self) -> AddrHeaderIter<R>` — [`AddrHeaderIter`](#addrheaderiter)
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for AddrHeaderIter<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for AddrHeaderIter<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="addrheaderiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `AddrHeader<R, Offset>`
 
@@ -437,31 +884,31 @@ These entries all belong to a single unit.
 
 #### Implementations
 
-- `fn parse(input: &mut R, offset: DebugAddrOffset<Offset>) -> Result<Self>` — [`DebugAddrOffset`](../index.md), [`Result`](../index.md)
+- <span id="addrheader-parse"></span>`fn parse(input: &mut R, offset: DebugAddrOffset<Offset>) -> Result<Self>` — [`DebugAddrOffset`](../index.md), [`Result`](../index.md)
 
-- `fn offset(self: &Self) -> DebugAddrOffset<Offset>` — [`DebugAddrOffset`](../index.md)
+- <span id="addrheader-offset"></span>`fn offset(&self) -> DebugAddrOffset<Offset>` — [`DebugAddrOffset`](../index.md)
 
-- `fn length(self: &Self) -> Offset`
+- <span id="addrheader-length"></span>`fn length(&self) -> Offset`
 
-- `fn encoding(self: &Self) -> Encoding` — [`Encoding`](../index.md)
+- <span id="addrheader-encoding"></span>`fn encoding(&self) -> Encoding` — [`Encoding`](../index.md)
 
-- `fn entries(self: &Self) -> AddrEntryIter<R>` — [`AddrEntryIter`](#addrentryiter)
+- <span id="addrheader-entries"></span>`fn entries(&self) -> AddrEntryIter<R>` — [`AddrEntryIter`](#addrentryiter)
 
 #### Trait Implementations
 
 ##### `impl<R, Offset> Clone for AddrHeader<R, Offset>`
 
-- `fn clone(self: &Self) -> AddrHeader<R, Offset>` — [`AddrHeader`](#addrheader)
+- <span id="addrheader-clone"></span>`fn clone(&self) -> AddrHeader<R, Offset>` — [`AddrHeader`](#addrheader)
 
 ##### `impl<R, Offset> Debug for AddrHeader<R, Offset>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="addrheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, Offset> Eq for AddrHeader<R, Offset>`
 
 ##### `impl<R, Offset> PartialEq for AddrHeader<R, Offset>`
 
-- `fn eq(self: &Self, other: &AddrHeader<R, Offset>) -> bool` — [`AddrHeader`](#addrheader)
+- <span id="addrheader-eq"></span>`fn eq(&self, other: &AddrHeader<R, Offset>) -> bool` — [`AddrHeader`](#addrheader)
 
 ##### `impl<R, Offset> StructuralPartialEq for AddrHeader<R, Offset>`
 
@@ -481,17 +928,17 @@ Can be [used with
 
 #### Implementations
 
-- `fn next(self: &mut Self) -> Result<Option<u64>>` — [`Result`](../index.md)
+- <span id="addrentryiter-next"></span>`fn next(&mut self) -> Result<Option<u64>>` — [`Result`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for AddrEntryIter<R>`
+##### `impl<R: clone::Clone + Reader> Clone for AddrEntryIter<R>`
 
-- `fn clone(self: &Self) -> AddrEntryIter<R>` — [`AddrEntryIter`](#addrentryiter)
+- <span id="addrentryiter-clone"></span>`fn clone(&self) -> AddrEntryIter<R>` — [`AddrEntryIter`](#addrentryiter)
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for AddrEntryIter<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for AddrEntryIter<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="addrentryiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `DebugFrame<R: Reader>`
 
@@ -520,37 +967,39 @@ one of `.eh_frame` or `.debug_frame` will be present in an object file.
 
 #### Implementations
 
-- `fn new(section: &'input [u8], endian: Endian) -> Self`
+- <span id="debugframe-set-address-size"></span>`fn set_address_size(&mut self, address_size: u8)`
+
+- <span id="debugframe-set-vendor"></span>`fn set_vendor(&mut self, vendor: Vendor)` — [`Vendor`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for DebugFrame<R>`
+##### `impl<R: clone::Clone + Reader> Clone for DebugFrame<R>`
 
-- `fn clone(self: &Self) -> DebugFrame<R>` — [`DebugFrame`](#debugframe)
+- <span id="debugframe-clone"></span>`fn clone(&self) -> DebugFrame<R>` — [`DebugFrame`](#debugframe)
 
-##### `impl<R: $crate::marker::Copy + Reader> Copy for DebugFrame<R>`
+##### `impl<R: marker::Copy + Reader> Copy for DebugFrame<R>`
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for DebugFrame<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for DebugFrame<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugframe-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::cmp::Eq + Reader> Eq for DebugFrame<R>`
+##### `impl<R: cmp::Eq + Reader> Eq for DebugFrame<R>`
 
-##### `impl<R: $crate::cmp::PartialEq + Reader> PartialEq for DebugFrame<R>`
+##### `impl<R: cmp::PartialEq + Reader> PartialEq for DebugFrame<R>`
 
-- `fn eq(self: &Self, other: &DebugFrame<R>) -> bool` — [`DebugFrame`](#debugframe)
+- <span id="debugframe-eq"></span>`fn eq(&self, other: &DebugFrame<R>) -> bool` — [`DebugFrame`](#debugframe)
 
 ##### `impl<R: Reader> Section for DebugFrame<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../index.md)
+- <span id="debugframe-id"></span>`fn id() -> SectionId` — [`SectionId`](../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="debugframe-reader"></span>`fn reader(&self) -> &R`
 
 ##### `impl<R: Reader> StructuralPartialEq for DebugFrame<R>`
 
 ##### `impl<R: Reader> UnwindSection for DebugFrame<R>`
 
-- `type Offset = DebugFrameOffset<<R as Reader>::Offset>`
+- <span id="debugframe-offset"></span>`type Offset = DebugFrameOffset<<R as Reader>::Offset>`
 
 ### `EhFrameHdr<R: Reader>`
 
@@ -565,31 +1014,31 @@ search table of pointers to the `.eh_frame` records that are found in this secti
 
 #### Implementations
 
-- `fn parse(self: &Self, bases: &BaseAddresses, address_size: u8) -> Result<ParsedEhFrameHdr<R>>` — [`BaseAddresses`](#baseaddresses), [`Result`](../index.md), [`ParsedEhFrameHdr`](#parsedehframehdr)
+- <span id="ehframehdr-parse"></span>`fn parse(&self, bases: &BaseAddresses, address_size: u8) -> Result<ParsedEhFrameHdr<R>>` — [`BaseAddresses`](#baseaddresses), [`Result`](../index.md), [`ParsedEhFrameHdr`](#parsedehframehdr)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for EhFrameHdr<R>`
+##### `impl<R: clone::Clone + Reader> Clone for EhFrameHdr<R>`
 
-- `fn clone(self: &Self) -> EhFrameHdr<R>` — [`EhFrameHdr`](#ehframehdr)
+- <span id="ehframehdr-clone"></span>`fn clone(&self) -> EhFrameHdr<R>` — [`EhFrameHdr`](#ehframehdr)
 
-##### `impl<R: $crate::marker::Copy + Reader> Copy for EhFrameHdr<R>`
+##### `impl<R: marker::Copy + Reader> Copy for EhFrameHdr<R>`
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for EhFrameHdr<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for EhFrameHdr<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="ehframehdr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::cmp::Eq + Reader> Eq for EhFrameHdr<R>`
+##### `impl<R: cmp::Eq + Reader> Eq for EhFrameHdr<R>`
 
-##### `impl<R: $crate::cmp::PartialEq + Reader> PartialEq for EhFrameHdr<R>`
+##### `impl<R: cmp::PartialEq + Reader> PartialEq for EhFrameHdr<R>`
 
-- `fn eq(self: &Self, other: &EhFrameHdr<R>) -> bool` — [`EhFrameHdr`](#ehframehdr)
+- <span id="ehframehdr-eq"></span>`fn eq(&self, other: &EhFrameHdr<R>) -> bool` — [`EhFrameHdr`](#ehframehdr)
 
 ##### `impl<R: Reader> Section for EhFrameHdr<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../index.md)
+- <span id="ehframehdr-id"></span>`fn id() -> SectionId` — [`SectionId`](../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="ehframehdr-reader"></span>`fn reader(&self) -> &R`
 
 ##### `impl<R: Reader> StructuralPartialEq for EhFrameHdr<R>`
 
@@ -610,19 +1059,19 @@ struct ParsedEhFrameHdr<R: Reader> {
 
 #### Implementations
 
-- `fn eh_frame_ptr(self: &Self) -> Pointer` — [`Pointer`](#pointer)
+- <span id="parsedehframehdr-eh-frame-ptr"></span>`fn eh_frame_ptr(&self) -> Pointer` — [`Pointer`](#pointer)
 
-- `fn table(self: &Self) -> Option<EhHdrTable<'_, R>>` — [`EhHdrTable`](#ehhdrtable)
+- <span id="parsedehframehdr-table"></span>`fn table(&self) -> Option<EhHdrTable<'_, R>>` — [`EhHdrTable`](#ehhdrtable)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for ParsedEhFrameHdr<R>`
+##### `impl<R: clone::Clone + Reader> Clone for ParsedEhFrameHdr<R>`
 
-- `fn clone(self: &Self) -> ParsedEhFrameHdr<R>` — [`ParsedEhFrameHdr`](#parsedehframehdr)
+- <span id="parsedehframehdr-clone"></span>`fn clone(&self) -> ParsedEhFrameHdr<R>` — [`ParsedEhFrameHdr`](#parsedehframehdr)
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for ParsedEhFrameHdr<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for ParsedEhFrameHdr<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="parsedehframehdr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `EhHdrTableIter<'a, 'bases, R: Reader>`
 
@@ -644,15 +1093,15 @@ The `address` can be converted with `EhHdrTable::pointer_to_offset` and `EhFrame
 
 #### Implementations
 
-- `fn next(self: &mut Self) -> Result<Option<(Pointer, Pointer)>>` — [`Result`](../index.md), [`Pointer`](#pointer)
+- <span id="ehhdrtableiter-next"></span>`fn next(&mut self) -> Result<Option<(Pointer, Pointer)>>` — [`Result`](../index.md), [`Pointer`](#pointer)
 
-- `fn nth(self: &mut Self, n: usize) -> Result<Option<(Pointer, Pointer)>>` — [`Result`](../index.md), [`Pointer`](#pointer)
+- <span id="ehhdrtableiter-nth"></span>`fn nth(&mut self, n: usize) -> Result<Option<(Pointer, Pointer)>>` — [`Result`](../index.md), [`Pointer`](#pointer)
 
 #### Trait Implementations
 
-##### `impl<'a, 'bases, R: $crate::fmt::Debug + Reader> Debug for EhHdrTableIter<'a, 'bases, R>`
+##### `impl<'a, 'bases, R: fmt::Debug + Reader> Debug for EhHdrTableIter<'a, 'bases, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="ehhdrtableiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `EhHdrTable<'a, R: Reader>`
 
@@ -666,25 +1115,25 @@ The CFI binary search table that is an optional part of the `.eh_frame_hdr` sect
 
 #### Implementations
 
-- `fn iter<'bases>(self: &Self, bases: &'bases BaseAddresses) -> EhHdrTableIter<'_, 'bases, R>` — [`BaseAddresses`](#baseaddresses), [`EhHdrTableIter`](#ehhdrtableiter)
+- <span id="ehhdrtable-iter"></span>`fn iter<'bases>(&self, bases: &'bases BaseAddresses) -> EhHdrTableIter<'_, 'bases, R>` — [`BaseAddresses`](#baseaddresses), [`EhHdrTableIter`](#ehhdrtableiter)
 
-- `fn lookup(self: &Self, address: u64, bases: &BaseAddresses) -> Result<Pointer>` — [`BaseAddresses`](#baseaddresses), [`Result`](../index.md), [`Pointer`](#pointer)
+- <span id="ehhdrtable-lookup"></span>`fn lookup(&self, address: u64, bases: &BaseAddresses) -> Result<Pointer>` — [`BaseAddresses`](#baseaddresses), [`Result`](../index.md), [`Pointer`](#pointer)
 
-- `fn pointer_to_offset(self: &Self, ptr: Pointer) -> Result<EhFrameOffset<<R as >::Offset>>` — [`Pointer`](#pointer), [`Result`](../index.md), [`EhFrameOffset`](../index.md), [`Reader`](#reader)
+- <span id="ehhdrtable-pointer-to-offset"></span>`fn pointer_to_offset(&self, ptr: Pointer) -> Result<EhFrameOffset<<R as >::Offset>>` — [`Pointer`](#pointer), [`Result`](../index.md), [`EhFrameOffset`](../index.md), [`Reader`](#reader)
 
-- `fn fde_for_address<F>(self: &Self, frame: &EhFrame<R>, bases: &BaseAddresses, address: u64, get_cie: F) -> Result<FrameDescriptionEntry<R>>` — [`EhFrame`](#ehframe), [`BaseAddresses`](#baseaddresses), [`Result`](../index.md), [`FrameDescriptionEntry`](#framedescriptionentry)
+- <span id="ehhdrtable-fde-for-address"></span>`fn fde_for_address<F>(&self, frame: &EhFrame<R>, bases: &BaseAddresses, address: u64, get_cie: F) -> Result<FrameDescriptionEntry<R>>` — [`EhFrame`](#ehframe), [`BaseAddresses`](#baseaddresses), [`Result`](../index.md), [`FrameDescriptionEntry`](#framedescriptionentry)
 
-- `fn unwind_info_for_address<'ctx, F, S>(self: &Self, frame: &EhFrame<R>, bases: &BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, address: u64, get_cie: F) -> Result<&'ctx UnwindTableRow<<R as >::Offset, S>>` — [`EhFrame`](#ehframe), [`BaseAddresses`](#baseaddresses), [`UnwindContext`](#unwindcontext), [`Reader`](#reader), [`Result`](../index.md), [`UnwindTableRow`](#unwindtablerow)
+- <span id="ehhdrtable-unwind-info-for-address"></span>`fn unwind_info_for_address<'ctx, F, S>(&self, frame: &EhFrame<R>, bases: &BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, address: u64, get_cie: F) -> Result<&'ctx UnwindTableRow<<R as >::Offset, S>>` — [`EhFrame`](#ehframe), [`BaseAddresses`](#baseaddresses), [`UnwindContext`](#unwindcontext), [`Reader`](#reader), [`Result`](../index.md), [`UnwindTableRow`](#unwindtablerow)
 
 #### Trait Implementations
 
-##### `impl<'a, R: $crate::clone::Clone + Reader> Clone for EhHdrTable<'a, R>`
+##### `impl<'a, R: clone::Clone + Reader> Clone for EhHdrTable<'a, R>`
 
-- `fn clone(self: &Self) -> EhHdrTable<'a, R>` — [`EhHdrTable`](#ehhdrtable)
+- <span id="ehhdrtable-clone"></span>`fn clone(&self) -> EhHdrTable<'a, R>` — [`EhHdrTable`](#ehhdrtable)
 
-##### `impl<'a, R: $crate::fmt::Debug + Reader> Debug for EhHdrTable<'a, R>`
+##### `impl<'a, R: fmt::Debug + Reader> Debug for EhHdrTable<'a, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="ehhdrtable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `EhFrame<R: Reader>`
 
@@ -709,37 +1158,37 @@ for some discussion on the differences between `.debug_frame` and
 
 #### Implementations
 
-- `fn new(section: &'input [u8], endian: Endian) -> Self`
+- <span id="ehframe-new"></span>`fn new(section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for EhFrame<R>`
+##### `impl<R: clone::Clone + Reader> Clone for EhFrame<R>`
 
-- `fn clone(self: &Self) -> EhFrame<R>` — [`EhFrame`](#ehframe)
+- <span id="ehframe-clone"></span>`fn clone(&self) -> EhFrame<R>` — [`EhFrame`](#ehframe)
 
-##### `impl<R: $crate::marker::Copy + Reader> Copy for EhFrame<R>`
+##### `impl<R: marker::Copy + Reader> Copy for EhFrame<R>`
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for EhFrame<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for EhFrame<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="ehframe-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::cmp::Eq + Reader> Eq for EhFrame<R>`
+##### `impl<R: cmp::Eq + Reader> Eq for EhFrame<R>`
 
-##### `impl<R: $crate::cmp::PartialEq + Reader> PartialEq for EhFrame<R>`
+##### `impl<R: cmp::PartialEq + Reader> PartialEq for EhFrame<R>`
 
-- `fn eq(self: &Self, other: &EhFrame<R>) -> bool` — [`EhFrame`](#ehframe)
+- <span id="ehframe-eq"></span>`fn eq(&self, other: &EhFrame<R>) -> bool` — [`EhFrame`](#ehframe)
 
 ##### `impl<R: Reader> Section for EhFrame<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../index.md)
+- <span id="ehframe-id"></span>`fn id() -> SectionId` — [`SectionId`](../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="ehframe-reader"></span>`fn reader(&self) -> &R`
 
 ##### `impl<R: Reader> StructuralPartialEq for EhFrame<R>`
 
 ##### `impl<R: Reader> UnwindSection for EhFrame<R>`
 
-- `type Offset = EhFrameOffset<<R as Reader>::Offset>`
+- <span id="ehframe-offset"></span>`type Offset = EhFrameOffset<<R as Reader>::Offset>`
 
 ### `BaseAddresses`
 
@@ -785,33 +1234,33 @@ let _ = bases;
 
 #### Implementations
 
-- `fn set_eh_frame_hdr(self: Self, addr: u64) -> Self`
+- <span id="baseaddresses-set-eh-frame-hdr"></span>`fn set_eh_frame_hdr(self, addr: u64) -> Self`
 
-- `fn set_eh_frame(self: Self, addr: u64) -> Self`
+- <span id="baseaddresses-set-eh-frame"></span>`fn set_eh_frame(self, addr: u64) -> Self`
 
-- `fn set_text(self: Self, addr: u64) -> Self`
+- <span id="baseaddresses-set-text"></span>`fn set_text(self, addr: u64) -> Self`
 
-- `fn set_got(self: Self, addr: u64) -> Self`
+- <span id="baseaddresses-set-got"></span>`fn set_got(self, addr: u64) -> Self`
 
 #### Trait Implementations
 
 ##### `impl Clone for BaseAddresses`
 
-- `fn clone(self: &Self) -> BaseAddresses` — [`BaseAddresses`](#baseaddresses)
+- <span id="baseaddresses-clone"></span>`fn clone(&self) -> BaseAddresses` — [`BaseAddresses`](#baseaddresses)
 
 ##### `impl Debug for BaseAddresses`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="baseaddresses-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for BaseAddresses`
 
-- `fn default() -> BaseAddresses` — [`BaseAddresses`](#baseaddresses)
+- <span id="baseaddresses-default"></span>`fn default() -> BaseAddresses` — [`BaseAddresses`](#baseaddresses)
 
 ##### `impl Eq for BaseAddresses`
 
 ##### `impl PartialEq for BaseAddresses`
 
-- `fn eq(self: &Self, other: &BaseAddresses) -> bool` — [`BaseAddresses`](#baseaddresses)
+- <span id="baseaddresses-eq"></span>`fn eq(&self, other: &BaseAddresses) -> bool` — [`BaseAddresses`](#baseaddresses)
 
 ##### `impl StructuralPartialEq for BaseAddresses`
 
@@ -855,21 +1304,21 @@ See `BaseAddresses` for methods that are helpful in setting these addresses.
 
 ##### `impl Clone for SectionBaseAddresses`
 
-- `fn clone(self: &Self) -> SectionBaseAddresses` — [`SectionBaseAddresses`](#sectionbaseaddresses)
+- <span id="sectionbaseaddresses-clone"></span>`fn clone(&self) -> SectionBaseAddresses` — [`SectionBaseAddresses`](#sectionbaseaddresses)
 
 ##### `impl Debug for SectionBaseAddresses`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sectionbaseaddresses-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for SectionBaseAddresses`
 
-- `fn default() -> SectionBaseAddresses` — [`SectionBaseAddresses`](#sectionbaseaddresses)
+- <span id="sectionbaseaddresses-default"></span>`fn default() -> SectionBaseAddresses` — [`SectionBaseAddresses`](#sectionbaseaddresses)
 
 ##### `impl Eq for SectionBaseAddresses`
 
 ##### `impl PartialEq for SectionBaseAddresses`
 
-- `fn eq(self: &Self, other: &SectionBaseAddresses) -> bool` — [`SectionBaseAddresses`](#sectionbaseaddresses)
+- <span id="sectionbaseaddresses-eq"></span>`fn eq(&self, other: &SectionBaseAddresses) -> bool` — [`SectionBaseAddresses`](#sectionbaseaddresses)
 
 ##### `impl StructuralPartialEq for SectionBaseAddresses`
 
@@ -928,17 +1377,17 @@ unreachable!()
 
 #### Implementations
 
-- `fn next(self: &mut Self) -> Result<Option<CieOrFde<'bases, Section, R>>>` — [`Result`](../index.md), [`CieOrFde`](#cieorfde)
+- <span id="cfientriesiter-next"></span>`fn next(&mut self) -> Result<Option<CieOrFde<'bases, Section, R>>>` — [`Result`](../index.md), [`CieOrFde`](#cieorfde)
 
 #### Trait Implementations
 
 ##### `impl<'bases, Section, R> Clone for CfiEntriesIter<'bases, Section, R>`
 
-- `fn clone(self: &Self) -> CfiEntriesIter<'bases, Section, R>` — [`CfiEntriesIter`](#cfientriesiter)
+- <span id="cfientriesiter-clone"></span>`fn clone(&self) -> CfiEntriesIter<'bases, Section, R>` — [`CfiEntriesIter`](#cfientriesiter)
 
 ##### `impl<'bases, Section, R> Debug for CfiEntriesIter<'bases, Section, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="cfientriesiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Augmentation`
 
@@ -992,29 +1441,29 @@ We support the z-style augmentation [defined by `.eh_frame`][ehframe].
 
 #### Implementations
 
-- `fn parse<Section, R>(augmentation_str: &mut R, bases: &BaseAddresses, address_size: u8, section: &Section, input: &mut R) -> Result<Augmentation>` — [`BaseAddresses`](#baseaddresses), [`Result`](../index.md), [`Augmentation`](#augmentation)
+- <span id="augmentation-parse"></span>`fn parse<Section, R>(augmentation_str: &mut R, bases: &BaseAddresses, address_size: u8, section: &Section, input: &mut R) -> Result<Augmentation>` — [`BaseAddresses`](#baseaddresses), [`Result`](../index.md), [`Augmentation`](#augmentation)
 
 #### Trait Implementations
 
 ##### `impl Clone for Augmentation`
 
-- `fn clone(self: &Self) -> Augmentation` — [`Augmentation`](#augmentation)
+- <span id="augmentation-clone"></span>`fn clone(&self) -> Augmentation` — [`Augmentation`](#augmentation)
 
 ##### `impl Copy for Augmentation`
 
 ##### `impl Debug for Augmentation`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="augmentation-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Augmentation`
 
-- `fn default() -> Augmentation` — [`Augmentation`](#augmentation)
+- <span id="augmentation-default"></span>`fn default() -> Augmentation` — [`Augmentation`](#augmentation)
 
 ##### `impl Eq for Augmentation`
 
 ##### `impl PartialEq for Augmentation`
 
-- `fn eq(self: &Self, other: &Augmentation) -> bool` — [`Augmentation`](#augmentation)
+- <span id="augmentation-eq"></span>`fn eq(&self, other: &Augmentation) -> bool` — [`Augmentation`](#augmentation)
 
 ##### `impl StructuralPartialEq for Augmentation`
 
@@ -1030,27 +1479,27 @@ Parsed augmentation data for a `FrameDescriptEntry`.
 
 #### Implementations
 
-- `fn parse<R: Reader>(augmentation: &Augmentation, encoding_parameters: &PointerEncodingParameters<'_, R>, input: &mut R) -> Result<AugmentationData>` — [`Augmentation`](#augmentation), [`PointerEncodingParameters`](cfi/index.md), [`Result`](../index.md), [`AugmentationData`](cfi/index.md)
+- <span id="augmentationdata-parse"></span>`fn parse<R: Reader>(augmentation: &Augmentation, encoding_parameters: &PointerEncodingParameters<'_, R>, input: &mut R) -> Result<AugmentationData>` — [`Augmentation`](#augmentation), [`PointerEncodingParameters`](cfi/index.md), [`Result`](../index.md), [`AugmentationData`](cfi/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for AugmentationData`
 
-- `fn clone(self: &Self) -> AugmentationData` — [`AugmentationData`](cfi/index.md)
+- <span id="augmentationdata-clone"></span>`fn clone(&self) -> AugmentationData` — [`AugmentationData`](cfi/index.md)
 
 ##### `impl Debug for AugmentationData`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="augmentationdata-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for AugmentationData`
 
-- `fn default() -> AugmentationData` — [`AugmentationData`](cfi/index.md)
+- <span id="augmentationdata-default"></span>`fn default() -> AugmentationData` — [`AugmentationData`](cfi/index.md)
 
 ##### `impl Eq for AugmentationData`
 
 ##### `impl PartialEq for AugmentationData`
 
-- `fn eq(self: &Self, other: &AugmentationData) -> bool` — [`AugmentationData`](cfi/index.md)
+- <span id="augmentationdata-eq"></span>`fn eq(&self, other: &AugmentationData) -> bool` — [`AugmentationData`](cfi/index.md)
 
 ##### `impl StructuralPartialEq for AugmentationData`
 
@@ -1137,25 +1586,25 @@ where
 
 #### Implementations
 
-- `fn parse<Section: UnwindSection<R>>(bases: &BaseAddresses, section: &Section, input: &mut R) -> Result<CommonInformationEntry<R>>` — [`BaseAddresses`](#baseaddresses), [`Result`](../index.md), [`CommonInformationEntry`](#commoninformationentry)
+- <span id="commoninformationentry-parse"></span>`fn parse<Section: UnwindSection<R>>(bases: &BaseAddresses, section: &Section, input: &mut R) -> Result<CommonInformationEntry<R>>` — [`BaseAddresses`](#baseaddresses), [`Result`](../index.md), [`CommonInformationEntry`](#commoninformationentry)
 
-- `fn parse_rest<Section: UnwindSection<R>>(offset: <R as >::Offset, length: <R as >::Offset, format: Format, bases: &BaseAddresses, section: &Section, rest: R) -> Result<CommonInformationEntry<R>>` — [`Reader`](#reader), [`Format`](../index.md), [`BaseAddresses`](#baseaddresses), [`Result`](../index.md), [`CommonInformationEntry`](#commoninformationentry)
+- <span id="commoninformationentry-parse-rest"></span>`fn parse_rest<Section: UnwindSection<R>>(offset: <R as >::Offset, length: <R as >::Offset, format: Format, bases: &BaseAddresses, section: &Section, rest: R) -> Result<CommonInformationEntry<R>>` — [`Reader`](#reader), [`Format`](../index.md), [`BaseAddresses`](#baseaddresses), [`Result`](../index.md), [`CommonInformationEntry`](#commoninformationentry)
 
 #### Trait Implementations
 
 ##### `impl<R, Offset> Clone for CommonInformationEntry<R, Offset>`
 
-- `fn clone(self: &Self) -> CommonInformationEntry<R, Offset>` — [`CommonInformationEntry`](#commoninformationentry)
+- <span id="commoninformationentry-clone"></span>`fn clone(&self) -> CommonInformationEntry<R, Offset>` — [`CommonInformationEntry`](#commoninformationentry)
 
 ##### `impl<R, Offset> Debug for CommonInformationEntry<R, Offset>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="commoninformationentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, Offset> Eq for CommonInformationEntry<R, Offset>`
 
 ##### `impl<R, Offset> PartialEq for CommonInformationEntry<R, Offset>`
 
-- `fn eq(self: &Self, other: &CommonInformationEntry<R, Offset>) -> bool` — [`CommonInformationEntry`](#commoninformationentry)
+- <span id="commoninformationentry-eq"></span>`fn eq(&self, other: &CommonInformationEntry<R, Offset>) -> bool` — [`CommonInformationEntry`](#commoninformationentry)
 
 ##### `impl<R, Offset> StructuralPartialEq for CommonInformationEntry<R, Offset>`
 
@@ -1182,31 +1631,31 @@ Fully parsing this FDE requires first parsing its CIE.
 
 #### Implementations
 
-- `fn parse_partial(section: &Section, bases: &'bases BaseAddresses, input: &mut R) -> Result<PartialFrameDescriptionEntry<'bases, Section, R>>` — [`BaseAddresses`](#baseaddresses), [`Result`](../index.md), [`PartialFrameDescriptionEntry`](#partialframedescriptionentry)
+- <span id="partialframedescriptionentry-parse-partial"></span>`fn parse_partial(section: &Section, bases: &'bases BaseAddresses, input: &mut R) -> Result<PartialFrameDescriptionEntry<'bases, Section, R>>` — [`BaseAddresses`](#baseaddresses), [`Result`](../index.md), [`PartialFrameDescriptionEntry`](#partialframedescriptionentry)
 
-- `fn parse<F>(self: &Self, get_cie: F) -> Result<FrameDescriptionEntry<R>>` — [`Result`](../index.md), [`FrameDescriptionEntry`](#framedescriptionentry)
+- <span id="partialframedescriptionentry-parse"></span>`fn parse<F>(&self, get_cie: F) -> Result<FrameDescriptionEntry<R>>` — [`Result`](../index.md), [`FrameDescriptionEntry`](#framedescriptionentry)
 
-- `fn offset(self: &Self) -> <R as >::Offset` — [`Reader`](#reader)
+- <span id="partialframedescriptionentry-offset"></span>`fn offset(&self) -> <R as >::Offset` — [`Reader`](#reader)
 
-- `fn cie_offset(self: &Self) -> <Section as >::Offset` — [`UnwindSection`](#unwindsection)
+- <span id="partialframedescriptionentry-cie-offset"></span>`fn cie_offset(&self) -> <Section as >::Offset` — [`UnwindSection`](#unwindsection)
 
-- `fn entry_len(self: &Self) -> <R as >::Offset` — [`Reader`](#reader)
+- <span id="partialframedescriptionentry-entry-len"></span>`fn entry_len(&self) -> <R as >::Offset` — [`Reader`](#reader)
 
 #### Trait Implementations
 
 ##### `impl<'bases, Section, R> Clone for PartialFrameDescriptionEntry<'bases, Section, R>`
 
-- `fn clone(self: &Self) -> PartialFrameDescriptionEntry<'bases, Section, R>` — [`PartialFrameDescriptionEntry`](#partialframedescriptionentry)
+- <span id="partialframedescriptionentry-clone"></span>`fn clone(&self) -> PartialFrameDescriptionEntry<'bases, Section, R>` — [`PartialFrameDescriptionEntry`](#partialframedescriptionentry)
 
 ##### `impl<'bases, Section, R> Debug for PartialFrameDescriptionEntry<'bases, Section, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="partialframedescriptionentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'bases, Section, R> Eq for PartialFrameDescriptionEntry<'bases, Section, R>`
 
 ##### `impl<'bases, Section, R> PartialEq for PartialFrameDescriptionEntry<'bases, Section, R>`
 
-- `fn eq(self: &Self, other: &PartialFrameDescriptionEntry<'bases, Section, R>) -> bool` — [`PartialFrameDescriptionEntry`](#partialframedescriptionentry)
+- <span id="partialframedescriptionentry-eq"></span>`fn eq(&self, other: &PartialFrameDescriptionEntry<'bases, Section, R>) -> bool` — [`PartialFrameDescriptionEntry`](#partialframedescriptionentry)
 
 ##### `impl<'bases, Section, R> StructuralPartialEq for PartialFrameDescriptionEntry<'bases, Section, R>`
 
@@ -1273,29 +1722,43 @@ A `FrameDescriptionEntry` is a set of CFA instructions for an address range.
 
 #### Implementations
 
-- `fn parse_rest<Section, F>(offset: <R as >::Offset, length: <R as >::Offset, format: Format, cie_pointer: <Section as >::Offset, rest: R, section: &Section, bases: &BaseAddresses, get_cie: F) -> Result<FrameDescriptionEntry<R>>` — [`Reader`](#reader), [`Format`](../index.md), [`BaseAddresses`](#baseaddresses), [`Result`](../index.md), [`FrameDescriptionEntry`](#framedescriptionentry)
+- <span id="framedescriptionentry-offset"></span>`fn offset(&self) -> <R as >::Offset` — [`Reader`](#reader)
 
-- `fn parse_addresses(input: &mut R, cie: &CommonInformationEntry<R>, parameters: &PointerEncodingParameters<'_, R>) -> Result<(u64, u64)>` — [`CommonInformationEntry`](#commoninformationentry), [`PointerEncodingParameters`](cfi/index.md), [`Result`](../index.md)
+- <span id="framedescriptionentry-cie"></span>`fn cie(&self) -> &CommonInformationEntry<R>` — [`CommonInformationEntry`](#commoninformationentry)
 
-- `fn rows<'a, 'ctx, Section, S>(self: &Self, section: &'a Section, bases: &'a BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>) -> Result<UnwindTable<'a, 'ctx, R, S>>` — [`BaseAddresses`](#baseaddresses), [`UnwindContext`](#unwindcontext), [`Reader`](#reader), [`Result`](../index.md), [`UnwindTable`](#unwindtable)
+- <span id="framedescriptionentry-entry-len"></span>`fn entry_len(&self) -> <R as >::Offset` — [`Reader`](#reader)
 
-- `fn unwind_info_for_address<'ctx, Section, S>(self: &Self, section: &Section, bases: &BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, address: u64) -> Result<&'ctx UnwindTableRow<<R as >::Offset, S>>` — [`BaseAddresses`](#baseaddresses), [`UnwindContext`](#unwindcontext), [`Reader`](#reader), [`Result`](../index.md), [`UnwindTableRow`](#unwindtablerow)
+- <span id="framedescriptionentry-instructions"></span>`fn instructions<'a, Section>(&self, section: &'a Section, bases: &'a BaseAddresses) -> CallFrameInstructionIter<'a, R>` — [`BaseAddresses`](#baseaddresses), [`CallFrameInstructionIter`](#callframeinstructioniter)
+
+- <span id="framedescriptionentry-initial-address"></span>`fn initial_address(&self) -> u64`
+
+- <span id="framedescriptionentry-end-address"></span>`fn end_address(&self) -> u64`
+
+- <span id="framedescriptionentry-len"></span>`fn len(&self) -> u64`
+
+- <span id="framedescriptionentry-contains"></span>`fn contains(&self, address: u64) -> bool`
+
+- <span id="framedescriptionentry-lsda"></span>`fn lsda(&self) -> Option<Pointer>` — [`Pointer`](#pointer)
+
+- <span id="framedescriptionentry-is-signal-trampoline"></span>`fn is_signal_trampoline(&self) -> bool`
+
+- <span id="framedescriptionentry-personality"></span>`fn personality(&self) -> Option<Pointer>` — [`Pointer`](#pointer)
 
 #### Trait Implementations
 
 ##### `impl<R, Offset> Clone for FrameDescriptionEntry<R, Offset>`
 
-- `fn clone(self: &Self) -> FrameDescriptionEntry<R, Offset>` — [`FrameDescriptionEntry`](#framedescriptionentry)
+- <span id="framedescriptionentry-clone"></span>`fn clone(&self) -> FrameDescriptionEntry<R, Offset>` — [`FrameDescriptionEntry`](#framedescriptionentry)
 
 ##### `impl<R, Offset> Debug for FrameDescriptionEntry<R, Offset>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="framedescriptionentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, Offset> Eq for FrameDescriptionEntry<R, Offset>`
 
 ##### `impl<R, Offset> PartialEq for FrameDescriptionEntry<R, Offset>`
 
-- `fn eq(self: &Self, other: &FrameDescriptionEntry<R, Offset>) -> bool` — [`FrameDescriptionEntry`](#framedescriptionentry)
+- <span id="framedescriptionentry-eq"></span>`fn eq(&self, other: &FrameDescriptionEntry<R, Offset>) -> bool` — [`FrameDescriptionEntry`](#framedescriptionentry)
 
 ##### `impl<R, Offset> StructuralPartialEq for FrameDescriptionEntry<R, Offset>`
 
@@ -1348,27 +1811,27 @@ unreachable!()
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="unwindcontext-new"></span>`fn new() -> Self`
 
 #### Trait Implementations
 
 ##### `impl<T, S> Clone for UnwindContext<T, S>`
 
-- `fn clone(self: &Self) -> UnwindContext<T, S>` — [`UnwindContext`](#unwindcontext)
+- <span id="unwindcontext-clone"></span>`fn clone(&self) -> UnwindContext<T, S>` — [`UnwindContext`](#unwindcontext)
 
 ##### `impl<T, S> Debug for UnwindContext<T, S>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="unwindcontext-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T, S> Default for UnwindContext<T, S>`
 
-- `fn default() -> Self`
+- <span id="unwindcontext-default"></span>`fn default() -> Self`
 
 ##### `impl<T, S> Eq for UnwindContext<T, S>`
 
 ##### `impl<T, S> PartialEq for UnwindContext<T, S>`
 
-- `fn eq(self: &Self, other: &UnwindContext<T, S>) -> bool` — [`UnwindContext`](#unwindcontext)
+- <span id="unwindcontext-eq"></span>`fn eq(&self, other: &UnwindContext<T, S>) -> bool` — [`UnwindContext`](#unwindcontext)
 
 ##### `impl<T, S> StructuralPartialEq for UnwindContext<T, S>`
 
@@ -1450,23 +1913,23 @@ The `UnwindTable` iteratively evaluates a `FrameDescriptionEntry`'s
 
 #### Implementations
 
-- `fn new<Section: UnwindSection<R>>(section: &'a Section, bases: &'a BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, fde: &FrameDescriptionEntry<R>) -> Result<Self>` — [`BaseAddresses`](#baseaddresses), [`UnwindContext`](#unwindcontext), [`Reader`](#reader), [`FrameDescriptionEntry`](#framedescriptionentry), [`Result`](../index.md)
+- <span id="unwindtable-new"></span>`fn new<Section: UnwindSection<R>>(section: &'a Section, bases: &'a BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, fde: &FrameDescriptionEntry<R>) -> Result<Self>` — [`BaseAddresses`](#baseaddresses), [`UnwindContext`](#unwindcontext), [`Reader`](#reader), [`FrameDescriptionEntry`](#framedescriptionentry), [`Result`](../index.md)
 
-- `fn new_for_fde<Section: UnwindSection<R>>(section: &'a Section, bases: &'a BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, fde: &FrameDescriptionEntry<R>) -> Self` — [`BaseAddresses`](#baseaddresses), [`UnwindContext`](#unwindcontext), [`Reader`](#reader), [`FrameDescriptionEntry`](#framedescriptionentry)
+- <span id="unwindtable-new-for-fde"></span>`fn new_for_fde<Section: UnwindSection<R>>(section: &'a Section, bases: &'a BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, fde: &FrameDescriptionEntry<R>) -> Self` — [`BaseAddresses`](#baseaddresses), [`UnwindContext`](#unwindcontext), [`Reader`](#reader), [`FrameDescriptionEntry`](#framedescriptionentry)
 
-- `fn new_for_cie<Section: UnwindSection<R>>(section: &'a Section, bases: &'a BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, cie: &CommonInformationEntry<R>) -> Self` — [`BaseAddresses`](#baseaddresses), [`UnwindContext`](#unwindcontext), [`Reader`](#reader), [`CommonInformationEntry`](#commoninformationentry)
+- <span id="unwindtable-new-for-cie"></span>`fn new_for_cie<Section: UnwindSection<R>>(section: &'a Section, bases: &'a BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, cie: &CommonInformationEntry<R>) -> Self` — [`BaseAddresses`](#baseaddresses), [`UnwindContext`](#unwindcontext), [`Reader`](#reader), [`CommonInformationEntry`](#commoninformationentry)
 
-- `fn next_row(self: &mut Self) -> Result<Option<&UnwindTableRow<<R as >::Offset, S>>>` — [`Result`](../index.md), [`UnwindTableRow`](#unwindtablerow), [`Reader`](#reader)
+- <span id="unwindtable-next-row"></span>`fn next_row(&mut self) -> Result<Option<&UnwindTableRow<<R as >::Offset, S>>>` — [`Result`](../index.md), [`UnwindTableRow`](#unwindtablerow), [`Reader`](#reader)
 
-- `fn into_current_row(self: Self) -> Option<&'ctx UnwindTableRow<<R as >::Offset, S>>` — [`UnwindTableRow`](#unwindtablerow), [`Reader`](#reader)
+- <span id="unwindtable-into-current-row"></span>`fn into_current_row(self) -> Option<&'ctx UnwindTableRow<<R as >::Offset, S>>` — [`UnwindTableRow`](#unwindtablerow), [`Reader`](#reader)
 
-- `fn evaluate(self: &mut Self, instruction: CallFrameInstruction<<R as >::Offset>) -> Result<bool>` — [`CallFrameInstruction`](#callframeinstruction), [`Reader`](#reader), [`Result`](../index.md)
+- <span id="unwindtable-evaluate"></span>`fn evaluate(&mut self, instruction: CallFrameInstruction<<R as >::Offset>) -> Result<bool>` — [`CallFrameInstruction`](#callframeinstruction), [`Reader`](#reader), [`Result`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'a, 'ctx, R, S> Debug for UnwindTable<'a, 'ctx, R, S>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="unwindtable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `RegisterRuleMap<T, S>`
 
@@ -1481,37 +1944,37 @@ where
 
 #### Implementations
 
-- `fn is_default(self: &Self) -> bool`
+- <span id="registerrulemap-is-default"></span>`fn is_default(&self) -> bool`
 
-- `fn get(self: &Self, register: Register) -> RegisterRule<T>` — [`Register`](../index.md), [`RegisterRule`](#registerrule)
+- <span id="registerrulemap-get"></span>`fn get(&self, register: Register) -> RegisterRule<T>` — [`Register`](../index.md), [`RegisterRule`](#registerrule)
 
-- `fn set(self: &mut Self, register: Register, rule: RegisterRule<T>) -> Result<()>` — [`Register`](../index.md), [`RegisterRule`](#registerrule), [`Result`](../index.md)
+- <span id="registerrulemap-set"></span>`fn set(&mut self, register: Register, rule: RegisterRule<T>) -> Result<()>` — [`Register`](../index.md), [`RegisterRule`](#registerrule), [`Result`](../index.md)
 
-- `fn iter(self: &Self) -> RegisterRuleIter<'_, T>` — [`RegisterRuleIter`](#registerruleiter)
+- <span id="registerrulemap-iter"></span>`fn iter(&self) -> RegisterRuleIter<'_, T>` — [`RegisterRuleIter`](#registerruleiter)
 
 #### Trait Implementations
 
 ##### `impl<T, S> Clone for RegisterRuleMap<T, S>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="registerrulemap-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T, S> Debug for RegisterRuleMap<T, S>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="registerrulemap-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T, S> Default for RegisterRuleMap<T, S>`
 
-- `fn default() -> Self`
+- <span id="registerrulemap-default"></span>`fn default() -> Self`
 
 ##### `impl<T, S> Eq for RegisterRuleMap<T, S>`
 
 ##### `impl<'a, R, S> FromIterator for RegisterRuleMap<R, S>`
 
-- `fn from_iter<T>(iter: T) -> Self`
+- <span id="registerrulemap-from-iter"></span>`fn from_iter<T>(iter: T) -> Self`
 
 ##### `impl<T, S> PartialEq for RegisterRuleMap<T, S>`
 
-- `fn eq(self: &Self, rhs: &Self) -> bool`
+- <span id="registerrulemap-eq"></span>`fn eq(&self, rhs: &Self) -> bool`
 
 ### `RegisterRuleIter<'iter, T>`
 
@@ -1527,25 +1990,25 @@ An unordered iterator for register rules.
 
 ##### `impl<'iter, T> Clone for RegisterRuleIter<'iter, T>`
 
-- `fn clone(self: &Self) -> RegisterRuleIter<'iter, T>` — [`RegisterRuleIter`](#registerruleiter)
+- <span id="registerruleiter-clone"></span>`fn clone(&self) -> RegisterRuleIter<'iter, T>` — [`RegisterRuleIter`](#registerruleiter)
 
 ##### `impl<'iter, T> Debug for RegisterRuleIter<'iter, T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="registerruleiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for RegisterRuleIter<'iter, T>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="registerruleiter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="registerruleiter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="registerruleiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'iter, T: ReaderOffset> Iterator for RegisterRuleIter<'iter, T>`
 
-- `type Item = &'iter (Register, RegisterRule<T>)`
+- <span id="registerruleiter-item"></span>`type Item = &'iter (Register, RegisterRule<T>)`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="registerruleiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `UnwindTableRow<T, S>`
 
@@ -1567,41 +2030,41 @@ the registers in the *previous* frame for a range of PC addresses.
 
 #### Implementations
 
-- `fn is_default(self: &Self) -> bool`
+- <span id="unwindtablerow-is-default"></span>`fn is_default(&self) -> bool`
 
-- `fn start_address(self: &Self) -> u64`
+- <span id="unwindtablerow-start-address"></span>`fn start_address(&self) -> u64`
 
-- `fn end_address(self: &Self) -> u64`
+- <span id="unwindtablerow-end-address"></span>`fn end_address(&self) -> u64`
 
-- `fn contains(self: &Self, address: u64) -> bool`
+- <span id="unwindtablerow-contains"></span>`fn contains(&self, address: u64) -> bool`
 
-- `fn saved_args_size(self: &Self) -> u64`
+- <span id="unwindtablerow-saved-args-size"></span>`fn saved_args_size(&self) -> u64`
 
-- `fn cfa(self: &Self) -> &CfaRule<T>` — [`CfaRule`](#cfarule)
+- <span id="unwindtablerow-cfa"></span>`fn cfa(&self) -> &CfaRule<T>` — [`CfaRule`](#cfarule)
 
-- `fn register(self: &Self, register: Register) -> RegisterRule<T>` — [`Register`](../index.md), [`RegisterRule`](#registerrule)
+- <span id="unwindtablerow-register"></span>`fn register(&self, register: Register) -> RegisterRule<T>` — [`Register`](../index.md), [`RegisterRule`](#registerrule)
 
-- `fn registers(self: &Self) -> RegisterRuleIter<'_, T>` — [`RegisterRuleIter`](#registerruleiter)
+- <span id="unwindtablerow-registers"></span>`fn registers(&self) -> RegisterRuleIter<'_, T>` — [`RegisterRuleIter`](#registerruleiter)
 
 #### Trait Implementations
 
 ##### `impl<T, S> Clone for UnwindTableRow<T, S>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="unwindtablerow-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<T, S> Debug for UnwindTableRow<T, S>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="unwindtablerow-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T, S> Default for UnwindTableRow<T, S>`
 
-- `fn default() -> Self`
+- <span id="unwindtablerow-default"></span>`fn default() -> Self`
 
 ##### `impl<T, S> Eq for UnwindTableRow<T, S>`
 
 ##### `impl<T, S> PartialEq for UnwindTableRow<T, S>`
 
-- `fn eq(self: &Self, other: &UnwindTableRow<T, S>) -> bool` — [`UnwindTableRow`](#unwindtablerow)
+- <span id="unwindtablerow-eq"></span>`fn eq(&self, other: &UnwindTableRow<T, S>) -> bool` — [`UnwindTableRow`](#unwindtablerow)
 
 ##### `impl<T, S> StructuralPartialEq for UnwindTableRow<T, S>`
 
@@ -1623,17 +2086,17 @@ Can be [used with
 
 #### Implementations
 
-- `fn next(self: &mut Self) -> Result<Option<CallFrameInstruction<<R as >::Offset>>>` — [`Result`](../index.md), [`CallFrameInstruction`](#callframeinstruction), [`Reader`](#reader)
+- <span id="callframeinstructioniter-next"></span>`fn next(&mut self) -> Result<Option<CallFrameInstruction<<R as >::Offset>>>` — [`Result`](../index.md), [`CallFrameInstruction`](#callframeinstruction), [`Reader`](#reader)
 
 #### Trait Implementations
 
-##### `impl<'a, R: $crate::clone::Clone + Reader> Clone for CallFrameInstructionIter<'a, R>`
+##### `impl<'a, R: clone::Clone + Reader> Clone for CallFrameInstructionIter<'a, R>`
 
-- `fn clone(self: &Self) -> CallFrameInstructionIter<'a, R>` — [`CallFrameInstructionIter`](#callframeinstructioniter)
+- <span id="callframeinstructioniter-clone"></span>`fn clone(&self) -> CallFrameInstructionIter<'a, R>` — [`CallFrameInstructionIter`](#callframeinstructioniter)
 
-##### `impl<'a, R: $crate::fmt::Debug + Reader> Debug for CallFrameInstructionIter<'a, R>`
+##### `impl<'a, R: fmt::Debug + Reader> Debug for CallFrameInstructionIter<'a, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="callframeinstructioniter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `UnwindExpression<T: ReaderOffset>`
 
@@ -1683,25 +2146,25 @@ Ok(())
 
 #### Implementations
 
-- `fn get<R, S>(self: &Self, section: &S) -> Result<Expression<R>>` — [`Result`](../index.md), [`Expression`](#expression)
+- <span id="unwindexpression-get"></span>`fn get<R, S>(&self, section: &S) -> Result<Expression<R>>` — [`Result`](../index.md), [`Expression`](#expression)
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone + ReaderOffset> Clone for UnwindExpression<T>`
+##### `impl<T: clone::Clone + ReaderOffset> Clone for UnwindExpression<T>`
 
-- `fn clone(self: &Self) -> UnwindExpression<T>` — [`UnwindExpression`](#unwindexpression)
+- <span id="unwindexpression-clone"></span>`fn clone(&self) -> UnwindExpression<T>` — [`UnwindExpression`](#unwindexpression)
 
-##### `impl<T: $crate::marker::Copy + ReaderOffset> Copy for UnwindExpression<T>`
+##### `impl<T: marker::Copy + ReaderOffset> Copy for UnwindExpression<T>`
 
-##### `impl<T: $crate::fmt::Debug + ReaderOffset> Debug for UnwindExpression<T>`
+##### `impl<T: fmt::Debug + ReaderOffset> Debug for UnwindExpression<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="unwindexpression-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq + ReaderOffset> Eq for UnwindExpression<T>`
+##### `impl<T: cmp::Eq + ReaderOffset> Eq for UnwindExpression<T>`
 
-##### `impl<T: $crate::cmp::PartialEq + ReaderOffset> PartialEq for UnwindExpression<T>`
+##### `impl<T: cmp::PartialEq + ReaderOffset> PartialEq for UnwindExpression<T>`
 
-- `fn eq(self: &Self, other: &UnwindExpression<T>) -> bool` — [`UnwindExpression`](#unwindexpression)
+- <span id="unwindexpression-eq"></span>`fn eq(&self, other: &UnwindExpression<T>) -> bool` — [`UnwindExpression`](#unwindexpression)
 
 ##### `impl<T: ReaderOffset> StructuralPartialEq for UnwindExpression<T>`
 
@@ -1718,13 +2181,13 @@ struct PointerEncodingParameters<'a, R: Reader> {
 
 #### Trait Implementations
 
-##### `impl<'a, R: $crate::clone::Clone + Reader> Clone for PointerEncodingParameters<'a, R>`
+##### `impl<'a, R: clone::Clone + Reader> Clone for PointerEncodingParameters<'a, R>`
 
-- `fn clone(self: &Self) -> PointerEncodingParameters<'a, R>` — [`PointerEncodingParameters`](cfi/index.md)
+- <span id="pointerencodingparameters-clone"></span>`fn clone(&self) -> PointerEncodingParameters<'a, R>` — [`PointerEncodingParameters`](cfi/index.md)
 
-##### `impl<'a, R: $crate::fmt::Debug + Reader> Debug for PointerEncodingParameters<'a, R>`
+##### `impl<'a, R: fmt::Debug + Reader> Debug for PointerEncodingParameters<'a, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pointerencodingparameters-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `DwarfSections<T>`
 
@@ -1840,21 +2303,21 @@ unreachable!()
 
 #### Implementations
 
-- `fn load<F, E>(section: F) -> core::result::Result<Self, E>`
+- <span id="dwarfsections-load"></span>`fn load<F, E>(section: F) -> core::result::Result<Self, E>`
 
-- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> Dwarf<R>` — [`Dwarf`](#dwarf)
+- <span id="dwarfsections-borrow"></span>`fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> Dwarf<R>` — [`Dwarf`](#dwarf)
 
-- `fn borrow_with_sup<'a, F, R>(self: &'a Self, sup: &'a Self, borrow: F) -> Dwarf<R>` — [`Dwarf`](#dwarf)
+- <span id="dwarfsections-borrow-with-sup"></span>`fn borrow_with_sup<'a, F, R>(self: &'a Self, sup: &'a Self, borrow: F) -> Dwarf<R>` — [`Dwarf`](#dwarf)
 
 #### Trait Implementations
 
-##### `impl<T: $crate::fmt::Debug> Debug for DwarfSections<T>`
+##### `impl<T: fmt::Debug> Debug for DwarfSections<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwarfsections-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::default::Default> Default for DwarfSections<T>`
+##### `impl<T: default::Default> Default for DwarfSections<T>`
 
-- `fn default() -> DwarfSections<T>` — [`DwarfSections`](#dwarfsections)
+- <span id="dwarfsections-default"></span>`fn default() -> DwarfSections<T>` — [`DwarfSections`](#dwarfsections)
 
 ### `Dwarf<R>`
 
@@ -1949,73 +2412,27 @@ All of the commonly used DWARF sections, and other common information.
 
 #### Implementations
 
-- `fn populate_abbreviations_cache(self: &mut Self, strategy: AbbreviationsCacheStrategy)` — [`AbbreviationsCacheStrategy`](#abbreviationscachestrategy)
+- <span id="dwarf-load"></span>`fn load<F, E>(section: F) -> core::result::Result<Self, E>`
 
-- `fn units(self: &Self) -> DebugInfoUnitHeadersIter<R>` — [`DebugInfoUnitHeadersIter`](#debuginfounitheadersiter)
+- <span id="dwarf-load-sup"></span>`fn load_sup<F, E>(&mut self, section: F) -> core::result::Result<(), E>`
 
-- `fn unit(self: &Self, header: UnitHeader<R>) -> Result<Unit<R>>` — [`UnitHeader`](#unitheader), [`Result`](../index.md), [`Unit`](#unit)
+- <span id="dwarf-from-sections"></span>`fn from_sections(sections: DwarfSections<T>) -> Self` — [`DwarfSections`](#dwarfsections)
 
-- `fn type_units(self: &Self) -> DebugTypesUnitHeadersIter<R>` — [`DebugTypesUnitHeadersIter`](#debugtypesunitheadersiter)
+- <span id="dwarf-borrow"></span>`fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> Dwarf<R>` — [`Dwarf`](#dwarf)
 
-- `fn abbreviations(self: &Self, unit: &UnitHeader<R>) -> Result<Arc<Abbreviations>>` — [`UnitHeader`](#unitheader), [`Result`](../index.md), [`Abbreviations`](#abbreviations)
+- <span id="dwarf-set-sup"></span>`fn set_sup(&mut self, sup: Dwarf<T>)` — [`Dwarf`](#dwarf)
 
-- `fn string_offset(self: &Self, unit: &Unit<R>, index: DebugStrOffsetsIndex<<R as >::Offset>) -> Result<DebugStrOffset<<R as >::Offset>>` — [`Unit`](#unit), [`DebugStrOffsetsIndex`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`DebugStrOffset`](../index.md)
-
-- `fn string(self: &Self, offset: DebugStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugStrOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md)
-
-- `fn line_string(self: &Self, offset: DebugLineStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugLineStrOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md)
-
-- `fn sup_string(self: &Self, offset: DebugStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugStrOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md)
-
-- `fn attr_string(self: &Self, unit: &Unit<R>, attr: AttributeValue<R>) -> Result<R>` — [`Unit`](#unit), [`AttributeValue`](#attributevalue), [`Result`](../index.md)
-
-- `fn address(self: &Self, unit: &Unit<R>, index: DebugAddrIndex<<R as >::Offset>) -> Result<u64>` — [`Unit`](#unit), [`DebugAddrIndex`](../index.md), [`Reader`](#reader), [`Result`](../index.md)
-
-- `fn attr_address(self: &Self, unit: &Unit<R>, attr: AttributeValue<R>) -> Result<Option<u64>>` — [`Unit`](#unit), [`AttributeValue`](#attributevalue), [`Result`](../index.md)
-
-- `fn ranges_offset_from_raw(self: &Self, unit: &Unit<R>, offset: RawRangeListsOffset<<R as >::Offset>) -> RangeListsOffset<<R as >::Offset>` — [`Unit`](#unit), [`RawRangeListsOffset`](../index.md), [`Reader`](#reader), [`RangeListsOffset`](../index.md)
-
-- `fn ranges_offset(self: &Self, unit: &Unit<R>, index: DebugRngListsIndex<<R as >::Offset>) -> Result<RangeListsOffset<<R as >::Offset>>` — [`Unit`](#unit), [`DebugRngListsIndex`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`RangeListsOffset`](../index.md)
-
-- `fn ranges(self: &Self, unit: &Unit<R>, offset: RangeListsOffset<<R as >::Offset>) -> Result<RngListIter<R>>` — [`Unit`](#unit), [`RangeListsOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`RngListIter`](#rnglistiter)
-
-- `fn raw_ranges(self: &Self, unit: &Unit<R>, offset: RangeListsOffset<<R as >::Offset>) -> Result<RawRngListIter<R>>` — [`Unit`](#unit), [`RangeListsOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`RawRngListIter`](#rawrnglistiter)
-
-- `fn attr_ranges_offset(self: &Self, unit: &Unit<R>, attr: AttributeValue<R>) -> Result<Option<RangeListsOffset<<R as >::Offset>>>` — [`Unit`](#unit), [`AttributeValue`](#attributevalue), [`Result`](../index.md), [`RangeListsOffset`](../index.md), [`Reader`](#reader)
-
-- `fn attr_ranges(self: &Self, unit: &Unit<R>, attr: AttributeValue<R>) -> Result<Option<RngListIter<R>>>` — [`Unit`](#unit), [`AttributeValue`](#attributevalue), [`Result`](../index.md), [`RngListIter`](#rnglistiter)
-
-- `fn die_ranges(self: &Self, unit: &Unit<R>, entry: &DebuggingInformationEntry<'_, '_, R>) -> Result<RangeIter<R>>` — [`Unit`](#unit), [`DebuggingInformationEntry`](#debugginginformationentry), [`Result`](../index.md), [`RangeIter`](#rangeiter)
-
-- `fn unit_ranges(self: &Self, unit: &Unit<R>) -> Result<RangeIter<R>>` — [`Unit`](#unit), [`Result`](../index.md), [`RangeIter`](#rangeiter)
-
-- `fn locations_offset(self: &Self, unit: &Unit<R>, index: DebugLocListsIndex<<R as >::Offset>) -> Result<LocationListsOffset<<R as >::Offset>>` — [`Unit`](#unit), [`DebugLocListsIndex`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`LocationListsOffset`](../index.md)
-
-- `fn locations(self: &Self, unit: &Unit<R>, offset: LocationListsOffset<<R as >::Offset>) -> Result<LocListIter<R>>` — [`Unit`](#unit), [`LocationListsOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`LocListIter`](#loclistiter)
-
-- `fn raw_locations(self: &Self, unit: &Unit<R>, offset: LocationListsOffset<<R as >::Offset>) -> Result<RawLocListIter<R>>` — [`Unit`](#unit), [`LocationListsOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`RawLocListIter`](#rawloclistiter)
-
-- `fn attr_locations_offset(self: &Self, unit: &Unit<R>, attr: AttributeValue<R>) -> Result<Option<LocationListsOffset<<R as >::Offset>>>` — [`Unit`](#unit), [`AttributeValue`](#attributevalue), [`Result`](../index.md), [`LocationListsOffset`](../index.md), [`Reader`](#reader)
-
-- `fn attr_locations(self: &Self, unit: &Unit<R>, attr: AttributeValue<R>) -> Result<Option<LocListIter<R>>>` — [`Unit`](#unit), [`AttributeValue`](#attributevalue), [`Result`](../index.md), [`LocListIter`](#loclistiter)
-
-- `fn lookup_offset_id(self: &Self, id: ReaderOffsetId) -> Option<(bool, SectionId, <R as >::Offset)>` — [`ReaderOffsetId`](#readeroffsetid), [`SectionId`](../index.md), [`Reader`](#reader)
-
-- `fn format_error(self: &Self, err: Error) -> String` — [`Error`](../index.md)
-
-- `fn macinfo(self: &Self, offset: DebugMacinfoOffset<<R as >::Offset>) -> Result<MacroIter<R>>` — [`DebugMacinfoOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`MacroIter`](#macroiter)
-
-- `fn macros(self: &Self, offset: DebugMacroOffset<<R as >::Offset>) -> Result<MacroIter<R>>` — [`DebugMacroOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`MacroIter`](#macroiter)
+- <span id="dwarf-sup"></span>`fn sup(&self) -> Option<&Dwarf<T>>` — [`Dwarf`](#dwarf)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::fmt::Debug> Debug for Dwarf<R>`
+##### `impl<R: fmt::Debug> Debug for Dwarf<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwarf-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::default::Default> Default for Dwarf<R>`
+##### `impl<R: default::Default> Default for Dwarf<R>`
 
-- `fn default() -> Dwarf<R>` — [`Dwarf`](#dwarf)
+- <span id="dwarf-default"></span>`fn default() -> Dwarf<R>` — [`Dwarf`](#dwarf)
 
 ### `DwarfPackageSections<T>`
 
@@ -2116,19 +2533,19 @@ unreachable!()
 
 #### Implementations
 
-- `fn load<F, E>(section: F) -> core::result::Result<Self, E>`
+- <span id="dwarfpackagesections-load"></span>`fn load<F, E>(section: F) -> core::result::Result<Self, E>`
 
-- `fn borrow<'a, F, R>(self: &'a Self, borrow: F, empty: R) -> Result<DwarfPackage<R>>` — [`Result`](../index.md), [`DwarfPackage`](#dwarfpackage)
+- <span id="dwarfpackagesections-borrow"></span>`fn borrow<'a, F, R>(self: &'a Self, borrow: F, empty: R) -> Result<DwarfPackage<R>>` — [`Result`](../index.md), [`DwarfPackage`](#dwarfpackage)
 
 #### Trait Implementations
 
-##### `impl<T: $crate::fmt::Debug> Debug for DwarfPackageSections<T>`
+##### `impl<T: fmt::Debug> Debug for DwarfPackageSections<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwarfpackagesections-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::default::Default> Default for DwarfPackageSections<T>`
+##### `impl<T: default::Default> Default for DwarfPackageSections<T>`
 
-- `fn default() -> DwarfPackageSections<T>` — [`DwarfPackageSections`](#dwarfpackagesections)
+- <span id="dwarfpackagesections-default"></span>`fn default() -> DwarfPackageSections<T>` — [`DwarfPackageSections`](#dwarfpackagesections)
 
 ### `DwarfPackage<R: Reader>`
 
@@ -2209,25 +2626,25 @@ The sections from a `.dwp` file, with parsed indices.
 
 #### Implementations
 
-- `fn load<F, E>(section: F, empty: R) -> core::result::Result<Self, E>`
+- <span id="dwarfpackage-load"></span>`fn load<F, E>(section: F, empty: R) -> core::result::Result<Self, E>`
 
-- `fn from_sections(sections: DwarfPackageSections<R>, empty: R) -> Result<Self>` — [`DwarfPackageSections`](#dwarfpackagesections), [`Result`](../index.md)
+- <span id="dwarfpackage-from-sections"></span>`fn from_sections(sections: DwarfPackageSections<R>, empty: R) -> Result<Self>` — [`DwarfPackageSections`](#dwarfpackagesections), [`Result`](../index.md)
 
-- `fn find_cu(self: &Self, id: DwoId, parent: &Dwarf<R>) -> Result<Option<Dwarf<R>>>` — [`DwoId`](../index.md), [`Dwarf`](#dwarf), [`Result`](../index.md)
+- <span id="dwarfpackage-find-cu"></span>`fn find_cu(&self, id: DwoId, parent: &Dwarf<R>) -> Result<Option<Dwarf<R>>>` — [`DwoId`](../index.md), [`Dwarf`](#dwarf), [`Result`](../index.md)
 
-- `fn find_tu(self: &Self, signature: DebugTypeSignature, parent: &Dwarf<R>) -> Result<Option<Dwarf<R>>>` — [`DebugTypeSignature`](../index.md), [`Dwarf`](#dwarf), [`Result`](../index.md)
+- <span id="dwarfpackage-find-tu"></span>`fn find_tu(&self, signature: DebugTypeSignature, parent: &Dwarf<R>) -> Result<Option<Dwarf<R>>>` — [`DebugTypeSignature`](../index.md), [`Dwarf`](#dwarf), [`Result`](../index.md)
 
-- `fn cu_sections(self: &Self, index: u32, parent: &Dwarf<R>) -> Result<Dwarf<R>>` — [`Dwarf`](#dwarf), [`Result`](../index.md)
+- <span id="dwarfpackage-cu-sections"></span>`fn cu_sections(&self, index: u32, parent: &Dwarf<R>) -> Result<Dwarf<R>>` — [`Dwarf`](#dwarf), [`Result`](../index.md)
 
-- `fn tu_sections(self: &Self, index: u32, parent: &Dwarf<R>) -> Result<Dwarf<R>>` — [`Dwarf`](#dwarf), [`Result`](../index.md)
+- <span id="dwarfpackage-tu-sections"></span>`fn tu_sections(&self, index: u32, parent: &Dwarf<R>) -> Result<Dwarf<R>>` — [`Dwarf`](#dwarf), [`Result`](../index.md)
 
-- `fn sections(self: &Self, sections: UnitIndexSectionIterator<'_, R>, parent: &Dwarf<R>) -> Result<Dwarf<R>>` — [`UnitIndexSectionIterator`](#unitindexsectioniterator), [`Dwarf`](#dwarf), [`Result`](../index.md)
+- <span id="dwarfpackage-sections"></span>`fn sections(&self, sections: UnitIndexSectionIterator<'_, R>, parent: &Dwarf<R>) -> Result<Dwarf<R>>` — [`UnitIndexSectionIterator`](#unitindexsectioniterator), [`Dwarf`](#dwarf), [`Result`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for DwarfPackage<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for DwarfPackage<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dwarfpackage-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Unit<R, Offset>`
 
@@ -2301,33 +2718,33 @@ sections.
 
 #### Implementations
 
-- `fn new(dwarf: &Dwarf<R>, header: UnitHeader<R>) -> Result<Self>` — [`Dwarf`](#dwarf), [`UnitHeader`](#unitheader), [`Result`](../index.md)
+- <span id="unit-new"></span>`fn new(dwarf: &Dwarf<R>, header: UnitHeader<R>) -> Result<Self>` — [`Dwarf`](#dwarf), [`UnitHeader`](#unitheader), [`Result`](../index.md)
 
-- `fn new_with_abbreviations(dwarf: &Dwarf<R>, header: UnitHeader<R>, abbreviations: Arc<Abbreviations>) -> Result<Self>` — [`Dwarf`](#dwarf), [`UnitHeader`](#unitheader), [`Abbreviations`](#abbreviations), [`Result`](../index.md)
+- <span id="unit-new-with-abbreviations"></span>`fn new_with_abbreviations(dwarf: &Dwarf<R>, header: UnitHeader<R>, abbreviations: Arc<Abbreviations>) -> Result<Self>` — [`Dwarf`](#dwarf), [`UnitHeader`](#unitheader), [`Abbreviations`](#abbreviations), [`Result`](../index.md)
 
-- `fn unit_ref<'a>(self: &'a Self, dwarf: &'a Dwarf<R>) -> UnitRef<'a, R>` — [`Dwarf`](#dwarf), [`UnitRef`](#unitref)
+- <span id="unit-unit-ref"></span>`fn unit_ref<'a>(self: &'a Self, dwarf: &'a Dwarf<R>) -> UnitRef<'a, R>` — [`Dwarf`](#dwarf), [`UnitRef`](#unitref)
 
-- `fn encoding(self: &Self) -> Encoding` — [`Encoding`](../index.md)
+- <span id="unit-encoding"></span>`fn encoding(&self) -> Encoding` — [`Encoding`](../index.md)
 
-- `fn entry(self: &Self, offset: UnitOffset<<R as >::Offset>) -> Result<DebuggingInformationEntry<'_, '_, R>>` — [`UnitOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`DebuggingInformationEntry`](#debugginginformationentry)
+- <span id="unit-entry"></span>`fn entry(&self, offset: UnitOffset<<R as >::Offset>) -> Result<DebuggingInformationEntry<'_, '_, R>>` — [`UnitOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`DebuggingInformationEntry`](#debugginginformationentry)
 
-- `fn entries(self: &Self) -> EntriesCursor<'_, '_, R>` — [`EntriesCursor`](#entriescursor)
+- <span id="unit-entries"></span>`fn entries(&self) -> EntriesCursor<'_, '_, R>` — [`EntriesCursor`](#entriescursor)
 
-- `fn entries_at_offset(self: &Self, offset: UnitOffset<<R as >::Offset>) -> Result<EntriesCursor<'_, '_, R>>` — [`UnitOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`EntriesCursor`](#entriescursor)
+- <span id="unit-entries-at-offset"></span>`fn entries_at_offset(&self, offset: UnitOffset<<R as >::Offset>) -> Result<EntriesCursor<'_, '_, R>>` — [`UnitOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`EntriesCursor`](#entriescursor)
 
-- `fn entries_tree(self: &Self, offset: Option<UnitOffset<<R as >::Offset>>) -> Result<EntriesTree<'_, '_, R>>` — [`UnitOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`EntriesTree`](#entriestree)
+- <span id="unit-entries-tree"></span>`fn entries_tree(&self, offset: Option<UnitOffset<<R as >::Offset>>) -> Result<EntriesTree<'_, '_, R>>` — [`UnitOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`EntriesTree`](#entriestree)
 
-- `fn entries_raw(self: &Self, offset: Option<UnitOffset<<R as >::Offset>>) -> Result<EntriesRaw<'_, '_, R>>` — [`UnitOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`EntriesRaw`](#entriesraw)
+- <span id="unit-entries-raw"></span>`fn entries_raw(&self, offset: Option<UnitOffset<<R as >::Offset>>) -> Result<EntriesRaw<'_, '_, R>>` — [`UnitOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`EntriesRaw`](#entriesraw)
 
-- `fn copy_relocated_attributes(self: &mut Self, other: &Unit<R>)` — [`Unit`](#unit)
+- <span id="unit-copy-relocated-attributes"></span>`fn copy_relocated_attributes(&mut self, other: &Unit<R>)` — [`Unit`](#unit)
 
-- `fn dwo_name(self: &Self) -> Result<Option<AttributeValue<R>>>` — [`Result`](../index.md), [`AttributeValue`](#attributevalue)
+- <span id="unit-dwo-name"></span>`fn dwo_name(&self) -> Result<Option<AttributeValue<R>>>` — [`Result`](../index.md), [`AttributeValue`](#attributevalue)
 
 #### Trait Implementations
 
 ##### `impl<R, Offset> Debug for Unit<R, Offset>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="unit-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `UnitRef<'a, R: Reader>`
 
@@ -2357,73 +2774,73 @@ It also implements methods that correspond to methods on `Dwarf` that take a `Un
 
 #### Implementations
 
-- `fn new(dwarf: &'a Dwarf<R>, unit: &'a Unit<R>) -> Self` — [`Dwarf`](#dwarf), [`Unit`](#unit)
+- <span id="unitref-new"></span>`fn new(dwarf: &'a Dwarf<R>, unit: &'a Unit<R>) -> Self` — [`Dwarf`](#dwarf), [`Unit`](#unit)
 
-- `fn string_offset(self: &Self, index: DebugStrOffsetsIndex<<R as >::Offset>) -> Result<DebugStrOffset<<R as >::Offset>>` — [`DebugStrOffsetsIndex`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`DebugStrOffset`](../index.md)
+- <span id="unitref-string-offset"></span>`fn string_offset(&self, index: DebugStrOffsetsIndex<<R as >::Offset>) -> Result<DebugStrOffset<<R as >::Offset>>` — [`DebugStrOffsetsIndex`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`DebugStrOffset`](../index.md)
 
-- `fn string(self: &Self, offset: DebugStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugStrOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md)
+- <span id="unitref-string"></span>`fn string(&self, offset: DebugStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugStrOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md)
 
-- `fn line_string(self: &Self, offset: DebugLineStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugLineStrOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md)
+- <span id="unitref-line-string"></span>`fn line_string(&self, offset: DebugLineStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugLineStrOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md)
 
-- `fn sup_string(self: &Self, offset: DebugStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugStrOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md)
+- <span id="unitref-sup-string"></span>`fn sup_string(&self, offset: DebugStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugStrOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md)
 
-- `fn attr_string(self: &Self, attr: AttributeValue<R>) -> Result<R>` — [`AttributeValue`](#attributevalue), [`Result`](../index.md)
+- <span id="unitref-attr-string"></span>`fn attr_string(&self, attr: AttributeValue<R>) -> Result<R>` — [`AttributeValue`](#attributevalue), [`Result`](../index.md)
 
-- `fn address(self: &Self, index: DebugAddrIndex<<R as >::Offset>) -> Result<u64>` — [`DebugAddrIndex`](../index.md), [`Reader`](#reader), [`Result`](../index.md)
+- <span id="unitref-address"></span>`fn address(&self, index: DebugAddrIndex<<R as >::Offset>) -> Result<u64>` — [`DebugAddrIndex`](../index.md), [`Reader`](#reader), [`Result`](../index.md)
 
-- `fn attr_address(self: &Self, attr: AttributeValue<R>) -> Result<Option<u64>>` — [`AttributeValue`](#attributevalue), [`Result`](../index.md)
+- <span id="unitref-attr-address"></span>`fn attr_address(&self, attr: AttributeValue<R>) -> Result<Option<u64>>` — [`AttributeValue`](#attributevalue), [`Result`](../index.md)
 
-- `fn ranges_offset_from_raw(self: &Self, offset: RawRangeListsOffset<<R as >::Offset>) -> RangeListsOffset<<R as >::Offset>` — [`RawRangeListsOffset`](../index.md), [`Reader`](#reader), [`RangeListsOffset`](../index.md)
+- <span id="unitref-ranges-offset-from-raw"></span>`fn ranges_offset_from_raw(&self, offset: RawRangeListsOffset<<R as >::Offset>) -> RangeListsOffset<<R as >::Offset>` — [`RawRangeListsOffset`](../index.md), [`Reader`](#reader), [`RangeListsOffset`](../index.md)
 
-- `fn ranges_offset(self: &Self, index: DebugRngListsIndex<<R as >::Offset>) -> Result<RangeListsOffset<<R as >::Offset>>` — [`DebugRngListsIndex`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`RangeListsOffset`](../index.md)
+- <span id="unitref-ranges-offset"></span>`fn ranges_offset(&self, index: DebugRngListsIndex<<R as >::Offset>) -> Result<RangeListsOffset<<R as >::Offset>>` — [`DebugRngListsIndex`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`RangeListsOffset`](../index.md)
 
-- `fn ranges(self: &Self, offset: RangeListsOffset<<R as >::Offset>) -> Result<RngListIter<R>>` — [`RangeListsOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`RngListIter`](#rnglistiter)
+- <span id="unitref-ranges"></span>`fn ranges(&self, offset: RangeListsOffset<<R as >::Offset>) -> Result<RngListIter<R>>` — [`RangeListsOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`RngListIter`](#rnglistiter)
 
-- `fn raw_ranges(self: &Self, offset: RangeListsOffset<<R as >::Offset>) -> Result<RawRngListIter<R>>` — [`RangeListsOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`RawRngListIter`](#rawrnglistiter)
+- <span id="unitref-raw-ranges"></span>`fn raw_ranges(&self, offset: RangeListsOffset<<R as >::Offset>) -> Result<RawRngListIter<R>>` — [`RangeListsOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`RawRngListIter`](#rawrnglistiter)
 
-- `fn attr_ranges_offset(self: &Self, attr: AttributeValue<R>) -> Result<Option<RangeListsOffset<<R as >::Offset>>>` — [`AttributeValue`](#attributevalue), [`Result`](../index.md), [`RangeListsOffset`](../index.md), [`Reader`](#reader)
+- <span id="unitref-attr-ranges-offset"></span>`fn attr_ranges_offset(&self, attr: AttributeValue<R>) -> Result<Option<RangeListsOffset<<R as >::Offset>>>` — [`AttributeValue`](#attributevalue), [`Result`](../index.md), [`RangeListsOffset`](../index.md), [`Reader`](#reader)
 
-- `fn attr_ranges(self: &Self, attr: AttributeValue<R>) -> Result<Option<RngListIter<R>>>` — [`AttributeValue`](#attributevalue), [`Result`](../index.md), [`RngListIter`](#rnglistiter)
+- <span id="unitref-attr-ranges"></span>`fn attr_ranges(&self, attr: AttributeValue<R>) -> Result<Option<RngListIter<R>>>` — [`AttributeValue`](#attributevalue), [`Result`](../index.md), [`RngListIter`](#rnglistiter)
 
-- `fn die_ranges(self: &Self, entry: &DebuggingInformationEntry<'_, '_, R>) -> Result<RangeIter<R>>` — [`DebuggingInformationEntry`](#debugginginformationentry), [`Result`](../index.md), [`RangeIter`](#rangeiter)
+- <span id="unitref-die-ranges"></span>`fn die_ranges(&self, entry: &DebuggingInformationEntry<'_, '_, R>) -> Result<RangeIter<R>>` — [`DebuggingInformationEntry`](#debugginginformationentry), [`Result`](../index.md), [`RangeIter`](#rangeiter)
 
-- `fn unit_ranges(self: &Self) -> Result<RangeIter<R>>` — [`Result`](../index.md), [`RangeIter`](#rangeiter)
+- <span id="unitref-unit-ranges"></span>`fn unit_ranges(&self) -> Result<RangeIter<R>>` — [`Result`](../index.md), [`RangeIter`](#rangeiter)
 
-- `fn locations_offset(self: &Self, index: DebugLocListsIndex<<R as >::Offset>) -> Result<LocationListsOffset<<R as >::Offset>>` — [`DebugLocListsIndex`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`LocationListsOffset`](../index.md)
+- <span id="unitref-locations-offset"></span>`fn locations_offset(&self, index: DebugLocListsIndex<<R as >::Offset>) -> Result<LocationListsOffset<<R as >::Offset>>` — [`DebugLocListsIndex`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`LocationListsOffset`](../index.md)
 
-- `fn locations(self: &Self, offset: LocationListsOffset<<R as >::Offset>) -> Result<LocListIter<R>>` — [`LocationListsOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`LocListIter`](#loclistiter)
+- <span id="unitref-locations"></span>`fn locations(&self, offset: LocationListsOffset<<R as >::Offset>) -> Result<LocListIter<R>>` — [`LocationListsOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`LocListIter`](#loclistiter)
 
-- `fn raw_locations(self: &Self, offset: LocationListsOffset<<R as >::Offset>) -> Result<RawLocListIter<R>>` — [`LocationListsOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`RawLocListIter`](#rawloclistiter)
+- <span id="unitref-raw-locations"></span>`fn raw_locations(&self, offset: LocationListsOffset<<R as >::Offset>) -> Result<RawLocListIter<R>>` — [`LocationListsOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`RawLocListIter`](#rawloclistiter)
 
-- `fn attr_locations_offset(self: &Self, attr: AttributeValue<R>) -> Result<Option<LocationListsOffset<<R as >::Offset>>>` — [`AttributeValue`](#attributevalue), [`Result`](../index.md), [`LocationListsOffset`](../index.md), [`Reader`](#reader)
+- <span id="unitref-attr-locations-offset"></span>`fn attr_locations_offset(&self, attr: AttributeValue<R>) -> Result<Option<LocationListsOffset<<R as >::Offset>>>` — [`AttributeValue`](#attributevalue), [`Result`](../index.md), [`LocationListsOffset`](../index.md), [`Reader`](#reader)
 
-- `fn attr_locations(self: &Self, attr: AttributeValue<R>) -> Result<Option<LocListIter<R>>>` — [`AttributeValue`](#attributevalue), [`Result`](../index.md), [`LocListIter`](#loclistiter)
+- <span id="unitref-attr-locations"></span>`fn attr_locations(&self, attr: AttributeValue<R>) -> Result<Option<LocListIter<R>>>` — [`AttributeValue`](#attributevalue), [`Result`](../index.md), [`LocListIter`](#loclistiter)
 
-- `fn macinfo(self: &Self, offset: DebugMacinfoOffset<<R as >::Offset>) -> Result<MacroIter<R>>` — [`DebugMacinfoOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`MacroIter`](#macroiter)
+- <span id="unitref-macinfo"></span>`fn macinfo(&self, offset: DebugMacinfoOffset<<R as >::Offset>) -> Result<MacroIter<R>>` — [`DebugMacinfoOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`MacroIter`](#macroiter)
 
-- `fn macros(self: &Self, offset: DebugMacroOffset<<R as >::Offset>) -> Result<MacroIter<R>>` — [`DebugMacroOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`MacroIter`](#macroiter)
+- <span id="unitref-macros"></span>`fn macros(&self, offset: DebugMacroOffset<<R as >::Offset>) -> Result<MacroIter<R>>` — [`DebugMacroOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`MacroIter`](#macroiter)
 
 #### Trait Implementations
 
 ##### `impl<'a, R: Reader> Clone for UnitRef<'a, R>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="unitref-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<'a, R: Reader> Copy for UnitRef<'a, R>`
 
-##### `impl<'a, R: $crate::fmt::Debug + Reader> Debug for UnitRef<'a, R>`
+##### `impl<'a, R: fmt::Debug + Reader> Debug for UnitRef<'a, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="unitref-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'a, R: Reader> Deref for UnitRef<'a, R>`
 
-- `type Target = Unit<R>`
+- <span id="unitref-target"></span>`type Target = Unit<R>`
 
-- `fn deref(self: &Self) -> &<Self as >::Target`
+- <span id="unitref-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl<P, T> Receiver for UnitRef<'a, R>`
 
-- `type Target = T`
+- <span id="unitref-target"></span>`type Target = T`
 
 ### `RangeIter<R: Reader>`
 
@@ -2437,17 +2854,17 @@ Returned by `Dwarf::die_ranges` and `Dwarf::unit_ranges`.
 
 #### Implementations
 
-- `fn next(self: &mut Self) -> Result<Option<Range>>` — [`Result`](../index.md), [`Range`](#range)
+- <span id="rangeiter-next"></span>`fn next(&mut self) -> Result<Option<Range>>` — [`Result`](../index.md), [`Range`](#range)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for RangeIter<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for RangeIter<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rangeiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R: Reader> Default for RangeIter<R>`
 
-- `fn default() -> Self`
+- <span id="rangeiter-default"></span>`fn default() -> Self`
 
 ### `EndianSlice<'input, Endian>`
 
@@ -2466,83 +2883,83 @@ This implements the `Reader` trait, which is used for all reading of DWARF secti
 
 #### Implementations
 
-- `fn range(self: &Self, idx: Range<usize>) -> EndianSlice<'input, Endian>` — [`EndianSlice`](#endianslice)
+- <span id="endianslice-range"></span>`fn range(&self, idx: Range<usize>) -> EndianSlice<'input, Endian>` — [`EndianSlice`](#endianslice)
 
-- `fn range_from(self: &Self, idx: RangeFrom<usize>) -> EndianSlice<'input, Endian>` — [`EndianSlice`](#endianslice)
+- <span id="endianslice-range-from"></span>`fn range_from(&self, idx: RangeFrom<usize>) -> EndianSlice<'input, Endian>` — [`EndianSlice`](#endianslice)
 
-- `fn range_to(self: &Self, idx: RangeTo<usize>) -> EndianSlice<'input, Endian>` — [`EndianSlice`](#endianslice)
+- <span id="endianslice-range-to"></span>`fn range_to(&self, idx: RangeTo<usize>) -> EndianSlice<'input, Endian>` — [`EndianSlice`](#endianslice)
 
 #### Trait Implementations
 
 ##### `impl<'input, Endian> Clone for EndianSlice<'input, Endian>`
 
-- `fn clone(self: &Self) -> EndianSlice<'input, Endian>` — [`EndianSlice`](#endianslice)
+- <span id="endianslice-clone"></span>`fn clone(&self) -> EndianSlice<'input, Endian>` — [`EndianSlice`](#endianslice)
 
 ##### `impl<'input, Endian> Copy for EndianSlice<'input, Endian>`
 
 ##### `impl<'input, Endian: Endianity> Debug for EndianSlice<'input, Endian>`
 
-- `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> core::result::Result<(), fmt::Error>`
+- <span id="endianslice-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> core::result::Result<(), fmt::Error>`
 
 ##### `impl<'input, Endian> Default for EndianSlice<'input, Endian>`
 
-- `fn default() -> EndianSlice<'input, Endian>` — [`EndianSlice`](#endianslice)
+- <span id="endianslice-default"></span>`fn default() -> EndianSlice<'input, Endian>` — [`EndianSlice`](#endianslice)
 
 ##### `impl<'input, Endian> Deref for EndianSlice<'input, Endian>`
 
-- `type Target = [u8]`
+- <span id="endianslice-target"></span>`type Target = [u8]`
 
-- `fn deref(self: &Self) -> &<Self as >::Target`
+- <span id="endianslice-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl<'input, Endian> Eq for EndianSlice<'input, Endian>`
 
 ##### `impl<'input, Endian> Hash for EndianSlice<'input, Endian>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="endianslice-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl<'input, Endian> PartialEq for EndianSlice<'input, Endian>`
 
-- `fn eq(self: &Self, other: &EndianSlice<'input, Endian>) -> bool` — [`EndianSlice`](#endianslice)
+- <span id="endianslice-eq"></span>`fn eq(&self, other: &EndianSlice<'input, Endian>) -> bool` — [`EndianSlice`](#endianslice)
 
 ##### `impl<'input, Endian> Reader for EndianSlice<'input, Endian>`
 
-- `type Endian = Endian`
+- <span id="endianslice-endian"></span>`type Endian = Endian`
 
-- `type Offset = usize`
+- <span id="endianslice-offset"></span>`type Offset = usize`
 
-- `fn endian(self: &Self) -> Endian`
+- <span id="endianslice-endian"></span>`fn endian(&self) -> Endian`
 
-- `fn len(self: &Self) -> usize`
+- <span id="endianslice-len"></span>`fn len(&self) -> usize`
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="endianslice-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn empty(self: &mut Self)`
+- <span id="endianslice-empty"></span>`fn empty(&mut self)`
 
-- `fn truncate(self: &mut Self, len: usize) -> Result<()>` — [`Result`](../index.md)
+- <span id="endianslice-truncate"></span>`fn truncate(&mut self, len: usize) -> Result<()>` — [`Result`](../index.md)
 
-- `fn offset_from(self: &Self, base: &Self) -> usize`
+- <span id="endianslice-offset-from"></span>`fn offset_from(&self, base: &Self) -> usize`
 
-- `fn offset_id(self: &Self) -> ReaderOffsetId` — [`ReaderOffsetId`](#readeroffsetid)
+- <span id="endianslice-offset-id"></span>`fn offset_id(&self) -> ReaderOffsetId` — [`ReaderOffsetId`](#readeroffsetid)
 
-- `fn lookup_offset_id(self: &Self, id: ReaderOffsetId) -> Option<<Self as >::Offset>` — [`ReaderOffsetId`](#readeroffsetid), [`Reader`](#reader)
+- <span id="endianslice-lookup-offset-id"></span>`fn lookup_offset_id(&self, id: ReaderOffsetId) -> Option<<Self as >::Offset>` — [`ReaderOffsetId`](#readeroffsetid), [`Reader`](#reader)
 
-- `fn find(self: &Self, byte: u8) -> Result<usize>` — [`Result`](../index.md)
+- <span id="endianslice-find"></span>`fn find(&self, byte: u8) -> Result<usize>` — [`Result`](../index.md)
 
-- `fn skip(self: &mut Self, len: usize) -> Result<()>` — [`Result`](../index.md)
+- <span id="endianslice-skip"></span>`fn skip(&mut self, len: usize) -> Result<()>` — [`Result`](../index.md)
 
-- `fn split(self: &mut Self, len: usize) -> Result<Self>` — [`Result`](../index.md)
+- <span id="endianslice-split"></span>`fn split(&mut self, len: usize) -> Result<Self>` — [`Result`](../index.md)
 
-- `fn to_slice(self: &Self) -> Result<Cow<'_, [u8]>>` — [`Result`](../index.md)
+- <span id="endianslice-to-slice"></span>`fn to_slice(&self) -> Result<Cow<'_, [u8]>>` — [`Result`](../index.md)
 
-- `fn to_string(self: &Self) -> Result<Cow<'_, str>>` — [`Result`](../index.md)
+- <span id="endianslice-to-string"></span>`fn to_string(&self) -> Result<Cow<'_, str>>` — [`Result`](../index.md)
 
-- `fn to_string_lossy(self: &Self) -> Result<Cow<'_, str>>` — [`Result`](../index.md)
+- <span id="endianslice-to-string-lossy"></span>`fn to_string_lossy(&self) -> Result<Cow<'_, str>>` — [`Result`](../index.md)
 
-- `fn read_slice(self: &mut Self, buf: &mut [u8]) -> Result<()>` — [`Result`](../index.md)
+- <span id="endianslice-read-slice"></span>`fn read_slice(&mut self, buf: &mut [u8]) -> Result<()>` — [`Result`](../index.md)
 
 ##### `impl<P, T> Receiver for EndianSlice<'input, Endian>`
 
-- `type Target = T`
+- <span id="endianslice-target"></span>`type Target = T`
 
 ##### `impl<'input, Endian> StructuralPartialEq for EndianSlice<'input, Endian>`
 
@@ -2556,7 +2973,7 @@ struct DebugBytes<'input>(&'input [u8]);
 
 ##### `impl<'input> Debug for DebugBytes<'input>`
 
-- `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> core::result::Result<(), fmt::Error>`
+- <span id="debugbytes-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> core::result::Result<(), fmt::Error>`
 
 ### `DebugByte`
 
@@ -2568,7 +2985,7 @@ struct DebugByte(u8);
 
 ##### `impl Debug for DebugByte`
 
-- `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="debugbyte-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `DebugLen`
 
@@ -2580,7 +2997,7 @@ struct DebugLen(usize);
 
 ##### `impl Debug for DebugLen`
 
-- `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="debuglen-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ReaderOffsetId`
 
@@ -2598,19 +3015,19 @@ all readers. If values are not unique then errors may point to the wrong reader.
 
 ##### `impl Clone for ReaderOffsetId`
 
-- `fn clone(self: &Self) -> ReaderOffsetId` — [`ReaderOffsetId`](#readeroffsetid)
+- <span id="readeroffsetid-clone"></span>`fn clone(&self) -> ReaderOffsetId` — [`ReaderOffsetId`](#readeroffsetid)
 
 ##### `impl Copy for ReaderOffsetId`
 
 ##### `impl Debug for ReaderOffsetId`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="readeroffsetid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ReaderOffsetId`
 
 ##### `impl PartialEq for ReaderOffsetId`
 
-- `fn eq(self: &Self, other: &ReaderOffsetId) -> bool` — [`ReaderOffsetId`](#readeroffsetid)
+- <span id="readeroffsetid-eq"></span>`fn eq(&self, other: &ReaderOffsetId) -> bool` — [`ReaderOffsetId`](#readeroffsetid)
 
 ##### `impl StructuralPartialEq for ReaderOffsetId`
 
@@ -2632,57 +3049,57 @@ It is generally not used for reading sections in an executable file.
 
 #### Implementations
 
-- `fn new(section: R, relocate: T) -> Self`
+- <span id="relocatereader-new"></span>`fn new(section: R, relocate: T) -> Self`
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader<Offset = usize>, T: $crate::clone::Clone + Relocate<<R as >::Offset>> Clone for RelocateReader<R, T>`
+##### `impl<R: clone::Clone + Reader<Offset = usize>, T: clone::Clone + Relocate<<R as >::Offset>> Clone for RelocateReader<R, T>`
 
-- `fn clone(self: &Self) -> RelocateReader<R, T>` — [`RelocateReader`](#relocatereader)
+- <span id="relocatereader-clone"></span>`fn clone(&self) -> RelocateReader<R, T>` — [`RelocateReader`](#relocatereader)
 
-##### `impl<R: $crate::fmt::Debug + Reader<Offset = usize>, T: $crate::fmt::Debug + Relocate<<R as >::Offset>> Debug for RelocateReader<R, T>`
+##### `impl<R: fmt::Debug + Reader<Offset = usize>, T: fmt::Debug + Relocate<<R as >::Offset>> Debug for RelocateReader<R, T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="relocatereader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, T> Reader for RelocateReader<R, T>`
 
-- `type Endian = <R as Reader>::Endian`
+- <span id="relocatereader-endian"></span>`type Endian = <R as Reader>::Endian`
 
-- `type Offset = <R as Reader>::Offset`
+- <span id="relocatereader-offset"></span>`type Offset = <R as Reader>::Offset`
 
-- `fn read_address(self: &mut Self, address_size: u8) -> Result<u64>` — [`Result`](../index.md)
+- <span id="relocatereader-read-address"></span>`fn read_address(&mut self, address_size: u8) -> Result<u64>` — [`Result`](../index.md)
 
-- `fn read_offset(self: &mut Self, format: Format) -> Result<<R as >::Offset>` — [`Format`](../index.md), [`Result`](../index.md), [`Reader`](#reader)
+- <span id="relocatereader-read-offset"></span>`fn read_offset(&mut self, format: Format) -> Result<<R as >::Offset>` — [`Format`](../index.md), [`Result`](../index.md), [`Reader`](#reader)
 
-- `fn read_sized_offset(self: &mut Self, size: u8) -> Result<<R as >::Offset>` — [`Result`](../index.md), [`Reader`](#reader)
+- <span id="relocatereader-read-sized-offset"></span>`fn read_sized_offset(&mut self, size: u8) -> Result<<R as >::Offset>` — [`Result`](../index.md), [`Reader`](#reader)
 
-- `fn split(self: &mut Self, len: <Self as >::Offset) -> Result<Self>` — [`Reader`](#reader), [`Result`](../index.md)
+- <span id="relocatereader-split"></span>`fn split(&mut self, len: <Self as >::Offset) -> Result<Self>` — [`Reader`](#reader), [`Result`](../index.md)
 
-- `fn endian(self: &Self) -> <Self as >::Endian` — [`Reader`](#reader)
+- <span id="relocatereader-endian"></span>`fn endian(&self) -> <Self as >::Endian` — [`Reader`](#reader)
 
-- `fn len(self: &Self) -> <Self as >::Offset` — [`Reader`](#reader)
+- <span id="relocatereader-len"></span>`fn len(&self) -> <Self as >::Offset` — [`Reader`](#reader)
 
-- `fn empty(self: &mut Self)`
+- <span id="relocatereader-empty"></span>`fn empty(&mut self)`
 
-- `fn truncate(self: &mut Self, len: <Self as >::Offset) -> Result<()>` — [`Reader`](#reader), [`Result`](../index.md)
+- <span id="relocatereader-truncate"></span>`fn truncate(&mut self, len: <Self as >::Offset) -> Result<()>` — [`Reader`](#reader), [`Result`](../index.md)
 
-- `fn offset_from(self: &Self, base: &Self) -> <Self as >::Offset` — [`Reader`](#reader)
+- <span id="relocatereader-offset-from"></span>`fn offset_from(&self, base: &Self) -> <Self as >::Offset` — [`Reader`](#reader)
 
-- `fn offset_id(self: &Self) -> ReaderOffsetId` — [`ReaderOffsetId`](#readeroffsetid)
+- <span id="relocatereader-offset-id"></span>`fn offset_id(&self) -> ReaderOffsetId` — [`ReaderOffsetId`](#readeroffsetid)
 
-- `fn lookup_offset_id(self: &Self, id: ReaderOffsetId) -> Option<<Self as >::Offset>` — [`ReaderOffsetId`](#readeroffsetid), [`Reader`](#reader)
+- <span id="relocatereader-lookup-offset-id"></span>`fn lookup_offset_id(&self, id: ReaderOffsetId) -> Option<<Self as >::Offset>` — [`ReaderOffsetId`](#readeroffsetid), [`Reader`](#reader)
 
-- `fn find(self: &Self, byte: u8) -> Result<<Self as >::Offset>` — [`Result`](../index.md), [`Reader`](#reader)
+- <span id="relocatereader-find"></span>`fn find(&self, byte: u8) -> Result<<Self as >::Offset>` — [`Result`](../index.md), [`Reader`](#reader)
 
-- `fn skip(self: &mut Self, len: <Self as >::Offset) -> Result<()>` — [`Reader`](#reader), [`Result`](../index.md)
+- <span id="relocatereader-skip"></span>`fn skip(&mut self, len: <Self as >::Offset) -> Result<()>` — [`Reader`](#reader), [`Result`](../index.md)
 
-- `fn to_slice(self: &Self) -> Result<Cow<'_, [u8]>>` — [`Result`](../index.md)
+- <span id="relocatereader-to-slice"></span>`fn to_slice(&self) -> Result<Cow<'_, [u8]>>` — [`Result`](../index.md)
 
-- `fn to_string(self: &Self) -> Result<Cow<'_, str>>` — [`Result`](../index.md)
+- <span id="relocatereader-to-string"></span>`fn to_string(&self) -> Result<Cow<'_, str>>` — [`Result`](../index.md)
 
-- `fn to_string_lossy(self: &Self) -> Result<Cow<'_, str>>` — [`Result`](../index.md)
+- <span id="relocatereader-to-string-lossy"></span>`fn to_string_lossy(&self) -> Result<Cow<'_, str>>` — [`Result`](../index.md)
 
-- `fn read_slice(self: &mut Self, buf: &mut [u8]) -> Result<()>` — [`Result`](../index.md)
+- <span id="relocatereader-read-slice"></span>`fn read_slice(&mut self, buf: &mut [u8]) -> Result<()>` — [`Result`](../index.md)
 
 ### `DebugAbbrev<R>`
 
@@ -2698,29 +3115,29 @@ The `DebugAbbrev` struct represents the abbreviations describing
 
 #### Implementations
 
-- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugAbbrev<R>` — [`DebugAbbrev`](#debugabbrev)
+- <span id="debugabbrev-abbreviations"></span>`fn abbreviations(&self, debug_abbrev_offset: DebugAbbrevOffset<<R as >::Offset>) -> Result<Abbreviations>` — [`DebugAbbrevOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`Abbreviations`](#abbreviations)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone> Clone for DebugAbbrev<R>`
+##### `impl<R: clone::Clone> Clone for DebugAbbrev<R>`
 
-- `fn clone(self: &Self) -> DebugAbbrev<R>` — [`DebugAbbrev`](#debugabbrev)
+- <span id="debugabbrev-clone"></span>`fn clone(&self) -> DebugAbbrev<R>` — [`DebugAbbrev`](#debugabbrev)
 
-##### `impl<R: $crate::marker::Copy> Copy for DebugAbbrev<R>`
+##### `impl<R: marker::Copy> Copy for DebugAbbrev<R>`
 
-##### `impl<R: $crate::fmt::Debug> Debug for DebugAbbrev<R>`
+##### `impl<R: fmt::Debug> Debug for DebugAbbrev<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugabbrev-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::default::Default> Default for DebugAbbrev<R>`
+##### `impl<R: default::Default> Default for DebugAbbrev<R>`
 
-- `fn default() -> DebugAbbrev<R>` — [`DebugAbbrev`](#debugabbrev)
+- <span id="debugabbrev-default"></span>`fn default() -> DebugAbbrev<R>` — [`DebugAbbrev`](#debugabbrev)
 
 ##### `impl<R> Section for DebugAbbrev<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../index.md)
+- <span id="debugabbrev-id"></span>`fn id() -> SectionId` — [`SectionId`](../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="debugabbrev-reader"></span>`fn reader(&self) -> &R`
 
 ### `AbbreviationsCache`
 
@@ -2734,23 +3151,23 @@ A cache of previously parsed `Abbreviations`.
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="abbreviationscache-new"></span>`fn new() -> Self`
 
-- `fn populate<R: Reader>(self: &mut Self, strategy: AbbreviationsCacheStrategy, debug_abbrev: &DebugAbbrev<R>, units: DebugInfoUnitHeadersIter<R>)` — [`AbbreviationsCacheStrategy`](#abbreviationscachestrategy), [`DebugAbbrev`](#debugabbrev), [`DebugInfoUnitHeadersIter`](#debuginfounitheadersiter)
+- <span id="abbreviationscache-populate"></span>`fn populate<R: Reader>(&mut self, strategy: AbbreviationsCacheStrategy, debug_abbrev: &DebugAbbrev<R>, units: DebugInfoUnitHeadersIter<R>)` — [`AbbreviationsCacheStrategy`](#abbreviationscachestrategy), [`DebugAbbrev`](#debugabbrev), [`DebugInfoUnitHeadersIter`](#debuginfounitheadersiter)
 
-- `fn set<R: Reader>(self: &mut Self, offset: DebugAbbrevOffset<<R as >::Offset>, abbreviations: Arc<Abbreviations>)` — [`DebugAbbrevOffset`](../index.md), [`Reader`](#reader), [`Abbreviations`](#abbreviations)
+- <span id="abbreviationscache-set"></span>`fn set<R: Reader>(&mut self, offset: DebugAbbrevOffset<<R as >::Offset>, abbreviations: Arc<Abbreviations>)` — [`DebugAbbrevOffset`](../index.md), [`Reader`](#reader), [`Abbreviations`](#abbreviations)
 
-- `fn get<R: Reader>(self: &Self, debug_abbrev: &DebugAbbrev<R>, offset: DebugAbbrevOffset<<R as >::Offset>) -> Result<Arc<Abbreviations>>` — [`DebugAbbrev`](#debugabbrev), [`DebugAbbrevOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`Abbreviations`](#abbreviations)
+- <span id="abbreviationscache-get"></span>`fn get<R: Reader>(&self, debug_abbrev: &DebugAbbrev<R>, offset: DebugAbbrevOffset<<R as >::Offset>) -> Result<Arc<Abbreviations>>` — [`DebugAbbrev`](#debugabbrev), [`DebugAbbrevOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`Abbreviations`](#abbreviations)
 
 #### Trait Implementations
 
 ##### `impl Debug for AbbreviationsCache`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="abbreviationscache-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for AbbreviationsCache`
 
-- `fn default() -> AbbreviationsCache` — [`AbbreviationsCache`](#abbreviationscache)
+- <span id="abbreviationscache-default"></span>`fn default() -> AbbreviationsCache` — [`AbbreviationsCache`](#abbreviationscache)
 
 ### `Abbreviations`
 
@@ -2764,32 +3181,32 @@ struct Abbreviations {
 A set of type abbreviations.
 
 Construct an `Abbreviations` instance with the
-`abbreviations()`
+[`abbreviations()`](#unitheader-abbreviations)
 method.
 
 #### Implementations
 
-- `fn empty() -> Abbreviations` — [`Abbreviations`](#abbreviations)
+- <span id="abbreviations-empty"></span>`fn empty() -> Abbreviations` — [`Abbreviations`](#abbreviations)
 
-- `fn insert(self: &mut Self, abbrev: Abbreviation) -> ::core::result::Result<(), ()>` — [`Abbreviation`](#abbreviation)
+- <span id="abbreviations-insert"></span>`fn insert(&mut self, abbrev: Abbreviation) -> ::core::result::Result<(), ()>` — [`Abbreviation`](#abbreviation)
 
-- `fn get(self: &Self, code: u64) -> Option<&Abbreviation>` — [`Abbreviation`](#abbreviation)
+- <span id="abbreviations-get"></span>`fn get(&self, code: u64) -> Option<&Abbreviation>` — [`Abbreviation`](#abbreviation)
 
-- `fn parse<R: Reader>(input: &mut R) -> Result<Abbreviations>` — [`Result`](../index.md), [`Abbreviations`](#abbreviations)
+- <span id="abbreviations-parse"></span>`fn parse<R: Reader>(input: &mut R) -> Result<Abbreviations>` — [`Result`](../index.md), [`Abbreviations`](#abbreviations)
 
 #### Trait Implementations
 
 ##### `impl Clone for Abbreviations`
 
-- `fn clone(self: &Self) -> Abbreviations` — [`Abbreviations`](#abbreviations)
+- <span id="abbreviations-clone"></span>`fn clone(&self) -> Abbreviations` — [`Abbreviations`](#abbreviations)
 
 ##### `impl Debug for Abbreviations`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="abbreviations-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Abbreviations`
 
-- `fn default() -> Abbreviations` — [`Abbreviations`](#abbreviations)
+- <span id="abbreviations-default"></span>`fn default() -> Abbreviations` — [`Abbreviations`](#abbreviations)
 
 ### `Abbreviation`
 
@@ -2807,39 +3224,39 @@ its code, tag type, whether it has children, and its set of attributes.
 
 #### Implementations
 
-- `fn new(code: u64, tag: constants::DwTag, has_children: constants::DwChildren, attributes: Attributes) -> Abbreviation` — [`DwTag`](../index.md), [`DwChildren`](../index.md), [`Attributes`](abbrev/index.md), [`Abbreviation`](#abbreviation)
+- <span id="abbreviation-new"></span>`fn new(code: u64, tag: constants::DwTag, has_children: constants::DwChildren, attributes: Attributes) -> Abbreviation` — [`DwTag`](../index.md), [`DwChildren`](../index.md), [`Attributes`](abbrev/index.md), [`Abbreviation`](#abbreviation)
 
-- `fn code(self: &Self) -> u64`
+- <span id="abbreviation-code"></span>`fn code(&self) -> u64`
 
-- `fn tag(self: &Self) -> constants::DwTag` — [`DwTag`](../index.md)
+- <span id="abbreviation-tag"></span>`fn tag(&self) -> constants::DwTag` — [`DwTag`](../index.md)
 
-- `fn has_children(self: &Self) -> bool`
+- <span id="abbreviation-has-children"></span>`fn has_children(&self) -> bool`
 
-- `fn attributes(self: &Self) -> &[AttributeSpecification]` — [`AttributeSpecification`](#attributespecification)
+- <span id="abbreviation-attributes"></span>`fn attributes(&self) -> &[AttributeSpecification]` — [`AttributeSpecification`](#attributespecification)
 
-- `fn parse_tag<R: Reader>(input: &mut R) -> Result<constants::DwTag>` — [`Result`](../index.md), [`DwTag`](../index.md)
+- <span id="abbreviation-parse-tag"></span>`fn parse_tag<R: Reader>(input: &mut R) -> Result<constants::DwTag>` — [`Result`](../index.md), [`DwTag`](../index.md)
 
-- `fn parse_has_children<R: Reader>(input: &mut R) -> Result<constants::DwChildren>` — [`Result`](../index.md), [`DwChildren`](../index.md)
+- <span id="abbreviation-parse-has-children"></span>`fn parse_has_children<R: Reader>(input: &mut R) -> Result<constants::DwChildren>` — [`Result`](../index.md), [`DwChildren`](../index.md)
 
-- `fn parse_attributes<R: Reader>(input: &mut R) -> Result<Attributes>` — [`Result`](../index.md), [`Attributes`](abbrev/index.md)
+- <span id="abbreviation-parse-attributes"></span>`fn parse_attributes<R: Reader>(input: &mut R) -> Result<Attributes>` — [`Result`](../index.md), [`Attributes`](abbrev/index.md)
 
-- `fn parse<R: Reader>(input: &mut R) -> Result<Option<Abbreviation>>` — [`Result`](../index.md), [`Abbreviation`](#abbreviation)
+- <span id="abbreviation-parse"></span>`fn parse<R: Reader>(input: &mut R) -> Result<Option<Abbreviation>>` — [`Result`](../index.md), [`Abbreviation`](#abbreviation)
 
 #### Trait Implementations
 
 ##### `impl Clone for Abbreviation`
 
-- `fn clone(self: &Self) -> Abbreviation` — [`Abbreviation`](#abbreviation)
+- <span id="abbreviation-clone"></span>`fn clone(&self) -> Abbreviation` — [`Abbreviation`](#abbreviation)
 
 ##### `impl Debug for Abbreviation`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="abbreviation-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Abbreviation`
 
 ##### `impl PartialEq for Abbreviation`
 
-- `fn eq(self: &Self, other: &Abbreviation) -> bool` — [`Abbreviation`](#abbreviation)
+- <span id="abbreviation-eq"></span>`fn eq(&self, other: &Abbreviation) -> bool` — [`Abbreviation`](#abbreviation)
 
 ##### `impl StructuralPartialEq for Abbreviation`
 
@@ -2858,37 +3275,37 @@ and form.
 
 #### Implementations
 
-- `fn new(name: constants::DwAt, form: constants::DwForm, implicit_const_value: Option<i64>) -> AttributeSpecification` — [`DwAt`](../index.md), [`DwForm`](../index.md), [`AttributeSpecification`](#attributespecification)
+- <span id="attributespecification-new"></span>`fn new(name: constants::DwAt, form: constants::DwForm, implicit_const_value: Option<i64>) -> AttributeSpecification` — [`DwAt`](../index.md), [`DwForm`](../index.md), [`AttributeSpecification`](#attributespecification)
 
-- `fn name(self: &Self) -> constants::DwAt` — [`DwAt`](../index.md)
+- <span id="attributespecification-name"></span>`fn name(&self) -> constants::DwAt` — [`DwAt`](../index.md)
 
-- `fn form(self: &Self) -> constants::DwForm` — [`DwForm`](../index.md)
+- <span id="attributespecification-form"></span>`fn form(&self) -> constants::DwForm` — [`DwForm`](../index.md)
 
-- `fn implicit_const_value(self: &Self) -> Option<i64>`
+- <span id="attributespecification-implicit-const-value"></span>`fn implicit_const_value(&self) -> Option<i64>`
 
-- `fn size<R: Reader>(self: &Self, header: &UnitHeader<R>) -> Option<usize>` — [`UnitHeader`](#unitheader)
+- <span id="attributespecification-size"></span>`fn size<R: Reader>(&self, header: &UnitHeader<R>) -> Option<usize>` — [`UnitHeader`](#unitheader)
 
-- `fn parse_form<R: Reader>(input: &mut R) -> Result<constants::DwForm>` — [`Result`](../index.md), [`DwForm`](../index.md)
+- <span id="attributespecification-parse-form"></span>`fn parse_form<R: Reader>(input: &mut R) -> Result<constants::DwForm>` — [`Result`](../index.md), [`DwForm`](../index.md)
 
-- `fn parse<R: Reader>(input: &mut R) -> Result<Option<AttributeSpecification>>` — [`Result`](../index.md), [`AttributeSpecification`](#attributespecification)
+- <span id="attributespecification-parse"></span>`fn parse<R: Reader>(input: &mut R) -> Result<Option<AttributeSpecification>>` — [`Result`](../index.md), [`AttributeSpecification`](#attributespecification)
 
 #### Trait Implementations
 
 ##### `impl Clone for AttributeSpecification`
 
-- `fn clone(self: &Self) -> AttributeSpecification` — [`AttributeSpecification`](#attributespecification)
+- <span id="attributespecification-clone"></span>`fn clone(&self) -> AttributeSpecification` — [`AttributeSpecification`](#attributespecification)
 
 ##### `impl Copy for AttributeSpecification`
 
 ##### `impl Debug for AttributeSpecification`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="attributespecification-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for AttributeSpecification`
 
 ##### `impl PartialEq for AttributeSpecification`
 
-- `fn eq(self: &Self, other: &AttributeSpecification) -> bool` — [`AttributeSpecification`](#attributespecification)
+- <span id="attributespecification-eq"></span>`fn eq(&self, other: &AttributeSpecification) -> bool` — [`AttributeSpecification`](#attributespecification)
 
 ##### `impl StructuralPartialEq for AttributeSpecification`
 
@@ -2905,31 +3322,31 @@ found in the `.debug_aranges` section.
 
 #### Implementations
 
-- `fn headers(self: &Self) -> ArangeHeaderIter<R>` — [`ArangeHeaderIter`](#arangeheaderiter)
+- <span id="debugaranges-headers"></span>`fn headers(&self) -> ArangeHeaderIter<R>` — [`ArangeHeaderIter`](#arangeheaderiter)
 
-- `fn header(self: &Self, offset: DebugArangesOffset<<R as >::Offset>) -> Result<ArangeHeader<R>>` — [`DebugArangesOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`ArangeHeader`](#arangeheader)
+- <span id="debugaranges-header"></span>`fn header(&self, offset: DebugArangesOffset<<R as >::Offset>) -> Result<ArangeHeader<R>>` — [`DebugArangesOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`ArangeHeader`](#arangeheader)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone> Clone for DebugAranges<R>`
+##### `impl<R: clone::Clone> Clone for DebugAranges<R>`
 
-- `fn clone(self: &Self) -> DebugAranges<R>` — [`DebugAranges`](#debugaranges)
+- <span id="debugaranges-clone"></span>`fn clone(&self) -> DebugAranges<R>` — [`DebugAranges`](#debugaranges)
 
-##### `impl<R: $crate::marker::Copy> Copy for DebugAranges<R>`
+##### `impl<R: marker::Copy> Copy for DebugAranges<R>`
 
-##### `impl<R: $crate::fmt::Debug> Debug for DebugAranges<R>`
+##### `impl<R: fmt::Debug> Debug for DebugAranges<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugaranges-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::default::Default> Default for DebugAranges<R>`
+##### `impl<R: default::Default> Default for DebugAranges<R>`
 
-- `fn default() -> DebugAranges<R>` — [`DebugAranges`](#debugaranges)
+- <span id="debugaranges-default"></span>`fn default() -> DebugAranges<R>` — [`DebugAranges`](#debugaranges)
 
 ##### `impl<R> Section for DebugAranges<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../index.md)
+- <span id="debugaranges-id"></span>`fn id() -> SectionId` — [`SectionId`](../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="debugaranges-reader"></span>`fn reader(&self) -> &R`
 
 ### `ArangeHeaderIter<R: Reader>`
 
@@ -2944,17 +3361,17 @@ An iterator over the headers of a `.debug_aranges` section.
 
 #### Implementations
 
-- `fn next(self: &mut Self) -> Result<Option<ArangeHeader<R>>>` — [`Result`](../index.md), [`ArangeHeader`](#arangeheader)
+- <span id="arangeheaderiter-next"></span>`fn next(&mut self) -> Result<Option<ArangeHeader<R>>>` — [`Result`](../index.md), [`ArangeHeader`](#arangeheader)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for ArangeHeaderIter<R>`
+##### `impl<R: clone::Clone + Reader> Clone for ArangeHeaderIter<R>`
 
-- `fn clone(self: &Self) -> ArangeHeaderIter<R>` — [`ArangeHeaderIter`](#arangeheaderiter)
+- <span id="arangeheaderiter-clone"></span>`fn clone(&self) -> ArangeHeaderIter<R>` — [`ArangeHeaderIter`](#arangeheaderiter)
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for ArangeHeaderIter<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for ArangeHeaderIter<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="arangeheaderiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ArangeHeader<R, Offset>`
 
@@ -2977,33 +3394,33 @@ These entries all belong to a single unit.
 
 #### Implementations
 
-- `fn parse(input: &mut R, offset: DebugArangesOffset<Offset>) -> Result<Self>` — [`DebugArangesOffset`](../index.md), [`Result`](../index.md)
+- <span id="arangeheader-parse"></span>`fn parse(input: &mut R, offset: DebugArangesOffset<Offset>) -> Result<Self>` — [`DebugArangesOffset`](../index.md), [`Result`](../index.md)
 
-- `fn offset(self: &Self) -> DebugArangesOffset<Offset>` — [`DebugArangesOffset`](../index.md)
+- <span id="arangeheader-offset"></span>`fn offset(&self) -> DebugArangesOffset<Offset>` — [`DebugArangesOffset`](../index.md)
 
-- `fn length(self: &Self) -> Offset`
+- <span id="arangeheader-length"></span>`fn length(&self) -> Offset`
 
-- `fn encoding(self: &Self) -> Encoding` — [`Encoding`](../index.md)
+- <span id="arangeheader-encoding"></span>`fn encoding(&self) -> Encoding` — [`Encoding`](../index.md)
 
-- `fn debug_info_offset(self: &Self) -> DebugInfoOffset<Offset>` — [`DebugInfoOffset`](../index.md)
+- <span id="arangeheader-debug-info-offset"></span>`fn debug_info_offset(&self) -> DebugInfoOffset<Offset>` — [`DebugInfoOffset`](../index.md)
 
-- `fn entries(self: &Self) -> ArangeEntryIter<R>` — [`ArangeEntryIter`](#arangeentryiter)
+- <span id="arangeheader-entries"></span>`fn entries(&self) -> ArangeEntryIter<R>` — [`ArangeEntryIter`](#arangeentryiter)
 
 #### Trait Implementations
 
 ##### `impl<R, Offset> Clone for ArangeHeader<R, Offset>`
 
-- `fn clone(self: &Self) -> ArangeHeader<R, Offset>` — [`ArangeHeader`](#arangeheader)
+- <span id="arangeheader-clone"></span>`fn clone(&self) -> ArangeHeader<R, Offset>` — [`ArangeHeader`](#arangeheader)
 
 ##### `impl<R, Offset> Debug for ArangeHeader<R, Offset>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="arangeheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, Offset> Eq for ArangeHeader<R, Offset>`
 
 ##### `impl<R, Offset> PartialEq for ArangeHeader<R, Offset>`
 
-- `fn eq(self: &Self, other: &ArangeHeader<R, Offset>) -> bool` — [`ArangeHeader`](#arangeheader)
+- <span id="arangeheader-eq"></span>`fn eq(&self, other: &ArangeHeader<R, Offset>) -> bool` — [`ArangeHeader`](#arangeheader)
 
 ##### `impl<R, Offset> StructuralPartialEq for ArangeHeader<R, Offset>`
 
@@ -3023,19 +3440,19 @@ Can be [used with
 
 #### Implementations
 
-- `fn next(self: &mut Self) -> Result<Option<ArangeEntry>>` — [`Result`](../index.md), [`ArangeEntry`](#arangeentry)
+- <span id="arangeentryiter-next"></span>`fn next(&mut self) -> Result<Option<ArangeEntry>>` — [`Result`](../index.md), [`ArangeEntry`](#arangeentry)
 
-- `fn next_raw(self: &mut Self) -> Result<Option<ArangeEntry>>` — [`Result`](../index.md), [`ArangeEntry`](#arangeentry)
+- <span id="arangeentryiter-next-raw"></span>`fn next_raw(&mut self) -> Result<Option<ArangeEntry>>` — [`Result`](../index.md), [`ArangeEntry`](#arangeentry)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for ArangeEntryIter<R>`
+##### `impl<R: clone::Clone + Reader> Clone for ArangeEntryIter<R>`
 
-- `fn clone(self: &Self) -> ArangeEntryIter<R>` — [`ArangeEntryIter`](#arangeentryiter)
+- <span id="arangeentryiter-clone"></span>`fn clone(&self) -> ArangeEntryIter<R>` — [`ArangeEntryIter`](#arangeentryiter)
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for ArangeEntryIter<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for ArangeEntryIter<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="arangeentryiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ArangeEntry`
 
@@ -3050,37 +3467,37 @@ A single parsed arange.
 
 #### Implementations
 
-- `fn parse<R: Reader>(input: &mut R, encoding: Encoding) -> Result<Option<Self>>` — [`Encoding`](../index.md), [`Result`](../index.md)
+- <span id="arangeentry-parse"></span>`fn parse<R: Reader>(input: &mut R, encoding: Encoding) -> Result<Option<Self>>` — [`Encoding`](../index.md), [`Result`](../index.md)
 
-- `fn address(self: &Self) -> u64`
+- <span id="arangeentry-address"></span>`fn address(&self) -> u64`
 
-- `fn length(self: &Self) -> u64`
+- <span id="arangeentry-length"></span>`fn length(&self) -> u64`
 
-- `fn range(self: &Self) -> Range` — [`Range`](#range)
+- <span id="arangeentry-range"></span>`fn range(&self) -> Range` — [`Range`](#range)
 
 #### Trait Implementations
 
 ##### `impl Clone for ArangeEntry`
 
-- `fn clone(self: &Self) -> ArangeEntry` — [`ArangeEntry`](#arangeentry)
+- <span id="arangeentry-clone"></span>`fn clone(&self) -> ArangeEntry` — [`ArangeEntry`](#arangeentry)
 
 ##### `impl Debug for ArangeEntry`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="arangeentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ArangeEntry`
 
 ##### `impl Ord for ArangeEntry`
 
-- `fn cmp(self: &Self, other: &ArangeEntry) -> $crate::cmp::Ordering` — [`ArangeEntry`](#arangeentry)
+- <span id="arangeentry-cmp"></span>`fn cmp(&self, other: &ArangeEntry) -> cmp::Ordering` — [`ArangeEntry`](#arangeentry)
 
 ##### `impl PartialEq for ArangeEntry`
 
-- `fn eq(self: &Self, other: &ArangeEntry) -> bool` — [`ArangeEntry`](#arangeentry)
+- <span id="arangeentry-eq"></span>`fn eq(&self, other: &ArangeEntry) -> bool` — [`ArangeEntry`](#arangeentry)
 
 ##### `impl PartialOrd for ArangeEntry`
 
-- `fn partial_cmp(self: &Self, other: &ArangeEntry) -> $crate::option::Option<$crate::cmp::Ordering>` — [`ArangeEntry`](#arangeentry)
+- <span id="arangeentry-partial-cmp"></span>`fn partial_cmp(&self, other: &ArangeEntry) -> option::Option<cmp::Ordering>` — [`ArangeEntry`](#arangeentry)
 
 ##### `impl StructuralPartialEq for ArangeEntry`
 
@@ -3098,29 +3515,29 @@ This section contains the compilation unit index.
 
 #### Implementations
 
-- `fn index(self: Self) -> Result<UnitIndex<R>>` — [`Result`](../index.md), [`UnitIndex`](#unitindex)
+- <span id="debugcuindex-borrow"></span>`fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugCuIndex<R>` — [`DebugCuIndex`](#debugcuindex)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone> Clone for DebugCuIndex<R>`
+##### `impl<R: clone::Clone> Clone for DebugCuIndex<R>`
 
-- `fn clone(self: &Self) -> DebugCuIndex<R>` — [`DebugCuIndex`](#debugcuindex)
+- <span id="debugcuindex-clone"></span>`fn clone(&self) -> DebugCuIndex<R>` — [`DebugCuIndex`](#debugcuindex)
 
-##### `impl<R: $crate::marker::Copy> Copy for DebugCuIndex<R>`
+##### `impl<R: marker::Copy> Copy for DebugCuIndex<R>`
 
-##### `impl<R: $crate::fmt::Debug> Debug for DebugCuIndex<R>`
+##### `impl<R: fmt::Debug> Debug for DebugCuIndex<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugcuindex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::default::Default> Default for DebugCuIndex<R>`
+##### `impl<R: default::Default> Default for DebugCuIndex<R>`
 
-- `fn default() -> DebugCuIndex<R>` — [`DebugCuIndex`](#debugcuindex)
+- <span id="debugcuindex-default"></span>`fn default() -> DebugCuIndex<R>` — [`DebugCuIndex`](#debugcuindex)
 
 ##### `impl<R> Section for DebugCuIndex<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../index.md)
+- <span id="debugcuindex-id"></span>`fn id() -> SectionId` — [`SectionId`](../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="debugcuindex-reader"></span>`fn reader(&self) -> &R`
 
 ### `DebugTuIndex<R>`
 
@@ -3136,29 +3553,29 @@ This section contains the type unit index.
 
 #### Implementations
 
-- `fn index(self: Self) -> Result<UnitIndex<R>>` — [`Result`](../index.md), [`UnitIndex`](#unitindex)
+- <span id="debugtuindex-index"></span>`fn index(self) -> Result<UnitIndex<R>>` — [`Result`](../index.md), [`UnitIndex`](#unitindex)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone> Clone for DebugTuIndex<R>`
+##### `impl<R: clone::Clone> Clone for DebugTuIndex<R>`
 
-- `fn clone(self: &Self) -> DebugTuIndex<R>` — [`DebugTuIndex`](#debugtuindex)
+- <span id="debugtuindex-clone"></span>`fn clone(&self) -> DebugTuIndex<R>` — [`DebugTuIndex`](#debugtuindex)
 
-##### `impl<R: $crate::marker::Copy> Copy for DebugTuIndex<R>`
+##### `impl<R: marker::Copy> Copy for DebugTuIndex<R>`
 
-##### `impl<R: $crate::fmt::Debug> Debug for DebugTuIndex<R>`
+##### `impl<R: fmt::Debug> Debug for DebugTuIndex<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugtuindex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::default::Default> Default for DebugTuIndex<R>`
+##### `impl<R: default::Default> Default for DebugTuIndex<R>`
 
-- `fn default() -> DebugTuIndex<R>` — [`DebugTuIndex`](#debugtuindex)
+- <span id="debugtuindex-default"></span>`fn default() -> DebugTuIndex<R>` — [`DebugTuIndex`](#debugtuindex)
 
 ##### `impl<R> Section for DebugTuIndex<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../index.md)
+- <span id="debugtuindex-id"></span>`fn id() -> SectionId` — [`SectionId`](../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="debugtuindex-reader"></span>`fn reader(&self) -> &R`
 
 ### `UnitIndex<R: Reader>`
 
@@ -3180,29 +3597,29 @@ The partially parsed index from a `DebugCuIndex` or `DebugTuIndex`.
 
 #### Implementations
 
-- `fn parse(input: R) -> Result<UnitIndex<R>>` — [`Result`](../index.md), [`UnitIndex`](#unitindex)
+- <span id="unitindex-parse"></span>`fn parse(input: R) -> Result<UnitIndex<R>>` — [`Result`](../index.md), [`UnitIndex`](#unitindex)
 
-- `fn find(self: &Self, id: u64) -> Option<u32>`
+- <span id="unitindex-find"></span>`fn find(&self, id: u64) -> Option<u32>`
 
-- `fn sections(self: &Self, row: u32) -> Result<UnitIndexSectionIterator<'_, R>>` — [`Result`](../index.md), [`UnitIndexSectionIterator`](#unitindexsectioniterator)
+- <span id="unitindex-sections"></span>`fn sections(&self, row: u32) -> Result<UnitIndexSectionIterator<'_, R>>` — [`Result`](../index.md), [`UnitIndexSectionIterator`](#unitindexsectioniterator)
 
-- `fn version(self: &Self) -> u16`
+- <span id="unitindex-version"></span>`fn version(&self) -> u16`
 
-- `fn section_count(self: &Self) -> u32`
+- <span id="unitindex-section-count"></span>`fn section_count(&self) -> u32`
 
-- `fn unit_count(self: &Self) -> u32`
+- <span id="unitindex-unit-count"></span>`fn unit_count(&self) -> u32`
 
-- `fn slot_count(self: &Self) -> u32`
+- <span id="unitindex-slot-count"></span>`fn slot_count(&self) -> u32`
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for UnitIndex<R>`
+##### `impl<R: clone::Clone + Reader> Clone for UnitIndex<R>`
 
-- `fn clone(self: &Self) -> UnitIndex<R>` — [`UnitIndex`](#unitindex)
+- <span id="unitindex-clone"></span>`fn clone(&self) -> UnitIndex<R>` — [`UnitIndex`](#unitindex)
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for UnitIndex<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for UnitIndex<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="unitindex-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `UnitIndexSectionIterator<'index, R: Reader>`
 
@@ -3218,27 +3635,27 @@ An iterator over the section offsets and sizes for a row in a `UnitIndex`.
 
 #### Trait Implementations
 
-##### `impl<'index, R: $crate::clone::Clone + Reader> Clone for UnitIndexSectionIterator<'index, R>`
+##### `impl<'index, R: clone::Clone + Reader> Clone for UnitIndexSectionIterator<'index, R>`
 
-- `fn clone(self: &Self) -> UnitIndexSectionIterator<'index, R>` — [`UnitIndexSectionIterator`](#unitindexsectioniterator)
+- <span id="unitindexsectioniterator-clone"></span>`fn clone(&self) -> UnitIndexSectionIterator<'index, R>` — [`UnitIndexSectionIterator`](#unitindexsectioniterator)
 
-##### `impl<'index, R: $crate::fmt::Debug + Reader> Debug for UnitIndexSectionIterator<'index, R>`
+##### `impl<'index, R: fmt::Debug + Reader> Debug for UnitIndexSectionIterator<'index, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="unitindexsectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for UnitIndexSectionIterator<'index, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="unitindexsectioniterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="unitindexsectioniterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="unitindexsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'index, R: Reader> Iterator for UnitIndexSectionIterator<'index, R>`
 
-- `type Item = UnitIndexSection`
+- <span id="unitindexsectioniterator-item"></span>`type Item = UnitIndexSection`
 
-- `fn next(self: &mut Self) -> Option<UnitIndexSection>` — [`UnitIndexSection`](#unitindexsection)
+- <span id="unitindexsectioniterator-next"></span>`fn next(&mut self) -> Option<UnitIndexSection>` — [`UnitIndexSection`](#unitindexsection)
 
 ### `UnitIndexSection`
 
@@ -3270,19 +3687,19 @@ Information about a unit's contribution to a section in a `.dwp` file.
 
 ##### `impl Clone for UnitIndexSection`
 
-- `fn clone(self: &Self) -> UnitIndexSection` — [`UnitIndexSection`](#unitindexsection)
+- <span id="unitindexsection-clone"></span>`fn clone(&self) -> UnitIndexSection` — [`UnitIndexSection`](#unitindexsection)
 
 ##### `impl Copy for UnitIndexSection`
 
 ##### `impl Debug for UnitIndexSection`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="unitindexsection-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for UnitIndexSection`
 
 ##### `impl PartialEq for UnitIndexSection`
 
-- `fn eq(self: &Self, other: &UnitIndexSection) -> bool` — [`UnitIndexSection`](#unitindexsection)
+- <span id="unitindexsection-eq"></span>`fn eq(&self, other: &UnitIndexSection) -> bool` — [`UnitIndexSection`](#unitindexsection)
 
 ##### `impl StructuralPartialEq for UnitIndexSection`
 
@@ -3299,29 +3716,29 @@ found in the `.debug_line` section.
 
 #### Implementations
 
-- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugLine<R>` — [`DebugLine`](#debugline)
+- <span id="debugline-program"></span>`fn program(&self, offset: DebugLineOffset<<R as >::Offset>, address_size: u8, comp_dir: Option<R>, comp_name: Option<R>) -> Result<IncompleteLineProgram<R>>` — [`DebugLineOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`IncompleteLineProgram`](#incompletelineprogram)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone> Clone for DebugLine<R>`
+##### `impl<R: clone::Clone> Clone for DebugLine<R>`
 
-- `fn clone(self: &Self) -> DebugLine<R>` — [`DebugLine`](#debugline)
+- <span id="debugline-clone"></span>`fn clone(&self) -> DebugLine<R>` — [`DebugLine`](#debugline)
 
-##### `impl<R: $crate::marker::Copy> Copy for DebugLine<R>`
+##### `impl<R: marker::Copy> Copy for DebugLine<R>`
 
-##### `impl<R: $crate::fmt::Debug> Debug for DebugLine<R>`
+##### `impl<R: fmt::Debug> Debug for DebugLine<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugline-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::default::Default> Default for DebugLine<R>`
+##### `impl<R: default::Default> Default for DebugLine<R>`
 
-- `fn default() -> DebugLine<R>` — [`DebugLine`](#debugline)
+- <span id="debugline-default"></span>`fn default() -> DebugLine<R>` — [`DebugLine`](#debugline)
 
 ##### `impl<R> Section for DebugLine<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../index.md)
+- <span id="debugline-id"></span>`fn id() -> SectionId` — [`SectionId`](../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="debugline-reader"></span>`fn reader(&self) -> &R`
 
 ### `LineRows<R, Program, Offset>`
 
@@ -3345,23 +3762,23 @@ information." -- Section 6.2.1
 
 #### Implementations
 
-- `fn new(program: IncompleteLineProgram<R, Offset>) -> LineRows<R, IncompleteLineProgram<R, Offset>, Offset>` — [`IncompleteLineProgram`](#incompletelineprogram), [`LineRows`](#linerows)
+- <span id="linerows-new"></span>`fn new(program: IncompleteLineProgram<R, Offset>) -> LineRows<R, IncompleteLineProgram<R, Offset>, Offset>` — [`IncompleteLineProgram`](#incompletelineprogram), [`LineRows`](#linerows)
 
-- `fn resume<'program>(program: &'program CompleteLineProgram<R, Offset>, sequence: &LineSequence<R>) -> LineRows<R, &'program CompleteLineProgram<R, Offset>, Offset>` — [`CompleteLineProgram`](#completelineprogram), [`LineSequence`](#linesequence), [`LineRows`](#linerows)
+- <span id="linerows-resume"></span>`fn resume<'program>(program: &'program CompleteLineProgram<R, Offset>, sequence: &LineSequence<R>) -> LineRows<R, &'program CompleteLineProgram<R, Offset>, Offset>` — [`CompleteLineProgram`](#completelineprogram), [`LineSequence`](#linesequence), [`LineRows`](#linerows)
 
-- `fn header(self: &Self) -> &LineProgramHeader<R, Offset>` — [`LineProgramHeader`](#lineprogramheader)
+- <span id="linerows-header"></span>`fn header(&self) -> &LineProgramHeader<R, Offset>` — [`LineProgramHeader`](#lineprogramheader)
 
-- `fn next_row(self: &mut Self) -> Result<Option<(&LineProgramHeader<R, Offset>, &LineRow)>>` — [`Result`](../index.md), [`LineProgramHeader`](#lineprogramheader), [`LineRow`](#linerow)
+- <span id="linerows-next-row"></span>`fn next_row(&mut self) -> Result<Option<(&LineProgramHeader<R, Offset>, &LineRow)>>` — [`Result`](../index.md), [`LineProgramHeader`](#lineprogramheader), [`LineRow`](#linerow)
 
 #### Trait Implementations
 
 ##### `impl<R, Program, Offset> Clone for LineRows<R, Program, Offset>`
 
-- `fn clone(self: &Self) -> LineRows<R, Program, Offset>` — [`LineRows`](#linerows)
+- <span id="linerows-clone"></span>`fn clone(&self) -> LineRows<R, Program, Offset>` — [`LineRows`](#linerows)
 
 ##### `impl<R, Program, Offset> Debug for LineRows<R, Program, Offset>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="linerows-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `LineInstructions<R: Reader>`
 
@@ -3379,17 +3796,17 @@ for more details.
 
 #### Implementations
 
-- `fn next_instruction(self: &mut Self, header: &LineProgramHeader<R>) -> Result<Option<LineInstruction<R>>>` — [`LineProgramHeader`](#lineprogramheader), [`Result`](../index.md), [`LineInstruction`](#lineinstruction)
+- <span id="lineinstructions-remove-trailing"></span>`fn remove_trailing(&self, other: &LineInstructions<R>) -> Result<LineInstructions<R>>` — [`LineInstructions`](#lineinstructions), [`Result`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for LineInstructions<R>`
+##### `impl<R: clone::Clone + Reader> Clone for LineInstructions<R>`
 
-- `fn clone(self: &Self) -> LineInstructions<R>` — [`LineInstructions`](#lineinstructions)
+- <span id="lineinstructions-clone"></span>`fn clone(&self) -> LineInstructions<R>` — [`LineInstructions`](#lineinstructions)
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for LineInstructions<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for LineInstructions<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="lineinstructions-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `LineRow`
 
@@ -3417,63 +3834,63 @@ Each row is a copy of the registers of the state machine, as defined in section 
 
 #### Implementations
 
-- `fn new<R: Reader>(header: &LineProgramHeader<R>) -> Self` — [`LineProgramHeader`](#lineprogramheader)
+- <span id="linerow-new"></span>`fn new<R: Reader>(header: &LineProgramHeader<R>) -> Self` — [`LineProgramHeader`](#lineprogramheader)
 
-- `fn address(self: &Self) -> u64`
+- <span id="linerow-address"></span>`fn address(&self) -> u64`
 
-- `fn op_index(self: &Self) -> u64`
+- <span id="linerow-op-index"></span>`fn op_index(&self) -> u64`
 
-- `fn file_index(self: &Self) -> u64`
+- <span id="linerow-file-index"></span>`fn file_index(&self) -> u64`
 
-- `fn file<'header, R: Reader>(self: &Self, header: &'header LineProgramHeader<R>) -> Option<&'header FileEntry<R>>` — [`LineProgramHeader`](#lineprogramheader), [`FileEntry`](#fileentry)
+- <span id="linerow-file"></span>`fn file<'header, R: Reader>(&self, header: &'header LineProgramHeader<R>) -> Option<&'header FileEntry<R>>` — [`LineProgramHeader`](#lineprogramheader), [`FileEntry`](#fileentry)
 
-- `fn line(self: &Self) -> Option<NonZeroU64>`
+- <span id="linerow-line"></span>`fn line(&self) -> Option<NonZeroU64>`
 
-- `fn column(self: &Self) -> ColumnType` — [`ColumnType`](#columntype)
+- <span id="linerow-column"></span>`fn column(&self) -> ColumnType` — [`ColumnType`](#columntype)
 
-- `fn is_stmt(self: &Self) -> bool`
+- <span id="linerow-is-stmt"></span>`fn is_stmt(&self) -> bool`
 
-- `fn basic_block(self: &Self) -> bool`
+- <span id="linerow-basic-block"></span>`fn basic_block(&self) -> bool`
 
-- `fn end_sequence(self: &Self) -> bool`
+- <span id="linerow-end-sequence"></span>`fn end_sequence(&self) -> bool`
 
-- `fn prologue_end(self: &Self) -> bool`
+- <span id="linerow-prologue-end"></span>`fn prologue_end(&self) -> bool`
 
-- `fn epilogue_begin(self: &Self) -> bool`
+- <span id="linerow-epilogue-begin"></span>`fn epilogue_begin(&self) -> bool`
 
-- `fn isa(self: &Self) -> u64`
+- <span id="linerow-isa"></span>`fn isa(&self) -> u64`
 
-- `fn discriminator(self: &Self) -> u64`
+- <span id="linerow-discriminator"></span>`fn discriminator(&self) -> u64`
 
-- `fn execute<R, Program>(self: &mut Self, instruction: LineInstruction<R>, program: &mut Program) -> Result<bool>` — [`LineInstruction`](#lineinstruction), [`Result`](../index.md)
+- <span id="linerow-execute"></span>`fn execute<R, Program>(&mut self, instruction: LineInstruction<R>, program: &mut Program) -> Result<bool>` — [`LineInstruction`](#lineinstruction), [`Result`](../index.md)
 
-- `fn reset<R: Reader>(self: &mut Self, header: &LineProgramHeader<R>)` — [`LineProgramHeader`](#lineprogramheader)
+- <span id="linerow-reset"></span>`fn reset<R: Reader>(&mut self, header: &LineProgramHeader<R>)` — [`LineProgramHeader`](#lineprogramheader)
 
-- `fn apply_line_advance(self: &mut Self, line_increment: i64)`
+- <span id="linerow-apply-line-advance"></span>`fn apply_line_advance(&mut self, line_increment: i64)`
 
-- `fn apply_operation_advance<R: Reader>(self: &mut Self, operation_advance: u64, header: &LineProgramHeader<R>) -> Result<()>` — [`LineProgramHeader`](#lineprogramheader), [`Result`](../index.md)
+- <span id="linerow-apply-operation-advance"></span>`fn apply_operation_advance<R: Reader>(&mut self, operation_advance: u64, header: &LineProgramHeader<R>) -> Result<()>` — [`LineProgramHeader`](#lineprogramheader), [`Result`](../index.md)
 
-- `fn adjust_opcode<R: Reader>(self: &Self, opcode: u8, header: &LineProgramHeader<R>) -> u8` — [`LineProgramHeader`](#lineprogramheader)
+- <span id="linerow-adjust-opcode"></span>`fn adjust_opcode<R: Reader>(&self, opcode: u8, header: &LineProgramHeader<R>) -> u8` — [`LineProgramHeader`](#lineprogramheader)
 
-- `fn exec_special_opcode<R: Reader>(self: &mut Self, opcode: u8, header: &LineProgramHeader<R>) -> Result<()>` — [`LineProgramHeader`](#lineprogramheader), [`Result`](../index.md)
+- <span id="linerow-exec-special-opcode"></span>`fn exec_special_opcode<R: Reader>(&mut self, opcode: u8, header: &LineProgramHeader<R>) -> Result<()>` — [`LineProgramHeader`](#lineprogramheader), [`Result`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for LineRow`
 
-- `fn clone(self: &Self) -> LineRow` — [`LineRow`](#linerow)
+- <span id="linerow-clone"></span>`fn clone(&self) -> LineRow` — [`LineRow`](#linerow)
 
 ##### `impl Copy for LineRow`
 
 ##### `impl Debug for LineRow`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="linerow-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for LineRow`
 
 ##### `impl PartialEq for LineRow`
 
-- `fn eq(self: &Self, other: &LineRow) -> bool` — [`LineRow`](#linerow)
+- <span id="linerow-eq"></span>`fn eq(&self, other: &LineRow) -> bool` — [`LineRow`](#linerow)
 
 ##### `impl StructuralPartialEq for LineRow`
 
@@ -3505,13 +3922,13 @@ which addresses are monotonically increasing.
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for LineSequence<R>`
+##### `impl<R: clone::Clone + Reader> Clone for LineSequence<R>`
 
-- `fn clone(self: &Self) -> LineSequence<R>` — [`LineSequence`](#linesequence)
+- <span id="linesequence-clone"></span>`fn clone(&self) -> LineSequence<R>` — [`LineSequence`](#linesequence)
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for LineSequence<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for LineSequence<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="linesequence-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `LineProgramHeader<R, Offset>`
 
@@ -3592,77 +4009,77 @@ in section 6.2.4 of the standard.
 
 #### Implementations
 
-- `fn offset(self: &Self) -> DebugLineOffset<<R as >::Offset>` — [`DebugLineOffset`](../index.md), [`Reader`](#reader)
+- <span id="lineprogramheader-offset"></span>`fn offset(&self) -> DebugLineOffset<<R as >::Offset>` — [`DebugLineOffset`](../index.md), [`Reader`](#reader)
 
-- `fn unit_length(self: &Self) -> <R as >::Offset` — [`Reader`](#reader)
+- <span id="lineprogramheader-unit-length"></span>`fn unit_length(&self) -> <R as >::Offset` — [`Reader`](#reader)
 
-- `fn encoding(self: &Self) -> Encoding` — [`Encoding`](../index.md)
+- <span id="lineprogramheader-encoding"></span>`fn encoding(&self) -> Encoding` — [`Encoding`](../index.md)
 
-- `fn version(self: &Self) -> u16`
+- <span id="lineprogramheader-version"></span>`fn version(&self) -> u16`
 
-- `fn header_length(self: &Self) -> <R as >::Offset` — [`Reader`](#reader)
+- <span id="lineprogramheader-header-length"></span>`fn header_length(&self) -> <R as >::Offset` — [`Reader`](#reader)
 
-- `fn address_size(self: &Self) -> u8`
+- <span id="lineprogramheader-address-size"></span>`fn address_size(&self) -> u8`
 
-- `fn format(self: &Self) -> Format` — [`Format`](../index.md)
+- <span id="lineprogramheader-format"></span>`fn format(&self) -> Format` — [`Format`](../index.md)
 
-- `fn line_encoding(self: &Self) -> LineEncoding` — [`LineEncoding`](../index.md)
+- <span id="lineprogramheader-line-encoding"></span>`fn line_encoding(&self) -> LineEncoding` — [`LineEncoding`](../index.md)
 
-- `fn minimum_instruction_length(self: &Self) -> u8`
+- <span id="lineprogramheader-minimum-instruction-length"></span>`fn minimum_instruction_length(&self) -> u8`
 
-- `fn maximum_operations_per_instruction(self: &Self) -> u8`
+- <span id="lineprogramheader-maximum-operations-per-instruction"></span>`fn maximum_operations_per_instruction(&self) -> u8`
 
-- `fn default_is_stmt(self: &Self) -> bool`
+- <span id="lineprogramheader-default-is-stmt"></span>`fn default_is_stmt(&self) -> bool`
 
-- `fn line_base(self: &Self) -> i8`
+- <span id="lineprogramheader-line-base"></span>`fn line_base(&self) -> i8`
 
-- `fn line_range(self: &Self) -> u8`
+- <span id="lineprogramheader-line-range"></span>`fn line_range(&self) -> u8`
 
-- `fn opcode_base(self: &Self) -> u8`
+- <span id="lineprogramheader-opcode-base"></span>`fn opcode_base(&self) -> u8`
 
-- `fn standard_opcode_lengths(self: &Self) -> &R`
+- <span id="lineprogramheader-standard-opcode-lengths"></span>`fn standard_opcode_lengths(&self) -> &R`
 
-- `fn directory_entry_format(self: &Self) -> &[FileEntryFormat]` — [`FileEntryFormat`](#fileentryformat)
+- <span id="lineprogramheader-directory-entry-format"></span>`fn directory_entry_format(&self) -> &[FileEntryFormat]` — [`FileEntryFormat`](#fileentryformat)
 
-- `fn include_directories(self: &Self) -> &[AttributeValue<R, Offset>]` — [`AttributeValue`](#attributevalue)
+- <span id="lineprogramheader-include-directories"></span>`fn include_directories(&self) -> &[AttributeValue<R, Offset>]` — [`AttributeValue`](#attributevalue)
 
-- `fn directory(self: &Self, directory: u64) -> Option<AttributeValue<R, Offset>>` — [`AttributeValue`](#attributevalue)
+- <span id="lineprogramheader-directory"></span>`fn directory(&self, directory: u64) -> Option<AttributeValue<R, Offset>>` — [`AttributeValue`](#attributevalue)
 
-- `fn file_name_entry_format(self: &Self) -> &[FileEntryFormat]` — [`FileEntryFormat`](#fileentryformat)
+- <span id="lineprogramheader-file-name-entry-format"></span>`fn file_name_entry_format(&self) -> &[FileEntryFormat]` — [`FileEntryFormat`](#fileentryformat)
 
-- `fn file_has_timestamp(self: &Self) -> bool`
+- <span id="lineprogramheader-file-has-timestamp"></span>`fn file_has_timestamp(&self) -> bool`
 
-- `fn file_has_size(self: &Self) -> bool`
+- <span id="lineprogramheader-file-has-size"></span>`fn file_has_size(&self) -> bool`
 
-- `fn file_has_md5(self: &Self) -> bool`
+- <span id="lineprogramheader-file-has-md5"></span>`fn file_has_md5(&self) -> bool`
 
-- `fn file_has_source(self: &Self) -> bool`
+- <span id="lineprogramheader-file-has-source"></span>`fn file_has_source(&self) -> bool`
 
-- `fn file_names(self: &Self) -> &[FileEntry<R, Offset>]` — [`FileEntry`](#fileentry)
+- <span id="lineprogramheader-file-names"></span>`fn file_names(&self) -> &[FileEntry<R, Offset>]` — [`FileEntry`](#fileentry)
 
-- `fn file(self: &Self, file: u64) -> Option<&FileEntry<R, Offset>>` — [`FileEntry`](#fileentry)
+- <span id="lineprogramheader-file"></span>`fn file(&self, file: u64) -> Option<&FileEntry<R, Offset>>` — [`FileEntry`](#fileentry)
 
-- `fn raw_program_buf(self: &Self) -> R`
+- <span id="lineprogramheader-raw-program-buf"></span>`fn raw_program_buf(&self) -> R`
 
-- `fn instructions(self: &Self) -> LineInstructions<R>` — [`LineInstructions`](#lineinstructions)
+- <span id="lineprogramheader-instructions"></span>`fn instructions(&self) -> LineInstructions<R>` — [`LineInstructions`](#lineinstructions)
 
-- `fn parse(input: &mut R, offset: DebugLineOffset<Offset>, address_size: u8, comp_dir: Option<R>, comp_name: Option<R>) -> Result<LineProgramHeader<R, Offset>>` — [`DebugLineOffset`](../index.md), [`Result`](../index.md), [`LineProgramHeader`](#lineprogramheader)
+- <span id="lineprogramheader-parse"></span>`fn parse(input: &mut R, offset: DebugLineOffset<Offset>, address_size: u8, comp_dir: Option<R>, comp_name: Option<R>) -> Result<LineProgramHeader<R, Offset>>` — [`DebugLineOffset`](../index.md), [`Result`](../index.md), [`LineProgramHeader`](#lineprogramheader)
 
 #### Trait Implementations
 
 ##### `impl<R, Offset> Clone for LineProgramHeader<R, Offset>`
 
-- `fn clone(self: &Self) -> LineProgramHeader<R, Offset>` — [`LineProgramHeader`](#lineprogramheader)
+- <span id="lineprogramheader-clone"></span>`fn clone(&self) -> LineProgramHeader<R, Offset>` — [`LineProgramHeader`](#lineprogramheader)
 
 ##### `impl<R, Offset> Debug for LineProgramHeader<R, Offset>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="lineprogramheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, Offset> Eq for LineProgramHeader<R, Offset>`
 
 ##### `impl<R, Offset> PartialEq for LineProgramHeader<R, Offset>`
 
-- `fn eq(self: &Self, other: &LineProgramHeader<R, Offset>) -> bool` — [`LineProgramHeader`](#lineprogramheader)
+- <span id="lineprogramheader-eq"></span>`fn eq(&self, other: &LineProgramHeader<R, Offset>) -> bool` — [`LineProgramHeader`](#lineprogramheader)
 
 ##### `impl<R, Offset> StructuralPartialEq for LineProgramHeader<R, Offset>`
 
@@ -3681,33 +4098,33 @@ A line number program that has not been run to completion.
 
 #### Implementations
 
-- `fn header(self: &Self) -> &LineProgramHeader<R, Offset>` — [`LineProgramHeader`](#lineprogramheader)
+- <span id="incompletelineprogram-header"></span>`fn header(&self) -> &LineProgramHeader<R, Offset>` — [`LineProgramHeader`](#lineprogramheader)
 
-- `fn rows(self: Self) -> LineRows<R, IncompleteLineProgram<R, Offset>, Offset>` — [`LineRows`](#linerows), [`IncompleteLineProgram`](#incompletelineprogram)
+- <span id="incompletelineprogram-rows"></span>`fn rows(self) -> LineRows<R, IncompleteLineProgram<R, Offset>, Offset>` — [`LineRows`](#linerows), [`IncompleteLineProgram`](#incompletelineprogram)
 
-- `fn sequences(self: Self) -> Result<(CompleteLineProgram<R, Offset>, Vec<LineSequence<R>>)>` — [`Result`](../index.md), [`CompleteLineProgram`](#completelineprogram), [`LineSequence`](#linesequence)
+- <span id="incompletelineprogram-sequences"></span>`fn sequences(self) -> Result<(CompleteLineProgram<R, Offset>, Vec<LineSequence<R>>)>` — [`Result`](../index.md), [`CompleteLineProgram`](#completelineprogram), [`LineSequence`](#linesequence)
 
 #### Trait Implementations
 
 ##### `impl<R, Offset> Clone for IncompleteLineProgram<R, Offset>`
 
-- `fn clone(self: &Self) -> IncompleteLineProgram<R, Offset>` — [`IncompleteLineProgram`](#incompletelineprogram)
+- <span id="incompletelineprogram-clone"></span>`fn clone(&self) -> IncompleteLineProgram<R, Offset>` — [`IncompleteLineProgram`](#incompletelineprogram)
 
 ##### `impl<R, Offset> Debug for IncompleteLineProgram<R, Offset>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="incompletelineprogram-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, Offset> Eq for IncompleteLineProgram<R, Offset>`
 
 ##### `impl<R, Offset> LineProgram for IncompleteLineProgram<R, Offset>`
 
-- `fn header(self: &Self) -> &LineProgramHeader<R, Offset>` — [`LineProgramHeader`](#lineprogramheader)
+- <span id="incompletelineprogram-header"></span>`fn header(&self) -> &LineProgramHeader<R, Offset>` — [`LineProgramHeader`](#lineprogramheader)
 
-- `fn add_file(self: &mut Self, file: FileEntry<R, Offset>)` — [`FileEntry`](#fileentry)
+- <span id="incompletelineprogram-add-file"></span>`fn add_file(&mut self, file: FileEntry<R, Offset>)` — [`FileEntry`](#fileentry)
 
 ##### `impl<R, Offset> PartialEq for IncompleteLineProgram<R, Offset>`
 
-- `fn eq(self: &Self, other: &IncompleteLineProgram<R, Offset>) -> bool` — [`IncompleteLineProgram`](#incompletelineprogram)
+- <span id="incompletelineprogram-eq"></span>`fn eq(&self, other: &IncompleteLineProgram<R, Offset>) -> bool` — [`IncompleteLineProgram`](#incompletelineprogram)
 
 ##### `impl<R, Offset> StructuralPartialEq for IncompleteLineProgram<R, Offset>`
 
@@ -3726,25 +4143,25 @@ A line number program that has previously been run to completion.
 
 #### Implementations
 
-- `fn header(self: &Self) -> &LineProgramHeader<R, Offset>` — [`LineProgramHeader`](#lineprogramheader)
+- <span id="completelineprogram-header"></span>`fn header(&self) -> &LineProgramHeader<R, Offset>` — [`LineProgramHeader`](#lineprogramheader)
 
-- `fn resume_from<'program>(self: &'program Self, sequence: &LineSequence<R>) -> LineRows<R, &'program CompleteLineProgram<R, Offset>, Offset>` — [`LineSequence`](#linesequence), [`LineRows`](#linerows), [`CompleteLineProgram`](#completelineprogram)
+- <span id="completelineprogram-resume-from"></span>`fn resume_from<'program>(self: &'program Self, sequence: &LineSequence<R>) -> LineRows<R, &'program CompleteLineProgram<R, Offset>, Offset>` — [`LineSequence`](#linesequence), [`LineRows`](#linerows), [`CompleteLineProgram`](#completelineprogram)
 
 #### Trait Implementations
 
 ##### `impl<R, Offset> Clone for CompleteLineProgram<R, Offset>`
 
-- `fn clone(self: &Self) -> CompleteLineProgram<R, Offset>` — [`CompleteLineProgram`](#completelineprogram)
+- <span id="completelineprogram-clone"></span>`fn clone(&self) -> CompleteLineProgram<R, Offset>` — [`CompleteLineProgram`](#completelineprogram)
 
 ##### `impl<R, Offset> Debug for CompleteLineProgram<R, Offset>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="completelineprogram-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, Offset> Eq for CompleteLineProgram<R, Offset>`
 
 ##### `impl<R, Offset> PartialEq for CompleteLineProgram<R, Offset>`
 
-- `fn eq(self: &Self, other: &CompleteLineProgram<R, Offset>) -> bool` — [`CompleteLineProgram`](#completelineprogram)
+- <span id="completelineprogram-eq"></span>`fn eq(&self, other: &CompleteLineProgram<R, Offset>) -> bool` — [`CompleteLineProgram`](#completelineprogram)
 
 ##### `impl<R, Offset> StructuralPartialEq for CompleteLineProgram<R, Offset>`
 
@@ -3768,39 +4185,39 @@ An entry in the `LineProgramHeader`'s `file_names` set.
 
 #### Implementations
 
-- `fn parse(input: &mut R, path_name: R) -> Result<FileEntry<R, Offset>>` — [`Result`](../index.md), [`FileEntry`](#fileentry)
+- <span id="fileentry-parse"></span>`fn parse(input: &mut R, path_name: R) -> Result<FileEntry<R, Offset>>` — [`Result`](../index.md), [`FileEntry`](#fileentry)
 
-- `fn path_name(self: &Self) -> AttributeValue<R, Offset>` — [`AttributeValue`](#attributevalue)
+- <span id="fileentry-path-name"></span>`fn path_name(&self) -> AttributeValue<R, Offset>` — [`AttributeValue`](#attributevalue)
 
-- `fn directory_index(self: &Self) -> u64`
+- <span id="fileentry-directory-index"></span>`fn directory_index(&self) -> u64`
 
-- `fn directory(self: &Self, header: &LineProgramHeader<R>) -> Option<AttributeValue<R, Offset>>` — [`LineProgramHeader`](#lineprogramheader), [`AttributeValue`](#attributevalue)
+- <span id="fileentry-directory"></span>`fn directory(&self, header: &LineProgramHeader<R>) -> Option<AttributeValue<R, Offset>>` — [`LineProgramHeader`](#lineprogramheader), [`AttributeValue`](#attributevalue)
 
-- `fn timestamp(self: &Self) -> u64`
+- <span id="fileentry-timestamp"></span>`fn timestamp(&self) -> u64`
 
-- `fn size(self: &Self) -> u64`
+- <span id="fileentry-size"></span>`fn size(&self) -> u64`
 
-- `fn md5(self: &Self) -> &[u8; 16]`
+- <span id="fileentry-md5"></span>`fn md5(&self) -> &[u8; 16]`
 
-- `fn source(self: &Self) -> Option<AttributeValue<R, Offset>>` — [`AttributeValue`](#attributevalue)
+- <span id="fileentry-source"></span>`fn source(&self) -> Option<AttributeValue<R, Offset>>` — [`AttributeValue`](#attributevalue)
 
 #### Trait Implementations
 
 ##### `impl<R, Offset> Clone for FileEntry<R, Offset>`
 
-- `fn clone(self: &Self) -> FileEntry<R, Offset>` — [`FileEntry`](#fileentry)
+- <span id="fileentry-clone"></span>`fn clone(&self) -> FileEntry<R, Offset>` — [`FileEntry`](#fileentry)
 
 ##### `impl<R, Offset> Copy for FileEntry<R, Offset>`
 
 ##### `impl<R, Offset> Debug for FileEntry<R, Offset>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="fileentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, Offset> Eq for FileEntry<R, Offset>`
 
 ##### `impl<R, Offset> PartialEq for FileEntry<R, Offset>`
 
-- `fn eq(self: &Self, other: &FileEntry<R, Offset>) -> bool` — [`FileEntry`](#fileentry)
+- <span id="fileentry-eq"></span>`fn eq(&self, other: &FileEntry<R, Offset>) -> bool` — [`FileEntry`](#fileentry)
 
 ##### `impl<R, Offset> StructuralPartialEq for FileEntry<R, Offset>`
 
@@ -3827,25 +4244,25 @@ The format of a component of an include directory or file name entry.
 
 #### Implementations
 
-- `fn parse<R: Reader>(input: &mut R) -> Result<Vec<FileEntryFormat>>` — [`Result`](../index.md), [`FileEntryFormat`](#fileentryformat)
+- <span id="fileentryformat-parse"></span>`fn parse<R: Reader>(input: &mut R) -> Result<Vec<FileEntryFormat>>` — [`Result`](../index.md), [`FileEntryFormat`](#fileentryformat)
 
 #### Trait Implementations
 
 ##### `impl Clone for FileEntryFormat`
 
-- `fn clone(self: &Self) -> FileEntryFormat` — [`FileEntryFormat`](#fileentryformat)
+- <span id="fileentryformat-clone"></span>`fn clone(&self) -> FileEntryFormat` — [`FileEntryFormat`](#fileentryformat)
 
 ##### `impl Copy for FileEntryFormat`
 
 ##### `impl Debug for FileEntryFormat`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="fileentryformat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for FileEntryFormat`
 
 ##### `impl PartialEq for FileEntryFormat`
 
-- `fn eq(self: &Self, other: &FileEntryFormat) -> bool` — [`FileEntryFormat`](#fileentryformat)
+- <span id="fileentryformat-eq"></span>`fn eq(&self, other: &FileEntryFormat) -> bool` — [`FileEntryFormat`](#fileentryformat)
 
 ##### `impl StructuralPartialEq for FileEntryFormat`
 
@@ -3861,29 +4278,29 @@ The raw contents of the `.debug_loc` section.
 
 #### Implementations
 
-- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugLoc<R>` — [`DebugLoc`](#debugloc)
+- <span id="debugloc-new"></span>`fn new(section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone> Clone for DebugLoc<R>`
+##### `impl<R: clone::Clone> Clone for DebugLoc<R>`
 
-- `fn clone(self: &Self) -> DebugLoc<R>` — [`DebugLoc`](#debugloc)
+- <span id="debugloc-clone"></span>`fn clone(&self) -> DebugLoc<R>` — [`DebugLoc`](#debugloc)
 
-##### `impl<R: $crate::marker::Copy> Copy for DebugLoc<R>`
+##### `impl<R: marker::Copy> Copy for DebugLoc<R>`
 
-##### `impl<R: $crate::fmt::Debug> Debug for DebugLoc<R>`
+##### `impl<R: fmt::Debug> Debug for DebugLoc<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugloc-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::default::Default> Default for DebugLoc<R>`
+##### `impl<R: default::Default> Default for DebugLoc<R>`
 
-- `fn default() -> DebugLoc<R>` — [`DebugLoc`](#debugloc)
+- <span id="debugloc-default"></span>`fn default() -> DebugLoc<R>` — [`DebugLoc`](#debugloc)
 
 ##### `impl<R> Section for DebugLoc<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../index.md)
+- <span id="debugloc-id"></span>`fn id() -> SectionId` — [`SectionId`](../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="debugloc-reader"></span>`fn reader(&self) -> &R`
 
 ### `DebugLocLists<R>`
 
@@ -3898,29 +4315,29 @@ found in the `.debug_loclists` section.
 
 #### Implementations
 
-- `fn new(section: &'input [u8], endian: Endian) -> Self`
+- <span id="debugloclists-borrow"></span>`fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugLocLists<R>` — [`DebugLocLists`](#debugloclists)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone> Clone for DebugLocLists<R>`
+##### `impl<R: clone::Clone> Clone for DebugLocLists<R>`
 
-- `fn clone(self: &Self) -> DebugLocLists<R>` — [`DebugLocLists`](#debugloclists)
+- <span id="debugloclists-clone"></span>`fn clone(&self) -> DebugLocLists<R>` — [`DebugLocLists`](#debugloclists)
 
-##### `impl<R: $crate::marker::Copy> Copy for DebugLocLists<R>`
+##### `impl<R: marker::Copy> Copy for DebugLocLists<R>`
 
-##### `impl<R: $crate::fmt::Debug> Debug for DebugLocLists<R>`
+##### `impl<R: fmt::Debug> Debug for DebugLocLists<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugloclists-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::default::Default> Default for DebugLocLists<R>`
+##### `impl<R: default::Default> Default for DebugLocLists<R>`
 
-- `fn default() -> DebugLocLists<R>` — [`DebugLocLists`](#debugloclists)
+- <span id="debugloclists-default"></span>`fn default() -> DebugLocLists<R>` — [`DebugLocLists`](#debugloclists)
 
 ##### `impl<R> Section for DebugLocLists<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../index.md)
+- <span id="debugloclists-id"></span>`fn id() -> SectionId` — [`SectionId`](../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="debugloclists-reader"></span>`fn reader(&self) -> &R`
 
 ### `LocationLists<R>`
 
@@ -3935,23 +4352,33 @@ The DWARF data found in `.debug_loc` and `.debug_loclists` sections.
 
 #### Implementations
 
-- `fn new(debug_loc: DebugLoc<R>, debug_loclists: DebugLocLists<R>) -> LocationLists<R>` — [`DebugLoc`](#debugloc), [`DebugLocLists`](#debugloclists), [`LocationLists`](#locationlists)
+- <span id="locationlists-locations"></span>`fn locations(&self, offset: LocationListsOffset<<R as >::Offset>, unit_encoding: Encoding, base_address: u64, debug_addr: &DebugAddr<R>, debug_addr_base: DebugAddrBase<<R as >::Offset>) -> Result<LocListIter<R>>` — [`LocationListsOffset`](../index.md), [`Reader`](#reader), [`Encoding`](../index.md), [`DebugAddr`](#debugaddr), [`DebugAddrBase`](../index.md), [`Result`](../index.md), [`LocListIter`](#loclistiter)
+
+- <span id="locationlists-locations-dwo"></span>`fn locations_dwo(&self, offset: LocationListsOffset<<R as >::Offset>, unit_encoding: Encoding, base_address: u64, debug_addr: &DebugAddr<R>, debug_addr_base: DebugAddrBase<<R as >::Offset>) -> Result<LocListIter<R>>` — [`LocationListsOffset`](../index.md), [`Reader`](#reader), [`Encoding`](../index.md), [`DebugAddr`](#debugaddr), [`DebugAddrBase`](../index.md), [`Result`](../index.md), [`LocListIter`](#loclistiter)
+
+- <span id="locationlists-raw-locations"></span>`fn raw_locations(&self, offset: LocationListsOffset<<R as >::Offset>, unit_encoding: Encoding) -> Result<RawLocListIter<R>>` — [`LocationListsOffset`](../index.md), [`Reader`](#reader), [`Encoding`](../index.md), [`Result`](../index.md), [`RawLocListIter`](#rawloclistiter)
+
+- <span id="locationlists-raw-locations-dwo"></span>`fn raw_locations_dwo(&self, offset: LocationListsOffset<<R as >::Offset>, unit_encoding: Encoding) -> Result<RawLocListIter<R>>` — [`LocationListsOffset`](../index.md), [`Reader`](#reader), [`Encoding`](../index.md), [`Result`](../index.md), [`RawLocListIter`](#rawloclistiter)
+
+- <span id="locationlists-get-offset"></span>`fn get_offset(&self, unit_encoding: Encoding, base: DebugLocListsBase<<R as >::Offset>, index: DebugLocListsIndex<<R as >::Offset>) -> Result<LocationListsOffset<<R as >::Offset>>` — [`Encoding`](../index.md), [`DebugLocListsBase`](../index.md), [`Reader`](#reader), [`DebugLocListsIndex`](../index.md), [`Result`](../index.md), [`LocationListsOffset`](../index.md)
+
+- <span id="locationlists-lookup-offset-id"></span>`fn lookup_offset_id(&self, id: ReaderOffsetId) -> Option<(SectionId, <R as >::Offset)>` — [`ReaderOffsetId`](#readeroffsetid), [`SectionId`](../index.md), [`Reader`](#reader)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone> Clone for LocationLists<R>`
+##### `impl<R: clone::Clone> Clone for LocationLists<R>`
 
-- `fn clone(self: &Self) -> LocationLists<R>` — [`LocationLists`](#locationlists)
+- <span id="locationlists-clone"></span>`fn clone(&self) -> LocationLists<R>` — [`LocationLists`](#locationlists)
 
-##### `impl<R: $crate::marker::Copy> Copy for LocationLists<R>`
+##### `impl<R: marker::Copy> Copy for LocationLists<R>`
 
-##### `impl<R: $crate::fmt::Debug> Debug for LocationLists<R>`
+##### `impl<R: fmt::Debug> Debug for LocationLists<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="locationlists-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::default::Default> Default for LocationLists<R>`
+##### `impl<R: default::Default> Default for LocationLists<R>`
 
-- `fn default() -> LocationLists<R>` — [`LocationLists`](#locationlists)
+- <span id="locationlists-default"></span>`fn default() -> LocationLists<R>` — [`LocationLists`](#locationlists)
 
 ### `RawLocListIter<R: Reader>`
 
@@ -3970,15 +4397,15 @@ such as handling base addresses.
 
 #### Implementations
 
-- `fn new(input: R, encoding: Encoding, format: LocListsFormat) -> RawLocListIter<R>` — [`Encoding`](../index.md), [`LocListsFormat`](loclists/index.md), [`RawLocListIter`](#rawloclistiter)
+- <span id="rawloclistiter-new"></span>`fn new(input: R, encoding: Encoding, format: LocListsFormat) -> RawLocListIter<R>` — [`Encoding`](../index.md), [`LocListsFormat`](loclists/index.md), [`RawLocListIter`](#rawloclistiter)
 
-- `fn next(self: &mut Self) -> Result<Option<RawLocListEntry<R>>>` — [`Result`](../index.md), [`RawLocListEntry`](#rawloclistentry)
+- <span id="rawloclistiter-next"></span>`fn next(&mut self) -> Result<Option<RawLocListEntry<R>>>` — [`Result`](../index.md), [`RawLocListEntry`](#rawloclistentry)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for RawLocListIter<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for RawLocListIter<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rawloclistiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `LocListIter<R: Reader>`
 
@@ -3999,17 +4426,17 @@ and already adjusted for the base address.
 
 #### Implementations
 
-- `fn new(raw: RawLocListIter<R>, base_address: u64, debug_addr: DebugAddr<R>, debug_addr_base: DebugAddrBase<<R as >::Offset>) -> LocListIter<R>` — [`RawLocListIter`](#rawloclistiter), [`DebugAddr`](#debugaddr), [`DebugAddrBase`](../index.md), [`Reader`](#reader), [`LocListIter`](#loclistiter)
+- <span id="loclistiter-new"></span>`fn new(raw: RawLocListIter<R>, base_address: u64, debug_addr: DebugAddr<R>, debug_addr_base: DebugAddrBase<<R as >::Offset>) -> LocListIter<R>` — [`RawLocListIter`](#rawloclistiter), [`DebugAddr`](#debugaddr), [`DebugAddrBase`](../index.md), [`Reader`](#reader), [`LocListIter`](#loclistiter)
 
-- `fn get_address(self: &Self, index: DebugAddrIndex<<R as >::Offset>) -> Result<u64>` — [`DebugAddrIndex`](../index.md), [`Reader`](#reader), [`Result`](../index.md)
+- <span id="loclistiter-get-address"></span>`fn get_address(&self, index: DebugAddrIndex<<R as >::Offset>) -> Result<u64>` — [`DebugAddrIndex`](../index.md), [`Reader`](#reader), [`Result`](../index.md)
 
-- `fn next(self: &mut Self) -> Result<Option<LocationListEntry<R>>>` — [`Result`](../index.md), [`LocationListEntry`](#locationlistentry)
+- <span id="loclistiter-next"></span>`fn next(&mut self) -> Result<Option<LocationListEntry<R>>>` — [`Result`](../index.md), [`LocationListEntry`](#locationlistentry)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for LocListIter<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for LocListIter<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="loclistiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `LocationListEntry<R: Reader>`
 
@@ -4034,25 +4461,25 @@ A location list entry from the `.debug_loc` or `.debug_loclists` sections.
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for LocationListEntry<R>`
+##### `impl<R: clone::Clone + Reader> Clone for LocationListEntry<R>`
 
-- `fn clone(self: &Self) -> LocationListEntry<R>` — [`LocationListEntry`](#locationlistentry)
+- <span id="locationlistentry-clone"></span>`fn clone(&self) -> LocationListEntry<R>` — [`LocationListEntry`](#locationlistentry)
 
-##### `impl<R: $crate::marker::Copy + Reader> Copy for LocationListEntry<R>`
+##### `impl<R: marker::Copy + Reader> Copy for LocationListEntry<R>`
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for LocationListEntry<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for LocationListEntry<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="locationlistentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::cmp::Eq + Reader> Eq for LocationListEntry<R>`
+##### `impl<R: cmp::Eq + Reader> Eq for LocationListEntry<R>`
 
-##### `impl<R: $crate::hash::Hash + Reader> Hash for LocationListEntry<R>`
+##### `impl<R: hash::Hash + Reader> Hash for LocationListEntry<R>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="locationlistentry-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<R: $crate::cmp::PartialEq + Reader> PartialEq for LocationListEntry<R>`
+##### `impl<R: cmp::PartialEq + Reader> PartialEq for LocationListEntry<R>`
 
-- `fn eq(self: &Self, other: &LocationListEntry<R>) -> bool` — [`LocationListEntry`](#locationlistentry)
+- <span id="locationlistentry-eq"></span>`fn eq(&self, other: &LocationListEntry<R>) -> bool` — [`LocationListEntry`](#locationlistentry)
 
 ##### `impl<R: Reader> StructuralPartialEq for LocationListEntry<R>`
 
@@ -4068,29 +4495,29 @@ The raw contents of the `.debug_macinfo` section.
 
 #### Implementations
 
-- `fn get_macinfo(self: &Self, offset: DebugMacinfoOffset<<R as >::Offset>) -> Result<MacroIter<R>>` — [`DebugMacinfoOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`MacroIter`](#macroiter)
+- <span id="debugmacinfo-get-macinfo"></span>`fn get_macinfo(&self, offset: DebugMacinfoOffset<<R as >::Offset>) -> Result<MacroIter<R>>` — [`DebugMacinfoOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`MacroIter`](#macroiter)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone> Clone for DebugMacinfo<R>`
+##### `impl<R: clone::Clone> Clone for DebugMacinfo<R>`
 
-- `fn clone(self: &Self) -> DebugMacinfo<R>` — [`DebugMacinfo`](#debugmacinfo)
+- <span id="debugmacinfo-clone"></span>`fn clone(&self) -> DebugMacinfo<R>` — [`DebugMacinfo`](#debugmacinfo)
 
-##### `impl<R: $crate::marker::Copy> Copy for DebugMacinfo<R>`
+##### `impl<R: marker::Copy> Copy for DebugMacinfo<R>`
 
-##### `impl<R: $crate::fmt::Debug> Debug for DebugMacinfo<R>`
+##### `impl<R: fmt::Debug> Debug for DebugMacinfo<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugmacinfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::default::Default> Default for DebugMacinfo<R>`
+##### `impl<R: default::Default> Default for DebugMacinfo<R>`
 
-- `fn default() -> DebugMacinfo<R>` — [`DebugMacinfo`](#debugmacinfo)
+- <span id="debugmacinfo-default"></span>`fn default() -> DebugMacinfo<R>` — [`DebugMacinfo`](#debugmacinfo)
 
 ##### `impl<R> Section for DebugMacinfo<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../index.md)
+- <span id="debugmacinfo-id"></span>`fn id() -> SectionId` — [`SectionId`](../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="debugmacinfo-reader"></span>`fn reader(&self) -> &R`
 
 ### `DebugMacro<R>`
 
@@ -4104,29 +4531,29 @@ The raw contents of the `.debug_macro` section.
 
 #### Implementations
 
-- `fn new(macro_section: &'input [u8], endian: Endian) -> Self`
+- <span id="debugmacro-get-macros"></span>`fn get_macros(&self, offset: DebugMacroOffset<<R as >::Offset>) -> Result<MacroIter<R>>` — [`DebugMacroOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`MacroIter`](#macroiter)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone> Clone for DebugMacro<R>`
+##### `impl<R: clone::Clone> Clone for DebugMacro<R>`
 
-- `fn clone(self: &Self) -> DebugMacro<R>` — [`DebugMacro`](#debugmacro)
+- <span id="debugmacro-clone"></span>`fn clone(&self) -> DebugMacro<R>` — [`DebugMacro`](#debugmacro)
 
-##### `impl<R: $crate::marker::Copy> Copy for DebugMacro<R>`
+##### `impl<R: marker::Copy> Copy for DebugMacro<R>`
 
-##### `impl<R: $crate::fmt::Debug> Debug for DebugMacro<R>`
+##### `impl<R: fmt::Debug> Debug for DebugMacro<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugmacro-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::default::Default> Default for DebugMacro<R>`
+##### `impl<R: default::Default> Default for DebugMacro<R>`
 
-- `fn default() -> DebugMacro<R>` — [`DebugMacro`](#debugmacro)
+- <span id="debugmacro-default"></span>`fn default() -> DebugMacro<R>` — [`DebugMacro`](#debugmacro)
 
 ##### `impl<R> Section for DebugMacro<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../index.md)
+- <span id="debugmacro-id"></span>`fn id() -> SectionId` — [`SectionId`](../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="debugmacro-reader"></span>`fn reader(&self) -> &R`
 
 ### `MacroUnitHeader<R: Reader>`
 
@@ -4146,25 +4573,25 @@ struct MacroUnitHeader<R: Reader> {
 
 #### Implementations
 
-- `const OFFSET_SIZE_FLAG: u8`
+- <span id="macrounitheader-offset-size-flag"></span>`const OFFSET_SIZE_FLAG: u8`
 
-- `const DEBUG_LINE_OFFSET_FLAG: u8`
+- <span id="macrounitheader-debug-line-offset-flag"></span>`const DEBUG_LINE_OFFSET_FLAG: u8`
 
-- `const OPCODE_OPERANDS_TABLE_FLAG: u8`
+- <span id="macrounitheader-opcode-operands-table-flag"></span>`const OPCODE_OPERANDS_TABLE_FLAG: u8`
 
-- `fn parse(input: &mut R) -> Result<Self>` — [`Result`](../index.md)
+- <span id="macrounitheader-parse"></span>`fn parse(input: &mut R) -> Result<Self>` — [`Result`](../index.md)
 
-- `fn format(self: &Self) -> Format` — [`Format`](../index.md)
+- <span id="macrounitheader-format"></span>`fn format(&self) -> Format` — [`Format`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for MacroUnitHeader<R>`
+##### `impl<R: clone::Clone + Reader> Clone for MacroUnitHeader<R>`
 
-- `fn clone(self: &Self) -> MacroUnitHeader<R>` — [`MacroUnitHeader`](macros/index.md)
+- <span id="macrounitheader-clone"></span>`fn clone(&self) -> MacroUnitHeader<R>` — [`MacroUnitHeader`](macros/index.md)
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for MacroUnitHeader<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for MacroUnitHeader<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="macrounitheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `MacroIter<R: Reader>`
 
@@ -4180,17 +4607,17 @@ Iterator over the entries in the `.debug_macro` section.
 
 #### Implementations
 
-- `fn next(self: &mut Self) -> Result<Option<MacroEntry<R>>>` — [`Result`](../index.md), [`MacroEntry`](#macroentry)
+- <span id="macroiter-next"></span>`fn next(&mut self) -> Result<Option<MacroEntry<R>>>` — [`Result`](../index.md), [`MacroEntry`](#macroentry)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for MacroIter<R>`
+##### `impl<R: clone::Clone + Reader> Clone for MacroIter<R>`
 
-- `fn clone(self: &Self) -> MacroIter<R>` — [`MacroIter`](#macroiter)
+- <span id="macroiter-clone"></span>`fn clone(&self) -> MacroIter<R>` — [`MacroIter`](#macroiter)
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for MacroIter<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for MacroIter<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="macroiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Piece<R, Offset>`
 
@@ -4237,17 +4664,17 @@ expression.
 
 ##### `impl<R, Offset> Clone for Piece<R, Offset>`
 
-- `fn clone(self: &Self) -> Piece<R, Offset>` — [`Piece`](#piece)
+- <span id="piece-clone"></span>`fn clone(&self) -> Piece<R, Offset>` — [`Piece`](#piece)
 
 ##### `impl<R, Offset> Copy for Piece<R, Offset>`
 
 ##### `impl<R, Offset> Debug for Piece<R, Offset>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="piece-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, Offset> PartialEq for Piece<R, Offset>`
 
-- `fn eq(self: &Self, other: &Piece<R, Offset>) -> bool` — [`Piece`](#piece)
+- <span id="piece-eq"></span>`fn eq(&self, other: &Piece<R, Offset>) -> bool` — [`Piece`](#piece)
 
 ##### `impl<R, Offset> StructuralPartialEq for Piece<R, Offset>`
 
@@ -4261,31 +4688,31 @@ The bytecode for a DWARF expression or location description.
 
 #### Implementations
 
-- `fn evaluation(self: Self, encoding: Encoding) -> Evaluation<R>` — [`Encoding`](../index.md), [`Evaluation`](#evaluation)
+- <span id="expression-evaluation"></span>`fn evaluation(self, encoding: Encoding) -> Evaluation<R>` — [`Encoding`](../index.md), [`Evaluation`](#evaluation)
 
-- `fn operations(self: Self, encoding: Encoding) -> OperationIter<R>` — [`Encoding`](../index.md), [`OperationIter`](#operationiter)
+- <span id="expression-operations"></span>`fn operations(self, encoding: Encoding) -> OperationIter<R>` — [`Encoding`](../index.md), [`OperationIter`](#operationiter)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for Expression<R>`
+##### `impl<R: clone::Clone + Reader> Clone for Expression<R>`
 
-- `fn clone(self: &Self) -> Expression<R>` — [`Expression`](#expression)
+- <span id="expression-clone"></span>`fn clone(&self) -> Expression<R>` — [`Expression`](#expression)
 
-##### `impl<R: $crate::marker::Copy + Reader> Copy for Expression<R>`
+##### `impl<R: marker::Copy + Reader> Copy for Expression<R>`
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for Expression<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for Expression<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="expression-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::cmp::Eq + Reader> Eq for Expression<R>`
+##### `impl<R: cmp::Eq + Reader> Eq for Expression<R>`
 
-##### `impl<R: $crate::hash::Hash + Reader> Hash for Expression<R>`
+##### `impl<R: hash::Hash + Reader> Hash for Expression<R>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="expression-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<R: $crate::cmp::PartialEq + Reader> PartialEq for Expression<R>`
+##### `impl<R: cmp::PartialEq + Reader> PartialEq for Expression<R>`
 
-- `fn eq(self: &Self, other: &Expression<R>) -> bool` — [`Expression`](#expression)
+- <span id="expression-eq"></span>`fn eq(&self, other: &Expression<R>) -> bool` — [`Expression`](#expression)
 
 ##### `impl<R: Reader> StructuralPartialEq for Expression<R>`
 
@@ -4302,21 +4729,21 @@ An iterator for the operations in an expression.
 
 #### Implementations
 
-- `fn next(self: &mut Self) -> Result<Option<Operation<R>>>` — [`Result`](../index.md), [`Operation`](#operation)
+- <span id="operationiter-next"></span>`fn next(&mut self) -> Result<Option<Operation<R>>>` — [`Result`](../index.md), [`Operation`](#operation)
 
-- `fn offset_from(self: &Self, expression: &Expression<R>) -> <R as >::Offset` — [`Expression`](#expression), [`Reader`](#reader)
+- <span id="operationiter-offset-from"></span>`fn offset_from(&self, expression: &Expression<R>) -> <R as >::Offset` — [`Expression`](#expression), [`Reader`](#reader)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for OperationIter<R>`
+##### `impl<R: clone::Clone + Reader> Clone for OperationIter<R>`
 
-- `fn clone(self: &Self) -> OperationIter<R>` — [`OperationIter`](#operationiter)
+- <span id="operationiter-clone"></span>`fn clone(&self) -> OperationIter<R>` — [`OperationIter`](#operationiter)
 
-##### `impl<R: $crate::marker::Copy + Reader> Copy for OperationIter<R>`
+##### `impl<R: marker::Copy + Reader> Copy for OperationIter<R>`
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for OperationIter<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for OperationIter<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="operationiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Evaluation<R: Reader, S: EvaluationStorage<R>>`
 
@@ -4385,57 +4812,15 @@ println!("{:?}", result);
 
 #### Implementations
 
-- `fn new_in(bytecode: R, encoding: Encoding) -> Self` — [`Encoding`](../index.md)
+- <span id="evaluation-new"></span>`fn new(bytecode: R, encoding: Encoding) -> Self` — [`Encoding`](../index.md)
 
-- `fn set_initial_value(self: &mut Self, value: u64)`
-
-- `fn set_object_address(self: &mut Self, value: u64)`
-
-- `fn set_max_iterations(self: &mut Self, value: u32)`
-
-- `fn pop(self: &mut Self) -> Result<Value>` — [`Result`](../index.md), [`Value`](#value)
-
-- `fn push(self: &mut Self, value: Value) -> Result<()>` — [`Value`](#value), [`Result`](../index.md)
-
-- `fn evaluate_one_operation(self: &mut Self) -> Result<OperationEvaluationResult<R>>` — [`Result`](../index.md), [`OperationEvaluationResult`](op/index.md)
-
-- `fn value_result(self: &Self) -> Option<Value>` — [`Value`](#value)
-
-- `fn as_result(self: &Self) -> &[Piece<R>]` — [`Piece`](#piece)
-
-- `fn evaluate(self: &mut Self) -> Result<EvaluationResult<R>>` — [`Result`](../index.md), [`EvaluationResult`](#evaluationresult)
-
-- `fn resume_with_memory(self: &mut Self, value: Value) -> Result<EvaluationResult<R>>` — [`Value`](#value), [`Result`](../index.md), [`EvaluationResult`](#evaluationresult)
-
-- `fn resume_with_register(self: &mut Self, value: Value) -> Result<EvaluationResult<R>>` — [`Value`](#value), [`Result`](../index.md), [`EvaluationResult`](#evaluationresult)
-
-- `fn resume_with_frame_base(self: &mut Self, frame_base: u64) -> Result<EvaluationResult<R>>` — [`Result`](../index.md), [`EvaluationResult`](#evaluationresult)
-
-- `fn resume_with_tls(self: &mut Self, value: u64) -> Result<EvaluationResult<R>>` — [`Result`](../index.md), [`EvaluationResult`](#evaluationresult)
-
-- `fn resume_with_call_frame_cfa(self: &mut Self, cfa: u64) -> Result<EvaluationResult<R>>` — [`Result`](../index.md), [`EvaluationResult`](#evaluationresult)
-
-- `fn resume_with_at_location(self: &mut Self, bytes: R) -> Result<EvaluationResult<R>>` — [`Result`](../index.md), [`EvaluationResult`](#evaluationresult)
-
-- `fn resume_with_entry_value(self: &mut Self, entry_value: Value) -> Result<EvaluationResult<R>>` — [`Value`](#value), [`Result`](../index.md), [`EvaluationResult`](#evaluationresult)
-
-- `fn resume_with_parameter_ref(self: &mut Self, parameter_value: u64) -> Result<EvaluationResult<R>>` — [`Result`](../index.md), [`EvaluationResult`](#evaluationresult)
-
-- `fn resume_with_relocated_address(self: &mut Self, address: u64) -> Result<EvaluationResult<R>>` — [`Result`](../index.md), [`EvaluationResult`](#evaluationresult)
-
-- `fn resume_with_indexed_address(self: &mut Self, address: u64) -> Result<EvaluationResult<R>>` — [`Result`](../index.md), [`EvaluationResult`](#evaluationresult)
-
-- `fn resume_with_base_type(self: &mut Self, base_type: ValueType) -> Result<EvaluationResult<R>>` — [`ValueType`](#valuetype), [`Result`](../index.md), [`EvaluationResult`](#evaluationresult)
-
-- `fn end_of_expression(self: &mut Self) -> bool`
-
-- `fn evaluate_internal(self: &mut Self) -> Result<EvaluationResult<R>>` — [`Result`](../index.md), [`EvaluationResult`](#evaluationresult)
+- <span id="evaluation-result"></span>`fn result(self) -> Vec<Piece<R>>` — [`Piece`](#piece)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::fmt::Debug + Reader, S: $crate::fmt::Debug + EvaluationStorage<R>> Debug for Evaluation<R, S>`
+##### `impl<R: fmt::Debug + Reader, S: fmt::Debug + EvaluationStorage<R>> Debug for Evaluation<R, S>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="evaluation-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `PubNamesEntry<R: Reader>`
 
@@ -4451,25 +4836,25 @@ A single parsed pubname.
 
 #### Implementations
 
-- `fn name(self: &Self) -> &R`
+- <span id="pubnamesentry-name"></span>`fn name(&self) -> &R`
 
-- `fn unit_header_offset(self: &Self) -> DebugInfoOffset<<R as >::Offset>` — [`DebugInfoOffset`](../index.md), [`Reader`](#reader)
+- <span id="pubnamesentry-unit-header-offset"></span>`fn unit_header_offset(&self) -> DebugInfoOffset<<R as >::Offset>` — [`DebugInfoOffset`](../index.md), [`Reader`](#reader)
 
-- `fn die_offset(self: &Self) -> UnitOffset<<R as >::Offset>` — [`UnitOffset`](../index.md), [`Reader`](#reader)
+- <span id="pubnamesentry-die-offset"></span>`fn die_offset(&self) -> UnitOffset<<R as >::Offset>` — [`UnitOffset`](../index.md), [`Reader`](#reader)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for PubNamesEntry<R>`
+##### `impl<R: clone::Clone + Reader> Clone for PubNamesEntry<R>`
 
-- `fn clone(self: &Self) -> PubNamesEntry<R>` — [`PubNamesEntry`](#pubnamesentry)
+- <span id="pubnamesentry-clone"></span>`fn clone(&self) -> PubNamesEntry<R>` — [`PubNamesEntry`](#pubnamesentry)
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for PubNamesEntry<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for PubNamesEntry<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pubnamesentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R: Reader> PubStuffEntry for PubNamesEntry<R>`
 
-- `fn new(die_offset: UnitOffset<<R as >::Offset>, name: R, unit_header_offset: DebugInfoOffset<<R as >::Offset>) -> Self` — [`UnitOffset`](../index.md), [`Reader`](#reader), [`DebugInfoOffset`](../index.md)
+- <span id="pubnamesentry-new"></span>`fn new(die_offset: UnitOffset<<R as >::Offset>, name: R, unit_header_offset: DebugInfoOffset<<R as >::Offset>) -> Self` — [`UnitOffset`](../index.md), [`Reader`](#reader), [`DebugInfoOffset`](../index.md)
 
 ### `DebugPubNames<R: Reader>`
 
@@ -4482,23 +4867,23 @@ found in the `.debug_pubnames` section.
 
 #### Implementations
 
-- `fn new(debug_pubnames_section: &'input [u8], endian: Endian) -> Self`
+- <span id="debugpubnames-items"></span>`fn items(&self) -> PubNamesEntryIter<R>` — [`PubNamesEntryIter`](#pubnamesentryiter)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for DebugPubNames<R>`
+##### `impl<R: clone::Clone + Reader> Clone for DebugPubNames<R>`
 
-- `fn clone(self: &Self) -> DebugPubNames<R>` — [`DebugPubNames`](#debugpubnames)
+- <span id="debugpubnames-clone"></span>`fn clone(&self) -> DebugPubNames<R>` — [`DebugPubNames`](#debugpubnames)
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for DebugPubNames<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for DebugPubNames<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugpubnames-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R: Reader> Section for DebugPubNames<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../index.md)
+- <span id="debugpubnames-id"></span>`fn id() -> SectionId` — [`SectionId`](../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="debugpubnames-reader"></span>`fn reader(&self) -> &R`
 
 ### `PubNamesEntryIter<R: Reader>`
 
@@ -4513,17 +4898,17 @@ Can be [used with
 
 #### Implementations
 
-- `fn next(self: &mut Self) -> Result<Option<PubNamesEntry<R>>>` — [`Result`](../index.md), [`PubNamesEntry`](#pubnamesentry)
+- <span id="pubnamesentryiter-next"></span>`fn next(&mut self) -> Result<Option<PubNamesEntry<R>>>` — [`Result`](../index.md), [`PubNamesEntry`](#pubnamesentry)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for PubNamesEntryIter<R>`
+##### `impl<R: clone::Clone + Reader> Clone for PubNamesEntryIter<R>`
 
-- `fn clone(self: &Self) -> PubNamesEntryIter<R>` — [`PubNamesEntryIter`](#pubnamesentryiter)
+- <span id="pubnamesentryiter-clone"></span>`fn clone(&self) -> PubNamesEntryIter<R>` — [`PubNamesEntryIter`](#pubnamesentryiter)
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for PubNamesEntryIter<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for PubNamesEntryIter<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pubnamesentryiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `PubTypesEntry<R: Reader>`
 
@@ -4539,25 +4924,25 @@ A single parsed pubtype.
 
 #### Implementations
 
-- `fn name(self: &Self) -> &R`
+- <span id="pubtypesentry-name"></span>`fn name(&self) -> &R`
 
-- `fn unit_header_offset(self: &Self) -> DebugInfoOffset<<R as >::Offset>` — [`DebugInfoOffset`](../index.md), [`Reader`](#reader)
+- <span id="pubtypesentry-unit-header-offset"></span>`fn unit_header_offset(&self) -> DebugInfoOffset<<R as >::Offset>` — [`DebugInfoOffset`](../index.md), [`Reader`](#reader)
 
-- `fn die_offset(self: &Self) -> UnitOffset<<R as >::Offset>` — [`UnitOffset`](../index.md), [`Reader`](#reader)
+- <span id="pubtypesentry-die-offset"></span>`fn die_offset(&self) -> UnitOffset<<R as >::Offset>` — [`UnitOffset`](../index.md), [`Reader`](#reader)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for PubTypesEntry<R>`
+##### `impl<R: clone::Clone + Reader> Clone for PubTypesEntry<R>`
 
-- `fn clone(self: &Self) -> PubTypesEntry<R>` — [`PubTypesEntry`](#pubtypesentry)
+- <span id="pubtypesentry-clone"></span>`fn clone(&self) -> PubTypesEntry<R>` — [`PubTypesEntry`](#pubtypesentry)
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for PubTypesEntry<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for PubTypesEntry<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pubtypesentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R: Reader> PubStuffEntry for PubTypesEntry<R>`
 
-- `fn new(die_offset: UnitOffset<<R as >::Offset>, name: R, unit_header_offset: DebugInfoOffset<<R as >::Offset>) -> Self` — [`UnitOffset`](../index.md), [`Reader`](#reader), [`DebugInfoOffset`](../index.md)
+- <span id="pubtypesentry-new"></span>`fn new(die_offset: UnitOffset<<R as >::Offset>, name: R, unit_header_offset: DebugInfoOffset<<R as >::Offset>) -> Self` — [`UnitOffset`](../index.md), [`Reader`](#reader), [`DebugInfoOffset`](../index.md)
 
 ### `DebugPubTypes<R: Reader>`
 
@@ -4570,23 +4955,23 @@ found in the `.debug_info` section.
 
 #### Implementations
 
-- `fn new(debug_pubtypes_section: &'input [u8], endian: Endian) -> Self`
+- <span id="debugpubtypes-new"></span>`fn new(debug_pubtypes_section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for DebugPubTypes<R>`
+##### `impl<R: clone::Clone + Reader> Clone for DebugPubTypes<R>`
 
-- `fn clone(self: &Self) -> DebugPubTypes<R>` — [`DebugPubTypes`](#debugpubtypes)
+- <span id="debugpubtypes-clone"></span>`fn clone(&self) -> DebugPubTypes<R>` — [`DebugPubTypes`](#debugpubtypes)
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for DebugPubTypes<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for DebugPubTypes<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugpubtypes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R: Reader> Section for DebugPubTypes<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../index.md)
+- <span id="debugpubtypes-id"></span>`fn id() -> SectionId` — [`SectionId`](../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="debugpubtypes-reader"></span>`fn reader(&self) -> &R`
 
 ### `PubTypesEntryIter<R: Reader>`
 
@@ -4601,17 +4986,17 @@ Can be [used with
 
 #### Implementations
 
-- `fn next(self: &mut Self) -> Result<Option<PubTypesEntry<R>>>` — [`Result`](../index.md), [`PubTypesEntry`](#pubtypesentry)
+- <span id="pubtypesentryiter-next"></span>`fn next(&mut self) -> Result<Option<PubTypesEntry<R>>>` — [`Result`](../index.md), [`PubTypesEntry`](#pubtypesentry)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for PubTypesEntryIter<R>`
+##### `impl<R: clone::Clone + Reader> Clone for PubTypesEntryIter<R>`
 
-- `fn clone(self: &Self) -> PubTypesEntryIter<R>` — [`PubTypesEntryIter`](#pubtypesentryiter)
+- <span id="pubtypesentryiter-clone"></span>`fn clone(&self) -> PubTypesEntryIter<R>` — [`PubTypesEntryIter`](#pubtypesentryiter)
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for PubTypesEntryIter<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for PubTypesEntryIter<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pubtypesentryiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `DebugRanges<R>`
 
@@ -4625,29 +5010,29 @@ The raw contents of the `.debug_ranges` section.
 
 #### Implementations
 
-- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugRanges<R>` — [`DebugRanges`](#debugranges)
+- <span id="debugranges-new"></span>`fn new(section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone> Clone for DebugRanges<R>`
+##### `impl<R: clone::Clone> Clone for DebugRanges<R>`
 
-- `fn clone(self: &Self) -> DebugRanges<R>` — [`DebugRanges`](#debugranges)
+- <span id="debugranges-clone"></span>`fn clone(&self) -> DebugRanges<R>` — [`DebugRanges`](#debugranges)
 
-##### `impl<R: $crate::marker::Copy> Copy for DebugRanges<R>`
+##### `impl<R: marker::Copy> Copy for DebugRanges<R>`
 
-##### `impl<R: $crate::fmt::Debug> Debug for DebugRanges<R>`
+##### `impl<R: fmt::Debug> Debug for DebugRanges<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugranges-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::default::Default> Default for DebugRanges<R>`
+##### `impl<R: default::Default> Default for DebugRanges<R>`
 
-- `fn default() -> DebugRanges<R>` — [`DebugRanges`](#debugranges)
+- <span id="debugranges-default"></span>`fn default() -> DebugRanges<R>` — [`DebugRanges`](#debugranges)
 
 ##### `impl<R> Section for DebugRanges<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../index.md)
+- <span id="debugranges-id"></span>`fn id() -> SectionId` — [`SectionId`](../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="debugranges-reader"></span>`fn reader(&self) -> &R`
 
 ### `DebugRngLists<R>`
 
@@ -4662,29 +5047,29 @@ The `DebugRngLists` struct represents the contents of the
 
 #### Implementations
 
-- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugRngLists<R>` — [`DebugRngLists`](#debugrnglists)
+- <span id="debugrnglists-new"></span>`fn new(section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone> Clone for DebugRngLists<R>`
+##### `impl<R: clone::Clone> Clone for DebugRngLists<R>`
 
-- `fn clone(self: &Self) -> DebugRngLists<R>` — [`DebugRngLists`](#debugrnglists)
+- <span id="debugrnglists-clone"></span>`fn clone(&self) -> DebugRngLists<R>` — [`DebugRngLists`](#debugrnglists)
 
-##### `impl<R: $crate::marker::Copy> Copy for DebugRngLists<R>`
+##### `impl<R: marker::Copy> Copy for DebugRngLists<R>`
 
-##### `impl<R: $crate::fmt::Debug> Debug for DebugRngLists<R>`
+##### `impl<R: fmt::Debug> Debug for DebugRngLists<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugrnglists-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::default::Default> Default for DebugRngLists<R>`
+##### `impl<R: default::Default> Default for DebugRngLists<R>`
 
-- `fn default() -> DebugRngLists<R>` — [`DebugRngLists`](#debugrnglists)
+- <span id="debugrnglists-default"></span>`fn default() -> DebugRngLists<R>` — [`DebugRngLists`](#debugrnglists)
 
 ##### `impl<R> Section for DebugRngLists<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../index.md)
+- <span id="debugrnglists-id"></span>`fn id() -> SectionId` — [`SectionId`](../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="debugrnglists-reader"></span>`fn reader(&self) -> &R`
 
 ### `RangeLists<R>`
 
@@ -4699,29 +5084,29 @@ The DWARF data found in `.debug_ranges` and `.debug_rnglists` sections.
 
 #### Implementations
 
-- `fn ranges(self: &Self, offset: RangeListsOffset<<R as >::Offset>, unit_encoding: Encoding, base_address: u64, debug_addr: &DebugAddr<R>, debug_addr_base: DebugAddrBase<<R as >::Offset>) -> Result<RngListIter<R>>` — [`RangeListsOffset`](../index.md), [`Reader`](#reader), [`Encoding`](../index.md), [`DebugAddr`](#debugaddr), [`DebugAddrBase`](../index.md), [`Result`](../index.md), [`RngListIter`](#rnglistiter)
+- <span id="rangelists-new"></span>`fn new(debug_ranges: DebugRanges<R>, debug_rnglists: DebugRngLists<R>) -> RangeLists<R>` — [`DebugRanges`](#debugranges), [`DebugRngLists`](#debugrnglists), [`RangeLists`](#rangelists)
 
-- `fn raw_ranges(self: &Self, offset: RangeListsOffset<<R as >::Offset>, unit_encoding: Encoding) -> Result<RawRngListIter<R>>` — [`RangeListsOffset`](../index.md), [`Reader`](#reader), [`Encoding`](../index.md), [`Result`](../index.md), [`RawRngListIter`](#rawrnglistiter)
+- <span id="rangelists-debug-ranges"></span>`fn debug_ranges(&self) -> &DebugRanges<R>` — [`DebugRanges`](#debugranges)
 
-- `fn get_offset(self: &Self, unit_encoding: Encoding, base: DebugRngListsBase<<R as >::Offset>, index: DebugRngListsIndex<<R as >::Offset>) -> Result<RangeListsOffset<<R as >::Offset>>` — [`Encoding`](../index.md), [`DebugRngListsBase`](../index.md), [`Reader`](#reader), [`DebugRngListsIndex`](../index.md), [`Result`](../index.md), [`RangeListsOffset`](../index.md)
+- <span id="rangelists-set-debug-ranges"></span>`fn set_debug_ranges(&mut self, debug_ranges: DebugRanges<R>)` — [`DebugRanges`](#debugranges)
 
-- `fn lookup_offset_id(self: &Self, id: ReaderOffsetId) -> Option<(SectionId, <R as >::Offset)>` — [`ReaderOffsetId`](#readeroffsetid), [`SectionId`](../index.md), [`Reader`](#reader)
+- <span id="rangelists-debug-rnglists"></span>`fn debug_rnglists(&self) -> &DebugRngLists<R>` — [`DebugRngLists`](#debugrnglists)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone> Clone for RangeLists<R>`
+##### `impl<R: clone::Clone> Clone for RangeLists<R>`
 
-- `fn clone(self: &Self) -> RangeLists<R>` — [`RangeLists`](#rangelists)
+- <span id="rangelists-clone"></span>`fn clone(&self) -> RangeLists<R>` — [`RangeLists`](#rangelists)
 
-##### `impl<R: $crate::marker::Copy> Copy for RangeLists<R>`
+##### `impl<R: marker::Copy> Copy for RangeLists<R>`
 
-##### `impl<R: $crate::fmt::Debug> Debug for RangeLists<R>`
+##### `impl<R: fmt::Debug> Debug for RangeLists<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rangelists-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::default::Default> Default for RangeLists<R>`
+##### `impl<R: default::Default> Default for RangeLists<R>`
 
-- `fn default() -> RangeLists<R>` — [`RangeLists`](#rangelists)
+- <span id="rangelists-default"></span>`fn default() -> RangeLists<R>` — [`RangeLists`](#rangelists)
 
 ### `RawRngListIter<R: Reader>`
 
@@ -4740,15 +5125,15 @@ such as handling base addresses.
 
 #### Implementations
 
-- `fn new(input: R, encoding: Encoding, format: RangeListsFormat) -> RawRngListIter<R>` — [`Encoding`](../index.md), [`RangeListsFormat`](rnglists/index.md), [`RawRngListIter`](#rawrnglistiter)
+- <span id="rawrnglistiter-new"></span>`fn new(input: R, encoding: Encoding, format: RangeListsFormat) -> RawRngListIter<R>` — [`Encoding`](../index.md), [`RangeListsFormat`](rnglists/index.md), [`RawRngListIter`](#rawrnglistiter)
 
-- `fn next(self: &mut Self) -> Result<Option<RawRngListEntry<<R as >::Offset>>>` — [`Result`](../index.md), [`RawRngListEntry`](#rawrnglistentry), [`Reader`](#reader)
+- <span id="rawrnglistiter-next"></span>`fn next(&mut self) -> Result<Option<RawRngListEntry<<R as >::Offset>>>` — [`Result`](../index.md), [`RawRngListEntry`](#rawrnglistentry), [`Reader`](#reader)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for RawRngListIter<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for RawRngListIter<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rawrnglistiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `RngListIter<R: Reader>`
 
@@ -4769,17 +5154,17 @@ and already adjusted for the base address.
 
 #### Implementations
 
-- `fn new(raw: RawRngListIter<R>, base_address: u64, debug_addr: DebugAddr<R>, debug_addr_base: DebugAddrBase<<R as >::Offset>) -> RngListIter<R>` — [`RawRngListIter`](#rawrnglistiter), [`DebugAddr`](#debugaddr), [`DebugAddrBase`](../index.md), [`Reader`](#reader), [`RngListIter`](#rnglistiter)
+- <span id="rnglistiter-new"></span>`fn new(raw: RawRngListIter<R>, base_address: u64, debug_addr: DebugAddr<R>, debug_addr_base: DebugAddrBase<<R as >::Offset>) -> RngListIter<R>` — [`RawRngListIter`](#rawrnglistiter), [`DebugAddr`](#debugaddr), [`DebugAddrBase`](../index.md), [`Reader`](#reader), [`RngListIter`](#rnglistiter)
 
-- `fn get_address(self: &Self, index: DebugAddrIndex<<R as >::Offset>) -> Result<u64>` — [`DebugAddrIndex`](../index.md), [`Reader`](#reader), [`Result`](../index.md)
+- <span id="rnglistiter-get-address"></span>`fn get_address(&self, index: DebugAddrIndex<<R as >::Offset>) -> Result<u64>` — [`DebugAddrIndex`](../index.md), [`Reader`](#reader), [`Result`](../index.md)
 
-- `fn next(self: &mut Self) -> Result<Option<Range>>` — [`Result`](../index.md), [`Range`](#range)
+- <span id="rnglistiter-next"></span>`fn next(&mut self) -> Result<Option<Range>>` — [`Result`](../index.md), [`Range`](#range)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for RngListIter<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for RngListIter<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rnglistiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `RawRange`
 
@@ -4804,33 +5189,33 @@ A raw address range from the `.debug_ranges` section.
 
 #### Implementations
 
-- `fn is_end(self: &Self) -> bool`
+- <span id="rawrange-is-end"></span>`fn is_end(&self) -> bool`
 
-- `fn is_base_address(self: &Self, address_size: u8) -> bool`
+- <span id="rawrange-is-base-address"></span>`fn is_base_address(&self, address_size: u8) -> bool`
 
-- `fn parse<R: Reader>(input: &mut R, address_size: u8) -> Result<RawRange>` — [`Result`](../index.md), [`RawRange`](rnglists/index.md)
+- <span id="rawrange-parse"></span>`fn parse<R: Reader>(input: &mut R, address_size: u8) -> Result<RawRange>` — [`Result`](../index.md), [`RawRange`](rnglists/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for RawRange`
 
-- `fn clone(self: &Self) -> RawRange` — [`RawRange`](rnglists/index.md)
+- <span id="rawrange-clone"></span>`fn clone(&self) -> RawRange` — [`RawRange`](rnglists/index.md)
 
 ##### `impl Copy for RawRange`
 
 ##### `impl Debug for RawRange`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rawrange-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for RawRange`
 
 ##### `impl Hash for RawRange`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="rawrange-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for RawRange`
 
-- `fn eq(self: &Self, other: &RawRange) -> bool` — [`RawRange`](rnglists/index.md)
+- <span id="rawrange-eq"></span>`fn eq(&self, other: &RawRange) -> bool` — [`RawRange`](rnglists/index.md)
 
 ##### `impl StructuralPartialEq for RawRange`
 
@@ -4857,37 +5242,37 @@ An address range from the `.debug_ranges`, `.debug_rnglists`, or `.debug_aranges
 
 #### Implementations
 
-- `fn add_base_address(self: &mut Self, base_address: u64, address_size: u8)`
+- <span id="range-add-base-address"></span>`fn add_base_address(&mut self, base_address: u64, address_size: u8)`
 
 #### Trait Implementations
 
 ##### `impl Clone for Range`
 
-- `fn clone(self: &Self) -> Range` — [`Range`](#range)
+- <span id="range-clone"></span>`fn clone(&self) -> Range` — [`Range`](#range)
 
 ##### `impl Copy for Range`
 
 ##### `impl Debug for Range`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="range-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Range`
 
 ##### `impl Hash for Range`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="range-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for Range`
 
-- `fn cmp(self: &Self, other: &Range) -> $crate::cmp::Ordering` — [`Range`](#range)
+- <span id="range-cmp"></span>`fn cmp(&self, other: &Range) -> cmp::Ordering` — [`Range`](#range)
 
 ##### `impl PartialEq for Range`
 
-- `fn eq(self: &Self, other: &Range) -> bool` — [`Range`](#range)
+- <span id="range-eq"></span>`fn eq(&self, other: &Range) -> bool` — [`Range`](#range)
 
 ##### `impl PartialOrd for Range`
 
-- `fn partial_cmp(self: &Self, other: &Range) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Range`](#range)
+- <span id="range-partial-cmp"></span>`fn partial_cmp(&self, other: &Range) -> option::Option<cmp::Ordering>` — [`Range`](#range)
 
 ##### `impl StructuralPartialEq for Range`
 
@@ -4904,29 +5289,29 @@ found in the `.debug_str` section.
 
 #### Implementations
 
-- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugStr<R>` — [`DebugStr`](#debugstr)
+- <span id="debugstr-get-str"></span>`fn get_str(&self, offset: DebugStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugStrOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone> Clone for DebugStr<R>`
+##### `impl<R: clone::Clone> Clone for DebugStr<R>`
 
-- `fn clone(self: &Self) -> DebugStr<R>` — [`DebugStr`](#debugstr)
+- <span id="debugstr-clone"></span>`fn clone(&self) -> DebugStr<R>` — [`DebugStr`](#debugstr)
 
-##### `impl<R: $crate::marker::Copy> Copy for DebugStr<R>`
+##### `impl<R: marker::Copy> Copy for DebugStr<R>`
 
-##### `impl<R: $crate::fmt::Debug> Debug for DebugStr<R>`
+##### `impl<R: fmt::Debug> Debug for DebugStr<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugstr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::default::Default> Default for DebugStr<R>`
+##### `impl<R: default::Default> Default for DebugStr<R>`
 
-- `fn default() -> DebugStr<R>` — [`DebugStr`](#debugstr)
+- <span id="debugstr-default"></span>`fn default() -> DebugStr<R>` — [`DebugStr`](#debugstr)
 
 ##### `impl<R> Section for DebugStr<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../index.md)
+- <span id="debugstr-id"></span>`fn id() -> SectionId` — [`SectionId`](../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="debugstr-reader"></span>`fn reader(&self) -> &R`
 
 ### `DebugStrOffsets<R>`
 
@@ -4940,29 +5325,29 @@ The raw contents of the `.debug_str_offsets` section.
 
 #### Implementations
 
-- `fn get_str_offset(self: &Self, format: Format, base: DebugStrOffsetsBase<<R as >::Offset>, index: DebugStrOffsetsIndex<<R as >::Offset>) -> Result<DebugStrOffset<<R as >::Offset>>` — [`Format`](../index.md), [`DebugStrOffsetsBase`](../index.md), [`Reader`](#reader), [`DebugStrOffsetsIndex`](../index.md), [`Result`](../index.md), [`DebugStrOffset`](../index.md)
+- <span id="debugstroffsets-get-str-offset"></span>`fn get_str_offset(&self, format: Format, base: DebugStrOffsetsBase<<R as >::Offset>, index: DebugStrOffsetsIndex<<R as >::Offset>) -> Result<DebugStrOffset<<R as >::Offset>>` — [`Format`](../index.md), [`DebugStrOffsetsBase`](../index.md), [`Reader`](#reader), [`DebugStrOffsetsIndex`](../index.md), [`Result`](../index.md), [`DebugStrOffset`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone> Clone for DebugStrOffsets<R>`
+##### `impl<R: clone::Clone> Clone for DebugStrOffsets<R>`
 
-- `fn clone(self: &Self) -> DebugStrOffsets<R>` — [`DebugStrOffsets`](#debugstroffsets)
+- <span id="debugstroffsets-clone"></span>`fn clone(&self) -> DebugStrOffsets<R>` — [`DebugStrOffsets`](#debugstroffsets)
 
-##### `impl<R: $crate::marker::Copy> Copy for DebugStrOffsets<R>`
+##### `impl<R: marker::Copy> Copy for DebugStrOffsets<R>`
 
-##### `impl<R: $crate::fmt::Debug> Debug for DebugStrOffsets<R>`
+##### `impl<R: fmt::Debug> Debug for DebugStrOffsets<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugstroffsets-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::default::Default> Default for DebugStrOffsets<R>`
+##### `impl<R: default::Default> Default for DebugStrOffsets<R>`
 
-- `fn default() -> DebugStrOffsets<R>` — [`DebugStrOffsets`](#debugstroffsets)
+- <span id="debugstroffsets-default"></span>`fn default() -> DebugStrOffsets<R>` — [`DebugStrOffsets`](#debugstroffsets)
 
 ##### `impl<R> Section for DebugStrOffsets<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../index.md)
+- <span id="debugstroffsets-id"></span>`fn id() -> SectionId` — [`SectionId`](../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="debugstroffsets-reader"></span>`fn reader(&self) -> &R`
 
 ### `DebugLineStr<R>`
 
@@ -4977,29 +5362,29 @@ found in the `.debug_line_str` section.
 
 #### Implementations
 
-- `fn new(debug_line_str_section: &'input [u8], endian: Endian) -> Self`
+- <span id="debuglinestr-get-str"></span>`fn get_str(&self, offset: DebugLineStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugLineStrOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone> Clone for DebugLineStr<R>`
+##### `impl<R: clone::Clone> Clone for DebugLineStr<R>`
 
-- `fn clone(self: &Self) -> DebugLineStr<R>` — [`DebugLineStr`](#debuglinestr)
+- <span id="debuglinestr-clone"></span>`fn clone(&self) -> DebugLineStr<R>` — [`DebugLineStr`](#debuglinestr)
 
-##### `impl<R: $crate::marker::Copy> Copy for DebugLineStr<R>`
+##### `impl<R: marker::Copy> Copy for DebugLineStr<R>`
 
-##### `impl<R: $crate::fmt::Debug> Debug for DebugLineStr<R>`
+##### `impl<R: fmt::Debug> Debug for DebugLineStr<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debuglinestr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::default::Default> Default for DebugLineStr<R>`
+##### `impl<R: default::Default> Default for DebugLineStr<R>`
 
-- `fn default() -> DebugLineStr<R>` — [`DebugLineStr`](#debuglinestr)
+- <span id="debuglinestr-default"></span>`fn default() -> DebugLineStr<R>` — [`DebugLineStr`](#debuglinestr)
 
 ##### `impl<R> Section for DebugLineStr<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../index.md)
+- <span id="debuglinestr-id"></span>`fn id() -> SectionId` — [`SectionId`](../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="debuglinestr-reader"></span>`fn reader(&self) -> &R`
 
 ### `DebugInfo<R>`
 
@@ -5014,31 +5399,31 @@ the `.debug_info` section.
 
 #### Implementations
 
-- `fn units(self: &Self) -> DebugInfoUnitHeadersIter<R>` — [`DebugInfoUnitHeadersIter`](#debuginfounitheadersiter)
+- <span id="debuginfo-units"></span>`fn units(&self) -> DebugInfoUnitHeadersIter<R>` — [`DebugInfoUnitHeadersIter`](#debuginfounitheadersiter)
 
-- `fn header_from_offset(self: &Self, offset: DebugInfoOffset<<R as >::Offset>) -> Result<UnitHeader<R>>` — [`DebugInfoOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`UnitHeader`](#unitheader)
+- <span id="debuginfo-header-from-offset"></span>`fn header_from_offset(&self, offset: DebugInfoOffset<<R as >::Offset>) -> Result<UnitHeader<R>>` — [`DebugInfoOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`UnitHeader`](#unitheader)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone> Clone for DebugInfo<R>`
+##### `impl<R: clone::Clone> Clone for DebugInfo<R>`
 
-- `fn clone(self: &Self) -> DebugInfo<R>` — [`DebugInfo`](#debuginfo)
+- <span id="debuginfo-clone"></span>`fn clone(&self) -> DebugInfo<R>` — [`DebugInfo`](#debuginfo)
 
-##### `impl<R: $crate::marker::Copy> Copy for DebugInfo<R>`
+##### `impl<R: marker::Copy> Copy for DebugInfo<R>`
 
-##### `impl<R: $crate::fmt::Debug> Debug for DebugInfo<R>`
+##### `impl<R: fmt::Debug> Debug for DebugInfo<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debuginfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::default::Default> Default for DebugInfo<R>`
+##### `impl<R: default::Default> Default for DebugInfo<R>`
 
-- `fn default() -> DebugInfo<R>` — [`DebugInfo`](#debuginfo)
+- <span id="debuginfo-default"></span>`fn default() -> DebugInfo<R>` — [`DebugInfo`](#debuginfo)
 
 ##### `impl<R> Section for DebugInfo<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../index.md)
+- <span id="debuginfo-id"></span>`fn id() -> SectionId` — [`SectionId`](../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="debuginfo-reader"></span>`fn reader(&self) -> &R`
 
 ### `DebugInfoUnitHeadersIter<R: Reader>`
 
@@ -5056,17 +5441,17 @@ See the [documentation on
 
 #### Implementations
 
-- `fn next(self: &mut Self) -> Result<Option<UnitHeader<R>>>` — [`Result`](../index.md), [`UnitHeader`](#unitheader)
+- <span id="debuginfounitheadersiter-next"></span>`fn next(&mut self) -> Result<Option<UnitHeader<R>>>` — [`Result`](../index.md), [`UnitHeader`](#unitheader)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for DebugInfoUnitHeadersIter<R>`
+##### `impl<R: clone::Clone + Reader> Clone for DebugInfoUnitHeadersIter<R>`
 
-- `fn clone(self: &Self) -> DebugInfoUnitHeadersIter<R>` — [`DebugInfoUnitHeadersIter`](#debuginfounitheadersiter)
+- <span id="debuginfounitheadersiter-clone"></span>`fn clone(&self) -> DebugInfoUnitHeadersIter<R>` — [`DebugInfoUnitHeadersIter`](#debuginfounitheadersiter)
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for DebugInfoUnitHeadersIter<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for DebugInfoUnitHeadersIter<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debuginfounitheadersiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `UnitHeader<R, Offset>`
 
@@ -5089,25 +5474,25 @@ type units.
 
 #### Implementations
 
-- `fn new(encoding: Encoding, unit_length: Offset, unit_type: UnitType<Offset>, debug_abbrev_offset: DebugAbbrevOffset<Offset>, unit_offset: UnitSectionOffset<Offset>, entries_buf: R) -> Self` — [`Encoding`](../index.md), [`UnitType`](#unittype), [`DebugAbbrevOffset`](../index.md), [`UnitSectionOffset`](../index.md)
+- <span id="unitheader-new"></span>`fn new(encoding: Encoding, unit_length: Offset, unit_type: UnitType<Offset>, debug_abbrev_offset: DebugAbbrevOffset<Offset>, unit_offset: UnitSectionOffset<Offset>, entries_buf: R) -> Self` — [`Encoding`](../index.md), [`UnitType`](#unittype), [`DebugAbbrevOffset`](../index.md), [`UnitSectionOffset`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<R, Offset> Clone for UnitHeader<R, Offset>`
 
-- `fn clone(self: &Self) -> UnitHeader<R, Offset>` — [`UnitHeader`](#unitheader)
+- <span id="unitheader-clone"></span>`fn clone(&self) -> UnitHeader<R, Offset>` — [`UnitHeader`](#unitheader)
 
 ##### `impl<R, Offset> Copy for UnitHeader<R, Offset>`
 
 ##### `impl<R, Offset> Debug for UnitHeader<R, Offset>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="unitheader-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, Offset> Eq for UnitHeader<R, Offset>`
 
 ##### `impl<R, Offset> PartialEq for UnitHeader<R, Offset>`
 
-- `fn eq(self: &Self, other: &UnitHeader<R, Offset>) -> bool` — [`UnitHeader`](#unitheader)
+- <span id="unitheader-eq"></span>`fn eq(&self, other: &UnitHeader<R, Offset>) -> bool` — [`UnitHeader`](#unitheader)
 
 ##### `impl<R, Offset> StructuralPartialEq for UnitHeader<R, Offset>`
 
@@ -5132,39 +5517,39 @@ DIEs have a set of attributes and optionally have children DIEs as well.
 
 #### Implementations
 
-- `fn new(offset: UnitOffset<Offset>, attrs_slice: R, abbrev: &'abbrev Abbreviation, unit: &'unit UnitHeader<R, Offset>) -> Self` — [`UnitOffset`](../index.md), [`Abbreviation`](#abbreviation), [`UnitHeader`](#unitheader)
+- <span id="debugginginformationentry-new"></span>`fn new(offset: UnitOffset<Offset>, attrs_slice: R, abbrev: &'abbrev Abbreviation, unit: &'unit UnitHeader<R, Offset>) -> Self` — [`UnitOffset`](../index.md), [`Abbreviation`](#abbreviation), [`UnitHeader`](#unitheader)
 
-- `fn code(self: &Self) -> u64`
+- <span id="debugginginformationentry-code"></span>`fn code(&self) -> u64`
 
-- `fn offset(self: &Self) -> UnitOffset<Offset>` — [`UnitOffset`](../index.md)
+- <span id="debugginginformationentry-offset"></span>`fn offset(&self) -> UnitOffset<Offset>` — [`UnitOffset`](../index.md)
 
-- `fn tag(self: &Self) -> constants::DwTag` — [`DwTag`](../index.md)
+- <span id="debugginginformationentry-tag"></span>`fn tag(&self) -> constants::DwTag` — [`DwTag`](../index.md)
 
-- `fn has_children(self: &Self) -> bool`
+- <span id="debugginginformationentry-has-children"></span>`fn has_children(&self) -> bool`
 
-- `fn attrs<'me>(self: &'me Self) -> AttrsIter<'abbrev, 'me, 'unit, R>` — [`AttrsIter`](#attrsiter)
+- <span id="debugginginformationentry-attrs"></span>`fn attrs<'me>(self: &'me Self) -> AttrsIter<'abbrev, 'me, 'unit, R>` — [`AttrsIter`](#attrsiter)
 
-- `fn attr(self: &Self, name: constants::DwAt) -> Result<Option<Attribute<R>>>` — [`DwAt`](../index.md), [`Result`](../index.md), [`Attribute`](#attribute)
+- <span id="debugginginformationentry-attr"></span>`fn attr(&self, name: constants::DwAt) -> Result<Option<Attribute<R>>>` — [`DwAt`](../index.md), [`Result`](../index.md), [`Attribute`](#attribute)
 
-- `fn attr_value_raw(self: &Self, name: constants::DwAt) -> Result<Option<AttributeValue<R>>>` — [`DwAt`](../index.md), [`Result`](../index.md), [`AttributeValue`](#attributevalue)
+- <span id="debugginginformationentry-attr-value-raw"></span>`fn attr_value_raw(&self, name: constants::DwAt) -> Result<Option<AttributeValue<R>>>` — [`DwAt`](../index.md), [`Result`](../index.md), [`AttributeValue`](#attributevalue)
 
-- `fn attr_value(self: &Self, name: constants::DwAt) -> Result<Option<AttributeValue<R>>>` — [`DwAt`](../index.md), [`Result`](../index.md), [`AttributeValue`](#attributevalue)
+- <span id="debugginginformationentry-attr-value"></span>`fn attr_value(&self, name: constants::DwAt) -> Result<Option<AttributeValue<R>>>` — [`DwAt`](../index.md), [`Result`](../index.md), [`AttributeValue`](#attributevalue)
 
-- `fn after_attrs(self: &Self) -> Result<R>` — [`Result`](../index.md)
+- <span id="debugginginformationentry-after-attrs"></span>`fn after_attrs(&self) -> Result<R>` — [`Result`](../index.md)
 
-- `fn sibling(self: &Self) -> Option<R>`
+- <span id="debugginginformationentry-sibling"></span>`fn sibling(&self) -> Option<R>`
 
-- `fn parse(input: &mut R, unit: &'unit UnitHeader<R>, abbreviations: &'abbrev Abbreviations) -> Result<Option<Self>>` — [`UnitHeader`](#unitheader), [`Abbreviations`](#abbreviations), [`Result`](../index.md)
+- <span id="debugginginformationentry-parse"></span>`fn parse(input: &mut R, unit: &'unit UnitHeader<R>, abbreviations: &'abbrev Abbreviations) -> Result<Option<Self>>` — [`UnitHeader`](#unitheader), [`Abbreviations`](#abbreviations), [`Result`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'abbrev, 'unit, R, Offset> Clone for DebuggingInformationEntry<'abbrev, 'unit, R, Offset>`
 
-- `fn clone(self: &Self) -> DebuggingInformationEntry<'abbrev, 'unit, R, Offset>` — [`DebuggingInformationEntry`](#debugginginformationentry)
+- <span id="debugginginformationentry-clone"></span>`fn clone(&self) -> DebuggingInformationEntry<'abbrev, 'unit, R, Offset>` — [`DebuggingInformationEntry`](#debugginginformationentry)
 
 ##### `impl<'abbrev, 'unit, R, Offset> Debug for DebuggingInformationEntry<'abbrev, 'unit, R, Offset>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugginginformationentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Attribute<R: Reader>`
 
@@ -5180,45 +5565,45 @@ associated value.
 
 #### Implementations
 
-- `fn name(self: &Self) -> constants::DwAt` — [`DwAt`](../index.md)
+- <span id="attribute-name"></span>`fn name(&self) -> constants::DwAt` — [`DwAt`](../index.md)
 
-- `fn raw_value(self: &Self) -> AttributeValue<R>` — [`AttributeValue`](#attributevalue)
+- <span id="attribute-raw-value"></span>`fn raw_value(&self) -> AttributeValue<R>` — [`AttributeValue`](#attributevalue)
 
-- `fn value(self: &Self) -> AttributeValue<R>` — [`AttributeValue`](#attributevalue)
+- <span id="attribute-value"></span>`fn value(&self) -> AttributeValue<R>` — [`AttributeValue`](#attributevalue)
 
-- `fn u8_value(self: &Self) -> Option<u8>`
+- <span id="attribute-u8-value"></span>`fn u8_value(&self) -> Option<u8>`
 
-- `fn u16_value(self: &Self) -> Option<u16>`
+- <span id="attribute-u16-value"></span>`fn u16_value(&self) -> Option<u16>`
 
-- `fn udata_value(self: &Self) -> Option<u64>`
+- <span id="attribute-udata-value"></span>`fn udata_value(&self) -> Option<u64>`
 
-- `fn sdata_value(self: &Self) -> Option<i64>`
+- <span id="attribute-sdata-value"></span>`fn sdata_value(&self) -> Option<i64>`
 
-- `fn offset_value(self: &Self) -> Option<<R as >::Offset>` — [`Reader`](#reader)
+- <span id="attribute-offset-value"></span>`fn offset_value(&self) -> Option<<R as >::Offset>` — [`Reader`](#reader)
 
-- `fn exprloc_value(self: &Self) -> Option<Expression<R>>` — [`Expression`](#expression)
+- <span id="attribute-exprloc-value"></span>`fn exprloc_value(&self) -> Option<Expression<R>>` — [`Expression`](#expression)
 
-- `fn string_value(self: &Self, debug_str: &DebugStr<R>) -> Option<R>` — [`DebugStr`](#debugstr)
+- <span id="attribute-string-value"></span>`fn string_value(&self, debug_str: &DebugStr<R>) -> Option<R>` — [`DebugStr`](#debugstr)
 
-- `fn string_value_sup(self: &Self, debug_str: &DebugStr<R>, debug_str_sup: Option<&DebugStr<R>>) -> Option<R>` — [`DebugStr`](#debugstr)
+- <span id="attribute-string-value-sup"></span>`fn string_value_sup(&self, debug_str: &DebugStr<R>, debug_str_sup: Option<&DebugStr<R>>) -> Option<R>` — [`DebugStr`](#debugstr)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for Attribute<R>`
+##### `impl<R: clone::Clone + Reader> Clone for Attribute<R>`
 
-- `fn clone(self: &Self) -> Attribute<R>` — [`Attribute`](#attribute)
+- <span id="attribute-clone"></span>`fn clone(&self) -> Attribute<R>` — [`Attribute`](#attribute)
 
-##### `impl<R: $crate::marker::Copy + Reader> Copy for Attribute<R>`
+##### `impl<R: marker::Copy + Reader> Copy for Attribute<R>`
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for Attribute<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for Attribute<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="attribute-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::cmp::Eq + Reader> Eq for Attribute<R>`
+##### `impl<R: cmp::Eq + Reader> Eq for Attribute<R>`
 
-##### `impl<R: $crate::cmp::PartialEq + Reader> PartialEq for Attribute<R>`
+##### `impl<R: cmp::PartialEq + Reader> PartialEq for Attribute<R>`
 
-- `fn eq(self: &Self, other: &Attribute<R>) -> bool` — [`Attribute`](#attribute)
+- <span id="attribute-eq"></span>`fn eq(&self, other: &Attribute<R>) -> bool` — [`Attribute`](#attribute)
 
 ##### `impl<R: Reader> StructuralPartialEq for Attribute<R>`
 
@@ -5243,19 +5628,19 @@ Can be [used with
 
 #### Implementations
 
-- `fn next(self: &mut Self) -> Result<Option<Attribute<R>>>` — [`Result`](../index.md), [`Attribute`](#attribute)
+- <span id="attrsiter-next"></span>`fn next(&mut self) -> Result<Option<Attribute<R>>>` — [`Result`](../index.md), [`Attribute`](#attribute)
 
 #### Trait Implementations
 
-##### `impl<'abbrev, 'entry, 'unit, R: $crate::clone::Clone + Reader> Clone for AttrsIter<'abbrev, 'entry, 'unit, R>`
+##### `impl<'abbrev, 'entry, 'unit, R: clone::Clone + Reader> Clone for AttrsIter<'abbrev, 'entry, 'unit, R>`
 
-- `fn clone(self: &Self) -> AttrsIter<'abbrev, 'entry, 'unit, R>` — [`AttrsIter`](#attrsiter)
+- <span id="attrsiter-clone"></span>`fn clone(&self) -> AttrsIter<'abbrev, 'entry, 'unit, R>` — [`AttrsIter`](#attrsiter)
 
-##### `impl<'abbrev, 'entry, 'unit, R: $crate::marker::Copy + Reader> Copy for AttrsIter<'abbrev, 'entry, 'unit, R>`
+##### `impl<'abbrev, 'entry, 'unit, R: marker::Copy + Reader> Copy for AttrsIter<'abbrev, 'entry, 'unit, R>`
 
-##### `impl<'abbrev, 'entry, 'unit, R: $crate::fmt::Debug + Reader> Debug for AttrsIter<'abbrev, 'entry, 'unit, R>`
+##### `impl<'abbrev, 'entry, 'unit, R: fmt::Debug + Reader> Debug for AttrsIter<'abbrev, 'entry, 'unit, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="attrsiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `EntriesRaw<'abbrev, 'unit, R>`
 
@@ -5325,27 +5710,27 @@ unreachable!()
 
 #### Implementations
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="entriesraw-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn next_offset(self: &Self) -> UnitOffset<<R as >::Offset>` — [`UnitOffset`](../index.md), [`Reader`](#reader)
+- <span id="entriesraw-next-offset"></span>`fn next_offset(&self) -> UnitOffset<<R as >::Offset>` — [`UnitOffset`](../index.md), [`Reader`](#reader)
 
-- `fn next_depth(self: &Self) -> isize`
+- <span id="entriesraw-next-depth"></span>`fn next_depth(&self) -> isize`
 
-- `fn read_abbreviation(self: &mut Self) -> Result<Option<&'abbrev Abbreviation>>` — [`Result`](../index.md), [`Abbreviation`](#abbreviation)
+- <span id="entriesraw-read-abbreviation"></span>`fn read_abbreviation(&mut self) -> Result<Option<&'abbrev Abbreviation>>` — [`Result`](../index.md), [`Abbreviation`](#abbreviation)
 
-- `fn read_attribute(self: &mut Self, spec: AttributeSpecification) -> Result<Attribute<R>>` — [`AttributeSpecification`](#attributespecification), [`Result`](../index.md), [`Attribute`](#attribute)
+- <span id="entriesraw-read-attribute"></span>`fn read_attribute(&mut self, spec: AttributeSpecification) -> Result<Attribute<R>>` — [`AttributeSpecification`](#attributespecification), [`Result`](../index.md), [`Attribute`](#attribute)
 
-- `fn skip_attributes(self: &mut Self, specs: &[AttributeSpecification]) -> Result<()>` — [`AttributeSpecification`](#attributespecification), [`Result`](../index.md)
+- <span id="entriesraw-skip-attributes"></span>`fn skip_attributes(&mut self, specs: &[AttributeSpecification]) -> Result<()>` — [`AttributeSpecification`](#attributespecification), [`Result`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'abbrev, 'unit, R> Clone for EntriesRaw<'abbrev, 'unit, R>`
 
-- `fn clone(self: &Self) -> EntriesRaw<'abbrev, 'unit, R>` — [`EntriesRaw`](#entriesraw)
+- <span id="entriesraw-clone"></span>`fn clone(&self) -> EntriesRaw<'abbrev, 'unit, R>` — [`EntriesRaw`](#entriesraw)
 
 ##### `impl<'abbrev, 'unit, R> Debug for EntriesRaw<'abbrev, 'unit, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="entriesraw-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `EntriesCursor<'abbrev, 'unit, R>`
 
@@ -5377,23 +5762,23 @@ end of the current tree depth.
 
 #### Implementations
 
-- `fn current(self: &Self) -> Option<&DebuggingInformationEntry<'abbrev, 'unit, R>>` — [`DebuggingInformationEntry`](#debugginginformationentry)
+- <span id="entriescursor-current"></span>`fn current(&self) -> Option<&DebuggingInformationEntry<'abbrev, 'unit, R>>` — [`DebuggingInformationEntry`](#debugginginformationentry)
 
-- `fn next_entry(self: &mut Self) -> Result<Option<()>>` — [`Result`](../index.md)
+- <span id="entriescursor-next-entry"></span>`fn next_entry(&mut self) -> Result<Option<()>>` — [`Result`](../index.md)
 
-- `fn next_dfs(self: &mut Self) -> Result<Option<(isize, &DebuggingInformationEntry<'abbrev, 'unit, R>)>>` — [`Result`](../index.md), [`DebuggingInformationEntry`](#debugginginformationentry)
+- <span id="entriescursor-next-dfs"></span>`fn next_dfs(&mut self) -> Result<Option<(isize, &DebuggingInformationEntry<'abbrev, 'unit, R>)>>` — [`Result`](../index.md), [`DebuggingInformationEntry`](#debugginginformationentry)
 
-- `fn next_sibling(self: &mut Self) -> Result<Option<&DebuggingInformationEntry<'abbrev, 'unit, R>>>` — [`Result`](../index.md), [`DebuggingInformationEntry`](#debugginginformationentry)
+- <span id="entriescursor-next-sibling"></span>`fn next_sibling(&mut self) -> Result<Option<&DebuggingInformationEntry<'abbrev, 'unit, R>>>` — [`Result`](../index.md), [`DebuggingInformationEntry`](#debugginginformationentry)
 
 #### Trait Implementations
 
 ##### `impl<'abbrev, 'unit, R> Clone for EntriesCursor<'abbrev, 'unit, R>`
 
-- `fn clone(self: &Self) -> EntriesCursor<'abbrev, 'unit, R>` — [`EntriesCursor`](#entriescursor)
+- <span id="entriescursor-clone"></span>`fn clone(&self) -> EntriesCursor<'abbrev, 'unit, R>` — [`EntriesCursor`](#entriescursor)
 
 ##### `impl<'abbrev, 'unit, R> Debug for EntriesCursor<'abbrev, 'unit, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="entriescursor-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `EntriesTree<'abbrev, 'unit, R>`
 
@@ -5453,21 +5838,21 @@ fn process_tree<R>(mut node: gimli::EntriesTreeNode<R>) -> gimli::Result<()>
 
 #### Implementations
 
-- `fn new(root: R, unit: &'unit UnitHeader<R>, abbreviations: &'abbrev Abbreviations) -> Self` — [`UnitHeader`](#unitheader), [`Abbreviations`](#abbreviations)
+- <span id="entriestree-new"></span>`fn new(root: R, unit: &'unit UnitHeader<R>, abbreviations: &'abbrev Abbreviations) -> Self` — [`UnitHeader`](#unitheader), [`Abbreviations`](#abbreviations)
 
-- `fn root<'me>(self: &'me mut Self) -> Result<EntriesTreeNode<'abbrev, 'unit, 'me, R>>` — [`Result`](../index.md), [`EntriesTreeNode`](#entriestreenode)
+- <span id="entriestree-root"></span>`fn root<'me>(self: &'me mut Self) -> Result<EntriesTreeNode<'abbrev, 'unit, 'me, R>>` — [`Result`](../index.md), [`EntriesTreeNode`](#entriestreenode)
 
-- `fn next(self: &mut Self, depth: isize) -> Result<bool>` — [`Result`](../index.md)
+- <span id="entriestree-next"></span>`fn next(&mut self, depth: isize) -> Result<bool>` — [`Result`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'abbrev, 'unit, R> Clone for EntriesTree<'abbrev, 'unit, R>`
 
-- `fn clone(self: &Self) -> EntriesTree<'abbrev, 'unit, R>` — [`EntriesTree`](#entriestree)
+- <span id="entriestree-clone"></span>`fn clone(&self) -> EntriesTree<'abbrev, 'unit, R>` — [`EntriesTree`](#entriestree)
 
 ##### `impl<'abbrev, 'unit, R> Debug for EntriesTree<'abbrev, 'unit, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="entriestree-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `EntriesTreeNode<'abbrev, 'unit, 'tree, R: Reader>`
 
@@ -5485,17 +5870,17 @@ via [`EntriesTree::root`](./struct.EntriesTree.html#method.root).
 
 #### Implementations
 
-- `fn new(tree: &'tree mut EntriesTree<'abbrev, 'unit, R>, depth: isize) -> EntriesTreeNode<'abbrev, 'unit, 'tree, R>` — [`EntriesTree`](#entriestree), [`EntriesTreeNode`](#entriestreenode)
+- <span id="entriestreenode-new"></span>`fn new(tree: &'tree mut EntriesTree<'abbrev, 'unit, R>, depth: isize) -> EntriesTreeNode<'abbrev, 'unit, 'tree, R>` — [`EntriesTree`](#entriestree), [`EntriesTreeNode`](#entriestreenode)
 
-- `fn entry(self: &Self) -> &DebuggingInformationEntry<'abbrev, 'unit, R>` — [`DebuggingInformationEntry`](#debugginginformationentry)
+- <span id="entriestreenode-entry"></span>`fn entry(&self) -> &DebuggingInformationEntry<'abbrev, 'unit, R>` — [`DebuggingInformationEntry`](#debugginginformationentry)
 
-- `fn children(self: Self) -> EntriesTreeIter<'abbrev, 'unit, 'tree, R>` — [`EntriesTreeIter`](#entriestreeiter)
+- <span id="entriestreenode-children"></span>`fn children(self) -> EntriesTreeIter<'abbrev, 'unit, 'tree, R>` — [`EntriesTreeIter`](#entriestreeiter)
 
 #### Trait Implementations
 
-##### `impl<'abbrev, 'unit, 'tree, R: $crate::fmt::Debug + Reader> Debug for EntriesTreeNode<'abbrev, 'unit, 'tree, R>`
+##### `impl<'abbrev, 'unit, 'tree, R: fmt::Debug + Reader> Debug for EntriesTreeNode<'abbrev, 'unit, 'tree, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="entriestreenode-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `EntriesTreeIter<'abbrev, 'unit, 'tree, R: Reader>`
 
@@ -5515,15 +5900,15 @@ which allow recursive traversal of grandchildren, etc.
 
 #### Implementations
 
-- `fn new(tree: &'tree mut EntriesTree<'abbrev, 'unit, R>, depth: isize) -> EntriesTreeIter<'abbrev, 'unit, 'tree, R>` — [`EntriesTree`](#entriestree), [`EntriesTreeIter`](#entriestreeiter)
+- <span id="entriestreeiter-new"></span>`fn new(tree: &'tree mut EntriesTree<'abbrev, 'unit, R>, depth: isize) -> EntriesTreeIter<'abbrev, 'unit, 'tree, R>` — [`EntriesTree`](#entriestree), [`EntriesTreeIter`](#entriestreeiter)
 
-- `fn next<'me>(self: &'me mut Self) -> Result<Option<EntriesTreeNode<'abbrev, 'unit, 'me, R>>>` — [`Result`](../index.md), [`EntriesTreeNode`](#entriestreenode)
+- <span id="entriestreeiter-next"></span>`fn next<'me>(self: &'me mut Self) -> Result<Option<EntriesTreeNode<'abbrev, 'unit, 'me, R>>>` — [`Result`](../index.md), [`EntriesTreeNode`](#entriestreenode)
 
 #### Trait Implementations
 
-##### `impl<'abbrev, 'unit, 'tree, R: $crate::fmt::Debug + Reader> Debug for EntriesTreeIter<'abbrev, 'unit, 'tree, R>`
+##### `impl<'abbrev, 'unit, 'tree, R: fmt::Debug + Reader> Debug for EntriesTreeIter<'abbrev, 'unit, 'tree, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="entriestreeiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `DebugTypes<R>`
 
@@ -5538,29 +5923,29 @@ found in the `.debug_types` section.
 
 #### Implementations
 
-- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugTypes<R>` — [`DebugTypes`](#debugtypes)
+- <span id="debugtypes-units"></span>`fn units(&self) -> DebugTypesUnitHeadersIter<R>` — [`DebugTypesUnitHeadersIter`](#debugtypesunitheadersiter)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone> Clone for DebugTypes<R>`
+##### `impl<R: clone::Clone> Clone for DebugTypes<R>`
 
-- `fn clone(self: &Self) -> DebugTypes<R>` — [`DebugTypes`](#debugtypes)
+- <span id="debugtypes-clone"></span>`fn clone(&self) -> DebugTypes<R>` — [`DebugTypes`](#debugtypes)
 
-##### `impl<R: $crate::marker::Copy> Copy for DebugTypes<R>`
+##### `impl<R: marker::Copy> Copy for DebugTypes<R>`
 
-##### `impl<R: $crate::fmt::Debug> Debug for DebugTypes<R>`
+##### `impl<R: fmt::Debug> Debug for DebugTypes<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugtypes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::default::Default> Default for DebugTypes<R>`
+##### `impl<R: default::Default> Default for DebugTypes<R>`
 
-- `fn default() -> DebugTypes<R>` — [`DebugTypes`](#debugtypes)
+- <span id="debugtypes-default"></span>`fn default() -> DebugTypes<R>` — [`DebugTypes`](#debugtypes)
 
 ##### `impl<R> Section for DebugTypes<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../index.md)
+- <span id="debugtypes-id"></span>`fn id() -> SectionId` — [`SectionId`](../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="debugtypes-reader"></span>`fn reader(&self) -> &R`
 
 ### `DebugTypesUnitHeadersIter<R: Reader>`
 
@@ -5579,17 +5964,17 @@ more detail.
 
 #### Implementations
 
-- `fn next(self: &mut Self) -> Result<Option<UnitHeader<R>>>` — [`Result`](../index.md), [`UnitHeader`](#unitheader)
+- <span id="debugtypesunitheadersiter-next"></span>`fn next(&mut self) -> Result<Option<UnitHeader<R>>>` — [`Result`](../index.md), [`UnitHeader`](#unitheader)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for DebugTypesUnitHeadersIter<R>`
+##### `impl<R: clone::Clone + Reader> Clone for DebugTypesUnitHeadersIter<R>`
 
-- `fn clone(self: &Self) -> DebugTypesUnitHeadersIter<R>` — [`DebugTypesUnitHeadersIter`](#debugtypesunitheadersiter)
+- <span id="debugtypesunitheadersiter-clone"></span>`fn clone(&self) -> DebugTypesUnitHeadersIter<R>` — [`DebugTypesUnitHeadersIter`](#debugtypesunitheadersiter)
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for DebugTypesUnitHeadersIter<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for DebugTypesUnitHeadersIter<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugtypesunitheadersiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Enums
 
@@ -6031,35 +6416,35 @@ An error that occurred when parsing.
 
 #### Implementations
 
-- `fn description(self: &Self) -> &str`
+- <span id="error-description"></span>`fn description(&self) -> &str`
 
 #### Trait Implementations
 
 ##### `impl Clone for Error`
 
-- `fn clone(self: &Self) -> Error` — [`Error`](../index.md)
+- <span id="error-clone"></span>`fn clone(&self) -> Error` — [`Error`](../index.md)
 
 ##### `impl Copy for Error`
 
 ##### `impl Debug for Error`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="error-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Error`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> ::core::result::Result<(), fmt::Error>`
+- <span id="error-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> ::core::result::Result<(), fmt::Error>`
 
 ##### `impl Eq for Error`
 
 ##### `impl PartialEq for Error`
 
-- `fn eq(self: &Self, other: &Error) -> bool` — [`Error`](../index.md)
+- <span id="error-eq"></span>`fn eq(&self, other: &Error) -> bool` — [`Error`](../index.md)
 
 ##### `impl StructuralPartialEq for Error`
 
 ##### `impl<T> ToString for Error`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="error-to-string"></span>`fn to_string(&self) -> String`
 
 ### `CieOrFde<'bases, Section, R>`
 
@@ -6091,17 +6476,17 @@ Either a `CommonInformationEntry` (CIE) or a `FrameDescriptionEntry` (FDE).
 
 ##### `impl<'bases, Section, R> Clone for CieOrFde<'bases, Section, R>`
 
-- `fn clone(self: &Self) -> CieOrFde<'bases, Section, R>` — [`CieOrFde`](#cieorfde)
+- <span id="cieorfde-clone"></span>`fn clone(&self) -> CieOrFde<'bases, Section, R>` — [`CieOrFde`](#cieorfde)
 
 ##### `impl<'bases, Section, R> Debug for CieOrFde<'bases, Section, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="cieorfde-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'bases, Section, R> Eq for CieOrFde<'bases, Section, R>`
 
 ##### `impl<'bases, Section, R> PartialEq for CieOrFde<'bases, Section, R>`
 
-- `fn eq(self: &Self, other: &CieOrFde<'bases, Section, R>) -> bool` — [`CieOrFde`](#cieorfde)
+- <span id="cieorfde-eq"></span>`fn eq(&self, other: &CieOrFde<'bases, Section, R>) -> bool` — [`CieOrFde`](#cieorfde)
 
 ##### `impl<'bases, Section, R> StructuralPartialEq for CieOrFde<'bases, Section, R>`
 
@@ -6131,27 +6516,27 @@ The canonical frame address (CFA) recovery rules.
 
 #### Implementations
 
-- `fn is_default(self: &Self) -> bool`
+- <span id="cfarule-is-default"></span>`fn is_default(&self) -> bool`
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone + ReaderOffset> Clone for CfaRule<T>`
+##### `impl<T: clone::Clone + ReaderOffset> Clone for CfaRule<T>`
 
-- `fn clone(self: &Self) -> CfaRule<T>` — [`CfaRule`](#cfarule)
+- <span id="cfarule-clone"></span>`fn clone(&self) -> CfaRule<T>` — [`CfaRule`](#cfarule)
 
-##### `impl<T: $crate::fmt::Debug + ReaderOffset> Debug for CfaRule<T>`
+##### `impl<T: fmt::Debug + ReaderOffset> Debug for CfaRule<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="cfarule-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: ReaderOffset> Default for CfaRule<T>`
 
-- `fn default() -> Self`
+- <span id="cfarule-default"></span>`fn default() -> Self`
 
-##### `impl<T: $crate::cmp::Eq + ReaderOffset> Eq for CfaRule<T>`
+##### `impl<T: cmp::Eq + ReaderOffset> Eq for CfaRule<T>`
 
-##### `impl<T: $crate::cmp::PartialEq + ReaderOffset> PartialEq for CfaRule<T>`
+##### `impl<T: cmp::PartialEq + ReaderOffset> PartialEq for CfaRule<T>`
 
-- `fn eq(self: &Self, other: &CfaRule<T>) -> bool` — [`CfaRule`](#cfarule)
+- <span id="cfarule-eq"></span>`fn eq(&self, other: &CfaRule<T>) -> bool` — [`CfaRule`](#cfarule)
 
 ##### `impl<T: ReaderOffset> StructuralPartialEq for CfaRule<T>`
 
@@ -6226,23 +6611,23 @@ previous frame."
 
 #### Implementations
 
-- `fn is_defined(self: &Self) -> bool`
+- <span id="registerrule-is-defined"></span>`fn is_defined(&self) -> bool`
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone + ReaderOffset> Clone for RegisterRule<T>`
+##### `impl<T: clone::Clone + ReaderOffset> Clone for RegisterRule<T>`
 
-- `fn clone(self: &Self) -> RegisterRule<T>` — [`RegisterRule`](#registerrule)
+- <span id="registerrule-clone"></span>`fn clone(&self) -> RegisterRule<T>` — [`RegisterRule`](#registerrule)
 
-##### `impl<T: $crate::fmt::Debug + ReaderOffset> Debug for RegisterRule<T>`
+##### `impl<T: fmt::Debug + ReaderOffset> Debug for RegisterRule<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="registerrule-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq + ReaderOffset> Eq for RegisterRule<T>`
+##### `impl<T: cmp::Eq + ReaderOffset> Eq for RegisterRule<T>`
 
-##### `impl<T: $crate::cmp::PartialEq + ReaderOffset> PartialEq for RegisterRule<T>`
+##### `impl<T: cmp::PartialEq + ReaderOffset> PartialEq for RegisterRule<T>`
 
-- `fn eq(self: &Self, other: &RegisterRule<T>) -> bool` — [`RegisterRule`](#registerrule)
+- <span id="registerrule-eq"></span>`fn eq(&self, other: &RegisterRule<T>) -> bool` — [`RegisterRule`](#registerrule)
 
 ##### `impl<T: ReaderOffset> StructuralPartialEq for RegisterRule<T>`
 
@@ -6565,23 +6950,23 @@ A parsed call frame instruction.
 
 #### Implementations
 
-- `fn parse<R: Reader<Offset = T>>(input: &mut R, address_encoding: Option<DwEhPe>, parameters: &PointerEncodingParameters<'_, R>, vendor: Vendor) -> Result<CallFrameInstruction<T>>` — [`DwEhPe`](../index.md), [`PointerEncodingParameters`](cfi/index.md), [`Vendor`](../index.md), [`Result`](../index.md), [`CallFrameInstruction`](#callframeinstruction)
+- <span id="callframeinstruction-parse"></span>`fn parse<R: Reader<Offset = T>>(input: &mut R, address_encoding: Option<DwEhPe>, parameters: &PointerEncodingParameters<'_, R>, vendor: Vendor) -> Result<CallFrameInstruction<T>>` — [`DwEhPe`](../index.md), [`PointerEncodingParameters`](cfi/index.md), [`Vendor`](../index.md), [`Result`](../index.md), [`CallFrameInstruction`](#callframeinstruction)
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone + ReaderOffset> Clone for CallFrameInstruction<T>`
+##### `impl<T: clone::Clone + ReaderOffset> Clone for CallFrameInstruction<T>`
 
-- `fn clone(self: &Self) -> CallFrameInstruction<T>` — [`CallFrameInstruction`](#callframeinstruction)
+- <span id="callframeinstruction-clone"></span>`fn clone(&self) -> CallFrameInstruction<T>` — [`CallFrameInstruction`](#callframeinstruction)
 
-##### `impl<T: $crate::fmt::Debug + ReaderOffset> Debug for CallFrameInstruction<T>`
+##### `impl<T: fmt::Debug + ReaderOffset> Debug for CallFrameInstruction<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="callframeinstruction-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq + ReaderOffset> Eq for CallFrameInstruction<T>`
+##### `impl<T: cmp::Eq + ReaderOffset> Eq for CallFrameInstruction<T>`
 
-##### `impl<T: $crate::cmp::PartialEq + ReaderOffset> PartialEq for CallFrameInstruction<T>`
+##### `impl<T: cmp::PartialEq + ReaderOffset> PartialEq for CallFrameInstruction<T>`
 
-- `fn eq(self: &Self, other: &CallFrameInstruction<T>) -> bool` — [`CallFrameInstruction`](#callframeinstruction)
+- <span id="callframeinstruction-eq"></span>`fn eq(&self, other: &CallFrameInstruction<T>) -> bool` — [`CallFrameInstruction`](#callframeinstruction)
 
 ##### `impl<T: ReaderOffset> StructuralPartialEq for CallFrameInstruction<T>`
 
@@ -6613,33 +6998,33 @@ A decoded pointer.
 
 #### Implementations
 
-- `fn new(encoding: constants::DwEhPe, address: u64) -> Pointer` — [`DwEhPe`](../index.md), [`Pointer`](#pointer)
+- <span id="pointer-new"></span>`fn new(encoding: constants::DwEhPe, address: u64) -> Pointer` — [`DwEhPe`](../index.md), [`Pointer`](#pointer)
 
-- `fn direct(self: Self) -> Result<u64>` — [`Result`](../index.md)
+- <span id="pointer-direct"></span>`fn direct(self) -> Result<u64>` — [`Result`](../index.md)
 
-- `fn pointer(self: Self) -> u64`
+- <span id="pointer-pointer"></span>`fn pointer(self) -> u64`
 
 #### Trait Implementations
 
 ##### `impl Clone for Pointer`
 
-- `fn clone(self: &Self) -> Pointer` — [`Pointer`](#pointer)
+- <span id="pointer-clone"></span>`fn clone(&self) -> Pointer` — [`Pointer`](#pointer)
 
 ##### `impl Copy for Pointer`
 
 ##### `impl Debug for Pointer`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pointer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Pointer`
 
-- `fn default() -> Self`
+- <span id="pointer-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for Pointer`
 
 ##### `impl PartialEq for Pointer`
 
-- `fn eq(self: &Self, other: &Pointer) -> bool` — [`Pointer`](#pointer)
+- <span id="pointer-eq"></span>`fn eq(&self, other: &Pointer) -> bool` — [`Pointer`](#pointer)
 
 ##### `impl StructuralPartialEq for Pointer`
 
@@ -6654,9 +7039,9 @@ enum RangeIterInner<R: Reader> {
 
 #### Trait Implementations
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for RangeIterInner<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for RangeIterInner<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rangeiterinner-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `AbbreviationsCacheStrategy`
 
@@ -6687,19 +7072,19 @@ The strategy to use for caching abbreviations.
 
 ##### `impl Clone for AbbreviationsCacheStrategy`
 
-- `fn clone(self: &Self) -> AbbreviationsCacheStrategy` — [`AbbreviationsCacheStrategy`](#abbreviationscachestrategy)
+- <span id="abbreviationscachestrategy-clone"></span>`fn clone(&self) -> AbbreviationsCacheStrategy` — [`AbbreviationsCacheStrategy`](#abbreviationscachestrategy)
 
 ##### `impl Copy for AbbreviationsCacheStrategy`
 
 ##### `impl Debug for AbbreviationsCacheStrategy`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="abbreviationscachestrategy-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for AbbreviationsCacheStrategy`
 
 ##### `impl PartialEq for AbbreviationsCacheStrategy`
 
-- `fn eq(self: &Self, other: &AbbreviationsCacheStrategy) -> bool` — [`AbbreviationsCacheStrategy`](#abbreviationscachestrategy)
+- <span id="abbreviationscachestrategy-eq"></span>`fn eq(&self, other: &AbbreviationsCacheStrategy) -> bool` — [`AbbreviationsCacheStrategy`](#abbreviationscachestrategy)
 
 ##### `impl StructuralPartialEq for AbbreviationsCacheStrategy`
 
@@ -6719,39 +7104,39 @@ A list of attributes found in an `Abbreviation`
 
 #### Implementations
 
-- `fn new() -> Attributes` — [`Attributes`](abbrev/index.md)
+- <span id="attributes-new"></span>`fn new() -> Attributes` — [`Attributes`](abbrev/index.md)
 
-- `fn push(self: &mut Self, attr: AttributeSpecification)` — [`AttributeSpecification`](#attributespecification)
+- <span id="attributes-push"></span>`fn push(&mut self, attr: AttributeSpecification)` — [`AttributeSpecification`](#attributespecification)
 
 #### Trait Implementations
 
 ##### `impl Clone for Attributes`
 
-- `fn clone(self: &Self) -> Attributes` — [`Attributes`](abbrev/index.md)
+- <span id="attributes-clone"></span>`fn clone(&self) -> Attributes` — [`Attributes`](abbrev/index.md)
 
 ##### `impl Debug for Attributes`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="attributes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Deref for Attributes`
 
-- `type Target = [AttributeSpecification]`
+- <span id="attributes-target"></span>`type Target = [AttributeSpecification]`
 
-- `fn deref(self: &Self) -> &[AttributeSpecification]` — [`AttributeSpecification`](#attributespecification)
+- <span id="attributes-deref"></span>`fn deref(&self) -> &[AttributeSpecification]` — [`AttributeSpecification`](#attributespecification)
 
 ##### `impl Eq for Attributes`
 
 ##### `impl FromIterator for Attributes`
 
-- `fn from_iter<I>(iter: I) -> Attributes` — [`Attributes`](abbrev/index.md)
+- <span id="attributes-from-iter"></span>`fn from_iter<I>(iter: I) -> Attributes` — [`Attributes`](abbrev/index.md)
 
 ##### `impl PartialEq for Attributes`
 
-- `fn eq(self: &Self, other: &Attributes) -> bool` — [`Attributes`](abbrev/index.md)
+- <span id="attributes-eq"></span>`fn eq(&self, other: &Attributes) -> bool` — [`Attributes`](abbrev/index.md)
 
 ##### `impl<P, T> Receiver for Attributes`
 
-- `type Target = T`
+- <span id="attributes-target"></span>`type Target = T`
 
 ### `IndexSectionId`
 
@@ -6816,27 +7201,27 @@ Section kinds which are permitted in a `.dwp` index.
 
 #### Implementations
 
-- `fn section_id(self: Self) -> SectionId` — [`SectionId`](../index.md)
+- <span id="indexsectionid-section-id"></span>`fn section_id(self) -> SectionId` — [`SectionId`](../index.md)
 
-- `fn dwo_name(self: Self) -> &'static str`
+- <span id="indexsectionid-dwo-name"></span>`fn dwo_name(self) -> &'static str`
 
 #### Trait Implementations
 
 ##### `impl Clone for IndexSectionId`
 
-- `fn clone(self: &Self) -> IndexSectionId` — [`IndexSectionId`](#indexsectionid)
+- <span id="indexsectionid-clone"></span>`fn clone(&self) -> IndexSectionId` — [`IndexSectionId`](#indexsectionid)
 
 ##### `impl Copy for IndexSectionId`
 
 ##### `impl Debug for IndexSectionId`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="indexsectionid-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for IndexSectionId`
 
 ##### `impl PartialEq for IndexSectionId`
 
-- `fn eq(self: &Self, other: &IndexSectionId) -> bool` — [`IndexSectionId`](#indexsectionid)
+- <span id="indexsectionid-eq"></span>`fn eq(&self, other: &IndexSectionId) -> bool` — [`IndexSectionId`](#indexsectionid)
 
 ##### `impl StructuralPartialEq for IndexSectionId`
 
@@ -7026,25 +7411,25 @@ A parsed line number program instruction.
 
 #### Implementations
 
-- `fn parse<'header>(header: &'header LineProgramHeader<R>, input: &mut R) -> Result<LineInstruction<R>>` — [`LineProgramHeader`](#lineprogramheader), [`Result`](../index.md), [`LineInstruction`](#lineinstruction)
+- <span id="lineinstruction-parse"></span>`fn parse<'header>(header: &'header LineProgramHeader<R>, input: &mut R) -> Result<LineInstruction<R>>` — [`LineProgramHeader`](#lineprogramheader), [`Result`](../index.md), [`LineInstruction`](#lineinstruction)
 
 #### Trait Implementations
 
 ##### `impl<R, Offset> Clone for LineInstruction<R, Offset>`
 
-- `fn clone(self: &Self) -> LineInstruction<R, Offset>` — [`LineInstruction`](#lineinstruction)
+- <span id="lineinstruction-clone"></span>`fn clone(&self) -> LineInstruction<R, Offset>` — [`LineInstruction`](#lineinstruction)
 
 ##### `impl<R, Offset> Copy for LineInstruction<R, Offset>`
 
 ##### `impl<R, Offset> Debug for LineInstruction<R, Offset>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="lineinstruction-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, Offset> Eq for LineInstruction<R, Offset>`
 
 ##### `impl<R, Offset> PartialEq for LineInstruction<R, Offset>`
 
-- `fn eq(self: &Self, other: &LineInstruction<R, Offset>) -> bool` — [`LineInstruction`](#lineinstruction)
+- <span id="lineinstruction-eq"></span>`fn eq(&self, other: &LineInstruction<R, Offset>) -> bool` — [`LineInstruction`](#lineinstruction)
 
 ##### `impl<R, Offset> StructuralPartialEq for LineInstruction<R, Offset>`
 
@@ -7074,27 +7459,27 @@ The type of column that a row is referring to.
 
 ##### `impl Clone for ColumnType`
 
-- `fn clone(self: &Self) -> ColumnType` — [`ColumnType`](#columntype)
+- <span id="columntype-clone"></span>`fn clone(&self) -> ColumnType` — [`ColumnType`](#columntype)
 
 ##### `impl Copy for ColumnType`
 
 ##### `impl Debug for ColumnType`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="columntype-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ColumnType`
 
 ##### `impl Ord for ColumnType`
 
-- `fn cmp(self: &Self, other: &ColumnType) -> $crate::cmp::Ordering` — [`ColumnType`](#columntype)
+- <span id="columntype-cmp"></span>`fn cmp(&self, other: &ColumnType) -> cmp::Ordering` — [`ColumnType`](#columntype)
 
 ##### `impl PartialEq for ColumnType`
 
-- `fn eq(self: &Self, other: &ColumnType) -> bool` — [`ColumnType`](#columntype)
+- <span id="columntype-eq"></span>`fn eq(&self, other: &ColumnType) -> bool` — [`ColumnType`](#columntype)
 
 ##### `impl PartialOrd for ColumnType`
 
-- `fn partial_cmp(self: &Self, other: &ColumnType) -> $crate::option::Option<$crate::cmp::Ordering>` — [`ColumnType`](#columntype)
+- <span id="columntype-partial-cmp"></span>`fn partial_cmp(&self, other: &ColumnType) -> option::Option<cmp::Ordering>` — [`ColumnType`](#columntype)
 
 ##### `impl StructuralPartialEq for ColumnType`
 
@@ -7122,19 +7507,19 @@ enum LocListsFormat {
 
 ##### `impl Clone for LocListsFormat`
 
-- `fn clone(self: &Self) -> LocListsFormat` — [`LocListsFormat`](loclists/index.md)
+- <span id="loclistsformat-clone"></span>`fn clone(&self) -> LocListsFormat` — [`LocListsFormat`](loclists/index.md)
 
 ##### `impl Copy for LocListsFormat`
 
 ##### `impl Debug for LocListsFormat`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="loclistsformat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for LocListsFormat`
 
 ##### `impl PartialEq for LocListsFormat`
 
-- `fn eq(self: &Self, other: &LocListsFormat) -> bool` — [`LocListsFormat`](loclists/index.md)
+- <span id="loclistsformat-eq"></span>`fn eq(&self, other: &LocListsFormat) -> bool` — [`LocListsFormat`](loclists/index.md)
 
 ##### `impl StructuralPartialEq for LocListsFormat`
 
@@ -7226,17 +7611,17 @@ A raw entry in .debug_loclists.
 
 #### Implementations
 
-- `fn parse(input: &mut R, encoding: Encoding, format: LocListsFormat) -> Result<Option<Self>>` — [`Encoding`](../index.md), [`LocListsFormat`](loclists/index.md), [`Result`](../index.md)
+- <span id="rawloclistentry-parse"></span>`fn parse(input: &mut R, encoding: Encoding, format: LocListsFormat) -> Result<Option<Self>>` — [`Encoding`](../index.md), [`LocListsFormat`](loclists/index.md), [`Result`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone + Reader> Clone for RawLocListEntry<R>`
+##### `impl<R: clone::Clone + Reader> Clone for RawLocListEntry<R>`
 
-- `fn clone(self: &Self) -> RawLocListEntry<R>` — [`RawLocListEntry`](#rawloclistentry)
+- <span id="rawloclistentry-clone"></span>`fn clone(&self) -> RawLocListEntry<R>` — [`RawLocListEntry`](#rawloclistentry)
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for RawLocListEntry<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for RawLocListEntry<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rawloclistentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `MacroString<R, Offset>`
 
@@ -7275,23 +7660,23 @@ A string in a macro entry.
 
 #### Implementations
 
-- `fn string(self: &Self, unit: UnitRef<'_, R>) -> Result<R>` — [`UnitRef`](#unitref), [`Result`](../index.md)
+- <span id="macrostring-string"></span>`fn string(&self, unit: UnitRef<'_, R>) -> Result<R>` — [`UnitRef`](#unitref), [`Result`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<R, Offset> Clone for MacroString<R, Offset>`
 
-- `fn clone(self: &Self) -> MacroString<R, Offset>` — [`MacroString`](#macrostring)
+- <span id="macrostring-clone"></span>`fn clone(&self) -> MacroString<R, Offset>` — [`MacroString`](#macrostring)
 
 ##### `impl<R, Offset> Debug for MacroString<R, Offset>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="macrostring-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, Offset> Eq for MacroString<R, Offset>`
 
 ##### `impl<R, Offset> PartialEq for MacroString<R, Offset>`
 
-- `fn eq(self: &Self, other: &MacroString<R, Offset>) -> bool` — [`MacroString`](#macrostring)
+- <span id="macrostring-eq"></span>`fn eq(&self, other: &MacroString<R, Offset>) -> bool` — [`MacroString`](#macrostring)
 
 ##### `impl<R, Offset> StructuralPartialEq for MacroString<R, Offset>`
 
@@ -7364,17 +7749,17 @@ an Entry in the `.debug_macro` section.
 
 ##### `impl<R, Offset> Clone for MacroEntry<R, Offset>`
 
-- `fn clone(self: &Self) -> MacroEntry<R, Offset>` — [`MacroEntry`](#macroentry)
+- <span id="macroentry-clone"></span>`fn clone(&self) -> MacroEntry<R, Offset>` — [`MacroEntry`](#macroentry)
 
 ##### `impl<R, Offset> Debug for MacroEntry<R, Offset>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="macroentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, Offset> Eq for MacroEntry<R, Offset>`
 
 ##### `impl<R, Offset> PartialEq for MacroEntry<R, Offset>`
 
-- `fn eq(self: &Self, other: &MacroEntry<R, Offset>) -> bool` — [`MacroEntry`](#macroentry)
+- <span id="macroentry-eq"></span>`fn eq(&self, other: &MacroEntry<R, Offset>) -> bool` — [`MacroEntry`](#macroentry)
 
 ##### `impl<R, Offset> StructuralPartialEq for MacroEntry<R, Offset>`
 
@@ -7402,21 +7787,21 @@ relative to the section.
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for DieReference<T>`
+##### `impl<T: clone::Clone> Clone for DieReference<T>`
 
-- `fn clone(self: &Self) -> DieReference<T>` — [`DieReference`](#diereference)
+- <span id="diereference-clone"></span>`fn clone(&self) -> DieReference<T>` — [`DieReference`](#diereference)
 
-##### `impl<T: $crate::marker::Copy> Copy for DieReference<T>`
+##### `impl<T: marker::Copy> Copy for DieReference<T>`
 
-##### `impl<T: $crate::fmt::Debug> Debug for DieReference<T>`
+##### `impl<T: fmt::Debug> Debug for DieReference<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="diereference-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: $crate::cmp::Eq> Eq for DieReference<T>`
+##### `impl<T: cmp::Eq> Eq for DieReference<T>`
 
-##### `impl<T: $crate::cmp::PartialEq> PartialEq for DieReference<T>`
+##### `impl<T: cmp::PartialEq> PartialEq for DieReference<T>`
 
-- `fn eq(self: &Self, other: &DieReference<T>) -> bool` — [`DieReference`](#diereference)
+- <span id="diereference-eq"></span>`fn eq(&self, other: &DieReference<T>) -> bool` — [`DieReference`](#diereference)
 
 ##### `impl<T> StructuralPartialEq for DieReference<T>`
 
@@ -7824,25 +8209,25 @@ using `Operation::Deref`.
 
 #### Implementations
 
-- `fn parse(bytes: &mut R, encoding: Encoding) -> Result<Operation<R, Offset>>` — [`Encoding`](../index.md), [`Result`](../index.md), [`Operation`](#operation)
+- <span id="operation-parse"></span>`fn parse(bytes: &mut R, encoding: Encoding) -> Result<Operation<R, Offset>>` — [`Encoding`](../index.md), [`Result`](../index.md), [`Operation`](#operation)
 
 #### Trait Implementations
 
 ##### `impl<R, Offset> Clone for Operation<R, Offset>`
 
-- `fn clone(self: &Self) -> Operation<R, Offset>` — [`Operation`](#operation)
+- <span id="operation-clone"></span>`fn clone(&self) -> Operation<R, Offset>` — [`Operation`](#operation)
 
 ##### `impl<R, Offset> Copy for Operation<R, Offset>`
 
 ##### `impl<R, Offset> Debug for Operation<R, Offset>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="operation-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, Offset> Eq for Operation<R, Offset>`
 
 ##### `impl<R, Offset> PartialEq for Operation<R, Offset>`
 
-- `fn eq(self: &Self, other: &Operation<R, Offset>) -> bool` — [`Operation`](#operation)
+- <span id="operation-eq"></span>`fn eq(&self, other: &Operation<R, Offset>) -> bool` — [`Operation`](#operation)
 
 ##### `impl<R, Offset> StructuralPartialEq for Operation<R, Offset>`
 
@@ -7861,9 +8246,9 @@ enum OperationEvaluationResult<R: Reader> {
 
 #### Trait Implementations
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for OperationEvaluationResult<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for OperationEvaluationResult<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="operationevaluationresult-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Location<R, Offset>`
 
@@ -7923,23 +8308,23 @@ A single location of a piece of the result of a DWARF expression.
 
 #### Implementations
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="location-is-empty"></span>`fn is_empty(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl<R, Offset> Clone for Location<R, Offset>`
 
-- `fn clone(self: &Self) -> Location<R, Offset>` — [`Location`](#location)
+- <span id="location-clone"></span>`fn clone(&self) -> Location<R, Offset>` — [`Location`](#location)
 
 ##### `impl<R, Offset> Copy for Location<R, Offset>`
 
 ##### `impl<R, Offset> Debug for Location<R, Offset>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="location-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, Offset> PartialEq for Location<R, Offset>`
 
-- `fn eq(self: &Self, other: &Location<R, Offset>) -> bool` — [`Location`](#location)
+- <span id="location-eq"></span>`fn eq(&self, other: &Location<R, Offset>) -> bool` — [`Location`](#location)
 
 ##### `impl<R, Offset> StructuralPartialEq for Location<R, Offset>`
 
@@ -7957,9 +8342,9 @@ enum EvaluationState<R: Reader> {
 
 #### Trait Implementations
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for EvaluationState<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for EvaluationState<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="evaluationstate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `EvaluationWaiting<R: Reader>`
 
@@ -7989,9 +8374,9 @@ enum EvaluationWaiting<R: Reader> {
 
 #### Trait Implementations
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for EvaluationWaiting<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for EvaluationWaiting<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="evaluationwaiting-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `EvaluationResult<R: Reader>`
 
@@ -8108,13 +8493,13 @@ to continue, as described by the variant.
 
 #### Trait Implementations
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for EvaluationResult<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for EvaluationResult<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="evaluationresult-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::cmp::PartialEq + Reader> PartialEq for EvaluationResult<R>`
+##### `impl<R: cmp::PartialEq + Reader> PartialEq for EvaluationResult<R>`
 
-- `fn eq(self: &Self, other: &EvaluationResult<R>) -> bool` — [`EvaluationResult`](#evaluationresult)
+- <span id="evaluationresult-eq"></span>`fn eq(&self, other: &EvaluationResult<R>) -> bool` — [`EvaluationResult`](#evaluationresult)
 
 ##### `impl<R: Reader> StructuralPartialEq for EvaluationResult<R>`
 
@@ -8141,19 +8526,19 @@ enum RangeListsFormat {
 
 ##### `impl Clone for RangeListsFormat`
 
-- `fn clone(self: &Self) -> RangeListsFormat` — [`RangeListsFormat`](rnglists/index.md)
+- <span id="rangelistsformat-clone"></span>`fn clone(&self) -> RangeListsFormat` — [`RangeListsFormat`](rnglists/index.md)
 
 ##### `impl Copy for RangeListsFormat`
 
 ##### `impl Debug for RangeListsFormat`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rangelistsformat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for RangeListsFormat`
 
 ##### `impl PartialEq for RangeListsFormat`
 
-- `fn eq(self: &Self, other: &RangeListsFormat) -> bool` — [`RangeListsFormat`](rnglists/index.md)
+- <span id="rangelistsformat-eq"></span>`fn eq(&self, other: &RangeListsFormat) -> bool` — [`RangeListsFormat`](rnglists/index.md)
 
 ##### `impl StructuralPartialEq for RangeListsFormat`
 
@@ -8232,17 +8617,17 @@ A raw entry in .debug_rnglists
 
 #### Implementations
 
-- `fn parse<R: Reader<Offset = T>>(input: &mut R, encoding: Encoding, format: RangeListsFormat) -> Result<Option<Self>>` — [`Encoding`](../index.md), [`RangeListsFormat`](rnglists/index.md), [`Result`](../index.md)
+- <span id="rawrnglistentry-parse"></span>`fn parse<R: Reader<Offset = T>>(input: &mut R, encoding: Encoding, format: RangeListsFormat) -> Result<Option<Self>>` — [`Encoding`](../index.md), [`RangeListsFormat`](rnglists/index.md), [`Result`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for RawRngListEntry<T>`
+##### `impl<T: clone::Clone> Clone for RawRngListEntry<T>`
 
-- `fn clone(self: &Self) -> RawRngListEntry<T>` — [`RawRngListEntry`](#rawrnglistentry)
+- <span id="rawrnglistentry-clone"></span>`fn clone(&self) -> RawRngListEntry<T>` — [`RawRngListEntry`](#rawrnglistentry)
 
-##### `impl<T: $crate::fmt::Debug> Debug for RawRngListEntry<T>`
+##### `impl<T: fmt::Debug> Debug for RawRngListEntry<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rawrnglistentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `UnitType<Offset>`
 
@@ -8309,25 +8694,25 @@ signature/type offset of a type unit).
 
 #### Implementations
 
-- `fn dw_ut(self: &Self) -> constants::DwUt` — [`DwUt`](../index.md)
+- <span id="unittype-dw-ut"></span>`fn dw_ut(&self) -> constants::DwUt` — [`DwUt`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<Offset> Clone for UnitType<Offset>`
 
-- `fn clone(self: &Self) -> UnitType<Offset>` — [`UnitType`](#unittype)
+- <span id="unittype-clone"></span>`fn clone(&self) -> UnitType<Offset>` — [`UnitType`](#unittype)
 
 ##### `impl<Offset> Copy for UnitType<Offset>`
 
 ##### `impl<Offset> Debug for UnitType<Offset>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="unittype-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<Offset> Eq for UnitType<Offset>`
 
 ##### `impl<Offset> PartialEq for UnitType<Offset>`
 
-- `fn eq(self: &Self, other: &UnitType<Offset>) -> bool` — [`UnitType`](#unittype)
+- <span id="unittype-eq"></span>`fn eq(&self, other: &UnitType<Offset>) -> bool` — [`UnitType`](#unittype)
 
 ##### `impl<Offset> StructuralPartialEq for UnitType<Offset>`
 
@@ -8608,39 +8993,39 @@ The value of an attribute in a `DebuggingInformationEntry`.
 
 #### Implementations
 
-- `fn u8_value(self: &Self) -> Option<u8>`
+- <span id="attributevalue-u8-value"></span>`fn u8_value(&self) -> Option<u8>`
 
-- `fn u16_value(self: &Self) -> Option<u16>`
+- <span id="attributevalue-u16-value"></span>`fn u16_value(&self) -> Option<u16>`
 
-- `fn udata_value(self: &Self) -> Option<u64>`
+- <span id="attributevalue-udata-value"></span>`fn udata_value(&self) -> Option<u64>`
 
-- `fn sdata_value(self: &Self) -> Option<i64>`
+- <span id="attributevalue-sdata-value"></span>`fn sdata_value(&self) -> Option<i64>`
 
-- `fn offset_value(self: &Self) -> Option<<R as >::Offset>` — [`Reader`](#reader)
+- <span id="attributevalue-offset-value"></span>`fn offset_value(&self) -> Option<<R as >::Offset>` — [`Reader`](#reader)
 
-- `fn exprloc_value(self: &Self) -> Option<Expression<R>>` — [`Expression`](#expression)
+- <span id="attributevalue-exprloc-value"></span>`fn exprloc_value(&self) -> Option<Expression<R>>` — [`Expression`](#expression)
 
-- `fn string_value(self: &Self, debug_str: &DebugStr<R>) -> Option<R>` — [`DebugStr`](#debugstr)
+- <span id="attributevalue-string-value"></span>`fn string_value(&self, debug_str: &DebugStr<R>) -> Option<R>` — [`DebugStr`](#debugstr)
 
-- `fn string_value_sup(self: &Self, debug_str: &DebugStr<R>, debug_str_sup: Option<&DebugStr<R>>) -> Option<R>` — [`DebugStr`](#debugstr)
+- <span id="attributevalue-string-value-sup"></span>`fn string_value_sup(&self, debug_str: &DebugStr<R>, debug_str_sup: Option<&DebugStr<R>>) -> Option<R>` — [`DebugStr`](#debugstr)
 
 #### Trait Implementations
 
 ##### `impl<R, Offset> Clone for AttributeValue<R, Offset>`
 
-- `fn clone(self: &Self) -> AttributeValue<R, Offset>` — [`AttributeValue`](#attributevalue)
+- <span id="attributevalue-clone"></span>`fn clone(&self) -> AttributeValue<R, Offset>` — [`AttributeValue`](#attributevalue)
 
 ##### `impl<R, Offset> Copy for AttributeValue<R, Offset>`
 
 ##### `impl<R, Offset> Debug for AttributeValue<R, Offset>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="attributevalue-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<R, Offset> Eq for AttributeValue<R, Offset>`
 
 ##### `impl<R, Offset> PartialEq for AttributeValue<R, Offset>`
 
-- `fn eq(self: &Self, other: &AttributeValue<R, Offset>) -> bool` — [`AttributeValue`](#attributevalue)
+- <span id="attributevalue-eq"></span>`fn eq(&self, other: &AttributeValue<R, Offset>) -> bool` — [`AttributeValue`](#attributevalue)
 
 ##### `impl<R, Offset> StructuralPartialEq for AttributeValue<R, Offset>`
 
@@ -8714,29 +9099,29 @@ The type of an entry on the DWARF stack.
 
 #### Implementations
 
-- `fn bit_size(self: Self, addr_mask: u64) -> u32`
+- <span id="valuetype-bit-size"></span>`fn bit_size(self, addr_mask: u64) -> u32`
 
-- `fn from_encoding(encoding: constants::DwAte, byte_size: u64) -> Option<ValueType>` — [`DwAte`](../index.md), [`ValueType`](#valuetype)
+- <span id="valuetype-from-encoding"></span>`fn from_encoding(encoding: constants::DwAte, byte_size: u64) -> Option<ValueType>` — [`DwAte`](../index.md), [`ValueType`](#valuetype)
 
-- `fn from_entry<R: Reader>(entry: &DebuggingInformationEntry<'_, '_, R>) -> Result<Option<ValueType>>` — [`DebuggingInformationEntry`](#debugginginformationentry), [`Result`](../index.md), [`ValueType`](#valuetype)
+- <span id="valuetype-from-entry"></span>`fn from_entry<R: Reader>(entry: &DebuggingInformationEntry<'_, '_, R>) -> Result<Option<ValueType>>` — [`DebuggingInformationEntry`](#debugginginformationentry), [`Result`](../index.md), [`ValueType`](#valuetype)
 
 #### Trait Implementations
 
 ##### `impl Clone for ValueType`
 
-- `fn clone(self: &Self) -> ValueType` — [`ValueType`](#valuetype)
+- <span id="valuetype-clone"></span>`fn clone(&self) -> ValueType` — [`ValueType`](#valuetype)
 
 ##### `impl Copy for ValueType`
 
 ##### `impl Debug for ValueType`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="valuetype-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ValueType`
 
 ##### `impl PartialEq for ValueType`
 
-- `fn eq(self: &Self, other: &ValueType) -> bool` — [`ValueType`](#valuetype)
+- <span id="valuetype-eq"></span>`fn eq(&self, other: &ValueType) -> bool` — [`ValueType`](#valuetype)
 
 ##### `impl StructuralPartialEq for ValueType`
 
@@ -8808,79 +9193,79 @@ The value of an entry on the DWARF stack.
 
 #### Implementations
 
-- `fn value_type(self: &Self) -> ValueType` — [`ValueType`](#valuetype)
+- <span id="value-value-type"></span>`fn value_type(&self) -> ValueType` — [`ValueType`](#valuetype)
 
-- `fn parse<R: Reader>(value_type: ValueType, bytes: R) -> Result<Value>` — [`ValueType`](#valuetype), [`Result`](../index.md), [`Value`](#value)
+- <span id="value-parse"></span>`fn parse<R: Reader>(value_type: ValueType, bytes: R) -> Result<Value>` — [`ValueType`](#valuetype), [`Result`](../index.md), [`Value`](#value)
 
-- `fn to_u64(self: Self, addr_mask: u64) -> Result<u64>` — [`Result`](../index.md)
+- <span id="value-to-u64"></span>`fn to_u64(self, addr_mask: u64) -> Result<u64>` — [`Result`](../index.md)
 
-- `fn from_u64(value_type: ValueType, value: u64) -> Result<Value>` — [`ValueType`](#valuetype), [`Result`](../index.md), [`Value`](#value)
+- <span id="value-from-u64"></span>`fn from_u64(value_type: ValueType, value: u64) -> Result<Value>` — [`ValueType`](#valuetype), [`Result`](../index.md), [`Value`](#value)
 
-- `fn from_f32(value_type: ValueType, value: f32) -> Result<Value>` — [`ValueType`](#valuetype), [`Result`](../index.md), [`Value`](#value)
+- <span id="value-from-f32"></span>`fn from_f32(value_type: ValueType, value: f32) -> Result<Value>` — [`ValueType`](#valuetype), [`Result`](../index.md), [`Value`](#value)
 
-- `fn from_f64(value_type: ValueType, value: f64) -> Result<Value>` — [`ValueType`](#valuetype), [`Result`](../index.md), [`Value`](#value)
+- <span id="value-from-f64"></span>`fn from_f64(value_type: ValueType, value: f64) -> Result<Value>` — [`ValueType`](#valuetype), [`Result`](../index.md), [`Value`](#value)
 
-- `fn convert(self: Self, value_type: ValueType, addr_mask: u64) -> Result<Value>` — [`ValueType`](#valuetype), [`Result`](../index.md), [`Value`](#value)
+- <span id="value-convert"></span>`fn convert(self, value_type: ValueType, addr_mask: u64) -> Result<Value>` — [`ValueType`](#valuetype), [`Result`](../index.md), [`Value`](#value)
 
-- `fn reinterpret(self: Self, value_type: ValueType, addr_mask: u64) -> Result<Value>` — [`ValueType`](#valuetype), [`Result`](../index.md), [`Value`](#value)
+- <span id="value-reinterpret"></span>`fn reinterpret(self, value_type: ValueType, addr_mask: u64) -> Result<Value>` — [`ValueType`](#valuetype), [`Result`](../index.md), [`Value`](#value)
 
-- `fn abs(self: Self, addr_mask: u64) -> Result<Value>` — [`Result`](../index.md), [`Value`](#value)
+- <span id="value-abs"></span>`fn abs(self, addr_mask: u64) -> Result<Value>` — [`Result`](../index.md), [`Value`](#value)
 
-- `fn neg(self: Self, addr_mask: u64) -> Result<Value>` — [`Result`](../index.md), [`Value`](#value)
+- <span id="value-neg"></span>`fn neg(self, addr_mask: u64) -> Result<Value>` — [`Result`](../index.md), [`Value`](#value)
 
-- `fn add(self: Self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md)
+- <span id="value-add"></span>`fn add(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md)
 
-- `fn sub(self: Self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md)
+- <span id="value-sub"></span>`fn sub(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md)
 
-- `fn mul(self: Self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md)
+- <span id="value-mul"></span>`fn mul(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md)
 
-- `fn div(self: Self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md)
+- <span id="value-div"></span>`fn div(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md)
 
-- `fn rem(self: Self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md)
+- <span id="value-rem"></span>`fn rem(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md)
 
-- `fn not(self: Self, addr_mask: u64) -> Result<Value>` — [`Result`](../index.md), [`Value`](#value)
+- <span id="value-not"></span>`fn not(self, addr_mask: u64) -> Result<Value>` — [`Result`](../index.md), [`Value`](#value)
 
-- `fn and(self: Self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md)
+- <span id="value-and"></span>`fn and(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md)
 
-- `fn or(self: Self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md)
+- <span id="value-or"></span>`fn or(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md)
 
-- `fn xor(self: Self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md)
+- <span id="value-xor"></span>`fn xor(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md)
 
-- `fn shift_length(self: Self) -> Result<u64>` — [`Result`](../index.md)
+- <span id="value-shift-length"></span>`fn shift_length(self) -> Result<u64>` — [`Result`](../index.md)
 
-- `fn shl(self: Self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md)
+- <span id="value-shl"></span>`fn shl(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md)
 
-- `fn shr(self: Self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md)
+- <span id="value-shr"></span>`fn shr(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md)
 
-- `fn shra(self: Self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md)
+- <span id="value-shra"></span>`fn shra(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md)
 
-- `fn eq(self: Self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md)
+- <span id="value-eq"></span>`fn eq(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md)
 
-- `fn ge(self: Self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md)
+- <span id="value-ge"></span>`fn ge(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md)
 
-- `fn gt(self: Self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md)
+- <span id="value-gt"></span>`fn gt(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md)
 
-- `fn le(self: Self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md)
+- <span id="value-le"></span>`fn le(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md)
 
-- `fn lt(self: Self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md)
+- <span id="value-lt"></span>`fn lt(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md)
 
-- `fn ne(self: Self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md)
+- <span id="value-ne"></span>`fn ne(self, rhs: Value, addr_mask: u64) -> Result<Value>` — [`Value`](#value), [`Result`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Value`
 
-- `fn clone(self: &Self) -> Value` — [`Value`](#value)
+- <span id="value-clone"></span>`fn clone(&self) -> Value` — [`Value`](#value)
 
 ##### `impl Copy for Value`
 
 ##### `impl Debug for Value`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="value-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl PartialEq for Value`
 
-- `fn eq(self: &Self, other: &Value) -> bool` — [`Value`](#value)
+- <span id="value-eq"></span>`fn eq(&self, other: &Value) -> bool` — [`Value`](#value)
 
 ##### `impl StructuralPartialEq for Value`
 
@@ -8927,15 +9312,15 @@ let debug_info: DebugInfo<_> = Section::load(loader).unwrap();
 
   Try to load the section using the given loader function.
 
-- `fn reader(self: &Self) -> &R`
+- `fn reader(&self) -> &R`
 
   Returns the `Reader` for this section.
 
-- `fn dwp_range(self: &Self, offset: u32, size: u32) -> Result<Self>`
+- `fn dwp_range(&self, offset: u32, size: u32) -> Result<Self>`
 
   Returns the subrange of the section that is the contribution of
 
-- `fn lookup_offset_id(self: &Self, id: ReaderOffsetId) -> Option<(SectionId, <R as >::Offset)>`
+- `fn lookup_offset_id(&self, id: ReaderOffsetId) -> Option<(SectionId, <R as >::Offset)>`
 
   Returns the `Reader` for this section.
 
@@ -8965,7 +9350,7 @@ An offset into an `UnwindSection`.
 
 #### Required Methods
 
-- `fn into(self: Self) -> T`
+- `fn into(self) -> T`
 
   Convert an `UnwindOffset<T>` into a `T`.
 
@@ -8983,27 +9368,27 @@ A section holding unwind information: either `.debug_frame` or
 
 - `type Offset: 1`
 
-- `fn entries<'bases>(self: &Self, bases: &'bases BaseAddresses) -> CfiEntriesIter<'bases, Self, R>`
+- `fn entries<'bases>(&self, bases: &'bases BaseAddresses) -> CfiEntriesIter<'bases, Self, R>`
 
   Iterate over the `CommonInformationEntry`s and `FrameDescriptionEntry`s
 
-- `fn cie_from_offset(self: &Self, bases: &BaseAddresses, offset: <Self as >::Offset) -> Result<CommonInformationEntry<R>>`
+- `fn cie_from_offset(&self, bases: &BaseAddresses, offset: <Self as >::Offset) -> Result<CommonInformationEntry<R>>`
 
   Parse the `CommonInformationEntry` at the given offset.
 
-- `fn partial_fde_from_offset<'bases>(self: &Self, bases: &'bases BaseAddresses, offset: <Self as >::Offset) -> Result<PartialFrameDescriptionEntry<'bases, Self, R>>`
+- `fn partial_fde_from_offset<'bases>(&self, bases: &'bases BaseAddresses, offset: <Self as >::Offset) -> Result<PartialFrameDescriptionEntry<'bases, Self, R>>`
 
   Parse the `PartialFrameDescriptionEntry` at the given offset.
 
-- `fn fde_from_offset<F>(self: &Self, bases: &BaseAddresses, offset: <Self as >::Offset, get_cie: F) -> Result<FrameDescriptionEntry<R>>`
+- `fn fde_from_offset<F>(&self, bases: &BaseAddresses, offset: <Self as >::Offset, get_cie: F) -> Result<FrameDescriptionEntry<R>>`
 
   Parse the `FrameDescriptionEntry` at the given offset.
 
-- `fn fde_for_address<F>(self: &Self, bases: &BaseAddresses, address: u64, get_cie: F) -> Result<FrameDescriptionEntry<R>>`
+- `fn fde_for_address<F>(&self, bases: &BaseAddresses, address: u64, get_cie: F) -> Result<FrameDescriptionEntry<R>>`
 
   Find the `FrameDescriptionEntry` for the given address.
 
-- `fn unwind_info_for_address<'ctx, F, S>(self: &Self, bases: &BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, address: u64, get_cie: F) -> Result<&'ctx UnwindTableRow<<R as >::Offset, S>>`
+- `fn unwind_info_for_address<'ctx, F, S>(&self, bases: &BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, address: u64, get_cie: F) -> Result<&'ctx UnwindTableRow<<R as >::Offset, S>>`
 
   Find the frame unwind information for the given address.
 
@@ -9097,15 +9482,15 @@ This allows consumers to choose a size that is appropriate for their address spa
 
   Convert a u64 to an offset.
 
-- `fn into_u64(self: Self) -> u64`
+- `fn into_u64(self) -> u64`
 
   Convert an offset to a u64.
 
-- `fn wrapping_add(self: Self, other: Self) -> Self`
+- `fn wrapping_add(self, other: Self) -> Self`
 
   Wrapping (modular) addition. Computes `self + other`.
 
-- `fn checked_sub(self: Self, other: Self) -> Option<Self>`
+- `fn checked_sub(self, other: Self) -> Option<Self>`
 
   Checked subtraction. Computes `self - other`.
 
@@ -9122,11 +9507,11 @@ in the future to support user-defined address types.
 
 #### Required Methods
 
-- `fn add_sized(self: Self, length: u64, size: u8) -> Result<Self>`
+- `fn add_sized(self, length: u64, size: u8) -> Result<Self>`
 
   Add a length to an address of the given size.
 
-- `fn wrapping_add_sized(self: Self, length: u64, size: u8) -> Self`
+- `fn wrapping_add_sized(self, length: u64, size: u8) -> Self`
 
   Add a length to an address of the given size.
 
@@ -9174,163 +9559,163 @@ thread safe or not.
 
 - `type Offset: 1`
 
-- `fn endian(self: &Self) -> <Self as >::Endian`
+- `fn endian(&self) -> <Self as >::Endian`
 
   Return the endianity of bytes that are read.
 
-- `fn len(self: &Self) -> <Self as >::Offset`
+- `fn len(&self) -> <Self as >::Offset`
 
   Return the number of bytes remaining.
 
-- `fn empty(self: &mut Self)`
+- `fn empty(&mut self)`
 
   Set the number of bytes remaining to zero.
 
-- `fn truncate(self: &mut Self, len: <Self as >::Offset) -> Result<()>`
+- `fn truncate(&mut self, len: <Self as >::Offset) -> Result<()>`
 
   Set the number of bytes remaining to the specified length.
 
-- `fn offset_from(self: &Self, base: &Self) -> <Self as >::Offset`
+- `fn offset_from(&self, base: &Self) -> <Self as >::Offset`
 
   Return the offset of this reader's data relative to the start of
 
-- `fn offset_id(self: &Self) -> ReaderOffsetId`
+- `fn offset_id(&self) -> ReaderOffsetId`
 
   Return an identifier for the current reader offset.
 
-- `fn lookup_offset_id(self: &Self, id: ReaderOffsetId) -> Option<<Self as >::Offset>`
+- `fn lookup_offset_id(&self, id: ReaderOffsetId) -> Option<<Self as >::Offset>`
 
   Return the offset corresponding to the given `id` if
 
-- `fn find(self: &Self, byte: u8) -> Result<<Self as >::Offset>`
+- `fn find(&self, byte: u8) -> Result<<Self as >::Offset>`
 
   Find the index of the first occurrence of the given byte.
 
-- `fn skip(self: &mut Self, len: <Self as >::Offset) -> Result<()>`
+- `fn skip(&mut self, len: <Self as >::Offset) -> Result<()>`
 
   Discard the specified number of bytes.
 
-- `fn split(self: &mut Self, len: <Self as >::Offset) -> Result<Self>`
+- `fn split(&mut self, len: <Self as >::Offset) -> Result<Self>`
 
   Split a reader in two.
 
-- `fn to_slice(self: &Self) -> Result<Cow<'_, [u8]>>`
+- `fn to_slice(&self) -> Result<Cow<'_, [u8]>>`
 
   Return all remaining data as a clone-on-write slice.
 
-- `fn to_string(self: &Self) -> Result<Cow<'_, str>>`
+- `fn to_string(&self) -> Result<Cow<'_, str>>`
 
   Convert all remaining data to a clone-on-write string.
 
-- `fn to_string_lossy(self: &Self) -> Result<Cow<'_, str>>`
+- `fn to_string_lossy(&self) -> Result<Cow<'_, str>>`
 
   Convert all remaining data to a clone-on-write string, including invalid characters.
 
-- `fn read_slice(self: &mut Self, buf: &mut [u8]) -> Result<()>`
+- `fn read_slice(&mut self, buf: &mut [u8]) -> Result<()>`
 
   Read exactly `buf.len()` bytes into `buf`.
 
-- `fn read_u8_array<A>(self: &mut Self) -> Result<A>`
+- `fn read_u8_array<A>(&mut self) -> Result<A>`
 
   Read a u8 array.
 
-- `fn is_empty(self: &Self) -> bool`
+- `fn is_empty(&self) -> bool`
 
   Return true if the number of bytes remaining is zero.
 
-- `fn read_u8(self: &mut Self) -> Result<u8>`
+- `fn read_u8(&mut self) -> Result<u8>`
 
   Read a u8.
 
-- `fn read_i8(self: &mut Self) -> Result<i8>`
+- `fn read_i8(&mut self) -> Result<i8>`
 
   Read an i8.
 
-- `fn read_u16(self: &mut Self) -> Result<u16>`
+- `fn read_u16(&mut self) -> Result<u16>`
 
   Read a u16.
 
-- `fn read_i16(self: &mut Self) -> Result<i16>`
+- `fn read_i16(&mut self) -> Result<i16>`
 
   Read an i16.
 
-- `fn read_u32(self: &mut Self) -> Result<u32>`
+- `fn read_u32(&mut self) -> Result<u32>`
 
   Read a u32.
 
-- `fn read_i32(self: &mut Self) -> Result<i32>`
+- `fn read_i32(&mut self) -> Result<i32>`
 
   Read an i32.
 
-- `fn read_u64(self: &mut Self) -> Result<u64>`
+- `fn read_u64(&mut self) -> Result<u64>`
 
   Read a u64.
 
-- `fn read_i64(self: &mut Self) -> Result<i64>`
+- `fn read_i64(&mut self) -> Result<i64>`
 
   Read an i64.
 
-- `fn read_f32(self: &mut Self) -> Result<f32>`
+- `fn read_f32(&mut self) -> Result<f32>`
 
   Read a f32.
 
-- `fn read_f64(self: &mut Self) -> Result<f64>`
+- `fn read_f64(&mut self) -> Result<f64>`
 
   Read a f64.
 
-- `fn read_uint(self: &mut Self, n: usize) -> Result<u64>`
+- `fn read_uint(&mut self, n: usize) -> Result<u64>`
 
   Read an unsigned n-bytes integer u64.
 
-- `fn read_null_terminated_slice(self: &mut Self) -> Result<Self>`
+- `fn read_null_terminated_slice(&mut self) -> Result<Self>`
 
   Read a null-terminated slice, and return it (excluding the null).
 
-- `fn skip_leb128(self: &mut Self) -> Result<()>`
+- `fn skip_leb128(&mut self) -> Result<()>`
 
   Skip a LEB128 encoded integer.
 
-- `fn read_uleb128(self: &mut Self) -> Result<u64>`
+- `fn read_uleb128(&mut self) -> Result<u64>`
 
   Read an unsigned LEB128 encoded integer.
 
-- `fn read_uleb128_u32(self: &mut Self) -> Result<u32>`
+- `fn read_uleb128_u32(&mut self) -> Result<u32>`
 
   Read an unsigned LEB128 encoded u32.
 
-- `fn read_uleb128_u16(self: &mut Self) -> Result<u16>`
+- `fn read_uleb128_u16(&mut self) -> Result<u16>`
 
   Read an unsigned LEB128 encoded u16.
 
-- `fn read_sleb128(self: &mut Self) -> Result<i64>`
+- `fn read_sleb128(&mut self) -> Result<i64>`
 
   Read a signed LEB128 encoded integer.
 
-- `fn read_initial_length(self: &mut Self) -> Result<(<Self as >::Offset, Format)>`
+- `fn read_initial_length(&mut self) -> Result<(<Self as >::Offset, Format)>`
 
   Read an initial length field.
 
-- `fn read_address_size(self: &mut Self) -> Result<u8>`
+- `fn read_address_size(&mut self) -> Result<u8>`
 
   Read a byte and validate it as an address size.
 
-- `fn read_address(self: &mut Self, address_size: u8) -> Result<u64>`
+- `fn read_address(&mut self, address_size: u8) -> Result<u64>`
 
   Read an address-sized integer, and return it as a `u64`.
 
-- `fn read_word(self: &mut Self, format: Format) -> Result<<Self as >::Offset>`
+- `fn read_word(&mut self, format: Format) -> Result<<Self as >::Offset>`
 
   Parse a word-sized integer according to the DWARF format.
 
-- `fn read_length(self: &mut Self, format: Format) -> Result<<Self as >::Offset>`
+- `fn read_length(&mut self, format: Format) -> Result<<Self as >::Offset>`
 
   Parse a word-sized section length according to the DWARF format.
 
-- `fn read_offset(self: &mut Self, format: Format) -> Result<<Self as >::Offset>`
+- `fn read_offset(&mut self, format: Format) -> Result<<Self as >::Offset>`
 
   Parse a word-sized section offset according to the DWARF format.
 
-- `fn read_sized_offset(self: &mut Self, size: u8) -> Result<<Self as >::Offset>`
+- `fn read_sized_offset(&mut self, size: u8) -> Result<<Self as >::Offset>`
 
   Parse a section offset of the given size.
 
@@ -9344,11 +9729,11 @@ Trait for relocating addresses and offsets while reading a section.
 
 #### Required Methods
 
-- `fn relocate_address(self: &Self, offset: T, value: u64) -> Result<u64>`
+- `fn relocate_address(&self, offset: T, value: u64) -> Result<u64>`
 
   Relocate an address which was read from the given section offset.
 
-- `fn relocate_offset(self: &Self, offset: T, value: T) -> Result<T>`
+- `fn relocate_offset(&self, offset: T, value: T) -> Result<T>`
 
   Relocate a value which was read from the given section offset.
 
@@ -9367,11 +9752,11 @@ never need to use or see this trait.
 
 #### Required Methods
 
-- `fn header(self: &Self) -> &LineProgramHeader<R, Offset>`
+- `fn header(&self) -> &LineProgramHeader<R, Offset>`
 
   Get a reference to the held `LineProgramHeader`.
 
-- `fn add_file(self: &mut Self, file: FileEntry<R, Offset>)`
+- `fn add_file(&mut self, file: FileEntry<R, Offset>)`
 
   Add a file to the file table if necessary.
 

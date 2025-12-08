@@ -6,6 +6,64 @@
 
 Reporters included with `miette`.
 
+## Contents
+
+- [Modules](#modules)
+  - [`debug`](#debug)
+  - [`graphical`](#graphical)
+  - [`json`](#json)
+  - [`narratable`](#narratable)
+  - [`theme`](#theme)
+- [Structs](#structs)
+  - [`DebugReportHandler`](#debugreporthandler)
+  - [`GraphicalReportHandler`](#graphicalreporthandler)
+  - [`Line`](#line)
+  - [`FancySpan`](#fancyspan)
+  - [`JSONReportHandler`](#jsonreporthandler)
+  - [`Escape`](#escape)
+  - [`NarratableReportHandler`](#narratablereporthandler)
+  - [`Line`](#line)
+  - [`GraphicalTheme`](#graphicaltheme)
+  - [`ThemeStyles`](#themestyles)
+  - [`ThemeCharacters`](#themecharacters)
+- [Enums](#enums)
+  - [`LinkStyle`](#linkstyle)
+  - [`LabelRenderMode`](#labelrendermode)
+  - [`SpanAttach`](#spanattach)
+- [Functions](#functions)
+  - [`split_label`](#split_label)
+  - [`escape`](#escape)
+  - [`safe_get_column`](#safe_get_column)
+  - [`style`](#style)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`debug`](#debug) | mod |  |
+| [`graphical`](#graphical) | mod |  |
+| [`json`](#json) | mod |  |
+| [`narratable`](#narratable) | mod |  |
+| [`theme`](#theme) | mod |  |
+| [`DebugReportHandler`](#debugreporthandler) | struct | [`ReportHandler`] that renders plain text and avoids extraneous graphics. |
+| [`GraphicalReportHandler`](#graphicalreporthandler) | struct | A [`ReportHandler`] that displays a given [`Report`](crate::Report) in a |
+| [`Line`](#line) | struct |  |
+| [`FancySpan`](#fancyspan) | struct |  |
+| [`JSONReportHandler`](#jsonreporthandler) | struct | [`ReportHandler`] that renders JSON output. |
+| [`Escape`](#escape) | struct |  |
+| [`NarratableReportHandler`](#narratablereporthandler) | struct | [`ReportHandler`] that renders plain text and avoids extraneous graphics. |
+| [`Line`](#line) | struct |  |
+| [`GraphicalTheme`](#graphicaltheme) | struct | Theme used by [`GraphicalReportHandler`](crate::GraphicalReportHandler) to |
+| [`ThemeStyles`](#themestyles) | struct | Styles for various parts of graphical rendering for the |
+| [`ThemeCharacters`](#themecharacters) | struct | Characters to be used when drawing when using |
+| [`LinkStyle`](#linkstyle) | enum |  |
+| [`LabelRenderMode`](#labelrendermode) | enum |  |
+| [`SpanAttach`](#spanattach) | enum |  |
+| [`split_label`](#split_label) | fn |  |
+| [`escape`](#escape) | fn |  |
+| [`safe_get_column`](#safe_get_column) | fn | Returns column at offset, and nearest boundary if offset is in the middle of |
+| [`style`](#style) | fn |  |
+
 ## Modules
 
 - [`debug`](debug/index.md) - 
@@ -28,27 +86,27 @@ non-graphical environments, such as non-TTY output.
 
 #### Implementations
 
-- `const fn new() -> Self`
+- <span id="debugreporthandler-new"></span>`const fn new() -> Self`
 
 #### Trait Implementations
 
 ##### `impl Clone for DebugReportHandler`
 
-- `fn clone(self: &Self) -> DebugReportHandler` — [`DebugReportHandler`](#debugreporthandler)
+- <span id="debugreporthandler-clone"></span>`fn clone(&self) -> DebugReportHandler` — [`DebugReportHandler`](#debugreporthandler)
 
 ##### `impl Debug for DebugReportHandler`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugreporthandler-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for DebugReportHandler`
 
-- `fn default() -> Self`
+- <span id="debugreporthandler-default"></span>`fn default() -> Self`
 
 ##### `impl<D> OwoColorize for DebugReportHandler`
 
 ##### `impl ReportHandler for DebugReportHandler`
 
-- `fn debug(self: &Self, diagnostic: &dyn Diagnostic, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`Diagnostic`](../index.md)
+- <span id="debugreporthandler-debug"></span>`fn debug(&self, diagnostic: &dyn Diagnostic, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`Diagnostic`](../index.md)
 
 ### `GraphicalReportHandler`
 
@@ -86,67 +144,67 @@ printer.
 
 #### Implementations
 
-- `fn render_report(self: &Self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic) -> fmt::Result` — [`Diagnostic`](../index.md)
+- <span id="graphicalreporthandler-render-report"></span>`fn render_report(&self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic) -> fmt::Result` — [`Diagnostic`](../index.md)
 
-- `fn render_report_inner(self: &Self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic, parent_src: Option<&dyn SourceCode>) -> fmt::Result` — [`Diagnostic`](../index.md), [`SourceCode`](../index.md)
+- <span id="graphicalreporthandler-render-report-inner"></span>`fn render_report_inner(&self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic, parent_src: Option<&dyn SourceCode>) -> fmt::Result` — [`Diagnostic`](../index.md), [`SourceCode`](../index.md)
 
-- `fn render_header(self: &Self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic, is_nested: bool) -> fmt::Result` — [`Diagnostic`](../index.md)
+- <span id="graphicalreporthandler-render-header"></span>`fn render_header(&self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic, is_nested: bool) -> fmt::Result` — [`Diagnostic`](../index.md)
 
-- `fn render_causes(self: &Self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic, parent_src: Option<&dyn SourceCode>) -> fmt::Result` — [`Diagnostic`](../index.md), [`SourceCode`](../index.md)
+- <span id="graphicalreporthandler-render-causes"></span>`fn render_causes(&self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic, parent_src: Option<&dyn SourceCode>) -> fmt::Result` — [`Diagnostic`](../index.md), [`SourceCode`](../index.md)
 
-- `fn render_footer(self: &Self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic) -> fmt::Result` — [`Diagnostic`](../index.md)
+- <span id="graphicalreporthandler-render-footer"></span>`fn render_footer(&self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic) -> fmt::Result` — [`Diagnostic`](../index.md)
 
-- `fn render_related(self: &Self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic, parent_src: Option<&dyn SourceCode>) -> fmt::Result` — [`Diagnostic`](../index.md), [`SourceCode`](../index.md)
+- <span id="graphicalreporthandler-render-related"></span>`fn render_related(&self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic, parent_src: Option<&dyn SourceCode>) -> fmt::Result` — [`Diagnostic`](../index.md), [`SourceCode`](../index.md)
 
-- `fn render_snippets(self: &Self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic, opt_source: Option<&dyn SourceCode>) -> fmt::Result` — [`Diagnostic`](../index.md), [`SourceCode`](../index.md)
+- <span id="graphicalreporthandler-render-snippets"></span>`fn render_snippets(&self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic, opt_source: Option<&dyn SourceCode>) -> fmt::Result` — [`Diagnostic`](../index.md), [`SourceCode`](../index.md)
 
-- `fn render_context(self: &Self, f: &mut impl fmt::Write, source: &dyn SourceCode, context: &LabeledSpan, labels: &[LabeledSpan]) -> fmt::Result` — [`SourceCode`](../index.md), [`LabeledSpan`](../index.md)
+- <span id="graphicalreporthandler-render-context"></span>`fn render_context(&self, f: &mut impl fmt::Write, source: &dyn SourceCode, context: &LabeledSpan, labels: &[LabeledSpan]) -> fmt::Result` — [`SourceCode`](../index.md), [`LabeledSpan`](../index.md)
 
-- `fn render_multi_line_end(self: &Self, f: &mut impl fmt::Write, labels: &[FancySpan], max_gutter: usize, linum_width: usize, line: &Line, label: &FancySpan) -> fmt::Result` — [`FancySpan`](graphical/index.md), [`Line`](graphical/index.md)
+- <span id="graphicalreporthandler-render-multi-line-end"></span>`fn render_multi_line_end(&self, f: &mut impl fmt::Write, labels: &[FancySpan], max_gutter: usize, linum_width: usize, line: &Line, label: &FancySpan) -> fmt::Result` — [`FancySpan`](graphical/index.md), [`Line`](graphical/index.md)
 
-- `fn render_line_gutter(self: &Self, f: &mut impl fmt::Write, max_gutter: usize, line: &Line, highlights: &[FancySpan]) -> fmt::Result` — [`Line`](graphical/index.md), [`FancySpan`](graphical/index.md)
+- <span id="graphicalreporthandler-render-line-gutter"></span>`fn render_line_gutter(&self, f: &mut impl fmt::Write, max_gutter: usize, line: &Line, highlights: &[FancySpan]) -> fmt::Result` — [`Line`](graphical/index.md), [`FancySpan`](graphical/index.md)
 
-- `fn render_highlight_gutter(self: &Self, f: &mut impl fmt::Write, max_gutter: usize, line: &Line, highlights: &[FancySpan], render_mode: LabelRenderMode) -> fmt::Result` — [`Line`](graphical/index.md), [`FancySpan`](graphical/index.md), [`LabelRenderMode`](graphical/index.md)
+- <span id="graphicalreporthandler-render-highlight-gutter"></span>`fn render_highlight_gutter(&self, f: &mut impl fmt::Write, max_gutter: usize, line: &Line, highlights: &[FancySpan], render_mode: LabelRenderMode) -> fmt::Result` — [`Line`](graphical/index.md), [`FancySpan`](graphical/index.md), [`LabelRenderMode`](graphical/index.md)
 
-- `fn wrap(self: &Self, text: &str, opts: textwrap::Options<'_>) -> String`
+- <span id="graphicalreporthandler-wrap"></span>`fn wrap(&self, text: &str, opts: textwrap::Options<'_>) -> String`
 
-- `fn write_linum(self: &Self, f: &mut impl fmt::Write, width: usize, linum: usize) -> fmt::Result`
+- <span id="graphicalreporthandler-write-linum"></span>`fn write_linum(&self, f: &mut impl fmt::Write, width: usize, linum: usize) -> fmt::Result`
 
-- `fn write_no_linum(self: &Self, f: &mut impl fmt::Write, width: usize) -> fmt::Result`
+- <span id="graphicalreporthandler-write-no-linum"></span>`fn write_no_linum(&self, f: &mut impl fmt::Write, width: usize) -> fmt::Result`
 
-- `fn line_visual_char_width<'a>(self: &Self, text: &'a str) -> impl Iterator<Item = usize> + 'a`
+- <span id="graphicalreporthandler-line-visual-char-width"></span>`fn line_visual_char_width<'a>(&self, text: &'a str) -> impl Iterator<Item = usize> + 'a`
 
-- `fn visual_offset(self: &Self, line: &Line, offset: usize, start: bool) -> usize` — [`Line`](graphical/index.md)
+- <span id="graphicalreporthandler-visual-offset"></span>`fn visual_offset(&self, line: &Line, offset: usize, start: bool) -> usize` — [`Line`](graphical/index.md)
 
-- `fn render_line_text(self: &Self, f: &mut impl fmt::Write, text: &str) -> fmt::Result`
+- <span id="graphicalreporthandler-render-line-text"></span>`fn render_line_text(&self, f: &mut impl fmt::Write, text: &str) -> fmt::Result`
 
-- `fn render_single_line_highlights(self: &Self, f: &mut impl fmt::Write, line: &Line, linum_width: usize, max_gutter: usize, single_liners: &[&FancySpan], all_highlights: &[FancySpan]) -> fmt::Result` — [`Line`](graphical/index.md), [`FancySpan`](graphical/index.md)
+- <span id="graphicalreporthandler-render-single-line-highlights"></span>`fn render_single_line_highlights(&self, f: &mut impl fmt::Write, line: &Line, linum_width: usize, max_gutter: usize, single_liners: &[&FancySpan], all_highlights: &[FancySpan]) -> fmt::Result` — [`Line`](graphical/index.md), [`FancySpan`](graphical/index.md)
 
-- `fn write_label_text(self: &Self, f: &mut impl fmt::Write, line: &Line, linum_width: usize, max_gutter: usize, all_highlights: &[FancySpan], chars: &ThemeCharacters, vbar_offsets: &[(&&FancySpan, usize)], hl: &&FancySpan, label: &str, render_mode: LabelRenderMode) -> fmt::Result` — [`Line`](graphical/index.md), [`FancySpan`](graphical/index.md), [`ThemeCharacters`](#themecharacters), [`LabelRenderMode`](graphical/index.md)
+- <span id="graphicalreporthandler-write-label-text"></span>`fn write_label_text(&self, f: &mut impl fmt::Write, line: &Line, linum_width: usize, max_gutter: usize, all_highlights: &[FancySpan], chars: &ThemeCharacters, vbar_offsets: &[(&&FancySpan, usize)], hl: &&FancySpan, label: &str, render_mode: LabelRenderMode) -> fmt::Result` — [`Line`](graphical/index.md), [`FancySpan`](graphical/index.md), [`ThemeCharacters`](#themecharacters), [`LabelRenderMode`](graphical/index.md)
 
-- `fn render_multi_line_end_single(self: &Self, f: &mut impl fmt::Write, label: &str, style: Style, render_mode: LabelRenderMode) -> fmt::Result` — [`LabelRenderMode`](graphical/index.md)
+- <span id="graphicalreporthandler-render-multi-line-end-single"></span>`fn render_multi_line_end_single(&self, f: &mut impl fmt::Write, label: &str, style: Style, render_mode: LabelRenderMode) -> fmt::Result` — [`LabelRenderMode`](graphical/index.md)
 
-- `fn get_lines<'a>(self: &'a Self, source: &'a dyn SourceCode, context_span: &'a SourceSpan) -> Result<(Box<dyn SpanContents<'a>>, Vec<Line>), fmt::Error>` — [`SourceCode`](../index.md), [`SourceSpan`](../index.md), [`SpanContents`](../index.md), [`Line`](graphical/index.md)
+- <span id="graphicalreporthandler-get-lines"></span>`fn get_lines<'a>(self: &'a Self, source: &'a dyn SourceCode, context_span: &'a SourceSpan) -> Result<(Box<dyn SpanContents<'a>>, Vec<Line>), fmt::Error>` — [`SourceCode`](../index.md), [`SourceSpan`](../index.md), [`SpanContents`](../index.md), [`Line`](graphical/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for GraphicalReportHandler`
 
-- `fn clone(self: &Self) -> GraphicalReportHandler` — [`GraphicalReportHandler`](#graphicalreporthandler)
+- <span id="graphicalreporthandler-clone"></span>`fn clone(&self) -> GraphicalReportHandler` — [`GraphicalReportHandler`](#graphicalreporthandler)
 
 ##### `impl Debug for GraphicalReportHandler`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="graphicalreporthandler-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for GraphicalReportHandler`
 
-- `fn default() -> Self`
+- <span id="graphicalreporthandler-default"></span>`fn default() -> Self`
 
 ##### `impl<D> OwoColorize for GraphicalReportHandler`
 
 ##### `impl ReportHandler for GraphicalReportHandler`
 
-- `fn debug(self: &Self, diagnostic: &dyn Diagnostic, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`Diagnostic`](../index.md)
+- <span id="graphicalreporthandler-debug"></span>`fn debug(&self, diagnostic: &dyn Diagnostic, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`Diagnostic`](../index.md)
 
 ### `Line`
 
@@ -161,23 +219,23 @@ struct Line {
 
 #### Implementations
 
-- `fn span_line_only(self: &Self, span: &FancySpan) -> bool` — [`FancySpan`](graphical/index.md)
+- <span id="line-span-line-only"></span>`fn span_line_only(&self, span: &FancySpan) -> bool` — [`FancySpan`](graphical/index.md)
 
-- `fn span_applies(self: &Self, span: &FancySpan) -> bool` — [`FancySpan`](graphical/index.md)
+- <span id="line-span-applies"></span>`fn span_applies(&self, span: &FancySpan) -> bool` — [`FancySpan`](graphical/index.md)
 
-- `fn span_applies_gutter(self: &Self, span: &FancySpan) -> bool` — [`FancySpan`](graphical/index.md)
+- <span id="line-span-applies-gutter"></span>`fn span_applies_gutter(&self, span: &FancySpan) -> bool` — [`FancySpan`](graphical/index.md)
 
-- `fn span_flyby(self: &Self, span: &FancySpan) -> bool` — [`FancySpan`](graphical/index.md)
+- <span id="line-span-flyby"></span>`fn span_flyby(&self, span: &FancySpan) -> bool` — [`FancySpan`](graphical/index.md)
 
-- `fn span_starts(self: &Self, span: &FancySpan) -> bool` — [`FancySpan`](graphical/index.md)
+- <span id="line-span-starts"></span>`fn span_starts(&self, span: &FancySpan) -> bool` — [`FancySpan`](graphical/index.md)
 
-- `fn span_ends(self: &Self, span: &FancySpan) -> bool` — [`FancySpan`](graphical/index.md)
+- <span id="line-span-ends"></span>`fn span_ends(&self, span: &FancySpan) -> bool` — [`FancySpan`](graphical/index.md)
 
 #### Trait Implementations
 
 ##### `impl Debug for Line`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="line-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<D> OwoColorize for Line`
 
@@ -201,33 +259,33 @@ struct FancySpan {
 
 #### Implementations
 
-- `fn new(label: Option<String>, span: SourceSpan, style: Style) -> Self` — [`SourceSpan`](../index.md)
+- <span id="fancyspan-new"></span>`fn new(label: Option<String>, span: SourceSpan, style: Style) -> Self` — [`SourceSpan`](../index.md)
 
-- `fn style(self: &Self) -> Style`
+- <span id="fancyspan-style"></span>`fn style(&self) -> Style`
 
-- `fn label(self: &Self) -> Option<String>`
+- <span id="fancyspan-label"></span>`fn label(&self) -> Option<String>`
 
-- `fn label_parts(self: &Self) -> Option<Vec<String>>`
+- <span id="fancyspan-label-parts"></span>`fn label_parts(&self) -> Option<Vec<String>>`
 
-- `fn offset(self: &Self) -> usize`
+- <span id="fancyspan-offset"></span>`fn offset(&self) -> usize`
 
-- `fn len(self: &Self) -> usize`
+- <span id="fancyspan-len"></span>`fn len(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Clone for FancySpan`
 
-- `fn clone(self: &Self) -> FancySpan` — [`FancySpan`](graphical/index.md)
+- <span id="fancyspan-clone"></span>`fn clone(&self) -> FancySpan` — [`FancySpan`](graphical/index.md)
 
 ##### `impl Debug for FancySpan`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="fancyspan-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<D> OwoColorize for FancySpan`
 
 ##### `impl PartialEq for FancySpan`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="fancyspan-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ### `JSONReportHandler`
 
@@ -239,31 +297,27 @@ struct JSONReportHandler;
 
 #### Implementations
 
-- `fn render_report(self: &Self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic) -> fmt::Result` — [`Diagnostic`](../index.md)
-
-- `fn _render_report(self: &Self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic, parent_src: Option<&dyn SourceCode>) -> fmt::Result` — [`Diagnostic`](../index.md), [`SourceCode`](../index.md)
-
-- `fn render_snippets(self: &Self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic, source: &dyn SourceCode) -> fmt::Result` — [`Diagnostic`](../index.md), [`SourceCode`](../index.md)
+- <span id="jsonreporthandler-new"></span>`const fn new() -> Self`
 
 #### Trait Implementations
 
 ##### `impl Clone for JSONReportHandler`
 
-- `fn clone(self: &Self) -> JSONReportHandler` — [`JSONReportHandler`](#jsonreporthandler)
+- <span id="jsonreporthandler-clone"></span>`fn clone(&self) -> JSONReportHandler` — [`JSONReportHandler`](#jsonreporthandler)
 
 ##### `impl Debug for JSONReportHandler`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="jsonreporthandler-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for JSONReportHandler`
 
-- `fn default() -> Self`
+- <span id="jsonreporthandler-default"></span>`fn default() -> Self`
 
 ##### `impl<D> OwoColorize for JSONReportHandler`
 
 ##### `impl ReportHandler for JSONReportHandler`
 
-- `fn debug(self: &Self, diagnostic: &dyn Diagnostic, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`Diagnostic`](../index.md)
+- <span id="jsonreporthandler-debug"></span>`fn debug(&self, diagnostic: &dyn Diagnostic, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`Diagnostic`](../index.md)
 
 ### `Escape<'a>`
 
@@ -275,13 +329,13 @@ struct Escape<'a>(&'a str);
 
 ##### `impl Display for Escape<'_>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="escape-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<D> OwoColorize for Escape<'a>`
 
 ##### `impl<T> ToString for Escape<'a>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="escape-to-string"></span>`fn to_string(&self) -> String`
 
 ### `NarratableReportHandler`
 
@@ -299,41 +353,35 @@ non-graphical environments, such as non-TTY output.
 
 #### Implementations
 
-- `fn render_report(self: &Self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic) -> fmt::Result` — [`Diagnostic`](../index.md)
+- <span id="narratablereporthandler-new"></span>`const fn new() -> Self`
 
-- `fn render_header(self: &Self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic) -> fmt::Result` — [`Diagnostic`](../index.md)
+- <span id="narratablereporthandler-with-cause-chain"></span>`const fn with_cause_chain(self) -> Self`
 
-- `fn render_causes(self: &Self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic) -> fmt::Result` — [`Diagnostic`](../index.md)
+- <span id="narratablereporthandler-without-cause-chain"></span>`const fn without_cause_chain(self) -> Self`
 
-- `fn render_footer(self: &Self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic) -> fmt::Result` — [`Diagnostic`](../index.md)
+- <span id="narratablereporthandler-with-footer"></span>`fn with_footer(self, footer: String) -> Self`
 
-- `fn render_related(self: &Self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic, parent_src: Option<&dyn SourceCode>) -> fmt::Result` — [`Diagnostic`](../index.md), [`SourceCode`](../index.md)
-
-- `fn render_snippets(self: &Self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic, source_code: Option<&dyn SourceCode>) -> fmt::Result` — [`Diagnostic`](../index.md), [`SourceCode`](../index.md)
-
-- `fn render_context(self: &Self, f: &mut impl fmt::Write, source: &dyn SourceCode, context: &LabeledSpan, labels: &[LabeledSpan]) -> fmt::Result` — [`SourceCode`](../index.md), [`LabeledSpan`](../index.md)
-
-- `fn get_lines<'a>(self: &'a Self, source: &'a dyn SourceCode, context_span: &'a SourceSpan) -> Result<(Box<dyn SpanContents<'a>>, Vec<Line>), fmt::Error>` — [`SourceCode`](../index.md), [`SourceSpan`](../index.md), [`SpanContents`](../index.md), [`Line`](narratable/index.md)
+- <span id="narratablereporthandler-with-context-lines"></span>`const fn with_context_lines(self, lines: usize) -> Self`
 
 #### Trait Implementations
 
 ##### `impl Clone for NarratableReportHandler`
 
-- `fn clone(self: &Self) -> NarratableReportHandler` — [`NarratableReportHandler`](#narratablereporthandler)
+- <span id="narratablereporthandler-clone"></span>`fn clone(&self) -> NarratableReportHandler` — [`NarratableReportHandler`](#narratablereporthandler)
 
 ##### `impl Debug for NarratableReportHandler`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="narratablereporthandler-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for NarratableReportHandler`
 
-- `fn default() -> Self`
+- <span id="narratablereporthandler-default"></span>`fn default() -> Self`
 
 ##### `impl<D> OwoColorize for NarratableReportHandler`
 
 ##### `impl ReportHandler for NarratableReportHandler`
 
-- `fn debug(self: &Self, diagnostic: &dyn Diagnostic, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`Diagnostic`](../index.md)
+- <span id="narratablereporthandler-debug"></span>`fn debug(&self, diagnostic: &dyn Diagnostic, f: &mut fmt::Formatter<'_>) -> fmt::Result` — [`Diagnostic`](../index.md)
 
 ### `Line`
 
@@ -348,7 +396,7 @@ struct Line {
 
 #### Implementations
 
-- `fn span_attach(self: &Self, span: &SourceSpan) -> Option<SpanAttach>` — [`SourceSpan`](../index.md), [`SpanAttach`](narratable/index.md)
+- <span id="line-span-attach"></span>`fn span_attach(&self, span: &SourceSpan) -> Option<SpanAttach>` — [`SourceSpan`](../index.md), [`SpanAttach`](narratable/index.md)
 
 #### Trait Implementations
 
@@ -385,27 +433,27 @@ one of the predefined ones using the methods below.
 
 #### Implementations
 
-- `fn ascii() -> Self`
+- <span id="graphicaltheme-ascii"></span>`fn ascii() -> Self`
 
-- `fn unicode() -> Self`
+- <span id="graphicaltheme-unicode"></span>`fn unicode() -> Self`
 
-- `fn unicode_nocolor() -> Self`
+- <span id="graphicaltheme-unicode-nocolor"></span>`fn unicode_nocolor() -> Self`
 
-- `fn none() -> Self`
+- <span id="graphicaltheme-none"></span>`fn none() -> Self`
 
 #### Trait Implementations
 
 ##### `impl Clone for GraphicalTheme`
 
-- `fn clone(self: &Self) -> GraphicalTheme` — [`GraphicalTheme`](#graphicaltheme)
+- <span id="graphicaltheme-clone"></span>`fn clone(&self) -> GraphicalTheme` — [`GraphicalTheme`](#graphicaltheme)
 
 ##### `impl Debug for GraphicalTheme`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="graphicaltheme-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for GraphicalTheme`
 
-- `fn default() -> Self`
+- <span id="graphicaltheme-default"></span>`fn default() -> Self`
 
 ##### `impl<D> OwoColorize for GraphicalTheme`
 
@@ -459,21 +507,21 @@ Styles for various parts of graphical rendering for the
 
 #### Implementations
 
-- `fn rgb() -> Self`
+- <span id="themestyles-rgb"></span>`fn rgb() -> Self`
 
-- `fn ansi() -> Self`
+- <span id="themestyles-ansi"></span>`fn ansi() -> Self`
 
-- `fn none() -> Self`
+- <span id="themestyles-none"></span>`fn none() -> Self`
 
 #### Trait Implementations
 
 ##### `impl Clone for ThemeStyles`
 
-- `fn clone(self: &Self) -> ThemeStyles` — [`ThemeStyles`](#themestyles)
+- <span id="themestyles-clone"></span>`fn clone(&self) -> ThemeStyles` — [`ThemeStyles`](#themestyles)
 
 ##### `impl Debug for ThemeStyles`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="themestyles-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<D> OwoColorize for ThemeStyles`
 
@@ -510,21 +558,21 @@ Characters to be used when drawing when using
 
 #### Implementations
 
-- `fn unicode() -> Self`
+- <span id="themecharacters-unicode"></span>`fn unicode() -> Self`
 
-- `fn emoji() -> Self`
+- <span id="themecharacters-emoji"></span>`fn emoji() -> Self`
 
-- `fn ascii() -> Self`
+- <span id="themecharacters-ascii"></span>`fn ascii() -> Self`
 
 #### Trait Implementations
 
 ##### `impl Clone for ThemeCharacters`
 
-- `fn clone(self: &Self) -> ThemeCharacters` — [`ThemeCharacters`](#themecharacters)
+- <span id="themecharacters-clone"></span>`fn clone(&self) -> ThemeCharacters` — [`ThemeCharacters`](#themecharacters)
 
 ##### `impl Debug for ThemeCharacters`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="themecharacters-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for ThemeCharacters`
 
@@ -532,7 +580,7 @@ Characters to be used when drawing when using
 
 ##### `impl PartialEq for ThemeCharacters`
 
-- `fn eq(self: &Self, other: &ThemeCharacters) -> bool` — [`ThemeCharacters`](#themecharacters)
+- <span id="themecharacters-eq"></span>`fn eq(&self, other: &ThemeCharacters) -> bool` — [`ThemeCharacters`](#themecharacters)
 
 ##### `impl StructuralPartialEq for ThemeCharacters`
 
@@ -552,13 +600,13 @@ enum LinkStyle {
 
 ##### `impl Clone for LinkStyle`
 
-- `fn clone(self: &Self) -> LinkStyle` — [`LinkStyle`](graphical/index.md)
+- <span id="linkstyle-clone"></span>`fn clone(&self) -> LinkStyle` — [`LinkStyle`](graphical/index.md)
 
 ##### `impl Copy for LinkStyle`
 
 ##### `impl Debug for LinkStyle`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="linkstyle-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for LinkStyle`
 
@@ -566,7 +614,7 @@ enum LinkStyle {
 
 ##### `impl PartialEq for LinkStyle`
 
-- `fn eq(self: &Self, other: &LinkStyle) -> bool` — [`LinkStyle`](graphical/index.md)
+- <span id="linkstyle-eq"></span>`fn eq(&self, other: &LinkStyle) -> bool` — [`LinkStyle`](graphical/index.md)
 
 ##### `impl StructuralPartialEq for LinkStyle`
 
@@ -598,13 +646,13 @@ enum LabelRenderMode {
 
 ##### `impl Debug for LabelRenderMode`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="labelrendermode-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<D> OwoColorize for LabelRenderMode`
 
 ##### `impl PartialEq for LabelRenderMode`
 
-- `fn eq(self: &Self, other: &LabelRenderMode) -> bool` — [`LabelRenderMode`](graphical/index.md)
+- <span id="labelrendermode-eq"></span>`fn eq(&self, other: &LabelRenderMode) -> bool` — [`LabelRenderMode`](graphical/index.md)
 
 ##### `impl StructuralPartialEq for LabelRenderMode`
 

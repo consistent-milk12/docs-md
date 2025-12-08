@@ -4,6 +4,13 @@
 
 # Module `primitive`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`hint`](#hint) | mod |  |
+| [`sync`](#sync) | mod |  |
+
 ## Modules
 
 - [`hint`](hint/index.md) - 

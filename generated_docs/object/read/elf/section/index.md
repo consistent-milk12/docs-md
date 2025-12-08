@@ -4,6 +4,33 @@
 
 # Module `section`
 
+## Contents
+
+- [Structs](#structs)
+  - [`SectionTable`](#sectiontable)
+  - [`ElfSectionIterator`](#elfsectioniterator)
+  - [`ElfSection`](#elfsection)
+- [Traits](#traits)
+  - [`SectionHeader`](#sectionheader)
+- [Type Aliases](#type-aliases)
+  - [`ElfSectionIterator32`](#elfsectioniterator32)
+  - [`ElfSectionIterator64`](#elfsectioniterator64)
+  - [`ElfSection32`](#elfsection32)
+  - [`ElfSection64`](#elfsection64)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`SectionTable`](#sectiontable) | struct | The table of section headers in an ELF file. |
+| [`ElfSectionIterator`](#elfsectioniterator) | struct | An iterator for the sections in an [`ElfFile`]. |
+| [`ElfSection`](#elfsection) | struct | A section in an [`ElfFile`]. |
+| [`SectionHeader`](#sectionheader) | trait | A trait for generic access to [`elf::SectionHeader32`] and [`elf::SectionHeader64`]. |
+| [`ElfSectionIterator32`](#elfsectioniterator32) | type | An iterator for the sections in an [`ElfFile32`](super::ElfFile32). |
+| [`ElfSectionIterator64`](#elfsectioniterator64) | type | An iterator for the sections in an [`ElfFile64`](super::ElfFile64). |
+| [`ElfSection32`](#elfsection32) | type | A section in an [`ElfFile32`](super::ElfFile32). |
+| [`ElfSection64`](#elfsection64) | type | A section in an [`ElfFile64`](super::ElfFile64). |
+
 ## Structs
 
 ### `SectionTable<'data, Elf: FileHeader, R>`
@@ -25,63 +52,63 @@ Returned by `FileHeader::sections`.
 
 #### Implementations
 
-- `fn new(sections: &'data [<Elf as >::SectionHeader], strings: StringTable<'data, R>) -> Self` — [`FileHeader`](../index.md), [`StringTable`](../../index.md)
+- <span id="sectiontable-new"></span>`fn new(sections: &'data [<Elf as >::SectionHeader], strings: StringTable<'data, R>) -> Self` — [`FileHeader`](../index.md), [`StringTable`](../../index.md)
 
-- `fn iter(self: &Self) -> slice::Iter<'data, <Elf as >::SectionHeader>` — [`FileHeader`](../index.md)
+- <span id="sectiontable-iter"></span>`fn iter(&self) -> slice::Iter<'data, <Elf as >::SectionHeader>` — [`FileHeader`](../index.md)
 
-- `fn enumerate(self: &Self) -> impl Iterator<Item = (SectionIndex, &'data <Elf as >::SectionHeader)>` — [`SectionIndex`](../../../index.md), [`FileHeader`](../index.md)
+- <span id="sectiontable-enumerate"></span>`fn enumerate(&self) -> impl Iterator<Item = (SectionIndex, &'data <Elf as >::SectionHeader)>` — [`SectionIndex`](../../../index.md), [`FileHeader`](../index.md)
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="sectiontable-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn len(self: &Self) -> usize`
+- <span id="sectiontable-len"></span>`fn len(&self) -> usize`
 
-- `fn section(self: &Self, index: SectionIndex) -> read::Result<&'data <Elf as >::SectionHeader>` — [`SectionIndex`](../../../index.md), [`Result`](../../../index.md), [`FileHeader`](../index.md)
+- <span id="sectiontable-section"></span>`fn section(&self, index: SectionIndex) -> read::Result<&'data <Elf as >::SectionHeader>` — [`SectionIndex`](../../../index.md), [`Result`](../../../index.md), [`FileHeader`](../index.md)
 
-- `fn section_by_name(self: &Self, endian: <Elf as >::Endian, name: &[u8]) -> Option<(SectionIndex, &'data <Elf as >::SectionHeader)>` — [`FileHeader`](../index.md), [`SectionIndex`](../../../index.md)
+- <span id="sectiontable-section-by-name"></span>`fn section_by_name(&self, endian: <Elf as >::Endian, name: &[u8]) -> Option<(SectionIndex, &'data <Elf as >::SectionHeader)>` — [`FileHeader`](../index.md), [`SectionIndex`](../../../index.md)
 
-- `fn section_name(self: &Self, endian: <Elf as >::Endian, section: &<Elf as >::SectionHeader) -> read::Result<&'data [u8]>` — [`FileHeader`](../index.md), [`Result`](../../../index.md)
+- <span id="sectiontable-section-name"></span>`fn section_name(&self, endian: <Elf as >::Endian, section: &<Elf as >::SectionHeader) -> read::Result<&'data [u8]>` — [`FileHeader`](../index.md), [`Result`](../../../index.md)
 
-- `fn strings(self: &Self, endian: <Elf as >::Endian, data: R, index: SectionIndex) -> read::Result<StringTable<'data, R>>` — [`FileHeader`](../index.md), [`SectionIndex`](../../../index.md), [`Result`](../../../index.md), [`StringTable`](../../index.md)
+- <span id="sectiontable-strings"></span>`fn strings(&self, endian: <Elf as >::Endian, data: R, index: SectionIndex) -> read::Result<StringTable<'data, R>>` — [`FileHeader`](../index.md), [`SectionIndex`](../../../index.md), [`Result`](../../../index.md), [`StringTable`](../../index.md)
 
-- `fn symbols(self: &Self, endian: <Elf as >::Endian, data: R, sh_type: u32) -> read::Result<SymbolTable<'data, Elf, R>>` — [`FileHeader`](../index.md), [`Result`](../../../index.md), [`SymbolTable`](../index.md)
+- <span id="sectiontable-symbols"></span>`fn symbols(&self, endian: <Elf as >::Endian, data: R, sh_type: u32) -> read::Result<SymbolTable<'data, Elf, R>>` — [`FileHeader`](../index.md), [`Result`](../../../index.md), [`SymbolTable`](../index.md)
 
-- `fn symbol_table_by_index(self: &Self, endian: <Elf as >::Endian, data: R, index: SectionIndex) -> read::Result<SymbolTable<'data, Elf, R>>` — [`FileHeader`](../index.md), [`SectionIndex`](../../../index.md), [`Result`](../../../index.md), [`SymbolTable`](../index.md)
+- <span id="sectiontable-symbol-table-by-index"></span>`fn symbol_table_by_index(&self, endian: <Elf as >::Endian, data: R, index: SectionIndex) -> read::Result<SymbolTable<'data, Elf, R>>` — [`FileHeader`](../index.md), [`SectionIndex`](../../../index.md), [`Result`](../../../index.md), [`SymbolTable`](../index.md)
 
-- `fn relocation_sections(self: &Self, endian: <Elf as >::Endian, symbol_section: SectionIndex) -> read::Result<RelocationSections>` — [`FileHeader`](../index.md), [`SectionIndex`](../../../index.md), [`Result`](../../../index.md), [`RelocationSections`](../index.md)
+- <span id="sectiontable-relocation-sections"></span>`fn relocation_sections(&self, endian: <Elf as >::Endian, symbol_section: SectionIndex) -> read::Result<RelocationSections>` — [`FileHeader`](../index.md), [`SectionIndex`](../../../index.md), [`Result`](../../../index.md), [`RelocationSections`](../index.md)
 
-- `fn dynamic(self: &Self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<(&'data [<Elf as >::Dyn], SectionIndex)>>` — [`FileHeader`](../index.md), [`Result`](../../../index.md), [`SectionIndex`](../../../index.md)
+- <span id="sectiontable-dynamic"></span>`fn dynamic(&self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<(&'data [<Elf as >::Dyn], SectionIndex)>>` — [`FileHeader`](../index.md), [`Result`](../../../index.md), [`SectionIndex`](../../../index.md)
 
-- `fn hash_header(self: &Self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<&'data elf::HashHeader<<Elf as >::Endian>>>` — [`FileHeader`](../index.md), [`Result`](../../../index.md), [`HashHeader`](../../../elf/index.md)
+- <span id="sectiontable-hash-header"></span>`fn hash_header(&self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<&'data elf::HashHeader<<Elf as >::Endian>>>` — [`FileHeader`](../index.md), [`Result`](../../../index.md), [`HashHeader`](../../../elf/index.md)
 
-- `fn hash(self: &Self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<(HashTable<'data, Elf>, SectionIndex)>>` — [`FileHeader`](../index.md), [`Result`](../../../index.md), [`HashTable`](../index.md), [`SectionIndex`](../../../index.md)
+- <span id="sectiontable-hash"></span>`fn hash(&self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<(HashTable<'data, Elf>, SectionIndex)>>` — [`FileHeader`](../index.md), [`Result`](../../../index.md), [`HashTable`](../index.md), [`SectionIndex`](../../../index.md)
 
-- `fn gnu_hash_header(self: &Self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<&'data elf::GnuHashHeader<<Elf as >::Endian>>>` — [`FileHeader`](../index.md), [`Result`](../../../index.md), [`GnuHashHeader`](../../../elf/index.md)
+- <span id="sectiontable-gnu-hash-header"></span>`fn gnu_hash_header(&self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<&'data elf::GnuHashHeader<<Elf as >::Endian>>>` — [`FileHeader`](../index.md), [`Result`](../../../index.md), [`GnuHashHeader`](../../../elf/index.md)
 
-- `fn gnu_hash(self: &Self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<(GnuHashTable<'data, Elf>, SectionIndex)>>` — [`FileHeader`](../index.md), [`Result`](../../../index.md), [`GnuHashTable`](../index.md), [`SectionIndex`](../../../index.md)
+- <span id="sectiontable-gnu-hash"></span>`fn gnu_hash(&self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<(GnuHashTable<'data, Elf>, SectionIndex)>>` — [`FileHeader`](../index.md), [`Result`](../../../index.md), [`GnuHashTable`](../index.md), [`SectionIndex`](../../../index.md)
 
-- `fn gnu_versym(self: &Self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<(&'data [elf::Versym<<Elf as >::Endian>], SectionIndex)>>` — [`FileHeader`](../index.md), [`Result`](../../../index.md), [`Versym`](../../../elf/index.md), [`SectionIndex`](../../../index.md)
+- <span id="sectiontable-gnu-versym"></span>`fn gnu_versym(&self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<(&'data [elf::Versym<<Elf as >::Endian>], SectionIndex)>>` — [`FileHeader`](../index.md), [`Result`](../../../index.md), [`Versym`](../../../elf/index.md), [`SectionIndex`](../../../index.md)
 
-- `fn gnu_verdef(self: &Self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<(VerdefIterator<'data, Elf>, SectionIndex)>>` — [`FileHeader`](../index.md), [`Result`](../../../index.md), [`VerdefIterator`](../index.md), [`SectionIndex`](../../../index.md)
+- <span id="sectiontable-gnu-verdef"></span>`fn gnu_verdef(&self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<(VerdefIterator<'data, Elf>, SectionIndex)>>` — [`FileHeader`](../index.md), [`Result`](../../../index.md), [`VerdefIterator`](../index.md), [`SectionIndex`](../../../index.md)
 
-- `fn gnu_verneed(self: &Self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<(VerneedIterator<'data, Elf>, SectionIndex)>>` — [`FileHeader`](../index.md), [`Result`](../../../index.md), [`VerneedIterator`](../index.md), [`SectionIndex`](../../../index.md)
+- <span id="sectiontable-gnu-verneed"></span>`fn gnu_verneed(&self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<(VerneedIterator<'data, Elf>, SectionIndex)>>` — [`FileHeader`](../index.md), [`Result`](../../../index.md), [`VerneedIterator`](../index.md), [`SectionIndex`](../../../index.md)
 
-- `fn versions(self: &Self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<VersionTable<'data, Elf>>>` — [`FileHeader`](../index.md), [`Result`](../../../index.md), [`VersionTable`](../index.md)
+- <span id="sectiontable-versions"></span>`fn versions(&self, endian: <Elf as >::Endian, data: R) -> read::Result<Option<VersionTable<'data, Elf>>>` — [`FileHeader`](../index.md), [`Result`](../../../index.md), [`VersionTable`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<'data, Elf: $crate::clone::Clone + FileHeader, R> Clone for SectionTable<'data, Elf, R>`
+##### `impl<'data, Elf: clone::Clone + FileHeader, R> Clone for SectionTable<'data, Elf, R>`
 
-- `fn clone(self: &Self) -> SectionTable<'data, Elf, R>` — [`SectionTable`](../index.md)
+- <span id="sectiontable-clone"></span>`fn clone(&self) -> SectionTable<'data, Elf, R>` — [`SectionTable`](../index.md)
 
-##### `impl<'data, Elf: $crate::marker::Copy + FileHeader, R> Copy for SectionTable<'data, Elf, R>`
+##### `impl<'data, Elf: marker::Copy + FileHeader, R> Copy for SectionTable<'data, Elf, R>`
 
-##### `impl<'data, Elf: $crate::fmt::Debug + FileHeader, R> Debug for SectionTable<'data, Elf, R>`
+##### `impl<'data, Elf: fmt::Debug + FileHeader, R> Debug for SectionTable<'data, Elf, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sectiontable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, Elf: FileHeader, R: ReadRef<'data>> Default for SectionTable<'data, Elf, R>`
 
-- `fn default() -> Self`
+- <span id="sectiontable-default"></span>`fn default() -> Self`
 
 ### `ElfSectionIterator<'data, 'file, Elf, R>`
 
@@ -99,27 +126,27 @@ An iterator for the sections in an [`ElfFile`](../index.md).
 
 #### Implementations
 
-- `fn new(file: &'file ElfFile<'data, Elf, R>) -> Self` — [`ElfFile`](../index.md)
+- <span id="elfsectioniterator-new"></span>`fn new(file: &'file ElfFile<'data, Elf, R>) -> Self` — [`ElfFile`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'data, 'file, Elf, R> Debug for ElfSectionIterator<'data, 'file, Elf, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="elfsectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for ElfSectionIterator<'data, 'file, Elf, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="elfsectioniterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="elfsectioniterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="elfsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, Elf, R> Iterator for ElfSectionIterator<'data, 'file, Elf, R>`
 
-- `type Item = ElfSection<'data, 'file, Elf, R>`
+- <span id="elfsectioniterator-item"></span>`type Item = ElfSection<'data, 'file, Elf, R>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="elfsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `ElfSection<'data, 'file, Elf, R>`
 
@@ -140,67 +167,67 @@ Most functionality is provided by the [`ObjectSection`](../../index.md) trait im
 
 #### Implementations
 
-- `fn elf_file(self: &Self) -> &'file ElfFile<'data, Elf, R>` — [`ElfFile`](../index.md)
+- <span id="elfsection-elf-file"></span>`fn elf_file(&self) -> &'file ElfFile<'data, Elf, R>` — [`ElfFile`](../index.md)
 
-- `fn elf_section_header(self: &Self) -> &'data <Elf as >::SectionHeader` — [`FileHeader`](../index.md)
+- <span id="elfsection-elf-section-header"></span>`fn elf_section_header(&self) -> &'data <Elf as >::SectionHeader` — [`FileHeader`](../index.md)
 
-- `fn elf_relocation_section_index(self: &Self) -> read::Result<Option<SectionIndex>>` — [`Result`](../../../index.md), [`SectionIndex`](../../../index.md)
+- <span id="elfsection-elf-relocation-section-index"></span>`fn elf_relocation_section_index(&self) -> read::Result<Option<SectionIndex>>` — [`Result`](../../../index.md), [`SectionIndex`](../../../index.md)
 
-- `fn elf_relocation_section(self: &Self) -> read::Result<Option<&'data <Elf as >::SectionHeader>>` — [`Result`](../../../index.md), [`FileHeader`](../index.md)
+- <span id="elfsection-elf-relocation-section"></span>`fn elf_relocation_section(&self) -> read::Result<Option<&'data <Elf as >::SectionHeader>>` — [`Result`](../../../index.md), [`FileHeader`](../index.md)
 
-- `fn elf_linked_rel(self: &Self) -> read::Result<&'data [<Elf as >::Rel]>` — [`Result`](../../../index.md), [`FileHeader`](../index.md)
+- <span id="elfsection-elf-linked-rel"></span>`fn elf_linked_rel(&self) -> read::Result<&'data [<Elf as >::Rel]>` — [`Result`](../../../index.md), [`FileHeader`](../index.md)
 
-- `fn elf_linked_rela(self: &Self) -> read::Result<&'data [<Elf as >::Rela]>` — [`Result`](../../../index.md), [`FileHeader`](../index.md)
+- <span id="elfsection-elf-linked-rela"></span>`fn elf_linked_rela(&self) -> read::Result<&'data [<Elf as >::Rela]>` — [`Result`](../../../index.md), [`FileHeader`](../index.md)
 
-- `fn bytes(self: &Self) -> read::Result<&'data [u8]>` — [`Result`](../../../index.md)
+- <span id="elfsection-bytes"></span>`fn bytes(&self) -> read::Result<&'data [u8]>` — [`Result`](../../../index.md)
 
-- `fn maybe_compressed(self: &Self) -> read::Result<Option<CompressedFileRange>>` — [`Result`](../../../index.md), [`CompressedFileRange`](../../../index.md)
+- <span id="elfsection-maybe-compressed"></span>`fn maybe_compressed(&self) -> read::Result<Option<CompressedFileRange>>` — [`Result`](../../../index.md), [`CompressedFileRange`](../../../index.md)
 
-- `fn maybe_compressed_gnu(self: &Self) -> read::Result<Option<CompressedFileRange>>` — [`Result`](../../../index.md), [`CompressedFileRange`](../../../index.md)
+- <span id="elfsection-maybe-compressed-gnu"></span>`fn maybe_compressed_gnu(&self) -> read::Result<Option<CompressedFileRange>>` — [`Result`](../../../index.md), [`CompressedFileRange`](../../../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'data, 'file, Elf, R> Debug for ElfSection<'data, 'file, Elf, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="elfsection-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, 'file, Elf, R> ObjectSection for ElfSection<'data, 'file, Elf, R>`
 
-- `type RelocationIterator = ElfSectionRelocationIterator<'data, 'file, Elf, R>`
+- <span id="elfsection-relocationiterator"></span>`type RelocationIterator = ElfSectionRelocationIterator<'data, 'file, Elf, R>`
 
-- `fn index(self: &Self) -> SectionIndex` — [`SectionIndex`](../../../index.md)
+- <span id="elfsection-index"></span>`fn index(&self) -> SectionIndex` — [`SectionIndex`](../../../index.md)
 
-- `fn address(self: &Self) -> u64`
+- <span id="elfsection-address"></span>`fn address(&self) -> u64`
 
-- `fn size(self: &Self) -> u64`
+- <span id="elfsection-size"></span>`fn size(&self) -> u64`
 
-- `fn align(self: &Self) -> u64`
+- <span id="elfsection-align"></span>`fn align(&self) -> u64`
 
-- `fn file_range(self: &Self) -> Option<(u64, u64)>`
+- <span id="elfsection-file-range"></span>`fn file_range(&self) -> Option<(u64, u64)>`
 
-- `fn data(self: &Self) -> read::Result<&'data [u8]>` — [`Result`](../../../index.md)
+- <span id="elfsection-data"></span>`fn data(&self) -> read::Result<&'data [u8]>` — [`Result`](../../../index.md)
 
-- `fn data_range(self: &Self, address: u64, size: u64) -> read::Result<Option<&'data [u8]>>` — [`Result`](../../../index.md)
+- <span id="elfsection-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> read::Result<Option<&'data [u8]>>` — [`Result`](../../../index.md)
 
-- `fn compressed_file_range(self: &Self) -> read::Result<CompressedFileRange>` — [`Result`](../../../index.md), [`CompressedFileRange`](../../../index.md)
+- <span id="elfsection-compressed-file-range"></span>`fn compressed_file_range(&self) -> read::Result<CompressedFileRange>` — [`Result`](../../../index.md), [`CompressedFileRange`](../../../index.md)
 
-- `fn compressed_data(self: &Self) -> read::Result<CompressedData<'data>>` — [`Result`](../../../index.md), [`CompressedData`](../../../index.md)
+- <span id="elfsection-compressed-data"></span>`fn compressed_data(&self) -> read::Result<CompressedData<'data>>` — [`Result`](../../../index.md), [`CompressedData`](../../../index.md)
 
-- `fn name_bytes(self: &Self) -> read::Result<&'data [u8]>` — [`Result`](../../../index.md)
+- <span id="elfsection-name-bytes"></span>`fn name_bytes(&self) -> read::Result<&'data [u8]>` — [`Result`](../../../index.md)
 
-- `fn name(self: &Self) -> read::Result<&'data str>` — [`Result`](../../../index.md)
+- <span id="elfsection-name"></span>`fn name(&self) -> read::Result<&'data str>` — [`Result`](../../../index.md)
 
-- `fn segment_name_bytes(self: &Self) -> read::Result<Option<&[u8]>>` — [`Result`](../../../index.md)
+- <span id="elfsection-segment-name-bytes"></span>`fn segment_name_bytes(&self) -> read::Result<Option<&[u8]>>` — [`Result`](../../../index.md)
 
-- `fn segment_name(self: &Self) -> read::Result<Option<&str>>` — [`Result`](../../../index.md)
+- <span id="elfsection-segment-name"></span>`fn segment_name(&self) -> read::Result<Option<&str>>` — [`Result`](../../../index.md)
 
-- `fn kind(self: &Self) -> SectionKind` — [`SectionKind`](../../../index.md)
+- <span id="elfsection-kind"></span>`fn kind(&self) -> SectionKind` — [`SectionKind`](../../../index.md)
 
-- `fn relocations(self: &Self) -> ElfSectionRelocationIterator<'data, 'file, Elf, R>` — [`ElfSectionRelocationIterator`](../index.md)
+- <span id="elfsection-relocations"></span>`fn relocations(&self) -> ElfSectionRelocationIterator<'data, 'file, Elf, R>` — [`ElfSectionRelocationIterator`](../index.md)
 
-- `fn relocation_map(self: &Self) -> read::Result<RelocationMap>` — [`Result`](../../../index.md), [`RelocationMap`](../../../index.md)
+- <span id="elfsection-relocation-map"></span>`fn relocation_map(&self) -> read::Result<RelocationMap>` — [`Result`](../../../index.md), [`RelocationMap`](../../../index.md)
 
-- `fn flags(self: &Self) -> SectionFlags` — [`SectionFlags`](../../../index.md)
+- <span id="elfsection-flags"></span>`fn flags(&self) -> SectionFlags` — [`SectionFlags`](../../../index.md)
 
 ##### `impl<'data, 'file, Elf, R> Sealed for ElfSection<'data, 'file, Elf, R>`
 
@@ -222,127 +249,127 @@ A trait for generic access to [`elf::SectionHeader32`](../../../elf/index.md) an
 
 - `type Endian: 1`
 
-- `fn sh_name(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn sh_name(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn sh_type(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn sh_type(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn sh_flags(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn sh_flags(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn sh_addr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn sh_addr(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn sh_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn sh_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn sh_size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn sh_size(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn sh_link(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn sh_link(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn sh_info(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn sh_info(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn sh_addralign(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn sh_addralign(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn sh_entsize(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn sh_entsize(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn name<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, strings: StringTable<'data, R>) -> read::Result<&'data [u8]>`
+- `fn name<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, strings: StringTable<'data, R>) -> read::Result<&'data [u8]>`
 
   Parse the section name from the string table.
 
-- `fn link(self: &Self, endian: <Self as >::Endian) -> SectionIndex`
+- `fn link(&self, endian: <Self as >::Endian) -> SectionIndex`
 
   Get the `sh_link` field as a section index.
 
-- `fn has_info_link(self: &Self, endian: <Self as >::Endian) -> bool`
+- `fn has_info_link(&self, endian: <Self as >::Endian) -> bool`
 
   Return true if the `SHF_INFO_LINK` flag is set.
 
-- `fn info_link(self: &Self, endian: <Self as >::Endian) -> SectionIndex`
+- `fn info_link(&self, endian: <Self as >::Endian) -> SectionIndex`
 
   Get the `sh_info` field as a section index.
 
-- `fn file_range(self: &Self, endian: <Self as >::Endian) -> Option<(u64, u64)>`
+- `fn file_range(&self, endian: <Self as >::Endian) -> Option<(u64, u64)>`
 
   Return the offset and size of the section in the file.
 
-- `fn data<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<&'data [u8]>`
+- `fn data<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<&'data [u8]>`
 
   Return the section data.
 
-- `fn data_as_array<'data, T: Pod, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<&'data [T]>`
+- `fn data_as_array<'data, T: Pod, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<&'data [T]>`
 
   Return the section data as a slice of the given type.
 
-- `fn strings<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<StringTable<'data, R>>>`
+- `fn strings<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<StringTable<'data, R>>>`
 
   Return the strings in the section.
 
-- `fn symbols<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R, sections: &SectionTable<'data, <Self as >::Elf, R>, section_index: SectionIndex) -> read::Result<Option<SymbolTable<'data, <Self as >::Elf, R>>>`
+- `fn symbols<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R, sections: &SectionTable<'data, <Self as >::Elf, R>, section_index: SectionIndex) -> read::Result<Option<SymbolTable<'data, <Self as >::Elf, R>>>`
 
   Return the symbols in the section.
 
-- `fn rel<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data [<<Self as >::Elf as FileHeader>::Rel], SectionIndex)>>`
+- `fn rel<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data [<<Self as >::Elf as FileHeader>::Rel], SectionIndex)>>`
 
   Return the `Elf::Rel` entries in the section.
 
-- `fn rela<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data [<<Self as >::Elf as FileHeader>::Rela], SectionIndex)>>`
+- `fn rela<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data [<<Self as >::Elf as FileHeader>::Rela], SectionIndex)>>`
 
   Return the `Elf::Rela` entries in the section.
 
-- `fn relr<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<RelrIterator<'data, <Self as >::Elf>>>`
+- `fn relr<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<RelrIterator<'data, <Self as >::Elf>>>`
 
   Return the `Elf::Relr` entries in the section.
 
-- `fn crel<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(CrelIterator<'data>, SectionIndex)>>`
+- `fn crel<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(CrelIterator<'data>, SectionIndex)>>`
 
   Return the `Crel` entries in the section.
 
-- `fn dynamic<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data [<<Self as >::Elf as FileHeader>::Dyn], SectionIndex)>>`
+- `fn dynamic<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data [<<Self as >::Elf as FileHeader>::Dyn], SectionIndex)>>`
 
   Return entries in a dynamic section.
 
-- `fn notes<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<NoteIterator<'data, <Self as >::Elf>>>`
+- `fn notes<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<NoteIterator<'data, <Self as >::Elf>>>`
 
   Return a note iterator for the section data.
 
-- `fn group<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(u32, &'data [U32Bytes<<Self as >::Endian>])>>`
+- `fn group<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(u32, &'data [U32Bytes<<Self as >::Endian>])>>`
 
   Return the contents of a group section.
 
-- `fn hash_header<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<&'data elf::HashHeader<<Self as >::Endian>>>`
+- `fn hash_header<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<&'data elf::HashHeader<<Self as >::Endian>>>`
 
   Return the header of a SysV hash section.
 
-- `fn hash<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(HashTable<'data, <Self as >::Elf>, SectionIndex)>>`
+- `fn hash<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(HashTable<'data, <Self as >::Elf>, SectionIndex)>>`
 
   Return the contents of a SysV hash section.
 
-- `fn gnu_hash_header<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<&'data elf::GnuHashHeader<<Self as >::Endian>>>`
+- `fn gnu_hash_header<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<&'data elf::GnuHashHeader<<Self as >::Endian>>>`
 
   Return the header of a GNU hash section.
 
-- `fn gnu_hash<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(GnuHashTable<'data, <Self as >::Elf>, SectionIndex)>>`
+- `fn gnu_hash<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(GnuHashTable<'data, <Self as >::Elf>, SectionIndex)>>`
 
   Return the contents of a GNU hash section.
 
-- `fn gnu_versym<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data [elf::Versym<<Self as >::Endian>], SectionIndex)>>`
+- `fn gnu_versym<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data [elf::Versym<<Self as >::Endian>], SectionIndex)>>`
 
   Return the contents of a `SHT_GNU_VERSYM` section.
 
-- `fn gnu_verdef<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(VerdefIterator<'data, <Self as >::Elf>, SectionIndex)>>`
+- `fn gnu_verdef<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(VerdefIterator<'data, <Self as >::Elf>, SectionIndex)>>`
 
   Return an iterator for the entries of a `SHT_GNU_VERDEF` section.
 
-- `fn gnu_verneed<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(VerneedIterator<'data, <Self as >::Elf>, SectionIndex)>>`
+- `fn gnu_verneed<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(VerneedIterator<'data, <Self as >::Elf>, SectionIndex)>>`
 
   Return an iterator for the entries of a `SHT_GNU_VERNEED` section.
 
-- `fn gnu_attributes<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<AttributesSection<'data, <Self as >::Elf>>>`
+- `fn gnu_attributes<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<AttributesSection<'data, <Self as >::Elf>>>`
 
   Return the contents of a `SHT_GNU_ATTRIBUTES` section.
 
-- `fn attributes<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<AttributesSection<'data, <Self as >::Elf>>`
+- `fn attributes<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<AttributesSection<'data, <Self as >::Elf>>`
 
   Parse the contents of the section as attributes.
 
-- `fn compression<'data, R: ReadRef<'data>>(self: &Self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data <<Self as >::Elf as FileHeader>::CompressionHeader, u64, u64)>>`
+- `fn compression<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data <<Self as >::Elf as FileHeader>::CompressionHeader, u64, u64)>>`
 
   Parse the compression header if present.
 

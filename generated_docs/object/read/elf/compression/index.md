@@ -4,6 +4,12 @@
 
 # Module `compression`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`CompressionHeader`](#compressionheader) | trait | A trait for generic access to [`elf::CompressionHeader32`] and [`elf::CompressionHeader64`]. |
+
 ## Traits
 
 ### `CompressionHeader`
@@ -20,9 +26,9 @@ A trait for generic access to [`elf::CompressionHeader32`](../../../elf/index.md
 
 - `type Endian: 1`
 
-- `fn ch_type(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn ch_type(&self, endian: <Self as >::Endian) -> u32`
 
-- `fn ch_size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn ch_size(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
-- `fn ch_addralign(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn ch_addralign(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 

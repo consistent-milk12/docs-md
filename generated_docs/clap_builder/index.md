@@ -24,6 +24,75 @@ conditions.
 
 See [CONTRIBUTING](CONTRIBUTING.md) for more details.
 
+## Contents
+
+- [Modules](#modules)
+  - [`macros`](#macros)
+  - [`derive`](#derive)
+  - [`builder`](#builder)
+  - [`error`](#error)
+  - [`parser`](#parser)
+  - [`mkeymap`](#mkeymap)
+  - [`output`](#output)
+  - [`util`](#util)
+- [Structs](#structs)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+- [Enums](#enums)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+- [Traits](#traits)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+- [Type Aliases](#type-aliases)
+  - [`Error`](#error)
+- [Constants](#constants)
+  - [`INTERNAL_ERROR_MSG`](#internal_error_msg)
+- [Macros](#macros)
+  - [`command!`](#command)
+  - [`arg!`](#arg)
+  - [`value_parser!`](#value_parser)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`macros`](#macros) | mod |  |
+| [`derive`](#derive) | mod | This module contains traits that are usable with the `#[derive(...)]` |
+| [`builder`](#builder) | mod | Define [`Command`] line [arguments][`Arg`] |
+| [`error`](#error) | mod | Error reporting |
+| [`parser`](#parser) | mod | [`Command`][crate::Command] line argument parser |
+| [`mkeymap`](#mkeymap) | mod |  |
+| [`output`](#output) | mod |  |
+| [`util`](#util) | mod |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | enum |  |
+| [`unnamed`](#unnamed) | enum |  |
+| [`unnamed`](#unnamed) | enum |  |
+| [`unnamed`](#unnamed) | trait |  |
+| [`unnamed`](#unnamed) | trait |  |
+| [`unnamed`](#unnamed) | trait |  |
+| [`unnamed`](#unnamed) | trait |  |
+| [`unnamed`](#unnamed) | trait |  |
+| [`unnamed`](#unnamed) | trait |  |
+| [`Error`](#error) | type | Command Line Argument Parser Error |
+| [`INTERNAL_ERROR_MSG`](#internal_error_msg) | const |  |
+| [`command!`](#command) | macro | Requires `cargo` feature flag to be enabled. |
+| [`arg!`](#arg) | macro | Create an [`Arg`] from a usage string. |
+| [`value_parser!`](#value_parser) | macro | Select a [`ValueParser`] implementation from the intended type |
+
 ## Modules
 
 - [`macros`](macros/index.md) - 
@@ -119,79 +188,171 @@ let m = Command::new("My Program")
 
 #### Implementations
 
-- `fn get_override_usage(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](builder/index.md)
+- <span id="command-get-usage-name"></span>`fn get_usage_name(&self) -> Option<&str>`
 
-- `fn get_override_help(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](builder/index.md)
+- <span id="command-get-usage-name-fallback"></span>`fn get_usage_name_fallback(&self) -> &str`
 
-- `fn get_help_template(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](builder/index.md)
+- <span id="command-get-display-name"></span>`fn get_display_name(&self) -> Option<&str>`
 
-- `fn get_term_width(self: &Self) -> Option<usize>`
+- <span id="command-get-bin-name"></span>`fn get_bin_name(&self) -> Option<&str>`
 
-- `fn get_max_term_width(self: &Self) -> Option<usize>`
+- <span id="command-get-bin-name-fallback"></span>`fn get_bin_name_fallback(&self) -> &str`
 
-- `fn get_keymap(self: &Self) -> &MKeyMap` — [`MKeyMap`](mkeymap/index.md)
+- <span id="command-set-bin-name"></span>`fn set_bin_name(&mut self, name: impl Into<String>)`
 
-- `fn get_used_global_args(self: &Self, matches: &ArgMatches, global_arg_vec: &mut Vec<Id>)` — [`ArgMatches`](#argmatches), [`Id`](#id)
+- <span id="command-get-name"></span>`fn get_name(&self) -> &str`
 
-- `fn _do_parse(self: &mut Self, raw_args: &mut clap_lex::RawArgs, args_cursor: clap_lex::ArgCursor) -> ClapResult<ArgMatches>` — [`Result`](error/index.md), [`ArgMatches`](#argmatches)
+- <span id="command-get-name-str"></span>`fn get_name_str(&self) -> &Str` — [`Str`](builder/index.md)
 
-- `fn build(self: &mut Self)`
+- <span id="command-get-name-and-visible-aliases"></span>`fn get_name_and_visible_aliases(&self) -> Vec<&str>`
 
-- `fn _build_recursive(self: &mut Self, expand_help_tree: bool)`
+- <span id="command-get-version"></span>`fn get_version(&self) -> Option<&str>`
 
-- `fn _build_self(self: &mut Self, expand_help_tree: bool)`
+- <span id="command-get-long-version"></span>`fn get_long_version(&self) -> Option<&str>`
 
-- `fn _build_subcommand(self: &mut Self, name: &str) -> Option<&mut Self>`
+- <span id="command-get-display-order"></span>`fn get_display_order(&self) -> usize`
 
-- `fn _build_bin_names_internal(self: &mut Self)`
+- <span id="command-get-author"></span>`fn get_author(&self) -> Option<&str>`
 
-- `fn _panic_on_missing_help(self: &Self, help_required_globally: bool)`
+- <span id="command-get-short-flag"></span>`fn get_short_flag(&self) -> Option<char>`
 
-- `fn two_args_of<F>(self: &Self, condition: F) -> Option<(&Arg, &Arg)>` — [`Arg`](#arg)
+- <span id="command-get-long-flag"></span>`fn get_long_flag(&self) -> Option<&str>`
 
-- `fn two_groups_of<F>(self: &Self, condition: F) -> Option<(&ArgGroup, &ArgGroup)>` — [`ArgGroup`](#arggroup)
+- <span id="command-get-about"></span>`fn get_about(&self) -> Option<&StyledStr>` — [`StyledStr`](builder/index.md)
 
-- `fn _propagate_global_args(self: &mut Self)`
+- <span id="command-get-long-about"></span>`fn get_long_about(&self) -> Option<&StyledStr>` — [`StyledStr`](builder/index.md)
 
-- `fn _propagate(self: &mut Self)`
+- <span id="command-is-flatten-help-set"></span>`fn is_flatten_help_set(&self) -> bool`
 
-- `fn _propagate_subcommand(self: &Self, sc: &mut Self)`
+- <span id="command-get-next-help-heading"></span>`fn get_next_help_heading(&self) -> Option<&str>`
 
-- `fn _check_help_and_version(self: &mut Self, expand_help_tree: bool)`
+- <span id="command-get-visible-aliases"></span>`fn get_visible_aliases(&self) -> impl Iterator<Item = &str> + '_`
 
-- `fn _copy_subtree_for_help(self: &Self) -> Command` — [`Command`](#command)
+- <span id="command-get-visible-short-flag-aliases"></span>`fn get_visible_short_flag_aliases(&self) -> impl Iterator<Item = char> + '_`
 
-- `fn _render_version(self: &Self, use_long: bool) -> String`
+- <span id="command-get-visible-long-flag-aliases"></span>`fn get_visible_long_flag_aliases(&self) -> impl Iterator<Item = &str> + '_`
 
-- `fn format_group(self: &Self, g: &Id) -> StyledStr` — [`Id`](#id), [`StyledStr`](builder/index.md)
+- <span id="command-get-all-aliases"></span>`fn get_all_aliases(&self) -> impl Iterator<Item = &str> + '_`
+
+- <span id="command-get-all-short-flag-aliases"></span>`fn get_all_short_flag_aliases(&self) -> impl Iterator<Item = char> + '_`
+
+- <span id="command-get-all-long-flag-aliases"></span>`fn get_all_long_flag_aliases(&self) -> impl Iterator<Item = &str> + '_`
+
+- <span id="command-get-aliases"></span>`fn get_aliases(&self) -> impl Iterator<Item = &str> + '_`
+
+- <span id="command-is-set"></span>`fn is_set(&self, s: AppSettings) -> bool` — [`AppSettings`](builder/app_settings/index.md)
+
+- <span id="command-get-color"></span>`fn get_color(&self) -> ColorChoice` — [`ColorChoice`](#colorchoice)
+
+- <span id="command-get-styles"></span>`fn get_styles(&self) -> &Styles` — [`Styles`](builder/index.md)
+
+- <span id="command-get-subcommands"></span>`fn get_subcommands(&self) -> impl Iterator<Item = &Command>` — [`Command`](#command)
+
+- <span id="command-get-subcommands-mut"></span>`fn get_subcommands_mut(&mut self) -> impl Iterator<Item = &mut Command>` — [`Command`](#command)
+
+- <span id="command-has-subcommands"></span>`fn has_subcommands(&self) -> bool`
+
+- <span id="command-get-subcommand-help-heading"></span>`fn get_subcommand_help_heading(&self) -> Option<&str>`
+
+- <span id="command-get-subcommand-value-name"></span>`fn get_subcommand_value_name(&self) -> Option<&str>`
+
+- <span id="command-get-before-help"></span>`fn get_before_help(&self) -> Option<&StyledStr>` — [`StyledStr`](builder/index.md)
+
+- <span id="command-get-before-long-help"></span>`fn get_before_long_help(&self) -> Option<&StyledStr>` — [`StyledStr`](builder/index.md)
+
+- <span id="command-get-after-help"></span>`fn get_after_help(&self) -> Option<&StyledStr>` — [`StyledStr`](builder/index.md)
+
+- <span id="command-get-after-long-help"></span>`fn get_after_long_help(&self) -> Option<&StyledStr>` — [`StyledStr`](builder/index.md)
+
+- <span id="command-find-subcommand"></span>`fn find_subcommand(&self, name: impl AsRef<std::ffi::OsStr>) -> Option<&Command>` — [`Command`](#command)
+
+- <span id="command-find-subcommand-mut"></span>`fn find_subcommand_mut(&mut self, name: impl AsRef<std::ffi::OsStr>) -> Option<&mut Command>` — [`Command`](#command)
+
+- <span id="command-get-groups"></span>`fn get_groups(&self) -> impl Iterator<Item = &ArgGroup>` — [`ArgGroup`](#arggroup)
+
+- <span id="command-get-arguments"></span>`fn get_arguments(&self) -> impl Iterator<Item = &Arg>` — [`Arg`](#arg)
+
+- <span id="command-get-positionals"></span>`fn get_positionals(&self) -> impl Iterator<Item = &Arg>` — [`Arg`](#arg)
+
+- <span id="command-get-opts"></span>`fn get_opts(&self) -> impl Iterator<Item = &Arg>` — [`Arg`](#arg)
+
+- <span id="command-get-arg-conflicts-with"></span>`fn get_arg_conflicts_with(&self, arg: &Arg) -> Vec<&Arg>` — [`Arg`](#arg)
+
+- <span id="command-get-global-arg-conflicts-with"></span>`fn get_global_arg_conflicts_with(&self, arg: &Arg) -> Vec<&Arg>` — [`Arg`](#arg)
+
+- <span id="command-get-subcommands-containing"></span>`fn get_subcommands_containing(&self, arg: &Arg) -> Vec<&Self>` — [`Arg`](#arg)
+
+- <span id="command-is-no-binary-name-set"></span>`fn is_no_binary_name_set(&self) -> bool`
+
+- <span id="command-is-ignore-errors-set"></span>`fn is_ignore_errors_set(&self) -> bool`
+
+- <span id="command-is-dont-delimit-trailing-values-set"></span>`fn is_dont_delimit_trailing_values_set(&self) -> bool`
+
+- <span id="command-is-disable-version-flag-set"></span>`fn is_disable_version_flag_set(&self) -> bool`
+
+- <span id="command-is-propagate-version-set"></span>`fn is_propagate_version_set(&self) -> bool`
+
+- <span id="command-is-next-line-help-set"></span>`fn is_next_line_help_set(&self) -> bool`
+
+- <span id="command-is-disable-help-flag-set"></span>`fn is_disable_help_flag_set(&self) -> bool`
+
+- <span id="command-is-disable-help-subcommand-set"></span>`fn is_disable_help_subcommand_set(&self) -> bool`
+
+- <span id="command-is-disable-colored-help-set"></span>`fn is_disable_colored_help_set(&self) -> bool`
+
+- <span id="command-is-help-expected-set"></span>`fn is_help_expected_set(&self) -> bool`
+
+- <span id="command-is-infer-long-args-set"></span>`fn is_infer_long_args_set(&self) -> bool`
+
+- <span id="command-is-infer-subcommands-set"></span>`fn is_infer_subcommands_set(&self) -> bool`
+
+- <span id="command-is-arg-required-else-help-set"></span>`fn is_arg_required_else_help_set(&self) -> bool`
+
+- <span id="command-is-allow-missing-positional-set"></span>`fn is_allow_missing_positional_set(&self) -> bool`
+
+- <span id="command-is-hide-set"></span>`fn is_hide_set(&self) -> bool`
+
+- <span id="command-is-subcommand-required-set"></span>`fn is_subcommand_required_set(&self) -> bool`
+
+- <span id="command-is-allow-external-subcommands-set"></span>`fn is_allow_external_subcommands_set(&self) -> bool`
+
+- <span id="command-get-external-subcommand-value-parser"></span>`fn get_external_subcommand_value_parser(&self) -> Option<&super::ValueParser>` — [`ValueParser`](builder/index.md)
+
+- <span id="command-is-args-conflicts-with-subcommands-set"></span>`fn is_args_conflicts_with_subcommands_set(&self) -> bool`
+
+- <span id="command-is-subcommand-precedence-over-arg-set"></span>`fn is_subcommand_precedence_over_arg_set(&self) -> bool`
+
+- <span id="command-is-subcommand-negates-reqs-set"></span>`fn is_subcommand_negates_reqs_set(&self) -> bool`
+
+- <span id="command-is-multicall-set"></span>`fn is_multicall_set(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for Command`
 
-- `fn clone(self: &Self) -> Command` — [`Command`](#command)
+- <span id="command-clone"></span>`fn clone(&self) -> Command` — [`Command`](#command)
 
 ##### `impl Debug for Command`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="command-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Command`
 
-- `fn default() -> Self`
+- <span id="command-default"></span>`fn default() -> Self`
 
 ##### `impl Display for Command`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="command-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Index for Command`
 
-- `type Output = Arg`
+- <span id="command-output"></span>`type Output = Arg`
 
-- `fn index(self: &Self, key: &Id) -> &<Self as >::Output` — [`Id`](#id)
+- <span id="command-index"></span>`fn index(&self, key: &Id) -> &<Self as >::Output` — [`Id`](#id)
 
 ##### `impl<T> ToString for Command`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="command-to-string"></span>`fn to_string(&self) -> String`
 
 ### `Arg`
 
@@ -260,127 +421,77 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 
 #### Implementations
 
-- `fn get_id(self: &Self) -> &Id` — [`Id`](#id)
+- <span id="arg-group"></span>`fn group(self, group_id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](builder/index.md), [`Id`](#id)
 
-- `fn get_help(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](builder/index.md)
+- <span id="arg-groups"></span>`fn groups(self, group_ids: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](#id)
 
-- `fn get_long_help(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](builder/index.md)
+- <span id="arg-default-value-if"></span>`fn default_value_if(self, arg_id: impl Into<Id>, predicate: impl Into<ArgPredicate>, default: impl IntoResettable<OsStr>) -> Self` — [`Id`](#id), [`ArgPredicate`](builder/index.md), [`IntoResettable`](builder/index.md), [`OsStr`](builder/index.md)
 
-- `fn get_display_order(self: &Self) -> usize`
+- <span id="arg-default-values-if"></span>`fn default_values_if(self, arg_id: impl Into<Id>, predicate: impl Into<ArgPredicate>, defaults: impl IntoIterator<Item = impl Into<OsStr>>) -> Self` — [`Id`](#id), [`ArgPredicate`](builder/index.md), [`OsStr`](builder/index.md)
 
-- `fn get_help_heading(self: &Self) -> Option<&str>`
+- <span id="arg-default-value-ifs"></span>`fn default_value_ifs(self, ifs: impl IntoIterator<Item = (impl Into<Id>, impl Into<ArgPredicate>, impl IntoResettable<OsStr>)>) -> Self` — [`Id`](#id), [`ArgPredicate`](builder/index.md), [`IntoResettable`](builder/index.md), [`OsStr`](builder/index.md)
 
-- `fn get_short(self: &Self) -> Option<char>`
+- <span id="arg-default-values-ifs"></span>`fn default_values_ifs(self, ifs: impl IntoIterator<Item = (impl Into<Id>, impl Into<ArgPredicate>, impl IntoIterator<Item = impl Into<OsStr>>)>) -> Self` — [`Id`](#id), [`ArgPredicate`](builder/index.md), [`OsStr`](builder/index.md)
 
-- `fn get_visible_short_aliases(self: &Self) -> Option<Vec<char>>`
+- <span id="arg-required-unless-present"></span>`fn required_unless_present(self, arg_id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](builder/index.md), [`Id`](#id)
 
-- `fn get_all_short_aliases(self: &Self) -> Option<Vec<char>>`
+- <span id="arg-required-unless-present-all"></span>`fn required_unless_present_all(self, names: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](#id)
 
-- `fn get_short_and_visible_aliases(self: &Self) -> Option<Vec<char>>`
+- <span id="arg-required-unless-present-any"></span>`fn required_unless_present_any(self, names: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](#id)
 
-- `fn get_long(self: &Self) -> Option<&str>`
+- <span id="arg-required-if-eq"></span>`fn required_if_eq(self, arg_id: impl Into<Id>, val: impl Into<OsStr>) -> Self` — [`Id`](#id), [`OsStr`](builder/index.md)
 
-- `fn get_visible_aliases(self: &Self) -> Option<Vec<&str>>`
+- <span id="arg-required-if-eq-any"></span>`fn required_if_eq_any(self, ifs: impl IntoIterator<Item = (impl Into<Id>, impl Into<OsStr>)>) -> Self` — [`Id`](#id), [`OsStr`](builder/index.md)
 
-- `fn get_all_aliases(self: &Self) -> Option<Vec<&str>>`
+- <span id="arg-required-if-eq-all"></span>`fn required_if_eq_all(self, ifs: impl IntoIterator<Item = (impl Into<Id>, impl Into<OsStr>)>) -> Self` — [`Id`](#id), [`OsStr`](builder/index.md)
 
-- `fn get_long_and_visible_aliases(self: &Self) -> Option<Vec<&str>>`
+- <span id="arg-requires-if"></span>`fn requires_if(self, val: impl Into<ArgPredicate>, arg_id: impl Into<Id>) -> Self` — [`ArgPredicate`](builder/index.md), [`Id`](#id)
 
-- `fn get_aliases(self: &Self) -> Option<Vec<&str>>`
+- <span id="arg-requires-ifs"></span>`fn requires_ifs(self, ifs: impl IntoIterator<Item = (impl Into<ArgPredicate>, impl Into<Id>)>) -> Self` — [`ArgPredicate`](builder/index.md), [`Id`](#id)
 
-- `fn get_possible_values(self: &Self) -> Vec<PossibleValue>` — [`PossibleValue`](builder/index.md)
+- <span id="arg-conflicts-with"></span>`fn conflicts_with(self, arg_id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](builder/index.md), [`Id`](#id)
 
-- `fn get_value_names(self: &Self) -> Option<&[Str]>` — [`Str`](builder/index.md)
+- <span id="arg-conflicts-with-all"></span>`fn conflicts_with_all(self, names: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](#id)
 
-- `fn get_num_args(self: &Self) -> Option<ValueRange>` — [`ValueRange`](builder/index.md)
+- <span id="arg-overrides-with"></span>`fn overrides_with(self, arg_id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](builder/index.md), [`Id`](#id)
 
-- `fn get_min_vals(self: &Self) -> usize`
-
-- `fn get_value_delimiter(self: &Self) -> Option<char>`
-
-- `fn get_value_terminator(self: &Self) -> Option<&Str>` — [`Str`](builder/index.md)
-
-- `fn get_index(self: &Self) -> Option<usize>`
-
-- `fn get_value_hint(self: &Self) -> ValueHint` — [`ValueHint`](#valuehint)
-
-- `fn get_default_values(self: &Self) -> &[OsStr]` — [`OsStr`](builder/index.md)
-
-- `fn is_positional(self: &Self) -> bool`
-
-- `fn is_required_set(self: &Self) -> bool`
-
-- `fn is_multiple_values_set(self: &Self) -> bool`
-
-- `fn is_takes_value_set(self: &Self) -> bool`
-
-- `fn is_allow_hyphen_values_set(self: &Self) -> bool`
-
-- `fn is_allow_negative_numbers_set(self: &Self) -> bool`
-
-- `fn get_action(self: &Self) -> &ArgAction` — [`ArgAction`](#argaction)
-
-- `fn get_value_parser(self: &Self) -> &super::ValueParser` — [`ValueParser`](builder/index.md)
-
-- `fn is_global_set(self: &Self) -> bool`
-
-- `fn is_next_line_help_set(self: &Self) -> bool`
-
-- `fn is_hide_set(self: &Self) -> bool`
-
-- `fn is_hide_default_value_set(self: &Self) -> bool`
-
-- `fn is_hide_possible_values_set(self: &Self) -> bool`
-
-- `fn is_hide_short_help_set(self: &Self) -> bool`
-
-- `fn is_hide_long_help_set(self: &Self) -> bool`
-
-- `fn is_require_equals_set(self: &Self) -> bool`
-
-- `fn is_exclusive_set(self: &Self) -> bool`
-
-- `fn is_trailing_var_arg_set(self: &Self) -> bool`
-
-- `fn is_last_set(self: &Self) -> bool`
-
-- `fn is_ignore_case_set(self: &Self) -> bool`
+- <span id="arg-overrides-with-all"></span>`fn overrides_with_all(self, names: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](#id)
 
 #### Trait Implementations
 
 ##### `impl Clone for Arg`
 
-- `fn clone(self: &Self) -> Arg` — [`Arg`](#arg)
+- <span id="arg-clone"></span>`fn clone(&self) -> Arg` — [`Arg`](#arg)
 
 ##### `impl Debug for Arg`
 
-- `fn fmt(self: &Self, f: &mut Formatter<'_>) -> Result<(), fmt::Error>`
+- <span id="arg-fmt"></span>`fn fmt(&self, f: &mut Formatter<'_>) -> Result<(), fmt::Error>`
 
 ##### `impl Default for Arg`
 
-- `fn default() -> Arg` — [`Arg`](#arg)
+- <span id="arg-default"></span>`fn default() -> Arg` — [`Arg`](#arg)
 
 ##### `impl Display for Arg`
 
-- `fn fmt(self: &Self, f: &mut Formatter<'_>) -> fmt::Result`
+- <span id="arg-fmt"></span>`fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Arg`
 
 ##### `impl Ord for Arg`
 
-- `fn cmp(self: &Self, other: &Arg) -> Ordering` — [`Arg`](#arg)
+- <span id="arg-cmp"></span>`fn cmp(&self, other: &Arg) -> Ordering` — [`Arg`](#arg)
 
 ##### `impl PartialEq for Arg`
 
-- `fn eq(self: &Self, other: &Arg) -> bool` — [`Arg`](#arg)
+- <span id="arg-eq"></span>`fn eq(&self, other: &Arg) -> bool` — [`Arg`](#arg)
 
 ##### `impl PartialOrd for Arg`
 
-- `fn partial_cmp(self: &Self, other: &Self) -> Option<Ordering>`
+- <span id="arg-partial-cmp"></span>`fn partial_cmp(&self, other: &Self) -> Option<Ordering>`
 
 ##### `impl<T> ToString for Arg`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="arg-to-string"></span>`fn to_string(&self) -> String`
 
 ### `ArgGroup`
 
@@ -460,29 +571,49 @@ assert_eq!(matches
 
 #### Implementations
 
-- `fn get_id(self: &Self) -> &Id` — [`Id`](#id)
+- <span id="arggroup-new"></span>`fn new(id: impl Into<Id>) -> Self` — [`Id`](#id)
 
-- `fn is_required_set(self: &Self) -> bool`
+- <span id="arggroup-id"></span>`fn id(self, id: impl Into<Id>) -> Self` — [`Id`](#id)
+
+- <span id="arggroup-arg"></span>`fn arg(self, arg_id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](builder/index.md), [`Id`](#id)
+
+- <span id="arggroup-args"></span>`fn args(self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](#id)
+
+- <span id="arggroup-get-args"></span>`fn get_args(&self) -> impl Iterator<Item = &Id>` — [`Id`](#id)
+
+- <span id="arggroup-multiple"></span>`fn multiple(self, yes: bool) -> Self`
+
+- <span id="arggroup-is-multiple"></span>`fn is_multiple(&mut self) -> bool`
+
+- <span id="arggroup-required"></span>`fn required(self, yes: bool) -> Self`
+
+- <span id="arggroup-requires"></span>`fn requires(self, id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](builder/index.md), [`Id`](#id)
+
+- <span id="arggroup-requires-all"></span>`fn requires_all(self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](#id)
+
+- <span id="arggroup-conflicts-with"></span>`fn conflicts_with(self, id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](builder/index.md), [`Id`](#id)
+
+- <span id="arggroup-conflicts-with-all"></span>`fn conflicts_with_all(self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](#id)
 
 #### Trait Implementations
 
 ##### `impl Clone for ArgGroup`
 
-- `fn clone(self: &Self) -> ArgGroup` — [`ArgGroup`](#arggroup)
+- <span id="arggroup-clone"></span>`fn clone(&self) -> ArgGroup` — [`ArgGroup`](#arggroup)
 
 ##### `impl Debug for ArgGroup`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="arggroup-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for ArgGroup`
 
-- `fn default() -> ArgGroup` — [`ArgGroup`](#arggroup)
+- <span id="arggroup-default"></span>`fn default() -> ArgGroup` — [`ArgGroup`](#arggroup)
 
 ##### `impl Eq for ArgGroup`
 
 ##### `impl PartialEq for ArgGroup`
 
-- `fn eq(self: &Self, other: &ArgGroup) -> bool` — [`ArgGroup`](#arggroup)
+- <span id="arggroup-eq"></span>`fn eq(&self, other: &ArgGroup) -> bool` — [`ArgGroup`](#arggroup)
 
 ##### `impl StructuralPartialEq for ArgGroup`
 
@@ -546,45 +677,45 @@ if matches.contains_id("out") {
 
 #### Implementations
 
-- `fn try_get_one<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Result<Option<&T>, MatchesError>` — [`MatchesError`](parser/index.md)
+- <span id="argmatches-try-get-one"></span>`fn try_get_one<T: Any + Clone + Send + Sync + 'static>(&self, id: &str) -> Result<Option<&T>, MatchesError>` — [`MatchesError`](parser/index.md)
 
-- `fn try_get_many<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Result<Option<ValuesRef<'_, T>>, MatchesError>` — [`ValuesRef`](parser/index.md), [`MatchesError`](parser/index.md)
+- <span id="argmatches-try-get-many"></span>`fn try_get_many<T: Any + Clone + Send + Sync + 'static>(&self, id: &str) -> Result<Option<ValuesRef<'_, T>>, MatchesError>` — [`ValuesRef`](parser/index.md), [`MatchesError`](parser/index.md)
 
-- `fn try_get_occurrences<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Result<Option<OccurrencesRef<'_, T>>, MatchesError>` — [`OccurrencesRef`](parser/matches/arg_matches/index.md), [`MatchesError`](parser/index.md)
+- <span id="argmatches-try-get-occurrences"></span>`fn try_get_occurrences<T: Any + Clone + Send + Sync + 'static>(&self, id: &str) -> Result<Option<OccurrencesRef<'_, T>>, MatchesError>` — [`OccurrencesRef`](parser/matches/arg_matches/index.md), [`MatchesError`](parser/index.md)
 
-- `fn try_get_raw(self: &Self, id: &str) -> Result<Option<RawValues<'_>>, MatchesError>` — [`RawValues`](parser/index.md), [`MatchesError`](parser/index.md)
+- <span id="argmatches-try-get-raw"></span>`fn try_get_raw(&self, id: &str) -> Result<Option<RawValues<'_>>, MatchesError>` — [`RawValues`](parser/index.md), [`MatchesError`](parser/index.md)
 
-- `fn try_get_raw_occurrences(self: &Self, id: &str) -> Result<Option<RawOccurrences<'_>>, MatchesError>` — [`RawOccurrences`](parser/matches/arg_matches/index.md), [`MatchesError`](parser/index.md)
+- <span id="argmatches-try-get-raw-occurrences"></span>`fn try_get_raw_occurrences(&self, id: &str) -> Result<Option<RawOccurrences<'_>>, MatchesError>` — [`RawOccurrences`](parser/matches/arg_matches/index.md), [`MatchesError`](parser/index.md)
 
-- `fn try_remove_one<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Result<Option<T>, MatchesError>` — [`MatchesError`](parser/index.md)
+- <span id="argmatches-try-remove-one"></span>`fn try_remove_one<T: Any + Clone + Send + Sync + 'static>(&mut self, id: &str) -> Result<Option<T>, MatchesError>` — [`MatchesError`](parser/index.md)
 
-- `fn try_remove_many<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Result<Option<Values<T>>, MatchesError>` — [`Values`](parser/index.md), [`MatchesError`](parser/index.md)
+- <span id="argmatches-try-remove-many"></span>`fn try_remove_many<T: Any + Clone + Send + Sync + 'static>(&mut self, id: &str) -> Result<Option<Values<T>>, MatchesError>` — [`Values`](parser/index.md), [`MatchesError`](parser/index.md)
 
-- `fn try_remove_occurrences<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Result<Option<Occurrences<T>>, MatchesError>` — [`Occurrences`](parser/matches/arg_matches/index.md), [`MatchesError`](parser/index.md)
+- <span id="argmatches-try-remove-occurrences"></span>`fn try_remove_occurrences<T: Any + Clone + Send + Sync + 'static>(&mut self, id: &str) -> Result<Option<Occurrences<T>>, MatchesError>` — [`Occurrences`](parser/matches/arg_matches/index.md), [`MatchesError`](parser/index.md)
 
-- `fn try_contains_id(self: &Self, id: &str) -> Result<bool, MatchesError>` — [`MatchesError`](parser/index.md)
+- <span id="argmatches-try-contains-id"></span>`fn try_contains_id(&self, id: &str) -> Result<bool, MatchesError>` — [`MatchesError`](parser/index.md)
 
-- `fn try_clear_id(self: &mut Self, id: &str) -> Result<bool, MatchesError>` — [`MatchesError`](parser/index.md)
+- <span id="argmatches-try-clear-id"></span>`fn try_clear_id(&mut self, id: &str) -> Result<bool, MatchesError>` — [`MatchesError`](parser/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for ArgMatches`
 
-- `fn clone(self: &Self) -> ArgMatches` — [`ArgMatches`](#argmatches)
+- <span id="argmatches-clone"></span>`fn clone(&self) -> ArgMatches` — [`ArgMatches`](#argmatches)
 
 ##### `impl Debug for ArgMatches`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="argmatches-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for ArgMatches`
 
-- `fn default() -> ArgMatches` — [`ArgMatches`](#argmatches)
+- <span id="argmatches-default"></span>`fn default() -> ArgMatches` — [`ArgMatches`](#argmatches)
 
 ##### `impl Eq for ArgMatches`
 
 ##### `impl PartialEq for ArgMatches`
 
-- `fn eq(self: &Self, other: &ArgMatches) -> bool` — [`ArgMatches`](#argmatches)
+- <span id="argmatches-eq"></span>`fn eq(&self, other: &ArgMatches) -> bool` — [`ArgMatches`](#argmatches)
 
 ##### `impl StructuralPartialEq for ArgMatches`
 
@@ -602,67 +733,67 @@ relationships between `Arg`s and `ArgGroup`s with functions like
 
 #### Implementations
 
-- `const HELP: &'static str`
+- <span id="id-help"></span>`const HELP: &'static str`
 
-- `const VERSION: &'static str`
+- <span id="id-version"></span>`const VERSION: &'static str`
 
-- `const EXTERNAL: &'static str`
+- <span id="id-external"></span>`const EXTERNAL: &'static str`
 
-- `fn from_static_ref(name: &'static str) -> Self`
+- <span id="id-from-static-ref"></span>`fn from_static_ref(name: &'static str) -> Self`
 
-- `fn as_str(self: &Self) -> &str`
+- <span id="id-as-str"></span>`fn as_str(&self) -> &str`
 
-- `fn as_internal_str(self: &Self) -> &Str` — [`Str`](builder/index.md)
+- <span id="id-as-internal-str"></span>`fn as_internal_str(&self) -> &Str` — [`Str`](builder/index.md)
 
 #### Trait Implementations
 
 ##### `impl AsRef for Id`
 
-- `fn as_ref(self: &Self) -> &str`
+- <span id="id-as-ref"></span>`fn as_ref(&self) -> &str`
 
 ##### `impl Clone for Id`
 
-- `fn clone(self: &Self) -> Id` — [`Id`](#id)
+- <span id="id-clone"></span>`fn clone(&self) -> Id` — [`Id`](#id)
 
 ##### `impl Debug for Id`
 
-- `fn fmt(self: &Self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="id-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
 ##### `impl Default for Id`
 
-- `fn default() -> Id` — [`Id`](#id)
+- <span id="id-default"></span>`fn default() -> Id` — [`Id`](#id)
 
 ##### `impl Display for Id`
 
-- `fn fmt(self: &Self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="id-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
 ##### `impl Eq for Id`
 
 ##### `impl Hash for Id`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="id-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl<I> IntoResettable for Id`
 
-- `fn into_resettable(self: Self) -> Resettable<Str>` — [`Resettable`](builder/index.md), [`Str`](builder/index.md)
+- <span id="id-into-resettable"></span>`fn into_resettable(self) -> Resettable<Str>` — [`Resettable`](builder/index.md), [`Str`](builder/index.md)
 
 ##### `impl Ord for Id`
 
-- `fn cmp(self: &Self, other: &Id) -> $crate::cmp::Ordering` — [`Id`](#id)
+- <span id="id-cmp"></span>`fn cmp(&self, other: &Id) -> cmp::Ordering` — [`Id`](#id)
 
 ##### `impl PartialEq for Id`
 
-- `fn eq(self: &Self, other: &str) -> bool`
+- <span id="id-eq"></span>`fn eq(&self, other: &&str) -> bool`
 
 ##### `impl PartialOrd for Id`
 
-- `fn partial_cmp(self: &Self, other: &Id) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Id`](#id)
+- <span id="id-partial-cmp"></span>`fn partial_cmp(&self, other: &Id) -> option::Option<cmp::Ordering>` — [`Id`](#id)
 
 ##### `impl StructuralPartialEq for Id`
 
 ##### `impl<T> ToString for Id`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="id-to-string"></span>`fn to_string(&self) -> String`
 
 ## Enums
 
@@ -1048,33 +1179,33 @@ assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
 
 #### Implementations
 
-- `fn takes_values(self: &Self) -> bool`
+- <span id="argaction-takes-values"></span>`fn takes_values(&self) -> bool`
 
-- `fn max_num_args(self: &Self) -> ValueRange` — [`ValueRange`](builder/index.md)
+- <span id="argaction-max-num-args"></span>`fn max_num_args(&self) -> ValueRange` — [`ValueRange`](builder/index.md)
 
-- `fn default_num_args(self: &Self) -> ValueRange` — [`ValueRange`](builder/index.md)
+- <span id="argaction-default-num-args"></span>`fn default_num_args(&self) -> ValueRange` — [`ValueRange`](builder/index.md)
 
-- `fn default_value(self: &Self) -> Option<&'static std::ffi::OsStr>`
+- <span id="argaction-default-value"></span>`fn default_value(&self) -> Option<&'static std::ffi::OsStr>`
 
-- `fn default_missing_value(self: &Self) -> Option<&'static std::ffi::OsStr>`
+- <span id="argaction-default-missing-value"></span>`fn default_missing_value(&self) -> Option<&'static std::ffi::OsStr>`
 
-- `fn default_value_parser(self: &Self) -> Option<super::ValueParser>` — [`ValueParser`](builder/index.md)
+- <span id="argaction-default-value-parser"></span>`fn default_value_parser(&self) -> Option<super::ValueParser>` — [`ValueParser`](builder/index.md)
 
-- `fn value_type_id(self: &Self) -> Option<AnyValueId>` — [`AnyValueId`](util/any_value/index.md)
+- <span id="argaction-value-type-id"></span>`fn value_type_id(&self) -> Option<AnyValueId>` — [`AnyValueId`](util/any_value/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for ArgAction`
 
-- `fn clone(self: &Self) -> ArgAction` — [`ArgAction`](#argaction)
+- <span id="argaction-clone"></span>`fn clone(&self) -> ArgAction` — [`ArgAction`](#argaction)
 
 ##### `impl Debug for ArgAction`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="argaction-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl IntoResettable for crate::builder::ArgAction`
 
-- `fn into_resettable(self: Self) -> Resettable<ArgAction>` — [`Resettable`](builder/index.md), [`ArgAction`](#argaction)
+- <span id="cratebuilderargaction-into-resettable"></span>`fn into_resettable(self) -> Resettable<ArgAction>` — [`Resettable`](builder/index.md), [`ArgAction`](#argaction)
 
 ### `ValueHint`
 
@@ -1189,37 +1320,37 @@ Overview of which hints are supported by which shell:
 
 ##### `impl Clone for ValueHint`
 
-- `fn clone(self: &Self) -> ValueHint` — [`ValueHint`](#valuehint)
+- <span id="valuehint-clone"></span>`fn clone(&self) -> ValueHint` — [`ValueHint`](#valuehint)
 
 ##### `impl Copy for ValueHint`
 
 ##### `impl Debug for ValueHint`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="valuehint-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for ValueHint`
 
-- `fn default() -> ValueHint` — [`ValueHint`](#valuehint)
+- <span id="valuehint-default"></span>`fn default() -> ValueHint` — [`ValueHint`](#valuehint)
 
 ##### `impl Eq for ValueHint`
 
 ##### `impl FromStr for ValueHint`
 
-- `type Err = String`
+- <span id="valuehint-err"></span>`type Err = String`
 
-- `fn from_str(s: &str) -> Result<Self, <Self as FromStr>::Err>`
+- <span id="valuehint-from-str"></span>`fn from_str(s: &str) -> Result<Self, <Self as FromStr>::Err>`
 
 ##### `impl Hash for ValueHint`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="valuehint-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl IntoResettable for crate::builder::ValueHint`
 
-- `fn into_resettable(self: Self) -> Resettable<ValueHint>` — [`Resettable`](builder/index.md), [`ValueHint`](#valuehint)
+- <span id="cratebuildervaluehint-into-resettable"></span>`fn into_resettable(self) -> Resettable<ValueHint>` — [`Resettable`](builder/index.md), [`ValueHint`](#valuehint)
 
 ##### `impl PartialEq for ValueHint`
 
-- `fn eq(self: &Self, other: &ValueHint) -> bool` — [`ValueHint`](#valuehint)
+- <span id="valuehint-eq"></span>`fn eq(&self, other: &ValueHint) -> bool` — [`ValueHint`](#valuehint)
 
 ##### `impl StructuralPartialEq for ValueHint`
 
@@ -1293,51 +1424,51 @@ Represents the color preferences for program output
 
 #### Implementations
 
-- `fn possible_values() -> impl Iterator<Item = PossibleValue>` — [`PossibleValue`](builder/index.md)
+- <span id="colorchoice-possible-values"></span>`fn possible_values() -> impl Iterator<Item = PossibleValue>` — [`PossibleValue`](builder/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for ColorChoice`
 
-- `fn clone(self: &Self) -> ColorChoice` — [`ColorChoice`](#colorchoice)
+- <span id="colorchoice-clone"></span>`fn clone(&self) -> ColorChoice` — [`ColorChoice`](#colorchoice)
 
 ##### `impl Copy for ColorChoice`
 
 ##### `impl Debug for ColorChoice`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="colorchoice-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for ColorChoice`
 
-- `fn default() -> ColorChoice` — [`ColorChoice`](#colorchoice)
+- <span id="colorchoice-default"></span>`fn default() -> ColorChoice` — [`ColorChoice`](#colorchoice)
 
 ##### `impl Display for ColorChoice`
 
-- `fn fmt(self: &Self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="colorchoice-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
 ##### `impl Eq for ColorChoice`
 
 ##### `impl FromStr for ColorChoice`
 
-- `type Err = String`
+- <span id="colorchoice-err"></span>`type Err = String`
 
-- `fn from_str(s: &str) -> Result<Self, <Self as >::Err>`
+- <span id="colorchoice-from-str"></span>`fn from_str(s: &str) -> Result<Self, <Self as >::Err>`
 
 ##### `impl PartialEq for ColorChoice`
 
-- `fn eq(self: &Self, other: &ColorChoice) -> bool` — [`ColorChoice`](#colorchoice)
+- <span id="colorchoice-eq"></span>`fn eq(&self, other: &ColorChoice) -> bool` — [`ColorChoice`](#colorchoice)
 
 ##### `impl StructuralPartialEq for ColorChoice`
 
 ##### `impl<T> ToString for ColorChoice`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="colorchoice-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl ValueEnum for ColorChoice`
 
-- `fn value_variants<'a>() -> &'a [Self]`
+- <span id="colorchoice-value-variants"></span>`fn value_variants<'a>() -> &'a [Self]`
 
-- `fn to_possible_value(self: &Self) -> Option<PossibleValue>` — [`PossibleValue`](builder/index.md)
+- <span id="colorchoice-to-possible-value"></span>`fn to_possible_value(&self) -> Option<PossibleValue>` — [`PossibleValue`](builder/index.md)
 
 ## Traits
 

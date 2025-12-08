@@ -129,6 +129,14 @@ currently default `Dispatch`. This is used primarily by `tracing`
 instrumentation.
 
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`unnamed`](#unnamed) | mod |  |
+| [`unnamed`](#unnamed) | trait |  |
+| [`unnamed`](#unnamed) | type |  |
+
 ## Modules
 
 - [`with_default`](with_default/index.md) - 

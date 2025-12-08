@@ -4,6 +4,89 @@
 
 # Module `ser`
 
+## Contents
+
+- [Structs](#structs)
+  - [`Parameters`](#parameters)
+- [Enums](#enums)
+  - [`TupleVariant`](#tuplevariant)
+  - [`StructVariant`](#structvariant)
+  - [`StructTrait`](#structtrait)
+  - [`TupleTrait`](#tupletrait)
+- [Functions](#functions)
+  - [`expand_derive_serialize`](#expand_derive_serialize)
+  - [`precondition`](#precondition)
+  - [`build_generics`](#build_generics)
+  - [`needs_serialize_bound`](#needs_serialize_bound)
+  - [`serialize_body`](#serialize_body)
+  - [`serialize_transparent`](#serialize_transparent)
+  - [`serialize_into`](#serialize_into)
+  - [`serialize_unit_struct`](#serialize_unit_struct)
+  - [`serialize_newtype_struct`](#serialize_newtype_struct)
+  - [`serialize_tuple_struct`](#serialize_tuple_struct)
+  - [`serialize_struct`](#serialize_struct)
+  - [`serialize_struct_tag_field`](#serialize_struct_tag_field)
+  - [`serialize_struct_as_struct`](#serialize_struct_as_struct)
+  - [`serialize_struct_as_map`](#serialize_struct_as_map)
+  - [`serialize_enum`](#serialize_enum)
+  - [`serialize_variant`](#serialize_variant)
+  - [`serialize_externally_tagged_variant`](#serialize_externally_tagged_variant)
+  - [`serialize_internally_tagged_variant`](#serialize_internally_tagged_variant)
+  - [`serialize_adjacently_tagged_variant`](#serialize_adjacently_tagged_variant)
+  - [`serialize_untagged_variant`](#serialize_untagged_variant)
+  - [`serialize_tuple_variant`](#serialize_tuple_variant)
+  - [`serialize_struct_variant`](#serialize_struct_variant)
+  - [`serialize_struct_variant_with_flatten`](#serialize_struct_variant_with_flatten)
+  - [`serialize_tuple_struct_visitor`](#serialize_tuple_struct_visitor)
+  - [`serialize_struct_visitor`](#serialize_struct_visitor)
+  - [`wrap_serialize_field_with`](#wrap_serialize_field_with)
+  - [`wrap_serialize_variant_with`](#wrap_serialize_variant_with)
+  - [`wrap_serialize_with`](#wrap_serialize_with)
+  - [`mut_if`](#mut_if)
+  - [`get_member`](#get_member)
+  - [`effective_style`](#effective_style)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Parameters`](#parameters) | struct |  |
+| [`TupleVariant`](#tuplevariant) | enum |  |
+| [`StructVariant`](#structvariant) | enum |  |
+| [`StructTrait`](#structtrait) | enum |  |
+| [`TupleTrait`](#tupletrait) | enum |  |
+| [`expand_derive_serialize`](#expand_derive_serialize) | fn |  |
+| [`precondition`](#precondition) | fn |  |
+| [`build_generics`](#build_generics) | fn |  |
+| [`needs_serialize_bound`](#needs_serialize_bound) | fn |  |
+| [`serialize_body`](#serialize_body) | fn |  |
+| [`serialize_transparent`](#serialize_transparent) | fn |  |
+| [`serialize_into`](#serialize_into) | fn |  |
+| [`serialize_unit_struct`](#serialize_unit_struct) | fn |  |
+| [`serialize_newtype_struct`](#serialize_newtype_struct) | fn |  |
+| [`serialize_tuple_struct`](#serialize_tuple_struct) | fn |  |
+| [`serialize_struct`](#serialize_struct) | fn |  |
+| [`serialize_struct_tag_field`](#serialize_struct_tag_field) | fn |  |
+| [`serialize_struct_as_struct`](#serialize_struct_as_struct) | fn |  |
+| [`serialize_struct_as_map`](#serialize_struct_as_map) | fn |  |
+| [`serialize_enum`](#serialize_enum) | fn |  |
+| [`serialize_variant`](#serialize_variant) | fn |  |
+| [`serialize_externally_tagged_variant`](#serialize_externally_tagged_variant) | fn |  |
+| [`serialize_internally_tagged_variant`](#serialize_internally_tagged_variant) | fn |  |
+| [`serialize_adjacently_tagged_variant`](#serialize_adjacently_tagged_variant) | fn |  |
+| [`serialize_untagged_variant`](#serialize_untagged_variant) | fn |  |
+| [`serialize_tuple_variant`](#serialize_tuple_variant) | fn |  |
+| [`serialize_struct_variant`](#serialize_struct_variant) | fn |  |
+| [`serialize_struct_variant_with_flatten`](#serialize_struct_variant_with_flatten) | fn |  |
+| [`serialize_tuple_struct_visitor`](#serialize_tuple_struct_visitor) | fn |  |
+| [`serialize_struct_visitor`](#serialize_struct_visitor) | fn |  |
+| [`wrap_serialize_field_with`](#wrap_serialize_field_with) | fn |  |
+| [`wrap_serialize_variant_with`](#wrap_serialize_variant_with) | fn |  |
+| [`wrap_serialize_with`](#wrap_serialize_with) | fn |  |
+| [`mut_if`](#mut_if) | fn |  |
+| [`get_member`](#get_member) | fn |  |
+| [`effective_style`](#effective_style) | fn |  |
+
 ## Structs
 
 ### `Parameters`
@@ -51,9 +134,9 @@ struct Parameters {
 
 #### Implementations
 
-- `fn new(cont: &Container<'_>) -> Self` — [`Container`](../internals/ast/index.md)
+- <span id="parameters-new"></span>`fn new(cont: &Container<'_>) -> Self` — [`Container`](../internals/ast/index.md)
 
-- `fn type_name(self: &Self) -> String`
+- <span id="parameters-type-name"></span>`fn type_name(&self) -> String`
 
 ## Enums
 
@@ -98,9 +181,9 @@ enum StructTrait {
 
 #### Implementations
 
-- `fn serialize_field(self: &Self, span: Span) -> TokenStream`
+- <span id="structtrait-serialize-field"></span>`fn serialize_field(&self, span: Span) -> TokenStream`
 
-- `fn skip_field(self: &Self, span: Span) -> Option<TokenStream>`
+- <span id="structtrait-skip-field"></span>`fn skip_field(&self, span: Span) -> Option<TokenStream>`
 
 ### `TupleTrait`
 
@@ -114,7 +197,7 @@ enum TupleTrait {
 
 #### Implementations
 
-- `fn serialize_element(self: &Self, span: Span) -> TokenStream`
+- <span id="tupletrait-serialize-element"></span>`fn serialize_element(&self, span: Span) -> TokenStream`
 
 ## Functions
 

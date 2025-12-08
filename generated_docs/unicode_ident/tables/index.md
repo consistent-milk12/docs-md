@@ -4,6 +4,17 @@
 
 # Module `tables`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Align8`](#align8) | struct |  |
+| [`Align64`](#align64) | struct |  |
+| [`UNICODE_VERSION`](#unicode_version) | const |  |
+| [`ASCII_START`](#ascii_start) | const |  |
+| [`ASCII_CONTINUE`](#ascii_continue) | const |  |
+| [`CHUNK`](#chunk) | const |  |
+
 ## Structs
 
 ### `Align8<T>`

@@ -14,6 +14,36 @@ fn main() {}
 Please refer to [https://serde.rs/derive.html] for how to set this up.
 
 
+## Contents
+
+- [Modules](#modules)
+  - [`internals`](#internals)
+  - [`bound`](#bound)
+  - [`fragment`](#fragment)
+  - [`de`](#de)
+  - [`deprecated`](#deprecated)
+  - [`dummy`](#dummy)
+  - [`pretend`](#pretend)
+  - [`ser`](#ser)
+  - [`this`](#this)
+- [Structs](#structs)
+  - [`private`](#private)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`internals`](#internals) | mod |  |
+| [`bound`](#bound) | mod |  |
+| [`fragment`](#fragment) | mod |  |
+| [`de`](#de) | mod |  |
+| [`deprecated`](#deprecated) | mod |  |
+| [`dummy`](#dummy) | mod |  |
+| [`pretend`](#pretend) | mod |  |
+| [`ser`](#ser) | mod |  |
+| [`this`](#this) | mod |  |
+| [`private`](#private) | struct |  |
+
 ## Modules
 
 - [`internals`](internals/index.md) - 
@@ -36,15 +66,15 @@ struct private;
 
 #### Implementations
 
-- `fn ident(self: &Self) -> Ident`
+- <span id="private-ident"></span>`fn ident(&self) -> Ident`
 
 #### Trait Implementations
 
 ##### `impl<T> Spanned for private`
 
-- `fn span(self: &Self) -> Span`
+- <span id="private-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for private`
 
-- `fn to_tokens(self: &Self, tokens: &mut proc_macro2::TokenStream)`
+- <span id="private-to-tokens"></span>`fn to_tokens(&self, tokens: &mut proc_macro2::TokenStream)`
 

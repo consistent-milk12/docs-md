@@ -38,6 +38,12 @@ Uses `Cow<str>` to avoid allocations for simple types like primitives,
 generics, and inferred types. Complex types that require string building
 return owned strings.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`TypeRenderer`](#typerenderer) | struct | Type renderer for converting rustdoc types to Rust syntax strings. |
+
 ## Structs
 
 ### `TypeRenderer<'a>`
@@ -79,45 +85,45 @@ let generics = renderer.render_generics(&params);
 
 #### Implementations
 
-- `const fn new(krate: &'a Crate) -> Self`
+- <span id="typerenderer-new"></span>`const fn new(krate: &'a Crate) -> Self`
 
-- `fn render_type<'t>(self: &Self, ty: &'t Type) -> Cow<'t, str>`
+- <span id="typerenderer-render-type"></span>`fn render_type<'t>(&self, ty: &'t Type) -> Cow<'t, str>`
 
-- `fn render_generic_args(self: Self, args: &GenericArgs) -> String`
+- <span id="typerenderer-render-generic-args"></span>`fn render_generic_args(self, args: &GenericArgs) -> String`
 
-- `fn render_generic_arg(self: Self, arg: &GenericArg) -> Cow<'_, str>`
+- <span id="typerenderer-render-generic-arg"></span>`fn render_generic_arg(self, arg: &GenericArg) -> Cow<'_, str>`
 
-- `fn render_assoc_item_constraint(self: Self, constraint: &AssocItemConstraint) -> String`
+- <span id="typerenderer-render-assoc-item-constraint"></span>`fn render_assoc_item_constraint(self, constraint: &AssocItemConstraint) -> String`
 
-- `fn render_term(self: Self, term: &Term) -> Cow<'_, str>`
+- <span id="typerenderer-render-term"></span>`fn render_term(self, term: &Term) -> Cow<'_, str>`
 
-- `fn render_generic_bound<'t>(self: &Self, bound: &'t GenericBound) -> Cow<'t, str>`
+- <span id="typerenderer-render-generic-bound"></span>`fn render_generic_bound<'t>(&self, bound: &'t GenericBound) -> Cow<'t, str>`
 
-- `fn render_generics(self: &Self, generics: &[GenericParamDef]) -> String`
+- <span id="typerenderer-render-generics"></span>`fn render_generics(&self, generics: &[GenericParamDef]) -> String`
 
-- `fn render_generic_param_def(self: Self, param: &GenericParamDef) -> Option<String>`
+- <span id="typerenderer-render-generic-param-def"></span>`fn render_generic_param_def(self, param: &GenericParamDef) -> Option<String>`
 
-- `fn render_where_clause(self: &Self, where_predicates: &[rustdoc_types::WherePredicate]) -> String`
+- <span id="typerenderer-render-where-clause"></span>`fn render_where_clause(&self, where_predicates: &[rustdoc_types::WherePredicate]) -> String`
 
-- `fn render_where_predicate(self: Self, pred: &rustdoc_types::WherePredicate) -> String`
+- <span id="typerenderer-render-where-predicate"></span>`fn render_where_predicate(self, pred: &rustdoc_types::WherePredicate) -> String`
 
-- `fn collect_linkable_types(self: &Self, ty: &Type) -> Vec<(String, rustdoc_types::Id)>`
+- <span id="typerenderer-collect-linkable-types"></span>`fn collect_linkable_types(&self, ty: &Type) -> Vec<(String, rustdoc_types::Id)>`
 
-- `fn collect_types_recursive(self: Self, ty: &Type, result: &mut Vec<(String, rustdoc_types::Id)>)`
+- <span id="typerenderer-collect-types-recursive"></span>`fn collect_types_recursive(self, ty: &Type, result: &mut Vec<(String, rustdoc_types::Id)>)`
 
-- `fn collect_from_generic_args(self: Self, args: &GenericArgs, result: &mut Vec<(String, rustdoc_types::Id)>)`
+- <span id="typerenderer-collect-from-generic-args"></span>`fn collect_from_generic_args(self, args: &GenericArgs, result: &mut Vec<(String, rustdoc_types::Id)>)`
 
 #### Trait Implementations
 
 ##### `impl<'a> Clone for TypeRenderer<'a>`
 
-- `fn clone(self: &Self) -> TypeRenderer<'a>` — [`TypeRenderer`](#typerenderer)
+- <span id="typerenderer-clone"></span>`fn clone(&self) -> TypeRenderer<'a>` — [`TypeRenderer`](#typerenderer)
 
 ##### `impl<'a> Copy for TypeRenderer<'a>`
 
 ##### `impl<'a> Debug for TypeRenderer<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="typerenderer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> Instrument for TypeRenderer<'a>`
 
@@ -127,17 +133,17 @@ let generics = renderer.render_generics(&params);
 
 ##### `impl<T> Pointable for TypeRenderer<'a>`
 
-- `const ALIGN: usize`
+- <span id="typerenderer-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="typerenderer-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="typerenderer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="typerenderer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="typerenderer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="typerenderer-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T> WithSubscriber for TypeRenderer<'a>`
 

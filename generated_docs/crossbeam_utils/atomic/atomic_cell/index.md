@@ -4,6 +4,39 @@
 
 # Module `atomic_cell`
 
+## Contents
+
+- [Structs](#structs)
+  - [`AtomicCell`](#atomiccell)
+  - [`AtomicUnit`](#atomicunit)
+- [Functions](#functions)
+  - [`can_transmute`](#can_transmute)
+  - [`lock`](#lock)
+  - [`atomic_is_lock_free`](#atomic_is_lock_free)
+  - [`atomic_load`](#atomic_load)
+  - [`atomic_store`](#atomic_store)
+  - [`atomic_swap`](#atomic_swap)
+  - [`atomic_compare_exchange_weak`](#atomic_compare_exchange_weak)
+- [Macros](#macros)
+  - [`atomic!`](#atomic)
+  - [`impl_arithmetic!`](#impl_arithmetic)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`AtomicCell`](#atomiccell) | struct | A thread-safe mutable memory location. |
+| [`AtomicUnit`](#atomicunit) | struct | An atomic `()`. |
+| [`can_transmute`](#can_transmute) | fn | Returns `true` if values of type `A` can be transmuted into values of type `B`. |
+| [`lock`](#lock) | fn | Returns a reference to the global lock associated with the `AtomicCell` at address `addr`. |
+| [`atomic_is_lock_free`](#atomic_is_lock_free) | fn | Returns `true` if operations on `AtomicCell<T>` are lock-free. |
+| [`atomic_load`](#atomic_load) | fn | Atomically reads data from `src`. |
+| [`atomic_store`](#atomic_store) | fn | Atomically writes `val` to `dst`. |
+| [`atomic_swap`](#atomic_swap) | fn | Atomically swaps data at `dst` with `val`. |
+| [`atomic_compare_exchange_weak`](#atomic_compare_exchange_weak) | fn | Atomically compares data at `dst` to `current` and, if equal byte-for-byte, exchanges data at |
+| [`atomic!`](#atomic) | macro |  |
+| [`impl_arithmetic!`](#impl_arithmetic) | macro |  |
+
 ## Structs
 
 ### `AtomicCell<T>`
@@ -48,35 +81,35 @@ Atomic loads use the `Acquire` ordering and atomic stores use the `Release` orde
 
 #### Implementations
 
-- `fn fetch_add(self: &Self, val: u128) -> u128`
+- <span id="atomiccell-fetch-add"></span>`fn fetch_add(&self, val: u128) -> u128`
 
-- `fn fetch_sub(self: &Self, val: u128) -> u128`
+- <span id="atomiccell-fetch-sub"></span>`fn fetch_sub(&self, val: u128) -> u128`
 
-- `fn fetch_and(self: &Self, val: u128) -> u128`
+- <span id="atomiccell-fetch-and"></span>`fn fetch_and(&self, val: u128) -> u128`
 
-- `fn fetch_nand(self: &Self, val: u128) -> u128`
+- <span id="atomiccell-fetch-nand"></span>`fn fetch_nand(&self, val: u128) -> u128`
 
-- `fn fetch_or(self: &Self, val: u128) -> u128`
+- <span id="atomiccell-fetch-or"></span>`fn fetch_or(&self, val: u128) -> u128`
 
-- `fn fetch_xor(self: &Self, val: u128) -> u128`
+- <span id="atomiccell-fetch-xor"></span>`fn fetch_xor(&self, val: u128) -> u128`
 
-- `fn fetch_max(self: &Self, val: u128) -> u128`
+- <span id="atomiccell-fetch-max"></span>`fn fetch_max(&self, val: u128) -> u128`
 
-- `fn fetch_min(self: &Self, val: u128) -> u128`
+- <span id="atomiccell-fetch-min"></span>`fn fetch_min(&self, val: u128) -> u128`
 
 #### Trait Implementations
 
 ##### `impl<T: Copy + fmt::Debug> Debug for AtomicCell<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="atomiccell-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: Default> Default for AtomicCell<T>`
 
-- `fn default() -> AtomicCell<T>` — [`AtomicCell`](../index.md)
+- <span id="atomiccell-default"></span>`fn default() -> AtomicCell<T>` — [`AtomicCell`](../index.md)
 
 ##### `impl<T> Drop for AtomicCell<T>`
 
-- `fn drop(self: &mut Self)`
+- <span id="atomiccell-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<T> RefUnwindSafe for AtomicCell<T>`
 
@@ -98,13 +131,13 @@ All operations are noops.
 
 #### Implementations
 
-- `fn load(self: &Self, _order: Ordering)`
+- <span id="atomicunit-load"></span>`fn load(&self, _order: Ordering)`
 
-- `fn store(self: &Self, _val: (), _order: Ordering)`
+- <span id="atomicunit-store"></span>`fn store(&self, _val: (), _order: Ordering)`
 
-- `fn swap(self: &Self, _val: (), _order: Ordering)`
+- <span id="atomicunit-swap"></span>`fn swap(&self, _val: (), _order: Ordering)`
 
-- `fn compare_exchange_weak(self: &Self, _current: (), _new: (), _success: Ordering, _failure: Ordering) -> Result<(), ()>`
+- <span id="atomicunit-compare-exchange-weak"></span>`fn compare_exchange_weak(&self, _current: (), _new: (), _success: Ordering, _failure: Ordering) -> Result<(), ()>`
 
 ## Functions
 

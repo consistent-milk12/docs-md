@@ -51,6 +51,17 @@ supported compiler version is not considered a semver breaking change as
 long as doing so complies with this policy.
 
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`attr`](#attr) | mod |  |
+| [`expand`](#expand) | mod |  |
+| [`MaybeItemFn`](#maybeitemfn) | struct | This is a more flexible/imprecise `ItemFn` type |
+| [`MaybeItemFnRef`](#maybeitemfnref) | struct | A generic reference type for `MaybeItemFn` |
+| [`instrument_speculative`](#instrument_speculative) | fn | Instrument the function, without parsing the function body (instead using the raw tokens). |
+| [`instrument_precise`](#instrument_precise) | fn | Instrument the function, by fully parsing the function body |
+
 ## Modules
 
 - [`attr`](attr/index.md) - 
@@ -76,21 +87,21 @@ which's block is just a `TokenStream` (it may contain invalid code).
 
 #### Implementations
 
-- `fn as_ref(self: &Self) -> MaybeItemFnRef<'_, TokenStream>` — [`MaybeItemFnRef`](#maybeitemfnref)
+- <span id="maybeitemfn-as-ref"></span>`fn as_ref(&self) -> MaybeItemFnRef<'_, TokenStream>` — [`MaybeItemFnRef`](#maybeitemfnref)
 
 #### Trait Implementations
 
 ##### `impl Clone for MaybeItemFn`
 
-- `fn clone(self: &Self) -> MaybeItemFn` — [`MaybeItemFn`](#maybeitemfn)
+- <span id="maybeitemfn-clone"></span>`fn clone(&self) -> MaybeItemFn` — [`MaybeItemFn`](#maybeitemfn)
 
 ##### `impl Debug for MaybeItemFn`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="maybeitemfn-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Parse for MaybeItemFn`
 
-- `fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
+- <span id="maybeitemfn-parse"></span>`fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
 
 ### `MaybeItemFnRef<'a, B: ToTokens>`
 
@@ -110,13 +121,13 @@ that takes a generic block type `B` that implements `ToTokens` (eg. `TokenStream
 
 #### Trait Implementations
 
-##### `impl<'a, B: $crate::clone::Clone + ToTokens> Clone for MaybeItemFnRef<'a, B>`
+##### `impl<'a, B: clone::Clone + ToTokens> Clone for MaybeItemFnRef<'a, B>`
 
-- `fn clone(self: &Self) -> MaybeItemFnRef<'a, B>` — [`MaybeItemFnRef`](#maybeitemfnref)
+- <span id="maybeitemfnref-clone"></span>`fn clone(&self) -> MaybeItemFnRef<'a, B>` — [`MaybeItemFnRef`](#maybeitemfnref)
 
-##### `impl<'a, B: $crate::fmt::Debug + ToTokens> Debug for MaybeItemFnRef<'a, B>`
+##### `impl<'a, B: fmt::Debug + ToTokens> Debug for MaybeItemFnRef<'a, B>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="maybeitemfnref-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Functions
 

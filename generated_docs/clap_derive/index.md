@@ -24,6 +24,18 @@ conditions.
 
 See [CONTRIBUTING](CONTRIBUTING.md) for more details.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`macros`](#macros) | mod |  |
+| [`attr`](#attr) | mod |  |
+| [`derives`](#derives) | mod |  |
+| [`dummies`](#dummies) | mod | Dummy implementations that we emit along with an error. |
+| [`item`](#item) | mod |  |
+| [`utils`](#utils) | mod |  |
+| [`to_compile_error`](#to_compile_error) | fn |  |
+
 ## Modules
 
 - [`macros`](macros/index.md) - 

@@ -6,6 +6,15 @@
 
 Higher-level traits to describe writeable streams
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`private`](#private) | mod |  |
+| [`RawStream`](#rawstream) | trait | Required functionality for underlying [`std::io::Write`] for adaptation |
+| [`IsTerminal`](#isterminal) | trait | Trait to determine if a descriptor/handle refers to a terminal/tty. |
+| [`AsLockedWrite`](#aslockedwrite) | trait | Lock a stream |
+
 ## Modules
 
 - [`private`](private/index.md) - 
@@ -30,7 +39,7 @@ Trait to determine if a descriptor/handle refers to a terminal/tty.
 
 #### Required Methods
 
-- `fn is_terminal(self: &Self) -> bool`
+- `fn is_terminal(&self) -> bool`
 
   Returns `true` if the descriptor/handle refers to a terminal/tty.
 
@@ -46,7 +55,7 @@ Lock a stream
 
 - `type Write: 2`
 
-- `fn as_locked_write(self: &mut Self) -> <Self as >::Write`
+- `fn as_locked_write(&mut self) -> <Self as >::Write`
 
   Lock a stream
 

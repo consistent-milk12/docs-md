@@ -258,6 +258,16 @@ pub enum DataStoreError {
 
 
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`aserror`](#aserror) | mod |  |
+| [`display`](#display) | mod |  |
+| [`provide`](#provide) | mod |  |
+| [`var`](#var) | mod |  |
+| [`private`](#private) | mod |  |
+
 ## Modules
 
 - [`aserror`](aserror/index.md) - 

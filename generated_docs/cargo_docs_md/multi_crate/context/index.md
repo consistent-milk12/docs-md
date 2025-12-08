@@ -10,6 +10,13 @@ This module provides [`MultiCrateContext`](../../index.md) which holds shared st
 during multi-crate documentation generation, and [`SingleCrateView`](../index.md)
 which provides a single-crate interface for existing rendering code.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`MultiCrateContext`](#multicratecontext) | struct | Shared context for multi-crate documentation generation. |
+| [`SingleCrateView`](#singlecrateview) | struct | View of a single crate within multi-crate context. |
+
 ## Structs
 
 ### `MultiCrateContext<'a>`
@@ -19,6 +26,7 @@ struct MultiCrateContext<'a> {
     crates: &'a crate::multi_crate::CrateCollection,
     registry: crate::multi_crate::UnifiedLinkRegistry,
     args: &'a crate::Args,
+    config: crate::generator::config::RenderConfig,
     cross_crate_impls: std::collections::HashMap<String, std::collections::HashMap<String, Vec<&'a rustdoc_types::Impl>>>,
 }
 ```
@@ -44,6 +52,10 @@ generation across crates.
 
   CLI arguments.
 
+- **`config`**: `crate::generator::config::RenderConfig`
+
+  Rendering configuration options.
+
 - **`cross_crate_impls`**: `std::collections::HashMap<String, std::collections::HashMap<String, Vec<&'a rustdoc_types::Impl>>>`
 
   Pre-computed cross-crate impl blocks.
@@ -53,23 +65,23 @@ generation across crates.
 
 #### Implementations
 
-- `fn new(crates: &'a CrateCollection, args: &'a Args) -> Self` — [`CrateCollection`](../../index.md), [`Args`](../../index.md)
+- <span id="multicratecontext-new"></span>`fn new(crates: &'a CrateCollection, args: &'a Args, config: RenderConfig) -> Self` — [`CrateCollection`](../../index.md), [`Args`](../../index.md), [`RenderConfig`](../../index.md)
 
-- `fn build_cross_crate_impls(crates: &'a CrateCollection) -> HashMap<String, HashMap<String, Vec<&'a Impl>>>` — [`CrateCollection`](../../index.md)
+- <span id="multicratecontext-build-cross-crate-impls"></span>`fn build_cross_crate_impls(crates: &'a CrateCollection) -> HashMap<String, HashMap<String, Vec<&'a Impl>>>` — [`CrateCollection`](../../index.md)
 
-- `const fn crates(self: &Self) -> &CrateCollection` — [`CrateCollection`](../../index.md)
+- <span id="multicratecontext-crates"></span>`const fn crates(&self) -> &CrateCollection` — [`CrateCollection`](../../index.md)
 
-- `const fn registry(self: &Self) -> &UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](../../index.md)
+- <span id="multicratecontext-registry"></span>`const fn registry(&self) -> &UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](../../index.md)
 
-- `const fn args(self: &Self) -> &Args` — [`Args`](../../index.md)
+- <span id="multicratecontext-args"></span>`const fn args(&self) -> &Args` — [`Args`](../../index.md)
 
-- `fn single_crate_view(self: &'a Self, crate_name: &str) -> Option<SingleCrateView<'a>>` — [`SingleCrateView`](../index.md)
+- <span id="multicratecontext-single-crate-view"></span>`fn single_crate_view(self: &'a Self, crate_name: &str) -> Option<SingleCrateView<'a>>` — [`SingleCrateView`](../index.md)
 
-- `fn find_item(self: &Self, id: &Id) -> Option<(&str, &Item)>`
+- <span id="multicratecontext-find-item"></span>`fn find_item(&self, id: &Id) -> Option<(&str, &Item)>`
 
-- `fn get_cross_crate_impls(self: &Self, target_crate: &str) -> Option<&HashMap<String, Vec<&'a Impl>>>`
+- <span id="multicratecontext-get-cross-crate-impls"></span>`fn get_cross_crate_impls(&self, target_crate: &str) -> Option<&HashMap<String, Vec<&'a Impl>>>`
 
-- `fn get_impl_target_path(impl_block: &Impl) -> Option<String>`
+- <span id="multicratecontext-get-impl-target-path"></span>`fn get_impl_target_path(impl_block: &Impl) -> Option<String>`
 
 #### Trait Implementations
 
@@ -81,17 +93,17 @@ generation across crates.
 
 ##### `impl<T> Pointable for MultiCrateContext<'a>`
 
-- `const ALIGN: usize`
+- <span id="multicratecontext-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="multicratecontext-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="multicratecontext-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="multicratecontext-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="multicratecontext-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="multicratecontext-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T> WithSubscriber for MultiCrateContext<'a>`
 
@@ -154,67 +166,67 @@ allows existing rendering code to work with minimal changes.
 
 #### Implementations
 
-- `fn new(crate_name: &'a str, krate: &'a Crate, registry: &'a UnifiedLinkRegistry, args: &'a Args, ctx: &'a MultiCrateContext<'a>) -> Self` — [`UnifiedLinkRegistry`](../../index.md), [`Args`](../../index.md), [`MultiCrateContext`](../../index.md)
+- <span id="singlecrateview-new"></span>`fn new(crate_name: &'a str, krate: &'a Crate, registry: &'a UnifiedLinkRegistry, args: &'a Args, ctx: &'a MultiCrateContext<'a>) -> Self` — [`UnifiedLinkRegistry`](../../index.md), [`Args`](../../index.md), [`MultiCrateContext`](../../index.md)
 
-- `fn build_impl_map(self: &mut Self)`
+- <span id="singlecrateview-build-impl-map"></span>`fn build_impl_map(&mut self)`
 
-- `fn build_type_name_map(self: &mut Self)`
+- <span id="singlecrateview-build-type-name-map"></span>`fn build_type_name_map(&mut self)`
 
-- `const fn get_impl_target_id(impl_block: &Impl) -> Option<Id>`
+- <span id="singlecrateview-get-impl-target-id"></span>`const fn get_impl_target_id(impl_block: &Impl) -> Option<Id>`
 
-- `fn impl_sort_key(impl_block: &Impl) -> (u8, String)`
+- <span id="singlecrateview-impl-sort-key"></span>`fn impl_sort_key(impl_block: &Impl) -> (u8, String)`
 
-- `const fn crate_name(self: &Self) -> &str`
+- <span id="singlecrateview-crate-name"></span>`const fn crate_name(&self) -> &str`
 
-- `const fn krate(self: &Self) -> &Crate`
+- <span id="singlecrateview-krate"></span>`const fn krate(&self) -> &Crate`
 
-- `const fn registry(self: &Self) -> &UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](../../index.md)
+- <span id="singlecrateview-registry"></span>`const fn registry(&self) -> &UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](../../index.md)
 
-- `const fn args(self: &Self) -> &Args` — [`Args`](../../index.md)
+- <span id="singlecrateview-args"></span>`const fn args(&self) -> &Args` — [`Args`](../../index.md)
 
-- `fn get_impls(self: &Self, id: Id) -> Option<&Vec<&'a Impl>>`
+- <span id="singlecrateview-get-impls"></span>`fn get_impls(&self, id: Id) -> Option<&Vec<&'a Impl>>`
 
-- `fn get_all_impls(self: &Self, id: Id) -> Vec<&'a Impl>`
+- <span id="singlecrateview-get-all-impls"></span>`fn get_all_impls(&self, id: Id) -> Vec<&'a Impl>`
 
-- `fn get_impls_from_crate(self: &Self, id: Id, source_krate: &'a Crate) -> Vec<&'a Impl>`
+- <span id="singlecrateview-get-impls-from-crate"></span>`fn get_impls_from_crate(&self, id: Id, source_krate: &'a Crate) -> Vec<&'a Impl>`
 
-- `const fn get_impl_target_id_from_type(ty: &rustdoc_types::Type) -> Option<Id>`
+- <span id="singlecrateview-get-impl-target-id-from-type"></span>`const fn get_impl_target_id_from_type(ty: &rustdoc_types::Type) -> Option<Id>`
 
-- `const fn should_include_item(self: &Self, item: &rustdoc_types::Item) -> bool`
+- <span id="singlecrateview-should-include-item"></span>`const fn should_include_item(&self, item: &rustdoc_types::Item) -> bool`
 
-- `fn count_modules(self: &Self) -> usize`
+- <span id="singlecrateview-count-modules"></span>`fn count_modules(&self) -> usize`
 
-- `fn create_link(self: &Self, to_crate: &str, to_id: Id, from_path: &str) -> Option<String>`
+- <span id="singlecrateview-create-link"></span>`fn create_link(&self, to_crate: &str, to_id: Id, from_path: &str) -> Option<String>`
 
-- `fn resolve_name(self: &Self, name: &str) -> Option<(String, Id)>`
+- <span id="singlecrateview-resolve-name"></span>`fn resolve_name(&self, name: &str) -> Option<(String, Id)>`
 
-- `fn lookup_item_across_crates(self: &Self, id: &Id) -> Option<(&str, &Item)>`
+- <span id="singlecrateview-lookup-item-across-crates"></span>`fn lookup_item_across_crates(&self, id: &Id) -> Option<(&str, &Item)>`
 
-- `fn get_crate(self: &Self, name: &str) -> Option<&Crate>`
+- <span id="singlecrateview-get-crate"></span>`fn get_crate(&self, name: &str) -> Option<&Crate>`
 
-- `fn resolve_external_path(self: &Self, path: &str) -> Option<(&str, &Item, Id)>`
+- <span id="singlecrateview-resolve-external-path"></span>`fn resolve_external_path(&self, path: &str) -> Option<(&str, &Item, Id)>`
 
-- `fn process_backtick_links(self: &Self, docs: &str, item_links: &HashMap<String, Id>, current_file: &str) -> String`
+- <span id="singlecrateview-process-backtick-links"></span>`fn process_backtick_links(&self, docs: &str, item_links: &HashMap<String, Id>, current_file: &str) -> String`
 
-- `fn process_plain_links(self: &Self, docs: &str, current_file: &str) -> String`
+- <span id="singlecrateview-process-plain-links"></span>`fn process_plain_links(&self, docs: &str, current_file: &str) -> String`
 
-- `fn resolve_plain_link(self: &Self, link_text: &str, current_file: &str) -> Option<String>`
+- <span id="singlecrateview-resolve-plain-link"></span>`fn resolve_plain_link(&self, link_text: &str, current_file: &str) -> Option<String>`
 
-- `fn resolve_link(self: &Self, link_text: &str, item_links: &HashMap<String, Id>, current_file: &str) -> Option<String>`
+- <span id="singlecrateview-resolve-link"></span>`fn resolve_link(&self, link_text: &str, item_links: &HashMap<String, Id>, current_file: &str) -> Option<String>`
 
-- `fn build_link_to_id(self: &Self, id: Id, current_file: &str, display_name: &str, anchor: Option<&str>) -> Option<String>`
+- <span id="singlecrateview-build-link-to-id"></span>`fn build_link_to_id(&self, id: Id, current_file: &str, display_name: &str, anchor: Option<&str>) -> Option<String>`
 
-- `fn resolve_crate_path(self: &Self, path_without_crate: &str, display_name: &str, current_file: &str) -> Option<String>`
+- <span id="singlecrateview-resolve-crate-path"></span>`fn resolve_crate_path(&self, path_without_crate: &str, display_name: &str, current_file: &str) -> Option<String>`
 
-- `fn split_type_and_anchor(path: &str) -> (&str, Option<&str>)`
+- <span id="singlecrateview-split-type-and-anchor"></span>`fn split_type_and_anchor(path: &str) -> (&str, Option<&str>)`
 
-- `fn build_markdown_link(self: &Self, current_file: &str, target_crate: &str, target_path: &str, display_name: &str, anchor: Option<&str>) -> String`
+- <span id="singlecrateview-build-markdown-link"></span>`fn build_markdown_link(&self, current_file: &str, target_crate: &str, target_path: &str, display_name: &str, anchor: Option<&str>) -> String`
 
-- `fn compute_cross_crate_path(current_local: &str, target_crate: &str, target_path: &str) -> String`
+- <span id="singlecrateview-compute-cross-crate-path"></span>`fn compute_cross_crate_path(current_local: &str, target_crate: &str, target_path: &str) -> String`
 
-- `fn strip_crate_prefix(path: &str) -> &str`
+- <span id="singlecrateview-strip-crate-prefix"></span>`fn strip_crate_prefix(path: &str) -> &str`
 
-- `fn looks_like_external_reference(link_text: &str) -> bool`
+- <span id="singlecrateview-looks-like-external-reference"></span>`fn looks_like_external_reference(link_text: &str) -> bool`
 
 #### Trait Implementations
 
@@ -224,47 +236,49 @@ allows existing rendering code to work with minimal changes.
 
 ##### `impl ItemAccess for SingleCrateView<'_>`
 
-- `fn krate(self: &Self) -> &Crate`
+- <span id="singlecrateview-krate"></span>`fn krate(&self) -> &Crate`
 
-- `fn crate_name(self: &Self) -> &str`
+- <span id="singlecrateview-crate-name"></span>`fn crate_name(&self) -> &str`
 
-- `fn get_item(self: &Self, id: &Id) -> Option<&Item>`
+- <span id="singlecrateview-get-item"></span>`fn get_item(&self, id: &Id) -> Option<&Item>`
 
-- `fn get_impls(self: &Self, id: &Id) -> Option<&[&Impl]>`
+- <span id="singlecrateview-get-impls"></span>`fn get_impls(&self, id: &Id) -> Option<&[&Impl]>`
 
-- `fn crate_version(self: &Self) -> Option<&str>`
+- <span id="singlecrateview-crate-version"></span>`fn crate_version(&self) -> Option<&str>`
+
+- <span id="singlecrateview-render-config"></span>`fn render_config(&self) -> &RenderConfig` — [`RenderConfig`](../../index.md)
 
 ##### `impl ItemFilter for SingleCrateView<'_>`
 
-- `fn should_include_item(self: &Self, item: &Item) -> bool`
+- <span id="singlecrateview-should-include-item"></span>`fn should_include_item(&self, item: &Item) -> bool`
 
-- `fn include_private(self: &Self) -> bool`
+- <span id="singlecrateview-include-private"></span>`fn include_private(&self) -> bool`
 
-- `fn include_blanket_impls(self: &Self) -> bool`
+- <span id="singlecrateview-include-blanket-impls"></span>`fn include_blanket_impls(&self) -> bool`
 
 ##### `impl LinkResolver for SingleCrateView<'_>`
 
-- `fn link_registry(self: &Self) -> Option<&LinkRegistry>` — [`LinkRegistry`](../../index.md)
+- <span id="singlecrateview-link-registry"></span>`fn link_registry(&self) -> Option<&LinkRegistry>` — [`LinkRegistry`](../../index.md)
 
-- `fn process_docs(self: &Self, item: &Item, current_file: &str) -> Option<String>`
+- <span id="singlecrateview-process-docs"></span>`fn process_docs(&self, item: &Item, current_file: &str) -> Option<String>`
 
-- `fn create_link(self: &Self, id: Id, current_file: &str) -> Option<String>`
+- <span id="singlecrateview-create-link"></span>`fn create_link(&self, id: Id, current_file: &str) -> Option<String>`
 
 ##### `impl<D> OwoColorize for SingleCrateView<'a>`
 
 ##### `impl<T> Pointable for SingleCrateView<'a>`
 
-- `const ALIGN: usize`
+- <span id="singlecrateview-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="singlecrateview-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="singlecrateview-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="singlecrateview-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="singlecrateview-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="singlecrateview-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T> RenderContext for SingleCrateView<'a>`
 

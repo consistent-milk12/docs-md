@@ -4,6 +4,18 @@
 
 # Module `partial_eq`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`eq_i64`](#eq_i64) | fn |  |
+| [`eq_u64`](#eq_u64) | fn |  |
+| [`eq_f32`](#eq_f32) | fn |  |
+| [`eq_f64`](#eq_f64) | fn |  |
+| [`eq_bool`](#eq_bool) | fn |  |
+| [`eq_str`](#eq_str) | fn |  |
+| [`partialeq_numeric!`](#partialeq_numeric) | macro |  |
+
 ## Functions
 
 ### `eq_i64`

@@ -11,6 +11,16 @@ circumstances. When possible, prefer using [`AhoCorasick`](crate::AhoCorasick)
 instead of a contiguous NFA directly. Using an `NFA` directly is typically only
 necessary when one needs access to the [`Automaton`](../../automaton/index.md) trait implementation.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`NFA`](#nfa) | struct | A contiguous NFA implementation of Aho-Corasick. |
+| [`State`](#state) | struct | The "in memory" representation a single dense or sparse state. |
+| [`Builder`](#builder) | struct | A builder for configuring an Aho-Corasick contiguous NFA. |
+| [`StateTrans`](#statetrans) | enum | The underlying representation of sparse or dense transitions for a state. |
+| [`u32_len`](#u32_len) | fn | Computes the number of u32 values needed to represent one byte per the |
+
 ## Structs
 
 ### `NFA`
@@ -145,51 +155,51 @@ It is also possible to implement your own version of `try_find`. See the
 
 #### Implementations
 
-- `const DEAD: StateID`
+- <span id="nfa-new"></span>`fn new<I, P>(patterns: I) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../../index.md)
 
-- `const FAIL: StateID`
+- <span id="nfa-builder"></span>`fn builder() -> Builder` — [`Builder`](#builder)
 
 #### Trait Implementations
 
 ##### `impl Automaton for NFA`
 
-- `fn start_state(self: &Self, anchored: Anchored) -> Result<StateID, MatchError>` — [`Anchored`](../../index.md), [`StateID`](../../util/primitives/index.md), [`MatchError`](../../index.md)
+- <span id="nfa-start-state"></span>`fn start_state(&self, anchored: Anchored) -> Result<StateID, MatchError>` — [`Anchored`](../../index.md), [`StateID`](../../util/primitives/index.md), [`MatchError`](../../index.md)
 
-- `fn next_state(self: &Self, anchored: Anchored, sid: StateID, byte: u8) -> StateID` — [`Anchored`](../../index.md), [`StateID`](../../util/primitives/index.md)
+- <span id="nfa-next-state"></span>`fn next_state(&self, anchored: Anchored, sid: StateID, byte: u8) -> StateID` — [`Anchored`](../../index.md), [`StateID`](../../util/primitives/index.md)
 
-- `fn is_special(self: &Self, sid: StateID) -> bool` — [`StateID`](../../util/primitives/index.md)
+- <span id="nfa-is-special"></span>`fn is_special(&self, sid: StateID) -> bool` — [`StateID`](../../util/primitives/index.md)
 
-- `fn is_dead(self: &Self, sid: StateID) -> bool` — [`StateID`](../../util/primitives/index.md)
+- <span id="nfa-is-dead"></span>`fn is_dead(&self, sid: StateID) -> bool` — [`StateID`](../../util/primitives/index.md)
 
-- `fn is_match(self: &Self, sid: StateID) -> bool` — [`StateID`](../../util/primitives/index.md)
+- <span id="nfa-is-match"></span>`fn is_match(&self, sid: StateID) -> bool` — [`StateID`](../../util/primitives/index.md)
 
-- `fn is_start(self: &Self, sid: StateID) -> bool` — [`StateID`](../../util/primitives/index.md)
+- <span id="nfa-is-start"></span>`fn is_start(&self, sid: StateID) -> bool` — [`StateID`](../../util/primitives/index.md)
 
-- `fn match_kind(self: &Self) -> MatchKind` — [`MatchKind`](../../index.md)
+- <span id="nfa-match-kind"></span>`fn match_kind(&self) -> MatchKind` — [`MatchKind`](../../index.md)
 
-- `fn patterns_len(self: &Self) -> usize`
+- <span id="nfa-patterns-len"></span>`fn patterns_len(&self) -> usize`
 
-- `fn pattern_len(self: &Self, pid: PatternID) -> usize` — [`PatternID`](../../index.md)
+- <span id="nfa-pattern-len"></span>`fn pattern_len(&self, pid: PatternID) -> usize` — [`PatternID`](../../index.md)
 
-- `fn min_pattern_len(self: &Self) -> usize`
+- <span id="nfa-min-pattern-len"></span>`fn min_pattern_len(&self) -> usize`
 
-- `fn max_pattern_len(self: &Self) -> usize`
+- <span id="nfa-max-pattern-len"></span>`fn max_pattern_len(&self) -> usize`
 
-- `fn match_len(self: &Self, sid: StateID) -> usize` — [`StateID`](../../util/primitives/index.md)
+- <span id="nfa-match-len"></span>`fn match_len(&self, sid: StateID) -> usize` — [`StateID`](../../util/primitives/index.md)
 
-- `fn match_pattern(self: &Self, sid: StateID, index: usize) -> PatternID` — [`StateID`](../../util/primitives/index.md), [`PatternID`](../../index.md)
+- <span id="nfa-match-pattern"></span>`fn match_pattern(&self, sid: StateID, index: usize) -> PatternID` — [`StateID`](../../util/primitives/index.md), [`PatternID`](../../index.md)
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="nfa-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- `fn prefilter(self: &Self) -> Option<&Prefilter>` — [`Prefilter`](../../util/prefilter/index.md)
+- <span id="nfa-prefilter"></span>`fn prefilter(&self) -> Option<&Prefilter>` — [`Prefilter`](../../util/prefilter/index.md)
 
 ##### `impl Clone for NFA`
 
-- `fn clone(self: &Self) -> NFA` — [`NFA`](#nfa)
+- <span id="nfa-clone"></span>`fn clone(&self) -> NFA` — [`NFA`](#nfa)
 
 ##### `impl Debug for NFA`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="nfa-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Sealed for crate::nfa::contiguous::NFA`
 
@@ -229,45 +239,45 @@ things from the raw binary encoding of the state.
 
 #### Implementations
 
-- `const KIND: usize`
+- <span id="state-kind"></span>`const KIND: usize`
 
-- `const KIND_DENSE: u32`
+- <span id="state-kind-dense"></span>`const KIND_DENSE: u32`
 
-- `const KIND_ONE: u32`
+- <span id="state-kind-one"></span>`const KIND_ONE: u32`
 
-- `const MAX_SPARSE_TRANSITIONS: usize`
+- <span id="state-max-sparse-transitions"></span>`const MAX_SPARSE_TRANSITIONS: usize`
 
-- `fn remap(alphabet_len: usize, old_to_new: &[StateID], state: &mut [u32]) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](../../index.md)
+- <span id="state-remap"></span>`fn remap(alphabet_len: usize, old_to_new: &[StateID], state: &mut [u32]) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](../../index.md)
 
-- `fn len(alphabet_len: usize, is_match: bool, state: &[u32]) -> usize`
+- <span id="state-len"></span>`fn len(alphabet_len: usize, is_match: bool, state: &[u32]) -> usize`
 
-- `fn kind(state: &[u32]) -> u32`
+- <span id="state-kind"></span>`fn kind(state: &[u32]) -> u32`
 
-- `fn sparse_trans_len(state: &[u32]) -> usize`
+- <span id="state-sparse-trans-len"></span>`fn sparse_trans_len(state: &[u32]) -> usize`
 
-- `fn match_len(alphabet_len: usize, state: &[u32]) -> usize`
+- <span id="state-match-len"></span>`fn match_len(alphabet_len: usize, state: &[u32]) -> usize`
 
-- `fn match_pattern(alphabet_len: usize, state: &[u32], index: usize) -> PatternID` — [`PatternID`](../../index.md)
+- <span id="state-match-pattern"></span>`fn match_pattern(alphabet_len: usize, state: &[u32], index: usize) -> PatternID` — [`PatternID`](../../index.md)
 
-- `fn read(alphabet_len: usize, is_match: bool, state: &'a [u32]) -> State<'a>` — [`State`](#state)
+- <span id="state-read"></span>`fn read(alphabet_len: usize, is_match: bool, state: &'a [u32]) -> State<'a>` — [`State`](#state)
 
-- `fn write(nnfa: &noncontiguous::NFA, oldsid: StateID, old: &noncontiguous::State, classes: &ByteClasses, dst: &mut Vec<u32>, force_dense: bool) -> Result<StateID, BuildError>` — [`NFA`](../noncontiguous/index.md), [`StateID`](../../util/primitives/index.md), [`State`](../noncontiguous/index.md), [`ByteClasses`](../../util/alphabet/index.md), [`BuildError`](../../index.md)
+- <span id="state-write"></span>`fn write(nnfa: &noncontiguous::NFA, oldsid: StateID, old: &noncontiguous::State, classes: &ByteClasses, dst: &mut Vec<u32>, force_dense: bool) -> Result<StateID, BuildError>` — [`NFA`](../noncontiguous/index.md), [`StateID`](../../util/primitives/index.md), [`State`](../noncontiguous/index.md), [`ByteClasses`](../../util/alphabet/index.md), [`BuildError`](../../index.md)
 
-- `fn write_sparse_trans(nnfa: &noncontiguous::NFA, oldsid: StateID, classes: &ByteClasses, dst: &mut Vec<u32>) -> Result<(), BuildError>` — [`NFA`](../noncontiguous/index.md), [`StateID`](../../util/primitives/index.md), [`ByteClasses`](../../util/alphabet/index.md), [`BuildError`](../../index.md)
+- <span id="state-write-sparse-trans"></span>`fn write_sparse_trans(nnfa: &noncontiguous::NFA, oldsid: StateID, classes: &ByteClasses, dst: &mut Vec<u32>) -> Result<(), BuildError>` — [`NFA`](../noncontiguous/index.md), [`StateID`](../../util/primitives/index.md), [`ByteClasses`](../../util/alphabet/index.md), [`BuildError`](../../index.md)
 
-- `fn write_dense_trans(nnfa: &noncontiguous::NFA, oldsid: StateID, classes: &ByteClasses, dst: &mut Vec<u32>) -> Result<(), BuildError>` — [`NFA`](../noncontiguous/index.md), [`StateID`](../../util/primitives/index.md), [`ByteClasses`](../../util/alphabet/index.md), [`BuildError`](../../index.md)
+- <span id="state-write-dense-trans"></span>`fn write_dense_trans(nnfa: &noncontiguous::NFA, oldsid: StateID, classes: &ByteClasses, dst: &mut Vec<u32>) -> Result<(), BuildError>` — [`NFA`](../noncontiguous/index.md), [`StateID`](../../util/primitives/index.md), [`ByteClasses`](../../util/alphabet/index.md), [`BuildError`](../../index.md)
 
-- `fn transitions(self: &Self) -> impl Iterator<Item = (u8, StateID)> + '_` — [`StateID`](../../util/primitives/index.md)
+- <span id="state-transitions"></span>`fn transitions(&self) -> impl Iterator<Item = (u8, StateID)> + '_` — [`StateID`](../../util/primitives/index.md)
 
 #### Trait Implementations
 
 ##### `impl<'a> Clone for State<'a>`
 
-- `fn clone(self: &Self) -> State<'a>` — [`State`](#state)
+- <span id="state-clone"></span>`fn clone(&self) -> State<'a>` — [`State`](#state)
 
 ##### `impl<'a> Debug for State<'a>`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="state-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ### `Builder`
 
@@ -287,35 +297,35 @@ their behavior is identical.
 
 #### Implementations
 
-- `fn new() -> Builder` — [`Builder`](#builder)
+- <span id="builder-new"></span>`fn new() -> Builder` — [`Builder`](#builder)
 
-- `fn build<I, P>(self: &Self, patterns: I) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../../index.md)
+- <span id="builder-build"></span>`fn build<I, P>(&self, patterns: I) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../../index.md)
 
-- `fn build_from_noncontiguous(self: &Self, nnfa: &noncontiguous::NFA) -> Result<NFA, BuildError>` — [`NFA`](../noncontiguous/index.md), [`BuildError`](../../index.md)
+- <span id="builder-build-from-noncontiguous"></span>`fn build_from_noncontiguous(&self, nnfa: &noncontiguous::NFA) -> Result<NFA, BuildError>` — [`NFA`](../noncontiguous/index.md), [`BuildError`](../../index.md)
 
-- `fn match_kind(self: &mut Self, kind: MatchKind) -> &mut Builder` — [`MatchKind`](../../index.md), [`Builder`](#builder)
+- <span id="builder-match-kind"></span>`fn match_kind(&mut self, kind: MatchKind) -> &mut Builder` — [`MatchKind`](../../index.md), [`Builder`](#builder)
 
-- `fn ascii_case_insensitive(self: &mut Self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
+- <span id="builder-ascii-case-insensitive"></span>`fn ascii_case_insensitive(&mut self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 
-- `fn prefilter(self: &mut Self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
+- <span id="builder-prefilter"></span>`fn prefilter(&mut self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 
-- `fn dense_depth(self: &mut Self, depth: usize) -> &mut Builder` — [`Builder`](#builder)
+- <span id="builder-dense-depth"></span>`fn dense_depth(&mut self, depth: usize) -> &mut Builder` — [`Builder`](#builder)
 
-- `fn byte_classes(self: &mut Self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
+- <span id="builder-byte-classes"></span>`fn byte_classes(&mut self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 
 #### Trait Implementations
 
 ##### `impl Clone for Builder`
 
-- `fn clone(self: &Self) -> Builder` — [`Builder`](#builder)
+- <span id="builder-clone"></span>`fn clone(&self) -> Builder` — [`Builder`](#builder)
 
 ##### `impl Debug for Builder`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="builder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Builder`
 
-- `fn default() -> Builder` — [`Builder`](#builder)
+- <span id="builder-default"></span>`fn default() -> Builder` — [`Builder`](#builder)
 
 ## Enums
 
@@ -367,7 +377,7 @@ represent a lot of wasteful work.
 
 ##### `impl<'a> Clone for StateTrans<'a>`
 
-- `fn clone(self: &Self) -> StateTrans<'a>` — [`StateTrans`](#statetrans)
+- <span id="statetrans-clone"></span>`fn clone(&self) -> StateTrans<'a>` — [`StateTrans`](#statetrans)
 
 ## Functions
 

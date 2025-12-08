@@ -10,6 +10,31 @@ Note that dead code is allowed as here are just bindings
 iOS doesn't use all of them it but adding more
 platform-specific configs pollutes the code too much
 
+## Contents
+
+- [Enums](#enums)
+  - [`_Unwind_Reason_Code`](#_unwind_reason_code)
+  - [`_Unwind_Context`](#_unwind_context)
+- [Functions](#functions)
+  - [`_Unwind_Backtrace`](#_unwind_backtrace)
+  - [`_Unwind_GetIP`](#_unwind_getip)
+  - [`_Unwind_FindEnclosingFunction`](#_unwind_findenclosingfunction)
+  - [`get_sp`](#get_sp)
+- [Type Aliases](#type-aliases)
+  - [`_Unwind_Trace_Fn`](#_unwind_trace_fn)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`_Unwind_Reason_Code`](#_unwind_reason_code) | enum |  |
+| [`_Unwind_Context`](#_unwind_context) | enum |  |
+| [`_Unwind_Backtrace`](#_unwind_backtrace) | fn |  |
+| [`_Unwind_GetIP`](#_unwind_getip) | fn |  |
+| [`_Unwind_FindEnclosingFunction`](#_unwind_findenclosingfunction) | fn |  |
+| [`get_sp`](#get_sp) | fn |  |
+| [`_Unwind_Trace_Fn`](#_unwind_trace_fn) | type |  |
+
 ## Enums
 
 ### `_Unwind_Reason_Code`

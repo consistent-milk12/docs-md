@@ -6,6 +6,12 @@
 
 Functionality for wrapping text into columns.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`wrap_columns`](#wrap_columns) | fn | Wrap text into columns with a given total width. |
+
 ## Functions
 
 ### `wrap_columns`

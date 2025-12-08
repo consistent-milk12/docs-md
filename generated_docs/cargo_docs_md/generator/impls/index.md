@@ -9,6 +9,14 @@ Implementation block rendering for documentation generation.
 This module provides the [`ImplRenderer`](#implrenderer) struct which handles rendering
 impl blocks (both inherent and trait implementations) to markdown format.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ImplRenderer`](#implrenderer) | struct | Renders impl blocks to markdown. |
+| [`is_blanket_impl`](#is_blanket_impl) | fn | Check if an impl block is for a blanket trait that should be filtered. |
+| [`BLANKET_TRAITS`](#blanket_traits) | const | Blanket trait implementations to filter from output. |
+
 ## Structs
 
 ### `ImplRenderer<'a>`
@@ -48,17 +56,17 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 #### Implementations
 
-- `fn new(ctx: &'a dyn RenderContext, current_file: &'a str) -> Self` — [`RenderContext`](../index.md)
+- <span id="implrenderer-new"></span>`fn new(ctx: &'a dyn RenderContext, current_file: &'a str) -> Self` — [`RenderContext`](../index.md)
 
-- `fn process_docs(self: &Self, item: &Item) -> Option<String>`
+- <span id="implrenderer-process-docs"></span>`fn process_docs(&self, item: &Item) -> Option<String>`
 
-- `fn render_impl_blocks(self: &Self, md: &mut String, item_id: Id)`
+- <span id="implrenderer-render-impl-blocks"></span>`fn render_impl_blocks(&self, md: &mut String, item_id: Id)`
 
-- `fn render_trait_impl(self: &Self, md: &mut String, impl_block: &Impl)`
+- <span id="implrenderer-render-trait-impl"></span>`fn render_trait_impl(&self, md: &mut String, impl_block: &Impl)`
 
-- `fn render_impl_methods(self: &Self, md: &mut String, impl_block: &Impl)`
+- <span id="implrenderer-render-impl-methods"></span>`fn render_impl_methods(&self, md: &mut String, impl_block: &Impl)`
 
-- `fn render_generic_args_for_impl(self: &Self, args: &rustdoc_types::GenericArgs) -> String`
+- <span id="implrenderer-render-generic-args-for-impl"></span>`fn render_generic_args_for_impl(&self, args: &rustdoc_types::GenericArgs) -> String`
 
 #### Trait Implementations
 
@@ -70,17 +78,17 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 ##### `impl<T> Pointable for ImplRenderer<'a>`
 
-- `const ALIGN: usize`
+- <span id="implrenderer-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="implrenderer-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="implrenderer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="implrenderer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="implrenderer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="implrenderer-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T> WithSubscriber for ImplRenderer<'a>`
 

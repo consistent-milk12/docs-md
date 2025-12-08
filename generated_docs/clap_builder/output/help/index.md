@@ -4,6 +4,12 @@
 
 # Module `help`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`write_help`](#write_help) | fn | Writes the parser help to the wrapped stream. |
+
 ## Functions
 
 ### `write_help`

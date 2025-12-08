@@ -4,6 +4,17 @@
 
 # Module `kind`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Adhoc`](#adhoc) | struct |  |
+| [`Trait`](#trait) | struct |  |
+| [`Boxed`](#boxed) | struct |  |
+| [`AdhocKind`](#adhockind) | trait |  |
+| [`TraitKind`](#traitkind) | trait |  |
+| [`BoxedKind`](#boxedkind) | trait |  |
+
 ## Structs
 
 ### `Adhoc`
@@ -14,7 +25,7 @@ struct Adhoc;
 
 #### Implementations
 
-- `fn new<M>(self: Self, message: M) -> Report` — [`Report`](../../index.md)
+- <span id="adhoc-new"></span>`fn new<M>(self, message: M) -> Report` — [`Report`](../../index.md)
 
 #### Trait Implementations
 
@@ -28,7 +39,7 @@ struct Trait;
 
 #### Implementations
 
-- `fn new<E>(self: Self, error: E) -> Report` — [`Report`](../../index.md)
+- <span id="trait-new"></span>`fn new<E>(self, error: E) -> Report` — [`Report`](../../index.md)
 
 #### Trait Implementations
 
@@ -42,7 +53,7 @@ struct Boxed;
 
 #### Implementations
 
-- `fn new(self: Self, error: Box<dyn Diagnostic + Send + Sync>) -> Report` — [`Diagnostic`](../../index.md), [`Report`](../../index.md)
+- <span id="boxed-new"></span>`fn new(self, error: Box<dyn Diagnostic + Send + Sync>) -> Report` — [`Diagnostic`](../../index.md), [`Report`](../../index.md)
 
 #### Trait Implementations
 
@@ -58,7 +69,7 @@ trait AdhocKind: Sized { ... }
 
 #### Required Methods
 
-- `fn miette_kind(self: &Self) -> Adhoc`
+- `fn miette_kind(&self) -> Adhoc`
 
 ### `TraitKind`
 
@@ -68,7 +79,7 @@ trait TraitKind: Sized { ... }
 
 #### Required Methods
 
-- `fn miette_kind(self: &Self) -> Trait`
+- `fn miette_kind(&self) -> Trait`
 
 ### `BoxedKind`
 
@@ -78,5 +89,5 @@ trait BoxedKind: Sized { ... }
 
 #### Required Methods
 
-- `fn miette_kind(self: &Self) -> Boxed`
+- `fn miette_kind(&self) -> Boxed`
 

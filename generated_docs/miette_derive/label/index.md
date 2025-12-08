@@ -4,6 +4,15 @@
 
 # Module `label`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Labels`](#labels) | struct |  |
+| [`Label`](#label) | struct |  |
+| [`LabelAttr`](#labelattr) | struct |  |
+| [`LabelType`](#labeltype) | enum |  |
+
 ## Structs
 
 ### `Labels`
@@ -14,13 +23,13 @@ struct Labels(Vec<Label>);
 
 #### Implementations
 
-- `fn from_fields(fields: &syn::Fields) -> syn::Result<Option<Self>>`
+- <span id="labels-from-fields"></span>`fn from_fields(fields: &syn::Fields) -> syn::Result<Option<Self>>`
 
-- `fn from_fields_vec(fields: Vec<&syn::Field>) -> syn::Result<Option<Self>>`
+- <span id="labels-from-fields-vec"></span>`fn from_fields_vec(fields: Vec<&syn::Field>) -> syn::Result<Option<Self>>`
 
-- `fn gen_struct(self: &Self, fields: &syn::Fields) -> Option<TokenStream>`
+- <span id="labels-gen-struct"></span>`fn gen_struct(&self, fields: &syn::Fields) -> Option<TokenStream>`
 
-- `fn gen_enum(variants: &[DiagnosticDef]) -> Option<TokenStream>` — [`DiagnosticDef`](../diagnostic/index.md)
+- <span id="labels-gen-enum"></span>`fn gen_enum(variants: &[DiagnosticDef]) -> Option<TokenStream>` — [`DiagnosticDef`](../diagnostic/index.md)
 
 ### `Label`
 
@@ -46,7 +55,7 @@ struct LabelAttr {
 
 ##### `impl Parse for LabelAttr`
 
-- `fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
+- <span id="labelattr-parse"></span>`fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
 
 ## Enums
 
@@ -66,7 +75,7 @@ enum LabelType {
 
 ##### `impl PartialEq for LabelType`
 
-- `fn eq(self: &Self, other: &LabelType) -> bool` — [`LabelType`](#labeltype)
+- <span id="labeltype-eq"></span>`fn eq(&self, other: &LabelType) -> bool` — [`LabelType`](#labeltype)
 
 ##### `impl StructuralPartialEq for LabelType`
 

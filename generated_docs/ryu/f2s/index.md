@@ -4,6 +4,31 @@
 
 # Module `f2s`
 
+## Contents
+
+- [Structs](#structs)
+  - [`FloatingDecimal32`](#floatingdecimal32)
+- [Functions](#functions)
+  - [`f2d`](#f2d)
+- [Constants](#constants)
+  - [`FLOAT_MANTISSA_BITS`](#float_mantissa_bits)
+  - [`FLOAT_EXPONENT_BITS`](#float_exponent_bits)
+  - [`FLOAT_BIAS`](#float_bias)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`FloatingDecimal32`](#floatingdecimal32) | struct |  |
+| [`f2d`](#f2d) | fn |  |
+| [`FLOAT_MANTISSA_BITS`](#float_mantissa_bits) | const |  |
+| [`FLOAT_EXPONENT_BITS`](#float_exponent_bits) | const |  |
+| [`FLOAT_BIAS`](#float_bias) | const |  |
+| [`unnamed`](#unnamed) | const |  |
+| [`unnamed`](#unnamed) | const |  |
+
 ## Structs
 
 ### `FloatingDecimal32`

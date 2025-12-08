@@ -4,6 +4,19 @@
 
 # Module `map_with`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`MapWith`](#mapwith) | struct | `MapWith` is an iterator that transforms the elements of an underlying iterator. |
+| [`MapWithProducer`](#mapwithproducer) | struct |  |
+| [`MapWithIter`](#mapwithiter) | struct |  |
+| [`MapWithConsumer`](#mapwithconsumer) | struct |  |
+| [`MapWithFolder`](#mapwithfolder) | struct |  |
+| [`MapInit`](#mapinit) | struct | `MapInit` is an iterator that transforms the elements of an underlying iterator. |
+| [`MapInitProducer`](#mapinitproducer) | struct |  |
+| [`MapInitConsumer`](#mapinitconsumer) | struct |  |
+
 ## Structs
 
 ### `MapWith<I, T, F>`
@@ -23,57 +36,57 @@ This struct is created by the `map_with()` method on [`ParallelIterator`](../../
 
 #### Implementations
 
-- `fn new(base: I, item: T, map_op: F) -> Self`
+- <span id="mapwith-new"></span>`fn new(base: I, item: T, map_op: F) -> Self`
 
 #### Trait Implementations
 
-##### `impl<I: $crate::clone::Clone, T: $crate::clone::Clone, F: $crate::clone::Clone> Clone for MapWith<I, T, F>`
+##### `impl<I: clone::Clone, T: clone::Clone, F: clone::Clone> Clone for MapWith<I, T, F>`
 
-- `fn clone(self: &Self) -> MapWith<I, T, F>` — [`MapWith`](../index.md)
+- <span id="mapwith-clone"></span>`fn clone(&self) -> MapWith<I, T, F>` — [`MapWith`](../index.md)
 
 ##### `impl<I: Debug, T: Debug, F> Debug for MapWith<I, T, F>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="mapwith-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I, T, F, R> IndexedParallelIterator for MapWith<I, T, F>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="mapwith-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
-- `fn len(self: &Self) -> usize`
+- <span id="mapwith-len"></span>`fn len(&self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
+- <span id="mapwith-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
 
 ##### `impl<T> IntoEither for MapWith<I, T, F>`
 
 ##### `impl<T> IntoParallelIterator for MapWith<I, T, F>`
 
-- `type Iter = T`
+- <span id="mapwith-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="mapwith-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="mapwith-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, T, F, R> ParallelIterator for MapWith<I, T, F>`
 
-- `type Item = R`
+- <span id="mapwith-item"></span>`type Item = R`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="mapwith-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
-- `fn opt_len(self: &Self) -> Option<usize>`
+- <span id="mapwith-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for MapWith<I, T, F>`
 
-- `const ALIGN: usize`
+- <span id="mapwith-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="mapwith-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="mapwith-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="mapwith-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="mapwith-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="mapwith-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `MapWithProducer<'f, P, U, F>`
 
@@ -91,33 +104,33 @@ struct MapWithProducer<'f, P, U, F> {
 
 ##### `impl<T> Pointable for MapWithProducer<'f, P, U, F>`
 
-- `const ALIGN: usize`
+- <span id="mapwithproducer-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="mapwithproducer-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="mapwithproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="mapwithproducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="mapwithproducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="mapwithproducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<'f, P, U, F, R> Producer for MapWithProducer<'f, P, U, F>`
 
-- `type Item = R`
+- <span id="mapwithproducer-item"></span>`type Item = R`
 
-- `type IntoIter = MapWithIter<'f, <P as Producer>::IntoIter, U, F>`
+- <span id="mapwithproducer-intoiter"></span>`type IntoIter = MapWithIter<'f, <P as Producer>::IntoIter, U, F>`
 
-- `fn into_iter(self: Self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
+- <span id="mapwithproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
 
-- `fn min_len(self: &Self) -> usize`
+- <span id="mapwithproducer-min-len"></span>`fn min_len(&self) -> usize`
 
-- `fn max_len(self: &Self) -> usize`
+- <span id="mapwithproducer-max-len"></span>`fn max_len(&self) -> usize`
 
-- `fn split_at(self: Self, index: usize) -> (Self, Self)`
+- <span id="mapwithproducer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
 
-- `fn fold_with<G>(self: Self, folder: G) -> G`
+- <span id="mapwithproducer-fold-with"></span>`fn fold_with<G>(self, folder: G) -> G`
 
 ### `MapWithIter<'f, I, U, F>`
 
@@ -133,7 +146,7 @@ struct MapWithIter<'f, I, U, F> {
 
 ##### `impl<'f, I, U, F, R> DoubleEndedIterator for MapWithIter<'f, I, U, F>`
 
-- `fn next_back(self: &mut Self) -> Option<R>`
+- <span id="mapwithiter-next-back"></span>`fn next_back(&mut self) -> Option<R>`
 
 ##### `impl<'f, I, U, F, R> ExactSizeIterator for MapWithIter<'f, I, U, F>`
 
@@ -141,33 +154,33 @@ struct MapWithIter<'f, I, U, F> {
 
 ##### `impl<I> IntoIterator for MapWithIter<'f, I, U, F>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="mapwithiter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="mapwithiter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="mapwithiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'f, I, U, F, R> Iterator for MapWithIter<'f, I, U, F>`
 
-- `type Item = R`
+- <span id="mapwithiter-item"></span>`type Item = R`
 
-- `fn next(self: &mut Self) -> Option<R>`
+- <span id="mapwithiter-next"></span>`fn next(&mut self) -> Option<R>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="mapwithiter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ##### `impl<T> Pointable for MapWithIter<'f, I, U, F>`
 
-- `const ALIGN: usize`
+- <span id="mapwithiter-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="mapwithiter-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="mapwithiter-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="mapwithiter-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="mapwithiter-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="mapwithiter-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `MapWithConsumer<'f, C, U, F>`
 
@@ -181,45 +194,45 @@ struct MapWithConsumer<'f, C, U, F> {
 
 #### Implementations
 
-- `fn new(base: C, item: U, map_op: &'f F) -> Self`
+- <span id="mapwithconsumer-new"></span>`fn new(base: C, item: U, map_op: &'f F) -> Self`
 
 #### Trait Implementations
 
 ##### `impl<'f, T, U, R, C, F> Consumer for MapWithConsumer<'f, C, U, F>`
 
-- `type Folder = MapWithFolder<'f, <C as Consumer>::Folder, U, F>`
+- <span id="mapwithconsumer-folder"></span>`type Folder = MapWithFolder<'f, <C as Consumer>::Folder, U, F>`
 
-- `type Reducer = <C as Consumer>::Reducer`
+- <span id="mapwithconsumer-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
 
-- `type Result = <C as Consumer>::Result`
+- <span id="mapwithconsumer-result"></span>`type Result = <C as Consumer>::Result`
 
-- `fn split_at(self: Self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
+- <span id="mapwithconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
 
-- `fn into_folder(self: Self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="mapwithconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
 
-- `fn full(self: &Self) -> bool`
+- <span id="mapwithconsumer-full"></span>`fn full(&self) -> bool`
 
 ##### `impl<T> IntoEither for MapWithConsumer<'f, C, U, F>`
 
 ##### `impl<T> Pointable for MapWithConsumer<'f, C, U, F>`
 
-- `const ALIGN: usize`
+- <span id="mapwithconsumer-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="mapwithconsumer-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="mapwithconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="mapwithconsumer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="mapwithconsumer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="mapwithconsumer-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<'f, T, U, R, C, F> UnindexedConsumer for MapWithConsumer<'f, C, U, F>`
 
-- `fn split_off_left(self: &Self) -> Self`
+- <span id="mapwithconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- `fn to_reducer(self: &Self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
+- <span id="mapwithconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
 
 ### `MapWithFolder<'f, C, U, F>`
 
@@ -235,31 +248,31 @@ struct MapWithFolder<'f, C, U, F> {
 
 ##### `impl<'f, T, U, R, C, F> Folder for MapWithFolder<'f, C, U, F>`
 
-- `type Result = <C as Folder>::Result`
+- <span id="mapwithfolder-result"></span>`type Result = <C as Folder>::Result`
 
-- `fn consume(self: Self, item: T) -> Self`
+- <span id="mapwithfolder-consume"></span>`fn consume(self, item: T) -> Self`
 
-- `fn consume_iter<I>(self: Self, iter: I) -> Self`
+- <span id="mapwithfolder-consume-iter"></span>`fn consume_iter<I>(self, iter: I) -> Self`
 
-- `fn complete(self: Self) -> <C as >::Result` — [`Folder`](../plumbing/index.md)
+- <span id="mapwithfolder-complete"></span>`fn complete(self) -> <C as >::Result` — [`Folder`](../plumbing/index.md)
 
-- `fn full(self: &Self) -> bool`
+- <span id="mapwithfolder-full"></span>`fn full(&self) -> bool`
 
 ##### `impl<T> IntoEither for MapWithFolder<'f, C, U, F>`
 
 ##### `impl<T> Pointable for MapWithFolder<'f, C, U, F>`
 
-- `const ALIGN: usize`
+- <span id="mapwithfolder-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="mapwithfolder-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="mapwithfolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="mapwithfolder-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="mapwithfolder-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="mapwithfolder-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `MapInit<I, INIT, F>`
 
@@ -278,57 +291,57 @@ This struct is created by the `map_init()` method on [`ParallelIterator`](../../
 
 #### Implementations
 
-- `fn new(base: I, init: INIT, map_op: F) -> Self`
+- <span id="mapinit-new"></span>`fn new(base: I, init: INIT, map_op: F) -> Self`
 
 #### Trait Implementations
 
-##### `impl<I: $crate::clone::Clone, INIT: $crate::clone::Clone, F: $crate::clone::Clone> Clone for MapInit<I, INIT, F>`
+##### `impl<I: clone::Clone, INIT: clone::Clone, F: clone::Clone> Clone for MapInit<I, INIT, F>`
 
-- `fn clone(self: &Self) -> MapInit<I, INIT, F>` — [`MapInit`](../index.md)
+- <span id="mapinit-clone"></span>`fn clone(&self) -> MapInit<I, INIT, F>` — [`MapInit`](../index.md)
 
 ##### `impl<I: Debug, INIT, F> Debug for MapInit<I, INIT, F>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="mapinit-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I, INIT, T, F, R> IndexedParallelIterator for MapInit<I, INIT, F>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="mapinit-drive"></span>`fn drive<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
-- `fn len(self: &Self) -> usize`
+- <span id="mapinit-len"></span>`fn len(&self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
+- <span id="mapinit-with-producer"></span>`fn with_producer<CB>(self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../plumbing/index.md)
 
 ##### `impl<T> IntoEither for MapInit<I, INIT, F>`
 
 ##### `impl<T> IntoParallelIterator for MapInit<I, INIT, F>`
 
-- `type Iter = T`
+- <span id="mapinit-iter"></span>`type Iter = T`
 
-- `type Item = <T as ParallelIterator>::Item`
+- <span id="mapinit-item"></span>`type Item = <T as ParallelIterator>::Item`
 
-- `fn into_par_iter(self: Self) -> T`
+- <span id="mapinit-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
 ##### `impl<I, INIT, T, F, R> ParallelIterator for MapInit<I, INIT, F>`
 
-- `type Item = R`
+- <span id="mapinit-item"></span>`type Item = R`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
+- <span id="mapinit-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../plumbing/index.md)
 
-- `fn opt_len(self: &Self) -> Option<usize>`
+- <span id="mapinit-opt-len"></span>`fn opt_len(&self) -> Option<usize>`
 
 ##### `impl<T> Pointable for MapInit<I, INIT, F>`
 
-- `const ALIGN: usize`
+- <span id="mapinit-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="mapinit-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="mapinit-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="mapinit-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="mapinit-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="mapinit-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ### `MapInitProducer<'f, P, INIT, F>`
 
@@ -346,33 +359,33 @@ struct MapInitProducer<'f, P, INIT, F> {
 
 ##### `impl<T> Pointable for MapInitProducer<'f, P, INIT, F>`
 
-- `const ALIGN: usize`
+- <span id="mapinitproducer-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="mapinitproducer-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="mapinitproducer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="mapinitproducer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="mapinitproducer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="mapinitproducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<'f, P, INIT, U, F, R> Producer for MapInitProducer<'f, P, INIT, F>`
 
-- `type Item = R`
+- <span id="mapinitproducer-item"></span>`type Item = R`
 
-- `type IntoIter = MapWithIter<'f, <P as Producer>::IntoIter, U, F>`
+- <span id="mapinitproducer-intoiter"></span>`type IntoIter = MapWithIter<'f, <P as Producer>::IntoIter, U, F>`
 
-- `fn into_iter(self: Self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
+- <span id="mapinitproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../plumbing/index.md)
 
-- `fn min_len(self: &Self) -> usize`
+- <span id="mapinitproducer-min-len"></span>`fn min_len(&self) -> usize`
 
-- `fn max_len(self: &Self) -> usize`
+- <span id="mapinitproducer-max-len"></span>`fn max_len(&self) -> usize`
 
-- `fn split_at(self: Self, index: usize) -> (Self, Self)`
+- <span id="mapinitproducer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
 
-- `fn fold_with<G>(self: Self, folder: G) -> G`
+- <span id="mapinitproducer-fold-with"></span>`fn fold_with<G>(self, folder: G) -> G`
 
 ### `MapInitConsumer<'f, C, INIT, F>`
 
@@ -386,43 +399,43 @@ struct MapInitConsumer<'f, C, INIT, F> {
 
 #### Implementations
 
-- `fn new(base: C, init: &'f INIT, map_op: &'f F) -> Self`
+- <span id="mapinitconsumer-new"></span>`fn new(base: C, init: &'f INIT, map_op: &'f F) -> Self`
 
 #### Trait Implementations
 
 ##### `impl<'f, T, INIT, U, R, C, F> Consumer for MapInitConsumer<'f, C, INIT, F>`
 
-- `type Folder = MapWithFolder<'f, <C as Consumer>::Folder, U, F>`
+- <span id="mapinitconsumer-folder"></span>`type Folder = MapWithFolder<'f, <C as Consumer>::Folder, U, F>`
 
-- `type Reducer = <C as Consumer>::Reducer`
+- <span id="mapinitconsumer-reducer"></span>`type Reducer = <C as Consumer>::Reducer`
 
-- `type Result = <C as Consumer>::Result`
+- <span id="mapinitconsumer-result"></span>`type Result = <C as Consumer>::Result`
 
-- `fn split_at(self: Self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
+- <span id="mapinitconsumer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)` — [`Consumer`](../plumbing/index.md)
 
-- `fn into_folder(self: Self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="mapinitconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
 
-- `fn full(self: &Self) -> bool`
+- <span id="mapinitconsumer-full"></span>`fn full(&self) -> bool`
 
 ##### `impl<T> IntoEither for MapInitConsumer<'f, C, INIT, F>`
 
 ##### `impl<T> Pointable for MapInitConsumer<'f, C, INIT, F>`
 
-- `const ALIGN: usize`
+- <span id="mapinitconsumer-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="mapinitconsumer-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="mapinitconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="mapinitconsumer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="mapinitconsumer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="mapinitconsumer-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<'f, T, INIT, U, R, C, F> UnindexedConsumer for MapInitConsumer<'f, C, INIT, F>`
 
-- `fn split_off_left(self: &Self) -> Self`
+- <span id="mapinitconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- `fn to_reducer(self: &Self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
+- <span id="mapinitconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
 

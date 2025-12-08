@@ -4,6 +4,32 @@
 
 # Module `util`
 
+## Contents
+
+- [Structs](#structs)
+  - [`Bytes`](#bytes)
+  - [`DebugByte`](#debugbyte)
+  - [`DebugLen`](#debuglen)
+  - [`ByteString`](#bytestring)
+  - [`StringTable`](#stringtable)
+- [Functions](#functions)
+  - [`debug_list_bytes`](#debug_list_bytes)
+  - [`align`](#align)
+  - [`data_range`](#data_range)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Bytes`](#bytes) | struct | A newtype for byte slices. |
+| [`DebugByte`](#debugbyte) | struct |  |
+| [`DebugLen`](#debuglen) | struct |  |
+| [`ByteString`](#bytestring) | struct | A newtype for byte strings. |
+| [`StringTable`](#stringtable) | struct | A table of zero-terminated strings. |
+| [`debug_list_bytes`](#debug_list_bytes) | fn |  |
+| [`align`](#align) | fn |  |
+| [`data_range`](#data_range) | fn |  |
+
 ## Structs
 
 ### `Bytes<'data>`
@@ -21,53 +47,53 @@ It has these important features:
 
 #### Implementations
 
-- `fn len(self: &Self) -> usize`
+- <span id="bytes-len"></span>`fn len(&self) -> usize`
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="bytes-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn skip(self: &mut Self, offset: usize) -> Result<(), ()>`
+- <span id="bytes-skip"></span>`fn skip(&mut self, offset: usize) -> Result<(), ()>`
 
-- `fn read_bytes(self: &mut Self, count: usize) -> Result<Bytes<'data>, ()>` — [`Bytes`](../index.md)
+- <span id="bytes-read-bytes"></span>`fn read_bytes(&mut self, count: usize) -> Result<Bytes<'data>, ()>` — [`Bytes`](../index.md)
 
-- `fn read_bytes_at(self: Self, offset: usize, count: usize) -> Result<Bytes<'data>, ()>` — [`Bytes`](../index.md)
+- <span id="bytes-read-bytes-at"></span>`fn read_bytes_at(self, offset: usize, count: usize) -> Result<Bytes<'data>, ()>` — [`Bytes`](../index.md)
 
-- `fn read<T: Pod>(self: &mut Self) -> Result<&'data T, ()>`
+- <span id="bytes-read"></span>`fn read<T: Pod>(&mut self) -> Result<&'data T, ()>`
 
-- `fn read_at<T: Pod>(self: Self, offset: usize) -> Result<&'data T, ()>`
+- <span id="bytes-read-at"></span>`fn read_at<T: Pod>(self, offset: usize) -> Result<&'data T, ()>`
 
-- `fn read_slice<T: Pod>(self: &mut Self, count: usize) -> Result<&'data [T], ()>`
+- <span id="bytes-read-slice"></span>`fn read_slice<T: Pod>(&mut self, count: usize) -> Result<&'data [T], ()>`
 
-- `fn read_slice_at<T: Pod>(self: Self, offset: usize, count: usize) -> Result<&'data [T], ()>`
+- <span id="bytes-read-slice-at"></span>`fn read_slice_at<T: Pod>(self, offset: usize, count: usize) -> Result<&'data [T], ()>`
 
-- `fn read_string(self: &mut Self) -> Result<&'data [u8], ()>`
+- <span id="bytes-read-string"></span>`fn read_string(&mut self) -> Result<&'data [u8], ()>`
 
-- `fn read_string_at(self: Self, offset: usize) -> Result<&'data [u8], ()>`
+- <span id="bytes-read-string-at"></span>`fn read_string_at(self, offset: usize) -> Result<&'data [u8], ()>`
 
-- `fn read_uleb128(self: &mut Self) -> Result<u64, ()>`
+- <span id="bytes-read-uleb128"></span>`fn read_uleb128(&mut self) -> Result<u64, ()>`
 
-- `fn read_sleb128(self: &mut Self) -> Result<i64, ()>`
+- <span id="bytes-read-sleb128"></span>`fn read_sleb128(&mut self) -> Result<i64, ()>`
 
 #### Trait Implementations
 
 ##### `impl<'data> Clone for Bytes<'data>`
 
-- `fn clone(self: &Self) -> Bytes<'data>` — [`Bytes`](../index.md)
+- <span id="bytes-clone"></span>`fn clone(&self) -> Bytes<'data>` — [`Bytes`](../index.md)
 
 ##### `impl<'data> Copy for Bytes<'data>`
 
 ##### `impl<'data> Debug for Bytes<'data>`
 
-- `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bytes-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data> Default for Bytes<'data>`
 
-- `fn default() -> Bytes<'data>` — [`Bytes`](../index.md)
+- <span id="bytes-default"></span>`fn default() -> Bytes<'data>` — [`Bytes`](../index.md)
 
 ##### `impl<'data> Eq for Bytes<'data>`
 
 ##### `impl<'data> PartialEq for Bytes<'data>`
 
-- `fn eq(self: &Self, other: &Bytes<'data>) -> bool` — [`Bytes`](../index.md)
+- <span id="bytes-eq"></span>`fn eq(&self, other: &Bytes<'data>) -> bool` — [`Bytes`](../index.md)
 
 ##### `impl<'data> StructuralPartialEq for Bytes<'data>`
 
@@ -81,7 +107,7 @@ struct DebugByte(u8);
 
 ##### `impl Debug for DebugByte`
 
-- `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="debugbyte-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `DebugLen`
 
@@ -93,7 +119,7 @@ struct DebugLen(usize);
 
 ##### `impl Debug for DebugLen`
 
-- `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="debuglen-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ByteString<'data>`
 
@@ -111,23 +137,23 @@ Provides a `Debug` implementation that interprets the bytes as UTF-8.
 
 ##### `impl<'data> Clone for ByteString<'data>`
 
-- `fn clone(self: &Self) -> ByteString<'data>` — [`ByteString`](#bytestring)
+- <span id="bytestring-clone"></span>`fn clone(&self) -> ByteString<'data>` — [`ByteString`](#bytestring)
 
 ##### `impl<'data> Copy for ByteString<'data>`
 
 ##### `impl<'data> Debug for ByteString<'data>`
 
-- `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="bytestring-fmt"></span>`fn fmt(&self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data> Default for ByteString<'data>`
 
-- `fn default() -> ByteString<'data>` — [`ByteString`](#bytestring)
+- <span id="bytestring-default"></span>`fn default() -> ByteString<'data>` — [`ByteString`](#bytestring)
 
 ##### `impl<'data> Eq for ByteString<'data>`
 
 ##### `impl<'data> PartialEq for ByteString<'data>`
 
-- `fn eq(self: &Self, other: &ByteString<'data>) -> bool` — [`ByteString`](#bytestring)
+- <span id="bytestring-eq"></span>`fn eq(&self, other: &ByteString<'data>) -> bool` — [`ByteString`](#bytestring)
 
 ##### `impl<'data> StructuralPartialEq for ByteString<'data>`
 
@@ -150,25 +176,25 @@ This is used by most file formats for strings such as section names and symbol n
 
 #### Implementations
 
-- `fn new(data: R, start: u64, end: u64) -> Self`
+- <span id="stringtable-new"></span>`fn new(data: R, start: u64, end: u64) -> Self`
 
-- `fn get(self: &Self, offset: u32) -> Result<&'data [u8], ()>`
+- <span id="stringtable-get"></span>`fn get(&self, offset: u32) -> Result<&'data [u8], ()>`
 
 #### Trait Implementations
 
 ##### `impl<'data, R> Clone for StringTable<'data, R>`
 
-- `fn clone(self: &Self) -> StringTable<'data, R>` — [`StringTable`](../index.md)
+- <span id="stringtable-clone"></span>`fn clone(&self) -> StringTable<'data, R>` — [`StringTable`](../index.md)
 
 ##### `impl<'data, R> Copy for StringTable<'data, R>`
 
 ##### `impl<'data, R> Debug for StringTable<'data, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="stringtable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, R: ReadRef<'data>> Default for StringTable<'data, R>`
 
-- `fn default() -> Self`
+- <span id="stringtable-default"></span>`fn default() -> Self`
 
 ## Functions
 

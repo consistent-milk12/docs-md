@@ -20,6 +20,400 @@ which top-level headers we want to reexport the definitions for.
 
 All modules are only crate-public since we don't reexport this structure.
 
+## Contents
+
+- [Modules](#modules)
+  - [`common`](#common)
+  - [`linux_uapi`](#linux_uapi)
+  - [`glibc`](#glibc)
+  - [`bcm`](#bcm)
+  - [`j1939`](#j1939)
+  - [`raw`](#raw)
+- [Structs](#structs)
+  - [`bcm_timeval`](#bcm_timeval)
+  - [`bcm_msg_head`](#bcm_msg_head)
+  - [`j1939_filter`](#j1939_filter)
+  - [`can_frame`](#can_frame)
+  - [`canfd_frame`](#canfd_frame)
+  - [`canxl_frame`](#canxl_frame)
+  - [`sockaddr_can`](#sockaddr_can)
+  - [`__c_anonymous_sockaddr_can_tp`](#__c_anonymous_sockaddr_can_tp)
+  - [`__c_anonymous_sockaddr_can_j1939`](#__c_anonymous_sockaddr_can_j1939)
+  - [`can_filter`](#can_filter)
+  - [`rtentry`](#rtentry)
+- [Type Aliases](#type-aliases)
+  - [`pgn_t`](#pgn_t)
+  - [`priority_t`](#priority_t)
+  - [`name_t`](#name_t)
+  - [`canid_t`](#canid_t)
+  - [`can_err_mask_t`](#can_err_mask_t)
+- [Constants](#constants)
+  - [`TX_SETUP`](#tx_setup)
+  - [`TX_DELETE`](#tx_delete)
+  - [`TX_READ`](#tx_read)
+  - [`TX_SEND`](#tx_send)
+  - [`RX_SETUP`](#rx_setup)
+  - [`RX_DELETE`](#rx_delete)
+  - [`RX_READ`](#rx_read)
+  - [`TX_STATUS`](#tx_status)
+  - [`TX_EXPIRED`](#tx_expired)
+  - [`RX_STATUS`](#rx_status)
+  - [`RX_TIMEOUT`](#rx_timeout)
+  - [`RX_CHANGED`](#rx_changed)
+  - [`SETTIMER`](#settimer)
+  - [`STARTTIMER`](#starttimer)
+  - [`TX_COUNTEVT`](#tx_countevt)
+  - [`TX_ANNOUNCE`](#tx_announce)
+  - [`TX_CP_CAN_ID`](#tx_cp_can_id)
+  - [`RX_FILTER_ID`](#rx_filter_id)
+  - [`RX_CHECK_DLC`](#rx_check_dlc)
+  - [`RX_NO_AUTOTIMER`](#rx_no_autotimer)
+  - [`RX_ANNOUNCE_RESUME`](#rx_announce_resume)
+  - [`TX_RESET_MULTI_IDX`](#tx_reset_multi_idx)
+  - [`RX_RTR_FRAME`](#rx_rtr_frame)
+  - [`CAN_FD_FRAME`](#can_fd_frame)
+  - [`J1939_MAX_UNICAST_ADDR`](#j1939_max_unicast_addr)
+  - [`J1939_IDLE_ADDR`](#j1939_idle_addr)
+  - [`J1939_NO_ADDR`](#j1939_no_addr)
+  - [`J1939_NO_NAME`](#j1939_no_name)
+  - [`J1939_PGN_REQUEST`](#j1939_pgn_request)
+  - [`J1939_PGN_ADDRESS_CLAIMED`](#j1939_pgn_address_claimed)
+  - [`J1939_PGN_ADDRESS_COMMANDED`](#j1939_pgn_address_commanded)
+  - [`J1939_PGN_PDU1_MAX`](#j1939_pgn_pdu1_max)
+  - [`J1939_PGN_MAX`](#j1939_pgn_max)
+  - [`J1939_NO_PGN`](#j1939_no_pgn)
+  - [`SOL_CAN_J1939`](#sol_can_j1939)
+  - [`SO_J1939_FILTER`](#so_j1939_filter)
+  - [`SO_J1939_PROMISC`](#so_j1939_promisc)
+  - [`SO_J1939_SEND_PRIO`](#so_j1939_send_prio)
+  - [`SO_J1939_ERRQUEUE`](#so_j1939_errqueue)
+  - [`SCM_J1939_DEST_ADDR`](#scm_j1939_dest_addr)
+  - [`SCM_J1939_DEST_NAME`](#scm_j1939_dest_name)
+  - [`SCM_J1939_PRIO`](#scm_j1939_prio)
+  - [`SCM_J1939_ERRQUEUE`](#scm_j1939_errqueue)
+  - [`J1939_NLA_PAD`](#j1939_nla_pad)
+  - [`J1939_NLA_BYTES_ACKED`](#j1939_nla_bytes_acked)
+  - [`J1939_NLA_TOTAL_SIZE`](#j1939_nla_total_size)
+  - [`J1939_NLA_PGN`](#j1939_nla_pgn)
+  - [`J1939_NLA_SRC_NAME`](#j1939_nla_src_name)
+  - [`J1939_NLA_DEST_NAME`](#j1939_nla_dest_name)
+  - [`J1939_NLA_SRC_ADDR`](#j1939_nla_src_addr)
+  - [`J1939_NLA_DEST_ADDR`](#j1939_nla_dest_addr)
+  - [`J1939_EE_INFO_NONE`](#j1939_ee_info_none)
+  - [`J1939_EE_INFO_TX_ABORT`](#j1939_ee_info_tx_abort)
+  - [`J1939_EE_INFO_RX_RTS`](#j1939_ee_info_rx_rts)
+  - [`J1939_EE_INFO_RX_DPO`](#j1939_ee_info_rx_dpo)
+  - [`J1939_EE_INFO_RX_ABORT`](#j1939_ee_info_rx_abort)
+  - [`J1939_FILTER_MAX`](#j1939_filter_max)
+  - [`SOL_CAN_RAW`](#sol_can_raw)
+  - [`CAN_RAW_FILTER_MAX`](#can_raw_filter_max)
+  - [`CAN_RAW_FILTER`](#can_raw_filter)
+  - [`CAN_RAW_ERR_FILTER`](#can_raw_err_filter)
+  - [`CAN_RAW_LOOPBACK`](#can_raw_loopback)
+  - [`CAN_RAW_RECV_OWN_MSGS`](#can_raw_recv_own_msgs)
+  - [`CAN_RAW_FD_FRAMES`](#can_raw_fd_frames)
+  - [`CAN_RAW_JOIN_FILTERS`](#can_raw_join_filters)
+  - [`CAN_RAW_XL_FRAMES`](#can_raw_xl_frames)
+  - [`CAN_EFF_FLAG`](#can_eff_flag)
+  - [`CAN_RTR_FLAG`](#can_rtr_flag)
+  - [`CAN_ERR_FLAG`](#can_err_flag)
+  - [`CAN_SFF_MASK`](#can_sff_mask)
+  - [`CAN_EFF_MASK`](#can_eff_mask)
+  - [`CAN_ERR_MASK`](#can_err_mask)
+  - [`CANXL_PRIO_MASK`](#canxl_prio_mask)
+  - [`CAN_SFF_ID_BITS`](#can_sff_id_bits)
+  - [`CAN_EFF_ID_BITS`](#can_eff_id_bits)
+  - [`CANXL_PRIO_BITS`](#canxl_prio_bits)
+  - [`CAN_MAX_DLC`](#can_max_dlc)
+  - [`CAN_MAX_DLEN`](#can_max_dlen)
+  - [`CANFD_MAX_DLC`](#canfd_max_dlc)
+  - [`CANFD_MAX_DLEN`](#canfd_max_dlen)
+  - [`CANXL_MIN_DLC`](#canxl_min_dlc)
+  - [`CANXL_MAX_DLC`](#canxl_max_dlc)
+  - [`CANXL_MAX_DLC_MASK`](#canxl_max_dlc_mask)
+  - [`CANXL_MIN_DLEN`](#canxl_min_dlen)
+  - [`CANXL_MAX_DLEN`](#canxl_max_dlen)
+  - [`CANFD_BRS`](#canfd_brs)
+  - [`CANFD_ESI`](#canfd_esi)
+  - [`CANFD_FDF`](#canfd_fdf)
+  - [`CANXL_XLF`](#canxl_xlf)
+  - [`CANXL_SEC`](#canxl_sec)
+  - [`CAN_MTU`](#can_mtu)
+  - [`CANFD_MTU`](#canfd_mtu)
+  - [`CANXL_MTU`](#canxl_mtu)
+  - [`CANXL_HDR_SIZE`](#canxl_hdr_size)
+  - [`CANXL_MIN_MTU`](#canxl_min_mtu)
+  - [`CANXL_MAX_MTU`](#canxl_max_mtu)
+  - [`CAN_RAW`](#can_raw)
+  - [`CAN_BCM`](#can_bcm)
+  - [`CAN_TP16`](#can_tp16)
+  - [`CAN_TP20`](#can_tp20)
+  - [`CAN_MCNET`](#can_mcnet)
+  - [`CAN_ISOTP`](#can_isotp)
+  - [`CAN_J1939`](#can_j1939)
+  - [`CAN_NPROTO`](#can_nproto)
+  - [`SOL_CAN_BASE`](#sol_can_base)
+  - [`CAN_INV_FILTER`](#can_inv_filter)
+  - [`KEY_SPEC_THREAD_KEYRING`](#key_spec_thread_keyring)
+  - [`KEY_SPEC_PROCESS_KEYRING`](#key_spec_process_keyring)
+  - [`KEY_SPEC_SESSION_KEYRING`](#key_spec_session_keyring)
+  - [`KEY_SPEC_USER_KEYRING`](#key_spec_user_keyring)
+  - [`KEY_SPEC_USER_SESSION_KEYRING`](#key_spec_user_session_keyring)
+  - [`KEY_SPEC_GROUP_KEYRING`](#key_spec_group_keyring)
+  - [`KEY_SPEC_REQKEY_AUTH_KEY`](#key_spec_reqkey_auth_key)
+  - [`KEY_SPEC_REQUESTOR_KEYRING`](#key_spec_requestor_keyring)
+  - [`KEY_REQKEY_DEFL_NO_CHANGE`](#key_reqkey_defl_no_change)
+  - [`KEY_REQKEY_DEFL_DEFAULT`](#key_reqkey_defl_default)
+  - [`KEY_REQKEY_DEFL_THREAD_KEYRING`](#key_reqkey_defl_thread_keyring)
+  - [`KEY_REQKEY_DEFL_PROCESS_KEYRING`](#key_reqkey_defl_process_keyring)
+  - [`KEY_REQKEY_DEFL_SESSION_KEYRING`](#key_reqkey_defl_session_keyring)
+  - [`KEY_REQKEY_DEFL_USER_KEYRING`](#key_reqkey_defl_user_keyring)
+  - [`KEY_REQKEY_DEFL_USER_SESSION_KEYRING`](#key_reqkey_defl_user_session_keyring)
+  - [`KEY_REQKEY_DEFL_GROUP_KEYRING`](#key_reqkey_defl_group_keyring)
+  - [`KEY_REQKEY_DEFL_REQUESTOR_KEYRING`](#key_reqkey_defl_requestor_keyring)
+  - [`KEYCTL_GET_KEYRING_ID`](#keyctl_get_keyring_id)
+  - [`KEYCTL_JOIN_SESSION_KEYRING`](#keyctl_join_session_keyring)
+  - [`KEYCTL_UPDATE`](#keyctl_update)
+  - [`KEYCTL_REVOKE`](#keyctl_revoke)
+  - [`KEYCTL_CHOWN`](#keyctl_chown)
+  - [`KEYCTL_SETPERM`](#keyctl_setperm)
+  - [`KEYCTL_DESCRIBE`](#keyctl_describe)
+  - [`KEYCTL_CLEAR`](#keyctl_clear)
+  - [`KEYCTL_LINK`](#keyctl_link)
+  - [`KEYCTL_UNLINK`](#keyctl_unlink)
+  - [`KEYCTL_SEARCH`](#keyctl_search)
+  - [`KEYCTL_READ`](#keyctl_read)
+  - [`KEYCTL_INSTANTIATE`](#keyctl_instantiate)
+  - [`KEYCTL_NEGATE`](#keyctl_negate)
+  - [`KEYCTL_SET_REQKEY_KEYRING`](#keyctl_set_reqkey_keyring)
+  - [`KEYCTL_SET_TIMEOUT`](#keyctl_set_timeout)
+  - [`KEYCTL_ASSUME_AUTHORITY`](#keyctl_assume_authority)
+  - [`KEYCTL_GET_SECURITY`](#keyctl_get_security)
+  - [`KEYCTL_SESSION_TO_PARENT`](#keyctl_session_to_parent)
+  - [`KEYCTL_REJECT`](#keyctl_reject)
+  - [`KEYCTL_INSTANTIATE_IOV`](#keyctl_instantiate_iov)
+  - [`KEYCTL_INVALIDATE`](#keyctl_invalidate)
+  - [`KEYCTL_GET_PERSISTENT`](#keyctl_get_persistent)
+  - [`KEYCTL_DH_COMPUTE`](#keyctl_dh_compute)
+  - [`KEYCTL_PKEY_QUERY`](#keyctl_pkey_query)
+  - [`KEYCTL_PKEY_ENCRYPT`](#keyctl_pkey_encrypt)
+  - [`KEYCTL_PKEY_DECRYPT`](#keyctl_pkey_decrypt)
+  - [`KEYCTL_PKEY_SIGN`](#keyctl_pkey_sign)
+  - [`KEYCTL_PKEY_VERIFY`](#keyctl_pkey_verify)
+  - [`KEYCTL_RESTRICT_KEYRING`](#keyctl_restrict_keyring)
+  - [`KEYCTL_MOVE`](#keyctl_move)
+  - [`KEYCTL_CAPABILITIES`](#keyctl_capabilities)
+  - [`KEYCTL_SUPPORTS_ENCRYPT`](#keyctl_supports_encrypt)
+  - [`KEYCTL_SUPPORTS_DECRYPT`](#keyctl_supports_decrypt)
+  - [`KEYCTL_SUPPORTS_SIGN`](#keyctl_supports_sign)
+  - [`KEYCTL_SUPPORTS_VERIFY`](#keyctl_supports_verify)
+  - [`KEYCTL_CAPS0_CAPABILITIES`](#keyctl_caps0_capabilities)
+  - [`KEYCTL_CAPS0_PERSISTENT_KEYRINGS`](#keyctl_caps0_persistent_keyrings)
+  - [`KEYCTL_CAPS0_DIFFIE_HELLMAN`](#keyctl_caps0_diffie_hellman)
+  - [`KEYCTL_CAPS0_PUBLIC_KEY`](#keyctl_caps0_public_key)
+  - [`KEYCTL_CAPS0_BIG_KEY`](#keyctl_caps0_big_key)
+  - [`KEYCTL_CAPS0_INVALIDATE`](#keyctl_caps0_invalidate)
+  - [`KEYCTL_CAPS0_RESTRICT_KEYRING`](#keyctl_caps0_restrict_keyring)
+  - [`KEYCTL_CAPS0_MOVE`](#keyctl_caps0_move)
+  - [`KEYCTL_CAPS1_NS_KEYRING_NAME`](#keyctl_caps1_ns_keyring_name)
+  - [`KEYCTL_CAPS1_NS_KEY_TAG`](#keyctl_caps1_ns_key_tag)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`common`](#common) | mod | Interfaces that are common across multiple platforms |
+| [`linux_uapi`](#linux_uapi) | mod | This directory maps to `include/uapi` in the Linux source tree. |
+| [`glibc`](#glibc) | mod | GNU libc. |
+| [`bcm`](#bcm) | mod | Header: `linux/can/bcm.h` |
+| [`j1939`](#j1939) | mod | `linux/can/j1939.h` |
+| [`raw`](#raw) | mod | Header: `linux/can/raw.h` |
+| [`bcm_timeval`](#bcm_timeval) | struct |  |
+| [`bcm_msg_head`](#bcm_msg_head) | struct |  |
+| [`j1939_filter`](#j1939_filter) | struct |  |
+| [`can_frame`](#can_frame) | struct |  |
+| [`canfd_frame`](#canfd_frame) | struct |  |
+| [`canxl_frame`](#canxl_frame) | struct |  |
+| [`sockaddr_can`](#sockaddr_can) | struct |  |
+| [`__c_anonymous_sockaddr_can_tp`](#__c_anonymous_sockaddr_can_tp) | struct |  |
+| [`__c_anonymous_sockaddr_can_j1939`](#__c_anonymous_sockaddr_can_j1939) | struct |  |
+| [`can_filter`](#can_filter) | struct |  |
+| [`rtentry`](#rtentry) | struct |  |
+| [`pgn_t`](#pgn_t) | type |  |
+| [`priority_t`](#priority_t) | type |  |
+| [`name_t`](#name_t) | type |  |
+| [`canid_t`](#canid_t) | type |  |
+| [`can_err_mask_t`](#can_err_mask_t) | type |  |
+| [`TX_SETUP`](#tx_setup) | const |  |
+| [`TX_DELETE`](#tx_delete) | const |  |
+| [`TX_READ`](#tx_read) | const |  |
+| [`TX_SEND`](#tx_send) | const |  |
+| [`RX_SETUP`](#rx_setup) | const |  |
+| [`RX_DELETE`](#rx_delete) | const |  |
+| [`RX_READ`](#rx_read) | const |  |
+| [`TX_STATUS`](#tx_status) | const |  |
+| [`TX_EXPIRED`](#tx_expired) | const |  |
+| [`RX_STATUS`](#rx_status) | const |  |
+| [`RX_TIMEOUT`](#rx_timeout) | const |  |
+| [`RX_CHANGED`](#rx_changed) | const |  |
+| [`SETTIMER`](#settimer) | const |  |
+| [`STARTTIMER`](#starttimer) | const |  |
+| [`TX_COUNTEVT`](#tx_countevt) | const |  |
+| [`TX_ANNOUNCE`](#tx_announce) | const |  |
+| [`TX_CP_CAN_ID`](#tx_cp_can_id) | const |  |
+| [`RX_FILTER_ID`](#rx_filter_id) | const |  |
+| [`RX_CHECK_DLC`](#rx_check_dlc) | const |  |
+| [`RX_NO_AUTOTIMER`](#rx_no_autotimer) | const |  |
+| [`RX_ANNOUNCE_RESUME`](#rx_announce_resume) | const |  |
+| [`TX_RESET_MULTI_IDX`](#tx_reset_multi_idx) | const |  |
+| [`RX_RTR_FRAME`](#rx_rtr_frame) | const |  |
+| [`CAN_FD_FRAME`](#can_fd_frame) | const |  |
+| [`J1939_MAX_UNICAST_ADDR`](#j1939_max_unicast_addr) | const |  |
+| [`J1939_IDLE_ADDR`](#j1939_idle_addr) | const |  |
+| [`J1939_NO_ADDR`](#j1939_no_addr) | const |  |
+| [`J1939_NO_NAME`](#j1939_no_name) | const |  |
+| [`J1939_PGN_REQUEST`](#j1939_pgn_request) | const |  |
+| [`J1939_PGN_ADDRESS_CLAIMED`](#j1939_pgn_address_claimed) | const |  |
+| [`J1939_PGN_ADDRESS_COMMANDED`](#j1939_pgn_address_commanded) | const |  |
+| [`J1939_PGN_PDU1_MAX`](#j1939_pgn_pdu1_max) | const |  |
+| [`J1939_PGN_MAX`](#j1939_pgn_max) | const |  |
+| [`J1939_NO_PGN`](#j1939_no_pgn) | const |  |
+| [`SOL_CAN_J1939`](#sol_can_j1939) | const |  |
+| [`SO_J1939_FILTER`](#so_j1939_filter) | const |  |
+| [`SO_J1939_PROMISC`](#so_j1939_promisc) | const |  |
+| [`SO_J1939_SEND_PRIO`](#so_j1939_send_prio) | const |  |
+| [`SO_J1939_ERRQUEUE`](#so_j1939_errqueue) | const |  |
+| [`SCM_J1939_DEST_ADDR`](#scm_j1939_dest_addr) | const |  |
+| [`SCM_J1939_DEST_NAME`](#scm_j1939_dest_name) | const |  |
+| [`SCM_J1939_PRIO`](#scm_j1939_prio) | const |  |
+| [`SCM_J1939_ERRQUEUE`](#scm_j1939_errqueue) | const |  |
+| [`J1939_NLA_PAD`](#j1939_nla_pad) | const |  |
+| [`J1939_NLA_BYTES_ACKED`](#j1939_nla_bytes_acked) | const |  |
+| [`J1939_NLA_TOTAL_SIZE`](#j1939_nla_total_size) | const |  |
+| [`J1939_NLA_PGN`](#j1939_nla_pgn) | const |  |
+| [`J1939_NLA_SRC_NAME`](#j1939_nla_src_name) | const |  |
+| [`J1939_NLA_DEST_NAME`](#j1939_nla_dest_name) | const |  |
+| [`J1939_NLA_SRC_ADDR`](#j1939_nla_src_addr) | const |  |
+| [`J1939_NLA_DEST_ADDR`](#j1939_nla_dest_addr) | const |  |
+| [`J1939_EE_INFO_NONE`](#j1939_ee_info_none) | const |  |
+| [`J1939_EE_INFO_TX_ABORT`](#j1939_ee_info_tx_abort) | const |  |
+| [`J1939_EE_INFO_RX_RTS`](#j1939_ee_info_rx_rts) | const |  |
+| [`J1939_EE_INFO_RX_DPO`](#j1939_ee_info_rx_dpo) | const |  |
+| [`J1939_EE_INFO_RX_ABORT`](#j1939_ee_info_rx_abort) | const |  |
+| [`J1939_FILTER_MAX`](#j1939_filter_max) | const |  |
+| [`SOL_CAN_RAW`](#sol_can_raw) | const |  |
+| [`CAN_RAW_FILTER_MAX`](#can_raw_filter_max) | const |  |
+| [`CAN_RAW_FILTER`](#can_raw_filter) | const |  |
+| [`CAN_RAW_ERR_FILTER`](#can_raw_err_filter) | const |  |
+| [`CAN_RAW_LOOPBACK`](#can_raw_loopback) | const |  |
+| [`CAN_RAW_RECV_OWN_MSGS`](#can_raw_recv_own_msgs) | const |  |
+| [`CAN_RAW_FD_FRAMES`](#can_raw_fd_frames) | const |  |
+| [`CAN_RAW_JOIN_FILTERS`](#can_raw_join_filters) | const |  |
+| [`CAN_RAW_XL_FRAMES`](#can_raw_xl_frames) | const |  |
+| [`CAN_EFF_FLAG`](#can_eff_flag) | const |  |
+| [`CAN_RTR_FLAG`](#can_rtr_flag) | const |  |
+| [`CAN_ERR_FLAG`](#can_err_flag) | const |  |
+| [`CAN_SFF_MASK`](#can_sff_mask) | const |  |
+| [`CAN_EFF_MASK`](#can_eff_mask) | const |  |
+| [`CAN_ERR_MASK`](#can_err_mask) | const |  |
+| [`CANXL_PRIO_MASK`](#canxl_prio_mask) | const |  |
+| [`CAN_SFF_ID_BITS`](#can_sff_id_bits) | const |  |
+| [`CAN_EFF_ID_BITS`](#can_eff_id_bits) | const |  |
+| [`CANXL_PRIO_BITS`](#canxl_prio_bits) | const |  |
+| [`CAN_MAX_DLC`](#can_max_dlc) | const |  |
+| [`CAN_MAX_DLEN`](#can_max_dlen) | const |  |
+| [`CANFD_MAX_DLC`](#canfd_max_dlc) | const |  |
+| [`CANFD_MAX_DLEN`](#canfd_max_dlen) | const |  |
+| [`CANXL_MIN_DLC`](#canxl_min_dlc) | const |  |
+| [`CANXL_MAX_DLC`](#canxl_max_dlc) | const |  |
+| [`CANXL_MAX_DLC_MASK`](#canxl_max_dlc_mask) | const |  |
+| [`CANXL_MIN_DLEN`](#canxl_min_dlen) | const |  |
+| [`CANXL_MAX_DLEN`](#canxl_max_dlen) | const |  |
+| [`CANFD_BRS`](#canfd_brs) | const |  |
+| [`CANFD_ESI`](#canfd_esi) | const |  |
+| [`CANFD_FDF`](#canfd_fdf) | const |  |
+| [`CANXL_XLF`](#canxl_xlf) | const |  |
+| [`CANXL_SEC`](#canxl_sec) | const |  |
+| [`CAN_MTU`](#can_mtu) | const |  |
+| [`CANFD_MTU`](#canfd_mtu) | const |  |
+| [`CANXL_MTU`](#canxl_mtu) | const |  |
+| [`CANXL_HDR_SIZE`](#canxl_hdr_size) | const |  |
+| [`CANXL_MIN_MTU`](#canxl_min_mtu) | const |  |
+| [`CANXL_MAX_MTU`](#canxl_max_mtu) | const |  |
+| [`CAN_RAW`](#can_raw) | const |  |
+| [`CAN_BCM`](#can_bcm) | const |  |
+| [`CAN_TP16`](#can_tp16) | const |  |
+| [`CAN_TP20`](#can_tp20) | const |  |
+| [`CAN_MCNET`](#can_mcnet) | const |  |
+| [`CAN_ISOTP`](#can_isotp) | const |  |
+| [`CAN_J1939`](#can_j1939) | const |  |
+| [`CAN_NPROTO`](#can_nproto) | const |  |
+| [`SOL_CAN_BASE`](#sol_can_base) | const |  |
+| [`CAN_INV_FILTER`](#can_inv_filter) | const |  |
+| [`KEY_SPEC_THREAD_KEYRING`](#key_spec_thread_keyring) | const |  |
+| [`KEY_SPEC_PROCESS_KEYRING`](#key_spec_process_keyring) | const |  |
+| [`KEY_SPEC_SESSION_KEYRING`](#key_spec_session_keyring) | const |  |
+| [`KEY_SPEC_USER_KEYRING`](#key_spec_user_keyring) | const |  |
+| [`KEY_SPEC_USER_SESSION_KEYRING`](#key_spec_user_session_keyring) | const |  |
+| [`KEY_SPEC_GROUP_KEYRING`](#key_spec_group_keyring) | const |  |
+| [`KEY_SPEC_REQKEY_AUTH_KEY`](#key_spec_reqkey_auth_key) | const |  |
+| [`KEY_SPEC_REQUESTOR_KEYRING`](#key_spec_requestor_keyring) | const |  |
+| [`KEY_REQKEY_DEFL_NO_CHANGE`](#key_reqkey_defl_no_change) | const |  |
+| [`KEY_REQKEY_DEFL_DEFAULT`](#key_reqkey_defl_default) | const |  |
+| [`KEY_REQKEY_DEFL_THREAD_KEYRING`](#key_reqkey_defl_thread_keyring) | const |  |
+| [`KEY_REQKEY_DEFL_PROCESS_KEYRING`](#key_reqkey_defl_process_keyring) | const |  |
+| [`KEY_REQKEY_DEFL_SESSION_KEYRING`](#key_reqkey_defl_session_keyring) | const |  |
+| [`KEY_REQKEY_DEFL_USER_KEYRING`](#key_reqkey_defl_user_keyring) | const |  |
+| [`KEY_REQKEY_DEFL_USER_SESSION_KEYRING`](#key_reqkey_defl_user_session_keyring) | const |  |
+| [`KEY_REQKEY_DEFL_GROUP_KEYRING`](#key_reqkey_defl_group_keyring) | const |  |
+| [`KEY_REQKEY_DEFL_REQUESTOR_KEYRING`](#key_reqkey_defl_requestor_keyring) | const |  |
+| [`KEYCTL_GET_KEYRING_ID`](#keyctl_get_keyring_id) | const |  |
+| [`KEYCTL_JOIN_SESSION_KEYRING`](#keyctl_join_session_keyring) | const |  |
+| [`KEYCTL_UPDATE`](#keyctl_update) | const |  |
+| [`KEYCTL_REVOKE`](#keyctl_revoke) | const |  |
+| [`KEYCTL_CHOWN`](#keyctl_chown) | const |  |
+| [`KEYCTL_SETPERM`](#keyctl_setperm) | const |  |
+| [`KEYCTL_DESCRIBE`](#keyctl_describe) | const |  |
+| [`KEYCTL_CLEAR`](#keyctl_clear) | const |  |
+| [`KEYCTL_LINK`](#keyctl_link) | const |  |
+| [`KEYCTL_UNLINK`](#keyctl_unlink) | const |  |
+| [`KEYCTL_SEARCH`](#keyctl_search) | const |  |
+| [`KEYCTL_READ`](#keyctl_read) | const |  |
+| [`KEYCTL_INSTANTIATE`](#keyctl_instantiate) | const |  |
+| [`KEYCTL_NEGATE`](#keyctl_negate) | const |  |
+| [`KEYCTL_SET_REQKEY_KEYRING`](#keyctl_set_reqkey_keyring) | const |  |
+| [`KEYCTL_SET_TIMEOUT`](#keyctl_set_timeout) | const |  |
+| [`KEYCTL_ASSUME_AUTHORITY`](#keyctl_assume_authority) | const |  |
+| [`KEYCTL_GET_SECURITY`](#keyctl_get_security) | const |  |
+| [`KEYCTL_SESSION_TO_PARENT`](#keyctl_session_to_parent) | const |  |
+| [`KEYCTL_REJECT`](#keyctl_reject) | const |  |
+| [`KEYCTL_INSTANTIATE_IOV`](#keyctl_instantiate_iov) | const |  |
+| [`KEYCTL_INVALIDATE`](#keyctl_invalidate) | const |  |
+| [`KEYCTL_GET_PERSISTENT`](#keyctl_get_persistent) | const |  |
+| [`KEYCTL_DH_COMPUTE`](#keyctl_dh_compute) | const |  |
+| [`KEYCTL_PKEY_QUERY`](#keyctl_pkey_query) | const |  |
+| [`KEYCTL_PKEY_ENCRYPT`](#keyctl_pkey_encrypt) | const |  |
+| [`KEYCTL_PKEY_DECRYPT`](#keyctl_pkey_decrypt) | const |  |
+| [`KEYCTL_PKEY_SIGN`](#keyctl_pkey_sign) | const |  |
+| [`KEYCTL_PKEY_VERIFY`](#keyctl_pkey_verify) | const |  |
+| [`KEYCTL_RESTRICT_KEYRING`](#keyctl_restrict_keyring) | const |  |
+| [`KEYCTL_MOVE`](#keyctl_move) | const |  |
+| [`KEYCTL_CAPABILITIES`](#keyctl_capabilities) | const |  |
+| [`KEYCTL_SUPPORTS_ENCRYPT`](#keyctl_supports_encrypt) | const |  |
+| [`KEYCTL_SUPPORTS_DECRYPT`](#keyctl_supports_decrypt) | const |  |
+| [`KEYCTL_SUPPORTS_SIGN`](#keyctl_supports_sign) | const |  |
+| [`KEYCTL_SUPPORTS_VERIFY`](#keyctl_supports_verify) | const |  |
+| [`KEYCTL_CAPS0_CAPABILITIES`](#keyctl_caps0_capabilities) | const |  |
+| [`KEYCTL_CAPS0_PERSISTENT_KEYRINGS`](#keyctl_caps0_persistent_keyrings) | const |  |
+| [`KEYCTL_CAPS0_DIFFIE_HELLMAN`](#keyctl_caps0_diffie_hellman) | const |  |
+| [`KEYCTL_CAPS0_PUBLIC_KEY`](#keyctl_caps0_public_key) | const |  |
+| [`KEYCTL_CAPS0_BIG_KEY`](#keyctl_caps0_big_key) | const |  |
+| [`KEYCTL_CAPS0_INVALIDATE`](#keyctl_caps0_invalidate) | const |  |
+| [`KEYCTL_CAPS0_RESTRICT_KEYRING`](#keyctl_caps0_restrict_keyring) | const |  |
+| [`KEYCTL_CAPS0_MOVE`](#keyctl_caps0_move) | const |  |
+| [`KEYCTL_CAPS1_NS_KEYRING_NAME`](#keyctl_caps1_ns_keyring_name) | const |  |
+| [`KEYCTL_CAPS1_NS_KEY_TAG`](#keyctl_caps1_ns_key_tag) | const |  |
+
 ## Modules
 
 - [`common`](common/index.md) - Interfaces that are common across multiple platforms
@@ -44,13 +438,13 @@ struct bcm_timeval {
 
 ##### `impl Clone for bcm_timeval`
 
-- `fn clone(self: &Self) -> bcm_timeval` — [`bcm_timeval`](#bcm-timeval)
+- <span id="bcm-timeval-clone"></span>`fn clone(&self) -> bcm_timeval` — [`bcm_timeval`](#bcm-timeval)
 
 ##### `impl Copy for bcm_timeval`
 
 ##### `impl Debug for bcm_timeval`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="bcm-timeval-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `bcm_msg_head`
 
@@ -71,13 +465,13 @@ struct bcm_msg_head {
 
 ##### `impl Clone for bcm_msg_head`
 
-- `fn clone(self: &Self) -> bcm_msg_head` — [`bcm_msg_head`](#bcm-msg-head)
+- <span id="bcm-msg-head-clone"></span>`fn clone(&self) -> bcm_msg_head` — [`bcm_msg_head`](#bcm-msg-head)
 
 ##### `impl Copy for bcm_msg_head`
 
 ##### `impl Debug for bcm_msg_head`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="bcm-msg-head-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `j1939_filter`
 
@@ -96,13 +490,13 @@ struct j1939_filter {
 
 ##### `impl Clone for j1939_filter`
 
-- `fn clone(self: &Self) -> j1939_filter` — [`j1939_filter`](#j1939-filter)
+- <span id="j1939-filter-clone"></span>`fn clone(&self) -> j1939_filter` — [`j1939_filter`](#j1939-filter)
 
 ##### `impl Copy for j1939_filter`
 
 ##### `impl Debug for j1939_filter`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="j1939-filter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `can_frame`
 
@@ -121,13 +515,13 @@ struct can_frame {
 
 ##### `impl Clone for can_frame`
 
-- `fn clone(self: &Self) -> can_frame` — [`can_frame`](#can-frame)
+- <span id="can-frame-clone"></span>`fn clone(&self) -> can_frame` — [`can_frame`](#can-frame)
 
 ##### `impl Copy for can_frame`
 
 ##### `impl Debug for can_frame`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="can-frame-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `canfd_frame`
 
@@ -146,13 +540,13 @@ struct canfd_frame {
 
 ##### `impl Clone for canfd_frame`
 
-- `fn clone(self: &Self) -> canfd_frame` — [`canfd_frame`](#canfd-frame)
+- <span id="canfd-frame-clone"></span>`fn clone(&self) -> canfd_frame` — [`canfd_frame`](#canfd-frame)
 
 ##### `impl Copy for canfd_frame`
 
 ##### `impl Debug for canfd_frame`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="canfd-frame-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `canxl_frame`
 
@@ -171,13 +565,13 @@ struct canxl_frame {
 
 ##### `impl Clone for canxl_frame`
 
-- `fn clone(self: &Self) -> canxl_frame` — [`canxl_frame`](#canxl-frame)
+- <span id="canxl-frame-clone"></span>`fn clone(&self) -> canxl_frame` — [`canxl_frame`](#canxl-frame)
 
 ##### `impl Copy for canxl_frame`
 
 ##### `impl Debug for canxl_frame`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="canxl-frame-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `sockaddr_can`
 
@@ -193,13 +587,13 @@ struct sockaddr_can {
 
 ##### `impl Clone for sockaddr_can`
 
-- `fn clone(self: &Self) -> sockaddr_can` — [`sockaddr_can`](#sockaddr-can)
+- <span id="sockaddr-can-clone"></span>`fn clone(&self) -> sockaddr_can` — [`sockaddr_can`](#sockaddr-can)
 
 ##### `impl Copy for sockaddr_can`
 
 ##### `impl Debug for sockaddr_can`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sockaddr-can-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `__c_anonymous_sockaddr_can_tp`
 
@@ -214,13 +608,13 @@ struct __c_anonymous_sockaddr_can_tp {
 
 ##### `impl Clone for __c_anonymous_sockaddr_can_tp`
 
-- `fn clone(self: &Self) -> __c_anonymous_sockaddr_can_tp` — [`__c_anonymous_sockaddr_can_tp`](#c-anonymous-sockaddr-can-tp)
+- <span id="c-anonymous-sockaddr-can-tp-clone"></span>`fn clone(&self) -> __c_anonymous_sockaddr_can_tp` — [`__c_anonymous_sockaddr_can_tp`](#c-anonymous-sockaddr-can-tp)
 
 ##### `impl Copy for __c_anonymous_sockaddr_can_tp`
 
 ##### `impl Debug for __c_anonymous_sockaddr_can_tp`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="c-anonymous-sockaddr-can-tp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `__c_anonymous_sockaddr_can_j1939`
 
@@ -236,13 +630,13 @@ struct __c_anonymous_sockaddr_can_j1939 {
 
 ##### `impl Clone for __c_anonymous_sockaddr_can_j1939`
 
-- `fn clone(self: &Self) -> __c_anonymous_sockaddr_can_j1939` — [`__c_anonymous_sockaddr_can_j1939`](#c-anonymous-sockaddr-can-j1939)
+- <span id="c-anonymous-sockaddr-can-j1939-clone"></span>`fn clone(&self) -> __c_anonymous_sockaddr_can_j1939` — [`__c_anonymous_sockaddr_can_j1939`](#c-anonymous-sockaddr-can-j1939)
 
 ##### `impl Copy for __c_anonymous_sockaddr_can_j1939`
 
 ##### `impl Debug for __c_anonymous_sockaddr_can_j1939`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="c-anonymous-sockaddr-can-j1939-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `can_filter`
 
@@ -257,13 +651,13 @@ struct can_filter {
 
 ##### `impl Clone for can_filter`
 
-- `fn clone(self: &Self) -> can_filter` — [`can_filter`](#can-filter)
+- <span id="can-filter-clone"></span>`fn clone(&self) -> can_filter` — [`can_filter`](#can-filter)
 
 ##### `impl Copy for can_filter`
 
 ##### `impl Debug for can_filter`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="can-filter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `rtentry`
 
@@ -291,13 +685,13 @@ struct rtentry {
 
 ##### `impl Clone for rtentry`
 
-- `fn clone(self: &Self) -> rtentry` — [`rtentry`](#rtentry)
+- <span id="rtentry-clone"></span>`fn clone(&self) -> rtentry` — [`rtentry`](#rtentry)
 
 ##### `impl Copy for rtentry`
 
 ##### `impl Debug for rtentry`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rtentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Type Aliases
 

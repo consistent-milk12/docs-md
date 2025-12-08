@@ -6,6 +6,33 @@
 
 Metadata describing trace data.
 
+## Contents
+
+- [Structs](#structs)
+  - [`Metadata`](#metadata)
+  - [`Kind`](#kind)
+  - [`Level`](#level)
+  - [`LevelFilter`](#levelfilter)
+  - [`ParseLevelFilterError`](#parselevelfiltererror)
+  - [`ParseLevelError`](#parselevelerror)
+- [Enums](#enums)
+  - [`LevelInner`](#levelinner)
+- [Functions](#functions)
+  - [`filter_as_usize`](#filter_as_usize)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Metadata`](#metadata) | struct | Metadata describing a [span] or [event]. |
+| [`Kind`](#kind) | struct | Indicates whether the callsite is a span or event. |
+| [`Level`](#level) | struct | Describes the level of verbosity of a span or event. |
+| [`LevelFilter`](#levelfilter) | struct | A filter comparable to a verbosity [`Level`]. |
+| [`ParseLevelFilterError`](#parselevelfiltererror) | struct | Indicates that a string could not be parsed to a valid level. |
+| [`ParseLevelError`](#parselevelerror) | struct | Returned if parsing a `Level` fails. |
+| [`LevelInner`](#levelinner) | enum |  |
+| [`filter_as_usize`](#filter_as_usize) | fn |  |
+
 ## Structs
 
 ### `Metadata<'a>`
@@ -112,39 +139,39 @@ of `Metadata`'s other fields is checked in debug builds.
 
 #### Implementations
 
-- `const fn new(name: &'static str, target: &'a str, level: Level, file: Option<&'a str>, line: Option<u32>, module_path: Option<&'a str>, fields: field::FieldSet, kind: Kind) -> Self` — [`Level`](../index.md), [`FieldSet`](../field/index.md), [`Kind`](../index.md)
+- <span id="metadata-new"></span>`const fn new(name: &'static str, target: &'a str, level: Level, file: Option<&'a str>, line: Option<u32>, module_path: Option<&'a str>, fields: field::FieldSet, kind: Kind) -> Self` — [`Level`](../index.md), [`FieldSet`](../field/index.md), [`Kind`](../index.md)
 
-- `fn fields(self: &Self) -> &field::FieldSet` — [`FieldSet`](../field/index.md)
+- <span id="metadata-fields"></span>`fn fields(&self) -> &field::FieldSet` — [`FieldSet`](../field/index.md)
 
-- `fn level(self: &Self) -> &Level` — [`Level`](../index.md)
+- <span id="metadata-level"></span>`fn level(&self) -> &Level` — [`Level`](../index.md)
 
-- `fn name(self: &Self) -> &'static str`
+- <span id="metadata-name"></span>`fn name(&self) -> &'static str`
 
-- `fn target(self: &Self) -> &'a str`
+- <span id="metadata-target"></span>`fn target(&self) -> &'a str`
 
-- `fn module_path(self: &Self) -> Option<&'a str>`
+- <span id="metadata-module-path"></span>`fn module_path(&self) -> Option<&'a str>`
 
-- `fn file(self: &Self) -> Option<&'a str>`
+- <span id="metadata-file"></span>`fn file(&self) -> Option<&'a str>`
 
-- `fn line(self: &Self) -> Option<u32>`
+- <span id="metadata-line"></span>`fn line(&self) -> Option<u32>`
 
-- `fn callsite(self: &Self) -> callsite::Identifier` — [`Identifier`](../callsite/index.md)
+- <span id="metadata-callsite"></span>`fn callsite(&self) -> callsite::Identifier` — [`Identifier`](../callsite/index.md)
 
-- `fn is_event(self: &Self) -> bool`
+- <span id="metadata-is-event"></span>`fn is_event(&self) -> bool`
 
-- `fn is_span(self: &Self) -> bool`
+- <span id="metadata-is-span"></span>`fn is_span(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Debug for Metadata<'_>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="metadata-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Metadata<'_>`
 
 ##### `impl PartialEq for Metadata<'_>`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="metadata-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ### `Kind`
 
@@ -156,41 +183,41 @@ Indicates whether the callsite is a span or event.
 
 #### Implementations
 
-- `const EVENT_BIT: u8`
+- <span id="kind-event-bit"></span>`const EVENT_BIT: u8`
 
-- `const SPAN_BIT: u8`
+- <span id="kind-span-bit"></span>`const SPAN_BIT: u8`
 
-- `const HINT_BIT: u8`
+- <span id="kind-hint-bit"></span>`const HINT_BIT: u8`
 
-- `const EVENT: Kind`
+- <span id="kind-event"></span>`const EVENT: Kind`
 
-- `const SPAN: Kind`
+- <span id="kind-span"></span>`const SPAN: Kind`
 
-- `const HINT: Kind`
+- <span id="kind-hint"></span>`const HINT: Kind`
 
-- `fn is_span(self: &Self) -> bool`
+- <span id="kind-is-span"></span>`fn is_span(&self) -> bool`
 
-- `fn is_event(self: &Self) -> bool`
+- <span id="kind-is-event"></span>`fn is_event(&self) -> bool`
 
-- `fn is_hint(self: &Self) -> bool`
+- <span id="kind-is-hint"></span>`fn is_hint(&self) -> bool`
 
-- `const fn hint(self: Self) -> Self`
+- <span id="kind-hint"></span>`const fn hint(self) -> Self`
 
 #### Trait Implementations
 
 ##### `impl Clone for Kind`
 
-- `fn clone(self: &Self) -> Kind` — [`Kind`](../index.md)
+- <span id="kind-clone"></span>`fn clone(&self) -> Kind` — [`Kind`](../index.md)
 
 ##### `impl Debug for Kind`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="kind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Kind`
 
 ##### `impl PartialEq for Kind`
 
-- `fn eq(self: &Self, other: &Kind) -> bool` — [`Kind`](../index.md)
+- <span id="kind-eq"></span>`fn eq(&self, other: &Kind) -> bool` — [`Kind`](../index.md)
 
 ##### `impl StructuralPartialEq for Kind`
 
@@ -330,71 +357,71 @@ recorded in.
 
 #### Implementations
 
-- `const ERROR: Level`
+- <span id="level-error"></span>`const ERROR: Level`
 
-- `const WARN: Level`
+- <span id="level-warn"></span>`const WARN: Level`
 
-- `const INFO: Level`
+- <span id="level-info"></span>`const INFO: Level`
 
-- `const DEBUG: Level`
+- <span id="level-debug"></span>`const DEBUG: Level`
 
-- `const TRACE: Level`
+- <span id="level-trace"></span>`const TRACE: Level`
 
-- `fn as_str(self: &Self) -> &'static str`
+- <span id="level-as-str"></span>`fn as_str(&self) -> &'static str`
 
 #### Trait Implementations
 
 ##### `impl Clone for Level`
 
-- `fn clone(self: &Self) -> Level` — [`Level`](../index.md)
+- <span id="level-clone"></span>`fn clone(&self) -> Level` — [`Level`](../index.md)
 
 ##### `impl Copy for Level`
 
 ##### `impl Debug for Level`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="level-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Level`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="level-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Level`
 
 ##### `impl FromStr for Level`
 
-- `type Err = ParseLevelError`
+- <span id="level-err"></span>`type Err = ParseLevelError`
 
-- `fn from_str(s: &str) -> Result<Self, ParseLevelError>` — [`ParseLevelError`](#parselevelerror)
+- <span id="level-from-str"></span>`fn from_str(s: &str) -> Result<Self, ParseLevelError>` — [`ParseLevelError`](#parselevelerror)
 
 ##### `impl Hash for Level`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="level-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for Level`
 
-- `fn cmp(self: &Self, other: &Self) -> cmp::Ordering`
+- <span id="level-cmp"></span>`fn cmp(&self, other: &Self) -> cmp::Ordering`
 
 ##### `impl PartialEq for Level`
 
-- `fn eq(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](../index.md)
+- <span id="level-eq"></span>`fn eq(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](../index.md)
 
 ##### `impl PartialOrd for Level`
 
-- `fn partial_cmp(self: &Self, other: &LevelFilter) -> Option<cmp::Ordering>` — [`LevelFilter`](../index.md)
+- <span id="level-partial-cmp"></span>`fn partial_cmp(&self, other: &LevelFilter) -> Option<cmp::Ordering>` — [`LevelFilter`](../index.md)
 
-- `fn lt(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](../index.md)
+- <span id="level-lt"></span>`fn lt(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](../index.md)
 
-- `fn le(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](../index.md)
+- <span id="level-le"></span>`fn le(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](../index.md)
 
-- `fn gt(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](../index.md)
+- <span id="level-gt"></span>`fn gt(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](../index.md)
 
-- `fn ge(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](../index.md)
+- <span id="level-ge"></span>`fn ge(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](../index.md)
 
 ##### `impl StructuralPartialEq for Level`
 
 ##### `impl<T> ToString for Level`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="level-to-string"></span>`fn to_string(&self) -> String`
 
 ### `LevelFilter`
 
@@ -418,91 +445,91 @@ and `LevelFilter`s interact.
 
 #### Implementations
 
-- `const OFF: LevelFilter`
+- <span id="levelfilter-off"></span>`const OFF: LevelFilter`
 
-- `const ERROR: LevelFilter`
+- <span id="levelfilter-error"></span>`const ERROR: LevelFilter`
 
-- `const WARN: LevelFilter`
+- <span id="levelfilter-warn"></span>`const WARN: LevelFilter`
 
-- `const INFO: LevelFilter`
+- <span id="levelfilter-info"></span>`const INFO: LevelFilter`
 
-- `const DEBUG: LevelFilter`
+- <span id="levelfilter-debug"></span>`const DEBUG: LevelFilter`
 
-- `const TRACE: LevelFilter`
+- <span id="levelfilter-trace"></span>`const TRACE: LevelFilter`
 
-- `const fn from_level(level: Level) -> Self` — [`Level`](../index.md)
+- <span id="levelfilter-from-level"></span>`const fn from_level(level: Level) -> Self` — [`Level`](../index.md)
 
-- `const fn into_level(self: Self) -> Option<Level>` — [`Level`](../index.md)
+- <span id="levelfilter-into-level"></span>`const fn into_level(self) -> Option<Level>` — [`Level`](../index.md)
 
-- `const ERROR_USIZE: usize`
+- <span id="levelfilter-error-usize"></span>`const ERROR_USIZE: usize`
 
-- `const WARN_USIZE: usize`
+- <span id="levelfilter-warn-usize"></span>`const WARN_USIZE: usize`
 
-- `const INFO_USIZE: usize`
+- <span id="levelfilter-info-usize"></span>`const INFO_USIZE: usize`
 
-- `const DEBUG_USIZE: usize`
+- <span id="levelfilter-debug-usize"></span>`const DEBUG_USIZE: usize`
 
-- `const TRACE_USIZE: usize`
+- <span id="levelfilter-trace-usize"></span>`const TRACE_USIZE: usize`
 
-- `const OFF_USIZE: usize`
+- <span id="levelfilter-off-usize"></span>`const OFF_USIZE: usize`
 
-- `fn current() -> Self`
+- <span id="levelfilter-current"></span>`fn current() -> Self`
 
-- `fn set_max(LevelFilter: LevelFilter)` — [`LevelFilter`](../index.md)
+- <span id="levelfilter-set-max"></span>`fn set_max(LevelFilter: LevelFilter)` — [`LevelFilter`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for LevelFilter`
 
-- `fn clone(self: &Self) -> LevelFilter` — [`LevelFilter`](../index.md)
+- <span id="levelfilter-clone"></span>`fn clone(&self) -> LevelFilter` — [`LevelFilter`](../index.md)
 
 ##### `impl Copy for LevelFilter`
 
 ##### `impl Debug for LevelFilter`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="levelfilter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for LevelFilter`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="levelfilter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for LevelFilter`
 
 ##### `impl FromStr for LevelFilter`
 
-- `type Err = ParseLevelFilterError`
+- <span id="levelfilter-err"></span>`type Err = ParseLevelFilterError`
 
-- `fn from_str(from: &str) -> Result<Self, <Self as >::Err>`
+- <span id="levelfilter-from-str"></span>`fn from_str(from: &str) -> Result<Self, <Self as >::Err>`
 
 ##### `impl Hash for LevelFilter`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="levelfilter-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for LevelFilter`
 
-- `fn cmp(self: &Self, other: &Self) -> cmp::Ordering`
+- <span id="levelfilter-cmp"></span>`fn cmp(&self, other: &Self) -> cmp::Ordering`
 
 ##### `impl PartialEq for LevelFilter`
 
-- `fn eq(self: &Self, other: &Level) -> bool` — [`Level`](../index.md)
+- <span id="levelfilter-eq"></span>`fn eq(&self, other: &Level) -> bool` — [`Level`](../index.md)
 
 ##### `impl PartialOrd for LevelFilter`
 
-- `fn partial_cmp(self: &Self, other: &Level) -> Option<cmp::Ordering>` — [`Level`](../index.md)
+- <span id="levelfilter-partial-cmp"></span>`fn partial_cmp(&self, other: &Level) -> Option<cmp::Ordering>` — [`Level`](../index.md)
 
-- `fn lt(self: &Self, other: &Level) -> bool` — [`Level`](../index.md)
+- <span id="levelfilter-lt"></span>`fn lt(&self, other: &Level) -> bool` — [`Level`](../index.md)
 
-- `fn le(self: &Self, other: &Level) -> bool` — [`Level`](../index.md)
+- <span id="levelfilter-le"></span>`fn le(&self, other: &Level) -> bool` — [`Level`](../index.md)
 
-- `fn gt(self: &Self, other: &Level) -> bool` — [`Level`](../index.md)
+- <span id="levelfilter-gt"></span>`fn gt(&self, other: &Level) -> bool` — [`Level`](../index.md)
 
-- `fn ge(self: &Self, other: &Level) -> bool` — [`Level`](../index.md)
+- <span id="levelfilter-ge"></span>`fn ge(&self, other: &Level) -> bool` — [`Level`](../index.md)
 
 ##### `impl StructuralPartialEq for LevelFilter`
 
 ##### `impl<T> ToString for LevelFilter`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="levelfilter-to-string"></span>`fn to_string(&self) -> String`
 
 ### `ParseLevelFilterError`
 
@@ -516,21 +543,21 @@ Indicates that a string could not be parsed to a valid level.
 
 ##### `impl Clone for ParseLevelFilterError`
 
-- `fn clone(self: &Self) -> ParseLevelFilterError` — [`ParseLevelFilterError`](#parselevelfiltererror)
+- <span id="parselevelfiltererror-clone"></span>`fn clone(&self) -> ParseLevelFilterError` — [`ParseLevelFilterError`](#parselevelfiltererror)
 
 ##### `impl Debug for ParseLevelFilterError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="parselevelfiltererror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for ParseLevelFilterError`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="parselevelfiltererror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Error for ParseLevelFilterError`
 
 ##### `impl<T> ToString for ParseLevelFilterError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="parselevelfiltererror-to-string"></span>`fn to_string(&self) -> String`
 
 ### `ParseLevelError`
 
@@ -546,17 +573,17 @@ Returned if parsing a `Level` fails.
 
 ##### `impl Debug for ParseLevelError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="parselevelerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for ParseLevelError`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="parselevelerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Error for ParseLevelError`
 
 ##### `impl<T> ToString for ParseLevelError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="parselevelerror-to-string"></span>`fn to_string(&self) -> String`
 
 ## Enums
 
@@ -608,23 +635,23 @@ enum LevelInner {
 
 ##### `impl Clone for LevelInner`
 
-- `fn clone(self: &Self) -> LevelInner` — [`LevelInner`](#levelinner)
+- <span id="levelinner-clone"></span>`fn clone(&self) -> LevelInner` — [`LevelInner`](#levelinner)
 
 ##### `impl Copy for LevelInner`
 
 ##### `impl Debug for LevelInner`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="levelinner-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for LevelInner`
 
 ##### `impl Hash for LevelInner`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="levelinner-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for LevelInner`
 
-- `fn eq(self: &Self, other: &LevelInner) -> bool` — [`LevelInner`](#levelinner)
+- <span id="levelinner-eq"></span>`fn eq(&self, other: &LevelInner) -> bool` — [`LevelInner`](#levelinner)
 
 ##### `impl StructuralPartialEq for LevelInner`
 

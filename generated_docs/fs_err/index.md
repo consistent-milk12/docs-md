@@ -104,6 +104,90 @@ If the `tokio` feature is enabled, this crate will inherit the MSRV of the selec
 
 
 
+## Contents
+
+- [Modules](#modules)
+  - [`dir`](#dir)
+  - [`errors`](#errors)
+  - [`file`](#file)
+  - [`open_options`](#open_options)
+  - [`os`](#os)
+  - [`path`](#path)
+  - [`private`](#private)
+  - [`unix`](#unix)
+  - [`unix`](#unix)
+- [Structs](#structs)
+  - [`unnamed`](#unnamed)
+  - [`ReadDir`](#readdir)
+  - [`DirEntry`](#direntry)
+  - [`File`](#file)
+- [Traits](#traits)
+  - [`unnamed`](#unnamed)
+- [Functions](#functions)
+  - [`read`](#read)
+  - [`read_to_string`](#read_to_string)
+  - [`write`](#write)
+  - [`copy`](#copy)
+  - [`create_dir`](#create_dir)
+  - [`create_dir_all`](#create_dir_all)
+  - [`remove_dir`](#remove_dir)
+  - [`remove_dir_all`](#remove_dir_all)
+  - [`remove_file`](#remove_file)
+  - [`metadata`](#metadata)
+  - [`exists`](#exists)
+  - [`canonicalize`](#canonicalize)
+  - [`hard_link`](#hard_link)
+  - [`read_link`](#read_link)
+  - [`rename`](#rename)
+  - [`soft_link`](#soft_link)
+  - [`symlink_metadata`](#symlink_metadata)
+  - [`set_permissions`](#set_permissions)
+  - [`initial_buffer_size`](#initial_buffer_size)
+  - [`read_dir`](#read_dir)
+  - [`open`](#open)
+  - [`create`](#create)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`dir`](#dir) | mod |  |
+| [`errors`](#errors) | mod |  |
+| [`file`](#file) | mod |  |
+| [`open_options`](#open_options) | mod |  |
+| [`os`](#os) | mod | OS-specific functionality. |
+| [`path`](#path) | mod |  |
+| [`private`](#private) | mod |  |
+| [`unix`](#unix) | mod |  |
+| [`unix`](#unix) | mod |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`ReadDir`](#readdir) | struct | Wrapper around [`std::fs::ReadDir`][std::fs::ReadDir] which adds more |
+| [`DirEntry`](#direntry) | struct | Wrapper around [`std::fs::DirEntry`][std::fs::DirEntry] which adds more |
+| [`File`](#file) | struct | Wrapper around [`std::fs::File`][std::fs::File] which adds more helpful |
+| [`unnamed`](#unnamed) | trait |  |
+| [`read`](#read) | fn | Read the entire contents of a file into a bytes vector. |
+| [`read_to_string`](#read_to_string) | fn | Read the entire contents of a file into a string. |
+| [`write`](#write) | fn | Write a slice as the entire contents of a file. |
+| [`copy`](#copy) | fn | Copies the contents of one file to another. |
+| [`create_dir`](#create_dir) | fn | Creates a new, empty directory at the provided path. |
+| [`create_dir_all`](#create_dir_all) | fn | Recursively create a directory and all of its parent components if they are missing. |
+| [`remove_dir`](#remove_dir) | fn | Removes an empty directory. |
+| [`remove_dir_all`](#remove_dir_all) | fn | Removes a directory at this path, after removing all its contents. |
+| [`remove_file`](#remove_file) | fn | Removes a file from the filesystem. |
+| [`metadata`](#metadata) | fn | Given a path, query the file system to get information about a file, directory, etc. |
+| [`exists`](#exists) | fn | Returns `Ok(true)` if the path points at an existing entity. |
+| [`canonicalize`](#canonicalize) | fn | Returns the canonical, absolute form of a path with all intermediate components |
+| [`hard_link`](#hard_link) | fn | Creates a new hard link on the filesystem. |
+| [`read_link`](#read_link) | fn | Reads a symbolic link, returning the file that the link points to. |
+| [`rename`](#rename) | fn | Rename a file or directory to a new name, replacing the original file if to already exists. |
+| [`soft_link`](#soft_link) | fn | Wrapper for [`fs::soft_link`](https://doc.rust-lang.org/stable/std/fs/fn.soft_link.html). |
+| [`symlink_metadata`](#symlink_metadata) | fn | Query the metadata about a file without following symlinks. |
+| [`set_permissions`](#set_permissions) | fn | Changes the permissions found on a file or a directory. |
+| [`initial_buffer_size`](#initial_buffer_size) | fn |  |
+| [`read_dir`](#read_dir) | fn | Returns an iterator over the entries within a directory. |
+| [`open`](#open) | fn |  |
+| [`create`](#create) | fn |  |
+
 ## Modules
 
 - [`dir`](dir/index.md) - 
@@ -128,37 +212,27 @@ Wrapper around [`std::fs::OpenOptions`](https://doc.rust-lang.org/std/fs/struct.
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="openoptions-from-options"></span>`fn from_options(options: fs::OpenOptions) -> Self`
 
-- `fn read(self: &mut Self, read: bool) -> &mut Self`
+- <span id="openoptions-options"></span>`fn options(&self) -> &fs::OpenOptions`
 
-- `fn write(self: &mut Self, write: bool) -> &mut Self`
-
-- `fn append(self: &mut Self, append: bool) -> &mut Self`
-
-- `fn truncate(self: &mut Self, truncate: bool) -> &mut Self`
-
-- `fn create(self: &mut Self, create: bool) -> &mut Self`
-
-- `fn create_new(self: &mut Self, create_new: bool) -> &mut Self`
-
-- `fn open<P>(self: &Self, path: P) -> io::Result<crate::File>` — [`File`](#file)
+- <span id="openoptions-options-mut"></span>`fn options_mut(&mut self) -> &mut fs::OpenOptions`
 
 #### Trait Implementations
 
 ##### `impl Clone for OpenOptions`
 
-- `fn clone(self: &Self) -> OpenOptions` — [`OpenOptions`](#openoptions)
+- <span id="openoptions-clone"></span>`fn clone(&self) -> OpenOptions` — [`OpenOptions`](#openoptions)
 
 ##### `impl Debug for OpenOptions`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="openoptions-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl OpenOptionsExt for crate::OpenOptions`
 
-- `fn mode(self: &mut Self, mode: u32) -> &mut Self`
+- <span id="crateopenoptions-mode"></span>`fn mode(&mut self, mode: u32) -> &mut Self`
 
-- `fn custom_flags(self: &mut Self, flags: i32) -> &mut Self`
+- <span id="crateopenoptions-custom-flags"></span>`fn custom_flags(&mut self, flags: i32) -> &mut Self`
 
 ##### `impl Sealed for crate::OpenOptions`
 
@@ -182,21 +256,21 @@ This struct is created via `fs_err::read_dir`.
 
 ##### `impl Debug for ReadDir`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="readdir-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for ReadDir`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="readdir-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="readdir-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="readdir-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for ReadDir`
 
-- `type Item = Result<DirEntry, Error>`
+- <span id="readdir-item"></span>`type Item = Result<DirEntry, Error>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="readdir-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `DirEntry`
 
@@ -212,23 +286,23 @@ helpful information to all errors.
 
 #### Implementations
 
-- `fn path(self: &Self) -> PathBuf`
+- <span id="direntry-path"></span>`fn path(&self) -> PathBuf`
 
-- `fn metadata(self: &Self) -> io::Result<fs::Metadata>`
+- <span id="direntry-metadata"></span>`fn metadata(&self) -> io::Result<fs::Metadata>`
 
-- `fn file_type(self: &Self) -> io::Result<fs::FileType>`
+- <span id="direntry-file-type"></span>`fn file_type(&self) -> io::Result<fs::FileType>`
 
-- `fn file_name(self: &Self) -> OsString`
+- <span id="direntry-file-name"></span>`fn file_name(&self) -> OsString`
 
 #### Trait Implementations
 
 ##### `impl Debug for DirEntry`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="direntry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl DirEntryExt for DirEntry`
 
-- `fn ino(self: &Self) -> u64`
+- <span id="direntry-ino"></span>`fn ino(&self) -> u64`
 
 ### `File`
 
@@ -245,65 +319,59 @@ information to all errors.
 
 #### Implementations
 
-- `fn from_parts<P>(file: fs::File, path: P) -> Self`
+- <span id="file-lock"></span>`fn lock(&self) -> Result<(), io::Error>`
 
-- `fn into_parts(self: Self) -> (fs::File, PathBuf)`
+- <span id="file-lock-shared"></span>`fn lock_shared(&self) -> Result<(), io::Error>`
 
-- `fn into_file(self: Self) -> fs::File`
+- <span id="file-try-lock"></span>`fn try_lock(&self) -> Result<(), fs::TryLockError>`
 
-- `fn into_path(self: Self) -> PathBuf`
+- <span id="file-try-lock-shared"></span>`fn try_lock_shared(&self) -> Result<(), fs::TryLockError>`
 
-- `fn file(self: &Self) -> &fs::File`
-
-- `fn file_mut(self: &mut Self) -> &mut fs::File`
-
-- `fn path(self: &Self) -> &Path`
-
-- `fn error(self: &Self, source: io::Error, kind: ErrorKind) -> io::Error` — [`ErrorKind`](errors/index.md)
+- <span id="file-unlock"></span>`fn unlock(&self) -> Result<(), io::Error>`
 
 #### Trait Implementations
 
 ##### `impl AsFd for crate::File`
 
-- `fn as_fd(self: &Self) -> BorrowedFd<'_>`
+- <span id="cratefile-as-fd"></span>`fn as_fd(&self) -> BorrowedFd<'_>`
 
 ##### `impl AsRawFd for crate::File`
 
-- `fn as_raw_fd(self: &Self) -> RawFd`
+- <span id="cratefile-as-raw-fd"></span>`fn as_raw_fd(&self) -> RawFd`
 
 ##### `impl Debug for File`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="file-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl FileExt for crate::File`
 
-- `fn read_at(self: &Self, buf: &mut [u8], offset: u64) -> io::Result<usize>`
+- <span id="cratefile-read-at"></span>`fn read_at(&self, buf: &mut [u8], offset: u64) -> io::Result<usize>`
 
-- `fn write_at(self: &Self, buf: &[u8], offset: u64) -> io::Result<usize>`
+- <span id="cratefile-write-at"></span>`fn write_at(&self, buf: &[u8], offset: u64) -> io::Result<usize>`
 
 ##### `impl IntoRawFd for crate::File`
 
-- `fn into_raw_fd(self: Self) -> RawFd`
+- <span id="cratefile-into-raw-fd"></span>`fn into_raw_fd(self) -> RawFd`
 
 ##### `impl Read for File`
 
-- `fn read(self: &mut Self, buf: &mut [u8]) -> std::io::Result<usize>`
+- <span id="file-read"></span>`fn read(&mut self, buf: &mut [u8]) -> std::io::Result<usize>`
 
-- `fn read_vectored(self: &mut Self, bufs: &mut [std::io::IoSliceMut<'_>]) -> std::io::Result<usize>`
+- <span id="file-read-vectored"></span>`fn read_vectored(&mut self, bufs: &mut [std::io::IoSliceMut<'_>]) -> std::io::Result<usize>`
 
 ##### `impl Sealed for crate::File`
 
 ##### `impl Seek for File`
 
-- `fn seek(self: &mut Self, pos: std::io::SeekFrom) -> std::io::Result<u64>`
+- <span id="file-seek"></span>`fn seek(&mut self, pos: std::io::SeekFrom) -> std::io::Result<u64>`
 
 ##### `impl Write for File`
 
-- `fn write(self: &mut Self, buf: &[u8]) -> std::io::Result<usize>`
+- <span id="file-write"></span>`fn write(&mut self, buf: &[u8]) -> std::io::Result<usize>`
 
-- `fn write_vectored(self: &mut Self, bufs: &[std::io::IoSlice<'_>]) -> std::io::Result<usize>`
+- <span id="file-write-vectored"></span>`fn write_vectored(&mut self, bufs: &[std::io::IoSlice<'_>]) -> std::io::Result<usize>`
 
-- `fn flush(self: &mut Self) -> std::io::Result<()>`
+- <span id="file-flush"></span>`fn flush(&mut self) -> std::io::Result<()>`
 
 ## Traits
 

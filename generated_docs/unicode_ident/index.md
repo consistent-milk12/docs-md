@@ -229,6 +229,15 @@ necessitate raising the size of the trie's first level.
 In contrast to binary search or the `ucd-trie` crate, performing lookups in
 this data structure is straight-line code with no need for branching.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`tables`](#tables) | mod |  |
+| [`is_xid_start`](#is_xid_start) | fn | Whether the character has the Unicode property XID\_Start. |
+| [`is_xid_continue`](#is_xid_continue) | fn | Whether the character has the Unicode property XID\_Continue. |
+| [`unnamed`](#unnamed) | const |  |
+
 ## Modules
 
 - [`tables`](tables/index.md) - 

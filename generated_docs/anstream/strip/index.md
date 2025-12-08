@@ -4,6 +4,16 @@
 
 # Module `strip`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`StripStream`](#stripstream) | struct | Only pass printable data to the inner `Write` |
+| [`write`](#write) | fn |  |
+| [`write_all`](#write_all) | fn |  |
+| [`write_fmt`](#write_fmt) | fn |  |
+| [`offset_to`](#offset_to) | fn |  |
+
 ## Structs
 
 ### `StripStream<S>`
@@ -21,25 +31,29 @@ Only pass printable data to the inner `Write`
 
 #### Implementations
 
-- `fn lock(self: Self) -> StripStream<std::io::StderrLock<'static>>` — [`StripStream`](../index.md)
+- <span id="stripstream-new"></span>`fn new(raw: S) -> Self`
+
+- <span id="stripstream-into-inner"></span>`fn into_inner(self) -> S`
+
+- <span id="stripstream-as-inner"></span>`fn as_inner(&self) -> &S`
 
 #### Trait Implementations
 
 ##### `impl<S> Debug for StripStream<S>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="stripstream-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<S> Write for StripStream<S>`
 
-- `fn write(self: &mut Self, buf: &[u8]) -> std::io::Result<usize>`
+- <span id="stripstream-write"></span>`fn write(&mut self, buf: &[u8]) -> std::io::Result<usize>`
 
-- `fn write_vectored(self: &mut Self, bufs: &[std::io::IoSlice<'_>]) -> std::io::Result<usize>`
+- <span id="stripstream-write-vectored"></span>`fn write_vectored(&mut self, bufs: &[std::io::IoSlice<'_>]) -> std::io::Result<usize>`
 
-- `fn flush(self: &mut Self) -> std::io::Result<()>`
+- <span id="stripstream-flush"></span>`fn flush(&mut self) -> std::io::Result<()>`
 
-- `fn write_all(self: &mut Self, buf: &[u8]) -> std::io::Result<()>`
+- <span id="stripstream-write-all"></span>`fn write_all(&mut self, buf: &[u8]) -> std::io::Result<()>`
 
-- `fn write_fmt(self: &mut Self, args: std::fmt::Arguments<'_>) -> std::io::Result<()>`
+- <span id="stripstream-write-fmt"></span>`fn write_fmt(&mut self, args: std::fmt::Arguments<'_>) -> std::io::Result<()>`
 
 ## Functions
 

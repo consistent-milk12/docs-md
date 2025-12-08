@@ -6,6 +6,15 @@
 
 Extension traits to provide parsing methods on foreign types.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`private`](#private) | mod |  |
+| [`IdentExt`](#identext) | trait | Additional methods for `Ident` not provided by proc-macro2 or libproc_macro. |
+| [`TokenStreamExt`](#tokenstreamext) | trait |  |
+| [`PunctExt`](#punctext) | trait |  |
+
 ## Modules
 
 - [`private`](private/index.md) - 
@@ -31,7 +40,7 @@ is implemented only for `proc_macro2::Ident`.
 
 - `const peek_any: private::PeekFn`
 
-- `fn unraw(self: &Self) -> Ident`
+- `fn unraw(&self) -> Ident`
 
   Strips the raw marker `r#`, if any, from the beginning of an ident.
 
@@ -43,7 +52,7 @@ trait TokenStreamExt { ... }
 
 #### Required Methods
 
-- `fn append(self: &mut Self, token: TokenTree)`
+- `fn append(&mut self, token: TokenTree)`
 
 ### `PunctExt`
 

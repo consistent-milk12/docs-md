@@ -9,6 +9,105 @@ Types and routines that support the wire format of finite automata.
 Currently, this module just exports a few error types and some small helpers
 for deserializing [dense DFAs](crate::dfa::dense::DFA) using correct alignment.
 
+## Contents
+
+- [Structs](#structs)
+  - [`AlignAs`](#alignas)
+  - [`SerializeError`](#serializeerror)
+  - [`DeserializeError`](#deserializeerror)
+- [Enums](#enums)
+  - [`DeserializeErrorKind`](#deserializeerrorkind)
+  - [`LE`](#le)
+  - [`BE`](#be)
+- [Traits](#traits)
+  - [`Endian`](#endian)
+- [Functions](#functions)
+  - [`u32s_to_state_ids`](#u32s_to_state_ids)
+  - [`u32s_to_state_ids_mut`](#u32s_to_state_ids_mut)
+  - [`u32s_to_pattern_ids`](#u32s_to_pattern_ids)
+  - [`check_alignment`](#check_alignment)
+  - [`skip_initial_padding`](#skip_initial_padding)
+  - [`alloc_aligned_buffer`](#alloc_aligned_buffer)
+  - [`read_label`](#read_label)
+  - [`write_label`](#write_label)
+  - [`write_label_len`](#write_label_len)
+  - [`read_endianness_check`](#read_endianness_check)
+  - [`write_endianness_check`](#write_endianness_check)
+  - [`write_endianness_check_len`](#write_endianness_check_len)
+  - [`read_version`](#read_version)
+  - [`write_version`](#write_version)
+  - [`write_version_len`](#write_version_len)
+  - [`read_pattern_id`](#read_pattern_id)
+  - [`read_pattern_id_unchecked`](#read_pattern_id_unchecked)
+  - [`write_pattern_id`](#write_pattern_id)
+  - [`try_read_state_id`](#try_read_state_id)
+  - [`read_state_id`](#read_state_id)
+  - [`read_state_id_unchecked`](#read_state_id_unchecked)
+  - [`write_state_id`](#write_state_id)
+  - [`try_read_u16_as_usize`](#try_read_u16_as_usize)
+  - [`try_read_u32_as_usize`](#try_read_u32_as_usize)
+  - [`try_read_u16`](#try_read_u16)
+  - [`try_read_u32`](#try_read_u32)
+  - [`try_read_u128`](#try_read_u128)
+  - [`read_u16`](#read_u16)
+  - [`read_u32`](#read_u32)
+  - [`read_u128`](#read_u128)
+  - [`check_slice_len`](#check_slice_len)
+  - [`mul`](#mul)
+  - [`add`](#add)
+  - [`shl`](#shl)
+  - [`padding_len`](#padding_len)
+- [Type Aliases](#type-aliases)
+  - [`NE`](#ne)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`AlignAs`](#alignas) | struct | A hack to align a smaller type `B` with a bigger type `T`. |
+| [`SerializeError`](#serializeerror) | struct | An error that occurs when serializing an object from this crate. |
+| [`DeserializeError`](#deserializeerror) | struct | An error that occurs when deserializing an object defined in this crate. |
+| [`DeserializeErrorKind`](#deserializeerrorkind) | enum |  |
+| [`LE`](#le) | enum | Little endian writing. |
+| [`BE`](#be) | enum | Big endian writing. |
+| [`Endian`](#endian) | trait | A simple trait for writing code generic over endianness. |
+| [`u32s_to_state_ids`](#u32s_to_state_ids) | fn | Safely converts a `&[u32]` to `&[StateID]` with zero cost. |
+| [`u32s_to_state_ids_mut`](#u32s_to_state_ids_mut) | fn | Safely converts a `&mut [u32]` to `&mut [StateID]` with zero cost. |
+| [`u32s_to_pattern_ids`](#u32s_to_pattern_ids) | fn | Safely converts a `&[u32]` to `&[PatternID]` with zero cost. |
+| [`check_alignment`](#check_alignment) | fn | Checks that the given slice has an alignment that matches `T`. |
+| [`skip_initial_padding`](#skip_initial_padding) | fn | Reads a possibly empty amount of padding, up to 7 bytes, from the beginning |
+| [`alloc_aligned_buffer`](#alloc_aligned_buffer) | fn | Allocate a byte buffer of the given size, along with some initial padding |
+| [`read_label`](#read_label) | fn | Reads a NUL terminated label starting at the beginning of the given slice. |
+| [`write_label`](#write_label) | fn | Writes the given label to the buffer as a NUL terminated string. |
+| [`write_label_len`](#write_label_len) | fn | Returns the total number of bytes (including padding) that would be written |
+| [`read_endianness_check`](#read_endianness_check) | fn | Reads the endianness check from the beginning of the given slice and |
+| [`write_endianness_check`](#write_endianness_check) | fn | Writes 0xFEFF as an integer using the given endianness. |
+| [`write_endianness_check_len`](#write_endianness_check_len) | fn | Returns the number of bytes written by the endianness check. |
+| [`read_version`](#read_version) | fn | Reads a version number from the beginning of the given slice and confirms |
+| [`write_version`](#write_version) | fn | Writes the given version number to the beginning of the given slice. |
+| [`write_version_len`](#write_version_len) | fn | Returns the number of bytes written by writing the version number. |
+| [`read_pattern_id`](#read_pattern_id) | fn | Reads a pattern ID from the given slice. |
+| [`read_pattern_id_unchecked`](#read_pattern_id_unchecked) | fn | Reads a pattern ID from the given slice. |
+| [`write_pattern_id`](#write_pattern_id) | fn | Write the given pattern ID to the beginning of the given slice of bytes |
+| [`try_read_state_id`](#try_read_state_id) | fn | Attempts to read a state ID from the given slice. |
+| [`read_state_id`](#read_state_id) | fn | Reads a state ID from the given slice. |
+| [`read_state_id_unchecked`](#read_state_id_unchecked) | fn | Reads a state ID from the given slice. |
+| [`write_state_id`](#write_state_id) | fn | Write the given state ID to the beginning of the given slice of bytes |
+| [`try_read_u16_as_usize`](#try_read_u16_as_usize) | fn | Try to read a u16 as a usize from the beginning of the given slice in |
+| [`try_read_u32_as_usize`](#try_read_u32_as_usize) | fn | Try to read a u32 as a usize from the beginning of the given slice in |
+| [`try_read_u16`](#try_read_u16) | fn | Try to read a u16 from the beginning of the given slice in native endian |
+| [`try_read_u32`](#try_read_u32) | fn | Try to read a u32 from the beginning of the given slice in native endian |
+| [`try_read_u128`](#try_read_u128) | fn | Try to read a u128 from the beginning of the given slice in native endian |
+| [`read_u16`](#read_u16) | fn | Read a u16 from the beginning of the given slice in native endian format. |
+| [`read_u32`](#read_u32) | fn | Read a u32 from the beginning of the given slice in native endian format. |
+| [`read_u128`](#read_u128) | fn | Read a u128 from the beginning of the given slice in native endian format. |
+| [`check_slice_len`](#check_slice_len) | fn | Checks that the given slice has some minimal length. |
+| [`mul`](#mul) | fn | Multiply the given numbers, and on overflow, return an error that includes |
+| [`add`](#add) | fn | Add the given numbers, and on overflow, return an error that includes |
+| [`shl`](#shl) | fn | Shift `a` left by `b`, and on overflow, return an error that includes |
+| [`padding_len`](#padding_len) | fn | Returns the number of additional bytes required to add to the given length |
+| [`NE`](#ne) | type |  |
+
 ## Structs
 
 ### `AlignAs<B: ?Sized, T>`
@@ -43,9 +142,9 @@ example of how to use this type.
 
 #### Trait Implementations
 
-##### `impl<B: $crate::fmt::Debug + ?Sized, T: $crate::fmt::Debug> Debug for AlignAs<B, T>`
+##### `impl<B: fmt::Debug + ?Sized, T: fmt::Debug> Debug for AlignAs<B, T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="alignas-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `SerializeError`
 
@@ -92,23 +191,23 @@ configurations.
 
 #### Implementations
 
-- `fn buffer_too_small(what: &'static str) -> SerializeError` — [`SerializeError`](#serializeerror)
+- <span id="serializeerror-buffer-too-small"></span>`fn buffer_too_small(what: &'static str) -> SerializeError` — [`SerializeError`](#serializeerror)
 
 #### Trait Implementations
 
 ##### `impl Debug for SerializeError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="serializeerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for SerializeError`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="serializeerror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for SerializeError`
 
 ##### `impl<T> ToString for SerializeError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="serializeerror-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DeserializeError`
 
@@ -134,41 +233,41 @@ configurations.
 
 #### Implementations
 
-- `fn generic(msg: &'static str) -> DeserializeError` — [`DeserializeError`](#deserializeerror)
+- <span id="deserializeerror-generic"></span>`fn generic(msg: &'static str) -> DeserializeError` — [`DeserializeError`](#deserializeerror)
 
-- `fn buffer_too_small(what: &'static str) -> DeserializeError` — [`DeserializeError`](#deserializeerror)
+- <span id="deserializeerror-buffer-too-small"></span>`fn buffer_too_small(what: &'static str) -> DeserializeError` — [`DeserializeError`](#deserializeerror)
 
-- `fn invalid_usize(what: &'static str) -> DeserializeError` — [`DeserializeError`](#deserializeerror)
+- <span id="deserializeerror-invalid-usize"></span>`fn invalid_usize(what: &'static str) -> DeserializeError` — [`DeserializeError`](#deserializeerror)
 
-- `fn version_mismatch(expected: u32, found: u32) -> DeserializeError` — [`DeserializeError`](#deserializeerror)
+- <span id="deserializeerror-version-mismatch"></span>`fn version_mismatch(expected: u32, found: u32) -> DeserializeError` — [`DeserializeError`](#deserializeerror)
 
-- `fn endian_mismatch(expected: u32, found: u32) -> DeserializeError` — [`DeserializeError`](#deserializeerror)
+- <span id="deserializeerror-endian-mismatch"></span>`fn endian_mismatch(expected: u32, found: u32) -> DeserializeError` — [`DeserializeError`](#deserializeerror)
 
-- `fn alignment_mismatch(alignment: usize, address: usize) -> DeserializeError` — [`DeserializeError`](#deserializeerror)
+- <span id="deserializeerror-alignment-mismatch"></span>`fn alignment_mismatch(alignment: usize, address: usize) -> DeserializeError` — [`DeserializeError`](#deserializeerror)
 
-- `fn label_mismatch(expected: &'static str) -> DeserializeError` — [`DeserializeError`](#deserializeerror)
+- <span id="deserializeerror-label-mismatch"></span>`fn label_mismatch(expected: &'static str) -> DeserializeError` — [`DeserializeError`](#deserializeerror)
 
-- `fn arithmetic_overflow(what: &'static str) -> DeserializeError` — [`DeserializeError`](#deserializeerror)
+- <span id="deserializeerror-arithmetic-overflow"></span>`fn arithmetic_overflow(what: &'static str) -> DeserializeError` — [`DeserializeError`](#deserializeerror)
 
-- `fn pattern_id_error(err: PatternIDError, what: &'static str) -> DeserializeError` — [`PatternIDError`](../primitives/index.md), [`DeserializeError`](#deserializeerror)
+- <span id="deserializeerror-pattern-id-error"></span>`fn pattern_id_error(err: PatternIDError, what: &'static str) -> DeserializeError` — [`PatternIDError`](../primitives/index.md), [`DeserializeError`](#deserializeerror)
 
-- `fn state_id_error(err: StateIDError, what: &'static str) -> DeserializeError` — [`StateIDError`](../primitives/index.md), [`DeserializeError`](#deserializeerror)
+- <span id="deserializeerror-state-id-error"></span>`fn state_id_error(err: StateIDError, what: &'static str) -> DeserializeError` — [`StateIDError`](../primitives/index.md), [`DeserializeError`](#deserializeerror)
 
 #### Trait Implementations
 
 ##### `impl Debug for DeserializeError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="deserializeerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DeserializeError`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="deserializeerror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for DeserializeError`
 
 ##### `impl<T> ToString for DeserializeError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="deserializeerror-to-string"></span>`fn to_string(&self) -> String`
 
 ## Enums
 
@@ -218,7 +317,7 @@ enum DeserializeErrorKind {
 
 ##### `impl Debug for DeserializeErrorKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="deserializeerrorkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `LE`
 
@@ -233,11 +332,11 @@ Little endian writing.
 
 ##### `impl Endian for LE`
 
-- `fn write_u16(n: u16, dst: &mut [u8])`
+- <span id="le-write-u16"></span>`fn write_u16(n: u16, dst: &mut [u8])`
 
-- `fn write_u32(n: u32, dst: &mut [u8])`
+- <span id="le-write-u32"></span>`fn write_u32(n: u32, dst: &mut [u8])`
 
-- `fn write_u128(n: u128, dst: &mut [u8])`
+- <span id="le-write-u128"></span>`fn write_u128(n: u128, dst: &mut [u8])`
 
 ### `BE`
 
@@ -252,11 +351,11 @@ Big endian writing.
 
 ##### `impl Endian for BE`
 
-- `fn write_u16(n: u16, dst: &mut [u8])`
+- <span id="be-write-u16"></span>`fn write_u16(n: u16, dst: &mut [u8])`
 
-- `fn write_u32(n: u32, dst: &mut [u8])`
+- <span id="be-write-u32"></span>`fn write_u32(n: u32, dst: &mut [u8])`
 
-- `fn write_u128(n: u128, dst: &mut [u8])`
+- <span id="be-write-u128"></span>`fn write_u128(n: u128, dst: &mut [u8])`
 
 ## Traits
 

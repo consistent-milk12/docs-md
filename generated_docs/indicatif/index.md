@@ -243,6 +243,70 @@ assert_eq!("33,857,009.1235", HumanFloatCount(33857009.123456).to_string());
 * `rayon`: adds rayon support
 * `improved_unicode`: adds improved unicode support (graphemes, better width calculation)
 
+## Contents
+
+- [Modules](#modules)
+  - [`draw_target`](#draw_target)
+  - [`format`](#format)
+  - [`iter`](#iter)
+  - [`multi`](#multi)
+  - [`progress_bar`](#progress_bar)
+  - [`state`](#state)
+  - [`style`](#style)
+  - [`term_like`](#term_like)
+- [Structs](#structs)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+- [Enums](#enums)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+- [Traits](#traits)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`draw_target`](#draw_target) | mod |  |
+| [`format`](#format) | mod |  |
+| [`iter`](#iter) | mod |  |
+| [`multi`](#multi) | mod |  |
+| [`progress_bar`](#progress_bar) | mod |  |
+| [`state`](#state) | mod |  |
+| [`style`](#style) | mod |  |
+| [`term_like`](#term_like) | mod |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | enum |  |
+| [`unnamed`](#unnamed) | enum |  |
+| [`unnamed`](#unnamed) | trait |  |
+| [`unnamed`](#unnamed) | trait |  |
+
 ## Modules
 
 - [`draw_target`](draw_target/index.md) - 
@@ -274,47 +338,47 @@ device.
 
 #### Implementations
 
-- `fn stdout() -> Self`
+- <span id="progressdrawtarget-stdout"></span>`fn stdout() -> Self`
 
-- `fn stderr() -> Self`
+- <span id="progressdrawtarget-stderr"></span>`fn stderr() -> Self`
 
-- `fn stdout_with_hz(refresh_rate: u8) -> Self`
+- <span id="progressdrawtarget-stdout-with-hz"></span>`fn stdout_with_hz(refresh_rate: u8) -> Self`
 
-- `fn stderr_with_hz(refresh_rate: u8) -> Self`
+- <span id="progressdrawtarget-stderr-with-hz"></span>`fn stderr_with_hz(refresh_rate: u8) -> Self`
 
-- `fn new_remote(state: Arc<RwLock<MultiState>>, idx: usize) -> Self` — [`MultiState`](multi/index.md)
+- <span id="progressdrawtarget-new-remote"></span>`fn new_remote(state: Arc<RwLock<MultiState>>, idx: usize) -> Self` — [`MultiState`](multi/index.md)
 
-- `fn term(term: Term, refresh_rate: u8) -> Self`
+- <span id="progressdrawtarget-term"></span>`fn term(term: Term, refresh_rate: u8) -> Self`
 
-- `fn term_like(term_like: Box<dyn TermLike>) -> Self` — [`TermLike`](#termlike)
+- <span id="progressdrawtarget-term-like"></span>`fn term_like(term_like: Box<dyn TermLike>) -> Self` — [`TermLike`](#termlike)
 
-- `fn term_like_with_hz(term_like: Box<dyn TermLike>, refresh_rate: u8) -> Self` — [`TermLike`](#termlike)
+- <span id="progressdrawtarget-term-like-with-hz"></span>`fn term_like_with_hz(term_like: Box<dyn TermLike>, refresh_rate: u8) -> Self` — [`TermLike`](#termlike)
 
-- `fn hidden() -> Self`
+- <span id="progressdrawtarget-hidden"></span>`fn hidden() -> Self`
 
-- `fn is_hidden(self: &Self) -> bool`
+- <span id="progressdrawtarget-is-hidden"></span>`fn is_hidden(&self) -> bool`
 
-- `fn is_stderr(self: &Self) -> bool`
+- <span id="progressdrawtarget-is-stderr"></span>`fn is_stderr(&self) -> bool`
 
-- `fn width(self: &Self) -> Option<u16>`
+- <span id="progressdrawtarget-width"></span>`fn width(&self) -> Option<u16>`
 
-- `fn mark_zombie(self: &Self)`
+- <span id="progressdrawtarget-mark-zombie"></span>`fn mark_zombie(&self)`
 
-- `fn set_move_cursor(self: &mut Self, move_cursor: bool)`
+- <span id="progressdrawtarget-set-move-cursor"></span>`fn set_move_cursor(&mut self, move_cursor: bool)`
 
-- `fn drawable(self: &mut Self, force_draw: bool, now: Instant) -> Option<Drawable<'_>>` — [`Drawable`](draw_target/index.md)
+- <span id="progressdrawtarget-drawable"></span>`fn drawable(&mut self, force_draw: bool, now: Instant) -> Option<Drawable<'_>>` — [`Drawable`](draw_target/index.md)
 
-- `fn disconnect(self: &Self, now: Instant)`
+- <span id="progressdrawtarget-disconnect"></span>`fn disconnect(&self, now: Instant)`
 
-- `fn remote(self: &Self) -> Option<(&Arc<RwLock<MultiState>>, usize)>` — [`MultiState`](multi/index.md)
+- <span id="progressdrawtarget-remote"></span>`fn remote(&self) -> Option<(&Arc<RwLock<MultiState>>, usize)>` — [`MultiState`](multi/index.md)
 
-- `fn adjust_last_line_count(self: &mut Self, adjust: LineAdjust)` — [`LineAdjust`](draw_target/index.md)
+- <span id="progressdrawtarget-adjust-last-line-count"></span>`fn adjust_last_line_count(&mut self, adjust: LineAdjust)` — [`LineAdjust`](draw_target/index.md)
 
 #### Trait Implementations
 
 ##### `impl Debug for ProgressDrawTarget`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="progressdrawtarget-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `BinaryBytes`
 
@@ -339,15 +403,15 @@ assert_eq!("1.33 PiB", format!("{}", BinaryBytes(1_500_000_000_000_000)));
 
 ##### `impl Debug for BinaryBytes`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="binarybytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for BinaryBytes`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="binarybytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for BinaryBytes`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="binarybytes-to-string"></span>`fn to_string(&self) -> String`
 
 ### `DecimalBytes`
 
@@ -372,15 +436,15 @@ assert_eq!("1.50 PB", format!("{}", DecimalBytes(1_500_000_000_000_000)));
 
 ##### `impl Debug for DecimalBytes`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="decimalbytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for DecimalBytes`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="decimalbytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for DecimalBytes`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="decimalbytes-to-string"></span>`fn to_string(&self) -> String`
 
 ### `FormattedDuration`
 
@@ -394,15 +458,15 @@ Wraps an std duration for human basic formatting.
 
 ##### `impl Debug for FormattedDuration`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="formattedduration-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for FormattedDuration`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="formattedduration-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for FormattedDuration`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="formattedduration-to-string"></span>`fn to_string(&self) -> String`
 
 ### `HumanBytes`
 
@@ -427,15 +491,15 @@ assert_eq!("1.33 PiB", format!("{}", HumanBytes(1_500_000_000_000_000)));
 
 ##### `impl Debug for HumanBytes`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="humanbytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for HumanBytes`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="humanbytes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for HumanBytes`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="humanbytes-to-string"></span>`fn to_string(&self) -> String`
 
 ### `HumanCount`
 
@@ -449,15 +513,15 @@ Formats counts for human readability using commas
 
 ##### `impl Debug for HumanCount`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="humancount-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for HumanCount`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="humancount-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for HumanCount`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="humancount-to-string"></span>`fn to_string(&self) -> String`
 
 ### `HumanDuration`
 
@@ -471,15 +535,15 @@ Wraps an std duration for human readable formatting.
 
 ##### `impl Debug for HumanDuration`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="humanduration-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for HumanDuration`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="humanduration-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for HumanDuration`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="humanduration-to-string"></span>`fn to_string(&self) -> String`
 
 ### `HumanFloatCount`
 
@@ -493,15 +557,15 @@ Formats counts for human readability using commas for floats
 
 ##### `impl Debug for HumanFloatCount`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="humanfloatcount-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for HumanFloatCount`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="humanfloatcount-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for HumanFloatCount`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="humanfloatcount-to-string"></span>`fn to_string(&self) -> String`
 
 ### `ProgressBarIter<T>`
 
@@ -516,81 +580,81 @@ Wraps an iterator to display its progress.
 
 #### Implementations
 
-- `fn with_style(self: Self, style: ProgressStyle) -> Self` — [`ProgressStyle`](#progressstyle)
+- <span id="progressbariter-with-style"></span>`fn with_style(self, style: ProgressStyle) -> Self` — [`ProgressStyle`](#progressstyle)
 
-- `fn with_prefix(self: Self, prefix: impl Into<Cow<'static, str>>) -> Self`
+- <span id="progressbariter-with-prefix"></span>`fn with_prefix(self, prefix: impl Into<Cow<'static, str>>) -> Self`
 
-- `fn with_message(self: Self, message: impl Into<Cow<'static, str>>) -> Self`
+- <span id="progressbariter-with-message"></span>`fn with_message(self, message: impl Into<Cow<'static, str>>) -> Self`
 
-- `fn with_position(self: Self, position: u64) -> Self`
+- <span id="progressbariter-with-position"></span>`fn with_position(self, position: u64) -> Self`
 
-- `fn with_elapsed(self: Self, elapsed: Duration) -> Self`
+- <span id="progressbariter-with-elapsed"></span>`fn with_elapsed(self, elapsed: Duration) -> Self`
 
-- `fn with_finish(self: Self, finish: ProgressFinish) -> Self` — [`ProgressFinish`](#progressfinish)
+- <span id="progressbariter-with-finish"></span>`fn with_finish(self, finish: ProgressFinish) -> Self` — [`ProgressFinish`](#progressfinish)
 
 #### Trait Implementations
 
 ##### `impl<R: io::BufRead> BufRead for ProgressBarIter<R>`
 
-- `fn fill_buf(self: &mut Self) -> io::Result<&[u8]>`
+- <span id="progressbariter-fill-buf"></span>`fn fill_buf(&mut self) -> io::Result<&[u8]>`
 
-- `fn consume(self: &mut Self, amt: usize)`
+- <span id="progressbariter-consume"></span>`fn consume(&mut self, amt: usize)`
 
-##### `impl<T: $crate::fmt::Debug> Debug for ProgressBarIter<T>`
+##### `impl<T: fmt::Debug> Debug for ProgressBarIter<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="progressbariter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T: DoubleEndedIterator> DoubleEndedIterator for ProgressBarIter<T>`
 
-- `fn next_back(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="progressbariter-next-back"></span>`fn next_back(&mut self) -> Option<<Self as >::Item>`
 
 ##### `impl<T: ExactSizeIterator> ExactSizeIterator for ProgressBarIter<T>`
 
-- `fn len(self: &Self) -> usize`
+- <span id="progressbariter-len"></span>`fn len(&self) -> usize`
 
 ##### `impl<T: FusedIterator> FusedIterator for ProgressBarIter<T>`
 
 ##### `impl<I> IntoIterator for ProgressBarIter<T>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="progressbariter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="progressbariter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="progressbariter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<S, T: Iterator<Item = S>> Iterator for ProgressBarIter<T>`
 
-- `type Item = S`
+- <span id="progressbariter-item"></span>`type Item = S`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="progressbariter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ##### `impl<S, T> ProgressIterator for ProgressBarIter<T>`
 
-- `fn progress_with(self: Self, progress: ProgressBar) -> ProgressBarIter<T>` — [`ProgressBar`](#progressbar), [`ProgressBarIter`](#progressbariter)
+- <span id="progressbariter-progress-with"></span>`fn progress_with(self, progress: ProgressBar) -> ProgressBarIter<T>` — [`ProgressBar`](#progressbar), [`ProgressBarIter`](#progressbariter)
 
 ##### `impl<R: io::Read> Read for ProgressBarIter<R>`
 
-- `fn read(self: &mut Self, buf: &mut [u8]) -> io::Result<usize>`
+- <span id="progressbariter-read"></span>`fn read(&mut self, buf: &mut [u8]) -> io::Result<usize>`
 
-- `fn read_vectored(self: &mut Self, bufs: &mut [IoSliceMut<'_>]) -> io::Result<usize>`
+- <span id="progressbariter-read-vectored"></span>`fn read_vectored(&mut self, bufs: &mut [IoSliceMut<'_>]) -> io::Result<usize>`
 
-- `fn read_to_string(self: &mut Self, buf: &mut String) -> io::Result<usize>`
+- <span id="progressbariter-read-to-string"></span>`fn read_to_string(&mut self, buf: &mut String) -> io::Result<usize>`
 
-- `fn read_exact(self: &mut Self, buf: &mut [u8]) -> io::Result<()>`
+- <span id="progressbariter-read-exact"></span>`fn read_exact(&mut self, buf: &mut [u8]) -> io::Result<()>`
 
 ##### `impl<S: io::Seek> Seek for ProgressBarIter<S>`
 
-- `fn seek(self: &mut Self, f: io::SeekFrom) -> io::Result<u64>`
+- <span id="progressbariter-seek"></span>`fn seek(&mut self, f: io::SeekFrom) -> io::Result<u64>`
 
-- `fn stream_position(self: &mut Self) -> io::Result<u64>`
+- <span id="progressbariter-stream-position"></span>`fn stream_position(&mut self) -> io::Result<u64>`
 
 ##### `impl<W: io::Write> Write for ProgressBarIter<W>`
 
-- `fn write(self: &mut Self, buf: &[u8]) -> io::Result<usize>`
+- <span id="progressbariter-write"></span>`fn write(&mut self, buf: &[u8]) -> io::Result<usize>`
 
-- `fn write_vectored(self: &mut Self, bufs: &[io::IoSlice<'_>]) -> io::Result<usize>`
+- <span id="progressbariter-write-vectored"></span>`fn write_vectored(&mut self, bufs: &[io::IoSlice<'_>]) -> io::Result<usize>`
 
-- `fn flush(self: &mut Self) -> io::Result<()>`
+- <span id="progressbariter-flush"></span>`fn flush(&mut self) -> io::Result<()>`
 
 ### `MultiProgress`
 
@@ -604,51 +668,51 @@ Manages multiple progress bars from different threads
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="multiprogress-new"></span>`fn new() -> Self`
 
-- `fn with_draw_target(draw_target: ProgressDrawTarget) -> Self` — [`ProgressDrawTarget`](#progressdrawtarget)
+- <span id="multiprogress-with-draw-target"></span>`fn with_draw_target(draw_target: ProgressDrawTarget) -> Self` — [`ProgressDrawTarget`](#progressdrawtarget)
 
-- `fn set_draw_target(self: &Self, target: ProgressDrawTarget)` — [`ProgressDrawTarget`](#progressdrawtarget)
+- <span id="multiprogress-set-draw-target"></span>`fn set_draw_target(&self, target: ProgressDrawTarget)` — [`ProgressDrawTarget`](#progressdrawtarget)
 
-- `fn set_move_cursor(self: &Self, move_cursor: bool)`
+- <span id="multiprogress-set-move-cursor"></span>`fn set_move_cursor(&self, move_cursor: bool)`
 
-- `fn set_alignment(self: &Self, alignment: MultiProgressAlignment)` — [`MultiProgressAlignment`](#multiprogressalignment)
+- <span id="multiprogress-set-alignment"></span>`fn set_alignment(&self, alignment: MultiProgressAlignment)` — [`MultiProgressAlignment`](#multiprogressalignment)
 
-- `fn add(self: &Self, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](#progressbar)
+- <span id="multiprogress-add"></span>`fn add(&self, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](#progressbar)
 
-- `fn insert(self: &Self, index: usize, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](#progressbar)
+- <span id="multiprogress-insert"></span>`fn insert(&self, index: usize, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](#progressbar)
 
-- `fn insert_from_back(self: &Self, index: usize, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](#progressbar)
+- <span id="multiprogress-insert-from-back"></span>`fn insert_from_back(&self, index: usize, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](#progressbar)
 
-- `fn insert_before(self: &Self, before: &ProgressBar, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](#progressbar)
+- <span id="multiprogress-insert-before"></span>`fn insert_before(&self, before: &ProgressBar, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](#progressbar)
 
-- `fn insert_after(self: &Self, after: &ProgressBar, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](#progressbar)
+- <span id="multiprogress-insert-after"></span>`fn insert_after(&self, after: &ProgressBar, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](#progressbar)
 
-- `fn remove(self: &Self, pb: &ProgressBar)` — [`ProgressBar`](#progressbar)
+- <span id="multiprogress-remove"></span>`fn remove(&self, pb: &ProgressBar)` — [`ProgressBar`](#progressbar)
 
-- `fn internalize(self: &Self, location: InsertLocation, pb: ProgressBar) -> ProgressBar` — [`InsertLocation`](multi/index.md), [`ProgressBar`](#progressbar)
+- <span id="multiprogress-internalize"></span>`fn internalize(&self, location: InsertLocation, pb: ProgressBar) -> ProgressBar` — [`InsertLocation`](multi/index.md), [`ProgressBar`](#progressbar)
 
-- `fn println<I: AsRef<str>>(self: &Self, msg: I) -> io::Result<()>`
+- <span id="multiprogress-println"></span>`fn println<I: AsRef<str>>(&self, msg: I) -> io::Result<()>`
 
-- `fn suspend<F: FnOnce() -> R, R>(self: &Self, f: F) -> R`
+- <span id="multiprogress-suspend"></span>`fn suspend<F: FnOnce() -> R, R>(&self, f: F) -> R`
 
-- `fn clear(self: &Self) -> io::Result<()>`
+- <span id="multiprogress-clear"></span>`fn clear(&self) -> io::Result<()>`
 
-- `fn is_hidden(self: &Self) -> bool`
+- <span id="multiprogress-is-hidden"></span>`fn is_hidden(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for MultiProgress`
 
-- `fn clone(self: &Self) -> MultiProgress` — [`MultiProgress`](#multiprogress)
+- <span id="multiprogress-clone"></span>`fn clone(&self) -> MultiProgress` — [`MultiProgress`](#multiprogress)
 
 ##### `impl Debug for MultiProgress`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="multiprogress-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for MultiProgress`
 
-- `fn default() -> Self`
+- <span id="multiprogress-default"></span>`fn default() -> Self`
 
 ### `ProgressBar`
 
@@ -667,135 +731,135 @@ just increments the refcount (so the original and its clone share the same state
 
 #### Implementations
 
-- `fn new(len: u64) -> Self`
+- <span id="progressbar-new"></span>`fn new(len: u64) -> Self`
 
-- `fn no_length() -> Self`
+- <span id="progressbar-no-length"></span>`fn no_length() -> Self`
 
-- `fn hidden() -> Self`
+- <span id="progressbar-hidden"></span>`fn hidden() -> Self`
 
-- `fn with_draw_target(len: Option<u64>, draw_target: ProgressDrawTarget) -> Self` — [`ProgressDrawTarget`](#progressdrawtarget)
+- <span id="progressbar-with-draw-target"></span>`fn with_draw_target(len: Option<u64>, draw_target: ProgressDrawTarget) -> Self` — [`ProgressDrawTarget`](#progressdrawtarget)
 
-- `fn style(self: &Self) -> ProgressStyle` — [`ProgressStyle`](#progressstyle)
+- <span id="progressbar-style"></span>`fn style(&self) -> ProgressStyle` — [`ProgressStyle`](#progressstyle)
 
-- `fn with_style(self: Self, style: ProgressStyle) -> Self` — [`ProgressStyle`](#progressstyle)
+- <span id="progressbar-with-style"></span>`fn with_style(self, style: ProgressStyle) -> Self` — [`ProgressStyle`](#progressstyle)
 
-- `fn with_tab_width(self: Self, tab_width: usize) -> Self`
+- <span id="progressbar-with-tab-width"></span>`fn with_tab_width(self, tab_width: usize) -> Self`
 
-- `fn with_prefix(self: Self, prefix: impl Into<Cow<'static, str>>) -> Self`
+- <span id="progressbar-with-prefix"></span>`fn with_prefix(self, prefix: impl Into<Cow<'static, str>>) -> Self`
 
-- `fn with_message(self: Self, message: impl Into<Cow<'static, str>>) -> Self`
+- <span id="progressbar-with-message"></span>`fn with_message(self, message: impl Into<Cow<'static, str>>) -> Self`
 
-- `fn with_position(self: Self, pos: u64) -> Self`
+- <span id="progressbar-with-position"></span>`fn with_position(self, pos: u64) -> Self`
 
-- `fn with_elapsed(self: Self, elapsed: Duration) -> Self`
+- <span id="progressbar-with-elapsed"></span>`fn with_elapsed(self, elapsed: Duration) -> Self`
 
-- `fn with_finish(self: Self, finish: ProgressFinish) -> Self` — [`ProgressFinish`](#progressfinish)
+- <span id="progressbar-with-finish"></span>`fn with_finish(self, finish: ProgressFinish) -> Self` — [`ProgressFinish`](#progressfinish)
 
-- `fn new_spinner() -> Self`
+- <span id="progressbar-new-spinner"></span>`fn new_spinner() -> Self`
 
-- `fn set_style(self: &Self, style: ProgressStyle)` — [`ProgressStyle`](#progressstyle)
+- <span id="progressbar-set-style"></span>`fn set_style(&self, style: ProgressStyle)` — [`ProgressStyle`](#progressstyle)
 
-- `fn set_tab_width(self: &Self, tab_width: usize)`
+- <span id="progressbar-set-tab-width"></span>`fn set_tab_width(&self, tab_width: usize)`
 
-- `fn enable_steady_tick(self: &Self, interval: Duration)`
+- <span id="progressbar-enable-steady-tick"></span>`fn enable_steady_tick(&self, interval: Duration)`
 
-- `fn disable_steady_tick(self: &Self)`
+- <span id="progressbar-disable-steady-tick"></span>`fn disable_steady_tick(&self)`
 
-- `fn stop_and_replace_ticker(self: &Self, interval: Option<Duration>)`
+- <span id="progressbar-stop-and-replace-ticker"></span>`fn stop_and_replace_ticker(&self, interval: Option<Duration>)`
 
-- `fn tick(self: &Self)`
+- <span id="progressbar-tick"></span>`fn tick(&self)`
 
-- `fn tick_inner(self: &Self, now: Instant)`
+- <span id="progressbar-tick-inner"></span>`fn tick_inner(&self, now: Instant)`
 
-- `fn inc(self: &Self, delta: u64)`
+- <span id="progressbar-inc"></span>`fn inc(&self, delta: u64)`
 
-- `fn dec(self: &Self, delta: u64)`
+- <span id="progressbar-dec"></span>`fn dec(&self, delta: u64)`
 
-- `fn is_hidden(self: &Self) -> bool`
+- <span id="progressbar-is-hidden"></span>`fn is_hidden(&self) -> bool`
 
-- `fn is_finished(self: &Self) -> bool`
+- <span id="progressbar-is-finished"></span>`fn is_finished(&self) -> bool`
 
-- `fn println<I: AsRef<str>>(self: &Self, msg: I)`
+- <span id="progressbar-println"></span>`fn println<I: AsRef<str>>(&self, msg: I)`
 
-- `fn update(self: &Self, f: impl FnOnce(&mut ProgressState))` — [`ProgressState`](#progressstate)
+- <span id="progressbar-update"></span>`fn update(&self, f: impl FnOnce(&mut ProgressState))` — [`ProgressState`](#progressstate)
 
-- `fn set_position(self: &Self, pos: u64)`
+- <span id="progressbar-set-position"></span>`fn set_position(&self, pos: u64)`
 
-- `fn unset_length(self: &Self)`
+- <span id="progressbar-unset-length"></span>`fn unset_length(&self)`
 
-- `fn set_length(self: &Self, len: u64)`
+- <span id="progressbar-set-length"></span>`fn set_length(&self, len: u64)`
 
-- `fn inc_length(self: &Self, delta: u64)`
+- <span id="progressbar-inc-length"></span>`fn inc_length(&self, delta: u64)`
 
-- `fn dec_length(self: &Self, delta: u64)`
+- <span id="progressbar-dec-length"></span>`fn dec_length(&self, delta: u64)`
 
-- `fn set_prefix(self: &Self, prefix: impl Into<Cow<'static, str>>)`
+- <span id="progressbar-set-prefix"></span>`fn set_prefix(&self, prefix: impl Into<Cow<'static, str>>)`
 
-- `fn set_message(self: &Self, msg: impl Into<Cow<'static, str>>)`
+- <span id="progressbar-set-message"></span>`fn set_message(&self, msg: impl Into<Cow<'static, str>>)`
 
-- `fn set_elapsed(self: &Self, elapsed: Duration)`
+- <span id="progressbar-set-elapsed"></span>`fn set_elapsed(&self, elapsed: Duration)`
 
-- `fn downgrade(self: &Self) -> WeakProgressBar` — [`WeakProgressBar`](#weakprogressbar)
+- <span id="progressbar-downgrade"></span>`fn downgrade(&self) -> WeakProgressBar` — [`WeakProgressBar`](#weakprogressbar)
 
-- `fn reset_eta(self: &Self)`
+- <span id="progressbar-reset-eta"></span>`fn reset_eta(&self)`
 
-- `fn reset_elapsed(self: &Self)`
+- <span id="progressbar-reset-elapsed"></span>`fn reset_elapsed(&self)`
 
-- `fn reset(self: &Self)`
+- <span id="progressbar-reset"></span>`fn reset(&self)`
 
-- `fn finish(self: &Self)`
+- <span id="progressbar-finish"></span>`fn finish(&self)`
 
-- `fn finish_with_message(self: &Self, msg: impl Into<Cow<'static, str>>)`
+- <span id="progressbar-finish-with-message"></span>`fn finish_with_message(&self, msg: impl Into<Cow<'static, str>>)`
 
-- `fn finish_and_clear(self: &Self)`
+- <span id="progressbar-finish-and-clear"></span>`fn finish_and_clear(&self)`
 
-- `fn abandon(self: &Self)`
+- <span id="progressbar-abandon"></span>`fn abandon(&self)`
 
-- `fn abandon_with_message(self: &Self, msg: impl Into<Cow<'static, str>>)`
+- <span id="progressbar-abandon-with-message"></span>`fn abandon_with_message(&self, msg: impl Into<Cow<'static, str>>)`
 
-- `fn finish_using_style(self: &Self)`
+- <span id="progressbar-finish-using-style"></span>`fn finish_using_style(&self)`
 
-- `fn set_draw_target(self: &Self, target: ProgressDrawTarget)` — [`ProgressDrawTarget`](#progressdrawtarget)
+- <span id="progressbar-set-draw-target"></span>`fn set_draw_target(&self, target: ProgressDrawTarget)` — [`ProgressDrawTarget`](#progressdrawtarget)
 
-- `fn force_draw(self: &Self)`
+- <span id="progressbar-force-draw"></span>`fn force_draw(&self)`
 
-- `fn suspend<F: FnOnce() -> R, R>(self: &Self, f: F) -> R`
+- <span id="progressbar-suspend"></span>`fn suspend<F: FnOnce() -> R, R>(&self, f: F) -> R`
 
-- `fn wrap_iter<It: Iterator>(self: &Self, it: It) -> ProgressBarIter<It>` — [`ProgressBarIter`](#progressbariter)
+- <span id="progressbar-wrap-iter"></span>`fn wrap_iter<It: Iterator>(&self, it: It) -> ProgressBarIter<It>` — [`ProgressBarIter`](#progressbariter)
 
-- `fn wrap_read<R: io::Read>(self: &Self, read: R) -> ProgressBarIter<R>` — [`ProgressBarIter`](#progressbariter)
+- <span id="progressbar-wrap-read"></span>`fn wrap_read<R: io::Read>(&self, read: R) -> ProgressBarIter<R>` — [`ProgressBarIter`](#progressbariter)
 
-- `fn wrap_write<W: io::Write>(self: &Self, write: W) -> ProgressBarIter<W>` — [`ProgressBarIter`](#progressbariter)
+- <span id="progressbar-wrap-write"></span>`fn wrap_write<W: io::Write>(&self, write: W) -> ProgressBarIter<W>` — [`ProgressBarIter`](#progressbariter)
 
-- `fn position(self: &Self) -> u64`
+- <span id="progressbar-position"></span>`fn position(&self) -> u64`
 
-- `fn length(self: &Self) -> Option<u64>`
+- <span id="progressbar-length"></span>`fn length(&self) -> Option<u64>`
 
-- `fn eta(self: &Self) -> Duration`
+- <span id="progressbar-eta"></span>`fn eta(&self) -> Duration`
 
-- `fn per_sec(self: &Self) -> f64`
+- <span id="progressbar-per-sec"></span>`fn per_sec(&self) -> f64`
 
-- `fn duration(self: &Self) -> Duration`
+- <span id="progressbar-duration"></span>`fn duration(&self) -> Duration`
 
-- `fn elapsed(self: &Self) -> Duration`
+- <span id="progressbar-elapsed"></span>`fn elapsed(&self) -> Duration`
 
-- `fn index(self: &Self) -> Option<usize>`
+- <span id="progressbar-index"></span>`fn index(&self) -> Option<usize>`
 
-- `fn message(self: &Self) -> String`
+- <span id="progressbar-message"></span>`fn message(&self) -> String`
 
-- `fn prefix(self: &Self) -> String`
+- <span id="progressbar-prefix"></span>`fn prefix(&self) -> String`
 
-- `fn state(self: &Self) -> MutexGuard<'_, BarState>` — [`BarState`](state/index.md)
+- <span id="progressbar-state"></span>`fn state(&self) -> MutexGuard<'_, BarState>` — [`BarState`](state/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for ProgressBar`
 
-- `fn clone(self: &Self) -> ProgressBar` — [`ProgressBar`](#progressbar)
+- <span id="progressbar-clone"></span>`fn clone(&self) -> ProgressBar` — [`ProgressBar`](#progressbar)
 
 ##### `impl Debug for ProgressBar`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="progressbar-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `WeakProgressBar`
 
@@ -813,19 +877,19 @@ Useful for creating custom steady tick implementations
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="weakprogressbar-new"></span>`fn new() -> Self`
 
-- `fn upgrade(self: &Self) -> Option<ProgressBar>` — [`ProgressBar`](#progressbar)
+- <span id="weakprogressbar-upgrade"></span>`fn upgrade(&self) -> Option<ProgressBar>` — [`ProgressBar`](#progressbar)
 
 #### Trait Implementations
 
 ##### `impl Clone for WeakProgressBar`
 
-- `fn clone(self: &Self) -> WeakProgressBar` — [`WeakProgressBar`](#weakprogressbar)
+- <span id="weakprogressbar-clone"></span>`fn clone(&self) -> WeakProgressBar` — [`WeakProgressBar`](#weakprogressbar)
 
 ##### `impl Default for WeakProgressBar`
 
-- `fn default() -> WeakProgressBar` — [`WeakProgressBar`](#weakprogressbar)
+- <span id="weakprogressbar-default"></span>`fn default() -> WeakProgressBar` — [`WeakProgressBar`](#weakprogressbar)
 
 ### `ProgressState`
 
@@ -846,27 +910,27 @@ The state of a progress bar at a moment in time.
 
 #### Implementations
 
-- `fn new(len: Option<u64>, pos: Arc<AtomicPosition>) -> Self` — [`AtomicPosition`](state/index.md)
+- <span id="progressstate-new"></span>`fn new(len: Option<u64>, pos: Arc<AtomicPosition>) -> Self` — [`AtomicPosition`](state/index.md)
 
-- `fn is_finished(self: &Self) -> bool`
+- <span id="progressstate-is-finished"></span>`fn is_finished(&self) -> bool`
 
-- `fn fraction(self: &Self) -> f32`
+- <span id="progressstate-fraction"></span>`fn fraction(&self) -> f32`
 
-- `fn eta(self: &Self) -> Duration`
+- <span id="progressstate-eta"></span>`fn eta(&self) -> Duration`
 
-- `fn duration(self: &Self) -> Duration`
+- <span id="progressstate-duration"></span>`fn duration(&self) -> Duration`
 
-- `fn per_sec(self: &Self) -> f64`
+- <span id="progressstate-per-sec"></span>`fn per_sec(&self) -> f64`
 
-- `fn elapsed(self: &Self) -> Duration`
+- <span id="progressstate-elapsed"></span>`fn elapsed(&self) -> Duration`
 
-- `fn pos(self: &Self) -> u64`
+- <span id="progressstate-pos"></span>`fn pos(&self) -> u64`
 
-- `fn set_pos(self: &mut Self, pos: u64)`
+- <span id="progressstate-set-pos"></span>`fn set_pos(&mut self, pos: u64)`
 
-- `fn len(self: &Self) -> Option<u64>`
+- <span id="progressstate-len"></span>`fn len(&self) -> Option<u64>`
 
-- `fn set_len(self: &mut Self, len: u64)`
+- <span id="progressstate-set-len"></span>`fn set_len(&mut self, len: u64)`
 
 ### `ProgressStyle`
 
@@ -883,45 +947,45 @@ struct ProgressStyle {
 
 #### Implementations
 
-- `fn default_bar() -> Self`
+- <span id="progressstyle-default-bar"></span>`fn default_bar() -> Self`
 
-- `fn default_spinner() -> Self`
+- <span id="progressstyle-default-spinner"></span>`fn default_spinner() -> Self`
 
-- `fn with_template(template: &str) -> Result<Self, TemplateError>` — [`TemplateError`](style/index.md)
+- <span id="progressstyle-with-template"></span>`fn with_template(template: &str) -> Result<Self, TemplateError>` — [`TemplateError`](style/index.md)
 
-- `fn set_tab_width(self: &mut Self, new_tab_width: usize)`
+- <span id="progressstyle-set-tab-width"></span>`fn set_tab_width(&mut self, new_tab_width: usize)`
 
-- `fn set_for_stderr(self: &mut Self)`
+- <span id="progressstyle-set-for-stderr"></span>`fn set_for_stderr(&mut self)`
 
-- `fn new(template: Template) -> Self` — [`Template`](style/index.md)
+- <span id="progressstyle-new"></span>`fn new(template: Template) -> Self` — [`Template`](style/index.md)
 
-- `fn tick_chars(self: Self, s: &str) -> Self`
+- <span id="progressstyle-tick-chars"></span>`fn tick_chars(self, s: &str) -> Self`
 
-- `fn tick_strings(self: Self, s: &[&str]) -> Self`
+- <span id="progressstyle-tick-strings"></span>`fn tick_strings(self, s: &[&str]) -> Self`
 
-- `fn progress_chars(self: Self, s: &str) -> Self`
+- <span id="progressstyle-progress-chars"></span>`fn progress_chars(self, s: &str) -> Self`
 
-- `fn with_key<S: ProgressTracker + 'static>(self: Self, key: &'static str, f: S) -> Self`
+- <span id="progressstyle-with-key"></span>`fn with_key<S: ProgressTracker + 'static>(self, key: &'static str, f: S) -> Self`
 
-- `fn template(self: Self, s: &str) -> Result<Self, TemplateError>` — [`TemplateError`](style/index.md)
+- <span id="progressstyle-template"></span>`fn template(self, s: &str) -> Result<Self, TemplateError>` — [`TemplateError`](style/index.md)
 
-- `fn current_tick_str(self: &Self, state: &ProgressState) -> &str` — [`ProgressState`](#progressstate)
+- <span id="progressstyle-current-tick-str"></span>`fn current_tick_str(&self, state: &ProgressState) -> &str` — [`ProgressState`](#progressstate)
 
-- `fn get_tick_str(self: &Self, idx: u64) -> &str`
+- <span id="progressstyle-get-tick-str"></span>`fn get_tick_str(&self, idx: u64) -> &str`
 
-- `fn get_final_tick_str(self: &Self) -> &str`
+- <span id="progressstyle-get-final-tick-str"></span>`fn get_final_tick_str(&self) -> &str`
 
-- `fn format_bar(self: &Self, fract: f32, width: usize, alt_style: Option<&Style>) -> BarDisplay<'_>` — [`BarDisplay`](style/index.md)
+- <span id="progressstyle-format-bar"></span>`fn format_bar(&self, fract: f32, width: usize, alt_style: Option<&Style>) -> BarDisplay<'_>` — [`BarDisplay`](style/index.md)
 
-- `fn format_state(self: &Self, state: &ProgressState, lines: &mut Vec<LineType>, target_width: u16)` — [`ProgressState`](#progressstate), [`LineType`](draw_target/index.md)
+- <span id="progressstyle-format-state"></span>`fn format_state(&self, state: &ProgressState, lines: &mut Vec<LineType>, target_width: u16)` — [`ProgressState`](#progressstate), [`LineType`](draw_target/index.md)
 
-- `fn push_line(self: &Self, lines: &mut Vec<LineType>, cur: &mut String, state: &ProgressState, buf: &mut String, target_width: u16, wide: &Option<WideElement<'_>>)` — [`LineType`](draw_target/index.md), [`ProgressState`](#progressstate), [`WideElement`](style/index.md)
+- <span id="progressstyle-push-line"></span>`fn push_line(&self, lines: &mut Vec<LineType>, cur: &mut String, state: &ProgressState, buf: &mut String, target_width: u16, wide: &Option<WideElement<'_>>)` — [`LineType`](draw_target/index.md), [`ProgressState`](#progressstate), [`WideElement`](style/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for ProgressStyle`
 
-- `fn clone(self: &Self) -> ProgressStyle` — [`ProgressStyle`](#progressstyle)
+- <span id="progressstyle-clone"></span>`fn clone(&self) -> ProgressStyle` — [`ProgressStyle`](#progressstyle)
 
 ## Enums
 
@@ -955,17 +1019,17 @@ E.g. [`Top`](MultiProgressAlignment::Top) alignment (default), when _progress ba
 
 ##### `impl Clone for MultiProgressAlignment`
 
-- `fn clone(self: &Self) -> MultiProgressAlignment` — [`MultiProgressAlignment`](#multiprogressalignment)
+- <span id="multiprogressalignment-clone"></span>`fn clone(&self) -> MultiProgressAlignment` — [`MultiProgressAlignment`](#multiprogressalignment)
 
 ##### `impl Copy for MultiProgressAlignment`
 
 ##### `impl Debug for MultiProgressAlignment`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="multiprogressalignment-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for MultiProgressAlignment`
 
-- `fn default() -> MultiProgressAlignment` — [`MultiProgressAlignment`](#multiprogressalignment)
+- <span id="multiprogressalignment-default"></span>`fn default() -> MultiProgressAlignment` — [`MultiProgressAlignment`](#multiprogressalignment)
 
 ### `ProgressFinish`
 
@@ -1023,15 +1087,15 @@ This is invoked when a [`ProgressBar`](#progressbar) or [`ProgressBarIter`](#pro
 
 ##### `impl Clone for ProgressFinish`
 
-- `fn clone(self: &Self) -> ProgressFinish` — [`ProgressFinish`](#progressfinish)
+- <span id="progressfinish-clone"></span>`fn clone(&self) -> ProgressFinish` — [`ProgressFinish`](#progressfinish)
 
 ##### `impl Debug for ProgressFinish`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="progressfinish-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for ProgressFinish`
 
-- `fn default() -> ProgressFinish` — [`ProgressFinish`](#progressfinish)
+- <span id="progressfinish-default"></span>`fn default() -> ProgressFinish` — [`ProgressFinish`](#progressfinish)
 
 ## Traits
 

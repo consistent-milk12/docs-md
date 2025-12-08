@@ -4,6 +4,51 @@
 
 # Module `detect`
 
+## Contents
+
+- [Structs](#structs)
+  - [`CpuInfo`](#cpuinfo)
+- [Enums](#enums)
+  - [`CpuInfoFlag`](#cpuinfoflag)
+- [Functions](#functions)
+  - [`set`](#set)
+  - [`test`](#test)
+  - [`detect`](#detect)
+  - [`__cpuid`](#__cpuid)
+  - [`_vender`](#_vender)
+  - [`_vendor_id`](#_vendor_id)
+  - [`_vendor_has_vmovdqa_atomic`](#_vendor_has_vmovdqa_atomic)
+  - [`_detect`](#_detect)
+- [Constants](#constants)
+  - [`_VENDOR_ID_INTEL`](#_vendor_id_intel)
+  - [`_VENDOR_ID_INTEL2`](#_vendor_id_intel2)
+  - [`_VENDOR_ID_AMD`](#_vendor_id_amd)
+  - [`_VENDOR_ID_CENTAUR`](#_vendor_id_centaur)
+  - [`_VENDOR_ID_ZHAOXIN`](#_vendor_id_zhaoxin)
+- [Macros](#macros)
+  - [`flags!`](#flags)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`CpuInfo`](#cpuinfo) | struct |  |
+| [`CpuInfoFlag`](#cpuinfoflag) | enum |  |
+| [`set`](#set) | fn |  |
+| [`test`](#test) | fn |  |
+| [`detect`](#detect) | fn |  |
+| [`__cpuid`](#__cpuid) | fn |  |
+| [`_vender`](#_vender) | fn |  |
+| [`_vendor_id`](#_vendor_id) | fn |  |
+| [`_vendor_has_vmovdqa_atomic`](#_vendor_has_vmovdqa_atomic) | fn |  |
+| [`_detect`](#_detect) | fn |  |
+| [`_VENDOR_ID_INTEL`](#_vendor_id_intel) | const |  |
+| [`_VENDOR_ID_INTEL2`](#_vendor_id_intel2) | const |  |
+| [`_VENDOR_ID_AMD`](#_vendor_id_amd) | const |  |
+| [`_VENDOR_ID_CENTAUR`](#_vendor_id_centaur) | const |  |
+| [`_VENDOR_ID_ZHAOXIN`](#_vendor_id_zhaoxin) | const |  |
+| [`flags!`](#flags) | macro |  |
+
 ## Structs
 
 ### `CpuInfo`
@@ -14,15 +59,15 @@ struct CpuInfo(u32);
 
 #### Implementations
 
-- `fn cmpxchg16b(self: Self) -> bool`
+- <span id="cpuinfo-cmpxchg16b"></span>`fn cmpxchg16b(self) -> bool`
 
-- `fn vmovdqa_atomic(self: Self) -> bool`
+- <span id="cpuinfo-vmovdqa-atomic"></span>`fn vmovdqa_atomic(self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for CpuInfo`
 
-- `fn clone(self: &Self) -> CpuInfo` — [`CpuInfo`](#cpuinfo)
+- <span id="cpuinfo-clone"></span>`fn clone(&self) -> CpuInfo` — [`CpuInfo`](#cpuinfo)
 
 ##### `impl Copy for CpuInfo`
 
@@ -42,7 +87,7 @@ enum CpuInfoFlag {
 
 ##### `impl Clone for CpuInfoFlag`
 
-- `fn clone(self: &Self) -> CpuInfoFlag` — [`CpuInfoFlag`](#cpuinfoflag)
+- <span id="cpuinfoflag-clone"></span>`fn clone(&self) -> CpuInfoFlag` — [`CpuInfoFlag`](#cpuinfoflag)
 
 ##### `impl Copy for CpuInfoFlag`
 

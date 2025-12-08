@@ -4,6 +4,12 @@
 
 # Module `var`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Var`](#var) | struct |  |
+
 ## Structs
 
 ### `Var<'a, T: ?Sized>`
@@ -16,5 +22,5 @@ struct Var<'a, T: ?Sized>(&'a T);
 
 ##### `impl<'a, T: Pointer + ?Sized> Pointer for Var<'a, T>`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="var-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 

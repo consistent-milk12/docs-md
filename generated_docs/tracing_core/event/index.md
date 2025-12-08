@@ -6,6 +6,12 @@
 
 Events represent single points in time during the execution of a program.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Event`](#event) | struct | `Event`s represent single points in time where something occurred during the |
+
 ## Structs
 
 ### `Event<'a>`
@@ -36,29 +42,29 @@ two key differences:
 
 #### Implementations
 
-- `fn dispatch(metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'_>)` — [`Metadata`](../index.md), [`ValueSet`](../field/index.md)
+- <span id="event-dispatch"></span>`fn dispatch(metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'_>)` — [`Metadata`](../index.md), [`ValueSet`](../field/index.md)
 
-- `fn new(metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'a>) -> Self` — [`Metadata`](../index.md), [`ValueSet`](../field/index.md)
+- <span id="event-new"></span>`fn new(metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'a>) -> Self` — [`Metadata`](../index.md), [`ValueSet`](../field/index.md)
 
-- `fn new_child_of(parent: impl Into<Option<Id>>, metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'a>) -> Self` — [`Id`](../span/index.md), [`Metadata`](../index.md), [`ValueSet`](../field/index.md)
+- <span id="event-new-child-of"></span>`fn new_child_of(parent: impl Into<Option<Id>>, metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'a>) -> Self` — [`Id`](../span/index.md), [`Metadata`](../index.md), [`ValueSet`](../field/index.md)
 
-- `fn child_of(parent: impl Into<Option<Id>>, metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'_>)` — [`Id`](../span/index.md), [`Metadata`](../index.md), [`ValueSet`](../field/index.md)
+- <span id="event-child-of"></span>`fn child_of(parent: impl Into<Option<Id>>, metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'_>)` — [`Id`](../span/index.md), [`Metadata`](../index.md), [`ValueSet`](../field/index.md)
 
-- `fn record(self: &Self, visitor: &mut dyn field::Visit)` — [`Visit`](../field/index.md)
+- <span id="event-record"></span>`fn record(&self, visitor: &mut dyn field::Visit)` — [`Visit`](../field/index.md)
 
-- `fn fields(self: &Self) -> field::Iter` — [`Iter`](../field/index.md)
+- <span id="event-fields"></span>`fn fields(&self) -> field::Iter` — [`Iter`](../field/index.md)
 
-- `fn metadata(self: &Self) -> &'static Metadata<'static>` — [`Metadata`](../index.md)
+- <span id="event-metadata"></span>`fn metadata(&self) -> &'static Metadata<'static>` — [`Metadata`](../index.md)
 
-- `fn is_root(self: &Self) -> bool`
+- <span id="event-is-root"></span>`fn is_root(&self) -> bool`
 
-- `fn is_contextual(self: &Self) -> bool`
+- <span id="event-is-contextual"></span>`fn is_contextual(&self) -> bool`
 
-- `fn parent(self: &Self) -> Option<&Id>` — [`Id`](../span/index.md)
+- <span id="event-parent"></span>`fn parent(&self) -> Option<&Id>` — [`Id`](../span/index.md)
 
 #### Trait Implementations
 
 ##### `impl<'a> Debug for Event<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="event-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

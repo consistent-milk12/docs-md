@@ -4,6 +4,17 @@
 
 # Module `inner`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`memchr`](#memchr) | fn |  |
+| [`memchr2`](#memchr2) | fn |  |
+| [`memchr3`](#memchr3) | fn |  |
+| [`memrchr`](#memrchr) | fn |  |
+| [`memrchr2`](#memrchr2) | fn |  |
+| [`memrchr3`](#memrchr3) | fn |  |
+
 ## Functions
 
 ### `memchr`

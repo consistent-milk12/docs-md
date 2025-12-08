@@ -4,6 +4,16 @@
 
 # Module `error`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`BuildError`](#builderror) | struct | An error that occurs when construction of a `Regex` fails. |
+| [`RetryQuadraticError`](#retryquadraticerror) | struct | An error that occurs when potential quadratic behavior has been detected |
+| [`RetryFailError`](#retryfailerror) | struct | An error that occurs when a regex engine "gives up" for some reason before |
+| [`BuildErrorKind`](#builderrorkind) | enum |  |
+| [`RetryError`](#retryerror) | enum | An error that occurs when a search should be retried. |
+
 ## Structs
 
 ### `BuildError`
@@ -38,39 +48,39 @@ When the `std` feature is enabled, this implements `std::error::Error`.
 
 #### Implementations
 
-- `fn pattern(self: &Self) -> Option<PatternID>` — [`PatternID`](../../index.md)
+- <span id="builderror-pattern"></span>`fn pattern(&self) -> Option<PatternID>` — [`PatternID`](../../index.md)
 
-- `fn size_limit(self: &Self) -> Option<usize>`
+- <span id="builderror-size-limit"></span>`fn size_limit(&self) -> Option<usize>`
 
-- `fn syntax_error(self: &Self) -> Option<&regex_syntax::Error>`
+- <span id="builderror-syntax-error"></span>`fn syntax_error(&self) -> Option<&regex_syntax::Error>`
 
-- `fn ast(pid: PatternID, err: ast::Error) -> BuildError` — [`PatternID`](../../index.md), [`BuildError`](../index.md)
+- <span id="builderror-ast"></span>`fn ast(pid: PatternID, err: ast::Error) -> BuildError` — [`PatternID`](../../index.md), [`BuildError`](../index.md)
 
-- `fn hir(pid: PatternID, err: hir::Error) -> BuildError` — [`PatternID`](../../index.md), [`BuildError`](../index.md)
+- <span id="builderror-hir"></span>`fn hir(pid: PatternID, err: hir::Error) -> BuildError` — [`PatternID`](../../index.md), [`BuildError`](../index.md)
 
-- `fn nfa(err: nfa::thompson::BuildError) -> BuildError` — [`BuildError`](../../nfa/thompson/index.md)
+- <span id="builderror-nfa"></span>`fn nfa(err: nfa::thompson::BuildError) -> BuildError` — [`BuildError`](../../nfa/thompson/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for BuildError`
 
-- `fn clone(self: &Self) -> BuildError` — [`BuildError`](../index.md)
+- <span id="builderror-clone"></span>`fn clone(&self) -> BuildError` — [`BuildError`](../index.md)
 
 ##### `impl Debug for BuildError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="builderror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for BuildError`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="builderror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for BuildError`
 
-- `fn source(self: &Self) -> Option<&dyn std::error::Error>`
+- <span id="builderror-source"></span>`fn source(&self) -> Option<&dyn std::error::Error>`
 
 ##### `impl<T> ToString for BuildError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="builderror-to-string"></span>`fn to_string(&self) -> String`
 
 ### `RetryQuadraticError`
 
@@ -86,23 +96,23 @@ and use a normal forward search.
 
 #### Implementations
 
-- `fn new() -> RetryQuadraticError` — [`RetryQuadraticError`](#retryquadraticerror)
+- <span id="retryquadraticerror-new"></span>`fn new() -> RetryQuadraticError` — [`RetryQuadraticError`](#retryquadraticerror)
 
 #### Trait Implementations
 
 ##### `impl Debug for RetryQuadraticError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="retryquadraticerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for RetryQuadraticError`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="retryquadraticerror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for RetryQuadraticError`
 
 ##### `impl<T> ToString for RetryQuadraticError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="retryquadraticerror-to-string"></span>`fn to_string(&self) -> String`
 
 ### `RetryFailError`
 
@@ -127,23 +137,23 @@ regex engine internals guarantee that errors like `HaystackTooLong` and
 
 #### Implementations
 
-- `fn from_offset(offset: usize) -> RetryFailError` — [`RetryFailError`](#retryfailerror)
+- <span id="retryfailerror-from-offset"></span>`fn from_offset(offset: usize) -> RetryFailError` — [`RetryFailError`](#retryfailerror)
 
 #### Trait Implementations
 
 ##### `impl Debug for RetryFailError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="retryfailerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for RetryFailError`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="retryfailerror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for RetryFailError`
 
 ##### `impl<T> ToString for RetryFailError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="retryfailerror-to-string"></span>`fn to_string(&self) -> String`
 
 ## Enums
 
@@ -163,11 +173,11 @@ enum BuildErrorKind {
 
 ##### `impl Clone for BuildErrorKind`
 
-- `fn clone(self: &Self) -> BuildErrorKind` — [`BuildErrorKind`](#builderrorkind)
+- <span id="builderrorkind-clone"></span>`fn clone(&self) -> BuildErrorKind` — [`BuildErrorKind`](#builderrorkind)
 
 ##### `impl Debug for BuildErrorKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="builderrorkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `RetryError`
 
@@ -200,15 +210,15 @@ API.
 
 ##### `impl Debug for RetryError`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="retryerror-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for RetryError`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="retryerror-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Error for RetryError`
 
 ##### `impl<T> ToString for RetryError`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="retryerror-to-string"></span>`fn to_string(&self) -> String`
 

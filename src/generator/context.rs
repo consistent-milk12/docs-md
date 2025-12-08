@@ -21,6 +21,7 @@ use std::collections::HashMap;
 use rustdoc_types::{Crate, Id, Impl, Item, ItemEnum, Visibility};
 
 use crate::Args;
+use crate::generator::config::RenderConfig;
 use crate::generator::doc_links::{DocLinkProcessor, strip_duplicate_title};
 use crate::linker::LinkRegistry;
 
@@ -46,6 +47,9 @@ pub trait ItemAccess {
 
     /// Get the crate version for display in headers.
     fn crate_version(&self) -> Option<&str>;
+
+    /// Get the rendering configuration.
+    fn render_config(&self) -> &RenderConfig;
 }
 
 /// Item visibility and filtering logic.
@@ -135,6 +139,9 @@ pub struct GeneratorContext<'a> {
 
     /// CLI arguments containing output path, format, and options.
     pub args: &'a Args,
+
+    /// Rendering configuration options.
+    pub config: RenderConfig,
 }
 
 impl<'a> GeneratorContext<'a> {
@@ -146,8 +153,9 @@ impl<'a> GeneratorContext<'a> {
     ///
     /// * `krate` - The parsed rustdoc JSON crate
     /// * `args` - CLI arguments containing output path, format, and options
+    /// * `config` - Rendering configuration options
     #[must_use]
-    pub fn new(krate: &'a Crate, args: &'a Args) -> Self {
+    pub fn new(krate: &'a Crate, args: &'a Args, config: RenderConfig) -> Self {
         use crate::CliOutputFormat;
 
         // Extract crate name from root module
@@ -167,6 +175,7 @@ impl<'a> GeneratorContext<'a> {
             impl_map,
             link_registry,
             args,
+            config,
         }
     }
 
@@ -279,6 +288,10 @@ impl ItemAccess for GeneratorContext<'_> {
 
     fn crate_version(&self) -> Option<&str> {
         self.krate.crate_version.as_deref()
+    }
+
+    fn render_config(&self) -> &RenderConfig {
+        &self.config
     }
 }
 

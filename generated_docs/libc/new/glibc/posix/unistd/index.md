@@ -8,5 +8,13 @@ Header: `unistd.h`
 
 <https://github.com/bminor/glibc/blob/master/posix/unistd.h>
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`unnamed`](#unnamed) | const |  |
+| [`unnamed`](#unnamed) | const |  |
+| [`unnamed`](#unnamed) | const |  |
+
 ## Constants
 

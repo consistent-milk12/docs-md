@@ -4,6 +4,16 @@
 
 # Module `definitions`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`State`](#state) | enum |  |
+| [`Action`](#action) | enum |  |
+| [`unpack`](#unpack) | fn | Unpack a u8 into a State and Action |
+| [`STATES`](#states) | const |  |
+| [`ACTIONS`](#actions) | const |  |
+
 ## Enums
 
 ### `State`
@@ -33,23 +43,23 @@ enum State {
 
 ##### `impl Clone for State`
 
-- `fn clone(self: &Self) -> State` — [`State`](../index.md)
+- <span id="state-clone"></span>`fn clone(&self) -> State` — [`State`](../index.md)
 
 ##### `impl Copy for State`
 
 ##### `impl Debug for State`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="state-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for State`
 
-- `fn default() -> State` — [`State`](../index.md)
+- <span id="state-default"></span>`fn default() -> State` — [`State`](../index.md)
 
 ##### `impl Eq for State`
 
 ##### `impl PartialEq for State`
 
-- `fn eq(self: &Self, other: &State) -> bool` — [`State`](../index.md)
+- <span id="state-eq"></span>`fn eq(&self, other: &State) -> bool` — [`State`](../index.md)
 
 ##### `impl StructuralPartialEq for State`
 
@@ -80,23 +90,23 @@ enum Action {
 
 ##### `impl Clone for Action`
 
-- `fn clone(self: &Self) -> Action` — [`Action`](../index.md)
+- <span id="action-clone"></span>`fn clone(&self) -> Action` — [`Action`](../index.md)
 
 ##### `impl Copy for Action`
 
 ##### `impl Debug for Action`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="action-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Action`
 
-- `fn default() -> Action` — [`Action`](../index.md)
+- <span id="action-default"></span>`fn default() -> Action` — [`Action`](../index.md)
 
 ##### `impl Eq for Action`
 
 ##### `impl PartialEq for Action`
 
-- `fn eq(self: &Self, other: &Action) -> bool` — [`Action`](../index.md)
+- <span id="action-eq"></span>`fn eq(&self, other: &Action) -> bool` — [`Action`](../index.md)
 
 ##### `impl StructuralPartialEq for Action`
 

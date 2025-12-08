@@ -108,6 +108,12 @@ pin-project supports this.
 <!-- tidy:crate-doc:end -->
 
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`pin_project!`](#pin_project) | macro | A macro that creates a projection type covering all the fields of struct. |
+
 ## Macros
 
 ### `pin_project!`

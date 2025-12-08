@@ -4,6 +4,36 @@
 
 # Module `expr`
 
+## Contents
+
+- [Enums](#enums)
+  - [`Expr`](#expr)
+- [Functions](#functions)
+  - [`parse`](#parse)
+  - [`parse_nightly`](#parse_nightly)
+  - [`parse_stable`](#parse_stable)
+  - [`parse_since`](#parse_since)
+  - [`parse_before`](#parse_before)
+  - [`parse_not`](#parse_not)
+  - [`parse_any`](#parse_any)
+  - [`parse_all`](#parse_all)
+  - [`parse_comma_separated`](#parse_comma_separated)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Expr`](#expr) | enum |  |
+| [`parse`](#parse) | fn |  |
+| [`parse_nightly`](#parse_nightly) | fn |  |
+| [`parse_stable`](#parse_stable) | fn |  |
+| [`parse_since`](#parse_since) | fn |  |
+| [`parse_before`](#parse_before) | fn |  |
+| [`parse_not`](#parse_not) | fn |  |
+| [`parse_any`](#parse_any) | fn |  |
+| [`parse_all`](#parse_all) | fn |  |
+| [`parse_comma_separated`](#parse_comma_separated) | fn |  |
+
 ## Enums
 
 ### `Expr`
@@ -25,7 +55,7 @@ enum Expr {
 
 #### Implementations
 
-- `fn eval(self: &Self, rustc: Version) -> bool` — [`Version`](../version/index.md)
+- <span id="expr-eval"></span>`fn eval(&self, rustc: Version) -> bool` — [`Version`](../version/index.md)
 
 ## Functions
 

@@ -7,6 +7,12 @@
 The trait [`IntoEither`](../index.md) provides methods for converting a type `Self`, whose
 size is constant and known at compile-time, into an [`Either`](../index.md) variant.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`IntoEither`](#intoeither) | trait | Provides methods for converting a type `Self` into either a [`Left`] or [`Right`] |
+
 ## Traits
 
 ### `IntoEither`
@@ -26,11 +32,11 @@ The [`into_either_with`](IntoEither::into_either_with) method takes a
 
 #### Required Methods
 
-- `fn into_either(self: Self, into_left: bool) -> Either<Self, Self>`
+- `fn into_either(self, into_left: bool) -> Either<Self, Self>`
 
   Converts `self` into a [`Left`](../index.md) variant of [`Either<Self, Self>`](Either)
 
-- `fn into_either_with<F>(self: Self, into_left: F) -> Either<Self, Self>`
+- `fn into_either_with<F>(self, into_left: F) -> Either<Self, Self>`
 
   Converts `self` into a [`Left`](../index.md) variant of [`Either<Self, Self>`](Either)
 

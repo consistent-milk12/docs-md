@@ -23,7 +23,7 @@ use std::sync::LazyLock;
 use regex::Regex;
 use rustdoc_types::{Crate, Id, ItemKind};
 
-use crate::linker::{LinkRegistry, item_has_anchor};
+use crate::linker::{LinkRegistry, item_has_anchor, method_anchor};
 
 // =============================================================================
 // Static Regex Patterns (compiled once, reused everywhere)
@@ -211,7 +211,7 @@ static METHOD_LINK_RE: LazyLock<Regex> = LazyLock::new(|| {
 ///
 /// Transforms links like:
 /// - `(enum.NumberPrefix.html)` -> `(#numberprefix)`
-/// - `(struct.Foo.html#method.bar)` -> removes the link (methods don't have anchors)
+/// - `(struct.Foo.html#method.bar)` -> `(#foo-bar)` (type-method anchor)
 ///
 /// This is useful for multi-crate documentation where the full processor
 /// context may not be available.
@@ -220,13 +220,13 @@ pub fn convert_html_links(docs: &str) -> String {
     replace_with_regex(docs, &HTML_LINK_RE, |caps| {
         let item_name = &caps[2];
 
-        // If there's a method/variant anchor part, remove the link entirely
-        // since methods don't have individual headings
-        if caps.get(4).is_some() {
-            // Return empty to remove the (link) part, keeping just the display text
-            String::new()
+        // If there's a method/variant anchor part, create a method anchor
+        if let Some(method_match) = caps.get(4) {
+            let method_name = method_match.as_str();
+            let anchor = method_anchor(item_name, method_name);
+            format!("(#{anchor})")
         } else {
-            // Type-level anchor should exist
+            // Type-level anchor
             format!("(#{})", item_name.to_lowercase())
         }
     })
@@ -636,6 +636,9 @@ impl<'a> DocLinkProcessor<'a> {
     /// Instead of blindly converting all HTML links to local anchors,
     /// this method checks if the item actually exists on the current page.
     /// If not, it tries to resolve to docs.rs or removes the broken link.
+    ///
+    /// For method links (e.g., `struct.Foo.html#method.bar`), creates a
+    /// method anchor like `#foo-bar` for deep linking.
     fn process_html_links_with_context(
         &self,
         text: &str,
@@ -645,10 +648,22 @@ impl<'a> DocLinkProcessor<'a> {
             let item_kind = &caps[1]; // struct, enum, trait, etc.
             let item_name = &caps[2];
 
-            // If there's a method/variant anchor part, remove the link entirely
-            // since methods don't have individual headings
-            if caps.get(4).is_some() {
-                return String::new();
+            // If there's a method/variant anchor part, create a method anchor
+            if let Some(method_match) = caps.get(4) {
+                let method_name = method_match.as_str();
+                // Try to resolve the type first
+                if let Some(url) = self.resolve_html_link_to_url(item_name, item_kind, item_links) {
+                    let anchor = method_anchor(item_name, method_name);
+                    if url.is_empty() {
+                        // Item on current page - just use anchor
+                        return format!("(#{anchor})");
+                    }
+                    // Item on another page - append anchor to URL
+                    return format!("({url}#{anchor})");
+                }
+                // Can't resolve type - use simple method anchor (assume same page)
+                let anchor = method_anchor(item_name, method_name);
+                return format!("(#{anchor})");
             }
 
             // Try to find this item in our link resolution
@@ -894,10 +909,10 @@ impl<'a> DocLinkProcessor<'a> {
         }
     }
 
-    /// Resolve a method link to a markdown link (without method anchor).
+    /// Resolve a method link to a markdown link with method anchor.
     ///
-    /// Links to the type's page since methods don't have individual headings
-    /// in the generated markdown.
+    /// Links to the type's page with a method anchor for deep linking
+    /// (e.g., `#hashmap-new` for `HashMap::new`).
     fn resolve_method_link(
         &self,
         type_name: &str,
@@ -917,8 +932,12 @@ impl<'a> DocLinkProcessor<'a> {
         let relative = LinkRegistry::compute_relative_path(self.current_file, type_path);
         let display = format!("{type_name}::{method_name}");
 
-        // Link to the type page without a method anchor (methods don't have headings)
-        Some(format!("[`{display}`]({relative})"))
+        // Extract the short type name for anchor generation
+        let short_type = type_name.split("::").last().unwrap_or(type_name);
+        let anchor = method_anchor(short_type, method_name);
+
+        // Link to the type page with method anchor for deep linking
+        Some(format!("[`{display}`]({relative}#{anchor})"))
     }
 
     /// Try to resolve link text to a markdown link.
@@ -1046,10 +1065,15 @@ mod tests {
             convert_html_links("See (enum.Foo.html) for details"),
             "See (#foo) for details"
         );
-        // Method-level links are removed (methods don't have anchors)
+        // Method-level links now get method anchors (typename-methodname)
         assert_eq!(
             convert_html_links("Call (struct.Bar.html#method.new)"),
-            "Call "
+            "Call (#bar-new)"
+        );
+        // Verify method anchors work with different types
+        assert_eq!(
+            convert_html_links("Use (struct.HashMap.html#method.insert)"),
+            "Use (#hashmap-insert)"
         );
     }
 
@@ -1155,5 +1179,42 @@ mod tests {
         let docs = "```\n#\nlet x = 1;\n```";
         let result = unhide_code_lines(docs);
         assert_eq!(result, "```rust\n\nlet x = 1;\n```");
+    }
+
+    // =========================================================================
+    // Method anchor tests
+    // =========================================================================
+
+    #[test]
+    fn test_convert_html_links_method_anchor_format() {
+        // Method anchors use typename-methodname format
+        assert_eq!(
+            convert_html_links("(struct.Vec.html#method.push)"),
+            "(#vec-push)"
+        );
+        assert_eq!(
+            convert_html_links("(enum.Option.html#method.unwrap)"),
+            "(#option-unwrap)"
+        );
+        assert_eq!(
+            convert_html_links("(trait.Iterator.html#method.next)"),
+            "(#iterator-next)"
+        );
+    }
+
+    #[test]
+    fn test_convert_html_links_mixed_content() {
+        // Mixed type and method links in same text
+        let docs = "See (struct.Foo.html) and (struct.Foo.html#method.bar)";
+        let result = convert_html_links(docs);
+        assert_eq!(result, "See (#foo) and (#foo-bar)");
+    }
+
+    #[test]
+    fn test_convert_html_links_preserves_surrounding_text() {
+        // Note: underscores in method names are converted to hyphens by slugify_anchor
+        let docs = "Call `x.(struct.Type.html#method.do_thing)` for effect.";
+        let result = convert_html_links(docs);
+        assert_eq!(result, "Call `x.(#type-do-thing)` for effect.");
     }
 }

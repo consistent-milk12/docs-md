@@ -6,6 +6,18 @@
 
 Methods for composing and decomposing characters.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn | Return whether the given character is assigned (`General_Category` != `Unassigned`) |
+
 ## Functions
 
 Return whether the given character is assigned (`General_Category` != `Unassigned`)

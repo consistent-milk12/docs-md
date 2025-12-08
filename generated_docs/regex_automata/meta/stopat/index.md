@@ -50,6 +50,13 @@ scan doesn't go further than we want.
 See the 'opt/reverse-inner' benchmarks in rebar for a real demonstration of
 how quadratic behavior is mitigated.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`hybrid_try_search_half_fwd`](#hybrid_try_search_half_fwd) | fn |  |
+| [`hybrid_eoi_fwd`](#hybrid_eoi_fwd) | fn |  |
+
 ## Functions
 
 ### `hybrid_try_search_half_fwd`

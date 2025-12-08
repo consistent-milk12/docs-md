@@ -14,6 +14,32 @@ This type holds an OS error code, which conceptually corresponds to an
 Linux uses error codes in `-4095..0`; we use rustc attributes to describe
 this restricted range of values.
 
+## Contents
+
+- [Structs](#structs)
+  - [`Errno`](#errno)
+- [Functions](#functions)
+  - [`try_decode_c_int`](#try_decode_c_int)
+  - [`try_decode_c_uint`](#try_decode_c_uint)
+  - [`try_decode_usize`](#try_decode_usize)
+  - [`try_decode_void_star`](#try_decode_void_star)
+  - [`try_decode_u64`](#try_decode_u64)
+  - [`try_decode_raw_fd`](#try_decode_raw_fd)
+  - [`try_decode_void`](#try_decode_void)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Errno`](#errno) | struct | `errno`—An error code. |
+| [`try_decode_c_int`](#try_decode_c_int) | fn | Check for an error from the result of a syscall which encodes a |
+| [`try_decode_c_uint`](#try_decode_c_uint) | fn | Check for an error from the result of a syscall which encodes a |
+| [`try_decode_usize`](#try_decode_usize) | fn | Check for an error from the result of a syscall which encodes a `usize` on |
+| [`try_decode_void_star`](#try_decode_void_star) | fn | Check for an error from the result of a syscall which encodes a |
+| [`try_decode_u64`](#try_decode_u64) | fn | Check for an error from the result of a syscall which encodes a |
+| [`try_decode_raw_fd`](#try_decode_raw_fd) | fn | Check for an error from the result of a syscall which encodes a file |
+| [`try_decode_void`](#try_decode_void) | fn | Check for an error from the result of a syscall which encodes no value on |
+
 ## Structs
 
 ### `Errno`
@@ -49,29 +75,23 @@ but only holds an OS error code, and no extra error value.
 
 #### Implementations
 
-- `fn from_io_error(io_err: &std::io::Error) -> Option<Self>`
-
-- `const fn raw_os_error(self: Self) -> i32`
-
-- `const fn from_raw_os_error(raw: i32) -> Self`
-
-- `const fn from_errno(raw: u32) -> Self`
+- <span id="errno-kind"></span>`fn kind(self) -> std::io::ErrorKind`
 
 #### Trait Implementations
 
 ##### `impl Clone for Errno`
 
-- `fn clone(self: &Self) -> Errno` — [`Errno`](../../../io/index.md)
+- <span id="errno-clone"></span>`fn clone(&self) -> Errno` — [`Errno`](../../../io/index.md)
 
 ##### `impl Copy for Errno`
 
 ##### `impl Debug for Errno`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="errno-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display for Errno`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="errno-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Errno`
 
@@ -79,17 +99,17 @@ but only holds an OS error code, and no extra error value.
 
 ##### `impl Hash for Errno`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="errno-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Errno`
 
-- `fn eq(self: &Self, other: &Errno) -> bool` — [`Errno`](../../../io/index.md)
+- <span id="errno-eq"></span>`fn eq(&self, other: &Errno) -> bool` — [`Errno`](../../../io/index.md)
 
 ##### `impl StructuralPartialEq for Errno`
 
 ##### `impl<T> ToString for Errno`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="errno-to-string"></span>`fn to_string(&self) -> String`
 
 ## Functions
 

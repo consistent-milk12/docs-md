@@ -4,6 +4,12 @@
 
 # Module `source_code`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`SourceCode`](#sourcecode) | struct |  |
+
 ## Structs
 
 ### `SourceCode`
@@ -17,11 +23,11 @@ struct SourceCode {
 
 #### Implementations
 
-- `fn from_fields(fields: &syn::Fields) -> syn::Result<Option<Self>>`
+- <span id="sourcecode-from-fields"></span>`fn from_fields(fields: &syn::Fields) -> syn::Result<Option<Self>>`
 
-- `fn from_fields_vec(fields: Vec<&syn::Field>) -> syn::Result<Option<Self>>`
+- <span id="sourcecode-from-fields-vec"></span>`fn from_fields_vec(fields: Vec<&syn::Field>) -> syn::Result<Option<Self>>`
 
-- `fn gen_struct(self: &Self, fields: &syn::Fields) -> Option<TokenStream>`
+- <span id="sourcecode-gen-struct"></span>`fn gen_struct(&self, fields: &syn::Fields) -> Option<TokenStream>`
 
-- `fn gen_enum(variants: &[DiagnosticDef]) -> Option<TokenStream>` — [`DiagnosticDef`](../diagnostic/index.md)
+- <span id="sourcecode-gen-enum"></span>`fn gen_enum(variants: &[DiagnosticDef]) -> Option<TokenStream>` — [`DiagnosticDef`](../diagnostic/index.md)
 

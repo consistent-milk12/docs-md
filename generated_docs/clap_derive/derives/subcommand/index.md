@@ -4,6 +4,17 @@
 
 # Module `subcommand`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`derive_subcommand`](#derive_subcommand) | fn |  |
+| [`gen_for_enum`](#gen_for_enum) | fn |  |
+| [`gen_augment`](#gen_augment) | fn |  |
+| [`gen_has_subcommand`](#gen_has_subcommand) | fn |  |
+| [`gen_from_arg_matches`](#gen_from_arg_matches) | fn |  |
+| [`gen_update_from_arg_matches`](#gen_update_from_arg_matches) | fn |  |
+
 ## Functions
 
 ### `derive_subcommand`

@@ -4,6 +4,18 @@
 
 # Module `token`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`parse_punct`](#parse_punct) | fn |  |
+| [`parse_optional_punct`](#parse_optional_punct) | fn |  |
+| [`parse_optional_keyword`](#parse_optional_keyword) | fn |  |
+| [`parse_literal`](#parse_literal) | fn |  |
+| [`parse_paren`](#parse_paren) | fn |  |
+| [`parse_optional_paren`](#parse_optional_paren) | fn |  |
+| [`parse_end`](#parse_end) | fn |  |
+
 ## Functions
 
 ### `parse_punct`

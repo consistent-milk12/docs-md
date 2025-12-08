@@ -6,6 +6,14 @@
 
 Provides helpers for dealing with start state configurations in DFAs.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Config`](#config) | struct | The configuration used to determine a DFA's start state for a search. |
+| [`StartByteMap`](#startbytemap) | struct | A map from every possible byte value to its corresponding starting |
+| [`Start`](#start) | enum | Represents the six possible starting configurations of a DFA search. |
+
 ## Structs
 
 ### `Config`
@@ -129,29 +137,29 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new() -> Config` — [`Config`](#config)
+- <span id="config-new"></span>`fn new() -> Config` — [`Config`](#config)
 
-- `fn from_input_forward(input: &Input<'_>) -> Config` — [`Input`](../../index.md), [`Config`](#config)
+- <span id="config-from-input-forward"></span>`fn from_input_forward(input: &Input<'_>) -> Config` — [`Input`](../../index.md), [`Config`](#config)
 
-- `fn from_input_reverse(input: &Input<'_>) -> Config` — [`Input`](../../index.md), [`Config`](#config)
+- <span id="config-from-input-reverse"></span>`fn from_input_reverse(input: &Input<'_>) -> Config` — [`Input`](../../index.md), [`Config`](#config)
 
-- `fn look_behind(self: Self, byte: Option<u8>) -> Config` — [`Config`](#config)
+- <span id="config-look-behind"></span>`fn look_behind(self, byte: Option<u8>) -> Config` — [`Config`](#config)
 
-- `fn anchored(self: Self, mode: Anchored) -> Config` — [`Anchored`](../../index.md), [`Config`](#config)
+- <span id="config-anchored"></span>`fn anchored(self, mode: Anchored) -> Config` — [`Anchored`](../../index.md), [`Config`](#config)
 
-- `fn get_look_behind(self: &Self) -> Option<u8>`
+- <span id="config-get-look-behind"></span>`fn get_look_behind(&self) -> Option<u8>`
 
-- `fn get_anchored(self: &Self) -> Anchored` — [`Anchored`](../../index.md)
+- <span id="config-get-anchored"></span>`fn get_anchored(&self) -> Anchored` — [`Anchored`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Config`
 
-- `fn clone(self: &Self) -> Config` — [`Config`](#config)
+- <span id="config-clone"></span>`fn clone(&self) -> Config` — [`Config`](#config)
 
 ##### `impl Debug for Config`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="config-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `StartByteMap`
 
@@ -178,25 +186,25 @@ result of the epsilon closure that the NFA engines tend to need to do.)
 
 #### Implementations
 
-- `fn new(lookm: &LookMatcher) -> StartByteMap` — [`LookMatcher`](../look/index.md), [`StartByteMap`](#startbytemap)
+- <span id="startbytemap-new"></span>`fn new(lookm: &LookMatcher) -> StartByteMap` — [`LookMatcher`](../look/index.md), [`StartByteMap`](#startbytemap)
 
-- `fn get(self: &Self, byte: u8) -> Start` — [`Start`](#start)
+- <span id="startbytemap-get"></span>`fn get(&self, byte: u8) -> Start` — [`Start`](#start)
 
-- `fn from_bytes(slice: &[u8]) -> Result<(StartByteMap, usize), DeserializeError>` — [`StartByteMap`](#startbytemap), [`DeserializeError`](../wire/index.md)
+- <span id="startbytemap-from-bytes"></span>`fn from_bytes(slice: &[u8]) -> Result<(StartByteMap, usize), DeserializeError>` — [`StartByteMap`](#startbytemap), [`DeserializeError`](../wire/index.md)
 
-- `fn write_to(self: &Self, dst: &mut [u8]) -> Result<usize, SerializeError>` — [`SerializeError`](../wire/index.md)
+- <span id="startbytemap-write-to"></span>`fn write_to(&self, dst: &mut [u8]) -> Result<usize, SerializeError>` — [`SerializeError`](../wire/index.md)
 
-- `fn write_to_len(self: &Self) -> usize`
+- <span id="startbytemap-write-to-len"></span>`fn write_to_len(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Clone for StartByteMap`
 
-- `fn clone(self: &Self) -> StartByteMap` — [`StartByteMap`](#startbytemap)
+- <span id="startbytemap-clone"></span>`fn clone(&self) -> StartByteMap` — [`StartByteMap`](#startbytemap)
 
 ##### `impl Debug for StartByteMap`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="startbytemap-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ## Enums
 
@@ -273,31 +281,31 @@ and can be found at `crate::util::determinize::set_lookbehind_from_start`.
 
 #### Implementations
 
-- `fn from_usize(n: usize) -> Option<Start>` — [`Start`](#start)
+- <span id="start-from-usize"></span>`fn from_usize(n: usize) -> Option<Start>` — [`Start`](#start)
 
-- `fn len() -> usize`
+- <span id="start-len"></span>`fn len() -> usize`
 
-- `fn as_u8(self: &Self) -> u8`
+- <span id="start-as-u8"></span>`fn as_u8(&self) -> u8`
 
-- `fn as_usize(self: &Self) -> usize`
+- <span id="start-as-usize"></span>`fn as_usize(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Clone for Start`
 
-- `fn clone(self: &Self) -> Start` — [`Start`](#start)
+- <span id="start-clone"></span>`fn clone(&self) -> Start` — [`Start`](#start)
 
 ##### `impl Copy for Start`
 
 ##### `impl Debug for Start`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="start-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Start`
 
 ##### `impl PartialEq for Start`
 
-- `fn eq(self: &Self, other: &Start) -> bool` — [`Start`](#start)
+- <span id="start-eq"></span>`fn eq(&self, other: &Start) -> bool` — [`Start`](#start)
 
 ##### `impl StructuralPartialEq for Start`
 

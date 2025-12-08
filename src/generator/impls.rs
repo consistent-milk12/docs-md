@@ -9,7 +9,7 @@ use std::fmt::Write;
 use rustdoc_types::{Id, Impl, Item};
 
 use crate::generator::context::RenderContext;
-use crate::generator::render_shared::{impl_sort_key, render_impl_items};
+use crate::generator::render_shared::{impl_sort_key, render_impl_items, sanitize_path};
 use crate::types::TypeRenderer;
 
 /// Blanket trait implementations to filter from output.
@@ -166,7 +166,7 @@ impl<'a> ImplRenderer<'a> {
             .trait_
             .as_ref()
             .map(|t| {
-                let mut name = t.path.clone();
+                let mut name = sanitize_path(&t.path).into_owned();
                 if let Some(args) = &t.args {
                     name.push_str(&self.render_generic_args_for_impl(args));
                 }
@@ -199,8 +199,13 @@ impl<'a> ImplRenderer<'a> {
     ///
     /// For methods, the first line of documentation is included as a brief summary.
     /// Type links are added for resolvable types in method signatures.
+    /// Method anchors are generated for deep linking (e.g., `#typename-methodname`).
     fn render_impl_methods(&self, md: &mut String, impl_block: &Impl) {
         let krate = self.ctx.krate();
+
+        // Extract the type name for method anchor generation
+        let type_name = self.type_renderer.render_type(&impl_block.for_);
+
         render_impl_items(
             md,
             impl_block,
@@ -208,6 +213,7 @@ impl<'a> ImplRenderer<'a> {
             &self.type_renderer,
             &Some(|item: &Item| self.process_docs(item)),
             &Some(|id: rustdoc_types::Id| self.ctx.create_link(id, self.current_file)),
+            Some(type_name.as_ref()),
         );
     }
 

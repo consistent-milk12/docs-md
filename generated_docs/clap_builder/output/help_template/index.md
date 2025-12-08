@@ -4,6 +4,42 @@
 
 # Module `help_template`
 
+## Contents
+
+- [Structs](#structs)
+  - [`AutoHelp`](#autohelp)
+  - [`HelpTemplate`](#helptemplate)
+- [Functions](#functions)
+  - [`positional_sort_key`](#positional_sort_key)
+  - [`option_sort_key`](#option_sort_key)
+  - [`dimensions`](#dimensions)
+  - [`should_show_arg`](#should_show_arg)
+  - [`should_show_subcommand`](#should_show_subcommand)
+- [Type Aliases](#type-aliases)
+  - [`ArgSortKey`](#argsortkey)
+- [Constants](#constants)
+  - [`DEFAULT_TEMPLATE`](#default_template)
+  - [`DEFAULT_NO_ARGS_TEMPLATE`](#default_no_args_template)
+  - [`SHORT_SIZE`](#short_size)
+  - [`NEXT_LINE_INDENT`](#next_line_indent)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`AutoHelp`](#autohelp) | struct | `clap` auto-generated help writer |
+| [`HelpTemplate`](#helptemplate) | struct | Help template writer |
+| [`positional_sort_key`](#positional_sort_key) | fn |  |
+| [`option_sort_key`](#option_sort_key) | fn |  |
+| [`dimensions`](#dimensions) | fn |  |
+| [`should_show_arg`](#should_show_arg) | fn |  |
+| [`should_show_subcommand`](#should_show_subcommand) | fn |  |
+| [`ArgSortKey`](#argsortkey) | type |  |
+| [`DEFAULT_TEMPLATE`](#default_template) | const |  |
+| [`DEFAULT_NO_ARGS_TEMPLATE`](#default_no_args_template) | const |  |
+| [`SHORT_SIZE`](#short_size) | const |  |
+| [`NEXT_LINE_INDENT`](#next_line_indent) | const |  |
+
 ## Structs
 
 ### `AutoHelp<'cmd, 'writer>`
@@ -18,9 +54,9 @@ struct AutoHelp<'cmd, 'writer> {
 
 #### Implementations
 
-- `fn new(writer: &'writer mut StyledStr, cmd: &'cmd Command, usage: &'cmd Usage<'cmd>, use_long: bool) -> Self` — [`StyledStr`](../../builder/index.md), [`Command`](../../index.md), [`Usage`](../usage/index.md)
+- <span id="autohelp-new"></span>`fn new(writer: &'writer mut StyledStr, cmd: &'cmd Command, usage: &'cmd Usage<'cmd>, use_long: bool) -> Self` — [`StyledStr`](../../builder/index.md), [`Command`](../../index.md), [`Usage`](../usage/index.md)
 
-- `fn write_help(self: &mut Self)`
+- <span id="autohelp-write-help"></span>`fn write_help(&mut self)`
 
 ### `HelpTemplate<'cmd, 'writer>`
 
@@ -42,31 +78,19 @@ Wraps a writer stream providing different methods to generate help for `clap` ob
 
 #### Implementations
 
-- `fn write_all_args(self: &mut Self)`
+- <span id="helptemplate-write-display-name"></span>`fn write_display_name(&mut self)`
 
-- `fn write_args(self: &mut Self, args: &[&Arg], _category: &str, sort_key: fn(&crate::builder::Arg) -> (usize, String))` — [`Arg`](../../index.md)
+- <span id="helptemplate-write-bin-name"></span>`fn write_bin_name(&mut self)`
 
-- `fn write_arg(self: &mut Self, arg: &Arg, next_line_help: bool, longest: usize)` — [`Arg`](../../index.md)
+- <span id="helptemplate-write-version"></span>`fn write_version(&mut self)`
 
-- `fn short(self: &mut Self, arg: &Arg)` — [`Arg`](../../index.md)
+- <span id="helptemplate-write-author"></span>`fn write_author(&mut self, before_new_line: bool, after_new_line: bool)`
 
-- `fn long(self: &mut Self, arg: &Arg)` — [`Arg`](../../index.md)
+- <span id="helptemplate-write-about"></span>`fn write_about(&mut self, before_new_line: bool, after_new_line: bool)`
 
-- `fn align_to_about(self: &mut Self, arg: &Arg, next_line_help: bool, longest: usize)` — [`Arg`](../../index.md)
+- <span id="helptemplate-write-before-help"></span>`fn write_before_help(&mut self)`
 
-- `fn help(self: &mut Self, arg: Option<&Arg>, about: &StyledStr, spec_vals: &str, next_line_help: bool, longest: usize)` — [`Arg`](../../index.md), [`StyledStr`](../../builder/index.md)
-
-- `fn will_args_wrap(self: &Self, args: &[&Arg], longest: usize) -> bool` — [`Arg`](../../index.md)
-
-- `fn arg_next_line_help(self: &Self, arg: &Arg, spec_vals: &str, longest: usize) -> bool` — [`Arg`](../../index.md)
-
-- `fn spec_vals(self: &Self, a: &Arg) -> String` — [`Arg`](../../index.md)
-
-- `fn get_spaces(self: &Self, n: usize) -> String`
-
-- `fn write_padding(self: &mut Self, amount: usize)`
-
-- `fn use_long_pv(self: &Self, arg: &Arg) -> bool` — [`Arg`](../../index.md)
+- <span id="helptemplate-write-after-help"></span>`fn write_after_help(&mut self)`
 
 ## Functions
 

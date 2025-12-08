@@ -4,6 +4,15 @@
 
 # Module `read_cache`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ReadCache`](#readcache) | struct | An implementation of [`ReadRef`] for data in a stream that implements |
+| [`ReadCacheInternal`](#readcacheinternal) | struct |  |
+| [`ReadCacheRange`](#readcacherange) | struct | An implementation of [`ReadRef`] for a range of data in a stream that |
+| [`ReadCacheOps`](#readcacheops) | trait | Operations required to implement [`ReadCache`]. |
+
 ## Structs
 
 ### `ReadCache<R: ReadCacheOps>`
@@ -30,19 +39,19 @@ the file size.
 
 #### Implementations
 
-- `fn new(read: R) -> Self`
+- <span id="readcache-new"></span>`fn new(read: R) -> Self`
 
-- `fn range(self: &Self, offset: u64, size: u64) -> ReadCacheRange<'_, R>` — [`ReadCacheRange`](../index.md)
+- <span id="readcache-range"></span>`fn range(&self, offset: u64, size: u64) -> ReadCacheRange<'_, R>` — [`ReadCacheRange`](../index.md)
 
-- `fn clear(self: &mut Self)`
+- <span id="readcache-clear"></span>`fn clear(&mut self)`
 
-- `fn into_inner(self: Self) -> R`
+- <span id="readcache-into-inner"></span>`fn into_inner(self) -> R`
 
 #### Trait Implementations
 
-##### `impl<R: $crate::fmt::Debug + ReadCacheOps> Debug for ReadCache<R>`
+##### `impl<R: fmt::Debug + ReadCacheOps> Debug for ReadCache<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="readcache-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ReadCacheInternal<R: ReadCacheOps>`
 
@@ -57,15 +66,15 @@ struct ReadCacheInternal<R: ReadCacheOps> {
 
 #### Implementations
 
-- `fn range_in_bounds(self: &mut Self, range: &Range<u64>) -> Result<(), ()>`
+- <span id="readcacheinternal-range-in-bounds"></span>`fn range_in_bounds(&mut self, range: &Range<u64>) -> Result<(), ()>`
 
-- `fn len(self: &mut Self) -> Result<u64, ()>`
+- <span id="readcacheinternal-len"></span>`fn len(&mut self) -> Result<u64, ()>`
 
 #### Trait Implementations
 
-##### `impl<R: $crate::fmt::Debug + ReadCacheOps> Debug for ReadCacheInternal<R>`
+##### `impl<R: fmt::Debug + ReadCacheOps> Debug for ReadCacheInternal<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="readcacheinternal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ReadCacheRange<'a, R: ReadCacheOps>`
 
@@ -86,21 +95,21 @@ Shares an underlying [`ReadCache`](../index.md) with a lifetime of `'a`.
 
 ##### `impl<'a, R: ReadCacheOps> Clone for ReadCacheRange<'a, R>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="readcacherange-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<'a, R: ReadCacheOps> Copy for ReadCacheRange<'a, R>`
 
-##### `impl<'a, R: $crate::fmt::Debug + ReadCacheOps> Debug for ReadCacheRange<'a, R>`
+##### `impl<'a, R: fmt::Debug + ReadCacheOps> Debug for ReadCacheRange<'a, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="readcacherange-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'a, R: ReadCacheOps> ReadRef for ReadCacheRange<'a, R>`
 
-- `fn len(self: Self) -> Result<u64, ()>`
+- <span id="readcacherange-len"></span>`fn len(self) -> Result<u64, ()>`
 
-- `fn read_bytes_at(self: Self, offset: u64, size: u64) -> Result<&'a [u8], ()>`
+- <span id="readcacherange-read-bytes-at"></span>`fn read_bytes_at(self, offset: u64, size: u64) -> Result<&'a [u8], ()>`
 
-- `fn read_bytes_at_until(self: Self, range: Range<u64>, delimiter: u8) -> Result<&'a [u8], ()>`
+- <span id="readcacherange-read-bytes-at-until"></span>`fn read_bytes_at_until(self, range: Range<u64>, delimiter: u8) -> Result<&'a [u8], ()>`
 
 ## Traits
 
@@ -118,19 +127,19 @@ A blanket implementation is provided for all types that implement
 
 #### Required Methods
 
-- `fn len(self: &mut Self) -> Result<u64, ()>`
+- `fn len(&mut self) -> Result<u64, ()>`
 
   Return the length of the stream.
 
-- `fn seek(self: &mut Self, pos: u64) -> Result<u64, ()>`
+- `fn seek(&mut self, pos: u64) -> Result<u64, ()>`
 
   Seek to the given position in the stream.
 
-- `fn read(self: &mut Self, buf: &mut [u8]) -> Result<usize, ()>`
+- `fn read(&mut self, buf: &mut [u8]) -> Result<usize, ()>`
 
   Read up to `buf.len()` bytes into `buf`.
 
-- `fn read_exact(self: &mut Self, buf: &mut [u8]) -> Result<(), ()>`
+- `fn read_exact(&mut self, buf: &mut [u8]) -> Result<(), ()>`
 
   Read exactly `buf.len()` bytes into `buf`.
 

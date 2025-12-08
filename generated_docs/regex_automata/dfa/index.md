@@ -322,6 +322,14 @@ representation to use less space. Also, one can enable DFA minimization
 via `dense::Config::minimize`, but it can increase compilation times
 dramatically.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`onepass`](#onepass) | mod | A DFA that can return spans for matching capturing groups. |
+| [`remapper`](#remapper) | mod |  |
+| [`DEAD`](#dead) | const | This is an alias for a state ID of zero. |
+
 ## Modules
 
 - [`onepass`](onepass/index.md) - A DFA that can return spans for matching capturing groups.

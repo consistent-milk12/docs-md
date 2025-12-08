@@ -4,6 +4,12 @@
 
 # Module `debug`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`DebugByte`](#debugbyte) | struct | A type that wraps a single byte with a convenient fmt::Debug impl that |
+
 ## Structs
 
 ### `DebugByte`
@@ -19,5 +25,5 @@ escapes the byte.
 
 ##### `impl Debug for DebugByte`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="debugbyte-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 

@@ -4,6 +4,12 @@
 
 # Module `parsing`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`accept_as_ident`](#accept_as_ident) | fn |  |
+
 ## Functions
 
 ### `accept_as_ident`

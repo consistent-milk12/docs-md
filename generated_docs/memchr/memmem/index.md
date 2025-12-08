@@ -70,6 +70,40 @@ assert_eq!(Some(4), finder.find(b"baz foo quux"));
 assert_eq!(None, finder.find(b"quux baz bar"));
 ```
 
+## Contents
+
+- [Modules](#modules)
+  - [`searcher`](#searcher)
+- [Structs](#structs)
+  - [`FindIter`](#finditer)
+  - [`FindRevIter`](#findreviter)
+  - [`Finder`](#finder)
+  - [`FinderRev`](#finderrev)
+  - [`FinderBuilder`](#finderbuilder)
+- [Enums](#enums)
+  - [`unnamed`](#unnamed)
+- [Functions](#functions)
+  - [`find_iter`](#find_iter)
+  - [`rfind_iter`](#rfind_iter)
+  - [`find`](#find)
+  - [`rfind`](#rfind)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`searcher`](#searcher) | mod |  |
+| [`FindIter`](#finditer) | struct | An iterator over non-overlapping substring matches. |
+| [`FindRevIter`](#findreviter) | struct | An iterator over non-overlapping substring matches in reverse. |
+| [`Finder`](#finder) | struct | A single substring searcher fixed to a particular needle. |
+| [`FinderRev`](#finderrev) | struct | A single substring reverse searcher fixed to a particular needle. |
+| [`FinderBuilder`](#finderbuilder) | struct | A builder for constructing non-default forward or reverse memmem finders. |
+| [`unnamed`](#unnamed) | enum |  |
+| [`find_iter`](#find_iter) | fn | Returns an iterator over all non-overlapping occurrences of a substring in |
+| [`rfind_iter`](#rfind_iter) | fn | Returns a reverse iterator over all non-overlapping occurrences of a |
+| [`find`](#find) | fn | Returns the index of the first occurrence of the given needle. |
+| [`rfind`](#rfind) | fn | Returns the index of the last occurrence of the given needle. |
+
 ## Modules
 
 - [`searcher`](searcher/index.md) - 
@@ -96,35 +130,35 @@ needle.
 
 #### Implementations
 
-- `fn new(haystack: &'h [u8], finder: Finder<'n>) -> FindIter<'h, 'n>` — [`Finder`](#finder), [`FindIter`](#finditer)
+- <span id="finditer-new"></span>`fn new(haystack: &'h [u8], finder: Finder<'n>) -> FindIter<'h, 'n>` — [`Finder`](#finder), [`FindIter`](#finditer)
 
-- `fn into_owned(self: Self) -> FindIter<'h, 'static>` — [`FindIter`](#finditer)
+- <span id="finditer-into-owned"></span>`fn into_owned(self) -> FindIter<'h, 'static>` — [`FindIter`](#finditer)
 
 #### Trait Implementations
 
 ##### `impl<'h, 'n> Clone for FindIter<'h, 'n>`
 
-- `fn clone(self: &Self) -> FindIter<'h, 'n>` — [`FindIter`](#finditer)
+- <span id="finditer-clone"></span>`fn clone(&self) -> FindIter<'h, 'n>` — [`FindIter`](#finditer)
 
 ##### `impl<'h, 'n> Debug for FindIter<'h, 'n>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="finditer-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for FindIter<'h, 'n>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="finditer-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="finditer-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="finditer-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'h, 'n> Iterator for FindIter<'h, 'n>`
 
-- `type Item = usize`
+- <span id="finditer-item"></span>`type Item = usize`
 
-- `fn next(self: &mut Self) -> Option<usize>`
+- <span id="finditer-next"></span>`fn next(&mut self) -> Option<usize>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="finditer-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ### `FindRevIter<'h, 'n>`
 
@@ -152,33 +186,33 @@ needle.
 
 #### Implementations
 
-- `fn new(haystack: &'h [u8], finder: FinderRev<'n>) -> FindRevIter<'h, 'n>` — [`FinderRev`](#finderrev), [`FindRevIter`](#findreviter)
+- <span id="findreviter-new"></span>`fn new(haystack: &'h [u8], finder: FinderRev<'n>) -> FindRevIter<'h, 'n>` — [`FinderRev`](#finderrev), [`FindRevIter`](#findreviter)
 
-- `fn into_owned(self: Self) -> FindRevIter<'h, 'static>` — [`FindRevIter`](#findreviter)
+- <span id="findreviter-into-owned"></span>`fn into_owned(self) -> FindRevIter<'h, 'static>` — [`FindRevIter`](#findreviter)
 
 #### Trait Implementations
 
 ##### `impl<'h, 'n> Clone for FindRevIter<'h, 'n>`
 
-- `fn clone(self: &Self) -> FindRevIter<'h, 'n>` — [`FindRevIter`](#findreviter)
+- <span id="findreviter-clone"></span>`fn clone(&self) -> FindRevIter<'h, 'n>` — [`FindRevIter`](#findreviter)
 
 ##### `impl<'h, 'n> Debug for FindRevIter<'h, 'n>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="findreviter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for FindRevIter<'h, 'n>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="findreviter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="findreviter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="findreviter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'h, 'n> Iterator for FindRevIter<'h, 'n>`
 
-- `type Item = usize`
+- <span id="findreviter-item"></span>`type Item = usize`
 
-- `fn next(self: &mut Self) -> Option<usize>`
+- <span id="findreviter-next"></span>`fn next(&mut self) -> Option<usize>`
 
 ### `Finder<'n>`
 
@@ -205,27 +239,27 @@ the lifetime of its needle.
 
 #### Implementations
 
-- `fn new<B: ?Sized + AsRef<[u8]>>(needle: &'n B) -> Finder<'n>` — [`Finder`](#finder)
+- <span id="finder-new"></span>`fn new<B: ?Sized + AsRef<[u8]>>(needle: &'n B) -> Finder<'n>` — [`Finder`](#finder)
 
-- `fn find(self: &Self, haystack: &[u8]) -> Option<usize>`
+- <span id="finder-find"></span>`fn find(&self, haystack: &[u8]) -> Option<usize>`
 
-- `fn find_iter<'a, 'h>(self: &'a Self, haystack: &'h [u8]) -> FindIter<'h, 'a>` — [`FindIter`](#finditer)
+- <span id="finder-find-iter"></span>`fn find_iter<'a, 'h>(self: &'a Self, haystack: &'h [u8]) -> FindIter<'h, 'a>` — [`FindIter`](#finditer)
 
-- `fn into_owned(self: Self) -> Finder<'static>` — [`Finder`](#finder)
+- <span id="finder-into-owned"></span>`fn into_owned(self) -> Finder<'static>` — [`Finder`](#finder)
 
-- `fn as_ref(self: &Self) -> Finder<'_>` — [`Finder`](#finder)
+- <span id="finder-as-ref"></span>`fn as_ref(&self) -> Finder<'_>` — [`Finder`](#finder)
 
-- `fn needle(self: &Self) -> &[u8]`
+- <span id="finder-needle"></span>`fn needle(&self) -> &[u8]`
 
 #### Trait Implementations
 
 ##### `impl<'n> Clone for Finder<'n>`
 
-- `fn clone(self: &Self) -> Finder<'n>` — [`Finder`](#finder)
+- <span id="finder-clone"></span>`fn clone(&self) -> Finder<'n>` — [`Finder`](#finder)
 
 ##### `impl<'n> Debug for Finder<'n>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="finder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `FinderRev<'n>`
 
@@ -252,27 +286,27 @@ the lifetime of its needle.
 
 #### Implementations
 
-- `fn new<B: ?Sized + AsRef<[u8]>>(needle: &'n B) -> FinderRev<'n>` — [`FinderRev`](#finderrev)
+- <span id="finderrev-new"></span>`fn new<B: ?Sized + AsRef<[u8]>>(needle: &'n B) -> FinderRev<'n>` — [`FinderRev`](#finderrev)
 
-- `fn rfind<B: AsRef<[u8]>>(self: &Self, haystack: B) -> Option<usize>`
+- <span id="finderrev-rfind"></span>`fn rfind<B: AsRef<[u8]>>(&self, haystack: B) -> Option<usize>`
 
-- `fn rfind_iter<'a, 'h>(self: &'a Self, haystack: &'h [u8]) -> FindRevIter<'h, 'a>` — [`FindRevIter`](#findreviter)
+- <span id="finderrev-rfind-iter"></span>`fn rfind_iter<'a, 'h>(self: &'a Self, haystack: &'h [u8]) -> FindRevIter<'h, 'a>` — [`FindRevIter`](#findreviter)
 
-- `fn into_owned(self: Self) -> FinderRev<'static>` — [`FinderRev`](#finderrev)
+- <span id="finderrev-into-owned"></span>`fn into_owned(self) -> FinderRev<'static>` — [`FinderRev`](#finderrev)
 
-- `fn as_ref(self: &Self) -> FinderRev<'_>` — [`FinderRev`](#finderrev)
+- <span id="finderrev-as-ref"></span>`fn as_ref(&self) -> FinderRev<'_>` — [`FinderRev`](#finderrev)
 
-- `fn needle(self: &Self) -> &[u8]`
+- <span id="finderrev-needle"></span>`fn needle(&self) -> &[u8]`
 
 #### Trait Implementations
 
 ##### `impl<'n> Clone for FinderRev<'n>`
 
-- `fn clone(self: &Self) -> FinderRev<'n>` — [`FinderRev`](#finderrev)
+- <span id="finderrev-clone"></span>`fn clone(&self) -> FinderRev<'n>` — [`FinderRev`](#finderrev)
 
 ##### `impl<'n> Debug for FinderRev<'n>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="finderrev-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `FinderBuilder`
 
@@ -290,29 +324,29 @@ heuristic prefilters used to speed up certain searches.
 
 #### Implementations
 
-- `fn new() -> FinderBuilder` — [`FinderBuilder`](#finderbuilder)
+- <span id="finderbuilder-new"></span>`fn new() -> FinderBuilder` — [`FinderBuilder`](#finderbuilder)
 
-- `fn build_forward<'n, B: ?Sized + AsRef<[u8]>>(self: &Self, needle: &'n B) -> Finder<'n>` — [`Finder`](#finder)
+- <span id="finderbuilder-build-forward"></span>`fn build_forward<'n, B: ?Sized + AsRef<[u8]>>(&self, needle: &'n B) -> Finder<'n>` — [`Finder`](#finder)
 
-- `fn build_forward_with_ranker<'n, R: HeuristicFrequencyRank, B: ?Sized + AsRef<[u8]>>(self: &Self, ranker: R, needle: &'n B) -> Finder<'n>` — [`Finder`](#finder)
+- <span id="finderbuilder-build-forward-with-ranker"></span>`fn build_forward_with_ranker<'n, R: HeuristicFrequencyRank, B: ?Sized + AsRef<[u8]>>(&self, ranker: R, needle: &'n B) -> Finder<'n>` — [`Finder`](#finder)
 
-- `fn build_reverse<'n, B: ?Sized + AsRef<[u8]>>(self: &Self, needle: &'n B) -> FinderRev<'n>` — [`FinderRev`](#finderrev)
+- <span id="finderbuilder-build-reverse"></span>`fn build_reverse<'n, B: ?Sized + AsRef<[u8]>>(&self, needle: &'n B) -> FinderRev<'n>` — [`FinderRev`](#finderrev)
 
-- `fn prefilter(self: &mut Self, prefilter: Prefilter) -> &mut FinderBuilder` — [`Prefilter`](#prefilter), [`FinderBuilder`](#finderbuilder)
+- <span id="finderbuilder-prefilter"></span>`fn prefilter(&mut self, prefilter: Prefilter) -> &mut FinderBuilder` — [`Prefilter`](#prefilter), [`FinderBuilder`](#finderbuilder)
 
 #### Trait Implementations
 
 ##### `impl Clone for FinderBuilder`
 
-- `fn clone(self: &Self) -> FinderBuilder` — [`FinderBuilder`](#finderbuilder)
+- <span id="finderbuilder-clone"></span>`fn clone(&self) -> FinderBuilder` — [`FinderBuilder`](#finderbuilder)
 
 ##### `impl Debug for FinderBuilder`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="finderbuilder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for FinderBuilder`
 
-- `fn default() -> FinderBuilder` — [`FinderBuilder`](#finderbuilder)
+- <span id="finderbuilder-default"></span>`fn default() -> FinderBuilder` — [`FinderBuilder`](#finderbuilder)
 
 ## Enums
 
@@ -365,23 +399,23 @@ useful.
 
 #### Implementations
 
-- `fn is_none(self: &Self) -> bool`
+- <span id="prefilterconfig-is-none"></span>`fn is_none(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for PrefilterConfig`
 
-- `fn clone(self: &Self) -> PrefilterConfig` — [`Prefilter`](#prefilter)
+- <span id="prefilterconfig-clone"></span>`fn clone(&self) -> PrefilterConfig` — [`Prefilter`](#prefilter)
 
 ##### `impl Copy for PrefilterConfig`
 
 ##### `impl Debug for PrefilterConfig`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="prefilterconfig-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for PrefilterConfig`
 
-- `fn default() -> PrefilterConfig` — [`Prefilter`](#prefilter)
+- <span id="prefilterconfig-default"></span>`fn default() -> PrefilterConfig` — [`Prefilter`](#prefilter)
 
 ## Functions
 

@@ -55,6 +55,12 @@ It's possible that other types of NFAs will be added in the future, such as a
 [Glushkov NFA](https://en.wikipedia.org/wiki/Glushkov%27s_construction_algorithm).
 But currently, this crate only provides a Thompson NFA.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`thompson`](#thompson) | mod | Defines a Thompson NFA and provides the [`PikeVM`](pikevm::PikeVM) and |
+
 ## Modules
 
 - [`thompson`](thompson/index.md) - Defines a Thompson NFA and provides the [`PikeVM`](pikevm::PikeVM) and

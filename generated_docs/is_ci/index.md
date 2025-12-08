@@ -1,5 +1,14 @@
 # Crate `is_ci`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`is_ci`](#is_ci) | fn | Returns true if the current environment is found to probably be a CI |
+| [`cached`](#cached) | fn | Returns true if the current environment is found to probably be a CI |
+| [`uncached`](#uncached) | fn | Returns true if the current environment is found to probably be a CI |
+| [`check`](#check) | fn |  |
+
 ## Functions
 
 ### `is_ci`

@@ -8,6 +8,37 @@ A facade around all the types we need from the `std`, `core`, and `alloc`
 crates. This avoids elaborate import wrangling having to happen in every
 module.
 
+## Contents
+
+- [Modules](#modules)
+  - [`core`](#core)
+- [Structs](#structs)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+- [Functions](#functions)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`core`](#core) | mod |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed`](#unnamed) | fn |  |
+
 ## Modules
 
 - [`core`](core/index.md) - 
@@ -199,55 +230,55 @@ It is also possible to implement your own version of `try_find`. See the
 
 #### Implementations
 
-- `const DEAD: StateID`
+- <span id="dfa-new"></span>`fn new<I, P>(patterns: I) -> Result<DFA, BuildError>` — [`FmtWrite`](#fmtwrite), [`default`](#default), [`FmtWrite`](#fmtwrite)
 
-- `fn set_matches(self: &mut Self, sid: StateID, pids: impl Iterator<Item = PatternID>)`
+- <span id="dfa-builder"></span>`fn builder() -> Builder`
 
-- `fn new<I, P>(patterns: I) -> Result<DFA, BuildError>` — [`FmtWrite`](#fmtwrite), [`default`](#default), [`FmtWrite`](#fmtwrite)
+- <span id="dfa-dead"></span>`const DEAD: StateID`
 
-- `fn builder() -> Builder`
+- <span id="dfa-set-matches"></span>`fn set_matches(&mut self, sid: StateID, pids: impl Iterator<Item = PatternID>)`
 
 #### Trait Implementations
 
 ##### `impl Automaton for DFA`
 
-- `fn start_state(self: &Self, anchored: Anchored) -> Result<StateID, MatchError>` — [`FmtWrite`](#fmtwrite)
+- <span id="dfa-start-state"></span>`fn start_state(&self, anchored: Anchored) -> Result<StateID, MatchError>` — [`FmtWrite`](#fmtwrite)
 
-- `fn next_state(self: &Self, _anchored: Anchored, sid: StateID, byte: u8) -> StateID`
+- <span id="dfa-next-state"></span>`fn next_state(&self, _anchored: Anchored, sid: StateID, byte: u8) -> StateID`
 
-- `fn is_special(self: &Self, sid: StateID) -> bool`
+- <span id="dfa-is-special"></span>`fn is_special(&self, sid: StateID) -> bool`
 
-- `fn is_dead(self: &Self, sid: StateID) -> bool`
+- <span id="dfa-is-dead"></span>`fn is_dead(&self, sid: StateID) -> bool`
 
-- `fn is_match(self: &Self, sid: StateID) -> bool`
+- <span id="dfa-is-match"></span>`fn is_match(&self, sid: StateID) -> bool`
 
-- `fn is_start(self: &Self, sid: StateID) -> bool`
+- <span id="dfa-is-start"></span>`fn is_start(&self, sid: StateID) -> bool`
 
-- `fn match_kind(self: &Self) -> MatchKind`
+- <span id="dfa-match-kind"></span>`fn match_kind(&self) -> MatchKind`
 
-- `fn patterns_len(self: &Self) -> usize`
+- <span id="dfa-patterns-len"></span>`fn patterns_len(&self) -> usize`
 
-- `fn pattern_len(self: &Self, pid: PatternID) -> usize`
+- <span id="dfa-pattern-len"></span>`fn pattern_len(&self, pid: PatternID) -> usize`
 
-- `fn min_pattern_len(self: &Self) -> usize`
+- <span id="dfa-min-pattern-len"></span>`fn min_pattern_len(&self) -> usize`
 
-- `fn max_pattern_len(self: &Self) -> usize`
+- <span id="dfa-max-pattern-len"></span>`fn max_pattern_len(&self) -> usize`
 
-- `fn match_len(self: &Self, sid: StateID) -> usize`
+- <span id="dfa-match-len"></span>`fn match_len(&self, sid: StateID) -> usize`
 
-- `fn match_pattern(self: &Self, sid: StateID, index: usize) -> PatternID`
+- <span id="dfa-match-pattern"></span>`fn match_pattern(&self, sid: StateID, index: usize) -> PatternID`
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="dfa-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- `fn prefilter(self: &Self) -> Option<&Prefilter>` — [`Cow`](#cow)
+- <span id="dfa-prefilter"></span>`fn prefilter(&self) -> Option<&Prefilter>` — [`Cow`](#cow)
 
 ##### `impl Clone for DFA`
 
-- `fn clone(self: &Self) -> DFA` — [`default`](#default)
+- <span id="dfa-clone"></span>`fn clone(&self) -> DFA` — [`default`](#default)
 
 ##### `impl Debug for DFA`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="dfa-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Sealed for crate::dfa::DFA`
 

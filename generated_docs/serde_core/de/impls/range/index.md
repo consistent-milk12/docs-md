@@ -4,6 +4,14 @@
 
 # Module `range`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`RangeVisitor`](#rangevisitor) | struct |  |
+| [`Field`](#field) | enum |  |
+| [`FIELDS`](#fields) | const |  |
+
 ## Structs
 
 ### `RangeVisitor<Idx>`
@@ -19,17 +27,17 @@ struct RangeVisitor<Idx> {
 
 ##### `impl<'de, T> Expected for RangeVisitor<Idx>`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rangevisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'de, Idx> Visitor for RangeVisitor<Idx>`
 
-- `type Value = (Idx, Idx)`
+- <span id="rangevisitor-value"></span>`type Value = (Idx, Idx)`
 
-- `fn expecting(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="rangevisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- `fn visit_seq<A>(self: Self, seq: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](../../index.md)
+- <span id="rangevisitor-visit-seq"></span>`fn visit_seq<A>(self, seq: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](../../index.md)
 
-- `fn visit_map<A>(self: Self, map: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](../../index.md)
+- <span id="rangevisitor-visit-map"></span>`fn visit_map<A>(self, map: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](../../index.md)
 
 ## Enums
 
@@ -46,7 +54,7 @@ enum Field {
 
 ##### `impl<'de> Deserialize for Field`
 
-- `fn deserialize<D>(deserializer: D) -> Result<Self, <D as >::Error>` — [`Deserializer`](../../../index.md)
+- <span id="field-deserialize"></span>`fn deserialize<D>(deserializer: D) -> Result<Self, <D as >::Error>` — [`Deserializer`](../../../index.md)
 
 ##### `impl<T> DeserializeOwned for Field`
 

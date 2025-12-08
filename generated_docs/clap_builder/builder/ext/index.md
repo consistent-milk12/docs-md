@@ -4,6 +4,13 @@
 
 # Module `ext`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Extensions`](#extensions) | struct |  |
+| [`Extension`](#extension) | trait |  |
+
 ## Structs
 
 ### `Extensions`
@@ -16,27 +23,27 @@ struct Extensions {
 
 #### Implementations
 
-- `fn get<T: Extension>(self: &Self) -> Option<&T>`
+- <span id="extensions-get"></span>`fn get<T: Extension>(&self) -> Option<&T>`
 
-- `fn set<T: Extension>(self: &mut Self, tagged: T) -> bool`
+- <span id="extensions-set"></span>`fn set<T: Extension>(&mut self, tagged: T) -> bool`
 
-- `fn remove<T: Extension>(self: &mut Self) -> Option<T>`
+- <span id="extensions-remove"></span>`fn remove<T: Extension>(&mut self) -> Option<T>`
 
-- `fn update(self: &mut Self, other: &Self)`
+- <span id="extensions-update"></span>`fn update(&mut self, other: &Self)`
 
 #### Trait Implementations
 
 ##### `impl Clone for Extensions`
 
-- `fn clone(self: &Self) -> Extensions` — [`Extensions`](#extensions)
+- <span id="extensions-clone"></span>`fn clone(&self) -> Extensions` — [`Extensions`](#extensions)
 
 ##### `impl Debug for Extensions`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="extensions-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Extensions`
 
-- `fn default() -> Extensions` — [`Extensions`](#extensions)
+- <span id="extensions-default"></span>`fn default() -> Extensions` — [`Extensions`](#extensions)
 
 ## Traits
 

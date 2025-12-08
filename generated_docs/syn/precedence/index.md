@@ -4,6 +4,12 @@
 
 # Module `precedence`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Precedence`](#precedence) | enum |  |
+
 ## Enums
 
 ### `Precedence`
@@ -31,25 +37,25 @@ enum Precedence {
 
 #### Implementations
 
-- `const MIN: Self`
+- <span id="precedence-min"></span>`const MIN: Self`
 
-- `fn of_binop(op: &BinOp) -> Self` — [`BinOp`](../index.md)
+- <span id="precedence-of-binop"></span>`fn of_binop(op: &BinOp) -> Self` — [`BinOp`](../index.md)
 
-- `fn of(e: &Expr) -> Self` — [`Expr`](../index.md)
+- <span id="precedence-of"></span>`fn of(e: &Expr) -> Self` — [`Expr`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Precedence`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="precedence-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Precedence`
 
 ##### `impl PartialEq for Precedence`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="precedence-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl PartialOrd for Precedence`
 
-- `fn partial_cmp(self: &Self, other: &Self) -> Option<Ordering>`
+- <span id="precedence-partial-cmp"></span>`fn partial_cmp(&self, other: &Self) -> Option<Ordering>`
 

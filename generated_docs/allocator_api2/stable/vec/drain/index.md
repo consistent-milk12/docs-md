@@ -4,6 +4,12 @@
 
 # Module `drain`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Drain`](#drain) | struct | A draining iterator for `Vec<T>`. |
+
 ## Structs
 
 ### `Drain<'a, T: 'a, A: Allocator + 'a>`
@@ -45,27 +51,29 @@ let iter: std::vec::Drain<_> = v.drain(..);
 
 #### Implementations
 
-- `unsafe fn fill<I: Iterator<Item = T>>(self: &mut Self, replace_with: &mut I) -> bool`
+- <span id="drain-as-slice"></span>`fn as_slice(&self) -> &[T]`
 
-- `unsafe fn move_tail(self: &mut Self, additional: usize)`
+- <span id="drain-allocator"></span>`fn allocator(&self) -> &A`
+
+- <span id="drain-keep-rest"></span>`fn keep_rest(self)`
 
 #### Trait Implementations
 
 ##### `impl<'a, T, A: Allocator> AsRef for Drain<'a, T, A>`
 
-- `fn as_ref(self: &Self) -> &[T]`
+- <span id="drain-as-ref"></span>`fn as_ref(&self) -> &[T]`
 
 ##### `impl<T: fmt::Debug, A: Allocator> Debug for Drain<'_, T, A>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="drain-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T, A: Allocator> DoubleEndedIterator for Drain<'_, T, A>`
 
-- `fn next_back(self: &mut Self) -> Option<T>`
+- <span id="drain-next-back"></span>`fn next_back(&mut self) -> Option<T>`
 
 ##### `impl<T, A: Allocator> Drop for Drain<'_, T, A>`
 
-- `fn drop(self: &mut Self)`
+- <span id="drain-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<T, A: Allocator> ExactSizeIterator for Drain<'_, T, A>`
 
@@ -73,19 +81,19 @@ let iter: std::vec::Drain<_> = v.drain(..);
 
 ##### `impl<I> IntoIterator for Drain<'a, T, A>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="drain-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="drain-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="drain-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<T, A: Allocator> Iterator for Drain<'_, T, A>`
 
-- `type Item = T`
+- <span id="drain-item"></span>`type Item = T`
 
-- `fn next(self: &mut Self) -> Option<T>`
+- <span id="drain-next"></span>`fn next(&mut self) -> Option<T>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="drain-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ##### `impl<T: Send, A: Send + Allocator> Send for Drain<'_, T, A>`
 

@@ -4,6 +4,43 @@
 
 # Module `grapheme_cluster_break`
 
+## Contents
+
+- [Constants](#constants)
+  - [`BY_NAME`](#by_name)
+  - [`CR`](#cr)
+  - [`CONTROL`](#control)
+  - [`EXTEND`](#extend)
+  - [`L`](#l)
+  - [`LF`](#lf)
+  - [`LV`](#lv)
+  - [`LVT`](#lvt)
+  - [`PREPEND`](#prepend)
+  - [`REGIONAL_INDICATOR`](#regional_indicator)
+  - [`SPACINGMARK`](#spacingmark)
+  - [`T`](#t)
+  - [`V`](#v)
+  - [`ZWJ`](#zwj)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`BY_NAME`](#by_name) | const |  |
+| [`CR`](#cr) | const |  |
+| [`CONTROL`](#control) | const |  |
+| [`EXTEND`](#extend) | const |  |
+| [`L`](#l) | const |  |
+| [`LF`](#lf) | const |  |
+| [`LV`](#lv) | const |  |
+| [`LVT`](#lvt) | const |  |
+| [`PREPEND`](#prepend) | const |  |
+| [`REGIONAL_INDICATOR`](#regional_indicator) | const |  |
+| [`SPACINGMARK`](#spacingmark) | const |  |
+| [`T`](#t) | const |  |
+| [`V`](#v) | const |  |
+| [`ZWJ`](#zwj) | const |  |
+
 ## Constants
 
 ### `BY_NAME`

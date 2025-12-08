@@ -4,6 +4,15 @@
 
 # Module `progress_bar`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ProgressBar`](#progressbar) | struct | A progress bar or spinner |
+| [`WeakProgressBar`](#weakprogressbar) | struct | A weak reference to a [`ProgressBar`]. |
+| [`Ticker`](#ticker) | struct |  |
+| [`TickerControl`](#tickercontrol) | struct |  |
+
 ## Structs
 
 ### `ProgressBar`
@@ -23,135 +32,135 @@ just increments the refcount (so the original and its clone share the same state
 
 #### Implementations
 
-- `fn new(len: u64) -> Self`
+- <span id="progressbar-new"></span>`fn new(len: u64) -> Self`
 
-- `fn no_length() -> Self`
+- <span id="progressbar-no-length"></span>`fn no_length() -> Self`
 
-- `fn hidden() -> Self`
+- <span id="progressbar-hidden"></span>`fn hidden() -> Self`
 
-- `fn with_draw_target(len: Option<u64>, draw_target: ProgressDrawTarget) -> Self` — [`ProgressDrawTarget`](../index.md)
+- <span id="progressbar-with-draw-target"></span>`fn with_draw_target(len: Option<u64>, draw_target: ProgressDrawTarget) -> Self` — [`ProgressDrawTarget`](../index.md)
 
-- `fn style(self: &Self) -> ProgressStyle` — [`ProgressStyle`](../index.md)
+- <span id="progressbar-style"></span>`fn style(&self) -> ProgressStyle` — [`ProgressStyle`](../index.md)
 
-- `fn with_style(self: Self, style: ProgressStyle) -> Self` — [`ProgressStyle`](../index.md)
+- <span id="progressbar-with-style"></span>`fn with_style(self, style: ProgressStyle) -> Self` — [`ProgressStyle`](../index.md)
 
-- `fn with_tab_width(self: Self, tab_width: usize) -> Self`
+- <span id="progressbar-with-tab-width"></span>`fn with_tab_width(self, tab_width: usize) -> Self`
 
-- `fn with_prefix(self: Self, prefix: impl Into<Cow<'static, str>>) -> Self`
+- <span id="progressbar-with-prefix"></span>`fn with_prefix(self, prefix: impl Into<Cow<'static, str>>) -> Self`
 
-- `fn with_message(self: Self, message: impl Into<Cow<'static, str>>) -> Self`
+- <span id="progressbar-with-message"></span>`fn with_message(self, message: impl Into<Cow<'static, str>>) -> Self`
 
-- `fn with_position(self: Self, pos: u64) -> Self`
+- <span id="progressbar-with-position"></span>`fn with_position(self, pos: u64) -> Self`
 
-- `fn with_elapsed(self: Self, elapsed: Duration) -> Self`
+- <span id="progressbar-with-elapsed"></span>`fn with_elapsed(self, elapsed: Duration) -> Self`
 
-- `fn with_finish(self: Self, finish: ProgressFinish) -> Self` — [`ProgressFinish`](../index.md)
+- <span id="progressbar-with-finish"></span>`fn with_finish(self, finish: ProgressFinish) -> Self` — [`ProgressFinish`](../index.md)
 
-- `fn new_spinner() -> Self`
+- <span id="progressbar-new-spinner"></span>`fn new_spinner() -> Self`
 
-- `fn set_style(self: &Self, style: ProgressStyle)` — [`ProgressStyle`](../index.md)
+- <span id="progressbar-set-style"></span>`fn set_style(&self, style: ProgressStyle)` — [`ProgressStyle`](../index.md)
 
-- `fn set_tab_width(self: &Self, tab_width: usize)`
+- <span id="progressbar-set-tab-width"></span>`fn set_tab_width(&self, tab_width: usize)`
 
-- `fn enable_steady_tick(self: &Self, interval: Duration)`
+- <span id="progressbar-enable-steady-tick"></span>`fn enable_steady_tick(&self, interval: Duration)`
 
-- `fn disable_steady_tick(self: &Self)`
+- <span id="progressbar-disable-steady-tick"></span>`fn disable_steady_tick(&self)`
 
-- `fn stop_and_replace_ticker(self: &Self, interval: Option<Duration>)`
+- <span id="progressbar-stop-and-replace-ticker"></span>`fn stop_and_replace_ticker(&self, interval: Option<Duration>)`
 
-- `fn tick(self: &Self)`
+- <span id="progressbar-tick"></span>`fn tick(&self)`
 
-- `fn tick_inner(self: &Self, now: Instant)`
+- <span id="progressbar-tick-inner"></span>`fn tick_inner(&self, now: Instant)`
 
-- `fn inc(self: &Self, delta: u64)`
+- <span id="progressbar-inc"></span>`fn inc(&self, delta: u64)`
 
-- `fn dec(self: &Self, delta: u64)`
+- <span id="progressbar-dec"></span>`fn dec(&self, delta: u64)`
 
-- `fn is_hidden(self: &Self) -> bool`
+- <span id="progressbar-is-hidden"></span>`fn is_hidden(&self) -> bool`
 
-- `fn is_finished(self: &Self) -> bool`
+- <span id="progressbar-is-finished"></span>`fn is_finished(&self) -> bool`
 
-- `fn println<I: AsRef<str>>(self: &Self, msg: I)`
+- <span id="progressbar-println"></span>`fn println<I: AsRef<str>>(&self, msg: I)`
 
-- `fn update(self: &Self, f: impl FnOnce(&mut ProgressState))` — [`ProgressState`](../index.md)
+- <span id="progressbar-update"></span>`fn update(&self, f: impl FnOnce(&mut ProgressState))` — [`ProgressState`](../index.md)
 
-- `fn set_position(self: &Self, pos: u64)`
+- <span id="progressbar-set-position"></span>`fn set_position(&self, pos: u64)`
 
-- `fn unset_length(self: &Self)`
+- <span id="progressbar-unset-length"></span>`fn unset_length(&self)`
 
-- `fn set_length(self: &Self, len: u64)`
+- <span id="progressbar-set-length"></span>`fn set_length(&self, len: u64)`
 
-- `fn inc_length(self: &Self, delta: u64)`
+- <span id="progressbar-inc-length"></span>`fn inc_length(&self, delta: u64)`
 
-- `fn dec_length(self: &Self, delta: u64)`
+- <span id="progressbar-dec-length"></span>`fn dec_length(&self, delta: u64)`
 
-- `fn set_prefix(self: &Self, prefix: impl Into<Cow<'static, str>>)`
+- <span id="progressbar-set-prefix"></span>`fn set_prefix(&self, prefix: impl Into<Cow<'static, str>>)`
 
-- `fn set_message(self: &Self, msg: impl Into<Cow<'static, str>>)`
+- <span id="progressbar-set-message"></span>`fn set_message(&self, msg: impl Into<Cow<'static, str>>)`
 
-- `fn set_elapsed(self: &Self, elapsed: Duration)`
+- <span id="progressbar-set-elapsed"></span>`fn set_elapsed(&self, elapsed: Duration)`
 
-- `fn downgrade(self: &Self) -> WeakProgressBar` — [`WeakProgressBar`](../index.md)
+- <span id="progressbar-downgrade"></span>`fn downgrade(&self) -> WeakProgressBar` — [`WeakProgressBar`](../index.md)
 
-- `fn reset_eta(self: &Self)`
+- <span id="progressbar-reset-eta"></span>`fn reset_eta(&self)`
 
-- `fn reset_elapsed(self: &Self)`
+- <span id="progressbar-reset-elapsed"></span>`fn reset_elapsed(&self)`
 
-- `fn reset(self: &Self)`
+- <span id="progressbar-reset"></span>`fn reset(&self)`
 
-- `fn finish(self: &Self)`
+- <span id="progressbar-finish"></span>`fn finish(&self)`
 
-- `fn finish_with_message(self: &Self, msg: impl Into<Cow<'static, str>>)`
+- <span id="progressbar-finish-with-message"></span>`fn finish_with_message(&self, msg: impl Into<Cow<'static, str>>)`
 
-- `fn finish_and_clear(self: &Self)`
+- <span id="progressbar-finish-and-clear"></span>`fn finish_and_clear(&self)`
 
-- `fn abandon(self: &Self)`
+- <span id="progressbar-abandon"></span>`fn abandon(&self)`
 
-- `fn abandon_with_message(self: &Self, msg: impl Into<Cow<'static, str>>)`
+- <span id="progressbar-abandon-with-message"></span>`fn abandon_with_message(&self, msg: impl Into<Cow<'static, str>>)`
 
-- `fn finish_using_style(self: &Self)`
+- <span id="progressbar-finish-using-style"></span>`fn finish_using_style(&self)`
 
-- `fn set_draw_target(self: &Self, target: ProgressDrawTarget)` — [`ProgressDrawTarget`](../index.md)
+- <span id="progressbar-set-draw-target"></span>`fn set_draw_target(&self, target: ProgressDrawTarget)` — [`ProgressDrawTarget`](../index.md)
 
-- `fn force_draw(self: &Self)`
+- <span id="progressbar-force-draw"></span>`fn force_draw(&self)`
 
-- `fn suspend<F: FnOnce() -> R, R>(self: &Self, f: F) -> R`
+- <span id="progressbar-suspend"></span>`fn suspend<F: FnOnce() -> R, R>(&self, f: F) -> R`
 
-- `fn wrap_iter<It: Iterator>(self: &Self, it: It) -> ProgressBarIter<It>` — [`ProgressBarIter`](../index.md)
+- <span id="progressbar-wrap-iter"></span>`fn wrap_iter<It: Iterator>(&self, it: It) -> ProgressBarIter<It>` — [`ProgressBarIter`](../index.md)
 
-- `fn wrap_read<R: io::Read>(self: &Self, read: R) -> ProgressBarIter<R>` — [`ProgressBarIter`](../index.md)
+- <span id="progressbar-wrap-read"></span>`fn wrap_read<R: io::Read>(&self, read: R) -> ProgressBarIter<R>` — [`ProgressBarIter`](../index.md)
 
-- `fn wrap_write<W: io::Write>(self: &Self, write: W) -> ProgressBarIter<W>` — [`ProgressBarIter`](../index.md)
+- <span id="progressbar-wrap-write"></span>`fn wrap_write<W: io::Write>(&self, write: W) -> ProgressBarIter<W>` — [`ProgressBarIter`](../index.md)
 
-- `fn position(self: &Self) -> u64`
+- <span id="progressbar-position"></span>`fn position(&self) -> u64`
 
-- `fn length(self: &Self) -> Option<u64>`
+- <span id="progressbar-length"></span>`fn length(&self) -> Option<u64>`
 
-- `fn eta(self: &Self) -> Duration`
+- <span id="progressbar-eta"></span>`fn eta(&self) -> Duration`
 
-- `fn per_sec(self: &Self) -> f64`
+- <span id="progressbar-per-sec"></span>`fn per_sec(&self) -> f64`
 
-- `fn duration(self: &Self) -> Duration`
+- <span id="progressbar-duration"></span>`fn duration(&self) -> Duration`
 
-- `fn elapsed(self: &Self) -> Duration`
+- <span id="progressbar-elapsed"></span>`fn elapsed(&self) -> Duration`
 
-- `fn index(self: &Self) -> Option<usize>`
+- <span id="progressbar-index"></span>`fn index(&self) -> Option<usize>`
 
-- `fn message(self: &Self) -> String`
+- <span id="progressbar-message"></span>`fn message(&self) -> String`
 
-- `fn prefix(self: &Self) -> String`
+- <span id="progressbar-prefix"></span>`fn prefix(&self) -> String`
 
-- `fn state(self: &Self) -> MutexGuard<'_, BarState>` — [`BarState`](../state/index.md)
+- <span id="progressbar-state"></span>`fn state(&self) -> MutexGuard<'_, BarState>` — [`BarState`](../state/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for ProgressBar`
 
-- `fn clone(self: &Self) -> ProgressBar` — [`ProgressBar`](../index.md)
+- <span id="progressbar-clone"></span>`fn clone(&self) -> ProgressBar` — [`ProgressBar`](../index.md)
 
 ##### `impl Debug for ProgressBar`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="progressbar-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `WeakProgressBar`
 
@@ -169,19 +178,19 @@ Useful for creating custom steady tick implementations
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="weakprogressbar-new"></span>`fn new() -> Self`
 
-- `fn upgrade(self: &Self) -> Option<ProgressBar>` — [`ProgressBar`](../index.md)
+- <span id="weakprogressbar-upgrade"></span>`fn upgrade(&self) -> Option<ProgressBar>` — [`ProgressBar`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for WeakProgressBar`
 
-- `fn clone(self: &Self) -> WeakProgressBar` — [`WeakProgressBar`](../index.md)
+- <span id="weakprogressbar-clone"></span>`fn clone(&self) -> WeakProgressBar` — [`WeakProgressBar`](../index.md)
 
 ##### `impl Default for WeakProgressBar`
 
-- `fn default() -> WeakProgressBar` — [`WeakProgressBar`](../index.md)
+- <span id="weakprogressbar-default"></span>`fn default() -> WeakProgressBar` — [`WeakProgressBar`](../index.md)
 
 ### `Ticker`
 
@@ -194,15 +203,15 @@ struct Ticker {
 
 #### Implementations
 
-- `fn new(interval: Duration, bar_state: &Arc<Mutex<BarState>>) -> Self` — [`BarState`](../state/index.md)
+- <span id="ticker-new"></span>`fn new(interval: Duration, bar_state: &Arc<Mutex<BarState>>) -> Self` — [`BarState`](../state/index.md)
 
-- `fn stop(self: &Self)`
+- <span id="ticker-stop"></span>`fn stop(&self)`
 
 #### Trait Implementations
 
 ##### `impl Drop for Ticker`
 
-- `fn drop(self: &mut Self)`
+- <span id="ticker-drop"></span>`fn drop(&mut self)`
 
 ### `TickerControl`
 
@@ -215,5 +224,5 @@ struct TickerControl {
 
 #### Implementations
 
-- `fn run(self: &Self, interval: Duration)`
+- <span id="tickercontrol-run"></span>`fn run(&self, interval: Duration)`
 

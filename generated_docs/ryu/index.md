@@ -78,6 +78,41 @@ examples:
 Both libraries print short decimals such as 0.0000123 without scientific
 notation.
 
+## Contents
+
+- [Modules](#modules)
+  - [`buffer`](#buffer)
+  - [`common`](#common)
+  - [`d2s`](#d2s)
+  - [`d2s_full_table`](#d2s_full_table)
+  - [`d2s_intrinsics`](#d2s_intrinsics)
+  - [`digit_table`](#digit_table)
+  - [`f2s`](#f2s)
+  - [`f2s_intrinsics`](#f2s_intrinsics)
+  - [`pretty`](#pretty)
+  - [`raw`](#raw)
+- [Structs](#structs)
+  - [`unnamed`](#unnamed)
+- [Traits](#traits)
+  - [`unnamed`](#unnamed)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`buffer`](#buffer) | mod |  |
+| [`common`](#common) | mod |  |
+| [`d2s`](#d2s) | mod |  |
+| [`d2s_full_table`](#d2s_full_table) | mod |  |
+| [`d2s_intrinsics`](#d2s_intrinsics) | mod |  |
+| [`digit_table`](#digit_table) | mod |  |
+| [`f2s`](#f2s) | mod |  |
+| [`f2s_intrinsics`](#f2s_intrinsics) | mod |  |
+| [`pretty`](#pretty) | mod |  |
+| [`raw`](#raw) | mod | Unsafe functions that mirror the API of the C implementation of Ryū. |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | trait |  |
+
 ## Modules
 
 - [`buffer`](buffer/index.md) - 
@@ -113,23 +148,23 @@ assert_eq!(printed, "1.234");
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="buffer-new"></span>`fn new() -> Self`
 
-- `fn format<F: Float>(self: &mut Self, f: F) -> &str`
+- <span id="buffer-format"></span>`fn format<F: Float>(&mut self, f: F) -> &str`
 
-- `fn format_finite<F: Float>(self: &mut Self, f: F) -> &str`
+- <span id="buffer-format-finite"></span>`fn format_finite<F: Float>(&mut self, f: F) -> &str`
 
 #### Trait Implementations
 
 ##### `impl Clone for Buffer`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="buffer-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for Buffer`
 
 ##### `impl Default for Buffer`
 
-- `fn default() -> Self`
+- <span id="buffer-default"></span>`fn default() -> Self`
 
 ## Traits
 

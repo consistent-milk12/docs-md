@@ -4,6 +4,759 @@
 
 # Module `not_x32`
 
+## Contents
+
+- [Structs](#structs)
+  - [`statvfs`](#statvfs)
+- [Functions](#functions)
+  - [`sysctl`](#sysctl)
+- [Constants](#constants)
+  - [`__SIZEOF_PTHREAD_MUTEX_T`](#__sizeof_pthread_mutex_t)
+  - [`__SIZEOF_PTHREAD_RWLOCK_T`](#__sizeof_pthread_rwlock_t)
+  - [`__SIZEOF_PTHREAD_BARRIER_T`](#__sizeof_pthread_barrier_t)
+  - [`PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP`](#pthread_recursive_mutex_initializer_np)
+  - [`PTHREAD_ERRORCHECK_MUTEX_INITIALIZER_NP`](#pthread_errorcheck_mutex_initializer_np)
+  - [`PTHREAD_ADAPTIVE_MUTEX_INITIALIZER_NP`](#pthread_adaptive_mutex_initializer_np)
+  - [`SYS_read`](#sys_read)
+  - [`SYS_write`](#sys_write)
+  - [`SYS_open`](#sys_open)
+  - [`SYS_close`](#sys_close)
+  - [`SYS_stat`](#sys_stat)
+  - [`SYS_fstat`](#sys_fstat)
+  - [`SYS_lstat`](#sys_lstat)
+  - [`SYS_poll`](#sys_poll)
+  - [`SYS_lseek`](#sys_lseek)
+  - [`SYS_mmap`](#sys_mmap)
+  - [`SYS_mprotect`](#sys_mprotect)
+  - [`SYS_munmap`](#sys_munmap)
+  - [`SYS_brk`](#sys_brk)
+  - [`SYS_rt_sigaction`](#sys_rt_sigaction)
+  - [`SYS_rt_sigprocmask`](#sys_rt_sigprocmask)
+  - [`SYS_rt_sigreturn`](#sys_rt_sigreturn)
+  - [`SYS_ioctl`](#sys_ioctl)
+  - [`SYS_pread64`](#sys_pread64)
+  - [`SYS_pwrite64`](#sys_pwrite64)
+  - [`SYS_readv`](#sys_readv)
+  - [`SYS_writev`](#sys_writev)
+  - [`SYS_access`](#sys_access)
+  - [`SYS_pipe`](#sys_pipe)
+  - [`SYS_select`](#sys_select)
+  - [`SYS_sched_yield`](#sys_sched_yield)
+  - [`SYS_mremap`](#sys_mremap)
+  - [`SYS_msync`](#sys_msync)
+  - [`SYS_mincore`](#sys_mincore)
+  - [`SYS_madvise`](#sys_madvise)
+  - [`SYS_shmget`](#sys_shmget)
+  - [`SYS_shmat`](#sys_shmat)
+  - [`SYS_shmctl`](#sys_shmctl)
+  - [`SYS_dup`](#sys_dup)
+  - [`SYS_dup2`](#sys_dup2)
+  - [`SYS_pause`](#sys_pause)
+  - [`SYS_nanosleep`](#sys_nanosleep)
+  - [`SYS_getitimer`](#sys_getitimer)
+  - [`SYS_alarm`](#sys_alarm)
+  - [`SYS_setitimer`](#sys_setitimer)
+  - [`SYS_getpid`](#sys_getpid)
+  - [`SYS_sendfile`](#sys_sendfile)
+  - [`SYS_socket`](#sys_socket)
+  - [`SYS_connect`](#sys_connect)
+  - [`SYS_accept`](#sys_accept)
+  - [`SYS_sendto`](#sys_sendto)
+  - [`SYS_recvfrom`](#sys_recvfrom)
+  - [`SYS_sendmsg`](#sys_sendmsg)
+  - [`SYS_recvmsg`](#sys_recvmsg)
+  - [`SYS_shutdown`](#sys_shutdown)
+  - [`SYS_bind`](#sys_bind)
+  - [`SYS_listen`](#sys_listen)
+  - [`SYS_getsockname`](#sys_getsockname)
+  - [`SYS_getpeername`](#sys_getpeername)
+  - [`SYS_socketpair`](#sys_socketpair)
+  - [`SYS_setsockopt`](#sys_setsockopt)
+  - [`SYS_getsockopt`](#sys_getsockopt)
+  - [`SYS_clone`](#sys_clone)
+  - [`SYS_fork`](#sys_fork)
+  - [`SYS_vfork`](#sys_vfork)
+  - [`SYS_execve`](#sys_execve)
+  - [`SYS_exit`](#sys_exit)
+  - [`SYS_wait4`](#sys_wait4)
+  - [`SYS_kill`](#sys_kill)
+  - [`SYS_uname`](#sys_uname)
+  - [`SYS_semget`](#sys_semget)
+  - [`SYS_semop`](#sys_semop)
+  - [`SYS_semctl`](#sys_semctl)
+  - [`SYS_shmdt`](#sys_shmdt)
+  - [`SYS_msgget`](#sys_msgget)
+  - [`SYS_msgsnd`](#sys_msgsnd)
+  - [`SYS_msgrcv`](#sys_msgrcv)
+  - [`SYS_msgctl`](#sys_msgctl)
+  - [`SYS_fcntl`](#sys_fcntl)
+  - [`SYS_flock`](#sys_flock)
+  - [`SYS_fsync`](#sys_fsync)
+  - [`SYS_fdatasync`](#sys_fdatasync)
+  - [`SYS_truncate`](#sys_truncate)
+  - [`SYS_ftruncate`](#sys_ftruncate)
+  - [`SYS_getdents`](#sys_getdents)
+  - [`SYS_getcwd`](#sys_getcwd)
+  - [`SYS_chdir`](#sys_chdir)
+  - [`SYS_fchdir`](#sys_fchdir)
+  - [`SYS_rename`](#sys_rename)
+  - [`SYS_mkdir`](#sys_mkdir)
+  - [`SYS_rmdir`](#sys_rmdir)
+  - [`SYS_creat`](#sys_creat)
+  - [`SYS_link`](#sys_link)
+  - [`SYS_unlink`](#sys_unlink)
+  - [`SYS_symlink`](#sys_symlink)
+  - [`SYS_readlink`](#sys_readlink)
+  - [`SYS_chmod`](#sys_chmod)
+  - [`SYS_fchmod`](#sys_fchmod)
+  - [`SYS_chown`](#sys_chown)
+  - [`SYS_fchown`](#sys_fchown)
+  - [`SYS_lchown`](#sys_lchown)
+  - [`SYS_umask`](#sys_umask)
+  - [`SYS_gettimeofday`](#sys_gettimeofday)
+  - [`SYS_getrlimit`](#sys_getrlimit)
+  - [`SYS_getrusage`](#sys_getrusage)
+  - [`SYS_sysinfo`](#sys_sysinfo)
+  - [`SYS_times`](#sys_times)
+  - [`SYS_ptrace`](#sys_ptrace)
+  - [`SYS_getuid`](#sys_getuid)
+  - [`SYS_syslog`](#sys_syslog)
+  - [`SYS_getgid`](#sys_getgid)
+  - [`SYS_setuid`](#sys_setuid)
+  - [`SYS_setgid`](#sys_setgid)
+  - [`SYS_geteuid`](#sys_geteuid)
+  - [`SYS_getegid`](#sys_getegid)
+  - [`SYS_setpgid`](#sys_setpgid)
+  - [`SYS_getppid`](#sys_getppid)
+  - [`SYS_getpgrp`](#sys_getpgrp)
+  - [`SYS_setsid`](#sys_setsid)
+  - [`SYS_setreuid`](#sys_setreuid)
+  - [`SYS_setregid`](#sys_setregid)
+  - [`SYS_getgroups`](#sys_getgroups)
+  - [`SYS_setgroups`](#sys_setgroups)
+  - [`SYS_setresuid`](#sys_setresuid)
+  - [`SYS_getresuid`](#sys_getresuid)
+  - [`SYS_setresgid`](#sys_setresgid)
+  - [`SYS_getresgid`](#sys_getresgid)
+  - [`SYS_getpgid`](#sys_getpgid)
+  - [`SYS_setfsuid`](#sys_setfsuid)
+  - [`SYS_setfsgid`](#sys_setfsgid)
+  - [`SYS_getsid`](#sys_getsid)
+  - [`SYS_capget`](#sys_capget)
+  - [`SYS_capset`](#sys_capset)
+  - [`SYS_rt_sigpending`](#sys_rt_sigpending)
+  - [`SYS_rt_sigtimedwait`](#sys_rt_sigtimedwait)
+  - [`SYS_rt_sigqueueinfo`](#sys_rt_sigqueueinfo)
+  - [`SYS_rt_sigsuspend`](#sys_rt_sigsuspend)
+  - [`SYS_sigaltstack`](#sys_sigaltstack)
+  - [`SYS_utime`](#sys_utime)
+  - [`SYS_mknod`](#sys_mknod)
+  - [`SYS_uselib`](#sys_uselib)
+  - [`SYS_personality`](#sys_personality)
+  - [`SYS_ustat`](#sys_ustat)
+  - [`SYS_statfs`](#sys_statfs)
+  - [`SYS_fstatfs`](#sys_fstatfs)
+  - [`SYS_sysfs`](#sys_sysfs)
+  - [`SYS_getpriority`](#sys_getpriority)
+  - [`SYS_setpriority`](#sys_setpriority)
+  - [`SYS_sched_setparam`](#sys_sched_setparam)
+  - [`SYS_sched_getparam`](#sys_sched_getparam)
+  - [`SYS_sched_setscheduler`](#sys_sched_setscheduler)
+  - [`SYS_sched_getscheduler`](#sys_sched_getscheduler)
+  - [`SYS_sched_get_priority_max`](#sys_sched_get_priority_max)
+  - [`SYS_sched_get_priority_min`](#sys_sched_get_priority_min)
+  - [`SYS_sched_rr_get_interval`](#sys_sched_rr_get_interval)
+  - [`SYS_mlock`](#sys_mlock)
+  - [`SYS_munlock`](#sys_munlock)
+  - [`SYS_mlockall`](#sys_mlockall)
+  - [`SYS_munlockall`](#sys_munlockall)
+  - [`SYS_vhangup`](#sys_vhangup)
+  - [`SYS_modify_ldt`](#sys_modify_ldt)
+  - [`SYS_pivot_root`](#sys_pivot_root)
+  - [`SYS__sysctl`](#sys__sysctl)
+  - [`SYS_prctl`](#sys_prctl)
+  - [`SYS_arch_prctl`](#sys_arch_prctl)
+  - [`SYS_adjtimex`](#sys_adjtimex)
+  - [`SYS_setrlimit`](#sys_setrlimit)
+  - [`SYS_chroot`](#sys_chroot)
+  - [`SYS_sync`](#sys_sync)
+  - [`SYS_acct`](#sys_acct)
+  - [`SYS_settimeofday`](#sys_settimeofday)
+  - [`SYS_mount`](#sys_mount)
+  - [`SYS_umount2`](#sys_umount2)
+  - [`SYS_swapon`](#sys_swapon)
+  - [`SYS_swapoff`](#sys_swapoff)
+  - [`SYS_reboot`](#sys_reboot)
+  - [`SYS_sethostname`](#sys_sethostname)
+  - [`SYS_setdomainname`](#sys_setdomainname)
+  - [`SYS_iopl`](#sys_iopl)
+  - [`SYS_ioperm`](#sys_ioperm)
+  - [`SYS_create_module`](#sys_create_module)
+  - [`SYS_init_module`](#sys_init_module)
+  - [`SYS_delete_module`](#sys_delete_module)
+  - [`SYS_get_kernel_syms`](#sys_get_kernel_syms)
+  - [`SYS_query_module`](#sys_query_module)
+  - [`SYS_quotactl`](#sys_quotactl)
+  - [`SYS_nfsservctl`](#sys_nfsservctl)
+  - [`SYS_getpmsg`](#sys_getpmsg)
+  - [`SYS_putpmsg`](#sys_putpmsg)
+  - [`SYS_afs_syscall`](#sys_afs_syscall)
+  - [`SYS_tuxcall`](#sys_tuxcall)
+  - [`SYS_security`](#sys_security)
+  - [`SYS_gettid`](#sys_gettid)
+  - [`SYS_readahead`](#sys_readahead)
+  - [`SYS_setxattr`](#sys_setxattr)
+  - [`SYS_lsetxattr`](#sys_lsetxattr)
+  - [`SYS_fsetxattr`](#sys_fsetxattr)
+  - [`SYS_getxattr`](#sys_getxattr)
+  - [`SYS_lgetxattr`](#sys_lgetxattr)
+  - [`SYS_fgetxattr`](#sys_fgetxattr)
+  - [`SYS_listxattr`](#sys_listxattr)
+  - [`SYS_llistxattr`](#sys_llistxattr)
+  - [`SYS_flistxattr`](#sys_flistxattr)
+  - [`SYS_removexattr`](#sys_removexattr)
+  - [`SYS_lremovexattr`](#sys_lremovexattr)
+  - [`SYS_fremovexattr`](#sys_fremovexattr)
+  - [`SYS_tkill`](#sys_tkill)
+  - [`SYS_time`](#sys_time)
+  - [`SYS_futex`](#sys_futex)
+  - [`SYS_sched_setaffinity`](#sys_sched_setaffinity)
+  - [`SYS_sched_getaffinity`](#sys_sched_getaffinity)
+  - [`SYS_set_thread_area`](#sys_set_thread_area)
+  - [`SYS_io_setup`](#sys_io_setup)
+  - [`SYS_io_destroy`](#sys_io_destroy)
+  - [`SYS_io_getevents`](#sys_io_getevents)
+  - [`SYS_io_submit`](#sys_io_submit)
+  - [`SYS_io_cancel`](#sys_io_cancel)
+  - [`SYS_get_thread_area`](#sys_get_thread_area)
+  - [`SYS_lookup_dcookie`](#sys_lookup_dcookie)
+  - [`SYS_epoll_create`](#sys_epoll_create)
+  - [`SYS_epoll_ctl_old`](#sys_epoll_ctl_old)
+  - [`SYS_epoll_wait_old`](#sys_epoll_wait_old)
+  - [`SYS_remap_file_pages`](#sys_remap_file_pages)
+  - [`SYS_getdents64`](#sys_getdents64)
+  - [`SYS_set_tid_address`](#sys_set_tid_address)
+  - [`SYS_restart_syscall`](#sys_restart_syscall)
+  - [`SYS_semtimedop`](#sys_semtimedop)
+  - [`SYS_fadvise64`](#sys_fadvise64)
+  - [`SYS_timer_create`](#sys_timer_create)
+  - [`SYS_timer_settime`](#sys_timer_settime)
+  - [`SYS_timer_gettime`](#sys_timer_gettime)
+  - [`SYS_timer_getoverrun`](#sys_timer_getoverrun)
+  - [`SYS_timer_delete`](#sys_timer_delete)
+  - [`SYS_clock_settime`](#sys_clock_settime)
+  - [`SYS_clock_gettime`](#sys_clock_gettime)
+  - [`SYS_clock_getres`](#sys_clock_getres)
+  - [`SYS_clock_nanosleep`](#sys_clock_nanosleep)
+  - [`SYS_exit_group`](#sys_exit_group)
+  - [`SYS_epoll_wait`](#sys_epoll_wait)
+  - [`SYS_epoll_ctl`](#sys_epoll_ctl)
+  - [`SYS_tgkill`](#sys_tgkill)
+  - [`SYS_utimes`](#sys_utimes)
+  - [`SYS_vserver`](#sys_vserver)
+  - [`SYS_mbind`](#sys_mbind)
+  - [`SYS_set_mempolicy`](#sys_set_mempolicy)
+  - [`SYS_get_mempolicy`](#sys_get_mempolicy)
+  - [`SYS_mq_open`](#sys_mq_open)
+  - [`SYS_mq_unlink`](#sys_mq_unlink)
+  - [`SYS_mq_timedsend`](#sys_mq_timedsend)
+  - [`SYS_mq_timedreceive`](#sys_mq_timedreceive)
+  - [`SYS_mq_notify`](#sys_mq_notify)
+  - [`SYS_mq_getsetattr`](#sys_mq_getsetattr)
+  - [`SYS_kexec_load`](#sys_kexec_load)
+  - [`SYS_waitid`](#sys_waitid)
+  - [`SYS_add_key`](#sys_add_key)
+  - [`SYS_request_key`](#sys_request_key)
+  - [`SYS_keyctl`](#sys_keyctl)
+  - [`SYS_ioprio_set`](#sys_ioprio_set)
+  - [`SYS_ioprio_get`](#sys_ioprio_get)
+  - [`SYS_inotify_init`](#sys_inotify_init)
+  - [`SYS_inotify_add_watch`](#sys_inotify_add_watch)
+  - [`SYS_inotify_rm_watch`](#sys_inotify_rm_watch)
+  - [`SYS_migrate_pages`](#sys_migrate_pages)
+  - [`SYS_openat`](#sys_openat)
+  - [`SYS_mkdirat`](#sys_mkdirat)
+  - [`SYS_mknodat`](#sys_mknodat)
+  - [`SYS_fchownat`](#sys_fchownat)
+  - [`SYS_futimesat`](#sys_futimesat)
+  - [`SYS_newfstatat`](#sys_newfstatat)
+  - [`SYS_unlinkat`](#sys_unlinkat)
+  - [`SYS_renameat`](#sys_renameat)
+  - [`SYS_linkat`](#sys_linkat)
+  - [`SYS_symlinkat`](#sys_symlinkat)
+  - [`SYS_readlinkat`](#sys_readlinkat)
+  - [`SYS_fchmodat`](#sys_fchmodat)
+  - [`SYS_faccessat`](#sys_faccessat)
+  - [`SYS_pselect6`](#sys_pselect6)
+  - [`SYS_ppoll`](#sys_ppoll)
+  - [`SYS_unshare`](#sys_unshare)
+  - [`SYS_set_robust_list`](#sys_set_robust_list)
+  - [`SYS_get_robust_list`](#sys_get_robust_list)
+  - [`SYS_splice`](#sys_splice)
+  - [`SYS_tee`](#sys_tee)
+  - [`SYS_sync_file_range`](#sys_sync_file_range)
+  - [`SYS_vmsplice`](#sys_vmsplice)
+  - [`SYS_move_pages`](#sys_move_pages)
+  - [`SYS_utimensat`](#sys_utimensat)
+  - [`SYS_epoll_pwait`](#sys_epoll_pwait)
+  - [`SYS_signalfd`](#sys_signalfd)
+  - [`SYS_timerfd_create`](#sys_timerfd_create)
+  - [`SYS_eventfd`](#sys_eventfd)
+  - [`SYS_fallocate`](#sys_fallocate)
+  - [`SYS_timerfd_settime`](#sys_timerfd_settime)
+  - [`SYS_timerfd_gettime`](#sys_timerfd_gettime)
+  - [`SYS_accept4`](#sys_accept4)
+  - [`SYS_signalfd4`](#sys_signalfd4)
+  - [`SYS_eventfd2`](#sys_eventfd2)
+  - [`SYS_epoll_create1`](#sys_epoll_create1)
+  - [`SYS_dup3`](#sys_dup3)
+  - [`SYS_pipe2`](#sys_pipe2)
+  - [`SYS_inotify_init1`](#sys_inotify_init1)
+  - [`SYS_preadv`](#sys_preadv)
+  - [`SYS_pwritev`](#sys_pwritev)
+  - [`SYS_rt_tgsigqueueinfo`](#sys_rt_tgsigqueueinfo)
+  - [`SYS_perf_event_open`](#sys_perf_event_open)
+  - [`SYS_recvmmsg`](#sys_recvmmsg)
+  - [`SYS_fanotify_init`](#sys_fanotify_init)
+  - [`SYS_fanotify_mark`](#sys_fanotify_mark)
+  - [`SYS_prlimit64`](#sys_prlimit64)
+  - [`SYS_name_to_handle_at`](#sys_name_to_handle_at)
+  - [`SYS_open_by_handle_at`](#sys_open_by_handle_at)
+  - [`SYS_clock_adjtime`](#sys_clock_adjtime)
+  - [`SYS_syncfs`](#sys_syncfs)
+  - [`SYS_sendmmsg`](#sys_sendmmsg)
+  - [`SYS_setns`](#sys_setns)
+  - [`SYS_getcpu`](#sys_getcpu)
+  - [`SYS_process_vm_readv`](#sys_process_vm_readv)
+  - [`SYS_process_vm_writev`](#sys_process_vm_writev)
+  - [`SYS_kcmp`](#sys_kcmp)
+  - [`SYS_finit_module`](#sys_finit_module)
+  - [`SYS_sched_setattr`](#sys_sched_setattr)
+  - [`SYS_sched_getattr`](#sys_sched_getattr)
+  - [`SYS_renameat2`](#sys_renameat2)
+  - [`SYS_seccomp`](#sys_seccomp)
+  - [`SYS_getrandom`](#sys_getrandom)
+  - [`SYS_memfd_create`](#sys_memfd_create)
+  - [`SYS_kexec_file_load`](#sys_kexec_file_load)
+  - [`SYS_bpf`](#sys_bpf)
+  - [`SYS_execveat`](#sys_execveat)
+  - [`SYS_userfaultfd`](#sys_userfaultfd)
+  - [`SYS_membarrier`](#sys_membarrier)
+  - [`SYS_mlock2`](#sys_mlock2)
+  - [`SYS_copy_file_range`](#sys_copy_file_range)
+  - [`SYS_preadv2`](#sys_preadv2)
+  - [`SYS_pwritev2`](#sys_pwritev2)
+  - [`SYS_pkey_mprotect`](#sys_pkey_mprotect)
+  - [`SYS_pkey_alloc`](#sys_pkey_alloc)
+  - [`SYS_pkey_free`](#sys_pkey_free)
+  - [`SYS_statx`](#sys_statx)
+  - [`SYS_rseq`](#sys_rseq)
+  - [`SYS_pidfd_send_signal`](#sys_pidfd_send_signal)
+  - [`SYS_io_uring_setup`](#sys_io_uring_setup)
+  - [`SYS_io_uring_enter`](#sys_io_uring_enter)
+  - [`SYS_io_uring_register`](#sys_io_uring_register)
+  - [`SYS_open_tree`](#sys_open_tree)
+  - [`SYS_move_mount`](#sys_move_mount)
+  - [`SYS_fsopen`](#sys_fsopen)
+  - [`SYS_fsconfig`](#sys_fsconfig)
+  - [`SYS_fsmount`](#sys_fsmount)
+  - [`SYS_fspick`](#sys_fspick)
+  - [`SYS_pidfd_open`](#sys_pidfd_open)
+  - [`SYS_clone3`](#sys_clone3)
+  - [`SYS_close_range`](#sys_close_range)
+  - [`SYS_openat2`](#sys_openat2)
+  - [`SYS_pidfd_getfd`](#sys_pidfd_getfd)
+  - [`SYS_faccessat2`](#sys_faccessat2)
+  - [`SYS_process_madvise`](#sys_process_madvise)
+  - [`SYS_epoll_pwait2`](#sys_epoll_pwait2)
+  - [`SYS_mount_setattr`](#sys_mount_setattr)
+  - [`SYS_quotactl_fd`](#sys_quotactl_fd)
+  - [`SYS_landlock_create_ruleset`](#sys_landlock_create_ruleset)
+  - [`SYS_landlock_add_rule`](#sys_landlock_add_rule)
+  - [`SYS_landlock_restrict_self`](#sys_landlock_restrict_self)
+  - [`SYS_memfd_secret`](#sys_memfd_secret)
+  - [`SYS_process_mrelease`](#sys_process_mrelease)
+  - [`SYS_futex_waitv`](#sys_futex_waitv)
+  - [`SYS_set_mempolicy_home_node`](#sys_set_mempolicy_home_node)
+  - [`SYS_fchmodat2`](#sys_fchmodat2)
+  - [`SYS_mseal`](#sys_mseal)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`statvfs`](#statvfs) | struct |  |
+| [`sysctl`](#sysctl) | fn |  |
+| [`__SIZEOF_PTHREAD_MUTEX_T`](#__sizeof_pthread_mutex_t) | const |  |
+| [`__SIZEOF_PTHREAD_RWLOCK_T`](#__sizeof_pthread_rwlock_t) | const |  |
+| [`__SIZEOF_PTHREAD_BARRIER_T`](#__sizeof_pthread_barrier_t) | const |  |
+| [`PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP`](#pthread_recursive_mutex_initializer_np) | const |  |
+| [`PTHREAD_ERRORCHECK_MUTEX_INITIALIZER_NP`](#pthread_errorcheck_mutex_initializer_np) | const |  |
+| [`PTHREAD_ADAPTIVE_MUTEX_INITIALIZER_NP`](#pthread_adaptive_mutex_initializer_np) | const |  |
+| [`SYS_read`](#sys_read) | const |  |
+| [`SYS_write`](#sys_write) | const |  |
+| [`SYS_open`](#sys_open) | const |  |
+| [`SYS_close`](#sys_close) | const |  |
+| [`SYS_stat`](#sys_stat) | const |  |
+| [`SYS_fstat`](#sys_fstat) | const |  |
+| [`SYS_lstat`](#sys_lstat) | const |  |
+| [`SYS_poll`](#sys_poll) | const |  |
+| [`SYS_lseek`](#sys_lseek) | const |  |
+| [`SYS_mmap`](#sys_mmap) | const |  |
+| [`SYS_mprotect`](#sys_mprotect) | const |  |
+| [`SYS_munmap`](#sys_munmap) | const |  |
+| [`SYS_brk`](#sys_brk) | const |  |
+| [`SYS_rt_sigaction`](#sys_rt_sigaction) | const |  |
+| [`SYS_rt_sigprocmask`](#sys_rt_sigprocmask) | const |  |
+| [`SYS_rt_sigreturn`](#sys_rt_sigreturn) | const |  |
+| [`SYS_ioctl`](#sys_ioctl) | const |  |
+| [`SYS_pread64`](#sys_pread64) | const |  |
+| [`SYS_pwrite64`](#sys_pwrite64) | const |  |
+| [`SYS_readv`](#sys_readv) | const |  |
+| [`SYS_writev`](#sys_writev) | const |  |
+| [`SYS_access`](#sys_access) | const |  |
+| [`SYS_pipe`](#sys_pipe) | const |  |
+| [`SYS_select`](#sys_select) | const |  |
+| [`SYS_sched_yield`](#sys_sched_yield) | const |  |
+| [`SYS_mremap`](#sys_mremap) | const |  |
+| [`SYS_msync`](#sys_msync) | const |  |
+| [`SYS_mincore`](#sys_mincore) | const |  |
+| [`SYS_madvise`](#sys_madvise) | const |  |
+| [`SYS_shmget`](#sys_shmget) | const |  |
+| [`SYS_shmat`](#sys_shmat) | const |  |
+| [`SYS_shmctl`](#sys_shmctl) | const |  |
+| [`SYS_dup`](#sys_dup) | const |  |
+| [`SYS_dup2`](#sys_dup2) | const |  |
+| [`SYS_pause`](#sys_pause) | const |  |
+| [`SYS_nanosleep`](#sys_nanosleep) | const |  |
+| [`SYS_getitimer`](#sys_getitimer) | const |  |
+| [`SYS_alarm`](#sys_alarm) | const |  |
+| [`SYS_setitimer`](#sys_setitimer) | const |  |
+| [`SYS_getpid`](#sys_getpid) | const |  |
+| [`SYS_sendfile`](#sys_sendfile) | const |  |
+| [`SYS_socket`](#sys_socket) | const |  |
+| [`SYS_connect`](#sys_connect) | const |  |
+| [`SYS_accept`](#sys_accept) | const |  |
+| [`SYS_sendto`](#sys_sendto) | const |  |
+| [`SYS_recvfrom`](#sys_recvfrom) | const |  |
+| [`SYS_sendmsg`](#sys_sendmsg) | const |  |
+| [`SYS_recvmsg`](#sys_recvmsg) | const |  |
+| [`SYS_shutdown`](#sys_shutdown) | const |  |
+| [`SYS_bind`](#sys_bind) | const |  |
+| [`SYS_listen`](#sys_listen) | const |  |
+| [`SYS_getsockname`](#sys_getsockname) | const |  |
+| [`SYS_getpeername`](#sys_getpeername) | const |  |
+| [`SYS_socketpair`](#sys_socketpair) | const |  |
+| [`SYS_setsockopt`](#sys_setsockopt) | const |  |
+| [`SYS_getsockopt`](#sys_getsockopt) | const |  |
+| [`SYS_clone`](#sys_clone) | const |  |
+| [`SYS_fork`](#sys_fork) | const |  |
+| [`SYS_vfork`](#sys_vfork) | const |  |
+| [`SYS_execve`](#sys_execve) | const |  |
+| [`SYS_exit`](#sys_exit) | const |  |
+| [`SYS_wait4`](#sys_wait4) | const |  |
+| [`SYS_kill`](#sys_kill) | const |  |
+| [`SYS_uname`](#sys_uname) | const |  |
+| [`SYS_semget`](#sys_semget) | const |  |
+| [`SYS_semop`](#sys_semop) | const |  |
+| [`SYS_semctl`](#sys_semctl) | const |  |
+| [`SYS_shmdt`](#sys_shmdt) | const |  |
+| [`SYS_msgget`](#sys_msgget) | const |  |
+| [`SYS_msgsnd`](#sys_msgsnd) | const |  |
+| [`SYS_msgrcv`](#sys_msgrcv) | const |  |
+| [`SYS_msgctl`](#sys_msgctl) | const |  |
+| [`SYS_fcntl`](#sys_fcntl) | const |  |
+| [`SYS_flock`](#sys_flock) | const |  |
+| [`SYS_fsync`](#sys_fsync) | const |  |
+| [`SYS_fdatasync`](#sys_fdatasync) | const |  |
+| [`SYS_truncate`](#sys_truncate) | const |  |
+| [`SYS_ftruncate`](#sys_ftruncate) | const |  |
+| [`SYS_getdents`](#sys_getdents) | const |  |
+| [`SYS_getcwd`](#sys_getcwd) | const |  |
+| [`SYS_chdir`](#sys_chdir) | const |  |
+| [`SYS_fchdir`](#sys_fchdir) | const |  |
+| [`SYS_rename`](#sys_rename) | const |  |
+| [`SYS_mkdir`](#sys_mkdir) | const |  |
+| [`SYS_rmdir`](#sys_rmdir) | const |  |
+| [`SYS_creat`](#sys_creat) | const |  |
+| [`SYS_link`](#sys_link) | const |  |
+| [`SYS_unlink`](#sys_unlink) | const |  |
+| [`SYS_symlink`](#sys_symlink) | const |  |
+| [`SYS_readlink`](#sys_readlink) | const |  |
+| [`SYS_chmod`](#sys_chmod) | const |  |
+| [`SYS_fchmod`](#sys_fchmod) | const |  |
+| [`SYS_chown`](#sys_chown) | const |  |
+| [`SYS_fchown`](#sys_fchown) | const |  |
+| [`SYS_lchown`](#sys_lchown) | const |  |
+| [`SYS_umask`](#sys_umask) | const |  |
+| [`SYS_gettimeofday`](#sys_gettimeofday) | const |  |
+| [`SYS_getrlimit`](#sys_getrlimit) | const |  |
+| [`SYS_getrusage`](#sys_getrusage) | const |  |
+| [`SYS_sysinfo`](#sys_sysinfo) | const |  |
+| [`SYS_times`](#sys_times) | const |  |
+| [`SYS_ptrace`](#sys_ptrace) | const |  |
+| [`SYS_getuid`](#sys_getuid) | const |  |
+| [`SYS_syslog`](#sys_syslog) | const |  |
+| [`SYS_getgid`](#sys_getgid) | const |  |
+| [`SYS_setuid`](#sys_setuid) | const |  |
+| [`SYS_setgid`](#sys_setgid) | const |  |
+| [`SYS_geteuid`](#sys_geteuid) | const |  |
+| [`SYS_getegid`](#sys_getegid) | const |  |
+| [`SYS_setpgid`](#sys_setpgid) | const |  |
+| [`SYS_getppid`](#sys_getppid) | const |  |
+| [`SYS_getpgrp`](#sys_getpgrp) | const |  |
+| [`SYS_setsid`](#sys_setsid) | const |  |
+| [`SYS_setreuid`](#sys_setreuid) | const |  |
+| [`SYS_setregid`](#sys_setregid) | const |  |
+| [`SYS_getgroups`](#sys_getgroups) | const |  |
+| [`SYS_setgroups`](#sys_setgroups) | const |  |
+| [`SYS_setresuid`](#sys_setresuid) | const |  |
+| [`SYS_getresuid`](#sys_getresuid) | const |  |
+| [`SYS_setresgid`](#sys_setresgid) | const |  |
+| [`SYS_getresgid`](#sys_getresgid) | const |  |
+| [`SYS_getpgid`](#sys_getpgid) | const |  |
+| [`SYS_setfsuid`](#sys_setfsuid) | const |  |
+| [`SYS_setfsgid`](#sys_setfsgid) | const |  |
+| [`SYS_getsid`](#sys_getsid) | const |  |
+| [`SYS_capget`](#sys_capget) | const |  |
+| [`SYS_capset`](#sys_capset) | const |  |
+| [`SYS_rt_sigpending`](#sys_rt_sigpending) | const |  |
+| [`SYS_rt_sigtimedwait`](#sys_rt_sigtimedwait) | const |  |
+| [`SYS_rt_sigqueueinfo`](#sys_rt_sigqueueinfo) | const |  |
+| [`SYS_rt_sigsuspend`](#sys_rt_sigsuspend) | const |  |
+| [`SYS_sigaltstack`](#sys_sigaltstack) | const |  |
+| [`SYS_utime`](#sys_utime) | const |  |
+| [`SYS_mknod`](#sys_mknod) | const |  |
+| [`SYS_uselib`](#sys_uselib) | const |  |
+| [`SYS_personality`](#sys_personality) | const |  |
+| [`SYS_ustat`](#sys_ustat) | const |  |
+| [`SYS_statfs`](#sys_statfs) | const |  |
+| [`SYS_fstatfs`](#sys_fstatfs) | const |  |
+| [`SYS_sysfs`](#sys_sysfs) | const |  |
+| [`SYS_getpriority`](#sys_getpriority) | const |  |
+| [`SYS_setpriority`](#sys_setpriority) | const |  |
+| [`SYS_sched_setparam`](#sys_sched_setparam) | const |  |
+| [`SYS_sched_getparam`](#sys_sched_getparam) | const |  |
+| [`SYS_sched_setscheduler`](#sys_sched_setscheduler) | const |  |
+| [`SYS_sched_getscheduler`](#sys_sched_getscheduler) | const |  |
+| [`SYS_sched_get_priority_max`](#sys_sched_get_priority_max) | const |  |
+| [`SYS_sched_get_priority_min`](#sys_sched_get_priority_min) | const |  |
+| [`SYS_sched_rr_get_interval`](#sys_sched_rr_get_interval) | const |  |
+| [`SYS_mlock`](#sys_mlock) | const |  |
+| [`SYS_munlock`](#sys_munlock) | const |  |
+| [`SYS_mlockall`](#sys_mlockall) | const |  |
+| [`SYS_munlockall`](#sys_munlockall) | const |  |
+| [`SYS_vhangup`](#sys_vhangup) | const |  |
+| [`SYS_modify_ldt`](#sys_modify_ldt) | const |  |
+| [`SYS_pivot_root`](#sys_pivot_root) | const |  |
+| [`SYS__sysctl`](#sys__sysctl) | const |  |
+| [`SYS_prctl`](#sys_prctl) | const |  |
+| [`SYS_arch_prctl`](#sys_arch_prctl) | const |  |
+| [`SYS_adjtimex`](#sys_adjtimex) | const |  |
+| [`SYS_setrlimit`](#sys_setrlimit) | const |  |
+| [`SYS_chroot`](#sys_chroot) | const |  |
+| [`SYS_sync`](#sys_sync) | const |  |
+| [`SYS_acct`](#sys_acct) | const |  |
+| [`SYS_settimeofday`](#sys_settimeofday) | const |  |
+| [`SYS_mount`](#sys_mount) | const |  |
+| [`SYS_umount2`](#sys_umount2) | const |  |
+| [`SYS_swapon`](#sys_swapon) | const |  |
+| [`SYS_swapoff`](#sys_swapoff) | const |  |
+| [`SYS_reboot`](#sys_reboot) | const |  |
+| [`SYS_sethostname`](#sys_sethostname) | const |  |
+| [`SYS_setdomainname`](#sys_setdomainname) | const |  |
+| [`SYS_iopl`](#sys_iopl) | const |  |
+| [`SYS_ioperm`](#sys_ioperm) | const |  |
+| [`SYS_create_module`](#sys_create_module) | const |  |
+| [`SYS_init_module`](#sys_init_module) | const |  |
+| [`SYS_delete_module`](#sys_delete_module) | const |  |
+| [`SYS_get_kernel_syms`](#sys_get_kernel_syms) | const |  |
+| [`SYS_query_module`](#sys_query_module) | const |  |
+| [`SYS_quotactl`](#sys_quotactl) | const |  |
+| [`SYS_nfsservctl`](#sys_nfsservctl) | const |  |
+| [`SYS_getpmsg`](#sys_getpmsg) | const |  |
+| [`SYS_putpmsg`](#sys_putpmsg) | const |  |
+| [`SYS_afs_syscall`](#sys_afs_syscall) | const |  |
+| [`SYS_tuxcall`](#sys_tuxcall) | const |  |
+| [`SYS_security`](#sys_security) | const |  |
+| [`SYS_gettid`](#sys_gettid) | const |  |
+| [`SYS_readahead`](#sys_readahead) | const |  |
+| [`SYS_setxattr`](#sys_setxattr) | const |  |
+| [`SYS_lsetxattr`](#sys_lsetxattr) | const |  |
+| [`SYS_fsetxattr`](#sys_fsetxattr) | const |  |
+| [`SYS_getxattr`](#sys_getxattr) | const |  |
+| [`SYS_lgetxattr`](#sys_lgetxattr) | const |  |
+| [`SYS_fgetxattr`](#sys_fgetxattr) | const |  |
+| [`SYS_listxattr`](#sys_listxattr) | const |  |
+| [`SYS_llistxattr`](#sys_llistxattr) | const |  |
+| [`SYS_flistxattr`](#sys_flistxattr) | const |  |
+| [`SYS_removexattr`](#sys_removexattr) | const |  |
+| [`SYS_lremovexattr`](#sys_lremovexattr) | const |  |
+| [`SYS_fremovexattr`](#sys_fremovexattr) | const |  |
+| [`SYS_tkill`](#sys_tkill) | const |  |
+| [`SYS_time`](#sys_time) | const |  |
+| [`SYS_futex`](#sys_futex) | const |  |
+| [`SYS_sched_setaffinity`](#sys_sched_setaffinity) | const |  |
+| [`SYS_sched_getaffinity`](#sys_sched_getaffinity) | const |  |
+| [`SYS_set_thread_area`](#sys_set_thread_area) | const |  |
+| [`SYS_io_setup`](#sys_io_setup) | const |  |
+| [`SYS_io_destroy`](#sys_io_destroy) | const |  |
+| [`SYS_io_getevents`](#sys_io_getevents) | const |  |
+| [`SYS_io_submit`](#sys_io_submit) | const |  |
+| [`SYS_io_cancel`](#sys_io_cancel) | const |  |
+| [`SYS_get_thread_area`](#sys_get_thread_area) | const |  |
+| [`SYS_lookup_dcookie`](#sys_lookup_dcookie) | const |  |
+| [`SYS_epoll_create`](#sys_epoll_create) | const |  |
+| [`SYS_epoll_ctl_old`](#sys_epoll_ctl_old) | const |  |
+| [`SYS_epoll_wait_old`](#sys_epoll_wait_old) | const |  |
+| [`SYS_remap_file_pages`](#sys_remap_file_pages) | const |  |
+| [`SYS_getdents64`](#sys_getdents64) | const |  |
+| [`SYS_set_tid_address`](#sys_set_tid_address) | const |  |
+| [`SYS_restart_syscall`](#sys_restart_syscall) | const |  |
+| [`SYS_semtimedop`](#sys_semtimedop) | const |  |
+| [`SYS_fadvise64`](#sys_fadvise64) | const |  |
+| [`SYS_timer_create`](#sys_timer_create) | const |  |
+| [`SYS_timer_settime`](#sys_timer_settime) | const |  |
+| [`SYS_timer_gettime`](#sys_timer_gettime) | const |  |
+| [`SYS_timer_getoverrun`](#sys_timer_getoverrun) | const |  |
+| [`SYS_timer_delete`](#sys_timer_delete) | const |  |
+| [`SYS_clock_settime`](#sys_clock_settime) | const |  |
+| [`SYS_clock_gettime`](#sys_clock_gettime) | const |  |
+| [`SYS_clock_getres`](#sys_clock_getres) | const |  |
+| [`SYS_clock_nanosleep`](#sys_clock_nanosleep) | const |  |
+| [`SYS_exit_group`](#sys_exit_group) | const |  |
+| [`SYS_epoll_wait`](#sys_epoll_wait) | const |  |
+| [`SYS_epoll_ctl`](#sys_epoll_ctl) | const |  |
+| [`SYS_tgkill`](#sys_tgkill) | const |  |
+| [`SYS_utimes`](#sys_utimes) | const |  |
+| [`SYS_vserver`](#sys_vserver) | const |  |
+| [`SYS_mbind`](#sys_mbind) | const |  |
+| [`SYS_set_mempolicy`](#sys_set_mempolicy) | const |  |
+| [`SYS_get_mempolicy`](#sys_get_mempolicy) | const |  |
+| [`SYS_mq_open`](#sys_mq_open) | const |  |
+| [`SYS_mq_unlink`](#sys_mq_unlink) | const |  |
+| [`SYS_mq_timedsend`](#sys_mq_timedsend) | const |  |
+| [`SYS_mq_timedreceive`](#sys_mq_timedreceive) | const |  |
+| [`SYS_mq_notify`](#sys_mq_notify) | const |  |
+| [`SYS_mq_getsetattr`](#sys_mq_getsetattr) | const |  |
+| [`SYS_kexec_load`](#sys_kexec_load) | const |  |
+| [`SYS_waitid`](#sys_waitid) | const |  |
+| [`SYS_add_key`](#sys_add_key) | const |  |
+| [`SYS_request_key`](#sys_request_key) | const |  |
+| [`SYS_keyctl`](#sys_keyctl) | const |  |
+| [`SYS_ioprio_set`](#sys_ioprio_set) | const |  |
+| [`SYS_ioprio_get`](#sys_ioprio_get) | const |  |
+| [`SYS_inotify_init`](#sys_inotify_init) | const |  |
+| [`SYS_inotify_add_watch`](#sys_inotify_add_watch) | const |  |
+| [`SYS_inotify_rm_watch`](#sys_inotify_rm_watch) | const |  |
+| [`SYS_migrate_pages`](#sys_migrate_pages) | const |  |
+| [`SYS_openat`](#sys_openat) | const |  |
+| [`SYS_mkdirat`](#sys_mkdirat) | const |  |
+| [`SYS_mknodat`](#sys_mknodat) | const |  |
+| [`SYS_fchownat`](#sys_fchownat) | const |  |
+| [`SYS_futimesat`](#sys_futimesat) | const |  |
+| [`SYS_newfstatat`](#sys_newfstatat) | const |  |
+| [`SYS_unlinkat`](#sys_unlinkat) | const |  |
+| [`SYS_renameat`](#sys_renameat) | const |  |
+| [`SYS_linkat`](#sys_linkat) | const |  |
+| [`SYS_symlinkat`](#sys_symlinkat) | const |  |
+| [`SYS_readlinkat`](#sys_readlinkat) | const |  |
+| [`SYS_fchmodat`](#sys_fchmodat) | const |  |
+| [`SYS_faccessat`](#sys_faccessat) | const |  |
+| [`SYS_pselect6`](#sys_pselect6) | const |  |
+| [`SYS_ppoll`](#sys_ppoll) | const |  |
+| [`SYS_unshare`](#sys_unshare) | const |  |
+| [`SYS_set_robust_list`](#sys_set_robust_list) | const |  |
+| [`SYS_get_robust_list`](#sys_get_robust_list) | const |  |
+| [`SYS_splice`](#sys_splice) | const |  |
+| [`SYS_tee`](#sys_tee) | const |  |
+| [`SYS_sync_file_range`](#sys_sync_file_range) | const |  |
+| [`SYS_vmsplice`](#sys_vmsplice) | const |  |
+| [`SYS_move_pages`](#sys_move_pages) | const |  |
+| [`SYS_utimensat`](#sys_utimensat) | const |  |
+| [`SYS_epoll_pwait`](#sys_epoll_pwait) | const |  |
+| [`SYS_signalfd`](#sys_signalfd) | const |  |
+| [`SYS_timerfd_create`](#sys_timerfd_create) | const |  |
+| [`SYS_eventfd`](#sys_eventfd) | const |  |
+| [`SYS_fallocate`](#sys_fallocate) | const |  |
+| [`SYS_timerfd_settime`](#sys_timerfd_settime) | const |  |
+| [`SYS_timerfd_gettime`](#sys_timerfd_gettime) | const |  |
+| [`SYS_accept4`](#sys_accept4) | const |  |
+| [`SYS_signalfd4`](#sys_signalfd4) | const |  |
+| [`SYS_eventfd2`](#sys_eventfd2) | const |  |
+| [`SYS_epoll_create1`](#sys_epoll_create1) | const |  |
+| [`SYS_dup3`](#sys_dup3) | const |  |
+| [`SYS_pipe2`](#sys_pipe2) | const |  |
+| [`SYS_inotify_init1`](#sys_inotify_init1) | const |  |
+| [`SYS_preadv`](#sys_preadv) | const |  |
+| [`SYS_pwritev`](#sys_pwritev) | const |  |
+| [`SYS_rt_tgsigqueueinfo`](#sys_rt_tgsigqueueinfo) | const |  |
+| [`SYS_perf_event_open`](#sys_perf_event_open) | const |  |
+| [`SYS_recvmmsg`](#sys_recvmmsg) | const |  |
+| [`SYS_fanotify_init`](#sys_fanotify_init) | const |  |
+| [`SYS_fanotify_mark`](#sys_fanotify_mark) | const |  |
+| [`SYS_prlimit64`](#sys_prlimit64) | const |  |
+| [`SYS_name_to_handle_at`](#sys_name_to_handle_at) | const |  |
+| [`SYS_open_by_handle_at`](#sys_open_by_handle_at) | const |  |
+| [`SYS_clock_adjtime`](#sys_clock_adjtime) | const |  |
+| [`SYS_syncfs`](#sys_syncfs) | const |  |
+| [`SYS_sendmmsg`](#sys_sendmmsg) | const |  |
+| [`SYS_setns`](#sys_setns) | const |  |
+| [`SYS_getcpu`](#sys_getcpu) | const |  |
+| [`SYS_process_vm_readv`](#sys_process_vm_readv) | const |  |
+| [`SYS_process_vm_writev`](#sys_process_vm_writev) | const |  |
+| [`SYS_kcmp`](#sys_kcmp) | const |  |
+| [`SYS_finit_module`](#sys_finit_module) | const |  |
+| [`SYS_sched_setattr`](#sys_sched_setattr) | const |  |
+| [`SYS_sched_getattr`](#sys_sched_getattr) | const |  |
+| [`SYS_renameat2`](#sys_renameat2) | const |  |
+| [`SYS_seccomp`](#sys_seccomp) | const |  |
+| [`SYS_getrandom`](#sys_getrandom) | const |  |
+| [`SYS_memfd_create`](#sys_memfd_create) | const |  |
+| [`SYS_kexec_file_load`](#sys_kexec_file_load) | const |  |
+| [`SYS_bpf`](#sys_bpf) | const |  |
+| [`SYS_execveat`](#sys_execveat) | const |  |
+| [`SYS_userfaultfd`](#sys_userfaultfd) | const |  |
+| [`SYS_membarrier`](#sys_membarrier) | const |  |
+| [`SYS_mlock2`](#sys_mlock2) | const |  |
+| [`SYS_copy_file_range`](#sys_copy_file_range) | const |  |
+| [`SYS_preadv2`](#sys_preadv2) | const |  |
+| [`SYS_pwritev2`](#sys_pwritev2) | const |  |
+| [`SYS_pkey_mprotect`](#sys_pkey_mprotect) | const |  |
+| [`SYS_pkey_alloc`](#sys_pkey_alloc) | const |  |
+| [`SYS_pkey_free`](#sys_pkey_free) | const |  |
+| [`SYS_statx`](#sys_statx) | const |  |
+| [`SYS_rseq`](#sys_rseq) | const |  |
+| [`SYS_pidfd_send_signal`](#sys_pidfd_send_signal) | const |  |
+| [`SYS_io_uring_setup`](#sys_io_uring_setup) | const |  |
+| [`SYS_io_uring_enter`](#sys_io_uring_enter) | const |  |
+| [`SYS_io_uring_register`](#sys_io_uring_register) | const |  |
+| [`SYS_open_tree`](#sys_open_tree) | const |  |
+| [`SYS_move_mount`](#sys_move_mount) | const |  |
+| [`SYS_fsopen`](#sys_fsopen) | const |  |
+| [`SYS_fsconfig`](#sys_fsconfig) | const |  |
+| [`SYS_fsmount`](#sys_fsmount) | const |  |
+| [`SYS_fspick`](#sys_fspick) | const |  |
+| [`SYS_pidfd_open`](#sys_pidfd_open) | const |  |
+| [`SYS_clone3`](#sys_clone3) | const |  |
+| [`SYS_close_range`](#sys_close_range) | const |  |
+| [`SYS_openat2`](#sys_openat2) | const |  |
+| [`SYS_pidfd_getfd`](#sys_pidfd_getfd) | const |  |
+| [`SYS_faccessat2`](#sys_faccessat2) | const |  |
+| [`SYS_process_madvise`](#sys_process_madvise) | const |  |
+| [`SYS_epoll_pwait2`](#sys_epoll_pwait2) | const |  |
+| [`SYS_mount_setattr`](#sys_mount_setattr) | const |  |
+| [`SYS_quotactl_fd`](#sys_quotactl_fd) | const |  |
+| [`SYS_landlock_create_ruleset`](#sys_landlock_create_ruleset) | const |  |
+| [`SYS_landlock_add_rule`](#sys_landlock_add_rule) | const |  |
+| [`SYS_landlock_restrict_self`](#sys_landlock_restrict_self) | const |  |
+| [`SYS_memfd_secret`](#sys_memfd_secret) | const |  |
+| [`SYS_process_mrelease`](#sys_process_mrelease) | const |  |
+| [`SYS_futex_waitv`](#sys_futex_waitv) | const |  |
+| [`SYS_set_mempolicy_home_node`](#sys_set_mempolicy_home_node) | const |  |
+| [`SYS_fchmodat2`](#sys_fchmodat2) | const |  |
+| [`SYS_mseal`](#sys_mseal) | const |  |
+
 ## Structs
 
 ### `statvfs`
@@ -29,13 +782,13 @@ struct statvfs {
 
 ##### `impl Clone for statvfs`
 
-- `fn clone(self: &Self) -> statvfs` — [`statvfs`](../index.md)
+- <span id="statvfs-clone"></span>`fn clone(&self) -> statvfs` — [`statvfs`](../index.md)
 
 ##### `impl Copy for statvfs`
 
 ##### `impl Debug for statvfs`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="statvfs-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Functions
 

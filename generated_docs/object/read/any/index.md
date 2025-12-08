@@ -4,6 +4,79 @@
 
 # Module `any`
 
+## Contents
+
+- [Structs](#structs)
+  - [`SegmentIterator`](#segmentiterator)
+  - [`Segment`](#segment)
+  - [`SectionIterator`](#sectioniterator)
+  - [`Section`](#section)
+  - [`ComdatIterator`](#comdatiterator)
+  - [`Comdat`](#comdat)
+  - [`ComdatSectionIterator`](#comdatsectioniterator)
+  - [`SymbolTable`](#symboltable)
+  - [`SymbolIterator`](#symboliterator)
+  - [`Symbol`](#symbol)
+  - [`DynamicRelocationIterator`](#dynamicrelocationiterator)
+  - [`SectionRelocationIterator`](#sectionrelocationiterator)
+- [Enums](#enums)
+  - [`File`](#file)
+  - [`SegmentIteratorInternal`](#segmentiteratorinternal)
+  - [`SegmentInternal`](#segmentinternal)
+  - [`SectionIteratorInternal`](#sectioniteratorinternal)
+  - [`SectionInternal`](#sectioninternal)
+  - [`ComdatIteratorInternal`](#comdatiteratorinternal)
+  - [`ComdatInternal`](#comdatinternal)
+  - [`ComdatSectionIteratorInternal`](#comdatsectioniteratorinternal)
+  - [`SymbolTableInternal`](#symboltableinternal)
+  - [`SymbolIteratorInternal`](#symboliteratorinternal)
+  - [`SymbolInternal`](#symbolinternal)
+  - [`DynamicRelocationIteratorInternal`](#dynamicrelocationiteratorinternal)
+  - [`SectionRelocationIteratorInternal`](#sectionrelocationiteratorinternal)
+- [Macros](#macros)
+  - [`with_inner!`](#with_inner)
+  - [`with_inner_mut!`](#with_inner_mut)
+  - [`map_inner!`](#map_inner)
+  - [`map_inner_option!`](#map_inner_option)
+  - [`map_inner_option_mut!`](#map_inner_option_mut)
+  - [`next_inner!`](#next_inner)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`SegmentIterator`](#segmentiterator) | struct | An iterator for the loadable segments in a [`File`]. |
+| [`Segment`](#segment) | struct | A loadable segment in a [`File`]. |
+| [`SectionIterator`](#sectioniterator) | struct | An iterator for the sections in a [`File`]. |
+| [`Section`](#section) | struct | A section in a [`File`]. |
+| [`ComdatIterator`](#comdatiterator) | struct | An iterator for the COMDAT section groups in a [`File`]. |
+| [`Comdat`](#comdat) | struct | A COMDAT section group in a [`File`]. |
+| [`ComdatSectionIterator`](#comdatsectioniterator) | struct | An iterator for the sections in a [`Comdat`]. |
+| [`SymbolTable`](#symboltable) | struct | A symbol table in a [`File`]. |
+| [`SymbolIterator`](#symboliterator) | struct | An iterator for the symbols in a [`SymbolTable`]. |
+| [`Symbol`](#symbol) | struct | An symbol in a [`SymbolTable`]. |
+| [`DynamicRelocationIterator`](#dynamicrelocationiterator) | struct | An iterator for the dynamic relocation entries in a [`File`]. |
+| [`SectionRelocationIterator`](#sectionrelocationiterator) | struct | An iterator for the relocation entries in a [`Section`]. |
+| [`File`](#file) | enum | An object file that can be any supported file format. |
+| [`SegmentIteratorInternal`](#segmentiteratorinternal) | enum |  |
+| [`SegmentInternal`](#segmentinternal) | enum |  |
+| [`SectionIteratorInternal`](#sectioniteratorinternal) | enum |  |
+| [`SectionInternal`](#sectioninternal) | enum |  |
+| [`ComdatIteratorInternal`](#comdatiteratorinternal) | enum |  |
+| [`ComdatInternal`](#comdatinternal) | enum |  |
+| [`ComdatSectionIteratorInternal`](#comdatsectioniteratorinternal) | enum |  |
+| [`SymbolTableInternal`](#symboltableinternal) | enum |  |
+| [`SymbolIteratorInternal`](#symboliteratorinternal) | enum |  |
+| [`SymbolInternal`](#symbolinternal) | enum |  |
+| [`DynamicRelocationIteratorInternal`](#dynamicrelocationiteratorinternal) | enum |  |
+| [`SectionRelocationIteratorInternal`](#sectionrelocationiteratorinternal) | enum |  |
+| [`with_inner!`](#with_inner) | macro | Evaluate an expression on the contents of a file format enum. |
+| [`with_inner_mut!`](#with_inner_mut) | macro |  |
+| [`map_inner!`](#map_inner) | macro | Like `with_inner!`, but wraps the result in another enum. |
+| [`map_inner_option!`](#map_inner_option) | macro | Like `map_inner!`, but the result is a Result or Option. |
+| [`map_inner_option_mut!`](#map_inner_option_mut) | macro |  |
+| [`next_inner!`](#next_inner) | macro | Call `next` for a file format iterator. |
+
 ## Structs
 
 ### `SegmentIterator<'data, 'file, R: ReadRef<'data>>`
@@ -18,23 +91,23 @@ An iterator for the loadable segments in a [`File`](../index.md).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R: $crate::fmt::Debug + ReadRef<'data>> Debug for SegmentIterator<'data, 'file, R>`
+##### `impl<'data, 'file, R: fmt::Debug + ReadRef<'data>> Debug for SegmentIterator<'data, 'file, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="segmentiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for SegmentIterator<'data, 'file, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="segmentiterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="segmentiterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="segmentiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> Iterator for SegmentIterator<'data, 'file, R>`
 
-- `type Item = Segment<'data, 'file, R>`
+- <span id="segmentiterator-item"></span>`type Item = Segment<'data, 'file, R>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="segmentiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `Segment<'data, 'file, R: ReadRef<'data>>`
 
@@ -52,27 +125,27 @@ Most functionality is provided by the [`ObjectSegment`](../index.md) trait imple
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> Debug for Segment<'data, 'file, R>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="segment-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> ObjectSegment for Segment<'data, 'file, R>`
 
-- `fn address(self: &Self) -> u64`
+- <span id="segment-address"></span>`fn address(&self) -> u64`
 
-- `fn size(self: &Self) -> u64`
+- <span id="segment-size"></span>`fn size(&self) -> u64`
 
-- `fn align(self: &Self) -> u64`
+- <span id="segment-align"></span>`fn align(&self) -> u64`
 
-- `fn file_range(self: &Self) -> (u64, u64)`
+- <span id="segment-file-range"></span>`fn file_range(&self) -> (u64, u64)`
 
-- `fn data(self: &Self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="segment-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
 
-- `fn data_range(self: &Self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../index.md)
+- <span id="segment-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../index.md)
 
-- `fn name_bytes(self: &Self) -> Result<Option<&[u8]>>` — [`Result`](../../index.md)
+- <span id="segment-name-bytes"></span>`fn name_bytes(&self) -> Result<Option<&[u8]>>` — [`Result`](../../index.md)
 
-- `fn name(self: &Self) -> Result<Option<&str>>` — [`Result`](../../index.md)
+- <span id="segment-name"></span>`fn name(&self) -> Result<Option<&str>>` — [`Result`](../../index.md)
 
-- `fn flags(self: &Self) -> SegmentFlags` — [`SegmentFlags`](../../index.md)
+- <span id="segment-flags"></span>`fn flags(&self) -> SegmentFlags` — [`SegmentFlags`](../../index.md)
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> Sealed for Segment<'data, 'file, R>`
 
@@ -88,23 +161,23 @@ An iterator for the sections in a [`File`](../index.md).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R: $crate::fmt::Debug + ReadRef<'data>> Debug for SectionIterator<'data, 'file, R>`
+##### `impl<'data, 'file, R: fmt::Debug + ReadRef<'data>> Debug for SectionIterator<'data, 'file, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for SectionIterator<'data, 'file, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="sectioniterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="sectioniterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="sectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> Iterator for SectionIterator<'data, 'file, R>`
 
-- `type Item = Section<'data, 'file, R>`
+- <span id="sectioniterator-item"></span>`type Item = Section<'data, 'file, R>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="sectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `Section<'data, 'file, R: ReadRef<'data>>`
 
@@ -122,45 +195,45 @@ Most functionality is provided by the [`ObjectSection`](../index.md) trait imple
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> Debug for Section<'data, 'file, R>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="section-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> ObjectSection for Section<'data, 'file, R>`
 
-- `type RelocationIterator = SectionRelocationIterator<'data, 'file, R>`
+- <span id="section-relocationiterator"></span>`type RelocationIterator = SectionRelocationIterator<'data, 'file, R>`
 
-- `fn index(self: &Self) -> SectionIndex` — [`SectionIndex`](../../index.md)
+- <span id="section-index"></span>`fn index(&self) -> SectionIndex` — [`SectionIndex`](../../index.md)
 
-- `fn address(self: &Self) -> u64`
+- <span id="section-address"></span>`fn address(&self) -> u64`
 
-- `fn size(self: &Self) -> u64`
+- <span id="section-size"></span>`fn size(&self) -> u64`
 
-- `fn align(self: &Self) -> u64`
+- <span id="section-align"></span>`fn align(&self) -> u64`
 
-- `fn file_range(self: &Self) -> Option<(u64, u64)>`
+- <span id="section-file-range"></span>`fn file_range(&self) -> Option<(u64, u64)>`
 
-- `fn data(self: &Self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="section-data"></span>`fn data(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
 
-- `fn data_range(self: &Self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../index.md)
+- <span id="section-data-range"></span>`fn data_range(&self, address: u64, size: u64) -> Result<Option<&'data [u8]>>` — [`Result`](../../index.md)
 
-- `fn compressed_file_range(self: &Self) -> Result<CompressedFileRange>` — [`Result`](../../index.md), [`CompressedFileRange`](../../index.md)
+- <span id="section-compressed-file-range"></span>`fn compressed_file_range(&self) -> Result<CompressedFileRange>` — [`Result`](../../index.md), [`CompressedFileRange`](../../index.md)
 
-- `fn compressed_data(self: &Self) -> Result<CompressedData<'data>>` — [`Result`](../../index.md), [`CompressedData`](../../index.md)
+- <span id="section-compressed-data"></span>`fn compressed_data(&self) -> Result<CompressedData<'data>>` — [`Result`](../../index.md), [`CompressedData`](../../index.md)
 
-- `fn name_bytes(self: &Self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="section-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
 
-- `fn name(self: &Self) -> Result<&'data str>` — [`Result`](../../index.md)
+- <span id="section-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../index.md)
 
-- `fn segment_name_bytes(self: &Self) -> Result<Option<&[u8]>>` — [`Result`](../../index.md)
+- <span id="section-segment-name-bytes"></span>`fn segment_name_bytes(&self) -> Result<Option<&[u8]>>` — [`Result`](../../index.md)
 
-- `fn segment_name(self: &Self) -> Result<Option<&str>>` — [`Result`](../../index.md)
+- <span id="section-segment-name"></span>`fn segment_name(&self) -> Result<Option<&str>>` — [`Result`](../../index.md)
 
-- `fn kind(self: &Self) -> SectionKind` — [`SectionKind`](../../index.md)
+- <span id="section-kind"></span>`fn kind(&self) -> SectionKind` — [`SectionKind`](../../index.md)
 
-- `fn relocations(self: &Self) -> SectionRelocationIterator<'data, 'file, R>` — [`SectionRelocationIterator`](../index.md)
+- <span id="section-relocations"></span>`fn relocations(&self) -> SectionRelocationIterator<'data, 'file, R>` — [`SectionRelocationIterator`](../index.md)
 
-- `fn relocation_map(self: &Self) -> Result<RelocationMap>` — [`Result`](../../index.md), [`RelocationMap`](../../index.md)
+- <span id="section-relocation-map"></span>`fn relocation_map(&self) -> Result<RelocationMap>` — [`Result`](../../index.md), [`RelocationMap`](../../index.md)
 
-- `fn flags(self: &Self) -> SectionFlags` — [`SectionFlags`](../../index.md)
+- <span id="section-flags"></span>`fn flags(&self) -> SectionFlags` — [`SectionFlags`](../../index.md)
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> Sealed for Section<'data, 'file, R>`
 
@@ -176,23 +249,23 @@ An iterator for the COMDAT section groups in a [`File`](../index.md).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R: $crate::fmt::Debug + ReadRef<'data>> Debug for ComdatIterator<'data, 'file, R>`
+##### `impl<'data, 'file, R: fmt::Debug + ReadRef<'data>> Debug for ComdatIterator<'data, 'file, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="comdatiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for ComdatIterator<'data, 'file, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="comdatiterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="comdatiterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="comdatiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> Iterator for ComdatIterator<'data, 'file, R>`
 
-- `type Item = Comdat<'data, 'file, R>`
+- <span id="comdatiterator-item"></span>`type Item = Comdat<'data, 'file, R>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="comdatiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `Comdat<'data, 'file, R: ReadRef<'data>>`
 
@@ -210,21 +283,21 @@ Most functionality is provided by the [`ObjectComdat`](../index.md) trait implem
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> Debug for Comdat<'data, 'file, R>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="comdat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> ObjectComdat for Comdat<'data, 'file, R>`
 
-- `type SectionIterator = ComdatSectionIterator<'data, 'file, R>`
+- <span id="comdat-sectioniterator"></span>`type SectionIterator = ComdatSectionIterator<'data, 'file, R>`
 
-- `fn kind(self: &Self) -> ComdatKind` — [`ComdatKind`](../../index.md)
+- <span id="comdat-kind"></span>`fn kind(&self) -> ComdatKind` — [`ComdatKind`](../../index.md)
 
-- `fn symbol(self: &Self) -> SymbolIndex` — [`SymbolIndex`](../../index.md)
+- <span id="comdat-symbol"></span>`fn symbol(&self) -> SymbolIndex` — [`SymbolIndex`](../../index.md)
 
-- `fn name_bytes(self: &Self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="comdat-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
 
-- `fn name(self: &Self) -> Result<&'data str>` — [`Result`](../../index.md)
+- <span id="comdat-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../index.md)
 
-- `fn sections(self: &Self) -> ComdatSectionIterator<'data, 'file, R>` — [`ComdatSectionIterator`](../index.md)
+- <span id="comdat-sections"></span>`fn sections(&self) -> ComdatSectionIterator<'data, 'file, R>` — [`ComdatSectionIterator`](../index.md)
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> Sealed for Comdat<'data, 'file, R>`
 
@@ -240,23 +313,23 @@ An iterator for the sections in a [`Comdat`](../index.md).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R: $crate::fmt::Debug + ReadRef<'data>> Debug for ComdatSectionIterator<'data, 'file, R>`
+##### `impl<'data, 'file, R: fmt::Debug + ReadRef<'data>> Debug for ComdatSectionIterator<'data, 'file, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="comdatsectioniterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for ComdatSectionIterator<'data, 'file, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="comdatsectioniterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="comdatsectioniterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="comdatsectioniterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> Iterator for ComdatSectionIterator<'data, 'file, R>`
 
-- `type Item = SectionIndex`
+- <span id="comdatsectioniterator-item"></span>`type Item = SectionIndex`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="comdatsectioniterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `SymbolTable<'data, 'file, R>`
 
@@ -276,17 +349,17 @@ Most functionality is provided by the [`ObjectSymbolTable`](../index.md) trait i
 
 ##### `impl<'data, 'file, R> Debug for SymbolTable<'data, 'file, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="symboltable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> ObjectSymbolTable for SymbolTable<'data, 'file, R>`
 
-- `type Symbol = Symbol<'data, 'file, R>`
+- <span id="symboltable-symbol"></span>`type Symbol = Symbol<'data, 'file, R>`
 
-- `type SymbolIterator = SymbolIterator<'data, 'file, R>`
+- <span id="symboltable-symboliterator"></span>`type SymbolIterator = SymbolIterator<'data, 'file, R>`
 
-- `fn symbols(self: &Self) -> <Self as >::SymbolIterator` — [`ObjectSymbolTable`](../index.md)
+- <span id="symboltable-symbols"></span>`fn symbols(&self) -> <Self as >::SymbolIterator` — [`ObjectSymbolTable`](../index.md)
 
-- `fn symbol_by_index(self: &Self, index: SymbolIndex) -> Result<<Self as >::Symbol>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md), [`ObjectSymbolTable`](../index.md)
+- <span id="symboltable-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> Result<<Self as >::Symbol>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md), [`ObjectSymbolTable`](../index.md)
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> Sealed for SymbolTable<'data, 'file, R>`
 
@@ -306,21 +379,21 @@ An iterator for the symbols in a [`SymbolTable`](../index.md).
 
 ##### `impl<'data, 'file, R> Debug for SymbolIterator<'data, 'file, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="symboliterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for SymbolIterator<'data, 'file, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="symboliterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="symboliterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="symboliterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> Iterator for SymbolIterator<'data, 'file, R>`
 
-- `type Item = Symbol<'data, 'file, R>`
+- <span id="symboliterator-item"></span>`type Item = Symbol<'data, 'file, R>`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="symboliterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `Symbol<'data, 'file, R>`
 
@@ -340,39 +413,39 @@ Most functionality is provided by the [`ObjectSymbol`](../index.md) trait implem
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> Debug for Symbol<'data, 'file, R>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="symbol-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> ObjectSymbol for Symbol<'data, 'file, R>`
 
-- `fn index(self: &Self) -> SymbolIndex` — [`SymbolIndex`](../../index.md)
+- <span id="symbol-index"></span>`fn index(&self) -> SymbolIndex` — [`SymbolIndex`](../../index.md)
 
-- `fn name_bytes(self: &Self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
+- <span id="symbol-name-bytes"></span>`fn name_bytes(&self) -> Result<&'data [u8]>` — [`Result`](../../index.md)
 
-- `fn name(self: &Self) -> Result<&'data str>` — [`Result`](../../index.md)
+- <span id="symbol-name"></span>`fn name(&self) -> Result<&'data str>` — [`Result`](../../index.md)
 
-- `fn address(self: &Self) -> u64`
+- <span id="symbol-address"></span>`fn address(&self) -> u64`
 
-- `fn size(self: &Self) -> u64`
+- <span id="symbol-size"></span>`fn size(&self) -> u64`
 
-- `fn kind(self: &Self) -> SymbolKind` — [`SymbolKind`](../../index.md)
+- <span id="symbol-kind"></span>`fn kind(&self) -> SymbolKind` — [`SymbolKind`](../../index.md)
 
-- `fn section(self: &Self) -> SymbolSection` — [`SymbolSection`](../../index.md)
+- <span id="symbol-section"></span>`fn section(&self) -> SymbolSection` — [`SymbolSection`](../../index.md)
 
-- `fn is_undefined(self: &Self) -> bool`
+- <span id="symbol-is-undefined"></span>`fn is_undefined(&self) -> bool`
 
-- `fn is_definition(self: &Self) -> bool`
+- <span id="symbol-is-definition"></span>`fn is_definition(&self) -> bool`
 
-- `fn is_common(self: &Self) -> bool`
+- <span id="symbol-is-common"></span>`fn is_common(&self) -> bool`
 
-- `fn is_weak(self: &Self) -> bool`
+- <span id="symbol-is-weak"></span>`fn is_weak(&self) -> bool`
 
-- `fn scope(self: &Self) -> SymbolScope` — [`SymbolScope`](../../index.md)
+- <span id="symbol-scope"></span>`fn scope(&self) -> SymbolScope` — [`SymbolScope`](../../index.md)
 
-- `fn is_global(self: &Self) -> bool`
+- <span id="symbol-is-global"></span>`fn is_global(&self) -> bool`
 
-- `fn is_local(self: &Self) -> bool`
+- <span id="symbol-is-local"></span>`fn is_local(&self) -> bool`
 
-- `fn flags(self: &Self) -> SymbolFlags<SectionIndex, SymbolIndex>` — [`SymbolFlags`](../../index.md), [`SectionIndex`](../../index.md), [`SymbolIndex`](../../index.md)
+- <span id="symbol-flags"></span>`fn flags(&self) -> SymbolFlags<SectionIndex, SymbolIndex>` — [`SymbolFlags`](../../index.md), [`SectionIndex`](../../index.md), [`SymbolIndex`](../../index.md)
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> Sealed for Symbol<'data, 'file, R>`
 
@@ -392,21 +465,21 @@ An iterator for the dynamic relocation entries in a [`File`](../index.md).
 
 ##### `impl<'data, 'file, R> Debug for DynamicRelocationIterator<'data, 'file, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dynamicrelocationiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for DynamicRelocationIterator<'data, 'file, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="dynamicrelocationiterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="dynamicrelocationiterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="dynamicrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> Iterator for DynamicRelocationIterator<'data, 'file, R>`
 
-- `type Item = (u64, Relocation)`
+- <span id="dynamicrelocationiterator-item"></span>`type Item = (u64, Relocation)`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="dynamicrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `SectionRelocationIterator<'data, 'file, R: ReadRef<'data>>`
 
@@ -420,23 +493,23 @@ An iterator for the relocation entries in a [`Section`](../index.md).
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R: $crate::fmt::Debug + ReadRef<'data>> Debug for SectionRelocationIterator<'data, 'file, R>`
+##### `impl<'data, 'file, R: fmt::Debug + ReadRef<'data>> Debug for SectionRelocationIterator<'data, 'file, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sectionrelocationiterator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for SectionRelocationIterator<'data, 'file, R>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="sectionrelocationiterator-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="sectionrelocationiterator-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="sectionrelocationiterator-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'data, 'file, R: ReadRef<'data>> Iterator for SectionRelocationIterator<'data, 'file, R>`
 
-- `type Item = (u64, Relocation)`
+- <span id="sectionrelocationiterator-item"></span>`type Item = (u64, Relocation)`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="sectionrelocationiterator-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ## Enums
 
@@ -463,97 +536,97 @@ Most functionality is provided by the [`Object`](../index.md) trait implementati
 
 #### Implementations
 
-- `fn parse(data: R) -> Result<Self>` — [`Result`](../../index.md)
+- <span id="file-parse"></span>`fn parse(data: R) -> Result<Self>` — [`Result`](../../index.md)
 
-- `fn parse_dyld_cache_image<'cache, E: crate::Endian>(image: &macho::DyldCacheImage<'data, 'cache, E, R>) -> Result<Self>` — [`DyldCacheImage`](../macho/index.md), [`Result`](../../index.md)
+- <span id="file-parse-dyld-cache-image"></span>`fn parse_dyld_cache_image<'cache, E: crate::Endian>(image: &macho::DyldCacheImage<'data, 'cache, E, R>) -> Result<Self>` — [`DyldCacheImage`](../macho/index.md), [`Result`](../../index.md)
 
-- `fn format(self: &Self) -> BinaryFormat` — [`BinaryFormat`](../../index.md)
+- <span id="file-format"></span>`fn format(&self) -> BinaryFormat` — [`BinaryFormat`](../../index.md)
 
 #### Trait Implementations
 
-##### `impl<'data, R: $crate::fmt::Debug + ReadRef<'data>> Debug for File<'data, R>`
+##### `impl<'data, R: fmt::Debug + ReadRef<'data>> Debug for File<'data, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="file-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'data, R> Object for File<'data, R>`
 
-- `type Segment = Segment<'data, 'file, R>`
+- <span id="file-segment"></span>`type Segment = Segment<'data, 'file, R>`
 
-- `type SegmentIterator = SegmentIterator<'data, 'file, R>`
+- <span id="file-segmentiterator"></span>`type SegmentIterator = SegmentIterator<'data, 'file, R>`
 
-- `type Section = Section<'data, 'file, R>`
+- <span id="file-section"></span>`type Section = Section<'data, 'file, R>`
 
-- `type SectionIterator = SectionIterator<'data, 'file, R>`
+- <span id="file-sectioniterator"></span>`type SectionIterator = SectionIterator<'data, 'file, R>`
 
-- `type Comdat = Comdat<'data, 'file, R>`
+- <span id="file-comdat"></span>`type Comdat = Comdat<'data, 'file, R>`
 
-- `type ComdatIterator = ComdatIterator<'data, 'file, R>`
+- <span id="file-comdatiterator"></span>`type ComdatIterator = ComdatIterator<'data, 'file, R>`
 
-- `type Symbol = Symbol<'data, 'file, R>`
+- <span id="file-symbol"></span>`type Symbol = Symbol<'data, 'file, R>`
 
-- `type SymbolIterator = SymbolIterator<'data, 'file, R>`
+- <span id="file-symboliterator"></span>`type SymbolIterator = SymbolIterator<'data, 'file, R>`
 
-- `type SymbolTable = SymbolTable<'data, 'file, R>`
+- <span id="file-symboltable"></span>`type SymbolTable = SymbolTable<'data, 'file, R>`
 
-- `type DynamicRelocationIterator = DynamicRelocationIterator<'data, 'file, R>`
+- <span id="file-dynamicrelocationiterator"></span>`type DynamicRelocationIterator = DynamicRelocationIterator<'data, 'file, R>`
 
-- `fn architecture(self: &Self) -> Architecture` — [`Architecture`](../../index.md)
+- <span id="file-architecture"></span>`fn architecture(&self) -> Architecture` — [`Architecture`](../../index.md)
 
-- `fn sub_architecture(self: &Self) -> Option<SubArchitecture>` — [`SubArchitecture`](../../index.md)
+- <span id="file-sub-architecture"></span>`fn sub_architecture(&self) -> Option<SubArchitecture>` — [`SubArchitecture`](../../index.md)
 
-- `fn is_little_endian(self: &Self) -> bool`
+- <span id="file-is-little-endian"></span>`fn is_little_endian(&self) -> bool`
 
-- `fn is_64(self: &Self) -> bool`
+- <span id="file-is-64"></span>`fn is_64(&self) -> bool`
 
-- `fn kind(self: &Self) -> ObjectKind` — [`ObjectKind`](../../index.md)
+- <span id="file-kind"></span>`fn kind(&self) -> ObjectKind` — [`ObjectKind`](../../index.md)
 
-- `fn segments(self: &Self) -> SegmentIterator<'data, '_, R>` — [`SegmentIterator`](../index.md)
+- <span id="file-segments"></span>`fn segments(&self) -> SegmentIterator<'data, '_, R>` — [`SegmentIterator`](../index.md)
 
-- `fn section_by_name_bytes<'file>(self: &'file Self, section_name: &[u8]) -> Option<Section<'data, 'file, R>>` — [`Section`](../index.md)
+- <span id="file-section-by-name-bytes"></span>`fn section_by_name_bytes<'file>(self: &'file Self, section_name: &[u8]) -> Option<Section<'data, 'file, R>>` — [`Section`](../index.md)
 
-- `fn section_by_index(self: &Self, index: SectionIndex) -> Result<Section<'data, '_, R>>` — [`SectionIndex`](../../index.md), [`Result`](../../index.md), [`Section`](../index.md)
+- <span id="file-section-by-index"></span>`fn section_by_index(&self, index: SectionIndex) -> Result<Section<'data, '_, R>>` — [`SectionIndex`](../../index.md), [`Result`](../../index.md), [`Section`](../index.md)
 
-- `fn sections(self: &Self) -> SectionIterator<'data, '_, R>` — [`SectionIterator`](../index.md)
+- <span id="file-sections"></span>`fn sections(&self) -> SectionIterator<'data, '_, R>` — [`SectionIterator`](../index.md)
 
-- `fn comdats(self: &Self) -> ComdatIterator<'data, '_, R>` — [`ComdatIterator`](../index.md)
+- <span id="file-comdats"></span>`fn comdats(&self) -> ComdatIterator<'data, '_, R>` — [`ComdatIterator`](../index.md)
 
-- `fn symbol_by_index(self: &Self, index: SymbolIndex) -> Result<Symbol<'data, '_, R>>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md), [`Symbol`](../index.md)
+- <span id="file-symbol-by-index"></span>`fn symbol_by_index(&self, index: SymbolIndex) -> Result<Symbol<'data, '_, R>>` — [`SymbolIndex`](../../index.md), [`Result`](../../index.md), [`Symbol`](../index.md)
 
-- `fn symbols(self: &Self) -> SymbolIterator<'data, '_, R>` — [`SymbolIterator`](../index.md)
+- <span id="file-symbols"></span>`fn symbols(&self) -> SymbolIterator<'data, '_, R>` — [`SymbolIterator`](../index.md)
 
-- `fn symbol_table(self: &Self) -> Option<SymbolTable<'data, '_, R>>` — [`SymbolTable`](../index.md)
+- <span id="file-symbol-table"></span>`fn symbol_table(&self) -> Option<SymbolTable<'data, '_, R>>` — [`SymbolTable`](../index.md)
 
-- `fn dynamic_symbols(self: &Self) -> SymbolIterator<'data, '_, R>` — [`SymbolIterator`](../index.md)
+- <span id="file-dynamic-symbols"></span>`fn dynamic_symbols(&self) -> SymbolIterator<'data, '_, R>` — [`SymbolIterator`](../index.md)
 
-- `fn dynamic_symbol_table(self: &Self) -> Option<SymbolTable<'data, '_, R>>` — [`SymbolTable`](../index.md)
+- <span id="file-dynamic-symbol-table"></span>`fn dynamic_symbol_table(&self) -> Option<SymbolTable<'data, '_, R>>` — [`SymbolTable`](../index.md)
 
-- `fn dynamic_relocations(self: &Self) -> Option<DynamicRelocationIterator<'data, '_, R>>` — [`DynamicRelocationIterator`](../index.md)
+- <span id="file-dynamic-relocations"></span>`fn dynamic_relocations(&self) -> Option<DynamicRelocationIterator<'data, '_, R>>` — [`DynamicRelocationIterator`](../index.md)
 
-- `fn symbol_map(self: &Self) -> SymbolMap<SymbolMapName<'data>>` — [`SymbolMap`](../../index.md), [`SymbolMapName`](../../index.md)
+- <span id="file-symbol-map"></span>`fn symbol_map(&self) -> SymbolMap<SymbolMapName<'data>>` — [`SymbolMap`](../../index.md), [`SymbolMapName`](../../index.md)
 
-- `fn object_map(self: &Self) -> ObjectMap<'data>` — [`ObjectMap`](../../index.md)
+- <span id="file-object-map"></span>`fn object_map(&self) -> ObjectMap<'data>` — [`ObjectMap`](../../index.md)
 
-- `fn imports(self: &Self) -> Result<Vec<Import<'data>>>` — [`Result`](../../index.md), [`Import`](../../index.md)
+- <span id="file-imports"></span>`fn imports(&self) -> Result<Vec<Import<'data>>>` — [`Result`](../../index.md), [`Import`](../../index.md)
 
-- `fn exports(self: &Self) -> Result<Vec<Export<'data>>>` — [`Result`](../../index.md), [`Export`](../../index.md)
+- <span id="file-exports"></span>`fn exports(&self) -> Result<Vec<Export<'data>>>` — [`Result`](../../index.md), [`Export`](../../index.md)
 
-- `fn has_debug_symbols(self: &Self) -> bool`
+- <span id="file-has-debug-symbols"></span>`fn has_debug_symbols(&self) -> bool`
 
-- `fn mach_uuid(self: &Self) -> Result<Option<[u8; 16]>>` — [`Result`](../../index.md)
+- <span id="file-mach-uuid"></span>`fn mach_uuid(&self) -> Result<Option<[u8; 16]>>` — [`Result`](../../index.md)
 
-- `fn build_id(self: &Self) -> Result<Option<&'data [u8]>>` — [`Result`](../../index.md)
+- <span id="file-build-id"></span>`fn build_id(&self) -> Result<Option<&'data [u8]>>` — [`Result`](../../index.md)
 
-- `fn gnu_debuglink(self: &Self) -> Result<Option<(&'data [u8], u32)>>` — [`Result`](../../index.md)
+- <span id="file-gnu-debuglink"></span>`fn gnu_debuglink(&self) -> Result<Option<(&'data [u8], u32)>>` — [`Result`](../../index.md)
 
-- `fn gnu_debugaltlink(self: &Self) -> Result<Option<(&'data [u8], &'data [u8])>>` — [`Result`](../../index.md)
+- <span id="file-gnu-debugaltlink"></span>`fn gnu_debugaltlink(&self) -> Result<Option<(&'data [u8], &'data [u8])>>` — [`Result`](../../index.md)
 
-- `fn pdb_info(self: &Self) -> Result<Option<CodeView<'_>>>` — [`Result`](../../index.md), [`CodeView`](../../index.md)
+- <span id="file-pdb-info"></span>`fn pdb_info(&self) -> Result<Option<CodeView<'_>>>` — [`Result`](../../index.md), [`CodeView`](../../index.md)
 
-- `fn relative_address_base(self: &Self) -> u64`
+- <span id="file-relative-address-base"></span>`fn relative_address_base(&self) -> u64`
 
-- `fn entry(self: &Self) -> u64`
+- <span id="file-entry"></span>`fn entry(&self) -> u64`
 
-- `fn flags(self: &Self) -> FileFlags` — [`FileFlags`](../../index.md)
+- <span id="file-flags"></span>`fn flags(&self) -> FileFlags` — [`FileFlags`](../../index.md)
 
 ##### `impl<'data, R: ReadRef<'data>> Sealed for File<'data, R>`
 
@@ -576,9 +649,9 @@ enum SegmentIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R: $crate::fmt::Debug + ReadRef<'data>> Debug for SegmentIteratorInternal<'data, 'file, R>`
+##### `impl<'data, 'file, R: fmt::Debug + ReadRef<'data>> Debug for SegmentIteratorInternal<'data, 'file, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="segmentiteratorinternal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `SegmentInternal<'data, 'file, R: ReadRef<'data>>`
 
@@ -599,9 +672,9 @@ enum SegmentInternal<'data, 'file, R: ReadRef<'data>> {
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R: $crate::fmt::Debug + ReadRef<'data>> Debug for SegmentInternal<'data, 'file, R>`
+##### `impl<'data, 'file, R: fmt::Debug + ReadRef<'data>> Debug for SegmentInternal<'data, 'file, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="segmentinternal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `SectionIteratorInternal<'data, 'file, R: ReadRef<'data>>`
 
@@ -622,9 +695,9 @@ enum SectionIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R: $crate::fmt::Debug + ReadRef<'data>> Debug for SectionIteratorInternal<'data, 'file, R>`
+##### `impl<'data, 'file, R: fmt::Debug + ReadRef<'data>> Debug for SectionIteratorInternal<'data, 'file, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sectioniteratorinternal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `SectionInternal<'data, 'file, R: ReadRef<'data>>`
 
@@ -662,9 +735,9 @@ enum ComdatIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R: $crate::fmt::Debug + ReadRef<'data>> Debug for ComdatIteratorInternal<'data, 'file, R>`
+##### `impl<'data, 'file, R: fmt::Debug + ReadRef<'data>> Debug for ComdatIteratorInternal<'data, 'file, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="comdatiteratorinternal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ComdatInternal<'data, 'file, R: ReadRef<'data>>`
 
@@ -702,9 +775,9 @@ enum ComdatSectionIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R: $crate::fmt::Debug + ReadRef<'data>> Debug for ComdatSectionIteratorInternal<'data, 'file, R>`
+##### `impl<'data, 'file, R: fmt::Debug + ReadRef<'data>> Debug for ComdatSectionIteratorInternal<'data, 'file, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="comdatsectioniteratorinternal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `SymbolTableInternal<'data, 'file, R>`
 
@@ -729,7 +802,7 @@ where
 
 ##### `impl<'data, 'file, R> Debug for SymbolTableInternal<'data, 'file, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="symboltableinternal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `SymbolIteratorInternal<'data, 'file, R>`
 
@@ -754,7 +827,7 @@ where
 
 ##### `impl<'data, 'file, R> Debug for SymbolIteratorInternal<'data, 'file, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="symboliteratorinternal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `SymbolInternal<'data, 'file, R>`
 
@@ -791,7 +864,7 @@ where
 
 ##### `impl<'data, 'file, R> Debug for DynamicRelocationIteratorInternal<'data, 'file, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dynamicrelocationiteratorinternal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `SectionRelocationIteratorInternal<'data, 'file, R: ReadRef<'data>>`
 
@@ -812,9 +885,9 @@ enum SectionRelocationIteratorInternal<'data, 'file, R: ReadRef<'data>> {
 
 #### Trait Implementations
 
-##### `impl<'data, 'file, R: $crate::fmt::Debug + ReadRef<'data>> Debug for SectionRelocationIteratorInternal<'data, 'file, R>`
+##### `impl<'data, 'file, R: fmt::Debug + ReadRef<'data>> Debug for SectionRelocationIteratorInternal<'data, 'file, R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sectionrelocationiteratorinternal-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Macros
 

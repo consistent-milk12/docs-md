@@ -4,6 +4,15 @@
 
 # Module `utils`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`error`](#error) | mod |  |
+| [`doc_comments`](#doc_comments) | mod | The preprocessing we apply to doc comments. |
+| [`spanned`](#spanned) | mod |  |
+| [`ty`](#ty) | mod | Special types handling |
+
 ## Modules
 
 - [`error`](error/index.md) - 

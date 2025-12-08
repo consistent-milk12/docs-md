@@ -4,6 +4,34 @@
 
 # Module `line`
 
+## Contents
+
+- [Structs](#structs)
+  - [`LazyLines`](#lazylines)
+  - [`LineSequence`](#linesequence)
+  - [`LineRow`](#linerow)
+  - [`Lines`](#lines)
+  - [`LineLocationRangeIter`](#linelocationrangeiter)
+- [Functions](#functions)
+  - [`render_file`](#render_file)
+  - [`path_push`](#path_push)
+  - [`has_forward_slash_root`](#has_forward_slash_root)
+  - [`has_backward_slash_root`](#has_backward_slash_root)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`LazyLines`](#lazylines) | struct |  |
+| [`LineSequence`](#linesequence) | struct |  |
+| [`LineRow`](#linerow) | struct |  |
+| [`Lines`](#lines) | struct |  |
+| [`LineLocationRangeIter`](#linelocationrangeiter) | struct |  |
+| [`render_file`](#render_file) | fn |  |
+| [`path_push`](#path_push) | fn |  |
+| [`has_forward_slash_root`](#has_forward_slash_root) | fn | Check if the path in the given string has a unix style root |
+| [`has_backward_slash_root`](#has_backward_slash_root) | fn | Check if the path in the given string has a windows style root |
+
 ## Structs
 
 ### `LazyLines`
@@ -14,9 +42,9 @@ struct LazyLines(core::cell::OnceCell<Result<Lines, gimli::Error>>);
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="lazylines-new"></span>`fn new() -> Self`
 
-- `fn borrow<R: gimli::Reader>(self: &Self, dw_unit: gimli::UnitRef<'_, R>, ilnp: &gimli::IncompleteLineProgram<R, <R as >::Offset>) -> Result<&Lines, gimli::Error>` — [`Lines`](#lines)
+- <span id="lazylines-borrow"></span>`fn borrow<R: gimli::Reader>(&self, dw_unit: gimli::UnitRef<'_, R>, ilnp: &gimli::IncompleteLineProgram<R, <R as >::Offset>) -> Result<&Lines, gimli::Error>` — [`Lines`](#lines)
 
 ### `LineSequence`
 
@@ -50,17 +78,17 @@ struct Lines {
 
 #### Implementations
 
-- `fn parse<R: gimli::Reader>(dw_unit: gimli::UnitRef<'_, R>, ilnp: gimli::IncompleteLineProgram<R, <R as >::Offset>) -> Result<Self, gimli::Error>`
+- <span id="lines-parse"></span>`fn parse<R: gimli::Reader>(dw_unit: gimli::UnitRef<'_, R>, ilnp: gimli::IncompleteLineProgram<R, <R as >::Offset>) -> Result<Self, gimli::Error>`
 
-- `fn file(self: &Self, index: u64) -> Option<&str>`
+- <span id="lines-file"></span>`fn file(&self, index: u64) -> Option<&str>`
 
-- `fn ranges(self: &Self) -> impl Iterator<Item = gimli::Range> + '_`
+- <span id="lines-ranges"></span>`fn ranges(&self) -> impl Iterator<Item = gimli::Range> + '_`
 
-- `fn row_location(self: &Self, row: &LineRow) -> Location<'_>` — [`LineRow`](#linerow), [`Location`](../index.md)
+- <span id="lines-row-location"></span>`fn row_location(&self, row: &LineRow) -> Location<'_>` — [`LineRow`](#linerow), [`Location`](../index.md)
 
-- `fn find_location(self: &Self, probe: u64) -> Result<Option<Location<'_>>, gimli::Error>` — [`Location`](../index.md)
+- <span id="lines-find-location"></span>`fn find_location(&self, probe: u64) -> Result<Option<Location<'_>>, gimli::Error>` — [`Location`](../index.md)
 
-- `fn find_location_range(self: &Self, probe_low: u64, probe_high: u64) -> Result<LineLocationRangeIter<'_>, gimli::Error>` — [`LineLocationRangeIter`](#linelocationrangeiter)
+- <span id="lines-find-location-range"></span>`fn find_location_range(&self, probe_low: u64, probe_high: u64) -> Result<LineLocationRangeIter<'_>, gimli::Error>` — [`LineLocationRangeIter`](#linelocationrangeiter)
 
 ### `LineLocationRangeIter<'ctx>`
 
@@ -77,17 +105,17 @@ struct LineLocationRangeIter<'ctx> {
 
 ##### `impl<I> IntoIterator for LineLocationRangeIter<'ctx>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="linelocationrangeiter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="linelocationrangeiter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="linelocationrangeiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'ctx> Iterator for LineLocationRangeIter<'ctx>`
 
-- `type Item = (u64, u64, Location<'ctx>)`
+- <span id="linelocationrangeiter-item"></span>`type Item = (u64, u64, Location<'ctx>)`
 
-- `fn next(self: &mut Self) -> Option<(u64, u64, Location<'ctx>)>` — [`Location`](../index.md)
+- <span id="linelocationrangeiter-next"></span>`fn next(&mut self) -> Option<(u64, u64, Location<'ctx>)>` — [`Location`](../index.md)
 
 ## Functions
 

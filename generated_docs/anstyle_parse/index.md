@@ -30,6 +30,45 @@ Just type `:q` to exit.
   all states.
 
 
+## Contents
+
+- [Modules](#modules)
+  - [`params`](#params)
+  - [`state`](#state)
+- [Structs](#structs)
+  - [`unnamed`](#unnamed)
+  - [`unnamed`](#unnamed)
+  - [`Parser`](#parser)
+  - [`AsciiParser`](#asciiparser)
+  - [`Utf8Parser`](#utf8parser)
+  - [`VtUtf8Receiver`](#vtutf8receiver)
+- [Traits](#traits)
+  - [`CharAccumulator`](#characcumulator)
+  - [`Perform`](#perform)
+- [Type Aliases](#type-aliases)
+  - [`DefaultCharAccumulator`](#defaultcharaccumulator)
+- [Constants](#constants)
+  - [`MAX_INTERMEDIATES`](#max_intermediates)
+  - [`MAX_OSC_PARAMS`](#max_osc_params)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`params`](#params) | mod | Fixed size parameters list with optional subparameters. |
+| [`state`](#state) | mod | ANSI escape code parsing state machine |
+| [`unnamed`](#unnamed) | struct |  |
+| [`unnamed`](#unnamed) | struct |  |
+| [`Parser`](#parser) | struct | Parser for raw _VTE_ protocol which delegates actions to a [`Perform`] |
+| [`AsciiParser`](#asciiparser) | struct | Only allow parsing 7-bit ASCII |
+| [`Utf8Parser`](#utf8parser) | struct | Allow parsing UTF-8 |
+| [`VtUtf8Receiver`](#vtutf8receiver) | struct |  |
+| [`CharAccumulator`](#characcumulator) | trait | Build a `char` out of bytes |
+| [`Perform`](#perform) | trait | Performs actions requested by the [`Parser`] |
+| [`DefaultCharAccumulator`](#defaultcharaccumulator) | type | Most flexible [`CharAccumulator`] for [`Parser`] based on active features |
+| [`MAX_INTERMEDIATES`](#max_intermediates) | const |  |
+| [`MAX_OSC_PARAMS`](#max_osc_params) | const |  |
+
 ## Modules
 
 - [`params`](params/index.md) - Fixed size parameters list with optional subparameters.
@@ -73,39 +112,39 @@ struct Params {
 
 #### Implementations
 
-- `fn len(self: &Self) -> usize`
+- <span id="params-len"></span>`fn len(&self) -> usize`
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="params-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn iter(self: &Self) -> ParamsIter<'_>` — [`ParamsIter`](#paramsiter)
+- <span id="params-iter"></span>`fn iter(&self) -> ParamsIter<'_>` — [`ParamsIter`](#paramsiter)
 
-- `fn is_full(self: &Self) -> bool`
+- <span id="params-is-full"></span>`fn is_full(&self) -> bool`
 
-- `fn clear(self: &mut Self)`
+- <span id="params-clear"></span>`fn clear(&mut self)`
 
-- `fn push(self: &mut Self, item: u16)`
+- <span id="params-push"></span>`fn push(&mut self, item: u16)`
 
-- `fn extend(self: &mut Self, item: u16)`
+- <span id="params-extend"></span>`fn extend(&mut self, item: u16)`
 
 #### Trait Implementations
 
 ##### `impl Clone for Params`
 
-- `fn clone(self: &Self) -> Params` — [`Params`](#params)
+- <span id="params-clone"></span>`fn clone(&self) -> Params` — [`Params`](#params)
 
 ##### `impl Debug for Params`
 
-- `fn fmt(self: &Self, f: &mut Formatter<'_>) -> fmt::Result`
+- <span id="params-fmt"></span>`fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Params`
 
-- `fn default() -> Params` — [`Params`](#params)
+- <span id="params-default"></span>`fn default() -> Params` — [`Params`](#params)
 
 ##### `impl Eq for Params`
 
 ##### `impl PartialEq for Params`
 
-- `fn eq(self: &Self, other: &Params) -> bool` — [`Params`](#params)
+- <span id="params-eq"></span>`fn eq(&self, other: &Params) -> bool` — [`Params`](#params)
 
 ##### `impl StructuralPartialEq for Params`
 
@@ -122,25 +161,25 @@ Immutable subparameter iterator.
 
 #### Implementations
 
-- `fn new(params: &'a Params) -> Self` — [`Params`](#params)
+- <span id="paramsiter-new"></span>`fn new(params: &'a Params) -> Self` — [`Params`](#params)
 
 #### Trait Implementations
 
 ##### `impl<I> IntoIterator for ParamsIter<'a>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="paramsiter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="paramsiter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="paramsiter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a> Iterator for ParamsIter<'a>`
 
-- `type Item = &'a [u16]`
+- <span id="paramsiter-item"></span>`type Item = &'a [u16]`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="paramsiter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+- <span id="paramsiter-size-hint"></span>`fn size_hint(&self) -> (usize, Option<usize>)`
 
 ### `Parser<C>`
 
@@ -163,41 +202,41 @@ Parser for raw _VTE_ protocol which delegates actions to a [`Perform`](#perform)
 
 #### Implementations
 
-- `fn new() -> Parser` — [`Parser`](#parser)
+- <span id="parser-new"></span>`fn new() -> Parser` — [`Parser`](#parser)
 
-- `fn params(self: &Self) -> &Params` — [`Params`](#params)
+- <span id="parser-params"></span>`fn params(&self) -> &Params` — [`Params`](#params)
 
-- `fn intermediates(self: &Self) -> &[u8]`
+- <span id="parser-intermediates"></span>`fn intermediates(&self) -> &[u8]`
 
-- `fn advance<P: Perform>(self: &mut Self, performer: &mut P, byte: u8)`
+- <span id="parser-advance"></span>`fn advance<P: Perform>(&mut self, performer: &mut P, byte: u8)`
 
-- `fn process_utf8<P>(self: &mut Self, performer: &mut P, byte: u8)`
+- <span id="parser-process-utf8"></span>`fn process_utf8<P>(&mut self, performer: &mut P, byte: u8)`
 
-- `fn perform_state_change<P>(self: &mut Self, performer: &mut P, state: State, action: Action, byte: u8)` — [`State`](state/index.md), [`Action`](state/index.md)
+- <span id="parser-perform-state-change"></span>`fn perform_state_change<P>(&mut self, performer: &mut P, state: State, action: Action, byte: u8)` — [`State`](state/index.md), [`Action`](state/index.md)
 
-- `fn osc_dispatch<P: Perform>(self: &Self, performer: &mut P, byte: u8)`
+- <span id="parser-osc-dispatch"></span>`fn osc_dispatch<P: Perform>(&self, performer: &mut P, byte: u8)`
 
-- `fn perform_action<P: Perform>(self: &mut Self, performer: &mut P, action: Action, byte: u8)` — [`Action`](state/index.md)
+- <span id="parser-perform-action"></span>`fn perform_action<P: Perform>(&mut self, performer: &mut P, action: Action, byte: u8)` — [`Action`](state/index.md)
 
 #### Trait Implementations
 
-##### `impl<C: $crate::clone::Clone> Clone for Parser<C>`
+##### `impl<C: clone::Clone> Clone for Parser<C>`
 
-- `fn clone(self: &Self) -> Parser<C>` — [`Parser`](#parser)
+- <span id="parser-clone"></span>`fn clone(&self) -> Parser<C>` — [`Parser`](#parser)
 
-##### `impl<C: $crate::fmt::Debug> Debug for Parser<C>`
+##### `impl<C: fmt::Debug> Debug for Parser<C>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="parser-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<C: $crate::default::Default> Default for Parser<C>`
+##### `impl<C: default::Default> Default for Parser<C>`
 
-- `fn default() -> Parser<C>` — [`Parser`](#parser)
+- <span id="parser-default"></span>`fn default() -> Parser<C>` — [`Parser`](#parser)
 
-##### `impl<C: $crate::cmp::Eq> Eq for Parser<C>`
+##### `impl<C: cmp::Eq> Eq for Parser<C>`
 
-##### `impl<C: $crate::cmp::PartialEq> PartialEq for Parser<C>`
+##### `impl<C: cmp::PartialEq> PartialEq for Parser<C>`
 
-- `fn eq(self: &Self, other: &Parser<C>) -> bool` — [`Parser`](#parser)
+- <span id="parser-eq"></span>`fn eq(&self, other: &Parser<C>) -> bool` — [`Parser`](#parser)
 
 ##### `impl<C> StructuralPartialEq for Parser<C>`
 
@@ -213,25 +252,25 @@ Only allow parsing 7-bit ASCII
 
 ##### `impl CharAccumulator for AsciiParser`
 
-- `fn add(self: &mut Self, _byte: u8) -> Option<char>`
+- <span id="asciiparser-add"></span>`fn add(&mut self, _byte: u8) -> Option<char>`
 
 ##### `impl Clone for AsciiParser`
 
-- `fn clone(self: &Self) -> AsciiParser` — [`AsciiParser`](#asciiparser)
+- <span id="asciiparser-clone"></span>`fn clone(&self) -> AsciiParser` — [`AsciiParser`](#asciiparser)
 
 ##### `impl Debug for AsciiParser`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="asciiparser-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for AsciiParser`
 
-- `fn default() -> AsciiParser` — [`AsciiParser`](#asciiparser)
+- <span id="asciiparser-default"></span>`fn default() -> AsciiParser` — [`AsciiParser`](#asciiparser)
 
 ##### `impl Eq for AsciiParser`
 
 ##### `impl PartialEq for AsciiParser`
 
-- `fn eq(self: &Self, other: &AsciiParser) -> bool` — [`AsciiParser`](#asciiparser)
+- <span id="asciiparser-eq"></span>`fn eq(&self, other: &AsciiParser) -> bool` — [`AsciiParser`](#asciiparser)
 
 ##### `impl StructuralPartialEq for AsciiParser`
 
@@ -249,25 +288,25 @@ Allow parsing UTF-8
 
 ##### `impl CharAccumulator for Utf8Parser`
 
-- `fn add(self: &mut Self, byte: u8) -> Option<char>`
+- <span id="utf8parser-add"></span>`fn add(&mut self, byte: u8) -> Option<char>`
 
 ##### `impl Clone for Utf8Parser`
 
-- `fn clone(self: &Self) -> Utf8Parser` — [`Utf8Parser`](#utf8parser)
+- <span id="utf8parser-clone"></span>`fn clone(&self) -> Utf8Parser` — [`Utf8Parser`](#utf8parser)
 
 ##### `impl Debug for Utf8Parser`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="utf8parser-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Utf8Parser`
 
-- `fn default() -> Utf8Parser` — [`Utf8Parser`](#utf8parser)
+- <span id="utf8parser-default"></span>`fn default() -> Utf8Parser` — [`Utf8Parser`](#utf8parser)
 
 ##### `impl Eq for Utf8Parser`
 
 ##### `impl PartialEq for Utf8Parser`
 
-- `fn eq(self: &Self, other: &Utf8Parser) -> bool` — [`Utf8Parser`](#utf8parser)
+- <span id="utf8parser-eq"></span>`fn eq(&self, other: &Utf8Parser) -> bool` — [`Utf8Parser`](#utf8parser)
 
 ##### `impl StructuralPartialEq for Utf8Parser`
 
@@ -281,9 +320,9 @@ struct VtUtf8Receiver<'a>(&'a mut Option<char>);
 
 ##### `impl Receiver for VtUtf8Receiver<'_>`
 
-- `fn codepoint(self: &mut Self, c: char)`
+- <span id="vtutf8receiver-codepoint"></span>`fn codepoint(&mut self, c: char)`
 
-- `fn invalid_sequence(self: &mut Self)`
+- <span id="vtutf8receiver-invalid-sequence"></span>`fn invalid_sequence(&mut self)`
 
 ## Traits
 
@@ -297,7 +336,7 @@ Build a `char` out of bytes
 
 #### Required Methods
 
-- `fn add(self: &mut Self, byte: u8) -> Option<char>`
+- `fn add(&mut self, byte: u8) -> Option<char>`
 
   Build a `char` out of bytes
 
@@ -320,35 +359,35 @@ the future, consider checking archive.org.
 
 #### Required Methods
 
-- `fn print(self: &mut Self, _c: char)`
+- `fn print(&mut self, _c: char)`
 
   Draw a character to the screen and update states.
 
-- `fn execute(self: &mut Self, _byte: u8)`
+- `fn execute(&mut self, _byte: u8)`
 
   Execute a C0 or C1 control function.
 
-- `fn hook(self: &mut Self, _params: &Params, _intermediates: &[u8], _ignore: bool, _action: u8)`
+- `fn hook(&mut self, _params: &Params, _intermediates: &[u8], _ignore: bool, _action: u8)`
 
   Invoked when a final character arrives in first part of device control string.
 
-- `fn put(self: &mut Self, _byte: u8)`
+- `fn put(&mut self, _byte: u8)`
 
   Pass bytes as part of a device control string to the handle chosen in `hook`. C0 controls
 
-- `fn unhook(self: &mut Self)`
+- `fn unhook(&mut self)`
 
   Called when a device control string is terminated.
 
-- `fn osc_dispatch(self: &mut Self, _params: &[&[u8]], _bell_terminated: bool)`
+- `fn osc_dispatch(&mut self, _params: &[&[u8]], _bell_terminated: bool)`
 
   Dispatch an operating system command.
 
-- `fn csi_dispatch(self: &mut Self, _params: &Params, _intermediates: &[u8], _ignore: bool, _action: u8)`
+- `fn csi_dispatch(&mut self, _params: &Params, _intermediates: &[u8], _ignore: bool, _action: u8)`
 
   A final character has arrived for a CSI sequence
 
-- `fn esc_dispatch(self: &mut Self, _intermediates: &[u8], _ignore: bool, _byte: u8)`
+- `fn esc_dispatch(&mut self, _intermediates: &[u8], _ignore: bool, _byte: u8)`
 
   The final character of an escape sequence has arrived.
 

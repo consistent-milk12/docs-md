@@ -6,6 +6,14 @@
 
 PE rich header handling
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`RichHeaderInfo`](#richheaderinfo) | struct | Parsed information about a Rich Header. |
+| [`RichHeaderEntry`](#richheaderentry) | struct | A PE rich header entry after it has been unmasked. |
+| [`memmem`](#memmem) | fn | Find the offset of the first occurrence of needle in the data. |
+
 ## Structs
 
 ### `RichHeaderInfo<'data>`
@@ -43,21 +51,21 @@ Parsed information about a Rich Header.
 
 #### Implementations
 
-- `fn parse<R: ReadRef<'data>>(data: R, nt_header_offset: u64) -> Option<Self>`
+- <span id="richheaderinfo-parse"></span>`fn parse<R: ReadRef<'data>>(data: R, nt_header_offset: u64) -> Option<Self>`
 
-- `fn unmasked_entries(self: &Self) -> impl Iterator<Item = RichHeaderEntry> + 'data` — [`RichHeaderEntry`](../index.md)
+- <span id="richheaderinfo-unmasked-entries"></span>`fn unmasked_entries(&self) -> impl Iterator<Item = RichHeaderEntry> + 'data` — [`RichHeaderEntry`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'data> Clone for RichHeaderInfo<'data>`
 
-- `fn clone(self: &Self) -> RichHeaderInfo<'data>` — [`RichHeaderInfo`](../index.md)
+- <span id="richheaderinfo-clone"></span>`fn clone(&self) -> RichHeaderInfo<'data>` — [`RichHeaderInfo`](../index.md)
 
 ##### `impl<'data> Copy for RichHeaderInfo<'data>`
 
 ##### `impl<'data> Debug for RichHeaderInfo<'data>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="richheaderinfo-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `RichHeaderEntry`
 
@@ -86,13 +94,13 @@ See [`pe::MaskedRichHeaderEntry`](../../../pe/index.md).
 
 ##### `impl Clone for RichHeaderEntry`
 
-- `fn clone(self: &Self) -> RichHeaderEntry` — [`RichHeaderEntry`](../index.md)
+- <span id="richheaderentry-clone"></span>`fn clone(&self) -> RichHeaderEntry` — [`RichHeaderEntry`](../index.md)
 
 ##### `impl Copy for RichHeaderEntry`
 
 ##### `impl Debug for RichHeaderEntry`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="richheaderentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Functions
 

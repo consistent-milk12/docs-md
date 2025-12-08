@@ -4,6 +4,12 @@
 
 # Module `cased`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`lookup`](#lookup) | fn |  |
+
 ## Functions
 
 ### `lookup`

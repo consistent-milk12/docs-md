@@ -4,6 +4,13 @@
 
 # Module `reset`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Reset`](#reset) | struct | Reset terminal formatting |
+| [`RESET`](#reset) | const |  |
+
 ## Structs
 
 ### `Reset`
@@ -16,51 +23,51 @@ Reset terminal formatting
 
 #### Implementations
 
-- `fn render(self: Self) -> impl core::fmt::Display + Copy`
+- <span id="reset-render"></span>`fn render(self) -> impl core::fmt::Display + Copy`
 
 #### Trait Implementations
 
 ##### `impl Clone for Reset`
 
-- `fn clone(self: &Self) -> Reset` — [`Reset`](../index.md)
+- <span id="reset-clone"></span>`fn clone(&self) -> Reset` — [`Reset`](../index.md)
 
 ##### `impl Copy for Reset`
 
 ##### `impl Debug for Reset`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="reset-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Reset`
 
-- `fn default() -> Reset` — [`Reset`](../index.md)
+- <span id="reset-default"></span>`fn default() -> Reset` — [`Reset`](../index.md)
 
 ##### `impl Display for Reset`
 
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- <span id="reset-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq for Reset`
 
 ##### `impl Hash for Reset`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="reset-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for Reset`
 
-- `fn cmp(self: &Self, other: &Reset) -> $crate::cmp::Ordering` — [`Reset`](../index.md)
+- <span id="reset-cmp"></span>`fn cmp(&self, other: &Reset) -> cmp::Ordering` — [`Reset`](../index.md)
 
 ##### `impl PartialEq for Reset`
 
-- `fn eq(self: &Self, other: &Reset) -> bool` — [`Reset`](../index.md)
+- <span id="reset-eq"></span>`fn eq(&self, other: &Reset) -> bool` — [`Reset`](../index.md)
 
 ##### `impl PartialOrd for Reset`
 
-- `fn partial_cmp(self: &Self, other: &Reset) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Reset`](../index.md)
+- <span id="reset-partial-cmp"></span>`fn partial_cmp(&self, other: &Reset) -> option::Option<cmp::Ordering>` — [`Reset`](../index.md)
 
 ##### `impl StructuralPartialEq for Reset`
 
 ##### `impl<T> ToString for Reset`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="reset-to-string"></span>`fn to_string(&self) -> String`
 
 ## Constants
 

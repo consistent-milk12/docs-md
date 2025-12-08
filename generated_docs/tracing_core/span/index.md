@@ -6,6 +6,16 @@
 
 Spans represent periods of time in the execution of a program.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Id`](#id) | struct | Identifies a span within the context of a subscriber. |
+| [`Attributes`](#attributes) | struct | Attributes provided to a `Subscriber` describing a new span when it is |
+| [`Record`](#record) | struct | A set of fields recorded by a span. |
+| [`Current`](#current) | struct | Indicates what [the `Subscriber` considers] the "current" span. |
+| [`CurrentInner`](#currentinner) | enum |  |
+
 ## Structs
 
 ### `Id`
@@ -24,33 +34,33 @@ more information on span ID generation.
 
 #### Implementations
 
-- `fn from_u64(u: u64) -> Self`
+- <span id="id-from-u64"></span>`fn from_u64(u: u64) -> Self`
 
-- `const fn from_non_zero_u64(id: NonZeroU64) -> Self`
+- <span id="id-from-non-zero-u64"></span>`const fn from_non_zero_u64(id: NonZeroU64) -> Self`
 
-- `fn into_u64(self: &Self) -> u64`
+- <span id="id-into-u64"></span>`fn into_u64(&self) -> u64`
 
-- `const fn into_non_zero_u64(self: &Self) -> NonZeroU64`
+- <span id="id-into-non-zero-u64"></span>`const fn into_non_zero_u64(&self) -> NonZeroU64`
 
 #### Trait Implementations
 
 ##### `impl Clone for Id`
 
-- `fn clone(self: &Self) -> Id` — [`Id`](#id)
+- <span id="id-clone"></span>`fn clone(&self) -> Id` — [`Id`](#id)
 
 ##### `impl Debug for Id`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="id-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Id`
 
 ##### `impl Hash for Id`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="id-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for Id`
 
-- `fn eq(self: &Self, other: &Id) -> bool` — [`Id`](#id)
+- <span id="id-eq"></span>`fn eq(&self, other: &Id) -> bool` — [`Id`](#id)
 
 ##### `impl StructuralPartialEq for Id`
 
@@ -69,35 +79,35 @@ created.
 
 #### Implementations
 
-- `fn new(metadata: &'static Metadata<'static>, values: &'a field::ValueSet<'a>) -> Self` — [`Metadata`](../index.md), [`ValueSet`](../field/index.md)
+- <span id="attributes-new"></span>`fn new(metadata: &'static Metadata<'static>, values: &'a field::ValueSet<'a>) -> Self` — [`Metadata`](../index.md), [`ValueSet`](../field/index.md)
 
-- `fn new_root(metadata: &'static Metadata<'static>, values: &'a field::ValueSet<'a>) -> Self` — [`Metadata`](../index.md), [`ValueSet`](../field/index.md)
+- <span id="attributes-new-root"></span>`fn new_root(metadata: &'static Metadata<'static>, values: &'a field::ValueSet<'a>) -> Self` — [`Metadata`](../index.md), [`ValueSet`](../field/index.md)
 
-- `fn child_of(parent: Id, metadata: &'static Metadata<'static>, values: &'a field::ValueSet<'a>) -> Self` — [`Id`](#id), [`Metadata`](../index.md), [`ValueSet`](../field/index.md)
+- <span id="attributes-child-of"></span>`fn child_of(parent: Id, metadata: &'static Metadata<'static>, values: &'a field::ValueSet<'a>) -> Self` — [`Id`](#id), [`Metadata`](../index.md), [`ValueSet`](../field/index.md)
 
-- `fn metadata(self: &Self) -> &'static Metadata<'static>` — [`Metadata`](../index.md)
+- <span id="attributes-metadata"></span>`fn metadata(&self) -> &'static Metadata<'static>` — [`Metadata`](../index.md)
 
-- `fn values(self: &Self) -> &field::ValueSet<'a>` — [`ValueSet`](../field/index.md)
+- <span id="attributes-values"></span>`fn values(&self) -> &field::ValueSet<'a>` — [`ValueSet`](../field/index.md)
 
-- `fn is_root(self: &Self) -> bool`
+- <span id="attributes-is-root"></span>`fn is_root(&self) -> bool`
 
-- `fn is_contextual(self: &Self) -> bool`
+- <span id="attributes-is-contextual"></span>`fn is_contextual(&self) -> bool`
 
-- `fn parent(self: &Self) -> Option<&Id>` — [`Id`](#id)
+- <span id="attributes-parent"></span>`fn parent(&self) -> Option<&Id>` — [`Id`](#id)
 
-- `fn record(self: &Self, visitor: &mut dyn field::Visit)` — [`Visit`](../field/index.md)
+- <span id="attributes-record"></span>`fn record(&self, visitor: &mut dyn field::Visit)` — [`Visit`](../field/index.md)
 
-- `fn contains(self: &Self, field: &field::Field) -> bool` — [`Field`](../index.md)
+- <span id="attributes-contains"></span>`fn contains(&self, field: &field::Field) -> bool` — [`Field`](../index.md)
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="attributes-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn fields(self: &Self) -> &FieldSet` — [`FieldSet`](../field/index.md)
+- <span id="attributes-fields"></span>`fn fields(&self) -> &FieldSet` — [`FieldSet`](../field/index.md)
 
 #### Trait Implementations
 
 ##### `impl<'a> Debug for Attributes<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="attributes-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Record<'a>`
 
@@ -111,21 +121,21 @@ A set of fields recorded by a span.
 
 #### Implementations
 
-- `fn new(values: &'a field::ValueSet<'a>) -> Self` — [`ValueSet`](../field/index.md)
+- <span id="record-new"></span>`fn new(values: &'a field::ValueSet<'a>) -> Self` — [`ValueSet`](../field/index.md)
 
-- `fn record(self: &Self, visitor: &mut dyn field::Visit)` — [`Visit`](../field/index.md)
+- <span id="record-record"></span>`fn record(&self, visitor: &mut dyn field::Visit)` — [`Visit`](../field/index.md)
 
-- `fn len(self: &Self) -> usize`
+- <span id="record-len"></span>`fn len(&self) -> usize`
 
-- `fn contains(self: &Self, field: &field::Field) -> bool` — [`Field`](../index.md)
+- <span id="record-contains"></span>`fn contains(&self, field: &field::Field) -> bool` — [`Field`](../index.md)
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="record-is-empty"></span>`fn is_empty(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl<'a> Debug for Record<'a>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="record-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Current`
 
@@ -147,25 +157,25 @@ possible states:
 
 #### Implementations
 
-- `fn new(id: Id, metadata: &'static Metadata<'static>) -> Self` — [`Id`](#id), [`Metadata`](../index.md)
+- <span id="current-new"></span>`fn new(id: Id, metadata: &'static Metadata<'static>) -> Self` — [`Id`](#id), [`Metadata`](../index.md)
 
-- `fn none() -> Self`
+- <span id="current-none"></span>`fn none() -> Self`
 
-- `fn unknown() -> Self`
+- <span id="current-unknown"></span>`fn unknown() -> Self`
 
-- `fn is_known(self: &Self) -> bool`
+- <span id="current-is-known"></span>`fn is_known(&self) -> bool`
 
-- `fn into_inner(self: Self) -> Option<(Id, &'static Metadata<'static>)>` — [`Id`](#id), [`Metadata`](../index.md)
+- <span id="current-into-inner"></span>`fn into_inner(self) -> Option<(Id, &'static Metadata<'static>)>` — [`Id`](#id), [`Metadata`](../index.md)
 
-- `fn id(self: &Self) -> Option<&Id>` — [`Id`](#id)
+- <span id="current-id"></span>`fn id(&self) -> Option<&Id>` — [`Id`](#id)
 
-- `fn metadata(self: &Self) -> Option<&'static Metadata<'static>>` — [`Metadata`](../index.md)
+- <span id="current-metadata"></span>`fn metadata(&self) -> Option<&'static Metadata<'static>>` — [`Metadata`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Debug for Current`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="current-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Enums
 
@@ -186,5 +196,5 @@ enum CurrentInner {
 
 ##### `impl Debug for CurrentInner`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="currentinner-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

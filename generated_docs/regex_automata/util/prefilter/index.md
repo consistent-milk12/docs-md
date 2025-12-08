@@ -37,6 +37,39 @@ there's no way to know which pattern (or patterns) it came from. Therefore,
 in order to confirm a match, you'll have to check all of the patterns by
 running the full regex engine.
 
+## Contents
+
+- [Modules](#modules)
+  - [`aho_corasick`](#aho_corasick)
+  - [`byteset`](#byteset)
+  - [`memchr`](#memchr)
+  - [`memmem`](#memmem)
+  - [`teddy`](#teddy)
+- [Structs](#structs)
+  - [`Prefilter`](#prefilter)
+- [Enums](#enums)
+  - [`Choice`](#choice)
+- [Traits](#traits)
+  - [`PrefilterI`](#prefilteri)
+- [Functions](#functions)
+  - [`prefixes`](#prefixes)
+  - [`suffixes`](#suffixes)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`aho_corasick`](#aho_corasick) | mod |  |
+| [`byteset`](#byteset) | mod |  |
+| [`memchr`](#memchr) | mod |  |
+| [`memmem`](#memmem) | mod |  |
+| [`teddy`](#teddy) | mod |  |
+| [`Prefilter`](#prefilter) | struct | A prefilter for accelerating regex searches. |
+| [`Choice`](#choice) | enum | A type that encapsulates the selection of a prefilter algorithm from a |
+| [`PrefilterI`](#prefilteri) | trait | A trait for abstracting over prefilters. |
+| [`prefixes`](#prefixes) | fn | Extracts all of the prefix literals from the given HIR expressions into a |
+| [`suffixes`](#suffixes) | fn | Like `prefixes`, but for all suffixes of all matches for the given HIRs. |
+
 ## Modules
 
 - [`aho_corasick`](aho_corasick/index.md) - 
@@ -137,33 +170,33 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new<B: AsRef<[u8]>>(kind: MatchKind, needles: &[B]) -> Option<Prefilter>` — [`MatchKind`](../../index.md), [`Prefilter`](#prefilter)
+- <span id="prefilter-new"></span>`fn new<B: AsRef<[u8]>>(kind: MatchKind, needles: &[B]) -> Option<Prefilter>` — [`MatchKind`](../../index.md), [`Prefilter`](#prefilter)
 
-- `fn from_choice(choice: Choice, max_needle_len: usize) -> Option<Prefilter>` — [`Choice`](#choice), [`Prefilter`](#prefilter)
+- <span id="prefilter-from-choice"></span>`fn from_choice(choice: Choice, max_needle_len: usize) -> Option<Prefilter>` — [`Choice`](#choice), [`Prefilter`](#prefilter)
 
-- `fn from_hir_prefix(kind: MatchKind, hir: &Hir) -> Option<Prefilter>` — [`MatchKind`](../../index.md), [`Prefilter`](#prefilter)
+- <span id="prefilter-from-hir-prefix"></span>`fn from_hir_prefix(kind: MatchKind, hir: &Hir) -> Option<Prefilter>` — [`MatchKind`](../../index.md), [`Prefilter`](#prefilter)
 
-- `fn from_hirs_prefix<H: Borrow<Hir>>(kind: MatchKind, hirs: &[H]) -> Option<Prefilter>` — [`MatchKind`](../../index.md), [`Prefilter`](#prefilter)
+- <span id="prefilter-from-hirs-prefix"></span>`fn from_hirs_prefix<H: Borrow<Hir>>(kind: MatchKind, hirs: &[H]) -> Option<Prefilter>` — [`MatchKind`](../../index.md), [`Prefilter`](#prefilter)
 
-- `fn find(self: &Self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../index.md)
+- <span id="prefilter-find"></span>`fn find(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../index.md)
 
-- `fn prefix(self: &Self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../index.md)
+- <span id="prefilter-prefix"></span>`fn prefix(&self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../index.md)
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="prefilter-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- `fn max_needle_len(self: &Self) -> usize`
+- <span id="prefilter-max-needle-len"></span>`fn max_needle_len(&self) -> usize`
 
-- `fn is_fast(self: &Self) -> bool`
+- <span id="prefilter-is-fast"></span>`fn is_fast(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for Prefilter`
 
-- `fn clone(self: &Self) -> Prefilter` — [`Prefilter`](#prefilter)
+- <span id="prefilter-clone"></span>`fn clone(&self) -> Prefilter` — [`Prefilter`](#prefilter)
 
 ##### `impl Debug for Prefilter`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="prefilter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Enums
 
@@ -206,17 +239,17 @@ features enabled.
 
 #### Implementations
 
-- `fn new<B: AsRef<[u8]>>(kind: MatchKind, needles: &[B]) -> Option<Choice>` — [`MatchKind`](../../index.md), [`Choice`](#choice)
+- <span id="choice-new"></span>`fn new<B: AsRef<[u8]>>(kind: MatchKind, needles: &[B]) -> Option<Choice>` — [`MatchKind`](../../index.md), [`Choice`](#choice)
 
 #### Trait Implementations
 
 ##### `impl Clone for Choice`
 
-- `fn clone(self: &Self) -> Choice` — [`Choice`](#choice)
+- <span id="choice-clone"></span>`fn clone(&self) -> Choice` — [`Choice`](#choice)
 
 ##### `impl Debug for Choice`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="choice-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Traits
 
@@ -236,19 +269,19 @@ and to an enum, then it's likely this trait could be removed.
 
 #### Required Methods
 
-- `fn find(self: &Self, haystack: &[u8], span: Span) -> Option<Span>`
+- `fn find(&self, haystack: &[u8], span: Span) -> Option<Span>`
 
   Run this prefilter on `haystack[span.start..end]` and return a matching
 
-- `fn prefix(self: &Self, haystack: &[u8], span: Span) -> Option<Span>`
+- `fn prefix(&self, haystack: &[u8], span: Span) -> Option<Span>`
 
   Returns the span of a prefix of `haystack[span.start..span.end]` if
 
-- `fn memory_usage(self: &Self) -> usize`
+- `fn memory_usage(&self) -> usize`
 
   Returns the heap memory, in bytes, used by the underlying prefilter.
 
-- `fn is_fast(self: &Self) -> bool`
+- `fn is_fast(&self) -> bool`
 
   Implementations might return true here if they believe themselves to
 

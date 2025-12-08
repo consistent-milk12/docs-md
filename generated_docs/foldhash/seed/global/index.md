@@ -4,6 +4,17 @@
 
 # Module `global`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`GlobalSeedStorage`](#globalseedstorage) | struct |  |
+| [`GlobalSeed`](#globalseed) | struct | An object representing an initialized global seed. |
+| [`generate_global_seed`](#generate_global_seed) | fn |  |
+| [`UNINIT`](#uninit) | const |  |
+| [`LOCKED`](#locked) | const |  |
+| [`INIT`](#init) | const |  |
+
 ## Structs
 
 ### `GlobalSeedStorage`
@@ -34,23 +45,23 @@ This prevents inflating the RandomState size and in turn HashMap's size.
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="globalseed-new"></span>`fn new() -> Self`
 
-- `fn init_slow()`
+- <span id="globalseed-init-slow"></span>`fn init_slow()`
 
-- `fn get(self: Self) -> &'static SharedSeed` — [`SharedSeed`](../../index.md)
+- <span id="globalseed-get"></span>`fn get(self) -> &'static SharedSeed` — [`SharedSeed`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for GlobalSeed`
 
-- `fn clone(self: &Self) -> GlobalSeed` — [`GlobalSeed`](#globalseed)
+- <span id="globalseed-clone"></span>`fn clone(&self) -> GlobalSeed` — [`GlobalSeed`](#globalseed)
 
 ##### `impl Copy for GlobalSeed`
 
 ##### `impl Debug for GlobalSeed`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="globalseed-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Functions
 

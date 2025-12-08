@@ -4,6 +4,12 @@
 
 # Module `private`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Private`](#private) | struct | Don't call this function, it's private. |
+
 ## Structs
 
 ### `Private<T>`

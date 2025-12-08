@@ -6,138 +6,147 @@
 
 Functions which duplicate file descriptors.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`unnamed`](#unnamed) | struct |  |
+| [`dup`](#dup) | fn | `dup(fd)`—Creates a new `OwnedFd` instance that shares the same |
+| [`dup2`](#dup2) | fn | `dup2(fd, new)`—Changes the [file description] of a file descriptor. |
+| [`dup3`](#dup3) | fn | `dup3(fd, new, flags)`—Changes the [file description] of a file |
+
 ## Structs
 
 ### `DupFlags`
 
 ```rust
-struct DupFlags(<DupFlags as $crate::__private::PublicFlags>::Internal);
+struct DupFlags(<DupFlags as __private::PublicFlags>::Internal);
 ```
 
-`O_*` constants for use with [`dup2`](../index.md).
+`O_*` constants for use with [`dup2`](../../backend/io/syscalls/index.md).
 
 
 #### Implementations
 
-- `const CLOEXEC: Self`
+- <span id="dupflags-cloexec"></span>`const CLOEXEC: Self`
 
 #### Trait Implementations
 
 ##### `impl Binary for DupFlags`
 
-- `fn fmt(self: &Self, f: &mut $crate::__private::core::fmt::Formatter<'_>) -> $crate::__private::core::fmt::Result`
+- <span id="dupflags-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
 
 ##### `impl BitAnd for DupFlags`
 
-- `type Output = DupFlags`
+- <span id="dupflags-output"></span>`type Output = DupFlags`
 
-- `fn bitand(self: Self, other: Self) -> Self`
+- <span id="dupflags-bitand"></span>`fn bitand(self, other: Self) -> Self`
 
 ##### `impl BitAndAssign for DupFlags`
 
-- `fn bitand_assign(self: &mut Self, other: Self)`
+- <span id="dupflags-bitand-assign"></span>`fn bitand_assign(&mut self, other: Self)`
 
 ##### `impl BitOr for DupFlags`
 
-- `type Output = DupFlags`
+- <span id="dupflags-output"></span>`type Output = DupFlags`
 
-- `fn bitor(self: Self, other: DupFlags) -> Self` — [`DupFlags`](#dupflags)
+- <span id="dupflags-bitor"></span>`fn bitor(self, other: DupFlags) -> Self` — [`DupFlags`](#dupflags)
 
 ##### `impl BitOrAssign for DupFlags`
 
-- `fn bitor_assign(self: &mut Self, other: Self)`
+- <span id="dupflags-bitor-assign"></span>`fn bitor_assign(&mut self, other: Self)`
 
 ##### `impl BitXor for DupFlags`
 
-- `type Output = DupFlags`
+- <span id="dupflags-output"></span>`type Output = DupFlags`
 
-- `fn bitxor(self: Self, other: Self) -> Self`
+- <span id="dupflags-bitxor"></span>`fn bitxor(self, other: Self) -> Self`
 
 ##### `impl BitXorAssign for DupFlags`
 
-- `fn bitxor_assign(self: &mut Self, other: Self)`
+- <span id="dupflags-bitxor-assign"></span>`fn bitxor_assign(&mut self, other: Self)`
 
 ##### `impl Clone for DupFlags`
 
-- `fn clone(self: &Self) -> DupFlags` — [`DupFlags`](#dupflags)
+- <span id="dupflags-clone"></span>`fn clone(&self) -> DupFlags` — [`DupFlags`](#dupflags)
 
 ##### `impl Copy for DupFlags`
 
 ##### `impl Debug for DupFlags`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="dupflags-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for DupFlags`
 
 ##### `impl Extend for DupFlags`
 
-- `fn extend<T: $crate::__private::core::iter::IntoIterator<Item = Self>>(self: &mut Self, iterator: T)`
+- <span id="dupflags-extend"></span>`fn extend<T: __private::core::iter::IntoIterator<Item = Self>>(&mut self, iterator: T)`
 
 ##### `impl Flags for DupFlags`
 
-- `const FLAGS: &'static [$crate::Flag<DupFlags>]`
+- <span id="dupflags-flags"></span>`const FLAGS: &'static [Flag<DupFlags>]`
 
-- `type Bits = u32`
+- <span id="dupflags-bits"></span>`type Bits = u32`
 
-- `fn bits(self: &Self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md)
+- <span id="dupflags-bits"></span>`fn bits(&self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md)
 
-- `fn from_bits_retain(bits: ffi::c_uint) -> DupFlags` — [`c_uint`](../../ffi/index.md), [`DupFlags`](#dupflags)
+- <span id="dupflags-from-bits-retain"></span>`fn from_bits_retain(bits: ffi::c_uint) -> DupFlags` — [`c_uint`](../../ffi/index.md), [`DupFlags`](#dupflags)
 
 ##### `impl FromIterator for DupFlags`
 
-- `fn from_iter<T: $crate::__private::core::iter::IntoIterator<Item = Self>>(iterator: T) -> Self`
+- <span id="dupflags-from-iter"></span>`fn from_iter<T: __private::core::iter::IntoIterator<Item = Self>>(iterator: T) -> Self`
 
 ##### `impl Hash for DupFlags`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="dupflags-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl IntoIterator for DupFlags`
 
-- `type Item = DupFlags`
+- <span id="dupflags-item"></span>`type Item = DupFlags`
 
-- `type IntoIter = Iter<DupFlags>`
+- <span id="dupflags-intoiter"></span>`type IntoIter = Iter<DupFlags>`
 
-- `fn into_iter(self: Self) -> <Self as >::IntoIter`
+- <span id="dupflags-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter`
 
 ##### `impl LowerHex for DupFlags`
 
-- `fn fmt(self: &Self, f: &mut $crate::__private::core::fmt::Formatter<'_>) -> $crate::__private::core::fmt::Result`
+- <span id="dupflags-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
 
 ##### `impl Not for DupFlags`
 
-- `type Output = DupFlags`
+- <span id="dupflags-output"></span>`type Output = DupFlags`
 
-- `fn not(self: Self) -> Self`
+- <span id="dupflags-not"></span>`fn not(self) -> Self`
 
 ##### `impl Octal for DupFlags`
 
-- `fn fmt(self: &Self, f: &mut $crate::__private::core::fmt::Formatter<'_>) -> $crate::__private::core::fmt::Result`
+- <span id="dupflags-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
 
 ##### `impl PartialEq for DupFlags`
 
-- `fn eq(self: &Self, other: &DupFlags) -> bool` — [`DupFlags`](#dupflags)
+- <span id="dupflags-eq"></span>`fn eq(&self, other: &DupFlags) -> bool` — [`DupFlags`](#dupflags)
 
 ##### `impl PublicFlags for DupFlags`
 
-- `type Primitive = u32`
+- <span id="dupflags-primitive"></span>`type Primitive = u32`
 
-- `type Internal = InternalBitFlags`
+- <span id="dupflags-internal"></span>`type Internal = InternalBitFlags`
 
 ##### `impl StructuralPartialEq for DupFlags`
 
 ##### `impl Sub for DupFlags`
 
-- `type Output = DupFlags`
+- <span id="dupflags-output"></span>`type Output = DupFlags`
 
-- `fn sub(self: Self, other: Self) -> Self`
+- <span id="dupflags-sub"></span>`fn sub(self, other: Self) -> Self`
 
 ##### `impl SubAssign for DupFlags`
 
-- `fn sub_assign(self: &mut Self, other: Self)`
+- <span id="dupflags-sub-assign"></span>`fn sub_assign(&mut self, other: Self)`
 
 ##### `impl UpperHex for DupFlags`
 
-- `fn fmt(self: &Self, f: &mut $crate::__private::core::fmt::Formatter<'_>) -> $crate::__private::core::fmt::Result`
+- <span id="dupflags-fmt"></span>`fn fmt(&self, f: &mut __private::core::fmt::Formatter<'_>) -> __private::core::fmt::Result`
 
 ## Functions
 

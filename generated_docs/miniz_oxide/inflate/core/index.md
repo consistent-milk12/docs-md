@@ -6,6 +6,107 @@
 
 Streaming decompression functionality.
 
+## Contents
+
+- [Modules](#modules)
+  - [`inflate_flags`](#inflate_flags)
+- [Structs](#structs)
+  - [`HuffmanTable`](#huffmantable)
+  - [`DecompressorOxide`](#decompressoroxide)
+  - [`LocalVars`](#localvars)
+- [Enums](#enums)
+  - [`State`](#state)
+  - [`Action`](#action)
+- [Functions](#functions)
+  - [`num_extra_bits_for_distance_code`](#num_extra_bits_for_distance_code)
+  - [`read_u16_le`](#read_u16_le)
+  - [`fill_bit_buffer`](#fill_bit_buffer)
+  - [`validate_zlib_header`](#validate_zlib_header)
+  - [`decode_huffman_code`](#decode_huffman_code)
+  - [`read_byte`](#read_byte)
+  - [`read_bits`](#read_bits)
+  - [`pad_to_bytes`](#pad_to_bytes)
+  - [`end_of_input`](#end_of_input)
+  - [`undo_bytes`](#undo_bytes)
+  - [`start_static_table`](#start_static_table)
+  - [`reverse_bits`](#reverse_bits)
+  - [`init_tree`](#init_tree)
+  - [`transfer`](#transfer)
+  - [`apply_match`](#apply_match)
+  - [`decompress_fast`](#decompress_fast)
+  - [`decompress`](#decompress)
+- [Type Aliases](#type-aliases)
+  - [`BitBuffer`](#bitbuffer)
+- [Constants](#constants)
+  - [`TINFL_LZ_DICT_SIZE`](#tinfl_lz_dict_size)
+  - [`MAX_HUFF_TABLES`](#max_huff_tables)
+  - [`MAX_HUFF_SYMBOLS_0`](#max_huff_symbols_0)
+  - [`MAX_HUFF_SYMBOLS_1`](#max_huff_symbols_1)
+  - [`MAX_HUFF_SYMBOLS_2`](#max_huff_symbols_2)
+  - [`FAST_LOOKUP_BITS`](#fast_lookup_bits)
+  - [`FAST_LOOKUP_SIZE`](#fast_lookup_size)
+  - [`MAX_HUFF_TREE_SIZE`](#max_huff_tree_size)
+  - [`LITLEN_TABLE`](#litlen_table)
+  - [`DIST_TABLE`](#dist_table)
+  - [`HUFFLEN_TABLE`](#hufflen_table)
+  - [`LEN_CODES_SIZE`](#len_codes_size)
+  - [`LEN_CODES_MASK`](#len_codes_mask)
+  - [`MIN_TABLE_SIZES`](#min_table_sizes)
+  - [`LENGTH_BASE`](#length_base)
+  - [`LENGTH_EXTRA`](#length_extra)
+  - [`DIST_BASE`](#dist_base)
+  - [`BASE_EXTRA_MASK`](#base_extra_mask)
+- [Macros](#macros)
+  - [`generate_state!`](#generate_state)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`inflate_flags`](#inflate_flags) | mod | Flags to [`decompress()`] to control how inflation works. |
+| [`HuffmanTable`](#huffmantable) | struct | A struct containing huffman code lengths and the huffman code tree used by the decompressor. |
+| [`DecompressorOxide`](#decompressoroxide) | struct | Main decompression struct. |
+| [`LocalVars`](#localvars) | struct |  |
+| [`State`](#state) | enum |  |
+| [`Action`](#action) | enum |  |
+| [`num_extra_bits_for_distance_code`](#num_extra_bits_for_distance_code) | fn | Get the number of extra bits used for a distance code. |
+| [`read_u16_le`](#read_u16_le) | fn | Read an le u16 value from the slice iterator. |
+| [`fill_bit_buffer`](#fill_bit_buffer) | fn | Ensure that there is data in the bit buffer. |
+| [`validate_zlib_header`](#validate_zlib_header) | fn | Check that the zlib header is correct and that there is enough space in the buffer |
+| [`decode_huffman_code`](#decode_huffman_code) | fn | Try to decode the next huffman code, and puts it in the counter field of the decompressor |
+| [`read_byte`](#read_byte) | fn | Try to read one byte from `in_iter` and call `f` with the read byte as an argument |
+| [`read_bits`](#read_bits) | fn | Try to read `amount` number of bits from `in_iter` and call the function `f` with the bits as an |
+| [`pad_to_bytes`](#pad_to_bytes) | fn |  |
+| [`end_of_input`](#end_of_input) | fn |  |
+| [`undo_bytes`](#undo_bytes) | fn |  |
+| [`start_static_table`](#start_static_table) | fn |  |
+| [`reverse_bits`](#reverse_bits) | fn |  |
+| [`init_tree`](#init_tree) | fn |  |
+| [`transfer`](#transfer) | fn |  |
+| [`apply_match`](#apply_match) | fn | Presumes that there is at least match_len bytes in output left. |
+| [`decompress_fast`](#decompress_fast) | fn | Fast inner decompression loop which is run  while there is at least |
+| [`decompress`](#decompress) | fn | Main decompression function. |
+| [`BitBuffer`](#bitbuffer) | type |  |
+| [`TINFL_LZ_DICT_SIZE`](#tinfl_lz_dict_size) | const |  |
+| [`MAX_HUFF_TABLES`](#max_huff_tables) | const | The number of huffman tables used. |
+| [`MAX_HUFF_SYMBOLS_0`](#max_huff_symbols_0) | const | The length of the first (literal/length) huffman table. |
+| [`MAX_HUFF_SYMBOLS_1`](#max_huff_symbols_1) | const | The length of the second (distance) huffman table. |
+| [`MAX_HUFF_SYMBOLS_2`](#max_huff_symbols_2) | const | The length of the last (huffman code length) huffman table. |
+| [`FAST_LOOKUP_BITS`](#fast_lookup_bits) | const | The maximum length of a code that can be looked up in the fast lookup table. |
+| [`FAST_LOOKUP_SIZE`](#fast_lookup_size) | const | The size of the fast lookup table. |
+| [`MAX_HUFF_TREE_SIZE`](#max_huff_tree_size) | const |  |
+| [`LITLEN_TABLE`](#litlen_table) | const |  |
+| [`DIST_TABLE`](#dist_table) | const |  |
+| [`HUFFLEN_TABLE`](#hufflen_table) | const |  |
+| [`LEN_CODES_SIZE`](#len_codes_size) | const |  |
+| [`LEN_CODES_MASK`](#len_codes_mask) | const |  |
+| [`MIN_TABLE_SIZES`](#min_table_sizes) | const |  |
+| [`LENGTH_BASE`](#length_base) | const | Base length for each length code. |
+| [`LENGTH_EXTRA`](#length_extra) | const | Number of extra bits for each length code. |
+| [`DIST_BASE`](#dist_base) | const | Base length for each distance code. |
+| [`BASE_EXTRA_MASK`](#base_extra_mask) | const | The mask used when indexing the base/extra arrays. |
+| [`generate_state!`](#generate_state) | macro |  |
+
 ## Modules
 
 - [`inflate_flags`](inflate_flags/index.md) - Flags to [`decompress()`] to control how inflation works.
@@ -40,19 +141,19 @@ A struct containing huffman code lengths and the huffman code tree used by the d
 
 #### Implementations
 
-- `const fn new() -> HuffmanTable` — [`HuffmanTable`](#huffmantable)
+- <span id="huffmantable-new"></span>`const fn new() -> HuffmanTable` — [`HuffmanTable`](#huffmantable)
 
-- `fn fast_lookup(self: &Self, bit_buf: u64) -> i16`
+- <span id="huffmantable-fast-lookup"></span>`fn fast_lookup(&self, bit_buf: u64) -> i16`
 
-- `fn tree_lookup(self: &Self, fast_symbol: i32, bit_buf: u64, code_len: u8) -> (i32, u32)`
+- <span id="huffmantable-tree-lookup"></span>`fn tree_lookup(&self, fast_symbol: i32, bit_buf: u64, code_len: u8) -> (i32, u32)`
 
-- `fn lookup(self: &Self, bit_buf: u64) -> (i32, u32)`
+- <span id="huffmantable-lookup"></span>`fn lookup(&self, bit_buf: u64) -> (i32, u32)`
 
 #### Trait Implementations
 
 ##### `impl Clone for HuffmanTable`
 
-- `fn clone(self: &Self) -> HuffmanTable` — [`HuffmanTable`](#huffmantable)
+- <span id="huffmantable-clone"></span>`fn clone(&self) -> HuffmanTable` — [`HuffmanTable`](#huffmantable)
 
 ### `DecompressorOxide`
 
@@ -152,23 +253,23 @@ Main decompression struct.
 
 #### Implementations
 
-- `fn new() -> DecompressorOxide` — [`DecompressorOxide`](#decompressoroxide)
+- <span id="decompressoroxide-new"></span>`fn new() -> DecompressorOxide` — [`DecompressorOxide`](#decompressoroxide)
 
-- `fn init(self: &mut Self)`
+- <span id="decompressoroxide-init"></span>`fn init(&mut self)`
 
-- `fn adler32(self: &Self) -> Option<u32>`
+- <span id="decompressoroxide-adler32"></span>`fn adler32(&self) -> Option<u32>`
 
-- `fn adler32_header(self: &Self) -> Option<u32>`
+- <span id="decompressoroxide-adler32-header"></span>`fn adler32_header(&self) -> Option<u32>`
 
 #### Trait Implementations
 
 ##### `impl Clone for DecompressorOxide`
 
-- `fn clone(self: &Self) -> DecompressorOxide` — [`DecompressorOxide`](#decompressoroxide)
+- <span id="decompressoroxide-clone"></span>`fn clone(&self) -> DecompressorOxide` — [`DecompressorOxide`](#decompressoroxide)
 
 ##### `impl Default for DecompressorOxide`
 
-- `fn default() -> Self`
+- <span id="decompressoroxide-default"></span>`fn default() -> Self`
 
 ### `LocalVars`
 
@@ -186,7 +287,7 @@ struct LocalVars {
 
 ##### `impl Clone for LocalVars`
 
-- `fn clone(self: &Self) -> LocalVars` — [`LocalVars`](#localvars)
+- <span id="localvars-clone"></span>`fn clone(&self) -> LocalVars` — [`LocalVars`](#localvars)
 
 ##### `impl Copy for LocalVars`
 
@@ -236,27 +337,27 @@ enum State {
 
 #### Implementations
 
-- `const fn is_failure(self: Self) -> bool`
+- <span id="state-is-failure"></span>`const fn is_failure(self) -> bool`
 
-- `fn begin(self: &mut Self, new_state: State)` — [`State`](#state)
+- <span id="state-begin"></span>`fn begin(&mut self, new_state: State)` — [`State`](#state)
 
 #### Trait Implementations
 
 ##### `impl Clone for State`
 
-- `fn clone(self: &Self) -> State` — [`State`](#state)
+- <span id="state-clone"></span>`fn clone(&self) -> State` — [`State`](#state)
 
 ##### `impl Copy for State`
 
 ##### `impl Debug for State`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="state-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for State`
 
 ##### `impl PartialEq for State`
 
-- `fn eq(self: &Self, other: &State) -> bool` — [`State`](#state)
+- <span id="state-eq"></span>`fn eq(&self, other: &State) -> bool` — [`State`](#state)
 
 ##### `impl StructuralPartialEq for State`
 

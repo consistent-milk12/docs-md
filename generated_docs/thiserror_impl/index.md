@@ -1,5 +1,37 @@
 # Crate `thiserror_impl`
 
+## Contents
+
+- [Modules](#modules)
+  - [`ast`](#ast)
+  - [`attr`](#attr)
+  - [`expand`](#expand)
+  - [`fallback`](#fallback)
+  - [`fmt`](#fmt)
+  - [`generics`](#generics)
+  - [`prop`](#prop)
+  - [`scan_expr`](#scan_expr)
+  - [`unraw`](#unraw)
+  - [`valid`](#valid)
+- [Structs](#structs)
+  - [`private`](#private)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ast`](#ast) | mod |  |
+| [`attr`](#attr) | mod |  |
+| [`expand`](#expand) | mod |  |
+| [`fallback`](#fallback) | mod |  |
+| [`fmt`](#fmt) | mod |  |
+| [`generics`](#generics) | mod |  |
+| [`prop`](#prop) | mod |  |
+| [`scan_expr`](#scan_expr) | mod |  |
+| [`unraw`](#unraw) | mod |  |
+| [`valid`](#valid) | mod |  |
+| [`private`](#private) | struct |  |
+
 ## Modules
 
 - [`ast`](ast/index.md) - 
@@ -25,9 +57,9 @@ struct private;
 
 ##### `impl<T> Spanned for private`
 
-- `fn span(self: &Self) -> Span`
+- <span id="private-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for private`
 
-- `fn to_tokens(self: &Self, tokens: &mut proc_macro2::TokenStream)`
+- <span id="private-to-tokens"></span>`fn to_tokens(&self, tokens: &mut proc_macro2::TokenStream)`
 

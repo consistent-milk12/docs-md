@@ -13,6 +13,82 @@ Consequently, it's not necessary to use them. They are provided here
 because they help identify speeds which are likely to be supported, on
 platforms and devices which don't support arbitrary speeds.
 
+## Contents
+
+- [Functions](#functions)
+  - [`decode`](#decode)
+  - [`encode`](#encode)
+- [Constants](#constants)
+  - [`B0`](#b0)
+  - [`B50`](#b50)
+  - [`B75`](#b75)
+  - [`B110`](#b110)
+  - [`B134`](#b134)
+  - [`B150`](#b150)
+  - [`B200`](#b200)
+  - [`B300`](#b300)
+  - [`B600`](#b600)
+  - [`B1200`](#b1200)
+  - [`B1800`](#b1800)
+  - [`B2400`](#b2400)
+  - [`B4800`](#b4800)
+  - [`B9600`](#b9600)
+  - [`B19200`](#b19200)
+  - [`B38400`](#b38400)
+  - [`B57600`](#b57600)
+  - [`B115200`](#b115200)
+  - [`B230400`](#b230400)
+  - [`B460800`](#b460800)
+  - [`B500000`](#b500000)
+  - [`B576000`](#b576000)
+  - [`B921600`](#b921600)
+  - [`B1000000`](#b1000000)
+  - [`B1152000`](#b1152000)
+  - [`B1500000`](#b1500000)
+  - [`B2000000`](#b2000000)
+  - [`B2500000`](#b2500000)
+  - [`B3000000`](#b3000000)
+  - [`B3500000`](#b3500000)
+  - [`B4000000`](#b4000000)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`decode`](#decode) | fn | Translate from a `c::speed_t` code to an arbitrary integer speed value |
+| [`encode`](#encode) | fn | Translate from an arbitrary `u32` arbitrary integer speed value to a |
+| [`B0`](#b0) | const | `B0` |
+| [`B50`](#b50) | const | `B50` |
+| [`B75`](#b75) | const | `B75` |
+| [`B110`](#b110) | const | `B110` |
+| [`B134`](#b134) | const | `B134` |
+| [`B150`](#b150) | const | `B150` |
+| [`B200`](#b200) | const | `B200` |
+| [`B300`](#b300) | const | `B300` |
+| [`B600`](#b600) | const | `B600` |
+| [`B1200`](#b1200) | const | `B1200` |
+| [`B1800`](#b1800) | const | `B1800` |
+| [`B2400`](#b2400) | const | `B2400` |
+| [`B4800`](#b4800) | const | `B4800` |
+| [`B9600`](#b9600) | const | `B9600` |
+| [`B19200`](#b19200) | const | `B19200` |
+| [`B38400`](#b38400) | const | `B38400` |
+| [`B57600`](#b57600) | const | `B57600` |
+| [`B115200`](#b115200) | const | `B115200` |
+| [`B230400`](#b230400) | const | `B230400` |
+| [`B460800`](#b460800) | const | `B460800` |
+| [`B500000`](#b500000) | const | `B500000` |
+| [`B576000`](#b576000) | const | `B576000` |
+| [`B921600`](#b921600) | const | `B921600` |
+| [`B1000000`](#b1000000) | const | `B1000000` |
+| [`B1152000`](#b1152000) | const | `B1152000` |
+| [`B1500000`](#b1500000) | const | `B1500000` |
+| [`B2000000`](#b2000000) | const | `B2000000` |
+| [`B2500000`](#b2500000) | const | `B2500000` |
+| [`B3000000`](#b3000000) | const | `B3000000` |
+| [`B3500000`](#b3500000) | const | `B3500000` |
+| [`B4000000`](#b4000000) | const | `B4000000` |
+
 ## Functions
 
 ### `decode`

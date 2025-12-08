@@ -4,6 +4,12 @@
 
 # Module `named_source`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`NamedSource`](#namedsource) | struct | Utility struct for when you have a regular [`SourceCode`] type that doesn't |
+
 ## Structs
 
 ### `NamedSource<S: SourceCode + 'static>`
@@ -22,47 +28,47 @@ implement `name`. For example [`String`](../../clap_builder/index.md). Or if you
 
 #### Implementations
 
-- `fn new(name: impl AsRef<str>, source: S) -> Self`
+- <span id="namedsource-new"></span>`fn new(name: impl AsRef<str>, source: S) -> Self`
 
-- `fn name(self: &Self) -> &str`
+- <span id="namedsource-name"></span>`fn name(&self) -> &str`
 
-- `fn inner(self: &Self) -> &S`
+- <span id="namedsource-inner"></span>`fn inner(&self) -> &S`
 
-- `fn with_language(self: Self, language: impl Into<String>) -> Self`
+- <span id="namedsource-with-language"></span>`fn with_language(self, language: impl Into<String>) -> Self`
 
 #### Trait Implementations
 
-##### `impl<S: $crate::clone::Clone + SourceCode + 'static> Clone for NamedSource<S>`
+##### `impl<S: clone::Clone + SourceCode + 'static> Clone for NamedSource<S>`
 
-- `fn clone(self: &Self) -> NamedSource<S>` — [`NamedSource`](../index.md)
+- <span id="namedsource-clone"></span>`fn clone(&self) -> NamedSource<S>` — [`NamedSource`](../index.md)
 
 ##### `impl<S: SourceCode> Debug for NamedSource<S>`
 
-- `fn fmt(self: &Self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="namedsource-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
-##### `impl<S: $crate::cmp::Eq + SourceCode + 'static> Eq for NamedSource<S>`
+##### `impl<S: cmp::Eq + SourceCode + 'static> Eq for NamedSource<S>`
 
-##### `impl<S: $crate::hash::Hash + SourceCode + 'static> Hash for NamedSource<S>`
+##### `impl<S: hash::Hash + SourceCode + 'static> Hash for NamedSource<S>`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="namedsource-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
-##### `impl<S: $crate::cmp::Ord + SourceCode + 'static> Ord for NamedSource<S>`
+##### `impl<S: cmp::Ord + SourceCode + 'static> Ord for NamedSource<S>`
 
-- `fn cmp(self: &Self, other: &NamedSource<S>) -> $crate::cmp::Ordering` — [`NamedSource`](../index.md)
+- <span id="namedsource-cmp"></span>`fn cmp(&self, other: &NamedSource<S>) -> cmp::Ordering` — [`NamedSource`](../index.md)
 
 ##### `impl<D> OwoColorize for NamedSource<S>`
 
-##### `impl<S: $crate::cmp::PartialEq + SourceCode + 'static> PartialEq for NamedSource<S>`
+##### `impl<S: cmp::PartialEq + SourceCode + 'static> PartialEq for NamedSource<S>`
 
-- `fn eq(self: &Self, other: &NamedSource<S>) -> bool` — [`NamedSource`](../index.md)
+- <span id="namedsource-eq"></span>`fn eq(&self, other: &NamedSource<S>) -> bool` — [`NamedSource`](../index.md)
 
-##### `impl<S: $crate::cmp::PartialOrd + SourceCode + 'static> PartialOrd for NamedSource<S>`
+##### `impl<S: cmp::PartialOrd + SourceCode + 'static> PartialOrd for NamedSource<S>`
 
-- `fn partial_cmp(self: &Self, other: &NamedSource<S>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`NamedSource`](../index.md)
+- <span id="namedsource-partial-cmp"></span>`fn partial_cmp(&self, other: &NamedSource<S>) -> option::Option<cmp::Ordering>` — [`NamedSource`](../index.md)
 
 ##### `impl<S: SourceCode + 'static> SourceCode for NamedSource<S>`
 
-- `fn read_span<'a>(self: &'a Self, span: &crate::SourceSpan, context_lines_before: usize, context_lines_after: usize) -> Result<Box<dyn SpanContents<'a>>, MietteError>` — [`SourceSpan`](../index.md), [`SpanContents`](../index.md), [`MietteError`](../index.md)
+- <span id="namedsource-read-span"></span>`fn read_span<'a>(self: &'a Self, span: &crate::SourceSpan, context_lines_before: usize, context_lines_after: usize) -> Result<Box<dyn SpanContents<'a>>, MietteError>` — [`SourceSpan`](../index.md), [`SpanContents`](../index.md), [`MietteError`](../index.md)
 
 ##### `impl<S: SourceCode + 'static> StructuralPartialEq for NamedSource<S>`
 

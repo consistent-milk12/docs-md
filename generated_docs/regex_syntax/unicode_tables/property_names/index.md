@@ -4,6 +4,12 @@
 
 # Module `property_names`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`PROPERTY_NAMES`](#property_names) | const |  |
+
 ## Constants
 
 ### `PROPERTY_NAMES`

@@ -4,6 +4,37 @@
 
 # Module `rnglists`
 
+## Contents
+
+- [Structs](#structs)
+  - [`DebugRanges`](#debugranges)
+  - [`DebugRngLists`](#debugrnglists)
+  - [`RangeLists`](#rangelists)
+  - [`RawRngListIter`](#rawrnglistiter)
+  - [`RngListIter`](#rnglistiter)
+  - [`RawRange`](#rawrange)
+  - [`Range`](#range)
+- [Enums](#enums)
+  - [`RangeListsFormat`](#rangelistsformat)
+  - [`RawRngListEntry`](#rawrnglistentry)
+- [Type Aliases](#type-aliases)
+  - [`RngListsHeader`](#rnglistsheader)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`DebugRanges`](#debugranges) | struct | The raw contents of the `.debug_ranges` section. |
+| [`DebugRngLists`](#debugrnglists) | struct | The `DebugRngLists` struct represents the contents of the |
+| [`RangeLists`](#rangelists) | struct | The DWARF data found in `.debug_ranges` and `.debug_rnglists` sections. |
+| [`RawRngListIter`](#rawrnglistiter) | struct | A raw iterator over an address range list. |
+| [`RngListIter`](#rnglistiter) | struct | An iterator over an address range list. |
+| [`RawRange`](#rawrange) | struct | A raw address range from the `.debug_ranges` section. |
+| [`Range`](#range) | struct | An address range from the `.debug_ranges`, `.debug_rnglists`, or `.debug_aranges` sections. |
+| [`RangeListsFormat`](#rangelistsformat) | enum |  |
+| [`RawRngListEntry`](#rawrnglistentry) | enum | A raw entry in .debug_rnglists |
+| [`RngListsHeader`](#rnglistsheader) | type |  |
+
 ## Structs
 
 ### `DebugRanges<R>`
@@ -18,29 +49,29 @@ The raw contents of the `.debug_ranges` section.
 
 #### Implementations
 
-- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugRanges<R>` — [`DebugRanges`](../index.md)
+- <span id="debugranges-new"></span>`fn new(section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone> Clone for DebugRanges<R>`
+##### `impl<R: clone::Clone> Clone for DebugRanges<R>`
 
-- `fn clone(self: &Self) -> DebugRanges<R>` — [`DebugRanges`](../index.md)
+- <span id="debugranges-clone"></span>`fn clone(&self) -> DebugRanges<R>` — [`DebugRanges`](../index.md)
 
-##### `impl<R: $crate::marker::Copy> Copy for DebugRanges<R>`
+##### `impl<R: marker::Copy> Copy for DebugRanges<R>`
 
-##### `impl<R: $crate::fmt::Debug> Debug for DebugRanges<R>`
+##### `impl<R: fmt::Debug> Debug for DebugRanges<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugranges-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::default::Default> Default for DebugRanges<R>`
+##### `impl<R: default::Default> Default for DebugRanges<R>`
 
-- `fn default() -> DebugRanges<R>` — [`DebugRanges`](../index.md)
+- <span id="debugranges-default"></span>`fn default() -> DebugRanges<R>` — [`DebugRanges`](../index.md)
 
 ##### `impl<R> Section for DebugRanges<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../../index.md)
+- <span id="debugranges-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="debugranges-reader"></span>`fn reader(&self) -> &R`
 
 ### `DebugRngLists<R>`
 
@@ -55,29 +86,29 @@ The `DebugRngLists` struct represents the contents of the
 
 #### Implementations
 
-- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugRngLists<R>` — [`DebugRngLists`](../index.md)
+- <span id="debugrnglists-new"></span>`fn new(section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone> Clone for DebugRngLists<R>`
+##### `impl<R: clone::Clone> Clone for DebugRngLists<R>`
 
-- `fn clone(self: &Self) -> DebugRngLists<R>` — [`DebugRngLists`](../index.md)
+- <span id="debugrnglists-clone"></span>`fn clone(&self) -> DebugRngLists<R>` — [`DebugRngLists`](../index.md)
 
-##### `impl<R: $crate::marker::Copy> Copy for DebugRngLists<R>`
+##### `impl<R: marker::Copy> Copy for DebugRngLists<R>`
 
-##### `impl<R: $crate::fmt::Debug> Debug for DebugRngLists<R>`
+##### `impl<R: fmt::Debug> Debug for DebugRngLists<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="debugrnglists-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::default::Default> Default for DebugRngLists<R>`
+##### `impl<R: default::Default> Default for DebugRngLists<R>`
 
-- `fn default() -> DebugRngLists<R>` — [`DebugRngLists`](../index.md)
+- <span id="debugrnglists-default"></span>`fn default() -> DebugRngLists<R>` — [`DebugRngLists`](../index.md)
 
 ##### `impl<R> Section for DebugRngLists<R>`
 
-- `fn id() -> SectionId` — [`SectionId`](../../index.md)
+- <span id="debugrnglists-id"></span>`fn id() -> SectionId` — [`SectionId`](../../index.md)
 
-- `fn reader(self: &Self) -> &R`
+- <span id="debugrnglists-reader"></span>`fn reader(&self) -> &R`
 
 ### `RangeLists<R>`
 
@@ -92,29 +123,29 @@ The DWARF data found in `.debug_ranges` and `.debug_rnglists` sections.
 
 #### Implementations
 
-- `fn ranges(self: &Self, offset: RangeListsOffset<<R as >::Offset>, unit_encoding: Encoding, base_address: u64, debug_addr: &DebugAddr<R>, debug_addr_base: DebugAddrBase<<R as >::Offset>) -> Result<RngListIter<R>>` — [`RangeListsOffset`](../../index.md), [`Reader`](../index.md), [`Encoding`](../../index.md), [`DebugAddr`](../index.md), [`DebugAddrBase`](../../index.md), [`Result`](../../index.md), [`RngListIter`](../index.md)
+- <span id="rangelists-new"></span>`fn new(debug_ranges: DebugRanges<R>, debug_rnglists: DebugRngLists<R>) -> RangeLists<R>` — [`DebugRanges`](../index.md), [`DebugRngLists`](../index.md), [`RangeLists`](../index.md)
 
-- `fn raw_ranges(self: &Self, offset: RangeListsOffset<<R as >::Offset>, unit_encoding: Encoding) -> Result<RawRngListIter<R>>` — [`RangeListsOffset`](../../index.md), [`Reader`](../index.md), [`Encoding`](../../index.md), [`Result`](../../index.md), [`RawRngListIter`](../index.md)
+- <span id="rangelists-debug-ranges"></span>`fn debug_ranges(&self) -> &DebugRanges<R>` — [`DebugRanges`](../index.md)
 
-- `fn get_offset(self: &Self, unit_encoding: Encoding, base: DebugRngListsBase<<R as >::Offset>, index: DebugRngListsIndex<<R as >::Offset>) -> Result<RangeListsOffset<<R as >::Offset>>` — [`Encoding`](../../index.md), [`DebugRngListsBase`](../../index.md), [`Reader`](../index.md), [`DebugRngListsIndex`](../../index.md), [`Result`](../../index.md), [`RangeListsOffset`](../../index.md)
+- <span id="rangelists-set-debug-ranges"></span>`fn set_debug_ranges(&mut self, debug_ranges: DebugRanges<R>)` — [`DebugRanges`](../index.md)
 
-- `fn lookup_offset_id(self: &Self, id: ReaderOffsetId) -> Option<(SectionId, <R as >::Offset)>` — [`ReaderOffsetId`](../index.md), [`SectionId`](../../index.md), [`Reader`](../index.md)
+- <span id="rangelists-debug-rnglists"></span>`fn debug_rnglists(&self) -> &DebugRngLists<R>` — [`DebugRngLists`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::clone::Clone> Clone for RangeLists<R>`
+##### `impl<R: clone::Clone> Clone for RangeLists<R>`
 
-- `fn clone(self: &Self) -> RangeLists<R>` — [`RangeLists`](../index.md)
+- <span id="rangelists-clone"></span>`fn clone(&self) -> RangeLists<R>` — [`RangeLists`](../index.md)
 
-##### `impl<R: $crate::marker::Copy> Copy for RangeLists<R>`
+##### `impl<R: marker::Copy> Copy for RangeLists<R>`
 
-##### `impl<R: $crate::fmt::Debug> Debug for RangeLists<R>`
+##### `impl<R: fmt::Debug> Debug for RangeLists<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rangelists-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<R: $crate::default::Default> Default for RangeLists<R>`
+##### `impl<R: default::Default> Default for RangeLists<R>`
 
-- `fn default() -> RangeLists<R>` — [`RangeLists`](../index.md)
+- <span id="rangelists-default"></span>`fn default() -> RangeLists<R>` — [`RangeLists`](../index.md)
 
 ### `RawRngListIter<R: Reader>`
 
@@ -133,15 +164,15 @@ such as handling base addresses.
 
 #### Implementations
 
-- `fn new(input: R, encoding: Encoding, format: RangeListsFormat) -> RawRngListIter<R>` — [`Encoding`](../../index.md), [`RangeListsFormat`](#rangelistsformat), [`RawRngListIter`](../index.md)
+- <span id="rawrnglistiter-new"></span>`fn new(input: R, encoding: Encoding, format: RangeListsFormat) -> RawRngListIter<R>` — [`Encoding`](../../index.md), [`RangeListsFormat`](#rangelistsformat), [`RawRngListIter`](../index.md)
 
-- `fn next(self: &mut Self) -> Result<Option<RawRngListEntry<<R as >::Offset>>>` — [`Result`](../../index.md), [`RawRngListEntry`](../index.md), [`Reader`](../index.md)
+- <span id="rawrnglistiter-next"></span>`fn next(&mut self) -> Result<Option<RawRngListEntry<<R as >::Offset>>>` — [`Result`](../../index.md), [`RawRngListEntry`](../index.md), [`Reader`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for RawRngListIter<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for RawRngListIter<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rawrnglistiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `RngListIter<R: Reader>`
 
@@ -162,17 +193,17 @@ and already adjusted for the base address.
 
 #### Implementations
 
-- `fn new(raw: RawRngListIter<R>, base_address: u64, debug_addr: DebugAddr<R>, debug_addr_base: DebugAddrBase<<R as >::Offset>) -> RngListIter<R>` — [`RawRngListIter`](../index.md), [`DebugAddr`](../index.md), [`DebugAddrBase`](../../index.md), [`Reader`](../index.md), [`RngListIter`](../index.md)
+- <span id="rnglistiter-new"></span>`fn new(raw: RawRngListIter<R>, base_address: u64, debug_addr: DebugAddr<R>, debug_addr_base: DebugAddrBase<<R as >::Offset>) -> RngListIter<R>` — [`RawRngListIter`](../index.md), [`DebugAddr`](../index.md), [`DebugAddrBase`](../../index.md), [`Reader`](../index.md), [`RngListIter`](../index.md)
 
-- `fn get_address(self: &Self, index: DebugAddrIndex<<R as >::Offset>) -> Result<u64>` — [`DebugAddrIndex`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md)
+- <span id="rnglistiter-get-address"></span>`fn get_address(&self, index: DebugAddrIndex<<R as >::Offset>) -> Result<u64>` — [`DebugAddrIndex`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md)
 
-- `fn next(self: &mut Self) -> Result<Option<Range>>` — [`Result`](../../index.md), [`Range`](../index.md)
+- <span id="rnglistiter-next"></span>`fn next(&mut self) -> Result<Option<Range>>` — [`Result`](../../index.md), [`Range`](../index.md)
 
 #### Trait Implementations
 
-##### `impl<R: $crate::fmt::Debug + Reader> Debug for RngListIter<R>`
+##### `impl<R: fmt::Debug + Reader> Debug for RngListIter<R>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rnglistiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `RawRange`
 
@@ -197,33 +228,33 @@ A raw address range from the `.debug_ranges` section.
 
 #### Implementations
 
-- `fn is_end(self: &Self) -> bool`
+- <span id="rawrange-is-end"></span>`fn is_end(&self) -> bool`
 
-- `fn is_base_address(self: &Self, address_size: u8) -> bool`
+- <span id="rawrange-is-base-address"></span>`fn is_base_address(&self, address_size: u8) -> bool`
 
-- `fn parse<R: Reader>(input: &mut R, address_size: u8) -> Result<RawRange>` — [`Result`](../../index.md), [`RawRange`](#rawrange)
+- <span id="rawrange-parse"></span>`fn parse<R: Reader>(input: &mut R, address_size: u8) -> Result<RawRange>` — [`Result`](../../index.md), [`RawRange`](#rawrange)
 
 #### Trait Implementations
 
 ##### `impl Clone for RawRange`
 
-- `fn clone(self: &Self) -> RawRange` — [`RawRange`](#rawrange)
+- <span id="rawrange-clone"></span>`fn clone(&self) -> RawRange` — [`RawRange`](#rawrange)
 
 ##### `impl Copy for RawRange`
 
 ##### `impl Debug for RawRange`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rawrange-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for RawRange`
 
 ##### `impl Hash for RawRange`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="rawrange-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl PartialEq for RawRange`
 
-- `fn eq(self: &Self, other: &RawRange) -> bool` — [`RawRange`](#rawrange)
+- <span id="rawrange-eq"></span>`fn eq(&self, other: &RawRange) -> bool` — [`RawRange`](#rawrange)
 
 ##### `impl StructuralPartialEq for RawRange`
 
@@ -250,37 +281,37 @@ An address range from the `.debug_ranges`, `.debug_rnglists`, or `.debug_aranges
 
 #### Implementations
 
-- `fn add_base_address(self: &mut Self, base_address: u64, address_size: u8)`
+- <span id="range-add-base-address"></span>`fn add_base_address(&mut self, base_address: u64, address_size: u8)`
 
 #### Trait Implementations
 
 ##### `impl Clone for Range`
 
-- `fn clone(self: &Self) -> Range` — [`Range`](../index.md)
+- <span id="range-clone"></span>`fn clone(&self) -> Range` — [`Range`](../index.md)
 
 ##### `impl Copy for Range`
 
 ##### `impl Debug for Range`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="range-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Range`
 
 ##### `impl Hash for Range`
 
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+- <span id="range-hash"></span>`fn hash<__H: hash::Hasher>(&self, state: &mut __H)`
 
 ##### `impl Ord for Range`
 
-- `fn cmp(self: &Self, other: &Range) -> $crate::cmp::Ordering` — [`Range`](../index.md)
+- <span id="range-cmp"></span>`fn cmp(&self, other: &Range) -> cmp::Ordering` — [`Range`](../index.md)
 
 ##### `impl PartialEq for Range`
 
-- `fn eq(self: &Self, other: &Range) -> bool` — [`Range`](../index.md)
+- <span id="range-eq"></span>`fn eq(&self, other: &Range) -> bool` — [`Range`](../index.md)
 
 ##### `impl PartialOrd for Range`
 
-- `fn partial_cmp(self: &Self, other: &Range) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Range`](../index.md)
+- <span id="range-partial-cmp"></span>`fn partial_cmp(&self, other: &Range) -> option::Option<cmp::Ordering>` — [`Range`](../index.md)
 
 ##### `impl StructuralPartialEq for Range`
 
@@ -309,19 +340,19 @@ enum RangeListsFormat {
 
 ##### `impl Clone for RangeListsFormat`
 
-- `fn clone(self: &Self) -> RangeListsFormat` — [`RangeListsFormat`](#rangelistsformat)
+- <span id="rangelistsformat-clone"></span>`fn clone(&self) -> RangeListsFormat` — [`RangeListsFormat`](#rangelistsformat)
 
 ##### `impl Copy for RangeListsFormat`
 
 ##### `impl Debug for RangeListsFormat`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rangelistsformat-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for RangeListsFormat`
 
 ##### `impl PartialEq for RangeListsFormat`
 
-- `fn eq(self: &Self, other: &RangeListsFormat) -> bool` — [`RangeListsFormat`](#rangelistsformat)
+- <span id="rangelistsformat-eq"></span>`fn eq(&self, other: &RangeListsFormat) -> bool` — [`RangeListsFormat`](#rangelistsformat)
 
 ##### `impl StructuralPartialEq for RangeListsFormat`
 
@@ -400,17 +431,17 @@ A raw entry in .debug_rnglists
 
 #### Implementations
 
-- `fn parse<R: Reader<Offset = T>>(input: &mut R, encoding: Encoding, format: RangeListsFormat) -> Result<Option<Self>>` — [`Encoding`](../../index.md), [`RangeListsFormat`](#rangelistsformat), [`Result`](../../index.md)
+- <span id="rawrnglistentry-parse"></span>`fn parse<R: Reader<Offset = T>>(input: &mut R, encoding: Encoding, format: RangeListsFormat) -> Result<Option<Self>>` — [`Encoding`](../../index.md), [`RangeListsFormat`](#rangelistsformat), [`Result`](../../index.md)
 
 #### Trait Implementations
 
-##### `impl<T: $crate::clone::Clone> Clone for RawRngListEntry<T>`
+##### `impl<T: clone::Clone> Clone for RawRngListEntry<T>`
 
-- `fn clone(self: &Self) -> RawRngListEntry<T>` — [`RawRngListEntry`](../index.md)
+- <span id="rawrnglistentry-clone"></span>`fn clone(&self) -> RawRngListEntry<T>` — [`RawRngListEntry`](../index.md)
 
-##### `impl<T: $crate::fmt::Debug> Debug for RawRngListEntry<T>`
+##### `impl<T: fmt::Debug> Debug for RawRngListEntry<T>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="rawrnglistentry-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Type Aliases
 

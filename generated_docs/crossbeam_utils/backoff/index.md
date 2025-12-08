@@ -4,6 +4,14 @@
 
 # Module `backoff`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Backoff`](#backoff) | struct | Performs exponential backoff in spin loops. |
+| [`SPIN_LIMIT`](#spin_limit) | const |  |
+| [`YIELD_LIMIT`](#yield_limit) | const |  |
+
 ## Structs
 
 ### `Backoff`
@@ -86,25 +94,25 @@ fn blocking_wait(ready: &AtomicBool) {
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="backoff-new"></span>`fn new() -> Self`
 
-- `fn reset(self: &Self)`
+- <span id="backoff-reset"></span>`fn reset(&self)`
 
-- `fn spin(self: &Self)`
+- <span id="backoff-spin"></span>`fn spin(&self)`
 
-- `fn snooze(self: &Self)`
+- <span id="backoff-snooze"></span>`fn snooze(&self)`
 
-- `fn is_completed(self: &Self) -> bool`
+- <span id="backoff-is-completed"></span>`fn is_completed(&self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Debug for Backoff`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="backoff-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Backoff`
 
-- `fn default() -> Backoff` — [`Backoff`](../index.md)
+- <span id="backoff-default"></span>`fn default() -> Backoff` — [`Backoff`](../index.md)
 
 ## Constants
 

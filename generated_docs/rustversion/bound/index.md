@@ -4,6 +4,13 @@
 
 # Module `bound`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Bound`](#bound) | enum |  |
+| [`parse`](#parse) | fn |  |
+
 ## Enums
 
 ### `Bound`

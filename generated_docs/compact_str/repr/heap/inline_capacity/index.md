@@ -4,6 +4,15 @@
 
 # Module `inline_capacity`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`HeapBufferInnerInlineCapacity`](#heapbufferinnerinlinecapacity) | struct |  |
+| [`alloc`](#alloc) | fn | # SAFETY |
+| [`dealloc`](#dealloc) | fn | Deallocates a pointer which references a `HeapBuffer` whose capacity is stored inline |
+| [`layout`](#layout) | fn |  |
+
 ## Structs
 
 ### `HeapBufferInnerInlineCapacity`

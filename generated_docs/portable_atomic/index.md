@@ -192,6 +192,86 @@ RUSTFLAGS="--cfg portable_atomic_no_outline_atomics" cargo ...
 
 <!-- tidy:sync-markdown-to-rustdoc:end -->
 
+## Contents
+
+- [Modules](#modules)
+  - [`cfgs`](#cfgs)
+  - [`utils`](#utils)
+  - [`imp`](#imp)
+  - [`hint`](#hint)
+- [Structs](#structs)
+  - [`AtomicBool`](#atomicbool)
+  - [`AtomicPtr`](#atomicptr)
+  - [`AtomicIsize`](#atomicisize)
+  - [`AtomicUsize`](#atomicusize)
+  - [`AtomicI8`](#atomici8)
+  - [`AtomicU8`](#atomicu8)
+  - [`AtomicI16`](#atomici16)
+  - [`AtomicU16`](#atomicu16)
+  - [`AtomicI32`](#atomici32)
+  - [`AtomicU32`](#atomicu32)
+  - [`AtomicI64`](#atomici64)
+  - [`AtomicU64`](#atomicu64)
+  - [`AtomicI128`](#atomici128)
+  - [`AtomicU128`](#atomicu128)
+- [Functions](#functions)
+  - [`unnamed`](#unnamed)
+- [Macros](#macros)
+  - [`unnamed!`](#unnamed)
+  - [`unnamed!`](#unnamed)
+  - [`atomic_int!`](#atomic_int)
+  - [`cfg_has_atomic_8!`](#cfg_has_atomic_8)
+  - [`cfg_no_atomic_8!`](#cfg_no_atomic_8)
+  - [`cfg_has_atomic_16!`](#cfg_has_atomic_16)
+  - [`cfg_no_atomic_16!`](#cfg_no_atomic_16)
+  - [`cfg_has_atomic_32!`](#cfg_has_atomic_32)
+  - [`cfg_no_atomic_32!`](#cfg_no_atomic_32)
+  - [`cfg_has_atomic_64!`](#cfg_has_atomic_64)
+  - [`cfg_no_atomic_64!`](#cfg_no_atomic_64)
+  - [`cfg_has_atomic_128!`](#cfg_has_atomic_128)
+  - [`cfg_no_atomic_128!`](#cfg_no_atomic_128)
+  - [`cfg_has_atomic_cas!`](#cfg_has_atomic_cas)
+  - [`cfg_no_atomic_cas!`](#cfg_no_atomic_cas)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`cfgs`](#cfgs) | mod |  |
+| [`utils`](#utils) | mod |  |
+| [`imp`](#imp) | mod |  |
+| [`hint`](#hint) | mod | Re-export of the [`core::hint`] module. |
+| [`AtomicBool`](#atomicbool) | struct | A boolean type which can be safely shared between threads. |
+| [`AtomicPtr`](#atomicptr) | struct | A raw pointer type which can be safely shared between threads. |
+| [`AtomicIsize`](#atomicisize) | struct | An integer type which can be safely shared between threads. |
+| [`AtomicUsize`](#atomicusize) | struct | An integer type which can be safely shared between threads. |
+| [`AtomicI8`](#atomici8) | struct | An integer type which can be safely shared between threads. |
+| [`AtomicU8`](#atomicu8) | struct | An integer type which can be safely shared between threads. |
+| [`AtomicI16`](#atomici16) | struct | An integer type which can be safely shared between threads. |
+| [`AtomicU16`](#atomicu16) | struct | An integer type which can be safely shared between threads. |
+| [`AtomicI32`](#atomici32) | struct | An integer type which can be safely shared between threads. |
+| [`AtomicU32`](#atomicu32) | struct | An integer type which can be safely shared between threads. |
+| [`AtomicI64`](#atomici64) | struct | An integer type which can be safely shared between threads. |
+| [`AtomicU64`](#atomicu64) | struct | An integer type which can be safely shared between threads. |
+| [`AtomicI128`](#atomici128) | struct | An integer type which can be safely shared between threads. |
+| [`AtomicU128`](#atomicu128) | struct | An integer type which can be safely shared between threads. |
+| [`unnamed`](#unnamed) | fn |  |
+| [`unnamed!`](#unnamed) | macro |  |
+| [`unnamed!`](#unnamed) | macro |  |
+| [`atomic_int!`](#atomic_int) | macro |  |
+| [`cfg_has_atomic_8!`](#cfg_has_atomic_8) | macro |  |
+| [`cfg_no_atomic_8!`](#cfg_no_atomic_8) | macro |  |
+| [`cfg_has_atomic_16!`](#cfg_has_atomic_16) | macro |  |
+| [`cfg_no_atomic_16!`](#cfg_no_atomic_16) | macro |  |
+| [`cfg_has_atomic_32!`](#cfg_has_atomic_32) | macro |  |
+| [`cfg_no_atomic_32!`](#cfg_no_atomic_32) | macro |  |
+| [`cfg_has_atomic_64!`](#cfg_has_atomic_64) | macro |  |
+| [`cfg_no_atomic_64!`](#cfg_no_atomic_64) | macro |  |
+| [`cfg_has_atomic_128!`](#cfg_has_atomic_128) | macro |  |
+| [`cfg_no_atomic_128!`](#cfg_no_atomic_128) | macro |  |
+| [`cfg_has_atomic_cas!`](#cfg_has_atomic_cas) | macro |  |
+| [`cfg_no_atomic_cas!`](#cfg_no_atomic_cas) | macro |  |
+
 ## Modules
 
 - [`cfgs`](cfgs/index.md) - 
@@ -221,61 +301,61 @@ assembly.
 
 #### Implementations
 
-- `const fn new(v: bool) -> Self`
+- <span id="atomicbool-new"></span>`const fn new(v: bool) -> Self`
 
-- `const unsafe fn from_ptr<'a>(ptr: *mut bool) -> &'a Self`
+- <span id="atomicbool-from-ptr"></span>`const unsafe fn from_ptr<'a>(ptr: *mut bool) -> &'a Self`
 
-- `fn is_lock_free() -> bool`
+- <span id="atomicbool-is-lock-free"></span>`fn is_lock_free() -> bool`
 
-- `const fn is_always_lock_free() -> bool`
+- <span id="atomicbool-is-always-lock-free"></span>`const fn is_always_lock_free() -> bool`
 
-- `const fn get_mut(self: &mut Self) -> &mut bool`
+- <span id="atomicbool-get-mut"></span>`const fn get_mut(&mut self) -> &mut bool`
 
-- `const fn into_inner(self: Self) -> bool`
+- <span id="atomicbool-into-inner"></span>`const fn into_inner(self) -> bool`
 
-- `fn load(self: &Self, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomicbool-load"></span>`fn load(&self, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn store(self: &Self, val: bool, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicbool-store"></span>`fn store(&self, val: bool, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn swap(self: &Self, val: bool, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomicbool-swap"></span>`fn swap(&self, val: bool, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn compare_exchange(self: &Self, current: bool, new: bool, success: Ordering, failure: Ordering) -> Result<bool, bool>` — [`Ordering`](#ordering)
+- <span id="atomicbool-compare-exchange"></span>`fn compare_exchange(&self, current: bool, new: bool, success: Ordering, failure: Ordering) -> Result<bool, bool>` — [`Ordering`](#ordering)
 
-- `fn compare_exchange_weak(self: &Self, current: bool, new: bool, success: Ordering, failure: Ordering) -> Result<bool, bool>` — [`Ordering`](#ordering)
+- <span id="atomicbool-compare-exchange-weak"></span>`fn compare_exchange_weak(&self, current: bool, new: bool, success: Ordering, failure: Ordering) -> Result<bool, bool>` — [`Ordering`](#ordering)
 
-- `fn fetch_and(self: &Self, val: bool, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomicbool-fetch-and"></span>`fn fetch_and(&self, val: bool, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn and(self: &Self, val: bool, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicbool-and"></span>`fn and(&self, val: bool, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_nand(self: &Self, val: bool, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomicbool-fetch-nand"></span>`fn fetch_nand(&self, val: bool, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn fetch_or(self: &Self, val: bool, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomicbool-fetch-or"></span>`fn fetch_or(&self, val: bool, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn or(self: &Self, val: bool, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicbool-or"></span>`fn or(&self, val: bool, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_xor(self: &Self, val: bool, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomicbool-fetch-xor"></span>`fn fetch_xor(&self, val: bool, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn xor(self: &Self, val: bool, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicbool-xor"></span>`fn xor(&self, val: bool, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_not(self: &Self, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomicbool-fetch-not"></span>`fn fetch_not(&self, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn not(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicbool-not"></span>`fn not(&self, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<bool, bool>` — [`Ordering`](#ordering)
+- <span id="atomicbool-fetch-update"></span>`fn fetch_update<F>(&self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<bool, bool>` — [`Ordering`](#ordering)
 
-- `const fn as_ptr(self: &Self) -> *mut bool`
+- <span id="atomicbool-as-ptr"></span>`const fn as_ptr(&self) -> *mut bool`
 
-- `fn as_atomic_u8(self: &Self) -> &self::core_atomic::AtomicU8` — [`AtomicU8`](imp/core_atomic/index.md)
+- <span id="atomicbool-as-atomic-u8"></span>`fn as_atomic_u8(&self) -> &self::core_atomic::AtomicU8` — [`AtomicU8`](imp/core_atomic/index.md)
 
 #### Trait Implementations
 
 ##### `impl Debug for AtomicBool`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="atomicbool-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for AtomicBool`
 
-- `fn default() -> Self`
+- <span id="atomicbool-default"></span>`fn default() -> Self`
 
 ##### `impl RefUnwindSafe for AtomicBool`
 
@@ -301,67 +381,67 @@ assembly.
 
 #### Implementations
 
-- `const fn new(p: *mut T) -> Self`
+- <span id="atomicptr-new"></span>`const fn new(p: *mut T) -> Self`
 
-- `const unsafe fn from_ptr<'a>(ptr: *mut *mut T) -> &'a Self`
+- <span id="atomicptr-from-ptr"></span>`const unsafe fn from_ptr<'a>(ptr: *mut *mut T) -> &'a Self`
 
-- `fn is_lock_free() -> bool`
+- <span id="atomicptr-is-lock-free"></span>`fn is_lock_free() -> bool`
 
-- `const fn is_always_lock_free() -> bool`
+- <span id="atomicptr-is-always-lock-free"></span>`const fn is_always_lock_free() -> bool`
 
-- `const fn get_mut(self: &mut Self) -> &mut *mut T`
+- <span id="atomicptr-get-mut"></span>`const fn get_mut(&mut self) -> &mut *mut T`
 
-- `const fn into_inner(self: Self) -> *mut T`
+- <span id="atomicptr-into-inner"></span>`const fn into_inner(self) -> *mut T`
 
-- `fn load(self: &Self, order: Ordering) -> *mut T` — [`Ordering`](#ordering)
+- <span id="atomicptr-load"></span>`fn load(&self, order: Ordering) -> *mut T` — [`Ordering`](#ordering)
 
-- `fn store(self: &Self, ptr: *mut T, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicptr-store"></span>`fn store(&self, ptr: *mut T, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn swap(self: &Self, ptr: *mut T, order: Ordering) -> *mut T` — [`Ordering`](#ordering)
+- <span id="atomicptr-swap"></span>`fn swap(&self, ptr: *mut T, order: Ordering) -> *mut T` — [`Ordering`](#ordering)
 
-- `fn compare_exchange(self: &Self, current: *mut T, new: *mut T, success: Ordering, failure: Ordering) -> Result<*mut T, *mut T>` — [`Ordering`](#ordering)
+- <span id="atomicptr-compare-exchange"></span>`fn compare_exchange(&self, current: *mut T, new: *mut T, success: Ordering, failure: Ordering) -> Result<*mut T, *mut T>` — [`Ordering`](#ordering)
 
-- `fn compare_exchange_weak(self: &Self, current: *mut T, new: *mut T, success: Ordering, failure: Ordering) -> Result<*mut T, *mut T>` — [`Ordering`](#ordering)
+- <span id="atomicptr-compare-exchange-weak"></span>`fn compare_exchange_weak(&self, current: *mut T, new: *mut T, success: Ordering, failure: Ordering) -> Result<*mut T, *mut T>` — [`Ordering`](#ordering)
 
-- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<*mut T, *mut T>` — [`Ordering`](#ordering)
+- <span id="atomicptr-fetch-update"></span>`fn fetch_update<F>(&self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<*mut T, *mut T>` — [`Ordering`](#ordering)
 
-- `fn fetch_ptr_add(self: &Self, val: usize, order: Ordering) -> *mut T` — [`Ordering`](#ordering)
+- <span id="atomicptr-fetch-ptr-add"></span>`fn fetch_ptr_add(&self, val: usize, order: Ordering) -> *mut T` — [`Ordering`](#ordering)
 
-- `fn fetch_ptr_sub(self: &Self, val: usize, order: Ordering) -> *mut T` — [`Ordering`](#ordering)
+- <span id="atomicptr-fetch-ptr-sub"></span>`fn fetch_ptr_sub(&self, val: usize, order: Ordering) -> *mut T` — [`Ordering`](#ordering)
 
-- `fn fetch_byte_add(self: &Self, val: usize, order: Ordering) -> *mut T` — [`Ordering`](#ordering)
+- <span id="atomicptr-fetch-byte-add"></span>`fn fetch_byte_add(&self, val: usize, order: Ordering) -> *mut T` — [`Ordering`](#ordering)
 
-- `fn fetch_byte_sub(self: &Self, val: usize, order: Ordering) -> *mut T` — [`Ordering`](#ordering)
+- <span id="atomicptr-fetch-byte-sub"></span>`fn fetch_byte_sub(&self, val: usize, order: Ordering) -> *mut T` — [`Ordering`](#ordering)
 
-- `fn fetch_or(self: &Self, val: usize, order: Ordering) -> *mut T` — [`Ordering`](#ordering)
+- <span id="atomicptr-fetch-or"></span>`fn fetch_or(&self, val: usize, order: Ordering) -> *mut T` — [`Ordering`](#ordering)
 
-- `fn fetch_and(self: &Self, val: usize, order: Ordering) -> *mut T` — [`Ordering`](#ordering)
+- <span id="atomicptr-fetch-and"></span>`fn fetch_and(&self, val: usize, order: Ordering) -> *mut T` — [`Ordering`](#ordering)
 
-- `fn fetch_xor(self: &Self, val: usize, order: Ordering) -> *mut T` — [`Ordering`](#ordering)
+- <span id="atomicptr-fetch-xor"></span>`fn fetch_xor(&self, val: usize, order: Ordering) -> *mut T` — [`Ordering`](#ordering)
 
-- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomicptr-bit-set"></span>`fn bit_set(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomicptr-bit-clear"></span>`fn bit_clear(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomicptr-bit-toggle"></span>`fn bit_toggle(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn as_atomic_usize(self: &Self) -> &AtomicUsize` — [`AtomicUsize`](#atomicusize)
+- <span id="atomicptr-as-atomic-usize"></span>`fn as_atomic_usize(&self) -> &AtomicUsize` — [`AtomicUsize`](#atomicusize)
 
-- `const fn as_ptr(self: &Self) -> *mut *mut T`
+- <span id="atomicptr-as-ptr"></span>`const fn as_ptr(&self) -> *mut *mut T`
 
 #### Trait Implementations
 
 ##### `impl<T> Debug for AtomicPtr<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="atomicptr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> Default for AtomicPtr<T>`
 
-- `fn default() -> Self`
+- <span id="atomicptr-default"></span>`fn default() -> Self`
 
 ##### `impl<T> Pointer for AtomicPtr<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="atomicptr-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> RefUnwindSafe for AtomicPtr<T>`
 
@@ -385,81 +465,81 @@ atomic instructions or locks will be used.
 
 #### Implementations
 
-- `const fn new(v: isize) -> Self`
+- <span id="atomicisize-new"></span>`const fn new(v: isize) -> Self`
 
-- `const unsafe fn from_ptr<'a>(ptr: *mut isize) -> &'a Self`
+- <span id="atomicisize-from-ptr"></span>`const unsafe fn from_ptr<'a>(ptr: *mut isize) -> &'a Self`
 
-- `fn is_lock_free() -> bool`
+- <span id="atomicisize-is-lock-free"></span>`fn is_lock_free() -> bool`
 
-- `const fn is_always_lock_free() -> bool`
+- <span id="atomicisize-is-always-lock-free"></span>`const fn is_always_lock_free() -> bool`
 
-- `const fn get_mut(self: &mut Self) -> &mut isize`
+- <span id="atomicisize-get-mut"></span>`const fn get_mut(&mut self) -> &mut isize`
 
-- `const fn into_inner(self: Self) -> isize`
+- <span id="atomicisize-into-inner"></span>`const fn into_inner(self) -> isize`
 
-- `fn load(self: &Self, order: Ordering) -> isize` — [`Ordering`](#ordering)
+- <span id="atomicisize-load"></span>`fn load(&self, order: Ordering) -> isize` — [`Ordering`](#ordering)
 
-- `fn store(self: &Self, val: isize, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicisize-store"></span>`fn store(&self, val: isize, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn swap(self: &Self, val: isize, order: Ordering) -> isize` — [`Ordering`](#ordering)
+- <span id="atomicisize-swap"></span>`fn swap(&self, val: isize, order: Ordering) -> isize` — [`Ordering`](#ordering)
 
-- `fn compare_exchange(self: &Self, current: isize, new: isize, success: Ordering, failure: Ordering) -> Result<isize, isize>` — [`Ordering`](#ordering)
+- <span id="atomicisize-compare-exchange"></span>`fn compare_exchange(&self, current: isize, new: isize, success: Ordering, failure: Ordering) -> Result<isize, isize>` — [`Ordering`](#ordering)
 
-- `fn compare_exchange_weak(self: &Self, current: isize, new: isize, success: Ordering, failure: Ordering) -> Result<isize, isize>` — [`Ordering`](#ordering)
+- <span id="atomicisize-compare-exchange-weak"></span>`fn compare_exchange_weak(&self, current: isize, new: isize, success: Ordering, failure: Ordering) -> Result<isize, isize>` — [`Ordering`](#ordering)
 
-- `fn fetch_add(self: &Self, val: isize, order: Ordering) -> isize` — [`Ordering`](#ordering)
+- <span id="atomicisize-fetch-add"></span>`fn fetch_add(&self, val: isize, order: Ordering) -> isize` — [`Ordering`](#ordering)
 
-- `fn add(self: &Self, val: isize, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicisize-add"></span>`fn add(&self, val: isize, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_sub(self: &Self, val: isize, order: Ordering) -> isize` — [`Ordering`](#ordering)
+- <span id="atomicisize-fetch-sub"></span>`fn fetch_sub(&self, val: isize, order: Ordering) -> isize` — [`Ordering`](#ordering)
 
-- `fn sub(self: &Self, val: isize, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicisize-sub"></span>`fn sub(&self, val: isize, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_and(self: &Self, val: isize, order: Ordering) -> isize` — [`Ordering`](#ordering)
+- <span id="atomicisize-fetch-and"></span>`fn fetch_and(&self, val: isize, order: Ordering) -> isize` — [`Ordering`](#ordering)
 
-- `fn and(self: &Self, val: isize, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicisize-and"></span>`fn and(&self, val: isize, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_nand(self: &Self, val: isize, order: Ordering) -> isize` — [`Ordering`](#ordering)
+- <span id="atomicisize-fetch-nand"></span>`fn fetch_nand(&self, val: isize, order: Ordering) -> isize` — [`Ordering`](#ordering)
 
-- `fn fetch_or(self: &Self, val: isize, order: Ordering) -> isize` — [`Ordering`](#ordering)
+- <span id="atomicisize-fetch-or"></span>`fn fetch_or(&self, val: isize, order: Ordering) -> isize` — [`Ordering`](#ordering)
 
-- `fn or(self: &Self, val: isize, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicisize-or"></span>`fn or(&self, val: isize, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_xor(self: &Self, val: isize, order: Ordering) -> isize` — [`Ordering`](#ordering)
+- <span id="atomicisize-fetch-xor"></span>`fn fetch_xor(&self, val: isize, order: Ordering) -> isize` — [`Ordering`](#ordering)
 
-- `fn xor(self: &Self, val: isize, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicisize-xor"></span>`fn xor(&self, val: isize, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<isize, isize>` — [`Ordering`](#ordering)
+- <span id="atomicisize-fetch-update"></span>`fn fetch_update<F>(&self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<isize, isize>` — [`Ordering`](#ordering)
 
-- `fn fetch_max(self: &Self, val: isize, order: Ordering) -> isize` — [`Ordering`](#ordering)
+- <span id="atomicisize-fetch-max"></span>`fn fetch_max(&self, val: isize, order: Ordering) -> isize` — [`Ordering`](#ordering)
 
-- `fn fetch_min(self: &Self, val: isize, order: Ordering) -> isize` — [`Ordering`](#ordering)
+- <span id="atomicisize-fetch-min"></span>`fn fetch_min(&self, val: isize, order: Ordering) -> isize` — [`Ordering`](#ordering)
 
-- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomicisize-bit-set"></span>`fn bit_set(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomicisize-bit-clear"></span>`fn bit_clear(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomicisize-bit-toggle"></span>`fn bit_toggle(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn fetch_not(self: &Self, order: Ordering) -> isize` — [`Ordering`](#ordering)
+- <span id="atomicisize-fetch-not"></span>`fn fetch_not(&self, order: Ordering) -> isize` — [`Ordering`](#ordering)
 
-- `fn not(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicisize-not"></span>`fn not(&self, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_neg(self: &Self, order: Ordering) -> isize` — [`Ordering`](#ordering)
+- <span id="atomicisize-fetch-neg"></span>`fn fetch_neg(&self, order: Ordering) -> isize` — [`Ordering`](#ordering)
 
-- `fn neg(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicisize-neg"></span>`fn neg(&self, order: Ordering)` — [`Ordering`](#ordering)
 
-- `const fn as_ptr(self: &Self) -> *mut isize`
+- <span id="atomicisize-as-ptr"></span>`const fn as_ptr(&self) -> *mut isize`
 
 #### Trait Implementations
 
 ##### `impl Debug for AtomicIsize`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="atomicisize-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for AtomicIsize`
 
-- `fn default() -> Self`
+- <span id="atomicisize-default"></span>`fn default() -> Self`
 
 ##### `impl RefUnwindSafe for AtomicIsize`
 
@@ -483,81 +563,81 @@ atomic instructions or locks will be used.
 
 #### Implementations
 
-- `const fn new(v: usize) -> Self`
+- <span id="atomicusize-new"></span>`const fn new(v: usize) -> Self`
 
-- `const unsafe fn from_ptr<'a>(ptr: *mut usize) -> &'a Self`
+- <span id="atomicusize-from-ptr"></span>`const unsafe fn from_ptr<'a>(ptr: *mut usize) -> &'a Self`
 
-- `fn is_lock_free() -> bool`
+- <span id="atomicusize-is-lock-free"></span>`fn is_lock_free() -> bool`
 
-- `const fn is_always_lock_free() -> bool`
+- <span id="atomicusize-is-always-lock-free"></span>`const fn is_always_lock_free() -> bool`
 
-- `const fn get_mut(self: &mut Self) -> &mut usize`
+- <span id="atomicusize-get-mut"></span>`const fn get_mut(&mut self) -> &mut usize`
 
-- `const fn into_inner(self: Self) -> usize`
+- <span id="atomicusize-into-inner"></span>`const fn into_inner(self) -> usize`
 
-- `fn load(self: &Self, order: Ordering) -> usize` — [`Ordering`](#ordering)
+- <span id="atomicusize-load"></span>`fn load(&self, order: Ordering) -> usize` — [`Ordering`](#ordering)
 
-- `fn store(self: &Self, val: usize, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicusize-store"></span>`fn store(&self, val: usize, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn swap(self: &Self, val: usize, order: Ordering) -> usize` — [`Ordering`](#ordering)
+- <span id="atomicusize-swap"></span>`fn swap(&self, val: usize, order: Ordering) -> usize` — [`Ordering`](#ordering)
 
-- `fn compare_exchange(self: &Self, current: usize, new: usize, success: Ordering, failure: Ordering) -> Result<usize, usize>` — [`Ordering`](#ordering)
+- <span id="atomicusize-compare-exchange"></span>`fn compare_exchange(&self, current: usize, new: usize, success: Ordering, failure: Ordering) -> Result<usize, usize>` — [`Ordering`](#ordering)
 
-- `fn compare_exchange_weak(self: &Self, current: usize, new: usize, success: Ordering, failure: Ordering) -> Result<usize, usize>` — [`Ordering`](#ordering)
+- <span id="atomicusize-compare-exchange-weak"></span>`fn compare_exchange_weak(&self, current: usize, new: usize, success: Ordering, failure: Ordering) -> Result<usize, usize>` — [`Ordering`](#ordering)
 
-- `fn fetch_add(self: &Self, val: usize, order: Ordering) -> usize` — [`Ordering`](#ordering)
+- <span id="atomicusize-fetch-add"></span>`fn fetch_add(&self, val: usize, order: Ordering) -> usize` — [`Ordering`](#ordering)
 
-- `fn add(self: &Self, val: usize, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicusize-add"></span>`fn add(&self, val: usize, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_sub(self: &Self, val: usize, order: Ordering) -> usize` — [`Ordering`](#ordering)
+- <span id="atomicusize-fetch-sub"></span>`fn fetch_sub(&self, val: usize, order: Ordering) -> usize` — [`Ordering`](#ordering)
 
-- `fn sub(self: &Self, val: usize, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicusize-sub"></span>`fn sub(&self, val: usize, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_and(self: &Self, val: usize, order: Ordering) -> usize` — [`Ordering`](#ordering)
+- <span id="atomicusize-fetch-and"></span>`fn fetch_and(&self, val: usize, order: Ordering) -> usize` — [`Ordering`](#ordering)
 
-- `fn and(self: &Self, val: usize, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicusize-and"></span>`fn and(&self, val: usize, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_nand(self: &Self, val: usize, order: Ordering) -> usize` — [`Ordering`](#ordering)
+- <span id="atomicusize-fetch-nand"></span>`fn fetch_nand(&self, val: usize, order: Ordering) -> usize` — [`Ordering`](#ordering)
 
-- `fn fetch_or(self: &Self, val: usize, order: Ordering) -> usize` — [`Ordering`](#ordering)
+- <span id="atomicusize-fetch-or"></span>`fn fetch_or(&self, val: usize, order: Ordering) -> usize` — [`Ordering`](#ordering)
 
-- `fn or(self: &Self, val: usize, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicusize-or"></span>`fn or(&self, val: usize, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_xor(self: &Self, val: usize, order: Ordering) -> usize` — [`Ordering`](#ordering)
+- <span id="atomicusize-fetch-xor"></span>`fn fetch_xor(&self, val: usize, order: Ordering) -> usize` — [`Ordering`](#ordering)
 
-- `fn xor(self: &Self, val: usize, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicusize-xor"></span>`fn xor(&self, val: usize, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<usize, usize>` — [`Ordering`](#ordering)
+- <span id="atomicusize-fetch-update"></span>`fn fetch_update<F>(&self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<usize, usize>` — [`Ordering`](#ordering)
 
-- `fn fetch_max(self: &Self, val: usize, order: Ordering) -> usize` — [`Ordering`](#ordering)
+- <span id="atomicusize-fetch-max"></span>`fn fetch_max(&self, val: usize, order: Ordering) -> usize` — [`Ordering`](#ordering)
 
-- `fn fetch_min(self: &Self, val: usize, order: Ordering) -> usize` — [`Ordering`](#ordering)
+- <span id="atomicusize-fetch-min"></span>`fn fetch_min(&self, val: usize, order: Ordering) -> usize` — [`Ordering`](#ordering)
 
-- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomicusize-bit-set"></span>`fn bit_set(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomicusize-bit-clear"></span>`fn bit_clear(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomicusize-bit-toggle"></span>`fn bit_toggle(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn fetch_not(self: &Self, order: Ordering) -> usize` — [`Ordering`](#ordering)
+- <span id="atomicusize-fetch-not"></span>`fn fetch_not(&self, order: Ordering) -> usize` — [`Ordering`](#ordering)
 
-- `fn not(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicusize-not"></span>`fn not(&self, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_neg(self: &Self, order: Ordering) -> usize` — [`Ordering`](#ordering)
+- <span id="atomicusize-fetch-neg"></span>`fn fetch_neg(&self, order: Ordering) -> usize` — [`Ordering`](#ordering)
 
-- `fn neg(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicusize-neg"></span>`fn neg(&self, order: Ordering)` — [`Ordering`](#ordering)
 
-- `const fn as_ptr(self: &Self) -> *mut usize`
+- <span id="atomicusize-as-ptr"></span>`const fn as_ptr(&self) -> *mut usize`
 
 #### Trait Implementations
 
 ##### `impl Debug for AtomicUsize`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="atomicusize-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for AtomicUsize`
 
-- `fn default() -> Self`
+- <span id="atomicusize-default"></span>`fn default() -> Self`
 
 ##### `impl RefUnwindSafe for AtomicUsize`
 
@@ -581,81 +661,81 @@ atomic instructions or locks will be used.
 
 #### Implementations
 
-- `const fn new(v: i8) -> Self`
+- <span id="atomici8-new"></span>`const fn new(v: i8) -> Self`
 
-- `const unsafe fn from_ptr<'a>(ptr: *mut i8) -> &'a Self`
+- <span id="atomici8-from-ptr"></span>`const unsafe fn from_ptr<'a>(ptr: *mut i8) -> &'a Self`
 
-- `fn is_lock_free() -> bool`
+- <span id="atomici8-is-lock-free"></span>`fn is_lock_free() -> bool`
 
-- `const fn is_always_lock_free() -> bool`
+- <span id="atomici8-is-always-lock-free"></span>`const fn is_always_lock_free() -> bool`
 
-- `const fn get_mut(self: &mut Self) -> &mut i8`
+- <span id="atomici8-get-mut"></span>`const fn get_mut(&mut self) -> &mut i8`
 
-- `const fn into_inner(self: Self) -> i8`
+- <span id="atomici8-into-inner"></span>`const fn into_inner(self) -> i8`
 
-- `fn load(self: &Self, order: Ordering) -> i8` — [`Ordering`](#ordering)
+- <span id="atomici8-load"></span>`fn load(&self, order: Ordering) -> i8` — [`Ordering`](#ordering)
 
-- `fn store(self: &Self, val: i8, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici8-store"></span>`fn store(&self, val: i8, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn swap(self: &Self, val: i8, order: Ordering) -> i8` — [`Ordering`](#ordering)
+- <span id="atomici8-swap"></span>`fn swap(&self, val: i8, order: Ordering) -> i8` — [`Ordering`](#ordering)
 
-- `fn compare_exchange(self: &Self, current: i8, new: i8, success: Ordering, failure: Ordering) -> Result<i8, i8>` — [`Ordering`](#ordering)
+- <span id="atomici8-compare-exchange"></span>`fn compare_exchange(&self, current: i8, new: i8, success: Ordering, failure: Ordering) -> Result<i8, i8>` — [`Ordering`](#ordering)
 
-- `fn compare_exchange_weak(self: &Self, current: i8, new: i8, success: Ordering, failure: Ordering) -> Result<i8, i8>` — [`Ordering`](#ordering)
+- <span id="atomici8-compare-exchange-weak"></span>`fn compare_exchange_weak(&self, current: i8, new: i8, success: Ordering, failure: Ordering) -> Result<i8, i8>` — [`Ordering`](#ordering)
 
-- `fn fetch_add(self: &Self, val: i8, order: Ordering) -> i8` — [`Ordering`](#ordering)
+- <span id="atomici8-fetch-add"></span>`fn fetch_add(&self, val: i8, order: Ordering) -> i8` — [`Ordering`](#ordering)
 
-- `fn add(self: &Self, val: i8, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici8-add"></span>`fn add(&self, val: i8, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_sub(self: &Self, val: i8, order: Ordering) -> i8` — [`Ordering`](#ordering)
+- <span id="atomici8-fetch-sub"></span>`fn fetch_sub(&self, val: i8, order: Ordering) -> i8` — [`Ordering`](#ordering)
 
-- `fn sub(self: &Self, val: i8, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici8-sub"></span>`fn sub(&self, val: i8, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_and(self: &Self, val: i8, order: Ordering) -> i8` — [`Ordering`](#ordering)
+- <span id="atomici8-fetch-and"></span>`fn fetch_and(&self, val: i8, order: Ordering) -> i8` — [`Ordering`](#ordering)
 
-- `fn and(self: &Self, val: i8, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici8-and"></span>`fn and(&self, val: i8, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_nand(self: &Self, val: i8, order: Ordering) -> i8` — [`Ordering`](#ordering)
+- <span id="atomici8-fetch-nand"></span>`fn fetch_nand(&self, val: i8, order: Ordering) -> i8` — [`Ordering`](#ordering)
 
-- `fn fetch_or(self: &Self, val: i8, order: Ordering) -> i8` — [`Ordering`](#ordering)
+- <span id="atomici8-fetch-or"></span>`fn fetch_or(&self, val: i8, order: Ordering) -> i8` — [`Ordering`](#ordering)
 
-- `fn or(self: &Self, val: i8, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici8-or"></span>`fn or(&self, val: i8, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_xor(self: &Self, val: i8, order: Ordering) -> i8` — [`Ordering`](#ordering)
+- <span id="atomici8-fetch-xor"></span>`fn fetch_xor(&self, val: i8, order: Ordering) -> i8` — [`Ordering`](#ordering)
 
-- `fn xor(self: &Self, val: i8, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici8-xor"></span>`fn xor(&self, val: i8, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<i8, i8>` — [`Ordering`](#ordering)
+- <span id="atomici8-fetch-update"></span>`fn fetch_update<F>(&self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<i8, i8>` — [`Ordering`](#ordering)
 
-- `fn fetch_max(self: &Self, val: i8, order: Ordering) -> i8` — [`Ordering`](#ordering)
+- <span id="atomici8-fetch-max"></span>`fn fetch_max(&self, val: i8, order: Ordering) -> i8` — [`Ordering`](#ordering)
 
-- `fn fetch_min(self: &Self, val: i8, order: Ordering) -> i8` — [`Ordering`](#ordering)
+- <span id="atomici8-fetch-min"></span>`fn fetch_min(&self, val: i8, order: Ordering) -> i8` — [`Ordering`](#ordering)
 
-- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomici8-bit-set"></span>`fn bit_set(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomici8-bit-clear"></span>`fn bit_clear(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomici8-bit-toggle"></span>`fn bit_toggle(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn fetch_not(self: &Self, order: Ordering) -> i8` — [`Ordering`](#ordering)
+- <span id="atomici8-fetch-not"></span>`fn fetch_not(&self, order: Ordering) -> i8` — [`Ordering`](#ordering)
 
-- `fn not(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici8-not"></span>`fn not(&self, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_neg(self: &Self, order: Ordering) -> i8` — [`Ordering`](#ordering)
+- <span id="atomici8-fetch-neg"></span>`fn fetch_neg(&self, order: Ordering) -> i8` — [`Ordering`](#ordering)
 
-- `fn neg(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici8-neg"></span>`fn neg(&self, order: Ordering)` — [`Ordering`](#ordering)
 
-- `const fn as_ptr(self: &Self) -> *mut i8`
+- <span id="atomici8-as-ptr"></span>`const fn as_ptr(&self) -> *mut i8`
 
 #### Trait Implementations
 
 ##### `impl Debug for AtomicI8`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="atomici8-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for AtomicI8`
 
-- `fn default() -> Self`
+- <span id="atomici8-default"></span>`fn default() -> Self`
 
 ##### `impl RefUnwindSafe for AtomicI8`
 
@@ -679,81 +759,81 @@ atomic instructions or locks will be used.
 
 #### Implementations
 
-- `const fn new(v: u8) -> Self`
+- <span id="atomicu8-new"></span>`const fn new(v: u8) -> Self`
 
-- `const unsafe fn from_ptr<'a>(ptr: *mut u8) -> &'a Self`
+- <span id="atomicu8-from-ptr"></span>`const unsafe fn from_ptr<'a>(ptr: *mut u8) -> &'a Self`
 
-- `fn is_lock_free() -> bool`
+- <span id="atomicu8-is-lock-free"></span>`fn is_lock_free() -> bool`
 
-- `const fn is_always_lock_free() -> bool`
+- <span id="atomicu8-is-always-lock-free"></span>`const fn is_always_lock_free() -> bool`
 
-- `const fn get_mut(self: &mut Self) -> &mut u8`
+- <span id="atomicu8-get-mut"></span>`const fn get_mut(&mut self) -> &mut u8`
 
-- `const fn into_inner(self: Self) -> u8`
+- <span id="atomicu8-into-inner"></span>`const fn into_inner(self) -> u8`
 
-- `fn load(self: &Self, order: Ordering) -> u8` — [`Ordering`](#ordering)
+- <span id="atomicu8-load"></span>`fn load(&self, order: Ordering) -> u8` — [`Ordering`](#ordering)
 
-- `fn store(self: &Self, val: u8, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu8-store"></span>`fn store(&self, val: u8, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn swap(self: &Self, val: u8, order: Ordering) -> u8` — [`Ordering`](#ordering)
+- <span id="atomicu8-swap"></span>`fn swap(&self, val: u8, order: Ordering) -> u8` — [`Ordering`](#ordering)
 
-- `fn compare_exchange(self: &Self, current: u8, new: u8, success: Ordering, failure: Ordering) -> Result<u8, u8>` — [`Ordering`](#ordering)
+- <span id="atomicu8-compare-exchange"></span>`fn compare_exchange(&self, current: u8, new: u8, success: Ordering, failure: Ordering) -> Result<u8, u8>` — [`Ordering`](#ordering)
 
-- `fn compare_exchange_weak(self: &Self, current: u8, new: u8, success: Ordering, failure: Ordering) -> Result<u8, u8>` — [`Ordering`](#ordering)
+- <span id="atomicu8-compare-exchange-weak"></span>`fn compare_exchange_weak(&self, current: u8, new: u8, success: Ordering, failure: Ordering) -> Result<u8, u8>` — [`Ordering`](#ordering)
 
-- `fn fetch_add(self: &Self, val: u8, order: Ordering) -> u8` — [`Ordering`](#ordering)
+- <span id="atomicu8-fetch-add"></span>`fn fetch_add(&self, val: u8, order: Ordering) -> u8` — [`Ordering`](#ordering)
 
-- `fn add(self: &Self, val: u8, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu8-add"></span>`fn add(&self, val: u8, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_sub(self: &Self, val: u8, order: Ordering) -> u8` — [`Ordering`](#ordering)
+- <span id="atomicu8-fetch-sub"></span>`fn fetch_sub(&self, val: u8, order: Ordering) -> u8` — [`Ordering`](#ordering)
 
-- `fn sub(self: &Self, val: u8, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu8-sub"></span>`fn sub(&self, val: u8, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_and(self: &Self, val: u8, order: Ordering) -> u8` — [`Ordering`](#ordering)
+- <span id="atomicu8-fetch-and"></span>`fn fetch_and(&self, val: u8, order: Ordering) -> u8` — [`Ordering`](#ordering)
 
-- `fn and(self: &Self, val: u8, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu8-and"></span>`fn and(&self, val: u8, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_nand(self: &Self, val: u8, order: Ordering) -> u8` — [`Ordering`](#ordering)
+- <span id="atomicu8-fetch-nand"></span>`fn fetch_nand(&self, val: u8, order: Ordering) -> u8` — [`Ordering`](#ordering)
 
-- `fn fetch_or(self: &Self, val: u8, order: Ordering) -> u8` — [`Ordering`](#ordering)
+- <span id="atomicu8-fetch-or"></span>`fn fetch_or(&self, val: u8, order: Ordering) -> u8` — [`Ordering`](#ordering)
 
-- `fn or(self: &Self, val: u8, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu8-or"></span>`fn or(&self, val: u8, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_xor(self: &Self, val: u8, order: Ordering) -> u8` — [`Ordering`](#ordering)
+- <span id="atomicu8-fetch-xor"></span>`fn fetch_xor(&self, val: u8, order: Ordering) -> u8` — [`Ordering`](#ordering)
 
-- `fn xor(self: &Self, val: u8, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu8-xor"></span>`fn xor(&self, val: u8, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<u8, u8>` — [`Ordering`](#ordering)
+- <span id="atomicu8-fetch-update"></span>`fn fetch_update<F>(&self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<u8, u8>` — [`Ordering`](#ordering)
 
-- `fn fetch_max(self: &Self, val: u8, order: Ordering) -> u8` — [`Ordering`](#ordering)
+- <span id="atomicu8-fetch-max"></span>`fn fetch_max(&self, val: u8, order: Ordering) -> u8` — [`Ordering`](#ordering)
 
-- `fn fetch_min(self: &Self, val: u8, order: Ordering) -> u8` — [`Ordering`](#ordering)
+- <span id="atomicu8-fetch-min"></span>`fn fetch_min(&self, val: u8, order: Ordering) -> u8` — [`Ordering`](#ordering)
 
-- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomicu8-bit-set"></span>`fn bit_set(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomicu8-bit-clear"></span>`fn bit_clear(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomicu8-bit-toggle"></span>`fn bit_toggle(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn fetch_not(self: &Self, order: Ordering) -> u8` — [`Ordering`](#ordering)
+- <span id="atomicu8-fetch-not"></span>`fn fetch_not(&self, order: Ordering) -> u8` — [`Ordering`](#ordering)
 
-- `fn not(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu8-not"></span>`fn not(&self, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_neg(self: &Self, order: Ordering) -> u8` — [`Ordering`](#ordering)
+- <span id="atomicu8-fetch-neg"></span>`fn fetch_neg(&self, order: Ordering) -> u8` — [`Ordering`](#ordering)
 
-- `fn neg(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu8-neg"></span>`fn neg(&self, order: Ordering)` — [`Ordering`](#ordering)
 
-- `const fn as_ptr(self: &Self) -> *mut u8`
+- <span id="atomicu8-as-ptr"></span>`const fn as_ptr(&self) -> *mut u8`
 
 #### Trait Implementations
 
 ##### `impl Debug for AtomicU8`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="atomicu8-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for AtomicU8`
 
-- `fn default() -> Self`
+- <span id="atomicu8-default"></span>`fn default() -> Self`
 
 ##### `impl RefUnwindSafe for AtomicU8`
 
@@ -777,81 +857,81 @@ atomic instructions or locks will be used.
 
 #### Implementations
 
-- `const fn new(v: i16) -> Self`
+- <span id="atomici16-new"></span>`const fn new(v: i16) -> Self`
 
-- `const unsafe fn from_ptr<'a>(ptr: *mut i16) -> &'a Self`
+- <span id="atomici16-from-ptr"></span>`const unsafe fn from_ptr<'a>(ptr: *mut i16) -> &'a Self`
 
-- `fn is_lock_free() -> bool`
+- <span id="atomici16-is-lock-free"></span>`fn is_lock_free() -> bool`
 
-- `const fn is_always_lock_free() -> bool`
+- <span id="atomici16-is-always-lock-free"></span>`const fn is_always_lock_free() -> bool`
 
-- `const fn get_mut(self: &mut Self) -> &mut i16`
+- <span id="atomici16-get-mut"></span>`const fn get_mut(&mut self) -> &mut i16`
 
-- `const fn into_inner(self: Self) -> i16`
+- <span id="atomici16-into-inner"></span>`const fn into_inner(self) -> i16`
 
-- `fn load(self: &Self, order: Ordering) -> i16` — [`Ordering`](#ordering)
+- <span id="atomici16-load"></span>`fn load(&self, order: Ordering) -> i16` — [`Ordering`](#ordering)
 
-- `fn store(self: &Self, val: i16, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici16-store"></span>`fn store(&self, val: i16, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn swap(self: &Self, val: i16, order: Ordering) -> i16` — [`Ordering`](#ordering)
+- <span id="atomici16-swap"></span>`fn swap(&self, val: i16, order: Ordering) -> i16` — [`Ordering`](#ordering)
 
-- `fn compare_exchange(self: &Self, current: i16, new: i16, success: Ordering, failure: Ordering) -> Result<i16, i16>` — [`Ordering`](#ordering)
+- <span id="atomici16-compare-exchange"></span>`fn compare_exchange(&self, current: i16, new: i16, success: Ordering, failure: Ordering) -> Result<i16, i16>` — [`Ordering`](#ordering)
 
-- `fn compare_exchange_weak(self: &Self, current: i16, new: i16, success: Ordering, failure: Ordering) -> Result<i16, i16>` — [`Ordering`](#ordering)
+- <span id="atomici16-compare-exchange-weak"></span>`fn compare_exchange_weak(&self, current: i16, new: i16, success: Ordering, failure: Ordering) -> Result<i16, i16>` — [`Ordering`](#ordering)
 
-- `fn fetch_add(self: &Self, val: i16, order: Ordering) -> i16` — [`Ordering`](#ordering)
+- <span id="atomici16-fetch-add"></span>`fn fetch_add(&self, val: i16, order: Ordering) -> i16` — [`Ordering`](#ordering)
 
-- `fn add(self: &Self, val: i16, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici16-add"></span>`fn add(&self, val: i16, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_sub(self: &Self, val: i16, order: Ordering) -> i16` — [`Ordering`](#ordering)
+- <span id="atomici16-fetch-sub"></span>`fn fetch_sub(&self, val: i16, order: Ordering) -> i16` — [`Ordering`](#ordering)
 
-- `fn sub(self: &Self, val: i16, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici16-sub"></span>`fn sub(&self, val: i16, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_and(self: &Self, val: i16, order: Ordering) -> i16` — [`Ordering`](#ordering)
+- <span id="atomici16-fetch-and"></span>`fn fetch_and(&self, val: i16, order: Ordering) -> i16` — [`Ordering`](#ordering)
 
-- `fn and(self: &Self, val: i16, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici16-and"></span>`fn and(&self, val: i16, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_nand(self: &Self, val: i16, order: Ordering) -> i16` — [`Ordering`](#ordering)
+- <span id="atomici16-fetch-nand"></span>`fn fetch_nand(&self, val: i16, order: Ordering) -> i16` — [`Ordering`](#ordering)
 
-- `fn fetch_or(self: &Self, val: i16, order: Ordering) -> i16` — [`Ordering`](#ordering)
+- <span id="atomici16-fetch-or"></span>`fn fetch_or(&self, val: i16, order: Ordering) -> i16` — [`Ordering`](#ordering)
 
-- `fn or(self: &Self, val: i16, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici16-or"></span>`fn or(&self, val: i16, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_xor(self: &Self, val: i16, order: Ordering) -> i16` — [`Ordering`](#ordering)
+- <span id="atomici16-fetch-xor"></span>`fn fetch_xor(&self, val: i16, order: Ordering) -> i16` — [`Ordering`](#ordering)
 
-- `fn xor(self: &Self, val: i16, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici16-xor"></span>`fn xor(&self, val: i16, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<i16, i16>` — [`Ordering`](#ordering)
+- <span id="atomici16-fetch-update"></span>`fn fetch_update<F>(&self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<i16, i16>` — [`Ordering`](#ordering)
 
-- `fn fetch_max(self: &Self, val: i16, order: Ordering) -> i16` — [`Ordering`](#ordering)
+- <span id="atomici16-fetch-max"></span>`fn fetch_max(&self, val: i16, order: Ordering) -> i16` — [`Ordering`](#ordering)
 
-- `fn fetch_min(self: &Self, val: i16, order: Ordering) -> i16` — [`Ordering`](#ordering)
+- <span id="atomici16-fetch-min"></span>`fn fetch_min(&self, val: i16, order: Ordering) -> i16` — [`Ordering`](#ordering)
 
-- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomici16-bit-set"></span>`fn bit_set(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomici16-bit-clear"></span>`fn bit_clear(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomici16-bit-toggle"></span>`fn bit_toggle(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn fetch_not(self: &Self, order: Ordering) -> i16` — [`Ordering`](#ordering)
+- <span id="atomici16-fetch-not"></span>`fn fetch_not(&self, order: Ordering) -> i16` — [`Ordering`](#ordering)
 
-- `fn not(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici16-not"></span>`fn not(&self, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_neg(self: &Self, order: Ordering) -> i16` — [`Ordering`](#ordering)
+- <span id="atomici16-fetch-neg"></span>`fn fetch_neg(&self, order: Ordering) -> i16` — [`Ordering`](#ordering)
 
-- `fn neg(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici16-neg"></span>`fn neg(&self, order: Ordering)` — [`Ordering`](#ordering)
 
-- `const fn as_ptr(self: &Self) -> *mut i16`
+- <span id="atomici16-as-ptr"></span>`const fn as_ptr(&self) -> *mut i16`
 
 #### Trait Implementations
 
 ##### `impl Debug for AtomicI16`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="atomici16-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for AtomicI16`
 
-- `fn default() -> Self`
+- <span id="atomici16-default"></span>`fn default() -> Self`
 
 ##### `impl RefUnwindSafe for AtomicI16`
 
@@ -875,81 +955,81 @@ atomic instructions or locks will be used.
 
 #### Implementations
 
-- `const fn new(v: u16) -> Self`
+- <span id="atomicu16-new"></span>`const fn new(v: u16) -> Self`
 
-- `const unsafe fn from_ptr<'a>(ptr: *mut u16) -> &'a Self`
+- <span id="atomicu16-from-ptr"></span>`const unsafe fn from_ptr<'a>(ptr: *mut u16) -> &'a Self`
 
-- `fn is_lock_free() -> bool`
+- <span id="atomicu16-is-lock-free"></span>`fn is_lock_free() -> bool`
 
-- `const fn is_always_lock_free() -> bool`
+- <span id="atomicu16-is-always-lock-free"></span>`const fn is_always_lock_free() -> bool`
 
-- `const fn get_mut(self: &mut Self) -> &mut u16`
+- <span id="atomicu16-get-mut"></span>`const fn get_mut(&mut self) -> &mut u16`
 
-- `const fn into_inner(self: Self) -> u16`
+- <span id="atomicu16-into-inner"></span>`const fn into_inner(self) -> u16`
 
-- `fn load(self: &Self, order: Ordering) -> u16` — [`Ordering`](#ordering)
+- <span id="atomicu16-load"></span>`fn load(&self, order: Ordering) -> u16` — [`Ordering`](#ordering)
 
-- `fn store(self: &Self, val: u16, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu16-store"></span>`fn store(&self, val: u16, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn swap(self: &Self, val: u16, order: Ordering) -> u16` — [`Ordering`](#ordering)
+- <span id="atomicu16-swap"></span>`fn swap(&self, val: u16, order: Ordering) -> u16` — [`Ordering`](#ordering)
 
-- `fn compare_exchange(self: &Self, current: u16, new: u16, success: Ordering, failure: Ordering) -> Result<u16, u16>` — [`Ordering`](#ordering)
+- <span id="atomicu16-compare-exchange"></span>`fn compare_exchange(&self, current: u16, new: u16, success: Ordering, failure: Ordering) -> Result<u16, u16>` — [`Ordering`](#ordering)
 
-- `fn compare_exchange_weak(self: &Self, current: u16, new: u16, success: Ordering, failure: Ordering) -> Result<u16, u16>` — [`Ordering`](#ordering)
+- <span id="atomicu16-compare-exchange-weak"></span>`fn compare_exchange_weak(&self, current: u16, new: u16, success: Ordering, failure: Ordering) -> Result<u16, u16>` — [`Ordering`](#ordering)
 
-- `fn fetch_add(self: &Self, val: u16, order: Ordering) -> u16` — [`Ordering`](#ordering)
+- <span id="atomicu16-fetch-add"></span>`fn fetch_add(&self, val: u16, order: Ordering) -> u16` — [`Ordering`](#ordering)
 
-- `fn add(self: &Self, val: u16, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu16-add"></span>`fn add(&self, val: u16, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_sub(self: &Self, val: u16, order: Ordering) -> u16` — [`Ordering`](#ordering)
+- <span id="atomicu16-fetch-sub"></span>`fn fetch_sub(&self, val: u16, order: Ordering) -> u16` — [`Ordering`](#ordering)
 
-- `fn sub(self: &Self, val: u16, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu16-sub"></span>`fn sub(&self, val: u16, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_and(self: &Self, val: u16, order: Ordering) -> u16` — [`Ordering`](#ordering)
+- <span id="atomicu16-fetch-and"></span>`fn fetch_and(&self, val: u16, order: Ordering) -> u16` — [`Ordering`](#ordering)
 
-- `fn and(self: &Self, val: u16, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu16-and"></span>`fn and(&self, val: u16, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_nand(self: &Self, val: u16, order: Ordering) -> u16` — [`Ordering`](#ordering)
+- <span id="atomicu16-fetch-nand"></span>`fn fetch_nand(&self, val: u16, order: Ordering) -> u16` — [`Ordering`](#ordering)
 
-- `fn fetch_or(self: &Self, val: u16, order: Ordering) -> u16` — [`Ordering`](#ordering)
+- <span id="atomicu16-fetch-or"></span>`fn fetch_or(&self, val: u16, order: Ordering) -> u16` — [`Ordering`](#ordering)
 
-- `fn or(self: &Self, val: u16, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu16-or"></span>`fn or(&self, val: u16, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_xor(self: &Self, val: u16, order: Ordering) -> u16` — [`Ordering`](#ordering)
+- <span id="atomicu16-fetch-xor"></span>`fn fetch_xor(&self, val: u16, order: Ordering) -> u16` — [`Ordering`](#ordering)
 
-- `fn xor(self: &Self, val: u16, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu16-xor"></span>`fn xor(&self, val: u16, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<u16, u16>` — [`Ordering`](#ordering)
+- <span id="atomicu16-fetch-update"></span>`fn fetch_update<F>(&self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<u16, u16>` — [`Ordering`](#ordering)
 
-- `fn fetch_max(self: &Self, val: u16, order: Ordering) -> u16` — [`Ordering`](#ordering)
+- <span id="atomicu16-fetch-max"></span>`fn fetch_max(&self, val: u16, order: Ordering) -> u16` — [`Ordering`](#ordering)
 
-- `fn fetch_min(self: &Self, val: u16, order: Ordering) -> u16` — [`Ordering`](#ordering)
+- <span id="atomicu16-fetch-min"></span>`fn fetch_min(&self, val: u16, order: Ordering) -> u16` — [`Ordering`](#ordering)
 
-- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomicu16-bit-set"></span>`fn bit_set(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomicu16-bit-clear"></span>`fn bit_clear(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomicu16-bit-toggle"></span>`fn bit_toggle(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn fetch_not(self: &Self, order: Ordering) -> u16` — [`Ordering`](#ordering)
+- <span id="atomicu16-fetch-not"></span>`fn fetch_not(&self, order: Ordering) -> u16` — [`Ordering`](#ordering)
 
-- `fn not(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu16-not"></span>`fn not(&self, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_neg(self: &Self, order: Ordering) -> u16` — [`Ordering`](#ordering)
+- <span id="atomicu16-fetch-neg"></span>`fn fetch_neg(&self, order: Ordering) -> u16` — [`Ordering`](#ordering)
 
-- `fn neg(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu16-neg"></span>`fn neg(&self, order: Ordering)` — [`Ordering`](#ordering)
 
-- `const fn as_ptr(self: &Self) -> *mut u16`
+- <span id="atomicu16-as-ptr"></span>`const fn as_ptr(&self) -> *mut u16`
 
 #### Trait Implementations
 
 ##### `impl Debug for AtomicU16`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="atomicu16-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for AtomicU16`
 
-- `fn default() -> Self`
+- <span id="atomicu16-default"></span>`fn default() -> Self`
 
 ##### `impl RefUnwindSafe for AtomicU16`
 
@@ -973,81 +1053,81 @@ atomic instructions or locks will be used.
 
 #### Implementations
 
-- `const fn new(v: i32) -> Self`
+- <span id="atomici32-new"></span>`const fn new(v: i32) -> Self`
 
-- `const unsafe fn from_ptr<'a>(ptr: *mut i32) -> &'a Self`
+- <span id="atomici32-from-ptr"></span>`const unsafe fn from_ptr<'a>(ptr: *mut i32) -> &'a Self`
 
-- `fn is_lock_free() -> bool`
+- <span id="atomici32-is-lock-free"></span>`fn is_lock_free() -> bool`
 
-- `const fn is_always_lock_free() -> bool`
+- <span id="atomici32-is-always-lock-free"></span>`const fn is_always_lock_free() -> bool`
 
-- `const fn get_mut(self: &mut Self) -> &mut i32`
+- <span id="atomici32-get-mut"></span>`const fn get_mut(&mut self) -> &mut i32`
 
-- `const fn into_inner(self: Self) -> i32`
+- <span id="atomici32-into-inner"></span>`const fn into_inner(self) -> i32`
 
-- `fn load(self: &Self, order: Ordering) -> i32` — [`Ordering`](#ordering)
+- <span id="atomici32-load"></span>`fn load(&self, order: Ordering) -> i32` — [`Ordering`](#ordering)
 
-- `fn store(self: &Self, val: i32, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici32-store"></span>`fn store(&self, val: i32, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn swap(self: &Self, val: i32, order: Ordering) -> i32` — [`Ordering`](#ordering)
+- <span id="atomici32-swap"></span>`fn swap(&self, val: i32, order: Ordering) -> i32` — [`Ordering`](#ordering)
 
-- `fn compare_exchange(self: &Self, current: i32, new: i32, success: Ordering, failure: Ordering) -> Result<i32, i32>` — [`Ordering`](#ordering)
+- <span id="atomici32-compare-exchange"></span>`fn compare_exchange(&self, current: i32, new: i32, success: Ordering, failure: Ordering) -> Result<i32, i32>` — [`Ordering`](#ordering)
 
-- `fn compare_exchange_weak(self: &Self, current: i32, new: i32, success: Ordering, failure: Ordering) -> Result<i32, i32>` — [`Ordering`](#ordering)
+- <span id="atomici32-compare-exchange-weak"></span>`fn compare_exchange_weak(&self, current: i32, new: i32, success: Ordering, failure: Ordering) -> Result<i32, i32>` — [`Ordering`](#ordering)
 
-- `fn fetch_add(self: &Self, val: i32, order: Ordering) -> i32` — [`Ordering`](#ordering)
+- <span id="atomici32-fetch-add"></span>`fn fetch_add(&self, val: i32, order: Ordering) -> i32` — [`Ordering`](#ordering)
 
-- `fn add(self: &Self, val: i32, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici32-add"></span>`fn add(&self, val: i32, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_sub(self: &Self, val: i32, order: Ordering) -> i32` — [`Ordering`](#ordering)
+- <span id="atomici32-fetch-sub"></span>`fn fetch_sub(&self, val: i32, order: Ordering) -> i32` — [`Ordering`](#ordering)
 
-- `fn sub(self: &Self, val: i32, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici32-sub"></span>`fn sub(&self, val: i32, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_and(self: &Self, val: i32, order: Ordering) -> i32` — [`Ordering`](#ordering)
+- <span id="atomici32-fetch-and"></span>`fn fetch_and(&self, val: i32, order: Ordering) -> i32` — [`Ordering`](#ordering)
 
-- `fn and(self: &Self, val: i32, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici32-and"></span>`fn and(&self, val: i32, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_nand(self: &Self, val: i32, order: Ordering) -> i32` — [`Ordering`](#ordering)
+- <span id="atomici32-fetch-nand"></span>`fn fetch_nand(&self, val: i32, order: Ordering) -> i32` — [`Ordering`](#ordering)
 
-- `fn fetch_or(self: &Self, val: i32, order: Ordering) -> i32` — [`Ordering`](#ordering)
+- <span id="atomici32-fetch-or"></span>`fn fetch_or(&self, val: i32, order: Ordering) -> i32` — [`Ordering`](#ordering)
 
-- `fn or(self: &Self, val: i32, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici32-or"></span>`fn or(&self, val: i32, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_xor(self: &Self, val: i32, order: Ordering) -> i32` — [`Ordering`](#ordering)
+- <span id="atomici32-fetch-xor"></span>`fn fetch_xor(&self, val: i32, order: Ordering) -> i32` — [`Ordering`](#ordering)
 
-- `fn xor(self: &Self, val: i32, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici32-xor"></span>`fn xor(&self, val: i32, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<i32, i32>` — [`Ordering`](#ordering)
+- <span id="atomici32-fetch-update"></span>`fn fetch_update<F>(&self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<i32, i32>` — [`Ordering`](#ordering)
 
-- `fn fetch_max(self: &Self, val: i32, order: Ordering) -> i32` — [`Ordering`](#ordering)
+- <span id="atomici32-fetch-max"></span>`fn fetch_max(&self, val: i32, order: Ordering) -> i32` — [`Ordering`](#ordering)
 
-- `fn fetch_min(self: &Self, val: i32, order: Ordering) -> i32` — [`Ordering`](#ordering)
+- <span id="atomici32-fetch-min"></span>`fn fetch_min(&self, val: i32, order: Ordering) -> i32` — [`Ordering`](#ordering)
 
-- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomici32-bit-set"></span>`fn bit_set(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomici32-bit-clear"></span>`fn bit_clear(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomici32-bit-toggle"></span>`fn bit_toggle(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn fetch_not(self: &Self, order: Ordering) -> i32` — [`Ordering`](#ordering)
+- <span id="atomici32-fetch-not"></span>`fn fetch_not(&self, order: Ordering) -> i32` — [`Ordering`](#ordering)
 
-- `fn not(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici32-not"></span>`fn not(&self, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_neg(self: &Self, order: Ordering) -> i32` — [`Ordering`](#ordering)
+- <span id="atomici32-fetch-neg"></span>`fn fetch_neg(&self, order: Ordering) -> i32` — [`Ordering`](#ordering)
 
-- `fn neg(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici32-neg"></span>`fn neg(&self, order: Ordering)` — [`Ordering`](#ordering)
 
-- `const fn as_ptr(self: &Self) -> *mut i32`
+- <span id="atomici32-as-ptr"></span>`const fn as_ptr(&self) -> *mut i32`
 
 #### Trait Implementations
 
 ##### `impl Debug for AtomicI32`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="atomici32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for AtomicI32`
 
-- `fn default() -> Self`
+- <span id="atomici32-default"></span>`fn default() -> Self`
 
 ##### `impl RefUnwindSafe for AtomicI32`
 
@@ -1071,81 +1151,81 @@ atomic instructions or locks will be used.
 
 #### Implementations
 
-- `const fn new(v: u32) -> Self`
+- <span id="atomicu32-new"></span>`const fn new(v: u32) -> Self`
 
-- `const unsafe fn from_ptr<'a>(ptr: *mut u32) -> &'a Self`
+- <span id="atomicu32-from-ptr"></span>`const unsafe fn from_ptr<'a>(ptr: *mut u32) -> &'a Self`
 
-- `fn is_lock_free() -> bool`
+- <span id="atomicu32-is-lock-free"></span>`fn is_lock_free() -> bool`
 
-- `const fn is_always_lock_free() -> bool`
+- <span id="atomicu32-is-always-lock-free"></span>`const fn is_always_lock_free() -> bool`
 
-- `const fn get_mut(self: &mut Self) -> &mut u32`
+- <span id="atomicu32-get-mut"></span>`const fn get_mut(&mut self) -> &mut u32`
 
-- `const fn into_inner(self: Self) -> u32`
+- <span id="atomicu32-into-inner"></span>`const fn into_inner(self) -> u32`
 
-- `fn load(self: &Self, order: Ordering) -> u32` — [`Ordering`](#ordering)
+- <span id="atomicu32-load"></span>`fn load(&self, order: Ordering) -> u32` — [`Ordering`](#ordering)
 
-- `fn store(self: &Self, val: u32, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu32-store"></span>`fn store(&self, val: u32, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn swap(self: &Self, val: u32, order: Ordering) -> u32` — [`Ordering`](#ordering)
+- <span id="atomicu32-swap"></span>`fn swap(&self, val: u32, order: Ordering) -> u32` — [`Ordering`](#ordering)
 
-- `fn compare_exchange(self: &Self, current: u32, new: u32, success: Ordering, failure: Ordering) -> Result<u32, u32>` — [`Ordering`](#ordering)
+- <span id="atomicu32-compare-exchange"></span>`fn compare_exchange(&self, current: u32, new: u32, success: Ordering, failure: Ordering) -> Result<u32, u32>` — [`Ordering`](#ordering)
 
-- `fn compare_exchange_weak(self: &Self, current: u32, new: u32, success: Ordering, failure: Ordering) -> Result<u32, u32>` — [`Ordering`](#ordering)
+- <span id="atomicu32-compare-exchange-weak"></span>`fn compare_exchange_weak(&self, current: u32, new: u32, success: Ordering, failure: Ordering) -> Result<u32, u32>` — [`Ordering`](#ordering)
 
-- `fn fetch_add(self: &Self, val: u32, order: Ordering) -> u32` — [`Ordering`](#ordering)
+- <span id="atomicu32-fetch-add"></span>`fn fetch_add(&self, val: u32, order: Ordering) -> u32` — [`Ordering`](#ordering)
 
-- `fn add(self: &Self, val: u32, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu32-add"></span>`fn add(&self, val: u32, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_sub(self: &Self, val: u32, order: Ordering) -> u32` — [`Ordering`](#ordering)
+- <span id="atomicu32-fetch-sub"></span>`fn fetch_sub(&self, val: u32, order: Ordering) -> u32` — [`Ordering`](#ordering)
 
-- `fn sub(self: &Self, val: u32, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu32-sub"></span>`fn sub(&self, val: u32, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_and(self: &Self, val: u32, order: Ordering) -> u32` — [`Ordering`](#ordering)
+- <span id="atomicu32-fetch-and"></span>`fn fetch_and(&self, val: u32, order: Ordering) -> u32` — [`Ordering`](#ordering)
 
-- `fn and(self: &Self, val: u32, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu32-and"></span>`fn and(&self, val: u32, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_nand(self: &Self, val: u32, order: Ordering) -> u32` — [`Ordering`](#ordering)
+- <span id="atomicu32-fetch-nand"></span>`fn fetch_nand(&self, val: u32, order: Ordering) -> u32` — [`Ordering`](#ordering)
 
-- `fn fetch_or(self: &Self, val: u32, order: Ordering) -> u32` — [`Ordering`](#ordering)
+- <span id="atomicu32-fetch-or"></span>`fn fetch_or(&self, val: u32, order: Ordering) -> u32` — [`Ordering`](#ordering)
 
-- `fn or(self: &Self, val: u32, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu32-or"></span>`fn or(&self, val: u32, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_xor(self: &Self, val: u32, order: Ordering) -> u32` — [`Ordering`](#ordering)
+- <span id="atomicu32-fetch-xor"></span>`fn fetch_xor(&self, val: u32, order: Ordering) -> u32` — [`Ordering`](#ordering)
 
-- `fn xor(self: &Self, val: u32, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu32-xor"></span>`fn xor(&self, val: u32, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<u32, u32>` — [`Ordering`](#ordering)
+- <span id="atomicu32-fetch-update"></span>`fn fetch_update<F>(&self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<u32, u32>` — [`Ordering`](#ordering)
 
-- `fn fetch_max(self: &Self, val: u32, order: Ordering) -> u32` — [`Ordering`](#ordering)
+- <span id="atomicu32-fetch-max"></span>`fn fetch_max(&self, val: u32, order: Ordering) -> u32` — [`Ordering`](#ordering)
 
-- `fn fetch_min(self: &Self, val: u32, order: Ordering) -> u32` — [`Ordering`](#ordering)
+- <span id="atomicu32-fetch-min"></span>`fn fetch_min(&self, val: u32, order: Ordering) -> u32` — [`Ordering`](#ordering)
 
-- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomicu32-bit-set"></span>`fn bit_set(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomicu32-bit-clear"></span>`fn bit_clear(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomicu32-bit-toggle"></span>`fn bit_toggle(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn fetch_not(self: &Self, order: Ordering) -> u32` — [`Ordering`](#ordering)
+- <span id="atomicu32-fetch-not"></span>`fn fetch_not(&self, order: Ordering) -> u32` — [`Ordering`](#ordering)
 
-- `fn not(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu32-not"></span>`fn not(&self, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_neg(self: &Self, order: Ordering) -> u32` — [`Ordering`](#ordering)
+- <span id="atomicu32-fetch-neg"></span>`fn fetch_neg(&self, order: Ordering) -> u32` — [`Ordering`](#ordering)
 
-- `fn neg(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu32-neg"></span>`fn neg(&self, order: Ordering)` — [`Ordering`](#ordering)
 
-- `const fn as_ptr(self: &Self) -> *mut u32`
+- <span id="atomicu32-as-ptr"></span>`const fn as_ptr(&self) -> *mut u32`
 
 #### Trait Implementations
 
 ##### `impl Debug for AtomicU32`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="atomicu32-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for AtomicU32`
 
-- `fn default() -> Self`
+- <span id="atomicu32-default"></span>`fn default() -> Self`
 
 ##### `impl RefUnwindSafe for AtomicU32`
 
@@ -1169,81 +1249,81 @@ atomic instructions or locks will be used.
 
 #### Implementations
 
-- `const fn new(v: i64) -> Self`
+- <span id="atomici64-new"></span>`const fn new(v: i64) -> Self`
 
-- `const unsafe fn from_ptr<'a>(ptr: *mut i64) -> &'a Self`
+- <span id="atomici64-from-ptr"></span>`const unsafe fn from_ptr<'a>(ptr: *mut i64) -> &'a Self`
 
-- `fn is_lock_free() -> bool`
+- <span id="atomici64-is-lock-free"></span>`fn is_lock_free() -> bool`
 
-- `const fn is_always_lock_free() -> bool`
+- <span id="atomici64-is-always-lock-free"></span>`const fn is_always_lock_free() -> bool`
 
-- `const fn get_mut(self: &mut Self) -> &mut i64`
+- <span id="atomici64-get-mut"></span>`const fn get_mut(&mut self) -> &mut i64`
 
-- `const fn into_inner(self: Self) -> i64`
+- <span id="atomici64-into-inner"></span>`const fn into_inner(self) -> i64`
 
-- `fn load(self: &Self, order: Ordering) -> i64` — [`Ordering`](#ordering)
+- <span id="atomici64-load"></span>`fn load(&self, order: Ordering) -> i64` — [`Ordering`](#ordering)
 
-- `fn store(self: &Self, val: i64, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici64-store"></span>`fn store(&self, val: i64, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn swap(self: &Self, val: i64, order: Ordering) -> i64` — [`Ordering`](#ordering)
+- <span id="atomici64-swap"></span>`fn swap(&self, val: i64, order: Ordering) -> i64` — [`Ordering`](#ordering)
 
-- `fn compare_exchange(self: &Self, current: i64, new: i64, success: Ordering, failure: Ordering) -> Result<i64, i64>` — [`Ordering`](#ordering)
+- <span id="atomici64-compare-exchange"></span>`fn compare_exchange(&self, current: i64, new: i64, success: Ordering, failure: Ordering) -> Result<i64, i64>` — [`Ordering`](#ordering)
 
-- `fn compare_exchange_weak(self: &Self, current: i64, new: i64, success: Ordering, failure: Ordering) -> Result<i64, i64>` — [`Ordering`](#ordering)
+- <span id="atomici64-compare-exchange-weak"></span>`fn compare_exchange_weak(&self, current: i64, new: i64, success: Ordering, failure: Ordering) -> Result<i64, i64>` — [`Ordering`](#ordering)
 
-- `fn fetch_add(self: &Self, val: i64, order: Ordering) -> i64` — [`Ordering`](#ordering)
+- <span id="atomici64-fetch-add"></span>`fn fetch_add(&self, val: i64, order: Ordering) -> i64` — [`Ordering`](#ordering)
 
-- `fn add(self: &Self, val: i64, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici64-add"></span>`fn add(&self, val: i64, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_sub(self: &Self, val: i64, order: Ordering) -> i64` — [`Ordering`](#ordering)
+- <span id="atomici64-fetch-sub"></span>`fn fetch_sub(&self, val: i64, order: Ordering) -> i64` — [`Ordering`](#ordering)
 
-- `fn sub(self: &Self, val: i64, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici64-sub"></span>`fn sub(&self, val: i64, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_and(self: &Self, val: i64, order: Ordering) -> i64` — [`Ordering`](#ordering)
+- <span id="atomici64-fetch-and"></span>`fn fetch_and(&self, val: i64, order: Ordering) -> i64` — [`Ordering`](#ordering)
 
-- `fn and(self: &Self, val: i64, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici64-and"></span>`fn and(&self, val: i64, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_nand(self: &Self, val: i64, order: Ordering) -> i64` — [`Ordering`](#ordering)
+- <span id="atomici64-fetch-nand"></span>`fn fetch_nand(&self, val: i64, order: Ordering) -> i64` — [`Ordering`](#ordering)
 
-- `fn fetch_or(self: &Self, val: i64, order: Ordering) -> i64` — [`Ordering`](#ordering)
+- <span id="atomici64-fetch-or"></span>`fn fetch_or(&self, val: i64, order: Ordering) -> i64` — [`Ordering`](#ordering)
 
-- `fn or(self: &Self, val: i64, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici64-or"></span>`fn or(&self, val: i64, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_xor(self: &Self, val: i64, order: Ordering) -> i64` — [`Ordering`](#ordering)
+- <span id="atomici64-fetch-xor"></span>`fn fetch_xor(&self, val: i64, order: Ordering) -> i64` — [`Ordering`](#ordering)
 
-- `fn xor(self: &Self, val: i64, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici64-xor"></span>`fn xor(&self, val: i64, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<i64, i64>` — [`Ordering`](#ordering)
+- <span id="atomici64-fetch-update"></span>`fn fetch_update<F>(&self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<i64, i64>` — [`Ordering`](#ordering)
 
-- `fn fetch_max(self: &Self, val: i64, order: Ordering) -> i64` — [`Ordering`](#ordering)
+- <span id="atomici64-fetch-max"></span>`fn fetch_max(&self, val: i64, order: Ordering) -> i64` — [`Ordering`](#ordering)
 
-- `fn fetch_min(self: &Self, val: i64, order: Ordering) -> i64` — [`Ordering`](#ordering)
+- <span id="atomici64-fetch-min"></span>`fn fetch_min(&self, val: i64, order: Ordering) -> i64` — [`Ordering`](#ordering)
 
-- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomici64-bit-set"></span>`fn bit_set(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomici64-bit-clear"></span>`fn bit_clear(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomici64-bit-toggle"></span>`fn bit_toggle(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn fetch_not(self: &Self, order: Ordering) -> i64` — [`Ordering`](#ordering)
+- <span id="atomici64-fetch-not"></span>`fn fetch_not(&self, order: Ordering) -> i64` — [`Ordering`](#ordering)
 
-- `fn not(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici64-not"></span>`fn not(&self, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_neg(self: &Self, order: Ordering) -> i64` — [`Ordering`](#ordering)
+- <span id="atomici64-fetch-neg"></span>`fn fetch_neg(&self, order: Ordering) -> i64` — [`Ordering`](#ordering)
 
-- `fn neg(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici64-neg"></span>`fn neg(&self, order: Ordering)` — [`Ordering`](#ordering)
 
-- `const fn as_ptr(self: &Self) -> *mut i64`
+- <span id="atomici64-as-ptr"></span>`const fn as_ptr(&self) -> *mut i64`
 
 #### Trait Implementations
 
 ##### `impl Debug for AtomicI64`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="atomici64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for AtomicI64`
 
-- `fn default() -> Self`
+- <span id="atomici64-default"></span>`fn default() -> Self`
 
 ##### `impl RefUnwindSafe for AtomicI64`
 
@@ -1267,81 +1347,81 @@ atomic instructions or locks will be used.
 
 #### Implementations
 
-- `const fn new(v: u64) -> Self`
+- <span id="atomicu64-new"></span>`const fn new(v: u64) -> Self`
 
-- `const unsafe fn from_ptr<'a>(ptr: *mut u64) -> &'a Self`
+- <span id="atomicu64-from-ptr"></span>`const unsafe fn from_ptr<'a>(ptr: *mut u64) -> &'a Self`
 
-- `fn is_lock_free() -> bool`
+- <span id="atomicu64-is-lock-free"></span>`fn is_lock_free() -> bool`
 
-- `const fn is_always_lock_free() -> bool`
+- <span id="atomicu64-is-always-lock-free"></span>`const fn is_always_lock_free() -> bool`
 
-- `const fn get_mut(self: &mut Self) -> &mut u64`
+- <span id="atomicu64-get-mut"></span>`const fn get_mut(&mut self) -> &mut u64`
 
-- `const fn into_inner(self: Self) -> u64`
+- <span id="atomicu64-into-inner"></span>`const fn into_inner(self) -> u64`
 
-- `fn load(self: &Self, order: Ordering) -> u64` — [`Ordering`](#ordering)
+- <span id="atomicu64-load"></span>`fn load(&self, order: Ordering) -> u64` — [`Ordering`](#ordering)
 
-- `fn store(self: &Self, val: u64, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu64-store"></span>`fn store(&self, val: u64, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn swap(self: &Self, val: u64, order: Ordering) -> u64` — [`Ordering`](#ordering)
+- <span id="atomicu64-swap"></span>`fn swap(&self, val: u64, order: Ordering) -> u64` — [`Ordering`](#ordering)
 
-- `fn compare_exchange(self: &Self, current: u64, new: u64, success: Ordering, failure: Ordering) -> Result<u64, u64>` — [`Ordering`](#ordering)
+- <span id="atomicu64-compare-exchange"></span>`fn compare_exchange(&self, current: u64, new: u64, success: Ordering, failure: Ordering) -> Result<u64, u64>` — [`Ordering`](#ordering)
 
-- `fn compare_exchange_weak(self: &Self, current: u64, new: u64, success: Ordering, failure: Ordering) -> Result<u64, u64>` — [`Ordering`](#ordering)
+- <span id="atomicu64-compare-exchange-weak"></span>`fn compare_exchange_weak(&self, current: u64, new: u64, success: Ordering, failure: Ordering) -> Result<u64, u64>` — [`Ordering`](#ordering)
 
-- `fn fetch_add(self: &Self, val: u64, order: Ordering) -> u64` — [`Ordering`](#ordering)
+- <span id="atomicu64-fetch-add"></span>`fn fetch_add(&self, val: u64, order: Ordering) -> u64` — [`Ordering`](#ordering)
 
-- `fn add(self: &Self, val: u64, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu64-add"></span>`fn add(&self, val: u64, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_sub(self: &Self, val: u64, order: Ordering) -> u64` — [`Ordering`](#ordering)
+- <span id="atomicu64-fetch-sub"></span>`fn fetch_sub(&self, val: u64, order: Ordering) -> u64` — [`Ordering`](#ordering)
 
-- `fn sub(self: &Self, val: u64, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu64-sub"></span>`fn sub(&self, val: u64, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_and(self: &Self, val: u64, order: Ordering) -> u64` — [`Ordering`](#ordering)
+- <span id="atomicu64-fetch-and"></span>`fn fetch_and(&self, val: u64, order: Ordering) -> u64` — [`Ordering`](#ordering)
 
-- `fn and(self: &Self, val: u64, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu64-and"></span>`fn and(&self, val: u64, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_nand(self: &Self, val: u64, order: Ordering) -> u64` — [`Ordering`](#ordering)
+- <span id="atomicu64-fetch-nand"></span>`fn fetch_nand(&self, val: u64, order: Ordering) -> u64` — [`Ordering`](#ordering)
 
-- `fn fetch_or(self: &Self, val: u64, order: Ordering) -> u64` — [`Ordering`](#ordering)
+- <span id="atomicu64-fetch-or"></span>`fn fetch_or(&self, val: u64, order: Ordering) -> u64` — [`Ordering`](#ordering)
 
-- `fn or(self: &Self, val: u64, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu64-or"></span>`fn or(&self, val: u64, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_xor(self: &Self, val: u64, order: Ordering) -> u64` — [`Ordering`](#ordering)
+- <span id="atomicu64-fetch-xor"></span>`fn fetch_xor(&self, val: u64, order: Ordering) -> u64` — [`Ordering`](#ordering)
 
-- `fn xor(self: &Self, val: u64, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu64-xor"></span>`fn xor(&self, val: u64, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<u64, u64>` — [`Ordering`](#ordering)
+- <span id="atomicu64-fetch-update"></span>`fn fetch_update<F>(&self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<u64, u64>` — [`Ordering`](#ordering)
 
-- `fn fetch_max(self: &Self, val: u64, order: Ordering) -> u64` — [`Ordering`](#ordering)
+- <span id="atomicu64-fetch-max"></span>`fn fetch_max(&self, val: u64, order: Ordering) -> u64` — [`Ordering`](#ordering)
 
-- `fn fetch_min(self: &Self, val: u64, order: Ordering) -> u64` — [`Ordering`](#ordering)
+- <span id="atomicu64-fetch-min"></span>`fn fetch_min(&self, val: u64, order: Ordering) -> u64` — [`Ordering`](#ordering)
 
-- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomicu64-bit-set"></span>`fn bit_set(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomicu64-bit-clear"></span>`fn bit_clear(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomicu64-bit-toggle"></span>`fn bit_toggle(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn fetch_not(self: &Self, order: Ordering) -> u64` — [`Ordering`](#ordering)
+- <span id="atomicu64-fetch-not"></span>`fn fetch_not(&self, order: Ordering) -> u64` — [`Ordering`](#ordering)
 
-- `fn not(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu64-not"></span>`fn not(&self, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_neg(self: &Self, order: Ordering) -> u64` — [`Ordering`](#ordering)
+- <span id="atomicu64-fetch-neg"></span>`fn fetch_neg(&self, order: Ordering) -> u64` — [`Ordering`](#ordering)
 
-- `fn neg(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu64-neg"></span>`fn neg(&self, order: Ordering)` — [`Ordering`](#ordering)
 
-- `const fn as_ptr(self: &Self) -> *mut u64`
+- <span id="atomicu64-as-ptr"></span>`const fn as_ptr(&self) -> *mut u64`
 
 #### Trait Implementations
 
 ##### `impl Debug for AtomicU64`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="atomicu64-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for AtomicU64`
 
-- `fn default() -> Self`
+- <span id="atomicu64-default"></span>`fn default() -> Self`
 
 ##### `impl RefUnwindSafe for AtomicU64`
 
@@ -1365,81 +1445,81 @@ atomic instructions or locks will be used.
 
 #### Implementations
 
-- `const fn new(v: i128) -> Self`
+- <span id="atomici128-new"></span>`const fn new(v: i128) -> Self`
 
-- `const unsafe fn from_ptr<'a>(ptr: *mut i128) -> &'a Self`
+- <span id="atomici128-from-ptr"></span>`const unsafe fn from_ptr<'a>(ptr: *mut i128) -> &'a Self`
 
-- `fn is_lock_free() -> bool`
+- <span id="atomici128-is-lock-free"></span>`fn is_lock_free() -> bool`
 
-- `const fn is_always_lock_free() -> bool`
+- <span id="atomici128-is-always-lock-free"></span>`const fn is_always_lock_free() -> bool`
 
-- `const fn get_mut(self: &mut Self) -> &mut i128`
+- <span id="atomici128-get-mut"></span>`const fn get_mut(&mut self) -> &mut i128`
 
-- `const fn into_inner(self: Self) -> i128`
+- <span id="atomici128-into-inner"></span>`const fn into_inner(self) -> i128`
 
-- `fn load(self: &Self, order: Ordering) -> i128` — [`Ordering`](#ordering)
+- <span id="atomici128-load"></span>`fn load(&self, order: Ordering) -> i128` — [`Ordering`](#ordering)
 
-- `fn store(self: &Self, val: i128, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici128-store"></span>`fn store(&self, val: i128, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn swap(self: &Self, val: i128, order: Ordering) -> i128` — [`Ordering`](#ordering)
+- <span id="atomici128-swap"></span>`fn swap(&self, val: i128, order: Ordering) -> i128` — [`Ordering`](#ordering)
 
-- `fn compare_exchange(self: &Self, current: i128, new: i128, success: Ordering, failure: Ordering) -> Result<i128, i128>` — [`Ordering`](#ordering)
+- <span id="atomici128-compare-exchange"></span>`fn compare_exchange(&self, current: i128, new: i128, success: Ordering, failure: Ordering) -> Result<i128, i128>` — [`Ordering`](#ordering)
 
-- `fn compare_exchange_weak(self: &Self, current: i128, new: i128, success: Ordering, failure: Ordering) -> Result<i128, i128>` — [`Ordering`](#ordering)
+- <span id="atomici128-compare-exchange-weak"></span>`fn compare_exchange_weak(&self, current: i128, new: i128, success: Ordering, failure: Ordering) -> Result<i128, i128>` — [`Ordering`](#ordering)
 
-- `fn fetch_add(self: &Self, val: i128, order: Ordering) -> i128` — [`Ordering`](#ordering)
+- <span id="atomici128-fetch-add"></span>`fn fetch_add(&self, val: i128, order: Ordering) -> i128` — [`Ordering`](#ordering)
 
-- `fn add(self: &Self, val: i128, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici128-add"></span>`fn add(&self, val: i128, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_sub(self: &Self, val: i128, order: Ordering) -> i128` — [`Ordering`](#ordering)
+- <span id="atomici128-fetch-sub"></span>`fn fetch_sub(&self, val: i128, order: Ordering) -> i128` — [`Ordering`](#ordering)
 
-- `fn sub(self: &Self, val: i128, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici128-sub"></span>`fn sub(&self, val: i128, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_and(self: &Self, val: i128, order: Ordering) -> i128` — [`Ordering`](#ordering)
+- <span id="atomici128-fetch-and"></span>`fn fetch_and(&self, val: i128, order: Ordering) -> i128` — [`Ordering`](#ordering)
 
-- `fn and(self: &Self, val: i128, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici128-and"></span>`fn and(&self, val: i128, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_nand(self: &Self, val: i128, order: Ordering) -> i128` — [`Ordering`](#ordering)
+- <span id="atomici128-fetch-nand"></span>`fn fetch_nand(&self, val: i128, order: Ordering) -> i128` — [`Ordering`](#ordering)
 
-- `fn fetch_or(self: &Self, val: i128, order: Ordering) -> i128` — [`Ordering`](#ordering)
+- <span id="atomici128-fetch-or"></span>`fn fetch_or(&self, val: i128, order: Ordering) -> i128` — [`Ordering`](#ordering)
 
-- `fn or(self: &Self, val: i128, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici128-or"></span>`fn or(&self, val: i128, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_xor(self: &Self, val: i128, order: Ordering) -> i128` — [`Ordering`](#ordering)
+- <span id="atomici128-fetch-xor"></span>`fn fetch_xor(&self, val: i128, order: Ordering) -> i128` — [`Ordering`](#ordering)
 
-- `fn xor(self: &Self, val: i128, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici128-xor"></span>`fn xor(&self, val: i128, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<i128, i128>` — [`Ordering`](#ordering)
+- <span id="atomici128-fetch-update"></span>`fn fetch_update<F>(&self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<i128, i128>` — [`Ordering`](#ordering)
 
-- `fn fetch_max(self: &Self, val: i128, order: Ordering) -> i128` — [`Ordering`](#ordering)
+- <span id="atomici128-fetch-max"></span>`fn fetch_max(&self, val: i128, order: Ordering) -> i128` — [`Ordering`](#ordering)
 
-- `fn fetch_min(self: &Self, val: i128, order: Ordering) -> i128` — [`Ordering`](#ordering)
+- <span id="atomici128-fetch-min"></span>`fn fetch_min(&self, val: i128, order: Ordering) -> i128` — [`Ordering`](#ordering)
 
-- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomici128-bit-set"></span>`fn bit_set(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomici128-bit-clear"></span>`fn bit_clear(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomici128-bit-toggle"></span>`fn bit_toggle(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn fetch_not(self: &Self, order: Ordering) -> i128` — [`Ordering`](#ordering)
+- <span id="atomici128-fetch-not"></span>`fn fetch_not(&self, order: Ordering) -> i128` — [`Ordering`](#ordering)
 
-- `fn not(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici128-not"></span>`fn not(&self, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_neg(self: &Self, order: Ordering) -> i128` — [`Ordering`](#ordering)
+- <span id="atomici128-fetch-neg"></span>`fn fetch_neg(&self, order: Ordering) -> i128` — [`Ordering`](#ordering)
 
-- `fn neg(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomici128-neg"></span>`fn neg(&self, order: Ordering)` — [`Ordering`](#ordering)
 
-- `const fn as_ptr(self: &Self) -> *mut i128`
+- <span id="atomici128-as-ptr"></span>`const fn as_ptr(&self) -> *mut i128`
 
 #### Trait Implementations
 
 ##### `impl Debug for AtomicI128`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="atomici128-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for AtomicI128`
 
-- `fn default() -> Self`
+- <span id="atomici128-default"></span>`fn default() -> Self`
 
 ##### `impl RefUnwindSafe for AtomicI128`
 
@@ -1463,81 +1543,81 @@ atomic instructions or locks will be used.
 
 #### Implementations
 
-- `const fn new(v: u128) -> Self`
+- <span id="atomicu128-new"></span>`const fn new(v: u128) -> Self`
 
-- `const unsafe fn from_ptr<'a>(ptr: *mut u128) -> &'a Self`
+- <span id="atomicu128-from-ptr"></span>`const unsafe fn from_ptr<'a>(ptr: *mut u128) -> &'a Self`
 
-- `fn is_lock_free() -> bool`
+- <span id="atomicu128-is-lock-free"></span>`fn is_lock_free() -> bool`
 
-- `const fn is_always_lock_free() -> bool`
+- <span id="atomicu128-is-always-lock-free"></span>`const fn is_always_lock_free() -> bool`
 
-- `const fn get_mut(self: &mut Self) -> &mut u128`
+- <span id="atomicu128-get-mut"></span>`const fn get_mut(&mut self) -> &mut u128`
 
-- `const fn into_inner(self: Self) -> u128`
+- <span id="atomicu128-into-inner"></span>`const fn into_inner(self) -> u128`
 
-- `fn load(self: &Self, order: Ordering) -> u128` — [`Ordering`](#ordering)
+- <span id="atomicu128-load"></span>`fn load(&self, order: Ordering) -> u128` — [`Ordering`](#ordering)
 
-- `fn store(self: &Self, val: u128, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu128-store"></span>`fn store(&self, val: u128, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn swap(self: &Self, val: u128, order: Ordering) -> u128` — [`Ordering`](#ordering)
+- <span id="atomicu128-swap"></span>`fn swap(&self, val: u128, order: Ordering) -> u128` — [`Ordering`](#ordering)
 
-- `fn compare_exchange(self: &Self, current: u128, new: u128, success: Ordering, failure: Ordering) -> Result<u128, u128>` — [`Ordering`](#ordering)
+- <span id="atomicu128-compare-exchange"></span>`fn compare_exchange(&self, current: u128, new: u128, success: Ordering, failure: Ordering) -> Result<u128, u128>` — [`Ordering`](#ordering)
 
-- `fn compare_exchange_weak(self: &Self, current: u128, new: u128, success: Ordering, failure: Ordering) -> Result<u128, u128>` — [`Ordering`](#ordering)
+- <span id="atomicu128-compare-exchange-weak"></span>`fn compare_exchange_weak(&self, current: u128, new: u128, success: Ordering, failure: Ordering) -> Result<u128, u128>` — [`Ordering`](#ordering)
 
-- `fn fetch_add(self: &Self, val: u128, order: Ordering) -> u128` — [`Ordering`](#ordering)
+- <span id="atomicu128-fetch-add"></span>`fn fetch_add(&self, val: u128, order: Ordering) -> u128` — [`Ordering`](#ordering)
 
-- `fn add(self: &Self, val: u128, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu128-add"></span>`fn add(&self, val: u128, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_sub(self: &Self, val: u128, order: Ordering) -> u128` — [`Ordering`](#ordering)
+- <span id="atomicu128-fetch-sub"></span>`fn fetch_sub(&self, val: u128, order: Ordering) -> u128` — [`Ordering`](#ordering)
 
-- `fn sub(self: &Self, val: u128, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu128-sub"></span>`fn sub(&self, val: u128, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_and(self: &Self, val: u128, order: Ordering) -> u128` — [`Ordering`](#ordering)
+- <span id="atomicu128-fetch-and"></span>`fn fetch_and(&self, val: u128, order: Ordering) -> u128` — [`Ordering`](#ordering)
 
-- `fn and(self: &Self, val: u128, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu128-and"></span>`fn and(&self, val: u128, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_nand(self: &Self, val: u128, order: Ordering) -> u128` — [`Ordering`](#ordering)
+- <span id="atomicu128-fetch-nand"></span>`fn fetch_nand(&self, val: u128, order: Ordering) -> u128` — [`Ordering`](#ordering)
 
-- `fn fetch_or(self: &Self, val: u128, order: Ordering) -> u128` — [`Ordering`](#ordering)
+- <span id="atomicu128-fetch-or"></span>`fn fetch_or(&self, val: u128, order: Ordering) -> u128` — [`Ordering`](#ordering)
 
-- `fn or(self: &Self, val: u128, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu128-or"></span>`fn or(&self, val: u128, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_xor(self: &Self, val: u128, order: Ordering) -> u128` — [`Ordering`](#ordering)
+- <span id="atomicu128-fetch-xor"></span>`fn fetch_xor(&self, val: u128, order: Ordering) -> u128` — [`Ordering`](#ordering)
 
-- `fn xor(self: &Self, val: u128, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu128-xor"></span>`fn xor(&self, val: u128, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<u128, u128>` — [`Ordering`](#ordering)
+- <span id="atomicu128-fetch-update"></span>`fn fetch_update<F>(&self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<u128, u128>` — [`Ordering`](#ordering)
 
-- `fn fetch_max(self: &Self, val: u128, order: Ordering) -> u128` — [`Ordering`](#ordering)
+- <span id="atomicu128-fetch-max"></span>`fn fetch_max(&self, val: u128, order: Ordering) -> u128` — [`Ordering`](#ordering)
 
-- `fn fetch_min(self: &Self, val: u128, order: Ordering) -> u128` — [`Ordering`](#ordering)
+- <span id="atomicu128-fetch-min"></span>`fn fetch_min(&self, val: u128, order: Ordering) -> u128` — [`Ordering`](#ordering)
 
-- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomicu128-bit-set"></span>`fn bit_set(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomicu128-bit-clear"></span>`fn bit_clear(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
+- <span id="atomicu128-bit-toggle"></span>`fn bit_toggle(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn fetch_not(self: &Self, order: Ordering) -> u128` — [`Ordering`](#ordering)
+- <span id="atomicu128-fetch-not"></span>`fn fetch_not(&self, order: Ordering) -> u128` — [`Ordering`](#ordering)
 
-- `fn not(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu128-not"></span>`fn not(&self, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_neg(self: &Self, order: Ordering) -> u128` — [`Ordering`](#ordering)
+- <span id="atomicu128-fetch-neg"></span>`fn fetch_neg(&self, order: Ordering) -> u128` — [`Ordering`](#ordering)
 
-- `fn neg(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
+- <span id="atomicu128-neg"></span>`fn neg(&self, order: Ordering)` — [`Ordering`](#ordering)
 
-- `const fn as_ptr(self: &Self) -> *mut u128`
+- <span id="atomicu128-as-ptr"></span>`const fn as_ptr(&self) -> *mut u128`
 
 #### Trait Implementations
 
 ##### `impl Debug for AtomicU128`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="atomicu128-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for AtomicU128`
 
-- `fn default() -> Self`
+- <span id="atomicu128-default"></span>`fn default() -> Self`
 
 ##### `impl RefUnwindSafe for AtomicU128`
 

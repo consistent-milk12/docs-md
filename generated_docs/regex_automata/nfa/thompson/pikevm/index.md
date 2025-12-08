@@ -9,6 +9,37 @@ An NFA backed Pike VM for executing regex searches with capturing groups.
 This module provides a [`PikeVM`](#pikevm) that works by simulating an NFA and
 resolving all spans of capturing groups that participate in a match.
 
+## Contents
+
+- [Structs](#structs)
+  - [`Config`](#config)
+  - [`Builder`](#builder)
+  - [`PikeVM`](#pikevm)
+  - [`FindMatches`](#findmatches)
+  - [`CapturesMatches`](#capturesmatches)
+  - [`Cache`](#cache)
+  - [`ActiveStates`](#activestates)
+  - [`SlotTable`](#slottable)
+- [Enums](#enums)
+  - [`FollowEpsilon`](#followepsilon)
+- [Macros](#macros)
+  - [`instrument!`](#instrument)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Config`](#config) | struct | The configuration used for building a [`PikeVM`]. |
+| [`Builder`](#builder) | struct | A builder for a `PikeVM`. |
+| [`PikeVM`](#pikevm) | struct | A virtual machine for executing regex searches with capturing groups. |
+| [`FindMatches`](#findmatches) | struct | An iterator over all non-overlapping matches for a particular search. |
+| [`CapturesMatches`](#capturesmatches) | struct | An iterator over all non-overlapping leftmost matches, with their capturing |
+| [`Cache`](#cache) | struct | A cache represents mutable state that a [`PikeVM`] requires during a |
+| [`ActiveStates`](#activestates) | struct | A set of active states used to "simulate" the execution of an NFA via the |
+| [`SlotTable`](#slottable) | struct | A table of slots, where each row represent a state in an NFA. |
+| [`FollowEpsilon`](#followepsilon) | enum | Represents a stack frame for use while computing an epsilon closure. |
+| [`instrument!`](#instrument) | macro | A simple macro for conditionally executing instrumentation logic when |
+
 ## Structs
 
 ### `Config`
@@ -30,31 +61,31 @@ perhaps more conveniently, with `PikeVM::config`.
 
 #### Implementations
 
-- `fn new() -> Config` — [`Config`](#config)
+- <span id="config-new"></span>`fn new() -> Config` — [`Config`](#config)
 
-- `fn match_kind(self: Self, kind: MatchKind) -> Config` — [`MatchKind`](../../../index.md), [`Config`](#config)
+- <span id="config-match-kind"></span>`fn match_kind(self, kind: MatchKind) -> Config` — [`MatchKind`](../../../index.md), [`Config`](#config)
 
-- `fn prefilter(self: Self, pre: Option<Prefilter>) -> Config` — [`Prefilter`](../../../util/prefilter/index.md), [`Config`](#config)
+- <span id="config-prefilter"></span>`fn prefilter(self, pre: Option<Prefilter>) -> Config` — [`Prefilter`](../../../util/prefilter/index.md), [`Config`](#config)
 
-- `fn get_match_kind(self: &Self) -> MatchKind` — [`MatchKind`](../../../index.md)
+- <span id="config-get-match-kind"></span>`fn get_match_kind(&self) -> MatchKind` — [`MatchKind`](../../../index.md)
 
-- `fn get_prefilter(self: &Self) -> Option<&Prefilter>` — [`Prefilter`](../../../util/prefilter/index.md)
+- <span id="config-get-prefilter"></span>`fn get_prefilter(&self) -> Option<&Prefilter>` — [`Prefilter`](../../../util/prefilter/index.md)
 
-- `fn overwrite(self: &Self, o: Config) -> Config` — [`Config`](#config)
+- <span id="config-overwrite"></span>`fn overwrite(&self, o: Config) -> Config` — [`Config`](#config)
 
 #### Trait Implementations
 
 ##### `impl Clone for Config`
 
-- `fn clone(self: &Self) -> Config` — [`Config`](#config)
+- <span id="config-clone"></span>`fn clone(&self) -> Config` — [`Config`](#config)
 
 ##### `impl Debug for Config`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="config-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Config`
 
-- `fn default() -> Config` — [`Config`](#config)
+- <span id="config-default"></span>`fn default() -> Config` — [`Config`](#config)
 
 ### `Builder`
 
@@ -120,29 +151,29 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new() -> Builder` — [`Builder`](#builder)
+- <span id="builder-new"></span>`fn new() -> Builder` — [`Builder`](#builder)
 
-- `fn build(self: &Self, pattern: &str) -> Result<PikeVM, BuildError>` — [`PikeVM`](#pikevm), [`BuildError`](../index.md)
+- <span id="builder-build"></span>`fn build(&self, pattern: &str) -> Result<PikeVM, BuildError>` — [`PikeVM`](#pikevm), [`BuildError`](../index.md)
 
-- `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<PikeVM, BuildError>` — [`PikeVM`](#pikevm), [`BuildError`](../index.md)
+- <span id="builder-build-many"></span>`fn build_many<P: AsRef<str>>(&self, patterns: &[P]) -> Result<PikeVM, BuildError>` — [`PikeVM`](#pikevm), [`BuildError`](../index.md)
 
-- `fn build_from_nfa(self: &Self, nfa: NFA) -> Result<PikeVM, BuildError>` — [`NFA`](../index.md), [`PikeVM`](#pikevm), [`BuildError`](../index.md)
+- <span id="builder-build-from-nfa"></span>`fn build_from_nfa(&self, nfa: NFA) -> Result<PikeVM, BuildError>` — [`NFA`](../index.md), [`PikeVM`](#pikevm), [`BuildError`](../index.md)
 
-- `fn configure(self: &mut Self, config: Config) -> &mut Builder` — [`Config`](#config), [`Builder`](#builder)
+- <span id="builder-configure"></span>`fn configure(&mut self, config: Config) -> &mut Builder` — [`Config`](#config), [`Builder`](#builder)
 
-- `fn syntax(self: &mut Self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../../util/syntax/index.md), [`Builder`](#builder)
+- <span id="builder-syntax"></span>`fn syntax(&mut self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../../util/syntax/index.md), [`Builder`](#builder)
 
-- `fn thompson(self: &mut Self, config: thompson::Config) -> &mut Builder` — [`Config`](../index.md), [`Builder`](#builder)
+- <span id="builder-thompson"></span>`fn thompson(&mut self, config: thompson::Config) -> &mut Builder` — [`Config`](../index.md), [`Builder`](#builder)
 
 #### Trait Implementations
 
 ##### `impl Clone for Builder`
 
-- `fn clone(self: &Self) -> Builder` — [`Builder`](#builder)
+- <span id="builder-clone"></span>`fn clone(&self) -> Builder` — [`Builder`](#builder)
 
 ##### `impl Debug for Builder`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="builder-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `PikeVM`
 
@@ -220,31 +251,23 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn search_imp(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<HalfMatch>` — [`Cache`](#cache), [`Input`](../../../index.md), [`NonMaxUsize`](../../../util/primitives/index.md), [`HalfMatch`](../../../index.md)
+- <span id="pikevm-search"></span>`fn search(&self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures)` — [`Cache`](#cache), [`Input`](../../../index.md), [`Captures`](../../../util/captures/index.md)
 
-- `fn which_overlapping_imp(self: &Self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)` — [`Cache`](#cache), [`Input`](../../../index.md), [`PatternSet`](../../../index.md)
+- <span id="pikevm-search-slots"></span>`fn search_slots(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](#cache), [`Input`](../../../index.md), [`NonMaxUsize`](../../../util/primitives/index.md), [`PatternID`](../../../index.md)
 
-- `fn nexts(self: &Self, stack: &mut Vec<FollowEpsilon>, curr: &mut ActiveStates, next: &mut ActiveStates, input: &Input<'_>, at: usize, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`FollowEpsilon`](#followepsilon), [`ActiveStates`](#activestates), [`Input`](../../../index.md), [`NonMaxUsize`](../../../util/primitives/index.md), [`PatternID`](../../../index.md)
+- <span id="pikevm-search-slots-imp"></span>`fn search_slots_imp(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<HalfMatch>` — [`Cache`](#cache), [`Input`](../../../index.md), [`NonMaxUsize`](../../../util/primitives/index.md), [`HalfMatch`](../../../index.md)
 
-- `fn nexts_overlapping(self: &Self, stack: &mut Vec<FollowEpsilon>, curr: &mut ActiveStates, next: &mut ActiveStates, input: &Input<'_>, at: usize, patset: &mut PatternSet)` — [`FollowEpsilon`](#followepsilon), [`ActiveStates`](#activestates), [`Input`](../../../index.md), [`PatternSet`](../../../index.md)
-
-- `fn next(self: &Self, stack: &mut Vec<FollowEpsilon>, curr_slot_table: &mut SlotTable, next: &mut ActiveStates, input: &Input<'_>, at: usize, sid: StateID) -> Option<PatternID>` — [`FollowEpsilon`](#followepsilon), [`SlotTable`](#slottable), [`ActiveStates`](#activestates), [`Input`](../../../index.md), [`StateID`](../../../util/primitives/index.md), [`PatternID`](../../../index.md)
-
-- `fn epsilon_closure(self: &Self, stack: &mut Vec<FollowEpsilon>, curr_slots: &mut [Option<NonMaxUsize>], next: &mut ActiveStates, input: &Input<'_>, at: usize, sid: StateID)` — [`FollowEpsilon`](#followepsilon), [`NonMaxUsize`](../../../util/primitives/index.md), [`ActiveStates`](#activestates), [`Input`](../../../index.md), [`StateID`](../../../util/primitives/index.md)
-
-- `fn epsilon_closure_explore(self: &Self, stack: &mut Vec<FollowEpsilon>, curr_slots: &mut [Option<NonMaxUsize>], next: &mut ActiveStates, input: &Input<'_>, at: usize, sid: StateID)` — [`FollowEpsilon`](#followepsilon), [`NonMaxUsize`](../../../util/primitives/index.md), [`ActiveStates`](#activestates), [`Input`](../../../index.md), [`StateID`](../../../util/primitives/index.md)
-
-- `fn start_config(self: &Self, input: &Input<'_>) -> Option<(bool, StateID)>` — [`Input`](../../../index.md), [`StateID`](../../../util/primitives/index.md)
+- <span id="pikevm-which-overlapping-matches"></span>`fn which_overlapping_matches(&self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)` — [`Cache`](#cache), [`Input`](../../../index.md), [`PatternSet`](../../../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for PikeVM`
 
-- `fn clone(self: &Self) -> PikeVM` — [`PikeVM`](#pikevm)
+- <span id="pikevm-clone"></span>`fn clone(&self) -> PikeVM` — [`PikeVM`](#pikevm)
 
 ##### `impl Debug for PikeVM`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="pikevm-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `FindMatches<'r, 'c, 'h>`
 
@@ -273,21 +296,21 @@ This iterator can be created with the `PikeVM::find_iter` method.
 
 ##### `impl<'r, 'c, 'h> Debug for FindMatches<'r, 'c, 'h>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="findmatches-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for FindMatches<'r, 'c, 'h>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="findmatches-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="findmatches-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="findmatches-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'r, 'c, 'h> Iterator for FindMatches<'r, 'c, 'h>`
 
-- `type Item = Match`
+- <span id="findmatches-item"></span>`type Item = Match`
 
-- `fn next(self: &mut Self) -> Option<Match>` — [`Match`](../../../index.md)
+- <span id="findmatches-next"></span>`fn next(&mut self) -> Option<Match>` — [`Match`](../../../index.md)
 
 ### `CapturesMatches<'r, 'c, 'h>`
 
@@ -318,21 +341,21 @@ This iterator can be created with the `PikeVM::captures_iter` method.
 
 ##### `impl<'r, 'c, 'h> Debug for CapturesMatches<'r, 'c, 'h>`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="capturesmatches-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<I> IntoIterator for CapturesMatches<'r, 'c, 'h>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="capturesmatches-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="capturesmatches-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="capturesmatches-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'r, 'c, 'h> Iterator for CapturesMatches<'r, 'c, 'h>`
 
-- `type Item = Captures`
+- <span id="capturesmatches-item"></span>`type Item = Captures`
 
-- `fn next(self: &mut Self) -> Option<Captures>` — [`Captures`](../../../util/captures/index.md)
+- <span id="capturesmatches-next"></span>`fn next(&mut self) -> Option<Captures>` — [`Captures`](../../../util/captures/index.md)
 
 ### `Cache`
 
@@ -376,23 +399,23 @@ only be used with the new `PikeVM` (and not the old one).
 
 #### Implementations
 
-- `fn new(re: &PikeVM) -> Cache` — [`PikeVM`](#pikevm), [`Cache`](#cache)
+- <span id="cache-new"></span>`fn new(re: &PikeVM) -> Cache` — [`PikeVM`](#pikevm), [`Cache`](#cache)
 
-- `fn reset(self: &mut Self, re: &PikeVM)` — [`PikeVM`](#pikevm)
+- <span id="cache-reset"></span>`fn reset(&mut self, re: &PikeVM)` — [`PikeVM`](#pikevm)
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="cache-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- `fn setup_search(self: &mut Self, captures_slot_len: usize)`
+- <span id="cache-setup-search"></span>`fn setup_search(&mut self, captures_slot_len: usize)`
 
 #### Trait Implementations
 
 ##### `impl Clone for Cache`
 
-- `fn clone(self: &Self) -> Cache` — [`Cache`](#cache)
+- <span id="cache-clone"></span>`fn clone(&self) -> Cache` — [`Cache`](#cache)
 
 ##### `impl Debug for Cache`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="cache-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ActiveStates`
 
@@ -437,23 +460,23 @@ caller provided 'Captures' value.
 
 #### Implementations
 
-- `fn new(re: &PikeVM) -> ActiveStates` — [`PikeVM`](#pikevm), [`ActiveStates`](#activestates)
+- <span id="activestates-new"></span>`fn new(re: &PikeVM) -> ActiveStates` — [`PikeVM`](#pikevm), [`ActiveStates`](#activestates)
 
-- `fn reset(self: &mut Self, re: &PikeVM)` — [`PikeVM`](#pikevm)
+- <span id="activestates-reset"></span>`fn reset(&mut self, re: &PikeVM)` — [`PikeVM`](#pikevm)
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="activestates-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- `fn setup_search(self: &mut Self, captures_slot_len: usize)`
+- <span id="activestates-setup-search"></span>`fn setup_search(&mut self, captures_slot_len: usize)`
 
 #### Trait Implementations
 
 ##### `impl Clone for ActiveStates`
 
-- `fn clone(self: &Self) -> ActiveStates` — [`ActiveStates`](#activestates)
+- <span id="activestates-clone"></span>`fn clone(&self) -> ActiveStates` — [`ActiveStates`](#activestates)
 
 ##### `impl Debug for ActiveStates`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="activestates-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `SlotTable`
 
@@ -505,27 +528,27 @@ was encapsulated well.
 
 #### Implementations
 
-- `fn new() -> SlotTable` — [`SlotTable`](#slottable)
+- <span id="slottable-new"></span>`fn new() -> SlotTable` — [`SlotTable`](#slottable)
 
-- `fn reset(self: &mut Self, re: &PikeVM)` — [`PikeVM`](#pikevm)
+- <span id="slottable-reset"></span>`fn reset(&mut self, re: &PikeVM)` — [`PikeVM`](#pikevm)
 
-- `fn memory_usage(self: &Self) -> usize`
+- <span id="slottable-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- `fn setup_search(self: &mut Self, captures_slot_len: usize)`
+- <span id="slottable-setup-search"></span>`fn setup_search(&mut self, captures_slot_len: usize)`
 
-- `fn for_state(self: &mut Self, sid: StateID) -> &mut [Option<NonMaxUsize>]` — [`StateID`](../../../util/primitives/index.md), [`NonMaxUsize`](../../../util/primitives/index.md)
+- <span id="slottable-for-state"></span>`fn for_state(&mut self, sid: StateID) -> &mut [Option<NonMaxUsize>]` — [`StateID`](../../../util/primitives/index.md), [`NonMaxUsize`](../../../util/primitives/index.md)
 
-- `fn all_absent(self: &mut Self) -> &mut [Option<NonMaxUsize>]` — [`NonMaxUsize`](../../../util/primitives/index.md)
+- <span id="slottable-all-absent"></span>`fn all_absent(&mut self) -> &mut [Option<NonMaxUsize>]` — [`NonMaxUsize`](../../../util/primitives/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for SlotTable`
 
-- `fn clone(self: &Self) -> SlotTable` — [`SlotTable`](#slottable)
+- <span id="slottable-clone"></span>`fn clone(&self) -> SlotTable` — [`SlotTable`](#slottable)
 
 ##### `impl Debug for SlotTable`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="slottable-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Enums
 
@@ -592,11 +615,11 @@ first traversal.
 
 ##### `impl Clone for FollowEpsilon`
 
-- `fn clone(self: &Self) -> FollowEpsilon` — [`FollowEpsilon`](#followepsilon)
+- <span id="followepsilon-clone"></span>`fn clone(&self) -> FollowEpsilon` — [`FollowEpsilon`](#followepsilon)
 
 ##### `impl Debug for FollowEpsilon`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="followepsilon-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Macros
 

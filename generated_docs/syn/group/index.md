@@ -4,6 +4,13 @@
 
 # Module `group`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`parse_group`](#parse_group) | fn |  |
+| [`parse_delimited`](#parse_delimited) | fn |  |
+
 ## Functions
 
 ### `parse_group`

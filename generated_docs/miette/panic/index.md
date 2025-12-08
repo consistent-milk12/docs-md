@@ -4,6 +4,13 @@
 
 # Module `panic`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Panic`](#panic) | struct |  |
+| [`set_panic_hook`](#set_panic_hook) | fn | Tells miette to render panics using its rendering engine. |
+
 ## Structs
 
 ### `Panic`
@@ -14,25 +21,25 @@ struct Panic(String);
 
 #### Implementations
 
-- `fn backtrace() -> String`
+- <span id="panic-backtrace"></span>`fn backtrace() -> String`
 
 #### Trait Implementations
 
 ##### `impl Debug for Panic`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="panic-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<E> Diag for Panic`
 
-- `fn ext_report<D>(self: Self, msg: D) -> Report` — [`Report`](../index.md)
+- <span id="panic-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../index.md)
 
 ##### `impl Diagnostic for Panic`
 
-- `fn help<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
+- <span id="panic-help"></span>`fn help<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
 ##### `impl Display for Panic`
 
-- `fn fmt(self: &Self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+- <span id="panic-fmt"></span>`fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
 ##### `impl Error for Panic`
 
@@ -40,7 +47,7 @@ struct Panic(String);
 
 ##### `impl<T> ToString for Panic`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="panic-to-string"></span>`fn to_string(&self) -> String`
 
 ##### `impl<E> TraitKind for Panic`
 

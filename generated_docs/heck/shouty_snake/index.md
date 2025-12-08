@@ -4,6 +4,14 @@
 
 # Module `shouty_snake`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`AsShoutySnakeCase`](#asshoutysnakecase) | struct | This wrapper performs a shouty snake  case conversion in [`fmt::Display`]. |
+| [`ToShoutySnakeCase`](#toshoutysnakecase) | trait | This trait defines a shouty snake case conversion. |
+| [`ToShoutySnekCase`](#toshoutysnekcase) | trait | Oh heck, `ToShoutySnekCase` is an alias for [`ToShoutySnakeCase`]. |
+
 ## Structs
 
 ### `AsShoutySnakeCase<T: AsRef<str>>`
@@ -12,7 +20,7 @@
 struct AsShoutySnakeCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a shouty snake  case conversion in [`fmt::Display`](../../miette_derive/index.md).
+This wrapper performs a shouty snake  case conversion in [`fmt::Display`](../../miette_derive/fmt/index.md).
 
 ## Example:
 
@@ -27,11 +35,11 @@ assert_eq!(format!("{}", AsShoutySnakeCase(sentence)), "THAT_WORLD_IS_GROWING_IN
 
 ##### `impl<T: AsRef<str>> Display for AsShoutySnakeCase<T>`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="asshoutysnakecase-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<T> ToString for AsShoutySnakeCase<T>`
 
-- `fn to_string(self: &Self) -> String`
+- <span id="asshoutysnakecase-to-string"></span>`fn to_string(&self) -> String`
 
 ## Traits
 
@@ -57,7 +65,7 @@ assert_eq!(sentence.to_shouty_snake_case(), "THAT_WORLD_IS_GROWING_IN_THIS_MINUT
 
 #### Required Methods
 
-- `fn to_shouty_snake_case(self: &Self) -> <Self as >::Owned`
+- `fn to_shouty_snake_case(&self) -> <Self as >::Owned`
 
   Convert this type to shouty snake case.
 
@@ -72,7 +80,7 @@ ToShoutySnakeCase for more documentation.
 
 #### Required Methods
 
-- `fn TO_SHOUTY_SNEK_CASE(self: &Self) -> <Self as >::Owned`
+- `fn TO_SHOUTY_SNEK_CASE(&self) -> <Self as >::Owned`
 
   CONVERT THIS TYPE TO SNEK CASE.
 

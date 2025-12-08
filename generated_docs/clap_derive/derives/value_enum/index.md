@@ -4,6 +4,16 @@
 
 # Module `value_enum`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`derive_value_enum`](#derive_value_enum) | fn |  |
+| [`gen_for_enum`](#gen_for_enum) | fn |  |
+| [`lits`](#lits) | fn |  |
+| [`gen_value_variants`](#gen_value_variants) | fn |  |
+| [`gen_to_possible_value`](#gen_to_possible_value) | fn |  |
+
 ## Functions
 
 ### `derive_value_enum`

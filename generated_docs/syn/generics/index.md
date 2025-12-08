@@ -4,6 +4,72 @@
 
 # Module `generics`
 
+## Contents
+
+- [Modules](#modules)
+  - [`parsing`](#parsing)
+  - [`printing`](#printing)
+- [Structs](#structs)
+  - [`Generics`](#generics)
+  - [`LifetimeParam`](#lifetimeparam)
+  - [`TypeParam`](#typeparam)
+  - [`ConstParam`](#constparam)
+  - [`Lifetimes`](#lifetimes)
+  - [`LifetimesMut`](#lifetimesmut)
+  - [`TypeParams`](#typeparams)
+  - [`TypeParamsMut`](#typeparamsmut)
+  - [`ConstParams`](#constparams)
+  - [`ConstParamsMut`](#constparamsmut)
+  - [`ImplGenerics`](#implgenerics)
+  - [`TypeGenerics`](#typegenerics)
+  - [`Turbofish`](#turbofish)
+  - [`BoundLifetimes`](#boundlifetimes)
+  - [`TraitBound`](#traitbound)
+  - [`PreciseCapture`](#precisecapture)
+  - [`WhereClause`](#whereclause)
+  - [`PredicateLifetime`](#predicatelifetime)
+  - [`PredicateType`](#predicatetype)
+- [Enums](#enums)
+  - [`GenericParam`](#genericparam)
+  - [`TypeParamBound`](#typeparambound)
+  - [`TraitBoundModifier`](#traitboundmodifier)
+  - [`CapturedParam`](#capturedparam)
+  - [`WherePredicate`](#wherepredicate)
+- [Macros](#macros)
+  - [`generics_wrapper_impls!`](#generics_wrapper_impls)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`parsing`](#parsing) | mod |  |
+| [`printing`](#printing) | mod |  |
+| [`Generics`](#generics) | struct | Lifetimes and type parameters attached to a declaration of a function |
+| [`LifetimeParam`](#lifetimeparam) | struct | A lifetime definition: `'a: 'b + 'c + 'd`. |
+| [`TypeParam`](#typeparam) | struct | A generic type parameter: `T: Into<String>`. |
+| [`ConstParam`](#constparam) | struct | A const generic parameter: `const LENGTH: usize`. |
+| [`Lifetimes`](#lifetimes) | struct |  |
+| [`LifetimesMut`](#lifetimesmut) | struct |  |
+| [`TypeParams`](#typeparams) | struct |  |
+| [`TypeParamsMut`](#typeparamsmut) | struct |  |
+| [`ConstParams`](#constparams) | struct |  |
+| [`ConstParamsMut`](#constparamsmut) | struct |  |
+| [`ImplGenerics`](#implgenerics) | struct | Returned by `Generics::split_for_impl`. |
+| [`TypeGenerics`](#typegenerics) | struct | Returned by `Generics::split_for_impl`. |
+| [`Turbofish`](#turbofish) | struct | Returned by `TypeGenerics::as_turbofish`. |
+| [`BoundLifetimes`](#boundlifetimes) | struct | A set of bound lifetimes: `for<'a, 'b, 'c>`. |
+| [`TraitBound`](#traitbound) | struct | A trait used as a bound on a type parameter. |
+| [`PreciseCapture`](#precisecapture) | struct | Precise capturing bound: the 'use&lt;&hellip;&gt;' in `impl Trait + |
+| [`WhereClause`](#whereclause) | struct | A `where` clause in a definition: `where T: Deserialize<'de>, D |
+| [`PredicateLifetime`](#predicatelifetime) | struct | A lifetime predicate in a `where` clause: `'a: 'b + 'c`. |
+| [`PredicateType`](#predicatetype) | struct | A type predicate in a `where` clause: `for<'c> Foo<'c>: Trait<'c>`. |
+| [`GenericParam`](#genericparam) | enum | A generic type parameter, lifetime, or const generic: `T: Into<String>` |
+| [`TypeParamBound`](#typeparambound) | enum | A trait or lifetime used as a bound on a type parameter. |
+| [`TraitBoundModifier`](#traitboundmodifier) | enum | A modifier on a trait bound, currently only used for the `?` in |
+| [`CapturedParam`](#capturedparam) | enum | Single parameter in a precise capturing bound. |
+| [`WherePredicate`](#wherepredicate) | enum | A single predicate in a `where` clause: `T: Deserialize<'de>`. |
+| [`generics_wrapper_impls!`](#generics_wrapper_impls) | macro |  |
+
 ## Modules
 
 - [`parsing`](parsing/index.md) - 
@@ -15,9 +81,9 @@
 
 ```rust
 struct Generics {
-    pub lt_token: Option<$crate::token::Lt>,
-    pub params: crate::punctuated::Punctuated<GenericParam, $crate::token::Comma>,
-    pub gt_token: Option<$crate::token::Gt>,
+    pub lt_token: Option<token::Lt>,
+    pub params: crate::punctuated::Punctuated<GenericParam, token::Comma>,
+    pub gt_token: Option<token::Gt>,
     pub where_clause: Option<WhereClause>,
 }
 ```
@@ -33,59 +99,59 @@ grammar, there may be other tokens in between these two things.
 
 #### Implementations
 
-- `fn lifetimes(self: &Self) -> Lifetimes<'_>` — [`Lifetimes`](#lifetimes)
+- <span id="generics-lifetimes"></span>`fn lifetimes(&self) -> Lifetimes<'_>` — [`Lifetimes`](#lifetimes)
 
-- `fn lifetimes_mut(self: &mut Self) -> LifetimesMut<'_>` — [`LifetimesMut`](#lifetimesmut)
+- <span id="generics-lifetimes-mut"></span>`fn lifetimes_mut(&mut self) -> LifetimesMut<'_>` — [`LifetimesMut`](#lifetimesmut)
 
-- `fn type_params(self: &Self) -> TypeParams<'_>` — [`TypeParams`](#typeparams)
+- <span id="generics-type-params"></span>`fn type_params(&self) -> TypeParams<'_>` — [`TypeParams`](#typeparams)
 
-- `fn type_params_mut(self: &mut Self) -> TypeParamsMut<'_>` — [`TypeParamsMut`](#typeparamsmut)
+- <span id="generics-type-params-mut"></span>`fn type_params_mut(&mut self) -> TypeParamsMut<'_>` — [`TypeParamsMut`](#typeparamsmut)
 
-- `fn const_params(self: &Self) -> ConstParams<'_>` — [`ConstParams`](#constparams)
+- <span id="generics-const-params"></span>`fn const_params(&self) -> ConstParams<'_>` — [`ConstParams`](#constparams)
 
-- `fn const_params_mut(self: &mut Self) -> ConstParamsMut<'_>` — [`ConstParamsMut`](#constparamsmut)
+- <span id="generics-const-params-mut"></span>`fn const_params_mut(&mut self) -> ConstParamsMut<'_>` — [`ConstParamsMut`](#constparamsmut)
 
-- `fn make_where_clause(self: &mut Self) -> &mut WhereClause` — [`WhereClause`](../index.md)
+- <span id="generics-make-where-clause"></span>`fn make_where_clause(&mut self) -> &mut WhereClause` — [`WhereClause`](../index.md)
 
-- `fn split_for_impl(self: &Self) -> (ImplGenerics<'_>, TypeGenerics<'_>, Option<&WhereClause>)` — [`ImplGenerics`](../index.md), [`TypeGenerics`](../index.md), [`WhereClause`](../index.md)
+- <span id="generics-split-for-impl"></span>`fn split_for_impl(&self) -> (ImplGenerics<'_>, TypeGenerics<'_>, Option<&WhereClause>)` — [`ImplGenerics`](../index.md), [`TypeGenerics`](../index.md), [`WhereClause`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::Generics`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crategenerics-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Generics`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crategenerics-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Generics`
 
-- `fn default() -> Self`
+- <span id="generics-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for crate::Generics`
 
 ##### `impl Hash for crate::Generics`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crategenerics-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::generics::Generics`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crategenericsgenerics-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::Generics`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crategenerics-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for Generics`
 
 ##### `impl<T> Spanned for Generics`
 
-- `fn span(self: &Self) -> Span`
+- <span id="generics-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::generics::Generics`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crategenericsgenerics-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `LifetimeParam`
 
@@ -93,8 +159,8 @@ grammar, there may be other tokens in between these two things.
 struct LifetimeParam {
     pub attrs: Vec<crate::attr::Attribute>,
     pub lifetime: crate::lifetime::Lifetime,
-    pub colon_token: Option<$crate::token::Colon>,
-    pub bounds: crate::punctuated::Punctuated<crate::lifetime::Lifetime, $crate::token::Plus>,
+    pub colon_token: Option<token::Colon>,
+    pub bounds: crate::punctuated::Punctuated<crate::lifetime::Lifetime, token::Plus>,
 }
 ```
 
@@ -102,41 +168,41 @@ A lifetime definition: `'a: 'b + 'c + 'd`.
 
 #### Implementations
 
-- `fn new(lifetime: Lifetime) -> Self` — [`Lifetime`](../index.md)
+- <span id="lifetimeparam-new"></span>`fn new(lifetime: Lifetime) -> Self` — [`Lifetime`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::LifetimeParam`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratelifetimeparam-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::LifetimeParam`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratelifetimeparam-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::LifetimeParam`
 
 ##### `impl Hash for crate::LifetimeParam`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratelifetimeparam-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::generics::LifetimeParam`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crategenericslifetimeparam-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::LifetimeParam`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratelifetimeparam-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for LifetimeParam`
 
 ##### `impl<T> Spanned for LifetimeParam`
 
-- `fn span(self: &Self) -> Span`
+- <span id="lifetimeparam-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::generics::LifetimeParam`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crategenericslifetimeparam-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `TypeParam`
 
@@ -144,9 +210,9 @@ A lifetime definition: `'a: 'b + 'c + 'd`.
 struct TypeParam {
     pub attrs: Vec<crate::attr::Attribute>,
     pub ident: crate::ident::Ident,
-    pub colon_token: Option<$crate::token::Colon>,
-    pub bounds: crate::punctuated::Punctuated<TypeParamBound, $crate::token::Plus>,
-    pub eq_token: Option<$crate::token::Eq>,
+    pub colon_token: Option<token::Colon>,
+    pub bounds: crate::punctuated::Punctuated<TypeParamBound, token::Plus>,
+    pub eq_token: Option<token::Eq>,
     pub default: Option<crate::ty::Type>,
 }
 ```
@@ -157,46 +223,46 @@ A generic type parameter: `T: Into<String>`.
 
 ##### `impl Clone for crate::TypeParam`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratetypeparam-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::TypeParam`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratetypeparam-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::TypeParam`
 
 ##### `impl Hash for crate::TypeParam`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratetypeparam-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::generics::TypeParam`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crategenericstypeparam-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::TypeParam`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratetypeparam-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for TypeParam`
 
 ##### `impl<T> Spanned for TypeParam`
 
-- `fn span(self: &Self) -> Span`
+- <span id="typeparam-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::generics::TypeParam`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crategenericstypeparam-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `ConstParam`
 
 ```rust
 struct ConstParam {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub const_token: $crate::token::Const,
+    pub const_token: token::Const,
     pub ident: crate::ident::Ident,
-    pub colon_token: $crate::token::Colon,
+    pub colon_token: token::Colon,
     pub ty: crate::ty::Type,
-    pub eq_token: Option<$crate::token::Eq>,
+    pub eq_token: Option<token::Eq>,
     pub default: Option<crate::expr::Expr>,
 }
 ```
@@ -207,35 +273,35 @@ A const generic parameter: `const LENGTH: usize`.
 
 ##### `impl Clone for crate::ConstParam`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateconstparam-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::ConstParam`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateconstparam-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::ConstParam`
 
 ##### `impl Hash for crate::ConstParam`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateconstparam-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::generics::ConstParam`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crategenericsconstparam-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ConstParam`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateconstparam-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ConstParam`
 
 ##### `impl<T> Spanned for ConstParam`
 
-- `fn span(self: &Self) -> Span`
+- <span id="constparam-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::generics::ConstParam`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crategenericsconstparam-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `Lifetimes<'a>`
 
@@ -247,17 +313,17 @@ struct Lifetimes<'a>(crate::punctuated::Iter<'a, GenericParam>);
 
 ##### `impl<I> IntoIterator for Lifetimes<'a>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="lifetimes-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="lifetimes-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="lifetimes-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a> Iterator for Lifetimes<'a>`
 
-- `type Item = &'a LifetimeParam`
+- <span id="lifetimes-item"></span>`type Item = &'a LifetimeParam`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="lifetimes-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `LifetimesMut<'a>`
 
@@ -269,17 +335,17 @@ struct LifetimesMut<'a>(crate::punctuated::IterMut<'a, GenericParam>);
 
 ##### `impl<I> IntoIterator for LifetimesMut<'a>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="lifetimesmut-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="lifetimesmut-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="lifetimesmut-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a> Iterator for LifetimesMut<'a>`
 
-- `type Item = &'a mut LifetimeParam`
+- <span id="lifetimesmut-item"></span>`type Item = &'a mut LifetimeParam`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="lifetimesmut-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `TypeParams<'a>`
 
@@ -291,17 +357,17 @@ struct TypeParams<'a>(crate::punctuated::Iter<'a, GenericParam>);
 
 ##### `impl<I> IntoIterator for TypeParams<'a>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="typeparams-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="typeparams-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="typeparams-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a> Iterator for TypeParams<'a>`
 
-- `type Item = &'a TypeParam`
+- <span id="typeparams-item"></span>`type Item = &'a TypeParam`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="typeparams-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `TypeParamsMut<'a>`
 
@@ -313,17 +379,17 @@ struct TypeParamsMut<'a>(crate::punctuated::IterMut<'a, GenericParam>);
 
 ##### `impl<I> IntoIterator for TypeParamsMut<'a>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="typeparamsmut-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="typeparamsmut-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="typeparamsmut-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a> Iterator for TypeParamsMut<'a>`
 
-- `type Item = &'a mut TypeParam`
+- <span id="typeparamsmut-item"></span>`type Item = &'a mut TypeParam`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="typeparamsmut-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `ConstParams<'a>`
 
@@ -335,17 +401,17 @@ struct ConstParams<'a>(crate::punctuated::Iter<'a, GenericParam>);
 
 ##### `impl<I> IntoIterator for ConstParams<'a>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="constparams-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="constparams-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="constparams-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a> Iterator for ConstParams<'a>`
 
-- `type Item = &'a ConstParam`
+- <span id="constparams-item"></span>`type Item = &'a ConstParam`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="constparams-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `ConstParamsMut<'a>`
 
@@ -357,17 +423,17 @@ struct ConstParamsMut<'a>(crate::punctuated::IterMut<'a, GenericParam>);
 
 ##### `impl<I> IntoIterator for ConstParamsMut<'a>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="constparamsmut-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="constparamsmut-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="constparamsmut-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<'a> Iterator for ConstParamsMut<'a>`
 
-- `type Item = &'a mut ConstParam`
+- <span id="constparamsmut-item"></span>`type Item = &'a mut ConstParam`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="constparamsmut-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `ImplGenerics<'a>`
 
@@ -381,31 +447,31 @@ Returned by `Generics::split_for_impl`.
 
 ##### `impl<'a> Clone for ImplGenerics<'a>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="implgenerics-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<'a> Debug for ImplGenerics<'a>`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="implgenerics-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'a> Eq for ImplGenerics<'a>`
 
 ##### `impl<'a> Hash for ImplGenerics<'a>`
 
-- `fn hash<H: Hasher>(self: &Self, state: &mut H)`
+- <span id="implgenerics-hash"></span>`fn hash<H: Hasher>(&self, state: &mut H)`
 
 ##### `impl<'a> PartialEq for ImplGenerics<'a>`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="implgenerics-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for ImplGenerics<'a>`
 
 ##### `impl<T> Spanned for ImplGenerics<'a>`
 
-- `fn span(self: &Self) -> Span`
+- <span id="implgenerics-span"></span>`fn span(&self) -> Span`
 
 ##### `impl<'a> ToTokens for crate::generics::ImplGenerics<'a>`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crategenericsimplgenerics-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `TypeGenerics<'a>`
 
@@ -417,37 +483,37 @@ Returned by `Generics::split_for_impl`.
 
 #### Implementations
 
-- `fn as_turbofish(self: &Self) -> Turbofish<'a>` — [`Turbofish`](../index.md)
+- <span id="typegenerics-as-turbofish"></span>`fn as_turbofish(&self) -> Turbofish<'a>` — [`Turbofish`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'a> Clone for TypeGenerics<'a>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="typegenerics-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<'a> Debug for TypeGenerics<'a>`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="typegenerics-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'a> Eq for TypeGenerics<'a>`
 
 ##### `impl<'a> Hash for TypeGenerics<'a>`
 
-- `fn hash<H: Hasher>(self: &Self, state: &mut H)`
+- <span id="typegenerics-hash"></span>`fn hash<H: Hasher>(&self, state: &mut H)`
 
 ##### `impl<'a> PartialEq for TypeGenerics<'a>`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="typegenerics-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for TypeGenerics<'a>`
 
 ##### `impl<T> Spanned for TypeGenerics<'a>`
 
-- `fn span(self: &Self) -> Span`
+- <span id="typegenerics-span"></span>`fn span(&self) -> Span`
 
 ##### `impl<'a> ToTokens for crate::generics::TypeGenerics<'a>`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crategenericstypegenerics-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `Turbofish<'a>`
 
@@ -461,40 +527,40 @@ Returned by `TypeGenerics::as_turbofish`.
 
 ##### `impl<'a> Clone for Turbofish<'a>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="turbofish-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<'a> Debug for Turbofish<'a>`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="turbofish-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl<'a> Eq for Turbofish<'a>`
 
 ##### `impl<'a> Hash for Turbofish<'a>`
 
-- `fn hash<H: Hasher>(self: &Self, state: &mut H)`
+- <span id="turbofish-hash"></span>`fn hash<H: Hasher>(&self, state: &mut H)`
 
 ##### `impl<'a> PartialEq for Turbofish<'a>`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="turbofish-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for Turbofish<'a>`
 
 ##### `impl<T> Spanned for Turbofish<'a>`
 
-- `fn span(self: &Self) -> Span`
+- <span id="turbofish-span"></span>`fn span(&self) -> Span`
 
 ##### `impl<'a> ToTokens for crate::generics::Turbofish<'a>`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crategenericsturbofish-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `BoundLifetimes`
 
 ```rust
 struct BoundLifetimes {
-    pub for_token: $crate::token::For,
-    pub lt_token: $crate::token::Lt,
-    pub lifetimes: crate::punctuated::Punctuated<GenericParam, $crate::token::Comma>,
-    pub gt_token: $crate::token::Gt,
+    pub for_token: token::For,
+    pub lt_token: token::Lt,
+    pub lifetimes: crate::punctuated::Punctuated<GenericParam, token::Comma>,
+    pub gt_token: token::Gt,
 }
 ```
 
@@ -504,39 +570,39 @@ A set of bound lifetimes: `for<'a, 'b, 'c>`.
 
 ##### `impl Clone for crate::BoundLifetimes`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateboundlifetimes-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::BoundLifetimes`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateboundlifetimes-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for BoundLifetimes`
 
-- `fn default() -> Self`
+- <span id="boundlifetimes-default"></span>`fn default() -> Self`
 
 ##### `impl Eq for crate::BoundLifetimes`
 
 ##### `impl Hash for crate::BoundLifetimes`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateboundlifetimes-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::generics::BoundLifetimes`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crategenericsboundlifetimes-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::BoundLifetimes`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateboundlifetimes-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for BoundLifetimes`
 
 ##### `impl<T> Spanned for BoundLifetimes`
 
-- `fn span(self: &Self) -> Span`
+- <span id="boundlifetimes-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::generics::BoundLifetimes`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crategenericsboundlifetimes-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `TraitBound`
 
@@ -563,50 +629,50 @@ A trait used as a bound on a type parameter.
 
 #### Implementations
 
-- `fn do_parse(input: ParseStream<'_>, allow_const: bool) -> Result<Option<Self>>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crategenericstraitbound-do-parse"></span>`fn do_parse(input: ParseStream<'_>, allow_const: bool) -> Result<Option<Self>>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::TraitBound`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratetraitbound-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::TraitBound`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratetraitbound-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::TraitBound`
 
 ##### `impl Hash for crate::TraitBound`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratetraitbound-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::generics::TraitBound`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crategenericstraitbound-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::TraitBound`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratetraitbound-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for TraitBound`
 
 ##### `impl<T> Spanned for TraitBound`
 
-- `fn span(self: &Self) -> Span`
+- <span id="traitbound-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::generics::TraitBound`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crategenericstraitbound-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `PreciseCapture`
 
 ```rust
 struct PreciseCapture {
-    pub use_token: $crate::token::Use,
-    pub lt_token: $crate::token::Lt,
-    pub params: crate::punctuated::Punctuated<CapturedParam, $crate::token::Comma>,
-    pub gt_token: $crate::token::Gt,
+    pub use_token: token::Use,
+    pub lt_token: token::Lt,
+    pub params: crate::punctuated::Punctuated<CapturedParam, token::Comma>,
+    pub gt_token: token::Gt,
 }
 ```
 
@@ -617,42 +683,42 @@ use<'a, T>`.
 
 ##### `impl Clone for crate::PreciseCapture`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateprecisecapture-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::PreciseCapture`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateprecisecapture-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::PreciseCapture`
 
 ##### `impl Hash for crate::PreciseCapture`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateprecisecapture-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::generics::PreciseCapture`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crategenericsprecisecapture-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::PreciseCapture`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateprecisecapture-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for PreciseCapture`
 
 ##### `impl<T> Spanned for PreciseCapture`
 
-- `fn span(self: &Self) -> Span`
+- <span id="precisecapture-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::generics::PreciseCapture`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crategenericsprecisecapture-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `WhereClause`
 
 ```rust
 struct WhereClause {
-    pub where_token: $crate::token::Where,
-    pub predicates: crate::punctuated::Punctuated<WherePredicate, $crate::token::Comma>,
+    pub where_token: token::Where,
+    pub predicates: crate::punctuated::Punctuated<WherePredicate, token::Comma>,
 }
 ```
 
@@ -663,43 +729,43 @@ A `where` clause in a definition: `where T: Deserialize<'de>, D:
 
 ##### `impl Clone for crate::WhereClause`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratewhereclause-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::WhereClause`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratewhereclause-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::WhereClause`
 
 ##### `impl Hash for crate::WhereClause`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratewhereclause-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::generics::WhereClause`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crategenericswhereclause-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::WhereClause`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratewhereclause-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for WhereClause`
 
 ##### `impl<T> Spanned for WhereClause`
 
-- `fn span(self: &Self) -> Span`
+- <span id="whereclause-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::generics::WhereClause`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crategenericswhereclause-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `PredicateLifetime`
 
 ```rust
 struct PredicateLifetime {
     pub lifetime: crate::lifetime::Lifetime,
-    pub colon_token: $crate::token::Colon,
-    pub bounds: crate::punctuated::Punctuated<crate::lifetime::Lifetime, $crate::token::Plus>,
+    pub colon_token: token::Colon,
+    pub bounds: crate::punctuated::Punctuated<crate::lifetime::Lifetime, token::Plus>,
 }
 ```
 
@@ -709,31 +775,31 @@ A lifetime predicate in a `where` clause: `'a: 'b + 'c`.
 
 ##### `impl Clone for crate::PredicateLifetime`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratepredicatelifetime-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::PredicateLifetime`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratepredicatelifetime-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::PredicateLifetime`
 
 ##### `impl Hash for crate::PredicateLifetime`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratepredicatelifetime-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::PredicateLifetime`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratepredicatelifetime-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for PredicateLifetime`
 
 ##### `impl<T> Spanned for PredicateLifetime`
 
-- `fn span(self: &Self) -> Span`
+- <span id="predicatelifetime-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::generics::PredicateLifetime`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crategenericspredicatelifetime-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `PredicateType`
 
@@ -741,8 +807,8 @@ A lifetime predicate in a `where` clause: `'a: 'b + 'c`.
 struct PredicateType {
     pub lifetimes: Option<BoundLifetimes>,
     pub bounded_ty: crate::ty::Type,
-    pub colon_token: $crate::token::Colon,
-    pub bounds: crate::punctuated::Punctuated<TypeParamBound, $crate::token::Plus>,
+    pub colon_token: token::Colon,
+    pub bounds: crate::punctuated::Punctuated<TypeParamBound, token::Plus>,
 }
 ```
 
@@ -758,7 +824,7 @@ A type predicate in a `where` clause: `for<'c> Foo<'c>: Trait<'c>`.
 
   The type being bounded
 
-- **`bounds`**: `crate::punctuated::Punctuated<TypeParamBound, $crate::token::Plus>`
+- **`bounds`**: `crate::punctuated::Punctuated<TypeParamBound, token::Plus>`
 
   Trait and lifetime bounds (`Clone+Send+'static`)
 
@@ -766,31 +832,31 @@ A type predicate in a `where` clause: `for<'c> Foo<'c>: Trait<'c>`.
 
 ##### `impl Clone for crate::PredicateType`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratepredicatetype-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::PredicateType`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratepredicatetype-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::PredicateType`
 
 ##### `impl Hash for crate::PredicateType`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratepredicatetype-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::PredicateType`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratepredicatetype-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for PredicateType`
 
 ##### `impl<T> Spanned for PredicateType`
 
-- `fn span(self: &Self) -> Span`
+- <span id="predicatetype-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::generics::PredicateType`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crategenericspredicatetype-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ## Enums
 
@@ -830,35 +896,35 @@ This type is a [syntax tree enum].
 
 ##### `impl Clone for crate::GenericParam`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crategenericparam-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::GenericParam`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crategenericparam-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::GenericParam`
 
 ##### `impl Hash for crate::GenericParam`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crategenericparam-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::generics::GenericParam`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crategenericsgenericparam-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::GenericParam`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crategenericparam-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for GenericParam`
 
 ##### `impl<T> Spanned for GenericParam`
 
-- `fn span(self: &Self) -> Span`
+- <span id="genericparam-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for GenericParam`
 
-- `fn to_tokens(self: &Self, tokens: &mut ::proc_macro2::TokenStream)`
+- <span id="genericparam-to-tokens"></span>`fn to_tokens(&self, tokens: &mut ::proc_macro2::TokenStream)`
 
 ### `TypeParamBound`
 
@@ -875,50 +941,50 @@ A trait or lifetime used as a bound on a type parameter.
 
 #### Implementations
 
-- `fn parse_single(input: ParseStream<'_>, allow_precise_capture: bool, allow_const: bool) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crategenericstypeparambound-parse-single"></span>`fn parse_single(input: ParseStream<'_>, allow_precise_capture: bool, allow_const: bool) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
-- `fn parse_multiple(input: ParseStream<'_>, allow_plus: bool, allow_precise_capture: bool, allow_const: bool) -> Result<Punctuated<Self, $crate::token::Plus>>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md), [`Punctuated`](../punctuated/index.md), [`Plus`](../token/index.md)
+- <span id="crategenericstypeparambound-parse-multiple"></span>`fn parse_multiple(input: ParseStream<'_>, allow_plus: bool, allow_precise_capture: bool, allow_const: bool) -> Result<Punctuated<Self, token::Plus>>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md), [`Punctuated`](../punctuated/index.md), [`Plus`](../token/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::TypeParamBound`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratetypeparambound-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::TypeParamBound`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratetypeparambound-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::TypeParamBound`
 
 ##### `impl Hash for crate::TypeParamBound`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratetypeparambound-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::generics::TypeParamBound`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crategenericstypeparambound-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::TypeParamBound`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratetypeparambound-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for TypeParamBound`
 
 ##### `impl<T> Spanned for TypeParamBound`
 
-- `fn span(self: &Self) -> Span`
+- <span id="typeparambound-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for TypeParamBound`
 
-- `fn to_tokens(self: &Self, tokens: &mut ::proc_macro2::TokenStream)`
+- <span id="typeparambound-to-tokens"></span>`fn to_tokens(&self, tokens: &mut ::proc_macro2::TokenStream)`
 
 ### `TraitBoundModifier`
 
 ```rust
 enum TraitBoundModifier {
     None,
-    Maybe($crate::token::Question),
+    Maybe(token::Question),
 }
 ```
 
@@ -929,37 +995,37 @@ A modifier on a trait bound, currently only used for the `?` in
 
 ##### `impl Clone for crate::TraitBoundModifier`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratetraitboundmodifier-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Copy for crate::TraitBoundModifier`
 
 ##### `impl Debug for crate::TraitBoundModifier`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratetraitboundmodifier-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::TraitBoundModifier`
 
 ##### `impl Hash for crate::TraitBoundModifier`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratetraitboundmodifier-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::generics::TraitBoundModifier`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crategenericstraitboundmodifier-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::TraitBoundModifier`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratetraitboundmodifier-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for TraitBoundModifier`
 
 ##### `impl<T> Spanned for TraitBoundModifier`
 
-- `fn span(self: &Self) -> Span`
+- <span id="traitboundmodifier-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::generics::TraitBoundModifier`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crategenericstraitboundmodifier-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `CapturedParam`
 
@@ -989,35 +1055,35 @@ Single parameter in a precise capturing bound.
 
 ##### `impl Clone for crate::CapturedParam`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratecapturedparam-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::CapturedParam`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratecapturedparam-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::CapturedParam`
 
 ##### `impl Hash for crate::CapturedParam`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratecapturedparam-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::generics::CapturedParam`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crategenericscapturedparam-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::CapturedParam`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratecapturedparam-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for CapturedParam`
 
 ##### `impl<T> Spanned for CapturedParam`
 
-- `fn span(self: &Self) -> Span`
+- <span id="capturedparam-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::generics::CapturedParam`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="crategenericscapturedparam-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `WherePredicate`
 
@@ -1049,35 +1115,35 @@ This type is a [syntax tree enum].
 
 ##### `impl Clone for crate::WherePredicate`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratewherepredicate-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::WherePredicate`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratewherepredicate-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::WherePredicate`
 
 ##### `impl Hash for crate::WherePredicate`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratewherepredicate-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::generics::WherePredicate`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="crategenericswherepredicate-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::WherePredicate`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratewherepredicate-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for WherePredicate`
 
 ##### `impl<T> Spanned for WherePredicate`
 
-- `fn span(self: &Self) -> Span`
+- <span id="wherepredicate-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for WherePredicate`
 
-- `fn to_tokens(self: &Self, tokens: &mut ::proc_macro2::TokenStream)`
+- <span id="wherepredicate-to-tokens"></span>`fn to_tokens(&self, tokens: &mut ::proc_macro2::TokenStream)`
 
 ## Macros
 

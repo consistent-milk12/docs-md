@@ -4,6 +4,31 @@
 
 # Module `stmt`
 
+## Contents
+
+- [Modules](#modules)
+  - [`parsing`](#parsing)
+  - [`printing`](#printing)
+- [Structs](#structs)
+  - [`Block`](#block)
+  - [`Local`](#local)
+  - [`LocalInit`](#localinit)
+  - [`StmtMacro`](#stmtmacro)
+- [Enums](#enums)
+  - [`Stmt`](#stmt)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`parsing`](#parsing) | mod |  |
+| [`printing`](#printing) | mod |  |
+| [`Block`](#block) | struct | A braced block containing Rust statements. |
+| [`Local`](#local) | struct | A local `let` binding: `let x: u64 = s.parse()?;`. |
+| [`LocalInit`](#localinit) | struct | The expression assigned in a local `let` binding, including optional |
+| [`StmtMacro`](#stmtmacro) | struct | A macro invocation in statement position. |
+| [`Stmt`](#stmt) | enum | A statement, usually ending in a semicolon. |
+
 ## Modules
 
 - [`parsing`](parsing/index.md) - 
@@ -30,51 +55,51 @@ A braced block containing Rust statements.
 
 #### Implementations
 
-- `fn parse_within(input: ParseStream<'_>) -> Result<Vec<Stmt>>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md), [`Stmt`](../index.md)
+- <span id="cratestmtblock-parse-within"></span>`fn parse_within(input: ParseStream<'_>) -> Result<Vec<Stmt>>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md), [`Stmt`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::Block`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="crateblock-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Block`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="crateblock-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Block`
 
 ##### `impl Hash for crate::Block`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="crateblock-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::stmt::Block`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratestmtblock-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::Block`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="crateblock-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for Block`
 
 ##### `impl<T> Spanned for Block`
 
-- `fn span(self: &Self) -> Span`
+- <span id="block-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::stmt::Block`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratestmtblock-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `Local`
 
 ```rust
 struct Local {
     pub attrs: Vec<crate::attr::Attribute>,
-    pub let_token: $crate::token::Let,
+    pub let_token: token::Let,
     pub pat: crate::pat::Pat,
     pub init: Option<LocalInit>,
-    pub semi_token: $crate::token::Semi,
+    pub semi_token: token::Semi,
 }
 ```
 
@@ -82,45 +107,45 @@ A local `let` binding: `let x: u64 = s.parse()?;`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratelocal-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::Local`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratelocal-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Local`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratelocal-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Local`
 
 ##### `impl Hash for crate::Local`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratelocal-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::Local`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratelocal-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for Local`
 
 ##### `impl<T> Spanned for Local`
 
-- `fn span(self: &Self) -> Span`
+- <span id="local-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::stmt::Local`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratestmtlocal-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ### `LocalInit`
 
 ```rust
 struct LocalInit {
-    pub eq_token: $crate::token::Eq,
+    pub eq_token: token::Eq,
     pub expr: Box<crate::expr::Expr>,
-    pub diverge: Option<($crate::token::Else, Box<crate::expr::Expr>)>,
+    pub diverge: Option<(token::Else, Box<crate::expr::Expr>)>,
 }
 ```
 
@@ -134,21 +159,21 @@ diverging `else` block.
 
 ##### `impl Clone for crate::LocalInit`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratelocalinit-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::LocalInit`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratelocalinit-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::LocalInit`
 
 ##### `impl Hash for crate::LocalInit`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratelocalinit-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::LocalInit`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratelocalinit-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ### `StmtMacro`
 
@@ -156,7 +181,7 @@ diverging `else` block.
 struct StmtMacro {
     pub attrs: Vec<crate::attr::Attribute>,
     pub mac: crate::mac::Macro,
-    pub semi_token: Option<$crate::token::Semi>,
+    pub semi_token: Option<token::Semi>,
 }
 ```
 
@@ -168,37 +193,37 @@ expression.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratestmtmacro-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
 ##### `impl Clone for crate::StmtMacro`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratestmtmacro-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::StmtMacro`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratestmtmacro-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::StmtMacro`
 
 ##### `impl Hash for crate::StmtMacro`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratestmtmacro-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl PartialEq for crate::StmtMacro`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratestmtmacro-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for StmtMacro`
 
 ##### `impl<T> Spanned for StmtMacro`
 
-- `fn span(self: &Self) -> Span`
+- <span id="stmtmacro-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::stmt::StmtMacro`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratestmtstmtmacro-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ## Enums
 
@@ -208,7 +233,7 @@ expression.
 enum Stmt {
     Local(Local),
     Item(crate::item::Item),
-    Expr(crate::expr::Expr, Option<$crate::token::Semi>),
+    Expr(crate::expr::Expr, Option<token::Semi>),
     Macro(StmtMacro),
 }
 ```
@@ -241,33 +266,33 @@ A statement, usually ending in a semicolon.
 
 ##### `impl Clone for crate::Stmt`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="cratestmt-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl Debug for crate::Stmt`
 
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratestmt-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for crate::Stmt`
 
 ##### `impl Hash for crate::Stmt`
 
-- `fn hash<H>(self: &Self, state: &mut H)`
+- <span id="cratestmt-hash"></span>`fn hash<H>(&self, state: &mut H)`
 
 ##### `impl Parse for crate::stmt::Stmt`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- <span id="cratestmtstmt-parse"></span>`fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::Stmt`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="cratestmt-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for Stmt`
 
 ##### `impl<T> Spanned for Stmt`
 
-- `fn span(self: &Self) -> Span`
+- <span id="stmt-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for crate::stmt::Stmt`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="cratestmtstmt-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 

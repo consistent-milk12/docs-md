@@ -4,6 +4,40 @@
 
 # Module `draw_target`
 
+## Contents
+
+- [Structs](#structs)
+  - [`ProgressDrawTarget`](#progressdrawtarget)
+  - [`DrawStateWrapper`](#drawstatewrapper)
+  - [`RateLimiter`](#ratelimiter)
+  - [`DrawState`](#drawstate)
+  - [`VisualLines`](#visuallines)
+- [Enums](#enums)
+  - [`TargetKind`](#targetkind)
+  - [`Drawable`](#drawable)
+  - [`LineAdjust`](#lineadjust)
+  - [`LineType`](#linetype)
+- [Functions](#functions)
+  - [`visual_line_count`](#visual_line_count)
+- [Constants](#constants)
+  - [`MAX_BURST`](#max_burst)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`ProgressDrawTarget`](#progressdrawtarget) | struct | Target for draw operations |
+| [`DrawStateWrapper`](#drawstatewrapper) | struct |  |
+| [`RateLimiter`](#ratelimiter) | struct |  |
+| [`DrawState`](#drawstate) | struct | The drawn state of an element. |
+| [`VisualLines`](#visuallines) | struct |  |
+| [`TargetKind`](#targetkind) | enum |  |
+| [`Drawable`](#drawable) | enum |  |
+| [`LineAdjust`](#lineadjust) | enum |  |
+| [`LineType`](#linetype) | enum |  |
+| [`visual_line_count`](#visual_line_count) | fn | Calculate the number of visual lines in the given lines, after |
+| [`MAX_BURST`](#max_burst) | const |  |
+
 ## Structs
 
 ### `ProgressDrawTarget`
@@ -24,47 +58,47 @@ device.
 
 #### Implementations
 
-- `fn stdout() -> Self`
+- <span id="progressdrawtarget-stdout"></span>`fn stdout() -> Self`
 
-- `fn stderr() -> Self`
+- <span id="progressdrawtarget-stderr"></span>`fn stderr() -> Self`
 
-- `fn stdout_with_hz(refresh_rate: u8) -> Self`
+- <span id="progressdrawtarget-stdout-with-hz"></span>`fn stdout_with_hz(refresh_rate: u8) -> Self`
 
-- `fn stderr_with_hz(refresh_rate: u8) -> Self`
+- <span id="progressdrawtarget-stderr-with-hz"></span>`fn stderr_with_hz(refresh_rate: u8) -> Self`
 
-- `fn new_remote(state: Arc<RwLock<MultiState>>, idx: usize) -> Self` — [`MultiState`](../multi/index.md)
+- <span id="progressdrawtarget-new-remote"></span>`fn new_remote(state: Arc<RwLock<MultiState>>, idx: usize) -> Self` — [`MultiState`](../multi/index.md)
 
-- `fn term(term: Term, refresh_rate: u8) -> Self`
+- <span id="progressdrawtarget-term"></span>`fn term(term: Term, refresh_rate: u8) -> Self`
 
-- `fn term_like(term_like: Box<dyn TermLike>) -> Self` — [`TermLike`](../index.md)
+- <span id="progressdrawtarget-term-like"></span>`fn term_like(term_like: Box<dyn TermLike>) -> Self` — [`TermLike`](../index.md)
 
-- `fn term_like_with_hz(term_like: Box<dyn TermLike>, refresh_rate: u8) -> Self` — [`TermLike`](../index.md)
+- <span id="progressdrawtarget-term-like-with-hz"></span>`fn term_like_with_hz(term_like: Box<dyn TermLike>, refresh_rate: u8) -> Self` — [`TermLike`](../index.md)
 
-- `fn hidden() -> Self`
+- <span id="progressdrawtarget-hidden"></span>`fn hidden() -> Self`
 
-- `fn is_hidden(self: &Self) -> bool`
+- <span id="progressdrawtarget-is-hidden"></span>`fn is_hidden(&self) -> bool`
 
-- `fn is_stderr(self: &Self) -> bool`
+- <span id="progressdrawtarget-is-stderr"></span>`fn is_stderr(&self) -> bool`
 
-- `fn width(self: &Self) -> Option<u16>`
+- <span id="progressdrawtarget-width"></span>`fn width(&self) -> Option<u16>`
 
-- `fn mark_zombie(self: &Self)`
+- <span id="progressdrawtarget-mark-zombie"></span>`fn mark_zombie(&self)`
 
-- `fn set_move_cursor(self: &mut Self, move_cursor: bool)`
+- <span id="progressdrawtarget-set-move-cursor"></span>`fn set_move_cursor(&mut self, move_cursor: bool)`
 
-- `fn drawable(self: &mut Self, force_draw: bool, now: Instant) -> Option<Drawable<'_>>` — [`Drawable`](#drawable)
+- <span id="progressdrawtarget-drawable"></span>`fn drawable(&mut self, force_draw: bool, now: Instant) -> Option<Drawable<'_>>` — [`Drawable`](#drawable)
 
-- `fn disconnect(self: &Self, now: Instant)`
+- <span id="progressdrawtarget-disconnect"></span>`fn disconnect(&self, now: Instant)`
 
-- `fn remote(self: &Self) -> Option<(&Arc<RwLock<MultiState>>, usize)>` — [`MultiState`](../multi/index.md)
+- <span id="progressdrawtarget-remote"></span>`fn remote(&self) -> Option<(&Arc<RwLock<MultiState>>, usize)>` — [`MultiState`](../multi/index.md)
 
-- `fn adjust_last_line_count(self: &mut Self, adjust: LineAdjust)` — [`LineAdjust`](#lineadjust)
+- <span id="progressdrawtarget-adjust-last-line-count"></span>`fn adjust_last_line_count(&mut self, adjust: LineAdjust)` — [`LineAdjust`](#lineadjust)
 
 #### Trait Implementations
 
 ##### `impl Debug for ProgressDrawTarget`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="progressdrawtarget-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `DrawStateWrapper<'a>`
 
@@ -77,29 +111,29 @@ struct DrawStateWrapper<'a> {
 
 #### Implementations
 
-- `fn for_term(state: &'a mut DrawState) -> Self` — [`DrawState`](#drawstate)
+- <span id="drawstatewrapper-for-term"></span>`fn for_term(state: &'a mut DrawState) -> Self` — [`DrawState`](#drawstate)
 
-- `fn for_multi(state: &'a mut DrawState, orphan_lines: &'a mut Vec<LineType>) -> Self` — [`DrawState`](#drawstate), [`LineType`](#linetype)
+- <span id="drawstatewrapper-for-multi"></span>`fn for_multi(state: &'a mut DrawState, orphan_lines: &'a mut Vec<LineType>) -> Self` — [`DrawState`](#drawstate), [`LineType`](#linetype)
 
 #### Trait Implementations
 
 ##### `impl Deref for DrawStateWrapper<'_>`
 
-- `type Target = DrawState`
+- <span id="drawstatewrapper-target"></span>`type Target = DrawState`
 
-- `fn deref(self: &Self) -> &<Self as >::Target`
+- <span id="drawstatewrapper-deref"></span>`fn deref(&self) -> &<Self as >::Target`
 
 ##### `impl DerefMut for DrawStateWrapper<'_>`
 
-- `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+- <span id="drawstatewrapper-deref-mut"></span>`fn deref_mut(&mut self) -> &mut <Self as >::Target`
 
 ##### `impl Drop for DrawStateWrapper<'_>`
 
-- `fn drop(self: &mut Self)`
+- <span id="drawstatewrapper-drop"></span>`fn drop(&mut self)`
 
 ##### `impl<P, T> Receiver for DrawStateWrapper<'a>`
 
-- `type Target = T`
+- <span id="drawstatewrapper-target"></span>`type Target = T`
 
 ### `RateLimiter`
 
@@ -113,15 +147,15 @@ struct RateLimiter {
 
 #### Implementations
 
-- `fn new(rate: u8) -> Self`
+- <span id="ratelimiter-new"></span>`fn new(rate: u8) -> Self`
 
-- `fn allow(self: &mut Self, now: Instant) -> bool`
+- <span id="ratelimiter-allow"></span>`fn allow(&mut self, now: Instant) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Debug for RateLimiter`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="ratelimiter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `DrawState`
 
@@ -151,25 +185,25 @@ The drawn state of an element.
 
 #### Implementations
 
-- `fn draw_to_term(self: &mut Self, term: &impl TermLike + ?Sized, bar_count: &mut VisualLines) -> io::Result<()>` — [`TermLike`](../index.md), [`VisualLines`](#visuallines)
+- <span id="drawstate-draw-to-term"></span>`fn draw_to_term(&mut self, term: &impl TermLike + ?Sized, bar_count: &mut VisualLines) -> io::Result<()>` — [`TermLike`](../index.md), [`VisualLines`](#visuallines)
 
-- `fn reset(self: &mut Self)`
+- <span id="drawstate-reset"></span>`fn reset(&mut self)`
 
-- `fn visual_line_count(self: &Self, range: impl SliceIndex<[LineType], Output = [LineType]>, width: usize) -> VisualLines` — [`LineType`](#linetype), [`VisualLines`](#visuallines)
+- <span id="drawstate-visual-line-count"></span>`fn visual_line_count(&self, range: impl SliceIndex<[LineType], Output = [LineType]>, width: usize) -> VisualLines` — [`LineType`](#linetype), [`VisualLines`](#visuallines)
 
 #### Trait Implementations
 
 ##### `impl Clone for DrawState`
 
-- `fn clone(self: &Self) -> DrawState` — [`DrawState`](#drawstate)
+- <span id="drawstate-clone"></span>`fn clone(&self) -> DrawState` — [`DrawState`](#drawstate)
 
 ##### `impl Debug for DrawState`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="drawstate-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for DrawState`
 
-- `fn default() -> DrawState` — [`DrawState`](#drawstate)
+- <span id="drawstate-default"></span>`fn default() -> DrawState` — [`DrawState`](#drawstate)
 
 ### `VisualLines`
 
@@ -179,59 +213,59 @@ struct VisualLines(usize);
 
 #### Implementations
 
-- `fn saturating_add(self: &Self, other: Self) -> Self`
+- <span id="visuallines-saturating-add"></span>`fn saturating_add(&self, other: Self) -> Self`
 
-- `fn saturating_sub(self: &Self, other: Self) -> Self`
+- <span id="visuallines-saturating-sub"></span>`fn saturating_sub(&self, other: Self) -> Self`
 
-- `fn as_usize(self: &Self) -> usize`
+- <span id="visuallines-as-usize"></span>`fn as_usize(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Add for VisualLines`
 
-- `type Output = VisualLines`
+- <span id="visuallines-output"></span>`type Output = VisualLines`
 
-- `fn add(self: Self, rhs: Self) -> <Self as >::Output`
+- <span id="visuallines-add"></span>`fn add(self, rhs: Self) -> <Self as >::Output`
 
 ##### `impl AddAssign for VisualLines`
 
-- `fn add_assign(self: &mut Self, rhs: Self)`
+- <span id="visuallines-add-assign"></span>`fn add_assign(&mut self, rhs: Self)`
 
 ##### `impl Clone for VisualLines`
 
-- `fn clone(self: &Self) -> VisualLines` — [`VisualLines`](#visuallines)
+- <span id="visuallines-clone"></span>`fn clone(&self) -> VisualLines` — [`VisualLines`](#visuallines)
 
 ##### `impl Copy for VisualLines`
 
 ##### `impl Debug for VisualLines`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="visuallines-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for VisualLines`
 
-- `fn default() -> VisualLines` — [`VisualLines`](#visuallines)
+- <span id="visuallines-default"></span>`fn default() -> VisualLines` — [`VisualLines`](#visuallines)
 
 ##### `impl Eq for VisualLines`
 
 ##### `impl Ord for VisualLines`
 
-- `fn cmp(self: &Self, other: &VisualLines) -> $crate::cmp::Ordering` — [`VisualLines`](#visuallines)
+- <span id="visuallines-cmp"></span>`fn cmp(&self, other: &VisualLines) -> cmp::Ordering` — [`VisualLines`](#visuallines)
 
 ##### `impl PartialEq for VisualLines`
 
-- `fn eq(self: &Self, other: &VisualLines) -> bool` — [`VisualLines`](#visuallines)
+- <span id="visuallines-eq"></span>`fn eq(&self, other: &VisualLines) -> bool` — [`VisualLines`](#visuallines)
 
 ##### `impl PartialOrd for VisualLines`
 
-- `fn partial_cmp(self: &Self, other: &VisualLines) -> $crate::option::Option<$crate::cmp::Ordering>` — [`VisualLines`](#visuallines)
+- <span id="visuallines-partial-cmp"></span>`fn partial_cmp(&self, other: &VisualLines) -> option::Option<cmp::Ordering>` — [`VisualLines`](#visuallines)
 
 ##### `impl StructuralPartialEq for VisualLines`
 
 ##### `impl Sub for VisualLines`
 
-- `type Output = VisualLines`
+- <span id="visuallines-output"></span>`type Output = VisualLines`
 
-- `fn sub(self: Self, rhs: Self) -> <Self as >::Output`
+- <span id="visuallines-sub"></span>`fn sub(self, rhs: Self) -> <Self as >::Output`
 
 ## Enums
 
@@ -261,13 +295,13 @@ enum TargetKind {
 
 #### Implementations
 
-- `fn adjust_last_line_count(self: &mut Self, adjust: LineAdjust)` — [`LineAdjust`](#lineadjust)
+- <span id="targetkind-adjust-last-line-count"></span>`fn adjust_last_line_count(&mut self, adjust: LineAdjust)` — [`LineAdjust`](#lineadjust)
 
 #### Trait Implementations
 
 ##### `impl Debug for TargetKind`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="targetkind-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Drawable<'a>`
 
@@ -294,15 +328,15 @@ enum Drawable<'a> {
 
 #### Implementations
 
-- `fn adjust_last_line_count(self: &mut Self, adjust: LineAdjust)` — [`LineAdjust`](#lineadjust)
+- <span id="drawable-adjust-last-line-count"></span>`fn adjust_last_line_count(&mut self, adjust: LineAdjust)` — [`LineAdjust`](#lineadjust)
 
-- `fn state(self: &mut Self) -> DrawStateWrapper<'_>` — [`DrawStateWrapper`](#drawstatewrapper)
+- <span id="drawable-state"></span>`fn state(&mut self) -> DrawStateWrapper<'_>` — [`DrawStateWrapper`](#drawstatewrapper)
 
-- `fn clear(self: Self) -> io::Result<()>`
+- <span id="drawable-clear"></span>`fn clear(self) -> io::Result<()>`
 
-- `fn draw(self: Self) -> io::Result<()>`
+- <span id="drawable-draw"></span>`fn draw(self) -> io::Result<()>`
 
-- `fn width(self: &Self) -> Option<u16>`
+- <span id="drawable-width"></span>`fn width(&self) -> Option<u16>`
 
 ### `LineAdjust`
 
@@ -335,27 +369,27 @@ enum LineType {
 
 #### Implementations
 
-- `fn wrapped_height(self: &Self, width: usize) -> VisualLines` — [`VisualLines`](#visuallines)
+- <span id="linetype-wrapped-height"></span>`fn wrapped_height(&self, width: usize) -> VisualLines` — [`VisualLines`](#visuallines)
 
-- `fn console_width(self: &Self) -> usize`
+- <span id="linetype-console-width"></span>`fn console_width(&self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl AsRef for LineType`
 
-- `fn as_ref(self: &Self) -> &str`
+- <span id="linetype-as-ref"></span>`fn as_ref(&self) -> &str`
 
 ##### `impl Clone for LineType`
 
-- `fn clone(self: &Self) -> LineType` — [`LineType`](#linetype)
+- <span id="linetype-clone"></span>`fn clone(&self) -> LineType` — [`LineType`](#linetype)
 
 ##### `impl Debug for LineType`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="linetype-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl PartialEq for LineType`
 
-- `fn eq(self: &Self, other: &str) -> bool`
+- <span id="linetype-eq"></span>`fn eq(&self, other: &str) -> bool`
 
 ## Functions
 

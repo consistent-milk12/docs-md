@@ -6,6 +6,174 @@
 
 Header: `linux/can/bcm.h`
 
+## Contents
+
+- [Modules](#modules)
+  - [`bcm`](#bcm)
+  - [`j1939`](#j1939)
+  - [`raw`](#raw)
+- [Structs](#structs)
+  - [`bcm_timeval`](#bcm_timeval)
+  - [`bcm_msg_head`](#bcm_msg_head)
+  - [`can_frame`](#can_frame)
+  - [`canfd_frame`](#canfd_frame)
+  - [`canxl_frame`](#canxl_frame)
+  - [`sockaddr_can`](#sockaddr_can)
+  - [`__c_anonymous_sockaddr_can_tp`](#__c_anonymous_sockaddr_can_tp)
+  - [`__c_anonymous_sockaddr_can_j1939`](#__c_anonymous_sockaddr_can_j1939)
+  - [`can_filter`](#can_filter)
+- [Type Aliases](#type-aliases)
+  - [`canid_t`](#canid_t)
+  - [`can_err_mask_t`](#can_err_mask_t)
+- [Constants](#constants)
+  - [`TX_SETUP`](#tx_setup)
+  - [`TX_DELETE`](#tx_delete)
+  - [`TX_READ`](#tx_read)
+  - [`TX_SEND`](#tx_send)
+  - [`RX_SETUP`](#rx_setup)
+  - [`RX_DELETE`](#rx_delete)
+  - [`RX_READ`](#rx_read)
+  - [`TX_STATUS`](#tx_status)
+  - [`TX_EXPIRED`](#tx_expired)
+  - [`RX_STATUS`](#rx_status)
+  - [`RX_TIMEOUT`](#rx_timeout)
+  - [`RX_CHANGED`](#rx_changed)
+  - [`SETTIMER`](#settimer)
+  - [`STARTTIMER`](#starttimer)
+  - [`TX_COUNTEVT`](#tx_countevt)
+  - [`TX_ANNOUNCE`](#tx_announce)
+  - [`TX_CP_CAN_ID`](#tx_cp_can_id)
+  - [`RX_FILTER_ID`](#rx_filter_id)
+  - [`RX_CHECK_DLC`](#rx_check_dlc)
+  - [`RX_NO_AUTOTIMER`](#rx_no_autotimer)
+  - [`RX_ANNOUNCE_RESUME`](#rx_announce_resume)
+  - [`TX_RESET_MULTI_IDX`](#tx_reset_multi_idx)
+  - [`RX_RTR_FRAME`](#rx_rtr_frame)
+  - [`CAN_FD_FRAME`](#can_fd_frame)
+  - [`CAN_EFF_FLAG`](#can_eff_flag)
+  - [`CAN_RTR_FLAG`](#can_rtr_flag)
+  - [`CAN_ERR_FLAG`](#can_err_flag)
+  - [`CAN_SFF_MASK`](#can_sff_mask)
+  - [`CAN_EFF_MASK`](#can_eff_mask)
+  - [`CAN_ERR_MASK`](#can_err_mask)
+  - [`CANXL_PRIO_MASK`](#canxl_prio_mask)
+  - [`CAN_SFF_ID_BITS`](#can_sff_id_bits)
+  - [`CAN_EFF_ID_BITS`](#can_eff_id_bits)
+  - [`CANXL_PRIO_BITS`](#canxl_prio_bits)
+  - [`CAN_MAX_DLC`](#can_max_dlc)
+  - [`CAN_MAX_DLEN`](#can_max_dlen)
+  - [`CANFD_MAX_DLC`](#canfd_max_dlc)
+  - [`CANFD_MAX_DLEN`](#canfd_max_dlen)
+  - [`CANXL_MIN_DLC`](#canxl_min_dlc)
+  - [`CANXL_MAX_DLC`](#canxl_max_dlc)
+  - [`CANXL_MAX_DLC_MASK`](#canxl_max_dlc_mask)
+  - [`CANXL_MIN_DLEN`](#canxl_min_dlen)
+  - [`CANXL_MAX_DLEN`](#canxl_max_dlen)
+  - [`CANFD_BRS`](#canfd_brs)
+  - [`CANFD_ESI`](#canfd_esi)
+  - [`CANFD_FDF`](#canfd_fdf)
+  - [`CANXL_XLF`](#canxl_xlf)
+  - [`CANXL_SEC`](#canxl_sec)
+  - [`CAN_MTU`](#can_mtu)
+  - [`CANFD_MTU`](#canfd_mtu)
+  - [`CANXL_MTU`](#canxl_mtu)
+  - [`CANXL_HDR_SIZE`](#canxl_hdr_size)
+  - [`CANXL_MIN_MTU`](#canxl_min_mtu)
+  - [`CANXL_MAX_MTU`](#canxl_max_mtu)
+  - [`CAN_RAW`](#can_raw)
+  - [`CAN_BCM`](#can_bcm)
+  - [`CAN_TP16`](#can_tp16)
+  - [`CAN_TP20`](#can_tp20)
+  - [`CAN_MCNET`](#can_mcnet)
+  - [`CAN_ISOTP`](#can_isotp)
+  - [`CAN_J1939`](#can_j1939)
+  - [`CAN_NPROTO`](#can_nproto)
+  - [`SOL_CAN_BASE`](#sol_can_base)
+  - [`CAN_INV_FILTER`](#can_inv_filter)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`bcm`](#bcm) | mod | Header: `linux/can/bcm.h` |
+| [`j1939`](#j1939) | mod | `linux/can/j1939.h` |
+| [`raw`](#raw) | mod | Header: `linux/can/raw.h` |
+| [`bcm_timeval`](#bcm_timeval) | struct |  |
+| [`bcm_msg_head`](#bcm_msg_head) | struct |  |
+| [`can_frame`](#can_frame) | struct |  |
+| [`canfd_frame`](#canfd_frame) | struct |  |
+| [`canxl_frame`](#canxl_frame) | struct |  |
+| [`sockaddr_can`](#sockaddr_can) | struct |  |
+| [`__c_anonymous_sockaddr_can_tp`](#__c_anonymous_sockaddr_can_tp) | struct |  |
+| [`__c_anonymous_sockaddr_can_j1939`](#__c_anonymous_sockaddr_can_j1939) | struct |  |
+| [`can_filter`](#can_filter) | struct |  |
+| [`canid_t`](#canid_t) | type |  |
+| [`can_err_mask_t`](#can_err_mask_t) | type |  |
+| [`TX_SETUP`](#tx_setup) | const |  |
+| [`TX_DELETE`](#tx_delete) | const |  |
+| [`TX_READ`](#tx_read) | const |  |
+| [`TX_SEND`](#tx_send) | const |  |
+| [`RX_SETUP`](#rx_setup) | const |  |
+| [`RX_DELETE`](#rx_delete) | const |  |
+| [`RX_READ`](#rx_read) | const |  |
+| [`TX_STATUS`](#tx_status) | const |  |
+| [`TX_EXPIRED`](#tx_expired) | const |  |
+| [`RX_STATUS`](#rx_status) | const |  |
+| [`RX_TIMEOUT`](#rx_timeout) | const |  |
+| [`RX_CHANGED`](#rx_changed) | const |  |
+| [`SETTIMER`](#settimer) | const |  |
+| [`STARTTIMER`](#starttimer) | const |  |
+| [`TX_COUNTEVT`](#tx_countevt) | const |  |
+| [`TX_ANNOUNCE`](#tx_announce) | const |  |
+| [`TX_CP_CAN_ID`](#tx_cp_can_id) | const |  |
+| [`RX_FILTER_ID`](#rx_filter_id) | const |  |
+| [`RX_CHECK_DLC`](#rx_check_dlc) | const |  |
+| [`RX_NO_AUTOTIMER`](#rx_no_autotimer) | const |  |
+| [`RX_ANNOUNCE_RESUME`](#rx_announce_resume) | const |  |
+| [`TX_RESET_MULTI_IDX`](#tx_reset_multi_idx) | const |  |
+| [`RX_RTR_FRAME`](#rx_rtr_frame) | const |  |
+| [`CAN_FD_FRAME`](#can_fd_frame) | const |  |
+| [`CAN_EFF_FLAG`](#can_eff_flag) | const |  |
+| [`CAN_RTR_FLAG`](#can_rtr_flag) | const |  |
+| [`CAN_ERR_FLAG`](#can_err_flag) | const |  |
+| [`CAN_SFF_MASK`](#can_sff_mask) | const |  |
+| [`CAN_EFF_MASK`](#can_eff_mask) | const |  |
+| [`CAN_ERR_MASK`](#can_err_mask) | const |  |
+| [`CANXL_PRIO_MASK`](#canxl_prio_mask) | const |  |
+| [`CAN_SFF_ID_BITS`](#can_sff_id_bits) | const |  |
+| [`CAN_EFF_ID_BITS`](#can_eff_id_bits) | const |  |
+| [`CANXL_PRIO_BITS`](#canxl_prio_bits) | const |  |
+| [`CAN_MAX_DLC`](#can_max_dlc) | const |  |
+| [`CAN_MAX_DLEN`](#can_max_dlen) | const |  |
+| [`CANFD_MAX_DLC`](#canfd_max_dlc) | const |  |
+| [`CANFD_MAX_DLEN`](#canfd_max_dlen) | const |  |
+| [`CANXL_MIN_DLC`](#canxl_min_dlc) | const |  |
+| [`CANXL_MAX_DLC`](#canxl_max_dlc) | const |  |
+| [`CANXL_MAX_DLC_MASK`](#canxl_max_dlc_mask) | const |  |
+| [`CANXL_MIN_DLEN`](#canxl_min_dlen) | const |  |
+| [`CANXL_MAX_DLEN`](#canxl_max_dlen) | const |  |
+| [`CANFD_BRS`](#canfd_brs) | const |  |
+| [`CANFD_ESI`](#canfd_esi) | const |  |
+| [`CANFD_FDF`](#canfd_fdf) | const |  |
+| [`CANXL_XLF`](#canxl_xlf) | const |  |
+| [`CANXL_SEC`](#canxl_sec) | const |  |
+| [`CAN_MTU`](#can_mtu) | const |  |
+| [`CANFD_MTU`](#canfd_mtu) | const |  |
+| [`CANXL_MTU`](#canxl_mtu) | const |  |
+| [`CANXL_HDR_SIZE`](#canxl_hdr_size) | const |  |
+| [`CANXL_MIN_MTU`](#canxl_min_mtu) | const |  |
+| [`CANXL_MAX_MTU`](#canxl_max_mtu) | const |  |
+| [`CAN_RAW`](#can_raw) | const |  |
+| [`CAN_BCM`](#can_bcm) | const |  |
+| [`CAN_TP16`](#can_tp16) | const |  |
+| [`CAN_TP20`](#can_tp20) | const |  |
+| [`CAN_MCNET`](#can_mcnet) | const |  |
+| [`CAN_ISOTP`](#can_isotp) | const |  |
+| [`CAN_J1939`](#can_j1939) | const |  |
+| [`CAN_NPROTO`](#can_nproto) | const |  |
+| [`SOL_CAN_BASE`](#sol_can_base) | const |  |
+| [`CAN_INV_FILTER`](#can_inv_filter) | const |  |
+
 ## Modules
 
 - [`bcm`](bcm/index.md) - Header: `linux/can/bcm.h`
@@ -27,13 +195,13 @@ struct bcm_timeval {
 
 ##### `impl Clone for bcm_timeval`
 
-- `fn clone(self: &Self) -> bcm_timeval` — [`bcm_timeval`](../../../../index.md)
+- <span id="bcm-timeval-clone"></span>`fn clone(&self) -> bcm_timeval` — [`bcm_timeval`](../../../../index.md)
 
 ##### `impl Copy for bcm_timeval`
 
 ##### `impl Debug for bcm_timeval`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="bcm-timeval-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `bcm_msg_head`
 
@@ -54,13 +222,13 @@ struct bcm_msg_head {
 
 ##### `impl Clone for bcm_msg_head`
 
-- `fn clone(self: &Self) -> bcm_msg_head` — [`bcm_msg_head`](../../../../index.md)
+- <span id="bcm-msg-head-clone"></span>`fn clone(&self) -> bcm_msg_head` — [`bcm_msg_head`](../../../../index.md)
 
 ##### `impl Copy for bcm_msg_head`
 
 ##### `impl Debug for bcm_msg_head`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="bcm-msg-head-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `can_frame`
 
@@ -79,13 +247,13 @@ struct can_frame {
 
 ##### `impl Clone for can_frame`
 
-- `fn clone(self: &Self) -> can_frame` — [`can_frame`](../../../../index.md)
+- <span id="can-frame-clone"></span>`fn clone(&self) -> can_frame` — [`can_frame`](../../../../index.md)
 
 ##### `impl Copy for can_frame`
 
 ##### `impl Debug for can_frame`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="can-frame-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `canfd_frame`
 
@@ -104,13 +272,13 @@ struct canfd_frame {
 
 ##### `impl Clone for canfd_frame`
 
-- `fn clone(self: &Self) -> canfd_frame` — [`canfd_frame`](../../../../index.md)
+- <span id="canfd-frame-clone"></span>`fn clone(&self) -> canfd_frame` — [`canfd_frame`](../../../../index.md)
 
 ##### `impl Copy for canfd_frame`
 
 ##### `impl Debug for canfd_frame`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="canfd-frame-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `canxl_frame`
 
@@ -129,13 +297,13 @@ struct canxl_frame {
 
 ##### `impl Clone for canxl_frame`
 
-- `fn clone(self: &Self) -> canxl_frame` — [`canxl_frame`](../../../../index.md)
+- <span id="canxl-frame-clone"></span>`fn clone(&self) -> canxl_frame` — [`canxl_frame`](../../../../index.md)
 
 ##### `impl Copy for canxl_frame`
 
 ##### `impl Debug for canxl_frame`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="canxl-frame-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `sockaddr_can`
 
@@ -151,13 +319,13 @@ struct sockaddr_can {
 
 ##### `impl Clone for sockaddr_can`
 
-- `fn clone(self: &Self) -> sockaddr_can` — [`sockaddr_can`](../../../../index.md)
+- <span id="sockaddr-can-clone"></span>`fn clone(&self) -> sockaddr_can` — [`sockaddr_can`](../../../../index.md)
 
 ##### `impl Copy for sockaddr_can`
 
 ##### `impl Debug for sockaddr_can`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="sockaddr-can-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `__c_anonymous_sockaddr_can_tp`
 
@@ -172,13 +340,13 @@ struct __c_anonymous_sockaddr_can_tp {
 
 ##### `impl Clone for __c_anonymous_sockaddr_can_tp`
 
-- `fn clone(self: &Self) -> __c_anonymous_sockaddr_can_tp` — [`__c_anonymous_sockaddr_can_tp`](../../../../index.md)
+- <span id="c-anonymous-sockaddr-can-tp-clone"></span>`fn clone(&self) -> __c_anonymous_sockaddr_can_tp` — [`__c_anonymous_sockaddr_can_tp`](../../../../index.md)
 
 ##### `impl Copy for __c_anonymous_sockaddr_can_tp`
 
 ##### `impl Debug for __c_anonymous_sockaddr_can_tp`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="c-anonymous-sockaddr-can-tp-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `__c_anonymous_sockaddr_can_j1939`
 
@@ -194,13 +362,13 @@ struct __c_anonymous_sockaddr_can_j1939 {
 
 ##### `impl Clone for __c_anonymous_sockaddr_can_j1939`
 
-- `fn clone(self: &Self) -> __c_anonymous_sockaddr_can_j1939` — [`__c_anonymous_sockaddr_can_j1939`](../../../../index.md)
+- <span id="c-anonymous-sockaddr-can-j1939-clone"></span>`fn clone(&self) -> __c_anonymous_sockaddr_can_j1939` — [`__c_anonymous_sockaddr_can_j1939`](../../../../index.md)
 
 ##### `impl Copy for __c_anonymous_sockaddr_can_j1939`
 
 ##### `impl Debug for __c_anonymous_sockaddr_can_j1939`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="c-anonymous-sockaddr-can-j1939-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `can_filter`
 
@@ -215,13 +383,13 @@ struct can_filter {
 
 ##### `impl Clone for can_filter`
 
-- `fn clone(self: &Self) -> can_filter` — [`can_filter`](../../../../index.md)
+- <span id="can-filter-clone"></span>`fn clone(&self) -> can_filter` — [`can_filter`](../../../../index.md)
 
 ##### `impl Copy for can_filter`
 
 ##### `impl Debug for can_filter`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="can-filter-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Type Aliases
 

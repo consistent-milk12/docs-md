@@ -20,6 +20,16 @@ The [`WordSeparator`](../index.md) enum is responsible for determining where
 there words are in a line of text. Please refer to the enum and
 its variants for more information.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`WordSeparator`](#wordseparator) | enum | Describes where words occur in a line of text. |
+| [`find_words_ascii_space`](#find_words_ascii_space) | fn |  |
+| [`strip_ansi_escape_sequences`](#strip_ansi_escape_sequences) | fn |  |
+| [`find_words_unicode_break_properties`](#find_words_unicode_break_properties) | fn | Find words in line. |
+| [`SHY`](#shy) | const | Soft hyphen, also knows as a “shy hyphen”. |
+
 ## Enums
 
 ### `WordSeparator`
@@ -140,25 +150,25 @@ assert_eq!(words, vec![Word::from("Hello "), Word::from("World!")]);
 
 #### Implementations
 
-- `const fn new() -> Self`
+- <span id="wordseparator-new"></span>`const fn new() -> Self`
 
-- `fn find_words<'a>(self: &Self, line: &'a str) -> Box<dyn Iterator<Item = Word<'a>>>` — [`Word`](../core/index.md)
+- <span id="wordseparator-find-words"></span>`fn find_words<'a>(&self, line: &'a str) -> Box<dyn Iterator<Item = Word<'a>>>` — [`Word`](../core/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for WordSeparator`
 
-- `fn clone(self: &Self) -> WordSeparator` — [`WordSeparator`](../index.md)
+- <span id="wordseparator-clone"></span>`fn clone(&self) -> WordSeparator` — [`WordSeparator`](../index.md)
 
 ##### `impl Copy for WordSeparator`
 
 ##### `impl Debug for WordSeparator`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="wordseparator-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl PartialEq for WordSeparator`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- <span id="wordseparator-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ## Functions
 

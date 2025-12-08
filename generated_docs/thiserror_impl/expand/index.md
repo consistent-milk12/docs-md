@@ -4,6 +4,37 @@
 
 # Module `expand`
 
+## Contents
+
+- [Functions](#functions)
+  - [`derive`](#derive)
+  - [`try_expand`](#try_expand)
+  - [`impl_struct`](#impl_struct)
+  - [`impl_enum`](#impl_enum)
+  - [`call_site_ident`](#call_site_ident)
+  - [`fields_pat`](#fields_pat)
+  - [`use_as_display`](#use_as_display)
+  - [`from_initializer`](#from_initializer)
+  - [`type_is_option`](#type_is_option)
+  - [`unoptional_type`](#unoptional_type)
+  - [`type_parameter_of_option`](#type_parameter_of_option)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`derive`](#derive) | fn |  |
+| [`try_expand`](#try_expand) | fn |  |
+| [`impl_struct`](#impl_struct) | fn |  |
+| [`impl_enum`](#impl_enum) | fn |  |
+| [`call_site_ident`](#call_site_ident) | fn |  |
+| [`fields_pat`](#fields_pat) | fn |  |
+| [`use_as_display`](#use_as_display) | fn |  |
+| [`from_initializer`](#from_initializer) | fn |  |
+| [`type_is_option`](#type_is_option) | fn |  |
+| [`unoptional_type`](#unoptional_type) | fn |  |
+| [`type_parameter_of_option`](#type_parameter_of_option) | fn |  |
+
 ## Functions
 
 ### `derive`

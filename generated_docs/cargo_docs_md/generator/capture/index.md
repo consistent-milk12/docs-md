@@ -9,6 +9,12 @@ In-memory markdown capture for testing.
 This module provides [`MarkdownCapture`](../../index.md) for capturing generated markdown
 in memory instead of writing to disk, enabling snapshot testing.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`MarkdownCapture`](#markdowncapture) | struct | Captures generated markdown in memory for testing. |
+
 ## Structs
 
 ### `MarkdownCapture`
@@ -34,31 +40,31 @@ side effects.
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="markdowncapture-new"></span>`fn new() -> Self`
 
-- `fn insert(self: &mut Self, path: String, content: String)`
+- <span id="markdowncapture-insert"></span>`fn insert(&mut self, path: String, content: String)`
 
-- `fn get(self: &Self, path: &str) -> Option<&String>`
+- <span id="markdowncapture-get"></span>`fn get(&self, path: &str) -> Option<&String>`
 
-- `fn paths(self: &Self) -> Vec<&String>`
+- <span id="markdowncapture-paths"></span>`fn paths(&self) -> Vec<&String>`
 
-- `fn len(self: &Self) -> usize`
+- <span id="markdowncapture-len"></span>`fn len(&self) -> usize`
 
-- `fn is_empty(self: &Self) -> bool`
+- <span id="markdowncapture-is-empty"></span>`fn is_empty(&self) -> bool`
 
-- `fn to_snapshot_string(self: &Self) -> String`
+- <span id="markdowncapture-to-snapshot-string"></span>`fn to_snapshot_string(&self) -> String`
 
-- `fn into_inner(self: Self) -> HashMap<String, String>`
+- <span id="markdowncapture-into-inner"></span>`fn into_inner(self) -> HashMap<String, String>`
 
 #### Trait Implementations
 
 ##### `impl Debug for MarkdownCapture`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="markdowncapture-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for MarkdownCapture`
 
-- `fn default() -> MarkdownCapture` — [`MarkdownCapture`](../../index.md)
+- <span id="markdowncapture-default"></span>`fn default() -> MarkdownCapture` — [`MarkdownCapture`](../../index.md)
 
 ##### `impl<T> Instrument for MarkdownCapture`
 
@@ -68,17 +74,17 @@ side effects.
 
 ##### `impl<T> Pointable for MarkdownCapture`
 
-- `const ALIGN: usize`
+- <span id="markdowncapture-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="markdowncapture-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="markdowncapture-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="markdowncapture-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="markdowncapture-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="markdowncapture-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<T> WithSubscriber for MarkdownCapture`
 

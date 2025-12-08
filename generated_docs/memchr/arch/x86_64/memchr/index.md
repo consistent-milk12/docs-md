@@ -9,6 +9,32 @@ Wrapper routines for `memchr` and friends.
 These routines efficiently dispatch to the best implementation based on what
 the CPU supports.
 
+## Contents
+
+- [Functions](#functions)
+  - [`memchr_raw`](#memchr_raw)
+  - [`memrchr_raw`](#memrchr_raw)
+  - [`memchr2_raw`](#memchr2_raw)
+  - [`memrchr2_raw`](#memrchr2_raw)
+  - [`memchr3_raw`](#memchr3_raw)
+  - [`memrchr3_raw`](#memrchr3_raw)
+  - [`count_raw`](#count_raw)
+- [Macros](#macros)
+  - [`unsafe_ifunc!`](#unsafe_ifunc)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`memchr_raw`](#memchr_raw) | fn | memchr, but using raw pointers to represent the haystack. |
+| [`memrchr_raw`](#memrchr_raw) | fn | memrchr, but using raw pointers to represent the haystack. |
+| [`memchr2_raw`](#memchr2_raw) | fn | memchr2, but using raw pointers to represent the haystack. |
+| [`memrchr2_raw`](#memrchr2_raw) | fn | memrchr2, but using raw pointers to represent the haystack. |
+| [`memchr3_raw`](#memchr3_raw) | fn | memchr3, but using raw pointers to represent the haystack. |
+| [`memrchr3_raw`](#memrchr3_raw) | fn | memrchr3, but using raw pointers to represent the haystack. |
+| [`count_raw`](#count_raw) | fn | Count all matching bytes, but using raw pointers to represent the haystack. |
+| [`unsafe_ifunc!`](#unsafe_ifunc) | macro | Provides a way to run a memchr-like function while amortizing the cost of |
+
 ## Functions
 
 ### `memchr_raw`

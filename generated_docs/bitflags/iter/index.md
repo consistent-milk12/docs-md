@@ -6,6 +6,14 @@
 
 Yield the bits of a source flags value in a set of contained flags values.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Iter`](#iter) | struct | An iterator over flags values. |
+| [`IterNames`](#iternames) | struct | An iterator over flags values. |
+| [`IterDefinedNames`](#iterdefinednames) | struct | An iterator over all defined named flags. |
+
 ## Structs
 
 ### `Iter<B: 'static>`
@@ -24,23 +32,23 @@ as a final flags value.
 
 #### Implementations
 
-- `fn new(flags: &B) -> Self`
+- <span id="iter-new"></span>`fn new(flags: &B) -> Self`
 
 #### Trait Implementations
 
 ##### `impl<I> IntoIterator for Iter<B>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="iter-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="iter-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="iter-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<B: Flags> Iterator for Iter<B>`
 
-- `type Item = B`
+- <span id="iter-item"></span>`type Item = B`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="iter-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `IterNames<B: 'static>`
 
@@ -60,23 +68,23 @@ won't be yielded, but can be found with the `IterNames::remaining` method.
 
 #### Implementations
 
-- `fn remaining(self: &Self) -> &B`
+- <span id="iternames-remaining"></span>`fn remaining(&self) -> &B`
 
 #### Trait Implementations
 
 ##### `impl<I> IntoIterator for IterNames<B>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="iternames-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="iternames-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="iternames-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<B: Flags> Iterator for IterNames<B>`
 
-- `type Item = (&'static str, B)`
+- <span id="iternames-item"></span>`type Item = (&'static str, B)`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="iternames-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `IterDefinedNames<B: 'static>`
 
@@ -94,21 +102,21 @@ whether they are contained in a particular flags value.
 
 #### Implementations
 
-- `fn new() -> Self`
+- <span id="iterdefinednames-new"></span>`fn new() -> Self`
 
 #### Trait Implementations
 
 ##### `impl<I> IntoIterator for IterDefinedNames<B>`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="iterdefinednames-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="iterdefinednames-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="iterdefinednames-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl<B: Flags> Iterator for IterDefinedNames<B>`
 
-- `type Item = (&'static str, B)`
+- <span id="iterdefinednames-item"></span>`type Item = (&'static str, B)`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="iterdefinednames-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 

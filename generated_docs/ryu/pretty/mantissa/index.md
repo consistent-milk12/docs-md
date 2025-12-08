@@ -4,6 +4,13 @@
 
 # Module `mantissa`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`write_mantissa_long`](#write_mantissa_long) | fn |  |
+| [`write_mantissa`](#write_mantissa) | fn |  |
+
 ## Functions
 
 ### `write_mantissa_long`

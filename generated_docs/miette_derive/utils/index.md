@@ -4,6 +4,16 @@
 
 # Module `utils`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`MemberOrString`](#memberorstring) | enum |  |
+| [`gen_all_variants_with`](#gen_all_variants_with) | fn |  |
+| [`gen_unused_pat`](#gen_unused_pat) | fn |  |
+| [`gen_fields_pat`](#gen_fields_pat) | fn | Goes in the slot `let Self #pat = self;` or `match self { Self #pat => ... |
+| [`display_pat_members`](#display_pat_members) | fn | The returned tokens go in the slot `let Self #pat = self;` or `match self { |
+
 ## Enums
 
 ### `MemberOrString`
@@ -19,15 +29,15 @@ enum MemberOrString {
 
 ##### `impl Parse for MemberOrString`
 
-- `fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
+- <span id="memberorstring-parse"></span>`fn parse(input: ParseStream<'_>) -> syn::Result<Self>`
 
 ##### `impl<T> Spanned for MemberOrString`
 
-- `fn span(self: &Self) -> Span`
+- <span id="memberorstring-span"></span>`fn span(&self) -> Span`
 
 ##### `impl ToTokens for MemberOrString`
 
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+- <span id="memberorstring-to-tokens"></span>`fn to_tokens(&self, tokens: &mut TokenStream)`
 
 ## Functions
 

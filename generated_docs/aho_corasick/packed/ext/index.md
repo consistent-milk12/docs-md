@@ -4,6 +4,12 @@
 
 # Module `ext`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Pointer`](#pointer) | trait | A trait for adding some helper routines to pointers. |
+
 ## Traits
 
 ### `Pointer`
@@ -16,11 +22,11 @@ A trait for adding some helper routines to pointers.
 
 #### Required Methods
 
-- `fn distance(self: Self, origin: Self) -> usize`
+- `fn distance(self, origin: Self) -> usize`
 
   Returns the distance, in units of `T`, between `self` and `origin`.
 
-- `fn as_usize(self: Self) -> usize`
+- `fn as_usize(self) -> usize`
 
   Casts this pointer to `usize`.
 

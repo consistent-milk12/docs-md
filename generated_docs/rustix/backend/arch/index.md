@@ -20,6 +20,15 @@ The calling conventions for Linux syscalls are [documented here].
 This contains the inline `asm` statements performing the syscall
 instructions.
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`asm`](#asm) | mod | x86-64 Linux system calls. |
+| [`syscall!`](#syscall) | macro |  |
+| [`syscall_always_asm!`](#syscall_always_asm) | macro |  |
+| [`syscall_readonly!`](#syscall_readonly) | macro | Like `syscall`, but adds the `readonly` attribute to the inline asm, which |
+
 ## Modules
 
 - [`asm`](asm/index.md) - x86-64 Linux system calls.

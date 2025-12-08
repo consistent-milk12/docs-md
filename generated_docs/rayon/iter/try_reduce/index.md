@@ -4,6 +4,14 @@
 
 # Module `try_reduce`
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`TryReduceConsumer`](#tryreduceconsumer) | struct |  |
+| [`TryReduceFolder`](#tryreducefolder) | struct |  |
+| [`try_reduce`](#try_reduce) | fn |  |
+
 ## Structs
 
 ### `TryReduceConsumer<'r, R, ID>`
@@ -20,21 +28,21 @@ struct TryReduceConsumer<'r, R, ID> {
 
 ##### `impl<'r, R, ID> Clone for TryReduceConsumer<'r, R, ID>`
 
-- `fn clone(self: &Self) -> Self`
+- <span id="tryreduceconsumer-clone"></span>`fn clone(&self) -> Self`
 
 ##### `impl<'r, R, ID, T> Consumer for TryReduceConsumer<'r, R, ID>`
 
-- `type Folder = TryReduceFolder<'r, R, T>`
+- <span id="tryreduceconsumer-folder"></span>`type Folder = TryReduceFolder<'r, R, T>`
 
-- `type Reducer = TryReduceConsumer<'r, R, ID>`
+- <span id="tryreduceconsumer-reducer"></span>`type Reducer = TryReduceConsumer<'r, R, ID>`
 
-- `type Result = T`
+- <span id="tryreduceconsumer-result"></span>`type Result = T`
 
-- `fn split_at(self: Self, _index: usize) -> (Self, Self, Self)`
+- <span id="tryreduceconsumer-split-at"></span>`fn split_at(self, _index: usize) -> (Self, Self, Self)`
 
-- `fn into_folder(self: Self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
+- <span id="tryreduceconsumer-into-folder"></span>`fn into_folder(self) -> <Self as >::Folder` — [`Consumer`](../plumbing/index.md)
 
-- `fn full(self: &Self) -> bool`
+- <span id="tryreduceconsumer-full"></span>`fn full(&self) -> bool`
 
 ##### `impl<'r, R, ID> Copy for TryReduceConsumer<'r, R, ID>`
 
@@ -42,27 +50,27 @@ struct TryReduceConsumer<'r, R, ID> {
 
 ##### `impl<T> Pointable for TryReduceConsumer<'r, R, ID>`
 
-- `const ALIGN: usize`
+- <span id="tryreduceconsumer-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="tryreduceconsumer-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="tryreduceconsumer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="tryreduceconsumer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="tryreduceconsumer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="tryreduceconsumer-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ##### `impl<'r, R, ID, T> Reducer for TryReduceConsumer<'r, R, ID>`
 
-- `fn reduce(self: Self, left: T, right: T) -> T`
+- <span id="tryreduceconsumer-reduce"></span>`fn reduce(self, left: T, right: T) -> T`
 
 ##### `impl<'r, R, ID, T> UnindexedConsumer for TryReduceConsumer<'r, R, ID>`
 
-- `fn split_off_left(self: &Self) -> Self`
+- <span id="tryreduceconsumer-split-off-left"></span>`fn split_off_left(&self) -> Self`
 
-- `fn to_reducer(self: &Self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
+- <span id="tryreduceconsumer-to-reducer"></span>`fn to_reducer(&self) -> <Self as >::Reducer` — [`Consumer`](../plumbing/index.md)
 
 ### `TryReduceFolder<'r, R, T: Try>`
 
@@ -78,29 +86,29 @@ struct TryReduceFolder<'r, R, T: Try> {
 
 ##### `impl<'r, R, T> Folder for TryReduceFolder<'r, R, T>`
 
-- `type Result = T`
+- <span id="tryreducefolder-result"></span>`type Result = T`
 
-- `fn consume(self: Self, item: T) -> Self`
+- <span id="tryreducefolder-consume"></span>`fn consume(self, item: T) -> Self`
 
-- `fn complete(self: Self) -> T`
+- <span id="tryreducefolder-complete"></span>`fn complete(self) -> T`
 
-- `fn full(self: &Self) -> bool`
+- <span id="tryreducefolder-full"></span>`fn full(&self) -> bool`
 
 ##### `impl<T> IntoEither for TryReduceFolder<'r, R, T>`
 
 ##### `impl<T> Pointable for TryReduceFolder<'r, R, T>`
 
-- `const ALIGN: usize`
+- <span id="tryreducefolder-align"></span>`const ALIGN: usize`
 
-- `type Init = T`
+- <span id="tryreducefolder-init"></span>`type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+- <span id="tryreducefolder-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+- <span id="tryreducefolder-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+- <span id="tryreducefolder-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-- `unsafe fn drop(ptr: usize)`
+- <span id="tryreducefolder-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ## Functions
 

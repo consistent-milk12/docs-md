@@ -11,6 +11,12 @@ Deserialization for adjacently tagged enums:
 enum Enum {}
 ```
 
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`deserialize`](#deserialize) | fn | Generates `Deserialize::deserialize` body for an `enum Enum {...}` with `#[serde(tag, content)]` attributes |
+
 ## Functions
 
 ### `deserialize`

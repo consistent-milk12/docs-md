@@ -84,6 +84,30 @@ I also got the idea from
 [Lucene](https://github.com/apache/lucene-solr/blob/ae93f4e7ac6a3908046391de35d4f50a0d3c59ca/lucene/core/src/java/org/apache/lucene/util/automaton/UTF32ToUTF8.java),
 which uses it for executing automata on their term index.
 
+## Contents
+
+- [Structs](#structs)
+  - [`Utf8Range`](#utf8range)
+  - [`Utf8Sequences`](#utf8sequences)
+  - [`ScalarRange`](#scalarrange)
+- [Enums](#enums)
+  - [`Utf8Sequence`](#utf8sequence)
+- [Functions](#functions)
+  - [`max_scalar_value`](#max_scalar_value)
+- [Constants](#constants)
+  - [`MAX_UTF8_BYTES`](#max_utf8_bytes)
+
+## Quick Reference
+
+| Item | Kind | Description |
+|------|------|-------------|
+| [`Utf8Range`](#utf8range) | struct | A single inclusive range of UTF-8 bytes. |
+| [`Utf8Sequences`](#utf8sequences) | struct | An iterator over ranges of matching UTF-8 byte sequences. |
+| [`ScalarRange`](#scalarrange) | struct |  |
+| [`Utf8Sequence`](#utf8sequence) | enum | Utf8Sequence represents a sequence of byte ranges. |
+| [`max_scalar_value`](#max_scalar_value) | fn |  |
+| [`MAX_UTF8_BYTES`](#max_utf8_bytes) | const |  |
+
 ## Structs
 
 ### `Utf8Range`
@@ -109,35 +133,35 @@ A single inclusive range of UTF-8 bytes.
 
 #### Implementations
 
-- `fn new(start: u8, end: u8) -> Self`
+- <span id="utf8range-new"></span>`fn new(start: u8, end: u8) -> Self`
 
-- `fn matches(self: &Self, b: u8) -> bool`
+- <span id="utf8range-matches"></span>`fn matches(&self, b: u8) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for Utf8Range`
 
-- `fn clone(self: &Self) -> Utf8Range` — [`Utf8Range`](#utf8range)
+- <span id="utf8range-clone"></span>`fn clone(&self) -> Utf8Range` — [`Utf8Range`](#utf8range)
 
 ##### `impl Copy for Utf8Range`
 
 ##### `impl Debug for Utf8Range`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="utf8range-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Utf8Range`
 
 ##### `impl Ord for Utf8Range`
 
-- `fn cmp(self: &Self, other: &Utf8Range) -> $crate::cmp::Ordering` — [`Utf8Range`](#utf8range)
+- <span id="utf8range-cmp"></span>`fn cmp(&self, other: &Utf8Range) -> cmp::Ordering` — [`Utf8Range`](#utf8range)
 
 ##### `impl PartialEq for Utf8Range`
 
-- `fn eq(self: &Self, other: &Utf8Range) -> bool` — [`Utf8Range`](#utf8range)
+- <span id="utf8range-eq"></span>`fn eq(&self, other: &Utf8Range) -> bool` — [`Utf8Range`](#utf8range)
 
 ##### `impl PartialOrd for Utf8Range`
 
-- `fn partial_cmp(self: &Self, other: &Utf8Range) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Utf8Range`](#utf8range)
+- <span id="utf8range-partial-cmp"></span>`fn partial_cmp(&self, other: &Utf8Range) -> option::Option<cmp::Ordering>` — [`Utf8Range`](#utf8range)
 
 ##### `impl StructuralPartialEq for Utf8Range`
 
@@ -202,31 +226,31 @@ always possible (for example, in a byte based automaton).
 
 #### Implementations
 
-- `fn new(start: char, end: char) -> Self`
+- <span id="utf8sequences-new"></span>`fn new(start: char, end: char) -> Self`
 
-- `fn push(self: &mut Self, start: u32, end: u32)`
+- <span id="utf8sequences-push"></span>`fn push(&mut self, start: u32, end: u32)`
 
 #### Trait Implementations
 
 ##### `impl Debug for Utf8Sequences`
 
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- <span id="utf8sequences-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl FusedIterator for Utf8Sequences`
 
 ##### `impl<I> IntoIterator for Utf8Sequences`
 
-- `type Item = <I as Iterator>::Item`
+- <span id="utf8sequences-item"></span>`type Item = <I as Iterator>::Item`
 
-- `type IntoIter = I`
+- <span id="utf8sequences-intoiter"></span>`type IntoIter = I`
 
-- `fn into_iter(self: Self) -> I`
+- <span id="utf8sequences-into-iter"></span>`fn into_iter(self) -> I`
 
 ##### `impl Iterator for Utf8Sequences`
 
-- `type Item = Utf8Sequence`
+- <span id="utf8sequences-item"></span>`type Item = Utf8Sequence`
 
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+- <span id="utf8sequences-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ### `ScalarRange`
 
@@ -239,21 +263,21 @@ struct ScalarRange {
 
 #### Implementations
 
-- `fn split(self: &Self) -> Option<(ScalarRange, ScalarRange)>` — [`ScalarRange`](#scalarrange)
+- <span id="scalarrange-split"></span>`fn split(&self) -> Option<(ScalarRange, ScalarRange)>` — [`ScalarRange`](#scalarrange)
 
-- `fn is_valid(self: &Self) -> bool`
+- <span id="scalarrange-is-valid"></span>`fn is_valid(&self) -> bool`
 
-- `fn as_ascii(self: &Self) -> Option<Utf8Range>` — [`Utf8Range`](#utf8range)
+- <span id="scalarrange-as-ascii"></span>`fn as_ascii(&self) -> Option<Utf8Range>` — [`Utf8Range`](#utf8range)
 
-- `fn is_ascii(self: &Self) -> bool`
+- <span id="scalarrange-is-ascii"></span>`fn is_ascii(&self) -> bool`
 
-- `fn encode(self: &Self, start: &mut [u8], end: &mut [u8]) -> usize`
+- <span id="scalarrange-encode"></span>`fn encode(&self, start: &mut [u8], end: &mut [u8]) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Debug for ScalarRange`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="scalarrange-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Enums
 
@@ -296,41 +320,41 @@ sequence `\xDD\x61` would not match because `0x61 < 0x80`.
 
 #### Implementations
 
-- `fn from_encoded_range(start: &[u8], end: &[u8]) -> Self`
+- <span id="utf8sequence-from-encoded-range"></span>`fn from_encoded_range(start: &[u8], end: &[u8]) -> Self`
 
-- `fn as_slice(self: &Self) -> &[Utf8Range]` — [`Utf8Range`](#utf8range)
+- <span id="utf8sequence-as-slice"></span>`fn as_slice(&self) -> &[Utf8Range]` — [`Utf8Range`](#utf8range)
 
-- `fn len(self: &Self) -> usize`
+- <span id="utf8sequence-len"></span>`fn len(&self) -> usize`
 
-- `fn reverse(self: &mut Self)`
+- <span id="utf8sequence-reverse"></span>`fn reverse(&mut self)`
 
-- `fn matches(self: &Self, bytes: &[u8]) -> bool`
+- <span id="utf8sequence-matches"></span>`fn matches(&self, bytes: &[u8]) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for Utf8Sequence`
 
-- `fn clone(self: &Self) -> Utf8Sequence` — [`Utf8Sequence`](#utf8sequence)
+- <span id="utf8sequence-clone"></span>`fn clone(&self) -> Utf8Sequence` — [`Utf8Sequence`](#utf8sequence)
 
 ##### `impl Copy for Utf8Sequence`
 
 ##### `impl Debug for Utf8Sequence`
 
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="utf8sequence-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq for Utf8Sequence`
 
 ##### `impl Ord for Utf8Sequence`
 
-- `fn cmp(self: &Self, other: &Utf8Sequence) -> $crate::cmp::Ordering` — [`Utf8Sequence`](#utf8sequence)
+- <span id="utf8sequence-cmp"></span>`fn cmp(&self, other: &Utf8Sequence) -> cmp::Ordering` — [`Utf8Sequence`](#utf8sequence)
 
 ##### `impl PartialEq for Utf8Sequence`
 
-- `fn eq(self: &Self, other: &Utf8Sequence) -> bool` — [`Utf8Sequence`](#utf8sequence)
+- <span id="utf8sequence-eq"></span>`fn eq(&self, other: &Utf8Sequence) -> bool` — [`Utf8Sequence`](#utf8sequence)
 
 ##### `impl PartialOrd for Utf8Sequence`
 
-- `fn partial_cmp(self: &Self, other: &Utf8Sequence) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Utf8Sequence`](#utf8sequence)
+- <span id="utf8sequence-partial-cmp"></span>`fn partial_cmp(&self, other: &Utf8Sequence) -> option::Option<cmp::Ordering>` — [`Utf8Sequence`](#utf8sequence)
 
 ##### `impl StructuralPartialEq for Utf8Sequence`
 
