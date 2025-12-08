@@ -17,18 +17,18 @@ struct PanicFuse<I> {
 `PanicFuse` is an adaptor that wraps an iterator with a fuse in case
 of panics, to halt all threads as soon as possible.
 
-This struct is created by the `panic_fuse()` method on [`ParallelIterator`](../index.md)
+This struct is created by the `panic_fuse()` method on [`ParallelIterator`](../../prelude/index.md)
 
 
 #### Implementations
 
-- `fn new(base: I) -> PanicFuse<I>` — [`PanicFuse`](#panicfuse)
+- `fn new(base: I) -> PanicFuse<I>` — [`PanicFuse`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<I: $crate::clone::Clone> Clone for PanicFuse<I>`
 
-- `fn clone(self: &Self) -> PanicFuse<I>` — [`PanicFuse`](#panicfuse)
+- `fn clone(self: &Self) -> PanicFuse<I>` — [`PanicFuse`](../index.md)
 
 ##### `impl<I: $crate::fmt::Debug> Debug for PanicFuse<I>`
 

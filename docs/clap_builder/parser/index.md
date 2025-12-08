@@ -25,7 +25,7 @@ struct IdsRef<'a> {
 }
 ```
 
-Iterate over `Arg` and `ArgGroup` [`Id`](../util/id/index.md)s via `ArgMatches::ids`.
+Iterate over `Arg` and `ArgGroup` [`Id`](../index.md)s via `ArgMatches::ids`.
 
 # Examples
 
@@ -51,7 +51,7 @@ assert_eq!(
 
 ##### `impl<'a> Clone for IdsRef<'a>`
 
-- `fn clone(self: &Self) -> IdsRef<'a>` — [`IdsRef`](matches/arg_matches/index.md)
+- `fn clone(self: &Self) -> IdsRef<'a>` — [`IdsRef`](#idsref)
 
 ##### `impl<'a> Debug for IdsRef<'a>`
 
@@ -59,7 +59,7 @@ assert_eq!(
 
 ##### `impl<'a> DoubleEndedIterator for IdsRef<'a>`
 
-- `fn next_back(self: &mut Self) -> Option<&'a Id>` — [`Id`](../util/id/index.md)
+- `fn next_back(self: &mut Self) -> Option<&'a Id>` — [`Id`](../index.md)
 
 ##### `impl ExactSizeIterator for IdsRef<'_>`
 
@@ -75,7 +75,7 @@ assert_eq!(
 
 - `type Item = &'a Id`
 
-- `fn next(self: &mut Self) -> Option<&'a Id>` — [`Id`](../util/id/index.md)
+- `fn next(self: &mut Self) -> Option<&'a Id>` — [`Id`](../index.md)
 
 - `fn size_hint(self: &Self) -> (usize, Option<usize>)`
 
@@ -119,7 +119,7 @@ assert_eq!(
 
 ##### `impl<'a> Clone for RawValues<'a>`
 
-- `fn clone(self: &Self) -> RawValues<'a>` — [`RawValues`](matches/arg_matches/index.md)
+- `fn clone(self: &Self) -> RawValues<'a>` — [`RawValues`](#rawvalues)
 
 ##### `impl<'a> Debug for RawValues<'a>`
 
@@ -185,7 +185,7 @@ assert_eq!(values.next(), None);
 
 ##### `impl<T: $crate::clone::Clone> Clone for Values<T>`
 
-- `fn clone(self: &Self) -> Values<T>` — [`Values`](matches/arg_matches/index.md)
+- `fn clone(self: &Self) -> Values<T>` — [`Values`](#values)
 
 ##### `impl<T: $crate::fmt::Debug> Debug for Values<T>`
 
@@ -252,7 +252,7 @@ assert_eq!(values.next(), None);
 
 ##### `impl<'a, T: $crate::clone::Clone> Clone for ValuesRef<'a, T>`
 
-- `fn clone(self: &Self) -> ValuesRef<'a, T>` — [`ValuesRef`](matches/arg_matches/index.md)
+- `fn clone(self: &Self) -> ValuesRef<'a, T>` — [`ValuesRef`](#valuesref)
 
 ##### `impl<'a, T: $crate::fmt::Debug> Debug for ValuesRef<'a, T>`
 
@@ -344,25 +344,19 @@ if matches.contains_id("out") {
 
 #### Implementations
 
-- `fn try_get_arg(self: &Self, arg: &str) -> Result<Option<&MatchedArg>, MatchesError>` — [`MatchedArg`](matches/matched_arg/index.md), [`MatchesError`](error/index.md)
+- `fn subcommand(self: &Self) -> Option<(&str, &ArgMatches)>` — [`ArgMatches`](../index.md)
 
-- `fn try_get_arg_t<T: Any + Send + Sync + 'static>(self: &Self, arg: &str) -> Result<Option<&MatchedArg>, MatchesError>` — [`MatchedArg`](matches/matched_arg/index.md), [`MatchesError`](error/index.md)
+- `fn remove_subcommand(self: &mut Self) -> Option<(String, ArgMatches)>` — [`ArgMatches`](../index.md)
 
-- `fn try_remove_arg_t<T: Any + Send + Sync + 'static>(self: &mut Self, arg: &str) -> Result<Option<MatchedArg>, MatchesError>` — [`MatchedArg`](matches/matched_arg/index.md), [`MatchesError`](error/index.md)
+- `fn subcommand_matches(self: &Self, name: &str) -> Option<&ArgMatches>` — [`ArgMatches`](../index.md)
 
-- `fn verify_arg_t<T: Any + Send + Sync + 'static>(self: &Self, arg: &MatchedArg) -> Result<(), MatchesError>` — [`MatchedArg`](matches/matched_arg/index.md), [`MatchesError`](error/index.md)
-
-- `fn verify_arg(self: &Self, _arg: &str) -> Result<(), MatchesError>` — [`MatchesError`](error/index.md)
-
-- `fn get_arg<'s>(self: &'s Self, arg: &str) -> Option<&'s MatchedArg>` — [`MatchedArg`](matches/matched_arg/index.md)
-
-- `fn get_subcommand(self: &Self, name: &str) -> Option<&SubCommand>` — [`SubCommand`](matches/arg_matches/index.md)
+- `fn subcommand_name(self: &Self) -> Option<&str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for ArgMatches`
 
-- `fn clone(self: &Self) -> ArgMatches` — [`ArgMatches`](matches/arg_matches/index.md)
+- `fn clone(self: &Self) -> ArgMatches` — [`ArgMatches`](../index.md)
 
 ##### `impl Debug for ArgMatches`
 
@@ -370,13 +364,13 @@ if matches.contains_id("out") {
 
 ##### `impl Default for ArgMatches`
 
-- `fn default() -> ArgMatches` — [`ArgMatches`](matches/arg_matches/index.md)
+- `fn default() -> ArgMatches` — [`ArgMatches`](../index.md)
 
 ##### `impl Eq for ArgMatches`
 
 ##### `impl PartialEq for ArgMatches`
 
-- `fn eq(self: &Self, other: &ArgMatches) -> bool` — [`ArgMatches`](matches/arg_matches/index.md)
+- `fn eq(self: &Self, other: &ArgMatches) -> bool` — [`ArgMatches`](../index.md)
 
 ##### `impl StructuralPartialEq for ArgMatches`
 
@@ -415,7 +409,7 @@ assert_eq!(indices.next(), None);
 
 ##### `impl<'a> Clone for Indices<'a>`
 
-- `fn clone(self: &Self) -> Indices<'a>` — [`Indices`](matches/arg_matches/index.md)
+- `fn clone(self: &Self) -> Indices<'a>` — [`Indices`](#indices)
 
 ##### `impl<'a> Debug for Indices<'a>`
 
@@ -483,7 +477,7 @@ Origin of the argument's value
 
 ##### `impl Clone for ValueSource`
 
-- `fn clone(self: &Self) -> ValueSource` — [`ValueSource`](matches/value_source/index.md)
+- `fn clone(self: &Self) -> ValueSource` — [`ValueSource`](#valuesource)
 
 ##### `impl Copy for ValueSource`
 
@@ -495,15 +489,15 @@ Origin of the argument's value
 
 ##### `impl Ord for ValueSource`
 
-- `fn cmp(self: &Self, other: &ValueSource) -> $crate::cmp::Ordering` — [`ValueSource`](matches/value_source/index.md)
+- `fn cmp(self: &Self, other: &ValueSource) -> $crate::cmp::Ordering` — [`ValueSource`](#valuesource)
 
 ##### `impl PartialEq for ValueSource`
 
-- `fn eq(self: &Self, other: &ValueSource) -> bool` — [`ValueSource`](matches/value_source/index.md)
+- `fn eq(self: &Self, other: &ValueSource) -> bool` — [`ValueSource`](#valuesource)
 
 ##### `impl PartialOrd for ValueSource`
 
-- `fn partial_cmp(self: &Self, other: &ValueSource) -> $crate::option::Option<$crate::cmp::Ordering>` — [`ValueSource`](matches/value_source/index.md)
+- `fn partial_cmp(self: &Self, other: &ValueSource) -> $crate::option::Option<$crate::cmp::Ordering>` — [`ValueSource`](#valuesource)
 
 ##### `impl StructuralPartialEq for ValueSource`
 
@@ -534,13 +528,13 @@ Violation of `ArgMatches` assumptions
 
 #### Implementations
 
-- `fn unwrap<T>(id: &str, r: Result<T, MatchesError>) -> T` — [`MatchesError`](error/index.md)
+- `fn unwrap<T>(id: &str, r: Result<T, MatchesError>) -> T` — [`MatchesError`](#matcheserror)
 
 #### Trait Implementations
 
 ##### `impl Clone for MatchesError`
 
-- `fn clone(self: &Self) -> MatchesError` — [`MatchesError`](error/index.md)
+- `fn clone(self: &Self) -> MatchesError` — [`MatchesError`](#matcheserror)
 
 ##### `impl Debug for MatchesError`
 

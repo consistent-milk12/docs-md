@@ -123,9 +123,9 @@ simultaneously.
 
 - `fn match_len(self: &Self) -> usize`
 
-- `fn match_pattern(self: &Self, index: usize) -> PatternID` — [`PatternID`](../../primitives/index.md)
+- `fn match_pattern(self: &Self, index: usize) -> PatternID` — [`PatternID`](../../../index.md)
 
-- `fn match_pattern_ids(self: &Self) -> Option<Vec<PatternID>>` — [`PatternID`](../../primitives/index.md)
+- `fn match_pattern_ids(self: &Self) -> Option<Vec<PatternID>>` — [`PatternID`](../../../index.md)
 
 - `fn iter_nfa_state_ids<F: FnMut(StateID)>(self: &Self, f: F)`
 
@@ -219,7 +219,7 @@ builder that collects NFA state IDs.
 
 - `fn set_look_have(self: &mut Self, set: impl FnMut(LookSet) -> LookSet)` — [`LookSet`](../../look/index.md)
 
-- `fn add_match_pattern_id(self: &mut Self, pid: PatternID)` — [`PatternID`](../../primitives/index.md)
+- `fn add_match_pattern_id(self: &mut Self, pid: PatternID)` — [`PatternID`](../../../index.md)
 
 - `fn repr(self: &Self) -> Repr<'_>` — [`Repr`](#repr)
 
@@ -359,9 +359,9 @@ previous NFA state ID.
 
 - `fn match_len(self: &Self) -> usize`
 
-- `fn match_pattern(self: &Self, index: usize) -> PatternID` — [`PatternID`](../../primitives/index.md)
+- `fn match_pattern(self: &Self, index: usize) -> PatternID` — [`PatternID`](../../../index.md)
 
-- `fn match_pattern_ids(self: &Self) -> Option<Vec<PatternID>>` — [`PatternID`](../../primitives/index.md)
+- `fn match_pattern_ids(self: &Self) -> Option<Vec<PatternID>>` — [`PatternID`](../../../index.md)
 
 - `fn iter_match_pattern_ids<F: FnMut(PatternID)>(self: &Self, f: F)`
 
@@ -409,7 +409,7 @@ permit valid combinations via Rust's linear typing.
 
 - `fn set_look_need(self: &mut Self, set: impl FnMut(LookSet) -> LookSet)` — [`LookSet`](../../look/index.md)
 
-- `fn add_match_pattern_id(self: &mut Self, pid: PatternID)` — [`PatternID`](../../primitives/index.md)
+- `fn add_match_pattern_id(self: &mut Self, pid: PatternID)` — [`PatternID`](../../../index.md)
 
 - `fn close_match_pattern_ids(self: &mut Self)`
 

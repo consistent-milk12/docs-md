@@ -43,7 +43,7 @@ feature
 
 ##### `impl Clone for OsStr`
 
-- `fn clone(self: &Self) -> OsStr` — [`OsStr`](#osstr)
+- `fn clone(self: &Self) -> OsStr` — [`OsStr`](../index.md)
 
 ##### `impl Debug for OsStr`
 
@@ -51,7 +51,7 @@ feature
 
 ##### `impl Default for OsStr`
 
-- `fn default() -> OsStr` — [`OsStr`](#osstr)
+- `fn default() -> OsStr` — [`OsStr`](../index.md)
 
 ##### `impl Deref for OsStr`
 
@@ -67,19 +67,19 @@ feature
 
 ##### `impl<I> IntoResettable for OsStr`
 
-- `fn into_resettable(self: Self) -> Resettable<OsStr>` — [`Resettable`](../resettable/index.md), [`OsStr`](#osstr)
+- `fn into_resettable(self: Self) -> Resettable<OsStr>` — [`Resettable`](../index.md), [`OsStr`](../index.md)
 
 ##### `impl Ord for OsStr`
 
-- `fn cmp(self: &Self, other: &OsStr) -> $crate::cmp::Ordering` — [`OsStr`](#osstr)
+- `fn cmp(self: &Self, other: &OsStr) -> $crate::cmp::Ordering` — [`OsStr`](../index.md)
 
 ##### `impl PartialEq for OsStr`
 
-- `fn eq(self: &Self, other: &OsStr) -> bool` — [`OsStr`](#osstr)
+- `fn eq(self: &Self, other: &OsStr) -> bool` — [`OsStr`](../index.md)
 
 ##### `impl PartialOrd for OsStr`
 
-- `fn partial_cmp(self: &Self, other: &OsStr) -> $crate::option::Option<$crate::cmp::Ordering>` — [`OsStr`](#osstr)
+- `fn partial_cmp(self: &Self, other: &OsStr) -> $crate::option::Option<$crate::cmp::Ordering>` — [`OsStr`](../index.md)
 
 ##### `impl<P, T> Receiver for OsStr`
 

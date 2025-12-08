@@ -119,7 +119,7 @@ Overview of which hints are supported by which shell:
 
 ##### `impl Clone for ValueHint`
 
-- `fn clone(self: &Self) -> ValueHint` — [`ValueHint`](#valuehint)
+- `fn clone(self: &Self) -> ValueHint` — [`ValueHint`](../../index.md)
 
 ##### `impl Copy for ValueHint`
 
@@ -129,7 +129,7 @@ Overview of which hints are supported by which shell:
 
 ##### `impl Default for ValueHint`
 
-- `fn default() -> ValueHint` — [`ValueHint`](#valuehint)
+- `fn default() -> ValueHint` — [`ValueHint`](../../index.md)
 
 ##### `impl Eq for ValueHint`
 
@@ -145,11 +145,11 @@ Overview of which hints are supported by which shell:
 
 ##### `impl IntoResettable for crate::builder::ValueHint`
 
-- `fn into_resettable(self: Self) -> Resettable<ValueHint>` — [`Resettable`](../resettable/index.md), [`ValueHint`](#valuehint)
+- `fn into_resettable(self: Self) -> Resettable<ValueHint>` — [`Resettable`](../index.md), [`ValueHint`](../../index.md)
 
 ##### `impl PartialEq for ValueHint`
 
-- `fn eq(self: &Self, other: &ValueHint) -> bool` — [`ValueHint`](#valuehint)
+- `fn eq(self: &Self, other: &ValueHint) -> bool` — [`ValueHint`](../../index.md)
 
 ##### `impl StructuralPartialEq for ValueHint`
 

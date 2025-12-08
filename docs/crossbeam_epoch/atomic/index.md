@@ -39,7 +39,7 @@ The error returned on failed compare-and-swap operation.
 
 - `type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](#pointable)
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
 
 - `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -95,7 +95,7 @@ Elements are not present in the type, but they will be in the allocation.
 
 - `type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](#pointable)
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
 
 - `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -118,13 +118,13 @@ The pointer must be properly aligned. Since it is aligned, a tag can be stored i
 least significant bits of the address. For example, the tag for a pointer to a sized type `T`
 should be less than `(1 << mem::align_of::<T>().trailing_zeros())`.
 
-Any method that loads the pointer must be passed a reference to a [`Guard`](../guard/index.md).
+Any method that loads the pointer must be passed a reference to a [`Guard`](../index.md).
 
-Crossbeam supports dynamically sized types.  See [`Pointable`](#pointable) for details.
+Crossbeam supports dynamically sized types.  See [`Pointable`](../index.md) for details.
 
 #### Implementations
 
-- `fn new(init: T) -> Atomic<T>` — [`Atomic`](#atomic)
+- `fn new(init: T) -> Atomic<T>` — [`Atomic`](../index.md)
 
 #### Trait Implementations
 
@@ -146,7 +146,7 @@ Crossbeam supports dynamically sized types.  See [`Pointable`](#pointable) for d
 
 - `type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](#pointable)
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
 
 - `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -180,13 +180,11 @@ least significant bits of the address.
 
 #### Implementations
 
-- `fn init(init: <T as >::Init) -> Owned<T>` — [`Pointable`](#pointable), [`Owned`](#owned)
+- `unsafe fn from_raw(raw: *mut T) -> Owned<T>` — [`Owned`](../index.md)
 
-- `fn into_shared<'g>(self: Self, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](../guard/index.md), [`Shared`](#shared)
+- `fn into_box(self: Self) -> Box<T>`
 
-- `fn tag(self: &Self) -> usize`
-
-- `fn with_tag(self: Self, tag: usize) -> Owned<T>` — [`Owned`](#owned)
+- `fn new(init: T) -> Owned<T>` — [`Owned`](../index.md)
 
 #### Trait Implementations
 
@@ -226,7 +224,7 @@ least significant bits of the address.
 
 - `type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](#pointable)
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
 
 - `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -262,23 +260,7 @@ least significant bits of the address.
 
 #### Implementations
 
-- `fn null() -> Shared<'g, T>` — [`Shared`](#shared)
-
-- `fn is_null(self: &Self) -> bool`
-
-- `unsafe fn deref(self: &Self) -> &'g T`
-
-- `unsafe fn deref_mut(self: &mut Self) -> &'g mut T`
-
-- `unsafe fn as_ref(self: &Self) -> Option<&'g T>`
-
-- `unsafe fn into_owned(self: Self) -> Owned<T>` — [`Owned`](#owned)
-
-- `unsafe fn try_into_owned(self: Self) -> Option<Owned<T>>` — [`Owned`](#owned)
-
-- `fn tag(self: &Self) -> usize`
-
-- `fn with_tag(self: &Self, tag: usize) -> Shared<'g, T>` — [`Shared`](#shared)
+- `fn as_raw(self: &Self) -> *const T`
 
 #### Trait Implementations
 
@@ -316,7 +298,7 @@ least significant bits of the address.
 
 - `type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](#pointable)
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
 
 - `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -375,7 +357,7 @@ allocated in heap and it is owned by a single-word pointer.  This trait is also 
 `[MaybeUninit<T>]` by storing its size along with its elements and pointing to the pair of array
 size and elements.
 
-Pointers to `Pointable` types can be stored in [`Atomic`](#atomic), [`Owned`](#owned), and [`Shared`](#shared).  In
+Pointers to `Pointable` types can be stored in [`Atomic`](../index.md), [`Owned`](../index.md), and [`Shared`](../index.md).  In
 particular, Crossbeam supports dynamically sized slices as follows.
 
 ```rust

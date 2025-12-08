@@ -39,7 +39,7 @@ until runtime.
 
 ##### `impl Clone for Frame`
 
-- `fn clone(self: &Self) -> Frame` — [`Frame`](#frame)
+- `fn clone(self: &Self) -> Frame` — [`Frame`](../index.md)
 
 ##### `impl Debug for Frame`
 

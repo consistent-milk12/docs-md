@@ -390,15 +390,15 @@ assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
 
 - `fn takes_values(self: &Self) -> bool`
 
-- `fn max_num_args(self: &Self) -> ValueRange` — [`ValueRange`](../range/index.md)
+- `fn max_num_args(self: &Self) -> ValueRange` — [`ValueRange`](../index.md)
 
-- `fn default_num_args(self: &Self) -> ValueRange` — [`ValueRange`](../range/index.md)
+- `fn default_num_args(self: &Self) -> ValueRange` — [`ValueRange`](../index.md)
 
 - `fn default_value(self: &Self) -> Option<&'static std::ffi::OsStr>`
 
 - `fn default_missing_value(self: &Self) -> Option<&'static std::ffi::OsStr>`
 
-- `fn default_value_parser(self: &Self) -> Option<super::ValueParser>` — [`ValueParser`](../value_parser/index.md)
+- `fn default_value_parser(self: &Self) -> Option<super::ValueParser>` — [`ValueParser`](../index.md)
 
 - `fn value_type_id(self: &Self) -> Option<AnyValueId>` — [`AnyValueId`](../../util/any_value/index.md)
 
@@ -406,7 +406,7 @@ assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
 
 ##### `impl Clone for ArgAction`
 
-- `fn clone(self: &Self) -> ArgAction` — [`ArgAction`](#argaction)
+- `fn clone(self: &Self) -> ArgAction` — [`ArgAction`](../../index.md)
 
 ##### `impl Debug for ArgAction`
 
@@ -414,7 +414,7 @@ assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
 
 ##### `impl IntoResettable for crate::builder::ArgAction`
 
-- `fn into_resettable(self: Self) -> Resettable<ArgAction>` — [`Resettable`](../resettable/index.md), [`ArgAction`](#argaction)
+- `fn into_resettable(self: Self) -> Resettable<ArgAction>` — [`Resettable`](../index.md), [`ArgAction`](../../index.md)
 
 ## Type Aliases
 

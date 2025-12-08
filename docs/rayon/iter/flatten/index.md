@@ -15,7 +15,7 @@ struct Flatten<I> {
 ```
 
 `Flatten` turns each element to a parallel iterator, then flattens these iterators
-together. This struct is created by the `flatten()` method on [`ParallelIterator`](../index.md).
+together. This struct is created by the `flatten()` method on [`ParallelIterator`](../../prelude/index.md).
 
 
 #### Implementations
@@ -26,7 +26,7 @@ together. This struct is created by the `flatten()` method on [`ParallelIterator
 
 ##### `impl<I: $crate::clone::Clone> Clone for Flatten<I>`
 
-- `fn clone(self: &Self) -> Flatten<I>` — [`Flatten`](#flatten)
+- `fn clone(self: &Self) -> Flatten<I>` — [`Flatten`](../index.md)
 
 ##### `impl<I: $crate::fmt::Debug> Debug for Flatten<I>`
 

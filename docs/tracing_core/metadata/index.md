@@ -33,7 +33,7 @@ All spans and events have the following metadata:
   overridden.
 - A [verbosity level]. This determines how verbose a given span or event
   is, and allows enabling or disabling more verbose diagnostics
-  situationally. See the documentation for the [`Level`](#level) type for details.
+  situationally. See the documentation for the [`Level`](../index.md) type for details.
 - The names of the [`fields`](../../tracing_attributes/attr/kw/index.md) defined by the span or event.
 - Whether the metadata corresponds to a span or event.
 
@@ -43,7 +43,7 @@ location where the span or event originated _may_ be provided:
 - The [line number]
 - The [module path]
 
-Metadata is used by [`Subscriber`](../subscriber/index.md)s when filtering spans and events, and it
+Metadata is used by [`Subscriber`](../index.md)s when filtering spans and events, and it
 may also be used as part of their data payload.
 
 When created by the `event!` or `span!` macro, the metadata describing a
@@ -112,11 +112,11 @@ of `Metadata`'s other fields is checked in debug builds.
 
 #### Implementations
 
-- `const fn new(name: &'static str, target: &'a str, level: Level, file: Option<&'a str>, line: Option<u32>, module_path: Option<&'a str>, fields: field::FieldSet, kind: Kind) -> Self` — [`Level`](#level), [`FieldSet`](../field/index.md), [`Kind`](#kind)
+- `const fn new(name: &'static str, target: &'a str, level: Level, file: Option<&'a str>, line: Option<u32>, module_path: Option<&'a str>, fields: field::FieldSet, kind: Kind) -> Self` — [`Level`](../index.md), [`FieldSet`](../field/index.md), [`Kind`](../index.md)
 
 - `fn fields(self: &Self) -> &field::FieldSet` — [`FieldSet`](../field/index.md)
 
-- `fn level(self: &Self) -> &Level` — [`Level`](#level)
+- `fn level(self: &Self) -> &Level` — [`Level`](../index.md)
 
 - `fn name(self: &Self) -> &'static str`
 
@@ -180,7 +180,7 @@ Indicates whether the callsite is a span or event.
 
 ##### `impl Clone for Kind`
 
-- `fn clone(self: &Self) -> Kind` — [`Kind`](#kind)
+- `fn clone(self: &Self) -> Kind` — [`Kind`](../index.md)
 
 ##### `impl Debug for Kind`
 
@@ -190,7 +190,7 @@ Indicates whether the callsite is a span or event.
 
 ##### `impl PartialEq for Kind`
 
-- `fn eq(self: &Self, other: &Kind) -> bool` — [`Kind`](#kind)
+- `fn eq(self: &Self, other: &Kind) -> bool` — [`Kind`](../index.md)
 
 ##### `impl StructuralPartialEq for Kind`
 
@@ -232,10 +232,10 @@ Applications using those libraries typically chose to ignore those traces. Howev
 debugging an issue involving said libraries, it may be useful to temporarily
 enable the more verbose traces.
 
-The [`LevelFilter`](#levelfilter) type is provided to enable filtering traces by
-verbosity. `Level`s can be compared against [`LevelFilter`](#levelfilter)s, and
-[`LevelFilter`](#levelfilter) has a variant for each `Level`, which compares analogously
-to that level. In addition, [`LevelFilter`](#levelfilter) adds a `LevelFilter::OFF`
+The [`LevelFilter`](../index.md) type is provided to enable filtering traces by
+verbosity. `Level`s can be compared against [`LevelFilter`](../index.md)s, and
+[`LevelFilter`](../index.md) has a variant for each `Level`, which compares analogously
+to that level. In addition, [`LevelFilter`](../index.md) adds a `LevelFilter::OFF`
 variant, which is considered "less verbose" than every other `Level`. This is
 intended to allow filters to completely disable tracing in a particular context.
 
@@ -252,9 +252,9 @@ assert!(LevelFilter::INFO >= Level::INFO);
 
 ## Examples
 
-Below is a simple example of how a [`Subscriber`](../subscriber/index.md) could implement filtering through
-a [`LevelFilter`](#levelfilter). When a span or event is recorded, the `Subscriber::enabled` method
-compares the span or event's `Level` against the configured [`LevelFilter`](#levelfilter).
+Below is a simple example of how a [`Subscriber`](../index.md) could implement filtering through
+a [`LevelFilter`](../index.md). When a span or event is recorded, the `Subscriber::enabled` method
+compares the span or event's `Level` against the configured [`LevelFilter`](../index.md).
 The optional `Subscriber::max_level_hint` method can also be implemented to allow spans
 and events above a maximum verbosity level to be skipped more efficiently,
 often improving performance in short-lived programs.
@@ -346,7 +346,7 @@ recorded in.
 
 ##### `impl Clone for Level`
 
-- `fn clone(self: &Self) -> Level` — [`Level`](#level)
+- `fn clone(self: &Self) -> Level` — [`Level`](../index.md)
 
 ##### `impl Copy for Level`
 
@@ -376,19 +376,19 @@ recorded in.
 
 ##### `impl PartialEq for Level`
 
-- `fn eq(self: &Self, other: &Level) -> bool` — [`Level`](#level)
+- `fn eq(self: &Self, other: &Level) -> bool` — [`Level`](../index.md)
 
 ##### `impl PartialOrd for Level`
 
-- `fn partial_cmp(self: &Self, other: &LevelFilter) -> Option<cmp::Ordering>` — [`LevelFilter`](#levelfilter)
+- `fn partial_cmp(self: &Self, other: &LevelFilter) -> Option<cmp::Ordering>` — [`LevelFilter`](../index.md)
 
-- `fn lt(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
+- `fn lt(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](../index.md)
 
-- `fn le(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
+- `fn le(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](../index.md)
 
-- `fn gt(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
+- `fn gt(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](../index.md)
 
-- `fn ge(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
+- `fn ge(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](../index.md)
 
 ##### `impl StructuralPartialEq for Level`
 
@@ -402,9 +402,9 @@ recorded in.
 struct LevelFilter(Option<Level>);
 ```
 
-A filter comparable to a verbosity [`Level`](#level).
+A filter comparable to a verbosity [`Level`](../index.md).
 
-If a [`Level`](#level) is considered less than or equal to a `LevelFilter`, it
+If a [`Level`](../index.md) is considered less than or equal to a `LevelFilter`, it
 should be considered enabled; if greater than the `LevelFilter`, that level
 is disabled. See `LevelFilter::current` for more details.
 
@@ -412,7 +412,7 @@ Note that this is essentially identical to the `Level` type, but with the
 addition of an `OFF` level that completely disables all trace
 instrumentation.
 
-See the documentation for the [`Level`](#level) type to see how `Level`s
+See the documentation for the [`Level`](../index.md) type to see how `Level`s
 and `LevelFilter`s interact.
 
 
@@ -430,9 +430,9 @@ and `LevelFilter`s interact.
 
 - `const TRACE: LevelFilter`
 
-- `const fn from_level(level: Level) -> Self` — [`Level`](#level)
+- `const fn from_level(level: Level) -> Self` — [`Level`](../index.md)
 
-- `const fn into_level(self: Self) -> Option<Level>` — [`Level`](#level)
+- `const fn into_level(self: Self) -> Option<Level>` — [`Level`](../index.md)
 
 - `const ERROR_USIZE: usize`
 
@@ -448,13 +448,13 @@ and `LevelFilter`s interact.
 
 - `fn current() -> Self`
 
-- `fn set_max(LevelFilter: LevelFilter)` — [`LevelFilter`](#levelfilter)
+- `fn set_max(LevelFilter: LevelFilter)` — [`LevelFilter`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for LevelFilter`
 
-- `fn clone(self: &Self) -> LevelFilter` — [`LevelFilter`](#levelfilter)
+- `fn clone(self: &Self) -> LevelFilter` — [`LevelFilter`](../index.md)
 
 ##### `impl Copy for LevelFilter`
 
@@ -484,19 +484,19 @@ and `LevelFilter`s interact.
 
 ##### `impl PartialEq for LevelFilter`
 
-- `fn eq(self: &Self, other: &Level) -> bool` — [`Level`](#level)
+- `fn eq(self: &Self, other: &Level) -> bool` — [`Level`](../index.md)
 
 ##### `impl PartialOrd for LevelFilter`
 
-- `fn partial_cmp(self: &Self, other: &Level) -> Option<cmp::Ordering>` — [`Level`](#level)
+- `fn partial_cmp(self: &Self, other: &LevelFilter) -> Option<cmp::Ordering>` — [`LevelFilter`](../index.md)
 
-- `fn lt(self: &Self, other: &Level) -> bool` — [`Level`](#level)
+- `fn lt(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](../index.md)
 
-- `fn le(self: &Self, other: &Level) -> bool` — [`Level`](#level)
+- `fn le(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](../index.md)
 
-- `fn gt(self: &Self, other: &Level) -> bool` — [`Level`](#level)
+- `fn gt(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](../index.md)
 
-- `fn ge(self: &Self, other: &Level) -> bool` — [`Level`](#level)
+- `fn ge(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](../index.md)
 
 ##### `impl StructuralPartialEq for LevelFilter`
 

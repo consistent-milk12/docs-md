@@ -119,73 +119,57 @@ let m = Command::new("My Program")
 
 #### Implementations
 
-- `fn new(name: impl Into<Str>) -> Self` — [`Str`](builder/str/index.md)
+- `fn get_override_usage(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](builder/index.md)
 
-- `fn arg(self: Self, a: impl Into<Arg>) -> Self` — [`Arg`](builder/arg/index.md)
+- `fn get_override_help(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](builder/index.md)
 
-- `fn arg_internal(self: &mut Self, arg: Arg)` — [`Arg`](builder/arg/index.md)
+- `fn get_help_template(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](builder/index.md)
 
-- `fn args(self: Self, args: impl IntoIterator<Item = impl Into<Arg>>) -> Self` — [`Arg`](builder/arg/index.md)
+- `fn get_term_width(self: &Self) -> Option<usize>`
 
-- `fn mut_arg<F>(self: Self, arg_id: impl AsRef<str>, f: F) -> Self`
+- `fn get_max_term_width(self: &Self) -> Option<usize>`
 
-- `fn mut_args<F>(self: Self, f: F) -> Self`
+- `fn get_keymap(self: &Self) -> &MKeyMap` — [`MKeyMap`](mkeymap/index.md)
 
-- `fn mut_group<F>(self: Self, arg_id: impl AsRef<str>, f: F) -> Self`
+- `fn get_used_global_args(self: &Self, matches: &ArgMatches, global_arg_vec: &mut Vec<Id>)` — [`ArgMatches`](#argmatches), [`Id`](#id)
 
-- `fn mut_subcommand<F>(self: Self, name: impl AsRef<str>, f: F) -> Self`
+- `fn _do_parse(self: &mut Self, raw_args: &mut clap_lex::RawArgs, args_cursor: clap_lex::ArgCursor) -> ClapResult<ArgMatches>` — [`Result`](error/index.md), [`ArgMatches`](#argmatches)
 
-- `fn mut_subcommands<F>(self: Self, f: F) -> Self`
+- `fn build(self: &mut Self)`
 
-- `fn group(self: Self, group: impl Into<ArgGroup>) -> Self` — [`ArgGroup`](builder/arg_group/index.md)
+- `fn _build_recursive(self: &mut Self, expand_help_tree: bool)`
 
-- `fn groups(self: Self, groups: impl IntoIterator<Item = impl Into<ArgGroup>>) -> Self` — [`ArgGroup`](builder/arg_group/index.md)
+- `fn _build_self(self: &mut Self, expand_help_tree: bool)`
 
-- `fn subcommand(self: Self, subcmd: impl Into<Command>) -> Self` — [`Command`](builder/command/index.md)
+- `fn _build_subcommand(self: &mut Self, name: &str) -> Option<&mut Self>`
 
-- `fn subcommand_internal(self: Self, subcmd: Self) -> Self`
+- `fn _build_bin_names_internal(self: &mut Self)`
 
-- `fn subcommands(self: Self, subcmds: impl IntoIterator<Item = impl Into<Self>>) -> Self`
+- `fn _panic_on_missing_help(self: &Self, help_required_globally: bool)`
 
-- `fn defer(self: Self, deferred: fn(Command) -> Command) -> Self` — [`Command`](builder/command/index.md)
+- `fn two_args_of<F>(self: &Self, condition: F) -> Option<(&Arg, &Arg)>` — [`Arg`](#arg)
 
-- `fn debug_assert(self: Self)`
+- `fn two_groups_of<F>(self: &Self, condition: F) -> Option<(&ArgGroup, &ArgGroup)>` — [`ArgGroup`](#arggroup)
 
-- `fn error(self: &mut Self, kind: ErrorKind, message: impl fmt::Display) -> Error` — [`ErrorKind`](error/kind/index.md), [`Error`](#error)
+- `fn _propagate_global_args(self: &mut Self)`
 
-- `fn get_matches(self: Self) -> ArgMatches` — [`ArgMatches`](parser/matches/arg_matches/index.md)
+- `fn _propagate(self: &mut Self)`
 
-- `fn get_matches_mut(self: &mut Self) -> ArgMatches` — [`ArgMatches`](parser/matches/arg_matches/index.md)
+- `fn _propagate_subcommand(self: &Self, sc: &mut Self)`
 
-- `fn try_get_matches(self: Self) -> ClapResult<ArgMatches>` — [`Result`](error/index.md), [`ArgMatches`](parser/matches/arg_matches/index.md)
+- `fn _check_help_and_version(self: &mut Self, expand_help_tree: bool)`
 
-- `fn get_matches_from<I, T>(self: Self, itr: I) -> ArgMatches` — [`ArgMatches`](parser/matches/arg_matches/index.md)
+- `fn _copy_subtree_for_help(self: &Self) -> Command` — [`Command`](#command)
 
-- `fn try_get_matches_from<I, T>(self: Self, itr: I) -> ClapResult<ArgMatches>` — [`Result`](error/index.md), [`ArgMatches`](parser/matches/arg_matches/index.md)
+- `fn _render_version(self: &Self, use_long: bool) -> String`
 
-- `fn try_get_matches_from_mut<I, T>(self: &mut Self, itr: I) -> ClapResult<ArgMatches>` — [`Result`](error/index.md), [`ArgMatches`](parser/matches/arg_matches/index.md)
-
-- `fn print_help(self: &mut Self) -> io::Result<()>`
-
-- `fn print_long_help(self: &mut Self) -> io::Result<()>`
-
-- `fn render_help(self: &mut Self) -> StyledStr` — [`StyledStr`](builder/styled_str/index.md)
-
-- `fn render_long_help(self: &mut Self) -> StyledStr` — [`StyledStr`](builder/styled_str/index.md)
-
-- `fn render_version(self: &Self) -> String`
-
-- `fn render_long_version(self: &Self) -> String`
-
-- `fn render_usage(self: &mut Self) -> StyledStr` — [`StyledStr`](builder/styled_str/index.md)
-
-- `fn render_usage_(self: &mut Self) -> Option<StyledStr>` — [`StyledStr`](builder/styled_str/index.md)
+- `fn format_group(self: &Self, g: &Id) -> StyledStr` — [`Id`](#id), [`StyledStr`](builder/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Command`
 
-- `fn clone(self: &Self) -> Command` — [`Command`](builder/command/index.md)
+- `fn clone(self: &Self) -> Command` — [`Command`](#command)
 
 ##### `impl Debug for Command`
 
@@ -203,7 +187,7 @@ let m = Command::new("My Program")
 
 - `type Output = Arg`
 
-- `fn index(self: &Self, key: &Id) -> &<Self as >::Output` — [`Id`](util/id/index.md)
+- `fn index(self: &Self, key: &Id) -> &<Self as >::Output` — [`Id`](#id)
 
 ##### `impl<T> ToString for Command`
 
@@ -248,7 +232,7 @@ struct Arg {
 The abstract representation of a command line argument. Used to set all the options and
 relationships that define a valid argument for the program.
 
-There are two methods for constructing [`Arg`](builder/arg/index.md)s, using the builder pattern and setting options
+There are two methods for constructing [`Arg`](#arg)s, using the builder pattern and setting options
 manually, or using a usage string which is far less verbose but has fewer options. You can also
 use a combination of the two methods to achieve the best of both worlds.
 
@@ -276,23 +260,97 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 
 #### Implementations
 
-- `fn _build(self: &mut Self)`
+- `fn get_id(self: &Self) -> &Id` — [`Id`](#id)
 
-- `fn name_no_brackets(self: &Self) -> String`
+- `fn get_help(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](builder/index.md)
 
-- `fn stylized(self: &Self, styles: &Styles, required: Option<bool>) -> StyledStr` — [`Styles`](builder/styling/index.md), [`StyledStr`](builder/styled_str/index.md)
+- `fn get_long_help(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](builder/index.md)
 
-- `fn stylize_arg_suffix(self: &Self, styles: &Styles, required: Option<bool>) -> StyledStr` — [`Styles`](builder/styling/index.md), [`StyledStr`](builder/styled_str/index.md)
+- `fn get_display_order(self: &Self) -> usize`
 
-- `fn render_arg_val(self: &Self, required: bool) -> String`
+- `fn get_help_heading(self: &Self) -> Option<&str>`
 
-- `fn is_multiple(self: &Self) -> bool`
+- `fn get_short(self: &Self) -> Option<char>`
+
+- `fn get_visible_short_aliases(self: &Self) -> Option<Vec<char>>`
+
+- `fn get_all_short_aliases(self: &Self) -> Option<Vec<char>>`
+
+- `fn get_short_and_visible_aliases(self: &Self) -> Option<Vec<char>>`
+
+- `fn get_long(self: &Self) -> Option<&str>`
+
+- `fn get_visible_aliases(self: &Self) -> Option<Vec<&str>>`
+
+- `fn get_all_aliases(self: &Self) -> Option<Vec<&str>>`
+
+- `fn get_long_and_visible_aliases(self: &Self) -> Option<Vec<&str>>`
+
+- `fn get_aliases(self: &Self) -> Option<Vec<&str>>`
+
+- `fn get_possible_values(self: &Self) -> Vec<PossibleValue>` — [`PossibleValue`](builder/index.md)
+
+- `fn get_value_names(self: &Self) -> Option<&[Str]>` — [`Str`](builder/index.md)
+
+- `fn get_num_args(self: &Self) -> Option<ValueRange>` — [`ValueRange`](builder/index.md)
+
+- `fn get_min_vals(self: &Self) -> usize`
+
+- `fn get_value_delimiter(self: &Self) -> Option<char>`
+
+- `fn get_value_terminator(self: &Self) -> Option<&Str>` — [`Str`](builder/index.md)
+
+- `fn get_index(self: &Self) -> Option<usize>`
+
+- `fn get_value_hint(self: &Self) -> ValueHint` — [`ValueHint`](#valuehint)
+
+- `fn get_default_values(self: &Self) -> &[OsStr]` — [`OsStr`](builder/index.md)
+
+- `fn is_positional(self: &Self) -> bool`
+
+- `fn is_required_set(self: &Self) -> bool`
+
+- `fn is_multiple_values_set(self: &Self) -> bool`
+
+- `fn is_takes_value_set(self: &Self) -> bool`
+
+- `fn is_allow_hyphen_values_set(self: &Self) -> bool`
+
+- `fn is_allow_negative_numbers_set(self: &Self) -> bool`
+
+- `fn get_action(self: &Self) -> &ArgAction` — [`ArgAction`](#argaction)
+
+- `fn get_value_parser(self: &Self) -> &super::ValueParser` — [`ValueParser`](builder/index.md)
+
+- `fn is_global_set(self: &Self) -> bool`
+
+- `fn is_next_line_help_set(self: &Self) -> bool`
+
+- `fn is_hide_set(self: &Self) -> bool`
+
+- `fn is_hide_default_value_set(self: &Self) -> bool`
+
+- `fn is_hide_possible_values_set(self: &Self) -> bool`
+
+- `fn is_hide_short_help_set(self: &Self) -> bool`
+
+- `fn is_hide_long_help_set(self: &Self) -> bool`
+
+- `fn is_require_equals_set(self: &Self) -> bool`
+
+- `fn is_exclusive_set(self: &Self) -> bool`
+
+- `fn is_trailing_var_arg_set(self: &Self) -> bool`
+
+- `fn is_last_set(self: &Self) -> bool`
+
+- `fn is_ignore_case_set(self: &Self) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for Arg`
 
-- `fn clone(self: &Self) -> Arg` — [`Arg`](builder/arg/index.md)
+- `fn clone(self: &Self) -> Arg` — [`Arg`](#arg)
 
 ##### `impl Debug for Arg`
 
@@ -300,7 +358,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 
 ##### `impl Default for Arg`
 
-- `fn default() -> Arg` — [`Arg`](builder/arg/index.md)
+- `fn default() -> Arg` — [`Arg`](#arg)
 
 ##### `impl Display for Arg`
 
@@ -310,11 +368,11 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 
 ##### `impl Ord for Arg`
 
-- `fn cmp(self: &Self, other: &Arg) -> Ordering` — [`Arg`](builder/arg/index.md)
+- `fn cmp(self: &Self, other: &Arg) -> Ordering` — [`Arg`](#arg)
 
 ##### `impl PartialEq for Arg`
 
-- `fn eq(self: &Self, other: &Arg) -> bool` — [`Arg`](builder/arg/index.md)
+- `fn eq(self: &Self, other: &Arg) -> bool` — [`Arg`](#arg)
 
 ##### `impl PartialOrd for Arg`
 
@@ -402,7 +460,7 @@ assert_eq!(matches
 
 #### Implementations
 
-- `fn get_id(self: &Self) -> &Id` — [`Id`](util/id/index.md)
+- `fn get_id(self: &Self) -> &Id` — [`Id`](#id)
 
 - `fn is_required_set(self: &Self) -> bool`
 
@@ -410,7 +468,7 @@ assert_eq!(matches
 
 ##### `impl Clone for ArgGroup`
 
-- `fn clone(self: &Self) -> ArgGroup` — [`ArgGroup`](builder/arg_group/index.md)
+- `fn clone(self: &Self) -> ArgGroup` — [`ArgGroup`](#arggroup)
 
 ##### `impl Debug for ArgGroup`
 
@@ -418,13 +476,13 @@ assert_eq!(matches
 
 ##### `impl Default for ArgGroup`
 
-- `fn default() -> ArgGroup` — [`ArgGroup`](builder/arg_group/index.md)
+- `fn default() -> ArgGroup` — [`ArgGroup`](#arggroup)
 
 ##### `impl Eq for ArgGroup`
 
 ##### `impl PartialEq for ArgGroup`
 
-- `fn eq(self: &Self, other: &ArgGroup) -> bool` — [`ArgGroup`](builder/arg_group/index.md)
+- `fn eq(self: &Self, other: &ArgGroup) -> bool` — [`ArgGroup`](#arggroup)
 
 ##### `impl StructuralPartialEq for ArgGroup`
 
@@ -488,25 +546,19 @@ if matches.contains_id("out") {
 
 #### Implementations
 
-- `fn try_get_arg(self: &Self, arg: &str) -> Result<Option<&MatchedArg>, MatchesError>` — [`MatchedArg`](parser/matches/matched_arg/index.md), [`MatchesError`](parser/error/index.md)
+- `fn subcommand(self: &Self) -> Option<(&str, &ArgMatches)>` — [`ArgMatches`](#argmatches)
 
-- `fn try_get_arg_t<T: Any + Send + Sync + 'static>(self: &Self, arg: &str) -> Result<Option<&MatchedArg>, MatchesError>` — [`MatchedArg`](parser/matches/matched_arg/index.md), [`MatchesError`](parser/error/index.md)
+- `fn remove_subcommand(self: &mut Self) -> Option<(String, ArgMatches)>` — [`ArgMatches`](#argmatches)
 
-- `fn try_remove_arg_t<T: Any + Send + Sync + 'static>(self: &mut Self, arg: &str) -> Result<Option<MatchedArg>, MatchesError>` — [`MatchedArg`](parser/matches/matched_arg/index.md), [`MatchesError`](parser/error/index.md)
+- `fn subcommand_matches(self: &Self, name: &str) -> Option<&ArgMatches>` — [`ArgMatches`](#argmatches)
 
-- `fn verify_arg_t<T: Any + Send + Sync + 'static>(self: &Self, arg: &MatchedArg) -> Result<(), MatchesError>` — [`MatchedArg`](parser/matches/matched_arg/index.md), [`MatchesError`](parser/error/index.md)
-
-- `fn verify_arg(self: &Self, _arg: &str) -> Result<(), MatchesError>` — [`MatchesError`](parser/error/index.md)
-
-- `fn get_arg<'s>(self: &'s Self, arg: &str) -> Option<&'s MatchedArg>` — [`MatchedArg`](parser/matches/matched_arg/index.md)
-
-- `fn get_subcommand(self: &Self, name: &str) -> Option<&SubCommand>` — [`SubCommand`](parser/matches/arg_matches/index.md)
+- `fn subcommand_name(self: &Self) -> Option<&str>`
 
 #### Trait Implementations
 
 ##### `impl Clone for ArgMatches`
 
-- `fn clone(self: &Self) -> ArgMatches` — [`ArgMatches`](parser/matches/arg_matches/index.md)
+- `fn clone(self: &Self) -> ArgMatches` — [`ArgMatches`](#argmatches)
 
 ##### `impl Debug for ArgMatches`
 
@@ -514,13 +566,13 @@ if matches.contains_id("out") {
 
 ##### `impl Default for ArgMatches`
 
-- `fn default() -> ArgMatches` — [`ArgMatches`](parser/matches/arg_matches/index.md)
+- `fn default() -> ArgMatches` — [`ArgMatches`](#argmatches)
 
 ##### `impl Eq for ArgMatches`
 
 ##### `impl PartialEq for ArgMatches`
 
-- `fn eq(self: &Self, other: &ArgMatches) -> bool` — [`ArgMatches`](parser/matches/arg_matches/index.md)
+- `fn eq(self: &Self, other: &ArgMatches) -> bool` — [`ArgMatches`](#argmatches)
 
 ##### `impl StructuralPartialEq for ArgMatches`
 
@@ -548,7 +600,7 @@ relationships between `Arg`s and `ArgGroup`s with functions like
 
 - `fn as_str(self: &Self) -> &str`
 
-- `fn as_internal_str(self: &Self) -> &Str` — [`Str`](builder/str/index.md)
+- `fn as_internal_str(self: &Self) -> &Str` — [`Str`](builder/index.md)
 
 #### Trait Implementations
 
@@ -558,7 +610,7 @@ relationships between `Arg`s and `ArgGroup`s with functions like
 
 ##### `impl Clone for Id`
 
-- `fn clone(self: &Self) -> Id` — [`Id`](util/id/index.md)
+- `fn clone(self: &Self) -> Id` — [`Id`](#id)
 
 ##### `impl Debug for Id`
 
@@ -566,7 +618,7 @@ relationships between `Arg`s and `ArgGroup`s with functions like
 
 ##### `impl Default for Id`
 
-- `fn default() -> Id` — [`Id`](util/id/index.md)
+- `fn default() -> Id` — [`Id`](#id)
 
 ##### `impl Display for Id`
 
@@ -580,19 +632,19 @@ relationships between `Arg`s and `ArgGroup`s with functions like
 
 ##### `impl<I> IntoResettable for Id`
 
-- `fn into_resettable(self: Self) -> Resettable<String>` — [`Resettable`](builder/resettable/index.md)
+- `fn into_resettable(self: Self) -> Resettable<String>` — [`Resettable`](builder/index.md)
 
 ##### `impl Ord for Id`
 
-- `fn cmp(self: &Self, other: &Id) -> $crate::cmp::Ordering` — [`Id`](util/id/index.md)
+- `fn cmp(self: &Self, other: &Id) -> $crate::cmp::Ordering` — [`Id`](#id)
 
 ##### `impl PartialEq for Id`
 
-- `fn eq(self: &Self, other: &Id) -> bool` — [`Id`](util/id/index.md)
+- `fn eq(self: &Self, other: &Str) -> bool` — [`Str`](builder/index.md)
 
 ##### `impl PartialOrd for Id`
 
-- `fn partial_cmp(self: &Self, other: &Id) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Id`](util/id/index.md)
+- `fn partial_cmp(self: &Self, other: &Id) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Id`](#id)
 
 ##### `impl StructuralPartialEq for Id`
 
@@ -986,15 +1038,15 @@ assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
 
 - `fn takes_values(self: &Self) -> bool`
 
-- `fn max_num_args(self: &Self) -> ValueRange` — [`ValueRange`](builder/range/index.md)
+- `fn max_num_args(self: &Self) -> ValueRange` — [`ValueRange`](builder/index.md)
 
-- `fn default_num_args(self: &Self) -> ValueRange` — [`ValueRange`](builder/range/index.md)
+- `fn default_num_args(self: &Self) -> ValueRange` — [`ValueRange`](builder/index.md)
 
 - `fn default_value(self: &Self) -> Option<&'static std::ffi::OsStr>`
 
 - `fn default_missing_value(self: &Self) -> Option<&'static std::ffi::OsStr>`
 
-- `fn default_value_parser(self: &Self) -> Option<super::ValueParser>` — [`ValueParser`](builder/value_parser/index.md)
+- `fn default_value_parser(self: &Self) -> Option<super::ValueParser>` — [`ValueParser`](builder/index.md)
 
 - `fn value_type_id(self: &Self) -> Option<AnyValueId>` — [`AnyValueId`](util/any_value/index.md)
 
@@ -1002,7 +1054,7 @@ assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
 
 ##### `impl Clone for ArgAction`
 
-- `fn clone(self: &Self) -> ArgAction` — [`ArgAction`](builder/action/index.md)
+- `fn clone(self: &Self) -> ArgAction` — [`ArgAction`](#argaction)
 
 ##### `impl Debug for ArgAction`
 
@@ -1010,7 +1062,7 @@ assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
 
 ##### `impl IntoResettable for crate::builder::ArgAction`
 
-- `fn into_resettable(self: Self) -> Resettable<ArgAction>` — [`Resettable`](builder/resettable/index.md), [`ArgAction`](builder/action/index.md)
+- `fn into_resettable(self: Self) -> Resettable<ArgAction>` — [`Resettable`](builder/index.md), [`ArgAction`](#argaction)
 
 ### `ValueHint`
 
@@ -1125,7 +1177,7 @@ Overview of which hints are supported by which shell:
 
 ##### `impl Clone for ValueHint`
 
-- `fn clone(self: &Self) -> ValueHint` — [`ValueHint`](builder/value_hint/index.md)
+- `fn clone(self: &Self) -> ValueHint` — [`ValueHint`](#valuehint)
 
 ##### `impl Copy for ValueHint`
 
@@ -1135,7 +1187,7 @@ Overview of which hints are supported by which shell:
 
 ##### `impl Default for ValueHint`
 
-- `fn default() -> ValueHint` — [`ValueHint`](builder/value_hint/index.md)
+- `fn default() -> ValueHint` — [`ValueHint`](#valuehint)
 
 ##### `impl Eq for ValueHint`
 
@@ -1151,11 +1203,11 @@ Overview of which hints are supported by which shell:
 
 ##### `impl IntoResettable for crate::builder::ValueHint`
 
-- `fn into_resettable(self: Self) -> Resettable<ValueHint>` — [`Resettable`](builder/resettable/index.md), [`ValueHint`](builder/value_hint/index.md)
+- `fn into_resettable(self: Self) -> Resettable<ValueHint>` — [`Resettable`](builder/index.md), [`ValueHint`](#valuehint)
 
 ##### `impl PartialEq for ValueHint`
 
-- `fn eq(self: &Self, other: &ValueHint) -> bool` — [`ValueHint`](builder/value_hint/index.md)
+- `fn eq(self: &Self, other: &ValueHint) -> bool` — [`ValueHint`](#valuehint)
 
 ##### `impl StructuralPartialEq for ValueHint`
 
@@ -1229,13 +1281,13 @@ Represents the color preferences for program output
 
 #### Implementations
 
-- `fn possible_values() -> impl Iterator<Item = PossibleValue>` — [`PossibleValue`](builder/possible_value/index.md)
+- `fn possible_values() -> impl Iterator<Item = PossibleValue>` — [`PossibleValue`](builder/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for ColorChoice`
 
-- `fn clone(self: &Self) -> ColorChoice` — [`ColorChoice`](util/color/index.md)
+- `fn clone(self: &Self) -> ColorChoice` — [`ColorChoice`](#colorchoice)
 
 ##### `impl Copy for ColorChoice`
 
@@ -1245,7 +1297,7 @@ Represents the color preferences for program output
 
 ##### `impl Default for ColorChoice`
 
-- `fn default() -> ColorChoice` — [`ColorChoice`](util/color/index.md)
+- `fn default() -> ColorChoice` — [`ColorChoice`](#colorchoice)
 
 ##### `impl Display for ColorChoice`
 
@@ -1261,7 +1313,7 @@ Represents the color preferences for program output
 
 ##### `impl PartialEq for ColorChoice`
 
-- `fn eq(self: &Self, other: &ColorChoice) -> bool` — [`ColorChoice`](util/color/index.md)
+- `fn eq(self: &Self, other: &ColorChoice) -> bool` — [`ColorChoice`](#colorchoice)
 
 ##### `impl StructuralPartialEq for ColorChoice`
 
@@ -1273,7 +1325,7 @@ Represents the color preferences for program output
 
 - `fn value_variants<'a>() -> &'a [Self]`
 
-- `fn to_possible_value(self: &Self) -> Option<PossibleValue>` — [`PossibleValue`](builder/possible_value/index.md)
+- `fn to_possible_value(self: &Self) -> Option<PossibleValue>` — [`PossibleValue`](builder/index.md)
 
 ## Traits
 
@@ -1403,7 +1455,7 @@ assert_eq!(m.get_one::<String>("input"), None);
 
 ### `value_parser!`
 
-Select a [`ValueParser`](builder/value_parser/index.md) implementation from the intended type
+Select a [`ValueParser`](builder/index.md) implementation from the intended type
 
 Supported types
 - [`ValueParserFactory` types][ValueParserFactory], including

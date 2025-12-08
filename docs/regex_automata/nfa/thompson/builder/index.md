@@ -26,7 +26,7 @@ An abstraction for building Thompson NFAs by hand.
 
 A builder is what a [`thompson::Compiler`](crate::nfa::thompson::Compiler)
 uses internally to translate a regex's high-level intermediate
-representation into an [`NFA`](../nfa/index.md).
+representation into an [`NFA`](../index.md).
 
 The primary function of this builder is to abstract away the internal
 representation of an NFA and make it difficult to produce NFAs are that
@@ -229,43 +229,43 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new() -> Builder` — [`Builder`](#builder)
+- `fn new() -> Builder` — [`Builder`](../index.md)
 
 - `fn clear(self: &mut Self)`
 
-- `fn build(self: &Self, start_anchored: StateID, start_unanchored: StateID) -> Result<NFA, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`NFA`](../nfa/index.md), [`BuildError`](../error/index.md)
+- `fn build(self: &Self, start_anchored: StateID, start_unanchored: StateID) -> Result<NFA, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`NFA`](../index.md), [`BuildError`](../index.md)
 
-- `fn start_pattern(self: &mut Self) -> Result<PatternID, BuildError>` — [`PatternID`](../../../util/primitives/index.md), [`BuildError`](../error/index.md)
+- `fn start_pattern(self: &mut Self) -> Result<PatternID, BuildError>` — [`PatternID`](../../../index.md), [`BuildError`](../index.md)
 
-- `fn finish_pattern(self: &mut Self, start_id: StateID) -> Result<PatternID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`PatternID`](../../../util/primitives/index.md), [`BuildError`](../error/index.md)
+- `fn finish_pattern(self: &mut Self, start_id: StateID) -> Result<PatternID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`PatternID`](../../../index.md), [`BuildError`](../index.md)
 
-- `fn current_pattern_id(self: &Self) -> PatternID` — [`PatternID`](../../../util/primitives/index.md)
+- `fn current_pattern_id(self: &Self) -> PatternID` — [`PatternID`](../../../index.md)
 
 - `fn pattern_len(self: &Self) -> usize`
 
-- `fn add_empty(self: &mut Self) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../error/index.md)
+- `fn add_empty(self: &mut Self) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../index.md)
 
-- `fn add_union(self: &mut Self, alternates: Vec<StateID>) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../error/index.md)
+- `fn add_union(self: &mut Self, alternates: Vec<StateID>) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../index.md)
 
-- `fn add_union_reverse(self: &mut Self, alternates: Vec<StateID>) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../error/index.md)
+- `fn add_union_reverse(self: &mut Self, alternates: Vec<StateID>) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../index.md)
 
-- `fn add_range(self: &mut Self, trans: Transition) -> Result<StateID, BuildError>` — [`Transition`](../nfa/index.md), [`StateID`](../../../util/primitives/index.md), [`BuildError`](../error/index.md)
+- `fn add_range(self: &mut Self, trans: Transition) -> Result<StateID, BuildError>` — [`Transition`](../index.md), [`StateID`](../../../util/primitives/index.md), [`BuildError`](../index.md)
 
-- `fn add_sparse(self: &mut Self, transitions: Vec<Transition>) -> Result<StateID, BuildError>` — [`Transition`](../nfa/index.md), [`StateID`](../../../util/primitives/index.md), [`BuildError`](../error/index.md)
+- `fn add_sparse(self: &mut Self, transitions: Vec<Transition>) -> Result<StateID, BuildError>` — [`Transition`](../index.md), [`StateID`](../../../util/primitives/index.md), [`BuildError`](../index.md)
 
-- `fn add_look(self: &mut Self, next: StateID, look: Look) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`Look`](../../../util/look/index.md), [`BuildError`](../error/index.md)
+- `fn add_look(self: &mut Self, next: StateID, look: Look) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`Look`](../../../util/look/index.md), [`BuildError`](../index.md)
 
-- `fn add_capture_start(self: &mut Self, next: StateID, group_index: u32, name: Option<Arc<str>>) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../error/index.md)
+- `fn add_capture_start(self: &mut Self, next: StateID, group_index: u32, name: Option<Arc<str>>) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../index.md)
 
-- `fn add_capture_end(self: &mut Self, next: StateID, group_index: u32) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../error/index.md)
+- `fn add_capture_end(self: &mut Self, next: StateID, group_index: u32) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../index.md)
 
-- `fn add_fail(self: &mut Self) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../error/index.md)
+- `fn add_fail(self: &mut Self) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../index.md)
 
-- `fn add_match(self: &mut Self) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../error/index.md)
+- `fn add_match(self: &mut Self) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../index.md)
 
-- `fn add(self: &mut Self, state: State) -> Result<StateID, BuildError>` — [`State`](#state), [`StateID`](../../../util/primitives/index.md), [`BuildError`](../error/index.md)
+- `fn add(self: &mut Self, state: State) -> Result<StateID, BuildError>` — [`State`](#state), [`StateID`](../../../util/primitives/index.md), [`BuildError`](../index.md)
 
-- `fn patch(self: &mut Self, from: StateID, to: StateID) -> Result<(), BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../error/index.md)
+- `fn patch(self: &mut Self, from: StateID, to: StateID) -> Result<(), BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../index.md)
 
 - `fn set_utf8(self: &mut Self, yes: bool)`
 
@@ -279,19 +279,19 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - `fn get_look_matcher(self: &Self) -> &LookMatcher` — [`LookMatcher`](../../../util/look/index.md)
 
-- `fn set_size_limit(self: &mut Self, limit: Option<usize>) -> Result<(), BuildError>` — [`BuildError`](../error/index.md)
+- `fn set_size_limit(self: &mut Self, limit: Option<usize>) -> Result<(), BuildError>` — [`BuildError`](../index.md)
 
 - `fn get_size_limit(self: &Self) -> Option<usize>`
 
 - `fn memory_usage(self: &Self) -> usize`
 
-- `fn check_size_limit(self: &Self) -> Result<(), BuildError>` — [`BuildError`](../error/index.md)
+- `fn check_size_limit(self: &Self) -> Result<(), BuildError>` — [`BuildError`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Builder`
 
-- `fn clone(self: &Self) -> Builder` — [`Builder`](#builder)
+- `fn clone(self: &Self) -> Builder` — [`Builder`](../index.md)
 
 ##### `impl Debug for Builder`
 
@@ -299,7 +299,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ##### `impl Default for Builder`
 
-- `fn default() -> Builder` — [`Builder`](#builder)
+- `fn default() -> Builder` — [`Builder`](../index.md)
 
 ## Enums
 

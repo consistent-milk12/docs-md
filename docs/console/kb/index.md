@@ -49,7 +49,7 @@ from the keyboard.
 
 ##### `impl Clone for Key`
 
-- `fn clone(self: &Self) -> Key` — [`Key`](#key)
+- `fn clone(self: &Self) -> Key` — [`Key`](../index.md)
 
 ##### `impl Debug for Key`
 
@@ -63,7 +63,7 @@ from the keyboard.
 
 ##### `impl PartialEq for Key`
 
-- `fn eq(self: &Self, other: &Key) -> bool` — [`Key`](#key)
+- `fn eq(self: &Self, other: &Key) -> bool` — [`Key`](../index.md)
 
 ##### `impl StructuralPartialEq for Key`
 

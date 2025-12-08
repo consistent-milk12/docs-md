@@ -6,8 +6,8 @@
 
 Atomic types.
 
-* [`AtomicCell`](atomic_cell/index.md), a thread-safe mutable memory location.
-* [`AtomicConsume`](consume/index.md), for reading from primitive atomic types with "consume" ordering.
+* [`AtomicCell`](#atomiccell), a thread-safe mutable memory location.
+* [`AtomicConsume`](#atomicconsume), for reading from primitive atomic types with "consume" ordering.
 
 ## Modules
 
@@ -59,21 +59,13 @@ Atomic loads use the `Acquire` ordering and atomic stores use the `Release` orde
 
 #### Implementations
 
-- `fn fetch_add(self: &Self, val: i128) -> i128`
+- `fn fetch_and(self: &Self, val: bool) -> bool`
 
-- `fn fetch_sub(self: &Self, val: i128) -> i128`
+- `fn fetch_nand(self: &Self, val: bool) -> bool`
 
-- `fn fetch_and(self: &Self, val: i128) -> i128`
+- `fn fetch_or(self: &Self, val: bool) -> bool`
 
-- `fn fetch_nand(self: &Self, val: i128) -> i128`
-
-- `fn fetch_or(self: &Self, val: i128) -> i128`
-
-- `fn fetch_xor(self: &Self, val: i128) -> i128`
-
-- `fn fetch_max(self: &Self, val: i128) -> i128`
-
-- `fn fetch_min(self: &Self, val: i128) -> i128`
+- `fn fetch_xor(self: &Self, val: bool) -> bool`
 
 #### Trait Implementations
 
@@ -83,7 +75,7 @@ Atomic loads use the `Acquire` ordering and atomic stores use the `Release` orde
 
 ##### `impl<T: Default> Default for AtomicCell<T>`
 
-- `fn default() -> AtomicCell<T>` — [`AtomicCell`](atomic_cell/index.md)
+- `fn default() -> AtomicCell<T>` — [`AtomicCell`](#atomiccell)
 
 ##### `impl<T> Drop for AtomicCell<T>`
 

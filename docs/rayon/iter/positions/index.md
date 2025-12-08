@@ -18,7 +18,7 @@ struct Positions<I, P> {
 `Positions` takes a predicate `predicate` and filters out elements that match,
 yielding their indices.
 
-This struct is created by the `positions()` method on [`IndexedParallelIterator`](../index.md)
+This struct is created by the `positions()` method on [`IndexedParallelIterator`](../../prelude/index.md)
 
 
 #### Implementations
@@ -29,7 +29,7 @@ This struct is created by the `positions()` method on [`IndexedParallelIterator`
 
 ##### `impl<I: $crate::clone::Clone, P: $crate::clone::Clone> Clone for Positions<I, P>`
 
-- `fn clone(self: &Self) -> Positions<I, P>` — [`Positions`](#positions)
+- `fn clone(self: &Self) -> Positions<I, P>` — [`Positions`](../index.md)
 
 ##### `impl<I: Debug, P> Debug for Positions<I, P>`
 

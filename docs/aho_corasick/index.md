@@ -15,17 +15,17 @@ Finally, unlike most other Aho-Corasick implementations, this one
 supports enabling [leftmost-first](MatchKind::LeftmostFirst) or
 [leftmost-longest](MatchKind::LeftmostLongest) match semantics, using a
 (seemingly) novel alternative construction algorithm. For more details on what
-match semantics means, see the [`MatchKind`](util/search/index.md) type.
+match semantics means, see the [`MatchKind`](#matchkind) type.
 
 # Overview
 
 This section gives a brief overview of the primary types in this crate:
 
-* [`AhoCorasick`](ahocorasick/index.md) is the primary type and represents an Aho-Corasick automaton.
+* [`AhoCorasick`](#ahocorasick) is the primary type and represents an Aho-Corasick automaton.
 This is the type you use to execute searches.
-* [`AhoCorasickBuilder`](ahocorasick/index.md) can be used to build an Aho-Corasick automaton, and
+* [`AhoCorasickBuilder`](#ahocorasickbuilder) can be used to build an Aho-Corasick automaton, and
 supports configuring a number of options.
-* [`Match`](util/search/index.md) represents a single match reported by an Aho-Corasick automaton.
+* [`Match`](#match) represents a single match reported by an Aho-Corasick automaton.
 Each match has two pieces of information: the pattern that matched and the
 start and end byte offsets corresponding to the position in the haystack at
 which it matched.
@@ -154,7 +154,7 @@ assert_eq!("Samwise", &haystack[mat.start()..mat.end()]);
 
 In addition to leftmost-first semantics, this library also supports
 leftmost-longest semantics, which match the POSIX behavior of a regular
-expression alternation. See [`MatchKind`](util/search/index.md) for more details.
+expression alternation. See [`MatchKind`](#matchkind) for more details.
 
 # Prefilters
 
@@ -175,7 +175,7 @@ disabled via `AhoCorasickBuilder::prefilter`.
 # Lower level APIs
 
 This crate also provides several sub-modules that collectively expose many of
-the implementation details of the main [`AhoCorasick`](ahocorasick/index.md) type. Most users of this
+the implementation details of the main [`AhoCorasick`](#ahocorasick) type. Most users of this
 library can completely ignore the submodules and their contents, but if you
 needed finer grained control, some parts of them may be useful to you. Here is
 a brief overview of each and why you might want to use them:
@@ -197,7 +197,7 @@ trait. (The top-level `AhoCorasick` type does not implement the `Automaton`
 trait.)
 
 As mentioned above, if you aren't sure whether you need these sub-modules,
-you should be able to safely ignore them and just focus on the [`AhoCorasick`](ahocorasick/index.md)
+you should be able to safely ignore them and just focus on the [`AhoCorasick`](#ahocorasick)
 type.
 
 # Crate features
@@ -256,7 +256,7 @@ The type variable `R` refers to the `io::Read` stream that is being read
 from.
 
 The lifetime `'a` refers to the lifetime of the corresponding
-[`AhoCorasick`](ahocorasick/index.md) searcher.
+[`AhoCorasick`](#ahocorasick) searcher.
 
 #### Trait Implementations
 
@@ -276,7 +276,7 @@ The lifetime `'a` refers to the lifetime of the corresponding
 
 - `type Item = Result<Match, Error>`
 
-- `fn next(self: &mut Self) -> Option<Result<Match, std::io::Error>>` — [`Match`](util/search/index.md)
+- `fn next(self: &mut Self) -> Option<Result<Match, std::io::Error>>` — [`Match`](#match)
 
 ### `AhoCorasick`
 
@@ -293,7 +293,7 @@ An automaton for searching multiple strings in linear time.
 The `AhoCorasick` type supports a few basic ways of constructing an
 automaton, with the default being `AhoCorasick::new`. However, there
 are a fair number of configurable options that can be set by using
-[`AhoCorasickBuilder`](ahocorasick/index.md) instead. Such options include, but are not limited
+[`AhoCorasickBuilder`](#ahocorasickbuilder) instead. Such options include, but are not limited
 to, how matches are determined, simple case insensitivity, whether to use a
 DFA or not and various knobs for controlling the space-vs-time trade offs
 taken when building the automaton.
@@ -329,7 +329,7 @@ This experiment very strongly argues that a contiguous NFA is often the
 best balance in terms of resource usage. It takes a little longer to build,
 but its memory usage is quite small. Its search speed (not listed) is
 also often faster than a noncontiguous NFA, but a little slower than a
-DFA. Indeed, when no specific [`AhoCorasickKind`](ahocorasick/index.md) is used (which is the
+DFA. Indeed, when no specific [`AhoCorasickKind`](#ahocorasickkind) is used (which is the
 default), a contiguous NFA is used in most cases.
 
 The only "catch" to using a contiguous NFA is that, because of its variety
@@ -348,7 +348,7 @@ is guaranteed that it is cheap to clone.
 # Search configuration
 
 Most of the search routines accept anything that can be cheaply converted
-to an [`Input`](util/search/index.md). This includes `&[u8]`, `&str` and `Input` itself.
+to an [`Input`](#input). This includes `&[u8]`, `&str` and `Input` itself.
 
 # Construction failure
 
@@ -491,31 +491,25 @@ assert_eq!(result, "The slow grey sloth.");
 
 #### Implementations
 
-- `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, input: I) -> bool`
+- `fn kind(self: &Self) -> AhoCorasickKind` — [`AhoCorasickKind`](#ahocorasickkind)
 
-- `fn find<'h, I: Into<Input<'h>>>(self: &Self, input: I) -> Option<Match>` — [`Match`](util/search/index.md)
+- `fn start_kind(self: &Self) -> StartKind` — [`StartKind`](#startkind)
 
-- `fn find_overlapping<'h, I: Into<Input<'h>>>(self: &Self, input: I, state: &mut OverlappingState)` — [`OverlappingState`](automaton/index.md)
+- `fn match_kind(self: &Self) -> MatchKind` — [`MatchKind`](#matchkind)
 
-- `fn find_iter<'a, 'h, I: Into<Input<'h>>>(self: &'a Self, input: I) -> FindIter<'a, 'h>` — [`FindIter`](ahocorasick/index.md)
+- `fn min_pattern_len(self: &Self) -> usize`
 
-- `fn find_overlapping_iter<'a, 'h, I: Into<Input<'h>>>(self: &'a Self, input: I) -> FindOverlappingIter<'a, 'h>` — [`FindOverlappingIter`](ahocorasick/index.md)
+- `fn max_pattern_len(self: &Self) -> usize`
 
-- `fn replace_all<B>(self: &Self, haystack: &str, replace_with: &[B]) -> String`
+- `fn patterns_len(self: &Self) -> usize`
 
-- `fn replace_all_bytes<B>(self: &Self, haystack: &[u8], replace_with: &[B]) -> Vec<u8>`
-
-- `fn replace_all_with<F>(self: &Self, haystack: &str, dst: &mut String, replace_with: F)`
-
-- `fn replace_all_with_bytes<F>(self: &Self, haystack: &[u8], dst: &mut Vec<u8>, replace_with: F)`
-
-- `fn stream_find_iter<'a, R: std::io::Read>(self: &'a Self, rdr: R) -> StreamFindIter<'a, R>` — [`StreamFindIter`](ahocorasick/index.md)
+- `fn memory_usage(self: &Self) -> usize`
 
 #### Trait Implementations
 
 ##### `impl Clone for AhoCorasick`
 
-- `fn clone(self: &Self) -> AhoCorasick` — [`AhoCorasick`](ahocorasick/index.md)
+- `fn clone(self: &Self) -> AhoCorasick` — [`AhoCorasick`](#ahocorasick)
 
 ##### `impl Debug for AhoCorasick`
 
@@ -557,31 +551,31 @@ usage.
 
 #### Implementations
 
-- `fn new() -> AhoCorasickBuilder` — [`AhoCorasickBuilder`](ahocorasick/index.md)
+- `fn new() -> AhoCorasickBuilder` — [`AhoCorasickBuilder`](#ahocorasickbuilder)
 
-- `fn build<I, P>(self: &Self, patterns: I) -> Result<AhoCorasick, BuildError>` — [`AhoCorasick`](ahocorasick/index.md), [`BuildError`](util/error/index.md)
+- `fn build<I, P>(self: &Self, patterns: I) -> Result<AhoCorasick, BuildError>` — [`AhoCorasick`](#ahocorasick), [`BuildError`](#builderror)
 
-- `fn build_auto(self: &Self, nfa: noncontiguous::NFA) -> (Arc<dyn AcAutomaton>, AhoCorasickKind)` — [`NFA`](nfa/noncontiguous/index.md), [`AcAutomaton`](ahocorasick/index.md), [`AhoCorasickKind`](ahocorasick/index.md)
+- `fn build_auto(self: &Self, nfa: noncontiguous::NFA) -> (Arc<dyn AcAutomaton>, AhoCorasickKind)` — [`NFA`](nfa/noncontiguous/index.md), [`AcAutomaton`](ahocorasick/index.md), [`AhoCorasickKind`](#ahocorasickkind)
 
-- `fn match_kind(self: &mut Self, kind: MatchKind) -> &mut AhoCorasickBuilder` — [`MatchKind`](util/search/index.md), [`AhoCorasickBuilder`](ahocorasick/index.md)
+- `fn match_kind(self: &mut Self, kind: MatchKind) -> &mut AhoCorasickBuilder` — [`MatchKind`](#matchkind), [`AhoCorasickBuilder`](#ahocorasickbuilder)
 
-- `fn start_kind(self: &mut Self, kind: StartKind) -> &mut AhoCorasickBuilder` — [`StartKind`](util/search/index.md), [`AhoCorasickBuilder`](ahocorasick/index.md)
+- `fn start_kind(self: &mut Self, kind: StartKind) -> &mut AhoCorasickBuilder` — [`StartKind`](#startkind), [`AhoCorasickBuilder`](#ahocorasickbuilder)
 
-- `fn ascii_case_insensitive(self: &mut Self, yes: bool) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](ahocorasick/index.md)
+- `fn ascii_case_insensitive(self: &mut Self, yes: bool) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](#ahocorasickbuilder)
 
-- `fn kind(self: &mut Self, kind: Option<AhoCorasickKind>) -> &mut AhoCorasickBuilder` — [`AhoCorasickKind`](ahocorasick/index.md), [`AhoCorasickBuilder`](ahocorasick/index.md)
+- `fn kind(self: &mut Self, kind: Option<AhoCorasickKind>) -> &mut AhoCorasickBuilder` — [`AhoCorasickKind`](#ahocorasickkind), [`AhoCorasickBuilder`](#ahocorasickbuilder)
 
-- `fn prefilter(self: &mut Self, yes: bool) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](ahocorasick/index.md)
+- `fn prefilter(self: &mut Self, yes: bool) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](#ahocorasickbuilder)
 
-- `fn dense_depth(self: &mut Self, depth: usize) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](ahocorasick/index.md)
+- `fn dense_depth(self: &mut Self, depth: usize) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](#ahocorasickbuilder)
 
-- `fn byte_classes(self: &mut Self, yes: bool) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](ahocorasick/index.md)
+- `fn byte_classes(self: &mut Self, yes: bool) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](#ahocorasickbuilder)
 
 #### Trait Implementations
 
 ##### `impl Clone for AhoCorasickBuilder`
 
-- `fn clone(self: &Self) -> AhoCorasickBuilder` — [`AhoCorasickBuilder`](ahocorasick/index.md)
+- `fn clone(self: &Self) -> AhoCorasickBuilder` — [`AhoCorasickBuilder`](#ahocorasickbuilder)
 
 ##### `impl Debug for AhoCorasickBuilder`
 
@@ -589,7 +583,7 @@ usage.
 
 ##### `impl Default for AhoCorasickBuilder`
 
-- `fn default() -> AhoCorasickBuilder` — [`AhoCorasickBuilder`](ahocorasick/index.md)
+- `fn default() -> AhoCorasickBuilder` — [`AhoCorasickBuilder`](#ahocorasickbuilder)
 
 ### `FindIter<'a, 'h>`
 
@@ -599,7 +593,7 @@ struct FindIter<'a, 'h>(automaton::FindIter<'a, 'h, alloc::sync::Arc<dyn AcAutom
 
 An iterator of non-overlapping matches in a particular haystack.
 
-This iterator yields matches according to the [`MatchKind`](util/search/index.md) used by this
+This iterator yields matches according to the [`MatchKind`](#matchkind) used by this
 automaton.
 
 This iterator is constructed via the `AhoCorasick::find_iter` and
@@ -627,7 +621,7 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 - `type Item = Match`
 
-- `fn next(self: &mut Self) -> Option<Match>` — [`Match`](util/search/index.md)
+- `fn next(self: &mut Self) -> Option<Match>` — [`Match`](#match)
 
 ### `FindOverlappingIter<'a, 'h>`
 
@@ -665,7 +659,7 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 - `type Item = Match`
 
-- `fn next(self: &mut Self) -> Option<Match>` — [`Match`](util/search/index.md)
+- `fn next(self: &mut Self) -> Option<Match>` — [`Match`](#match)
 
 ### `BuildError`
 
@@ -688,17 +682,17 @@ trait.
 
 #### Implementations
 
-- `fn state_id_overflow(max: u64, requested_max: u64) -> BuildError` — [`BuildError`](util/error/index.md)
+- `fn state_id_overflow(max: u64, requested_max: u64) -> BuildError` — [`BuildError`](#builderror)
 
-- `fn pattern_id_overflow(max: u64, requested_max: u64) -> BuildError` — [`BuildError`](util/error/index.md)
+- `fn pattern_id_overflow(max: u64, requested_max: u64) -> BuildError` — [`BuildError`](#builderror)
 
-- `fn pattern_too_long(pattern: PatternID, len: usize) -> BuildError` — [`PatternID`](util/primitives/index.md), [`BuildError`](util/error/index.md)
+- `fn pattern_too_long(pattern: PatternID, len: usize) -> BuildError` — [`PatternID`](#patternid), [`BuildError`](#builderror)
 
 #### Trait Implementations
 
 ##### `impl Clone for BuildError`
 
-- `fn clone(self: &Self) -> BuildError` — [`BuildError`](util/error/index.md)
+- `fn clone(self: &Self) -> BuildError` — [`BuildError`](#builderror)
 
 ##### `impl Debug for BuildError`
 
@@ -740,25 +734,25 @@ trait.
 
 #### Implementations
 
-- `fn new(kind: MatchErrorKind) -> MatchError` — [`MatchErrorKind`](util/error/index.md), [`MatchError`](util/error/index.md)
+- `fn new(kind: MatchErrorKind) -> MatchError` — [`MatchErrorKind`](#matcherrorkind), [`MatchError`](#matcherror)
 
-- `fn kind(self: &Self) -> &MatchErrorKind` — [`MatchErrorKind`](util/error/index.md)
+- `fn kind(self: &Self) -> &MatchErrorKind` — [`MatchErrorKind`](#matcherrorkind)
 
-- `fn invalid_input_anchored() -> MatchError` — [`MatchError`](util/error/index.md)
+- `fn invalid_input_anchored() -> MatchError` — [`MatchError`](#matcherror)
 
-- `fn invalid_input_unanchored() -> MatchError` — [`MatchError`](util/error/index.md)
+- `fn invalid_input_unanchored() -> MatchError` — [`MatchError`](#matcherror)
 
-- `fn unsupported_stream(got: MatchKind) -> MatchError` — [`MatchKind`](util/search/index.md), [`MatchError`](util/error/index.md)
+- `fn unsupported_stream(got: MatchKind) -> MatchError` — [`MatchKind`](#matchkind), [`MatchError`](#matcherror)
 
-- `fn unsupported_overlapping(got: MatchKind) -> MatchError` — [`MatchKind`](util/search/index.md), [`MatchError`](util/error/index.md)
+- `fn unsupported_overlapping(got: MatchKind) -> MatchError` — [`MatchKind`](#matchkind), [`MatchError`](#matcherror)
 
-- `fn unsupported_empty() -> MatchError` — [`MatchError`](util/error/index.md)
+- `fn unsupported_empty() -> MatchError` — [`MatchError`](#matcherror)
 
 #### Trait Implementations
 
 ##### `impl Clone for MatchError`
 
-- `fn clone(self: &Self) -> MatchError` — [`MatchError`](util/error/index.md)
+- `fn clone(self: &Self) -> MatchError` — [`MatchError`](#matcherror)
 
 ##### `impl Debug for MatchError`
 
@@ -774,7 +768,7 @@ trait.
 
 ##### `impl PartialEq for MatchError`
 
-- `fn eq(self: &Self, other: &MatchError) -> bool` — [`MatchError`](util/error/index.md)
+- `fn eq(self: &Self, other: &MatchError) -> bool` — [`MatchError`](#matcherror)
 
 ##### `impl StructuralPartialEq for MatchError`
 
@@ -816,13 +810,13 @@ panics or silent logical errors.
 
 - `const SIZE: usize`
 
-- `fn new(value: usize) -> Result<PatternID, PatternIDError>` — [`PatternID`](util/primitives/index.md), [`PatternIDError`](util/primitives/index.md)
+- `fn new(value: usize) -> Result<PatternID, PatternIDError>` — [`PatternID`](#patternid), [`PatternIDError`](#patterniderror)
 
-- `const fn new_unchecked(value: usize) -> PatternID` — [`PatternID`](util/primitives/index.md)
+- `const fn new_unchecked(value: usize) -> PatternID` — [`PatternID`](#patternid)
 
-- `const fn from_u32_unchecked(index: u32) -> PatternID` — [`PatternID`](util/primitives/index.md)
+- `const fn from_u32_unchecked(index: u32) -> PatternID` — [`PatternID`](#patternid)
 
-- `fn must(value: usize) -> PatternID` — [`PatternID`](util/primitives/index.md)
+- `fn must(value: usize) -> PatternID` — [`PatternID`](#patternid)
 
 - `const fn as_usize(self: &Self) -> usize`
 
@@ -834,9 +828,9 @@ panics or silent logical errors.
 
 - `fn one_more(self: &Self) -> usize`
 
-- `fn from_ne_bytes(bytes: [u8; 4]) -> Result<PatternID, PatternIDError>` — [`PatternID`](util/primitives/index.md), [`PatternIDError`](util/primitives/index.md)
+- `fn from_ne_bytes(bytes: [u8; 4]) -> Result<PatternID, PatternIDError>` — [`PatternID`](#patternid), [`PatternIDError`](#patterniderror)
 
-- `fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> PatternID` — [`PatternID`](util/primitives/index.md)
+- `fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> PatternID` — [`PatternID`](#patternid)
 
 - `fn to_ne_bytes(self: &Self) -> [u8; 4]`
 
@@ -846,7 +840,7 @@ panics or silent logical errors.
 
 ##### `impl Clone for PatternID`
 
-- `fn clone(self: &Self) -> PatternID` — [`PatternID`](util/primitives/index.md)
+- `fn clone(self: &Self) -> PatternID` — [`PatternID`](#patternid)
 
 ##### `impl Copy for PatternID`
 
@@ -856,7 +850,7 @@ panics or silent logical errors.
 
 ##### `impl Default for PatternID`
 
-- `fn default() -> PatternID` — [`PatternID`](util/primitives/index.md)
+- `fn default() -> PatternID` — [`PatternID`](#patternid)
 
 ##### `impl Eq for PatternID`
 
@@ -866,15 +860,15 @@ panics or silent logical errors.
 
 ##### `impl Ord for PatternID`
 
-- `fn cmp(self: &Self, other: &PatternID) -> $crate::cmp::Ordering` — [`PatternID`](util/primitives/index.md)
+- `fn cmp(self: &Self, other: &PatternID) -> $crate::cmp::Ordering` — [`PatternID`](#patternid)
 
 ##### `impl PartialEq for PatternID`
 
-- `fn eq(self: &Self, other: &PatternID) -> bool` — [`PatternID`](util/primitives/index.md)
+- `fn eq(self: &Self, other: &PatternID) -> bool` — [`PatternID`](#patternid)
 
 ##### `impl PartialOrd for PatternID`
 
-- `fn partial_cmp(self: &Self, other: &PatternID) -> $crate::option::Option<$crate::cmp::Ordering>` — [`PatternID`](util/primitives/index.md)
+- `fn partial_cmp(self: &Self, other: &PatternID) -> $crate::option::Option<$crate::cmp::Ordering>` — [`PatternID`](#patternid)
 
 ##### `impl StructuralPartialEq for PatternID`
 
@@ -900,7 +894,7 @@ trait.
 
 ##### `impl Clone for PatternIDError`
 
-- `fn clone(self: &Self) -> PatternIDError` — [`PatternIDError`](util/primitives/index.md)
+- `fn clone(self: &Self) -> PatternIDError` — [`PatternIDError`](#patterniderror)
 
 ##### `impl Debug for PatternIDError`
 
@@ -916,7 +910,7 @@ trait.
 
 ##### `impl PartialEq for PatternIDError`
 
-- `fn eq(self: &Self, other: &PatternIDError) -> bool` — [`PatternIDError`](util/primitives/index.md)
+- `fn eq(self: &Self, other: &PatternIDError) -> bool` — [`PatternIDError`](#patterniderror)
 
 ##### `impl StructuralPartialEq for PatternIDError`
 
@@ -950,7 +944,7 @@ start of the search) or anchored (matches can only occur beginning at
 the start of the search) search. Unanchored search is the default. This is
 configured via `Input::anchored`.
 * Whether to quit the search as soon as a match has been found, regardless
-of the [`MatchKind`](util/search/index.md) that the searcher was built with. This is configured
+of the [`MatchKind`](#matchkind) that the searcher was built with. This is configured
 via `Input::earliest`.
 
 For most cases, the defaults for all optional parameters are appropriate.
@@ -1015,15 +1009,15 @@ assert_eq!(
 
 #### Implementations
 
-- `fn new<H: ?Sized + AsRef<[u8]>>(haystack: &'h H) -> Input<'h>` — [`Input`](util/search/index.md)
+- `fn new<H: ?Sized + AsRef<[u8]>>(haystack: &'h H) -> Input<'h>` — [`Input`](#input)
 
-- `fn span<S: Into<Span>>(self: Self, span: S) -> Input<'h>` — [`Input`](util/search/index.md)
+- `fn span<S: Into<Span>>(self: Self, span: S) -> Input<'h>` — [`Input`](#input)
 
-- `fn range<R: RangeBounds<usize>>(self: Self, range: R) -> Input<'h>` — [`Input`](util/search/index.md)
+- `fn range<R: RangeBounds<usize>>(self: Self, range: R) -> Input<'h>` — [`Input`](#input)
 
-- `fn anchored(self: Self, mode: Anchored) -> Input<'h>` — [`Anchored`](util/search/index.md), [`Input`](util/search/index.md)
+- `fn anchored(self: Self, mode: Anchored) -> Input<'h>` — [`Anchored`](#anchored), [`Input`](#input)
 
-- `fn earliest(self: Self, yes: bool) -> Input<'h>` — [`Input`](util/search/index.md)
+- `fn earliest(self: Self, yes: bool) -> Input<'h>` — [`Input`](#input)
 
 - `fn set_span<S: Into<Span>>(self: &mut Self, span: S)`
 
@@ -1033,7 +1027,7 @@ assert_eq!(
 
 - `fn set_end(self: &mut Self, end: usize)`
 
-- `fn set_anchored(self: &mut Self, mode: Anchored)` — [`Anchored`](util/search/index.md)
+- `fn set_anchored(self: &mut Self, mode: Anchored)` — [`Anchored`](#anchored)
 
 - `fn set_earliest(self: &mut Self, yes: bool)`
 
@@ -1043,11 +1037,11 @@ assert_eq!(
 
 - `fn end(self: &Self) -> usize`
 
-- `fn get_span(self: &Self) -> Span` — [`Span`](util/search/index.md)
+- `fn get_span(self: &Self) -> Span` — [`Span`](#span)
 
 - `fn get_range(self: &Self) -> Range<usize>`
 
-- `fn get_anchored(self: &Self) -> Anchored` — [`Anchored`](util/search/index.md)
+- `fn get_anchored(self: &Self) -> Anchored` — [`Anchored`](#anchored)
 
 - `fn get_earliest(self: &Self) -> bool`
 
@@ -1057,7 +1051,7 @@ assert_eq!(
 
 ##### `impl<'h> Clone for Input<'h>`
 
-- `fn clone(self: &Self) -> Input<'h>` — [`Input`](util/search/index.md)
+- `fn clone(self: &Self) -> Input<'h>` — [`Input`](#input)
 
 ##### `impl<'h> Debug for Input<'h>`
 
@@ -1074,8 +1068,8 @@ struct Match {
 
 A representation of a match reported by an Aho-Corasick searcher.
 
-A match has two essential pieces of information: the [`PatternID`](util/primitives/index.md) that
-matches, and the [`Span`](util/search/index.md) of the match in a haystack.
+A match has two essential pieces of information: the [`PatternID`](#patternid) that
+matches, and the [`Span`](#span) of the match in a haystack.
 
 The pattern is identified by an ID, which corresponds to its position
 (starting from `0`) relative to other patterns used to construct the
@@ -1097,11 +1091,11 @@ offset as less than or equal to its end offset.
 
 #### Implementations
 
-- `fn new<S: Into<Span>>(pattern: PatternID, span: S) -> Match` — [`PatternID`](util/primitives/index.md), [`Match`](util/search/index.md)
+- `fn new<S: Into<Span>>(pattern: PatternID, span: S) -> Match` — [`PatternID`](#patternid), [`Match`](#match)
 
-- `fn must<S: Into<Span>>(pattern: usize, span: S) -> Match` — [`Match`](util/search/index.md)
+- `fn must<S: Into<Span>>(pattern: usize, span: S) -> Match` — [`Match`](#match)
 
-- `fn pattern(self: &Self) -> PatternID` — [`PatternID`](util/primitives/index.md)
+- `fn pattern(self: &Self) -> PatternID` — [`PatternID`](#patternid)
 
 - `fn start(self: &Self) -> usize`
 
@@ -1109,19 +1103,19 @@ offset as less than or equal to its end offset.
 
 - `fn range(self: &Self) -> core::ops::Range<usize>`
 
-- `fn span(self: &Self) -> Span` — [`Span`](util/search/index.md)
+- `fn span(self: &Self) -> Span` — [`Span`](#span)
 
 - `fn is_empty(self: &Self) -> bool`
 
 - `fn len(self: &Self) -> usize`
 
-- `fn offset(self: &Self, offset: usize) -> Match` — [`Match`](util/search/index.md)
+- `fn offset(self: &Self, offset: usize) -> Match` — [`Match`](#match)
 
 #### Trait Implementations
 
 ##### `impl Clone for Match`
 
-- `fn clone(self: &Self) -> Match` — [`Match`](util/search/index.md)
+- `fn clone(self: &Self) -> Match` — [`Match`](#match)
 
 ##### `impl Copy for Match`
 
@@ -1137,7 +1131,7 @@ offset as less than or equal to its end offset.
 
 ##### `impl PartialEq for Match`
 
-- `fn eq(self: &Self, other: &Match) -> bool` — [`Match`](util/search/index.md)
+- `fn eq(self: &Self, other: &Match) -> bool` — [`Match`](#match)
 
 ##### `impl StructuralPartialEq for Match`
 
@@ -1190,13 +1184,13 @@ to create a span where `start > end`.
 
 - `fn contains(self: &Self, offset: usize) -> bool`
 
-- `fn offset(self: &Self, offset: usize) -> Span` — [`Span`](util/search/index.md)
+- `fn offset(self: &Self, offset: usize) -> Span` — [`Span`](#span)
 
 #### Trait Implementations
 
 ##### `impl Clone for Span`
 
-- `fn clone(self: &Self) -> Span` — [`Span`](util/search/index.md)
+- `fn clone(self: &Self) -> Span` — [`Span`](#span)
 
 ##### `impl Copy for Span`
 
@@ -1228,7 +1222,7 @@ enum AhoCorasickKind {
 }
 ```
 
-The type of Aho-Corasick implementation to use in an [`AhoCorasick`](ahocorasick/index.md)
+The type of Aho-Corasick implementation to use in an [`AhoCorasick`](#ahocorasick)
 searcher.
 
 This is principally used as an input to the
@@ -1253,7 +1247,7 @@ detail about each choice.
 
 ##### `impl Clone for AhoCorasickKind`
 
-- `fn clone(self: &Self) -> AhoCorasickKind` — [`AhoCorasickKind`](ahocorasick/index.md)
+- `fn clone(self: &Self) -> AhoCorasickKind` — [`AhoCorasickKind`](#ahocorasickkind)
 
 ##### `impl Copy for AhoCorasickKind`
 
@@ -1265,7 +1259,7 @@ detail about each choice.
 
 ##### `impl PartialEq for AhoCorasickKind`
 
-- `fn eq(self: &Self, other: &AhoCorasickKind) -> bool` — [`AhoCorasickKind`](ahocorasick/index.md)
+- `fn eq(self: &Self, other: &AhoCorasickKind) -> bool` — [`AhoCorasickKind`](#ahocorasickkind)
 
 ##### `impl StructuralPartialEq for AhoCorasickKind`
 
@@ -1285,7 +1279,7 @@ enum MatchErrorKind {
 }
 ```
 
-The underlying kind of a [`MatchError`](util/error/index.md).
+The underlying kind of a [`MatchError`](#matcherror).
 
 This is a **non-exhaustive** enum. That means new variants may be added in
 a semver-compatible release.
@@ -1321,7 +1315,7 @@ a semver-compatible release.
 
 ##### `impl Clone for MatchErrorKind`
 
-- `fn clone(self: &Self) -> MatchErrorKind` — [`MatchErrorKind`](util/error/index.md)
+- `fn clone(self: &Self) -> MatchErrorKind` — [`MatchErrorKind`](#matcherrorkind)
 
 ##### `impl Debug for MatchErrorKind`
 
@@ -1331,7 +1325,7 @@ a semver-compatible release.
 
 ##### `impl PartialEq for MatchErrorKind`
 
-- `fn eq(self: &Self, other: &MatchErrorKind) -> bool` — [`MatchErrorKind`](util/error/index.md)
+- `fn eq(self: &Self, other: &MatchErrorKind) -> bool` — [`MatchErrorKind`](#matcherrorkind)
 
 ##### `impl StructuralPartialEq for MatchErrorKind`
 
@@ -1371,7 +1365,7 @@ fallible or an infallible routine was called.
 
 ##### `impl Clone for Anchored`
 
-- `fn clone(self: &Self) -> Anchored` — [`Anchored`](util/search/index.md)
+- `fn clone(self: &Self) -> Anchored` — [`Anchored`](#anchored)
 
 ##### `impl Copy for Anchored`
 
@@ -1383,7 +1377,7 @@ fallible or an infallible routine was called.
 
 ##### `impl PartialEq for Anchored`
 
-- `fn eq(self: &Self, other: &Anchored) -> bool` — [`Anchored`](util/search/index.md)
+- `fn eq(self: &Self, other: &Anchored) -> bool` — [`Anchored`](#anchored)
 
 ##### `impl StructuralPartialEq for Anchored`
 
@@ -1519,13 +1513,13 @@ POSIX regex alternations.
 
 - `fn is_leftmost_first(self: &Self) -> bool`
 
-- `fn as_packed(self: &Self) -> Option<crate::packed::MatchKind>` — [`MatchKind`](packed/api/index.md)
+- `fn as_packed(self: &Self) -> Option<crate::packed::MatchKind>` — [`MatchKind`](packed/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for MatchKind`
 
-- `fn clone(self: &Self) -> MatchKind` — [`MatchKind`](util/search/index.md)
+- `fn clone(self: &Self) -> MatchKind` — [`MatchKind`](#matchkind)
 
 ##### `impl Copy for MatchKind`
 
@@ -1535,13 +1529,13 @@ POSIX regex alternations.
 
 ##### `impl Default for MatchKind`
 
-- `fn default() -> MatchKind` — [`MatchKind`](util/search/index.md)
+- `fn default() -> MatchKind` — [`MatchKind`](#matchkind)
 
 ##### `impl Eq for MatchKind`
 
 ##### `impl PartialEq for MatchKind`
 
-- `fn eq(self: &Self, other: &MatchKind) -> bool` — [`MatchKind`](util/search/index.md)
+- `fn eq(self: &Self, other: &MatchKind) -> bool` — [`MatchKind`](#matchkind)
 
 ##### `impl StructuralPartialEq for MatchKind`
 
@@ -1592,7 +1586,7 @@ depending on whether you're using infallible or fallibe APIs, respectively.
 
 ##### `impl Clone for StartKind`
 
-- `fn clone(self: &Self) -> StartKind` — [`StartKind`](util/search/index.md)
+- `fn clone(self: &Self) -> StartKind` — [`StartKind`](#startkind)
 
 ##### `impl Copy for StartKind`
 
@@ -1602,13 +1596,13 @@ depending on whether you're using infallible or fallibe APIs, respectively.
 
 ##### `impl Default for StartKind`
 
-- `fn default() -> StartKind` — [`StartKind`](util/search/index.md)
+- `fn default() -> StartKind` — [`StartKind`](#startkind)
 
 ##### `impl Eq for StartKind`
 
 ##### `impl PartialEq for StartKind`
 
-- `fn eq(self: &Self, other: &StartKind) -> bool` — [`StartKind`](util/search/index.md)
+- `fn eq(self: &Self, other: &StartKind) -> bool` — [`StartKind`](#startkind)
 
 ##### `impl StructuralPartialEq for StartKind`
 

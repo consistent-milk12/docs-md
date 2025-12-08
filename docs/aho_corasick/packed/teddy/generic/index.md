@@ -27,7 +27,7 @@ Also, the `PatternID` used here is a `u16`.
 
 #### Implementations
 
-- `fn pattern(self: &Self) -> PatternID` — [`PatternID`](../../../util/primitives/index.md)
+- `fn pattern(self: &Self) -> PatternID` — [`PatternID`](../../../index.md)
 
 - `fn start(self: &Self) -> *const u8`
 
@@ -115,11 +115,11 @@ Only 1, 2, 3 and 4 bytes are supported as minimum lengths.
 
 #### Implementations
 
-- `unsafe fn find(self: &Self, start: *const u8, end: *const u8) -> Option<Match>` — [`Match`](#match)
+- `unsafe fn new(patterns: Arc<Patterns>) -> Fat<V, BYTES>` — [`Patterns`](../../pattern/index.md), [`Fat`](#fat)
 
-- `unsafe fn find_one(self: &Self, cur: *const u8, end: *const u8) -> Option<Match>` — [`Match`](#match)
+- `fn memory_usage(self: &Self) -> usize`
 
-- `unsafe fn candidate(self: &Self, cur: *const u8) -> V`
+- `fn minimum_len(self: &Self) -> usize`
 
 #### Trait Implementations
 

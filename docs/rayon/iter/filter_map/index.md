@@ -16,7 +16,7 @@ struct FilterMap<I, P> {
 ```
 
 `FilterMap` creates an iterator that uses `filter_op` to both filter and map elements.
-This struct is created by the `filter_map()` method on [`ParallelIterator`](../index.md).
+This struct is created by the `filter_map()` method on [`ParallelIterator`](../../prelude/index.md).
 
 
 #### Implementations
@@ -27,7 +27,7 @@ This struct is created by the `filter_map()` method on [`ParallelIterator`](../i
 
 ##### `impl<I: $crate::clone::Clone, P: $crate::clone::Clone> Clone for FilterMap<I, P>`
 
-- `fn clone(self: &Self) -> FilterMap<I, P>` — [`FilterMap`](#filtermap)
+- `fn clone(self: &Self) -> FilterMap<I, P>` — [`FilterMap`](../index.md)
 
 ##### `impl<I: Debug, P> Debug for FilterMap<I, P>`
 

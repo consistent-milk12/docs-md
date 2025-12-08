@@ -69,7 +69,7 @@ struct WithoutAnsi<'a> {
 }
 ```
 
-A wrapper struct that implements [`core::fmt::Display`](../../miette_derive/fmt/index.md), only displaying non-ansi parts.
+A wrapper struct that implements [`core::fmt::Display`](../../miette_derive/index.md), only displaying non-ansi parts.
 
 #### Implementations
 
@@ -106,7 +106,7 @@ ansi codes or string values.
 
 #### Implementations
 
-- `fn new(s: &'a str) -> AnsiCodeIterator<'a>` — [`AnsiCodeIterator`](#ansicodeiterator)
+- `fn new(s: &'a str) -> AnsiCodeIterator<'a>` — [`AnsiCodeIterator`](../index.md)
 
 - `fn current_slice(self: &Self) -> &str`
 

@@ -1,9 +1,9 @@
 # Clippy configuration for Rust 2024 edition
 # https://doc.rust-lang.org/clippy/configuration.html
 
-# Cognitive complexity threshold
 cognitive-complexity-threshold = 25
 
+# Cognitive complexity threshold
 # Maximum lines in a function
 too-many-lines-threshold = 150
 

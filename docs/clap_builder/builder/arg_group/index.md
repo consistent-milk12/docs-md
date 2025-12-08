@@ -84,7 +84,7 @@ assert_eq!(matches
 
 #### Implementations
 
-- `fn get_id(self: &Self) -> &Id` — [`Id`](../../util/id/index.md)
+- `fn get_id(self: &Self) -> &Id` — [`Id`](../../index.md)
 
 - `fn is_required_set(self: &Self) -> bool`
 
@@ -92,7 +92,7 @@ assert_eq!(matches
 
 ##### `impl Clone for ArgGroup`
 
-- `fn clone(self: &Self) -> ArgGroup` — [`ArgGroup`](#arggroup)
+- `fn clone(self: &Self) -> ArgGroup` — [`ArgGroup`](../../index.md)
 
 ##### `impl Debug for ArgGroup`
 
@@ -100,13 +100,13 @@ assert_eq!(matches
 
 ##### `impl Default for ArgGroup`
 
-- `fn default() -> ArgGroup` — [`ArgGroup`](#arggroup)
+- `fn default() -> ArgGroup` — [`ArgGroup`](../../index.md)
 
 ##### `impl Eq for ArgGroup`
 
 ##### `impl PartialEq for ArgGroup`
 
-- `fn eq(self: &Self, other: &ArgGroup) -> bool` — [`ArgGroup`](#arggroup)
+- `fn eq(self: &Self, other: &ArgGroup) -> bool` — [`ArgGroup`](../../index.md)
 
 ##### `impl StructuralPartialEq for ArgGroup`
 

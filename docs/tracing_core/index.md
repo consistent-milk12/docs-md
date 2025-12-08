@@ -10,17 +10,17 @@ This crate provides:
 
 * [`span::Id`](span/index.md) identifies a span within the execution of a program.
 
-* [`Event`](event/index.md) represents a single event within a trace.
+* [`Event`](#event) represents a single event within a trace.
 
-* [`Subscriber`](subscriber/index.md), the trait implemented to collect trace data.
+* [`Subscriber`](#subscriber), the trait implemented to collect trace data.
 
-* [`Metadata`](metadata/index.md) and [`Callsite`](callsite/index.md) provide information describing spans and
+* [`Metadata`](#metadata) and [`Callsite`](#callsite) provide information describing spans and
   `Event`s.
 
-* [`Field`](field/index.md), [`FieldSet`](field/index.md), [`Value`](field/index.md), and [`ValueSet`](field/index.md) represent the
+* [`Field`](#field), [`FieldSet`](field/index.md), [`Value`](field/index.md), and [`ValueSet`](field/index.md) represent the
   structured data attached to a span.
 
-* [`Dispatch`](dispatcher/index.md) allows spans and events to be dispatched to `Subscriber`s.
+* [`Dispatch`](#dispatch) allows spans and events to be dispatched to `Subscriber`s.
 
 In addition, it defines the global callsite registry and per-thread current
 dispatcher which other components of the tracing system rely on.
@@ -136,7 +136,7 @@ struct Dispatch {
 }
 ```
 
-`Dispatch` trace data to a [`Subscriber`](subscriber/index.md).
+`Dispatch` trace data to a [`Subscriber`](#subscriber).
 
 #### Implementations
 
@@ -148,11 +148,11 @@ struct Dispatch {
 
 - `fn downgrade(self: &Self) -> WeakDispatch` — [`WeakDispatch`](dispatcher/index.md)
 
-- `fn subscriber(self: &Self) -> &dyn Subscriber + Send + Sync` — [`Subscriber`](subscriber/index.md)
+- `fn subscriber(self: &Self) -> &dyn Subscriber + Send + Sync` — [`Subscriber`](#subscriber)
 
-- `fn register_callsite(self: &Self, metadata: &'static Metadata<'static>) -> subscriber::Interest` — [`Metadata`](metadata/index.md), [`Interest`](subscriber/index.md)
+- `fn register_callsite(self: &Self, metadata: &'static Metadata<'static>) -> subscriber::Interest` — [`Metadata`](#metadata), [`Interest`](#interest)
 
-- `fn max_level_hint(self: &Self) -> Option<LevelFilter>` — [`LevelFilter`](metadata/index.md)
+- `fn max_level_hint(self: &Self) -> Option<LevelFilter>` — [`LevelFilter`](#levelfilter)
 
 - `fn new_span(self: &Self, span: &span::Attributes<'_>) -> span::Id` — [`Attributes`](span/index.md), [`Id`](span/index.md)
 
@@ -160,9 +160,9 @@ struct Dispatch {
 
 - `fn record_follows_from(self: &Self, span: &span::Id, follows: &span::Id)` — [`Id`](span/index.md)
 
-- `fn enabled(self: &Self, metadata: &Metadata<'_>) -> bool` — [`Metadata`](metadata/index.md)
+- `fn enabled(self: &Self, metadata: &Metadata<'_>) -> bool` — [`Metadata`](#metadata)
 
-- `fn event(self: &Self, event: &Event<'_>)` — [`Event`](event/index.md)
+- `fn event(self: &Self, event: &Event<'_>)` — [`Event`](#event)
 
 - `fn enter(self: &Self, span: &span::Id)` — [`Id`](span/index.md)
 
@@ -184,7 +184,7 @@ struct Dispatch {
 
 ##### `impl Clone for Dispatch`
 
-- `fn clone(self: &Self) -> Dispatch` — [`Dispatch`](dispatcher/index.md)
+- `fn clone(self: &Self) -> Dispatch` — [`Dispatch`](#dispatch)
 
 ##### `impl Debug for Dispatch`
 
@@ -222,19 +222,19 @@ two key differences:
 
 #### Implementations
 
-- `fn dispatch(metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'_>)` — [`Metadata`](metadata/index.md), [`ValueSet`](field/index.md)
+- `fn dispatch(metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'_>)` — [`Metadata`](#metadata), [`ValueSet`](field/index.md)
 
-- `fn new(metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'a>) -> Self` — [`Metadata`](metadata/index.md), [`ValueSet`](field/index.md)
+- `fn new(metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'a>) -> Self` — [`Metadata`](#metadata), [`ValueSet`](field/index.md)
 
-- `fn new_child_of(parent: impl Into<Option<Id>>, metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'a>) -> Self` — [`Id`](span/index.md), [`Metadata`](metadata/index.md), [`ValueSet`](field/index.md)
+- `fn new_child_of(parent: impl Into<Option<Id>>, metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'a>) -> Self` — [`Id`](span/index.md), [`Metadata`](#metadata), [`ValueSet`](field/index.md)
 
-- `fn child_of(parent: impl Into<Option<Id>>, metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'_>)` — [`Id`](span/index.md), [`Metadata`](metadata/index.md), [`ValueSet`](field/index.md)
+- `fn child_of(parent: impl Into<Option<Id>>, metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'_>)` — [`Id`](span/index.md), [`Metadata`](#metadata), [`ValueSet`](field/index.md)
 
 - `fn record(self: &Self, visitor: &mut dyn field::Visit)` — [`Visit`](field/index.md)
 
 - `fn fields(self: &Self) -> field::Iter` — [`Iter`](field/index.md)
 
-- `fn metadata(self: &Self) -> &'static Metadata<'static>` — [`Metadata`](metadata/index.md)
+- `fn metadata(self: &Self) -> &'static Metadata<'static>` — [`Metadata`](#metadata)
 
 - `fn is_root(self: &Self) -> bool`
 
@@ -344,10 +344,10 @@ Applications using those libraries typically chose to ignore those traces. Howev
 debugging an issue involving said libraries, it may be useful to temporarily
 enable the more verbose traces.
 
-The [`LevelFilter`](metadata/index.md) type is provided to enable filtering traces by
-verbosity. `Level`s can be compared against [`LevelFilter`](metadata/index.md)s, and
-[`LevelFilter`](metadata/index.md) has a variant for each `Level`, which compares analogously
-to that level. In addition, [`LevelFilter`](metadata/index.md) adds a `LevelFilter::OFF`
+The [`LevelFilter`](#levelfilter) type is provided to enable filtering traces by
+verbosity. `Level`s can be compared against [`LevelFilter`](#levelfilter)s, and
+[`LevelFilter`](#levelfilter) has a variant for each `Level`, which compares analogously
+to that level. In addition, [`LevelFilter`](#levelfilter) adds a `LevelFilter::OFF`
 variant, which is considered "less verbose" than every other `Level`. This is
 intended to allow filters to completely disable tracing in a particular context.
 
@@ -364,9 +364,9 @@ assert!(LevelFilter::INFO >= Level::INFO);
 
 ## Examples
 
-Below is a simple example of how a [`Subscriber`](subscriber/index.md) could implement filtering through
-a [`LevelFilter`](metadata/index.md). When a span or event is recorded, the `Subscriber::enabled` method
-compares the span or event's `Level` against the configured [`LevelFilter`](metadata/index.md).
+Below is a simple example of how a [`Subscriber`](#subscriber) could implement filtering through
+a [`LevelFilter`](#levelfilter). When a span or event is recorded, the `Subscriber::enabled` method
+compares the span or event's `Level` against the configured [`LevelFilter`](#levelfilter).
 The optional `Subscriber::max_level_hint` method can also be implemented to allow spans
 and events above a maximum verbosity level to be skipped more efficiently,
 often improving performance in short-lived programs.
@@ -458,7 +458,7 @@ recorded in.
 
 ##### `impl Clone for Level`
 
-- `fn clone(self: &Self) -> Level` — [`Level`](metadata/index.md)
+- `fn clone(self: &Self) -> Level` — [`Level`](#level)
 
 ##### `impl Copy for Level`
 
@@ -488,19 +488,19 @@ recorded in.
 
 ##### `impl PartialEq for Level`
 
-- `fn eq(self: &Self, other: &Level) -> bool` — [`Level`](metadata/index.md)
+- `fn eq(self: &Self, other: &Level) -> bool` — [`Level`](#level)
 
 ##### `impl PartialOrd for Level`
 
-- `fn partial_cmp(self: &Self, other: &LevelFilter) -> Option<cmp::Ordering>` — [`LevelFilter`](metadata/index.md)
+- `fn partial_cmp(self: &Self, other: &LevelFilter) -> Option<cmp::Ordering>` — [`LevelFilter`](#levelfilter)
 
-- `fn lt(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](metadata/index.md)
+- `fn lt(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
 
-- `fn le(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](metadata/index.md)
+- `fn le(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
 
-- `fn gt(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](metadata/index.md)
+- `fn gt(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
 
-- `fn ge(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](metadata/index.md)
+- `fn ge(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
 
 ##### `impl StructuralPartialEq for Level`
 
@@ -514,9 +514,9 @@ recorded in.
 struct LevelFilter(Option<Level>);
 ```
 
-A filter comparable to a verbosity [`Level`](metadata/index.md).
+A filter comparable to a verbosity [`Level`](#level).
 
-If a [`Level`](metadata/index.md) is considered less than or equal to a `LevelFilter`, it
+If a [`Level`](#level) is considered less than or equal to a `LevelFilter`, it
 should be considered enabled; if greater than the `LevelFilter`, that level
 is disabled. See `LevelFilter::current` for more details.
 
@@ -524,7 +524,7 @@ Note that this is essentially identical to the `Level` type, but with the
 addition of an `OFF` level that completely disables all trace
 instrumentation.
 
-See the documentation for the [`Level`](metadata/index.md) type to see how `Level`s
+See the documentation for the [`Level`](#level) type to see how `Level`s
 and `LevelFilter`s interact.
 
 
@@ -542,9 +542,9 @@ and `LevelFilter`s interact.
 
 - `const TRACE: LevelFilter`
 
-- `const fn from_level(level: Level) -> Self` — [`Level`](metadata/index.md)
+- `const fn from_level(level: Level) -> Self` — [`Level`](#level)
 
-- `const fn into_level(self: Self) -> Option<Level>` — [`Level`](metadata/index.md)
+- `const fn into_level(self: Self) -> Option<Level>` — [`Level`](#level)
 
 - `const ERROR_USIZE: usize`
 
@@ -560,13 +560,13 @@ and `LevelFilter`s interact.
 
 - `fn current() -> Self`
 
-- `fn set_max(LevelFilter: LevelFilter)` — [`LevelFilter`](metadata/index.md)
+- `fn set_max(LevelFilter: LevelFilter)` — [`LevelFilter`](#levelfilter)
 
 #### Trait Implementations
 
 ##### `impl Clone for LevelFilter`
 
-- `fn clone(self: &Self) -> LevelFilter` — [`LevelFilter`](metadata/index.md)
+- `fn clone(self: &Self) -> LevelFilter` — [`LevelFilter`](#levelfilter)
 
 ##### `impl Copy for LevelFilter`
 
@@ -596,19 +596,19 @@ and `LevelFilter`s interact.
 
 ##### `impl PartialEq for LevelFilter`
 
-- `fn eq(self: &Self, other: &Level) -> bool` — [`Level`](metadata/index.md)
+- `fn eq(self: &Self, other: &Level) -> bool` — [`Level`](#level)
 
 ##### `impl PartialOrd for LevelFilter`
 
-- `fn partial_cmp(self: &Self, other: &Level) -> Option<cmp::Ordering>` — [`Level`](metadata/index.md)
+- `fn partial_cmp(self: &Self, other: &LevelFilter) -> Option<cmp::Ordering>` — [`LevelFilter`](#levelfilter)
 
-- `fn lt(self: &Self, other: &Level) -> bool` — [`Level`](metadata/index.md)
+- `fn lt(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
 
-- `fn le(self: &Self, other: &Level) -> bool` — [`Level`](metadata/index.md)
+- `fn le(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
 
-- `fn gt(self: &Self, other: &Level) -> bool` — [`Level`](metadata/index.md)
+- `fn gt(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
 
-- `fn ge(self: &Self, other: &Level) -> bool` — [`Level`](metadata/index.md)
+- `fn ge(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
 
 ##### `impl StructuralPartialEq for LevelFilter`
 
@@ -641,7 +641,7 @@ All spans and events have the following metadata:
   overridden.
 - A [verbosity level]. This determines how verbose a given span or event
   is, and allows enabling or disabling more verbose diagnostics
-  situationally. See the documentation for the [`Level`](metadata/index.md) type for details.
+  situationally. See the documentation for the [`Level`](#level) type for details.
 - The names of the [`fields`](../tracing_attributes/attr/kw/index.md) defined by the span or event.
 - Whether the metadata corresponds to a span or event.
 
@@ -651,7 +651,7 @@ location where the span or event originated _may_ be provided:
 - The [line number]
 - The [module path]
 
-Metadata is used by [`Subscriber`](subscriber/index.md)s when filtering spans and events, and it
+Metadata is used by [`Subscriber`](#subscriber)s when filtering spans and events, and it
 may also be used as part of their data payload.
 
 When created by the `event!` or `span!` macro, the metadata describing a
@@ -720,11 +720,11 @@ of `Metadata`'s other fields is checked in debug builds.
 
 #### Implementations
 
-- `const fn new(name: &'static str, target: &'a str, level: Level, file: Option<&'a str>, line: Option<u32>, module_path: Option<&'a str>, fields: field::FieldSet, kind: Kind) -> Self` — [`Level`](metadata/index.md), [`FieldSet`](field/index.md), [`Kind`](metadata/index.md)
+- `const fn new(name: &'static str, target: &'a str, level: Level, file: Option<&'a str>, line: Option<u32>, module_path: Option<&'a str>, fields: field::FieldSet, kind: Kind) -> Self` — [`Level`](#level), [`FieldSet`](field/index.md), [`Kind`](#kind)
 
 - `fn fields(self: &Self) -> &field::FieldSet` — [`FieldSet`](field/index.md)
 
-- `fn level(self: &Self) -> &Level` — [`Level`](metadata/index.md)
+- `fn level(self: &Self) -> &Level` — [`Level`](#level)
 
 - `fn name(self: &Self) -> &'static str`
 
@@ -788,7 +788,7 @@ Indicates whether the callsite is a span or event.
 
 ##### `impl Clone for Kind`
 
-- `fn clone(self: &Self) -> Kind` — [`Kind`](metadata/index.md)
+- `fn clone(self: &Self) -> Kind` — [`Kind`](#kind)
 
 ##### `impl Debug for Kind`
 
@@ -798,7 +798,7 @@ Indicates whether the callsite is a span or event.
 
 ##### `impl PartialEq for Kind`
 
-- `fn eq(self: &Self, other: &Kind) -> bool` — [`Kind`](metadata/index.md)
+- `fn eq(self: &Self, other: &Kind) -> bool` — [`Kind`](#kind)
 
 ##### `impl StructuralPartialEq for Kind`
 
@@ -808,7 +808,7 @@ Indicates whether the callsite is a span or event.
 struct Interest(InterestKind);
 ```
 
-Indicates a [`Subscriber`](subscriber/index.md)'s interest in a particular callsite.
+Indicates a [`Subscriber`](#subscriber)'s interest in a particular callsite.
 
 `Subscriber`s return an `Interest` from their `register_callsite` methods
 in order to determine whether that span should be enabled or disabled.
@@ -829,13 +829,13 @@ in order to determine whether that span should be enabled or disabled.
 
 - `fn is_always(self: &Self) -> bool`
 
-- `fn and(self: Self, rhs: Interest) -> Self` — [`Interest`](subscriber/index.md)
+- `fn and(self: Self, rhs: Interest) -> Self` — [`Interest`](#interest)
 
 #### Trait Implementations
 
 ##### `impl Clone for Interest`
 
-- `fn clone(self: &Self) -> Interest` — [`Interest`](subscriber/index.md)
+- `fn clone(self: &Self) -> Interest` — [`Interest`](#interest)
 
 ##### `impl Debug for Interest`
 
@@ -847,7 +847,7 @@ in order to determine whether that span should be enabled or disabled.
 
 ### `identify_callsite!`
 
-Statically constructs an [`Identifier`](callsite/index.md) for the provided [`Callsite`](callsite/index.md).
+Statically constructs an [`Identifier`](callsite/index.md) for the provided [`Callsite`](#callsite).
 
 This may be used in contexts such as static initializers.
 

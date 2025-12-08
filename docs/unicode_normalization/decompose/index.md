@@ -21,19 +21,15 @@ External iterator for a string decomposition's characters.
 
 #### Implementations
 
-- `fn push_back(self: &mut Self, ch: char)`
+- `fn new_canonical(iter: I) -> Decompositions<I>` — [`Decompositions`](../index.md)
 
-- `fn sort_pending(self: &mut Self)`
-
-- `fn reset_buffer(self: &mut Self)`
-
-- `fn increment_next_ready(self: &mut Self)`
+- `fn new_compatible(iter: I) -> Decompositions<I>` — [`Decompositions`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<I: $crate::clone::Clone> Clone for Decompositions<I>`
 
-- `fn clone(self: &Self) -> Decompositions<I>` — [`Decompositions`](#decompositions)
+- `fn clone(self: &Self) -> Decompositions<I>` — [`Decompositions`](../index.md)
 
 ##### `impl<I: Iterator<Item = char> + Clone> Display for Decompositions<I>`
 
@@ -63,17 +59,17 @@ External iterator for a string decomposition's characters.
 
 ##### `impl<I> UnicodeNormalization for Decompositions<I>`
 
-- `fn nfd(self: Self) -> Decompositions<I>` — [`Decompositions`](#decompositions)
+- `fn nfd(self: Self) -> Decompositions<I>` — [`Decompositions`](../index.md)
 
-- `fn nfkd(self: Self) -> Decompositions<I>` — [`Decompositions`](#decompositions)
+- `fn nfkd(self: Self) -> Decompositions<I>` — [`Decompositions`](../index.md)
 
-- `fn nfc(self: Self) -> Recompositions<I>` — [`Recompositions`](../recompose/index.md)
+- `fn nfc(self: Self) -> Recompositions<I>` — [`Recompositions`](../index.md)
 
-- `fn nfkc(self: Self) -> Recompositions<I>` — [`Recompositions`](../recompose/index.md)
+- `fn nfkc(self: Self) -> Recompositions<I>` — [`Recompositions`](../index.md)
 
-- `fn cjk_compat_variants(self: Self) -> Replacements<I>` — [`Replacements`](../replace/index.md)
+- `fn cjk_compat_variants(self: Self) -> Replacements<I>` — [`Replacements`](../index.md)
 
-- `fn stream_safe(self: Self) -> StreamSafe<I>` — [`StreamSafe`](../stream_safe/index.md)
+- `fn stream_safe(self: Self) -> StreamSafe<I>` — [`StreamSafe`](../index.md)
 
 ## Enums
 

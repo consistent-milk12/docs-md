@@ -22,7 +22,7 @@ Helper type for implementing a `Serializer` that does not support
 serializing one of the compound types.
 
 This type cannot be instantiated, but implements every one of the traits
-corresponding to the [`Serializer`](../index.md) compound types: [`SerializeSeq`](../index.md),
+corresponding to the [`Serializer`](../../index.md) compound types: [`SerializeSeq`](../index.md),
 [`SerializeTuple`](../index.md), [`SerializeTupleStruct`](../index.md), [`SerializeTupleVariant`](../index.md),
 [`SerializeMap`](../index.md), [`SerializeStruct`](../index.md), and [`SerializeStructVariant`](../index.md).
 

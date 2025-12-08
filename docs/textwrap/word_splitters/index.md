@@ -7,7 +7,7 @@
 Word splitting functionality.
 
 To wrap text into lines, long words sometimes need to be split
-across lines. The [`WordSplitter`](#wordsplitter) enum defines this
+across lines. The [`WordSplitter`](../index.md) enum defines this
 functionality.
 
 ## Enums
@@ -113,7 +113,7 @@ details.
 
 ##### `impl Clone for WordSplitter`
 
-- `fn clone(self: &Self) -> WordSplitter` — [`WordSplitter`](#wordsplitter)
+- `fn clone(self: &Self) -> WordSplitter` — [`WordSplitter`](../index.md)
 
 ##### `impl Debug for WordSplitter`
 
@@ -121,7 +121,7 @@ details.
 
 ##### `impl PartialEq for WordSplitter`
 
-- `fn eq(self: &Self, other: &WordSplitter) -> bool` — [`WordSplitter`](#wordsplitter)
+- `fn eq(self: &Self, other: &WordSplitter) -> bool` — [`WordSplitter`](../index.md)
 
 ## Functions
 

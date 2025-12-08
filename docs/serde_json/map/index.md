@@ -31,19 +31,19 @@ Represents a JSON key/value type.
 
 - `fn clear(self: &mut Self)`
 
-- `fn get<Q>(self: &Self, key: &Q) -> Option<&Value>` — [`Value`](../value/index.md)
+- `fn get<Q>(self: &Self, key: &Q) -> Option<&Value>` — [`Value`](../index.md)
 
 - `fn contains_key<Q>(self: &Self, key: &Q) -> bool`
 
-- `fn get_mut<Q>(self: &mut Self, key: &Q) -> Option<&mut Value>` — [`Value`](../value/index.md)
+- `fn get_mut<Q>(self: &mut Self, key: &Q) -> Option<&mut Value>` — [`Value`](../index.md)
 
-- `fn get_key_value<Q>(self: &Self, key: &Q) -> Option<(&String, &Value)>` — [`Value`](../value/index.md)
+- `fn get_key_value<Q>(self: &Self, key: &Q) -> Option<(&String, &Value)>` — [`Value`](../index.md)
 
-- `fn insert(self: &mut Self, k: String, v: Value) -> Option<Value>` — [`Value`](../value/index.md)
+- `fn insert(self: &mut Self, k: String, v: Value) -> Option<Value>` — [`Value`](../index.md)
 
-- `fn remove<Q>(self: &mut Self, key: &Q) -> Option<Value>` — [`Value`](../value/index.md)
+- `fn remove<Q>(self: &mut Self, key: &Q) -> Option<Value>` — [`Value`](../index.md)
 
-- `fn remove_entry<Q>(self: &mut Self, key: &Q) -> Option<(String, Value)>` — [`Value`](../value/index.md)
+- `fn remove_entry<Q>(self: &mut Self, key: &Q) -> Option<(String, Value)>` — [`Value`](../index.md)
 
 - `fn append(self: &mut Self, other: &mut Self)`
 
@@ -171,7 +171,7 @@ Represents a JSON key/value type.
 
 - `type Err = Error`
 
-- `fn from_str(s: &str) -> Result<Self, Error>` — [`Error`](../error/index.md)
+- `fn from_str(s: &str) -> Result<Self, Error>` — [`Error`](../index.md)
 
 ##### `impl Hash for Map<alloc::string::String, crate::value::Value>`
 
@@ -181,11 +181,11 @@ Represents a JSON key/value type.
 
 - `type Output = Value`
 
-- `fn index(self: &Self, index: &Q) -> &Value` — [`Value`](../value/index.md)
+- `fn index(self: &Self, index: &Q) -> &Value` — [`Value`](../index.md)
 
 ##### `impl<Q> IndexMut for Map<alloc::string::String, crate::value::Value>`
 
-- `fn index_mut(self: &mut Self, index: &Q) -> &mut Value` — [`Value`](../value/index.md)
+- `fn index_mut(self: &mut Self, index: &Q) -> &mut Value` — [`Value`](../index.md)
 
 ##### `impl<'de> IntoDeserializer for Map<alloc::string::String, crate::value::Value>`
 
@@ -223,7 +223,7 @@ A vacant Entry. It is part of the [`Entry`](#entry) enum.
 
 - `fn key(self: &Self) -> &String`
 
-- `fn insert(self: Self, value: Value) -> &'a mut Value` — [`Value`](../value/index.md)
+- `fn insert(self: Self, value: Value) -> &'a mut Value` — [`Value`](../index.md)
 
 ### `OccupiedEntry<'a>`
 
@@ -239,17 +239,17 @@ An occupied Entry. It is part of the [`Entry`](#entry) enum.
 
 - `fn key(self: &Self) -> &String`
 
-- `fn get(self: &Self) -> &Value` — [`Value`](../value/index.md)
+- `fn get(self: &Self) -> &Value` — [`Value`](../index.md)
 
-- `fn get_mut(self: &mut Self) -> &mut Value` — [`Value`](../value/index.md)
+- `fn get_mut(self: &mut Self) -> &mut Value` — [`Value`](../index.md)
 
-- `fn into_mut(self: Self) -> &'a mut Value` — [`Value`](../value/index.md)
+- `fn into_mut(self: Self) -> &'a mut Value` — [`Value`](../index.md)
 
-- `fn insert(self: &mut Self, value: Value) -> Value` — [`Value`](../value/index.md)
+- `fn insert(self: &mut Self, value: Value) -> Value` — [`Value`](../index.md)
 
-- `fn remove(self: Self) -> Value` — [`Value`](../value/index.md)
+- `fn remove(self: Self) -> Value` — [`Value`](../index.md)
 
-- `fn remove_entry(self: Self) -> (String, Value)` — [`Value`](../value/index.md)
+- `fn remove_entry(self: Self) -> (String, Value)` — [`Value`](../index.md)
 
 ### `Iter<'a>`
 
@@ -569,7 +569,7 @@ enum Entry<'a> {
 ```
 
 A view into a single entry in a map, which may either be vacant or occupied.
-This enum is constructed from the `entry` method on [`Map`](#map).
+This enum is constructed from the `entry` method on [`Map`](../index.md).
 
 
 #### Variants
@@ -586,9 +586,9 @@ This enum is constructed from the `entry` method on [`Map`](#map).
 
 - `fn key(self: &Self) -> &String`
 
-- `fn or_insert(self: Self, default: Value) -> &'a mut Value` — [`Value`](../value/index.md)
+- `fn or_insert(self: Self, default: Value) -> &'a mut Value` — [`Value`](../index.md)
 
-- `fn or_insert_with<F>(self: Self, default: F) -> &'a mut Value` — [`Value`](../value/index.md)
+- `fn or_insert_with<F>(self: Self, default: F) -> &'a mut Value` — [`Value`](../index.md)
 
 - `fn and_modify<F>(self: Self, f: F) -> Self`
 

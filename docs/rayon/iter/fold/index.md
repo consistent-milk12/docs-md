@@ -17,7 +17,7 @@ struct Fold<I, ID, F> {
 ```
 
 `Fold` is an iterator that applies a function over an iterator producing a single value.
-This struct is created by the `fold()` method on [`ParallelIterator`](../index.md)
+This struct is created by the `fold()` method on [`ParallelIterator`](../../prelude/index.md)
 
 
 #### Implementations
@@ -28,7 +28,7 @@ This struct is created by the `fold()` method on [`ParallelIterator`](../index.m
 
 ##### `impl<I: $crate::clone::Clone, ID: $crate::clone::Clone, F: $crate::clone::Clone> Clone for Fold<I, ID, F>`
 
-- `fn clone(self: &Self) -> Fold<I, ID, F>` — [`Fold`](#fold)
+- `fn clone(self: &Self) -> Fold<I, ID, F>` — [`Fold`](../index.md)
 
 ##### `impl<I: Debug, ID, F> Debug for Fold<I, ID, F>`
 
@@ -163,7 +163,7 @@ struct FoldWith<I, U, F> {
 ```
 
 `FoldWith` is an iterator that applies a function over an iterator producing a single value.
-This struct is created by the `fold_with()` method on [`ParallelIterator`](../index.md)
+This struct is created by the `fold_with()` method on [`ParallelIterator`](../../prelude/index.md)
 
 
 #### Implementations
@@ -174,7 +174,7 @@ This struct is created by the `fold_with()` method on [`ParallelIterator`](../in
 
 ##### `impl<I: $crate::clone::Clone, U: $crate::clone::Clone, F: $crate::clone::Clone> Clone for FoldWith<I, U, F>`
 
-- `fn clone(self: &Self) -> FoldWith<I, U, F>` — [`FoldWith`](#foldwith)
+- `fn clone(self: &Self) -> FoldWith<I, U, F>` — [`FoldWith`](../index.md)
 
 ##### `impl<I: Debug, U: Debug, F> Debug for FoldWith<I, U, F>`
 

@@ -63,7 +63,7 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 
 #### Implementations
 
-- `fn new() -> Parker` — [`Parker`](#parker)
+- `fn new() -> Parker` — [`Parker`](../index.md)
 
 - `fn park(self: &Self)`
 
@@ -71,11 +71,11 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 
 - `fn park_deadline(self: &Self, deadline: Instant)`
 
-- `fn unparker(self: &Self) -> &Unparker` — [`Unparker`](#unparker)
+- `fn unparker(self: &Self) -> &Unparker` — [`Unparker`](../index.md)
 
-- `fn into_raw(this: Parker) -> *const ()` — [`Parker`](#parker)
+- `fn into_raw(this: Parker) -> *const ()` — [`Parker`](../index.md)
 
-- `unsafe fn from_raw(ptr: *const ()) -> Parker` — [`Parker`](#parker)
+- `unsafe fn from_raw(ptr: *const ()) -> Parker` — [`Parker`](../index.md)
 
 #### Trait Implementations
 
@@ -97,21 +97,21 @@ struct Unparker {
 }
 ```
 
-Unparks a thread parked by the associated [`Parker`](#parker).
+Unparks a thread parked by the associated [`Parker`](../index.md).
 
 #### Implementations
 
 - `fn unpark(self: &Self)`
 
-- `fn into_raw(this: Unparker) -> *const ()` — [`Unparker`](#unparker)
+- `fn into_raw(this: Unparker) -> *const ()` — [`Unparker`](../index.md)
 
-- `unsafe fn from_raw(ptr: *const ()) -> Unparker` — [`Unparker`](#unparker)
+- `unsafe fn from_raw(ptr: *const ()) -> Unparker` — [`Unparker`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Unparker`
 
-- `fn clone(self: &Self) -> Unparker` — [`Unparker`](#unparker)
+- `fn clone(self: &Self) -> Unparker` — [`Unparker`](../index.md)
 
 ##### `impl Debug for Unparker`
 

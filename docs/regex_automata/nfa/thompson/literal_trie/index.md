@@ -106,11 +106,11 @@ more general composition of finite state machines.
 
 - `fn reverse() -> LiteralTrie` — [`LiteralTrie`](#literaltrie)
 
-- `fn add(self: &mut Self, bytes: &[u8]) -> Result<(), BuildError>` — [`BuildError`](../error/index.md)
+- `fn add(self: &mut Self, bytes: &[u8]) -> Result<(), BuildError>` — [`BuildError`](../index.md)
 
-- `fn get_or_add_state(self: &mut Self, from: StateID, byte: u8) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../error/index.md)
+- `fn get_or_add_state(self: &mut Self, from: StateID, byte: u8) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../index.md)
 
-- `fn compile(self: &Self, builder: &mut Builder) -> Result<ThompsonRef, BuildError>` — [`Builder`](../builder/index.md), [`ThompsonRef`](../compiler/index.md), [`BuildError`](../error/index.md)
+- `fn compile(self: &Self, builder: &mut Builder) -> Result<ThompsonRef, BuildError>` — [`Builder`](../index.md), [`ThompsonRef`](../compiler/index.md), [`BuildError`](../index.md)
 
 #### Trait Implementations
 

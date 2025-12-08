@@ -16,7 +16,7 @@ struct Take<I> {
 ```
 
 `Take` is an iterator that iterates over the first `n` elements.
-This struct is created by the `take()` method on [`IndexedParallelIterator`](../index.md)
+This struct is created by the `take()` method on [`IndexedParallelIterator`](../../prelude/index.md)
 
 
 #### Implementations
@@ -27,7 +27,7 @@ This struct is created by the `take()` method on [`IndexedParallelIterator`](../
 
 ##### `impl<I: $crate::clone::Clone> Clone for Take<I>`
 
-- `fn clone(self: &Self) -> Take<I>` — [`Take`](#take)
+- `fn clone(self: &Self) -> Take<I>` — [`Take`](../index.md)
 
 ##### `impl<I: $crate::fmt::Debug> Debug for Take<I>`
 

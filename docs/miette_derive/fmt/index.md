@@ -18,7 +18,7 @@ struct Display {
 
 #### Implementations
 
-- `fn expand_shorthand(self: &mut Self, members: &Set<Member>)`
+- `fn expand_shorthand_cloned(self: &Self, members: &HashSet<syn::Member>) -> (syn::LitStr, TokenStream)`
 
 #### Trait Implementations
 

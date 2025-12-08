@@ -48,7 +48,7 @@ struct Params {
 
 - `fn is_empty(self: &Self) -> bool`
 
-- `fn iter(self: &Self) -> ParamsIter<'_>` — [`ParamsIter`](#paramsiter)
+- `fn iter(self: &Self) -> ParamsIter<'_>` — [`ParamsIter`](../index.md)
 
 - `fn is_full(self: &Self) -> bool`
 
@@ -62,7 +62,7 @@ struct Params {
 
 ##### `impl Clone for Params`
 
-- `fn clone(self: &Self) -> Params` — [`Params`](#params)
+- `fn clone(self: &Self) -> Params` — [`Params`](../index.md)
 
 ##### `impl Debug for Params`
 
@@ -70,13 +70,13 @@ struct Params {
 
 ##### `impl Default for Params`
 
-- `fn default() -> Params` — [`Params`](#params)
+- `fn default() -> Params` — [`Params`](../index.md)
 
 ##### `impl Eq for Params`
 
 ##### `impl PartialEq for Params`
 
-- `fn eq(self: &Self, other: &Params) -> bool` — [`Params`](#params)
+- `fn eq(self: &Self, other: &Params) -> bool` — [`Params`](../index.md)
 
 ##### `impl StructuralPartialEq for Params`
 
@@ -93,7 +93,7 @@ Immutable subparameter iterator.
 
 #### Implementations
 
-- `fn new(params: &'a Params) -> Self` — [`Params`](#params)
+- `fn new(params: &'a Params) -> Self` — [`Params`](../index.md)
 
 #### Trait Implementations
 

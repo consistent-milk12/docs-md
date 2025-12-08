@@ -45,9 +45,11 @@ let iter: std::vec::Drain<_> = v.drain(..);
 
 #### Implementations
 
-- `unsafe fn fill<I: Iterator<Item = T>>(self: &mut Self, replace_with: &mut I) -> bool`
+- `fn as_slice(self: &Self) -> &[T]`
 
-- `unsafe fn move_tail(self: &mut Self, additional: usize)`
+- `fn allocator(self: &Self) -> &A`
+
+- `fn keep_rest(self: Self)`
 
 #### Trait Implementations
 

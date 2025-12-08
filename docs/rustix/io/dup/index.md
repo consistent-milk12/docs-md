@@ -19,9 +19,9 @@ struct DupFlags(<DupFlags as $crate::__private::PublicFlags>::Internal);
 
 #### Implementations
 
-- `const fn iter(self: &Self) -> $crate::iter::Iter<DupFlags>` — [`DupFlags`](../../backend/io/types/index.md)
+- `const fn iter(self: &Self) -> $crate::iter::Iter<DupFlags>` — [`DupFlags`](#dupflags)
 
-- `const fn iter_names(self: &Self) -> $crate::iter::IterNames<DupFlags>` — [`DupFlags`](../../backend/io/types/index.md)
+- `const fn iter_names(self: &Self) -> $crate::iter::IterNames<DupFlags>` — [`DupFlags`](#dupflags)
 
 #### Trait Implementations
 
@@ -43,7 +43,7 @@ struct DupFlags(<DupFlags as $crate::__private::PublicFlags>::Internal);
 
 - `type Output = DupFlags`
 
-- `fn bitor(self: Self, other: DupFlags) -> Self` — [`DupFlags`](../../backend/io/types/index.md)
+- `fn bitor(self: Self, other: DupFlags) -> Self` — [`DupFlags`](#dupflags)
 
 ##### `impl BitOrAssign for DupFlags`
 
@@ -61,7 +61,7 @@ struct DupFlags(<DupFlags as $crate::__private::PublicFlags>::Internal);
 
 ##### `impl Clone for DupFlags`
 
-- `fn clone(self: &Self) -> DupFlags` — [`DupFlags`](../../backend/io/types/index.md)
+- `fn clone(self: &Self) -> DupFlags` — [`DupFlags`](#dupflags)
 
 ##### `impl Copy for DupFlags`
 
@@ -81,9 +81,9 @@ struct DupFlags(<DupFlags as $crate::__private::PublicFlags>::Internal);
 
 - `type Bits = u32`
 
-- `fn bits(self: &Self) -> ffi::c_uint`
+- `fn bits(self: &Self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md)
 
-- `fn from_bits_retain(bits: ffi::c_uint) -> DupFlags` — [`DupFlags`](../../backend/io/types/index.md)
+- `fn from_bits_retain(bits: ffi::c_uint) -> DupFlags` — [`c_uint`](../../ffi/index.md), [`DupFlags`](#dupflags)
 
 ##### `impl FromIterator for DupFlags`
 
@@ -117,7 +117,7 @@ struct DupFlags(<DupFlags as $crate::__private::PublicFlags>::Internal);
 
 ##### `impl PartialEq for DupFlags`
 
-- `fn eq(self: &Self, other: &DupFlags) -> bool` — [`DupFlags`](../../backend/io/types/index.md)
+- `fn eq(self: &Self, other: &DupFlags) -> bool` — [`DupFlags`](#dupflags)
 
 ##### `impl PublicFlags for DupFlags`
 

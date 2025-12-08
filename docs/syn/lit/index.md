@@ -45,13 +45,13 @@ A UTF-8 string literal: `"foo"`.
 
 ##### `impl Parse for crate::lit::LitStr`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for LitStr`
 
 - `fn eq(self: &Self, other: &Self) -> bool`
 
-##### `impl Sealed for crate::lit::LitStr`
+##### `impl<T> Sealed for LitStr`
 
 ##### `impl<T> Spanned for LitStr`
 
@@ -75,17 +75,7 @@ A byte string literal: `b"foo"`.
 
 #### Implementations
 
-- `fn new(value: &[u8], span: Span) -> Self`
-
-- `fn value(self: &Self) -> Vec<u8>`
-
-- `fn span(self: &Self) -> Span`
-
-- `fn set_span(self: &mut Self, span: Span)`
-
-- `fn suffix(self: &Self) -> &str`
-
-- `fn token(self: &Self) -> Literal`
+- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
@@ -105,7 +95,7 @@ A byte string literal: `b"foo"`.
 
 ##### `impl Parse for crate::lit::LitByteStr`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for LitByteStr`
 
@@ -165,7 +155,7 @@ A nul-terminated C-string literal: `c"foo"`.
 
 ##### `impl Parse for crate::lit::LitCStr`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for LitCStr`
 
@@ -195,17 +185,7 @@ A byte literal: `b'f'`.
 
 #### Implementations
 
-- `fn new(value: u8, span: Span) -> Self`
-
-- `fn value(self: &Self) -> u8`
-
-- `fn span(self: &Self) -> Span`
-
-- `fn set_span(self: &mut Self, span: Span)`
-
-- `fn suffix(self: &Self) -> &str`
-
-- `fn token(self: &Self) -> Literal`
+- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
@@ -225,13 +205,13 @@ A byte literal: `b'f'`.
 
 ##### `impl Parse for crate::lit::LitByte`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for LitByte`
 
 - `fn eq(self: &Self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for LitByte`
+##### `impl Sealed for crate::lit::LitByte`
 
 ##### `impl<T> Spanned for LitByte`
 
@@ -275,13 +255,13 @@ A character literal: `'a'`.
 
 ##### `impl Parse for crate::lit::LitChar`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for LitChar`
 
 - `fn eq(self: &Self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for LitChar`
+##### `impl Sealed for crate::lit::LitChar`
 
 ##### `impl<T> Spanned for LitChar`
 
@@ -344,13 +324,13 @@ An integer literal: `1` or `1u16`.
 
 ##### `impl Parse for crate::lit::LitInt`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for LitInt`
 
 - `fn eq(self: &Self, other: &Self) -> bool`
 
-##### `impl Sealed for crate::lit::LitInt`
+##### `impl<T> Sealed for LitInt`
 
 ##### `impl<T> Spanned for LitInt`
 
@@ -396,7 +376,19 @@ Must be finite. May not be infinite or NaN.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- `fn new(repr: &str, span: Span) -> Self`
+
+- `fn base10_digits(self: &Self) -> &str`
+
+- `fn base10_parse<N>(self: &Self) -> Result<N>` — [`Result`](../index.md)
+
+- `fn suffix(self: &Self) -> &str`
+
+- `fn span(self: &Self) -> Span`
+
+- `fn set_span(self: &mut Self, span: Span)`
+
+- `fn token(self: &Self) -> Literal`
 
 #### Trait Implementations
 
@@ -420,7 +412,7 @@ Must be finite. May not be infinite or NaN.
 
 ##### `impl Parse for crate::lit::LitFloat`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for LitFloat`
 
@@ -479,7 +471,7 @@ A boolean literal: `true` or `false`.
 
 - `fn set_span(self: &mut Self, span: Span)`
 
-- `fn token(self: &Self) -> Ident`
+- `fn token(self: &Self) -> Ident` — [`Ident`](../index.md)
 
 #### Trait Implementations
 
@@ -499,13 +491,13 @@ A boolean literal: `true` or `false`.
 
 ##### `impl Parse for crate::lit::LitBool`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::LitBool`
 
 - `fn eq(self: &Self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for LitBool`
+##### `impl Sealed for crate::lit::LitBool`
 
 ##### `impl<T> Spanned for LitBool`
 
@@ -612,7 +604,7 @@ This type is a [syntax tree enum].
 
 ##### `impl Parse for crate::lit::Lit`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::Lit`
 

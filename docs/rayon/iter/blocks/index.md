@@ -51,7 +51,7 @@ struct ExponentialBlocks<I> {
 `ExponentialBlocks` is a parallel iterator that consumes itself as a sequence
 of parallel blocks of increasing sizes (exponentially).
 
-This struct is created by the `by_exponential_blocks()` method on [`IndexedParallelIterator`](../index.md)
+This struct is created by the `by_exponential_blocks()` method on [`IndexedParallelIterator`](../../prelude/index.md)
 
 
 #### Implementations
@@ -62,7 +62,7 @@ This struct is created by the `by_exponential_blocks()` method on [`IndexedParal
 
 ##### `impl<I: $crate::clone::Clone> Clone for ExponentialBlocks<I>`
 
-- `fn clone(self: &Self) -> ExponentialBlocks<I>` — [`ExponentialBlocks`](#exponentialblocks)
+- `fn clone(self: &Self) -> ExponentialBlocks<I>` — [`ExponentialBlocks`](../index.md)
 
 ##### `impl<I: $crate::fmt::Debug> Debug for ExponentialBlocks<I>`
 
@@ -110,7 +110,7 @@ struct UniformBlocks<I> {
 `UniformBlocks` is a parallel iterator that consumes itself as a sequence
 of parallel blocks of constant sizes.
 
-This struct is created by the `by_uniform_blocks()` method on [`IndexedParallelIterator`](../index.md)
+This struct is created by the `by_uniform_blocks()` method on [`IndexedParallelIterator`](../../prelude/index.md)
 
 
 #### Implementations
@@ -121,7 +121,7 @@ This struct is created by the `by_uniform_blocks()` method on [`IndexedParallelI
 
 ##### `impl<I: $crate::clone::Clone> Clone for UniformBlocks<I>`
 
-- `fn clone(self: &Self) -> UniformBlocks<I>` — [`UniformBlocks`](#uniformblocks)
+- `fn clone(self: &Self) -> UniformBlocks<I>` — [`UniformBlocks`](../index.md)
 
 ##### `impl<I: $crate::fmt::Debug> Debug for UniformBlocks<I>`
 

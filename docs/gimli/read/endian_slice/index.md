@@ -25,21 +25,11 @@ This implements the `Reader` trait, which is used for all reading of DWARF secti
 
 #### Implementations
 
-- `fn new(slice: &'input [u8], endian: Endian) -> EndianSlice<'input, Endian>` — [`EndianSlice`](../index.md)
+- `fn range(self: &Self, idx: Range<usize>) -> EndianSlice<'input, Endian>` — [`EndianSlice`](../index.md)
 
-- `fn slice(self: &Self) -> &'input [u8]`
+- `fn range_from(self: &Self, idx: RangeFrom<usize>) -> EndianSlice<'input, Endian>` — [`EndianSlice`](../index.md)
 
-- `fn split_at(self: &Self, idx: usize) -> (EndianSlice<'input, Endian>, EndianSlice<'input, Endian>)` — [`EndianSlice`](../index.md)
-
-- `fn find(self: &Self, byte: u8) -> Option<usize>`
-
-- `fn offset_from(self: &Self, base: EndianSlice<'input, Endian>) -> usize` — [`EndianSlice`](../index.md)
-
-- `fn to_string(self: &Self) -> Result<&'input str>` — [`Result`](../../index.md)
-
-- `fn to_string_lossy(self: &Self) -> Cow<'input, str>`
-
-- `fn read_slice(self: &mut Self, len: usize) -> Result<&'input [u8]>` — [`Result`](../../index.md)
+- `fn range_to(self: &Self, idx: RangeTo<usize>) -> EndianSlice<'input, Endian>` — [`EndianSlice`](../index.md)
 
 #### Trait Implementations
 

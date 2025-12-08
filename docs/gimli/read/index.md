@@ -308,17 +308,7 @@ struct ArrayVec<A: ArrayLike> {
 
 #### Implementations
 
-- `fn new() -> Self`
-
-- `fn clear(self: &mut Self)`
-
-- `fn try_push(self: &mut Self, value: <A as >::Item) -> Result<(), CapacityFull>` — [`ArrayLike`](#arraylike), [`CapacityFull`](util/sealed/index.md)
-
-- `fn try_insert(self: &mut Self, index: usize, element: <A as >::Item) -> Result<(), CapacityFull>` — [`ArrayLike`](#arraylike), [`CapacityFull`](util/sealed/index.md)
-
-- `fn pop(self: &mut Self) -> Option<<A as >::Item>` — [`ArrayLike`](#arraylike)
-
-- `fn swap_remove(self: &mut Self, index: usize) -> <A as >::Item` — [`ArrayLike`](#arraylike)
+- `fn into_vec(self: Self) -> Vec<T>`
 
 #### Trait Implementations
 
@@ -524,7 +514,9 @@ one of `.eh_frame` or `.debug_frame` will be present in an object file.
 
 #### Implementations
 
-- `fn new(section: &'input [u8], endian: Endian) -> Self`
+- `fn set_address_size(self: &mut Self, address_size: u8)`
+
+- `fn set_vendor(self: &mut Self, vendor: Vendor)` — [`Vendor`](../index.md)
 
 #### Trait Implementations
 
@@ -569,7 +561,7 @@ search table of pointers to the `.eh_frame` records that are found in this secti
 
 #### Implementations
 
-- `fn new(section: &'input [u8], endian: Endian) -> Self`
+- `fn parse(self: &Self, bases: &BaseAddresses, address_size: u8) -> Result<ParsedEhFrameHdr<R>>` — [`BaseAddresses`](#baseaddresses), [`Result`](../index.md), [`ParsedEhFrameHdr`](#parsedehframehdr)
 
 #### Trait Implementations
 
@@ -1141,9 +1133,37 @@ where
 
 #### Implementations
 
-- `fn parse<Section: UnwindSection<R>>(bases: &BaseAddresses, section: &Section, input: &mut R) -> Result<CommonInformationEntry<R>>` — [`BaseAddresses`](#baseaddresses), [`Result`](../index.md), [`CommonInformationEntry`](#commoninformationentry)
+- `fn offset(self: &Self) -> <R as >::Offset` — [`Reader`](#reader)
 
-- `fn parse_rest<Section: UnwindSection<R>>(offset: <R as >::Offset, length: <R as >::Offset, format: Format, bases: &BaseAddresses, section: &Section, rest: R) -> Result<CommonInformationEntry<R>>` — [`Reader`](#reader), [`Format`](../index.md), [`BaseAddresses`](#baseaddresses), [`Result`](../index.md), [`CommonInformationEntry`](#commoninformationentry)
+- `fn encoding(self: &Self) -> Encoding` — [`Encoding`](../index.md)
+
+- `fn address_size(self: &Self) -> u8`
+
+- `fn instructions<'a, Section>(self: &Self, section: &'a Section, bases: &'a BaseAddresses) -> CallFrameInstructionIter<'a, R>` — [`BaseAddresses`](#baseaddresses), [`CallFrameInstructionIter`](#callframeinstructioniter)
+
+- `fn entry_len(self: &Self) -> <R as >::Offset` — [`Reader`](#reader)
+
+- `fn version(self: &Self) -> u8`
+
+- `fn augmentation(self: &Self) -> Option<&Augmentation>` — [`Augmentation`](#augmentation)
+
+- `fn has_lsda(self: &Self) -> bool`
+
+- `fn lsda_encoding(self: &Self) -> Option<constants::DwEhPe>` — [`DwEhPe`](../index.md)
+
+- `fn personality_with_encoding(self: &Self) -> Option<(constants::DwEhPe, Pointer)>` — [`DwEhPe`](../index.md), [`Pointer`](#pointer)
+
+- `fn personality(self: &Self) -> Option<Pointer>` — [`Pointer`](#pointer)
+
+- `fn fde_address_encoding(self: &Self) -> Option<constants::DwEhPe>` — [`DwEhPe`](../index.md)
+
+- `fn is_signal_trampoline(self: &Self) -> bool`
+
+- `fn code_alignment_factor(self: &Self) -> u64`
+
+- `fn data_alignment_factor(self: &Self) -> i64`
+
+- `fn return_address_register(self: &Self) -> Register` — [`Register`](../index.md)
 
 #### Trait Implementations
 
@@ -1277,13 +1297,27 @@ A `FrameDescriptionEntry` is a set of CFA instructions for an address range.
 
 #### Implementations
 
-- `fn parse_rest<Section, F>(offset: <R as >::Offset, length: <R as >::Offset, format: Format, cie_pointer: <Section as >::Offset, rest: R, section: &Section, bases: &BaseAddresses, get_cie: F) -> Result<FrameDescriptionEntry<R>>` — [`Reader`](#reader), [`Format`](../index.md), [`BaseAddresses`](#baseaddresses), [`Result`](../index.md), [`FrameDescriptionEntry`](#framedescriptionentry)
+- `fn offset(self: &Self) -> <R as >::Offset` — [`Reader`](#reader)
 
-- `fn parse_addresses(input: &mut R, cie: &CommonInformationEntry<R>, parameters: &PointerEncodingParameters<'_, R>) -> Result<(u64, u64)>` — [`CommonInformationEntry`](#commoninformationentry), [`PointerEncodingParameters`](cfi/index.md), [`Result`](../index.md)
+- `fn cie(self: &Self) -> &CommonInformationEntry<R>` — [`CommonInformationEntry`](#commoninformationentry)
 
-- `fn rows<'a, 'ctx, Section, S>(self: &Self, section: &'a Section, bases: &'a BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>) -> Result<UnwindTable<'a, 'ctx, R, S>>` — [`BaseAddresses`](#baseaddresses), [`UnwindContext`](#unwindcontext), [`Reader`](#reader), [`Result`](../index.md), [`UnwindTable`](#unwindtable)
+- `fn entry_len(self: &Self) -> <R as >::Offset` — [`Reader`](#reader)
 
-- `fn unwind_info_for_address<'ctx, Section, S>(self: &Self, section: &Section, bases: &BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, address: u64) -> Result<&'ctx UnwindTableRow<<R as >::Offset, S>>` — [`BaseAddresses`](#baseaddresses), [`UnwindContext`](#unwindcontext), [`Reader`](#reader), [`Result`](../index.md), [`UnwindTableRow`](#unwindtablerow)
+- `fn instructions<'a, Section>(self: &Self, section: &'a Section, bases: &'a BaseAddresses) -> CallFrameInstructionIter<'a, R>` — [`BaseAddresses`](#baseaddresses), [`CallFrameInstructionIter`](#callframeinstructioniter)
+
+- `fn initial_address(self: &Self) -> u64`
+
+- `fn end_address(self: &Self) -> u64`
+
+- `fn len(self: &Self) -> u64`
+
+- `fn contains(self: &Self, address: u64) -> bool`
+
+- `fn lsda(self: &Self) -> Option<Pointer>` — [`Pointer`](#pointer)
+
+- `fn is_signal_trampoline(self: &Self) -> bool`
+
+- `fn personality(self: &Self) -> Option<Pointer>` — [`Pointer`](#pointer)
 
 #### Trait Implementations
 
@@ -1352,7 +1386,33 @@ unreachable!()
 
 #### Implementations
 
-- `fn new() -> Self`
+- `fn new_in() -> Self`
+
+- `fn initialize<Section, R>(self: &mut Self, section: &Section, bases: &BaseAddresses, cie: &CommonInformationEntry<R>) -> Result<()>` — [`BaseAddresses`](#baseaddresses), [`CommonInformationEntry`](#commoninformationentry), [`Result`](../index.md)
+
+- `fn reset(self: &mut Self)`
+
+- `fn row(self: &Self) -> &UnwindTableRow<T, S>` — [`UnwindTableRow`](#unwindtablerow)
+
+- `fn row_mut(self: &mut Self) -> &mut UnwindTableRow<T, S>` — [`UnwindTableRow`](#unwindtablerow)
+
+- `fn save_initial_rules(self: &mut Self) -> Result<()>` — [`Result`](../index.md)
+
+- `fn start_address(self: &Self) -> u64`
+
+- `fn set_start_address(self: &mut Self, start_address: u64)`
+
+- `fn set_register_rule(self: &mut Self, register: Register, rule: RegisterRule<T>) -> Result<()>` — [`Register`](../index.md), [`RegisterRule`](#registerrule), [`Result`](../index.md)
+
+- `fn get_initial_rule(self: &Self, register: Register) -> Option<RegisterRule<T>>` — [`Register`](../index.md), [`RegisterRule`](#registerrule)
+
+- `fn set_cfa(self: &mut Self, cfa: CfaRule<T>)` — [`CfaRule`](#cfarule)
+
+- `fn cfa_mut(self: &mut Self) -> &mut CfaRule<T>` — [`CfaRule`](#cfarule)
+
+- `fn push_row(self: &mut Self) -> Result<()>` — [`Result`](../index.md)
+
+- `fn pop_row(self: &mut Self) -> Result<()>` — [`Result`](../index.md)
 
 #### Trait Implementations
 
@@ -1953,63 +2013,7 @@ All of the commonly used DWARF sections, and other common information.
 
 #### Implementations
 
-- `fn populate_abbreviations_cache(self: &mut Self, strategy: AbbreviationsCacheStrategy)` — [`AbbreviationsCacheStrategy`](#abbreviationscachestrategy)
-
-- `fn units(self: &Self) -> DebugInfoUnitHeadersIter<R>` — [`DebugInfoUnitHeadersIter`](#debuginfounitheadersiter)
-
-- `fn unit(self: &Self, header: UnitHeader<R>) -> Result<Unit<R>>` — [`UnitHeader`](#unitheader), [`Result`](../index.md), [`Unit`](#unit)
-
-- `fn type_units(self: &Self) -> DebugTypesUnitHeadersIter<R>` — [`DebugTypesUnitHeadersIter`](#debugtypesunitheadersiter)
-
-- `fn abbreviations(self: &Self, unit: &UnitHeader<R>) -> Result<Arc<Abbreviations>>` — [`UnitHeader`](#unitheader), [`Result`](../index.md), [`Abbreviations`](#abbreviations)
-
-- `fn string_offset(self: &Self, unit: &Unit<R>, index: DebugStrOffsetsIndex<<R as >::Offset>) -> Result<DebugStrOffset<<R as >::Offset>>` — [`Unit`](#unit), [`DebugStrOffsetsIndex`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`DebugStrOffset`](../index.md)
-
-- `fn string(self: &Self, offset: DebugStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugStrOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md)
-
-- `fn line_string(self: &Self, offset: DebugLineStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugLineStrOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md)
-
-- `fn sup_string(self: &Self, offset: DebugStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugStrOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md)
-
-- `fn attr_string(self: &Self, unit: &Unit<R>, attr: AttributeValue<R>) -> Result<R>` — [`Unit`](#unit), [`AttributeValue`](#attributevalue), [`Result`](../index.md)
-
-- `fn address(self: &Self, unit: &Unit<R>, index: DebugAddrIndex<<R as >::Offset>) -> Result<u64>` — [`Unit`](#unit), [`DebugAddrIndex`](../index.md), [`Reader`](#reader), [`Result`](../index.md)
-
-- `fn attr_address(self: &Self, unit: &Unit<R>, attr: AttributeValue<R>) -> Result<Option<u64>>` — [`Unit`](#unit), [`AttributeValue`](#attributevalue), [`Result`](../index.md)
-
-- `fn ranges_offset_from_raw(self: &Self, unit: &Unit<R>, offset: RawRangeListsOffset<<R as >::Offset>) -> RangeListsOffset<<R as >::Offset>` — [`Unit`](#unit), [`RawRangeListsOffset`](../index.md), [`Reader`](#reader), [`RangeListsOffset`](../index.md)
-
-- `fn ranges_offset(self: &Self, unit: &Unit<R>, index: DebugRngListsIndex<<R as >::Offset>) -> Result<RangeListsOffset<<R as >::Offset>>` — [`Unit`](#unit), [`DebugRngListsIndex`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`RangeListsOffset`](../index.md)
-
-- `fn ranges(self: &Self, unit: &Unit<R>, offset: RangeListsOffset<<R as >::Offset>) -> Result<RngListIter<R>>` — [`Unit`](#unit), [`RangeListsOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`RngListIter`](#rnglistiter)
-
-- `fn raw_ranges(self: &Self, unit: &Unit<R>, offset: RangeListsOffset<<R as >::Offset>) -> Result<RawRngListIter<R>>` — [`Unit`](#unit), [`RangeListsOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`RawRngListIter`](#rawrnglistiter)
-
-- `fn attr_ranges_offset(self: &Self, unit: &Unit<R>, attr: AttributeValue<R>) -> Result<Option<RangeListsOffset<<R as >::Offset>>>` — [`Unit`](#unit), [`AttributeValue`](#attributevalue), [`Result`](../index.md), [`RangeListsOffset`](../index.md), [`Reader`](#reader)
-
-- `fn attr_ranges(self: &Self, unit: &Unit<R>, attr: AttributeValue<R>) -> Result<Option<RngListIter<R>>>` — [`Unit`](#unit), [`AttributeValue`](#attributevalue), [`Result`](../index.md), [`RngListIter`](#rnglistiter)
-
-- `fn die_ranges(self: &Self, unit: &Unit<R>, entry: &DebuggingInformationEntry<'_, '_, R>) -> Result<RangeIter<R>>` — [`Unit`](#unit), [`DebuggingInformationEntry`](#debugginginformationentry), [`Result`](../index.md), [`RangeIter`](#rangeiter)
-
-- `fn unit_ranges(self: &Self, unit: &Unit<R>) -> Result<RangeIter<R>>` — [`Unit`](#unit), [`Result`](../index.md), [`RangeIter`](#rangeiter)
-
-- `fn locations_offset(self: &Self, unit: &Unit<R>, index: DebugLocListsIndex<<R as >::Offset>) -> Result<LocationListsOffset<<R as >::Offset>>` — [`Unit`](#unit), [`DebugLocListsIndex`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`LocationListsOffset`](../index.md)
-
-- `fn locations(self: &Self, unit: &Unit<R>, offset: LocationListsOffset<<R as >::Offset>) -> Result<LocListIter<R>>` — [`Unit`](#unit), [`LocationListsOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`LocListIter`](#loclistiter)
-
-- `fn raw_locations(self: &Self, unit: &Unit<R>, offset: LocationListsOffset<<R as >::Offset>) -> Result<RawLocListIter<R>>` — [`Unit`](#unit), [`LocationListsOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`RawLocListIter`](#rawloclistiter)
-
-- `fn attr_locations_offset(self: &Self, unit: &Unit<R>, attr: AttributeValue<R>) -> Result<Option<LocationListsOffset<<R as >::Offset>>>` — [`Unit`](#unit), [`AttributeValue`](#attributevalue), [`Result`](../index.md), [`LocationListsOffset`](../index.md), [`Reader`](#reader)
-
-- `fn attr_locations(self: &Self, unit: &Unit<R>, attr: AttributeValue<R>) -> Result<Option<LocListIter<R>>>` — [`Unit`](#unit), [`AttributeValue`](#attributevalue), [`Result`](../index.md), [`LocListIter`](#loclistiter)
-
-- `fn lookup_offset_id(self: &Self, id: ReaderOffsetId) -> Option<(bool, SectionId, <R as >::Offset)>` — [`ReaderOffsetId`](#readeroffsetid), [`SectionId`](../index.md), [`Reader`](#reader)
-
-- `fn format_error(self: &Self, err: Error) -> String` — [`Error`](../index.md)
-
-- `fn macinfo(self: &Self, offset: DebugMacinfoOffset<<R as >::Offset>) -> Result<MacroIter<R>>` — [`DebugMacinfoOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`MacroIter`](#macroiter)
-
-- `fn macros(self: &Self, offset: DebugMacroOffset<<R as >::Offset>) -> Result<MacroIter<R>>` — [`DebugMacroOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`MacroIter`](#macroiter)
+- `fn make_dwo(self: &mut Self, parent: &Dwarf<R>)` — [`Dwarf`](#dwarf)
 
 #### Trait Implementations
 
@@ -2470,21 +2474,11 @@ This implements the `Reader` trait, which is used for all reading of DWARF secti
 
 #### Implementations
 
-- `fn new(slice: &'input [u8], endian: Endian) -> EndianSlice<'input, Endian>` — [`EndianSlice`](#endianslice)
+- `fn range(self: &Self, idx: Range<usize>) -> EndianSlice<'input, Endian>` — [`EndianSlice`](#endianslice)
 
-- `fn slice(self: &Self) -> &'input [u8]`
+- `fn range_from(self: &Self, idx: RangeFrom<usize>) -> EndianSlice<'input, Endian>` — [`EndianSlice`](#endianslice)
 
-- `fn split_at(self: &Self, idx: usize) -> (EndianSlice<'input, Endian>, EndianSlice<'input, Endian>)` — [`EndianSlice`](#endianslice)
-
-- `fn find(self: &Self, byte: u8) -> Option<usize>`
-
-- `fn offset_from(self: &Self, base: EndianSlice<'input, Endian>) -> usize` — [`EndianSlice`](#endianslice)
-
-- `fn to_string(self: &Self) -> Result<&'input str>` — [`Result`](../index.md)
-
-- `fn to_string_lossy(self: &Self) -> Cow<'input, str>`
-
-- `fn read_slice(self: &mut Self, len: usize) -> Result<&'input [u8]>` — [`Result`](../index.md)
+- `fn range_to(self: &Self, idx: RangeTo<usize>) -> EndianSlice<'input, Endian>` — [`EndianSlice`](#endianslice)
 
 #### Trait Implementations
 
@@ -2712,7 +2706,7 @@ The `DebugAbbrev` struct represents the abbreviations describing
 
 #### Implementations
 
-- `fn new(debug_abbrev_section: &'input [u8], endian: Endian) -> Self`
+- `fn abbreviations(self: &Self, debug_abbrev_offset: DebugAbbrevOffset<<R as >::Offset>) -> Result<Abbreviations>` — [`DebugAbbrevOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`Abbreviations`](#abbreviations)
 
 #### Trait Implementations
 
@@ -3148,7 +3142,7 @@ This section contains the type unit index.
 
 #### Implementations
 
-- `fn new(section: &'input [u8], endian: Endian) -> Self`
+- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugTuIndex<R>` — [`DebugTuIndex`](#debugtuindex)
 
 #### Trait Implementations
 
@@ -3311,7 +3305,7 @@ found in the `.debug_line` section.
 
 #### Implementations
 
-- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugLine<R>` — [`DebugLine`](#debugline)
+- `fn new(debug_line_section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 
@@ -3873,7 +3867,7 @@ The raw contents of the `.debug_loc` section.
 
 #### Implementations
 
-- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugLoc<R>` — [`DebugLoc`](#debugloc)
+- `fn new(section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 
@@ -3947,17 +3941,7 @@ The DWARF data found in `.debug_loc` and `.debug_loclists` sections.
 
 #### Implementations
 
-- `fn locations(self: &Self, offset: LocationListsOffset<<R as >::Offset>, unit_encoding: Encoding, base_address: u64, debug_addr: &DebugAddr<R>, debug_addr_base: DebugAddrBase<<R as >::Offset>) -> Result<LocListIter<R>>` — [`LocationListsOffset`](../index.md), [`Reader`](#reader), [`Encoding`](../index.md), [`DebugAddr`](#debugaddr), [`DebugAddrBase`](../index.md), [`Result`](../index.md), [`LocListIter`](#loclistiter)
-
-- `fn locations_dwo(self: &Self, offset: LocationListsOffset<<R as >::Offset>, unit_encoding: Encoding, base_address: u64, debug_addr: &DebugAddr<R>, debug_addr_base: DebugAddrBase<<R as >::Offset>) -> Result<LocListIter<R>>` — [`LocationListsOffset`](../index.md), [`Reader`](#reader), [`Encoding`](../index.md), [`DebugAddr`](#debugaddr), [`DebugAddrBase`](../index.md), [`Result`](../index.md), [`LocListIter`](#loclistiter)
-
-- `fn raw_locations(self: &Self, offset: LocationListsOffset<<R as >::Offset>, unit_encoding: Encoding) -> Result<RawLocListIter<R>>` — [`LocationListsOffset`](../index.md), [`Reader`](#reader), [`Encoding`](../index.md), [`Result`](../index.md), [`RawLocListIter`](#rawloclistiter)
-
-- `fn raw_locations_dwo(self: &Self, offset: LocationListsOffset<<R as >::Offset>, unit_encoding: Encoding) -> Result<RawLocListIter<R>>` — [`LocationListsOffset`](../index.md), [`Reader`](#reader), [`Encoding`](../index.md), [`Result`](../index.md), [`RawLocListIter`](#rawloclistiter)
-
-- `fn get_offset(self: &Self, unit_encoding: Encoding, base: DebugLocListsBase<<R as >::Offset>, index: DebugLocListsIndex<<R as >::Offset>) -> Result<LocationListsOffset<<R as >::Offset>>` — [`Encoding`](../index.md), [`DebugLocListsBase`](../index.md), [`Reader`](#reader), [`DebugLocListsIndex`](../index.md), [`Result`](../index.md), [`LocationListsOffset`](../index.md)
-
-- `fn lookup_offset_id(self: &Self, id: ReaderOffsetId) -> Option<(SectionId, <R as >::Offset)>` — [`ReaderOffsetId`](#readeroffsetid), [`SectionId`](../index.md), [`Reader`](#reader)
+- `fn new(debug_loc: DebugLoc<R>, debug_loclists: DebugLocLists<R>) -> LocationLists<R>` — [`DebugLoc`](#debugloc), [`DebugLocLists`](#debugloclists), [`LocationLists`](#locationlists)
 
 #### Trait Implementations
 
@@ -4090,7 +4074,7 @@ The raw contents of the `.debug_macinfo` section.
 
 #### Implementations
 
-- `fn get_macinfo(self: &Self, offset: DebugMacinfoOffset<<R as >::Offset>) -> Result<MacroIter<R>>` — [`DebugMacinfoOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`MacroIter`](#macroiter)
+- `fn new(macinfo_section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 
@@ -4126,7 +4110,7 @@ The raw contents of the `.debug_macro` section.
 
 #### Implementations
 
-- `fn new(macro_section: &'input [u8], endian: Endian) -> Self`
+- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugMacro<R>` — [`DebugMacro`](#debugmacro)
 
 #### Trait Implementations
 
@@ -4407,9 +4391,51 @@ println!("{:?}", result);
 
 #### Implementations
 
-- `fn new(bytecode: R, encoding: Encoding) -> Self` — [`Encoding`](../index.md)
+- `fn new_in(bytecode: R, encoding: Encoding) -> Self` — [`Encoding`](../index.md)
 
-- `fn result(self: Self) -> Vec<Piece<R>>` — [`Piece`](#piece)
+- `fn set_initial_value(self: &mut Self, value: u64)`
+
+- `fn set_object_address(self: &mut Self, value: u64)`
+
+- `fn set_max_iterations(self: &mut Self, value: u32)`
+
+- `fn pop(self: &mut Self) -> Result<Value>` — [`Result`](../index.md), [`Value`](#value)
+
+- `fn push(self: &mut Self, value: Value) -> Result<()>` — [`Value`](#value), [`Result`](../index.md)
+
+- `fn evaluate_one_operation(self: &mut Self) -> Result<OperationEvaluationResult<R>>` — [`Result`](../index.md), [`OperationEvaluationResult`](op/index.md)
+
+- `fn value_result(self: &Self) -> Option<Value>` — [`Value`](#value)
+
+- `fn as_result(self: &Self) -> &[Piece<R>]` — [`Piece`](#piece)
+
+- `fn evaluate(self: &mut Self) -> Result<EvaluationResult<R>>` — [`Result`](../index.md), [`EvaluationResult`](#evaluationresult)
+
+- `fn resume_with_memory(self: &mut Self, value: Value) -> Result<EvaluationResult<R>>` — [`Value`](#value), [`Result`](../index.md), [`EvaluationResult`](#evaluationresult)
+
+- `fn resume_with_register(self: &mut Self, value: Value) -> Result<EvaluationResult<R>>` — [`Value`](#value), [`Result`](../index.md), [`EvaluationResult`](#evaluationresult)
+
+- `fn resume_with_frame_base(self: &mut Self, frame_base: u64) -> Result<EvaluationResult<R>>` — [`Result`](../index.md), [`EvaluationResult`](#evaluationresult)
+
+- `fn resume_with_tls(self: &mut Self, value: u64) -> Result<EvaluationResult<R>>` — [`Result`](../index.md), [`EvaluationResult`](#evaluationresult)
+
+- `fn resume_with_call_frame_cfa(self: &mut Self, cfa: u64) -> Result<EvaluationResult<R>>` — [`Result`](../index.md), [`EvaluationResult`](#evaluationresult)
+
+- `fn resume_with_at_location(self: &mut Self, bytes: R) -> Result<EvaluationResult<R>>` — [`Result`](../index.md), [`EvaluationResult`](#evaluationresult)
+
+- `fn resume_with_entry_value(self: &mut Self, entry_value: Value) -> Result<EvaluationResult<R>>` — [`Value`](#value), [`Result`](../index.md), [`EvaluationResult`](#evaluationresult)
+
+- `fn resume_with_parameter_ref(self: &mut Self, parameter_value: u64) -> Result<EvaluationResult<R>>` — [`Result`](../index.md), [`EvaluationResult`](#evaluationresult)
+
+- `fn resume_with_relocated_address(self: &mut Self, address: u64) -> Result<EvaluationResult<R>>` — [`Result`](../index.md), [`EvaluationResult`](#evaluationresult)
+
+- `fn resume_with_indexed_address(self: &mut Self, address: u64) -> Result<EvaluationResult<R>>` — [`Result`](../index.md), [`EvaluationResult`](#evaluationresult)
+
+- `fn resume_with_base_type(self: &mut Self, base_type: ValueType) -> Result<EvaluationResult<R>>` — [`ValueType`](#valuetype), [`Result`](../index.md), [`EvaluationResult`](#evaluationresult)
+
+- `fn end_of_expression(self: &mut Self) -> bool`
+
+- `fn evaluate_internal(self: &mut Self) -> Result<EvaluationResult<R>>` — [`Result`](../index.md), [`EvaluationResult`](#evaluationresult)
 
 #### Trait Implementations
 
@@ -4550,7 +4576,7 @@ found in the `.debug_info` section.
 
 #### Implementations
 
-- `fn new(debug_pubtypes_section: &'input [u8], endian: Endian) -> Self`
+- `fn items(self: &Self) -> PubTypesEntryIter<R>` — [`PubTypesEntryIter`](#pubtypesentryiter)
 
 #### Trait Implementations
 
@@ -4605,7 +4631,7 @@ The raw contents of the `.debug_ranges` section.
 
 #### Implementations
 
-- `fn new(section: &'input [u8], endian: Endian) -> Self`
+- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugRanges<R>` — [`DebugRanges`](#debugranges)
 
 #### Trait Implementations
 
@@ -4679,7 +4705,13 @@ The DWARF data found in `.debug_ranges` and `.debug_rnglists` sections.
 
 #### Implementations
 
-- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> RangeLists<R>` — [`RangeLists`](#rangelists)
+- `fn ranges(self: &Self, offset: RangeListsOffset<<R as >::Offset>, unit_encoding: Encoding, base_address: u64, debug_addr: &DebugAddr<R>, debug_addr_base: DebugAddrBase<<R as >::Offset>) -> Result<RngListIter<R>>` — [`RangeListsOffset`](../index.md), [`Reader`](#reader), [`Encoding`](../index.md), [`DebugAddr`](#debugaddr), [`DebugAddrBase`](../index.md), [`Result`](../index.md), [`RngListIter`](#rnglistiter)
+
+- `fn raw_ranges(self: &Self, offset: RangeListsOffset<<R as >::Offset>, unit_encoding: Encoding) -> Result<RawRngListIter<R>>` — [`RangeListsOffset`](../index.md), [`Reader`](#reader), [`Encoding`](../index.md), [`Result`](../index.md), [`RawRngListIter`](#rawrnglistiter)
+
+- `fn get_offset(self: &Self, unit_encoding: Encoding, base: DebugRngListsBase<<R as >::Offset>, index: DebugRngListsIndex<<R as >::Offset>) -> Result<RangeListsOffset<<R as >::Offset>>` — [`Encoding`](../index.md), [`DebugRngListsBase`](../index.md), [`Reader`](#reader), [`DebugRngListsIndex`](../index.md), [`Result`](../index.md), [`RangeListsOffset`](../index.md)
+
+- `fn lookup_offset_id(self: &Self, id: ReaderOffsetId) -> Option<(SectionId, <R as >::Offset)>` — [`ReaderOffsetId`](#readeroffsetid), [`SectionId`](../index.md), [`Reader`](#reader)
 
 #### Trait Implementations
 
@@ -4878,7 +4910,7 @@ found in the `.debug_str` section.
 
 #### Implementations
 
-- `fn get_str(self: &Self, offset: DebugStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugStrOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md)
+- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugStr<R>` — [`DebugStr`](#debugstr)
 
 #### Trait Implementations
 
@@ -4914,7 +4946,7 @@ The raw contents of the `.debug_str_offsets` section.
 
 #### Implementations
 
-- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugStrOffsets<R>` — [`DebugStrOffsets`](#debugstroffsets)
+- `fn get_str_offset(self: &Self, format: Format, base: DebugStrOffsetsBase<<R as >::Offset>, index: DebugStrOffsetsIndex<<R as >::Offset>) -> Result<DebugStrOffset<<R as >::Offset>>` — [`Format`](../index.md), [`DebugStrOffsetsBase`](../index.md), [`Reader`](#reader), [`DebugStrOffsetsIndex`](../index.md), [`Result`](../index.md), [`DebugStrOffset`](../index.md)
 
 #### Trait Implementations
 
@@ -4951,7 +4983,7 @@ found in the `.debug_line_str` section.
 
 #### Implementations
 
-- `fn new(debug_line_str_section: &'input [u8], endian: Endian) -> Self`
+- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugLineStr<R>` — [`DebugLineStr`](#debuglinestr)
 
 #### Trait Implementations
 
@@ -5063,47 +5095,7 @@ type units.
 
 #### Implementations
 
-- `fn offset(self: &Self) -> UnitSectionOffset<Offset>` — [`UnitSectionOffset`](../index.md)
-
-- `fn size_of_header(self: &Self) -> usize`
-
-- `fn unit_length(self: &Self) -> Offset`
-
-- `fn length_including_self(self: &Self) -> Offset`
-
-- `fn encoding(self: &Self) -> Encoding` — [`Encoding`](../index.md)
-
-- `fn version(self: &Self) -> u16`
-
-- `fn type_(self: &Self) -> UnitType<Offset>` — [`UnitType`](#unittype)
-
-- `fn debug_abbrev_offset(self: &Self) -> DebugAbbrevOffset<Offset>` — [`DebugAbbrevOffset`](../index.md)
-
-- `fn address_size(self: &Self) -> u8`
-
-- `fn format(self: &Self) -> Format` — [`Format`](../index.md)
-
-- `fn header_size(self: &Self) -> Offset`
-
-- `fn is_valid_offset(self: &Self, offset: UnitOffset<Offset>) -> bool` — [`UnitOffset`](../index.md)
-
-- `fn range(self: &Self, idx: Range<UnitOffset<Offset>>) -> Result<R>` — [`UnitOffset`](../index.md), [`Result`](../index.md)
-
-- `fn range_from(self: &Self, idx: RangeFrom<UnitOffset<Offset>>) -> Result<R>` — [`UnitOffset`](../index.md), [`Result`](../index.md)
-
-- `fn range_to(self: &Self, idx: RangeTo<UnitOffset<Offset>>) -> Result<R>` — [`UnitOffset`](../index.md), [`Result`](../index.md)
-
-- `fn entry<'me, 'abbrev>(self: &'me Self, abbreviations: &'abbrev Abbreviations, offset: UnitOffset<Offset>) -> Result<DebuggingInformationEntry<'abbrev, 'me, R>>` — [`Abbreviations`](#abbreviations), [`UnitOffset`](../index.md), [`Result`](../index.md), [`DebuggingInformationEntry`](#debugginginformationentry)
-
-- `fn entries<'me, 'abbrev>(self: &'me Self, abbreviations: &'abbrev Abbreviations) -> EntriesCursor<'abbrev, 'me, R>` — [`Abbreviations`](#abbreviations), [`EntriesCursor`](#entriescursor)
-
-- `fn entries_at_offset<'me, 'abbrev>(self: &'me Self, abbreviations: &'abbrev Abbreviations, offset: UnitOffset<Offset>) -> Result<EntriesCursor<'abbrev, 'me, R>>` — [`Abbreviations`](#abbreviations), [`UnitOffset`](../index.md), [`Result`](../index.md), [`EntriesCursor`](#entriescursor)
-
-- `fn entries_tree<'me, 'abbrev>(self: &'me Self, abbreviations: &'abbrev Abbreviations, offset: Option<UnitOffset<Offset>>) -> Result<EntriesTree<'abbrev, 'me, R>>` — [`Abbreviations`](#abbreviations), [`UnitOffset`](../index.md), [`Result`](../index.md), [`EntriesTree`](#entriestree)
-
-- `fn entries_raw<'me, 'abbrev>(self: &'me Self, abbreviations: &'abbrev Abbreviations, offset: Option<UnitOffset<Offset>>) -> Result<EntriesRaw<'abbrev, 'me, R>>` — [`Abbreviations`](#abbreviations), [`UnitOffset`](../index.md), [`Result`](../index.md), [`EntriesRaw`](#entriesraw)
-
-- `fn abbreviations(self: &Self, debug_abbrev: &DebugAbbrev<R>) -> Result<Abbreviations>` — [`DebugAbbrev`](#debugabbrev), [`Result`](../index.md), [`Abbreviations`](#abbreviations)
+- `fn new(encoding: Encoding, unit_length: Offset, unit_type: UnitType<Offset>, debug_abbrev_offset: DebugAbbrevOffset<Offset>, unit_offset: UnitSectionOffset<Offset>, entries_buf: R) -> Self` — [`Encoding`](../index.md), [`UnitType`](#unittype), [`DebugAbbrevOffset`](../index.md), [`UnitSectionOffset`](../index.md)
 
 #### Trait Implementations
 
@@ -5552,7 +5544,7 @@ found in the `.debug_types` section.
 
 #### Implementations
 
-- `fn units(self: &Self) -> DebugTypesUnitHeadersIter<R>` — [`DebugTypesUnitHeadersIter`](#debugtypesunitheadersiter)
+- `fn new(debug_types_section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 

@@ -20,7 +20,7 @@ tracing-attributes = "0.1.24"
 ```
 
 The [`#[instrument]`][instrument]() attribute can now be added to a function
-to automatically create and enter `tracing` [`span`](../tracing/span/index.md) when that function is
+to automatically create and enter `tracing` [`span`](../syn/span/index.md) when that function is
 called. For example:
 
 ```rust

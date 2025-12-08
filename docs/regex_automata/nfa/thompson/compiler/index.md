@@ -23,21 +23,21 @@ The configuration used for a Thompson NFA compiler.
 
 #### Implementations
 
-- `fn new() -> Config` — [`Config`](#config)
+- `fn new() -> Config` — [`Config`](../index.md)
 
-- `fn utf8(self: Self, yes: bool) -> Config` — [`Config`](#config)
+- `fn utf8(self: Self, yes: bool) -> Config` — [`Config`](../index.md)
 
-- `fn reverse(self: Self, yes: bool) -> Config` — [`Config`](#config)
+- `fn reverse(self: Self, yes: bool) -> Config` — [`Config`](../index.md)
 
-- `fn nfa_size_limit(self: Self, bytes: Option<usize>) -> Config` — [`Config`](#config)
+- `fn nfa_size_limit(self: Self, bytes: Option<usize>) -> Config` — [`Config`](../index.md)
 
-- `fn shrink(self: Self, yes: bool) -> Config` — [`Config`](#config)
+- `fn shrink(self: Self, yes: bool) -> Config` — [`Config`](../index.md)
 
-- `fn captures(self: Self, yes: bool) -> Config` — [`Config`](#config)
+- `fn captures(self: Self, yes: bool) -> Config` — [`Config`](../index.md)
 
-- `fn which_captures(self: Self, which_captures: WhichCaptures) -> Config` — [`WhichCaptures`](#whichcaptures), [`Config`](#config)
+- `fn which_captures(self: Self, which_captures: WhichCaptures) -> Config` — [`WhichCaptures`](../index.md), [`Config`](../index.md)
 
-- `fn look_matcher(self: Self, m: LookMatcher) -> Config` — [`LookMatcher`](../../../util/look/index.md), [`Config`](#config)
+- `fn look_matcher(self: Self, m: LookMatcher) -> Config` — [`LookMatcher`](../../../util/look/index.md), [`Config`](../index.md)
 
 - `fn get_utf8(self: &Self) -> bool`
 
@@ -49,19 +49,19 @@ The configuration used for a Thompson NFA compiler.
 
 - `fn get_captures(self: &Self) -> bool`
 
-- `fn get_which_captures(self: &Self) -> WhichCaptures` — [`WhichCaptures`](#whichcaptures)
+- `fn get_which_captures(self: &Self) -> WhichCaptures` — [`WhichCaptures`](../index.md)
 
 - `fn get_look_matcher(self: &Self) -> LookMatcher` — [`LookMatcher`](../../../util/look/index.md)
 
 - `fn get_unanchored_prefix(self: &Self) -> bool`
 
-- `fn overwrite(self: &Self, o: Config) -> Config` — [`Config`](#config)
+- `fn overwrite(self: &Self, o: Config) -> Config` — [`Config`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Config`
 
-- `fn clone(self: &Self) -> Config` — [`Config`](#config)
+- `fn clone(self: &Self) -> Config` — [`Config`](../index.md)
 
 ##### `impl Debug for Config`
 
@@ -69,7 +69,7 @@ The configuration used for a Thompson NFA compiler.
 
 ##### `impl Default for Config`
 
-- `fn default() -> Config` — [`Config`](#config)
+- `fn default() -> Config` — [`Config`](../index.md)
 
 ### `Compiler`
 
@@ -188,25 +188,25 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new() -> Compiler` — [`Compiler`](#compiler)
+- `fn new() -> Compiler` — [`Compiler`](../index.md)
 
-- `fn build(self: &Self, pattern: &str) -> Result<NFA, BuildError>` — [`NFA`](../nfa/index.md), [`BuildError`](../error/index.md)
+- `fn build(self: &Self, pattern: &str) -> Result<NFA, BuildError>` — [`NFA`](../index.md), [`BuildError`](../index.md)
 
-- `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<NFA, BuildError>` — [`NFA`](../nfa/index.md), [`BuildError`](../error/index.md)
+- `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<NFA, BuildError>` — [`NFA`](../index.md), [`BuildError`](../index.md)
 
-- `fn build_from_hir(self: &Self, expr: &Hir) -> Result<NFA, BuildError>` — [`NFA`](../nfa/index.md), [`BuildError`](../error/index.md)
+- `fn build_from_hir(self: &Self, expr: &Hir) -> Result<NFA, BuildError>` — [`NFA`](../index.md), [`BuildError`](../index.md)
 
-- `fn build_many_from_hir<H: Borrow<Hir>>(self: &Self, exprs: &[H]) -> Result<NFA, BuildError>` — [`NFA`](../nfa/index.md), [`BuildError`](../error/index.md)
+- `fn build_many_from_hir<H: Borrow<Hir>>(self: &Self, exprs: &[H]) -> Result<NFA, BuildError>` — [`NFA`](../index.md), [`BuildError`](../index.md)
 
-- `fn configure(self: &mut Self, config: Config) -> &mut Compiler` — [`Config`](#config), [`Compiler`](#compiler)
+- `fn configure(self: &mut Self, config: Config) -> &mut Compiler` — [`Config`](../index.md), [`Compiler`](../index.md)
 
-- `fn syntax(self: &mut Self, config: crate::util::syntax::Config) -> &mut Compiler` — [`Config`](../../../util/syntax/index.md), [`Compiler`](#compiler)
+- `fn syntax(self: &mut Self, config: crate::util::syntax::Config) -> &mut Compiler` — [`Config`](../../../util/syntax/index.md), [`Compiler`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Compiler`
 
-- `fn clone(self: &Self) -> Compiler` — [`Compiler`](#compiler)
+- `fn clone(self: &Self) -> Compiler` — [`Compiler`](../index.md)
 
 ##### `impl Debug for Compiler`
 
@@ -270,23 +270,23 @@ There is also another implementation of this in the `fst` crate.
 
 #### Implementations
 
-- `fn new(builder: &'a mut Builder, state: &'a mut Utf8State) -> Result<Utf8Compiler<'a>, BuildError>` — [`Builder`](../builder/index.md), [`Utf8State`](#utf8state), [`Utf8Compiler`](#utf8compiler), [`BuildError`](../error/index.md)
+- `fn new(builder: &'a mut Builder, state: &'a mut Utf8State) -> Result<Utf8Compiler<'a>, BuildError>` — [`Builder`](../index.md), [`Utf8State`](#utf8state), [`Utf8Compiler`](#utf8compiler), [`BuildError`](../index.md)
 
-- `fn finish(self: &mut Self) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](#thompsonref), [`BuildError`](../error/index.md)
+- `fn finish(self: &mut Self) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](#thompsonref), [`BuildError`](../index.md)
 
-- `fn add(self: &mut Self, ranges: &[Utf8Range]) -> Result<(), BuildError>` — [`BuildError`](../error/index.md)
+- `fn add(self: &mut Self, ranges: &[Utf8Range]) -> Result<(), BuildError>` — [`BuildError`](../index.md)
 
-- `fn compile_from(self: &mut Self, from: usize) -> Result<(), BuildError>` — [`BuildError`](../error/index.md)
+- `fn compile_from(self: &mut Self, from: usize) -> Result<(), BuildError>` — [`BuildError`](../index.md)
 
-- `fn compile(self: &mut Self, node: Vec<Transition>) -> Result<StateID, BuildError>` — [`Transition`](../nfa/index.md), [`StateID`](../../../util/primitives/index.md), [`BuildError`](../error/index.md)
+- `fn compile(self: &mut Self, node: Vec<Transition>) -> Result<StateID, BuildError>` — [`Transition`](../index.md), [`StateID`](../../../util/primitives/index.md), [`BuildError`](../index.md)
 
 - `fn add_suffix(self: &mut Self, ranges: &[Utf8Range])`
 
 - `fn add_empty(self: &mut Self)`
 
-- `fn pop_freeze(self: &mut Self, next: StateID) -> Vec<Transition>` — [`StateID`](../../../util/primitives/index.md), [`Transition`](../nfa/index.md)
+- `fn pop_freeze(self: &mut Self, next: StateID) -> Vec<Transition>` — [`StateID`](../../../util/primitives/index.md), [`Transition`](../index.md)
 
-- `fn pop_root(self: &mut Self) -> Vec<Transition>` — [`Transition`](../nfa/index.md)
+- `fn pop_root(self: &mut Self) -> Vec<Transition>` — [`Transition`](../index.md)
 
 - `fn top_last_freeze(self: &mut Self, next: StateID)` — [`StateID`](../../../util/primitives/index.md)
 
@@ -442,7 +442,7 @@ The default configuration is [`WhichCaptures::All`](../../../index.md).
 
 ##### `impl Clone for WhichCaptures`
 
-- `fn clone(self: &Self) -> WhichCaptures` — [`WhichCaptures`](#whichcaptures)
+- `fn clone(self: &Self) -> WhichCaptures` — [`WhichCaptures`](../index.md)
 
 ##### `impl Copy for WhichCaptures`
 
@@ -452,5 +452,5 @@ The default configuration is [`WhichCaptures::All`](../../../index.md).
 
 ##### `impl Default for WhichCaptures`
 
-- `fn default() -> WhichCaptures` — [`WhichCaptures`](#whichcaptures)
+- `fn default() -> WhichCaptures` — [`WhichCaptures`](../index.md)
 

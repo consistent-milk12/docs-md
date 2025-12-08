@@ -35,21 +35,21 @@ struct FixupContext {
 
 - `fn new_condition() -> Self`
 
-- `fn leftmost_subexpression_with_operator(self: Self, expr: &Expr, next_operator_can_begin_expr: bool, next_operator_can_begin_generics: bool, precedence: Precedence) -> (Precedence, Self)` — [`Expr`](../expr/index.md), [`Precedence`](../precedence/index.md)
+- `fn leftmost_subexpression_with_operator(self: Self, expr: &Expr, next_operator_can_begin_expr: bool, next_operator_can_begin_generics: bool, precedence: Precedence) -> (Precedence, Self)` — [`Expr`](../index.md), [`Precedence`](../precedence/index.md)
 
-- `fn leftmost_subexpression_with_dot(self: Self, expr: &Expr) -> (Precedence, Self)` — [`Expr`](../expr/index.md), [`Precedence`](../precedence/index.md)
+- `fn leftmost_subexpression_with_dot(self: Self, expr: &Expr) -> (Precedence, Self)` — [`Expr`](../index.md), [`Precedence`](../precedence/index.md)
 
-- `fn leftmost_subexpression_precedence(self: Self, expr: &Expr) -> Precedence` — [`Expr`](../expr/index.md), [`Precedence`](../precedence/index.md)
+- `fn leftmost_subexpression_precedence(self: Self, expr: &Expr) -> Precedence` — [`Expr`](../index.md), [`Precedence`](../precedence/index.md)
 
-- `fn rightmost_subexpression(self: Self, expr: &Expr, precedence: Precedence) -> (Precedence, Self)` — [`Expr`](../expr/index.md), [`Precedence`](../precedence/index.md)
+- `fn rightmost_subexpression(self: Self, expr: &Expr, precedence: Precedence) -> (Precedence, Self)` — [`Expr`](../index.md), [`Precedence`](../precedence/index.md)
 
 - `fn rightmost_subexpression_fixup(self: Self, reset_allow_struct: bool, optional_operand: bool, precedence: Precedence) -> Self` — [`Precedence`](../precedence/index.md)
 
-- `fn rightmost_subexpression_precedence(self: Self, expr: &Expr) -> Precedence` — [`Expr`](../expr/index.md), [`Precedence`](../precedence/index.md)
+- `fn rightmost_subexpression_precedence(self: Self, expr: &Expr) -> Precedence` — [`Expr`](../index.md), [`Precedence`](../precedence/index.md)
 
-- `fn parenthesize(self: Self, expr: &Expr) -> bool` — [`Expr`](../expr/index.md)
+- `fn parenthesize(self: Self, expr: &Expr) -> bool` — [`Expr`](../index.md)
 
-- `fn precedence(self: Self, expr: &Expr) -> Precedence` — [`Expr`](../expr/index.md), [`Precedence`](../precedence/index.md)
+- `fn precedence(self: Self, expr: &Expr) -> Precedence` — [`Expr`](../index.md), [`Precedence`](../precedence/index.md)
 
 #### Trait Implementations
 

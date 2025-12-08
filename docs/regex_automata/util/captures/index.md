@@ -53,7 +53,7 @@ The span offsets of capturing groups after a match has been found.
 This type represents the output of regex engines that can report the
 offsets at which capturing groups matches or "submatches" occur. For
 example, the [`PikeVM`](crate::nfa::thompson::pikevm::PikeVM). When a match
-occurs, it will at minimum contain the [`PatternID`](../primitives/index.md) of the pattern that
+occurs, it will at minimum contain the [`PatternID`](../../index.md) of the pattern that
 matched. Depending upon how it was constructed, it may also contain the
 start/end offsets of the entire match of the pattern and the start/end
 offsets of each capturing group that participated in the match.
@@ -185,13 +185,39 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn clear(self: &mut Self)`
+- `fn all(group_info: GroupInfo) -> Captures` — [`GroupInfo`](#groupinfo), [`Captures`](#captures)
 
-- `fn set_pattern(self: &mut Self, pid: Option<PatternID>)` — [`PatternID`](../primitives/index.md)
+- `fn matches(group_info: GroupInfo) -> Captures` — [`GroupInfo`](#groupinfo), [`Captures`](#captures)
 
-- `fn slots(self: &Self) -> &[Option<NonMaxUsize>]` — [`NonMaxUsize`](../primitives/index.md)
+- `fn empty(group_info: GroupInfo) -> Captures` — [`GroupInfo`](#groupinfo), [`Captures`](#captures)
 
-- `fn slots_mut(self: &mut Self) -> &mut [Option<NonMaxUsize>]` — [`NonMaxUsize`](../primitives/index.md)
+- `fn is_match(self: &Self) -> bool`
+
+- `fn pattern(self: &Self) -> Option<PatternID>` — [`PatternID`](../../index.md)
+
+- `fn get_match(self: &Self) -> Option<Match>` — [`Match`](../../index.md)
+
+- `fn get_group(self: &Self, index: usize) -> Option<Span>` — [`Span`](../../index.md)
+
+- `fn get_group_by_name(self: &Self, name: &str) -> Option<Span>` — [`Span`](../../index.md)
+
+- `fn iter(self: &Self) -> CapturesPatternIter<'_>` — [`CapturesPatternIter`](#capturespatterniter)
+
+- `fn group_len(self: &Self) -> usize`
+
+- `fn group_info(self: &Self) -> &GroupInfo` — [`GroupInfo`](#groupinfo)
+
+- `fn interpolate_string(self: &Self, haystack: &str, replacement: &str) -> String`
+
+- `fn interpolate_string_into(self: &Self, haystack: &str, replacement: &str, dst: &mut String)`
+
+- `fn interpolate_bytes(self: &Self, haystack: &[u8], replacement: &[u8]) -> Vec<u8>`
+
+- `fn interpolate_bytes_into(self: &Self, haystack: &[u8], replacement: &[u8], dst: &mut Vec<u8>)`
+
+- `fn extract<'h, const N: usize>(self: &Self, haystack: &'h str) -> (&'h str, [&'h str; N])`
+
+- `fn extract_bytes<'h, const N: usize>(self: &Self, haystack: &'h [u8]) -> (&'h [u8], [&'h [u8]; N])`
 
 #### Trait Implementations
 
@@ -451,21 +477,21 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - `fn empty() -> GroupInfo` — [`GroupInfo`](#groupinfo)
 
-- `fn to_index(self: &Self, pid: PatternID, name: &str) -> Option<usize>` — [`PatternID`](../primitives/index.md)
+- `fn to_index(self: &Self, pid: PatternID, name: &str) -> Option<usize>` — [`PatternID`](../../index.md)
 
-- `fn to_name(self: &Self, pid: PatternID, group_index: usize) -> Option<&str>` — [`PatternID`](../primitives/index.md)
+- `fn to_name(self: &Self, pid: PatternID, group_index: usize) -> Option<&str>` — [`PatternID`](../../index.md)
 
-- `fn pattern_names(self: &Self, pid: PatternID) -> GroupInfoPatternNames<'_>` — [`PatternID`](../primitives/index.md), [`GroupInfoPatternNames`](#groupinfopatternnames)
+- `fn pattern_names(self: &Self, pid: PatternID) -> GroupInfoPatternNames<'_>` — [`PatternID`](../../index.md), [`GroupInfoPatternNames`](#groupinfopatternnames)
 
 - `fn all_names(self: &Self) -> GroupInfoAllNames<'_>` — [`GroupInfoAllNames`](#groupinfoallnames)
 
-- `fn slots(self: &Self, pid: PatternID, group_index: usize) -> Option<(usize, usize)>` — [`PatternID`](../primitives/index.md)
+- `fn slots(self: &Self, pid: PatternID, group_index: usize) -> Option<(usize, usize)>` — [`PatternID`](../../index.md)
 
-- `fn slot(self: &Self, pid: PatternID, group_index: usize) -> Option<usize>` — [`PatternID`](../primitives/index.md)
+- `fn slot(self: &Self, pid: PatternID, group_index: usize) -> Option<usize>` — [`PatternID`](../../index.md)
 
 - `fn pattern_len(self: &Self) -> usize`
 
-- `fn group_len(self: &Self, pid: PatternID) -> usize` — [`PatternID`](../primitives/index.md)
+- `fn group_len(self: &Self, pid: PatternID) -> usize` — [`PatternID`](../../index.md)
 
 - `fn all_group_len(self: &Self) -> usize`
 
@@ -507,15 +533,15 @@ be wrapped in an `Arc` to make `GroupInfo` reference counted.
 
 #### Implementations
 
-- `fn add_first_group(self: &mut Self, pid: PatternID)` — [`PatternID`](../primitives/index.md)
+- `fn add_first_group(self: &mut Self, pid: PatternID)` — [`PatternID`](../../index.md)
 
-- `fn add_explicit_group<N: AsRef<str>>(self: &mut Self, pid: PatternID, group: SmallIndex, maybe_name: Option<N>) -> Result<(), GroupInfoError>` — [`PatternID`](../primitives/index.md), [`SmallIndex`](../primitives/index.md), [`GroupInfoError`](#groupinfoerror)
+- `fn add_explicit_group<N: AsRef<str>>(self: &mut Self, pid: PatternID, group: SmallIndex, maybe_name: Option<N>) -> Result<(), GroupInfoError>` — [`PatternID`](../../index.md), [`SmallIndex`](../primitives/index.md), [`GroupInfoError`](#groupinfoerror)
 
 - `fn fixup_slot_ranges(self: &mut Self) -> Result<(), GroupInfoError>` — [`GroupInfoError`](#groupinfoerror)
 
 - `fn pattern_len(self: &Self) -> usize`
 
-- `fn group_len(self: &Self, pid: PatternID) -> usize` — [`PatternID`](../primitives/index.md)
+- `fn group_len(self: &Self, pid: PatternID) -> usize` — [`PatternID`](../../index.md)
 
 - `fn small_slot_len(self: &Self) -> SmallIndex` — [`SmallIndex`](../primitives/index.md)
 
@@ -548,13 +574,13 @@ there are no duplicate capture groups for a specific pattern.
 
 - `fn too_many_patterns(err: PatternIDError) -> GroupInfoError` — [`PatternIDError`](../primitives/index.md), [`GroupInfoError`](#groupinfoerror)
 
-- `fn too_many_groups(pattern: PatternID, minimum: usize) -> GroupInfoError` — [`PatternID`](../primitives/index.md), [`GroupInfoError`](#groupinfoerror)
+- `fn too_many_groups(pattern: PatternID, minimum: usize) -> GroupInfoError` — [`PatternID`](../../index.md), [`GroupInfoError`](#groupinfoerror)
 
-- `fn missing_groups(pattern: PatternID) -> GroupInfoError` — [`PatternID`](../primitives/index.md), [`GroupInfoError`](#groupinfoerror)
+- `fn missing_groups(pattern: PatternID) -> GroupInfoError` — [`PatternID`](../../index.md), [`GroupInfoError`](#groupinfoerror)
 
-- `fn first_must_be_unnamed(pattern: PatternID) -> GroupInfoError` — [`PatternID`](../primitives/index.md), [`GroupInfoError`](#groupinfoerror)
+- `fn first_must_be_unnamed(pattern: PatternID) -> GroupInfoError` — [`PatternID`](../../index.md), [`GroupInfoError`](#groupinfoerror)
 
-- `fn duplicate(pattern: PatternID, name: &str) -> GroupInfoError` — [`PatternID`](../primitives/index.md), [`GroupInfoError`](#groupinfoerror)
+- `fn duplicate(pattern: PatternID, name: &str) -> GroupInfoError` — [`PatternID`](../../index.md), [`GroupInfoError`](#groupinfoerror)
 
 #### Trait Implementations
 
@@ -665,7 +691,7 @@ from which this iterator was created.
 
 - `type Item = (PatternID, usize, Option<&'a str>)`
 
-- `fn next(self: &mut Self) -> Option<(PatternID, usize, Option<&'a str>)>` — [`PatternID`](../primitives/index.md)
+- `fn next(self: &mut Self) -> Option<(PatternID, usize, Option<&'a str>)>` — [`PatternID`](../../index.md)
 
 ## Enums
 

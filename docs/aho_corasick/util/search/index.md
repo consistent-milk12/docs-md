@@ -32,7 +32,7 @@ start of the search) or anchored (matches can only occur beginning at
 the start of the search) search. Unanchored search is the default. This is
 configured via `Input::anchored`.
 * Whether to quit the search as soon as a match has been found, regardless
-of the [`MatchKind`](#matchkind) that the searcher was built with. This is configured
+of the [`MatchKind`](../../index.md) that the searcher was built with. This is configured
 via `Input::earliest`.
 
 For most cases, the defaults for all optional parameters are appropriate.
@@ -97,15 +97,15 @@ assert_eq!(
 
 #### Implementations
 
-- `fn new<H: ?Sized + AsRef<[u8]>>(haystack: &'h H) -> Input<'h>` — [`Input`](#input)
+- `fn new<H: ?Sized + AsRef<[u8]>>(haystack: &'h H) -> Input<'h>` — [`Input`](../../index.md)
 
-- `fn span<S: Into<Span>>(self: Self, span: S) -> Input<'h>` — [`Input`](#input)
+- `fn span<S: Into<Span>>(self: Self, span: S) -> Input<'h>` — [`Input`](../../index.md)
 
-- `fn range<R: RangeBounds<usize>>(self: Self, range: R) -> Input<'h>` — [`Input`](#input)
+- `fn range<R: RangeBounds<usize>>(self: Self, range: R) -> Input<'h>` — [`Input`](../../index.md)
 
-- `fn anchored(self: Self, mode: Anchored) -> Input<'h>` — [`Anchored`](#anchored), [`Input`](#input)
+- `fn anchored(self: Self, mode: Anchored) -> Input<'h>` — [`Anchored`](../../index.md), [`Input`](../../index.md)
 
-- `fn earliest(self: Self, yes: bool) -> Input<'h>` — [`Input`](#input)
+- `fn earliest(self: Self, yes: bool) -> Input<'h>` — [`Input`](../../index.md)
 
 - `fn set_span<S: Into<Span>>(self: &mut Self, span: S)`
 
@@ -115,7 +115,7 @@ assert_eq!(
 
 - `fn set_end(self: &mut Self, end: usize)`
 
-- `fn set_anchored(self: &mut Self, mode: Anchored)` — [`Anchored`](#anchored)
+- `fn set_anchored(self: &mut Self, mode: Anchored)` — [`Anchored`](../../index.md)
 
 - `fn set_earliest(self: &mut Self, yes: bool)`
 
@@ -125,11 +125,11 @@ assert_eq!(
 
 - `fn end(self: &Self) -> usize`
 
-- `fn get_span(self: &Self) -> Span` — [`Span`](#span)
+- `fn get_span(self: &Self) -> Span` — [`Span`](../../index.md)
 
 - `fn get_range(self: &Self) -> Range<usize>`
 
-- `fn get_anchored(self: &Self) -> Anchored` — [`Anchored`](#anchored)
+- `fn get_anchored(self: &Self) -> Anchored` — [`Anchored`](../../index.md)
 
 - `fn get_earliest(self: &Self) -> bool`
 
@@ -139,7 +139,7 @@ assert_eq!(
 
 ##### `impl<'h> Clone for Input<'h>`
 
-- `fn clone(self: &Self) -> Input<'h>` — [`Input`](#input)
+- `fn clone(self: &Self) -> Input<'h>` — [`Input`](../../index.md)
 
 ##### `impl<'h> Debug for Input<'h>`
 
@@ -194,13 +194,13 @@ to create a span where `start > end`.
 
 - `fn contains(self: &Self, offset: usize) -> bool`
 
-- `fn offset(self: &Self, offset: usize) -> Span` — [`Span`](#span)
+- `fn offset(self: &Self, offset: usize) -> Span` — [`Span`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Span`
 
-- `fn clone(self: &Self) -> Span` — [`Span`](#span)
+- `fn clone(self: &Self) -> Span` — [`Span`](../../index.md)
 
 ##### `impl Copy for Span`
 
@@ -231,8 +231,8 @@ struct Match {
 
 A representation of a match reported by an Aho-Corasick searcher.
 
-A match has two essential pieces of information: the [`PatternID`](../primitives/index.md) that
-matches, and the [`Span`](#span) of the match in a haystack.
+A match has two essential pieces of information: the [`PatternID`](../../index.md) that
+matches, and the [`Span`](../../index.md) of the match in a haystack.
 
 The pattern is identified by an ID, which corresponds to its position
 (starting from `0`) relative to other patterns used to construct the
@@ -254,11 +254,11 @@ offset as less than or equal to its end offset.
 
 #### Implementations
 
-- `fn new<S: Into<Span>>(pattern: PatternID, span: S) -> Match` — [`PatternID`](../primitives/index.md), [`Match`](#match)
+- `fn new<S: Into<Span>>(pattern: PatternID, span: S) -> Match` — [`PatternID`](../../index.md), [`Match`](../../index.md)
 
-- `fn must<S: Into<Span>>(pattern: usize, span: S) -> Match` — [`Match`](#match)
+- `fn must<S: Into<Span>>(pattern: usize, span: S) -> Match` — [`Match`](../../index.md)
 
-- `fn pattern(self: &Self) -> PatternID` — [`PatternID`](../primitives/index.md)
+- `fn pattern(self: &Self) -> PatternID` — [`PatternID`](../../index.md)
 
 - `fn start(self: &Self) -> usize`
 
@@ -266,19 +266,19 @@ offset as less than or equal to its end offset.
 
 - `fn range(self: &Self) -> core::ops::Range<usize>`
 
-- `fn span(self: &Self) -> Span` — [`Span`](#span)
+- `fn span(self: &Self) -> Span` — [`Span`](../../index.md)
 
 - `fn is_empty(self: &Self) -> bool`
 
 - `fn len(self: &Self) -> usize`
 
-- `fn offset(self: &Self, offset: usize) -> Match` — [`Match`](#match)
+- `fn offset(self: &Self, offset: usize) -> Match` — [`Match`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Match`
 
-- `fn clone(self: &Self) -> Match` — [`Match`](#match)
+- `fn clone(self: &Self) -> Match` — [`Match`](../../index.md)
 
 ##### `impl Copy for Match`
 
@@ -294,7 +294,7 @@ offset as less than or equal to its end offset.
 
 ##### `impl PartialEq for Match`
 
-- `fn eq(self: &Self, other: &Match) -> bool` — [`Match`](#match)
+- `fn eq(self: &Self, other: &Match) -> bool` — [`Match`](../../index.md)
 
 ##### `impl StructuralPartialEq for Match`
 
@@ -336,7 +336,7 @@ fallible or an infallible routine was called.
 
 ##### `impl Clone for Anchored`
 
-- `fn clone(self: &Self) -> Anchored` — [`Anchored`](#anchored)
+- `fn clone(self: &Self) -> Anchored` — [`Anchored`](../../index.md)
 
 ##### `impl Copy for Anchored`
 
@@ -348,7 +348,7 @@ fallible or an infallible routine was called.
 
 ##### `impl PartialEq for Anchored`
 
-- `fn eq(self: &Self, other: &Anchored) -> bool` — [`Anchored`](#anchored)
+- `fn eq(self: &Self, other: &Anchored) -> bool` — [`Anchored`](../../index.md)
 
 ##### `impl StructuralPartialEq for Anchored`
 
@@ -484,13 +484,13 @@ POSIX regex alternations.
 
 - `fn is_leftmost_first(self: &Self) -> bool`
 
-- `fn as_packed(self: &Self) -> Option<crate::packed::MatchKind>` — [`MatchKind`](../../packed/api/index.md)
+- `fn as_packed(self: &Self) -> Option<crate::packed::MatchKind>` — [`MatchKind`](../../packed/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for MatchKind`
 
-- `fn clone(self: &Self) -> MatchKind` — [`MatchKind`](#matchkind)
+- `fn clone(self: &Self) -> MatchKind` — [`MatchKind`](../../index.md)
 
 ##### `impl Copy for MatchKind`
 
@@ -500,13 +500,13 @@ POSIX regex alternations.
 
 ##### `impl Default for MatchKind`
 
-- `fn default() -> MatchKind` — [`MatchKind`](#matchkind)
+- `fn default() -> MatchKind` — [`MatchKind`](../../index.md)
 
 ##### `impl Eq for MatchKind`
 
 ##### `impl PartialEq for MatchKind`
 
-- `fn eq(self: &Self, other: &MatchKind) -> bool` — [`MatchKind`](#matchkind)
+- `fn eq(self: &Self, other: &MatchKind) -> bool` — [`MatchKind`](../../index.md)
 
 ##### `impl StructuralPartialEq for MatchKind`
 
@@ -557,7 +557,7 @@ depending on whether you're using infallible or fallibe APIs, respectively.
 
 ##### `impl Clone for StartKind`
 
-- `fn clone(self: &Self) -> StartKind` — [`StartKind`](#startkind)
+- `fn clone(self: &Self) -> StartKind` — [`StartKind`](../../index.md)
 
 ##### `impl Copy for StartKind`
 
@@ -567,13 +567,13 @@ depending on whether you're using infallible or fallibe APIs, respectively.
 
 ##### `impl Default for StartKind`
 
-- `fn default() -> StartKind` — [`StartKind`](#startkind)
+- `fn default() -> StartKind` — [`StartKind`](../../index.md)
 
 ##### `impl Eq for StartKind`
 
 ##### `impl PartialEq for StartKind`
 
-- `fn eq(self: &Self, other: &StartKind) -> bool` — [`StartKind`](#startkind)
+- `fn eq(self: &Self, other: &StartKind) -> bool` — [`StartKind`](../../index.md)
 
 ##### `impl StructuralPartialEq for StartKind`
 

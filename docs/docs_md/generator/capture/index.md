@@ -6,7 +6,7 @@
 
 In-memory markdown capture for testing.
 
-This module provides [`MarkdownCapture`](#markdowncapture) for capturing generated markdown
+This module provides [`MarkdownCapture`](../../index.md) for capturing generated markdown
 in memory instead of writing to disk, enabling snapshot testing.
 
 ## Structs
@@ -58,7 +58,7 @@ side effects.
 
 ##### `impl Default for MarkdownCapture`
 
-- `fn default() -> MarkdownCapture` — [`MarkdownCapture`](#markdowncapture)
+- `fn default() -> MarkdownCapture` — [`MarkdownCapture`](../../index.md)
 
 ##### `impl<T> Instrument for MarkdownCapture`
 

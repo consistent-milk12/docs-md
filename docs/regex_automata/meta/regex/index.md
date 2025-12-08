@@ -70,7 +70,7 @@ meta regex engine will never use a lazy DFA.
 Most of the regex engines in this crate require some kind of mutable
 "scratch" space to read and write from while performing a search. Since
 a meta regex composes these regex engines, a meta regex also requires
-mutable scratch space. This scratch space is called a [`Cache`](#cache).
+mutable scratch space. This scratch space is called a [`Cache`](../index.md).
 
 Most regex engines _also_ usually have a read-only component, typically
 a [Thompson `NFA`](crate::nfa::thompson::NFA).
@@ -236,7 +236,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - `fn search_captures(self: &Self, input: &Input<'_>, caps: &mut Captures)` — [`Input`](../../index.md), [`Captures`](../../util/captures/index.md)
 
-- `fn search_slots(self: &Self, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Input`](../../index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../util/primitives/index.md)
+- `fn search_slots(self: &Self, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Input`](../../index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../index.md)
 
 - `fn which_overlapping_matches(self: &Self, input: &Input<'_>, patset: &mut PatternSet)` — [`Input`](../../index.md), [`PatternSet`](../../index.md)
 
@@ -244,7 +244,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ##### `impl Clone for Regex`
 
-- `fn clone(self: &Self) -> Regex` — [`Regex`](#regex)
+- `fn clone(self: &Self) -> Regex` — [`Regex`](../index.md)
 
 ##### `impl Debug for Regex`
 
@@ -302,9 +302,9 @@ struct RegexInfo(alloc::sync::Arc<RegexInfoI>);
 
 #### Implementations
 
-- `fn new(config: Config, hirs: &[&Hir]) -> RegexInfo` — [`Config`](#config), [`RegexInfo`](#regexinfo)
+- `fn new(config: Config, hirs: &[&Hir]) -> RegexInfo` — [`Config`](../index.md), [`RegexInfo`](#regexinfo)
 
-- `fn config(self: &Self) -> &Config` — [`Config`](#config)
+- `fn config(self: &Self) -> &Config` — [`Config`](../index.md)
 
 - `fn props(self: &Self) -> &[hir::Properties]`
 
@@ -377,7 +377,7 @@ This iterator can be created with the `Regex::find_iter` method.
 
 #### Implementations
 
-- `fn regex(self: &Self) -> &'r Regex` — [`Regex`](#regex)
+- `fn regex(self: &Self) -> &'r Regex` — [`Regex`](../index.md)
 
 - `fn input<'s>(self: &'s Self) -> &'s Input<'h>` — [`Input`](../../index.md)
 
@@ -431,7 +431,7 @@ This iterator can be created with the `Regex::captures_iter` method.
 
 #### Implementations
 
-- `fn regex(self: &Self) -> &'r Regex` — [`Regex`](#regex)
+- `fn regex(self: &Self) -> &'r Regex` — [`Regex`](../index.md)
 
 - `fn input<'s>(self: &'s Self) -> &'s Input<'h>` — [`Input`](../../index.md)
 
@@ -616,9 +616,9 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new(re: &Regex) -> Cache` — [`Regex`](#regex), [`Cache`](#cache)
+- `fn new(re: &Regex) -> Cache` — [`Regex`](../index.md), [`Cache`](../index.md)
 
-- `fn reset(self: &mut Self, re: &Regex)` — [`Regex`](#regex)
+- `fn reset(self: &mut Self, re: &Regex)` — [`Regex`](../index.md)
 
 - `fn memory_usage(self: &Self) -> usize`
 
@@ -626,7 +626,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ##### `impl Clone for Cache`
 
-- `fn clone(self: &Self) -> Cache` — [`Cache`](#cache)
+- `fn clone(self: &Self) -> Cache` — [`Cache`](../index.md)
 
 ##### `impl Debug for Cache`
 
@@ -682,39 +682,39 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new() -> Config` — [`Config`](#config)
+- `fn new() -> Config` — [`Config`](../index.md)
 
-- `fn match_kind(self: Self, kind: MatchKind) -> Config` — [`MatchKind`](../../index.md), [`Config`](#config)
+- `fn match_kind(self: Self, kind: MatchKind) -> Config` — [`MatchKind`](../../index.md), [`Config`](../index.md)
 
-- `fn utf8_empty(self: Self, yes: bool) -> Config` — [`Config`](#config)
+- `fn utf8_empty(self: Self, yes: bool) -> Config` — [`Config`](../index.md)
 
-- `fn auto_prefilter(self: Self, yes: bool) -> Config` — [`Config`](#config)
+- `fn auto_prefilter(self: Self, yes: bool) -> Config` — [`Config`](../index.md)
 
-- `fn prefilter(self: Self, pre: Option<Prefilter>) -> Config` — [`Prefilter`](../../util/prefilter/index.md), [`Config`](#config)
+- `fn prefilter(self: Self, pre: Option<Prefilter>) -> Config` — [`Prefilter`](../../util/prefilter/index.md), [`Config`](../index.md)
 
-- `fn which_captures(self: Self, which_captures: WhichCaptures) -> Config` — [`WhichCaptures`](../../nfa/thompson/compiler/index.md), [`Config`](#config)
+- `fn which_captures(self: Self, which_captures: WhichCaptures) -> Config` — [`WhichCaptures`](../../nfa/thompson/index.md), [`Config`](../index.md)
 
-- `fn nfa_size_limit(self: Self, limit: Option<usize>) -> Config` — [`Config`](#config)
+- `fn nfa_size_limit(self: Self, limit: Option<usize>) -> Config` — [`Config`](../index.md)
 
-- `fn onepass_size_limit(self: Self, limit: Option<usize>) -> Config` — [`Config`](#config)
+- `fn onepass_size_limit(self: Self, limit: Option<usize>) -> Config` — [`Config`](../index.md)
 
-- `fn hybrid_cache_capacity(self: Self, limit: usize) -> Config` — [`Config`](#config)
+- `fn hybrid_cache_capacity(self: Self, limit: usize) -> Config` — [`Config`](../index.md)
 
-- `fn dfa_size_limit(self: Self, limit: Option<usize>) -> Config` — [`Config`](#config)
+- `fn dfa_size_limit(self: Self, limit: Option<usize>) -> Config` — [`Config`](../index.md)
 
-- `fn dfa_state_limit(self: Self, limit: Option<usize>) -> Config` — [`Config`](#config)
+- `fn dfa_state_limit(self: Self, limit: Option<usize>) -> Config` — [`Config`](../index.md)
 
-- `fn byte_classes(self: Self, yes: bool) -> Config` — [`Config`](#config)
+- `fn byte_classes(self: Self, yes: bool) -> Config` — [`Config`](../index.md)
 
-- `fn line_terminator(self: Self, byte: u8) -> Config` — [`Config`](#config)
+- `fn line_terminator(self: Self, byte: u8) -> Config` — [`Config`](../index.md)
 
-- `fn hybrid(self: Self, yes: bool) -> Config` — [`Config`](#config)
+- `fn hybrid(self: Self, yes: bool) -> Config` — [`Config`](../index.md)
 
-- `fn dfa(self: Self, yes: bool) -> Config` — [`Config`](#config)
+- `fn dfa(self: Self, yes: bool) -> Config` — [`Config`](../index.md)
 
-- `fn onepass(self: Self, yes: bool) -> Config` — [`Config`](#config)
+- `fn onepass(self: Self, yes: bool) -> Config` — [`Config`](../index.md)
 
-- `fn backtrack(self: Self, yes: bool) -> Config` — [`Config`](#config)
+- `fn backtrack(self: Self, yes: bool) -> Config` — [`Config`](../index.md)
 
 - `fn get_match_kind(self: &Self) -> MatchKind` — [`MatchKind`](../../index.md)
 
@@ -724,7 +724,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - `fn get_prefilter(self: &Self) -> Option<&Prefilter>` — [`Prefilter`](../../util/prefilter/index.md)
 
-- `fn get_which_captures(self: &Self) -> WhichCaptures` — [`WhichCaptures`](../../nfa/thompson/compiler/index.md)
+- `fn get_which_captures(self: &Self) -> WhichCaptures` — [`WhichCaptures`](../../nfa/thompson/index.md)
 
 - `fn get_nfa_size_limit(self: &Self) -> Option<usize>`
 
@@ -748,13 +748,13 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - `fn get_backtrack(self: &Self) -> bool`
 
-- `fn overwrite(self: &Self, o: Config) -> Config` — [`Config`](#config)
+- `fn overwrite(self: &Self, o: Config) -> Config` — [`Config`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Config`
 
-- `fn clone(self: &Self) -> Config` — [`Config`](#config)
+- `fn clone(self: &Self) -> Config` — [`Config`](../index.md)
 
 ##### `impl Debug for Config`
 
@@ -762,7 +762,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ##### `impl Default for Config`
 
-- `fn default() -> Config` — [`Config`](#config)
+- `fn default() -> Config` — [`Config`](../index.md)
 
 ### `Builder`
 
@@ -779,7 +779,7 @@ A builder for configuring and constructing a `Regex`.
 The builder permits configuring two different aspects of a `Regex`:
 
 * `Builder::configure` will set high-level configuration options as
-described by a [`Config`](#config).
+described by a [`Config`](../index.md).
 * `Builder::syntax` will set the syntax level configuration options
 as described by a [`util::syntax::Config`](crate::util::syntax::Config).
 This only applies when building a `Regex` from pattern strings.
@@ -862,25 +862,25 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new() -> Builder` — [`Builder`](#builder)
+- `fn new() -> Builder` — [`Builder`](../index.md)
 
-- `fn build(self: &Self, pattern: &str) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md)
+- `fn build(self: &Self, pattern: &str) -> Result<Regex, BuildError>` — [`Regex`](../index.md), [`BuildError`](../index.md)
 
-- `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md)
+- `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<Regex, BuildError>` — [`Regex`](../index.md), [`BuildError`](../index.md)
 
-- `fn build_from_hir(self: &Self, hir: &Hir) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md)
+- `fn build_from_hir(self: &Self, hir: &Hir) -> Result<Regex, BuildError>` — [`Regex`](../index.md), [`BuildError`](../index.md)
 
-- `fn build_many_from_hir<H: Borrow<Hir>>(self: &Self, hirs: &[H]) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md)
+- `fn build_many_from_hir<H: Borrow<Hir>>(self: &Self, hirs: &[H]) -> Result<Regex, BuildError>` — [`Regex`](../index.md), [`BuildError`](../index.md)
 
-- `fn configure(self: &mut Self, config: Config) -> &mut Builder` — [`Config`](#config), [`Builder`](#builder)
+- `fn configure(self: &mut Self, config: Config) -> &mut Builder` — [`Config`](../index.md), [`Builder`](../index.md)
 
-- `fn syntax(self: &mut Self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../util/syntax/index.md), [`Builder`](#builder)
+- `fn syntax(self: &mut Self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../util/syntax/index.md), [`Builder`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Builder`
 
-- `fn clone(self: &Self) -> Builder` — [`Builder`](#builder)
+- `fn clone(self: &Self) -> Builder` — [`Builder`](../index.md)
 
 ##### `impl Debug for Builder`
 

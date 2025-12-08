@@ -21,17 +21,7 @@ struct ArrayVec<A: ArrayLike> {
 
 #### Implementations
 
-- `fn new() -> Self`
-
-- `fn clear(self: &mut Self)`
-
-- `fn try_push(self: &mut Self, value: <A as >::Item) -> Result<(), CapacityFull>` — [`ArrayLike`](../index.md), [`CapacityFull`](sealed/index.md)
-
-- `fn try_insert(self: &mut Self, index: usize, element: <A as >::Item) -> Result<(), CapacityFull>` — [`ArrayLike`](../index.md), [`CapacityFull`](sealed/index.md)
-
-- `fn pop(self: &mut Self) -> Option<<A as >::Item>` — [`ArrayLike`](../index.md)
-
-- `fn swap_remove(self: &mut Self, index: usize) -> <A as >::Item` — [`ArrayLike`](../index.md)
+- `fn into_vec(self: Self) -> Vec<T>`
 
 #### Trait Implementations
 

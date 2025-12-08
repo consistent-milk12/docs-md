@@ -18,7 +18,7 @@ struct Inspect<I, F> {
 `Inspect` is an iterator that calls a function with a reference to each
 element before yielding it.
 
-This struct is created by the `inspect()` method on [`ParallelIterator`](../index.md)
+This struct is created by the `inspect()` method on [`ParallelIterator`](../../prelude/index.md)
 
 
 #### Implementations
@@ -29,7 +29,7 @@ This struct is created by the `inspect()` method on [`ParallelIterator`](../inde
 
 ##### `impl<I: $crate::clone::Clone, F: $crate::clone::Clone> Clone for Inspect<I, F>`
 
-- `fn clone(self: &Self) -> Inspect<I, F>` — [`Inspect`](#inspect)
+- `fn clone(self: &Self) -> Inspect<I, F>` — [`Inspect`](../index.md)
 
 ##### `impl<I: Debug, F> Debug for Inspect<I, F>`
 

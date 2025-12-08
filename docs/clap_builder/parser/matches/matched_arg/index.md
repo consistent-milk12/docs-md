@@ -21,11 +21,11 @@ struct MatchedArg {
 
 #### Implementations
 
-- `fn new_arg(arg: &crate::Arg) -> Self` — [`Arg`](../../../builder/arg/index.md)
+- `fn new_arg(arg: &crate::Arg) -> Self` — [`Arg`](../../../index.md)
 
 - `fn new_group() -> Self`
 
-- `fn new_external(cmd: &crate::Command) -> Self` — [`Command`](../../../builder/command/index.md)
+- `fn new_external(cmd: &crate::Command) -> Self` — [`Command`](../../../index.md)
 
 - `fn indices(self: &Self) -> Cloned<Iter<'_, usize>>`
 
@@ -55,11 +55,11 @@ struct MatchedArg {
 
 - `fn num_vals_last_group(self: &Self) -> usize`
 
-- `fn check_explicit(self: &Self, predicate: &ArgPredicate) -> bool` — [`ArgPredicate`](../../../builder/arg_predicate/index.md)
+- `fn check_explicit(self: &Self, predicate: &ArgPredicate) -> bool` — [`ArgPredicate`](../../../builder/index.md)
 
-- `fn source(self: &Self) -> Option<ValueSource>` — [`ValueSource`](../value_source/index.md)
+- `fn source(self: &Self) -> Option<ValueSource>` — [`ValueSource`](../../index.md)
 
-- `fn set_source(self: &mut Self, source: ValueSource)` — [`ValueSource`](../value_source/index.md)
+- `fn set_source(self: &mut Self, source: ValueSource)` — [`ValueSource`](../../index.md)
 
 - `fn type_id(self: &Self) -> Option<AnyValueId>` — [`AnyValueId`](../../../util/any_value/index.md)
 

@@ -48,29 +48,29 @@ accessed through the [free functions in `alloc`](crate#functions).
 
 #### Implementations
 
-- `fn alloc_impl(self: &Self, layout: Layout, zeroed: bool) -> Result<NonNull<[u8]>, AllocError>` — [`AllocError`](#allocerror)
+- `fn alloc_impl(self: &Self, layout: Layout, zeroed: bool) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](#layout), [`AllocError`](#allocerror)
 
-- `unsafe fn grow_impl(self: &Self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout, zeroed: bool) -> Result<NonNull<[u8]>, AllocError>` — [`AllocError`](#allocerror)
+- `unsafe fn grow_impl(self: &Self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout, zeroed: bool) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](#layout), [`AllocError`](#allocerror)
 
 #### Trait Implementations
 
 ##### `impl Allocator for Global`
 
-- `fn allocate(self: &Self, layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`AllocError`](#allocerror)
+- `fn allocate(self: &Self, layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](#layout), [`AllocError`](#allocerror)
 
-- `fn allocate_zeroed(self: &Self, layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`AllocError`](#allocerror)
+- `fn allocate_zeroed(self: &Self, layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](#layout), [`AllocError`](#allocerror)
 
-- `unsafe fn deallocate(self: &Self, ptr: NonNull<u8>, layout: Layout)`
+- `unsafe fn deallocate(self: &Self, ptr: NonNull<u8>, layout: Layout)` — [`Layout`](#layout)
 
-- `unsafe fn grow(self: &Self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`AllocError`](#allocerror)
+- `unsafe fn grow(self: &Self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](#layout), [`AllocError`](#allocerror)
 
-- `unsafe fn grow_zeroed(self: &Self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`AllocError`](#allocerror)
+- `unsafe fn grow_zeroed(self: &Self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](#layout), [`AllocError`](#allocerror)
 
-- `unsafe fn shrink(self: &Self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`AllocError`](#allocerror)
+- `unsafe fn shrink(self: &Self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>` — [`Layout`](#layout), [`AllocError`](#allocerror)
 
 ##### `impl Clone for Global`
 
-- `fn clone(self: &Self) -> Global` — [`Global`](global/index.md)
+- `fn clone(self: &Self) -> Global` — [`Global`](#global)
 
 ##### `impl Copy for Global`
 
@@ -80,7 +80,7 @@ accessed through the [free functions in `alloc`](crate#functions).
 
 ##### `impl Default for Global`
 
-- `fn default() -> Global` — [`Global`](global/index.md)
+- `fn default() -> Global` — [`Global`](#global)
 
 ### `AllocError`
 

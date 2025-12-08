@@ -52,7 +52,7 @@ A constant item: `const MAX: u16 = 65535`.
 
 ##### `impl Parse for crate::item::ItemConst`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ItemConst`
 
@@ -106,7 +106,7 @@ An enum definition: `enum Foo<A, B> { A(A), B(B) }`.
 
 ##### `impl Parse for crate::item::ItemEnum`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ItemEnum`
 
@@ -160,7 +160,7 @@ An `extern crate` item: `extern crate serde`.
 
 ##### `impl Parse for crate::item::ItemExternCrate`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ItemExternCrate`
 
@@ -211,7 +211,7 @@ A free-standing function: `fn process(n: usize) -> Result<()> { ... }`.
 
 ##### `impl Parse for crate::item::ItemFn`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ItemFn`
 
@@ -263,7 +263,7 @@ A block of foreign items: `extern "C" { ... }`.
 
 ##### `impl Parse for crate::item::ItemForeignMod`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ItemForeignMod`
 
@@ -330,7 +330,7 @@ for Data<A> { ... }`.
 
 ##### `impl Parse for crate::item::ItemImpl`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ItemImpl`
 
@@ -387,7 +387,7 @@ A macro invocation, which includes `macro_rules!` definitions.
 
 ##### `impl Parse for crate::item::ItemMacro`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ItemMacro`
 
@@ -441,7 +441,7 @@ A module or module declaration: `mod m` or `mod m { ... }`.
 
 ##### `impl Parse for crate::item::ItemMod`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ItemMod`
 
@@ -498,7 +498,7 @@ A static item: `static BIKE: Shed = Shed(42)`.
 
 ##### `impl Parse for crate::item::ItemStatic`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ItemStatic`
 
@@ -552,7 +552,7 @@ A struct definition: `struct Foo<A> { x: A }`.
 
 ##### `impl Parse for crate::item::ItemStruct`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ItemStruct`
 
@@ -611,7 +611,7 @@ A trait definition: `pub trait Iterator { ... }`.
 
 ##### `impl Parse for crate::item::ItemTrait`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ItemTrait`
 
@@ -666,7 +666,7 @@ A trait alias: `pub trait SharableIterator = Iterator + Sync`.
 
 ##### `impl Parse for crate::item::ItemTraitAlias`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ItemTraitAlias`
 
@@ -721,7 +721,7 @@ A type alias: `type Result<T> = std::result::Result<T, MyError>`.
 
 ##### `impl Parse for crate::item::ItemType`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ItemType`
 
@@ -774,7 +774,7 @@ A union definition: `union Foo<A, B> { x: A, y: B }`.
 
 ##### `impl Parse for crate::item::ItemUnion`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ItemUnion`
 
@@ -827,7 +827,7 @@ A use declaration: `use std::collections::HashMap`.
 
 ##### `impl Parse for crate::item::ItemUse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ItemUse`
 
@@ -1083,7 +1083,7 @@ A foreign function in an `extern` block.
 
 ##### `impl Parse for crate::item::ForeignItemFn`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ForeignItemFn`
 
@@ -1138,7 +1138,7 @@ A foreign static item in an `extern` block: `static ext: u8`.
 
 ##### `impl Parse for crate::item::ForeignItemStatic`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ForeignItemStatic`
 
@@ -1191,7 +1191,7 @@ A foreign type in an `extern` block: `type void`.
 
 ##### `impl Parse for crate::item::ForeignItemType`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ForeignItemType`
 
@@ -1241,7 +1241,7 @@ A macro invocation within an extern block.
 
 ##### `impl Parse for crate::item::ForeignItemMacro`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ForeignItemMacro`
 
@@ -1296,7 +1296,7 @@ An associated constant within the definition of a trait.
 
 ##### `impl Parse for crate::item::TraitItemConst`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::TraitItemConst`
 
@@ -1347,7 +1347,7 @@ An associated function within the definition of a trait.
 
 ##### `impl Parse for crate::item::TraitItemFn`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::TraitItemFn`
 
@@ -1402,7 +1402,7 @@ An associated type within the definition of a trait.
 
 ##### `impl Parse for crate::item::TraitItemType`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::TraitItemType`
 
@@ -1452,7 +1452,7 @@ A macro invocation within the definition of a trait.
 
 ##### `impl Parse for crate::item::TraitItemMacro`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::TraitItemMacro`
 
@@ -1510,7 +1510,7 @@ An associated constant within an impl block.
 
 ##### `impl Parse for crate::item::ImplItemConst`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ImplItemConst`
 
@@ -1562,7 +1562,7 @@ An associated function within an impl block.
 
 ##### `impl Parse for crate::item::ImplItemFn`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ImplItemFn`
 
@@ -1618,7 +1618,7 @@ An associated type within an impl block.
 
 ##### `impl Parse for crate::item::ImplItemType`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ImplItemType`
 
@@ -1668,7 +1668,7 @@ A macro invocation within an impl block.
 
 ##### `impl Parse for crate::item::ImplItemMacro`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ImplItemMacro`
 
@@ -1707,7 +1707,7 @@ initialize(&self)`.
 
 #### Implementations
 
-- `fn receiver(self: &Self) -> Option<&Receiver>` — [`Receiver`](#receiver)
+- `fn receiver(self: &Self) -> Option<&Receiver>` — [`Receiver`](../index.md)
 
 #### Trait Implementations
 
@@ -1727,7 +1727,7 @@ initialize(&self)`.
 
 ##### `impl Parse for crate::item::Signature`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::Signature`
 
@@ -1766,7 +1766,7 @@ shorthand case, the type in `ty` is reconstructed as one of `Self`,
 
 #### Implementations
 
-- `fn lifetime(self: &Self) -> Option<&Lifetime>` — [`Lifetime`](../lifetime/index.md)
+- `fn lifetime(self: &Self) -> Option<&Lifetime>` — [`Lifetime`](../index.md)
 
 #### Trait Implementations
 
@@ -1786,7 +1786,7 @@ shorthand case, the type in `ty` is reconstructed as one of `Self`,
 
 ##### `impl Parse for crate::item::Receiver`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::Receiver`
 
@@ -1957,7 +1957,7 @@ This type is a [syntax tree enum].
 
 #### Implementations
 
-- `fn replace_attrs(self: &mut Self, new: Vec<Attribute>) -> Vec<Attribute>` — [`Attribute`](../attr/index.md)
+- `fn replace_attrs(self: &mut Self, new: Vec<Attribute>) -> Vec<Attribute>` — [`Attribute`](../index.md)
 
 #### Trait Implementations
 
@@ -1977,7 +1977,7 @@ This type is a [syntax tree enum].
 
 ##### `impl Parse for crate::item::Item`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::Item`
 
@@ -2052,7 +2052,7 @@ This type is a [syntax tree enum].
 
 ##### `impl Parse for crate::item::UseTree`
 
-- `fn parse(input: ParseStream<'_>) -> Result<UseTree>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md), [`UseTree`](#usetree)
+- `fn parse(input: ParseStream<'_>) -> Result<UseTree>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md), [`UseTree`](../index.md)
 
 ##### `impl PartialEq for crate::UseTree`
 
@@ -2127,7 +2127,7 @@ This type is a [syntax tree enum].
 
 ##### `impl Parse for crate::item::ForeignItem`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ForeignItem`
 
@@ -2202,7 +2202,7 @@ This type is a [syntax tree enum].
 
 ##### `impl Parse for crate::item::TraitItem`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::TraitItem`
 
@@ -2277,7 +2277,7 @@ This type is a [syntax tree enum].
 
 ##### `impl Parse for crate::item::ImplItem`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ImplItem`
 
@@ -2332,7 +2332,7 @@ An argument in a function signature: the `n: usize` in `fn f(n: usize)`.
 
 ##### `impl Parse for crate::item::FnArg`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::FnArg`
 
@@ -2377,7 +2377,7 @@ The mutability of an `Item::Static` or `ForeignItem::Static`.
 
 ##### `impl Parse for crate::item::StaticMutability`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::StaticMutability`
 

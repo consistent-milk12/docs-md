@@ -18,16 +18,16 @@ trait Parser: FromArgMatches + CommandFactory + Sized { ... }
 Parse command-line arguments into `Self`.
 
 The primary one-stop-shop trait used to create an instance of a `clap`
-[`Command`](../builder/command/index.md), conduct the parsing, and turn the resulting [`ArgMatches`](../parser/matches/arg_matches/index.md) back
+[`Command`](../index.md), conduct the parsing, and turn the resulting [`ArgMatches`](../index.md) back
 into concrete instance of the user struct.
 
-This trait is primarily a convenience on top of [`FromArgMatches`](#fromargmatches) +
-[`CommandFactory`](#commandfactory) which uses those two underlying traits to build the two
+This trait is primarily a convenience on top of [`FromArgMatches`](../index.md) +
+[`CommandFactory`](../index.md) which uses those two underlying traits to build the two
 fundamental functions `parse` which uses the `std::env::args_os` iterator,
 and `parse_from` which allows the consumer to supply the iterator (along
 with fallible options for each).
 
-See also [`Subcommand`](#subcommand) and [`Args`](#args).
+See also [`Subcommand`](../index.md) and [`Args`](../index.md).
 
 <div class="warning">
 
@@ -67,19 +67,19 @@ See also [`Subcommand`](#subcommand) and [`Args`](#args).
 trait CommandFactory: Sized { ... }
 ```
 
-Create a [`Command`](../builder/command/index.md) relevant for a user-defined container.
+Create a [`Command`](../index.md) relevant for a user-defined container.
 
-Derived as part of [`Parser`](#parser).
+Derived as part of [`Parser`](../index.md).
 
 #### Required Methods
 
 - `fn command() -> Command`
 
-  Build a [`Command`](../builder/command/index.md) that can instantiate `Self`.
+  Build a [`Command`](../index.md) that can instantiate `Self`.
 
 - `fn command_for_update() -> Command`
 
-  Build a [`Command`](../builder/command/index.md) that can update `self`.
+  Build a [`Command`](../index.md) that can update `self`.
 
 ### `FromArgMatches`
 
@@ -87,19 +87,19 @@ Derived as part of [`Parser`](#parser).
 trait FromArgMatches: Sized { ... }
 ```
 
-Converts an instance of [`ArgMatches`](../parser/matches/arg_matches/index.md) to a user-defined container.
+Converts an instance of [`ArgMatches`](../index.md) to a user-defined container.
 
-Derived as part of [`Parser`](#parser), [`Args`](#args), and [`Subcommand`](#subcommand).
+Derived as part of [`Parser`](../index.md), [`Args`](../index.md), and [`Subcommand`](../index.md).
 
 #### Required Methods
 
 - `fn from_arg_matches(matches: &ArgMatches) -> Result<Self, Error>`
 
-  Instantiate `Self` from [`ArgMatches`](../parser/matches/arg_matches/index.md), parsing the arguments as needed.
+  Instantiate `Self` from [`ArgMatches`](../index.md), parsing the arguments as needed.
 
 - `fn from_arg_matches_mut(matches: &mut ArgMatches) -> Result<Self, Error>`
 
-  Instantiate `Self` from [`ArgMatches`](../parser/matches/arg_matches/index.md), parsing the arguments as needed.
+  Instantiate `Self` from [`ArgMatches`](../index.md), parsing the arguments as needed.
 
 - `fn update_from_arg_matches(self: &mut Self, matches: &ArgMatches) -> Result<(), Error>`
 
@@ -137,11 +137,11 @@ with:
 
 - `fn augment_args(cmd: Command) -> Command`
 
-  Append to [`Command`](../builder/command/index.md) so it can instantiate `Self` via
+  Append to [`Command`](../index.md) so it can instantiate `Self` via
 
 - `fn augment_args_for_update(cmd: Command) -> Command`
 
-  Append to [`Command`](../builder/command/index.md) so it can instantiate `self` via
+  Append to [`Command`](../index.md) so it can instantiate `self` via
 
 ### `Subcommand`
 
@@ -168,11 +168,11 @@ with:
 
 - `fn augment_subcommands(cmd: Command) -> Command`
 
-  Append to [`Command`](../builder/command/index.md) so it can instantiate `Self` via
+  Append to [`Command`](../index.md) so it can instantiate `Self` via
 
 - `fn augment_subcommands_for_update(cmd: Command) -> Command`
 
-  Append to [`Command`](../builder/command/index.md) so it can instantiate `self` via
+  Append to [`Command`](../index.md) so it can instantiate `self` via
 
 - `fn has_subcommand(name: &str) -> bool`
 
@@ -186,7 +186,7 @@ trait ValueEnum: Sized + Clone { ... }
 
 Parse arguments into enums.
 
-When deriving [`Parser`](#parser), a field whose type implements `ValueEnum` can have the attribute
+When deriving [`Parser`](../index.md), a field whose type implements `ValueEnum` can have the attribute
 `#[arg(value_enum)]` which will
 - Call `EnumValueParser`
 - Allowing using the `#[arg(default_value_t)]` attribute without implementing `Display`.

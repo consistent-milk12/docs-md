@@ -19,7 +19,7 @@ found in the `.debug_line` section.
 
 #### Implementations
 
-- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugLine<R>` — [`DebugLine`](../index.md)
+- `fn new(debug_line_section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 

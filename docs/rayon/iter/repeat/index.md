@@ -19,15 +19,15 @@ Iterator adaptor for [the `repeat()` function].
 
 #### Implementations
 
-- `fn take(self: Self, n: usize) -> RepeatN<T>` — [`RepeatN`](#repeatn)
+- `fn take(self: Self, n: usize) -> RepeatN<T>` — [`RepeatN`](../index.md)
 
-- `fn zip<Z>(self: Self, zip_op: Z) -> Zip<RepeatN<T>, <Z as >::Iter>` — [`Zip`](../zip/index.md), [`RepeatN`](#repeatn), [`IntoParallelIterator`](../index.md)
+- `fn zip<Z>(self: Self, zip_op: Z) -> Zip<RepeatN<T>, <Z as >::Iter>` — [`Zip`](../index.md), [`RepeatN`](../index.md), [`IntoParallelIterator`](../../prelude/index.md)
 
 #### Trait Implementations
 
 ##### `impl<T: $crate::clone::Clone> Clone for Repeat<T>`
 
-- `fn clone(self: &Self) -> Repeat<T>` — [`Repeat`](#repeat)
+- `fn clone(self: &Self) -> Repeat<T>` — [`Repeat`](../index.md)
 
 ##### `impl<T: $crate::fmt::Debug> Debug for Repeat<T>`
 
@@ -114,7 +114,7 @@ Iterator adaptor for [the `repeat_n()` function].
 
 ##### `impl<T: $crate::clone::Clone> Clone for RepeatN<T>`
 
-- `fn clone(self: &Self) -> RepeatN<T>` — [`RepeatN`](#repeatn)
+- `fn clone(self: &Self) -> RepeatN<T>` — [`RepeatN`](../index.md)
 
 ##### `impl<T: fmt::Debug> Debug for RepeatN<T>`
 
@@ -283,5 +283,5 @@ fn repeatn<T: Clone + Send>(element: T, n: usize) -> RepeatN<T>
 Creates a parallel iterator that produces `n` repeats of `element`
 (by cloning it).
 
-Deprecated in favor of [`repeat_n`](#repeat-n) for consistency with the standard library.
+Deprecated in favor of [`repeat_n`](../index.md) for consistency with the standard library.
 

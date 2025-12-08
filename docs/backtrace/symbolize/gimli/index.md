@@ -179,11 +179,11 @@ enum Symbol<'a> {
 
 #### Implementations
 
-- `fn name(self: &Self) -> Option<SymbolName<'_>>` — [`SymbolName`](../index.md)
+- `fn name(self: &Self) -> Option<SymbolName<'_>>` — [`SymbolName`](../../index.md)
 
 - `fn addr(self: &Self) -> Option<*mut c_void>`
 
-- `fn filename_raw(self: &Self) -> Option<BytesOrWideString<'_>>` — [`BytesOrWideString`](../../types/index.md)
+- `fn filename_raw(self: &Self) -> Option<BytesOrWideString<'_>>` — [`BytesOrWideString`](../../index.md)
 
 - `fn filename(self: &Self) -> Option<&Path>`
 

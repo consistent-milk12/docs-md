@@ -14,7 +14,7 @@ struct RawEntryBuilderMut<'a, K, V, S, A: Allocator> {
 }
 ```
 
-A builder for computing where in a [`HashMap`](../hash_map/index.md) a key-value pair would be stored.
+A builder for computing where in a [`HashMap`](../index.md) a key-value pair would be stored.
 
 See the `HashMap::raw_entry_mut` docs for usage examples.
 
@@ -70,9 +70,9 @@ assert_eq!(map.len(), 6);
 
 #### Implementations
 
-- `fn from_hash<F>(self: Self, hash: u64, is_match: F) -> RawEntryMut<'a, K, V, S, A>` — [`RawEntryMut`](#rawentrymut)
+- `fn from_key<Q>(self: Self, k: &Q) -> RawEntryMut<'a, K, V, S, A>` — [`RawEntryMut`](#rawentrymut)
 
-- `fn search<F>(self: Self, hash: u64, is_match: F) -> RawEntryMut<'a, K, V, S, A>` — [`RawEntryMut`](#rawentrymut)
+- `fn from_key_hashed_nocheck<Q>(self: Self, hash: u64, k: &Q) -> RawEntryMut<'a, K, V, S, A>` — [`RawEntryMut`](#rawentrymut)
 
 #### Trait Implementations
 
@@ -269,7 +269,7 @@ struct RawEntryBuilder<'a, K, V, S, A: Allocator> {
 }
 ```
 
-A builder for computing where in a [`HashMap`](../hash_map/index.md) a key-value pair would be stored.
+A builder for computing where in a [`HashMap`](../index.md) a key-value pair would be stored.
 
 See the `HashMap::raw_entry` docs for usage examples.
 
@@ -333,7 +333,7 @@ A view into a single entry in a map, which may either be vacant or occupied.
 
 This is a lower-level version of [`Entry`](../hash_table/index.md).
 
-This `enum` is constructed through the `raw_entry_mut` method on [`HashMap`](../hash_map/index.md),
+This `enum` is constructed through the `raw_entry_mut` method on [`HashMap`](../index.md),
 then calling one of the methods of that [`RawEntryBuilderMut`](#rawentrybuildermut).
 
 

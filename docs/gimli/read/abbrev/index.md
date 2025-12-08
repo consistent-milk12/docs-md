@@ -22,7 +22,7 @@ The `DebugAbbrev` struct represents the abbreviations describing
 
 #### Implementations
 
-- `fn new(debug_abbrev_section: &'input [u8], endian: Endian) -> Self`
+- `fn abbreviations(self: &Self, debug_abbrev_offset: DebugAbbrevOffset<<R as >::Offset>) -> Result<Abbreviations>` — [`DebugAbbrevOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`Abbreviations`](../index.md)
 
 #### Trait Implementations
 

@@ -302,10 +302,21 @@ impl LinkRegistry {
                                     }
                                 }
                             } else {
-                                // Specific re-export
+                                // Specific re-export - register both Use item AND target item
                                 let name = &use_item.name;
                                 registry.item_paths.insert(*item_id, "index.md".to_string());
                                 registry.item_names.insert(*item_id, name.clone());
+
+                                // Also register the target item's ID to this path
+                                // This ensures links to the target resolve to the re-export location
+                                if let Some(target_id) = &use_item.id
+                                    && !registry.item_paths.contains_key(target_id)
+                                {
+                                    registry
+                                        .item_paths
+                                        .insert(*target_id, "index.md".to_string());
+                                    registry.item_names.insert(*target_id, name.clone());
+                                }
                             }
                         },
 
@@ -380,9 +391,18 @@ impl LinkRegistry {
                                 // Register items from glob re-export target
                                 self.register_glob_items(krate, use_item, path, include_private);
                             } else {
-                                // Specific re-export
+                                // Specific re-export - register both Use item AND target item
                                 self.item_paths.insert(*item_id, path.to_string());
                                 self.item_names.insert(*item_id, use_item.name.clone());
+
+                                // Also register the target item's ID to this path
+                                // This ensures links to the target resolve to the re-export location
+                                if let Some(target_id) = &use_item.id
+                                    && !self.item_paths.contains_key(target_id)
+                                {
+                                    self.item_paths.insert(*target_id, path.to_string());
+                                    self.item_names.insert(*target_id, use_item.name.clone());
+                                }
                             }
                         },
 

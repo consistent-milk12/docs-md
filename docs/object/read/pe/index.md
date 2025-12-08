@@ -73,19 +73,27 @@ Returned by `CoffHeader::sections` and
 
 #### Implementations
 
-- `fn pe_file_range_at(self: &Self, va: u32) -> Option<(u32, u32)>`
+- `fn parse<Coff: CoffHeader, R: ReadRef<'data>>(header: &Coff, data: R, offset: u64) -> Result<Self>` — [`Result`](../../index.md)
 
-- `fn pe_data_at<R: ReadRef<'data>>(self: &Self, data: R, va: u32) -> Option<&'data [u8]>`
+- `fn iter(self: &Self) -> slice::Iter<'data, pe::ImageSectionHeader>` — [`ImageSectionHeader`](../../pe/index.md)
 
-- `fn pe_data_containing<R: ReadRef<'data>>(self: &Self, data: R, va: u32) -> Option<(&'data [u8], u32)>`
+- `fn enumerate(self: &Self) -> impl Iterator<Item = (SectionIndex, &'data pe::ImageSectionHeader)>` — [`SectionIndex`](../../index.md), [`ImageSectionHeader`](../../pe/index.md)
 
-- `fn section_containing(self: &Self, va: u32) -> Option<&'data ImageSectionHeader>` — [`ImageSectionHeader`](../../pe/index.md)
+- `fn is_empty(self: &Self) -> bool`
+
+- `fn len(self: &Self) -> usize`
+
+- `fn section(self: &Self, index: SectionIndex) -> read::Result<&'data pe::ImageSectionHeader>` — [`SectionIndex`](../../index.md), [`Result`](../../index.md), [`ImageSectionHeader`](../../pe/index.md)
+
+- `fn section_by_name<R: ReadRef<'data>>(self: &Self, strings: StringTable<'data, R>, name: &[u8]) -> Option<(SectionIndex, &'data pe::ImageSectionHeader)>` — [`StringTable`](../index.md), [`SectionIndex`](../../index.md), [`ImageSectionHeader`](../../pe/index.md)
+
+- `fn max_section_file_offset(self: &Self) -> u64`
 
 #### Trait Implementations
 
 ##### `impl<'data> Clone for SectionTable<'data>`
 
-- `fn clone(self: &Self) -> SectionTable<'data>` — [`SectionTable`](../coff/index.md)
+- `fn clone(self: &Self) -> SectionTable<'data>` — [`SectionTable`](#sectiontable)
 
 ##### `impl<'data> Copy for SectionTable<'data>`
 
@@ -95,7 +103,7 @@ Returned by `CoffHeader::sections` and
 
 ##### `impl<'data> Default for SectionTable<'data>`
 
-- `fn default() -> SectionTable<'data>` — [`SectionTable`](../coff/index.md)
+- `fn default() -> SectionTable<'data>` — [`SectionTable`](#sectiontable)
 
 ### `SymbolTable<'data, R, Coff>`
 
@@ -183,7 +191,7 @@ Most functionality is provided by the [`Object`](../index.md) trait implementati
 
 - `fn rich_header_info(self: &Self) -> Option<RichHeaderInfo<'_>>` — [`RichHeaderInfo`](#richheaderinfo)
 
-- `fn section_table(self: &Self) -> SectionTable<'data>` — [`SectionTable`](../coff/index.md)
+- `fn section_table(self: &Self) -> SectionTable<'data>` — [`SectionTable`](#sectiontable)
 
 - `fn data_directories(self: &Self) -> DataDirectories<'data>` — [`DataDirectories`](#datadirectories)
 
@@ -619,17 +627,17 @@ Returned by [`ImageNtHeaders::parse`](super::ImageNtHeaders::parse).
 
 - `fn get(self: &Self, index: usize) -> Option<&'data pe::ImageDataDirectory>` — [`ImageDataDirectory`](../../pe/index.md)
 
-- `fn export_directory<R: ReadRef<'data>>(self: &Self, data: R, sections: &SectionTable<'data>) -> Result<Option<&'data pe::ImageExportDirectory>>` — [`SectionTable`](../coff/index.md), [`Result`](../../index.md), [`ImageExportDirectory`](../../pe/index.md)
+- `fn export_directory<R: ReadRef<'data>>(self: &Self, data: R, sections: &SectionTable<'data>) -> Result<Option<&'data pe::ImageExportDirectory>>` — [`SectionTable`](#sectiontable), [`Result`](../../index.md), [`ImageExportDirectory`](../../pe/index.md)
 
-- `fn export_table<R: ReadRef<'data>>(self: &Self, data: R, sections: &SectionTable<'data>) -> Result<Option<ExportTable<'data>>>` — [`SectionTable`](../coff/index.md), [`Result`](../../index.md), [`ExportTable`](#exporttable)
+- `fn export_table<R: ReadRef<'data>>(self: &Self, data: R, sections: &SectionTable<'data>) -> Result<Option<ExportTable<'data>>>` — [`SectionTable`](#sectiontable), [`Result`](../../index.md), [`ExportTable`](#exporttable)
 
-- `fn import_table<R: ReadRef<'data>>(self: &Self, data: R, sections: &SectionTable<'data>) -> Result<Option<ImportTable<'data>>>` — [`SectionTable`](../coff/index.md), [`Result`](../../index.md), [`ImportTable`](#importtable)
+- `fn import_table<R: ReadRef<'data>>(self: &Self, data: R, sections: &SectionTable<'data>) -> Result<Option<ImportTable<'data>>>` — [`SectionTable`](#sectiontable), [`Result`](../../index.md), [`ImportTable`](#importtable)
 
-- `fn delay_load_import_table<R: ReadRef<'data>>(self: &Self, data: R, sections: &SectionTable<'data>) -> Result<Option<DelayLoadImportTable<'data>>>` — [`SectionTable`](../coff/index.md), [`Result`](../../index.md), [`DelayLoadImportTable`](#delayloadimporttable)
+- `fn delay_load_import_table<R: ReadRef<'data>>(self: &Self, data: R, sections: &SectionTable<'data>) -> Result<Option<DelayLoadImportTable<'data>>>` — [`SectionTable`](#sectiontable), [`Result`](../../index.md), [`DelayLoadImportTable`](#delayloadimporttable)
 
-- `fn relocation_blocks<R: ReadRef<'data>>(self: &Self, data: R, sections: &SectionTable<'data>) -> Result<Option<RelocationBlockIterator<'data>>>` — [`SectionTable`](../coff/index.md), [`Result`](../../index.md), [`RelocationBlockIterator`](#relocationblockiterator)
+- `fn relocation_blocks<R: ReadRef<'data>>(self: &Self, data: R, sections: &SectionTable<'data>) -> Result<Option<RelocationBlockIterator<'data>>>` — [`SectionTable`](#sectiontable), [`Result`](../../index.md), [`RelocationBlockIterator`](#relocationblockiterator)
 
-- `fn resource_directory<R: ReadRef<'data>>(self: &Self, data: R, sections: &SectionTable<'data>) -> Result<Option<ResourceDirectory<'data>>>` — [`SectionTable`](../coff/index.md), [`Result`](../../index.md), [`ResourceDirectory`](#resourcedirectory)
+- `fn resource_directory<R: ReadRef<'data>>(self: &Self, data: R, sections: &SectionTable<'data>) -> Result<Option<ResourceDirectory<'data>>>` — [`SectionTable`](#sectiontable), [`Result`](../../index.md), [`ResourceDirectory`](#resourcedirectory)
 
 #### Trait Implementations
 

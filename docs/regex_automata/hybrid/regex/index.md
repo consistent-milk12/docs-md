@@ -103,11 +103,15 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn forward(self: &Self) -> &DFA` — [`DFA`](../dfa/index.md)
+- `fn new(pattern: &str) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../index.md)
 
-- `fn reverse(self: &Self) -> &DFA` — [`DFA`](../dfa/index.md)
+- `fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../index.md)
 
-- `fn pattern_len(self: &Self) -> usize`
+- `fn builder() -> Builder` — [`Builder`](#builder)
+
+- `fn create_cache(self: &Self) -> Cache` — [`Cache`](#cache)
+
+- `fn reset_cache(self: &Self, cache: &mut Cache)` — [`Cache`](#cache)
 
 #### Trait Implementations
 
@@ -281,15 +285,15 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - `fn new() -> Builder` — [`Builder`](#builder)
 
-- `fn build(self: &Self, pattern: &str) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md)
+- `fn build(self: &Self, pattern: &str) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../index.md)
 
-- `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md)
+- `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../index.md)
 
 - `fn build_from_dfas(self: &Self, forward: DFA, reverse: DFA) -> Regex` — [`DFA`](../dfa/index.md), [`Regex`](#regex)
 
 - `fn syntax(self: &mut Self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../util/syntax/index.md), [`Builder`](#builder)
 
-- `fn thompson(self: &mut Self, config: thompson::Config) -> &mut Builder` — [`Config`](../../nfa/thompson/compiler/index.md), [`Builder`](#builder)
+- `fn thompson(self: &mut Self, config: thompson::Config) -> &mut Builder` — [`Config`](../../nfa/thompson/index.md), [`Builder`](#builder)
 
 - `fn dfa(self: &mut Self, config: dfa::Config) -> &mut Builder` — [`Config`](../dfa/index.md), [`Builder`](#builder)
 

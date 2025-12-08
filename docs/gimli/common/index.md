@@ -1086,7 +1086,9 @@ An offset into the `.debug_info` or `.debug_types` sections.
 
 #### Implementations
 
-- `fn to_unit_offset<R>(self: &Self, unit: &Unit<R>) -> Option<UnitOffset<T>>` — [`Unit`](../read/index.md), [`UnitOffset`](../index.md)
+- `fn as_debug_info_offset(self: &Self) -> Option<DebugInfoOffset<T>>` — [`DebugInfoOffset`](../index.md)
+
+- `fn as_debug_types_offset(self: &Self) -> Option<DebugTypesOffset<T>>` — [`DebugTypesOffset`](../index.md)
 
 #### Trait Implementations
 

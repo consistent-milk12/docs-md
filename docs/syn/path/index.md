@@ -24,11 +24,7 @@ A path at which a named item is exported (e.g. `std::collections::HashMap`).
 
 #### Implementations
 
-- `fn is_ident<I>(self: &Self, ident: &I) -> bool`
-
-- `fn get_ident(self: &Self) -> Option<&Ident>`
-
-- `fn require_ident(self: &Self) -> Result<&Ident>` — [`Result`](../error/index.md)
+- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
@@ -48,7 +44,7 @@ A path at which a named item is exported (e.g. `std::collections::HashMap`).
 
 ##### `impl Parse for crate::path::Path`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::Path`
 
@@ -79,7 +75,7 @@ A segment of a path together with any path arguments on that segment.
 
 #### Implementations
 
-- `fn parse_helper(input: ParseStream<'_>, expr_style: bool) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse_helper(input: ParseStream<'_>, expr_style: bool) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 #### Trait Implementations
 
@@ -99,7 +95,7 @@ A segment of a path together with any path arguments on that segment.
 
 ##### `impl Parse for crate::path::PathSegment`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::PathSegment`
 
@@ -131,9 +127,9 @@ V>`.
 
 #### Implementations
 
-- `fn parse_turbofish(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse_turbofish(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
-- `fn do_parse(colon2_token: Option<$crate::token::PathSep>, input: ParseStream<'_>) -> Result<Self>` — [`PathSep`](../token/index.md), [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn do_parse(colon2_token: Option<$crate::token::PathSep>, input: ParseStream<'_>) -> Result<Self>` — [`PathSep`](../token/index.md), [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 #### Trait Implementations
 
@@ -153,7 +149,7 @@ V>`.
 
 ##### `impl Parse for crate::path::AngleBracketedGenericArguments`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::AngleBracketedGenericArguments`
 
@@ -345,7 +341,7 @@ C`.
 
 ##### `impl Parse for crate::path::ParenthesizedGenericArguments`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ParenthesizedGenericArguments`
 
@@ -552,7 +548,7 @@ An individual generic argument, like `'a`, `T`, or `Item = T`.
 
 ##### `impl Parse for crate::path::GenericArgument`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::GenericArgument`
 

@@ -42,7 +42,7 @@ much else. If you have a use case for more APIs, please submit an issue.
 
 #### Implementations
 
-- `fn find_in(self: &Self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../util/search/index.md), [`Candidate`](../util/prefilter/index.md)
+- `fn find_in(self: &Self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../index.md), [`Candidate`](../util/prefilter/index.md)
 
 - `fn memory_usage(self: &Self) -> usize`
 
@@ -310,7 +310,7 @@ assert_eq!(expected, matches);
 
 - `fn start() -> OverlappingState` — [`OverlappingState`](#overlappingstate)
 
-- `fn get_match(self: &Self) -> Option<Match>` — [`Match`](../util/search/index.md)
+- `fn get_match(self: &Self) -> Option<Match>` — [`Match`](../index.md)
 
 #### Trait Implementations
 
@@ -334,7 +334,7 @@ struct FindIter<'a, 'h, A> {
 
 An iterator of non-overlapping matches in a particular haystack.
 
-This iterator yields matches according to the [`MatchKind`](../util/search/index.md) used by this
+This iterator yields matches according to the [`MatchKind`](../index.md) used by this
 automaton.
 
 This iterator is constructed via the `Automaton::try_find_iter` method.
@@ -367,11 +367,11 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 #### Implementations
 
-- `fn new(aut: &'a A, input: Input<'h>) -> Result<FindIter<'a, 'h, A>, MatchError>` — [`Input`](../util/search/index.md), [`FindIter`](#finditer), [`MatchError`](../util/error/index.md)
+- `fn new(aut: &'a A, input: Input<'h>) -> Result<FindIter<'a, 'h, A>, MatchError>` — [`Input`](../index.md), [`FindIter`](#finditer), [`MatchError`](../index.md)
 
-- `fn search(self: &Self) -> Option<Match>` — [`Match`](../util/search/index.md)
+- `fn search(self: &Self) -> Option<Match>` — [`Match`](../index.md)
 
-- `fn handle_overlapping_empty_match(self: &mut Self, m: Match) -> Option<Match>` — [`Match`](../util/search/index.md)
+- `fn handle_overlapping_empty_match(self: &mut Self, m: Match) -> Option<Match>` — [`Match`](../index.md)
 
 #### Trait Implementations
 
@@ -391,7 +391,7 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 - `type Item = Match`
 
-- `fn next(self: &mut Self) -> Option<Match>` — [`Match`](../util/search/index.md)
+- `fn next(self: &mut Self) -> Option<Match>` — [`Match`](../index.md)
 
 ### `FindOverlappingIter<'a, 'h, A>`
 
@@ -437,7 +437,7 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 - `type Item = Match`
 
-- `fn next(self: &mut Self) -> Option<Match>` — [`Match`](../util/search/index.md)
+- `fn next(self: &mut Self) -> Option<Match>` — [`Match`](../index.md)
 
 ### `StreamFindIter<'a, A, R>`
 
@@ -483,7 +483,7 @@ implementation.
 
 - `type Item = Result<Match, Error>`
 
-- `fn next(self: &mut Self) -> Option<std::io::Result<Match>>` — [`Match`](../util/search/index.md)
+- `fn next(self: &mut Self) -> Option<std::io::Result<Match>>` — [`Match`](../index.md)
 
 ### `StreamChunkIter<'a, A, R>`
 
@@ -566,19 +566,19 @@ chunks it can copy and which it needs to replace.
 
 #### Implementations
 
-- `fn new(aut: &'a A, rdr: R) -> Result<StreamChunkIter<'a, A, R>, MatchError>` — [`StreamChunkIter`](#streamchunkiter), [`MatchError`](../util/error/index.md)
+- `fn new(aut: &'a A, rdr: R) -> Result<StreamChunkIter<'a, A, R>, MatchError>` — [`StreamChunkIter`](#streamchunkiter), [`MatchError`](../index.md)
 
 - `fn next(self: &mut Self) -> Option<std::io::Result<StreamChunk<'_>>>` — [`StreamChunk`](#streamchunk)
 
-- `fn get_match_chunk(self: &Self, mat: Match) -> core::ops::Range<usize>` — [`Match`](../util/search/index.md)
+- `fn get_match_chunk(self: &Self, mat: Match) -> core::ops::Range<usize>` — [`Match`](../index.md)
 
-- `fn get_non_match_chunk(self: &Self, mat: Match) -> Option<core::ops::Range<usize>>` — [`Match`](../util/search/index.md)
+- `fn get_non_match_chunk(self: &Self, mat: Match) -> Option<core::ops::Range<usize>>` — [`Match`](../index.md)
 
 - `fn get_pre_roll_non_match_chunk(self: &Self) -> Option<core::ops::Range<usize>>`
 
 - `fn get_eof_non_match_chunk(self: &Self) -> Option<core::ops::Range<usize>>`
 
-- `fn get_match(self: &Self) -> Match` — [`Match`](../util/search/index.md)
+- `fn get_match(self: &Self) -> Match` — [`Match`](../index.md)
 
 #### Trait Implementations
 
@@ -725,7 +725,7 @@ on a dead state lead back to itself. The dead state is meant to be treated
 as a sentinel indicating that the search should stop and return a match if
 one has been found, and nothing otherwise.
 * A match state is a state that indicates one or more patterns have
-matched. Depending on the [`MatchKind`](../util/search/index.md) of the automaton, a search may
+matched. Depending on the [`MatchKind`](../index.md) of the automaton, a search may
 stop once a match is seen, or it may continue looking for matches until
 it enters a dead state or sees the end of the haystack.
 * A start state is a state that a search begins in. It is useful to know
@@ -779,7 +779,7 @@ _possible_ to do in the future.
 This example shows how one might implement a basic but correct search
 routine. We keep things simple by not using prefilters or worrying about
 anchored searches, but do make sure our search is correct for all possible
-[`MatchKind`](../util/search/index.md) semantics. (The comments in the code below note the parts
+[`MatchKind`](../index.md) semantics. (The comments in the code below note the parts
 that are needed to support certain `MatchKind` semantics.)
 
 ```rust

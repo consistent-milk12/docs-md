@@ -54,7 +54,7 @@ command.mut_arg("input", |arg| arg.short(None));
 
 ##### `impl<T: $crate::clone::Clone> Clone for Resettable<T>`
 
-- `fn clone(self: &Self) -> Resettable<T>` — [`Resettable`](#resettable)
+- `fn clone(self: &Self) -> Resettable<T>` — [`Resettable`](../index.md)
 
 ##### `impl<T: $crate::marker::Copy> Copy for Resettable<T>`
 
@@ -70,19 +70,19 @@ command.mut_arg("input", |arg| arg.short(None));
 
 ##### `impl<T> IntoResettable for Resettable<T>`
 
-- `fn into_resettable(self: Self) -> Resettable<T>` — [`Resettable`](#resettable)
+- `fn into_resettable(self: Self) -> Resettable<T>` — [`Resettable`](../index.md)
 
 ##### `impl<T: $crate::cmp::Ord> Ord for Resettable<T>`
 
-- `fn cmp(self: &Self, other: &Resettable<T>) -> $crate::cmp::Ordering` — [`Resettable`](#resettable)
+- `fn cmp(self: &Self, other: &Resettable<T>) -> $crate::cmp::Ordering` — [`Resettable`](../index.md)
 
 ##### `impl<T: $crate::cmp::PartialEq> PartialEq for Resettable<T>`
 
-- `fn eq(self: &Self, other: &Resettable<T>) -> bool` — [`Resettable`](#resettable)
+- `fn eq(self: &Self, other: &Resettable<T>) -> bool` — [`Resettable`](../index.md)
 
 ##### `impl<T: $crate::cmp::PartialOrd> PartialOrd for Resettable<T>`
 
-- `fn partial_cmp(self: &Self, other: &Resettable<T>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Resettable`](#resettable)
+- `fn partial_cmp(self: &Self, other: &Resettable<T>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Resettable`](../index.md)
 
 ##### `impl<T> StructuralPartialEq for Resettable<T>`
 

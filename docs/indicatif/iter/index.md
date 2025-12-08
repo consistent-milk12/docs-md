@@ -19,7 +19,7 @@ Wraps an iterator to display its progress.
 
 #### Implementations
 
-- `fn with_style(self: Self, style: ProgressStyle) -> Self` — [`ProgressStyle`](../style/index.md)
+- `fn with_style(self: Self, style: ProgressStyle) -> Self` — [`ProgressStyle`](../index.md)
 
 - `fn with_prefix(self: Self, prefix: impl Into<Cow<'static, str>>) -> Self`
 
@@ -29,7 +29,7 @@ Wraps an iterator to display its progress.
 
 - `fn with_elapsed(self: Self, elapsed: Duration) -> Self`
 
-- `fn with_finish(self: Self, finish: ProgressFinish) -> Self` — [`ProgressFinish`](../state/index.md)
+- `fn with_finish(self: Self, finish: ProgressFinish) -> Self` — [`ProgressFinish`](../index.md)
 
 #### Trait Implementations
 
@@ -69,7 +69,7 @@ Wraps an iterator to display its progress.
 
 ##### `impl<S, T> ProgressIterator for ProgressBarIter<T>`
 
-- `fn progress_with(self: Self, progress: ProgressBar) -> ProgressBarIter<T>` — [`ProgressBar`](../progress_bar/index.md), [`ProgressBarIter`](#progressbariter)
+- `fn progress_with(self: Self, progress: ProgressBar) -> ProgressBarIter<T>` — [`ProgressBar`](../index.md), [`ProgressBarIter`](../index.md)
 
 ##### `impl<R: io::Read> Read for ProgressBarIter<R>`
 

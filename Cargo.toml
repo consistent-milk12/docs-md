@@ -48,7 +48,10 @@ simd-json = { version = "0.17.0", optional = true }
 # release_max_level_info compiles out trace!/debug! in release builds (zero overhead)
 tracing = { version = "0.1.43", features = ["release_max_level_info"] }
 # tracing-subscriber is optional - only needed when the 'trace' feature is enabled
-tracing-subscriber = { version = "0.3.22", features = ["env-filter", "fmt"], optional = true }
+tracing-subscriber = { version = "0.3.22", features = [
+	"env-filter",
+	"fmt",
+], optional = true }
 
 [features]
 default = []

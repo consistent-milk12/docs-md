@@ -93,13 +93,13 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 - `fn clear(self: &mut Self)`
 
-- `fn parse_terminated(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse_terminated(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
-- `fn parse_terminated_with<'a>(input: ParseStream<'a>, parser: fn(ParseStream<'a>) -> Result<T>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse_terminated_with<'a>(input: ParseStream<'a>, parser: fn(ParseStream<'a>) -> Result<T>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
-- `fn parse_separated_nonempty(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse_separated_nonempty(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
-- `fn parse_separated_nonempty_with<'a>(input: ParseStream<'a>, parser: fn(ParseStream<'a>) -> Result<T>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse_separated_nonempty_with<'a>(input: ParseStream<'a>, parser: fn(ParseStream<'a>) -> Result<T>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 #### Trait Implementations
 
@@ -125,7 +125,7 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 ##### `impl<T, P> FromIterator for Punctuated<T, P>`
 
-- `fn from_iter<I: IntoIterator<Item = T>>(i: I) -> Self`
+- `fn from_iter<I: IntoIterator<Item = Pair<T, P>>>(i: I) -> Self`
 
 ##### `impl<T, P> Hash for Punctuated<T, P>`
 
@@ -509,19 +509,7 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 #### Implementations
 
-- `fn into_value(self: Self) -> T`
-
-- `fn value(self: &Self) -> &T`
-
-- `fn value_mut(self: &mut Self) -> &mut T`
-
-- `fn punct(self: &Self) -> Option<&P>`
-
-- `fn punct_mut(self: &mut Self) -> Option<&mut P>`
-
-- `fn new(t: T, p: Option<P>) -> Self`
-
-- `fn into_tuple(self: Self) -> (T, Option<P>)`
+- `fn cloned(self: Self) -> Pair<T, P>` — [`Pair`](#pair)
 
 #### Trait Implementations
 

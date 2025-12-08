@@ -67,7 +67,7 @@ assert_eq!(p, s);
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IndexedParallelIterator for Iter<char>`
+##### `impl<T: IndexedRangeInteger> IndexedParallelIterator for Iter<T>`
 
 - `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
@@ -141,19 +141,19 @@ struct IterProducer<T> {
 
 - `unsafe fn drop(ptr: usize)`
 
-##### `impl Producer for IterProducer<i32>`
+##### `impl Producer for IterProducer<u32>`
 
-- `type Item = <Range<i32> as Iterator>::Item`
+- `type Item = <Range<u32> as Iterator>::Item`
 
-- `type IntoIter = Range<i32>`
+- `type IntoIter = Range<u32>`
 
 - `fn into_iter(self: Self) -> <Self as >::IntoIter` — [`Producer`](../iter/plumbing/index.md)
 
 - `fn split_at(self: Self, index: usize) -> (Self, Self)`
 
-##### `impl UnindexedProducer for IterProducer<u64>`
+##### `impl UnindexedProducer for IterProducer<i64>`
 
-- `type Item = u64`
+- `type Item = i64`
 
 - `fn split(self: Self) -> (Self, Option<Self>)`
 

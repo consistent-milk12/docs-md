@@ -104,7 +104,7 @@ compiler version, analogous to [`#[cfg(...)]`][cfg](#cfg) and
 
 Providing additional trait impls as types are stabilized in the standard library
 without breaking compatibility with older compilers; in this case Pin\<P\>
-stabilized in [Rust 1.33][`pin`](../crossbeam_epoch/default/index.md):
+stabilized in [Rust 1.33][`pin`](../crossbeam_epoch/index.md):
 
 ```rust
 trait MyTrait {}

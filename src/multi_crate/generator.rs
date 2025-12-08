@@ -135,7 +135,7 @@ impl<'a> MultiCrateGenerator<'a> {
             let summary_gen = SummaryGenerator::new(
                 self.ctx.crates(),
                 &self.args.output,
-                self.args.include_private,
+                !self.args.exclude_private,
             );
             summary_gen.generate()?;
         }
@@ -150,7 +150,7 @@ impl<'a> MultiCrateGenerator<'a> {
 
             let search_gen = SearchIndexGenerator::new(
                 self.ctx.crates(),
-                self.args.include_private,
+                !self.args.exclude_private,
                 rendered_items,
             );
             search_gen

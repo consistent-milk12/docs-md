@@ -35,17 +35,17 @@ size and a heap size proportional to the size of the `Ast`.
 
 - `fn new() -> HeapVisitor<'a>` — [`HeapVisitor`](#heapvisitor)
 
-- `fn visit<V: Visitor>(self: &mut Self, ast: &'a Ast, visitor: V) -> Result<<V as >::Output, <V as >::Err>` — [`Ast`](../index.md), [`Visitor`](#visitor)
+- `fn visit<V: Visitor>(self: &mut Self, ast: &'a Ast, visitor: V) -> Result<<V as >::Output, <V as >::Err>` — [`Ast`](../index.md), [`Visitor`](../index.md)
 
-- `fn induct<V: Visitor>(self: &mut Self, ast: &'a Ast, visitor: &mut V) -> Result<Option<Frame<'a>>, <V as >::Err>` — [`Ast`](../index.md), [`Frame`](#frame), [`Visitor`](#visitor)
+- `fn induct<V: Visitor>(self: &mut Self, ast: &'a Ast, visitor: &mut V) -> Result<Option<Frame<'a>>, <V as >::Err>` — [`Ast`](../index.md), [`Frame`](#frame), [`Visitor`](../index.md)
 
 - `fn pop(self: &Self, induct: Frame<'a>) -> Option<Frame<'a>>` — [`Frame`](#frame)
 
-- `fn visit_class<V: Visitor>(self: &mut Self, ast: &'a ast::ClassBracketed, visitor: &mut V) -> Result<(), <V as >::Err>` — [`ClassBracketed`](../index.md), [`Visitor`](#visitor)
+- `fn visit_class<V: Visitor>(self: &mut Self, ast: &'a ast::ClassBracketed, visitor: &mut V) -> Result<(), <V as >::Err>` — [`ClassBracketed`](../index.md), [`Visitor`](../index.md)
 
-- `fn visit_class_pre<V: Visitor>(self: &Self, ast: &ClassInduct<'a>, visitor: &mut V) -> Result<(), <V as >::Err>` — [`ClassInduct`](#classinduct), [`Visitor`](#visitor)
+- `fn visit_class_pre<V: Visitor>(self: &Self, ast: &ClassInduct<'a>, visitor: &mut V) -> Result<(), <V as >::Err>` — [`ClassInduct`](#classinduct), [`Visitor`](../index.md)
 
-- `fn visit_class_post<V: Visitor>(self: &Self, ast: &ClassInduct<'a>, visitor: &mut V) -> Result<(), <V as >::Err>` — [`ClassInduct`](#classinduct), [`Visitor`](#visitor)
+- `fn visit_class_post<V: Visitor>(self: &Self, ast: &ClassInduct<'a>, visitor: &mut V) -> Result<(), <V as >::Err>` — [`ClassInduct`](#classinduct), [`Visitor`](../index.md)
 
 - `fn induct_class(self: &Self, ast: &ClassInduct<'a>) -> Option<ClassFrame<'a>>` — [`ClassInduct`](#classinduct), [`ClassFrame`](#classframe)
 
@@ -204,7 +204,7 @@ usage, which can be important since the size of an abstract syntax tree
 may be proportional to end user input.
 
 Typical usage of this trait involves providing an implementation and then
-running it using the [`visit`](#visit) function.
+running it using the [`visit`](../index.md) function.
 
 Note that the abstract syntax tree for a regular expression is quite
 complex. Unless you specifically need it, you might be able to use the much
@@ -272,7 +272,7 @@ fn visit<V: Visitor>(ast: &crate::ast::Ast, visitor: V) -> Result<<V as >::Outpu
 Executes an implementation of `Visitor` in constant stack space.
 
 This function will visit every node in the given `Ast` while calling the
-appropriate methods provided by the [`Visitor`](#visitor) trait.
+appropriate methods provided by the [`Visitor`](../index.md) trait.
 
 The primary use case for this method is when one wants to perform case
 analysis over an `Ast` without using a stack size proportional to the depth

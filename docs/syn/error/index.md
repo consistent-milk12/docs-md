@@ -105,7 +105,7 @@ mod expand {
 
 - `fn into_compile_error(self: Self) -> TokenStream`
 
-- `fn combine(self: &mut Self, another: Error)` — [`Error`](#error)
+- `fn combine(self: &mut Self, another: Error)` — [`Error`](../index.md)
 
 #### Trait Implementations
 

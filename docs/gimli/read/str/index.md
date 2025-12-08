@@ -19,7 +19,7 @@ found in the `.debug_str` section.
 
 #### Implementations
 
-- `fn get_str(self: &Self, offset: DebugStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugStrOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md)
+- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugStr<R>` — [`DebugStr`](../index.md)
 
 #### Trait Implementations
 
@@ -55,7 +55,7 @@ The raw contents of the `.debug_str_offsets` section.
 
 #### Implementations
 
-- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugStrOffsets<R>` — [`DebugStrOffsets`](../index.md)
+- `fn get_str_offset(self: &Self, format: Format, base: DebugStrOffsetsBase<<R as >::Offset>, index: DebugStrOffsetsIndex<<R as >::Offset>) -> Result<DebugStrOffset<<R as >::Offset>>` — [`Format`](../../index.md), [`DebugStrOffsetsBase`](../../index.md), [`Reader`](../index.md), [`DebugStrOffsetsIndex`](../../index.md), [`Result`](../../index.md), [`DebugStrOffset`](../../index.md)
 
 #### Trait Implementations
 
@@ -92,7 +92,7 @@ found in the `.debug_line_str` section.
 
 #### Implementations
 
-- `fn new(debug_line_str_section: &'input [u8], endian: Endian) -> Self`
+- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugLineStr<R>` — [`DebugLineStr`](../index.md)
 
 #### Trait Implementations
 

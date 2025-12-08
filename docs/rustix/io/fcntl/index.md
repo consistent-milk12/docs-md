@@ -21,51 +21,13 @@ the [`io`](../../maybe_polyfill/io/index.md) module instead.
 struct FdFlags(<FdFlags as $crate::__private::PublicFlags>::Internal);
 ```
 
-`FD_*` constants for use with [`fcntl_getfd`](../index.md) and [`fcntl_setfd`](../index.md).
+`FD_*` constants for use with [`fcntl_getfd`](../index.md) and [`fcntl_setfd`](../../backend/io/syscalls/index.md).
 
 
 
 #### Implementations
 
-- `const fn empty() -> Self`
-
-- `const fn all() -> Self`
-
-- `const fn bits(self: &Self) -> ffi::c_uint`
-
-- `const fn from_bits(bits: ffi::c_uint) -> $crate::__private::core::option::Option<Self>`
-
-- `const fn from_bits_truncate(bits: ffi::c_uint) -> Self`
-
-- `const fn from_bits_retain(bits: ffi::c_uint) -> Self`
-
-- `fn from_name(name: &str) -> $crate::__private::core::option::Option<Self>`
-
-- `const fn is_empty(self: &Self) -> bool`
-
-- `const fn is_all(self: &Self) -> bool`
-
-- `const fn intersects(self: &Self, other: Self) -> bool`
-
-- `const fn contains(self: &Self, other: Self) -> bool`
-
-- `fn insert(self: &mut Self, other: Self)`
-
-- `fn remove(self: &mut Self, other: Self)`
-
-- `fn toggle(self: &mut Self, other: Self)`
-
-- `fn set(self: &mut Self, other: Self, value: bool)`
-
-- `const fn intersection(self: Self, other: Self) -> Self`
-
-- `const fn union(self: Self, other: Self) -> Self`
-
-- `const fn difference(self: Self, other: Self) -> Self`
-
-- `const fn symmetric_difference(self: Self, other: Self) -> Self`
-
-- `const fn complement(self: Self) -> Self`
+- `const CLOEXEC: Self`
 
 #### Trait Implementations
 
@@ -87,7 +49,7 @@ struct FdFlags(<FdFlags as $crate::__private::PublicFlags>::Internal);
 
 - `type Output = FdFlags`
 
-- `fn bitor(self: Self, other: FdFlags) -> Self` — [`FdFlags`](../../backend/io/types/index.md)
+- `fn bitor(self: Self, other: FdFlags) -> Self` — [`FdFlags`](#fdflags)
 
 ##### `impl BitOrAssign for FdFlags`
 
@@ -105,7 +67,7 @@ struct FdFlags(<FdFlags as $crate::__private::PublicFlags>::Internal);
 
 ##### `impl Clone for FdFlags`
 
-- `fn clone(self: &Self) -> FdFlags` — [`FdFlags`](../../backend/io/types/index.md)
+- `fn clone(self: &Self) -> FdFlags` — [`FdFlags`](#fdflags)
 
 ##### `impl Copy for FdFlags`
 
@@ -125,9 +87,9 @@ struct FdFlags(<FdFlags as $crate::__private::PublicFlags>::Internal);
 
 - `type Bits = u32`
 
-- `fn bits(self: &Self) -> ffi::c_uint`
+- `fn bits(self: &Self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md)
 
-- `fn from_bits_retain(bits: ffi::c_uint) -> FdFlags` — [`FdFlags`](../../backend/io/types/index.md)
+- `fn from_bits_retain(bits: ffi::c_uint) -> FdFlags` — [`c_uint`](../../ffi/index.md), [`FdFlags`](#fdflags)
 
 ##### `impl FromIterator for FdFlags`
 
@@ -161,7 +123,7 @@ struct FdFlags(<FdFlags as $crate::__private::PublicFlags>::Internal);
 
 ##### `impl PartialEq for FdFlags`
 
-- `fn eq(self: &Self, other: &FdFlags) -> bool` — [`FdFlags`](../../backend/io/types/index.md)
+- `fn eq(self: &Self, other: &FdFlags) -> bool` — [`FdFlags`](#fdflags)
 
 ##### `impl PublicFlags for FdFlags`
 

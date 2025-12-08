@@ -37,7 +37,7 @@ Most functionality is provided by the [`Object`](../../index.md) trait implement
 
 - `fn rich_header_info(self: &Self) -> Option<RichHeaderInfo<'_>>` — [`RichHeaderInfo`](../index.md)
 
-- `fn section_table(self: &Self) -> SectionTable<'data>` — [`SectionTable`](../../coff/index.md)
+- `fn section_table(self: &Self) -> SectionTable<'data>` — [`SectionTable`](../index.md)
 
 - `fn data_directories(self: &Self) -> DataDirectories<'data>` — [`DataDirectories`](../index.md)
 

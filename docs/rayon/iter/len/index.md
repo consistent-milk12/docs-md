@@ -16,7 +16,7 @@ struct MinLen<I> {
 ```
 
 `MinLen` is an iterator that imposes a minimum length on iterator splits.
-This struct is created by the `with_min_len()` method on [`IndexedParallelIterator`](../index.md)
+This struct is created by the `with_min_len()` method on [`IndexedParallelIterator`](../../prelude/index.md)
 
 
 #### Implementations
@@ -27,7 +27,7 @@ This struct is created by the `with_min_len()` method on [`IndexedParallelIterat
 
 ##### `impl<I: $crate::clone::Clone> Clone for MinLen<I>`
 
-- `fn clone(self: &Self) -> MinLen<I>` — [`MinLen`](#minlen)
+- `fn clone(self: &Self) -> MinLen<I>` — [`MinLen`](../index.md)
 
 ##### `impl<I: $crate::fmt::Debug> Debug for MinLen<I>`
 
@@ -126,7 +126,7 @@ struct MaxLen<I> {
 ```
 
 `MaxLen` is an iterator that imposes a maximum length on iterator splits.
-This struct is created by the `with_max_len()` method on [`IndexedParallelIterator`](../index.md)
+This struct is created by the `with_max_len()` method on [`IndexedParallelIterator`](../../prelude/index.md)
 
 
 #### Implementations
@@ -137,7 +137,7 @@ This struct is created by the `with_max_len()` method on [`IndexedParallelIterat
 
 ##### `impl<I: $crate::clone::Clone> Clone for MaxLen<I>`
 
-- `fn clone(self: &Self) -> MaxLen<I>` — [`MaxLen`](#maxlen)
+- `fn clone(self: &Self) -> MaxLen<I>` — [`MaxLen`](../index.md)
 
 ##### `impl<I: $crate::fmt::Debug> Debug for MaxLen<I>`
 

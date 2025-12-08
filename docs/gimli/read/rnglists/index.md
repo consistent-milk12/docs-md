@@ -18,7 +18,7 @@ The raw contents of the `.debug_ranges` section.
 
 #### Implementations
 
-- `fn new(section: &'input [u8], endian: Endian) -> Self`
+- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugRanges<R>` — [`DebugRanges`](../index.md)
 
 #### Trait Implementations
 
@@ -92,7 +92,13 @@ The DWARF data found in `.debug_ranges` and `.debug_rnglists` sections.
 
 #### Implementations
 
-- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> RangeLists<R>` — [`RangeLists`](../index.md)
+- `fn ranges(self: &Self, offset: RangeListsOffset<<R as >::Offset>, unit_encoding: Encoding, base_address: u64, debug_addr: &DebugAddr<R>, debug_addr_base: DebugAddrBase<<R as >::Offset>) -> Result<RngListIter<R>>` — [`RangeListsOffset`](../../index.md), [`Reader`](../index.md), [`Encoding`](../../index.md), [`DebugAddr`](../index.md), [`DebugAddrBase`](../../index.md), [`Result`](../../index.md), [`RngListIter`](../index.md)
+
+- `fn raw_ranges(self: &Self, offset: RangeListsOffset<<R as >::Offset>, unit_encoding: Encoding) -> Result<RawRngListIter<R>>` — [`RangeListsOffset`](../../index.md), [`Reader`](../index.md), [`Encoding`](../../index.md), [`Result`](../../index.md), [`RawRngListIter`](../index.md)
+
+- `fn get_offset(self: &Self, unit_encoding: Encoding, base: DebugRngListsBase<<R as >::Offset>, index: DebugRngListsIndex<<R as >::Offset>) -> Result<RangeListsOffset<<R as >::Offset>>` — [`Encoding`](../../index.md), [`DebugRngListsBase`](../../index.md), [`Reader`](../index.md), [`DebugRngListsIndex`](../../index.md), [`Result`](../../index.md), [`RangeListsOffset`](../../index.md)
+
+- `fn lookup_offset_id(self: &Self, id: ReaderOffsetId) -> Option<(SectionId, <R as >::Offset)>` — [`ReaderOffsetId`](../index.md), [`SectionId`](../../index.md), [`Reader`](../index.md)
 
 #### Trait Implementations
 

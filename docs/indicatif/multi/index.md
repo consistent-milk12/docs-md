@@ -20,27 +20,27 @@ Manages multiple progress bars from different threads
 
 - `fn new() -> Self`
 
-- `fn with_draw_target(draw_target: ProgressDrawTarget) -> Self` — [`ProgressDrawTarget`](../draw_target/index.md)
+- `fn with_draw_target(draw_target: ProgressDrawTarget) -> Self` — [`ProgressDrawTarget`](../index.md)
 
-- `fn set_draw_target(self: &Self, target: ProgressDrawTarget)` — [`ProgressDrawTarget`](../draw_target/index.md)
+- `fn set_draw_target(self: &Self, target: ProgressDrawTarget)` — [`ProgressDrawTarget`](../index.md)
 
 - `fn set_move_cursor(self: &Self, move_cursor: bool)`
 
-- `fn set_alignment(self: &Self, alignment: MultiProgressAlignment)` — [`MultiProgressAlignment`](#multiprogressalignment)
+- `fn set_alignment(self: &Self, alignment: MultiProgressAlignment)` — [`MultiProgressAlignment`](../index.md)
 
-- `fn add(self: &Self, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../progress_bar/index.md)
+- `fn add(self: &Self, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../index.md)
 
-- `fn insert(self: &Self, index: usize, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../progress_bar/index.md)
+- `fn insert(self: &Self, index: usize, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../index.md)
 
-- `fn insert_from_back(self: &Self, index: usize, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../progress_bar/index.md)
+- `fn insert_from_back(self: &Self, index: usize, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../index.md)
 
-- `fn insert_before(self: &Self, before: &ProgressBar, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../progress_bar/index.md)
+- `fn insert_before(self: &Self, before: &ProgressBar, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../index.md)
 
-- `fn insert_after(self: &Self, after: &ProgressBar, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../progress_bar/index.md)
+- `fn insert_after(self: &Self, after: &ProgressBar, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../index.md)
 
-- `fn remove(self: &Self, pb: &ProgressBar)` — [`ProgressBar`](../progress_bar/index.md)
+- `fn remove(self: &Self, pb: &ProgressBar)` — [`ProgressBar`](../index.md)
 
-- `fn internalize(self: &Self, location: InsertLocation, pb: ProgressBar) -> ProgressBar` — [`InsertLocation`](#insertlocation), [`ProgressBar`](../progress_bar/index.md)
+- `fn internalize(self: &Self, location: InsertLocation, pb: ProgressBar) -> ProgressBar` — [`InsertLocation`](#insertlocation), [`ProgressBar`](../index.md)
 
 - `fn println<I: AsRef<str>>(self: &Self, msg: I) -> io::Result<()>`
 
@@ -54,7 +54,7 @@ Manages multiple progress bars from different threads
 
 ##### `impl Clone for MultiProgress`
 
-- `fn clone(self: &Self) -> MultiProgress` — [`MultiProgress`](#multiprogress)
+- `fn clone(self: &Self) -> MultiProgress` — [`MultiProgress`](../index.md)
 
 ##### `impl Debug for MultiProgress`
 
@@ -112,7 +112,7 @@ struct MultiState {
 
 #### Implementations
 
-- `fn new(draw_target: ProgressDrawTarget) -> Self` — [`ProgressDrawTarget`](../draw_target/index.md)
+- `fn new(draw_target: ProgressDrawTarget) -> Self` — [`ProgressDrawTarget`](../index.md)
 
 - `fn mark_zombie(self: &mut Self, index: usize)`
 
@@ -204,7 +204,7 @@ E.g. [`Top`](MultiProgressAlignment::Top) alignment (default), when _progress ba
 
 ##### `impl Clone for MultiProgressAlignment`
 
-- `fn clone(self: &Self) -> MultiProgressAlignment` — [`MultiProgressAlignment`](#multiprogressalignment)
+- `fn clone(self: &Self) -> MultiProgressAlignment` — [`MultiProgressAlignment`](../index.md)
 
 ##### `impl Copy for MultiProgressAlignment`
 
@@ -214,7 +214,7 @@ E.g. [`Top`](MultiProgressAlignment::Top) alignment (default), when _progress ba
 
 ##### `impl Default for MultiProgressAlignment`
 
-- `fn default() -> MultiProgressAlignment` — [`MultiProgressAlignment`](#multiprogressalignment)
+- `fn default() -> MultiProgressAlignment` — [`MultiProgressAlignment`](../index.md)
 
 ### `InsertLocation`
 

@@ -16,7 +16,7 @@ struct Filter<I, P> {
 ```
 
 `Filter` takes a predicate `filter_op` and filters out elements that match.
-This struct is created by the `filter()` method on [`ParallelIterator`](../index.md)
+This struct is created by the `filter()` method on [`ParallelIterator`](../../prelude/index.md)
 
 
 #### Implementations
@@ -27,7 +27,7 @@ This struct is created by the `filter()` method on [`ParallelIterator`](../index
 
 ##### `impl<I: $crate::clone::Clone, P: $crate::clone::Clone> Clone for Filter<I, P>`
 
-- `fn clone(self: &Self) -> Filter<I, P>` — [`Filter`](#filter)
+- `fn clone(self: &Self) -> Filter<I, P>` — [`Filter`](../index.md)
 
 ##### `impl<I: Debug, P> Debug for Filter<I, P>`
 

@@ -18,7 +18,7 @@ struct Update<I, F> {
 `Update` is an iterator that mutates the elements of an
 underlying iterator before they are yielded.
 
-This struct is created by the `update()` method on [`ParallelIterator`](../index.md)
+This struct is created by the `update()` method on [`ParallelIterator`](../../prelude/index.md)
 
 
 #### Implementations
@@ -29,7 +29,7 @@ This struct is created by the `update()` method on [`ParallelIterator`](../index
 
 ##### `impl<I: $crate::clone::Clone, F: $crate::clone::Clone> Clone for Update<I, F>`
 
-- `fn clone(self: &Self) -> Update<I, F>` — [`Update`](#update)
+- `fn clone(self: &Self) -> Update<I, F>` — [`Update`](../index.md)
 
 ##### `impl<I: Debug, F> Debug for Update<I, F>`
 

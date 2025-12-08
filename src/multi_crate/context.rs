@@ -463,11 +463,11 @@ impl<'a> SingleCrateView<'a> {
     /// Check if an item should be included based on visibility.
     #[must_use]
     pub const fn should_include_item(&self, item: &rustdoc_types::Item) -> bool {
-        if self.args.include_private {
-            return true;
+        if self.args.exclude_private {
+            return matches!(item.visibility, Visibility::Public);
         }
 
-        matches!(item.visibility, Visibility::Public)
+        true
     }
 
     /// Count modules for progress reporting.
@@ -1575,12 +1575,12 @@ impl ItemFilter for SingleCrateView<'_> {
     fn should_include_item(&self, item: &Item) -> bool {
         match &item.visibility {
             Visibility::Public => true,
-            _ => self.args.include_private,
+            _ => !self.args.exclude_private,
         }
     }
 
     fn include_private(&self) -> bool {
-        self.args.include_private
+        !self.args.exclude_private
     }
 
     fn include_blanket_impls(&self) -> bool {

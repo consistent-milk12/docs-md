@@ -116,7 +116,7 @@ This type is a [syntax tree enum].
 
 ##### `impl Parse for crate::restriction::Visibility`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::Visibility`
 

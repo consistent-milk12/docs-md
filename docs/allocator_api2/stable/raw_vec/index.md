@@ -18,13 +18,13 @@ The error type for `try_reserve` methods.
 
 #### Implementations
 
-- `fn kind(self: &Self) -> TryReserveErrorKind` — [`TryReserveErrorKind`](#tryreserveerrorkind)
+- `fn kind(self: &Self) -> TryReserveErrorKind` — [`TryReserveErrorKind`](../collections/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for TryReserveError`
 
-- `fn clone(self: &Self) -> TryReserveError` — [`TryReserveError`](#tryreserveerror)
+- `fn clone(self: &Self) -> TryReserveError` — [`TryReserveError`](../collections/index.md)
 
 ##### `impl Debug for TryReserveError`
 
@@ -38,7 +38,7 @@ The error type for `try_reserve` methods.
 
 ##### `impl PartialEq for TryReserveError`
 
-- `fn eq(self: &Self, other: &TryReserveError) -> bool` — [`TryReserveError`](#tryreserveerror)
+- `fn eq(self: &Self, other: &TryReserveError) -> bool` — [`TryReserveError`](../collections/index.md)
 
 ##### `impl StructuralPartialEq for TryReserveError`
 
@@ -101,17 +101,17 @@ Note that the excess of a zero-sized types is always infinite, so `capacity()` a
 
 - `fn allocator(self: &Self) -> &A`
 
-- `fn current_memory(self: &Self) -> Option<(NonNull<u8>, Layout)>`
+- `fn current_memory(self: &Self) -> Option<(NonNull<u8>, Layout)>` — [`Layout`](../alloc/index.md)
 
 - `fn reserve(self: &mut Self, len: usize, additional: usize)`
 
 - `fn reserve_for_push(self: &mut Self, len: usize)`
 
-- `fn try_reserve(self: &mut Self, len: usize, additional: usize) -> Result<(), TryReserveError>` — [`TryReserveError`](#tryreserveerror)
+- `fn try_reserve(self: &mut Self, len: usize, additional: usize) -> Result<(), TryReserveError>` — [`TryReserveError`](../collections/index.md)
 
 - `fn reserve_exact(self: &mut Self, len: usize, additional: usize)`
 
-- `fn try_reserve_exact(self: &mut Self, len: usize, additional: usize) -> Result<(), TryReserveError>` — [`TryReserveError`](#tryreserveerror)
+- `fn try_reserve_exact(self: &mut Self, len: usize, additional: usize) -> Result<(), TryReserveError>` — [`TryReserveError`](../collections/index.md)
 
 - `fn shrink_to_fit(self: &mut Self, cap: usize)`
 
@@ -155,7 +155,7 @@ Details of the allocation that caused a `TryReserveError`
 
 ##### `impl Clone for TryReserveErrorKind`
 
-- `fn clone(self: &Self) -> TryReserveErrorKind` — [`TryReserveErrorKind`](#tryreserveerrorkind)
+- `fn clone(self: &Self) -> TryReserveErrorKind` — [`TryReserveErrorKind`](../collections/index.md)
 
 ##### `impl Debug for TryReserveErrorKind`
 
@@ -165,7 +165,7 @@ Details of the allocation that caused a `TryReserveError`
 
 ##### `impl PartialEq for TryReserveErrorKind`
 
-- `fn eq(self: &Self, other: &TryReserveErrorKind) -> bool` — [`TryReserveErrorKind`](#tryreserveerrorkind)
+- `fn eq(self: &Self, other: &TryReserveErrorKind) -> bool` — [`TryReserveErrorKind`](../collections/index.md)
 
 ##### `impl StructuralPartialEq for TryReserveErrorKind`
 

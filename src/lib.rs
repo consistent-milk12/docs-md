@@ -119,9 +119,12 @@ pub struct DocsArgs {
     #[arg(long)]
     pub primary_crate: Option<String>,
 
-    /// Include private (non-public) items in the output.
+    /// Exclude private (non-public) items from the output.
+    ///
+    /// By default, all items are documented including private ones.
+    /// Enable this to only include public items.
     #[arg(long, default_value_t = false)]
-    pub include_private: bool,
+    pub exclude_private: bool,
 
     /// Include blanket trait implementations in the output.
     #[arg(long, default_value_t = false)]
@@ -228,12 +231,13 @@ pub struct GenerateArgs {
     #[arg(short, long, value_enum, default_value_t = CliOutputFormat::Flat)]
     pub format: CliOutputFormat,
 
-    /// Include private (non-public) items in the output.
+    /// Exclude private (non-public) items from the output.
     ///
-    /// By default, only public items are documented. Enable this
-    /// to also include `pub(crate)`, `pub(super)`, and private items.
+    /// By default, all items are documented including `pub(crate)`,
+    /// `pub(super)`, and private items. Enable this to only include
+    /// public items.
     #[arg(long, default_value_t = false)]
-    pub include_private: bool,
+    pub exclude_private: bool,
 
     /// Include blanket trait implementations in the output.
     ///

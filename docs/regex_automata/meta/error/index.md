@@ -24,7 +24,7 @@ fails, usually because it gets too big with respect to limits like
 
 This error provides very little introspection capabilities. You can:
 
-* Ask for the [`PatternID`](../../util/primitives/index.md) of the pattern that caused an error, if one
+* Ask for the [`PatternID`](../../index.md) of the pattern that caused an error, if one
 is available. This is available for things like syntax errors, but not for
 cases where build limits are exceeded.
 * Ask for the underlying syntax error, but only if the error is a syntax
@@ -38,23 +38,23 @@ When the `std` feature is enabled, this implements `std::error::Error`.
 
 #### Implementations
 
-- `fn pattern(self: &Self) -> Option<PatternID>` — [`PatternID`](../../util/primitives/index.md)
+- `fn pattern(self: &Self) -> Option<PatternID>` — [`PatternID`](../../index.md)
 
 - `fn size_limit(self: &Self) -> Option<usize>`
 
 - `fn syntax_error(self: &Self) -> Option<&regex_syntax::Error>`
 
-- `fn ast(pid: PatternID, err: ast::Error) -> BuildError` — [`PatternID`](../../util/primitives/index.md), [`BuildError`](#builderror)
+- `fn ast(pid: PatternID, err: ast::Error) -> BuildError` — [`PatternID`](../../index.md), [`BuildError`](../index.md)
 
-- `fn hir(pid: PatternID, err: hir::Error) -> BuildError` — [`PatternID`](../../util/primitives/index.md), [`BuildError`](#builderror)
+- `fn hir(pid: PatternID, err: hir::Error) -> BuildError` — [`PatternID`](../../index.md), [`BuildError`](../index.md)
 
-- `fn nfa(err: nfa::thompson::BuildError) -> BuildError` — [`BuildError`](../../nfa/thompson/error/index.md)
+- `fn nfa(err: nfa::thompson::BuildError) -> BuildError` — [`BuildError`](../../nfa/thompson/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for BuildError`
 
-- `fn clone(self: &Self) -> BuildError` — [`BuildError`](#builderror)
+- `fn clone(self: &Self) -> BuildError` — [`BuildError`](../index.md)
 
 ##### `impl Debug for BuildError`
 

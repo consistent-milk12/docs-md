@@ -51,7 +51,7 @@ Values per occurrence for an argument
 
 ##### `impl Clone for ValueRange`
 
-- `fn clone(self: &Self) -> ValueRange` — [`ValueRange`](#valuerange)
+- `fn clone(self: &Self) -> ValueRange` — [`ValueRange`](../index.md)
 
 ##### `impl Copy for ValueRange`
 
@@ -75,11 +75,11 @@ Values per occurrence for an argument
 
 ##### `impl<I> IntoResettable for ValueRange`
 
-- `fn into_resettable(self: Self) -> Resettable<ValueRange>` — [`Resettable`](../resettable/index.md), [`ValueRange`](#valuerange)
+- `fn into_resettable(self: Self) -> Resettable<ValueRange>` — [`Resettable`](../index.md), [`ValueRange`](../index.md)
 
 ##### `impl PartialEq for ValueRange`
 
-- `fn eq(self: &Self, other: &ValueRange) -> bool` — [`ValueRange`](#valuerange)
+- `fn eq(self: &Self, other: &ValueRange) -> bool` — [`ValueRange`](../index.md)
 
 ##### `impl RangeBounds for ValueRange`
 

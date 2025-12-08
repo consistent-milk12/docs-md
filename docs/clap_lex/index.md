@@ -179,7 +179,7 @@ Command-line arguments
 
 - `fn remaining(self: &Self, cursor: &mut ArgCursor) -> impl Iterator<Item = &OsStr>` — [`ArgCursor`](#argcursor)
 
-- `fn seek(self: &Self, cursor: &mut ArgCursor, pos: SeekFrom)` — [`ArgCursor`](#argcursor)
+- `fn seek(self: &Self, cursor: &mut ArgCursor, pos: SeekFrom)` — [`ArgCursor`](#argcursor), [`SeekFrom`](#seekfrom)
 
 - `fn insert(self: &mut Self, cursor: &ArgCursor, insert_items: impl IntoIterator<Item = impl Into<OsString>>)` — [`ArgCursor`](#argcursor)
 

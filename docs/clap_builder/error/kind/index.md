@@ -70,7 +70,7 @@ Command line argument parser kind of error
 
 - **`InvalidSubcommand`**
 
-  Occurs when the user provides an unrecognized [`Subcommand`](../../derive/index.md) which meets the threshold for
+  Occurs when the user provides an unrecognized [`Subcommand`](../../index.md) which meets the threshold for
   being similar enough to an existing subcommand.
   If it doesn't meet the threshold, or the 'suggestions' feature is disabled,
   the more general [`UnknownArgument`](../../index.md) error is returned.
@@ -318,7 +318,7 @@ Command line argument parser kind of error
 
 - **`DisplayHelpOnMissingArgumentOrSubcommand`**
 
-  Occurs when either an argument or a [`Subcommand`](../../derive/index.md) is required, as defined by
+  Occurs when either an argument or a [`Subcommand`](../../index.md) is required, as defined by
   `Command::arg_required_else_help` , but the user did not provide
   one.
   
@@ -378,7 +378,7 @@ Command line argument parser kind of error
 
 ##### `impl Clone for ErrorKind`
 
-- `fn clone(self: &Self) -> ErrorKind` — [`ErrorKind`](#errorkind)
+- `fn clone(self: &Self) -> ErrorKind` — [`ErrorKind`](../index.md)
 
 ##### `impl Copy for ErrorKind`
 
@@ -398,7 +398,7 @@ Command line argument parser kind of error
 
 ##### `impl PartialEq for ErrorKind`
 
-- `fn eq(self: &Self, other: &ErrorKind) -> bool` — [`ErrorKind`](#errorkind)
+- `fn eq(self: &Self, other: &ErrorKind) -> bool` — [`ErrorKind`](../index.md)
 
 ##### `impl StructuralPartialEq for ErrorKind`
 

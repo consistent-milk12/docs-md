@@ -66,7 +66,7 @@ than once.
 
 - `fn add(self: &mut Self, bytes: &[u8])`
 
-- `fn set_match_kind(self: &mut Self, kind: MatchKind)` — [`MatchKind`](../api/index.md)
+- `fn set_match_kind(self: &mut Self, kind: MatchKind)` — [`MatchKind`](../index.md)
 
 - `fn len(self: &Self) -> usize`
 
@@ -78,11 +78,11 @@ than once.
 
 - `fn minimum_len(self: &Self) -> usize`
 
-- `fn match_kind(self: &Self) -> &MatchKind` — [`MatchKind`](../api/index.md)
+- `fn match_kind(self: &Self) -> &MatchKind` — [`MatchKind`](../index.md)
 
-- `fn get(self: &Self, id: PatternID) -> Pattern<'_>` — [`PatternID`](../../util/primitives/index.md), [`Pattern`](#pattern)
+- `fn get(self: &Self, id: PatternID) -> Pattern<'_>` — [`PatternID`](../../index.md), [`Pattern`](#pattern)
 
-- `unsafe fn get_unchecked(self: &Self, id: PatternID) -> Pattern<'_>` — [`PatternID`](../../util/primitives/index.md), [`Pattern`](#pattern)
+- `unsafe fn get_unchecked(self: &Self, id: PatternID) -> Pattern<'_>` — [`PatternID`](../../index.md), [`Pattern`](#pattern)
 
 - `fn iter(self: &Self) -> PatternIter<'_>` — [`PatternIter`](#patterniter)
 
@@ -131,7 +131,7 @@ this is iterating over.
 
 - `type Item = (PatternID, Pattern<'p>)`
 
-- `fn next(self: &mut Self) -> Option<(PatternID, Pattern<'p>)>` — [`PatternID`](../../util/primitives/index.md), [`Pattern`](#pattern)
+- `fn next(self: &mut Self) -> Option<(PatternID, Pattern<'p>)>` — [`PatternID`](../../index.md), [`Pattern`](#pattern)
 
 ### `Pattern<'a>`
 

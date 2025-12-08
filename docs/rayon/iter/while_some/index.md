@@ -17,7 +17,7 @@ struct WhileSome<I> {
 `WhileSome` is an iterator that yields the `Some` elements of an iterator,
 halting as soon as any `None` is produced.
 
-This struct is created by the `while_some()` method on [`ParallelIterator`](../index.md)
+This struct is created by the `while_some()` method on [`ParallelIterator`](../../prelude/index.md)
 
 
 #### Implementations
@@ -28,7 +28,7 @@ This struct is created by the `while_some()` method on [`ParallelIterator`](../i
 
 ##### `impl<I: $crate::clone::Clone> Clone for WhileSome<I>`
 
-- `fn clone(self: &Self) -> WhileSome<I>` — [`WhileSome`](#whilesome)
+- `fn clone(self: &Self) -> WhileSome<I>` — [`WhileSome`](../index.md)
 
 ##### `impl<I: $crate::fmt::Debug> Debug for WhileSome<I>`
 

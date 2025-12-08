@@ -366,7 +366,7 @@ An `UnzipOp` that routes items depending on their `Either` variant.
 
 - `type Right = R`
 
-- `fn consume<FL, FR>(self: &Self, item: Either<L, R>, left: FL, right: FR) -> (FL, FR)`
+- `fn consume<FL, FR>(self: &Self, item: Either<L, R>, left: FL, right: FR) -> (FL, FR)` — [`Either`](../index.md)
 
 ### `Collector<FromT>`
 

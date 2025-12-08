@@ -6,8 +6,8 @@
 
 Multi-crate generation context.
 
-This module provides [`MultiCrateContext`](#multicratecontext) which holds shared state
-during multi-crate documentation generation, and [`SingleCrateView`](#singlecrateview)
+This module provides [`MultiCrateContext`](../../index.md) which holds shared state
+during multi-crate documentation generation, and [`SingleCrateView`](../index.md)
 which provides a single-crate interface for existing rendering code.
 
 ## Structs
@@ -26,7 +26,7 @@ struct MultiCrateContext<'a> {
 Shared context for multi-crate documentation generation.
 
 Holds references to all crates, the unified link registry, and
-CLI configuration. Used by [`MultiCrateGenerator`](../generator/index.md) to coordinate
+CLI configuration. Used by [`MultiCrateGenerator`](../../index.md) to coordinate
 generation across crates.
 
 
@@ -53,17 +53,17 @@ generation across crates.
 
 #### Implementations
 
-- `fn new(crates: &'a CrateCollection, args: &'a Args) -> Self` — [`CrateCollection`](../collection/index.md), [`Args`](../../index.md)
+- `fn new(crates: &'a CrateCollection, args: &'a Args) -> Self` — [`CrateCollection`](../../index.md), [`Args`](../../index.md)
 
-- `fn build_cross_crate_impls(crates: &'a CrateCollection) -> HashMap<String, HashMap<String, Vec<&'a Impl>>>` — [`CrateCollection`](../collection/index.md)
+- `fn build_cross_crate_impls(crates: &'a CrateCollection) -> HashMap<String, HashMap<String, Vec<&'a Impl>>>` — [`CrateCollection`](../../index.md)
 
-- `const fn crates(self: &Self) -> &CrateCollection` — [`CrateCollection`](../collection/index.md)
+- `const fn crates(self: &Self) -> &CrateCollection` — [`CrateCollection`](../../index.md)
 
-- `const fn registry(self: &Self) -> &UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](../registry/index.md)
+- `const fn registry(self: &Self) -> &UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](../../index.md)
 
 - `const fn args(self: &Self) -> &Args` — [`Args`](../../index.md)
 
-- `fn single_crate_view(self: &'a Self, crate_name: &str) -> Option<SingleCrateView<'a>>` — [`SingleCrateView`](#singlecrateview)
+- `fn single_crate_view(self: &'a Self, crate_name: &str) -> Option<SingleCrateView<'a>>` — [`SingleCrateView`](../index.md)
 
 - `fn find_item(self: &Self, id: &Id) -> Option<(&str, &Item)>`
 
@@ -112,8 +112,8 @@ struct SingleCrateView<'a> {
 
 View of a single crate within multi-crate context.
 
-Provides an interface similar to [`GeneratorContext`](../../generator/context/index.md) but uses
-[`UnifiedLinkRegistry`](../registry/index.md) for cross-crate link resolution. This
+Provides an interface similar to [`GeneratorContext`](../../generator/index.md) but uses
+[`UnifiedLinkRegistry`](../../index.md) for cross-crate link resolution. This
 allows existing rendering code to work with minimal changes.
 
 
@@ -154,7 +154,7 @@ allows existing rendering code to work with minimal changes.
 
 #### Implementations
 
-- `fn new(crate_name: &'a str, krate: &'a Crate, registry: &'a UnifiedLinkRegistry, args: &'a Args, ctx: &'a MultiCrateContext<'a>) -> Self` — [`UnifiedLinkRegistry`](../registry/index.md), [`Args`](../../index.md), [`MultiCrateContext`](#multicratecontext)
+- `fn new(crate_name: &'a str, krate: &'a Crate, registry: &'a UnifiedLinkRegistry, args: &'a Args, ctx: &'a MultiCrateContext<'a>) -> Self` — [`UnifiedLinkRegistry`](../../index.md), [`Args`](../../index.md), [`MultiCrateContext`](../../index.md)
 
 - `fn build_impl_map(self: &mut Self)`
 
@@ -168,7 +168,7 @@ allows existing rendering code to work with minimal changes.
 
 - `const fn krate(self: &Self) -> &Crate`
 
-- `const fn registry(self: &Self) -> &UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](../registry/index.md)
+- `const fn registry(self: &Self) -> &UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](../../index.md)
 
 - `const fn args(self: &Self) -> &Args` — [`Args`](../../index.md)
 
@@ -244,7 +244,7 @@ allows existing rendering code to work with minimal changes.
 
 ##### `impl LinkResolver for SingleCrateView<'_>`
 
-- `fn link_registry(self: &Self) -> Option<&LinkRegistry>` — [`LinkRegistry`](../../linker/index.md)
+- `fn link_registry(self: &Self) -> Option<&LinkRegistry>` — [`LinkRegistry`](../../index.md)
 
 - `fn process_docs(self: &Self, item: &Item, current_file: &str) -> Option<String>`
 

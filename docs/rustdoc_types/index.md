@@ -6,7 +6,7 @@ These types are the public API exposed through the `--output-format json` flag. 
 struct is the root of the JSON blob and all other items are contained within.
 
 We expose a `rustc-hash` feature that is disabled by default. This feature switches the
-[`std::collections::HashMap`](../hashbrown/hash_map/index.md) for `rustc_hash::FxHashMap` to improve the performance of said
+[`std::collections::HashMap`](../hashbrown/index.md) for `rustc_hash::FxHashMap` to improve the performance of said
 `HashMap` in specific situations.
 
 `cargo-semver-checks` for example, saw a [-3% improvement][1] when benchmarking using the
@@ -339,7 +339,7 @@ the actual item definition with all the relevant info.
   
   Note that items can appear in multiple paths, and the one chosen is implementation
   defined. Currently, this is the full path to where the item was defined. Eg
-  [`String`](../clap_builder/index.md) is currently `["alloc", "string", "String"]` and [`HashMap`][`std::collections::HashMap`](../hashbrown/hash_map/index.md)
+  [`String`](../clap_builder/index.md) is currently `["alloc", "string", "String"]` and [`HashMap`][`std::collections::HashMap`](../hashbrown/index.md)
   is `["std", "collections", "hash", "map", "HashMap"]`, but this is subject to change.
 
 - **`kind`**: `ItemKind`

@@ -111,7 +111,7 @@ assert_eq!(hay.split(&re).collect::<Vec<_>>(), vec!["a", "b", "c"]);
 
 #### Implementations
 
-- `fn new(re: &str) -> Result<Regex, Error>` — [`Regex`](../../index.md), [`Error`](../../error/index.md)
+- `fn new(re: &str) -> Result<Regex, Error>` — [`Regex`](../../index.md), [`Error`](../../index.md)
 
 - `fn is_match(self: &Self, haystack: &str) -> bool`
 
@@ -151,7 +151,7 @@ assert_eq!(hay.split(&re).collect::<Vec<_>>(), vec!["a", "b", "c"]);
 
 - `type Err = Error`
 
-- `fn from_str(s: &str) -> Result<Regex, Error>` — [`Regex`](../../index.md), [`Error`](../../error/index.md)
+- `fn from_str(s: &str) -> Result<Regex, Error>` — [`Regex`](../../index.md), [`Error`](../../index.md)
 
 ##### `impl<T> ToString for Regex`
 
@@ -338,11 +338,11 @@ assert_eq!("y", &caps["last"]);
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<'h> Index for Captures<'h>`
+##### `impl<'h, 'n> Index for Captures<'h>`
 
 - `type Output = str`
 
-- `fn index<'a>(self: &'a Self, i: usize) -> &'a str`
+- `fn index<'a>(self: &'a Self, name: &'n str) -> &'a str`
 
 ### `CaptureLocations`
 

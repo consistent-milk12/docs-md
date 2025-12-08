@@ -16,7 +16,7 @@ struct TakeAny<I> {
 ```
 
 `TakeAny` is an iterator that iterates over `n` elements from anywhere in `I`.
-This struct is created by the `take_any()` method on [`ParallelIterator`](../index.md)
+This struct is created by the `take_any()` method on [`ParallelIterator`](../../prelude/index.md)
 
 
 #### Implementations
@@ -27,7 +27,7 @@ This struct is created by the `take_any()` method on [`ParallelIterator`](../ind
 
 ##### `impl<I: $crate::clone::Clone> Clone for TakeAny<I>`
 
-- `fn clone(self: &Self) -> TakeAny<I>` — [`TakeAny`](#takeany)
+- `fn clone(self: &Self) -> TakeAny<I>` — [`TakeAny`](../index.md)
 
 ##### `impl<I: $crate::fmt::Debug> Debug for TakeAny<I>`
 

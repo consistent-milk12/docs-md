@@ -12,7 +12,7 @@ expands to the token type of the given token.
 
 # Example
 
-The [`ItemStatic`](../item/index.md) syntax tree node is defined like this.
+The [`ItemStatic`](../index.md) syntax tree node is defined like this.
 
 ```rust
 use syn::{Attribute, Expr, Ident, Token, Type, Visibility};
@@ -79,7 +79,7 @@ Every keyword and punctuation token supports the following operations.
 
 - [Printing] — `quote!( ... #the_token ... )`
 
-- Construction from a [`Span`](#span) — `let the_token = Token![...](sp)`
+- Construction from a `Span` — `let the_token = Token![...](sp)`
 
 - Field access to its span — `let sp = the_token.span`
 
@@ -144,7 +144,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Underscore`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Underscore`
 
@@ -154,7 +154,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `type Target = T`
 
-##### `impl Sealed for Underscore`
+##### `impl<T> Sealed for Underscore`
 
 ##### `impl<T> Spanned for Underscore`
 
@@ -248,13 +248,13 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Abstract`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Abstract`
 
 - `fn eq(self: &Self, _other: &Abstract) -> bool` — [`Abstract`](#abstract)
 
-##### `impl Sealed for Abstract`
+##### `impl<T> Sealed for Abstract`
 
 ##### `impl<T> Spanned for Abstract`
 
@@ -304,13 +304,13 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for As`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for As`
 
 - `fn eq(self: &Self, _other: &As) -> bool` — [`As`](#as)
 
-##### `impl<T> Sealed for As`
+##### `impl Sealed for As`
 
 ##### `impl<T> Spanned for As`
 
@@ -360,7 +360,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Async`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Async`
 
@@ -416,7 +416,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Auto`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Auto`
 
@@ -472,7 +472,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Await`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Await`
 
@@ -528,7 +528,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Become`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Become`
 
@@ -584,7 +584,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Box`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Box`
 
@@ -640,7 +640,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Break`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Break`
 
@@ -696,7 +696,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Const`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Const`
 
@@ -752,7 +752,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Continue`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Continue`
 
@@ -808,13 +808,13 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Crate`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Crate`
 
 - `fn eq(self: &Self, _other: &Crate) -> bool` — [`Crate`](#crate)
 
-##### `impl Sealed for Crate`
+##### `impl<T> Sealed for Crate`
 
 ##### `impl<T> Spanned for Crate`
 
@@ -864,7 +864,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Default`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Default`
 
@@ -920,7 +920,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Do`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Do`
 
@@ -976,7 +976,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Dyn`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Dyn`
 
@@ -1032,13 +1032,13 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Else`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Else`
 
 - `fn eq(self: &Self, _other: &Else) -> bool` — [`Else`](#else)
 
-##### `impl<T> Sealed for Else`
+##### `impl Sealed for Else`
 
 ##### `impl<T> Spanned for Else`
 
@@ -1088,13 +1088,13 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Enum`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Enum`
 
 - `fn eq(self: &Self, _other: &Enum) -> bool` — [`Enum`](#enum)
 
-##### `impl Sealed for Enum`
+##### `impl<T> Sealed for Enum`
 
 ##### `impl<T> Spanned for Enum`
 
@@ -1144,13 +1144,13 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Extern`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Extern`
 
 - `fn eq(self: &Self, _other: &Extern) -> bool` — [`Extern`](#extern)
 
-##### `impl<T> Sealed for Extern`
+##### `impl Sealed for Extern`
 
 ##### `impl<T> Spanned for Extern`
 
@@ -1200,13 +1200,13 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Final`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Final`
 
 - `fn eq(self: &Self, _other: &Final) -> bool` — [`Final`](#final)
 
-##### `impl Sealed for Final`
+##### `impl<T> Sealed for Final`
 
 ##### `impl<T> Spanned for Final`
 
@@ -1256,7 +1256,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Fn`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Fn`
 
@@ -1312,7 +1312,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for For`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for For`
 
@@ -1368,13 +1368,13 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for If`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for If`
 
 - `fn eq(self: &Self, _other: &If) -> bool` — [`If`](#if)
 
-##### `impl<T> Sealed for If`
+##### `impl Sealed for If`
 
 ##### `impl<T> Spanned for If`
 
@@ -1424,7 +1424,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Impl`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Impl`
 
@@ -1480,7 +1480,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for In`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for In`
 
@@ -1536,7 +1536,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Let`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Let`
 
@@ -1592,7 +1592,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Loop`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Loop`
 
@@ -1648,13 +1648,13 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Macro`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Macro`
 
 - `fn eq(self: &Self, _other: &Macro) -> bool` — [`Macro`](#macro)
 
-##### `impl Sealed for Macro`
+##### `impl<T> Sealed for Macro`
 
 ##### `impl<T> Spanned for Macro`
 
@@ -1704,13 +1704,13 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Match`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Match`
 
 - `fn eq(self: &Self, _other: &Match) -> bool` — [`Match`](#match)
 
-##### `impl<T> Sealed for Match`
+##### `impl Sealed for Match`
 
 ##### `impl<T> Spanned for Match`
 
@@ -1760,13 +1760,13 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Mod`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Mod`
 
 - `fn eq(self: &Self, _other: &Mod) -> bool` — [`Mod`](#mod)
 
-##### `impl Sealed for Mod`
+##### `impl<T> Sealed for Mod`
 
 ##### `impl<T> Spanned for Mod`
 
@@ -1816,13 +1816,13 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Move`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Move`
 
 - `fn eq(self: &Self, _other: &Move) -> bool` — [`Move`](#move)
 
-##### `impl Sealed for Move`
+##### `impl<T> Sealed for Move`
 
 ##### `impl<T> Spanned for Move`
 
@@ -1872,7 +1872,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Mut`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Mut`
 
@@ -1928,13 +1928,13 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Override`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Override`
 
 - `fn eq(self: &Self, _other: &Override) -> bool` — [`Override`](#override)
 
-##### `impl<T> Sealed for Override`
+##### `impl Sealed for Override`
 
 ##### `impl<T> Spanned for Override`
 
@@ -1984,7 +1984,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Priv`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Priv`
 
@@ -2040,7 +2040,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Pub`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Pub`
 
@@ -2096,7 +2096,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Raw`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Raw`
 
@@ -2152,7 +2152,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Ref`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Ref`
 
@@ -2208,13 +2208,13 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Return`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Return`
 
 - `fn eq(self: &Self, _other: &Return) -> bool` — [`Return`](#return)
 
-##### `impl<T> Sealed for Return`
+##### `impl Sealed for Return`
 
 ##### `impl<T> Spanned for Return`
 
@@ -2264,13 +2264,13 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for SelfType`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for SelfType`
 
 - `fn eq(self: &Self, _other: &SelfType) -> bool` — [`SelfType`](#selftype)
 
-##### `impl Sealed for SelfType`
+##### `impl<T> Sealed for SelfType`
 
 ##### `impl<T> Spanned for SelfType`
 
@@ -2320,7 +2320,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for SelfValue`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for SelfValue`
 
@@ -2376,7 +2376,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Static`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Static`
 
@@ -2432,13 +2432,13 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Struct`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Struct`
 
 - `fn eq(self: &Self, _other: &Struct) -> bool` — [`Struct`](#struct)
 
-##### `impl<T> Sealed for Struct`
+##### `impl Sealed for Struct`
 
 ##### `impl<T> Spanned for Struct`
 
@@ -2488,7 +2488,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Super`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Super`
 
@@ -2544,7 +2544,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Trait`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Trait`
 
@@ -2600,7 +2600,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Try`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Try`
 
@@ -2656,7 +2656,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Type`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Type`
 
@@ -2712,7 +2712,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Typeof`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Typeof`
 
@@ -2768,13 +2768,13 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Union`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Union`
 
 - `fn eq(self: &Self, _other: &Union) -> bool` — [`Union`](#union)
 
-##### `impl<T> Sealed for Union`
+##### `impl Sealed for Union`
 
 ##### `impl<T> Spanned for Union`
 
@@ -2824,7 +2824,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Unsafe`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Unsafe`
 
@@ -2880,7 +2880,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Unsized`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Unsized`
 
@@ -2936,13 +2936,13 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Use`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Use`
 
 - `fn eq(self: &Self, _other: &Use) -> bool` — [`Use`](#use)
 
-##### `impl Sealed for Use`
+##### `impl<T> Sealed for Use`
 
 ##### `impl<T> Spanned for Use`
 
@@ -2992,13 +2992,13 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Virtual`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Virtual`
 
 - `fn eq(self: &Self, _other: &Virtual) -> bool` — [`Virtual`](#virtual)
 
-##### `impl Sealed for Virtual`
+##### `impl<T> Sealed for Virtual`
 
 ##### `impl<T> Spanned for Virtual`
 
@@ -3048,13 +3048,13 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Where`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Where`
 
 - `fn eq(self: &Self, _other: &Where) -> bool` — [`Where`](#where)
 
-##### `impl Sealed for Where`
+##### `impl<T> Sealed for Where`
 
 ##### `impl<T> Spanned for Where`
 
@@ -3104,7 +3104,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for While`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for While`
 
@@ -3160,7 +3160,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Yield`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Yield`
 
@@ -3229,7 +3229,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for And`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for And`
 
@@ -3239,7 +3239,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `type Target = T`
 
-##### `impl<T> Sealed for And`
+##### `impl Sealed for And`
 
 ##### `impl<T> Spanned for And`
 
@@ -3292,13 +3292,13 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for AndAnd`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for AndAnd`
 
 - `fn eq(self: &Self, _other: &AndAnd) -> bool` — [`AndAnd`](#andand)
 
-##### `impl<T> Sealed for AndAnd`
+##### `impl Sealed for AndAnd`
 
 ##### `impl<T> Spanned for AndAnd`
 
@@ -3351,13 +3351,13 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for AndEq`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for AndEq`
 
 - `fn eq(self: &Self, _other: &AndEq) -> bool` — [`AndEq`](#andeq)
 
-##### `impl Sealed for AndEq`
+##### `impl<T> Sealed for AndEq`
 
 ##### `impl<T> Spanned for AndEq`
 
@@ -3420,7 +3420,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for At`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for At`
 
@@ -3493,7 +3493,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Caret`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Caret`
 
@@ -3556,13 +3556,13 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for CaretEq`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for CaretEq`
 
 - `fn eq(self: &Self, _other: &CaretEq) -> bool` — [`CaretEq`](#careteq)
 
-##### `impl Sealed for CaretEq`
+##### `impl<T> Sealed for CaretEq`
 
 ##### `impl<T> Spanned for CaretEq`
 
@@ -3625,7 +3625,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Colon`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Colon`
 
@@ -3635,7 +3635,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `type Target = T`
 
-##### `impl Sealed for Colon`
+##### `impl<T> Sealed for Colon`
 
 ##### `impl<T> Spanned for Colon`
 
@@ -3698,7 +3698,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Comma`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Comma`
 
@@ -3708,7 +3708,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `type Target = T`
 
-##### `impl<T> Sealed for Comma`
+##### `impl Sealed for Comma`
 
 ##### `impl<T> Spanned for Comma`
 
@@ -3771,7 +3771,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Dollar`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Dollar`
 
@@ -3781,7 +3781,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `type Target = T`
 
-##### `impl Sealed for Dollar`
+##### `impl<T> Sealed for Dollar`
 
 ##### `impl<T> Spanned for Dollar`
 
@@ -3844,7 +3844,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Dot`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Dot`
 
@@ -3907,13 +3907,13 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for DotDot`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for DotDot`
 
 - `fn eq(self: &Self, _other: &DotDot) -> bool` — [`DotDot`](#dotdot)
 
-##### `impl Sealed for DotDot`
+##### `impl<T> Sealed for DotDot`
 
 ##### `impl<T> Spanned for DotDot`
 
@@ -3966,7 +3966,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for DotDotDot`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for DotDotDot`
 
@@ -4025,7 +4025,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for DotDotEq`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for DotDotEq`
 
@@ -4094,7 +4094,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Eq`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Eq`
 
@@ -4157,13 +4157,13 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for EqEq`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for EqEq`
 
 - `fn eq(self: &Self, _other: &EqEq) -> bool` — [`EqEq`](#eqeq)
 
-##### `impl Sealed for EqEq`
+##### `impl<T> Sealed for EqEq`
 
 ##### `impl<T> Spanned for EqEq`
 
@@ -4216,7 +4216,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for FatArrow`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for FatArrow`
 
@@ -4275,13 +4275,13 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Ge`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Ge`
 
 - `fn eq(self: &Self, _other: &Ge) -> bool` — [`Ge`](#ge)
 
-##### `impl<T> Sealed for Ge`
+##### `impl Sealed for Ge`
 
 ##### `impl<T> Spanned for Ge`
 
@@ -4344,7 +4344,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Gt`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Gt`
 
@@ -4354,7 +4354,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `type Target = T`
 
-##### `impl<T> Sealed for Gt`
+##### `impl Sealed for Gt`
 
 ##### `impl<T> Spanned for Gt`
 
@@ -4407,7 +4407,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for LArrow`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for LArrow`
 
@@ -4466,13 +4466,13 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Le`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Le`
 
 - `fn eq(self: &Self, _other: &Le) -> bool` — [`Le`](#le)
 
-##### `impl Sealed for Le`
+##### `impl<T> Sealed for Le`
 
 ##### `impl<T> Spanned for Le`
 
@@ -4535,7 +4535,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Lt`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Lt`
 
@@ -4608,7 +4608,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Minus`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Minus`
 
@@ -4618,7 +4618,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `type Target = T`
 
-##### `impl Sealed for Minus`
+##### `impl<T> Sealed for Minus`
 
 ##### `impl<T> Spanned for Minus`
 
@@ -4671,7 +4671,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for MinusEq`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for MinusEq`
 
@@ -4730,7 +4730,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Ne`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Ne`
 
@@ -4799,7 +4799,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Not`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Not`
 
@@ -4809,7 +4809,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `type Target = T`
 
-##### `impl Sealed for Not`
+##### `impl<T> Sealed for Not`
 
 ##### `impl<T> Spanned for Not`
 
@@ -4872,7 +4872,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Or`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Or`
 
@@ -4935,13 +4935,13 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for OrEq`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for OrEq`
 
 - `fn eq(self: &Self, _other: &OrEq) -> bool` — [`OrEq`](#oreq)
 
-##### `impl Sealed for OrEq`
+##### `impl<T> Sealed for OrEq`
 
 ##### `impl<T> Spanned for OrEq`
 
@@ -4994,7 +4994,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for OrOr`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for OrOr`
 
@@ -5053,13 +5053,13 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for PathSep`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for PathSep`
 
 - `fn eq(self: &Self, _other: &PathSep) -> bool` — [`PathSep`](#pathsep)
 
-##### `impl<T> Sealed for PathSep`
+##### `impl Sealed for PathSep`
 
 ##### `impl<T> Spanned for PathSep`
 
@@ -5122,7 +5122,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Percent`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Percent`
 
@@ -5185,7 +5185,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for PercentEq`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for PercentEq`
 
@@ -5254,7 +5254,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Plus`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Plus`
 
@@ -5317,7 +5317,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for PlusEq`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for PlusEq`
 
@@ -5386,7 +5386,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Pound`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Pound`
 
@@ -5459,7 +5459,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Question`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Question`
 
@@ -5522,7 +5522,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for RArrow`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for RArrow`
 
@@ -5591,7 +5591,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Semi`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Semi`
 
@@ -5601,7 +5601,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `type Target = T`
 
-##### `impl<T> Sealed for Semi`
+##### `impl Sealed for Semi`
 
 ##### `impl<T> Spanned for Semi`
 
@@ -5654,7 +5654,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Shl`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Shl`
 
@@ -5713,13 +5713,13 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for ShlEq`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for ShlEq`
 
 - `fn eq(self: &Self, _other: &ShlEq) -> bool` — [`ShlEq`](#shleq)
 
-##### `impl<T> Sealed for ShlEq`
+##### `impl Sealed for ShlEq`
 
 ##### `impl<T> Spanned for ShlEq`
 
@@ -5772,7 +5772,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Shr`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Shr`
 
@@ -5831,7 +5831,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for ShrEq`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for ShrEq`
 
@@ -5900,7 +5900,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Slash`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Slash`
 
@@ -5963,13 +5963,13 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for SlashEq`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for SlashEq`
 
 - `fn eq(self: &Self, _other: &SlashEq) -> bool` — [`SlashEq`](#slasheq)
 
-##### `impl<T> Sealed for SlashEq`
+##### `impl Sealed for SlashEq`
 
 ##### `impl<T> Spanned for SlashEq`
 
@@ -6032,7 +6032,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Star`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Star`
 
@@ -6042,7 +6042,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `type Target = T`
 
-##### `impl<T> Sealed for Star`
+##### `impl Sealed for Star`
 
 ##### `impl<T> Spanned for Star`
 
@@ -6095,7 +6095,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for StarEq`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for StarEq`
 
@@ -6164,7 +6164,7 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Parse for Tilde`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Tilde`
 
@@ -6174,7 +6174,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `type Target = T`
 
-##### `impl<T> Sealed for Tilde`
+##### `impl Sealed for Tilde`
 
 ##### `impl<T> Spanned for Tilde`
 

@@ -15,7 +15,7 @@ struct Enumerate<I> {
 ```
 
 `Enumerate` is an iterator that returns the current count along with the element.
-This struct is created by the `enumerate()` method on [`IndexedParallelIterator`](../index.md)
+This struct is created by the `enumerate()` method on [`IndexedParallelIterator`](../../prelude/index.md)
 
 
 #### Implementations
@@ -26,7 +26,7 @@ This struct is created by the `enumerate()` method on [`IndexedParallelIterator`
 
 ##### `impl<I: $crate::clone::Clone> Clone for Enumerate<I>`
 
-- `fn clone(self: &Self) -> Enumerate<I>` — [`Enumerate`](#enumerate)
+- `fn clone(self: &Self) -> Enumerate<I>` — [`Enumerate`](../index.md)
 
 ##### `impl<I: $crate::fmt::Debug> Debug for Enumerate<I>`
 

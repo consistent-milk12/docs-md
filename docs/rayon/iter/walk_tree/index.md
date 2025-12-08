@@ -56,7 +56,7 @@ struct WalkTreePrefix<S, B> {
 ```
 
 ParallelIterator for arbitrary tree-shaped patterns.
-Returned by the [`walk_tree_prefix()`](#walk-tree-prefix) function.
+Returned by the [`walk_tree_prefix()`](../index.md) function.
 
 #### Trait Implementations
 
@@ -144,7 +144,7 @@ struct WalkTreePostfix<S, B> {
 ```
 
 ParallelIterator for arbitrary tree-shaped patterns.
-Returned by the [`walk_tree_postfix()`](#walk-tree-postfix) function.
+Returned by the [`walk_tree_postfix()`](../index.md) function.
 
 #### Trait Implementations
 
@@ -189,7 +189,7 @@ struct WalkTree<S, B>(WalkTreePostfix<S, B>);
 ```
 
 ParallelIterator for arbitrary tree-shaped patterns.
-Returned by the [`walk_tree()`](#walk-tree) function.
+Returned by the [`walk_tree()`](../index.md) function.
 
 #### Trait Implementations
 
@@ -246,9 +246,9 @@ but we should also be able to handle harder cases.
 
 # Ordering
 
-This function guarantees a prefix ordering. See also [`walk_tree_postfix`](#walk-tree-postfix),
+This function guarantees a prefix ordering. See also [`walk_tree_postfix`](../index.md),
 which guarantees a postfix order.
-If you don't care about ordering, you should use [`walk_tree`](#walk-tree),
+If you don't care about ordering, you should use [`walk_tree`](../index.md),
 which will use whatever is believed to be fastest.
 For example a perfect binary tree of 7 nodes will reduced in the following order:
 
@@ -379,8 +379,8 @@ but we should also be able to handle harder cases.
 
 # Ordering
 
-This function guarantees a postfix ordering. See also [`walk_tree_prefix`](#walk-tree-prefix) which guarantees a
-prefix order. If you don't care about ordering, you should use [`walk_tree`](#walk-tree), which will use
+This function guarantees a postfix ordering. See also [`walk_tree_prefix`](../index.md) which guarantees a
+prefix order. If you don't care about ordering, you should use [`walk_tree`](../index.md), which will use
 whatever is believed to be fastest.
 
 Between siblings, children are reduced in order -- that is first children are reduced first.
@@ -496,8 +496,8 @@ but we should also be able to handle harder cases.
 
 This function does not guarantee any ordering but will
 use whatever algorithm is thought to achieve the fastest traversal.
-See also [`walk_tree_prefix`](#walk-tree-prefix) which guarantees a
-prefix order and [`walk_tree_postfix`](#walk-tree-postfix) which guarantees a postfix order.
+See also [`walk_tree_prefix`](../index.md) which guarantees a
+prefix order and [`walk_tree_postfix`](../index.md) which guarantees a postfix order.
 
 # Example
 

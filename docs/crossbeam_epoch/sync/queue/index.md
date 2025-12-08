@@ -29,17 +29,17 @@ struct Queue<T> {
 
 - `fn new() -> Queue<T>` — [`Queue`](#queue)
 
-- `fn push_internal(self: &Self, onto: Shared<'_, Node<T>>, new: Shared<'_, Node<T>>, guard: &Guard) -> bool` — [`Shared`](../../atomic/index.md), [`Node`](#node), [`Guard`](../../guard/index.md)
+- `fn push_internal(self: &Self, onto: Shared<'_, Node<T>>, new: Shared<'_, Node<T>>, guard: &Guard) -> bool` — [`Shared`](../../index.md), [`Node`](#node), [`Guard`](../../index.md)
 
-- `fn push(self: &Self, t: T, guard: &Guard)` — [`Guard`](../../guard/index.md)
+- `fn push(self: &Self, t: T, guard: &Guard)` — [`Guard`](../../index.md)
 
-- `fn pop_internal(self: &Self, guard: &Guard) -> Result<Option<T>, ()>` — [`Guard`](../../guard/index.md)
+- `fn pop_internal(self: &Self, guard: &Guard) -> Result<Option<T>, ()>` — [`Guard`](../../index.md)
 
-- `fn pop_if_internal<F>(self: &Self, condition: F, guard: &Guard) -> Result<Option<T>, ()>` — [`Guard`](../../guard/index.md)
+- `fn pop_if_internal<F>(self: &Self, condition: F, guard: &Guard) -> Result<Option<T>, ()>` — [`Guard`](../../index.md)
 
-- `fn try_pop(self: &Self, guard: &Guard) -> Option<T>` — [`Guard`](../../guard/index.md)
+- `fn try_pop(self: &Self, guard: &Guard) -> Option<T>` — [`Guard`](../../index.md)
 
-- `fn try_pop_if<F>(self: &Self, condition: F, guard: &Guard) -> Option<T>` — [`Guard`](../../guard/index.md)
+- `fn try_pop_if<F>(self: &Self, condition: F, guard: &Guard) -> Option<T>` — [`Guard`](../../index.md)
 
 #### Trait Implementations
 
@@ -57,7 +57,7 @@ struct Queue<T> {
 
 - `type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../atomic/index.md)
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../index.md)
 
 - `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -97,7 +97,7 @@ struct Node<T> {
 
 - `type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../atomic/index.md)
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../index.md)
 
 - `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 

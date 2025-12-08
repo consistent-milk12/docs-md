@@ -16,7 +16,7 @@ struct FlatMap<I, F> {
 ```
 
 `FlatMap` maps each element to a parallel iterator, then flattens these iterators together.
-This struct is created by the `flat_map()` method on [`ParallelIterator`](../index.md)
+This struct is created by the `flat_map()` method on [`ParallelIterator`](../../prelude/index.md)
 
 
 #### Implementations
@@ -27,7 +27,7 @@ This struct is created by the `flat_map()` method on [`ParallelIterator`](../ind
 
 ##### `impl<I: $crate::clone::Clone, F: $crate::clone::Clone> Clone for FlatMap<I, F>`
 
-- `fn clone(self: &Self) -> FlatMap<I, F>` — [`FlatMap`](#flatmap)
+- `fn clone(self: &Self) -> FlatMap<I, F>` — [`FlatMap`](../index.md)
 
 ##### `impl<I: Debug, F> Debug for FlatMap<I, F>`
 

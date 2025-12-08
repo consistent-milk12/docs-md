@@ -159,9 +159,11 @@ let iter: std::vec::Drain<_> = v.drain(..);
 
 #### Implementations
 
-- `unsafe fn fill<I: Iterator<Item = T>>(self: &mut Self, replace_with: &mut I) -> bool`
+- `fn as_slice(self: &Self) -> &[T]`
 
-- `unsafe fn move_tail(self: &mut Self, additional: usize)`
+- `fn allocator(self: &Self) -> &A`
+
+- `fn keep_rest(self: Self)`
 
 #### Trait Implementations
 
@@ -406,7 +408,7 @@ let u: &[_] = &v;
 ```
 
 In Rust, it's more common to pass slices as arguments rather than vectors
-when you just want to provide read access. The same goes for `String` and
+when you just want to provide read access. The same goes for [`String`](#string) and
 `&str`.
 
 # Capacity and reallocation
@@ -545,11 +547,89 @@ The order has changed in the past and may change again.
 
 #### Implementations
 
-- `const fn new() -> Self`
+- `const fn new_in(alloc: A) -> Self`
 
-- `fn with_capacity(capacity: usize) -> Self`
+- `fn with_capacity_in(capacity: usize, alloc: A) -> Self`
 
-- `unsafe fn from_raw_parts(ptr: *mut T, length: usize, capacity: usize) -> Self`
+- `unsafe fn from_raw_parts_in(ptr: *mut T, length: usize, capacity: usize, alloc: A) -> Self`
+
+- `fn into_raw_parts(self: Self) -> (*mut T, usize, usize)`
+
+- `fn into_raw_parts_with_alloc(self: Self) -> (*mut T, usize, usize, A)`
+
+- `fn capacity(self: &Self) -> usize`
+
+- `fn reserve(self: &mut Self, additional: usize)`
+
+- `fn reserve_exact(self: &mut Self, additional: usize)`
+
+- `fn try_reserve(self: &mut Self, additional: usize) -> Result<(), TryReserveError>` — [`TryReserveError`](../collections/index.md)
+
+- `fn try_reserve_exact(self: &mut Self, additional: usize) -> Result<(), TryReserveError>` — [`TryReserveError`](../collections/index.md)
+
+- `fn shrink_to_fit(self: &mut Self)`
+
+- `fn shrink_to(self: &mut Self, min_capacity: usize)`
+
+- `fn into_boxed_slice(self: Self) -> Box<[T], A>` — [`Box`](../boxed/index.md)
+
+- `fn truncate(self: &mut Self, len: usize)`
+
+- `fn as_slice(self: &Self) -> &[T]`
+
+- `fn as_mut_slice(self: &mut Self) -> &mut [T]`
+
+- `fn as_ptr(self: &Self) -> *const T`
+
+- `fn as_mut_ptr(self: &mut Self) -> *mut T`
+
+- `fn allocator(self: &Self) -> &A`
+
+- `unsafe fn set_len(self: &mut Self, new_len: usize)`
+
+- `fn swap_remove(self: &mut Self, index: usize) -> T`
+
+- `fn insert(self: &mut Self, index: usize, element: T)`
+
+- `fn remove(self: &mut Self, index: usize) -> T`
+
+- `fn retain<F>(self: &mut Self, f: F)`
+
+- `fn retain_mut<F>(self: &mut Self, f: F)`
+
+- `fn dedup_by_key<F, K>(self: &mut Self, key: F)`
+
+- `fn dedup_by<F>(self: &mut Self, same_bucket: F)`
+
+- `fn push(self: &mut Self, value: T)`
+
+- `fn push_within_capacity(self: &mut Self, value: T) -> Result<(), T>`
+
+- `fn pop(self: &mut Self) -> Option<T>`
+
+- `fn append(self: &mut Self, other: &mut Self)`
+
+- `unsafe fn append_elements(self: &mut Self, other: *const [T])`
+
+- `fn drain<R>(self: &mut Self, range: R) -> Drain<'_, T, A>` — [`Drain`](#drain)
+
+- `fn clear(self: &mut Self)`
+
+- `fn len(self: &Self) -> usize`
+
+- `fn is_empty(self: &Self) -> bool`
+
+- `fn split_off(self: &mut Self, at: usize) -> Self`
+
+- `fn resize_with<F>(self: &mut Self, new_len: usize, f: F)`
+
+- `fn leak<'a>(self: Self) -> &'a mut [T]`
+
+- `fn spare_capacity_mut(self: &mut Self) -> &mut [MaybeUninit<T>]`
+
+- `fn split_at_spare_mut(self: &mut Self) -> (&mut [T], &mut [MaybeUninit<T>])`
+
+- `unsafe fn split_at_spare_mut_with_len(self: &mut Self) -> (&mut [T], &mut [MaybeUninit<T>], &mut usize)`
 
 #### Trait Implementations
 
@@ -559,7 +639,7 @@ The order has changed in the past and may change again.
 
 ##### `impl<T, A: Allocator> AsRef for Vec<T, A>`
 
-- `fn as_ref(self: &Self) -> &[T]`
+- `fn as_ref(self: &Self) -> &Vec<T, A>` — [`Vec`](#vec)
 
 ##### `impl<T: Clone, A: Allocator + Clone> Clone for Vec<T, A>`
 
@@ -625,11 +705,11 @@ The order has changed in the past and may change again.
 
 - `fn cmp(self: &Self, other: &Self) -> Ordering`
 
-##### `impl<T, U, A: Allocator> PartialEq for super::Vec<T, A>`
+##### `impl<T, U, A: Allocator, const N: usize> PartialEq for super::Vec<T, A>`
 
-- `fn eq(self: &Self, other: &&[U]) -> bool`
+- `fn eq(self: &Self, other: &[U; N]) -> bool`
 
-- `fn ne(self: &Self, other: &&[U]) -> bool`
+- `fn ne(self: &Self, other: &[U; N]) -> bool`
 
 ##### `impl<T: PartialOrd, A: Allocator> PartialOrd for Vec<T, A>`
 

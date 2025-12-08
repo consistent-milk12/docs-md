@@ -72,11 +72,11 @@ amount of extra time they cost.
 
 - `fn clear(self: &mut Self)`
 
-- `fn hash(self: &Self, key: &[Transition]) -> usize` — [`Transition`](../nfa/index.md)
+- `fn hash(self: &Self, key: &[Transition]) -> usize` — [`Transition`](../index.md)
 
-- `fn get(self: &mut Self, key: &[Transition], hash: usize) -> Option<StateID>` — [`Transition`](../nfa/index.md), [`StateID`](../../../util/primitives/index.md)
+- `fn get(self: &mut Self, key: &[Transition], hash: usize) -> Option<StateID>` — [`Transition`](../index.md), [`StateID`](../../../util/primitives/index.md)
 
-- `fn set(self: &mut Self, key: Vec<Transition>, hash: usize, state_id: StateID)` — [`Transition`](../nfa/index.md), [`StateID`](../../../util/primitives/index.md)
+- `fn set(self: &mut Self, key: Vec<Transition>, hash: usize, state_id: StateID)` — [`Transition`](../index.md), [`StateID`](../../../util/primitives/index.md)
 
 #### Trait Implementations
 

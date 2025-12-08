@@ -70,69 +70,7 @@ assert_eq!(no_ints.len(), 0);
 
 #### Implementations
 
-- `fn append(self: &mut Self, other: &mut Self)`
-
-- `fn try_append<'other>(self: &mut Self, other: &'other mut Self) -> Option<&'other mut Self>`
-
-- `fn as_mut_ptr(self: &mut Self) -> *mut <A as >::Item` — [`Array`](../index.md)
-
-- `fn as_mut_slice(self: &mut Self) -> &mut [<A as >::Item]` — [`Array`](../index.md)
-
-- `fn as_ptr(self: &Self) -> *const <A as >::Item` — [`Array`](../index.md)
-
-- `fn as_slice(self: &Self) -> &[<A as >::Item]` — [`Array`](../index.md)
-
-- `fn capacity(self: &Self) -> usize`
-
-- `fn clear(self: &mut Self)`
-
-- `fn drain<R>(self: &mut Self, range: R) -> ArrayVecDrain<'_, <A as >::Item>` — [`ArrayVecDrain`](../index.md), [`Array`](../index.md)
-
-- `fn into_inner(self: Self) -> A`
-
-- `fn extend_from_slice(self: &mut Self, sli: &[<A as >::Item])` — [`Array`](../index.md)
-
-- `fn fill<I: IntoIterator<Item = <A as >::Item>>(self: &mut Self, iter: I) -> <I as >::IntoIter`
-
-- `fn from_array_len(data: A, len: usize) -> Self`
-
-- `fn insert(self: &mut Self, index: usize, item: <A as >::Item)` — [`Array`](../index.md)
-
-- `fn try_insert(self: &mut Self, index: usize, item: <A as >::Item) -> Option<<A as >::Item>` — [`Array`](../index.md)
-
-- `fn is_empty(self: &Self) -> bool`
-
-- `fn len(self: &Self) -> usize`
-
-- `fn new() -> Self`
-
-- `fn pop(self: &mut Self) -> Option<<A as >::Item>` — [`Array`](../index.md)
-
-- `fn push(self: &mut Self, val: <A as >::Item)` — [`Array`](../index.md)
-
-- `fn try_push(self: &mut Self, val: <A as >::Item) -> Option<<A as >::Item>` — [`Array`](../index.md)
-
-- `fn remove(self: &mut Self, index: usize) -> <A as >::Item` — [`Array`](../index.md)
-
-- `fn resize(self: &mut Self, new_len: usize, new_val: <A as >::Item)` — [`Array`](../index.md)
-
-- `fn resize_with<F: FnMut() -> <A as >::Item>(self: &mut Self, new_len: usize, f: F)`
-
-- `fn retain<F: FnMut(&<A as >::Item) -> bool>(self: &mut Self, acceptable: F)`
-
-- `fn retain_mut<F>(self: &mut Self, acceptable: F)`
-
-- `fn set_len(self: &mut Self, new_len: usize)`
-
-- `fn split_off(self: &mut Self, at: usize) -> Self`
-
-- `fn splice<R, I>(self: &mut Self, range: R, replacement: I) -> ArrayVecSplice<'_, A, core::iter::Fuse<<I as >::IntoIter>>` — [`ArrayVecSplice`](../index.md)
-
-- `fn swap_remove(self: &mut Self, index: usize) -> <A as >::Item` — [`Array`](../index.md)
-
-- `fn truncate(self: &mut Self, new_len: usize)`
-
-- `fn try_from_array_len(data: A, len: usize) -> Result<Self, A>`
+- `const fn from_array_empty(data: A) -> Self`
 
 #### Trait Implementations
 
@@ -228,7 +166,7 @@ assert_eq!(no_ints.len(), 0);
 
 ##### `impl<A: Array> PartialEq for ArrayVec<A>`
 
-- `fn eq(self: &Self, other: &&[<A as >::Item]) -> bool` — [`Array`](../index.md)
+- `fn eq(self: &Self, other: &Self) -> bool`
 
 ##### `impl<A: Array> PartialOrd for ArrayVec<A>`
 

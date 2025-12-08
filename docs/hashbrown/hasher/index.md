@@ -31,7 +31,7 @@ must be used to have a fully functional `HashMap` or `HashSet`.
 
 ##### `impl Clone for DefaultHashBuilder`
 
-- `fn clone(self: &Self) -> DefaultHashBuilder` — [`DefaultHashBuilder`](#defaulthashbuilder)
+- `fn clone(self: &Self) -> DefaultHashBuilder` — [`DefaultHashBuilder`](../index.md)
 
 ##### `impl Debug for DefaultHashBuilder`
 
@@ -39,7 +39,7 @@ must be used to have a fully functional `HashMap` or `HashSet`.
 
 ##### `impl Default for DefaultHashBuilder`
 
-- `fn default() -> DefaultHashBuilder` — [`DefaultHashBuilder`](#defaulthashbuilder)
+- `fn default() -> DefaultHashBuilder` — [`DefaultHashBuilder`](../index.md)
 
 ### `DefaultHasher`
 
@@ -55,7 +55,7 @@ Default hasher for [`HashMap`](crate::HashMap) and [`HashSet`](crate::HashSet).
 
 ##### `impl Clone for DefaultHasher`
 
-- `fn clone(self: &Self) -> DefaultHasher` — [`DefaultHasher`](#defaulthasher)
+- `fn clone(self: &Self) -> DefaultHasher` — [`DefaultHasher`](../index.md)
 
 ##### `impl Hasher for DefaultHasher`
 

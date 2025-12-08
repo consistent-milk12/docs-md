@@ -29,9 +29,21 @@ deserializing JSON data.
 
 #### Implementations
 
-- `fn syntax(code: ErrorCode, line: usize, column: usize) -> Self` — [`ErrorCode`](#errorcode)
+- `fn line(self: &Self) -> usize`
 
-- `fn fix_position<F>(self: Self, f: F) -> Self`
+- `fn column(self: &Self) -> usize`
+
+- `fn classify(self: &Self) -> Category` — [`Category`](#category)
+
+- `fn is_io(self: &Self) -> bool`
+
+- `fn is_syntax(self: &Self) -> bool`
+
+- `fn is_data(self: &Self) -> bool`
+
+- `fn is_eof(self: &Self) -> bool`
+
+- `fn io_error_kind(self: &Self) -> Option<ErrorKind>` — [`ErrorKind`](../io/index.md)
 
 #### Trait Implementations
 

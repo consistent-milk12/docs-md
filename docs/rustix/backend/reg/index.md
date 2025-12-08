@@ -159,7 +159,7 @@ once.
 
 - `fn decode_usize(self: Self) -> usize`
 
-- `fn decode_raw_fd(self: Self) -> RawFd`
+- `fn decode_raw_fd(self: Self) -> RawFd` — [`RawFd`](../../maybe_polyfill/os/fd/index.md)
 
 - `fn decode_c_int(self: Self) -> c::c_int`
 

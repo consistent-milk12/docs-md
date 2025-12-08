@@ -15,7 +15,7 @@ struct NonEmptyLines<'a>(&'a str);
 ```
 
 An iterator over the lines of a string, as tuples of string slice
-and [`LineEnding`](#lineending) value; it only emits non-empty lines (i.e. having
+and [`LineEnding`](../index.md) value; it only emits non-empty lines (i.e. having
 some content before the terminating `\r\n` or `\n`).
 
 This struct is used internally by the library.
@@ -81,7 +81,7 @@ endings are supported: `\r\n` and `\n`
 
 ##### `impl Clone for LineEnding`
 
-- `fn clone(self: &Self) -> LineEnding` — [`LineEnding`](#lineending)
+- `fn clone(self: &Self) -> LineEnding` — [`LineEnding`](../index.md)
 
 ##### `impl Copy for LineEnding`
 
@@ -93,7 +93,7 @@ endings are supported: `\r\n` and `\n`
 
 ##### `impl PartialEq for LineEnding`
 
-- `fn eq(self: &Self, other: &LineEnding) -> bool` — [`LineEnding`](#lineending)
+- `fn eq(self: &Self, other: &LineEnding) -> bool` — [`LineEnding`](../index.md)
 
 ##### `impl StructuralPartialEq for LineEnding`
 

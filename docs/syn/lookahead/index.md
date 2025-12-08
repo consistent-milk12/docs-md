@@ -72,7 +72,7 @@ impl Parse for GenericParam {
 
 - `fn peek<T: Peek>(self: &Self, token: T) -> bool`
 
-- `fn error(self: Self) -> Error` — [`Error`](../error/index.md)
+- `fn error(self: Self) -> Error` — [`Error`](../index.md)
 
 ### `CommaSeparated<'a>`
 
@@ -237,7 +237,7 @@ Ok(())
 
 ##### `impl Peek for End`
 
-##### `impl<T> Sealed for End`
+##### `impl Sealed for End`
 
 ##### `impl<T> Token for End`
 

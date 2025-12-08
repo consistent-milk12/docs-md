@@ -201,9 +201,51 @@ println!("{:?}", result);
 
 #### Implementations
 
-- `fn new(bytecode: R, encoding: Encoding) -> Self` — [`Encoding`](../../index.md)
+- `fn new_in(bytecode: R, encoding: Encoding) -> Self` — [`Encoding`](../../index.md)
 
-- `fn result(self: Self) -> Vec<Piece<R>>` — [`Piece`](../index.md)
+- `fn set_initial_value(self: &mut Self, value: u64)`
+
+- `fn set_object_address(self: &mut Self, value: u64)`
+
+- `fn set_max_iterations(self: &mut Self, value: u32)`
+
+- `fn pop(self: &mut Self) -> Result<Value>` — [`Result`](../../index.md), [`Value`](../index.md)
+
+- `fn push(self: &mut Self, value: Value) -> Result<()>` — [`Value`](../index.md), [`Result`](../../index.md)
+
+- `fn evaluate_one_operation(self: &mut Self) -> Result<OperationEvaluationResult<R>>` — [`Result`](../../index.md), [`OperationEvaluationResult`](#operationevaluationresult)
+
+- `fn value_result(self: &Self) -> Option<Value>` — [`Value`](../index.md)
+
+- `fn as_result(self: &Self) -> &[Piece<R>]` — [`Piece`](../index.md)
+
+- `fn evaluate(self: &mut Self) -> Result<EvaluationResult<R>>` — [`Result`](../../index.md), [`EvaluationResult`](../index.md)
+
+- `fn resume_with_memory(self: &mut Self, value: Value) -> Result<EvaluationResult<R>>` — [`Value`](../index.md), [`Result`](../../index.md), [`EvaluationResult`](../index.md)
+
+- `fn resume_with_register(self: &mut Self, value: Value) -> Result<EvaluationResult<R>>` — [`Value`](../index.md), [`Result`](../../index.md), [`EvaluationResult`](../index.md)
+
+- `fn resume_with_frame_base(self: &mut Self, frame_base: u64) -> Result<EvaluationResult<R>>` — [`Result`](../../index.md), [`EvaluationResult`](../index.md)
+
+- `fn resume_with_tls(self: &mut Self, value: u64) -> Result<EvaluationResult<R>>` — [`Result`](../../index.md), [`EvaluationResult`](../index.md)
+
+- `fn resume_with_call_frame_cfa(self: &mut Self, cfa: u64) -> Result<EvaluationResult<R>>` — [`Result`](../../index.md), [`EvaluationResult`](../index.md)
+
+- `fn resume_with_at_location(self: &mut Self, bytes: R) -> Result<EvaluationResult<R>>` — [`Result`](../../index.md), [`EvaluationResult`](../index.md)
+
+- `fn resume_with_entry_value(self: &mut Self, entry_value: Value) -> Result<EvaluationResult<R>>` — [`Value`](../index.md), [`Result`](../../index.md), [`EvaluationResult`](../index.md)
+
+- `fn resume_with_parameter_ref(self: &mut Self, parameter_value: u64) -> Result<EvaluationResult<R>>` — [`Result`](../../index.md), [`EvaluationResult`](../index.md)
+
+- `fn resume_with_relocated_address(self: &mut Self, address: u64) -> Result<EvaluationResult<R>>` — [`Result`](../../index.md), [`EvaluationResult`](../index.md)
+
+- `fn resume_with_indexed_address(self: &mut Self, address: u64) -> Result<EvaluationResult<R>>` — [`Result`](../../index.md), [`EvaluationResult`](../index.md)
+
+- `fn resume_with_base_type(self: &mut Self, base_type: ValueType) -> Result<EvaluationResult<R>>` — [`ValueType`](../index.md), [`Result`](../../index.md), [`EvaluationResult`](../index.md)
+
+- `fn end_of_expression(self: &mut Self) -> bool`
+
+- `fn evaluate_internal(self: &mut Self) -> Result<EvaluationResult<R>>` — [`Result`](../../index.md), [`EvaluationResult`](../index.md)
 
 #### Trait Implementations
 

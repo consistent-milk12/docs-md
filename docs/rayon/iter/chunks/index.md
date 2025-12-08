@@ -17,7 +17,7 @@ struct Chunks<I> {
 
 `Chunks` is an iterator that groups elements of an underlying iterator.
 
-This struct is created by the `chunks()` method on [`IndexedParallelIterator`](../index.md)
+This struct is created by the `chunks()` method on [`IndexedParallelIterator`](../../prelude/index.md)
 
 
 #### Implementations
@@ -28,7 +28,7 @@ This struct is created by the `chunks()` method on [`IndexedParallelIterator`](.
 
 ##### `impl<I: $crate::clone::Clone> Clone for Chunks<I>`
 
-- `fn clone(self: &Self) -> Chunks<I>` — [`Chunks`](#chunks)
+- `fn clone(self: &Self) -> Chunks<I>` — [`Chunks`](../index.md)
 
 ##### `impl<I: $crate::fmt::Debug> Debug for Chunks<I>`
 

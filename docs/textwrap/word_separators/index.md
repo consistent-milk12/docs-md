@@ -16,7 +16,7 @@ Japanese where there are no spaces between words. Breaking a long
 sequence of emojis is another example where line breaks might be
 wanted even if there are no whitespace to be found.
 
-The [`WordSeparator`](#wordseparator) enum is responsible for determining where
+The [`WordSeparator`](../index.md) enum is responsible for determining where
 there words are in a line of text. Please refer to the enum and
 its variants for more information.
 
@@ -148,7 +148,7 @@ assert_eq!(words, vec![Word::from("Hello "), Word::from("World!")]);
 
 ##### `impl Clone for WordSeparator`
 
-- `fn clone(self: &Self) -> WordSeparator` — [`WordSeparator`](#wordseparator)
+- `fn clone(self: &Self) -> WordSeparator` — [`WordSeparator`](../index.md)
 
 ##### `impl Copy for WordSeparator`
 

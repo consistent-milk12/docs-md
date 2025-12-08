@@ -104,7 +104,7 @@ fn blocking_wait(ready: &AtomicBool) {
 
 ##### `impl Default for Backoff`
 
-- `fn default() -> Backoff` — [`Backoff`](#backoff)
+- `fn default() -> Backoff` — [`Backoff`](../index.md)
 
 ## Constants
 

@@ -33,7 +33,7 @@ cache-line than thread-local data in terms of performance.
 
 #### Implementations
 
-- `unsafe fn delete(self: &Self, guard: &Guard)` — [`Guard`](../../guard/index.md)
+- `unsafe fn delete(self: &Self, guard: &Guard)` — [`Guard`](../../index.md)
 
 #### Trait Implementations
 
@@ -51,7 +51,7 @@ cache-line than thread-local data in terms of performance.
 
 - `type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../atomic/index.md)
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../index.md)
 
 - `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -84,9 +84,9 @@ A lock-free, intrusive linked list of type `T`.
 
 - `fn new() -> Self`
 
-- `unsafe fn insert<'g>(self: &'g Self, container: Shared<'g, T>, guard: &'g Guard)` — [`Shared`](../../atomic/index.md), [`Guard`](../../guard/index.md)
+- `unsafe fn insert<'g>(self: &'g Self, container: Shared<'g, T>, guard: &'g Guard)` — [`Shared`](../../index.md), [`Guard`](../../index.md)
 
-- `fn iter<'g>(self: &'g Self, guard: &'g Guard) -> Iter<'g, T, C>` — [`Guard`](../../guard/index.md), [`Iter`](#iter)
+- `fn iter<'g>(self: &'g Self, guard: &'g Guard) -> Iter<'g, T, C>` — [`Guard`](../../index.md), [`Iter`](#iter)
 
 #### Trait Implementations
 
@@ -104,7 +104,7 @@ A lock-free, intrusive linked list of type `T`.
 
 - `type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../atomic/index.md)
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../index.md)
 
 - `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -171,7 +171,7 @@ An iterator used for retrieving values from the list.
 
 - `type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../atomic/index.md)
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../index.md)
 
 - `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -214,7 +214,7 @@ An error that occurs during iteration over the list.
 
 - `type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../atomic/index.md)
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../../index.md)
 
 - `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 

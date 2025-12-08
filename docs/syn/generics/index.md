@@ -45,9 +45,9 @@ grammar, there may be other tokens in between these two things.
 
 - `fn const_params_mut(self: &mut Self) -> ConstParamsMut<'_>` — [`ConstParamsMut`](#constparamsmut)
 
-- `fn make_where_clause(self: &mut Self) -> &mut WhereClause` — [`WhereClause`](#whereclause)
+- `fn make_where_clause(self: &mut Self) -> &mut WhereClause` — [`WhereClause`](../index.md)
 
-- `fn split_for_impl(self: &Self) -> (ImplGenerics<'_>, TypeGenerics<'_>, Option<&WhereClause>)` — [`ImplGenerics`](#implgenerics), [`TypeGenerics`](#typegenerics), [`WhereClause`](#whereclause)
+- `fn split_for_impl(self: &Self) -> (ImplGenerics<'_>, TypeGenerics<'_>, Option<&WhereClause>)` — [`ImplGenerics`](../index.md), [`TypeGenerics`](../index.md), [`WhereClause`](../index.md)
 
 #### Trait Implementations
 
@@ -71,7 +71,7 @@ grammar, there may be other tokens in between these two things.
 
 ##### `impl Parse for crate::generics::Generics`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::Generics`
 
@@ -102,7 +102,7 @@ A lifetime definition: `'a: 'b + 'c + 'd`.
 
 #### Implementations
 
-- `fn new(lifetime: Lifetime) -> Self` — [`Lifetime`](../lifetime/index.md)
+- `fn new(lifetime: Lifetime) -> Self` — [`Lifetime`](../index.md)
 
 #### Trait Implementations
 
@@ -122,7 +122,7 @@ A lifetime definition: `'a: 'b + 'c + 'd`.
 
 ##### `impl Parse for crate::generics::LifetimeParam`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::LifetimeParam`
 
@@ -171,7 +171,7 @@ A generic type parameter: `T: Into<String>`.
 
 ##### `impl Parse for crate::generics::TypeParam`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::TypeParam`
 
@@ -221,7 +221,7 @@ A const generic parameter: `const LENGTH: usize`.
 
 ##### `impl Parse for crate::generics::ConstParam`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ConstParam`
 
@@ -417,7 +417,7 @@ Returned by `Generics::split_for_impl`.
 
 #### Implementations
 
-- `fn as_turbofish(self: &Self) -> Turbofish<'a>` — [`Turbofish`](#turbofish)
+- `fn as_turbofish(self: &Self) -> Turbofish<'a>` — [`Turbofish`](../index.md)
 
 #### Trait Implementations
 
@@ -522,7 +522,7 @@ A set of bound lifetimes: `for<'a, 'b, 'c>`.
 
 ##### `impl Parse for crate::generics::BoundLifetimes`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::BoundLifetimes`
 
@@ -563,7 +563,7 @@ A trait used as a bound on a type parameter.
 
 #### Implementations
 
-- `fn do_parse(input: ParseStream<'_>, allow_const: bool) -> Result<Option<Self>>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn do_parse(input: ParseStream<'_>, allow_const: bool) -> Result<Option<Self>>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 #### Trait Implementations
 
@@ -583,7 +583,7 @@ A trait used as a bound on a type parameter.
 
 ##### `impl Parse for crate::generics::TraitBound`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::TraitBound`
 
@@ -631,7 +631,7 @@ use<'a, T>`.
 
 ##### `impl Parse for crate::generics::PreciseCapture`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::PreciseCapture`
 
@@ -677,7 +677,7 @@ A `where` clause in a definition: `where T: Deserialize<'de>, D:
 
 ##### `impl Parse for crate::generics::WhereClause`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::WhereClause`
 
@@ -844,7 +844,7 @@ This type is a [syntax tree enum].
 
 ##### `impl Parse for crate::generics::GenericParam`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::GenericParam`
 
@@ -875,9 +875,9 @@ A trait or lifetime used as a bound on a type parameter.
 
 #### Implementations
 
-- `fn parse_single(input: ParseStream<'_>, allow_precise_capture: bool, allow_const: bool) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse_single(input: ParseStream<'_>, allow_precise_capture: bool, allow_const: bool) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
-- `fn parse_multiple(input: ParseStream<'_>, allow_plus: bool, allow_precise_capture: bool, allow_const: bool) -> Result<Punctuated<Self, $crate::token::Plus>>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md), [`Punctuated`](../punctuated/index.md), [`Plus`](../token/index.md)
+- `fn parse_multiple(input: ParseStream<'_>, allow_plus: bool, allow_precise_capture: bool, allow_const: bool) -> Result<Punctuated<Self, $crate::token::Plus>>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md), [`Punctuated`](../punctuated/index.md), [`Plus`](../token/index.md)
 
 #### Trait Implementations
 
@@ -897,7 +897,7 @@ A trait or lifetime used as a bound on a type parameter.
 
 ##### `impl Parse for crate::generics::TypeParamBound`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::TypeParamBound`
 
@@ -945,7 +945,7 @@ A modifier on a trait bound, currently only used for the `?` in
 
 ##### `impl Parse for crate::generics::TraitBoundModifier`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::TraitBoundModifier`
 
@@ -1003,7 +1003,7 @@ Single parameter in a precise capturing bound.
 
 ##### `impl Parse for crate::generics::CapturedParam`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::CapturedParam`
 
@@ -1063,7 +1063,7 @@ This type is a [syntax tree enum].
 
 ##### `impl Parse for crate::generics::WherePredicate`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::WherePredicate`
 

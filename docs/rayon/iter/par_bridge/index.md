@@ -17,13 +17,13 @@ struct IterBridge<Iter> {
 `IterBridge` is a parallel iterator that wraps a sequential iterator.
 
 This type is created when using the `par_bridge` method on `ParallelBridge`. See the
-[`ParallelBridge`](#parallelbridge) documentation for details.
+[`ParallelBridge`](../../prelude/index.md) documentation for details.
 
 #### Trait Implementations
 
 ##### `impl<Iter: $crate::clone::Clone> Clone for IterBridge<Iter>`
 
-- `fn clone(self: &Self) -> IterBridge<Iter>` — [`IterBridge`](#iterbridge)
+- `fn clone(self: &Self) -> IterBridge<Iter>` — [`IterBridge`](../index.md)
 
 ##### `impl<Iter: $crate::fmt::Debug> Debug for IterBridge<Iter>`
 

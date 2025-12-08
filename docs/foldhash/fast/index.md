@@ -27,7 +27,7 @@ most likely want to use [`RandomState`](#randomstate), [`SeedableRandomState`](#
 
 #### Implementations
 
-- `const fn with_seed(per_hasher_seed: u64, shared_seed: &'a SharedSeed) -> FoldHasher<'a>` — [`SharedSeed`](../seed/index.md), [`FoldHasher`](#foldhasher)
+- `const fn with_seed(per_hasher_seed: u64, shared_seed: &'a SharedSeed) -> FoldHasher<'a>` — [`SharedSeed`](../index.md), [`FoldHasher`](#foldhasher)
 
 - `fn write_num<T: Into<u128>>(self: &mut Self, x: T)`
 
@@ -107,7 +107,7 @@ has a size of 16 bytes rather than the 8 bytes [`RandomState`](#randomstate) is.
 
 - `fn fixed() -> Self`
 
-- `fn with_seed(per_hasher_seed: u64, shared_seed: &'static SharedSeed) -> Self` — [`SharedSeed`](../seed/index.md)
+- `fn with_seed(per_hasher_seed: u64, shared_seed: &'static SharedSeed) -> Self` — [`SharedSeed`](../index.md)
 
 #### Trait Implementations
 

@@ -6,7 +6,7 @@
 
 Search index generation for multi-crate documentation.
 
-This module provides [`SearchIndexGenerator`](#searchindexgenerator) which creates a JSON search index
+This module provides [`SearchIndexGenerator`](../../index.md) which creates a JSON search index
 containing all documented items across multiple crates. The index can be used
 with client-side search libraries like Fuse.js, Lunr.js, or `FlexSearch`.
 
@@ -179,7 +179,7 @@ struct SearchIndexGenerator<'a> {
 
 Generator for multi-crate search indices.
 
-Traverses all crates in a [`CrateCollection`](../collection/index.md) and builds a comprehensive
+Traverses all crates in a [`CrateCollection`](../../index.md) and builds a comprehensive
 search index of all public items (or all items if `include_private` is set).
 
 # Example
@@ -213,9 +213,9 @@ generator.write(Path::new("docs/"))?;
 
 #### Implementations
 
-- `const fn new(crates: &'a CrateCollection, include_private: bool, rendered_items: HashMap<String, HashSet<Id>>) -> Self` — [`CrateCollection`](../collection/index.md)
+- `const fn new(crates: &'a CrateCollection, include_private: bool, rendered_items: HashMap<String, HashSet<Id>>) -> Self` — [`CrateCollection`](../../index.md)
 
-- `fn generate(self: &Self) -> SearchIndex` — [`SearchIndex`](#searchindex)
+- `fn generate(self: &Self) -> SearchIndex` — [`SearchIndex`](../../index.md)
 
 - `fn write(self: &Self, output_dir: &Path) -> std::io::Result<()>`
 

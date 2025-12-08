@@ -17,7 +17,7 @@ struct Zip<A, B> {
 
 `Zip` is an iterator that zips up `a` and `b` into a single iterator
 of pairs. This struct is created by the `zip()` method on
-[`IndexedParallelIterator`](../index.md)
+[`IndexedParallelIterator`](../../prelude/index.md)
 
 
 #### Implementations
@@ -28,7 +28,7 @@ of pairs. This struct is created by the `zip()` method on
 
 ##### `impl<A: $crate::clone::Clone, B: $crate::clone::Clone> Clone for Zip<A, B>`
 
-- `fn clone(self: &Self) -> Zip<A, B>` — [`Zip`](#zip)
+- `fn clone(self: &Self) -> Zip<A, B>` — [`Zip`](../index.md)
 
 ##### `impl<A: $crate::fmt::Debug, B: $crate::fmt::Debug> Debug for Zip<A, B>`
 

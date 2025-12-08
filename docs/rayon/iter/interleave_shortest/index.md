@@ -19,7 +19,7 @@ struct InterleaveShortest<I, J> {
 of the iterators run out.
 
 This struct is created by the `interleave_shortest()` method on
-[`IndexedParallelIterator`](../index.md).
+[`IndexedParallelIterator`](../../prelude/index.md).
 
 
 #### Implementations
@@ -30,7 +30,7 @@ This struct is created by the `interleave_shortest()` method on
 
 ##### `impl<I: $crate::clone::Clone, J: $crate::clone::Clone> Clone for InterleaveShortest<I, J>`
 
-- `fn clone(self: &Self) -> InterleaveShortest<I, J>` — [`InterleaveShortest`](#interleaveshortest)
+- `fn clone(self: &Self) -> InterleaveShortest<I, J>` — [`InterleaveShortest`](../index.md)
 
 ##### `impl<I: $crate::fmt::Debug, J: $crate::fmt::Debug> Debug for InterleaveShortest<I, J>`
 

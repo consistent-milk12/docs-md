@@ -200,55 +200,17 @@ It is also possible to implement your own version of `try_find`. See the
 
 #### Implementations
 
-- `const DEAD: StateID`
+- `fn new<I, P>(patterns: I) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../../index.md)
 
-- `const FAIL: StateID`
-
-- `fn byte_classes(self: &Self) -> &ByteClasses` — [`ByteClasses`](../../util/alphabet/index.md)
-
-- `fn pattern_lens_raw(self: &Self) -> &[SmallIndex]` — [`SmallIndex`](../../util/primitives/index.md)
-
-- `fn states(self: &Self) -> &[State]` — [`State`](#state)
-
-- `fn special(self: &Self) -> &Special` — [`Special`](../../util/special/index.md)
-
-- `fn swap_states(self: &mut Self, id1: StateID, id2: StateID)` — [`StateID`](../../util/primitives/index.md)
-
-- `fn remap(self: &mut Self, map: impl Fn(StateID) -> StateID)` — [`StateID`](../../util/primitives/index.md)
-
-- `fn iter_trans(self: &Self, sid: StateID) -> impl Iterator<Item = Transition> + '_` — [`StateID`](../../util/primitives/index.md), [`Transition`](#transition)
-
-- `fn iter_matches(self: &Self, sid: StateID) -> impl Iterator<Item = PatternID> + '_` — [`StateID`](../../util/primitives/index.md), [`PatternID`](../../util/primitives/index.md)
-
-- `fn next_link(self: &Self, sid: StateID, prev: Option<StateID>) -> Option<StateID>` — [`StateID`](../../util/primitives/index.md)
-
-- `fn follow_transition(self: &Self, sid: StateID, byte: u8) -> StateID` — [`StateID`](../../util/primitives/index.md)
-
-- `fn follow_transition_sparse(self: &Self, sid: StateID, byte: u8) -> StateID` — [`StateID`](../../util/primitives/index.md)
-
-- `fn add_transition(self: &mut Self, prev: StateID, byte: u8, next: StateID) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](../../util/error/index.md)
-
-- `fn init_full_state(self: &mut Self, prev: StateID, next: StateID) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](../../util/error/index.md)
-
-- `fn add_match(self: &mut Self, sid: StateID, pid: PatternID) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md), [`PatternID`](../../util/primitives/index.md), [`BuildError`](../../util/error/index.md)
-
-- `fn copy_matches(self: &mut Self, src: StateID, dst: StateID) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](../../util/error/index.md)
-
-- `fn alloc_transition(self: &mut Self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](../../util/error/index.md)
-
-- `fn alloc_match(self: &mut Self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](../../util/error/index.md)
-
-- `fn alloc_dense_state(self: &mut Self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](../../util/error/index.md)
-
-- `fn alloc_state(self: &mut Self, depth: usize) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](../../util/error/index.md)
+- `fn builder() -> Builder` — [`Builder`](#builder)
 
 #### Trait Implementations
 
 ##### `impl Automaton for NFA`
 
-- `fn start_state(self: &Self, anchored: Anchored) -> Result<StateID, MatchError>` — [`Anchored`](../../util/search/index.md), [`StateID`](../../util/primitives/index.md), [`MatchError`](../../util/error/index.md)
+- `fn start_state(self: &Self, anchored: Anchored) -> Result<StateID, MatchError>` — [`Anchored`](../../index.md), [`StateID`](../../util/primitives/index.md), [`MatchError`](../../index.md)
 
-- `fn next_state(self: &Self, anchored: Anchored, sid: StateID, byte: u8) -> StateID` — [`Anchored`](../../util/search/index.md), [`StateID`](../../util/primitives/index.md)
+- `fn next_state(self: &Self, anchored: Anchored, sid: StateID, byte: u8) -> StateID` — [`Anchored`](../../index.md), [`StateID`](../../util/primitives/index.md)
 
 - `fn is_special(self: &Self, sid: StateID) -> bool` — [`StateID`](../../util/primitives/index.md)
 
@@ -258,11 +220,11 @@ It is also possible to implement your own version of `try_find`. See the
 
 - `fn is_start(self: &Self, sid: StateID) -> bool` — [`StateID`](../../util/primitives/index.md)
 
-- `fn match_kind(self: &Self) -> MatchKind` — [`MatchKind`](../../util/search/index.md)
+- `fn match_kind(self: &Self) -> MatchKind` — [`MatchKind`](../../index.md)
 
 - `fn patterns_len(self: &Self) -> usize`
 
-- `fn pattern_len(self: &Self, pid: PatternID) -> usize` — [`PatternID`](../../util/primitives/index.md)
+- `fn pattern_len(self: &Self, pid: PatternID) -> usize` — [`PatternID`](../../index.md)
 
 - `fn min_pattern_len(self: &Self) -> usize`
 
@@ -270,7 +232,7 @@ It is also possible to implement your own version of `try_find`. See the
 
 - `fn match_len(self: &Self, sid: StateID) -> usize` — [`StateID`](../../util/primitives/index.md)
 
-- `fn match_pattern(self: &Self, sid: StateID, index: usize) -> PatternID` — [`StateID`](../../util/primitives/index.md), [`PatternID`](../../util/primitives/index.md)
+- `fn match_pattern(self: &Self, sid: StateID, index: usize) -> PatternID` — [`StateID`](../../util/primitives/index.md), [`PatternID`](../../index.md)
 
 - `fn memory_usage(self: &Self) -> usize`
 
@@ -428,7 +390,7 @@ A single match in a non-contiguous NFA.
 
 #### Implementations
 
-- `fn pattern(self: &Self) -> PatternID` — [`PatternID`](../../util/primitives/index.md)
+- `fn pattern(self: &Self) -> PatternID` — [`PatternID`](../../index.md)
 
 - `fn link(self: &Self) -> StateID` — [`StateID`](../../util/primitives/index.md)
 
@@ -469,9 +431,9 @@ their behavior is identical.
 
 - `fn new() -> Builder` — [`Builder`](#builder)
 
-- `fn build<I, P>(self: &Self, patterns: I) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../../util/error/index.md)
+- `fn build<I, P>(self: &Self, patterns: I) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../../index.md)
 
-- `fn match_kind(self: &mut Self, kind: MatchKind) -> &mut Builder` — [`MatchKind`](../../util/search/index.md), [`Builder`](#builder)
+- `fn match_kind(self: &mut Self, kind: MatchKind) -> &mut Builder` — [`MatchKind`](../../index.md), [`Builder`](#builder)
 
 - `fn ascii_case_insensitive(self: &mut Self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 
@@ -511,29 +473,29 @@ searching.
 
 #### Implementations
 
-- `fn new(builder: &'a Builder) -> Result<Compiler<'a>, BuildError>` — [`Builder`](#builder), [`Compiler`](#compiler), [`BuildError`](../../util/error/index.md)
+- `fn new(builder: &'a Builder) -> Result<Compiler<'a>, BuildError>` — [`Builder`](#builder), [`Compiler`](#compiler), [`BuildError`](../../index.md)
 
-- `fn compile<I, P>(self: Self, patterns: I) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../../util/error/index.md)
+- `fn compile<I, P>(self: Self, patterns: I) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../../index.md)
 
-- `fn build_trie<I, P>(self: &mut Self, patterns: I) -> Result<(), BuildError>` — [`BuildError`](../../util/error/index.md)
+- `fn build_trie<I, P>(self: &mut Self, patterns: I) -> Result<(), BuildError>` — [`BuildError`](../../index.md)
 
-- `fn fill_failure_transitions(self: &mut Self) -> Result<(), BuildError>` — [`BuildError`](../../util/error/index.md)
+- `fn fill_failure_transitions(self: &mut Self) -> Result<(), BuildError>` — [`BuildError`](../../index.md)
 
 - `fn shuffle(self: &mut Self)`
 
-- `fn densify(self: &mut Self) -> Result<(), BuildError>` — [`BuildError`](../../util/error/index.md)
+- `fn densify(self: &mut Self) -> Result<(), BuildError>` — [`BuildError`](../../index.md)
 
 - `fn queued_set(self: &Self) -> QueuedSet` — [`QueuedSet`](#queuedset)
 
-- `fn init_unanchored_start_state(self: &mut Self) -> Result<(), BuildError>` — [`BuildError`](../../util/error/index.md)
+- `fn init_unanchored_start_state(self: &mut Self) -> Result<(), BuildError>` — [`BuildError`](../../index.md)
 
-- `fn set_anchored_start_state(self: &mut Self) -> Result<(), BuildError>` — [`BuildError`](../../util/error/index.md)
+- `fn set_anchored_start_state(self: &mut Self) -> Result<(), BuildError>` — [`BuildError`](../../index.md)
 
 - `fn add_unanchored_start_state_loop(self: &mut Self)`
 
 - `fn close_start_state_loop_for_leftmost(self: &mut Self)`
 
-- `fn add_dead_state_loop(self: &mut Self) -> Result<(), BuildError>` — [`BuildError`](../../util/error/index.md)
+- `fn add_dead_state_loop(self: &mut Self) -> Result<(), BuildError>` — [`BuildError`](../../index.md)
 
 #### Trait Implementations
 

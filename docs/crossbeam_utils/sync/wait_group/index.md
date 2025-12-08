@@ -66,7 +66,7 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 
 ##### `impl Clone for WaitGroup`
 
-- `fn clone(self: &Self) -> WaitGroup` — [`WaitGroup`](#waitgroup)
+- `fn clone(self: &Self) -> WaitGroup` — [`WaitGroup`](../index.md)
 
 ##### `impl Debug for WaitGroup`
 

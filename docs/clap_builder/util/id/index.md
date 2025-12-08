@@ -30,7 +30,7 @@ relationships between `Arg`s and `ArgGroup`s with functions like
 
 - `fn as_str(self: &Self) -> &str`
 
-- `fn as_internal_str(self: &Self) -> &Str` — [`Str`](../../builder/str/index.md)
+- `fn as_internal_str(self: &Self) -> &Str` — [`Str`](../../builder/index.md)
 
 #### Trait Implementations
 
@@ -40,7 +40,7 @@ relationships between `Arg`s and `ArgGroup`s with functions like
 
 ##### `impl Clone for Id`
 
-- `fn clone(self: &Self) -> Id` — [`Id`](#id)
+- `fn clone(self: &Self) -> Id` — [`Id`](../../index.md)
 
 ##### `impl Debug for Id`
 
@@ -48,7 +48,7 @@ relationships between `Arg`s and `ArgGroup`s with functions like
 
 ##### `impl Default for Id`
 
-- `fn default() -> Id` — [`Id`](#id)
+- `fn default() -> Id` — [`Id`](../../index.md)
 
 ##### `impl Display for Id`
 
@@ -62,19 +62,19 @@ relationships between `Arg`s and `ArgGroup`s with functions like
 
 ##### `impl<I> IntoResettable for Id`
 
-- `fn into_resettable(self: Self) -> Resettable<String>` — [`Resettable`](../../builder/resettable/index.md)
+- `fn into_resettable(self: Self) -> Resettable<String>` — [`Resettable`](../../builder/index.md)
 
 ##### `impl Ord for Id`
 
-- `fn cmp(self: &Self, other: &Id) -> $crate::cmp::Ordering` — [`Id`](#id)
+- `fn cmp(self: &Self, other: &Id) -> $crate::cmp::Ordering` — [`Id`](../../index.md)
 
 ##### `impl PartialEq for Id`
 
-- `fn eq(self: &Self, other: &Id) -> bool` — [`Id`](#id)
+- `fn eq(self: &Self, other: &Str) -> bool` — [`Str`](../../builder/index.md)
 
 ##### `impl PartialOrd for Id`
 
-- `fn partial_cmp(self: &Self, other: &Id) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Id`](#id)
+- `fn partial_cmp(self: &Self, other: &Id) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Id`](../../index.md)
 
 ##### `impl StructuralPartialEq for Id`
 

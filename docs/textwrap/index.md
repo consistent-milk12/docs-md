@@ -19,8 +19,8 @@ assert_eq!(textwrap::wrap(text, 18),
 }
 ```
 
-The [`wrap()`](wrap/index.md) function returns the individual lines, use
-[`fill()`](fill/index.md) is you want the lines joined with `'\n'` to form a
+The [`wrap()`](#wrap) function returns the individual lines, use
+[`fill()`](#fill) is you want the lines joined with `'\n'` to form a
 `String`.
 
 If you enable the `hyphenation` Cargo feature, you can get
@@ -41,7 +41,7 @@ assert_eq!(wrap(text, &options),
 }
 ```
 
-See also the [`unfill()`](refill/index.md) and [`refill()`](refill/index.md) functions which allow
+See also the [`unfill()`](#unfill) and [`refill()`](#refill) functions which allow
 you to manipulate already wrapped text.
 
 ## Wrapping Strings at Compile Time
@@ -73,7 +73,7 @@ default).
 
 The textwrap library also offers functions for adding a prefix to
 every line of a string and to remove leading whitespace. As an
-example, [`indent()`](indentation/index.md) allows you to turn lines of text into a
+example, [`indent()`](#indent) allows you to turn lines of text into a
 bullet list:
 
 ```rust
@@ -90,7 +90,7 @@ let after = "\
 assert_eq!(textwrap::indent(before, "* "), after);
 ```
 
-Removing leading whitespace is done with [`dedent()`](indentation/index.md):
+Removing leading whitespace is done with [`dedent()`](#dedent):
 
 ```rust
 let before = "
@@ -129,7 +129,7 @@ These features are enabled by default:
   This feature can be disabled if you are happy to find words
   separated by ASCII space characters only. People wrapping text
   with emojis or East-Asian characters will want most likely want
-  to enable this feature. See [`WordSeparator`](word_separators/index.md) for details.
+  to enable this feature. See [`WordSeparator`](#wordseparator) for details.
 
 * `unicode-width`: enables correct width computation of non-ASCII
   characters via the [unicode-width] crate. Without this feature,
@@ -184,7 +184,7 @@ These Cargo features enable new functionality:
   `Options::with_termwidth()` for details.
 
 * `hyphenation`: enables language-sensitive hyphenation via the
-  [hyphenation] crate. See the [`word_splitters::WordSplitter`](word_splitters/index.md)
+  [hyphenation] crate. See the [`word_splitters::WordSplitter`](#word-splitterswordsplitter)
   trait for details.
 
 
@@ -256,11 +256,11 @@ Holds configuration options for wrapping and filling text.
 - **`wrap_algorithm`**: `crate::WrapAlgorithm`
 
   Wrapping algorithm to use, see the implementations of the
-  [`WrapAlgorithm`](wrap_algorithms/index.md) trait for details.
+  [`WrapAlgorithm`](#wrapalgorithm) trait for details.
 
 - **`word_separator`**: `crate::WordSeparator`
 
-  The line breaking algorithm to use, see the [`WordSeparator`](word_separators/index.md)
+  The line breaking algorithm to use, see the [`WordSeparator`](#wordseparator)
   trait for an overview and possible implementations.
 
 - **`word_splitter`**: `crate::WordSplitter`
@@ -273,7 +273,7 @@ Holds configuration options for wrapping and filling text.
 
 - `const fn new(width: usize) -> Self`
 
-- `fn line_ending(self: Self, line_ending: LineEnding) -> Self` — [`LineEnding`](line_ending/index.md)
+- `fn line_ending(self: Self, line_ending: LineEnding) -> Self` — [`LineEnding`](#lineending)
 
 - `fn width(self: Self, width: usize) -> Self`
 
@@ -283,17 +283,17 @@ Holds configuration options for wrapping and filling text.
 
 - `fn break_words(self: Self, break_words: bool) -> Self`
 
-- `fn word_separator(self: Self, word_separator: WordSeparator) -> Options<'a>` — [`WordSeparator`](word_separators/index.md), [`Options`](options/index.md)
+- `fn word_separator(self: Self, word_separator: WordSeparator) -> Options<'a>` — [`WordSeparator`](#wordseparator), [`Options`](#options)
 
-- `fn wrap_algorithm(self: Self, wrap_algorithm: WrapAlgorithm) -> Options<'a>` — [`WrapAlgorithm`](wrap_algorithms/index.md), [`Options`](options/index.md)
+- `fn wrap_algorithm(self: Self, wrap_algorithm: WrapAlgorithm) -> Options<'a>` — [`WrapAlgorithm`](#wrapalgorithm), [`Options`](#options)
 
-- `fn word_splitter(self: Self, word_splitter: WordSplitter) -> Options<'a>` — [`WordSplitter`](word_splitters/index.md), [`Options`](options/index.md)
+- `fn word_splitter(self: Self, word_splitter: WordSplitter) -> Options<'a>` — [`WordSplitter`](#wordsplitter), [`Options`](#options)
 
 #### Trait Implementations
 
 ##### `impl<'a> Clone for Options<'a>`
 
-- `fn clone(self: &Self) -> Options<'a>` — [`Options`](options/index.md)
+- `fn clone(self: &Self) -> Options<'a>` — [`Options`](#options)
 
 ##### `impl<'a> Debug for Options<'a>`
 
@@ -334,7 +334,7 @@ endings are supported: `\r\n` and `\n`
 
 ##### `impl Clone for LineEnding`
 
-- `fn clone(self: &Self) -> LineEnding` — [`LineEnding`](line_ending/index.md)
+- `fn clone(self: &Self) -> LineEnding` — [`LineEnding`](#lineending)
 
 ##### `impl Copy for LineEnding`
 
@@ -346,7 +346,7 @@ endings are supported: `\r\n` and `\n`
 
 ##### `impl PartialEq for LineEnding`
 
-- `fn eq(self: &Self, other: &LineEnding) -> bool` — [`LineEnding`](line_ending/index.md)
+- `fn eq(self: &Self, other: &LineEnding) -> bool` — [`LineEnding`](#lineending)
 
 ##### `impl StructuralPartialEq for LineEnding`
 
@@ -476,7 +476,7 @@ assert_eq!(words, vec![Word::from("Hello "), Word::from("World!")]);
 
 ##### `impl Clone for WordSeparator`
 
-- `fn clone(self: &Self) -> WordSeparator` — [`WordSeparator`](word_separators/index.md)
+- `fn clone(self: &Self) -> WordSeparator` — [`WordSeparator`](#wordseparator)
 
 ##### `impl Copy for WordSeparator`
 
@@ -589,7 +589,7 @@ details.
 
 ##### `impl Clone for WordSplitter`
 
-- `fn clone(self: &Self) -> WordSplitter` — [`WordSplitter`](word_splitters/index.md)
+- `fn clone(self: &Self) -> WordSplitter` — [`WordSplitter`](#wordsplitter)
 
 ##### `impl Debug for WordSplitter`
 
@@ -597,7 +597,7 @@ details.
 
 ##### `impl PartialEq for WordSplitter`
 
-- `fn eq(self: &Self, other: &WordSplitter) -> bool` — [`WordSplitter`](word_splitters/index.md)
+- `fn eq(self: &Self, other: &WordSplitter) -> bool` — [`WordSplitter`](#wordsplitter)
 
 ### `WrapAlgorithm`
 
@@ -670,7 +670,7 @@ an entire paragraph at a time in order to find optimal line breaks
 
 ##### `impl Clone for WrapAlgorithm`
 
-- `fn clone(self: &Self) -> WrapAlgorithm` — [`WrapAlgorithm`](wrap_algorithms/index.md)
+- `fn clone(self: &Self) -> WrapAlgorithm` — [`WrapAlgorithm`](#wrapalgorithm)
 
 ##### `impl Copy for WrapAlgorithm`
 

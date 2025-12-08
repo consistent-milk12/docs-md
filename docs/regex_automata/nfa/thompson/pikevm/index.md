@@ -122,17 +122,17 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - `fn new() -> Builder` — [`Builder`](#builder)
 
-- `fn build(self: &Self, pattern: &str) -> Result<PikeVM, BuildError>` — [`PikeVM`](#pikevm), [`BuildError`](../error/index.md)
+- `fn build(self: &Self, pattern: &str) -> Result<PikeVM, BuildError>` — [`PikeVM`](#pikevm), [`BuildError`](../index.md)
 
-- `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<PikeVM, BuildError>` — [`PikeVM`](#pikevm), [`BuildError`](../error/index.md)
+- `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<PikeVM, BuildError>` — [`PikeVM`](#pikevm), [`BuildError`](../index.md)
 
-- `fn build_from_nfa(self: &Self, nfa: NFA) -> Result<PikeVM, BuildError>` — [`NFA`](../nfa/index.md), [`PikeVM`](#pikevm), [`BuildError`](../error/index.md)
+- `fn build_from_nfa(self: &Self, nfa: NFA) -> Result<PikeVM, BuildError>` — [`NFA`](../index.md), [`PikeVM`](#pikevm), [`BuildError`](../index.md)
 
 - `fn configure(self: &mut Self, config: Config) -> &mut Builder` — [`Config`](#config), [`Builder`](#builder)
 
 - `fn syntax(self: &mut Self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../../util/syntax/index.md), [`Builder`](#builder)
 
-- `fn thompson(self: &mut Self, config: thompson::Config) -> &mut Builder` — [`Config`](../compiler/index.md), [`Builder`](#builder)
+- `fn thompson(self: &mut Self, config: thompson::Config) -> &mut Builder` — [`Config`](../index.md), [`Builder`](#builder)
 
 #### Trait Implementations
 
@@ -222,7 +222,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - `fn search(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures)` — [`Cache`](#cache), [`Input`](../../../index.md), [`Captures`](../../../util/captures/index.md)
 
-- `fn search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](#cache), [`Input`](../../../index.md), [`NonMaxUsize`](../../../util/primitives/index.md), [`PatternID`](../../../util/primitives/index.md)
+- `fn search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](#cache), [`Input`](../../../index.md), [`NonMaxUsize`](../../../util/primitives/index.md), [`PatternID`](../../../index.md)
 
 - `fn search_slots_imp(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<HalfMatch>` — [`Cache`](#cache), [`Input`](../../../index.md), [`NonMaxUsize`](../../../util/primitives/index.md), [`HalfMatch`](../../../index.md)
 

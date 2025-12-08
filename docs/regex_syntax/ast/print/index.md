@@ -129,9 +129,9 @@ struct Writer<W> {
 
 - `fn visit_alternation_in(self: &mut Self) -> fmt::Result`
 
-- `fn visit_class_set_item_pre(self: &mut Self, ast: &ast::ClassSetItem) -> Result<(), <Self as >::Err>` — [`ClassSetItem`](../index.md), [`Visitor`](../visitor/index.md)
+- `fn visit_class_set_item_pre(self: &mut Self, ast: &ast::ClassSetItem) -> Result<(), <Self as >::Err>` — [`ClassSetItem`](../index.md), [`Visitor`](../index.md)
 
-- `fn visit_class_set_item_post(self: &mut Self, ast: &ast::ClassSetItem) -> Result<(), <Self as >::Err>` — [`ClassSetItem`](../index.md), [`Visitor`](../visitor/index.md)
+- `fn visit_class_set_item_post(self: &mut Self, ast: &ast::ClassSetItem) -> Result<(), <Self as >::Err>` — [`ClassSetItem`](../index.md), [`Visitor`](../index.md)
 
-- `fn visit_class_set_binary_op_in(self: &mut Self, ast: &ast::ClassSetBinaryOp) -> Result<(), <Self as >::Err>` — [`ClassSetBinaryOp`](../index.md), [`Visitor`](../visitor/index.md)
+- `fn visit_class_set_binary_op_in(self: &mut Self, ast: &ast::ClassSetBinaryOp) -> Result<(), <Self as >::Err>` — [`ClassSetBinaryOp`](../index.md), [`Visitor`](../index.md)
 

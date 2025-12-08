@@ -48,13 +48,13 @@ An error that occurred during parsing or compiling a regular expression.
 
 #### Implementations
 
-- `fn from_meta_build_error(err: meta::BuildError) -> Error` — [`Error`](#error)
+- `fn from_meta_build_error(err: meta::BuildError) -> Error` — [`Error`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Error`
 
-- `fn clone(self: &Self) -> Error` — [`Error`](#error)
+- `fn clone(self: &Self) -> Error` — [`Error`](../index.md)
 
 ##### `impl Debug for Error`
 
@@ -70,7 +70,7 @@ An error that occurred during parsing or compiling a regular expression.
 
 ##### `impl PartialEq for Error`
 
-- `fn eq(self: &Self, other: &Error) -> bool` — [`Error`](#error)
+- `fn eq(self: &Self, other: &Error) -> bool` — [`Error`](../index.md)
 
 ##### `impl StructuralPartialEq for Error`
 

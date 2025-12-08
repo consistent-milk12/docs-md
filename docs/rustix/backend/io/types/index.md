@@ -12,51 +12,13 @@
 struct FdFlags(<FdFlags as $crate::__private::PublicFlags>::Internal);
 ```
 
-`FD_*` constants for use with [`fcntl_getfd`](../../../io/index.md) and [`fcntl_setfd`](../../../io/index.md).
+`FD_*` constants for use with [`fcntl_getfd`](../../../io/index.md) and [`fcntl_setfd`](../syscalls/index.md).
 
 
 
 #### Implementations
 
-- `const fn empty() -> Self`
-
-- `const fn all() -> Self`
-
-- `const fn bits(self: &Self) -> ffi::c_uint`
-
-- `const fn from_bits(bits: ffi::c_uint) -> $crate::__private::core::option::Option<Self>`
-
-- `const fn from_bits_truncate(bits: ffi::c_uint) -> Self`
-
-- `const fn from_bits_retain(bits: ffi::c_uint) -> Self`
-
-- `fn from_name(name: &str) -> $crate::__private::core::option::Option<Self>`
-
-- `const fn is_empty(self: &Self) -> bool`
-
-- `const fn is_all(self: &Self) -> bool`
-
-- `const fn intersects(self: &Self, other: Self) -> bool`
-
-- `const fn contains(self: &Self, other: Self) -> bool`
-
-- `fn insert(self: &mut Self, other: Self)`
-
-- `fn remove(self: &mut Self, other: Self)`
-
-- `fn toggle(self: &mut Self, other: Self)`
-
-- `fn set(self: &mut Self, other: Self, value: bool)`
-
-- `const fn intersection(self: Self, other: Self) -> Self`
-
-- `const fn union(self: Self, other: Self) -> Self`
-
-- `const fn difference(self: Self, other: Self) -> Self`
-
-- `const fn symmetric_difference(self: Self, other: Self) -> Self`
-
-- `const fn complement(self: Self) -> Self`
+- `const CLOEXEC: Self`
 
 #### Trait Implementations
 
@@ -78,7 +40,7 @@ struct FdFlags(<FdFlags as $crate::__private::PublicFlags>::Internal);
 
 - `type Output = FdFlags`
 
-- `fn bitor(self: Self, other: FdFlags) -> Self` — [`FdFlags`](#fdflags)
+- `fn bitor(self: Self, other: FdFlags) -> Self` — [`FdFlags`](../../../io/fcntl/index.md)
 
 ##### `impl BitOrAssign for FdFlags`
 
@@ -96,7 +58,7 @@ struct FdFlags(<FdFlags as $crate::__private::PublicFlags>::Internal);
 
 ##### `impl Clone for FdFlags`
 
-- `fn clone(self: &Self) -> FdFlags` — [`FdFlags`](#fdflags)
+- `fn clone(self: &Self) -> FdFlags` — [`FdFlags`](../../../io/fcntl/index.md)
 
 ##### `impl Copy for FdFlags`
 
@@ -116,9 +78,9 @@ struct FdFlags(<FdFlags as $crate::__private::PublicFlags>::Internal);
 
 - `type Bits = u32`
 
-- `fn bits(self: &Self) -> ffi::c_uint`
+- `fn bits(self: &Self) -> ffi::c_uint` — [`c_uint`](../../../ffi/index.md)
 
-- `fn from_bits_retain(bits: ffi::c_uint) -> FdFlags` — [`FdFlags`](#fdflags)
+- `fn from_bits_retain(bits: ffi::c_uint) -> FdFlags` — [`c_uint`](../../../ffi/index.md), [`FdFlags`](../../../io/fcntl/index.md)
 
 ##### `impl FromIterator for FdFlags`
 
@@ -152,7 +114,7 @@ struct FdFlags(<FdFlags as $crate::__private::PublicFlags>::Internal);
 
 ##### `impl PartialEq for FdFlags`
 
-- `fn eq(self: &Self, other: &FdFlags) -> bool` — [`FdFlags`](#fdflags)
+- `fn eq(self: &Self, other: &FdFlags) -> bool` — [`FdFlags`](../../../io/fcntl/index.md)
 
 ##### `impl PublicFlags for FdFlags`
 
@@ -182,15 +144,51 @@ struct FdFlags(<FdFlags as $crate::__private::PublicFlags>::Internal);
 struct ReadWriteFlags(<ReadWriteFlags as $crate::__private::PublicFlags>::Internal);
 ```
 
-`RWF_*` constants for use with [`preadv2`](../../../io/index.md) and [`pwritev2`](../syscalls/index.md).
+`RWF_*` constants for use with [`preadv2`](../syscalls/index.md) and [`pwritev2`](../../../io/index.md).
 
 
 
 #### Implementations
 
-- `const fn iter(self: &Self) -> $crate::iter::Iter<ReadWriteFlags>` — [`ReadWriteFlags`](#readwriteflags)
+- `const fn empty() -> Self`
 
-- `const fn iter_names(self: &Self) -> $crate::iter::IterNames<ReadWriteFlags>` — [`ReadWriteFlags`](#readwriteflags)
+- `const fn all() -> Self`
+
+- `const fn bits(self: &Self) -> ffi::c_uint` — [`c_uint`](../../../ffi/index.md)
+
+- `const fn from_bits(bits: ffi::c_uint) -> $crate::__private::core::option::Option<Self>` — [`c_uint`](../../../ffi/index.md)
+
+- `const fn from_bits_truncate(bits: ffi::c_uint) -> Self` — [`c_uint`](../../../ffi/index.md)
+
+- `const fn from_bits_retain(bits: ffi::c_uint) -> Self` — [`c_uint`](../../../ffi/index.md)
+
+- `fn from_name(name: &str) -> $crate::__private::core::option::Option<Self>`
+
+- `const fn is_empty(self: &Self) -> bool`
+
+- `const fn is_all(self: &Self) -> bool`
+
+- `const fn intersects(self: &Self, other: Self) -> bool`
+
+- `const fn contains(self: &Self, other: Self) -> bool`
+
+- `fn insert(self: &mut Self, other: Self)`
+
+- `fn remove(self: &mut Self, other: Self)`
+
+- `fn toggle(self: &mut Self, other: Self)`
+
+- `fn set(self: &mut Self, other: Self, value: bool)`
+
+- `const fn intersection(self: Self, other: Self) -> Self`
+
+- `const fn union(self: Self, other: Self) -> Self`
+
+- `const fn difference(self: Self, other: Self) -> Self`
+
+- `const fn symmetric_difference(self: Self, other: Self) -> Self`
+
+- `const fn complement(self: Self) -> Self`
 
 #### Trait Implementations
 
@@ -212,7 +210,7 @@ struct ReadWriteFlags(<ReadWriteFlags as $crate::__private::PublicFlags>::Intern
 
 - `type Output = ReadWriteFlags`
 
-- `fn bitor(self: Self, other: ReadWriteFlags) -> Self` — [`ReadWriteFlags`](#readwriteflags)
+- `fn bitor(self: Self, other: ReadWriteFlags) -> Self` — [`ReadWriteFlags`](../../../io/read_write/index.md)
 
 ##### `impl BitOrAssign for ReadWriteFlags`
 
@@ -230,7 +228,7 @@ struct ReadWriteFlags(<ReadWriteFlags as $crate::__private::PublicFlags>::Intern
 
 ##### `impl Clone for ReadWriteFlags`
 
-- `fn clone(self: &Self) -> ReadWriteFlags` — [`ReadWriteFlags`](#readwriteflags)
+- `fn clone(self: &Self) -> ReadWriteFlags` — [`ReadWriteFlags`](../../../io/read_write/index.md)
 
 ##### `impl Copy for ReadWriteFlags`
 
@@ -250,9 +248,9 @@ struct ReadWriteFlags(<ReadWriteFlags as $crate::__private::PublicFlags>::Intern
 
 - `type Bits = u32`
 
-- `fn bits(self: &Self) -> ffi::c_uint`
+- `fn bits(self: &Self) -> ffi::c_uint` — [`c_uint`](../../../ffi/index.md)
 
-- `fn from_bits_retain(bits: ffi::c_uint) -> ReadWriteFlags` — [`ReadWriteFlags`](#readwriteflags)
+- `fn from_bits_retain(bits: ffi::c_uint) -> ReadWriteFlags` — [`c_uint`](../../../ffi/index.md), [`ReadWriteFlags`](../../../io/read_write/index.md)
 
 ##### `impl FromIterator for ReadWriteFlags`
 
@@ -286,7 +284,7 @@ struct ReadWriteFlags(<ReadWriteFlags as $crate::__private::PublicFlags>::Intern
 
 ##### `impl PartialEq for ReadWriteFlags`
 
-- `fn eq(self: &Self, other: &ReadWriteFlags) -> bool` — [`ReadWriteFlags`](#readwriteflags)
+- `fn eq(self: &Self, other: &ReadWriteFlags) -> bool` — [`ReadWriteFlags`](../../../io/read_write/index.md)
 
 ##### `impl PublicFlags for ReadWriteFlags`
 
@@ -321,9 +319,9 @@ struct DupFlags(<DupFlags as $crate::__private::PublicFlags>::Internal);
 
 #### Implementations
 
-- `const fn iter(self: &Self) -> $crate::iter::Iter<DupFlags>` — [`DupFlags`](#dupflags)
+- `const fn iter(self: &Self) -> $crate::iter::Iter<DupFlags>` — [`DupFlags`](../../../io/dup/index.md)
 
-- `const fn iter_names(self: &Self) -> $crate::iter::IterNames<DupFlags>` — [`DupFlags`](#dupflags)
+- `const fn iter_names(self: &Self) -> $crate::iter::IterNames<DupFlags>` — [`DupFlags`](../../../io/dup/index.md)
 
 #### Trait Implementations
 
@@ -345,7 +343,7 @@ struct DupFlags(<DupFlags as $crate::__private::PublicFlags>::Internal);
 
 - `type Output = DupFlags`
 
-- `fn bitor(self: Self, other: DupFlags) -> Self` — [`DupFlags`](#dupflags)
+- `fn bitor(self: Self, other: DupFlags) -> Self` — [`DupFlags`](../../../io/dup/index.md)
 
 ##### `impl BitOrAssign for DupFlags`
 
@@ -363,7 +361,7 @@ struct DupFlags(<DupFlags as $crate::__private::PublicFlags>::Internal);
 
 ##### `impl Clone for DupFlags`
 
-- `fn clone(self: &Self) -> DupFlags` — [`DupFlags`](#dupflags)
+- `fn clone(self: &Self) -> DupFlags` — [`DupFlags`](../../../io/dup/index.md)
 
 ##### `impl Copy for DupFlags`
 
@@ -383,9 +381,9 @@ struct DupFlags(<DupFlags as $crate::__private::PublicFlags>::Internal);
 
 - `type Bits = u32`
 
-- `fn bits(self: &Self) -> ffi::c_uint`
+- `fn bits(self: &Self) -> ffi::c_uint` — [`c_uint`](../../../ffi/index.md)
 
-- `fn from_bits_retain(bits: ffi::c_uint) -> DupFlags` — [`DupFlags`](#dupflags)
+- `fn from_bits_retain(bits: ffi::c_uint) -> DupFlags` — [`c_uint`](../../../ffi/index.md), [`DupFlags`](../../../io/dup/index.md)
 
 ##### `impl FromIterator for DupFlags`
 
@@ -419,7 +417,7 @@ struct DupFlags(<DupFlags as $crate::__private::PublicFlags>::Internal);
 
 ##### `impl PartialEq for DupFlags`
 
-- `fn eq(self: &Self, other: &DupFlags) -> bool` — [`DupFlags`](#dupflags)
+- `fn eq(self: &Self, other: &DupFlags) -> bool` — [`DupFlags`](../../../io/dup/index.md)
 
 ##### `impl PublicFlags for DupFlags`
 

@@ -18,9 +18,9 @@ enum PatRangeBound {
 
 #### Implementations
 
-- `fn into_expr(self: Self) -> Box<Expr>` — [`Expr`](../../expr/index.md)
+- `fn into_expr(self: Self) -> Box<Expr>` — [`Expr`](../../index.md)
 
-- `fn into_pat(self: Self) -> Pat` — [`Pat`](../index.md)
+- `fn into_pat(self: Self) -> Pat` — [`Pat`](../../index.md)
 
 ## Functions
 

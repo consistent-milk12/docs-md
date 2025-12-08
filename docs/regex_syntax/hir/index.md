@@ -206,25 +206,13 @@ the `Properties` inlined into every `Hir` value to make it less noisy).
 
 #### Implementations
 
-- `fn empty() -> Hir` — [`Hir`](#hir)
+- `fn kind(self: &Self) -> &HirKind` — [`HirKind`](#hirkind)
 
-- `fn fail() -> Hir` — [`Hir`](#hir)
+- `fn into_kind(self: Self) -> HirKind` — [`HirKind`](#hirkind)
 
-- `fn literal<B: Into<Box<[u8]>>>(lit: B) -> Hir` — [`Hir`](#hir)
+- `fn properties(self: &Self) -> &Properties` — [`Properties`](#properties)
 
-- `fn class(class: Class) -> Hir` — [`Class`](#class), [`Hir`](#hir)
-
-- `fn look(look: Look) -> Hir` — [`Look`](#look), [`Hir`](#hir)
-
-- `fn repetition(rep: Repetition) -> Hir` — [`Repetition`](#repetition), [`Hir`](#hir)
-
-- `fn capture(capture: Capture) -> Hir` — [`Capture`](#capture), [`Hir`](#hir)
-
-- `fn concat(subs: Vec<Hir>) -> Hir` — [`Hir`](#hir)
-
-- `fn alternation(subs: Vec<Hir>) -> Hir` — [`Hir`](#hir)
-
-- `fn dot(dot: Dot) -> Hir` — [`Dot`](#dot), [`Hir`](#hir)
+- `fn into_parts(self: Self) -> (HirKind, Properties)` — [`HirKind`](#hirkind), [`Properties`](#properties)
 
 #### Trait Implementations
 
@@ -761,33 +749,21 @@ be cheap to call.
 
 #### Implementations
 
-- `fn minimum_len(self: &Self) -> Option<usize>`
+- `fn empty() -> Properties` — [`Properties`](#properties)
 
-- `fn maximum_len(self: &Self) -> Option<usize>`
+- `fn literal(lit: &Literal) -> Properties` — [`Literal`](#literal), [`Properties`](#properties)
 
-- `fn look_set(self: &Self) -> LookSet` — [`LookSet`](#lookset)
+- `fn class(class: &Class) -> Properties` — [`Class`](#class), [`Properties`](#properties)
 
-- `fn look_set_prefix(self: &Self) -> LookSet` — [`LookSet`](#lookset)
+- `fn look(look: Look) -> Properties` — [`Look`](#look), [`Properties`](#properties)
 
-- `fn look_set_prefix_any(self: &Self) -> LookSet` — [`LookSet`](#lookset)
+- `fn repetition(rep: &Repetition) -> Properties` — [`Repetition`](#repetition), [`Properties`](#properties)
 
-- `fn look_set_suffix(self: &Self) -> LookSet` — [`LookSet`](#lookset)
+- `fn capture(capture: &Capture) -> Properties` — [`Capture`](#capture), [`Properties`](#properties)
 
-- `fn look_set_suffix_any(self: &Self) -> LookSet` — [`LookSet`](#lookset)
+- `fn concat(concat: &[Hir]) -> Properties` — [`Hir`](#hir), [`Properties`](#properties)
 
-- `fn is_utf8(self: &Self) -> bool`
-
-- `fn explicit_captures_len(self: &Self) -> usize`
-
-- `fn static_explicit_captures_len(self: &Self) -> Option<usize>`
-
-- `fn is_literal(self: &Self) -> bool`
-
-- `fn is_alternation_literal(self: &Self) -> bool`
-
-- `fn memory_usage(self: &Self) -> usize`
-
-- `fn union<I, P>(props: I) -> Properties` — [`Properties`](#properties)
+- `fn alternation(alts: &[Hir]) -> Properties` — [`Hir`](#hir), [`Properties`](#properties)
 
 #### Trait Implementations
 

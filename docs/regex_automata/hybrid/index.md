@@ -176,19 +176,19 @@ trait.
 
 #### Implementations
 
-- `fn nfa(err: nfa::thompson::BuildError) -> BuildError` — [`BuildError`](../nfa/thompson/error/index.md)
+- `fn nfa(err: nfa::thompson::BuildError) -> BuildError` — [`BuildError`](../nfa/thompson/index.md)
 
-- `fn insufficient_cache_capacity(minimum: usize, given: usize) -> BuildError` — [`BuildError`](error/index.md)
+- `fn insufficient_cache_capacity(minimum: usize, given: usize) -> BuildError` — [`BuildError`](#builderror)
 
-- `fn insufficient_state_id_capacity(err: LazyStateIDError) -> BuildError` — [`LazyStateIDError`](id/index.md), [`BuildError`](error/index.md)
+- `fn insufficient_state_id_capacity(err: LazyStateIDError) -> BuildError` — [`LazyStateIDError`](id/index.md), [`BuildError`](#builderror)
 
-- `fn unsupported_dfa_word_boundary_unicode() -> BuildError` — [`BuildError`](error/index.md)
+- `fn unsupported_dfa_word_boundary_unicode() -> BuildError` — [`BuildError`](#builderror)
 
 #### Trait Implementations
 
 ##### `impl Clone for BuildError`
 
-- `fn clone(self: &Self) -> BuildError` — [`BuildError`](error/index.md)
+- `fn clone(self: &Self) -> BuildError` — [`BuildError`](#builderror)
 
 ##### `impl Debug for BuildError`
 
@@ -232,15 +232,15 @@ trait.
 
 #### Implementations
 
-- `fn too_many_cache_clears() -> CacheError` — [`CacheError`](error/index.md)
+- `fn too_many_cache_clears() -> CacheError` — [`CacheError`](#cacheerror)
 
-- `fn bad_efficiency() -> CacheError` — [`CacheError`](error/index.md)
+- `fn bad_efficiency() -> CacheError` — [`CacheError`](#cacheerror)
 
 #### Trait Implementations
 
 ##### `impl Clone for CacheError`
 
-- `fn clone(self: &Self) -> CacheError` — [`CacheError`](error/index.md)
+- `fn clone(self: &Self) -> CacheError` — [`CacheError`](#cacheerror)
 
 ##### `impl Debug for CacheError`
 
@@ -444,23 +444,23 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - `const MAX: usize`
 
-- `fn new(id: usize) -> Result<LazyStateID, LazyStateIDError>` — [`LazyStateID`](id/index.md), [`LazyStateIDError`](id/index.md)
+- `fn new(id: usize) -> Result<LazyStateID, LazyStateIDError>` — [`LazyStateID`](#lazystateid), [`LazyStateIDError`](id/index.md)
 
-- `const fn new_unchecked(id: usize) -> LazyStateID` — [`LazyStateID`](id/index.md)
+- `const fn new_unchecked(id: usize) -> LazyStateID` — [`LazyStateID`](#lazystateid)
 
 - `fn as_usize_untagged(self: &Self) -> usize`
 
 - `const fn as_usize_unchecked(self: &Self) -> usize`
 
-- `const fn to_unknown(self: &Self) -> LazyStateID` — [`LazyStateID`](id/index.md)
+- `const fn to_unknown(self: &Self) -> LazyStateID` — [`LazyStateID`](#lazystateid)
 
-- `const fn to_dead(self: &Self) -> LazyStateID` — [`LazyStateID`](id/index.md)
+- `const fn to_dead(self: &Self) -> LazyStateID` — [`LazyStateID`](#lazystateid)
 
-- `const fn to_quit(self: &Self) -> LazyStateID` — [`LazyStateID`](id/index.md)
+- `const fn to_quit(self: &Self) -> LazyStateID` — [`LazyStateID`](#lazystateid)
 
-- `const fn to_start(self: &Self) -> LazyStateID` — [`LazyStateID`](id/index.md)
+- `const fn to_start(self: &Self) -> LazyStateID` — [`LazyStateID`](#lazystateid)
 
-- `const fn to_match(self: &Self) -> LazyStateID` — [`LazyStateID`](id/index.md)
+- `const fn to_match(self: &Self) -> LazyStateID` — [`LazyStateID`](#lazystateid)
 
 - `const fn is_tagged(self: &Self) -> bool`
 
@@ -478,7 +478,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ##### `impl Clone for LazyStateID`
 
-- `fn clone(self: &Self) -> LazyStateID` — [`LazyStateID`](id/index.md)
+- `fn clone(self: &Self) -> LazyStateID` — [`LazyStateID`](#lazystateid)
 
 ##### `impl Copy for LazyStateID`
 
@@ -488,7 +488,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ##### `impl Default for LazyStateID`
 
-- `fn default() -> LazyStateID` — [`LazyStateID`](id/index.md)
+- `fn default() -> LazyStateID` — [`LazyStateID`](#lazystateid)
 
 ##### `impl Eq for LazyStateID`
 
@@ -498,15 +498,15 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ##### `impl Ord for LazyStateID`
 
-- `fn cmp(self: &Self, other: &LazyStateID) -> $crate::cmp::Ordering` — [`LazyStateID`](id/index.md)
+- `fn cmp(self: &Self, other: &LazyStateID) -> $crate::cmp::Ordering` — [`LazyStateID`](#lazystateid)
 
 ##### `impl PartialEq for LazyStateID`
 
-- `fn eq(self: &Self, other: &LazyStateID) -> bool` — [`LazyStateID`](id/index.md)
+- `fn eq(self: &Self, other: &LazyStateID) -> bool` — [`LazyStateID`](#lazystateid)
 
 ##### `impl PartialOrd for LazyStateID`
 
-- `fn partial_cmp(self: &Self, other: &LazyStateID) -> $crate::option::Option<$crate::cmp::Ordering>` — [`LazyStateID`](id/index.md)
+- `fn partial_cmp(self: &Self, other: &LazyStateID) -> $crate::option::Option<$crate::cmp::Ordering>` — [`LazyStateID`](#lazystateid)
 
 ##### `impl StructuralPartialEq for LazyStateID`
 
@@ -566,17 +566,17 @@ semver compatible release.
 
 #### Implementations
 
-- `fn cache(err: CacheError) -> StartError` — [`CacheError`](error/index.md), [`StartError`](error/index.md)
+- `fn cache(err: CacheError) -> StartError` — [`CacheError`](#cacheerror), [`StartError`](#starterror)
 
-- `fn quit(byte: u8) -> StartError` — [`StartError`](error/index.md)
+- `fn quit(byte: u8) -> StartError` — [`StartError`](#starterror)
 
-- `fn unsupported_anchored(mode: Anchored) -> StartError` — [`Anchored`](../index.md), [`StartError`](error/index.md)
+- `fn unsupported_anchored(mode: Anchored) -> StartError` — [`Anchored`](../index.md), [`StartError`](#starterror)
 
 #### Trait Implementations
 
 ##### `impl Clone for StartError`
 
-- `fn clone(self: &Self) -> StartError` — [`StartError`](error/index.md)
+- `fn clone(self: &Self) -> StartError` — [`StartError`](#starterror)
 
 ##### `impl Debug for StartError`
 

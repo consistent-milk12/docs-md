@@ -839,7 +839,7 @@ See Section 7.12, Table 7.17.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- `fn default_lower_bound(self: Self) -> Option<usize>`
 
 #### Trait Implementations
 

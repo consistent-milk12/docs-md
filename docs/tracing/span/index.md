@@ -12,7 +12,7 @@
  that describe all `tracing` spans and events. Attributes describing spans
  include:
 
- - An [`Id`](../../tracing_core/index.md) assigned by the subscriber that uniquely identifies it in relation
+ - An [`Id`](#id) assigned by the subscriber that uniquely identifies it in relation
    to other spans.
  - The span's [`parent`](../../tracing_core/parent/index.md) in the trace tree.
  - [Metadata] that describes static characteristics of all spans
@@ -48,8 +48,8 @@
 
  ## Recording Span Creation
 
- The [`Attributes`](../../tracing_core/span/index.md) type contains data associated with a span, and is
- provided to the [`Subscriber`](../../tracing_core/subscriber/index.md) when a new span is created. It contains
+ The [`Attributes`](#attributes) type contains data associated with a span, and is
+ provided to the [`Subscriber`](../../tracing_core/index.md) when a new span is created. It contains
  the span's metadata, the ID of [the span's parent][`parent`](../../tracing_core/parent/index.md) if one was
  explicitly set, and any fields whose values were recorded when the span was
  constructed. The subscriber, which is responsible for recording `tracing`
@@ -231,7 +231,7 @@
  to be _idle_.
 
  Because spans may be entered and exited multiple times before they close,
- [`Subscriber`](../../tracing_core/subscriber/index.md)s have separate trait methods which are called to notify them
+ [`Subscriber`](../../tracing_core/index.md)s have separate trait methods which are called to notify them
  of span exits and when span handles are dropped. When execution exits a
  span, [`exit`](#exit) will always be called with that span's ID to notify the
  subscriber that the span has been exited. When span handles are dropped, the
@@ -342,23 +342,23 @@ when performing lookups for many addresses in the same executable.
 
 #### Implementations
 
-- `fn from_sections(debug_abbrev: gimli::DebugAbbrev<R>, debug_addr: gimli::DebugAddr<R>, debug_aranges: gimli::DebugAranges<R>, debug_info: gimli::DebugInfo<R>, debug_line: gimli::DebugLine<R>, debug_line_str: gimli::DebugLineStr<R>, debug_ranges: gimli::DebugRanges<R>, debug_rnglists: gimli::DebugRngLists<R>, debug_str: gimli::DebugStr<R>, debug_str_offsets: gimli::DebugStrOffsets<R>, default_section: R) -> Result<Self, gimli::Error>`
+- `fn find_dwarf_and_unit(self: &Self, probe: u64) -> LookupResult<impl LookupContinuation<Output = Option<gimli::UnitRef<'_, R>>, Buf = R>>` — [`DefaultGuard`](../subscriber/index.md)
 
-- `fn from_dwarf(sections: gimli::Dwarf<R>) -> Result<Context<R>, gimli::Error>`
+- `fn find_location(self: &Self, probe: u64) -> Result<Option<Location<'_>>, gimli::Error>` — [`Record`](#record), [`DefaultGuard`](../subscriber/index.md), [`set_global_default`](../dispatcher/index.md)
 
-- `fn from_arc_dwarf(sections: Arc<gimli::Dwarf<R>>) -> Result<Context<R>, gimli::Error>`
+- `fn find_location_range(self: &Self, probe_low: u64, probe_high: u64) -> Result<LocationRangeIter<'_, R>, gimli::Error>` — [`Record`](#record)
 
-- `fn find_dwarf_and_unit(self: &Self, probe: u64) -> LookupResult<impl LookupContinuation<Output = Option<gimli::UnitRef<'_, R>>, Buf = R>>`
+- `fn find_frames(self: &Self, probe: u64) -> LookupResult<impl LookupContinuation<Output = Result<FrameIter<'_, R>, gimli::Error>, Buf = R>>` — [`Record`](#record)
 
-- `fn find_location(self: &Self, probe: u64) -> Result<Option<Location<'_>>, gimli::Error>` — [`set_global_default`](../dispatcher/index.md)
+- `fn preload_units(self: &Self, probe: u64) -> impl Iterator<Item = (SplitDwarfLoad<R>, impl FnOnce(Option<Arc<gimli::Dwarf<R>>>) -> Result<(), gimli::Error> + '_)>` — [`DefaultGuard`](../subscriber/index.md), [`DefaultGuard`](../subscriber/index.md), [`Record`](#record)
 
-- `fn find_location_range(self: &Self, probe_low: u64, probe_high: u64) -> Result<LocationRangeIter<'_, R>, gimli::Error>`
+- `fn from_sections(debug_abbrev: gimli::DebugAbbrev<R>, debug_addr: gimli::DebugAddr<R>, debug_aranges: gimli::DebugAranges<R>, debug_info: gimli::DebugInfo<R>, debug_line: gimli::DebugLine<R>, debug_line_str: gimli::DebugLineStr<R>, debug_ranges: gimli::DebugRanges<R>, debug_rnglists: gimli::DebugRngLists<R>, debug_str: gimli::DebugStr<R>, debug_str_offsets: gimli::DebugStrOffsets<R>, default_section: R) -> Result<Self, gimli::Error>` — [`Record`](#record)
 
-- `fn find_frames(self: &Self, probe: u64) -> LookupResult<impl LookupContinuation<Output = Result<FrameIter<'_, R>, gimli::Error>, Buf = R>>`
+- `fn from_dwarf(sections: gimli::Dwarf<R>) -> Result<Context<R>, gimli::Error>` — [`Record`](#record), [`Id`](#id)
 
-- `fn preload_units(self: &Self, probe: u64) -> impl Iterator<Item = (SplitDwarfLoad<R>, impl FnOnce(Option<Arc<gimli::Dwarf<R>>>) -> Result<(), gimli::Error> + '_)>` — [`DefaultGuard`](../subscriber/index.md)
+- `fn from_arc_dwarf(sections: Arc<gimli::Dwarf<R>>) -> Result<Context<R>, gimli::Error>` — [`Record`](#record), [`Id`](#id)
 
-- `fn find_unit(self: &Self, offset: gimli::DebugInfoOffset<<R as >::Offset>, file: DebugFile) -> Result<(&gimli::Unit<R>, gimli::UnitOffset<<R as >::Offset>), gimli::Error>` — [`Id`](#id)
+- `fn find_unit(self: &Self, offset: gimli::DebugInfoOffset<<R as >::Offset>, file: DebugFile) -> Result<(&gimli::Unit<R>, gimli::UnitOffset<<R as >::Offset>), gimli::Error>` — [`Id`](#id), [`Record`](#record)
 
 ### `Span`
 
@@ -393,19 +393,19 @@ manner regardless of whether or not the trace is currently being collected.
 
 #### Implementations
 
-- `fn new(meta: &'static Metadata<'static>, values: &field::ValueSet<'_>) -> Span` — [`Span`](#span)
+- `fn new(meta: &'static Metadata<'static>, values: &field::ValueSet<'_>) -> Span` — [`Metadata`](../index.md), [`Span`](../index.md)
 
-- `fn new_root(meta: &'static Metadata<'static>, values: &field::ValueSet<'_>) -> Span` — [`Span`](#span)
+- `fn new_root(meta: &'static Metadata<'static>, values: &field::ValueSet<'_>) -> Span` — [`Metadata`](../index.md), [`Span`](../index.md)
 
-- `fn child_of(parent: impl Into<Option<Id>>, meta: &'static Metadata<'static>, values: &field::ValueSet<'_>) -> Span` — [`Span`](#span)
+- `fn child_of(parent: impl Into<Option<Id>>, meta: &'static Metadata<'static>, values: &field::ValueSet<'_>) -> Span` — [`Id`](#id), [`Metadata`](../index.md), [`Span`](../index.md)
 
-- `fn new_disabled(meta: &'static Metadata<'static>) -> Span` — [`Span`](#span)
+- `fn new_disabled(meta: &'static Metadata<'static>) -> Span` — [`Metadata`](../index.md), [`Span`](../index.md)
 
-- `const fn none() -> Span` — [`Span`](#span)
+- `const fn none() -> Span` — [`Span`](../index.md)
 
-- `fn current() -> Span` — [`Span`](#span)
+- `fn current() -> Span` — [`Span`](../index.md)
 
-- `fn make_with(meta: &'static Metadata<'static>, new_span: Attributes<'_>, dispatch: &Dispatch) -> Span` — [`Span`](#span)
+- `fn make_with(meta: &'static Metadata<'static>, new_span: Attributes<'_>, dispatch: &Dispatch) -> Span` — [`Metadata`](../index.md), [`Attributes`](#attributes), [`Dispatch`](../index.md), [`Span`](../index.md)
 
 - `fn enter(self: &Self) -> Entered<'_>` — [`Entered`](#entered)
 
@@ -429,19 +429,19 @@ manner regardless of whether or not the trace is currently being collected.
 
 - `fn is_none(self: &Self) -> bool`
 
-- `fn follows_from(self: &Self, from: impl Into<Option<Id>>) -> &Self`
+- `fn follows_from(self: &Self, from: impl Into<Option<Id>>) -> &Self` — [`Id`](#id)
 
-- `fn id(self: &Self) -> Option<Id>`
+- `fn id(self: &Self) -> Option<Id>` — [`Id`](#id)
 
-- `fn metadata(self: &Self) -> Option<&'static Metadata<'static>>`
+- `fn metadata(self: &Self) -> Option<&'static Metadata<'static>>` — [`Metadata`](../index.md)
 
-- `fn with_subscriber<T>(self: &Self, f: impl FnOnce((&Id, &Dispatch)) -> T) -> Option<T>`
+- `fn with_subscriber<T>(self: &Self, f: impl FnOnce((&Id, &Dispatch)) -> T) -> Option<T>` — [`Id`](#id), [`Dispatch`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Span`
 
-- `fn clone(self: &Self) -> Span` — [`Span`](#span)
+- `fn clone(self: &Self) -> Span` — [`Span`](../index.md)
 
 ##### `impl Debug for Span`
 
@@ -493,13 +493,13 @@ span handles; users should typically not need to interact with it directly.
 
 #### Implementations
 
-- `fn follows_from(self: &Self, from: &Id)`
+- `fn follows_from(self: &Self, from: &Id)` — [`Id`](#id)
 
-- `fn id(self: &Self) -> Id`
+- `fn id(self: &Self) -> Id` — [`Id`](#id)
 
-- `fn record(self: &Self, values: &Record<'_>)`
+- `fn record(self: &Self, values: &Record<'_>)` — [`Record`](#record)
 
-- `fn new(id: Id, subscriber: &Dispatch) -> Self`
+- `fn new(id: Id, subscriber: &Dispatch) -> Self` — [`Id`](#id), [`Dispatch`](../index.md)
 
 #### Trait Implementations
 
@@ -583,9 +583,9 @@ This is returned by the `Span::entered` function.
 
 #### Implementations
 
-- `fn id(self: &Self) -> Option<Id>`
+- `fn id(self: &Self) -> Option<Id>` — [`Id`](#id)
 
-- `fn exit(self: Self) -> Span` — [`Span`](#span)
+- `fn exit(self: Self) -> Span` — [`Span`](../index.md)
 
 #### Trait Implementations
 
@@ -597,7 +597,7 @@ This is returned by the `Span::entered` function.
 
 - `type Target = Span`
 
-- `fn deref(self: &Self) -> &Span` — [`Span`](#span)
+- `fn deref(self: &Self) -> &Span` — [`Span`](../index.md)
 
 ##### `impl Drop for EnteredSpan`
 

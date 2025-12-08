@@ -58,7 +58,7 @@ word.
 struct AsKebabCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a kebab case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
+This wrapper performs a kebab case conversion in [`fmt::Display`](../miette_derive/index.md).
 
 ## Example:
 
@@ -85,7 +85,7 @@ assert_eq!(format!("{}", AsKebabCase(sentence)), "we-are-going-to-inherit-the-ea
 struct AsLowerCamelCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a lower camel case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
+This wrapper performs a lower camel case conversion in [`fmt::Display`](../miette_derive/index.md).
 
 ## Example:
 
@@ -112,7 +112,7 @@ assert_eq!(format!("{}", AsLowerCamelCase(sentence)), "itIsWeWhoBuiltThesePalace
 struct AsShoutyKebabCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a kebab case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
+This wrapper performs a kebab case conversion in [`fmt::Display`](../miette_derive/index.md).
 
 ## Example:
 
@@ -139,7 +139,7 @@ assert_eq!(format!("{}", AsShoutyKebabCase(sentence)), "WE-ARE-GOING-TO-INHERIT-
 struct AsShoutySnakeCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a shouty snake  case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
+This wrapper performs a shouty snake  case conversion in [`fmt::Display`](../miette_derive/index.md).
 
 ## Example:
 
@@ -166,7 +166,7 @@ assert_eq!(format!("{}", AsShoutySnakeCase(sentence)), "THAT_WORLD_IS_GROWING_IN
 struct AsShoutySnekCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a shouty snake  case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
+This wrapper performs a shouty snake  case conversion in [`fmt::Display`](../miette_derive/index.md).
 
 ## Example:
 
@@ -193,7 +193,7 @@ assert_eq!(format!("{}", AsShoutySnakeCase(sentence)), "THAT_WORLD_IS_GROWING_IN
 struct AsSnakeCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a snake case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
+This wrapper performs a snake case conversion in [`fmt::Display`](../miette_derive/index.md).
 
 ## Example:
 
@@ -220,7 +220,7 @@ assert_eq!(format!("{}", AsSnakeCase(sentence)), "we_carry_a_new_world_here_in_o
 struct AsSnekCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a snake case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
+This wrapper performs a snake case conversion in [`fmt::Display`](../miette_derive/index.md).
 
 ## Example:
 
@@ -247,7 +247,7 @@ assert_eq!(format!("{}", AsSnakeCase(sentence)), "we_carry_a_new_world_here_in_o
 struct AsTitleCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a title case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
+This wrapper performs a title case conversion in [`fmt::Display`](../miette_derive/index.md).
 
 ## Example:
 
@@ -274,7 +274,7 @@ assert_eq!(format!("{}", AsTitleCase(sentence)), "We Have Always Lived In Slums 
 struct AsTrainCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a train case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
+This wrapper performs a train case conversion in [`fmt::Display`](../miette_derive/index.md).
 
 ## Example:
 
@@ -301,7 +301,7 @@ assert_eq!(format!("{}", AsTrainCase(sentence)), "We-Are-Going-To-Inherit-The-Ea
 struct AsUpperCamelCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a upper camel case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
+This wrapper performs a upper camel case conversion in [`fmt::Display`](../miette_derive/index.md).
 
 ## Example:
 
@@ -328,7 +328,7 @@ assert_eq!(format!("{}", AsUpperCamelCase(sentence)), "WeAreNotInTheLeastAfraidO
 struct AsPascalCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a upper camel case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
+This wrapper performs a upper camel case conversion in [`fmt::Display`](../miette_derive/index.md).
 
 ## Example:
 

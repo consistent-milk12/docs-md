@@ -93,7 +93,7 @@ enum AppSettings {
 }
 ```
 
-Application level settings, which affect how [`Command`](../command/index.md) operates
+Application level settings, which affect how [`Command`](../../index.md) operates
 
 <div class="warning">
 

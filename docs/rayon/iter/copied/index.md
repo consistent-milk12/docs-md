@@ -16,7 +16,7 @@ struct Copied<I> {
 
 `Copied` is an iterator that copies the elements of an underlying iterator.
 
-This struct is created by the `copied()` method on [`ParallelIterator`](../index.md)
+This struct is created by the `copied()` method on [`ParallelIterator`](../../prelude/index.md)
 
 
 #### Implementations
@@ -27,7 +27,7 @@ This struct is created by the `copied()` method on [`ParallelIterator`](../index
 
 ##### `impl<I: $crate::clone::Clone> Clone for Copied<I>`
 
-- `fn clone(self: &Self) -> Copied<I>` — [`Copied`](#copied)
+- `fn clone(self: &Self) -> Copied<I>` — [`Copied`](../index.md)
 
 ##### `impl<I: $crate::fmt::Debug> Debug for Copied<I>`
 

@@ -25,7 +25,7 @@ Provides context to a closure called by `broadcast`.
 
 #### Implementations
 
-- `fn with<R>(f: impl FnOnce(BroadcastContext<'_>) -> R) -> R` — [`BroadcastContext`](#broadcastcontext)
+- `fn with<R>(f: impl FnOnce(BroadcastContext<'_>) -> R) -> R` — [`BroadcastContext`](../index.md)
 
 - `fn index(self: &Self) -> usize`
 

@@ -59,7 +59,7 @@ To compute a value for the `OPCODE` argument, see the functions in the
 
 - `fn as_ptr(self: &mut Self) -> *mut c::c_void`
 
-- `unsafe fn output_from_ptr(_: IoctlOutput, _: *mut c::c_void) -> Result<<Self as >::Output>` — [`IoctlOutput`](#ioctloutput), [`Result`](../io/errno/index.md), [`Ioctl`](#ioctl)
+- `unsafe fn output_from_ptr(_: IoctlOutput, _: *mut c::c_void) -> Result<<Self as >::Output>` — [`IoctlOutput`](#ioctloutput), [`Result`](../io/index.md), [`Ioctl`](#ioctl)
 
 ### `Getter<const OPCODE: super::Opcode, Output>`
 
@@ -104,7 +104,7 @@ To compute a value for the `OPCODE` argument, see the functions in the
 
 - `fn as_ptr(self: &mut Self) -> *mut c::c_void`
 
-- `unsafe fn output_from_ptr(_: IoctlOutput, ptr: *mut c::c_void) -> Result<<Self as >::Output>` — [`IoctlOutput`](#ioctloutput), [`Result`](../io/errno/index.md), [`Ioctl`](#ioctl)
+- `unsafe fn output_from_ptr(_: IoctlOutput, ptr: *mut c::c_void) -> Result<<Self as >::Output>` — [`IoctlOutput`](#ioctloutput), [`Result`](../io/index.md), [`Ioctl`](#ioctl)
 
 ### `Setter<const OPCODE: super::Opcode, Input>`
 
@@ -149,7 +149,7 @@ To compute a value for the `OPCODE` argument, see the functions in the
 
 - `fn as_ptr(self: &mut Self) -> *mut c::c_void`
 
-- `unsafe fn output_from_ptr(_: IoctlOutput, _: *mut c::c_void) -> Result<<Self as >::Output>` — [`IoctlOutput`](#ioctloutput), [`Result`](../io/errno/index.md), [`Ioctl`](#ioctl)
+- `unsafe fn output_from_ptr(_: IoctlOutput, _: *mut c::c_void) -> Result<<Self as >::Output>` — [`IoctlOutput`](#ioctloutput), [`Result`](../io/index.md), [`Ioctl`](#ioctl)
 
 ### `Updater<'a, const OPCODE: super::Opcode, Value>`
 
@@ -190,7 +190,7 @@ To compute a value for the `OPCODE` argument, see the functions in the
 
 - `fn as_ptr(self: &mut Self) -> *mut c::c_void`
 
-- `unsafe fn output_from_ptr(_output: IoctlOutput, _ptr: *mut c::c_void) -> Result<()>` — [`IoctlOutput`](#ioctloutput), [`Result`](../io/errno/index.md)
+- `unsafe fn output_from_ptr(_output: IoctlOutput, _ptr: *mut c::c_void) -> Result<()>` — [`IoctlOutput`](#ioctloutput), [`Result`](../io/index.md)
 
 ### `IntegerSetter<const OPCODE: super::Opcode>`
 
@@ -232,7 +232,7 @@ To compute a value for the `OPCODE` argument, see the functions in the
 
 - `fn as_ptr(self: &mut Self) -> *mut c::c_void`
 
-- `unsafe fn output_from_ptr(_out: IoctlOutput, _extract_output: *mut c::c_void) -> Result<<Self as >::Output>` — [`IoctlOutput`](#ioctloutput), [`Result`](../io/errno/index.md), [`Ioctl`](#ioctl)
+- `unsafe fn output_from_ptr(_out: IoctlOutput, _extract_output: *mut c::c_void) -> Result<<Self as >::Output>` — [`IoctlOutput`](#ioctloutput), [`Result`](../io/index.md), [`Ioctl`](#ioctl)
 
 ## Enums
 

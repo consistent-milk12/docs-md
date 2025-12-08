@@ -23,7 +23,7 @@ A directory entry.
 This is the type of value that is yielded from the iterators defined in
 this crate.
 
-On Unix systems, this type implements the [`DirEntryExt`](#direntryext) trait, which
+On Unix systems, this type implements the [`DirEntryExt`](../index.md) trait, which
 provides efficient access to the inode number of the directory entry.
 
 # Differences with `std::fs::DirEntry`
@@ -91,13 +91,13 @@ operations operate on the symbolic link.
 
 - `fn from_entry(depth: usize, ent: &fs::DirEntry) -> Result<DirEntry>` — [`Result`](../index.md)
 
-- `fn from_path(depth: usize, pb: PathBuf, follow: bool) -> Result<DirEntry>` — [`Result`](../index.md), [`DirEntry`](#direntry)
+- `fn from_path(depth: usize, pb: PathBuf, follow: bool) -> Result<DirEntry>` — [`Result`](../index.md), [`DirEntry`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for DirEntry`
 
-- `fn clone(self: &Self) -> DirEntry` — [`DirEntry`](#direntry)
+- `fn clone(self: &Self) -> DirEntry` — [`DirEntry`](../index.md)
 
 ##### `impl Debug for DirEntry`
 

@@ -47,9 +47,9 @@ Most functionality is provided by the [`Object`](../../index.md) trait implement
 
 - `fn coff_header(self: &Self) -> &'data Coff`
 
-- `fn coff_section_table(self: &Self) -> SectionTable<'data>` — [`SectionTable`](../index.md)
+- `fn coff_section_table(self: &Self) -> SectionTable<'data>` — [`SectionTable`](../../pe/index.md)
 
-- `fn coff_symbol_table(self: &Self) -> &SymbolTable<'data, R, Coff>` — [`SymbolTable`](../index.md)
+- `fn coff_symbol_table(self: &Self) -> &SymbolTable<'data, R, Coff>` — [`SymbolTable`](../../pe/index.md)
 
 #### Trait Implementations
 

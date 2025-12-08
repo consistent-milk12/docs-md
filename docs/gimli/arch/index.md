@@ -48,6 +48,284 @@ https://github.com/ARM-software/abi-aa/blob/main/aadwarf64/aadwarf64.rst).
 
 #### Implementations
 
+- `fn register_name(register: Register) -> Option<&'static str>` — [`Register`](../index.md)
+
+- `fn name_to_register(value: &str) -> Option<Register>` — [`Register`](../index.md)
+
+#### Trait Implementations
+
+##### `impl Clone for AArch64`
+
+- `fn clone(self: &Self) -> AArch64` — [`AArch64`](../index.md)
+
+##### `impl Copy for AArch64`
+
+##### `impl Debug for AArch64`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+### `LoongArch`
+
+```rust
+struct LoongArch;
+```
+
+LoongArch architecture specific definitions.
+
+See [LoongArch ELF psABI specification](https://loongson.github.io/LoongArch-Documentation/LoongArch-ELF-ABI-EN.html).
+
+#### Implementations
+
+- `fn register_name(register: Register) -> Option<&'static str>` — [`Register`](../index.md)
+
+- `fn name_to_register(value: &str) -> Option<Register>` — [`Register`](../index.md)
+
+#### Trait Implementations
+
+##### `impl Clone for LoongArch`
+
+- `fn clone(self: &Self) -> LoongArch` — [`LoongArch`](../index.md)
+
+##### `impl Copy for LoongArch`
+
+##### `impl Debug for LoongArch`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+### `MIPS`
+
+```rust
+struct MIPS;
+```
+
+MIPS architecture specific definitions.
+
+See [MIPS Details](https://en.wikibooks.org/wiki/MIPS_Assembly/MIPS_Details).
+
+#### Implementations
+
+- `const R0: Register`
+
+- `const R1: Register`
+
+- `const R2: Register`
+
+- `const R3: Register`
+
+- `const R4: Register`
+
+- `const R5: Register`
+
+- `const R6: Register`
+
+- `const R7: Register`
+
+- `const R8: Register`
+
+- `const R9: Register`
+
+- `const R10: Register`
+
+- `const R11: Register`
+
+- `const R12: Register`
+
+- `const R13: Register`
+
+- `const R14: Register`
+
+- `const R15: Register`
+
+- `const R16: Register`
+
+- `const R17: Register`
+
+- `const R18: Register`
+
+- `const R19: Register`
+
+- `const R20: Register`
+
+- `const R21: Register`
+
+- `const R22: Register`
+
+- `const R23: Register`
+
+- `const R24: Register`
+
+- `const R25: Register`
+
+- `const R26: Register`
+
+- `const R27: Register`
+
+- `const R28: Register`
+
+- `const R29: Register`
+
+- `const R30: Register`
+
+- `const R31: Register`
+
+- `const F0: Register`
+
+- `const F1: Register`
+
+- `const F2: Register`
+
+- `const F3: Register`
+
+- `const F4: Register`
+
+- `const F5: Register`
+
+- `const F6: Register`
+
+- `const F7: Register`
+
+- `const F8: Register`
+
+- `const F9: Register`
+
+- `const F10: Register`
+
+- `const F11: Register`
+
+- `const F12: Register`
+
+- `const F13: Register`
+
+- `const F14: Register`
+
+- `const F15: Register`
+
+- `const F16: Register`
+
+- `const F17: Register`
+
+- `const F18: Register`
+
+- `const F19: Register`
+
+- `const F20: Register`
+
+- `const F21: Register`
+
+- `const F22: Register`
+
+- `const F23: Register`
+
+- `const F24: Register`
+
+- `const F25: Register`
+
+- `const F26: Register`
+
+- `const F27: Register`
+
+- `const F28: Register`
+
+- `const F29: Register`
+
+- `const F30: Register`
+
+- `const F31: Register`
+
+- `const HI: Register`
+
+- `const LO: Register`
+
+- `const ZERO: Register`
+
+- `const AT: Register`
+
+- `const V0: Register`
+
+- `const V1: Register`
+
+- `const A0: Register`
+
+- `const A1: Register`
+
+- `const A2: Register`
+
+- `const A3: Register`
+
+- `const T0: Register`
+
+- `const T1: Register`
+
+- `const T2: Register`
+
+- `const T3: Register`
+
+- `const T4: Register`
+
+- `const T5: Register`
+
+- `const T6: Register`
+
+- `const T7: Register`
+
+- `const S0: Register`
+
+- `const S1: Register`
+
+- `const S2: Register`
+
+- `const S3: Register`
+
+- `const S4: Register`
+
+- `const S5: Register`
+
+- `const S6: Register`
+
+- `const S7: Register`
+
+- `const T8: Register`
+
+- `const T9: Register`
+
+- `const K0: Register`
+
+- `const K1: Register`
+
+- `const GP: Register`
+
+- `const SP: Register`
+
+- `const FP: Register`
+
+- `const RA: Register`
+
+- `const S8: Register`
+
+#### Trait Implementations
+
+##### `impl Clone for MIPS`
+
+- `fn clone(self: &Self) -> MIPS` — [`MIPS`](../index.md)
+
+##### `impl Copy for MIPS`
+
+##### `impl Debug for MIPS`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+### `RiscV`
+
+```rust
+struct RiscV;
+```
+
+RISC-V architecture specific definitions.
+
+See [RISC-V ELF psABI specification](https://github.com/riscv/riscv-elf-psabi-doc).
+
+#### Implementations
+
 - `const X0: Register`
 
 - `const X1: Register`
@@ -110,271 +388,199 @@ https://github.com/ARM-software/abi-aa/blob/main/aadwarf64/aadwarf64.rst).
 
 - `const X30: Register`
 
+- `const X31: Register`
+
+- `const F0: Register`
+
+- `const F1: Register`
+
+- `const F2: Register`
+
+- `const F3: Register`
+
+- `const F4: Register`
+
+- `const F5: Register`
+
+- `const F6: Register`
+
+- `const F7: Register`
+
+- `const F8: Register`
+
+- `const F9: Register`
+
+- `const F10: Register`
+
+- `const F11: Register`
+
+- `const F12: Register`
+
+- `const F13: Register`
+
+- `const F14: Register`
+
+- `const F15: Register`
+
+- `const F16: Register`
+
+- `const F17: Register`
+
+- `const F18: Register`
+
+- `const F19: Register`
+
+- `const F20: Register`
+
+- `const F21: Register`
+
+- `const F22: Register`
+
+- `const F23: Register`
+
+- `const F24: Register`
+
+- `const F25: Register`
+
+- `const F26: Register`
+
+- `const F27: Register`
+
+- `const F28: Register`
+
+- `const F29: Register`
+
+- `const F30: Register`
+
+- `const F31: Register`
+
+- `const ZERO: Register`
+
+- `const RA: Register`
+
 - `const SP: Register`
 
-- `const PC: Register`
+- `const GP: Register`
 
-- `const ELR_MODE: Register`
+- `const TP: Register`
 
-- `const RA_SIGN_STATE: Register`
+- `const T0: Register`
 
-- `const TPIDRRO_EL0: Register`
+- `const T1: Register`
 
-- `const TPIDR_EL0: Register`
+- `const T2: Register`
 
-- `const TPIDR_EL1: Register`
+- `const S0: Register`
 
-- `const TPIDR_EL2: Register`
+- `const S1: Register`
 
-- `const TPIDR_EL3: Register`
+- `const A0: Register`
 
-- `const VG: Register`
+- `const A1: Register`
 
-- `const FFR: Register`
+- `const A2: Register`
 
-- `const P0: Register`
+- `const A3: Register`
 
-- `const P1: Register`
+- `const A4: Register`
 
-- `const P2: Register`
+- `const A5: Register`
 
-- `const P3: Register`
+- `const A6: Register`
 
-- `const P4: Register`
+- `const A7: Register`
 
-- `const P5: Register`
+- `const S2: Register`
 
-- `const P6: Register`
+- `const S3: Register`
 
-- `const P7: Register`
+- `const S4: Register`
 
-- `const P8: Register`
+- `const S5: Register`
 
-- `const P9: Register`
+- `const S6: Register`
 
-- `const P10: Register`
+- `const S7: Register`
 
-- `const P11: Register`
+- `const S8: Register`
 
-- `const P12: Register`
+- `const S9: Register`
 
-- `const P13: Register`
+- `const S10: Register`
 
-- `const P14: Register`
+- `const S11: Register`
 
-- `const P15: Register`
+- `const T3: Register`
 
-- `const V0: Register`
+- `const T4: Register`
 
-- `const V1: Register`
+- `const T5: Register`
 
-- `const V2: Register`
+- `const T6: Register`
 
-- `const V3: Register`
+- `const FT0: Register`
 
-- `const V4: Register`
+- `const FT1: Register`
 
-- `const V5: Register`
+- `const FT2: Register`
 
-- `const V6: Register`
+- `const FT3: Register`
 
-- `const V7: Register`
+- `const FT4: Register`
 
-- `const V8: Register`
+- `const FT5: Register`
 
-- `const V9: Register`
+- `const FT6: Register`
 
-- `const V10: Register`
+- `const FT7: Register`
 
-- `const V11: Register`
+- `const FS0: Register`
 
-- `const V12: Register`
+- `const FS1: Register`
 
-- `const V13: Register`
+- `const FA0: Register`
 
-- `const V14: Register`
+- `const FA1: Register`
 
-- `const V15: Register`
+- `const FA2: Register`
 
-- `const V16: Register`
+- `const FA3: Register`
 
-- `const V17: Register`
+- `const FA4: Register`
 
-- `const V18: Register`
+- `const FA5: Register`
 
-- `const V19: Register`
+- `const FA6: Register`
 
-- `const V20: Register`
+- `const FA7: Register`
 
-- `const V21: Register`
+- `const FS2: Register`
 
-- `const V22: Register`
+- `const FS3: Register`
 
-- `const V23: Register`
+- `const FS4: Register`
 
-- `const V24: Register`
+- `const FS5: Register`
 
-- `const V25: Register`
+- `const FS6: Register`
 
-- `const V26: Register`
+- `const FS7: Register`
 
-- `const V27: Register`
+- `const FS8: Register`
 
-- `const V28: Register`
+- `const FS9: Register`
 
-- `const V29: Register`
+- `const FS10: Register`
 
-- `const V30: Register`
+- `const FS11: Register`
 
-- `const V31: Register`
+- `const FT8: Register`
 
-- `const Z0: Register`
+- `const FT9: Register`
 
-- `const Z1: Register`
+- `const FT10: Register`
 
-- `const Z2: Register`
-
-- `const Z3: Register`
-
-- `const Z4: Register`
-
-- `const Z5: Register`
-
-- `const Z6: Register`
-
-- `const Z7: Register`
-
-- `const Z8: Register`
-
-- `const Z9: Register`
-
-- `const Z10: Register`
-
-- `const Z11: Register`
-
-- `const Z12: Register`
-
-- `const Z13: Register`
-
-- `const Z14: Register`
-
-- `const Z15: Register`
-
-- `const Z16: Register`
-
-- `const Z17: Register`
-
-- `const Z18: Register`
-
-- `const Z19: Register`
-
-- `const Z20: Register`
-
-- `const Z21: Register`
-
-- `const Z22: Register`
-
-- `const Z23: Register`
-
-- `const Z24: Register`
-
-- `const Z25: Register`
-
-- `const Z26: Register`
-
-- `const Z27: Register`
-
-- `const Z28: Register`
-
-- `const Z29: Register`
-
-- `const Z30: Register`
-
-- `const Z31: Register`
-
-#### Trait Implementations
-
-##### `impl Clone for AArch64`
-
-- `fn clone(self: &Self) -> AArch64` — [`AArch64`](../index.md)
-
-##### `impl Copy for AArch64`
-
-##### `impl Debug for AArch64`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
-### `LoongArch`
-
-```rust
-struct LoongArch;
-```
-
-LoongArch architecture specific definitions.
-
-See [LoongArch ELF psABI specification](https://loongson.github.io/LoongArch-Documentation/LoongArch-ELF-ABI-EN.html).
-
-#### Implementations
-
-- `fn register_name(register: Register) -> Option<&'static str>` — [`Register`](../index.md)
-
-- `fn name_to_register(value: &str) -> Option<Register>` — [`Register`](../index.md)
-
-#### Trait Implementations
-
-##### `impl Clone for LoongArch`
-
-- `fn clone(self: &Self) -> LoongArch` — [`LoongArch`](../index.md)
-
-##### `impl Copy for LoongArch`
-
-##### `impl Debug for LoongArch`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
-### `MIPS`
-
-```rust
-struct MIPS;
-```
-
-MIPS architecture specific definitions.
-
-See [MIPS Details](https://en.wikibooks.org/wiki/MIPS_Assembly/MIPS_Details).
-
-#### Implementations
-
-- `fn register_name(register: Register) -> Option<&'static str>` — [`Register`](../index.md)
-
-- `fn name_to_register(value: &str) -> Option<Register>` — [`Register`](../index.md)
-
-#### Trait Implementations
-
-##### `impl Clone for MIPS`
-
-- `fn clone(self: &Self) -> MIPS` — [`MIPS`](../index.md)
-
-##### `impl Copy for MIPS`
-
-##### `impl Debug for MIPS`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
-### `RiscV`
-
-```rust
-struct RiscV;
-```
-
-RISC-V architecture specific definitions.
-
-See [RISC-V ELF psABI specification](https://github.com/riscv/riscv-elf-psabi-doc).
-
-#### Implementations
-
-- `fn register_name(register: Register) -> Option<&'static str>` — [`Register`](../index.md)
-
-- `fn name_to_register(value: &str) -> Option<Register>` — [`Register`](../index.md)
+- `const FT11: Register`
 
 #### Trait Implementations
 

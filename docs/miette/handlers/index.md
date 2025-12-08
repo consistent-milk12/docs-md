@@ -86,47 +86,47 @@ printer.
 
 #### Implementations
 
-- `fn new() -> Self`
+- `fn render_report(self: &Self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic) -> fmt::Result` — [`Diagnostic`](../index.md)
 
-- `fn new_themed(theme: GraphicalTheme) -> Self` — [`GraphicalTheme`](#graphicaltheme)
+- `fn render_report_inner(self: &Self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic, parent_src: Option<&dyn SourceCode>) -> fmt::Result` — [`Diagnostic`](../index.md), [`SourceCode`](../index.md)
 
-- `fn tab_width(self: Self, width: usize) -> Self`
+- `fn render_header(self: &Self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic, is_nested: bool) -> fmt::Result` — [`Diagnostic`](../index.md)
 
-- `fn with_links(self: Self, links: bool) -> Self`
+- `fn render_causes(self: &Self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic, parent_src: Option<&dyn SourceCode>) -> fmt::Result` — [`Diagnostic`](../index.md), [`SourceCode`](../index.md)
 
-- `fn with_cause_chain(self: Self) -> Self`
+- `fn render_footer(self: &Self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic) -> fmt::Result` — [`Diagnostic`](../index.md)
 
-- `fn without_cause_chain(self: Self) -> Self`
+- `fn render_related(self: &Self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic, parent_src: Option<&dyn SourceCode>) -> fmt::Result` — [`Diagnostic`](../index.md), [`SourceCode`](../index.md)
 
-- `fn with_primary_span_start(self: Self) -> Self`
+- `fn render_snippets(self: &Self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic, opt_source: Option<&dyn SourceCode>) -> fmt::Result` — [`Diagnostic`](../index.md), [`SourceCode`](../index.md)
 
-- `fn without_primary_span_start(self: Self) -> Self`
+- `fn render_context(self: &Self, f: &mut impl fmt::Write, source: &dyn SourceCode, context: &LabeledSpan, labels: &[LabeledSpan]) -> fmt::Result` — [`SourceCode`](../index.md), [`LabeledSpan`](../index.md)
 
-- `fn with_urls(self: Self, urls: bool) -> Self`
+- `fn render_multi_line_end(self: &Self, f: &mut impl fmt::Write, labels: &[FancySpan], max_gutter: usize, linum_width: usize, line: &Line, label: &FancySpan) -> fmt::Result` — [`FancySpan`](graphical/index.md), [`Line`](graphical/index.md)
 
-- `fn with_theme(self: Self, theme: GraphicalTheme) -> Self` — [`GraphicalTheme`](#graphicaltheme)
+- `fn render_line_gutter(self: &Self, f: &mut impl fmt::Write, max_gutter: usize, line: &Line, highlights: &[FancySpan]) -> fmt::Result` — [`Line`](graphical/index.md), [`FancySpan`](graphical/index.md)
 
-- `fn with_width(self: Self, width: usize) -> Self`
+- `fn render_highlight_gutter(self: &Self, f: &mut impl fmt::Write, max_gutter: usize, line: &Line, highlights: &[FancySpan], render_mode: LabelRenderMode) -> fmt::Result` — [`Line`](graphical/index.md), [`FancySpan`](graphical/index.md), [`LabelRenderMode`](graphical/index.md)
 
-- `fn with_wrap_lines(self: Self, wrap_lines: bool) -> Self`
+- `fn wrap(self: &Self, text: &str, opts: textwrap::Options<'_>) -> String`
 
-- `fn with_break_words(self: Self, break_words: bool) -> Self`
+- `fn write_linum(self: &Self, f: &mut impl fmt::Write, width: usize, linum: usize) -> fmt::Result`
 
-- `fn with_word_separator(self: Self, word_separator: textwrap::WordSeparator) -> Self`
+- `fn write_no_linum(self: &Self, f: &mut impl fmt::Write, width: usize) -> fmt::Result`
 
-- `fn with_word_splitter(self: Self, word_splitter: textwrap::WordSplitter) -> Self`
+- `fn line_visual_char_width<'a>(self: &Self, text: &'a str) -> impl Iterator<Item = usize> + 'a`
 
-- `fn with_footer(self: Self, footer: String) -> Self`
+- `fn visual_offset(self: &Self, line: &Line, offset: usize, start: bool) -> usize` — [`Line`](graphical/index.md)
 
-- `fn with_context_lines(self: Self, lines: usize) -> Self`
+- `fn render_line_text(self: &Self, f: &mut impl fmt::Write, text: &str) -> fmt::Result`
 
-- `fn with_show_related_as_nested(self: Self, show_related_as_nested: bool) -> Self`
+- `fn render_single_line_highlights(self: &Self, f: &mut impl fmt::Write, line: &Line, linum_width: usize, max_gutter: usize, single_liners: &[&FancySpan], all_highlights: &[FancySpan]) -> fmt::Result` — [`Line`](graphical/index.md), [`FancySpan`](graphical/index.md)
 
-- `fn with_syntax_highlighting(self: Self, highlighter: impl Highlighter + Send + Sync + 'static) -> Self` — [`Highlighter`](../highlighters/index.md)
+- `fn write_label_text(self: &Self, f: &mut impl fmt::Write, line: &Line, linum_width: usize, max_gutter: usize, all_highlights: &[FancySpan], chars: &ThemeCharacters, vbar_offsets: &[(&&FancySpan, usize)], hl: &&FancySpan, label: &str, render_mode: LabelRenderMode) -> fmt::Result` — [`Line`](graphical/index.md), [`FancySpan`](graphical/index.md), [`ThemeCharacters`](#themecharacters), [`LabelRenderMode`](graphical/index.md)
 
-- `fn without_syntax_highlighting(self: Self) -> Self`
+- `fn render_multi_line_end_single(self: &Self, f: &mut impl fmt::Write, label: &str, style: Style, render_mode: LabelRenderMode) -> fmt::Result` — [`LabelRenderMode`](graphical/index.md)
 
-- `fn with_link_display_text(self: Self, text: impl Into<String>) -> Self`
+- `fn get_lines<'a>(self: &'a Self, source: &'a dyn SourceCode, context_span: &'a SourceSpan) -> Result<(Box<dyn SpanContents<'a>>, Vec<Line>), fmt::Error>` — [`SourceCode`](../index.md), [`SourceSpan`](../index.md), [`SpanContents`](../index.md), [`Line`](graphical/index.md)
 
 #### Trait Implementations
 

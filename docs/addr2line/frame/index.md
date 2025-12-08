@@ -74,11 +74,11 @@ An iterator over function frames.
 
 - `fn new_empty() -> Self`
 
-- `fn new_location(location: Location<'ctx>) -> Self` — [`Location`](#location)
+- `fn new_location(location: Location<'ctx>) -> Self` — [`Location`](../index.md)
 
-- `fn new_frames(unit: &'ctx ResUnit<R>, sections: &'ctx gimli::Dwarf<R>, function: &'ctx Function<R>, inlined_functions: alloc::vec::Vec<&'ctx InlinedFunction<R>>, location: Option<Location<'ctx>>) -> Self` — [`ResUnit`](../unit/index.md), [`Function`](../function/index.md), [`InlinedFunction`](../function/index.md), [`Location`](#location)
+- `fn new_frames(unit: &'ctx ResUnit<R>, sections: &'ctx gimli::Dwarf<R>, function: &'ctx Function<R>, inlined_functions: alloc::vec::Vec<&'ctx InlinedFunction<R>>, location: Option<Location<'ctx>>) -> Self` — [`ResUnit`](../unit/index.md), [`Function`](../function/index.md), [`InlinedFunction`](../function/index.md), [`Location`](../index.md)
 
-- `fn next(self: &mut Self) -> Result<Option<Frame<'ctx, R>>, gimli::Error>` — [`Frame`](#frame)
+- `fn next(self: &mut Self) -> Result<Option<Frame<'ctx, R>>, gimli::Error>` — [`Frame`](../index.md)
 
 ### `FrameIterFrames<'ctx, R>`
 

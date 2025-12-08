@@ -17,7 +17,7 @@ struct TakeAnyWhile<I, P> {
 
 `TakeAnyWhile` is an iterator that iterates over elements from anywhere in `I`
 until the callback returns `false`.
-This struct is created by the `take_any_while()` method on [`ParallelIterator`](../index.md)
+This struct is created by the `take_any_while()` method on [`ParallelIterator`](../../prelude/index.md)
 
 
 #### Implementations
@@ -28,7 +28,7 @@ This struct is created by the `take_any_while()` method on [`ParallelIterator`](
 
 ##### `impl<I: $crate::clone::Clone, P: $crate::clone::Clone> Clone for TakeAnyWhile<I, P>`
 
-- `fn clone(self: &Self) -> TakeAnyWhile<I, P>` — [`TakeAnyWhile`](#takeanywhile)
+- `fn clone(self: &Self) -> TakeAnyWhile<I, P>` — [`TakeAnyWhile`](../index.md)
 
 ##### `impl<I: fmt::Debug, P> Debug for TakeAnyWhile<I, P>`
 

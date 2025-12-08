@@ -159,7 +159,7 @@ impl<'a> GeneratorContext<'a> {
 
         let impl_map = Self::build_impl_map(krate);
         let is_flat = matches!(args.format, CliOutputFormat::Flat);
-        let link_registry = LinkRegistry::build(krate, is_flat, args.include_private);
+        let link_registry = LinkRegistry::build(krate, is_flat, !args.exclude_private);
 
         Self {
             krate,
@@ -221,25 +221,25 @@ impl<'a> GeneratorContext<'a> {
 
     /// Check if an item should be included based on visibility settings.
     ///
-    /// By default, only public items are included. If `--include-private`
-    /// is set, all items are included regardless of visibility.
+    /// By default, all items are included. If `--exclude-private`
+    /// is set, only public items are included.
     ///
     /// # Visibility Levels
     ///
     /// - `Public` - Always included
-    /// - `Crate`, `Restricted`, `Default` - Only with `--include-private`
+    /// - `Crate`, `Restricted`, `Default` - Included by default, excluded with `--exclude-private`
     #[must_use]
     pub const fn should_include_item(&self, item: &Item) -> bool {
         match &item.visibility {
             Visibility::Public => true,
-            _ => self.args.include_private,
+            _ => !self.args.exclude_private,
         }
     }
 
     /// Count the total number of modules that will be generated.
     ///
     /// Used to initialize the progress bar with the correct total.
-    /// Respects the `--include-private` flag when counting.
+    /// Respects the `--exclude-private` flag when counting.
     #[must_use]
     pub fn count_modules(&self, item: &Item) -> usize {
         let mut count = 0;
@@ -286,12 +286,12 @@ impl ItemFilter for GeneratorContext<'_> {
     fn should_include_item(&self, item: &Item) -> bool {
         match &item.visibility {
             Visibility::Public => true,
-            _ => self.args.include_private,
+            _ => !self.args.exclude_private,
         }
     }
 
     fn include_private(&self) -> bool {
-        self.args.include_private
+        !self.args.exclude_private
     }
 
     fn include_blanket_impls(&self) -> bool {

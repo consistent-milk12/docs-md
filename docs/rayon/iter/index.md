@@ -59,11 +59,11 @@ ways to create (or consume) parallel iterators:
 
 
 To see the full range of methods available on parallel iterators,
-check out the [`ParallelIterator`](#paralleliterator) and [`IndexedParallelIterator`](#indexedparalleliterator)
+check out the [`ParallelIterator`](../prelude/index.md) and [`IndexedParallelIterator`](../prelude/index.md)
 traits.
 
 If you'd like to build a custom parallel iterator, or to write your own
-combinator, then check out the [`split`](../str/index.md) function and the [`plumbing`](plumbing/index.md) module.
+combinator, then check out the [split](#split) function and the [`plumbing`](plumbing/index.md) module.
 
 
 
@@ -154,7 +154,7 @@ struct ExponentialBlocks<I> {
 `ExponentialBlocks` is a parallel iterator that consumes itself as a sequence
 of parallel blocks of increasing sizes (exponentially).
 
-This struct is created by the `by_exponential_blocks()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
+This struct is created by the `by_exponential_blocks()` method on [`IndexedParallelIterator`](../prelude/index.md)
 
 
 #### Implementations
@@ -165,7 +165,7 @@ This struct is created by the `by_exponential_blocks()` method on [`IndexedParal
 
 ##### `impl<I: $crate::clone::Clone> Clone for ExponentialBlocks<I>`
 
-- `fn clone(self: &Self) -> ExponentialBlocks<I>` — [`ExponentialBlocks`](blocks/index.md)
+- `fn clone(self: &Self) -> ExponentialBlocks<I>` — [`ExponentialBlocks`](#exponentialblocks)
 
 ##### `impl<I: $crate::fmt::Debug> Debug for ExponentialBlocks<I>`
 
@@ -213,7 +213,7 @@ struct UniformBlocks<I> {
 `UniformBlocks` is a parallel iterator that consumes itself as a sequence
 of parallel blocks of constant sizes.
 
-This struct is created by the `by_uniform_blocks()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
+This struct is created by the `by_uniform_blocks()` method on [`IndexedParallelIterator`](../prelude/index.md)
 
 
 #### Implementations
@@ -224,7 +224,7 @@ This struct is created by the `by_uniform_blocks()` method on [`IndexedParallelI
 
 ##### `impl<I: $crate::clone::Clone> Clone for UniformBlocks<I>`
 
-- `fn clone(self: &Self) -> UniformBlocks<I>` — [`UniformBlocks`](blocks/index.md)
+- `fn clone(self: &Self) -> UniformBlocks<I>` — [`UniformBlocks`](#uniformblocks)
 
 ##### `impl<I: $crate::fmt::Debug> Debug for UniformBlocks<I>`
 
@@ -270,7 +270,7 @@ struct Chain<A, B> {
 ```
 
 `Chain` is an iterator that joins `b` after `a` in one continuous iterator.
-This struct is created by the `chain()` method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `chain()` method on [`ParallelIterator`](../prelude/index.md)
 
 
 #### Implementations
@@ -281,7 +281,7 @@ This struct is created by the `chain()` method on [`ParallelIterator`](#parallel
 
 ##### `impl<A: $crate::clone::Clone, B: $crate::clone::Clone> Clone for Chain<A, B>`
 
-- `fn clone(self: &Self) -> Chain<A, B>` — [`Chain`](chain/index.md)
+- `fn clone(self: &Self) -> Chain<A, B>` — [`Chain`](#chain)
 
 ##### `impl<A: $crate::fmt::Debug, B: $crate::fmt::Debug> Debug for Chain<A, B>`
 
@@ -338,7 +338,7 @@ struct Chunks<I> {
 
 `Chunks` is an iterator that groups elements of an underlying iterator.
 
-This struct is created by the `chunks()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
+This struct is created by the `chunks()` method on [`IndexedParallelIterator`](../prelude/index.md)
 
 
 #### Implementations
@@ -349,7 +349,7 @@ This struct is created by the `chunks()` method on [`IndexedParallelIterator`](#
 
 ##### `impl<I: $crate::clone::Clone> Clone for Chunks<I>`
 
-- `fn clone(self: &Self) -> Chunks<I>` — [`Chunks`](chunks/index.md)
+- `fn clone(self: &Self) -> Chunks<I>` — [`Chunks`](#chunks)
 
 ##### `impl<I: $crate::fmt::Debug> Debug for Chunks<I>`
 
@@ -405,7 +405,7 @@ struct Cloned<I> {
 
 `Cloned` is an iterator that clones the elements of an underlying iterator.
 
-This struct is created by the `cloned()` method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `cloned()` method on [`ParallelIterator`](../prelude/index.md)
 
 
 #### Implementations
@@ -416,7 +416,7 @@ This struct is created by the `cloned()` method on [`ParallelIterator`](#paralle
 
 ##### `impl<I: $crate::clone::Clone> Clone for Cloned<I>`
 
-- `fn clone(self: &Self) -> Cloned<I>` — [`Cloned`](cloned/index.md)
+- `fn clone(self: &Self) -> Cloned<I>` — [`Cloned`](#cloned)
 
 ##### `impl<I: $crate::fmt::Debug> Debug for Cloned<I>`
 
@@ -472,7 +472,7 @@ struct Copied<I> {
 
 `Copied` is an iterator that copies the elements of an underlying iterator.
 
-This struct is created by the `copied()` method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `copied()` method on [`ParallelIterator`](../prelude/index.md)
 
 
 #### Implementations
@@ -483,7 +483,7 @@ This struct is created by the `copied()` method on [`ParallelIterator`](#paralle
 
 ##### `impl<I: $crate::clone::Clone> Clone for Copied<I>`
 
-- `fn clone(self: &Self) -> Copied<I>` — [`Copied`](copied/index.md)
+- `fn clone(self: &Self) -> Copied<I>` — [`Copied`](#copied)
 
 ##### `impl<I: $crate::fmt::Debug> Debug for Copied<I>`
 
@@ -599,7 +599,7 @@ struct Enumerate<I> {
 ```
 
 `Enumerate` is an iterator that returns the current count along with the element.
-This struct is created by the `enumerate()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
+This struct is created by the `enumerate()` method on [`IndexedParallelIterator`](../prelude/index.md)
 
 
 #### Implementations
@@ -610,7 +610,7 @@ This struct is created by the `enumerate()` method on [`IndexedParallelIterator`
 
 ##### `impl<I: $crate::clone::Clone> Clone for Enumerate<I>`
 
-- `fn clone(self: &Self) -> Enumerate<I>` — [`Enumerate`](enumerate/index.md)
+- `fn clone(self: &Self) -> Enumerate<I>` — [`Enumerate`](#enumerate)
 
 ##### `impl<I: $crate::fmt::Debug> Debug for Enumerate<I>`
 
@@ -666,7 +666,7 @@ struct Filter<I, P> {
 ```
 
 `Filter` takes a predicate `filter_op` and filters out elements that match.
-This struct is created by the `filter()` method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `filter()` method on [`ParallelIterator`](../prelude/index.md)
 
 
 #### Implementations
@@ -677,7 +677,7 @@ This struct is created by the `filter()` method on [`ParallelIterator`](#paralle
 
 ##### `impl<I: $crate::clone::Clone, P: $crate::clone::Clone> Clone for Filter<I, P>`
 
-- `fn clone(self: &Self) -> Filter<I, P>` — [`Filter`](filter/index.md)
+- `fn clone(self: &Self) -> Filter<I, P>` — [`Filter`](#filter)
 
 ##### `impl<I: Debug, P> Debug for Filter<I, P>`
 
@@ -723,7 +723,7 @@ struct FilterMap<I, P> {
 ```
 
 `FilterMap` creates an iterator that uses `filter_op` to both filter and map elements.
-This struct is created by the `filter_map()` method on [`ParallelIterator`](#paralleliterator).
+This struct is created by the `filter_map()` method on [`ParallelIterator`](../prelude/index.md).
 
 
 #### Implementations
@@ -734,7 +734,7 @@ This struct is created by the `filter_map()` method on [`ParallelIterator`](#par
 
 ##### `impl<I: $crate::clone::Clone, P: $crate::clone::Clone> Clone for FilterMap<I, P>`
 
-- `fn clone(self: &Self) -> FilterMap<I, P>` — [`FilterMap`](filter_map/index.md)
+- `fn clone(self: &Self) -> FilterMap<I, P>` — [`FilterMap`](#filtermap)
 
 ##### `impl<I: Debug, P> Debug for FilterMap<I, P>`
 
@@ -780,7 +780,7 @@ struct FlatMap<I, F> {
 ```
 
 `FlatMap` maps each element to a parallel iterator, then flattens these iterators together.
-This struct is created by the `flat_map()` method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `flat_map()` method on [`ParallelIterator`](../prelude/index.md)
 
 
 #### Implementations
@@ -791,7 +791,7 @@ This struct is created by the `flat_map()` method on [`ParallelIterator`](#paral
 
 ##### `impl<I: $crate::clone::Clone, F: $crate::clone::Clone> Clone for FlatMap<I, F>`
 
-- `fn clone(self: &Self) -> FlatMap<I, F>` — [`FlatMap`](flat_map/index.md)
+- `fn clone(self: &Self) -> FlatMap<I, F>` — [`FlatMap`](#flatmap)
 
 ##### `impl<I: Debug, F> Debug for FlatMap<I, F>`
 
@@ -837,7 +837,7 @@ struct FlatMapIter<I, F> {
 ```
 
 `FlatMapIter` maps each element to a serial iterator, then flattens these iterators together.
-This struct is created by the `flat_map_iter()` method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `flat_map_iter()` method on [`ParallelIterator`](../prelude/index.md)
 
 
 #### Implementations
@@ -848,7 +848,7 @@ This struct is created by the `flat_map_iter()` method on [`ParallelIterator`](#
 
 ##### `impl<I: $crate::clone::Clone, F: $crate::clone::Clone> Clone for FlatMapIter<I, F>`
 
-- `fn clone(self: &Self) -> FlatMapIter<I, F>` — [`FlatMapIter`](flat_map_iter/index.md)
+- `fn clone(self: &Self) -> FlatMapIter<I, F>` — [`FlatMapIter`](#flatmapiter)
 
 ##### `impl<I: Debug, F> Debug for FlatMapIter<I, F>`
 
@@ -893,7 +893,7 @@ struct Flatten<I> {
 ```
 
 `Flatten` turns each element to a parallel iterator, then flattens these iterators
-together. This struct is created by the `flatten()` method on [`ParallelIterator`](#paralleliterator).
+together. This struct is created by the `flatten()` method on [`ParallelIterator`](../prelude/index.md).
 
 
 #### Implementations
@@ -904,7 +904,7 @@ together. This struct is created by the `flatten()` method on [`ParallelIterator
 
 ##### `impl<I: $crate::clone::Clone> Clone for Flatten<I>`
 
-- `fn clone(self: &Self) -> Flatten<I>` — [`Flatten`](flatten/index.md)
+- `fn clone(self: &Self) -> Flatten<I>` — [`Flatten`](#flatten)
 
 ##### `impl<I: $crate::fmt::Debug> Debug for Flatten<I>`
 
@@ -949,7 +949,7 @@ struct FlattenIter<I> {
 ```
 
 `FlattenIter` turns each element to a serial iterator, then flattens these iterators
-together. This struct is created by the `flatten_iter()` method on [`ParallelIterator`](#paralleliterator).
+together. This struct is created by the `flatten_iter()` method on [`ParallelIterator`](../prelude/index.md).
 
 
 #### Implementations
@@ -960,7 +960,7 @@ together. This struct is created by the `flatten_iter()` method on [`ParallelIte
 
 ##### `impl<I: $crate::clone::Clone> Clone for FlattenIter<I>`
 
-- `fn clone(self: &Self) -> FlattenIter<I>` — [`FlattenIter`](flatten_iter/index.md)
+- `fn clone(self: &Self) -> FlattenIter<I>` — [`FlattenIter`](#flatteniter)
 
 ##### `impl<I: $crate::fmt::Debug> Debug for FlattenIter<I>`
 
@@ -1007,7 +1007,7 @@ struct Fold<I, ID, F> {
 ```
 
 `Fold` is an iterator that applies a function over an iterator producing a single value.
-This struct is created by the `fold()` method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `fold()` method on [`ParallelIterator`](../prelude/index.md)
 
 
 #### Implementations
@@ -1018,7 +1018,7 @@ This struct is created by the `fold()` method on [`ParallelIterator`](#paralleli
 
 ##### `impl<I: $crate::clone::Clone, ID: $crate::clone::Clone, F: $crate::clone::Clone> Clone for Fold<I, ID, F>`
 
-- `fn clone(self: &Self) -> Fold<I, ID, F>` — [`Fold`](fold/index.md)
+- `fn clone(self: &Self) -> Fold<I, ID, F>` — [`Fold`](#fold)
 
 ##### `impl<I: Debug, ID, F> Debug for Fold<I, ID, F>`
 
@@ -1065,7 +1065,7 @@ struct FoldWith<I, U, F> {
 ```
 
 `FoldWith` is an iterator that applies a function over an iterator producing a single value.
-This struct is created by the `fold_with()` method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `fold_with()` method on [`ParallelIterator`](../prelude/index.md)
 
 
 #### Implementations
@@ -1076,7 +1076,7 @@ This struct is created by the `fold_with()` method on [`ParallelIterator`](#para
 
 ##### `impl<I: $crate::clone::Clone, U: $crate::clone::Clone, F: $crate::clone::Clone> Clone for FoldWith<I, U, F>`
 
-- `fn clone(self: &Self) -> FoldWith<I, U, F>` — [`FoldWith`](fold/index.md)
+- `fn clone(self: &Self) -> FoldWith<I, U, F>` — [`FoldWith`](#foldwith)
 
 ##### `impl<I: Debug, U: Debug, F> Debug for FoldWith<I, U, F>`
 
@@ -1126,7 +1126,7 @@ struct FoldChunks<I, ID, F> {
 `FoldChunks` is an iterator that groups elements of an underlying iterator and applies a
 function over them, producing a single value for each group.
 
-This struct is created by the `fold_chunks()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
+This struct is created by the `fold_chunks()` method on [`IndexedParallelIterator`](../prelude/index.md)
 
 
 #### Implementations
@@ -1137,7 +1137,7 @@ This struct is created by the `fold_chunks()` method on [`IndexedParallelIterato
 
 ##### `impl<I: $crate::clone::Clone, ID: $crate::clone::Clone, F: $crate::clone::Clone> Clone for FoldChunks<I, ID, F>`
 
-- `fn clone(self: &Self) -> FoldChunks<I, ID, F>` — [`FoldChunks`](fold_chunks/index.md)
+- `fn clone(self: &Self) -> FoldChunks<I, ID, F>` — [`FoldChunks`](#foldchunks)
 
 ##### `impl<I: Debug, ID, F> Debug for FoldChunks<I, ID, F>`
 
@@ -1197,7 +1197,7 @@ struct FoldChunksWith<I, U, F> {
 `FoldChunksWith` is an iterator that groups elements of an underlying iterator and applies a
 function over them, producing a single value for each group.
 
-This struct is created by the `fold_chunks_with()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
+This struct is created by the `fold_chunks_with()` method on [`IndexedParallelIterator`](../prelude/index.md)
 
 
 #### Implementations
@@ -1208,7 +1208,7 @@ This struct is created by the `fold_chunks_with()` method on [`IndexedParallelIt
 
 ##### `impl<I: $crate::clone::Clone, U: $crate::clone::Clone, F: $crate::clone::Clone> Clone for FoldChunksWith<I, U, F>`
 
-- `fn clone(self: &Self) -> FoldChunksWith<I, U, F>` — [`FoldChunksWith`](fold_chunks_with/index.md)
+- `fn clone(self: &Self) -> FoldChunksWith<I, U, F>` — [`FoldChunksWith`](#foldchunkswith)
 
 ##### `impl<I: Debug, U: Debug, F> Debug for FoldChunksWith<I, U, F>`
 
@@ -1266,7 +1266,7 @@ struct Inspect<I, F> {
 `Inspect` is an iterator that calls a function with a reference to each
 element before yielding it.
 
-This struct is created by the `inspect()` method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `inspect()` method on [`ParallelIterator`](../prelude/index.md)
 
 
 #### Implementations
@@ -1277,7 +1277,7 @@ This struct is created by the `inspect()` method on [`ParallelIterator`](#parall
 
 ##### `impl<I: $crate::clone::Clone, F: $crate::clone::Clone> Clone for Inspect<I, F>`
 
-- `fn clone(self: &Self) -> Inspect<I, F>` — [`Inspect`](inspect/index.md)
+- `fn clone(self: &Self) -> Inspect<I, F>` — [`Inspect`](#inspect)
 
 ##### `impl<I: Debug, F> Debug for Inspect<I, F>`
 
@@ -1334,7 +1334,7 @@ struct Interleave<I, J> {
 
 `Interleave` is an iterator that interleaves elements of iterators
 `i` and `j` in one continuous iterator. This struct is created by
-the `interleave()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
+the `interleave()` method on [`IndexedParallelIterator`](../prelude/index.md)
 
 
 #### Implementations
@@ -1345,7 +1345,7 @@ the `interleave()` method on [`IndexedParallelIterator`](#indexedparalleliterato
 
 ##### `impl<I: $crate::clone::Clone, J: $crate::clone::Clone> Clone for Interleave<I, J>`
 
-- `fn clone(self: &Self) -> Interleave<I, J>` — [`Interleave`](interleave/index.md)
+- `fn clone(self: &Self) -> Interleave<I, J>` — [`Interleave`](#interleave)
 
 ##### `impl<I: $crate::fmt::Debug, J: $crate::fmt::Debug> Debug for Interleave<I, J>`
 
@@ -1404,7 +1404,7 @@ struct InterleaveShortest<I, J> {
 of the iterators run out.
 
 This struct is created by the `interleave_shortest()` method on
-[`IndexedParallelIterator`](#indexedparalleliterator).
+[`IndexedParallelIterator`](../prelude/index.md).
 
 
 #### Implementations
@@ -1415,7 +1415,7 @@ This struct is created by the `interleave_shortest()` method on
 
 ##### `impl<I: $crate::clone::Clone, J: $crate::clone::Clone> Clone for InterleaveShortest<I, J>`
 
-- `fn clone(self: &Self) -> InterleaveShortest<I, J>` — [`InterleaveShortest`](interleave_shortest/index.md)
+- `fn clone(self: &Self) -> InterleaveShortest<I, J>` — [`InterleaveShortest`](#interleaveshortest)
 
 ##### `impl<I: $crate::fmt::Debug, J: $crate::fmt::Debug> Debug for InterleaveShortest<I, J>`
 
@@ -1474,18 +1474,18 @@ where
 
 `Intersperse` is an iterator that inserts a particular item between each
 item of the adapted iterator.  This struct is created by the
-`intersperse()` method on [`ParallelIterator`](#paralleliterator)
+`intersperse()` method on [`ParallelIterator`](../prelude/index.md)
 
 
 #### Implementations
 
-- `fn new(base: I, item: <I as >::Item) -> Self` — [`ParallelIterator`](#paralleliterator)
+- `fn new(base: I, item: <I as >::Item) -> Self` — [`ParallelIterator`](../prelude/index.md)
 
 #### Trait Implementations
 
 ##### `impl<I> Clone for Intersperse<I>`
 
-- `fn clone(self: &Self) -> Intersperse<I>` — [`Intersperse`](intersperse/index.md)
+- `fn clone(self: &Self) -> Intersperse<I>` — [`Intersperse`](#intersperse)
 
 ##### `impl<I> Debug for Intersperse<I>`
 
@@ -1541,7 +1541,7 @@ struct MaxLen<I> {
 ```
 
 `MaxLen` is an iterator that imposes a maximum length on iterator splits.
-This struct is created by the `with_max_len()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
+This struct is created by the `with_max_len()` method on [`IndexedParallelIterator`](../prelude/index.md)
 
 
 #### Implementations
@@ -1552,7 +1552,7 @@ This struct is created by the `with_max_len()` method on [`IndexedParallelIterat
 
 ##### `impl<I: $crate::clone::Clone> Clone for MaxLen<I>`
 
-- `fn clone(self: &Self) -> MaxLen<I>` — [`MaxLen`](len/index.md)
+- `fn clone(self: &Self) -> MaxLen<I>` — [`MaxLen`](#maxlen)
 
 ##### `impl<I: $crate::fmt::Debug> Debug for MaxLen<I>`
 
@@ -1608,7 +1608,7 @@ struct MinLen<I> {
 ```
 
 `MinLen` is an iterator that imposes a minimum length on iterator splits.
-This struct is created by the `with_min_len()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
+This struct is created by the `with_min_len()` method on [`IndexedParallelIterator`](../prelude/index.md)
 
 
 #### Implementations
@@ -1619,7 +1619,7 @@ This struct is created by the `with_min_len()` method on [`IndexedParallelIterat
 
 ##### `impl<I: $crate::clone::Clone> Clone for MinLen<I>`
 
-- `fn clone(self: &Self) -> MinLen<I>` — [`MinLen`](len/index.md)
+- `fn clone(self: &Self) -> MinLen<I>` — [`MinLen`](#minlen)
 
 ##### `impl<I: $crate::fmt::Debug> Debug for MinLen<I>`
 
@@ -1676,7 +1676,7 @@ struct Map<I, F> {
 
 `Map` is an iterator that transforms the elements of an underlying iterator.
 
-This struct is created by the `map()` method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `map()` method on [`ParallelIterator`](../prelude/index.md)
 
 
 #### Implementations
@@ -1687,7 +1687,7 @@ This struct is created by the `map()` method on [`ParallelIterator`](#parallelit
 
 ##### `impl<I: $crate::clone::Clone, F: $crate::clone::Clone> Clone for Map<I, F>`
 
-- `fn clone(self: &Self) -> Map<I, F>` — [`Map`](map/index.md)
+- `fn clone(self: &Self) -> Map<I, F>` — [`Map`](#map)
 
 ##### `impl<I: Debug, F> Debug for Map<I, F>`
 
@@ -1745,7 +1745,7 @@ struct MapInit<I, INIT, F> {
 
 `MapInit` is an iterator that transforms the elements of an underlying iterator.
 
-This struct is created by the `map_init()` method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `map_init()` method on [`ParallelIterator`](../prelude/index.md)
 
 
 #### Implementations
@@ -1756,7 +1756,7 @@ This struct is created by the `map_init()` method on [`ParallelIterator`](#paral
 
 ##### `impl<I: $crate::clone::Clone, INIT: $crate::clone::Clone, F: $crate::clone::Clone> Clone for MapInit<I, INIT, F>`
 
-- `fn clone(self: &Self) -> MapInit<I, INIT, F>` — [`MapInit`](map_with/index.md)
+- `fn clone(self: &Self) -> MapInit<I, INIT, F>` — [`MapInit`](#mapinit)
 
 ##### `impl<I: Debug, INIT, F> Debug for MapInit<I, INIT, F>`
 
@@ -1814,7 +1814,7 @@ struct MapWith<I, T, F> {
 
 `MapWith` is an iterator that transforms the elements of an underlying iterator.
 
-This struct is created by the `map_with()` method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `map_with()` method on [`ParallelIterator`](../prelude/index.md)
 
 
 #### Implementations
@@ -1825,7 +1825,7 @@ This struct is created by the `map_with()` method on [`ParallelIterator`](#paral
 
 ##### `impl<I: $crate::clone::Clone, T: $crate::clone::Clone, F: $crate::clone::Clone> Clone for MapWith<I, T, F>`
 
-- `fn clone(self: &Self) -> MapWith<I, T, F>` — [`MapWith`](map_with/index.md)
+- `fn clone(self: &Self) -> MapWith<I, T, F>` — [`MapWith`](#mapwith)
 
 ##### `impl<I: Debug, T: Debug, F> Debug for MapWith<I, T, F>`
 
@@ -1958,13 +1958,13 @@ assert_eq!(tuple, (vec![1, 2, 3], vec![-4, -3, -2], vec![-6, -2, 2]));
 
 ##### `impl<T: $crate::clone::Clone> Clone for MultiZip<T>`
 
-- `fn clone(self: &Self) -> MultiZip<T>` — [`MultiZip`](multizip/index.md)
+- `fn clone(self: &Self) -> MultiZip<T>` — [`MultiZip`](#multizip)
 
 ##### `impl<T: $crate::fmt::Debug> Debug for MultiZip<T>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl<A, B, C, D, E, F> IndexedParallelIterator for MultiZip<(A, B, C, D, E, F)>`
+##### `impl<A, B, C, D, E, F, G> IndexedParallelIterator for MultiZip<(A, B, C, D, E, F, G)>`
 
 - `fn drive<CONSUMER>(self: Self, consumer: CONSUMER) -> <CONSUMER as >::Result` — [`Consumer`](plumbing/index.md)
 
@@ -1982,9 +1982,9 @@ assert_eq!(tuple, (vec![1, 2, 3], vec![-4, -3, -2], vec![-6, -2, 2]));
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl<A, B, C, D, E, F, G, H, I, J> ParallelIterator for MultiZip<(A, B, C, D, E, F, G, H, I, J)>`
+##### `impl<A, B, C, D, E, F, G, H, I, J, K, L> ParallelIterator for MultiZip<(A, B, C, D, E, F, G, H, I, J, K, L)>`
 
-- `type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item, <C as ParallelIterator>::Item, <D as ParallelIterator>::Item, <E as ParallelIterator>::Item, <F as ParallelIterator>::Item, <G as ParallelIterator>::Item, <H as ParallelIterator>::Item, <I as ParallelIterator>::Item, <J as ParallelIterator>::Item)`
+- `type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item, <C as ParallelIterator>::Item, <D as ParallelIterator>::Item, <E as ParallelIterator>::Item, <F as ParallelIterator>::Item, <G as ParallelIterator>::Item, <H as ParallelIterator>::Item, <I as ParallelIterator>::Item, <J as ParallelIterator>::Item, <K as ParallelIterator>::Item, <L as ParallelIterator>::Item)`
 
 - `fn drive_unindexed<CONSUMER>(self: Self, consumer: CONSUMER) -> <CONSUMER as >::Result` — [`Consumer`](plumbing/index.md)
 
@@ -2019,7 +2019,7 @@ Iterator adaptor for [the `once()` function].
 
 ##### `impl<T: $crate::clone::Clone> Clone for Once<T>`
 
-- `fn clone(self: &Self) -> Once<T>` — [`Once`](once/index.md)
+- `fn clone(self: &Self) -> Once<T>` — [`Once`](#once)
 
 ##### `impl<T: $crate::fmt::Debug> Debug for Once<T>`
 
@@ -2076,18 +2076,18 @@ struct PanicFuse<I> {
 `PanicFuse` is an adaptor that wraps an iterator with a fuse in case
 of panics, to halt all threads as soon as possible.
 
-This struct is created by the `panic_fuse()` method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `panic_fuse()` method on [`ParallelIterator`](../prelude/index.md)
 
 
 #### Implementations
 
-- `fn new(base: I) -> PanicFuse<I>` — [`PanicFuse`](panic_fuse/index.md)
+- `fn new(base: I) -> PanicFuse<I>` — [`PanicFuse`](#panicfuse)
 
 #### Trait Implementations
 
 ##### `impl<I: $crate::clone::Clone> Clone for PanicFuse<I>`
 
-- `fn clone(self: &Self) -> PanicFuse<I>` — [`PanicFuse`](panic_fuse/index.md)
+- `fn clone(self: &Self) -> PanicFuse<I>` — [`PanicFuse`](#panicfuse)
 
 ##### `impl<I: $crate::fmt::Debug> Debug for PanicFuse<I>`
 
@@ -2144,13 +2144,13 @@ struct IterBridge<Iter> {
 `IterBridge` is a parallel iterator that wraps a sequential iterator.
 
 This type is created when using the `par_bridge` method on `ParallelBridge`. See the
-[`ParallelBridge`](par_bridge/index.md) documentation for details.
+[`ParallelBridge`](../prelude/index.md) documentation for details.
 
 #### Trait Implementations
 
 ##### `impl<Iter: $crate::clone::Clone> Clone for IterBridge<Iter>`
 
-- `fn clone(self: &Self) -> IterBridge<Iter>` — [`IterBridge`](par_bridge/index.md)
+- `fn clone(self: &Self) -> IterBridge<Iter>` — [`IterBridge`](#iterbridge)
 
 ##### `impl<Iter: $crate::fmt::Debug> Debug for IterBridge<Iter>`
 
@@ -2198,7 +2198,7 @@ struct Positions<I, P> {
 `Positions` takes a predicate `predicate` and filters out elements that match,
 yielding their indices.
 
-This struct is created by the `positions()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
+This struct is created by the `positions()` method on [`IndexedParallelIterator`](../prelude/index.md)
 
 
 #### Implementations
@@ -2209,7 +2209,7 @@ This struct is created by the `positions()` method on [`IndexedParallelIterator`
 
 ##### `impl<I: $crate::clone::Clone, P: $crate::clone::Clone> Clone for Positions<I, P>`
 
-- `fn clone(self: &Self) -> Positions<I, P>` — [`Positions`](positions/index.md)
+- `fn clone(self: &Self) -> Positions<I, P>` — [`Positions`](#positions)
 
 ##### `impl<I: Debug, P> Debug for Positions<I, P>`
 
@@ -2258,15 +2258,15 @@ Iterator adaptor for [the `repeat()` function].
 
 #### Implementations
 
-- `fn take(self: Self, n: usize) -> RepeatN<T>` — [`RepeatN`](repeat/index.md)
+- `fn take(self: Self, n: usize) -> RepeatN<T>` — [`RepeatN`](#repeatn)
 
-- `fn zip<Z>(self: Self, zip_op: Z) -> Zip<RepeatN<T>, <Z as >::Iter>` — [`Zip`](zip/index.md), [`RepeatN`](repeat/index.md), [`IntoParallelIterator`](#intoparalleliterator)
+- `fn zip<Z>(self: Self, zip_op: Z) -> Zip<RepeatN<T>, <Z as >::Iter>` — [`Zip`](#zip), [`RepeatN`](#repeatn), [`IntoParallelIterator`](../prelude/index.md)
 
 #### Trait Implementations
 
 ##### `impl<T: $crate::clone::Clone> Clone for Repeat<T>`
 
-- `fn clone(self: &Self) -> Repeat<T>` — [`Repeat`](repeat/index.md)
+- `fn clone(self: &Self) -> Repeat<T>` — [`Repeat`](#repeat)
 
 ##### `impl<T: $crate::fmt::Debug> Debug for Repeat<T>`
 
@@ -2317,7 +2317,7 @@ Iterator adaptor for [the `repeat_n()` function].
 
 ##### `impl<T: $crate::clone::Clone> Clone for RepeatN<T>`
 
-- `fn clone(self: &Self) -> RepeatN<T>` — [`RepeatN`](repeat/index.md)
+- `fn clone(self: &Self) -> RepeatN<T>` — [`RepeatN`](#repeatn)
 
 ##### `impl<T: fmt::Debug> Debug for RepeatN<T>`
 
@@ -2372,7 +2372,7 @@ struct Rev<I> {
 ```
 
 `Rev` is an iterator that produces elements in reverse order. This struct
-is created by the `rev()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
+is created by the `rev()` method on [`IndexedParallelIterator`](../prelude/index.md)
 
 
 #### Implementations
@@ -2383,7 +2383,7 @@ is created by the `rev()` method on [`IndexedParallelIterator`](#indexedparallel
 
 ##### `impl<I: $crate::clone::Clone> Clone for Rev<I>`
 
-- `fn clone(self: &Self) -> Rev<I>` — [`Rev`](rev/index.md)
+- `fn clone(self: &Self) -> Rev<I>` — [`Rev`](#rev)
 
 ##### `impl<I: $crate::fmt::Debug> Debug for Rev<I>`
 
@@ -2439,7 +2439,7 @@ struct Skip<I> {
 ```
 
 `Skip` is an iterator that skips over the first `n` elements.
-This struct is created by the `skip()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
+This struct is created by the `skip()` method on [`IndexedParallelIterator`](../prelude/index.md)
 
 
 #### Implementations
@@ -2450,7 +2450,7 @@ This struct is created by the `skip()` method on [`IndexedParallelIterator`](#in
 
 ##### `impl<I: $crate::clone::Clone> Clone for Skip<I>`
 
-- `fn clone(self: &Self) -> Skip<I>` — [`Skip`](skip/index.md)
+- `fn clone(self: &Self) -> Skip<I>` — [`Skip`](#skip)
 
 ##### `impl<I: $crate::fmt::Debug> Debug for Skip<I>`
 
@@ -2506,7 +2506,7 @@ struct SkipAny<I> {
 ```
 
 `SkipAny` is an iterator that skips over `n` elements from anywhere in `I`.
-This struct is created by the `skip_any()` method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `skip_any()` method on [`ParallelIterator`](../prelude/index.md)
 
 
 #### Implementations
@@ -2517,7 +2517,7 @@ This struct is created by the `skip_any()` method on [`ParallelIterator`](#paral
 
 ##### `impl<I: $crate::clone::Clone> Clone for SkipAny<I>`
 
-- `fn clone(self: &Self) -> SkipAny<I>` — [`SkipAny`](skip_any/index.md)
+- `fn clone(self: &Self) -> SkipAny<I>` — [`SkipAny`](#skipany)
 
 ##### `impl<I: $crate::fmt::Debug> Debug for SkipAny<I>`
 
@@ -2564,7 +2564,7 @@ struct SkipAnyWhile<I, P> {
 
 `SkipAnyWhile` is an iterator that skips over elements from anywhere in `I`
 until the callback returns `false`.
-This struct is created by the `skip_any_while()` method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `skip_any_while()` method on [`ParallelIterator`](../prelude/index.md)
 
 
 #### Implementations
@@ -2575,7 +2575,7 @@ This struct is created by the `skip_any_while()` method on [`ParallelIterator`](
 
 ##### `impl<I: $crate::clone::Clone, P: $crate::clone::Clone> Clone for SkipAnyWhile<I, P>`
 
-- `fn clone(self: &Self) -> SkipAnyWhile<I, P>` — [`SkipAnyWhile`](skip_any_while/index.md)
+- `fn clone(self: &Self) -> SkipAnyWhile<I, P>` — [`SkipAnyWhile`](#skipanywhile)
 
 ##### `impl<I: fmt::Debug, P> Debug for SkipAnyWhile<I, P>`
 
@@ -2621,13 +2621,13 @@ struct Split<D, S> {
 ```
 
 `Split` is a parallel iterator using arbitrary data and a splitting function.
-This struct is created by the [`split()`](splitter/index.md) function.
+This struct is created by the [`split()`](#split) function.
 
 #### Trait Implementations
 
 ##### `impl<D: $crate::clone::Clone, S: $crate::clone::Clone> Clone for Split<D, S>`
 
-- `fn clone(self: &Self) -> Split<D, S>` — [`Split`](splitter/index.md)
+- `fn clone(self: &Self) -> Split<D, S>` — [`Split`](#split)
 
 ##### `impl<D: Debug, S> Debug for Split<D, S>`
 
@@ -2673,7 +2673,7 @@ struct StepBy<I> {
 ```
 
 `StepBy` is an iterator that skips `n` elements between each yield, where `n` is the given step.
-This struct is created by the `step_by()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
+This struct is created by the `step_by()` method on [`IndexedParallelIterator`](../prelude/index.md)
 
 
 #### Implementations
@@ -2684,7 +2684,7 @@ This struct is created by the `step_by()` method on [`IndexedParallelIterator`](
 
 ##### `impl<I: $crate::clone::Clone> Clone for StepBy<I>`
 
-- `fn clone(self: &Self) -> StepBy<I>` — [`StepBy`](step_by/index.md)
+- `fn clone(self: &Self) -> StepBy<I>` — [`StepBy`](#stepby)
 
 ##### `impl<I: $crate::fmt::Debug> Debug for StepBy<I>`
 
@@ -2740,7 +2740,7 @@ struct Take<I> {
 ```
 
 `Take` is an iterator that iterates over the first `n` elements.
-This struct is created by the `take()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
+This struct is created by the `take()` method on [`IndexedParallelIterator`](../prelude/index.md)
 
 
 #### Implementations
@@ -2751,7 +2751,7 @@ This struct is created by the `take()` method on [`IndexedParallelIterator`](#in
 
 ##### `impl<I: $crate::clone::Clone> Clone for Take<I>`
 
-- `fn clone(self: &Self) -> Take<I>` — [`Take`](take/index.md)
+- `fn clone(self: &Self) -> Take<I>` — [`Take`](#take)
 
 ##### `impl<I: $crate::fmt::Debug> Debug for Take<I>`
 
@@ -2807,7 +2807,7 @@ struct TakeAny<I> {
 ```
 
 `TakeAny` is an iterator that iterates over `n` elements from anywhere in `I`.
-This struct is created by the `take_any()` method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `take_any()` method on [`ParallelIterator`](../prelude/index.md)
 
 
 #### Implementations
@@ -2818,7 +2818,7 @@ This struct is created by the `take_any()` method on [`ParallelIterator`](#paral
 
 ##### `impl<I: $crate::clone::Clone> Clone for TakeAny<I>`
 
-- `fn clone(self: &Self) -> TakeAny<I>` — [`TakeAny`](take_any/index.md)
+- `fn clone(self: &Self) -> TakeAny<I>` — [`TakeAny`](#takeany)
 
 ##### `impl<I: $crate::fmt::Debug> Debug for TakeAny<I>`
 
@@ -2865,7 +2865,7 @@ struct TakeAnyWhile<I, P> {
 
 `TakeAnyWhile` is an iterator that iterates over elements from anywhere in `I`
 until the callback returns `false`.
-This struct is created by the `take_any_while()` method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `take_any_while()` method on [`ParallelIterator`](../prelude/index.md)
 
 
 #### Implementations
@@ -2876,7 +2876,7 @@ This struct is created by the `take_any_while()` method on [`ParallelIterator`](
 
 ##### `impl<I: $crate::clone::Clone, P: $crate::clone::Clone> Clone for TakeAnyWhile<I, P>`
 
-- `fn clone(self: &Self) -> TakeAnyWhile<I, P>` — [`TakeAnyWhile`](take_any_while/index.md)
+- `fn clone(self: &Self) -> TakeAnyWhile<I, P>` — [`TakeAnyWhile`](#takeanywhile)
 
 ##### `impl<I: fmt::Debug, P> Debug for TakeAnyWhile<I, P>`
 
@@ -2924,7 +2924,7 @@ struct TryFold<I, U, ID, F> {
 ```
 
 `TryFold` is an iterator that applies a function over an iterator producing a single value.
-This struct is created by the `try_fold()` method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `try_fold()` method on [`ParallelIterator`](../prelude/index.md)
 
 
 #### Implementations
@@ -2935,7 +2935,7 @@ This struct is created by the `try_fold()` method on [`ParallelIterator`](#paral
 
 ##### `impl<I: $crate::clone::Clone, U: $crate::clone::Clone, ID: $crate::clone::Clone, F: $crate::clone::Clone> Clone for TryFold<I, U, ID, F>`
 
-- `fn clone(self: &Self) -> TryFold<I, U, ID, F>` — [`TryFold`](try_fold/index.md)
+- `fn clone(self: &Self) -> TryFold<I, U, ID, F>` — [`TryFold`](#tryfold)
 
 ##### `impl<U, I: ParallelIterator + Debug, ID, F> Debug for TryFold<I, U, ID, F>`
 
@@ -2982,7 +2982,7 @@ struct TryFoldWith<I, U: Try, F> {
 ```
 
 `TryFoldWith` is an iterator that applies a function over an iterator producing a single value.
-This struct is created by the `try_fold_with()` method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `try_fold_with()` method on [`ParallelIterator`](../prelude/index.md)
 
 
 #### Implementations
@@ -2993,7 +2993,7 @@ This struct is created by the `try_fold_with()` method on [`ParallelIterator`](#
 
 ##### `impl<I: $crate::clone::Clone, U: $crate::clone::Clone + Try, F: $crate::clone::Clone> Clone for TryFoldWith<I, U, F>`
 
-- `fn clone(self: &Self) -> TryFoldWith<I, U, F>` — [`TryFoldWith`](try_fold/index.md)
+- `fn clone(self: &Self) -> TryFoldWith<I, U, F>` — [`TryFoldWith`](#tryfoldwith)
 
 ##### `impl<I, U, F> Debug for TryFoldWith<I, U, F>`
 
@@ -3041,7 +3041,7 @@ struct Update<I, F> {
 `Update` is an iterator that mutates the elements of an
 underlying iterator before they are yielded.
 
-This struct is created by the `update()` method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `update()` method on [`ParallelIterator`](../prelude/index.md)
 
 
 #### Implementations
@@ -3052,7 +3052,7 @@ This struct is created by the `update()` method on [`ParallelIterator`](#paralle
 
 ##### `impl<I: $crate::clone::Clone, F: $crate::clone::Clone> Clone for Update<I, F>`
 
-- `fn clone(self: &Self) -> Update<I, F>` — [`Update`](update/index.md)
+- `fn clone(self: &Self) -> Update<I, F>` — [`Update`](#update)
 
 ##### `impl<I: Debug, F> Debug for Update<I, F>`
 
@@ -3105,7 +3105,7 @@ struct WalkTree<S, B>(WalkTreePostfix<S, B>);
 ```
 
 ParallelIterator for arbitrary tree-shaped patterns.
-Returned by the [`walk_tree()`](walk_tree/index.md) function.
+Returned by the [`walk_tree()`](#walk-tree) function.
 
 #### Trait Implementations
 
@@ -3153,7 +3153,7 @@ struct WalkTreePostfix<S, B> {
 ```
 
 ParallelIterator for arbitrary tree-shaped patterns.
-Returned by the [`walk_tree_postfix()`](walk_tree/index.md) function.
+Returned by the [`walk_tree_postfix()`](#walk-tree-postfix) function.
 
 #### Trait Implementations
 
@@ -3201,7 +3201,7 @@ struct WalkTreePrefix<S, B> {
 ```
 
 ParallelIterator for arbitrary tree-shaped patterns.
-Returned by the [`walk_tree_prefix()`](walk_tree/index.md) function.
+Returned by the [`walk_tree_prefix()`](#walk-tree-prefix) function.
 
 #### Trait Implementations
 
@@ -3250,7 +3250,7 @@ struct WhileSome<I> {
 `WhileSome` is an iterator that yields the `Some` elements of an iterator,
 halting as soon as any `None` is produced.
 
-This struct is created by the `while_some()` method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `while_some()` method on [`ParallelIterator`](../prelude/index.md)
 
 
 #### Implementations
@@ -3261,7 +3261,7 @@ This struct is created by the `while_some()` method on [`ParallelIterator`](#par
 
 ##### `impl<I: $crate::clone::Clone> Clone for WhileSome<I>`
 
-- `fn clone(self: &Self) -> WhileSome<I>` — [`WhileSome`](while_some/index.md)
+- `fn clone(self: &Self) -> WhileSome<I>` — [`WhileSome`](#whilesome)
 
 ##### `impl<I: $crate::fmt::Debug> Debug for WhileSome<I>`
 
@@ -3308,7 +3308,7 @@ struct Zip<A, B> {
 
 `Zip` is an iterator that zips up `a` and `b` into a single iterator
 of pairs. This struct is created by the `zip()` method on
-[`IndexedParallelIterator`](#indexedparalleliterator)
+[`IndexedParallelIterator`](../prelude/index.md)
 
 
 #### Implementations
@@ -3319,7 +3319,7 @@ of pairs. This struct is created by the `zip()` method on
 
 ##### `impl<A: $crate::clone::Clone, B: $crate::clone::Clone> Clone for Zip<A, B>`
 
-- `fn clone(self: &Self) -> Zip<A, B>` — [`Zip`](zip/index.md)
+- `fn clone(self: &Self) -> Zip<A, B>` — [`Zip`](#zip)
 
 ##### `impl<A: $crate::fmt::Debug, B: $crate::fmt::Debug> Debug for Zip<A, B>`
 
@@ -3373,10 +3373,10 @@ struct ZipEq<A, B> {
 }
 ```
 
-An [`IndexedParallelIterator`](#indexedparalleliterator) that iterates over two parallel iterators of equal
+An [`IndexedParallelIterator`](../prelude/index.md) that iterates over two parallel iterators of equal
 length simultaneously.
 
-This struct is created by the [`zip_eq`](zip_eq/index.md) method on [`IndexedParallelIterator`](#indexedparalleliterator),
+This struct is created by the [`zip_eq`](zip_eq/index.md) method on [`IndexedParallelIterator`](../prelude/index.md),
 see its documentation for more information.
 
 
@@ -3388,7 +3388,7 @@ see its documentation for more information.
 
 ##### `impl<A: $crate::clone::Clone, B: $crate::clone::Clone> Clone for ZipEq<A, B>`
 
-- `fn clone(self: &Self) -> ZipEq<A, B>` — [`ZipEq`](zip_eq/index.md)
+- `fn clone(self: &Self) -> ZipEq<A, B>` — [`ZipEq`](#zipeq)
 
 ##### `impl<A: $crate::fmt::Debug, B: $crate::fmt::Debug> Debug for ZipEq<A, B>`
 
@@ -3442,7 +3442,7 @@ see its documentation for more information.
 trait IntoParallelIterator { ... }
 ```
 
-`IntoParallelIterator` implements the conversion to a [`ParallelIterator`](#paralleliterator).
+`IntoParallelIterator` implements the conversion to a [`ParallelIterator`](../prelude/index.md).
 
 By implementing `IntoParallelIterator` for a type, you define how it will
 transformed into an iterator. This is a parallel version of the standard
@@ -3465,14 +3465,14 @@ trait IntoParallelRefIterator<'data> { ... }
 ```
 
 `IntoParallelRefIterator` implements the conversion to a
-[`ParallelIterator`](#paralleliterator), providing shared references to the data.
+[`ParallelIterator`](../prelude/index.md), providing shared references to the data.
 
 This is a parallel version of the `iter()` method
 defined by various collections.
 
 This trait is automatically implemented
 `for I where &I: IntoParallelIterator`. In most cases, users
-will want to implement [`IntoParallelIterator`](#intoparalleliterator) rather than implement
+will want to implement [`IntoParallelIterator`](../prelude/index.md) rather than implement
 this trait directly.
 
 #### Required Methods
@@ -3492,14 +3492,14 @@ trait IntoParallelRefMutIterator<'data> { ... }
 ```
 
 `IntoParallelRefMutIterator` implements the conversion to a
-[`ParallelIterator`](#paralleliterator), providing mutable references to the data.
+[`ParallelIterator`](../prelude/index.md), providing mutable references to the data.
 
 This is a parallel version of the `iter_mut()` method
 defined by various collections.
 
 This trait is automatically implemented
 `for I where &mut I: IntoParallelIterator`. In most cases, users
-will want to implement [`IntoParallelIterator`](#intoparalleliterator) rather than implement
+will want to implement [`IntoParallelIterator`](../prelude/index.md) rather than implement
 this trait directly.
 
 #### Required Methods
@@ -3522,7 +3522,7 @@ Parallel version of the standard iterator trait.
 
 The combinators on this trait are available on **all** parallel
 iterators.  Additional methods can be found on the
-[`IndexedParallelIterator`](#indexedparalleliterator) trait: those methods are only
+[`IndexedParallelIterator`](../prelude/index.md) trait: those methods are only
 available for parallel iterators where the number of items is
 known in advance (so, e.g., after invoking `filter`, those methods
 become unavailable).
@@ -3926,11 +3926,11 @@ where
 ```
 
 `FromParallelIterator` implements the creation of a collection
-from a [`ParallelIterator`](#paralleliterator). By implementing
+from a [`ParallelIterator`](../prelude/index.md). By implementing
 `FromParallelIterator` for a given type, you define how it will be
 created from an iterator.
 
-`FromParallelIterator` is used through [`ParallelIterator`](#paralleliterator)'s `collect()` method.
+`FromParallelIterator` is used through [`ParallelIterator`](../prelude/index.md)'s `collect()` method.
 
 # Examples
 
@@ -3972,7 +3972,7 @@ where
     T: Send { ... }
 ```
 
-`ParallelExtend` extends an existing collection with items from a [`ParallelIterator`](#paralleliterator).
+`ParallelExtend` extends an existing collection with items from a [`ParallelIterator`](../prelude/index.md).
 
 # Examples
 
@@ -4016,7 +4016,7 @@ trait ParallelDrainFull { ... }
 `ParallelDrainFull` creates a parallel iterator that moves all items
 from a collection while retaining the original capacity.
 
-Types which are indexable typically implement [`ParallelDrainRange`](#paralleldrainrange)
+Types which are indexable typically implement [`ParallelDrainRange`](../prelude/index.md)
 instead, where you can drain fully with `par_drain(..)`.
 
 #### Required Methods
@@ -4038,7 +4038,7 @@ trait ParallelDrainRange<Idx> { ... }
 `ParallelDrainRange` creates a parallel iterator that moves a range of items
 from a collection while retaining the original capacity.
 
-Types which are not indexable may implement [`ParallelDrainFull`](#paralleldrainfull) instead.
+Types which are not indexable may implement [`ParallelDrainFull`](../prelude/index.md) instead.
 
 #### Required Methods
 

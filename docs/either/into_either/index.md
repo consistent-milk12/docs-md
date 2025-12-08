@@ -4,7 +4,7 @@
 
 # Module `into_either`
 
-The trait [`IntoEither`](#intoeither) provides methods for converting a type `Self`, whose
+The trait [`IntoEither`](../index.md) provides methods for converting a type `Self`, whose
 size is constant and known at compile-time, into an [`Either`](../index.md) variant.
 
 ## Traits

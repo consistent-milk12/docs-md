@@ -15,7 +15,7 @@ struct StrippedStr<'s> {
 }
 ```
 
-See [`strip_str`](#strip-str)
+See [`strip_str`](../index.md)
 
 #### Implementations
 
@@ -27,7 +27,7 @@ See [`strip_str`](#strip-str)
 
 ##### `impl<'s> Clone for StrippedStr<'s>`
 
-- `fn clone(self: &Self) -> StrippedStr<'s>` — [`StrippedStr`](#strippedstr)
+- `fn clone(self: &Self) -> StrippedStr<'s>` — [`StrippedStr`](../index.md)
 
 ##### `impl<'s> Debug for StrippedStr<'s>`
 
@@ -35,7 +35,7 @@ See [`strip_str`](#strip-str)
 
 ##### `impl<'s> Default for StrippedStr<'s>`
 
-- `fn default() -> StrippedStr<'s>` — [`StrippedStr`](#strippedstr)
+- `fn default() -> StrippedStr<'s>` — [`StrippedStr`](../index.md)
 
 ##### `impl Display for StrippedStr<'_>`
 
@@ -59,7 +59,7 @@ See [`strip_str`](#strip-str)
 
 ##### `impl<'s> PartialEq for StrippedStr<'s>`
 
-- `fn eq(self: &Self, other: &StrippedStr<'s>) -> bool` — [`StrippedStr`](#strippedstr)
+- `fn eq(self: &Self, other: &StrippedStr<'s>) -> bool` — [`StrippedStr`](../index.md)
 
 ##### `impl<'s> StructuralPartialEq for StrippedStr<'s>`
 
@@ -81,13 +81,13 @@ Incrementally strip non-contiguous data
 
 - `fn new() -> Self`
 
-- `fn strip_next<'s>(self: &'s mut Self, data: &'s str) -> StripStrIter<'s>` — [`StripStrIter`](#stripstriter)
+- `fn strip_next<'s>(self: &'s mut Self, data: &'s str) -> StripStrIter<'s>` — [`StripStrIter`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for StripStr`
 
-- `fn clone(self: &Self) -> StripStr` — [`StripStr`](#stripstr)
+- `fn clone(self: &Self) -> StripStr` — [`StripStr`](../index.md)
 
 ##### `impl Debug for StripStr`
 
@@ -95,13 +95,13 @@ Incrementally strip non-contiguous data
 
 ##### `impl Default for StripStr`
 
-- `fn default() -> StripStr` — [`StripStr`](#stripstr)
+- `fn default() -> StripStr` — [`StripStr`](../index.md)
 
 ##### `impl Eq for StripStr`
 
 ##### `impl PartialEq for StripStr`
 
-- `fn eq(self: &Self, other: &StripStr) -> bool` — [`StripStr`](#stripstr)
+- `fn eq(self: &Self, other: &StripStr) -> bool` — [`StripStr`](../index.md)
 
 ##### `impl StructuralPartialEq for StripStr`
 
@@ -114,7 +114,7 @@ struct StripStrIter<'s> {
 }
 ```
 
-See [`StripStr`](#stripstr)
+See [`StripStr`](../index.md)
 
 #### Trait Implementations
 
@@ -140,7 +140,7 @@ See [`StripStr`](#stripstr)
 
 ##### `impl<'s> PartialEq for StripStrIter<'s>`
 
-- `fn eq(self: &Self, other: &StripStrIter<'s>) -> bool` — [`StripStrIter`](#stripstriter)
+- `fn eq(self: &Self, other: &StripStrIter<'s>) -> bool` — [`StripStrIter`](../index.md)
 
 ##### `impl<'s> StructuralPartialEq for StripStrIter<'s>`
 
@@ -154,7 +154,7 @@ struct StrippedBytes<'s> {
 }
 ```
 
-See [`strip_bytes`](#strip-bytes)
+See [`strip_bytes`](../index.md)
 
 #### Implementations
 
@@ -170,7 +170,7 @@ See [`strip_bytes`](#strip-bytes)
 
 ##### `impl<'s> Clone for StrippedBytes<'s>`
 
-- `fn clone(self: &Self) -> StrippedBytes<'s>` — [`StrippedBytes`](#strippedbytes)
+- `fn clone(self: &Self) -> StrippedBytes<'s>` — [`StrippedBytes`](../index.md)
 
 ##### `impl<'s> Debug for StrippedBytes<'s>`
 
@@ -178,7 +178,7 @@ See [`strip_bytes`](#strip-bytes)
 
 ##### `impl<'s> Default for StrippedBytes<'s>`
 
-- `fn default() -> StrippedBytes<'s>` — [`StrippedBytes`](#strippedbytes)
+- `fn default() -> StrippedBytes<'s>` — [`StrippedBytes`](../index.md)
 
 ##### `impl<'s> Eq for StrippedBytes<'s>`
 
@@ -198,7 +198,7 @@ See [`strip_bytes`](#strip-bytes)
 
 ##### `impl<'s> PartialEq for StrippedBytes<'s>`
 
-- `fn eq(self: &Self, other: &StrippedBytes<'s>) -> bool` — [`StrippedBytes`](#strippedbytes)
+- `fn eq(self: &Self, other: &StrippedBytes<'s>) -> bool` — [`StrippedBytes`](../index.md)
 
 ##### `impl<'s> StructuralPartialEq for StrippedBytes<'s>`
 
@@ -217,13 +217,13 @@ Incrementally strip non-contiguous data
 
 - `fn new() -> Self`
 
-- `fn strip_next<'s>(self: &'s mut Self, bytes: &'s [u8]) -> StripBytesIter<'s>` — [`StripBytesIter`](#stripbytesiter)
+- `fn strip_next<'s>(self: &'s mut Self, bytes: &'s [u8]) -> StripBytesIter<'s>` — [`StripBytesIter`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for StripBytes`
 
-- `fn clone(self: &Self) -> StripBytes` — [`StripBytes`](#stripbytes)
+- `fn clone(self: &Self) -> StripBytes` — [`StripBytes`](../index.md)
 
 ##### `impl Debug for StripBytes`
 
@@ -231,13 +231,13 @@ Incrementally strip non-contiguous data
 
 ##### `impl Default for StripBytes`
 
-- `fn default() -> StripBytes` — [`StripBytes`](#stripbytes)
+- `fn default() -> StripBytes` — [`StripBytes`](../index.md)
 
 ##### `impl Eq for StripBytes`
 
 ##### `impl PartialEq for StripBytes`
 
-- `fn eq(self: &Self, other: &StripBytes) -> bool` — [`StripBytes`](#stripbytes)
+- `fn eq(self: &Self, other: &StripBytes) -> bool` — [`StripBytes`](../index.md)
 
 ##### `impl StructuralPartialEq for StripBytes`
 
@@ -251,7 +251,7 @@ struct StripBytesIter<'s> {
 }
 ```
 
-See [`StripBytes`](#stripbytes)
+See [`StripBytes`](../index.md)
 
 #### Trait Implementations
 
@@ -277,7 +277,7 @@ See [`StripBytes`](#stripbytes)
 
 ##### `impl<'s> PartialEq for StripBytesIter<'s>`
 
-- `fn eq(self: &Self, other: &StripBytesIter<'s>) -> bool` — [`StripBytesIter`](#stripbytesiter)
+- `fn eq(self: &Self, other: &StripBytesIter<'s>) -> bool` — [`StripBytesIter`](../index.md)
 
 ##### `impl<'s> StructuralPartialEq for StripBytesIter<'s>`
 
@@ -342,7 +342,7 @@ Strip ANSI escapes from a `&str`, returning the printable content
 This can be used to take output from a program that includes escape sequences and write it
 somewhere that does not easily support them, such as a log file.
 
-For non-contiguous data, see [`StripStr`](#stripstr).
+For non-contiguous data, see [`StripStr`](../index.md).
 
 # Example
 

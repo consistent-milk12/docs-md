@@ -75,7 +75,7 @@ struct Queue<T> {
 
 #### Implementations
 
-- `const fn new(t: T) -> CachePadded<T>` — [`CachePadded`](#cachepadded)
+- `const fn new(t: T) -> CachePadded<T>` — [`CachePadded`](../index.md)
 
 - `fn into_inner(self: Self) -> T`
 
@@ -83,7 +83,7 @@ struct Queue<T> {
 
 ##### `impl<T: $crate::clone::Clone> Clone for CachePadded<T>`
 
-- `fn clone(self: &Self) -> CachePadded<T>` — [`CachePadded`](#cachepadded)
+- `fn clone(self: &Self) -> CachePadded<T>` — [`CachePadded`](../index.md)
 
 ##### `impl<T: $crate::marker::Copy> Copy for CachePadded<T>`
 
@@ -93,7 +93,7 @@ struct Queue<T> {
 
 ##### `impl<T: $crate::default::Default> Default for CachePadded<T>`
 
-- `fn default() -> CachePadded<T>` — [`CachePadded`](#cachepadded)
+- `fn default() -> CachePadded<T>` — [`CachePadded`](../index.md)
 
 ##### `impl<T> Deref for CachePadded<T>`
 
@@ -117,7 +117,7 @@ struct Queue<T> {
 
 ##### `impl<T: $crate::cmp::PartialEq> PartialEq for CachePadded<T>`
 
-- `fn eq(self: &Self, other: &CachePadded<T>) -> bool` — [`CachePadded`](#cachepadded)
+- `fn eq(self: &Self, other: &CachePadded<T>) -> bool` — [`CachePadded`](../index.md)
 
 ##### `impl<P, T> Receiver for CachePadded<T>`
 

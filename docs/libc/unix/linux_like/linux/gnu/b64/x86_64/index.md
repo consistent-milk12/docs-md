@@ -127,9 +127,17 @@ struct siginfo_t {
 
 #### Implementations
 
-- `unsafe fn si_addr(self: &Self) -> *mut c_void`
+- `unsafe fn sifields(self: &Self) -> &sifields` — [`sifields`](../../../../../../index.md)
 
-- `unsafe fn si_value(self: &Self) -> crate::sigval` — [`sigval`](../../../../../../index.md)
+- `unsafe fn si_pid(self: &Self) -> crate::pid_t` — [`pid_t`](../../../../../../index.md)
+
+- `unsafe fn si_uid(self: &Self) -> crate::uid_t` — [`uid_t`](../../../../../../index.md)
+
+- `unsafe fn si_status(self: &Self) -> c_int` — [`c_int`](../../../../../../index.md)
+
+- `unsafe fn si_utime(self: &Self) -> c_long` — [`c_long`](../../../../../../index.md)
+
+- `unsafe fn si_stime(self: &Self) -> c_long` — [`c_long`](../../../../../../index.md)
 
 #### Trait Implementations
 

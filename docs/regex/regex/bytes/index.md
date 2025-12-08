@@ -109,15 +109,27 @@ assert_eq!(&caps["f2"], "💩".as_bytes());
 
 #### Implementations
 
-- `fn as_str(self: &Self) -> &str`
+- `fn new(re: &str) -> Result<Regex, Error>` — [`Regex`](#regex), [`Error`](../../index.md)
 
-- `fn capture_names(self: &Self) -> CaptureNames<'_>` — [`CaptureNames`](#capturenames)
+- `fn is_match(self: &Self, haystack: &[u8]) -> bool`
 
-- `fn captures_len(self: &Self) -> usize`
+- `fn find<'h>(self: &Self, haystack: &'h [u8]) -> Option<Match<'h>>` — [`Match`](#match)
 
-- `fn static_captures_len(self: &Self) -> Option<usize>`
+- `fn find_iter<'r, 'h>(self: &'r Self, haystack: &'h [u8]) -> Matches<'r, 'h>` — [`Matches`](#matches)
 
-- `fn capture_locations(self: &Self) -> CaptureLocations` — [`CaptureLocations`](#capturelocations)
+- `fn captures<'h>(self: &Self, haystack: &'h [u8]) -> Option<Captures<'h>>` — [`Captures`](#captures)
+
+- `fn captures_iter<'r, 'h>(self: &'r Self, haystack: &'h [u8]) -> CaptureMatches<'r, 'h>` — [`CaptureMatches`](#capturematches)
+
+- `fn split<'r, 'h>(self: &'r Self, haystack: &'h [u8]) -> Split<'r, 'h>` — [`Split`](#split)
+
+- `fn splitn<'r, 'h>(self: &'r Self, haystack: &'h [u8], limit: usize) -> SplitN<'r, 'h>` — [`SplitN`](#splitn)
+
+- `fn replace<'h, R: Replacer>(self: &Self, haystack: &'h [u8], rep: R) -> Cow<'h, [u8]>`
+
+- `fn replace_all<'h, R: Replacer>(self: &Self, haystack: &'h [u8], rep: R) -> Cow<'h, [u8]>`
+
+- `fn replacen<'h, R: Replacer>(self: &Self, haystack: &'h [u8], limit: usize, rep: R) -> Cow<'h, [u8]>`
 
 #### Trait Implementations
 
@@ -137,7 +149,7 @@ assert_eq!(&caps["f2"], "💩".as_bytes());
 
 - `type Err = Error`
 
-- `fn from_str(s: &str) -> Result<Regex, Error>` — [`Regex`](#regex), [`Error`](../../error/index.md)
+- `fn from_str(s: &str) -> Result<Regex, Error>` — [`Regex`](#regex), [`Error`](../../index.md)
 
 ##### `impl<T> ToString for Regex`
 

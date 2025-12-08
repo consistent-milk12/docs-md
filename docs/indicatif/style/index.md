@@ -43,7 +43,7 @@ struct ProgressStyle {
 
 - `fn template(self: Self, s: &str) -> Result<Self, TemplateError>` — [`TemplateError`](#templateerror)
 
-- `fn current_tick_str(self: &Self, state: &ProgressState) -> &str` — [`ProgressState`](../state/index.md)
+- `fn current_tick_str(self: &Self, state: &ProgressState) -> &str` — [`ProgressState`](../index.md)
 
 - `fn get_tick_str(self: &Self, idx: u64) -> &str`
 
@@ -51,15 +51,15 @@ struct ProgressStyle {
 
 - `fn format_bar(self: &Self, fract: f32, width: usize, alt_style: Option<&Style>) -> BarDisplay<'_>` — [`BarDisplay`](#bardisplay)
 
-- `fn format_state(self: &Self, state: &ProgressState, lines: &mut Vec<LineType>, target_width: u16)` — [`ProgressState`](../state/index.md), [`LineType`](../draw_target/index.md)
+- `fn format_state(self: &Self, state: &ProgressState, lines: &mut Vec<LineType>, target_width: u16)` — [`ProgressState`](../index.md), [`LineType`](../draw_target/index.md)
 
-- `fn push_line(self: &Self, lines: &mut Vec<LineType>, cur: &mut String, state: &ProgressState, buf: &mut String, target_width: u16, wide: &Option<WideElement<'_>>)` — [`LineType`](../draw_target/index.md), [`ProgressState`](../state/index.md), [`WideElement`](#wideelement)
+- `fn push_line(self: &Self, lines: &mut Vec<LineType>, cur: &mut String, state: &ProgressState, buf: &mut String, target_width: u16, wide: &Option<WideElement<'_>>)` — [`LineType`](../draw_target/index.md), [`ProgressState`](../index.md), [`WideElement`](#wideelement)
 
 #### Trait Implementations
 
 ##### `impl Clone for ProgressStyle`
 
-- `fn clone(self: &Self) -> ProgressStyle` — [`ProgressStyle`](#progressstyle)
+- `fn clone(self: &Self) -> ProgressStyle` — [`ProgressStyle`](../index.md)
 
 ### `TabRewriter<'a>`
 
@@ -202,7 +202,7 @@ enum WideElement<'a> {
 
 #### Implementations
 
-- `fn expand(self: Self, cur: String, style: &ProgressStyle, state: &ProgressState, buf: &mut String, width: u16) -> String` — [`ProgressStyle`](#progressstyle), [`ProgressState`](../state/index.md)
+- `fn expand(self: Self, cur: String, style: &ProgressStyle, state: &ProgressState, buf: &mut String, width: u16) -> String` — [`ProgressStyle`](../index.md), [`ProgressState`](../index.md)
 
 #### Trait Implementations
 

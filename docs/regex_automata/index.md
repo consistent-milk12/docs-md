@@ -34,7 +34,7 @@ If you're here because there is something specific you want to do that can't
 be easily done with `regex` crate, then you are perhaps in the right place.
 It's most likely that the first stop you'll want to make is to explore the
 [`meta` regex APIs](meta). Namely, the `regex` crate is just a light wrapper
-over a [`meta::Regex`](meta/regex/index.md), so its API will probably be the easiest to transition
+over a [`meta::Regex`](meta/index.md), so its API will probably be the easiest to transition
 to. In contrast to the `regex` crate, the `meta::Regex` API supports more
 search parameters and does multi-pattern searches. However, it isn't quite as
 ergonomic.
@@ -246,7 +246,7 @@ small regexes due to the memory required to avoid redoing work.
 * [`nfa::thompson::pikevm::PikeVM`](nfa/thompson/pikevm/index.md) is a regex engine that can handle all
 regexes, of all sizes and provides capture group matches. It tends to be a tool
 of last resort because it is also usually the slowest regex engine.
-* [`meta::Regex`](meta/regex/index.md) is the meta regex engine that combines *all* of the above
+* [`meta::Regex`](meta/index.md) is the meta regex engine that combines *all* of the above
 engines into one. The reason for this is that each of the engines above have
 their own caveats such as, "only handles a subset of regexes" or "is generally
 slow." The meta regex engine accounts for all of these caveats and composes
@@ -367,7 +367,7 @@ DFA regex:
 [`util::syntax::Config`](util/syntax/index.md) for configuring the options found in the
 [`regex-syntax`](regex_syntax) crate. For example, whether to match
 case insensitively.
-* `hybrid::regex::Builder::thompson` accepts a [`nfa::thompson::Config`](nfa/thompson/compiler/index.md) for
+* `hybrid::regex::Builder::thompson` accepts a [`nfa::thompson::Config`](nfa/thompson/index.md) for
 configuring construction of a [Thompson NFA](nfa::thompson::NFA). For example,
 whether to build an NFA that matches the reverse language described by the
 regex.
@@ -583,11 +583,11 @@ re-exported at the crate root due to how common it is.
 
 - `const SIZE: usize`
 
-- `fn new(value: usize) -> Result<PatternID, PatternIDError>` — [`PatternID`](util/primitives/index.md), [`PatternIDError`](util/primitives/index.md)
+- `fn new(value: usize) -> Result<PatternID, PatternIDError>` — [`PatternID`](#patternid), [`PatternIDError`](util/primitives/index.md)
 
-- `const fn new_unchecked(value: usize) -> PatternID` — [`PatternID`](util/primitives/index.md)
+- `const fn new_unchecked(value: usize) -> PatternID` — [`PatternID`](#patternid)
 
-- `fn must(value: usize) -> PatternID` — [`PatternID`](util/primitives/index.md)
+- `fn must(value: usize) -> PatternID` — [`PatternID`](#patternid)
 
 - `const fn as_usize(self: &Self) -> usize`
 
@@ -599,9 +599,9 @@ re-exported at the crate root due to how common it is.
 
 - `fn one_more(self: &Self) -> usize`
 
-- `fn from_ne_bytes(bytes: [u8; 4]) -> Result<PatternID, PatternIDError>` — [`PatternID`](util/primitives/index.md), [`PatternIDError`](util/primitives/index.md)
+- `fn from_ne_bytes(bytes: [u8; 4]) -> Result<PatternID, PatternIDError>` — [`PatternID`](#patternid), [`PatternIDError`](util/primitives/index.md)
 
-- `fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> PatternID` — [`PatternID`](util/primitives/index.md)
+- `fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> PatternID` — [`PatternID`](#patternid)
 
 - `fn to_ne_bytes(self: &Self) -> [u8; 4]`
 
@@ -611,7 +611,7 @@ re-exported at the crate root due to how common it is.
 
 ##### `impl Clone for PatternID`
 
-- `fn clone(self: &Self) -> PatternID` — [`PatternID`](util/primitives/index.md)
+- `fn clone(self: &Self) -> PatternID` — [`PatternID`](#patternid)
 
 ##### `impl Copy for PatternID`
 
@@ -621,7 +621,7 @@ re-exported at the crate root due to how common it is.
 
 ##### `impl Default for PatternID`
 
-- `fn default() -> PatternID` — [`PatternID`](util/primitives/index.md)
+- `fn default() -> PatternID` — [`PatternID`](#patternid)
 
 ##### `impl Eq for PatternID`
 
@@ -631,15 +631,15 @@ re-exported at the crate root due to how common it is.
 
 ##### `impl Ord for PatternID`
 
-- `fn cmp(self: &Self, other: &PatternID) -> $crate::cmp::Ordering` — [`PatternID`](util/primitives/index.md)
+- `fn cmp(self: &Self, other: &PatternID) -> $crate::cmp::Ordering` — [`PatternID`](#patternid)
 
 ##### `impl PartialEq for PatternID`
 
-- `fn eq(self: &Self, other: &PatternID) -> bool` — [`PatternID`](util/primitives/index.md)
+- `fn eq(self: &Self, other: &PatternID) -> bool` — [`PatternID`](#patternid)
 
 ##### `impl PartialOrd for PatternID`
 
-- `fn partial_cmp(self: &Self, other: &PatternID) -> $crate::option::Option<$crate::cmp::Ordering>` — [`PatternID`](util/primitives/index.md)
+- `fn partial_cmp(self: &Self, other: &PatternID) -> $crate::option::Option<$crate::cmp::Ordering>` — [`PatternID`](#patternid)
 
 ##### `impl StructuralPartialEq for PatternID`
 
@@ -903,11 +903,11 @@ have a pattern ID of `0`.
 
 #### Implementations
 
-- `fn new(pattern: PatternID, offset: usize) -> HalfMatch` — [`PatternID`](util/primitives/index.md), [`HalfMatch`](#halfmatch)
+- `fn new(pattern: PatternID, offset: usize) -> HalfMatch` — [`PatternID`](#patternid), [`HalfMatch`](#halfmatch)
 
 - `fn must(pattern: usize, offset: usize) -> HalfMatch` — [`HalfMatch`](#halfmatch)
 
-- `fn pattern(self: &Self) -> PatternID` — [`PatternID`](util/primitives/index.md)
+- `fn pattern(self: &Self) -> PatternID` — [`PatternID`](#patternid)
 
 - `fn offset(self: &Self) -> usize`
 
@@ -946,7 +946,7 @@ struct Match {
 
 A representation of a match reported by a regex engine.
 
-A match has two essential pieces of information: the [`PatternID`](util/primitives/index.md) that
+A match has two essential pieces of information: the [`PatternID`](#patternid) that
 matches, and the [`Span`](#span) of the match in a haystack.
 
 The pattern is identified by an ID, which corresponds to its position
@@ -969,11 +969,11 @@ start offset as less than or equal to its end offset.
 
 #### Implementations
 
-- `fn new<S: Into<Span>>(pattern: PatternID, span: S) -> Match` — [`PatternID`](util/primitives/index.md), [`Match`](#match)
+- `fn new<S: Into<Span>>(pattern: PatternID, span: S) -> Match` — [`PatternID`](#patternid), [`Match`](#match)
 
 - `fn must<S: Into<Span>>(pattern: usize, span: S) -> Match` — [`Match`](#match)
 
-- `fn pattern(self: &Self) -> PatternID` — [`PatternID`](util/primitives/index.md)
+- `fn pattern(self: &Self) -> PatternID` — [`PatternID`](#patternid)
 
 - `fn start(self: &Self) -> usize`
 
@@ -1088,11 +1088,11 @@ assert!(set.is_empty());
 
 - `fn clear(self: &mut Self)`
 
-- `fn contains(self: &Self, pid: PatternID) -> bool` — [`PatternID`](util/primitives/index.md)
+- `fn contains(self: &Self, pid: PatternID) -> bool` — [`PatternID`](#patternid)
 
-- `fn insert(self: &mut Self, pid: PatternID) -> bool` — [`PatternID`](util/primitives/index.md)
+- `fn insert(self: &mut Self, pid: PatternID) -> bool` — [`PatternID`](#patternid)
 
-- `fn try_insert(self: &mut Self, pid: PatternID) -> Result<bool, PatternSetInsertError>` — [`PatternID`](util/primitives/index.md), [`PatternSetInsertError`](#patternsetinserterror)
+- `fn try_insert(self: &mut Self, pid: PatternID) -> Result<bool, PatternSetInsertError>` — [`PatternID`](#patternid), [`PatternSetInsertError`](#patternsetinserterror)
 
 - `fn is_empty(self: &Self) -> bool`
 
@@ -1186,7 +1186,7 @@ This iterator is created by the `PatternSet::iter` method.
 
 ##### `impl<'a> DoubleEndedIterator for PatternSetIter<'a>`
 
-- `fn next_back(self: &mut Self) -> Option<PatternID>` — [`PatternID`](util/primitives/index.md)
+- `fn next_back(self: &mut Self) -> Option<PatternID>` — [`PatternID`](#patternid)
 
 ##### `impl<I> IntoIterator for PatternSetIter<'a>`
 
@@ -1200,7 +1200,7 @@ This iterator is created by the `PatternSet::iter` method.
 
 - `type Item = PatternID`
 
-- `fn next(self: &mut Self) -> Option<PatternID>` — [`PatternID`](util/primitives/index.md)
+- `fn next(self: &mut Self) -> Option<PatternID>` — [`PatternID`](#patternid)
 
 - `fn size_hint(self: &Self) -> (usize, Option<usize>)`
 
@@ -1433,7 +1433,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - `fn is_anchored(self: &Self) -> bool`
 
-- `fn pattern(self: &Self) -> Option<PatternID>` — [`PatternID`](util/primitives/index.md)
+- `fn pattern(self: &Self) -> Option<PatternID>` — [`PatternID`](#patternid)
 
 #### Trait Implementations
 

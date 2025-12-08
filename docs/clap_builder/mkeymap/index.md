@@ -56,21 +56,21 @@ struct MKeyMap {
 
 - `fn contains<K>(self: &Self, key: K) -> bool`
 
-- `fn push(self: &mut Self, new_arg: Arg)` — [`Arg`](../builder/arg/index.md)
+- `fn push(self: &mut Self, new_arg: Arg)` — [`Arg`](../index.md)
 
-- `fn get<K: ?Sized>(self: &Self, key: &K) -> Option<&Arg>` — [`Arg`](../builder/arg/index.md)
+- `fn get<K: ?Sized>(self: &Self, key: &K) -> Option<&Arg>` — [`Arg`](../index.md)
 
 - `fn keys(self: &Self) -> impl Iterator<Item = &KeyType>` — [`KeyType`](#keytype)
 
-- `fn args(self: &Self) -> impl Iterator<Item = &Arg>` — [`Arg`](../builder/arg/index.md)
+- `fn args(self: &Self) -> impl Iterator<Item = &Arg>` — [`Arg`](../index.md)
 
-- `fn args_mut(self: &mut Self) -> impl Iterator<Item = &mut Arg>` — [`Arg`](../builder/arg/index.md)
+- `fn args_mut(self: &mut Self) -> impl Iterator<Item = &mut Arg>` — [`Arg`](../index.md)
 
 - `fn mut_args<F>(self: &mut Self, f: F)`
 
 - `fn _build(self: &mut Self)`
 
-- `fn remove_by_name(self: &mut Self, name: &str) -> Option<Arg>` — [`Arg`](../builder/arg/index.md)
+- `fn remove_by_name(self: &mut Self, name: &str) -> Option<Arg>` — [`Arg`](../index.md)
 
 #### Trait Implementations
 
@@ -134,7 +134,7 @@ enum KeyType {
 
 ##### `impl PartialEq for KeyType`
 
-- `fn eq(self: &Self, rhs: &OsStr) -> bool` — [`OsStr`](../builder/os_str/index.md)
+- `fn eq(self: &Self, other: &KeyType) -> bool` — [`KeyType`](#keytype)
 
 ##### `impl StructuralPartialEq for KeyType`
 

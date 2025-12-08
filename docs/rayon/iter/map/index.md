@@ -17,7 +17,7 @@ struct Map<I, F> {
 
 `Map` is an iterator that transforms the elements of an underlying iterator.
 
-This struct is created by the `map()` method on [`ParallelIterator`](../index.md)
+This struct is created by the `map()` method on [`ParallelIterator`](../../prelude/index.md)
 
 
 #### Implementations
@@ -28,7 +28,7 @@ This struct is created by the `map()` method on [`ParallelIterator`](../index.md
 
 ##### `impl<I: $crate::clone::Clone, F: $crate::clone::Clone> Clone for Map<I, F>`
 
-- `fn clone(self: &Self) -> Map<I, F>` — [`Map`](#map)
+- `fn clone(self: &Self) -> Map<I, F>` — [`Map`](../index.md)
 
 ##### `impl<I: Debug, F> Debug for Map<I, F>`
 

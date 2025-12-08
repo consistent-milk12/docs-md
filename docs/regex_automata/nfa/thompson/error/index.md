@@ -35,27 +35,27 @@ building the NFA will fail.
 
 - `fn kind(self: &Self) -> &BuildErrorKind` — [`BuildErrorKind`](#builderrorkind)
 
-- `fn syntax(err: regex_syntax::Error) -> BuildError` — [`BuildError`](#builderror)
+- `fn syntax(err: regex_syntax::Error) -> BuildError` — [`BuildError`](../index.md)
 
-- `fn captures(err: captures::GroupInfoError) -> BuildError` — [`GroupInfoError`](../../../util/captures/index.md), [`BuildError`](#builderror)
+- `fn captures(err: captures::GroupInfoError) -> BuildError` — [`GroupInfoError`](../../../util/captures/index.md), [`BuildError`](../index.md)
 
-- `fn word(err: look::UnicodeWordBoundaryError) -> BuildError` — [`UnicodeWordBoundaryError`](../../../util/look/index.md), [`BuildError`](#builderror)
+- `fn word(err: look::UnicodeWordBoundaryError) -> BuildError` — [`UnicodeWordBoundaryError`](../../../util/look/index.md), [`BuildError`](../index.md)
 
-- `fn too_many_patterns(given: usize) -> BuildError` — [`BuildError`](#builderror)
+- `fn too_many_patterns(given: usize) -> BuildError` — [`BuildError`](../index.md)
 
-- `fn too_many_states(given: usize) -> BuildError` — [`BuildError`](#builderror)
+- `fn too_many_states(given: usize) -> BuildError` — [`BuildError`](../index.md)
 
-- `fn exceeded_size_limit(limit: usize) -> BuildError` — [`BuildError`](#builderror)
+- `fn exceeded_size_limit(limit: usize) -> BuildError` — [`BuildError`](../index.md)
 
-- `fn invalid_capture_index(index: u32) -> BuildError` — [`BuildError`](#builderror)
+- `fn invalid_capture_index(index: u32) -> BuildError` — [`BuildError`](../index.md)
 
-- `fn unsupported_captures() -> BuildError` — [`BuildError`](#builderror)
+- `fn unsupported_captures() -> BuildError` — [`BuildError`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for BuildError`
 
-- `fn clone(self: &Self) -> BuildError` — [`BuildError`](#builderror)
+- `fn clone(self: &Self) -> BuildError` — [`BuildError`](../index.md)
 
 ##### `impl Debug for BuildError`
 

@@ -20,7 +20,7 @@ struct Dispatchers {
 
 - `fn rebuilder(self: &Self) -> Rebuilder<'_>` — [`Rebuilder`](#rebuilder)
 
-- `fn register_dispatch(self: &Self, dispatch: &dispatcher::Dispatch) -> Rebuilder<'_>` — [`Dispatch`](../../dispatcher/index.md), [`Rebuilder`](#rebuilder)
+- `fn register_dispatch(self: &Self, dispatch: &dispatcher::Dispatch) -> Rebuilder<'_>` — [`Dispatch`](../../index.md), [`Rebuilder`](#rebuilder)
 
 ## Enums
 
@@ -36,5 +36,5 @@ enum Rebuilder<'a> {
 
 #### Implementations
 
-- `fn for_each(self: &Self, f: impl FnMut(&dispatcher::Dispatch))` — [`Dispatch`](../../dispatcher/index.md)
+- `fn for_each(self: &Self, f: impl FnMut(&dispatcher::Dispatch))` — [`Dispatch`](../../index.md)
 

@@ -103,9 +103,9 @@ Most functionality is provided by the [`Object`](../index.md) trait implementati
 
 - `fn coff_header(self: &Self) -> &'data Coff`
 
-- `fn coff_section_table(self: &Self) -> SectionTable<'data>` — [`SectionTable`](#sectiontable)
+- `fn coff_section_table(self: &Self) -> SectionTable<'data>` — [`SectionTable`](../pe/index.md)
 
-- `fn coff_symbol_table(self: &Self) -> &SymbolTable<'data, R, Coff>` — [`SymbolTable`](#symboltable)
+- `fn coff_symbol_table(self: &Self) -> &SymbolTable<'data, R, Coff>` — [`SymbolTable`](../pe/index.md)
 
 #### Trait Implementations
 
@@ -196,19 +196,27 @@ Returned by `CoffHeader::sections` and
 
 #### Implementations
 
-- `fn pe_file_range_at(self: &Self, va: u32) -> Option<(u32, u32)>`
+- `fn parse<Coff: CoffHeader, R: ReadRef<'data>>(header: &Coff, data: R, offset: u64) -> Result<Self>` — [`Result`](../../index.md)
 
-- `fn pe_data_at<R: ReadRef<'data>>(self: &Self, data: R, va: u32) -> Option<&'data [u8]>`
+- `fn iter(self: &Self) -> slice::Iter<'data, pe::ImageSectionHeader>` — [`ImageSectionHeader`](../../pe/index.md)
 
-- `fn pe_data_containing<R: ReadRef<'data>>(self: &Self, data: R, va: u32) -> Option<(&'data [u8], u32)>`
+- `fn enumerate(self: &Self) -> impl Iterator<Item = (SectionIndex, &'data pe::ImageSectionHeader)>` — [`SectionIndex`](../../index.md), [`ImageSectionHeader`](../../pe/index.md)
 
-- `fn section_containing(self: &Self, va: u32) -> Option<&'data ImageSectionHeader>` — [`ImageSectionHeader`](../../pe/index.md)
+- `fn is_empty(self: &Self) -> bool`
+
+- `fn len(self: &Self) -> usize`
+
+- `fn section(self: &Self, index: SectionIndex) -> read::Result<&'data pe::ImageSectionHeader>` — [`SectionIndex`](../../index.md), [`Result`](../../index.md), [`ImageSectionHeader`](../../pe/index.md)
+
+- `fn section_by_name<R: ReadRef<'data>>(self: &Self, strings: StringTable<'data, R>, name: &[u8]) -> Option<(SectionIndex, &'data pe::ImageSectionHeader)>` — [`StringTable`](../index.md), [`SectionIndex`](../../index.md), [`ImageSectionHeader`](../../pe/index.md)
+
+- `fn max_section_file_offset(self: &Self) -> u64`
 
 #### Trait Implementations
 
 ##### `impl<'data> Clone for SectionTable<'data>`
 
-- `fn clone(self: &Self) -> SectionTable<'data>` — [`SectionTable`](#sectiontable)
+- `fn clone(self: &Self) -> SectionTable<'data>` — [`SectionTable`](../pe/index.md)
 
 ##### `impl<'data> Copy for SectionTable<'data>`
 
@@ -218,7 +226,7 @@ Returned by `CoffHeader::sections` and
 
 ##### `impl<'data> Default for SectionTable<'data>`
 
-- `fn default() -> SectionTable<'data>` — [`SectionTable`](#sectiontable)
+- `fn default() -> SectionTable<'data>` — [`SectionTable`](../pe/index.md)
 
 ### `CoffSegmentIterator<'data, 'file, R: ReadRef<'data>, Coff: CoffHeader>`
 

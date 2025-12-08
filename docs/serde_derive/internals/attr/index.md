@@ -19,7 +19,7 @@ struct Attr<'c, T> {
 
 #### Implementations
 
-- `fn none(cx: &'c Ctxt, name: Symbol) -> Self` — [`Ctxt`](../ctxt/index.md), [`Symbol`](../symbol/index.md)
+- `fn none(cx: &'c Ctxt, name: Symbol) -> Self` — [`Ctxt`](../index.md), [`Symbol`](../symbol/index.md)
 
 - `fn set<A: ToTokens>(self: &mut Self, obj: A, value: T)`
 
@@ -39,7 +39,7 @@ struct BoolAttr<'c>(Attr<'c, ()>);
 
 #### Implementations
 
-- `fn none(cx: &'c Ctxt, name: Symbol) -> Self` — [`Ctxt`](../ctxt/index.md), [`Symbol`](../symbol/index.md)
+- `fn none(cx: &'c Ctxt, name: Symbol) -> Self` — [`Ctxt`](../index.md), [`Symbol`](../symbol/index.md)
 
 - `fn set_true<A: ToTokens>(self: &mut Self, obj: A)`
 
@@ -58,7 +58,7 @@ struct VecAttr<'c, T> {
 
 #### Implementations
 
-- `fn none(cx: &'c Ctxt, name: Symbol) -> Self` — [`Ctxt`](../ctxt/index.md), [`Symbol`](../symbol/index.md)
+- `fn none(cx: &'c Ctxt, name: Symbol) -> Self` — [`Ctxt`](../index.md), [`Symbol`](../symbol/index.md)
 
 - `fn insert<A: ToTokens>(self: &mut Self, obj: A, value: T)`
 
@@ -122,7 +122,7 @@ Represents struct or enum attribute information.
 
 #### Implementations
 
-- `fn from_ast(cx: &Ctxt, item: &syn::DeriveInput) -> Self` — [`Ctxt`](../ctxt/index.md)
+- `fn from_ast(cx: &Ctxt, item: &syn::DeriveInput) -> Self` — [`Ctxt`](../index.md)
 
 - `fn name(self: &Self) -> &MultiName` — [`MultiName`](../name/index.md)
 
@@ -182,7 +182,7 @@ Represents variant attribute information
 
 #### Implementations
 
-- `fn from_ast(cx: &Ctxt, variant: &syn::Variant) -> Self` — [`Ctxt`](../ctxt/index.md)
+- `fn from_ast(cx: &Ctxt, variant: &syn::Variant) -> Self` — [`Ctxt`](../index.md)
 
 - `fn name(self: &Self) -> &MultiName` — [`MultiName`](../name/index.md)
 
@@ -241,7 +241,7 @@ Represents field attribute information
 
 #### Implementations
 
-- `fn from_ast(cx: &Ctxt, index: usize, field: &syn::Field, attrs: Option<&Variant>, container_default: &Default, private: &Ident) -> Self` — [`Ctxt`](../ctxt/index.md), [`Variant`](#variant), [`Default`](#default)
+- `fn from_ast(cx: &Ctxt, index: usize, field: &syn::Field, attrs: Option<&Variant>, container_default: &Default, private: &Ident) -> Self` — [`Ctxt`](../index.md), [`Variant`](#variant), [`Default`](#default)
 
 - `fn name(self: &Self) -> &MultiName` — [`MultiName`](../name/index.md)
 

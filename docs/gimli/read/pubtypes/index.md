@@ -51,7 +51,7 @@ found in the `.debug_info` section.
 
 #### Implementations
 
-- `fn new(debug_pubtypes_section: &'input [u8], endian: Endian) -> Self`
+- `fn items(self: &Self) -> PubTypesEntryIter<R>` — [`PubTypesEntryIter`](../index.md)
 
 #### Trait Implementations
 

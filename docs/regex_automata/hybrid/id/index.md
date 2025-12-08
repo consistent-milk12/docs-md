@@ -194,23 +194,23 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - `const MAX: usize`
 
-- `fn new(id: usize) -> Result<LazyStateID, LazyStateIDError>` — [`LazyStateID`](#lazystateid), [`LazyStateIDError`](#lazystateiderror)
+- `fn new(id: usize) -> Result<LazyStateID, LazyStateIDError>` — [`LazyStateID`](../index.md), [`LazyStateIDError`](#lazystateiderror)
 
-- `const fn new_unchecked(id: usize) -> LazyStateID` — [`LazyStateID`](#lazystateid)
+- `const fn new_unchecked(id: usize) -> LazyStateID` — [`LazyStateID`](../index.md)
 
 - `fn as_usize_untagged(self: &Self) -> usize`
 
 - `const fn as_usize_unchecked(self: &Self) -> usize`
 
-- `const fn to_unknown(self: &Self) -> LazyStateID` — [`LazyStateID`](#lazystateid)
+- `const fn to_unknown(self: &Self) -> LazyStateID` — [`LazyStateID`](../index.md)
 
-- `const fn to_dead(self: &Self) -> LazyStateID` — [`LazyStateID`](#lazystateid)
+- `const fn to_dead(self: &Self) -> LazyStateID` — [`LazyStateID`](../index.md)
 
-- `const fn to_quit(self: &Self) -> LazyStateID` — [`LazyStateID`](#lazystateid)
+- `const fn to_quit(self: &Self) -> LazyStateID` — [`LazyStateID`](../index.md)
 
-- `const fn to_start(self: &Self) -> LazyStateID` — [`LazyStateID`](#lazystateid)
+- `const fn to_start(self: &Self) -> LazyStateID` — [`LazyStateID`](../index.md)
 
-- `const fn to_match(self: &Self) -> LazyStateID` — [`LazyStateID`](#lazystateid)
+- `const fn to_match(self: &Self) -> LazyStateID` — [`LazyStateID`](../index.md)
 
 - `const fn is_tagged(self: &Self) -> bool`
 
@@ -228,7 +228,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ##### `impl Clone for LazyStateID`
 
-- `fn clone(self: &Self) -> LazyStateID` — [`LazyStateID`](#lazystateid)
+- `fn clone(self: &Self) -> LazyStateID` — [`LazyStateID`](../index.md)
 
 ##### `impl Copy for LazyStateID`
 
@@ -238,7 +238,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ##### `impl Default for LazyStateID`
 
-- `fn default() -> LazyStateID` — [`LazyStateID`](#lazystateid)
+- `fn default() -> LazyStateID` — [`LazyStateID`](../index.md)
 
 ##### `impl Eq for LazyStateID`
 
@@ -248,15 +248,15 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ##### `impl Ord for LazyStateID`
 
-- `fn cmp(self: &Self, other: &LazyStateID) -> $crate::cmp::Ordering` — [`LazyStateID`](#lazystateid)
+- `fn cmp(self: &Self, other: &LazyStateID) -> $crate::cmp::Ordering` — [`LazyStateID`](../index.md)
 
 ##### `impl PartialEq for LazyStateID`
 
-- `fn eq(self: &Self, other: &LazyStateID) -> bool` — [`LazyStateID`](#lazystateid)
+- `fn eq(self: &Self, other: &LazyStateID) -> bool` — [`LazyStateID`](../index.md)
 
 ##### `impl PartialOrd for LazyStateID`
 
-- `fn partial_cmp(self: &Self, other: &LazyStateID) -> $crate::option::Option<$crate::cmp::Ordering>` — [`LazyStateID`](#lazystateid)
+- `fn partial_cmp(self: &Self, other: &LazyStateID) -> $crate::option::Option<$crate::cmp::Ordering>` — [`LazyStateID`](../index.md)
 
 ##### `impl StructuralPartialEq for LazyStateID`
 

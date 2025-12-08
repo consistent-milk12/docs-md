@@ -114,7 +114,7 @@ the compiled regular expression.
 
 - `fn new(pattern: &str) -> RegexBuilder` — [`RegexBuilder`](#regexbuilder)
 
-- `fn build(self: &Self) -> Result<Regex, Error>` — [`Regex`](../regex/bytes/index.md), [`Error`](../error/index.md)
+- `fn build(self: &Self) -> Result<Regex, Error>` — [`Regex`](../regex/bytes/index.md), [`Error`](../index.md)
 
 - `fn unicode(self: &mut Self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
 
@@ -169,7 +169,7 @@ the compiled regular expression.
 
 - `fn new<I, S>(patterns: I) -> RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
 
-- `fn build(self: &Self) -> Result<RegexSet, Error>` — [`RegexSet`](../regexset/bytes/index.md), [`Error`](../error/index.md)
+- `fn build(self: &Self) -> Result<RegexSet, Error>` — [`RegexSet`](../regexset/bytes/index.md), [`Error`](../index.md)
 
 - `fn unicode(self: &mut Self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
 
@@ -308,15 +308,27 @@ assert_eq!(&caps["f2"], "💩".as_bytes());
 
 #### Implementations
 
-- `fn as_str(self: &Self) -> &str`
+- `fn new(re: &str) -> Result<Regex, Error>` — [`Regex`](../regex/bytes/index.md), [`Error`](../index.md)
 
-- `fn capture_names(self: &Self) -> CaptureNames<'_>` — [`CaptureNames`](../regex/bytes/index.md)
+- `fn is_match(self: &Self, haystack: &[u8]) -> bool`
 
-- `fn captures_len(self: &Self) -> usize`
+- `fn find<'h>(self: &Self, haystack: &'h [u8]) -> Option<Match<'h>>` — [`Match`](../regex/bytes/index.md)
 
-- `fn static_captures_len(self: &Self) -> Option<usize>`
+- `fn find_iter<'r, 'h>(self: &'r Self, haystack: &'h [u8]) -> Matches<'r, 'h>` — [`Matches`](../regex/bytes/index.md)
 
-- `fn capture_locations(self: &Self) -> CaptureLocations` — [`CaptureLocations`](../regex/bytes/index.md)
+- `fn captures<'h>(self: &Self, haystack: &'h [u8]) -> Option<Captures<'h>>` — [`Captures`](../regex/bytes/index.md)
+
+- `fn captures_iter<'r, 'h>(self: &'r Self, haystack: &'h [u8]) -> CaptureMatches<'r, 'h>` — [`CaptureMatches`](../regex/bytes/index.md)
+
+- `fn split<'r, 'h>(self: &'r Self, haystack: &'h [u8]) -> Split<'r, 'h>` — [`Split`](../regex/bytes/index.md)
+
+- `fn splitn<'r, 'h>(self: &'r Self, haystack: &'h [u8], limit: usize) -> SplitN<'r, 'h>` — [`SplitN`](../regex/bytes/index.md)
+
+- `fn replace<'h, R: Replacer>(self: &Self, haystack: &'h [u8], rep: R) -> Cow<'h, [u8]>`
+
+- `fn replace_all<'h, R: Replacer>(self: &Self, haystack: &'h [u8], rep: R) -> Cow<'h, [u8]>`
+
+- `fn replacen<'h, R: Replacer>(self: &Self, haystack: &'h [u8], limit: usize, rep: R) -> Cow<'h, [u8]>`
 
 #### Trait Implementations
 
@@ -336,7 +348,7 @@ assert_eq!(&caps["f2"], "💩".as_bytes());
 
 - `type Err = Error`
 
-- `fn from_str(s: &str) -> Result<Regex, Error>` — [`Regex`](../regex/bytes/index.md), [`Error`](../error/index.md)
+- `fn from_str(s: &str) -> Result<Regex, Error>` — [`Regex`](../regex/bytes/index.md), [`Error`](../index.md)
 
 ##### `impl<T> ToString for Regex`
 
@@ -1094,7 +1106,7 @@ alternate isn't always obvious to reason about.
 
 #### Implementations
 
-- `fn new<I, S>(exprs: I) -> Result<RegexSet, Error>` — [`RegexSet`](../regexset/bytes/index.md), [`Error`](../error/index.md)
+- `fn new<I, S>(exprs: I) -> Result<RegexSet, Error>` — [`RegexSet`](../regexset/bytes/index.md), [`Error`](../index.md)
 
 - `fn empty() -> RegexSet` — [`RegexSet`](../regexset/bytes/index.md)
 

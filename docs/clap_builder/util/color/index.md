@@ -76,13 +76,13 @@ Represents the color preferences for program output
 
 #### Implementations
 
-- `fn possible_values() -> impl Iterator<Item = PossibleValue>` — [`PossibleValue`](../../builder/possible_value/index.md)
+- `fn possible_values() -> impl Iterator<Item = PossibleValue>` — [`PossibleValue`](../../builder/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for ColorChoice`
 
-- `fn clone(self: &Self) -> ColorChoice` — [`ColorChoice`](#colorchoice)
+- `fn clone(self: &Self) -> ColorChoice` — [`ColorChoice`](../../index.md)
 
 ##### `impl Copy for ColorChoice`
 
@@ -92,7 +92,7 @@ Represents the color preferences for program output
 
 ##### `impl Default for ColorChoice`
 
-- `fn default() -> ColorChoice` — [`ColorChoice`](#colorchoice)
+- `fn default() -> ColorChoice` — [`ColorChoice`](../../index.md)
 
 ##### `impl Display for ColorChoice`
 
@@ -108,7 +108,7 @@ Represents the color preferences for program output
 
 ##### `impl PartialEq for ColorChoice`
 
-- `fn eq(self: &Self, other: &ColorChoice) -> bool` — [`ColorChoice`](#colorchoice)
+- `fn eq(self: &Self, other: &ColorChoice) -> bool` — [`ColorChoice`](../../index.md)
 
 ##### `impl StructuralPartialEq for ColorChoice`
 
@@ -120,5 +120,5 @@ Represents the color preferences for program output
 
 - `fn value_variants<'a>() -> &'a [Self]`
 
-- `fn to_possible_value(self: &Self) -> Option<PossibleValue>` — [`PossibleValue`](../../builder/possible_value/index.md)
+- `fn to_possible_value(self: &Self) -> Option<PossibleValue>` — [`PossibleValue`](../../builder/index.md)
 

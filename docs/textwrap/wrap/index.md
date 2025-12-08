@@ -38,7 +38,7 @@ assert_eq!(lines, &[
 ]);
 ```
 
-If you need to customize the wrapping, you can pass an [`Options`](../options/index.md)
+If you need to customize the wrapping, you can pass an [`Options`](../index.md)
 instead of an `usize`:
 
 ```rust

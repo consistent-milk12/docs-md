@@ -12,13 +12,13 @@ represented internally as an array index) to a [`Value`](#value).
 
 # `Value`s and `Subscriber`s
 
-`Subscriber`s consume `Value`s as fields attached to [`span`](../span/index.md)s or [`Event`](../event/index.md)s.
-The set of field keys on a given span or event is defined on its [`Metadata`](../metadata/index.md).
+`Subscriber`s consume `Value`s as fields attached to [`span`](../span/index.md)s or [`Event`](../index.md)s.
+The set of field keys on a given span or event is defined on its [`Metadata`](../index.md).
 When a span is created, it provides [`Attributes`](../span/index.md) to the `Subscriber`'s
 `new_span` method, containing any fields whose values were provided when
 the span was created; and may call the `Subscriber`'s `record` method
 with additional [`Record`](../span/index.md)s if values are added for more of its fields.
-Similarly, the [`Event`](../event/index.md) type passed to the subscriber's [`event`](../event/index.md) method
+Similarly, the [`Event`](../index.md) type passed to the subscriber's [`event`](../event/index.md) method
 will contain any fields attached to each event.
 
 `tracing` represents values as either one of a set of Rust primitives
@@ -38,7 +38,7 @@ for their field names rather than printing them.
 
 `tracing`'s [`Value`](#value) trait is intentionally minimalist: it supports only a small
 number of Rust primitives as typed values, and only permits recording
-user-defined types with their [`fmt::Debug`](../../object/index.md) or [`fmt::Display`](../../miette_derive/fmt/index.md)
+user-defined types with their [`fmt::Debug`](../../object/index.md) or [`fmt::Display`](../../miette_derive/index.md)
 implementations. However, there are some cases where it may be useful to record
 nested values (such as arrays, `Vec`s, or `HashMap`s containing values), or
 user-defined `struct` and `enum` types without having to format them as
@@ -48,7 +48,7 @@ To address `Value`'s limitations, `tracing` offers experimental support for
 the `valuable` crate, which provides object-safe inspection of structured
 values. User-defined types can implement the `valuable::Valuable` trait,
 and be recorded as a `tracing` field by calling their `as_value` method.
-If the [`Subscriber`](../subscriber/index.md) also supports the `valuable` crate, it can
+If the [`Subscriber`](../index.md) also supports the `valuable` crate, it can
 then visit those types fields as structured values using `valuable`.
 
 <pre class="ignore" style="white-space:normal;font:inherit;">
@@ -208,7 +208,7 @@ When a field's value is `Empty`. it will not be recorded.
 
 ##### `impl Value for Empty`
 
-- `fn record(self: &Self, _: &Field, _: &mut dyn Visit)` — [`Field`](#field), [`Visit`](#visit)
+- `fn record(self: &Self, _: &Field, _: &mut dyn Visit)` — [`Field`](../index.md), [`Visit`](#visit)
 
 ### `FieldSet`
 
@@ -246,9 +246,9 @@ callsites. However, the equality of field names is checked in debug builds.
 
 - `fn callsite(self: &Self) -> callsite::Identifier` — [`Identifier`](../callsite/index.md)
 
-- `fn field<Q: Borrow<str> + ?Sized>(self: &Self, name: &Q) -> Option<Field>` — [`Field`](#field)
+- `fn field<Q: Borrow<str> + ?Sized>(self: &Self, name: &Q) -> Option<Field>` — [`Field`](../index.md)
 
-- `fn contains(self: &Self, field: &Field) -> bool` — [`Field`](#field)
+- `fn contains(self: &Self, field: &Field) -> bool` — [`Field`](../index.md)
 
 - `fn iter(self: &Self) -> Iter` — [`Iter`](#iter)
 
@@ -295,7 +295,7 @@ A set of fields and values for a span.
 
 - `fn len(self: &Self) -> usize`
 
-- `fn contains(self: &Self, field: &Field) -> bool` — [`Field`](#field)
+- `fn contains(self: &Self, field: &Field) -> bool` — [`Field`](../index.md)
 
 - `fn is_empty(self: &Self) -> bool`
 
@@ -344,7 +344,7 @@ An iterator over a set of fields.
 
 - `type Item = Field`
 
-- `fn next(self: &mut Self) -> Option<Field>` — [`Field`](#field)
+- `fn next(self: &mut Self) -> Option<Field>` — [`Field`](../index.md)
 
 ### `DisplayValue<T: fmt::Display>`
 
@@ -379,7 +379,7 @@ avoid an unnecessary evaluation.
 
 ##### `impl<T> Value for DisplayValue<T>`
 
-- `fn record(self: &Self, key: &Field, visitor: &mut dyn Visit)` — [`Field`](#field), [`Visit`](#visit)
+- `fn record(self: &Self, key: &Field, visitor: &mut dyn Visit)` — [`Field`](../index.md), [`Visit`](#visit)
 
 ### `DebugValue<T: fmt::Debug>`
 
@@ -403,7 +403,7 @@ A `Value` which serializes as a string using `fmt::Debug`.
 
 ##### `impl<T> Value for DebugValue<T>`
 
-- `fn record(self: &Self, key: &Field, visitor: &mut dyn Visit)` — [`Field`](#field), [`Visit`](#visit)
+- `fn record(self: &Self, key: &Field, visitor: &mut dyn Visit)` — [`Field`](../index.md), [`Visit`](#visit)
 
 ### `HexBytes<'a>`
 
@@ -454,9 +454,9 @@ record field values of various types. When an implementor of [`Value`](#value) i
 [recorded], it calls the appropriate method on the provided visitor to
 indicate the type that value should be recorded as.
 
-When a [`Subscriber`](../subscriber/index.md) implementation [records an `Event`] or a
+When a [`Subscriber`](../index.md) implementation [records an `Event`] or a
 [set of `Value`s added to a `Span`], it can pass an `&mut Visit` to the
-`record` method on the provided [`ValueSet`](#valueset) or [`Event`](../event/index.md). This visitor
+`record` method on the provided [`ValueSet`](#valueset) or [`Event`](../index.md). This visitor
 will then be used to record all the field-value pairs present on that
 `Event` or `ValueSet`.
 

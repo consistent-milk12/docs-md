@@ -23,11 +23,11 @@ This includes
 
 You can customize auto-detection by calling into
 [anstyle_query](https://docs.rs/anstyle-query/latest/anstyle_query/)
-to get a [`ColorChoice`](../../colorchoice/index.md) and then calling `AutoStream::new(stream, choice)`.
+to get a [`ColorChoice`](../index.md) and then calling `AutoStream::new(stream, choice)`.
 
 #### Implementations
 
-- `fn lock(self: Self) -> AutoStream<std::io::StdoutLock<'static>>` — [`AutoStream`](#autostream)
+- `fn lock(self: Self) -> AutoStream<std::io::StdoutLock<'static>>` — [`AutoStream`](../index.md)
 
 #### Trait Implementations
 

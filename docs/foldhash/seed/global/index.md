@@ -38,7 +38,7 @@ This prevents inflating the RandomState size and in turn HashMap's size.
 
 - `fn init_slow()`
 
-- `fn get(self: Self) -> &'static SharedSeed` — [`SharedSeed`](../index.md)
+- `fn get(self: Self) -> &'static SharedSeed` — [`SharedSeed`](../../index.md)
 
 #### Trait Implementations
 

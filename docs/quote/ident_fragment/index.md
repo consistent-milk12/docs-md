@@ -14,7 +14,7 @@ trait IdentFragment { ... }
 
 Specialized formatting trait used by `format_ident!`.
 
-[`Ident`](../../proc_macro2/index.md) arguments formatted using this trait will have their `r#` prefix
+[`Ident`](../../proc_macro2/imp/index.md) arguments formatted using this trait will have their `r#` prefix
 stripped, if present.
 
 See `format_ident!` for more information.

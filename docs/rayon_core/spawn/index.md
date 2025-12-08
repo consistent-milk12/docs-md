@@ -38,7 +38,7 @@ they were spawned. Other threads always steal from the other end of
 the deque, like FIFO order.  The idea is that "recent" tasks are
 most likely to be fresh in the local CPU's cache, while other
 threads can steal older "stale" tasks.  For an alternate approach,
-consider [`spawn_fifo()`](#spawn-fifo) instead.
+consider [`spawn_fifo()`](../index.md) instead.
 
 # Panic handling
 

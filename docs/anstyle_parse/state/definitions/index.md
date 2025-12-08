@@ -33,7 +33,7 @@ enum State {
 
 ##### `impl Clone for State`
 
-- `fn clone(self: &Self) -> State` — [`State`](#state)
+- `fn clone(self: &Self) -> State` — [`State`](../index.md)
 
 ##### `impl Copy for State`
 
@@ -43,13 +43,13 @@ enum State {
 
 ##### `impl Default for State`
 
-- `fn default() -> State` — [`State`](#state)
+- `fn default() -> State` — [`State`](../index.md)
 
 ##### `impl Eq for State`
 
 ##### `impl PartialEq for State`
 
-- `fn eq(self: &Self, other: &State) -> bool` — [`State`](#state)
+- `fn eq(self: &Self, other: &State) -> bool` — [`State`](../index.md)
 
 ##### `impl StructuralPartialEq for State`
 
@@ -80,7 +80,7 @@ enum Action {
 
 ##### `impl Clone for Action`
 
-- `fn clone(self: &Self) -> Action` — [`Action`](#action)
+- `fn clone(self: &Self) -> Action` — [`Action`](../index.md)
 
 ##### `impl Copy for Action`
 
@@ -90,13 +90,13 @@ enum Action {
 
 ##### `impl Default for Action`
 
-- `fn default() -> Action` — [`Action`](#action)
+- `fn default() -> Action` — [`Action`](../index.md)
 
 ##### `impl Eq for Action`
 
 ##### `impl PartialEq for Action`
 
-- `fn eq(self: &Self, other: &Action) -> bool` — [`Action`](#action)
+- `fn eq(self: &Self, other: &Action) -> bool` — [`Action`](../index.md)
 
 ##### `impl StructuralPartialEq for Action`
 

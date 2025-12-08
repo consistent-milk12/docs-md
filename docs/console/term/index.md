@@ -61,13 +61,13 @@ Gives access to the terminal features.
 
 - `fn wants_emoji(self: &Self) -> bool`
 
-- `fn family(self: &Self) -> TermFamily` — [`TermFamily`](#termfamily)
+- `fn family(self: &Self) -> TermFamily` — [`TermFamily`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'a> Clone for TermFeatures<'a>`
 
-- `fn clone(self: &Self) -> TermFeatures<'a>` — [`TermFeatures`](#termfeatures)
+- `fn clone(self: &Self) -> TermFeatures<'a>` — [`TermFeatures`](../index.md)
 
 ##### `impl<'a> Debug for TermFeatures<'a>`
 
@@ -90,31 +90,31 @@ clones which means it largely acts as a handle.
 
 #### Implementations
 
-- `fn with_inner(inner: TermInner) -> Term` — [`TermInner`](#terminner), [`Term`](#term)
+- `fn with_inner(inner: TermInner) -> Term` — [`TermInner`](#terminner), [`Term`](../index.md)
 
-- `fn stdout() -> Term` — [`Term`](#term)
+- `fn stdout() -> Term` — [`Term`](../index.md)
 
-- `fn stderr() -> Term` — [`Term`](#term)
+- `fn stderr() -> Term` — [`Term`](../index.md)
 
-- `fn buffered_stdout() -> Term` — [`Term`](#term)
+- `fn buffered_stdout() -> Term` — [`Term`](../index.md)
 
-- `fn buffered_stderr() -> Term` — [`Term`](#term)
+- `fn buffered_stderr() -> Term` — [`Term`](../index.md)
 
-- `fn read_write_pair<R, W>(read: R, write: W) -> Term` — [`Term`](#term)
+- `fn read_write_pair<R, W>(read: R, write: W) -> Term` — [`Term`](../index.md)
 
-- `fn read_write_pair_with_style<R, W>(read: R, write: W, style: Style) -> Term` — [`Style`](../utils/index.md), [`Term`](#term)
+- `fn read_write_pair_with_style<R, W>(read: R, write: W, style: Style) -> Term` — [`Style`](../index.md), [`Term`](../index.md)
 
-- `fn style(self: &Self) -> Style` — [`Style`](../utils/index.md)
+- `fn style(self: &Self) -> Style` — [`Style`](../index.md)
 
-- `fn target(self: &Self) -> TermTarget` — [`TermTarget`](#termtarget)
+- `fn target(self: &Self) -> TermTarget` — [`TermTarget`](../index.md)
 
 - `fn write_line(self: &Self, s: &str) -> io::Result<()>`
 
 - `fn read_char(self: &Self) -> io::Result<char>`
 
-- `fn read_key(self: &Self) -> io::Result<Key>` — [`Key`](../kb/index.md)
+- `fn read_key(self: &Self) -> io::Result<Key>` — [`Key`](../index.md)
 
-- `fn read_key_raw(self: &Self) -> io::Result<Key>` — [`Key`](../kb/index.md)
+- `fn read_key_raw(self: &Self) -> io::Result<Key>` — [`Key`](../index.md)
 
 - `fn read_line(self: &Self) -> io::Result<String>`
 
@@ -126,7 +126,7 @@ clones which means it largely acts as a handle.
 
 - `fn is_term(self: &Self) -> bool`
 
-- `fn features(self: &Self) -> TermFeatures<'_>` — [`TermFeatures`](#termfeatures)
+- `fn features(self: &Self) -> TermFeatures<'_>` — [`TermFeatures`](../index.md)
 
 - `fn size(self: &Self) -> (u16, u16)`
 
@@ -170,7 +170,7 @@ clones which means it largely acts as a handle.
 
 ##### `impl Clone for Term`
 
-- `fn clone(self: &Self) -> Term` — [`Term`](#term)
+- `fn clone(self: &Self) -> Term` — [`Term`](../index.md)
 
 ##### `impl Debug for Term`
 
@@ -206,7 +206,7 @@ Where the term is writing.
 
 ##### `impl Clone for TermTarget`
 
-- `fn clone(self: &Self) -> TermTarget` — [`TermTarget`](#termtarget)
+- `fn clone(self: &Self) -> TermTarget` — [`TermTarget`](../index.md)
 
 ##### `impl Debug for TermTarget`
 
@@ -247,7 +247,7 @@ The family of the terminal.
 
 ##### `impl Clone for TermFamily`
 
-- `fn clone(self: &Self) -> TermFamily` — [`TermFamily`](#termfamily)
+- `fn clone(self: &Self) -> TermFamily` — [`TermFamily`](../index.md)
 
 ##### `impl Copy for TermFamily`
 
@@ -259,7 +259,7 @@ The family of the terminal.
 
 ##### `impl PartialEq for TermFamily`
 
-- `fn eq(self: &Self, other: &TermFamily) -> bool` — [`TermFamily`](#termfamily)
+- `fn eq(self: &Self, other: &TermFamily) -> bool` — [`TermFamily`](../index.md)
 
 ##### `impl StructuralPartialEq for TermFamily`
 

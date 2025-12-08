@@ -33,7 +33,7 @@ This struct provides methods for rendering each type of documentable item:
 - Constants
 - Type aliases
 
-The renderer is generic over [`RenderContext`](../context/index.md), allowing it to work with
+The renderer is generic over [`RenderContext`](../index.md), allowing it to work with
 both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes.
 
 #### Fields
@@ -53,7 +53,7 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 #### Implementations
 
-- `fn new(ctx: &'a dyn RenderContext, current_file: &'a str) -> Self` — [`RenderContext`](../context/index.md)
+- `fn new(ctx: &'a dyn RenderContext, current_file: &'a str) -> Self` — [`RenderContext`](../index.md)
 
 - `fn process_docs(self: &Self, item: &Item) -> Option<String>`
 

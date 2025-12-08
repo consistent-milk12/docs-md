@@ -47,7 +47,7 @@ parsed into an internal representation.
 
 #### Implementations
 
-- `fn from_ast(cx: &Ctxt, item: &'a syn::DeriveInput, derive: Derive, private: &Ident) -> Option<Container<'a>>` — [`Ctxt`](../ctxt/index.md), [`Derive`](../index.md), [`Container`](#container)
+- `fn from_ast(cx: &Ctxt, item: &'a syn::DeriveInput, derive: Derive, private: &Ident) -> Option<Container<'a>>` — [`Ctxt`](../index.md), [`Derive`](../index.md), [`Container`](#container)
 
 ### `Variant<'a>`
 

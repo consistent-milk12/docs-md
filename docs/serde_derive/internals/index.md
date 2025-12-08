@@ -46,7 +46,7 @@ References can be shared since this type uses run-time exclusive mut checking.
 
 ##### `impl Default for Ctxt`
 
-- `fn default() -> Ctxt` — [`Ctxt`](ctxt/index.md)
+- `fn default() -> Ctxt` — [`Ctxt`](#ctxt)
 
 ##### `impl Drop for Ctxt`
 

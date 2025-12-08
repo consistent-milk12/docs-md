@@ -16,7 +16,7 @@ struct SkipAny<I> {
 ```
 
 `SkipAny` is an iterator that skips over `n` elements from anywhere in `I`.
-This struct is created by the `skip_any()` method on [`ParallelIterator`](../index.md)
+This struct is created by the `skip_any()` method on [`ParallelIterator`](../../prelude/index.md)
 
 
 #### Implementations
@@ -27,7 +27,7 @@ This struct is created by the `skip_any()` method on [`ParallelIterator`](../ind
 
 ##### `impl<I: $crate::clone::Clone> Clone for SkipAny<I>`
 
-- `fn clone(self: &Self) -> SkipAny<I>` — [`SkipAny`](#skipany)
+- `fn clone(self: &Self) -> SkipAny<I>` — [`SkipAny`](../index.md)
 
 ##### `impl<I: $crate::fmt::Debug> Debug for SkipAny<I>`
 

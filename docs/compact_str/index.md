@@ -407,7 +407,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
 ##### `impl AsRef for CompactString`
 
-- `fn as_ref(self: &Self) -> &std::path::Path`
+- `fn as_ref(self: &Self) -> &OsStr`
 
 ##### `impl Clone for CompactString`
 
@@ -439,9 +439,9 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
 ##### `impl Eq for CompactString`
 
-##### `impl<'a> Extend for CompactString`
+##### `impl Extend for CompactString`
 
-- `fn extend<T: IntoIterator<Item = Cow<'a, str>>>(self: &mut Self, iter: T)`
+- `fn extend<T: IntoIterator<Item = String>>(self: &mut Self, iter: T)`
 
 ##### `impl FromIterator for CompactString`
 
@@ -767,7 +767,7 @@ depending on the intended destination of the string.
 
 To convert a single value to a string, use the
 `ToCompactString::to_compact_string` method, which uses
-the [`std::fmt::Display`](../miette_derive/fmt/index.md) formatting trait.
+the [`std::fmt::Display`](../miette_derive/index.md) formatting trait.
 
 # Panics
 

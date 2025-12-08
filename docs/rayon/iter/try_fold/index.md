@@ -18,7 +18,7 @@ struct TryFold<I, U, ID, F> {
 ```
 
 `TryFold` is an iterator that applies a function over an iterator producing a single value.
-This struct is created by the `try_fold()` method on [`ParallelIterator`](../index.md)
+This struct is created by the `try_fold()` method on [`ParallelIterator`](../../prelude/index.md)
 
 
 #### Implementations
@@ -29,7 +29,7 @@ This struct is created by the `try_fold()` method on [`ParallelIterator`](../ind
 
 ##### `impl<I: $crate::clone::Clone, U: $crate::clone::Clone, ID: $crate::clone::Clone, F: $crate::clone::Clone> Clone for TryFold<I, U, ID, F>`
 
-- `fn clone(self: &Self) -> TryFold<I, U, ID, F>` — [`TryFold`](#tryfold)
+- `fn clone(self: &Self) -> TryFold<I, U, ID, F>` — [`TryFold`](../index.md)
 
 ##### `impl<U, I: ParallelIterator + Debug, ID, F> Debug for TryFold<I, U, ID, F>`
 
@@ -163,7 +163,7 @@ struct TryFoldWith<I, U: Try, F> {
 ```
 
 `TryFoldWith` is an iterator that applies a function over an iterator producing a single value.
-This struct is created by the `try_fold_with()` method on [`ParallelIterator`](../index.md)
+This struct is created by the `try_fold_with()` method on [`ParallelIterator`](../../prelude/index.md)
 
 
 #### Implementations
@@ -174,7 +174,7 @@ This struct is created by the `try_fold_with()` method on [`ParallelIterator`](.
 
 ##### `impl<I: $crate::clone::Clone, U: $crate::clone::Clone + Try, F: $crate::clone::Clone> Clone for TryFoldWith<I, U, F>`
 
-- `fn clone(self: &Self) -> TryFoldWith<I, U, F>` — [`TryFoldWith`](#tryfoldwith)
+- `fn clone(self: &Self) -> TryFoldWith<I, U, F>` — [`TryFoldWith`](../index.md)
 
 ##### `impl<I, U, F> Debug for TryFoldWith<I, U, F>`
 

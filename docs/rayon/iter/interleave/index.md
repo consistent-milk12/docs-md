@@ -17,7 +17,7 @@ struct Interleave<I, J> {
 
 `Interleave` is an iterator that interleaves elements of iterators
 `i` and `j` in one continuous iterator. This struct is created by
-the `interleave()` method on [`IndexedParallelIterator`](../index.md)
+the `interleave()` method on [`IndexedParallelIterator`](../../prelude/index.md)
 
 
 #### Implementations
@@ -28,7 +28,7 @@ the `interleave()` method on [`IndexedParallelIterator`](../index.md)
 
 ##### `impl<I: $crate::clone::Clone, J: $crate::clone::Clone> Clone for Interleave<I, J>`
 
-- `fn clone(self: &Self) -> Interleave<I, J>` — [`Interleave`](#interleave)
+- `fn clone(self: &Self) -> Interleave<I, J>` — [`Interleave`](../index.md)
 
 ##### `impl<I: $crate::fmt::Debug, J: $crate::fmt::Debug> Debug for Interleave<I, J>`
 

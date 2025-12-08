@@ -56,7 +56,7 @@ An enum variant.
 
 ##### `impl Parse for crate::data::Variant`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::Variant`
 
@@ -106,7 +106,7 @@ y: f64 }`.
 
 ##### `impl Parse for crate::data::FieldsNamed`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::FieldsNamed`
 
@@ -155,7 +155,7 @@ Unnamed fields of a tuple struct or tuple variant such as `Some(T)`.
 
 ##### `impl Parse for crate::data::FieldsUnnamed`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::FieldsUnnamed`
 
@@ -196,9 +196,9 @@ A field of a struct or enum variant.
 
 #### Implementations
 
-- `fn parse_named(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse_named(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
-- `fn parse_unnamed(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse_unnamed(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 #### Trait Implementations
 
@@ -295,9 +295,9 @@ This type is a [syntax tree enum].
 
 #### Implementations
 
-- `fn iter(self: &Self) -> punctuated::Iter<'_, Field>` — [`Iter`](../punctuated/index.md), [`Field`](#field)
+- `fn iter(self: &Self) -> punctuated::Iter<'_, Field>` — [`Iter`](../punctuated/index.md), [`Field`](../index.md)
 
-- `fn iter_mut(self: &mut Self) -> punctuated::IterMut<'_, Field>` — [`IterMut`](../punctuated/index.md), [`Field`](#field)
+- `fn iter_mut(self: &mut Self) -> punctuated::IterMut<'_, Field>` — [`IterMut`](../punctuated/index.md), [`Field`](../index.md)
 
 - `fn len(self: &Self) -> usize`
 

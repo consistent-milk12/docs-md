@@ -47,7 +47,7 @@ return `Maybe` when a full decomposition and recomposition is necessary.
 
 ##### `impl PartialEq for IsNormalized`
 
-- `fn eq(self: &Self, other: &IsNormalized) -> bool` — [`IsNormalized`](#isnormalized)
+- `fn eq(self: &Self, other: &IsNormalized) -> bool` — [`IsNormalized`](../index.md)
 
 ##### `impl StructuralPartialEq for IsNormalized`
 

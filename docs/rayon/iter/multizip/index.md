@@ -93,13 +93,13 @@ assert_eq!(tuple, (vec![1, 2, 3], vec![-4, -3, -2], vec![-6, -2, 2]));
 
 ##### `impl<T: $crate::clone::Clone> Clone for MultiZip<T>`
 
-- `fn clone(self: &Self) -> MultiZip<T>` — [`MultiZip`](#multizip)
+- `fn clone(self: &Self) -> MultiZip<T>` — [`MultiZip`](../index.md)
 
 ##### `impl<T: $crate::fmt::Debug> Debug for MultiZip<T>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl<A, B, C, D, E, F> IndexedParallelIterator for MultiZip<(A, B, C, D, E, F)>`
+##### `impl<A, B, C, D, E, F, G> IndexedParallelIterator for MultiZip<(A, B, C, D, E, F, G)>`
 
 - `fn drive<CONSUMER>(self: Self, consumer: CONSUMER) -> <CONSUMER as >::Result` — [`Consumer`](../plumbing/index.md)
 
@@ -117,9 +117,9 @@ assert_eq!(tuple, (vec![1, 2, 3], vec![-4, -3, -2], vec![-6, -2, 2]));
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl<A, B, C, D, E, F, G, H, I, J> ParallelIterator for MultiZip<(A, B, C, D, E, F, G, H, I, J)>`
+##### `impl<A, B, C, D, E, F, G, H, I, J, K, L> ParallelIterator for MultiZip<(A, B, C, D, E, F, G, H, I, J, K, L)>`
 
-- `type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item, <C as ParallelIterator>::Item, <D as ParallelIterator>::Item, <E as ParallelIterator>::Item, <F as ParallelIterator>::Item, <G as ParallelIterator>::Item, <H as ParallelIterator>::Item, <I as ParallelIterator>::Item, <J as ParallelIterator>::Item)`
+- `type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item, <C as ParallelIterator>::Item, <D as ParallelIterator>::Item, <E as ParallelIterator>::Item, <F as ParallelIterator>::Item, <G as ParallelIterator>::Item, <H as ParallelIterator>::Item, <I as ParallelIterator>::Item, <J as ParallelIterator>::Item, <K as ParallelIterator>::Item, <L as ParallelIterator>::Item)`
 
 - `fn drive_unindexed<CONSUMER>(self: Self, consumer: CONSUMER) -> <CONSUMER as >::Result` — [`Consumer`](../plumbing/index.md)
 

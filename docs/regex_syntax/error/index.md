@@ -149,7 +149,7 @@ new variant is not considered a breaking change.
 
 ##### `impl Clone for Error`
 
-- `fn clone(self: &Self) -> Error` — [`Error`](#error)
+- `fn clone(self: &Self) -> Error` — [`Error`](../index.md)
 
 ##### `impl Debug for Error`
 
@@ -165,7 +165,7 @@ new variant is not considered a breaking change.
 
 ##### `impl PartialEq for Error`
 
-- `fn eq(self: &Self, other: &Error) -> bool` — [`Error`](#error)
+- `fn eq(self: &Self, other: &Error) -> bool` — [`Error`](../index.md)
 
 ##### `impl StructuralPartialEq for Error`
 

@@ -99,14 +99,14 @@ fn run_docs_command(args: DocsArgs) -> Result<()> {
     let mut cargo_cmd = Command::new("cargo");
     cargo_cmd.arg("+nightly").arg("doc");
 
-    // Add --document-private-items if include_private is set
-    if args.include_private {
+    // Add --document-private-items unless exclude_private is set
+    if args.exclude_private {
+        cargo_cmd.env("RUSTDOCFLAGS", "-Z unstable-options --output-format json");
+    } else {
         cargo_cmd.env(
             "RUSTDOCFLAGS",
             "-Z unstable-options --output-format json --document-private-items",
         );
-    } else {
-        cargo_cmd.env("RUSTDOCFLAGS", "-Z unstable-options --output-format json");
     }
 
     // Add any extra cargo args
@@ -133,7 +133,7 @@ fn run_docs_command(args: DocsArgs) -> Result<()> {
         primary_crate,
         output: args.output,
         format: args.format,
-        include_private: args.include_private,
+        exclude_private: args.exclude_private,
         include_blanket_impls: args.include_blanket_impls,
     };
 

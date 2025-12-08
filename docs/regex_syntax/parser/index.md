@@ -25,37 +25,37 @@ This type combines the builder options for both the [AST
 
 #### Implementations
 
-- `fn new() -> ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- `fn new() -> ParserBuilder` — [`ParserBuilder`](../index.md)
 
-- `fn build(self: &Self) -> Parser` — [`Parser`](#parser)
+- `fn build(self: &Self) -> Parser` — [`Parser`](../index.md)
 
-- `fn nest_limit(self: &mut Self, limit: u32) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- `fn nest_limit(self: &mut Self, limit: u32) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
 
-- `fn octal(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- `fn octal(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
 
-- `fn utf8(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- `fn utf8(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
 
-- `fn ignore_whitespace(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- `fn ignore_whitespace(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
 
-- `fn case_insensitive(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- `fn case_insensitive(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
 
-- `fn multi_line(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- `fn multi_line(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
 
-- `fn dot_matches_new_line(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- `fn dot_matches_new_line(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
 
-- `fn crlf(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- `fn crlf(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
 
-- `fn line_terminator(self: &mut Self, byte: u8) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- `fn line_terminator(self: &mut Self, byte: u8) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
 
-- `fn swap_greed(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- `fn swap_greed(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
 
-- `fn unicode(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- `fn unicode(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for ParserBuilder`
 
-- `fn clone(self: &Self) -> ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- `fn clone(self: &Self) -> ParserBuilder` — [`ParserBuilder`](../index.md)
 
 ##### `impl Debug for ParserBuilder`
 
@@ -63,7 +63,7 @@ This type combines the builder options for both the [AST
 
 ##### `impl Default for ParserBuilder`
 
-- `fn default() -> ParserBuilder` — [`ParserBuilder`](#parserbuilder)
+- `fn default() -> ParserBuilder` — [`ParserBuilder`](../index.md)
 
 ### `Parser`
 
@@ -86,19 +86,19 @@ convenience for never having to deal with it at all.
 If callers have more fine grained use cases that need an AST, then please
 see the [`ast::parse`](../ast/parse/index.md) module.
 
-A `Parser` can be configured in more detail via a [`ParserBuilder`](#parserbuilder).
+A `Parser` can be configured in more detail via a [`ParserBuilder`](../index.md).
 
 #### Implementations
 
-- `fn new() -> Parser` — [`Parser`](#parser)
+- `fn new() -> Parser` — [`Parser`](../index.md)
 
-- `fn parse(self: &mut Self, pattern: &str) -> Result<hir::Hir, Error>` — [`Hir`](../hir/index.md), [`Error`](../error/index.md)
+- `fn parse(self: &mut Self, pattern: &str) -> Result<hir::Hir, Error>` — [`Hir`](../hir/index.md), [`Error`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Parser`
 
-- `fn clone(self: &Self) -> Parser` — [`Parser`](#parser)
+- `fn clone(self: &Self) -> Parser` — [`Parser`](../index.md)
 
 ##### `impl Debug for Parser`
 
@@ -116,7 +116,7 @@ A convenience routine for parsing a regex using default options.
 
 This is equivalent to `Parser::new().parse(pattern)`.
 
-If you need to set non-default options, then use a [`ParserBuilder`](#parserbuilder).
+If you need to set non-default options, then use a [`ParserBuilder`](../index.md).
 
 This routine returns an [`Hir`](hir::Hir) value. Namely, it automatically
 parses the pattern as an [`Ast`](ast::Ast) and then invokes the translator

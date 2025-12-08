@@ -17,7 +17,7 @@ struct WithDispatch<T> {
 }
 ```
 
-A `Future` that has been instrumented with a `tracing` [`Subscriber`](../../tracing_core/subscriber/index.md).
+A `Future` that has been instrumented with a `tracing` [`Subscriber`](../../tracing_core/index.md).
 
 This type is returned by the [`WithSubscriber`](#withsubscriber) extension trait. See that
 trait's documentation for details.
@@ -26,7 +26,7 @@ trait's documentation for details.
 
 #### Implementations
 
-- `fn dispatcher(self: &Self) -> &Dispatch`
+- `fn dispatcher(self: &Self) -> &Dispatch` — [`Dispatch`](../index.md)
 
 - `fn inner(self: &Self) -> &T`
 
@@ -77,18 +77,18 @@ struct Instrumented<T> {
 }
 ```
 
-A `Future` that has been instrumented with a `tracing` [`Span`](../span/index.md).
+A `Future` that has been instrumented with a `tracing` [`Span`](../index.md).
 
-This type is returned by the [`Instrument`](#instrument) extension trait. See that
+This type is returned by the [`Instrument`](../index.md) extension trait. See that
 trait's documentation for details.
 
 
 
 #### Implementations
 
-- `fn span(self: &Self) -> &Span` — [`Span`](../span/index.md)
+- `fn span(self: &Self) -> &Span` — [`Span`](../index.md)
 
-- `fn span_mut(self: &mut Self) -> &mut Span` — [`Span`](../span/index.md)
+- `fn span_mut(self: &mut Self) -> &mut Span` — [`Span`](../index.md)
 
 - `fn inner(self: &Self) -> &T`
 
@@ -152,11 +152,11 @@ instrumented with a `tracing` [`span`](../span/index.md).
 
 - `fn instrument(self: Self, span: Span) -> Instrumented<Self>`
 
-  Instruments this type with the provided [`Span`](../span/index.md), returning an
+  Instruments this type with the provided [`Span`](../index.md), returning an
 
 - `fn in_current_span(self: Self) -> Instrumented<Self>`
 
-  Instruments this type with the [current] [`Span`](../span/index.md), returning an
+  Instruments this type with the [current] [`Span`](../index.md), returning an
 
 ### `WithSubscriber`
 
@@ -171,9 +171,9 @@ a `tracing` [`Subscriber`](crate::Subscriber).
 
 - `fn with_subscriber<S>(self: Self, subscriber: S) -> WithDispatch<Self>`
 
-  Attaches the provided [`Subscriber`](../../tracing_core/subscriber/index.md) to this type, returning a
+  Attaches the provided [`Subscriber`](../../tracing_core/index.md) to this type, returning a
 
 - `fn with_current_subscriber(self: Self) -> WithDispatch<Self>`
 
-  Attaches the current [`default`](../../crossbeam_epoch/default/index.md) [`Subscriber`](../../tracing_core/subscriber/index.md) to this type, returning a
+  Attaches the current [`default`](../../crossbeam_epoch/default/index.md) [`Subscriber`](../../tracing_core/index.md) to this type, returning a
 

@@ -36,9 +36,9 @@ device.
 
 - `fn term(term: Term, refresh_rate: u8) -> Self`
 
-- `fn term_like(term_like: Box<dyn TermLike>) -> Self` — [`TermLike`](../term_like/index.md)
+- `fn term_like(term_like: Box<dyn TermLike>) -> Self` — [`TermLike`](../index.md)
 
-- `fn term_like_with_hz(term_like: Box<dyn TermLike>, refresh_rate: u8) -> Self` — [`TermLike`](../term_like/index.md)
+- `fn term_like_with_hz(term_like: Box<dyn TermLike>, refresh_rate: u8) -> Self` — [`TermLike`](../index.md)
 
 - `fn hidden() -> Self`
 
@@ -151,7 +151,7 @@ The drawn state of an element.
 
 #### Implementations
 
-- `fn draw_to_term(self: &mut Self, term: &impl TermLike + ?Sized, bar_count: &mut VisualLines) -> io::Result<()>` — [`TermLike`](../term_like/index.md), [`VisualLines`](#visuallines)
+- `fn draw_to_term(self: &mut Self, term: &impl TermLike + ?Sized, bar_count: &mut VisualLines) -> io::Result<()>` — [`TermLike`](../index.md), [`VisualLines`](#visuallines)
 
 - `fn reset(self: &mut Self)`
 

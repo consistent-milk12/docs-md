@@ -77,7 +77,7 @@ struct Params {
 
 - `fn is_empty(self: &Self) -> bool`
 
-- `fn iter(self: &Self) -> ParamsIter<'_>` — [`ParamsIter`](params/index.md)
+- `fn iter(self: &Self) -> ParamsIter<'_>` — [`ParamsIter`](#paramsiter)
 
 - `fn is_full(self: &Self) -> bool`
 
@@ -91,7 +91,7 @@ struct Params {
 
 ##### `impl Clone for Params`
 
-- `fn clone(self: &Self) -> Params` — [`Params`](params/index.md)
+- `fn clone(self: &Self) -> Params` — [`Params`](#params)
 
 ##### `impl Debug for Params`
 
@@ -99,13 +99,13 @@ struct Params {
 
 ##### `impl Default for Params`
 
-- `fn default() -> Params` — [`Params`](params/index.md)
+- `fn default() -> Params` — [`Params`](#params)
 
 ##### `impl Eq for Params`
 
 ##### `impl PartialEq for Params`
 
-- `fn eq(self: &Self, other: &Params) -> bool` — [`Params`](params/index.md)
+- `fn eq(self: &Self, other: &Params) -> bool` — [`Params`](#params)
 
 ##### `impl StructuralPartialEq for Params`
 
@@ -122,7 +122,7 @@ Immutable subparameter iterator.
 
 #### Implementations
 
-- `fn new(params: &'a Params) -> Self` — [`Params`](params/index.md)
+- `fn new(params: &'a Params) -> Self` — [`Params`](#params)
 
 #### Trait Implementations
 
@@ -165,7 +165,7 @@ Parser for raw _VTE_ protocol which delegates actions to a [`Perform`](#perform)
 
 - `fn new() -> Parser` — [`Parser`](#parser)
 
-- `fn params(self: &Self) -> &Params` — [`Params`](params/index.md)
+- `fn params(self: &Self) -> &Params` — [`Params`](#params)
 
 - `fn intermediates(self: &Self) -> &[u8]`
 
@@ -173,11 +173,11 @@ Parser for raw _VTE_ protocol which delegates actions to a [`Perform`](#perform)
 
 - `fn process_utf8<P>(self: &mut Self, performer: &mut P, byte: u8)`
 
-- `fn perform_state_change<P>(self: &mut Self, performer: &mut P, state: State, action: Action, byte: u8)` — [`State`](state/definitions/index.md), [`Action`](state/definitions/index.md)
+- `fn perform_state_change<P>(self: &mut Self, performer: &mut P, state: State, action: Action, byte: u8)` — [`State`](state/index.md), [`Action`](state/index.md)
 
 - `fn osc_dispatch<P: Perform>(self: &Self, performer: &mut P, byte: u8)`
 
-- `fn perform_action<P: Perform>(self: &mut Self, performer: &mut P, action: Action, byte: u8)` — [`Action`](state/definitions/index.md)
+- `fn perform_action<P: Perform>(self: &mut Self, performer: &mut P, action: Action, byte: u8)` — [`Action`](state/index.md)
 
 #### Trait Implementations
 

@@ -6,8 +6,8 @@
 
 Generic data structure serialization framework.
 
-The two most important traits in this module are [`Serialize`](#serialize) and
-[`Serializer`](#serializer).
+The two most important traits in this module are [`Serialize`](../index.md) and
+[`Serializer`](../index.md).
 
  - **A type that implements `Serialize` is a data structure** that can be
    serialized to any data format supported by Serde, and conversely
@@ -16,26 +16,26 @@ The two most important traits in this module are [`Serialize`](#serialize) and
 
 # The Serialize trait
 
-Serde provides [`Serialize`](#serialize) implementations for many Rust primitive and
+Serde provides [`Serialize`](../index.md) implementations for many Rust primitive and
 standard library types. The complete list is below. All of these can be
 serialized using Serde out of the box.
 
 Additionally, Serde provides a procedural macro called `serde_derive` to
-automatically generate [`Serialize`](#serialize) implementations for structs and enums
+automatically generate [`Serialize`](../index.md) implementations for structs and enums
 in your program. See the [derive section of the manual] for how to use this.
 
-In rare cases it may be necessary to implement [`Serialize`](#serialize) manually for
+In rare cases it may be necessary to implement [`Serialize`](../index.md) manually for
 some type in your program. See the [Implementing `Serialize`] section of the
 manual for more about this.
 
-Third-party crates may provide [`Serialize`](#serialize) implementations for types that
+Third-party crates may provide [`Serialize`](../index.md) implementations for types that
 they expose. For example the `linked-hash-map` crate provides a
 `LinkedHashMap<K, V>` type that is serializable by Serde because the crate
-provides an implementation of [`Serialize`](#serialize) for it.
+provides an implementation of [`Serialize`](../index.md) for it.
 
 # The Serializer trait
 
-[`Serializer`](#serializer) implementations are provided by third-party crates, for
+[`Serializer`](../index.md) implementations are provided by third-party crates, for
 example `serde_json`, `serde_yaml` and `postcard`.
 
 A partial list of well-maintained formats is given on the [Serde
@@ -134,7 +134,7 @@ Helper type for implementing a `Serializer` that does not support
 serializing one of the compound types.
 
 This type cannot be instantiated, but implements every one of the traits
-corresponding to the [`Serializer`](#serializer) compound types: [`SerializeSeq`](#serializeseq),
+corresponding to the [`Serializer`](../index.md) compound types: [`SerializeSeq`](#serializeseq),
 [`SerializeTuple`](#serializetuple), [`SerializeTupleStruct`](#serializetuplestruct), [`SerializeTupleVariant`](#serializetuplevariant),
 [`SerializeMap`](#serializemap), [`SerializeStruct`](#serializestruct), and [`SerializeStructVariant`](#serializestructvariant).
 
@@ -276,7 +276,7 @@ type appropriate for a basic JSON data format.
 
 - `fn custom<T>(msg: T) -> Self`
 
-  Used when a [`Serialize`](#serialize) implementation encounters any error
+  Used when a [`Serialize`](../index.md) implementation encounters any error
 
 ### `Serialize`
 

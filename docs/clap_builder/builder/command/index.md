@@ -88,73 +88,57 @@ let m = Command::new("My Program")
 
 #### Implementations
 
-- `fn new(name: impl Into<Str>) -> Self` — [`Str`](../str/index.md)
+- `fn get_override_usage(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](../index.md)
 
-- `fn arg(self: Self, a: impl Into<Arg>) -> Self` — [`Arg`](../arg/index.md)
+- `fn get_override_help(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](../index.md)
 
-- `fn arg_internal(self: &mut Self, arg: Arg)` — [`Arg`](../arg/index.md)
+- `fn get_help_template(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](../index.md)
 
-- `fn args(self: Self, args: impl IntoIterator<Item = impl Into<Arg>>) -> Self` — [`Arg`](../arg/index.md)
+- `fn get_term_width(self: &Self) -> Option<usize>`
 
-- `fn mut_arg<F>(self: Self, arg_id: impl AsRef<str>, f: F) -> Self`
+- `fn get_max_term_width(self: &Self) -> Option<usize>`
 
-- `fn mut_args<F>(self: Self, f: F) -> Self`
+- `fn get_keymap(self: &Self) -> &MKeyMap` — [`MKeyMap`](../../mkeymap/index.md)
 
-- `fn mut_group<F>(self: Self, arg_id: impl AsRef<str>, f: F) -> Self`
+- `fn get_used_global_args(self: &Self, matches: &ArgMatches, global_arg_vec: &mut Vec<Id>)` — [`ArgMatches`](../../index.md), [`Id`](../../index.md)
 
-- `fn mut_subcommand<F>(self: Self, name: impl AsRef<str>, f: F) -> Self`
+- `fn _do_parse(self: &mut Self, raw_args: &mut clap_lex::RawArgs, args_cursor: clap_lex::ArgCursor) -> ClapResult<ArgMatches>` — [`Result`](../../error/index.md), [`ArgMatches`](../../index.md)
 
-- `fn mut_subcommands<F>(self: Self, f: F) -> Self`
+- `fn build(self: &mut Self)`
 
-- `fn group(self: Self, group: impl Into<ArgGroup>) -> Self` — [`ArgGroup`](../arg_group/index.md)
+- `fn _build_recursive(self: &mut Self, expand_help_tree: bool)`
 
-- `fn groups(self: Self, groups: impl IntoIterator<Item = impl Into<ArgGroup>>) -> Self` — [`ArgGroup`](../arg_group/index.md)
+- `fn _build_self(self: &mut Self, expand_help_tree: bool)`
 
-- `fn subcommand(self: Self, subcmd: impl Into<Command>) -> Self` — [`Command`](#command)
+- `fn _build_subcommand(self: &mut Self, name: &str) -> Option<&mut Self>`
 
-- `fn subcommand_internal(self: Self, subcmd: Self) -> Self`
+- `fn _build_bin_names_internal(self: &mut Self)`
 
-- `fn subcommands(self: Self, subcmds: impl IntoIterator<Item = impl Into<Self>>) -> Self`
+- `fn _panic_on_missing_help(self: &Self, help_required_globally: bool)`
 
-- `fn defer(self: Self, deferred: fn(Command) -> Command) -> Self` — [`Command`](#command)
+- `fn two_args_of<F>(self: &Self, condition: F) -> Option<(&Arg, &Arg)>` — [`Arg`](../../index.md)
 
-- `fn debug_assert(self: Self)`
+- `fn two_groups_of<F>(self: &Self, condition: F) -> Option<(&ArgGroup, &ArgGroup)>` — [`ArgGroup`](../../index.md)
 
-- `fn error(self: &mut Self, kind: ErrorKind, message: impl fmt::Display) -> Error` — [`ErrorKind`](../../error/kind/index.md), [`Error`](../../index.md)
+- `fn _propagate_global_args(self: &mut Self)`
 
-- `fn get_matches(self: Self) -> ArgMatches` — [`ArgMatches`](../../parser/matches/arg_matches/index.md)
+- `fn _propagate(self: &mut Self)`
 
-- `fn get_matches_mut(self: &mut Self) -> ArgMatches` — [`ArgMatches`](../../parser/matches/arg_matches/index.md)
+- `fn _propagate_subcommand(self: &Self, sc: &mut Self)`
 
-- `fn try_get_matches(self: Self) -> ClapResult<ArgMatches>` — [`Result`](../../error/index.md), [`ArgMatches`](../../parser/matches/arg_matches/index.md)
+- `fn _check_help_and_version(self: &mut Self, expand_help_tree: bool)`
 
-- `fn get_matches_from<I, T>(self: Self, itr: I) -> ArgMatches` — [`ArgMatches`](../../parser/matches/arg_matches/index.md)
+- `fn _copy_subtree_for_help(self: &Self) -> Command` — [`Command`](../../index.md)
 
-- `fn try_get_matches_from<I, T>(self: Self, itr: I) -> ClapResult<ArgMatches>` — [`Result`](../../error/index.md), [`ArgMatches`](../../parser/matches/arg_matches/index.md)
+- `fn _render_version(self: &Self, use_long: bool) -> String`
 
-- `fn try_get_matches_from_mut<I, T>(self: &mut Self, itr: I) -> ClapResult<ArgMatches>` — [`Result`](../../error/index.md), [`ArgMatches`](../../parser/matches/arg_matches/index.md)
-
-- `fn print_help(self: &mut Self) -> io::Result<()>`
-
-- `fn print_long_help(self: &mut Self) -> io::Result<()>`
-
-- `fn render_help(self: &mut Self) -> StyledStr` — [`StyledStr`](../styled_str/index.md)
-
-- `fn render_long_help(self: &mut Self) -> StyledStr` — [`StyledStr`](../styled_str/index.md)
-
-- `fn render_version(self: &Self) -> String`
-
-- `fn render_long_version(self: &Self) -> String`
-
-- `fn render_usage(self: &mut Self) -> StyledStr` — [`StyledStr`](../styled_str/index.md)
-
-- `fn render_usage_(self: &mut Self) -> Option<StyledStr>` — [`StyledStr`](../styled_str/index.md)
+- `fn format_group(self: &Self, g: &Id) -> StyledStr` — [`Id`](../../index.md), [`StyledStr`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Command`
 
-- `fn clone(self: &Self) -> Command` — [`Command`](#command)
+- `fn clone(self: &Self) -> Command` — [`Command`](../../index.md)
 
 ##### `impl Debug for Command`
 
@@ -172,7 +156,7 @@ let m = Command::new("My Program")
 
 - `type Output = Arg`
 
-- `fn index(self: &Self, key: &Id) -> &<Self as >::Output` — [`Id`](../../util/id/index.md)
+- `fn index(self: &Self, key: &Id) -> &<Self as >::Output` — [`Id`](../../index.md)
 
 ##### `impl<T> ToString for Command`
 

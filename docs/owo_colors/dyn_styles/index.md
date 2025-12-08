@@ -110,7 +110,147 @@ println!("{}", "red text, white background, struck through".style(my_style));
 
 #### Implementations
 
-- `fn transition_from(self: &'a Self, from: &Style) -> Transition<'a>` — [`Style`](../index.md), [`Transition`](../styled_list/index.md)
+- `const fn new() -> Self`
+
+- `const fn style<T>(self: &Self, target: T) -> Styled<T>` — [`Styled`](../index.md)
+
+- `const fn fg<C: Color>(self: Self) -> Self`
+
+- `const fn bg<C: Color>(self: Self) -> Self`
+
+- `const fn remove_fg(self: Self) -> Self`
+
+- `const fn remove_bg(self: Self) -> Self`
+
+- `const fn black(self: Self) -> Self`
+
+- `const fn on_black(self: Self) -> Self`
+
+- `const fn red(self: Self) -> Self`
+
+- `const fn on_red(self: Self) -> Self`
+
+- `const fn green(self: Self) -> Self`
+
+- `const fn on_green(self: Self) -> Self`
+
+- `const fn yellow(self: Self) -> Self`
+
+- `const fn on_yellow(self: Self) -> Self`
+
+- `const fn blue(self: Self) -> Self`
+
+- `const fn on_blue(self: Self) -> Self`
+
+- `const fn magenta(self: Self) -> Self`
+
+- `const fn on_magenta(self: Self) -> Self`
+
+- `const fn purple(self: Self) -> Self`
+
+- `const fn on_purple(self: Self) -> Self`
+
+- `const fn cyan(self: Self) -> Self`
+
+- `const fn on_cyan(self: Self) -> Self`
+
+- `const fn white(self: Self) -> Self`
+
+- `const fn on_white(self: Self) -> Self`
+
+- `const fn default_color(self: Self) -> Self`
+
+- `const fn on_default_color(self: Self) -> Self`
+
+- `const fn bright_black(self: Self) -> Self`
+
+- `const fn on_bright_black(self: Self) -> Self`
+
+- `const fn bright_red(self: Self) -> Self`
+
+- `const fn on_bright_red(self: Self) -> Self`
+
+- `const fn bright_green(self: Self) -> Self`
+
+- `const fn on_bright_green(self: Self) -> Self`
+
+- `const fn bright_yellow(self: Self) -> Self`
+
+- `const fn on_bright_yellow(self: Self) -> Self`
+
+- `const fn bright_blue(self: Self) -> Self`
+
+- `const fn on_bright_blue(self: Self) -> Self`
+
+- `const fn bright_magenta(self: Self) -> Self`
+
+- `const fn on_bright_magenta(self: Self) -> Self`
+
+- `const fn bright_purple(self: Self) -> Self`
+
+- `const fn on_bright_purple(self: Self) -> Self`
+
+- `const fn bright_cyan(self: Self) -> Self`
+
+- `const fn on_bright_cyan(self: Self) -> Self`
+
+- `const fn bright_white(self: Self) -> Self`
+
+- `const fn on_bright_white(self: Self) -> Self`
+
+- `const fn bold(self: Self) -> Self`
+
+- `const fn dimmed(self: Self) -> Self`
+
+- `const fn italic(self: Self) -> Self`
+
+- `const fn underline(self: Self) -> Self`
+
+- `const fn blink(self: Self) -> Self`
+
+- `const fn blink_fast(self: Self) -> Self`
+
+- `const fn reversed(self: Self) -> Self`
+
+- `const fn hidden(self: Self) -> Self`
+
+- `const fn strikethrough(self: Self) -> Self`
+
+- `const fn set_effect(self: Self, effect: Effect, to: bool) -> Self` — [`Effect`](../index.md)
+
+- `const fn set_effects(self: Self, effects: &[Effect], to: bool) -> Self` — [`Effect`](../index.md)
+
+- `const fn effect(self: Self, effect: Effect) -> Self` — [`Effect`](../index.md)
+
+- `const fn remove_effect(self: Self, effect: Effect) -> Self` — [`Effect`](../index.md)
+
+- `const fn effects(self: Self, effects: &[Effect]) -> Self` — [`Effect`](../index.md)
+
+- `const fn remove_effects(self: Self, effects: &[Effect]) -> Self` — [`Effect`](../index.md)
+
+- `const fn remove_all_effects(self: Self) -> Self`
+
+- `fn color<Color: DynColor>(self: Self, color: Color) -> Self`
+
+- `fn on_color<Color: DynColor>(self: Self, color: Color) -> Self`
+
+- `const fn fg_rgb<const R: u8, const G: u8, const B: u8>(self: Self) -> Self`
+
+- `const fn bg_rgb<const R: u8, const G: u8, const B: u8>(self: Self) -> Self`
+
+- `const fn truecolor(self: Self, r: u8, g: u8, b: u8) -> Self`
+
+- `const fn on_truecolor(self: Self, r: u8, g: u8, b: u8) -> Self`
+
+- `const fn is_plain(self: &Self) -> bool`
+
+- `const fn prefix_formatter(self: &Self) -> StylePrefixFormatter` — [`StylePrefixFormatter`](../index.md)
+
+- `const fn suffix_formatter(self: &Self) -> StyleSuffixFormatter` — [`StyleSuffixFormatter`](../index.md)
+
+- `fn fmt_prefix(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+- `fn fmt_suffix(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 #### Trait Implementations
 

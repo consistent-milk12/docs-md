@@ -18,7 +18,7 @@ struct MapWith<I, T, F> {
 
 `MapWith` is an iterator that transforms the elements of an underlying iterator.
 
-This struct is created by the `map_with()` method on [`ParallelIterator`](../index.md)
+This struct is created by the `map_with()` method on [`ParallelIterator`](../../prelude/index.md)
 
 
 #### Implementations
@@ -29,7 +29,7 @@ This struct is created by the `map_with()` method on [`ParallelIterator`](../ind
 
 ##### `impl<I: $crate::clone::Clone, T: $crate::clone::Clone, F: $crate::clone::Clone> Clone for MapWith<I, T, F>`
 
-- `fn clone(self: &Self) -> MapWith<I, T, F>` — [`MapWith`](#mapwith)
+- `fn clone(self: &Self) -> MapWith<I, T, F>` — [`MapWith`](../index.md)
 
 ##### `impl<I: Debug, T: Debug, F> Debug for MapWith<I, T, F>`
 
@@ -273,7 +273,7 @@ struct MapInit<I, INIT, F> {
 
 `MapInit` is an iterator that transforms the elements of an underlying iterator.
 
-This struct is created by the `map_init()` method on [`ParallelIterator`](../index.md)
+This struct is created by the `map_init()` method on [`ParallelIterator`](../../prelude/index.md)
 
 
 #### Implementations
@@ -284,7 +284,7 @@ This struct is created by the `map_init()` method on [`ParallelIterator`](../ind
 
 ##### `impl<I: $crate::clone::Clone, INIT: $crate::clone::Clone, F: $crate::clone::Clone> Clone for MapInit<I, INIT, F>`
 
-- `fn clone(self: &Self) -> MapInit<I, INIT, F>` — [`MapInit`](#mapinit)
+- `fn clone(self: &Self) -> MapInit<I, INIT, F>` — [`MapInit`](../index.md)
 
 ##### `impl<I: Debug, INIT, F> Debug for MapInit<I, INIT, F>`
 

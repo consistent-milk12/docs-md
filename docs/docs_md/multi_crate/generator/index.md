@@ -6,7 +6,7 @@
 
 Multi-crate documentation generator.
 
-This module provides [`MultiCrateGenerator`](#multicrategenerator) which orchestrates
+This module provides [`MultiCrateGenerator`](../../index.md) which orchestrates
 documentation generation across multiple crates with cross-crate linking.
 
 ## Structs
@@ -52,19 +52,19 @@ output/
 
 #### Implementations
 
-- `fn new(crates: &'a CrateCollection, args: &'a Args) -> Self` — [`CrateCollection`](../collection/index.md), [`Args`](../../index.md)
+- `fn new(crates: &'a CrateCollection, args: &'a Args) -> Self` — [`CrateCollection`](../../index.md), [`Args`](../../index.md)
 
 - `fn generate(self: &Self) -> Result<(), Error>` — [`Error`](../../error/index.md)
 
 - `fn collect_rendered_items(self: &Self) -> HashMap<String, HashSet<Id>>`
 
-- `fn collect_crate_items(view: &SingleCrateView<'_>, ids: &mut HashSet<Id>)` — [`SingleCrateView`](../context/index.md)
+- `fn collect_crate_items(view: &SingleCrateView<'_>, ids: &mut HashSet<Id>)` — [`SingleCrateView`](../index.md)
 
-- `fn collect_module_items(view: &SingleCrateView<'_>, item: &Item, ids: &mut HashSet<Id>)` — [`SingleCrateView`](../context/index.md)
+- `fn collect_module_items(view: &SingleCrateView<'_>, item: &Item, ids: &mut HashSet<Id>)` — [`SingleCrateView`](../index.md)
 
-- `fn generate_crate(self: &Self, view: &SingleCrateView<'_>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](../context/index.md), [`Error`](../../error/index.md)
+- `fn generate_crate(self: &Self, view: &SingleCrateView<'_>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](../index.md), [`Error`](../../error/index.md)
 
-- `fn generate_module(view: &SingleCrateView<'_>, item: &Item, parent_dir: &Path, module_path: Vec<String>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](../context/index.md), [`Error`](../../error/index.md)
+- `fn generate_module(view: &SingleCrateView<'_>, item: &Item, parent_dir: &Path, module_path: Vec<String>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](../index.md), [`Error`](../../error/index.md)
 
 - `fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](../../error/index.md)
 
@@ -131,7 +131,7 @@ resolve items across crate boundaries.
 
 #### Implementations
 
-- `const fn new(view: &'a SingleCrateView<'a>, file_path: &'a str, is_root: bool) -> Self` — [`SingleCrateView`](../context/index.md)
+- `const fn new(view: &'a SingleCrateView<'a>, file_path: &'a str, is_root: bool) -> Self` — [`SingleCrateView`](../index.md)
 
 - `fn render(self: &Self, item: &Item) -> String`
 

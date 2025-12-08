@@ -65,11 +65,11 @@ https://www-igm.univ-mlv.fr/~lecroq/string/node5.html
 
 - `fn new(patterns: &Arc<Patterns>) -> RabinKarp` — [`Patterns`](../pattern/index.md), [`RabinKarp`](#rabinkarp)
 
-- `fn find_at(self: &Self, haystack: &[u8], at: usize) -> Option<Match>` — [`Match`](../../util/search/index.md)
+- `fn find_at(self: &Self, haystack: &[u8], at: usize) -> Option<Match>` — [`Match`](../../index.md)
 
 - `fn memory_usage(self: &Self) -> usize`
 
-- `fn verify(self: &Self, id: PatternID, haystack: &[u8], at: usize) -> Option<Match>` — [`PatternID`](../../util/primitives/index.md), [`Match`](../../util/search/index.md)
+- `fn verify(self: &Self, id: PatternID, haystack: &[u8], at: usize) -> Option<Match>` — [`PatternID`](../../index.md), [`Match`](../../index.md)
 
 - `fn hash(self: &Self, bytes: &[u8]) -> usize`
 

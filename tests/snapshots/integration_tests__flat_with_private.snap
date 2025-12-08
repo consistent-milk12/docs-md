@@ -3761,7 +3761,7 @@ struct DocsArgs {
     pub output: std::path::PathBuf,
     pub format: CliOutputFormat,
     pub primary_crate: Option<String>,
-    pub include_private: bool,
+    pub exclude_private: bool,
     pub include_blanket_impls: bool,
     pub no_mdbook: bool,
     pub no_search_index: bool,
@@ -3790,9 +3790,12 @@ Arguments for the `docs` subcommand (build + generate).
   
   If not specified, attempts to detect from Cargo.toml.
 
-- **`include_private`**: `bool`
+- **`exclude_private`**: `bool`
 
-  Include private (non-public) items in the output.
+  Exclude private (non-public) items from the output.
+  
+  By default, all items are documented including private ones.
+  Enable this to only include public items.
 
 - **`include_blanket_impls`**: `bool`
 
@@ -3881,7 +3884,7 @@ struct GenerateArgs {
     pub primary_crate: Option<String>,
     pub output: std::path::PathBuf,
     pub format: CliOutputFormat,
-    pub include_private: bool,
+    pub exclude_private: bool,
     pub include_blanket_impls: bool,
 }
 ```
@@ -3956,12 +3959,13 @@ The tool accepts input from two mutually exclusive sources:
   - `flat`: All files in one directory (default)
   - `nested`: Directory hierarchy mirroring modules
 
-- **`include_private`**: `bool`
+- **`exclude_private`**: `bool`
 
-  Include private (non-public) items in the output.
+  Exclude private (non-public) items from the output.
   
-  By default, only public items are documented. Enable this
-  to also include `pub(crate)`, `pub(super)`, and private items.
+  By default, all items are documented including `pub(crate)`,
+  `pub(super)`, and private items. Enable this to only include
+  public items.
 
 - **`include_blanket_impls`**: `bool`
 

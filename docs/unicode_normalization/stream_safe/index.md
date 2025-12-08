@@ -45,17 +45,17 @@ since the last starter in *NFKD* and will emit a Combining Grapheme Joiner
 
 ##### `impl<I> UnicodeNormalization for StreamSafe<I>`
 
-- `fn nfd(self: Self) -> Decompositions<I>` — [`Decompositions`](../decompose/index.md)
+- `fn nfd(self: Self) -> Decompositions<I>` — [`Decompositions`](../index.md)
 
-- `fn nfkd(self: Self) -> Decompositions<I>` — [`Decompositions`](../decompose/index.md)
+- `fn nfkd(self: Self) -> Decompositions<I>` — [`Decompositions`](../index.md)
 
-- `fn nfc(self: Self) -> Recompositions<I>` — [`Recompositions`](../recompose/index.md)
+- `fn nfc(self: Self) -> Recompositions<I>` — [`Recompositions`](../index.md)
 
-- `fn nfkc(self: Self) -> Recompositions<I>` — [`Recompositions`](../recompose/index.md)
+- `fn nfkc(self: Self) -> Recompositions<I>` — [`Recompositions`](../index.md)
 
-- `fn cjk_compat_variants(self: Self) -> Replacements<I>` — [`Replacements`](../replace/index.md)
+- `fn cjk_compat_variants(self: Self) -> Replacements<I>` — [`Replacements`](../index.md)
 
-- `fn stream_safe(self: Self) -> StreamSafe<I>` — [`StreamSafe`](#streamsafe)
+- `fn stream_safe(self: Self) -> StreamSafe<I>` — [`StreamSafe`](../index.md)
 
 ### `Decomposition`
 

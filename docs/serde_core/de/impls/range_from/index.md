@@ -45,7 +45,7 @@ enum Field {
 
 ##### `impl<'de> Deserialize for Field`
 
-- `fn deserialize<D>(deserializer: D) -> Result<Self, <D as >::Error>` — [`Deserializer`](../../index.md)
+- `fn deserialize<D>(deserializer: D) -> Result<Self, <D as >::Error>` — [`Deserializer`](../../../index.md)
 
 ##### `impl<T> DeserializeOwned for Field`
 

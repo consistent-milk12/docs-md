@@ -25,7 +25,7 @@ use within an application.
 
 See
 - `value_parser!` for automatically selecting an implementation for a given type
-- `ValueParser::new` for additional [`TypedValueParser`](#typedvalueparser) that can be used
+- `ValueParser::new` for additional [`TypedValueParser`](../index.md) that can be used
 
 # Example
 
@@ -72,13 +72,15 @@ assert_eq!(port, 3001);
 
 #### Implementations
 
-- `fn parse_ref(self: &Self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr, source: ValueSource) -> Result<AnyValue, crate::Error>` — [`Command`](../command/index.md), [`Arg`](../arg/index.md), [`ValueSource`](../../parser/matches/value_source/index.md), [`AnyValue`](../../util/any_value/index.md), [`Error`](../../index.md)
+- `fn new<P>(other: P) -> Self`
 
-- `fn type_id(self: &Self) -> AnyValueId` — [`AnyValueId`](../../util/any_value/index.md)
+- `const fn bool() -> Self`
 
-- `fn possible_values(self: &Self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>` — [`PossibleValue`](../possible_value/index.md)
+- `const fn string() -> Self`
 
-- `fn any_value_parser(self: &Self) -> &dyn AnyValueParser` — [`AnyValueParser`](#anyvalueparser)
+- `const fn os_string() -> Self`
+
+- `const fn path_buf() -> Self`
 
 #### Trait Implementations
 
@@ -92,7 +94,7 @@ assert_eq!(port, 3001);
 
 ##### `impl<I> IntoResettable for ValueParser`
 
-- `fn into_resettable(self: Self) -> Resettable<ValueParser>` — [`Resettable`](../resettable/index.md), [`ValueParser`](#valueparser)
+- `fn into_resettable(self: Self) -> Resettable<ValueParser>` — [`Resettable`](../index.md), [`ValueParser`](../index.md)
 
 ### `StringValueParser`
 
@@ -103,7 +105,7 @@ struct StringValueParser {
 
 Implementation for `ValueParser::string`
 
-Useful for composing new [`TypedValueParser`](#typedvalueparser)s
+Useful for composing new [`TypedValueParser`](../index.md)s
 
 #### Implementations
 
@@ -113,7 +115,7 @@ Useful for composing new [`TypedValueParser`](#typedvalueparser)s
 
 ##### `impl Clone for StringValueParser`
 
-- `fn clone(self: &Self) -> StringValueParser` — [`StringValueParser`](#stringvalueparser)
+- `fn clone(self: &Self) -> StringValueParser` — [`StringValueParser`](../index.md)
 
 ##### `impl Copy for StringValueParser`
 
@@ -127,15 +129,15 @@ Useful for composing new [`TypedValueParser`](#typedvalueparser)s
 
 ##### `impl<I> IntoResettable for StringValueParser`
 
-- `fn into_resettable(self: Self) -> Resettable<ValueParser>` — [`Resettable`](../resettable/index.md), [`ValueParser`](#valueparser)
+- `fn into_resettable(self: Self) -> Resettable<ValueParser>` — [`Resettable`](../index.md), [`ValueParser`](../index.md)
 
 ##### `impl TypedValueParser for StringValueParser`
 
 - `type Value = String`
 
-- `fn parse_ref(self: &Self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../command/index.md), [`Arg`](../arg/index.md), [`TypedValueParser`](#typedvalueparser), [`Error`](../../index.md)
+- `fn parse_ref(self: &Self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../../index.md), [`Arg`](../../index.md), [`TypedValueParser`](../index.md), [`Error`](../../index.md)
 
-- `fn parse(self: &Self, cmd: &crate::Command, _arg: Option<&crate::Arg>, value: std::ffi::OsString) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../command/index.md), [`Arg`](../arg/index.md), [`TypedValueParser`](#typedvalueparser), [`Error`](../../index.md)
+- `fn parse(self: &Self, cmd: &crate::Command, _arg: Option<&crate::Arg>, value: std::ffi::OsString) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../../index.md), [`Arg`](../../index.md), [`TypedValueParser`](../index.md), [`Error`](../../index.md)
 
 ### `OsStringValueParser`
 
@@ -146,7 +148,7 @@ struct OsStringValueParser {
 
 Implementation for `ValueParser::os_string`
 
-Useful for composing new [`TypedValueParser`](#typedvalueparser)s
+Useful for composing new [`TypedValueParser`](../index.md)s
 
 #### Implementations
 
@@ -156,7 +158,7 @@ Useful for composing new [`TypedValueParser`](#typedvalueparser)s
 
 ##### `impl Clone for OsStringValueParser`
 
-- `fn clone(self: &Self) -> OsStringValueParser` — [`OsStringValueParser`](#osstringvalueparser)
+- `fn clone(self: &Self) -> OsStringValueParser` — [`OsStringValueParser`](../index.md)
 
 ##### `impl Copy for OsStringValueParser`
 
@@ -170,15 +172,15 @@ Useful for composing new [`TypedValueParser`](#typedvalueparser)s
 
 ##### `impl<I> IntoResettable for OsStringValueParser`
 
-- `fn into_resettable(self: Self) -> Resettable<ValueParser>` — [`Resettable`](../resettable/index.md), [`ValueParser`](#valueparser)
+- `fn into_resettable(self: Self) -> Resettable<ValueParser>` — [`Resettable`](../index.md), [`ValueParser`](../index.md)
 
 ##### `impl TypedValueParser for OsStringValueParser`
 
 - `type Value = OsString`
 
-- `fn parse_ref(self: &Self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../command/index.md), [`Arg`](../arg/index.md), [`TypedValueParser`](#typedvalueparser), [`Error`](../../index.md)
+- `fn parse_ref(self: &Self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../../index.md), [`Arg`](../../index.md), [`TypedValueParser`](../index.md), [`Error`](../../index.md)
 
-- `fn parse(self: &Self, _cmd: &crate::Command, _arg: Option<&crate::Arg>, value: std::ffi::OsString) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../command/index.md), [`Arg`](../arg/index.md), [`TypedValueParser`](#typedvalueparser), [`Error`](../../index.md)
+- `fn parse(self: &Self, _cmd: &crate::Command, _arg: Option<&crate::Arg>, value: std::ffi::OsString) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../../index.md), [`Arg`](../../index.md), [`TypedValueParser`](../index.md), [`Error`](../../index.md)
 
 ### `PathBufValueParser`
 
@@ -189,7 +191,7 @@ struct PathBufValueParser {
 
 Implementation for `ValueParser::path_buf`
 
-Useful for composing new [`TypedValueParser`](#typedvalueparser)s
+Useful for composing new [`TypedValueParser`](../index.md)s
 
 #### Implementations
 
@@ -199,7 +201,7 @@ Useful for composing new [`TypedValueParser`](#typedvalueparser)s
 
 ##### `impl Clone for PathBufValueParser`
 
-- `fn clone(self: &Self) -> PathBufValueParser` — [`PathBufValueParser`](#pathbufvalueparser)
+- `fn clone(self: &Self) -> PathBufValueParser` — [`PathBufValueParser`](../index.md)
 
 ##### `impl Copy for PathBufValueParser`
 
@@ -213,15 +215,15 @@ Useful for composing new [`TypedValueParser`](#typedvalueparser)s
 
 ##### `impl<I> IntoResettable for PathBufValueParser`
 
-- `fn into_resettable(self: Self) -> Resettable<ValueParser>` — [`Resettable`](../resettable/index.md), [`ValueParser`](#valueparser)
+- `fn into_resettable(self: Self) -> Resettable<ValueParser>` — [`Resettable`](../index.md), [`ValueParser`](../index.md)
 
 ##### `impl TypedValueParser for PathBufValueParser`
 
 - `type Value = PathBuf`
 
-- `fn parse_ref(self: &Self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../command/index.md), [`Arg`](../arg/index.md), [`TypedValueParser`](#typedvalueparser), [`Error`](../../index.md)
+- `fn parse_ref(self: &Self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../../index.md), [`Arg`](../../index.md), [`TypedValueParser`](../index.md), [`Error`](../../index.md)
 
-- `fn parse(self: &Self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: std::ffi::OsString) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../command/index.md), [`Arg`](../arg/index.md), [`TypedValueParser`](#typedvalueparser), [`Error`](../../index.md)
+- `fn parse(self: &Self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: std::ffi::OsString) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../../index.md), [`Arg`](../../index.md), [`TypedValueParser`](../index.md), [`Error`](../../index.md)
 
 ### `EnumValueParser<E: crate::ValueEnum + Clone + Send + Sync + 'static>`
 
@@ -232,7 +234,7 @@ struct EnumValueParser<E: crate::ValueEnum + Clone + Send + Sync + 'static>(std:
 Parse an `ValueEnum` value.
 
 See also:
-- [`PossibleValuesParser`](#possiblevaluesparser)
+- [`PossibleValuesParser`](../index.md)
 
 # Example
 
@@ -276,7 +278,7 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("never")).unwrap(), Colo
 
 ##### `impl<E: $crate::clone::Clone + crate::ValueEnum + Clone + Send + Sync + 'static> Clone for EnumValueParser<E>`
 
-- `fn clone(self: &Self) -> EnumValueParser<E>` — [`EnumValueParser`](#enumvalueparser)
+- `fn clone(self: &Self) -> EnumValueParser<E>` — [`EnumValueParser`](../index.md)
 
 ##### `impl<E: $crate::fmt::Debug + crate::ValueEnum + Clone + Send + Sync + 'static> Debug for EnumValueParser<E>`
 
@@ -288,15 +290,15 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("never")).unwrap(), Colo
 
 ##### `impl<I> IntoResettable for EnumValueParser<E>`
 
-- `fn into_resettable(self: Self) -> Resettable<ValueParser>` — [`Resettable`](../resettable/index.md), [`ValueParser`](#valueparser)
+- `fn into_resettable(self: Self) -> Resettable<ValueParser>` — [`Resettable`](../index.md), [`ValueParser`](../index.md)
 
 ##### `impl<E: crate::ValueEnum + Clone + Send + Sync + 'static> TypedValueParser for EnumValueParser<E>`
 
 - `type Value = E`
 
-- `fn parse_ref(self: &Self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../command/index.md), [`Arg`](../arg/index.md), [`TypedValueParser`](#typedvalueparser), [`Error`](../../index.md)
+- `fn parse_ref(self: &Self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../../index.md), [`Arg`](../../index.md), [`TypedValueParser`](../index.md), [`Error`](../../index.md)
 
-- `fn possible_values(self: &Self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>` — [`PossibleValue`](../possible_value/index.md)
+- `fn possible_values(self: &Self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>` — [`PossibleValue`](../index.md)
 
 ### `PossibleValuesParser`
 
@@ -307,7 +309,7 @@ struct PossibleValuesParser(Vec<super::PossibleValue>);
 Verify the value is from an enumerated set of `PossibleValue`.
 
 See also:
-- [`EnumValueParser`](#enumvalueparser) for directly supporting `ValueEnum` types
+- [`EnumValueParser`](../index.md) for directly supporting `ValueEnum` types
 - `TypedValueParser::map` for adapting values to a more specialized type, like an external
   enums that can't implement `ValueEnum`
 
@@ -346,13 +348,13 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("never")).unwrap(), "nev
 
 #### Implementations
 
-- `fn new(values: impl Into<PossibleValuesParser>) -> Self` — [`PossibleValuesParser`](#possiblevaluesparser)
+- `fn new(values: impl Into<PossibleValuesParser>) -> Self` — [`PossibleValuesParser`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for PossibleValuesParser`
 
-- `fn clone(self: &Self) -> PossibleValuesParser` — [`PossibleValuesParser`](#possiblevaluesparser)
+- `fn clone(self: &Self) -> PossibleValuesParser` — [`PossibleValuesParser`](../index.md)
 
 ##### `impl Debug for PossibleValuesParser`
 
@@ -360,17 +362,17 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("never")).unwrap(), "nev
 
 ##### `impl<I> IntoResettable for PossibleValuesParser`
 
-- `fn into_resettable(self: Self) -> Resettable<ValueParser>` — [`Resettable`](../resettable/index.md), [`ValueParser`](#valueparser)
+- `fn into_resettable(self: Self) -> Resettable<ValueParser>` — [`Resettable`](../index.md), [`ValueParser`](../index.md)
 
 ##### `impl TypedValueParser for PossibleValuesParser`
 
 - `type Value = String`
 
-- `fn parse_ref(self: &Self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../command/index.md), [`Arg`](../arg/index.md), [`TypedValueParser`](#typedvalueparser), [`Error`](../../index.md)
+- `fn parse_ref(self: &Self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../../index.md), [`Arg`](../../index.md), [`TypedValueParser`](../index.md), [`Error`](../../index.md)
 
-- `fn parse(self: &Self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: std::ffi::OsString) -> Result<String, crate::Error>` — [`Command`](../command/index.md), [`Arg`](../arg/index.md), [`Error`](../../index.md)
+- `fn parse(self: &Self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: std::ffi::OsString) -> Result<String, crate::Error>` — [`Command`](../../index.md), [`Arg`](../../index.md), [`Error`](../../index.md)
 
-- `fn possible_values(self: &Self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>` — [`PossibleValue`](../possible_value/index.md)
+- `fn possible_values(self: &Self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>` — [`PossibleValue`](../index.md)
 
 ### `RangedI64ValueParser<T: TryFrom<i64> + Clone + Send + Sync>`
 
@@ -440,7 +442,7 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("50")).unwrap(), 50);
 
 ##### `impl<T: $crate::clone::Clone + TryFrom<i64> + Clone + Send + Sync> Clone for RangedI64ValueParser<T>`
 
-- `fn clone(self: &Self) -> RangedI64ValueParser<T>` — [`RangedI64ValueParser`](#rangedi64valueparser)
+- `fn clone(self: &Self) -> RangedI64ValueParser<T>` — [`RangedI64ValueParser`](../index.md)
 
 ##### `impl<T: $crate::marker::Copy + TryFrom<i64> + Clone + Send + Sync> Copy for RangedI64ValueParser<T>`
 
@@ -454,13 +456,13 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("50")).unwrap(), 50);
 
 ##### `impl<I> IntoResettable for RangedI64ValueParser<T>`
 
-- `fn into_resettable(self: Self) -> Resettable<ValueParser>` — [`Resettable`](../resettable/index.md), [`ValueParser`](#valueparser)
+- `fn into_resettable(self: Self) -> Resettable<ValueParser>` — [`Resettable`](../index.md), [`ValueParser`](../index.md)
 
 ##### `impl<T: TryFrom<i64> + Clone + Send + Sync + 'static> TypedValueParser for RangedI64ValueParser<T>`
 
 - `type Value = T`
 
-- `fn parse_ref(self: &Self, cmd: &crate::Command, arg: Option<&crate::Arg>, raw_value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../command/index.md), [`Arg`](../arg/index.md), [`TypedValueParser`](#typedvalueparser), [`Error`](../../index.md)
+- `fn parse_ref(self: &Self, cmd: &crate::Command, arg: Option<&crate::Arg>, raw_value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../../index.md), [`Arg`](../../index.md), [`TypedValueParser`](../index.md), [`Error`](../../index.md)
 
 ### `RangedU64ValueParser<T: TryFrom<u64>>`
 
@@ -522,7 +524,7 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("50")).unwrap(), 50);
 
 ##### `impl<T: $crate::clone::Clone + TryFrom<u64>> Clone for RangedU64ValueParser<T>`
 
-- `fn clone(self: &Self) -> RangedU64ValueParser<T>` — [`RangedU64ValueParser`](#rangedu64valueparser)
+- `fn clone(self: &Self) -> RangedU64ValueParser<T>` — [`RangedU64ValueParser`](../index.md)
 
 ##### `impl<T: $crate::marker::Copy + TryFrom<u64>> Copy for RangedU64ValueParser<T>`
 
@@ -536,13 +538,13 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("50")).unwrap(), 50);
 
 ##### `impl<I> IntoResettable for RangedU64ValueParser<T>`
 
-- `fn into_resettable(self: Self) -> Resettable<ValueParser>` — [`Resettable`](../resettable/index.md), [`ValueParser`](#valueparser)
+- `fn into_resettable(self: Self) -> Resettable<ValueParser>` — [`Resettable`](../index.md), [`ValueParser`](../index.md)
 
 ##### `impl<T: TryFrom<u64> + Clone + Send + Sync + 'static> TypedValueParser for RangedU64ValueParser<T>`
 
 - `type Value = T`
 
-- `fn parse_ref(self: &Self, cmd: &crate::Command, arg: Option<&crate::Arg>, raw_value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../command/index.md), [`Arg`](../arg/index.md), [`TypedValueParser`](#typedvalueparser), [`Error`](../../index.md)
+- `fn parse_ref(self: &Self, cmd: &crate::Command, arg: Option<&crate::Arg>, raw_value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../../index.md), [`Arg`](../../index.md), [`TypedValueParser`](../index.md), [`Error`](../../index.md)
 
 ### `BoolValueParser`
 
@@ -553,19 +555,19 @@ struct BoolValueParser {
 
 Implementation for `ValueParser::bool`
 
-Useful for composing new [`TypedValueParser`](#typedvalueparser)s
+Useful for composing new [`TypedValueParser`](../index.md)s
 
 #### Implementations
 
 - `fn new() -> Self`
 
-- `fn possible_values() -> impl Iterator<Item = crate::builder::PossibleValue>` — [`PossibleValue`](../possible_value/index.md)
+- `fn possible_values() -> impl Iterator<Item = crate::builder::PossibleValue>` — [`PossibleValue`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for BoolValueParser`
 
-- `fn clone(self: &Self) -> BoolValueParser` — [`BoolValueParser`](#boolvalueparser)
+- `fn clone(self: &Self) -> BoolValueParser` — [`BoolValueParser`](../index.md)
 
 ##### `impl Copy for BoolValueParser`
 
@@ -579,15 +581,15 @@ Useful for composing new [`TypedValueParser`](#typedvalueparser)s
 
 ##### `impl<I> IntoResettable for BoolValueParser`
 
-- `fn into_resettable(self: Self) -> Resettable<ValueParser>` — [`Resettable`](../resettable/index.md), [`ValueParser`](#valueparser)
+- `fn into_resettable(self: Self) -> Resettable<ValueParser>` — [`Resettable`](../index.md), [`ValueParser`](../index.md)
 
 ##### `impl TypedValueParser for BoolValueParser`
 
 - `type Value = bool`
 
-- `fn parse_ref(self: &Self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../command/index.md), [`Arg`](../arg/index.md), [`TypedValueParser`](#typedvalueparser), [`Error`](../../index.md)
+- `fn parse_ref(self: &Self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../../index.md), [`Arg`](../../index.md), [`TypedValueParser`](../index.md), [`Error`](../../index.md)
 
-- `fn possible_values(self: &Self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>` — [`PossibleValue`](../possible_value/index.md)
+- `fn possible_values(self: &Self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>` — [`PossibleValue`](../index.md)
 
 ### `FalseyValueParser`
 
@@ -600,7 +602,7 @@ Parse false-like string values, everything else is `true`
 
 See also:
 - `ValueParser::bool` for assuming non-false is true
-- [`BoolishValueParser`](#boolishvalueparser) for different human readable bool representations
+- [`BoolishValueParser`](../index.md) for different human readable bool representations
 
 # Example
 
@@ -641,13 +643,13 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("0")).unwrap(), false);
 
 - `fn new() -> Self`
 
-- `fn possible_values() -> impl Iterator<Item = crate::builder::PossibleValue>` — [`PossibleValue`](../possible_value/index.md)
+- `fn possible_values() -> impl Iterator<Item = crate::builder::PossibleValue>` — [`PossibleValue`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for FalseyValueParser`
 
-- `fn clone(self: &Self) -> FalseyValueParser` — [`FalseyValueParser`](#falseyvalueparser)
+- `fn clone(self: &Self) -> FalseyValueParser` — [`FalseyValueParser`](../index.md)
 
 ##### `impl Copy for FalseyValueParser`
 
@@ -661,15 +663,15 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("0")).unwrap(), false);
 
 ##### `impl<I> IntoResettable for FalseyValueParser`
 
-- `fn into_resettable(self: Self) -> Resettable<ValueParser>` — [`Resettable`](../resettable/index.md), [`ValueParser`](#valueparser)
+- `fn into_resettable(self: Self) -> Resettable<ValueParser>` — [`Resettable`](../index.md), [`ValueParser`](../index.md)
 
 ##### `impl TypedValueParser for FalseyValueParser`
 
 - `type Value = bool`
 
-- `fn parse_ref(self: &Self, cmd: &crate::Command, _arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../command/index.md), [`Arg`](../arg/index.md), [`TypedValueParser`](#typedvalueparser), [`Error`](../../index.md)
+- `fn parse_ref(self: &Self, cmd: &crate::Command, _arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../../index.md), [`Arg`](../../index.md), [`TypedValueParser`](../index.md), [`Error`](../../index.md)
 
-- `fn possible_values(self: &Self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>` — [`PossibleValue`](../possible_value/index.md)
+- `fn possible_values(self: &Self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>` — [`PossibleValue`](../index.md)
 
 ### `BoolishValueParser`
 
@@ -682,7 +684,7 @@ Parse bool-like string values
 
 See also:
 - `ValueParser::bool` for different human readable bool representations
-- [`FalseyValueParser`](#falseyvalueparser) for assuming non-false is true
+- [`FalseyValueParser`](../index.md) for assuming non-false is true
 
 # Example
 
@@ -727,13 +729,13 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("0")).unwrap(), false);
 
 - `fn new() -> Self`
 
-- `fn possible_values() -> impl Iterator<Item = crate::builder::PossibleValue>` — [`PossibleValue`](../possible_value/index.md)
+- `fn possible_values() -> impl Iterator<Item = crate::builder::PossibleValue>` — [`PossibleValue`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for BoolishValueParser`
 
-- `fn clone(self: &Self) -> BoolishValueParser` — [`BoolishValueParser`](#boolishvalueparser)
+- `fn clone(self: &Self) -> BoolishValueParser` — [`BoolishValueParser`](../index.md)
 
 ##### `impl Copy for BoolishValueParser`
 
@@ -747,15 +749,15 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("0")).unwrap(), false);
 
 ##### `impl<I> IntoResettable for BoolishValueParser`
 
-- `fn into_resettable(self: Self) -> Resettable<ValueParser>` — [`Resettable`](../resettable/index.md), [`ValueParser`](#valueparser)
+- `fn into_resettable(self: Self) -> Resettable<ValueParser>` — [`Resettable`](../index.md), [`ValueParser`](../index.md)
 
 ##### `impl TypedValueParser for BoolishValueParser`
 
 - `type Value = bool`
 
-- `fn parse_ref(self: &Self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../command/index.md), [`Arg`](../arg/index.md), [`TypedValueParser`](#typedvalueparser), [`Error`](../../index.md)
+- `fn parse_ref(self: &Self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../../index.md), [`Arg`](../../index.md), [`TypedValueParser`](../index.md), [`Error`](../../index.md)
 
-- `fn possible_values(self: &Self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>` — [`PossibleValue`](../possible_value/index.md)
+- `fn possible_values(self: &Self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>` — [`PossibleValue`](../index.md)
 
 ### `NonEmptyStringValueParser`
 
@@ -807,7 +809,7 @@ assert!(value_parser.parse_ref(&cmd, arg, OsStr::new("")).is_err());
 
 ##### `impl Clone for NonEmptyStringValueParser`
 
-- `fn clone(self: &Self) -> NonEmptyStringValueParser` — [`NonEmptyStringValueParser`](#nonemptystringvalueparser)
+- `fn clone(self: &Self) -> NonEmptyStringValueParser` — [`NonEmptyStringValueParser`](../index.md)
 
 ##### `impl Copy for NonEmptyStringValueParser`
 
@@ -821,13 +823,13 @@ assert!(value_parser.parse_ref(&cmd, arg, OsStr::new("")).is_err());
 
 ##### `impl<I> IntoResettable for NonEmptyStringValueParser`
 
-- `fn into_resettable(self: Self) -> Resettable<ValueParser>` — [`Resettable`](../resettable/index.md), [`ValueParser`](#valueparser)
+- `fn into_resettable(self: Self) -> Resettable<ValueParser>` — [`Resettable`](../index.md), [`ValueParser`](../index.md)
 
 ##### `impl TypedValueParser for NonEmptyStringValueParser`
 
 - `type Value = String`
 
-- `fn parse_ref(self: &Self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../command/index.md), [`Arg`](../arg/index.md), [`TypedValueParser`](#typedvalueparser), [`Error`](../../index.md)
+- `fn parse_ref(self: &Self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../../index.md), [`Arg`](../../index.md), [`TypedValueParser`](../index.md), [`Error`](../../index.md)
 
 ### `MapValueParser<P, F>`
 
@@ -850,7 +852,7 @@ See `TypedValueParser::map`
 
 ##### `impl<P: $crate::clone::Clone, F: $crate::clone::Clone> Clone for MapValueParser<P, F>`
 
-- `fn clone(self: &Self) -> MapValueParser<P, F>` — [`MapValueParser`](#mapvalueparser)
+- `fn clone(self: &Self) -> MapValueParser<P, F>` — [`MapValueParser`](../index.md)
 
 ##### `impl<P: $crate::fmt::Debug, F: $crate::fmt::Debug> Debug for MapValueParser<P, F>`
 
@@ -858,17 +860,17 @@ See `TypedValueParser::map`
 
 ##### `impl<I> IntoResettable for MapValueParser<P, F>`
 
-- `fn into_resettable(self: Self) -> Resettable<ValueParser>` — [`Resettable`](../resettable/index.md), [`ValueParser`](#valueparser)
+- `fn into_resettable(self: Self) -> Resettable<ValueParser>` — [`Resettable`](../index.md), [`ValueParser`](../index.md)
 
 ##### `impl<P, F, T> TypedValueParser for MapValueParser<P, F>`
 
 - `type Value = T`
 
-- `fn parse_ref(self: &Self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../command/index.md), [`Arg`](../arg/index.md), [`TypedValueParser`](#typedvalueparser), [`Error`](../../index.md)
+- `fn parse_ref(self: &Self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../../index.md), [`Arg`](../../index.md), [`TypedValueParser`](../index.md), [`Error`](../../index.md)
 
-- `fn parse(self: &Self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: std::ffi::OsString) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../command/index.md), [`Arg`](../arg/index.md), [`TypedValueParser`](#typedvalueparser), [`Error`](../../index.md)
+- `fn parse(self: &Self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: std::ffi::OsString) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../../index.md), [`Arg`](../../index.md), [`TypedValueParser`](../index.md), [`Error`](../../index.md)
 
-- `fn possible_values(self: &Self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>` — [`PossibleValue`](../possible_value/index.md)
+- `fn possible_values(self: &Self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>` — [`PossibleValue`](../index.md)
 
 ### `TryMapValueParser<P, F>`
 
@@ -891,7 +893,7 @@ See `TypedValueParser::try_map`
 
 ##### `impl<P: $crate::clone::Clone, F: $crate::clone::Clone> Clone for TryMapValueParser<P, F>`
 
-- `fn clone(self: &Self) -> TryMapValueParser<P, F>` — [`TryMapValueParser`](#trymapvalueparser)
+- `fn clone(self: &Self) -> TryMapValueParser<P, F>` — [`TryMapValueParser`](../index.md)
 
 ##### `impl<P: $crate::fmt::Debug, F: $crate::fmt::Debug> Debug for TryMapValueParser<P, F>`
 
@@ -899,15 +901,15 @@ See `TypedValueParser::try_map`
 
 ##### `impl<I> IntoResettable for TryMapValueParser<P, F>`
 
-- `fn into_resettable(self: Self) -> Resettable<ValueParser>` — [`Resettable`](../resettable/index.md), [`ValueParser`](#valueparser)
+- `fn into_resettable(self: Self) -> Resettable<ValueParser>` — [`Resettable`](../index.md), [`ValueParser`](../index.md)
 
 ##### `impl<P, F, T, E> TypedValueParser for TryMapValueParser<P, F>`
 
 - `type Value = T`
 
-- `fn parse_ref(self: &Self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../command/index.md), [`Arg`](../arg/index.md), [`TypedValueParser`](#typedvalueparser), [`Error`](../../index.md)
+- `fn parse_ref(self: &Self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../../index.md), [`Arg`](../../index.md), [`TypedValueParser`](../index.md), [`Error`](../../index.md)
 
-- `fn possible_values(self: &Self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>` — [`PossibleValue`](../possible_value/index.md)
+- `fn possible_values(self: &Self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>` — [`PossibleValue`](../index.md)
 
 ### `UnknownArgumentValueParser`
 
@@ -954,17 +956,17 @@ assert_eq!(err.kind(), clap::error::ErrorKind::UnknownArgument);
 
 #### Implementations
 
-- `fn suggest_arg(arg: impl Into<Str>) -> Self` — [`Str`](../str/index.md)
+- `fn suggest_arg(arg: impl Into<Str>) -> Self` — [`Str`](../index.md)
 
-- `fn suggest(text: impl Into<StyledStr>) -> Self` — [`StyledStr`](../styled_str/index.md)
+- `fn suggest(text: impl Into<StyledStr>) -> Self` — [`StyledStr`](../index.md)
 
-- `fn and_suggest(self: Self, text: impl Into<StyledStr>) -> Self` — [`StyledStr`](../styled_str/index.md)
+- `fn and_suggest(self: Self, text: impl Into<StyledStr>) -> Self` — [`StyledStr`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for UnknownArgumentValueParser`
 
-- `fn clone(self: &Self) -> UnknownArgumentValueParser` — [`UnknownArgumentValueParser`](#unknownargumentvalueparser)
+- `fn clone(self: &Self) -> UnknownArgumentValueParser` — [`UnknownArgumentValueParser`](../index.md)
 
 ##### `impl Debug for UnknownArgumentValueParser`
 
@@ -972,15 +974,15 @@ assert_eq!(err.kind(), clap::error::ErrorKind::UnknownArgument);
 
 ##### `impl<I> IntoResettable for UnknownArgumentValueParser`
 
-- `fn into_resettable(self: Self) -> Resettable<ValueParser>` — [`Resettable`](../resettable/index.md), [`ValueParser`](#valueparser)
+- `fn into_resettable(self: Self) -> Resettable<ValueParser>` — [`Resettable`](../index.md), [`ValueParser`](../index.md)
 
 ##### `impl TypedValueParser for UnknownArgumentValueParser`
 
 - `type Value = String`
 
-- `fn parse_ref(self: &Self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../command/index.md), [`Arg`](../arg/index.md), [`TypedValueParser`](#typedvalueparser), [`Error`](../../index.md)
+- `fn parse_ref(self: &Self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../../index.md), [`Arg`](../../index.md), [`TypedValueParser`](../index.md), [`Error`](../../index.md)
 
-- `fn parse_ref_(self: &Self, cmd: &crate::Command, arg: Option<&crate::Arg>, _value: &std::ffi::OsStr, source: ValueSource) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../command/index.md), [`Arg`](../arg/index.md), [`ValueSource`](../../parser/matches/value_source/index.md), [`TypedValueParser`](#typedvalueparser), [`Error`](../../index.md)
+- `fn parse_ref_(self: &Self, cmd: &crate::Command, arg: Option<&crate::Arg>, _value: &std::ffi::OsStr, source: ValueSource) -> Result<<Self as >::Value, crate::Error>` — [`Command`](../../index.md), [`Arg`](../../index.md), [`ValueSource`](../../parser/index.md), [`TypedValueParser`](../index.md), [`Error`](../../index.md)
 
 ## Enums
 
@@ -1004,7 +1006,7 @@ enum ValueParserInner {
 trait AnyValueParser: Send + Sync + 'static { ... }
 ```
 
-A type-erased wrapper for [`TypedValueParser`](#typedvalueparser).
+A type-erased wrapper for [`TypedValueParser`](../index.md).
 
 #### Required Methods
 

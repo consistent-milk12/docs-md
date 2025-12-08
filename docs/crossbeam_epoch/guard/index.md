@@ -18,7 +18,7 @@ A guard that keeps the current thread pinned.
 
 # Pinning
 
-The current thread is pinned by calling [`pin`](../default/index.md), which returns a new guard:
+The current thread is pinned by calling [`pin`](../index.md), which returns a new guard:
 
 ```rust
 use crossbeam_epoch as epoch;
@@ -80,7 +80,7 @@ assert!(!epoch::is_pinned());
 
 - `unsafe fn defer_unchecked<F, R>(self: &Self, f: F)`
 
-- `unsafe fn defer_destroy<T>(self: &Self, ptr: Shared<'_, T>)` — [`Shared`](../atomic/index.md)
+- `unsafe fn defer_destroy<T>(self: &Self, ptr: Shared<'_, T>)` — [`Shared`](../index.md)
 
 - `fn flush(self: &Self)`
 
@@ -88,7 +88,7 @@ assert!(!epoch::is_pinned());
 
 - `fn repin_after<F, R>(self: &mut Self, f: F) -> R`
 
-- `fn collector(self: &Self) -> Option<&Collector>` — [`Collector`](../collector/index.md)
+- `fn collector(self: &Self) -> Option<&Collector>` — [`Collector`](../index.md)
 
 #### Trait Implementations
 
@@ -106,7 +106,7 @@ assert!(!epoch::is_pinned());
 
 - `type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md)
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
 
 - `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -122,10 +122,10 @@ assert!(!epoch::is_pinned());
 unsafe fn unprotected() -> &'static Guard
 ```
 
-Returns a reference to a dummy guard that allows unprotected access to [`Atomic`](../atomic/index.md)s.
+Returns a reference to a dummy guard that allows unprotected access to [`Atomic`](../index.md)s.
 
 This guard should be used in special occasions only. Note that it doesn't actually keep any
-thread pinned - it's just a fake guard that allows loading from [`Atomic`](../atomic/index.md)s unsafely.
+thread pinned - it's just a fake guard that allows loading from [`Atomic`](../index.md)s unsafely.
 
 Note that calling `defer` with a dummy guard will not defer the function - it will just
 execute the function immediately.
@@ -134,8 +134,8 @@ If necessary, it's possible to create more dummy guards by cloning: `unprotected
 
 # Safety
 
-Loading and dereferencing data from an [`Atomic`](../atomic/index.md) using this guard is safe only if the
-[`Atomic`](../atomic/index.md) is not being concurrently modified by other threads.
+Loading and dereferencing data from an [`Atomic`](../index.md) using this guard is safe only if the
+[`Atomic`](../index.md) is not being concurrently modified by other threads.
 
 # Examples
 
@@ -164,7 +164,7 @@ unsafe { drop(a.into_owned()); } // avoid leak
 The most common use of this function is when constructing or destructing a data structure.
 
 For example, we can use a dummy guard in the destructor of a Treiber stack because at that
-point no other thread could concurrently modify the [`Atomic`](../atomic/index.md)s we are accessing.
+point no other thread could concurrently modify the [`Atomic`](../index.md)s we are accessing.
 
 If we were to actually pin the current thread during destruction, that would just unnecessarily
 delay garbage collection and incur some performance cost, so in cases like these `unprotected`

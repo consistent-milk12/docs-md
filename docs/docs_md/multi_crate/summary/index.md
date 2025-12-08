@@ -6,7 +6,7 @@
 
 mdBook SUMMARY.md generator.
 
-This module provides [`SummaryGenerator`](#summarygenerator) which creates a SUMMARY.md file
+This module provides [`SummaryGenerator`](../index.md) which creates a SUMMARY.md file
 compatible with mdBook for multi-crate documentation.
 
 ## Structs
@@ -54,7 +54,7 @@ Summary
 
 #### Implementations
 
-- `const fn new(crates: &'a CrateCollection, output_dir: &'a Path, include_private: bool) -> Self` — [`CrateCollection`](../collection/index.md)
+- `const fn new(crates: &'a CrateCollection, output_dir: &'a Path, include_private: bool) -> Self` — [`CrateCollection`](../../index.md)
 
 - `fn generate(self: &Self) -> Result<(), Error>` — [`Error`](../../error/index.md)
 

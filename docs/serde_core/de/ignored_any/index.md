@@ -120,7 +120,7 @@ let s: String = NthElement::new(3).deserialize(deserializer)?;
 
 ##### `impl Clone for IgnoredAny`
 
-- `fn clone(self: &Self) -> IgnoredAny` — [`IgnoredAny`](#ignoredany)
+- `fn clone(self: &Self) -> IgnoredAny` — [`IgnoredAny`](../index.md)
 
 ##### `impl Copy for IgnoredAny`
 
@@ -130,11 +130,11 @@ let s: String = NthElement::new(3).deserialize(deserializer)?;
 
 ##### `impl Default for IgnoredAny`
 
-- `fn default() -> IgnoredAny` — [`IgnoredAny`](#ignoredany)
+- `fn default() -> IgnoredAny` — [`IgnoredAny`](../index.md)
 
 ##### `impl<'de> Deserialize for IgnoredAny`
 
-- `fn deserialize<D>(deserializer: D) -> Result<IgnoredAny, <D as >::Error>` — [`IgnoredAny`](#ignoredany), [`Deserializer`](../index.md)
+- `fn deserialize<D>(deserializer: D) -> Result<IgnoredAny, <D as >::Error>` — [`IgnoredAny`](../index.md), [`Deserializer`](../../index.md)
 
 ##### `impl<T> DeserializeOwned for IgnoredAny`
 
@@ -144,7 +144,7 @@ let s: String = NthElement::new(3).deserialize(deserializer)?;
 
 ##### `impl PartialEq for IgnoredAny`
 
-- `fn eq(self: &Self, other: &IgnoredAny) -> bool` — [`IgnoredAny`](#ignoredany)
+- `fn eq(self: &Self, other: &IgnoredAny) -> bool` — [`IgnoredAny`](../index.md)
 
 ##### `impl StructuralPartialEq for IgnoredAny`
 

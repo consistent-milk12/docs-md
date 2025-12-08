@@ -11,7 +11,7 @@ Lower level primitive types that are useful in a variety of circumstances.
 This list represents the principle types in this module and briefly describes
 when you might want to use them.
 
-* [`PatternID`](#patternid) - A type that represents the identifier of a regex pattern.
+* [`PatternID`](../../index.md) - A type that represents the identifier of a regex pattern.
 This is probably the most widely used type in this module (which is why it's
 also re-exported in the crate root).
 * [`StateID`](#stateid) - A type the represents the identifier of a finite automaton
@@ -136,7 +136,7 @@ for delta encoding.
 
 The following types wrap `SmallIndex` to provide a more focused use case:
 
-* [`PatternID`](#patternid) is for representing the identifiers of patterns.
+* [`PatternID`](../../index.md) is for representing the identifiers of patterns.
 * [`StateID`](#stateid) is for representing the identifiers of states in finite
 automata. It is used for both NFAs and DFAs.
 
@@ -337,11 +337,11 @@ re-exported at the crate root due to how common it is.
 
 - `const SIZE: usize`
 
-- `fn new(value: usize) -> Result<PatternID, PatternIDError>` — [`PatternID`](#patternid), [`PatternIDError`](#patterniderror)
+- `fn new(value: usize) -> Result<PatternID, PatternIDError>` — [`PatternID`](../../index.md), [`PatternIDError`](#patterniderror)
 
-- `const fn new_unchecked(value: usize) -> PatternID` — [`PatternID`](#patternid)
+- `const fn new_unchecked(value: usize) -> PatternID` — [`PatternID`](../../index.md)
 
-- `fn must(value: usize) -> PatternID` — [`PatternID`](#patternid)
+- `fn must(value: usize) -> PatternID` — [`PatternID`](../../index.md)
 
 - `const fn as_usize(self: &Self) -> usize`
 
@@ -353,9 +353,9 @@ re-exported at the crate root due to how common it is.
 
 - `fn one_more(self: &Self) -> usize`
 
-- `fn from_ne_bytes(bytes: [u8; 4]) -> Result<PatternID, PatternIDError>` — [`PatternID`](#patternid), [`PatternIDError`](#patterniderror)
+- `fn from_ne_bytes(bytes: [u8; 4]) -> Result<PatternID, PatternIDError>` — [`PatternID`](../../index.md), [`PatternIDError`](#patterniderror)
 
-- `fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> PatternID` — [`PatternID`](#patternid)
+- `fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> PatternID` — [`PatternID`](../../index.md)
 
 - `fn to_ne_bytes(self: &Self) -> [u8; 4]`
 
@@ -365,7 +365,7 @@ re-exported at the crate root due to how common it is.
 
 ##### `impl Clone for PatternID`
 
-- `fn clone(self: &Self) -> PatternID` — [`PatternID`](#patternid)
+- `fn clone(self: &Self) -> PatternID` — [`PatternID`](../../index.md)
 
 ##### `impl Copy for PatternID`
 
@@ -375,7 +375,7 @@ re-exported at the crate root due to how common it is.
 
 ##### `impl Default for PatternID`
 
-- `fn default() -> PatternID` — [`PatternID`](#patternid)
+- `fn default() -> PatternID` — [`PatternID`](../../index.md)
 
 ##### `impl Eq for PatternID`
 
@@ -385,15 +385,15 @@ re-exported at the crate root due to how common it is.
 
 ##### `impl Ord for PatternID`
 
-- `fn cmp(self: &Self, other: &PatternID) -> $crate::cmp::Ordering` — [`PatternID`](#patternid)
+- `fn cmp(self: &Self, other: &PatternID) -> $crate::cmp::Ordering` — [`PatternID`](../../index.md)
 
 ##### `impl PartialEq for PatternID`
 
-- `fn eq(self: &Self, other: &PatternID) -> bool` — [`PatternID`](#patternid)
+- `fn eq(self: &Self, other: &PatternID) -> bool` — [`PatternID`](../../index.md)
 
 ##### `impl PartialOrd for PatternID`
 
-- `fn partial_cmp(self: &Self, other: &PatternID) -> $crate::option::Option<$crate::cmp::Ordering>` — [`PatternID`](#patternid)
+- `fn partial_cmp(self: &Self, other: &PatternID) -> $crate::option::Option<$crate::cmp::Ordering>` — [`PatternID`](../../index.md)
 
 ##### `impl StructuralPartialEq for PatternID`
 
@@ -563,7 +563,7 @@ struct PatternIDIter(SmallIndexIter);
 
 - `type Item = PatternID`
 
-- `fn next(self: &mut Self) -> Option<PatternID>` — [`PatternID`](#patternid)
+- `fn next(self: &mut Self) -> Option<PatternID>` — [`PatternID`](../../index.md)
 
 ### `WithPatternIDIter<I>`
 
@@ -605,7 +605,7 @@ iterator is representable in the corresponding small index type.
 
 - `type Item = (PatternID, <I as Iterator>::Item)`
 
-- `fn next(self: &mut Self) -> Option<(PatternID, <I as >::Item)>` — [`PatternID`](#patternid)
+- `fn next(self: &mut Self) -> Option<(PatternID, <I as >::Item)>` — [`PatternID`](../../index.md)
 
 ### `StateIDError`
 

@@ -27,17 +27,17 @@ trait.
 
 #### Implementations
 
-- `fn state_id_overflow(max: u64, requested_max: u64) -> BuildError` — [`BuildError`](#builderror)
+- `fn state_id_overflow(max: u64, requested_max: u64) -> BuildError` — [`BuildError`](../../index.md)
 
-- `fn pattern_id_overflow(max: u64, requested_max: u64) -> BuildError` — [`BuildError`](#builderror)
+- `fn pattern_id_overflow(max: u64, requested_max: u64) -> BuildError` — [`BuildError`](../../index.md)
 
-- `fn pattern_too_long(pattern: PatternID, len: usize) -> BuildError` — [`PatternID`](../primitives/index.md), [`BuildError`](#builderror)
+- `fn pattern_too_long(pattern: PatternID, len: usize) -> BuildError` — [`PatternID`](../../index.md), [`BuildError`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for BuildError`
 
-- `fn clone(self: &Self) -> BuildError` — [`BuildError`](#builderror)
+- `fn clone(self: &Self) -> BuildError` — [`BuildError`](../../index.md)
 
 ##### `impl Debug for BuildError`
 
@@ -79,25 +79,25 @@ trait.
 
 #### Implementations
 
-- `fn new(kind: MatchErrorKind) -> MatchError` — [`MatchErrorKind`](#matcherrorkind), [`MatchError`](#matcherror)
+- `fn new(kind: MatchErrorKind) -> MatchError` — [`MatchErrorKind`](../../index.md), [`MatchError`](../../index.md)
 
-- `fn kind(self: &Self) -> &MatchErrorKind` — [`MatchErrorKind`](#matcherrorkind)
+- `fn kind(self: &Self) -> &MatchErrorKind` — [`MatchErrorKind`](../../index.md)
 
-- `fn invalid_input_anchored() -> MatchError` — [`MatchError`](#matcherror)
+- `fn invalid_input_anchored() -> MatchError` — [`MatchError`](../../index.md)
 
-- `fn invalid_input_unanchored() -> MatchError` — [`MatchError`](#matcherror)
+- `fn invalid_input_unanchored() -> MatchError` — [`MatchError`](../../index.md)
 
-- `fn unsupported_stream(got: MatchKind) -> MatchError` — [`MatchKind`](../search/index.md), [`MatchError`](#matcherror)
+- `fn unsupported_stream(got: MatchKind) -> MatchError` — [`MatchKind`](../../index.md), [`MatchError`](../../index.md)
 
-- `fn unsupported_overlapping(got: MatchKind) -> MatchError` — [`MatchKind`](../search/index.md), [`MatchError`](#matcherror)
+- `fn unsupported_overlapping(got: MatchKind) -> MatchError` — [`MatchKind`](../../index.md), [`MatchError`](../../index.md)
 
-- `fn unsupported_empty() -> MatchError` — [`MatchError`](#matcherror)
+- `fn unsupported_empty() -> MatchError` — [`MatchError`](../../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for MatchError`
 
-- `fn clone(self: &Self) -> MatchError` — [`MatchError`](#matcherror)
+- `fn clone(self: &Self) -> MatchError` — [`MatchError`](../../index.md)
 
 ##### `impl Debug for MatchError`
 
@@ -113,7 +113,7 @@ trait.
 
 ##### `impl PartialEq for MatchError`
 
-- `fn eq(self: &Self, other: &MatchError) -> bool` — [`MatchError`](#matcherror)
+- `fn eq(self: &Self, other: &MatchError) -> bool` — [`MatchError`](../../index.md)
 
 ##### `impl StructuralPartialEq for MatchError`
 
@@ -188,7 +188,7 @@ enum MatchErrorKind {
 }
 ```
 
-The underlying kind of a [`MatchError`](#matcherror).
+The underlying kind of a [`MatchError`](../../index.md).
 
 This is a **non-exhaustive** enum. That means new variants may be added in
 a semver-compatible release.
@@ -224,7 +224,7 @@ a semver-compatible release.
 
 ##### `impl Clone for MatchErrorKind`
 
-- `fn clone(self: &Self) -> MatchErrorKind` — [`MatchErrorKind`](#matcherrorkind)
+- `fn clone(self: &Self) -> MatchErrorKind` — [`MatchErrorKind`](../../index.md)
 
 ##### `impl Debug for MatchErrorKind`
 
@@ -234,7 +234,7 @@ a semver-compatible release.
 
 ##### `impl PartialEq for MatchErrorKind`
 
-- `fn eq(self: &Self, other: &MatchErrorKind) -> bool` — [`MatchErrorKind`](#matcherrorkind)
+- `fn eq(self: &Self, other: &MatchErrorKind) -> bool` — [`MatchErrorKind`](../../index.md)
 
 ##### `impl StructuralPartialEq for MatchErrorKind`
 

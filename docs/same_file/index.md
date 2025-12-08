@@ -21,7 +21,7 @@ fn main() {
 }
 ```
 
-Additionally, this crate provides a [`Handle`](#handle) type that permits a more efficient
+Additionally, this crate provides a [`Handle`](unix/index.md) type that permits a more efficient
 equality check depending on your access pattern. For example, if one wanted to
 check whether any path in a list of paths corresponded to the process' stdout
 handle, then one could build a handle once for stdout. The equality check for

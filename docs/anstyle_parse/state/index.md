@@ -40,7 +40,7 @@ enum Action {
 
 ##### `impl Clone for Action`
 
-- `fn clone(self: &Self) -> Action` — [`Action`](definitions/index.md)
+- `fn clone(self: &Self) -> Action` — [`Action`](#action)
 
 ##### `impl Copy for Action`
 
@@ -50,13 +50,13 @@ enum Action {
 
 ##### `impl Default for Action`
 
-- `fn default() -> Action` — [`Action`](definitions/index.md)
+- `fn default() -> Action` — [`Action`](#action)
 
 ##### `impl Eq for Action`
 
 ##### `impl PartialEq for Action`
 
-- `fn eq(self: &Self, other: &Action) -> bool` — [`Action`](definitions/index.md)
+- `fn eq(self: &Self, other: &Action) -> bool` — [`Action`](#action)
 
 ##### `impl StructuralPartialEq for Action`
 
@@ -87,7 +87,7 @@ enum State {
 
 ##### `impl Clone for State`
 
-- `fn clone(self: &Self) -> State` — [`State`](definitions/index.md)
+- `fn clone(self: &Self) -> State` — [`State`](#state)
 
 ##### `impl Copy for State`
 
@@ -97,13 +97,13 @@ enum State {
 
 ##### `impl Default for State`
 
-- `fn default() -> State` — [`State`](definitions/index.md)
+- `fn default() -> State` — [`State`](#state)
 
 ##### `impl Eq for State`
 
 ##### `impl PartialEq for State`
 
-- `fn eq(self: &Self, other: &State) -> bool` — [`State`](definitions/index.md)
+- `fn eq(self: &Self, other: &State) -> bool` — [`State`](#state)
 
 ##### `impl StructuralPartialEq for State`
 
@@ -115,7 +115,7 @@ enum State {
 const fn state_change(state: State, byte: u8) -> (State, Action)
 ```
 
-Transition to next [`State`](definitions/index.md)
+Transition to next [`State`](#state)
 
 Note: This does not directly support UTF-8.
 - If the data is validated as UTF-8 (e.g. `str`) or single-byte C1 control codes are

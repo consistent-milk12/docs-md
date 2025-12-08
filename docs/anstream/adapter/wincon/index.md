@@ -21,13 +21,13 @@ Incrementally convert to wincon calls for non-contiguous data
 
 - `fn new() -> Self`
 
-- `fn extract_next<'s>(self: &'s mut Self, bytes: &'s [u8]) -> WinconBytesIter<'s>` — [`WinconBytesIter`](#winconbytesiter)
+- `fn extract_next<'s>(self: &'s mut Self, bytes: &'s [u8]) -> WinconBytesIter<'s>` — [`WinconBytesIter`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for WinconBytes`
 
-- `fn clone(self: &Self) -> WinconBytes` — [`WinconBytes`](#winconbytes)
+- `fn clone(self: &Self) -> WinconBytes` — [`WinconBytes`](../index.md)
 
 ##### `impl Debug for WinconBytes`
 
@@ -35,13 +35,13 @@ Incrementally convert to wincon calls for non-contiguous data
 
 ##### `impl Default for WinconBytes`
 
-- `fn default() -> WinconBytes` — [`WinconBytes`](#winconbytes)
+- `fn default() -> WinconBytes` — [`WinconBytes`](../index.md)
 
 ##### `impl Eq for WinconBytes`
 
 ##### `impl PartialEq for WinconBytes`
 
-- `fn eq(self: &Self, other: &WinconBytes) -> bool` — [`WinconBytes`](#winconbytes)
+- `fn eq(self: &Self, other: &WinconBytes) -> bool` — [`WinconBytes`](../index.md)
 
 ##### `impl StructuralPartialEq for WinconBytes`
 
@@ -55,7 +55,7 @@ struct WinconBytesIter<'s> {
 }
 ```
 
-See [`WinconBytes`](#winconbytes)
+See [`WinconBytes`](../index.md)
 
 #### Trait Implementations
 
@@ -81,7 +81,7 @@ See [`WinconBytes`](#winconbytes)
 
 ##### `impl<'s> PartialEq for WinconBytesIter<'s>`
 
-- `fn eq(self: &Self, other: &WinconBytesIter<'s>) -> bool` — [`WinconBytesIter`](#winconbytesiter)
+- `fn eq(self: &Self, other: &WinconBytesIter<'s>) -> bool` — [`WinconBytesIter`](../index.md)
 
 ##### `impl<'s> StructuralPartialEq for WinconBytesIter<'s>`
 

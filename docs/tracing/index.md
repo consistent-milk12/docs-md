@@ -64,7 +64,7 @@
 
  ## Events
 
- An [`Event`](../tracing_core/event/index.md) represents a _moment_ in time. It signifies something that
+ An [`Event`](#event) represents a _moment_ in time. It signifies something that
  happened while a trace was being recorded. `Event`s are comparable to the log
  records emitted by unstructured logging code, but unlike a typical log line,
  an `Event` may occur within the context of a span.
@@ -89,13 +89,13 @@
  span — a request returned with a given status code, _n_ new items were
  taken from a queue, and so on.
 
- The [`Event` struct][`Event`](../tracing_core/event/index.md) documentation provides further details on using
+ The [`Event` struct][`Event`](#event) documentation provides further details on using
  events.
 
  ## Subscribers
 
  As `Span`s and `Event`s occur, they are recorded or aggregated by
- implementations of the [`Subscriber`](../tracing_core/subscriber/index.md) trait. `Subscriber`s are notified
+ implementations of the [`Subscriber`](../tracing_core/index.md) trait. `Subscriber`s are notified
  when an `Event` takes place and when a `Span` is entered or exited. These
  notifications are represented by the following `Subscriber` trait methods:
 
@@ -126,7 +126,7 @@
 
  ### Spans
 
- The [`span!`](#span) macro expands to a [`Span` struct][`Span`](span/index.md) which is used to
+ The [`span!`](#span) macro expands to a [`Span` struct][`Span`](#span) which is used to
  record a span. The `Span::enter` method on that struct records that the
  span has been entered, and returns a [RAII] guard object, which will exit
  the span when dropped.
@@ -173,7 +173,7 @@
 
  For functions which don't have built-in tracing support and can't have
  the `#[instrument]` attribute applied (such as from an external crate),
- the [`Span` struct][`Span`](span/index.md) has a [`in_scope()` method]`in_scope`
+ the [`Span` struct][`Span`](#span) has a [`in_scope()` method]`in_scope`
  which can be used to easily wrap synchronous code in a span.
 
  For example:
@@ -196,7 +196,7 @@
 
  ### Events
 
- [`Event`](../tracing_core/event/index.md)s are recorded using the [`event!`](#event) macro:
+ [`Event`](#event)s are recorded using the [`event!`](#event) macro:
 
  ```rust
  fn main() {
@@ -212,7 +212,7 @@
 
  ### Configuring Attributes
 
- Both macros require a [`Level`](../tracing_core/metadata/index.md) specifying the verbosity of the span or
+ Both macros require a [`Level`](#level) specifying the verbosity of the span or
  event. Optionally, the, [`target`](../tracing_attributes/attr/kw/index.md) and [parent span] may be overridden. If the
  target and parent span are not overridden, they will default to the
  module path where the macro was invoked and the current span (as determined
@@ -447,7 +447,7 @@
 
  `tracing` also offers a number of macros with preset verbosity levels.
  The [`trace!`](#trace), [`debug!`](#debug), [`info!`](#info), [`warn!`](#warn), and [`error!`](#error) behave
- similarly to the [`event!`](#event) macro, but with the [`Level`](../tracing_core/metadata/index.md) argument already
+ similarly to the [`event!`](#event) macro, but with the [`Level`](#level) argument already
  specified, while the corresponding [`trace_span!`](#trace-span), [`debug_span!`](#debug-span),
  [`info_span!`](#info-span), [`warn_span!`](#warn-span), and [`error_span!`](#error-span) macros are the same,
  but for the [`span!`](#span) macro.
@@ -635,7 +635,7 @@
  libraries and applications either emit or consume `log` records. Therefore,
  `tracing` provides multiple forms of interoperability with `log`: `tracing`
  instrumentation can emit `log` records, and a compatibility layer enables
- `tracing` [`Subscriber`](../tracing_core/subscriber/index.md)s to consume `log` records as `tracing` [`Event`](../tracing_core/event/index.md)s.
+ `tracing` [`Subscriber`](../tracing_core/index.md)s to consume `log` records as `tracing` [`Event`](#event)s.
 
  ### Emitting `log` Records
 
@@ -674,7 +674,7 @@
  ### Consuming `log` Records
 
  The `tracing-log` crate provides a compatibility layer which
- allows a `tracing` [`Subscriber`](../tracing_core/subscriber/index.md) to consume `log` records as though they
+ allows a `tracing` [`Subscriber`](../tracing_core/index.md) to consume `log` records as though they
  were `tracing` [events]. This allows applications using `tracing` to record
  the logs emitted by dependencies using `log` as events within the context of
  the application's trace tree. See [that crate's documentation][log-tracer]
@@ -947,19 +947,19 @@ manner regardless of whether or not the trace is currently being collected.
 
 #### Implementations
 
-- `fn new(meta: &'static Metadata<'static>, values: &field::ValueSet<'_>) -> Span` — [`Span`](span/index.md)
+- `fn new(meta: &'static Metadata<'static>, values: &field::ValueSet<'_>) -> Span` — [`Metadata`](#metadata), [`Span`](#span)
 
-- `fn new_root(meta: &'static Metadata<'static>, values: &field::ValueSet<'_>) -> Span` — [`Span`](span/index.md)
+- `fn new_root(meta: &'static Metadata<'static>, values: &field::ValueSet<'_>) -> Span` — [`Metadata`](#metadata), [`Span`](#span)
 
-- `fn child_of(parent: impl Into<Option<Id>>, meta: &'static Metadata<'static>, values: &field::ValueSet<'_>) -> Span` — [`Span`](span/index.md)
+- `fn child_of(parent: impl Into<Option<Id>>, meta: &'static Metadata<'static>, values: &field::ValueSet<'_>) -> Span` — [`Id`](span/index.md), [`Metadata`](#metadata), [`Span`](#span)
 
-- `fn new_disabled(meta: &'static Metadata<'static>) -> Span` — [`Span`](span/index.md)
+- `fn new_disabled(meta: &'static Metadata<'static>) -> Span` — [`Metadata`](#metadata), [`Span`](#span)
 
-- `const fn none() -> Span` — [`Span`](span/index.md)
+- `const fn none() -> Span` — [`Span`](#span)
 
-- `fn current() -> Span` — [`Span`](span/index.md)
+- `fn current() -> Span` — [`Span`](#span)
 
-- `fn make_with(meta: &'static Metadata<'static>, new_span: Attributes<'_>, dispatch: &Dispatch) -> Span` — [`Span`](span/index.md)
+- `fn make_with(meta: &'static Metadata<'static>, new_span: Attributes<'_>, dispatch: &Dispatch) -> Span` — [`Metadata`](#metadata), [`Attributes`](span/index.md), [`Dispatch`](#dispatch), [`Span`](#span)
 
 - `fn enter(self: &Self) -> Entered<'_>` — [`Entered`](span/index.md)
 
@@ -983,19 +983,19 @@ manner regardless of whether or not the trace is currently being collected.
 
 - `fn is_none(self: &Self) -> bool`
 
-- `fn follows_from(self: &Self, from: impl Into<Option<Id>>) -> &Self`
+- `fn follows_from(self: &Self, from: impl Into<Option<Id>>) -> &Self` — [`Id`](span/index.md)
 
-- `fn id(self: &Self) -> Option<Id>`
+- `fn id(self: &Self) -> Option<Id>` — [`Id`](span/index.md)
 
-- `fn metadata(self: &Self) -> Option<&'static Metadata<'static>>`
+- `fn metadata(self: &Self) -> Option<&'static Metadata<'static>>` — [`Metadata`](#metadata)
 
-- `fn with_subscriber<T>(self: &Self, f: impl FnOnce((&Id, &Dispatch)) -> T) -> Option<T>`
+- `fn with_subscriber<T>(self: &Self, f: impl FnOnce((&Id, &Dispatch)) -> T) -> Option<T>` — [`Id`](span/index.md), [`Dispatch`](#dispatch)
 
 #### Trait Implementations
 
 ##### `impl Clone for Span`
 
-- `fn clone(self: &Self) -> Span` — [`Span`](span/index.md)
+- `fn clone(self: &Self) -> Span` — [`Span`](#span)
 
 ##### `impl Debug for Span`
 
@@ -1339,7 +1339,7 @@ and emitting an event for each item).
 # Usage
 
 [Subscribers] can make filtering decisions based all the data included in a
-span or event's [`Metadata`](../tracing_core/metadata/index.md). This means that it is possible for `enabled!`
+span or event's [`Metadata`](../tracing_core/index.md). This means that it is possible for `enabled!`
 to return a _false positive_ (indicating that something would be enabled
 when it actually would not be) or a _false negative_ (indicating that
 something would be disabled when it would actually be enabled).
@@ -1402,7 +1402,7 @@ if enabled!(target: "my_crate", Level::DEBUG, hello) {
 
 # Alternatives
 
-`enabled!` queries subscribers with [`Metadata`](../tracing_core/metadata/index.md) where
+`enabled!` queries subscribers with [`Metadata`](../tracing_core/index.md) where
 `is_event` and `is_span` both return `false`. Alternatively,
 use [`event_enabled!`](#event-enabled) or `span_enabled!` to ensure one of these
 returns true.

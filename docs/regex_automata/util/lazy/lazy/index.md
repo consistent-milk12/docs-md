@@ -32,9 +32,7 @@ convenient I think.
 
 #### Implementations
 
-- `fn get(self: &Self) -> &T`
-
-- `fn poll(self: &Self) -> Option<&T>`
+- `const fn new(create: F) -> Lazy<T, F>` — [`Lazy`](#lazy)
 
 #### Trait Implementations
 

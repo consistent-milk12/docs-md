@@ -679,9 +679,9 @@ struct ImageDataDirectory {
 
 - `fn address_range(self: &Self) -> (u32, u32)`
 
-- `fn file_range(self: &Self, sections: &SectionTable<'_>) -> Result<(u32, u32)>` — [`SectionTable`](../read/coff/index.md), [`Result`](../index.md)
+- `fn file_range(self: &Self, sections: &SectionTable<'_>) -> Result<(u32, u32)>` — [`SectionTable`](../read/pe/index.md), [`Result`](../index.md)
 
-- `fn data<'data, R: ReadRef<'data>>(self: &Self, data: R, sections: &SectionTable<'data>) -> Result<&'data [u8]>` — [`SectionTable`](../read/coff/index.md), [`Result`](../index.md)
+- `fn data<'data, R: ReadRef<'data>>(self: &Self, data: R, sections: &SectionTable<'data>) -> Result<&'data [u8]>` — [`SectionTable`](../read/pe/index.md), [`Result`](../index.md)
 
 #### Trait Implementations
 
@@ -1079,7 +1079,7 @@ struct Guid([u8; 16]);
 
 ##### `impl Clone for Guid`
 
-- `fn clone(self: &Self) -> Guid` — [`Guid`](#guid)
+- `fn clone(self: &Self) -> Guid` — [`ClsId`](#clsid)
 
 ##### `impl Copy for Guid`
 
@@ -1091,7 +1091,7 @@ struct Guid([u8; 16]);
 
 ##### `impl PartialEq for Guid`
 
-- `fn eq(self: &Self, other: &Guid) -> bool` — [`Guid`](#guid)
+- `fn eq(self: &Self, other: &Guid) -> bool` — [`ClsId`](#clsid)
 
 ##### `impl Pod for Guid`
 
@@ -1117,7 +1117,7 @@ struct ClsId([u8; 16]);
 
 ##### `impl Clone for Guid`
 
-- `fn clone(self: &Self) -> Guid` — [`Guid`](#guid)
+- `fn clone(self: &Self) -> Guid` — [`ClsId`](#clsid)
 
 ##### `impl Copy for Guid`
 
@@ -1129,7 +1129,7 @@ struct ClsId([u8; 16]);
 
 ##### `impl PartialEq for Guid`
 
-- `fn eq(self: &Self, other: &Guid) -> bool` — [`Guid`](#guid)
+- `fn eq(self: &Self, other: &Guid) -> bool` — [`ClsId`](#clsid)
 
 ##### `impl Pod for Guid`
 
@@ -1367,19 +1367,19 @@ struct ImageSectionHeader {
 
 #### Implementations
 
-- `fn pe_file_range(self: &Self) -> (u32, u32)`
+- `fn name_offset(self: &Self) -> Result<Option<u32>>` — [`Result`](../index.md)
 
-- `fn pe_file_range_at(self: &Self, va: u32) -> Option<(u32, u32)>`
+- `fn name<'data, R: ReadRef<'data>>(self: &'data Self, strings: StringTable<'data, R>) -> Result<&'data [u8]>` — [`StringTable`](../read/index.md), [`Result`](../index.md)
 
-- `fn pe_address_range(self: &Self) -> (u32, u32)`
+- `fn raw_name(self: &Self) -> &[u8]`
 
-- `fn pe_data<'data, R: ReadRef<'data>>(self: &Self, data: R) -> Result<&'data [u8]>` — [`Result`](../index.md)
+- `fn coff_file_range(self: &Self) -> Option<(u32, u32)>`
 
-- `fn pe_data_at<'data, R: ReadRef<'data>>(self: &Self, data: R, va: u32) -> Option<&'data [u8]>`
+- `fn coff_data<'data, R: ReadRef<'data>>(self: &Self, data: R) -> result::Result<&'data [u8], ()>`
 
-- `fn contains_rva(self: &Self, va: u32) -> bool`
+- `fn coff_alignment(self: &Self) -> u64`
 
-- `fn pe_data_containing<'data, R: ReadRef<'data>>(self: &Self, data: R, va: u32) -> Option<(&'data [u8], u32)>`
+- `fn coff_relocations<'data, R: ReadRef<'data>>(self: &Self, data: R) -> read::Result<&'data [pe::ImageRelocation]>` — [`Result`](../index.md), [`ImageRelocation`](#imagerelocation)
 
 #### Trait Implementations
 

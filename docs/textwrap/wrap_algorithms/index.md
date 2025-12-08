@@ -96,7 +96,7 @@ an entire paragraph at a time in order to find optimal line breaks
 
 ##### `impl Clone for WrapAlgorithm`
 
-- `fn clone(self: &Self) -> WrapAlgorithm` — [`WrapAlgorithm`](#wrapalgorithm)
+- `fn clone(self: &Self) -> WrapAlgorithm` — [`WrapAlgorithm`](../index.md)
 
 ##### `impl Copy for WrapAlgorithm`
 

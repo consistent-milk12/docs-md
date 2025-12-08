@@ -28,7 +28,7 @@ and `factor_iter_mut` methods.
 
 ##### `impl<L: $crate::clone::Clone, R: $crate::clone::Clone> Clone for IterEither<L, R>`
 
-- `fn clone(self: &Self) -> IterEither<L, R>` — [`IterEither`](#itereither)
+- `fn clone(self: &Self) -> IterEither<L, R>` — [`IterEither`](../index.md)
 
 ##### `impl<L: $crate::fmt::Debug, R: $crate::fmt::Debug> Debug for IterEither<L, R>`
 

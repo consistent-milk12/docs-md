@@ -33,9 +33,9 @@ enum Precedence {
 
 - `const MIN: Self`
 
-- `fn of_binop(op: &BinOp) -> Self` — [`BinOp`](../op/index.md)
+- `fn of_binop(op: &BinOp) -> Self` — [`BinOp`](../index.md)
 
-- `fn of(e: &Expr) -> Self` — [`Expr`](../expr/index.md)
+- `fn of(e: &Expr) -> Self` — [`Expr`](../index.md)
 
 #### Trait Implementations
 

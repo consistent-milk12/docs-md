@@ -138,13 +138,13 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](#builderror)
 
-- `fn build_from_nfa(self: &Self, nfa: NFA) -> Result<DFA, BuildError>` — [`NFA`](../../nfa/thompson/nfa/index.md), [`DFA`](#dfa), [`BuildError`](#builderror)
+- `fn build_from_nfa(self: &Self, nfa: NFA) -> Result<DFA, BuildError>` — [`NFA`](../../nfa/thompson/index.md), [`DFA`](#dfa), [`BuildError`](#builderror)
 
 - `fn configure(self: &mut Self, config: Config) -> &mut Builder` — [`Config`](#config), [`Builder`](#builder)
 
 - `fn syntax(self: &mut Self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../util/syntax/index.md), [`Builder`](#builder)
 
-- `fn thompson(self: &mut Self, config: thompson::Config) -> &mut Builder` — [`Config`](../../nfa/thompson/compiler/index.md), [`Builder`](#builder)
+- `fn thompson(self: &mut Self, config: thompson::Config) -> &mut Builder` — [`Config`](../../nfa/thompson/index.md), [`Builder`](#builder)
 
 #### Trait Implementations
 
@@ -259,15 +259,15 @@ because the duplication is cheap.
 
 #### Implementations
 
-- `fn new(config: Config, nfa: &'a NFA) -> InternalBuilder<'a>` — [`Config`](#config), [`NFA`](../../nfa/thompson/nfa/index.md), [`InternalBuilder`](#internalbuilder)
+- `fn new(config: Config, nfa: &'a NFA) -> InternalBuilder<'a>` — [`Config`](#config), [`NFA`](../../nfa/thompson/index.md), [`InternalBuilder`](#internalbuilder)
 
 - `fn build(self: Self) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](#builderror)
 
 - `fn shuffle_states(self: &mut Self)`
 
-- `fn compile_transition(self: &mut Self, dfa_id: StateID, trans: &thompson::Transition, epsilons: Epsilons) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md), [`Transition`](../../nfa/thompson/nfa/index.md), [`Epsilons`](#epsilons), [`BuildError`](#builderror)
+- `fn compile_transition(self: &mut Self, dfa_id: StateID, trans: &thompson::Transition, epsilons: Epsilons) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md), [`Transition`](../../nfa/thompson/index.md), [`Epsilons`](#epsilons), [`BuildError`](#builderror)
 
-- `fn add_start_state(self: &mut Self, pid: Option<PatternID>, nfa_id: StateID) -> Result<StateID, BuildError>` — [`PatternID`](../../util/primitives/index.md), [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
+- `fn add_start_state(self: &mut Self, pid: Option<PatternID>, nfa_id: StateID) -> Result<StateID, BuildError>` — [`PatternID`](../../index.md), [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
 
 - `fn add_dfa_state_for_nfa_state(self: &mut Self, nfa_id: StateID) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
 
@@ -541,17 +541,41 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> bool` — [`Cache`](#cache)
+- `fn new(pattern: &str) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](#builderror)
 
-- `fn find<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> Option<Match>` — [`Cache`](#cache), [`Match`](../../index.md)
+- `fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](#builderror)
 
-- `fn captures<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I, caps: &mut Captures)` — [`Cache`](#cache), [`Captures`](../../util/captures/index.md)
+- `fn new_from_nfa(nfa: NFA) -> Result<DFA, BuildError>` — [`NFA`](../../nfa/thompson/index.md), [`DFA`](#dfa), [`BuildError`](#builderror)
 
-- `fn try_search(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures) -> Result<(), MatchError>` — [`Cache`](#cache), [`Input`](../../index.md), [`Captures`](../../util/captures/index.md), [`MatchError`](../../index.md)
+- `fn always_match() -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](#builderror)
 
-- `fn try_search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<PatternID>, MatchError>` — [`Cache`](#cache), [`Input`](../../index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../util/primitives/index.md), [`MatchError`](../../index.md)
+- `fn never_match() -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](#builderror)
 
-- `fn try_search_slots_imp(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<PatternID>, MatchError>` — [`Cache`](#cache), [`Input`](../../index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../util/primitives/index.md), [`MatchError`](../../index.md)
+- `fn config() -> Config` — [`Config`](#config)
+
+- `fn builder() -> Builder` — [`Builder`](#builder)
+
+- `fn create_captures(self: &Self) -> Captures` — [`Captures`](../../util/captures/index.md)
+
+- `fn create_cache(self: &Self) -> Cache` — [`Cache`](#cache)
+
+- `fn reset_cache(self: &Self, cache: &mut Cache)` — [`Cache`](#cache)
+
+- `fn get_config(self: &Self) -> &Config` — [`Config`](#config)
+
+- `fn get_nfa(self: &Self) -> &NFA` — [`NFA`](../../nfa/thompson/index.md)
+
+- `fn pattern_len(self: &Self) -> usize`
+
+- `fn state_len(self: &Self) -> usize`
+
+- `fn alphabet_len(self: &Self) -> usize`
+
+- `fn stride2(self: &Self) -> usize`
+
+- `fn stride(self: &Self) -> usize`
+
+- `fn memory_usage(self: &Self) -> usize`
 
 #### Trait Implementations
 
@@ -762,11 +786,11 @@ ever non-empty for match states.
 
 - `fn is_empty(self: Self) -> bool`
 
-- `fn pattern_id(self: Self) -> Option<PatternID>` — [`PatternID`](../../util/primitives/index.md)
+- `fn pattern_id(self: Self) -> Option<PatternID>` — [`PatternID`](../../index.md)
 
-- `fn pattern_id_unchecked(self: Self) -> PatternID` — [`PatternID`](../../util/primitives/index.md)
+- `fn pattern_id_unchecked(self: Self) -> PatternID` — [`PatternID`](../../index.md)
 
-- `fn set_pattern_id(self: Self, pid: PatternID) -> PatternEpsilons` — [`PatternID`](../../util/primitives/index.md), [`PatternEpsilons`](#patternepsilons)
+- `fn set_pattern_id(self: Self, pid: PatternID) -> PatternEpsilons` — [`PatternID`](../../index.md), [`PatternEpsilons`](#patternepsilons)
 
 - `fn epsilons(self: Self) -> Epsilons` — [`Epsilons`](#epsilons)
 
@@ -951,7 +975,7 @@ This error does not provide many introspection capabilities. There are
 generally only two things you can do with it:
 
 * Obtain a human readable message via its `std::fmt::Display` impl.
-* Access an underlying [`thompson::BuildError`](../../nfa/thompson/error/index.md) type from its `source`
+* Access an underlying [`thompson::BuildError`](../../nfa/thompson/index.md) type from its `source`
 method via the `std::error::Error` trait. This error only occurs when using
 convenience routines for building a one-pass DFA directly from a pattern
 string.
@@ -961,7 +985,7 @@ trait.
 
 #### Implementations
 
-- `fn nfa(err: crate::nfa::thompson::BuildError) -> BuildError` — [`BuildError`](../../nfa/thompson/error/index.md)
+- `fn nfa(err: crate::nfa::thompson::BuildError) -> BuildError` — [`BuildError`](../../nfa/thompson/index.md)
 
 - `fn word(err: UnicodeWordBoundaryError) -> BuildError` — [`UnicodeWordBoundaryError`](../../util/look/index.md), [`BuildError`](#builderror)
 

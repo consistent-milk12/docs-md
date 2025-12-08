@@ -7,7 +7,7 @@
 Provides a regex matcher that composes several other regex matchers
 automatically.
 
-This module is home to a meta [`Regex`](regex/index.md), which provides a convenient high
+This module is home to a meta [`Regex`](#regex), which provides a convenient high
 level API for executing regular expressions in linear time.
 
 # Comparison with the `regex` crate
@@ -42,7 +42,7 @@ pattern, while the latter supports multiple patterns but cannot report the
 offsets of a match.
 * A meta `Regex` provides the explicit capability of bypassing its internal
 memory pool for automatically acquiring mutable scratch space required by its
-internal regex engines. Namely, a [`Cache`](regex/index.md) can be explicitly provided to lower
+internal regex engines. Namely, a [`Cache`](#cache) can be explicitly provided to lower
 level routines such as `Regex::search_with`.
 
 ## Modules
@@ -76,7 +76,7 @@ fails, usually because it gets too big with respect to limits like
 
 This error provides very little introspection capabilities. You can:
 
-* Ask for the [`PatternID`](../util/primitives/index.md) of the pattern that caused an error, if one
+* Ask for the [`PatternID`](../index.md) of the pattern that caused an error, if one
 is available. This is available for things like syntax errors, but not for
 cases where build limits are exceeded.
 * Ask for the underlying syntax error, but only if the error is a syntax
@@ -90,23 +90,23 @@ When the `std` feature is enabled, this implements `std::error::Error`.
 
 #### Implementations
 
-- `fn pattern(self: &Self) -> Option<PatternID>` — [`PatternID`](../util/primitives/index.md)
+- `fn pattern(self: &Self) -> Option<PatternID>` — [`PatternID`](../index.md)
 
 - `fn size_limit(self: &Self) -> Option<usize>`
 
 - `fn syntax_error(self: &Self) -> Option<&regex_syntax::Error>`
 
-- `fn ast(pid: PatternID, err: ast::Error) -> BuildError` — [`PatternID`](../util/primitives/index.md), [`BuildError`](error/index.md)
+- `fn ast(pid: PatternID, err: ast::Error) -> BuildError` — [`PatternID`](../index.md), [`BuildError`](#builderror)
 
-- `fn hir(pid: PatternID, err: hir::Error) -> BuildError` — [`PatternID`](../util/primitives/index.md), [`BuildError`](error/index.md)
+- `fn hir(pid: PatternID, err: hir::Error) -> BuildError` — [`PatternID`](../index.md), [`BuildError`](#builderror)
 
-- `fn nfa(err: nfa::thompson::BuildError) -> BuildError` — [`BuildError`](../nfa/thompson/error/index.md)
+- `fn nfa(err: nfa::thompson::BuildError) -> BuildError` — [`BuildError`](../nfa/thompson/index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for BuildError`
 
-- `fn clone(self: &Self) -> BuildError` — [`BuildError`](error/index.md)
+- `fn clone(self: &Self) -> BuildError` — [`BuildError`](#builderror)
 
 ##### `impl Debug for BuildError`
 
@@ -139,7 +139,7 @@ A builder for configuring and constructing a `Regex`.
 The builder permits configuring two different aspects of a `Regex`:
 
 * `Builder::configure` will set high-level configuration options as
-described by a [`Config`](regex/index.md).
+described by a [`Config`](#config).
 * `Builder::syntax` will set the syntax level configuration options
 as described by a [`util::syntax::Config`](crate::util::syntax::Config).
 This only applies when building a `Regex` from pattern strings.
@@ -222,25 +222,25 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new() -> Builder` — [`Builder`](regex/index.md)
+- `fn new() -> Builder` — [`Builder`](#builder)
 
-- `fn build(self: &Self, pattern: &str) -> Result<Regex, BuildError>` — [`Regex`](regex/index.md), [`BuildError`](error/index.md)
+- `fn build(self: &Self, pattern: &str) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](#builderror)
 
-- `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<Regex, BuildError>` — [`Regex`](regex/index.md), [`BuildError`](error/index.md)
+- `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](#builderror)
 
-- `fn build_from_hir(self: &Self, hir: &Hir) -> Result<Regex, BuildError>` — [`Regex`](regex/index.md), [`BuildError`](error/index.md)
+- `fn build_from_hir(self: &Self, hir: &Hir) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](#builderror)
 
-- `fn build_many_from_hir<H: Borrow<Hir>>(self: &Self, hirs: &[H]) -> Result<Regex, BuildError>` — [`Regex`](regex/index.md), [`BuildError`](error/index.md)
+- `fn build_many_from_hir<H: Borrow<Hir>>(self: &Self, hirs: &[H]) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](#builderror)
 
-- `fn configure(self: &mut Self, config: Config) -> &mut Builder` — [`Config`](regex/index.md), [`Builder`](regex/index.md)
+- `fn configure(self: &mut Self, config: Config) -> &mut Builder` — [`Config`](#config), [`Builder`](#builder)
 
-- `fn syntax(self: &mut Self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../util/syntax/index.md), [`Builder`](regex/index.md)
+- `fn syntax(self: &mut Self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../util/syntax/index.md), [`Builder`](#builder)
 
 #### Trait Implementations
 
 ##### `impl Clone for Builder`
 
-- `fn clone(self: &Self) -> Builder` — [`Builder`](regex/index.md)
+- `fn clone(self: &Self) -> Builder` — [`Builder`](#builder)
 
 ##### `impl Debug for Builder`
 
@@ -308,9 +308,9 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new(re: &Regex) -> Cache` — [`Regex`](regex/index.md), [`Cache`](regex/index.md)
+- `fn new(re: &Regex) -> Cache` — [`Regex`](#regex), [`Cache`](#cache)
 
-- `fn reset(self: &mut Self, re: &Regex)` — [`Regex`](regex/index.md)
+- `fn reset(self: &mut Self, re: &Regex)` — [`Regex`](#regex)
 
 - `fn memory_usage(self: &Self) -> usize`
 
@@ -318,7 +318,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ##### `impl Clone for Cache`
 
-- `fn clone(self: &Self) -> Cache` — [`Cache`](regex/index.md)
+- `fn clone(self: &Self) -> Cache` — [`Cache`](#cache)
 
 ##### `impl Debug for Cache`
 
@@ -350,7 +350,7 @@ This iterator can be created with the `Regex::captures_iter` method.
 
 #### Implementations
 
-- `fn regex(self: &Self) -> &'r Regex` — [`Regex`](regex/index.md)
+- `fn regex(self: &Self) -> &'r Regex` — [`Regex`](#regex)
 
 - `fn input<'s>(self: &'s Self) -> &'s Input<'h>` — [`Input`](../index.md)
 
@@ -428,39 +428,39 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new() -> Config` — [`Config`](regex/index.md)
+- `fn new() -> Config` — [`Config`](#config)
 
-- `fn match_kind(self: Self, kind: MatchKind) -> Config` — [`MatchKind`](../index.md), [`Config`](regex/index.md)
+- `fn match_kind(self: Self, kind: MatchKind) -> Config` — [`MatchKind`](../index.md), [`Config`](#config)
 
-- `fn utf8_empty(self: Self, yes: bool) -> Config` — [`Config`](regex/index.md)
+- `fn utf8_empty(self: Self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn auto_prefilter(self: Self, yes: bool) -> Config` — [`Config`](regex/index.md)
+- `fn auto_prefilter(self: Self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn prefilter(self: Self, pre: Option<Prefilter>) -> Config` — [`Prefilter`](../util/prefilter/index.md), [`Config`](regex/index.md)
+- `fn prefilter(self: Self, pre: Option<Prefilter>) -> Config` — [`Prefilter`](../util/prefilter/index.md), [`Config`](#config)
 
-- `fn which_captures(self: Self, which_captures: WhichCaptures) -> Config` — [`WhichCaptures`](../nfa/thompson/compiler/index.md), [`Config`](regex/index.md)
+- `fn which_captures(self: Self, which_captures: WhichCaptures) -> Config` — [`WhichCaptures`](../nfa/thompson/index.md), [`Config`](#config)
 
-- `fn nfa_size_limit(self: Self, limit: Option<usize>) -> Config` — [`Config`](regex/index.md)
+- `fn nfa_size_limit(self: Self, limit: Option<usize>) -> Config` — [`Config`](#config)
 
-- `fn onepass_size_limit(self: Self, limit: Option<usize>) -> Config` — [`Config`](regex/index.md)
+- `fn onepass_size_limit(self: Self, limit: Option<usize>) -> Config` — [`Config`](#config)
 
-- `fn hybrid_cache_capacity(self: Self, limit: usize) -> Config` — [`Config`](regex/index.md)
+- `fn hybrid_cache_capacity(self: Self, limit: usize) -> Config` — [`Config`](#config)
 
-- `fn dfa_size_limit(self: Self, limit: Option<usize>) -> Config` — [`Config`](regex/index.md)
+- `fn dfa_size_limit(self: Self, limit: Option<usize>) -> Config` — [`Config`](#config)
 
-- `fn dfa_state_limit(self: Self, limit: Option<usize>) -> Config` — [`Config`](regex/index.md)
+- `fn dfa_state_limit(self: Self, limit: Option<usize>) -> Config` — [`Config`](#config)
 
-- `fn byte_classes(self: Self, yes: bool) -> Config` — [`Config`](regex/index.md)
+- `fn byte_classes(self: Self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn line_terminator(self: Self, byte: u8) -> Config` — [`Config`](regex/index.md)
+- `fn line_terminator(self: Self, byte: u8) -> Config` — [`Config`](#config)
 
-- `fn hybrid(self: Self, yes: bool) -> Config` — [`Config`](regex/index.md)
+- `fn hybrid(self: Self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn dfa(self: Self, yes: bool) -> Config` — [`Config`](regex/index.md)
+- `fn dfa(self: Self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn onepass(self: Self, yes: bool) -> Config` — [`Config`](regex/index.md)
+- `fn onepass(self: Self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn backtrack(self: Self, yes: bool) -> Config` — [`Config`](regex/index.md)
+- `fn backtrack(self: Self, yes: bool) -> Config` — [`Config`](#config)
 
 - `fn get_match_kind(self: &Self) -> MatchKind` — [`MatchKind`](../index.md)
 
@@ -470,7 +470,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - `fn get_prefilter(self: &Self) -> Option<&Prefilter>` — [`Prefilter`](../util/prefilter/index.md)
 
-- `fn get_which_captures(self: &Self) -> WhichCaptures` — [`WhichCaptures`](../nfa/thompson/compiler/index.md)
+- `fn get_which_captures(self: &Self) -> WhichCaptures` — [`WhichCaptures`](../nfa/thompson/index.md)
 
 - `fn get_nfa_size_limit(self: &Self) -> Option<usize>`
 
@@ -494,13 +494,13 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - `fn get_backtrack(self: &Self) -> bool`
 
-- `fn overwrite(self: &Self, o: Config) -> Config` — [`Config`](regex/index.md)
+- `fn overwrite(self: &Self, o: Config) -> Config` — [`Config`](#config)
 
 #### Trait Implementations
 
 ##### `impl Clone for Config`
 
-- `fn clone(self: &Self) -> Config` — [`Config`](regex/index.md)
+- `fn clone(self: &Self) -> Config` — [`Config`](#config)
 
 ##### `impl Debug for Config`
 
@@ -508,7 +508,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ##### `impl Default for Config`
 
-- `fn default() -> Config` — [`Config`](regex/index.md)
+- `fn default() -> Config` — [`Config`](#config)
 
 ### `FindMatches<'r, 'h>`
 
@@ -533,7 +533,7 @@ This iterator can be created with the `Regex::find_iter` method.
 
 #### Implementations
 
-- `fn regex(self: &Self) -> &'r Regex` — [`Regex`](regex/index.md)
+- `fn regex(self: &Self) -> &'r Regex` — [`Regex`](#regex)
 
 - `fn input<'s>(self: &'s Self) -> &'s Input<'h>` — [`Input`](../index.md)
 
@@ -625,7 +625,7 @@ meta regex engine will never use a lazy DFA.
 Most of the regex engines in this crate require some kind of mutable
 "scratch" space to read and write from while performing a search. Since
 a meta regex composes these regex engines, a meta regex also requires
-mutable scratch space. This scratch space is called a [`Cache`](regex/index.md).
+mutable scratch space. This scratch space is called a [`Cache`](#cache).
 
 Most regex engines _also_ usually have a read-only component, typically
 a [Thompson `NFA`](crate::nfa::thompson::NFA).
@@ -791,7 +791,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - `fn search_captures(self: &Self, input: &Input<'_>, caps: &mut Captures)` — [`Input`](../index.md), [`Captures`](../util/captures/index.md)
 
-- `fn search_slots(self: &Self, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Input`](../index.md), [`NonMaxUsize`](../util/primitives/index.md), [`PatternID`](../util/primitives/index.md)
+- `fn search_slots(self: &Self, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Input`](../index.md), [`NonMaxUsize`](../util/primitives/index.md), [`PatternID`](../index.md)
 
 - `fn which_overlapping_matches(self: &Self, input: &Input<'_>, patset: &mut PatternSet)` — [`Input`](../index.md), [`PatternSet`](../index.md)
 
@@ -799,7 +799,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ##### `impl Clone for Regex`
 
-- `fn clone(self: &Self) -> Regex` — [`Regex`](regex/index.md)
+- `fn clone(self: &Self) -> Regex` — [`Regex`](#regex)
 
 ##### `impl Debug for Regex`
 

@@ -24,7 +24,7 @@ struct Errno(u16);
 
 `errno`—An error code.
 
-The error type for `rustix` APIs. This is similar to [`std::io::Error`](../../../../addr2line/index.md),
+The error type for `rustix` APIs. This is similar to [`std::io::Error`](../../../../docs_md/error/index.md),
 but only holds an OS error code, and no extra error value.
 
 # References
@@ -321,7 +321,7 @@ but only holds an OS error code, and no extra error value.
 
 ##### `impl Clone for Errno`
 
-- `fn clone(self: &Self) -> Errno` — [`Errno`](#errno)
+- `fn clone(self: &Self) -> Errno` — [`Errno`](../../../io/index.md)
 
 ##### `impl Copy for Errno`
 
@@ -343,7 +343,7 @@ but only holds an OS error code, and no extra error value.
 
 ##### `impl PartialEq for Errno`
 
-- `fn eq(self: &Self, other: &Errno) -> bool` — [`Errno`](#errno)
+- `fn eq(self: &Self, other: &Errno) -> bool` — [`Errno`](../../../io/index.md)
 
 ##### `impl StructuralPartialEq for Errno`
 

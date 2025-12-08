@@ -16,7 +16,7 @@ struct HashSet<T, S, A: Allocator> {
 
 A hash set implemented as a `HashMap` where the value is `()`.
 
-As with the [`HashMap`](../hash_map/index.md) type, a `HashSet` requires that the elements
+As with the [`HashMap`](../index.md) type, a `HashSet` requires that the elements
 implement the `Eq` and `Hash` traits. This can frequently be achieved by
 using `#[derive(PartialEq, Eq, Hash)]`. If you implement these yourself,
 it is important that the following property holds:
@@ -111,35 +111,23 @@ let viking_names: HashSet<&'static str> =
 
 #### Implementations
 
-- `fn capacity(self: &Self) -> usize`
+- `fn new() -> Self`
 
-- `fn iter(self: &Self) -> Iter<'_, T>` — [`Iter`](../hash_set/index.md)
-
-- `fn len(self: &Self) -> usize`
-
-- `fn is_empty(self: &Self) -> bool`
-
-- `fn drain(self: &mut Self) -> Drain<'_, T, A>` — [`Drain`](../hash_set/index.md)
-
-- `fn retain<F>(self: &mut Self, f: F)`
-
-- `fn extract_if<F>(self: &mut Self, f: F) -> ExtractIf<'_, T, F, A>` — [`ExtractIf`](../hash_set/index.md)
-
-- `fn clear(self: &mut Self)`
+- `fn with_capacity(capacity: usize) -> Self`
 
 #### Trait Implementations
 
 ##### `impl<T, S, A> BitAndAssign for HashSet<T, S, A>`
 
-- `fn bitand_assign(self: &mut Self, rhs: &HashSet<T, S, A>)` — [`HashSet`](../hash_set/index.md)
+- `fn bitand_assign(self: &mut Self, rhs: &HashSet<T, S, A>)` — [`HashSet`](../index.md)
 
 ##### `impl<T, S, A> BitOrAssign for HashSet<T, S, A>`
 
-- `fn bitor_assign(self: &mut Self, rhs: &HashSet<T, S, A>)` — [`HashSet`](../hash_set/index.md)
+- `fn bitor_assign(self: &mut Self, rhs: &HashSet<T, S, A>)` — [`HashSet`](../index.md)
 
 ##### `impl<T, S, A> BitXorAssign for HashSet<T, S, A>`
 
-- `fn bitxor_assign(self: &mut Self, rhs: &HashSet<T, S, A>)` — [`HashSet`](../hash_set/index.md)
+- `fn bitxor_assign(self: &mut Self, rhs: &HashSet<T, S, A>)` — [`HashSet`](../index.md)
 
 ##### `impl<T: Clone, S: Clone, A: Allocator + Clone> Clone for HashSet<T, S, A>`
 
@@ -183,7 +171,7 @@ let viking_names: HashSet<&'static str> =
 
 ##### `impl<T, S, A> SubAssign for HashSet<T, S, A>`
 
-- `fn sub_assign(self: &mut Self, rhs: &HashSet<T, S, A>)` — [`HashSet`](../hash_set/index.md)
+- `fn sub_assign(self: &mut Self, rhs: &HashSet<T, S, A>)` — [`HashSet`](../index.md)
 
 ### `Iter<'a, K>`
 
@@ -195,7 +183,7 @@ struct Iter<'a, K> {
 
 An iterator over the items of a `HashSet`.
 
-This `struct` is created by the [`iter`](#iter) method on [`HashSet`](../hash_set/index.md).
+This `struct` is created by the [`iter`](#iter) method on [`HashSet`](../index.md).
 See its documentation for more.
 
 
@@ -248,7 +236,7 @@ struct IntoIter<K, A: Allocator> {
 
 An owning iterator over the items of a `HashSet`.
 
-This `struct` is created by the `into_iter` method on [`HashSet`](../hash_set/index.md)
+This `struct` is created by the `into_iter` method on [`HashSet`](../index.md)
 (provided by the `IntoIterator` trait). See its documentation for more.
 
 
@@ -297,7 +285,7 @@ struct Drain<'a, K, A: Allocator> {
 
 A draining iterator over the items of a `HashSet`.
 
-This `struct` is created by the `drain` method on [`HashSet`](../hash_set/index.md).
+This `struct` is created by the `drain` method on [`HashSet`](../index.md).
 See its documentation for more.
 
 
@@ -343,7 +331,7 @@ struct ExtractIf<'a, K, F, A: Allocator> {
 
 A draining iterator over entries of a `HashSet` which don't satisfy the predicate `f`.
 
-This `struct` is created by the `extract_if` method on [`HashSet`](../hash_set/index.md). See its
+This `struct` is created by the `extract_if` method on [`HashSet`](../index.md). See its
 documentation for more.
 
 
@@ -379,7 +367,7 @@ struct Intersection<'a, T, S, A: Allocator> {
 
 A lazy iterator producing elements in the intersection of `HashSet`s.
 
-This `struct` is created by the `intersection` method on [`HashSet`](../hash_set/index.md).
+This `struct` is created by the `intersection` method on [`HashSet`](../index.md).
 See its documentation for more.
 
 
@@ -425,7 +413,7 @@ struct Difference<'a, T, S, A: Allocator> {
 
 A lazy iterator producing elements in the difference of `HashSet`s.
 
-This `struct` is created by the `difference` method on [`HashSet`](../hash_set/index.md).
+This `struct` is created by the `difference` method on [`HashSet`](../index.md).
 See its documentation for more.
 
 
@@ -471,7 +459,7 @@ struct SymmetricDifference<'a, T, S, A: Allocator> {
 A lazy iterator producing elements in the symmetric difference of `HashSet`s.
 
 This `struct` is created by the `symmetric_difference` method on
-[`HashSet`](../hash_set/index.md). See its documentation for more.
+[`HashSet`](../index.md). See its documentation for more.
 
 
 
@@ -515,7 +503,7 @@ struct Union<'a, T, S, A: Allocator> {
 
 A lazy iterator producing elements in the union of `HashSet`s.
 
-This `struct` is created by the `union` method on [`HashSet`](../hash_set/index.md).
+This `struct` is created by the `union` method on [`HashSet`](../index.md).
 See its documentation for more.
 
 
@@ -667,7 +655,7 @@ where
 
 A view into a single entry in a set, which may either be vacant or occupied.
 
-This `enum` is constructed from the `entry` method on [`HashSet`](../hash_set/index.md).
+This `enum` is constructed from the `entry` method on [`HashSet`](../index.md).
 
 
 # Examples

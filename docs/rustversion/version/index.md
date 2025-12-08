@@ -28,9 +28,9 @@ struct Version {
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl PartialEq for Version`
+##### `impl PartialEq for crate::version::Version`
 
-- `fn eq(self: &Self, other: &Version) -> bool` — [`Version`](#version)
+- `fn eq(self: &Self, rhs: &Bound) -> bool` — [`Bound`](../bound/index.md)
 
 ##### `impl PartialOrd for crate::version::Version`
 

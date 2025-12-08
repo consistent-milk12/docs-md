@@ -20,7 +20,7 @@ struct FoldChunksWith<I, U, F> {
 `FoldChunksWith` is an iterator that groups elements of an underlying iterator and applies a
 function over them, producing a single value for each group.
 
-This struct is created by the `fold_chunks_with()` method on [`IndexedParallelIterator`](../index.md)
+This struct is created by the `fold_chunks_with()` method on [`IndexedParallelIterator`](../../prelude/index.md)
 
 
 #### Implementations
@@ -31,7 +31,7 @@ This struct is created by the `fold_chunks_with()` method on [`IndexedParallelIt
 
 ##### `impl<I: $crate::clone::Clone, U: $crate::clone::Clone, F: $crate::clone::Clone> Clone for FoldChunksWith<I, U, F>`
 
-- `fn clone(self: &Self) -> FoldChunksWith<I, U, F>` — [`FoldChunksWith`](#foldchunkswith)
+- `fn clone(self: &Self) -> FoldChunksWith<I, U, F>` — [`FoldChunksWith`](../index.md)
 
 ##### `impl<I: Debug, U: Debug, F> Debug for FoldChunksWith<I, U, F>`
 

@@ -159,7 +159,7 @@ side effects.
 
 ##### `impl Default for MarkdownCapture`
 
-- `fn default() -> MarkdownCapture` — [`MarkdownCapture`](capture/index.md)
+- `fn default() -> MarkdownCapture` — [`MarkdownCapture`](../index.md)
 
 ##### `impl<T> Instrument for MarkdownCapture`
 
@@ -269,7 +269,7 @@ This struct is passed to all rendering components and provides:
 
 ##### `impl LinkResolver for GeneratorContext<'_>`
 
-- `fn link_registry(self: &Self) -> Option<&LinkRegistry>` — [`LinkRegistry`](../linker/index.md)
+- `fn link_registry(self: &Self) -> Option<&LinkRegistry>` — [`LinkRegistry`](../index.md)
 
 - `fn process_docs(self: &Self, item: &Item, current_file: &str) -> Option<String>`
 
@@ -350,7 +350,7 @@ Links inside fenced code blocks are not processed.
 
 #### Implementations
 
-- `fn new(krate: &'a Crate, link_registry: &'a LinkRegistry, current_file: &'a str) -> Self` — [`LinkRegistry`](../linker/index.md)
+- `fn new(krate: &'a Crate, link_registry: &'a LinkRegistry, current_file: &'a str) -> Self` — [`LinkRegistry`](../index.md)
 
 - `fn process(self: &Self, docs: &str, item_links: &HashMap<String, Id>) -> String`
 
@@ -432,7 +432,7 @@ including:
 - Module-level documentation
 - Sections for each item type (Modules, Structs, Enums, etc.)
 
-The renderer is generic over [`RenderContext`](context/index.md), allowing it to work with
+The renderer is generic over [`RenderContext`](#rendercontext), allowing it to work with
 both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes.
 
 #### Fields
@@ -451,7 +451,7 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 #### Implementations
 
-- `fn new(ctx: &'a dyn RenderContext, current_file: &'a str, is_root: bool) -> Self` — [`RenderContext`](context/index.md)
+- `fn new(ctx: &'a dyn RenderContext, current_file: &'a str, is_root: bool) -> Self` — [`RenderContext`](#rendercontext)
 
 - `fn process_docs(self: &Self, item: &Item) -> Option<String>`
 
@@ -548,13 +548,13 @@ generator.generate()?;
 
 - `fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](../error/index.md)
 
-- `fn generate_to_capture(krate: &Crate, format: CliOutputFormat, include_private: bool) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](../index.md), [`MarkdownCapture`](capture/index.md), [`Error`](../error/index.md)
+- `fn generate_to_capture(krate: &Crate, format: CliOutputFormat, include_private: bool) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](../index.md), [`MarkdownCapture`](../index.md), [`Error`](../error/index.md)
 
-- `fn generate_flat_to_capture(ctx: &GeneratorContext<'_>, root: &Item, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](context/index.md), [`MarkdownCapture`](capture/index.md), [`Error`](../error/index.md)
+- `fn generate_flat_to_capture(ctx: &GeneratorContext<'_>, root: &Item, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](#generatorcontext), [`MarkdownCapture`](../index.md), [`Error`](../error/index.md)
 
-- `fn generate_flat_recursive_capture(ctx: &GeneratorContext<'_>, item: &Item, prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](context/index.md), [`MarkdownCapture`](capture/index.md), [`Error`](../error/index.md)
+- `fn generate_flat_recursive_capture(ctx: &GeneratorContext<'_>, item: &Item, prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](#generatorcontext), [`MarkdownCapture`](../index.md), [`Error`](../error/index.md)
 
-- `fn generate_nested_to_capture(ctx: &GeneratorContext<'_>, root: &Item, path_prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](context/index.md), [`MarkdownCapture`](capture/index.md), [`Error`](../error/index.md)
+- `fn generate_nested_to_capture(ctx: &GeneratorContext<'_>, root: &Item, path_prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](#generatorcontext), [`MarkdownCapture`](../index.md), [`Error`](../error/index.md)
 
 - `fn run(krate: &'a Crate, args: &'a Args) -> Result<(), Error>` — [`Args`](../index.md), [`Error`](../error/index.md)
 

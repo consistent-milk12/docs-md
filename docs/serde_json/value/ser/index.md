@@ -55,67 +55,67 @@ where
 
 - `type SerializeStructVariant = SerializeStructVariant`
 
-- `fn serialize_bool(self: Self, value: bool) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../index.md)
+- `fn serialize_bool(self: Self, value: bool) -> Result<Value>` — [`Result`](../../index.md), [`Value`](../../index.md)
 
-- `fn serialize_i8(self: Self, value: i8) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../index.md)
+- `fn serialize_i8(self: Self, value: i8) -> Result<Value>` — [`Result`](../../index.md), [`Value`](../../index.md)
 
-- `fn serialize_i16(self: Self, value: i16) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../index.md)
+- `fn serialize_i16(self: Self, value: i16) -> Result<Value>` — [`Result`](../../index.md), [`Value`](../../index.md)
 
-- `fn serialize_i32(self: Self, value: i32) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../index.md)
+- `fn serialize_i32(self: Self, value: i32) -> Result<Value>` — [`Result`](../../index.md), [`Value`](../../index.md)
 
-- `fn serialize_i64(self: Self, value: i64) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../index.md)
+- `fn serialize_i64(self: Self, value: i64) -> Result<Value>` — [`Result`](../../index.md), [`Value`](../../index.md)
 
-- `fn serialize_i128(self: Self, value: i128) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../index.md)
+- `fn serialize_i128(self: Self, value: i128) -> Result<Value>` — [`Result`](../../index.md), [`Value`](../../index.md)
 
-- `fn serialize_u8(self: Self, value: u8) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../index.md)
+- `fn serialize_u8(self: Self, value: u8) -> Result<Value>` — [`Result`](../../index.md), [`Value`](../../index.md)
 
-- `fn serialize_u16(self: Self, value: u16) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../index.md)
+- `fn serialize_u16(self: Self, value: u16) -> Result<Value>` — [`Result`](../../index.md), [`Value`](../../index.md)
 
-- `fn serialize_u32(self: Self, value: u32) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../index.md)
+- `fn serialize_u32(self: Self, value: u32) -> Result<Value>` — [`Result`](../../index.md), [`Value`](../../index.md)
 
-- `fn serialize_u64(self: Self, value: u64) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../index.md)
+- `fn serialize_u64(self: Self, value: u64) -> Result<Value>` — [`Result`](../../index.md), [`Value`](../../index.md)
 
-- `fn serialize_u128(self: Self, value: u128) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../index.md)
+- `fn serialize_u128(self: Self, value: u128) -> Result<Value>` — [`Result`](../../index.md), [`Value`](../../index.md)
 
-- `fn serialize_f32(self: Self, float: f32) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../index.md)
+- `fn serialize_f32(self: Self, float: f32) -> Result<Value>` — [`Result`](../../index.md), [`Value`](../../index.md)
 
-- `fn serialize_f64(self: Self, float: f64) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../index.md)
+- `fn serialize_f64(self: Self, float: f64) -> Result<Value>` — [`Result`](../../index.md), [`Value`](../../index.md)
 
-- `fn serialize_char(self: Self, value: char) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../index.md)
+- `fn serialize_char(self: Self, value: char) -> Result<Value>` — [`Result`](../../index.md), [`Value`](../../index.md)
 
-- `fn serialize_str(self: Self, value: &str) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../index.md)
+- `fn serialize_str(self: Self, value: &str) -> Result<Value>` — [`Result`](../../index.md), [`Value`](../../index.md)
 
-- `fn serialize_bytes(self: Self, value: &[u8]) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../index.md)
+- `fn serialize_bytes(self: Self, value: &[u8]) -> Result<Value>` — [`Result`](../../index.md), [`Value`](../../index.md)
 
-- `fn serialize_unit(self: Self) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../index.md)
+- `fn serialize_unit(self: Self) -> Result<Value>` — [`Result`](../../index.md), [`Value`](../../index.md)
 
-- `fn serialize_unit_struct(self: Self, _name: &'static str) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../index.md)
+- `fn serialize_unit_struct(self: Self, _name: &'static str) -> Result<Value>` — [`Result`](../../index.md), [`Value`](../../index.md)
 
-- `fn serialize_unit_variant(self: Self, _name: &'static str, _variant_index: u32, variant: &'static str) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../index.md)
+- `fn serialize_unit_variant(self: Self, _name: &'static str, _variant_index: u32, variant: &'static str) -> Result<Value>` — [`Result`](../../index.md), [`Value`](../../index.md)
 
-- `fn serialize_newtype_struct<T>(self: Self, _name: &'static str, value: &T) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../index.md)
+- `fn serialize_newtype_struct<T>(self: Self, _name: &'static str, value: &T) -> Result<Value>` — [`Result`](../../index.md), [`Value`](../../index.md)
 
-- `fn serialize_newtype_variant<T>(self: Self, _name: &'static str, _variant_index: u32, variant: &'static str, value: &T) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../index.md)
+- `fn serialize_newtype_variant<T>(self: Self, _name: &'static str, _variant_index: u32, variant: &'static str, value: &T) -> Result<Value>` — [`Result`](../../index.md), [`Value`](../../index.md)
 
-- `fn serialize_none(self: Self) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../index.md)
+- `fn serialize_none(self: Self) -> Result<Value>` — [`Result`](../../index.md), [`Value`](../../index.md)
 
-- `fn serialize_some<T>(self: Self, value: &T) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../index.md)
+- `fn serialize_some<T>(self: Self, value: &T) -> Result<Value>` — [`Result`](../../index.md), [`Value`](../../index.md)
 
-- `fn serialize_seq(self: Self, len: Option<usize>) -> Result<<Self as >::SerializeSeq>` — [`Result`](../../error/index.md)
+- `fn serialize_seq(self: Self, len: Option<usize>) -> Result<<Self as >::SerializeSeq>` — [`Result`](../../index.md)
 
-- `fn serialize_tuple(self: Self, len: usize) -> Result<<Self as >::SerializeTuple>` — [`Result`](../../error/index.md)
+- `fn serialize_tuple(self: Self, len: usize) -> Result<<Self as >::SerializeTuple>` — [`Result`](../../index.md)
 
-- `fn serialize_tuple_struct(self: Self, _name: &'static str, len: usize) -> Result<<Self as >::SerializeTupleStruct>` — [`Result`](../../error/index.md)
+- `fn serialize_tuple_struct(self: Self, _name: &'static str, len: usize) -> Result<<Self as >::SerializeTupleStruct>` — [`Result`](../../index.md)
 
-- `fn serialize_tuple_variant(self: Self, _name: &'static str, _variant_index: u32, variant: &'static str, len: usize) -> Result<<Self as >::SerializeTupleVariant>` — [`Result`](../../error/index.md)
+- `fn serialize_tuple_variant(self: Self, _name: &'static str, _variant_index: u32, variant: &'static str, len: usize) -> Result<<Self as >::SerializeTupleVariant>` — [`Result`](../../index.md)
 
-- `fn serialize_map(self: Self, len: Option<usize>) -> Result<<Self as >::SerializeMap>` — [`Result`](../../error/index.md)
+- `fn serialize_map(self: Self, len: Option<usize>) -> Result<<Self as >::SerializeMap>` — [`Result`](../../index.md)
 
-- `fn serialize_struct(self: Self, name: &'static str, len: usize) -> Result<<Self as >::SerializeStruct>` — [`Result`](../../error/index.md)
+- `fn serialize_struct(self: Self, name: &'static str, len: usize) -> Result<<Self as >::SerializeStruct>` — [`Result`](../../index.md)
 
-- `fn serialize_struct_variant(self: Self, _name: &'static str, _variant_index: u32, variant: &'static str, _len: usize) -> Result<<Self as >::SerializeStructVariant>` — [`Result`](../../error/index.md)
+- `fn serialize_struct_variant(self: Self, _name: &'static str, _variant_index: u32, variant: &'static str, _len: usize) -> Result<<Self as >::SerializeStructVariant>` — [`Result`](../../index.md)
 
-- `fn collect_str<T>(self: Self, value: &T) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../index.md)
+- `fn collect_str<T>(self: Self, value: &T) -> Result<Value>` — [`Result`](../../index.md), [`Value`](../../index.md)
 
 ### `SerializeVec`
 
@@ -133,9 +133,9 @@ struct SerializeVec {
 
 - `type Error = Error`
 
-- `fn serialize_element<T>(self: &mut Self, value: &T) -> Result<()>` — [`Result`](../../error/index.md)
+- `fn serialize_element<T>(self: &mut Self, value: &T) -> Result<()>` — [`Result`](../../index.md)
 
-- `fn end(self: Self) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../index.md)
+- `fn end(self: Self) -> Result<Value>` — [`Result`](../../index.md), [`Value`](../../index.md)
 
 ##### `impl SerializeTuple for SerializeVec`
 
@@ -143,9 +143,9 @@ struct SerializeVec {
 
 - `type Error = Error`
 
-- `fn serialize_element<T>(self: &mut Self, value: &T) -> Result<()>` — [`Result`](../../error/index.md)
+- `fn serialize_element<T>(self: &mut Self, value: &T) -> Result<()>` — [`Result`](../../index.md)
 
-- `fn end(self: Self) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../index.md)
+- `fn end(self: Self) -> Result<Value>` — [`Result`](../../index.md), [`Value`](../../index.md)
 
 ##### `impl SerializeTupleStruct for SerializeVec`
 
@@ -153,9 +153,9 @@ struct SerializeVec {
 
 - `type Error = Error`
 
-- `fn serialize_field<T>(self: &mut Self, value: &T) -> Result<()>` — [`Result`](../../error/index.md)
+- `fn serialize_field<T>(self: &mut Self, value: &T) -> Result<()>` — [`Result`](../../index.md)
 
-- `fn end(self: Self) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../index.md)
+- `fn end(self: Self) -> Result<Value>` — [`Result`](../../index.md), [`Value`](../../index.md)
 
 ### `SerializeTupleVariant`
 
@@ -174,9 +174,9 @@ struct SerializeTupleVariant {
 
 - `type Error = Error`
 
-- `fn serialize_field<T>(self: &mut Self, value: &T) -> Result<()>` — [`Result`](../../error/index.md)
+- `fn serialize_field<T>(self: &mut Self, value: &T) -> Result<()>` — [`Result`](../../index.md)
 
-- `fn end(self: Self) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../index.md)
+- `fn end(self: Self) -> Result<Value>` — [`Result`](../../index.md), [`Value`](../../index.md)
 
 ### `SerializeStructVariant`
 
@@ -195,9 +195,9 @@ struct SerializeStructVariant {
 
 - `type Error = Error`
 
-- `fn serialize_field<T>(self: &mut Self, key: &'static str, value: &T) -> Result<()>` — [`Result`](../../error/index.md)
+- `fn serialize_field<T>(self: &mut Self, key: &'static str, value: &T) -> Result<()>` — [`Result`](../../index.md)
 
-- `fn end(self: Self) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../index.md)
+- `fn end(self: Self) -> Result<Value>` — [`Result`](../../index.md), [`Value`](../../index.md)
 
 ### `MapKeySerializer`
 
@@ -227,67 +227,67 @@ struct MapKeySerializer;
 
 - `type SerializeStructVariant = Impossible<String, Error>`
 
-- `fn serialize_unit_variant(self: Self, _name: &'static str, _variant_index: u32, variant: &'static str) -> Result<String>` — [`Result`](../../error/index.md)
+- `fn serialize_unit_variant(self: Self, _name: &'static str, _variant_index: u32, variant: &'static str) -> Result<String>` — [`Result`](../../index.md)
 
-- `fn serialize_newtype_struct<T>(self: Self, _name: &'static str, value: &T) -> Result<String>` — [`Result`](../../error/index.md)
+- `fn serialize_newtype_struct<T>(self: Self, _name: &'static str, value: &T) -> Result<String>` — [`Result`](../../index.md)
 
-- `fn serialize_bool(self: Self, value: bool) -> Result<String>` — [`Result`](../../error/index.md)
+- `fn serialize_bool(self: Self, value: bool) -> Result<String>` — [`Result`](../../index.md)
 
-- `fn serialize_i8(self: Self, value: i8) -> Result<String>` — [`Result`](../../error/index.md)
+- `fn serialize_i8(self: Self, value: i8) -> Result<String>` — [`Result`](../../index.md)
 
-- `fn serialize_i16(self: Self, value: i16) -> Result<String>` — [`Result`](../../error/index.md)
+- `fn serialize_i16(self: Self, value: i16) -> Result<String>` — [`Result`](../../index.md)
 
-- `fn serialize_i32(self: Self, value: i32) -> Result<String>` — [`Result`](../../error/index.md)
+- `fn serialize_i32(self: Self, value: i32) -> Result<String>` — [`Result`](../../index.md)
 
-- `fn serialize_i64(self: Self, value: i64) -> Result<String>` — [`Result`](../../error/index.md)
+- `fn serialize_i64(self: Self, value: i64) -> Result<String>` — [`Result`](../../index.md)
 
-- `fn serialize_i128(self: Self, value: i128) -> Result<String>` — [`Result`](../../error/index.md)
+- `fn serialize_i128(self: Self, value: i128) -> Result<String>` — [`Result`](../../index.md)
 
-- `fn serialize_u8(self: Self, value: u8) -> Result<String>` — [`Result`](../../error/index.md)
+- `fn serialize_u8(self: Self, value: u8) -> Result<String>` — [`Result`](../../index.md)
 
-- `fn serialize_u16(self: Self, value: u16) -> Result<String>` — [`Result`](../../error/index.md)
+- `fn serialize_u16(self: Self, value: u16) -> Result<String>` — [`Result`](../../index.md)
 
-- `fn serialize_u32(self: Self, value: u32) -> Result<String>` — [`Result`](../../error/index.md)
+- `fn serialize_u32(self: Self, value: u32) -> Result<String>` — [`Result`](../../index.md)
 
-- `fn serialize_u64(self: Self, value: u64) -> Result<String>` — [`Result`](../../error/index.md)
+- `fn serialize_u64(self: Self, value: u64) -> Result<String>` — [`Result`](../../index.md)
 
-- `fn serialize_u128(self: Self, value: u128) -> Result<String>` — [`Result`](../../error/index.md)
+- `fn serialize_u128(self: Self, value: u128) -> Result<String>` — [`Result`](../../index.md)
 
-- `fn serialize_f32(self: Self, value: f32) -> Result<String>` — [`Result`](../../error/index.md)
+- `fn serialize_f32(self: Self, value: f32) -> Result<String>` — [`Result`](../../index.md)
 
-- `fn serialize_f64(self: Self, value: f64) -> Result<String>` — [`Result`](../../error/index.md)
+- `fn serialize_f64(self: Self, value: f64) -> Result<String>` — [`Result`](../../index.md)
 
-- `fn serialize_char(self: Self, value: char) -> Result<String>` — [`Result`](../../error/index.md)
+- `fn serialize_char(self: Self, value: char) -> Result<String>` — [`Result`](../../index.md)
 
-- `fn serialize_str(self: Self, value: &str) -> Result<String>` — [`Result`](../../error/index.md)
+- `fn serialize_str(self: Self, value: &str) -> Result<String>` — [`Result`](../../index.md)
 
-- `fn serialize_bytes(self: Self, _value: &[u8]) -> Result<String>` — [`Result`](../../error/index.md)
+- `fn serialize_bytes(self: Self, _value: &[u8]) -> Result<String>` — [`Result`](../../index.md)
 
-- `fn serialize_unit(self: Self) -> Result<String>` — [`Result`](../../error/index.md)
+- `fn serialize_unit(self: Self) -> Result<String>` — [`Result`](../../index.md)
 
-- `fn serialize_unit_struct(self: Self, _name: &'static str) -> Result<String>` — [`Result`](../../error/index.md)
+- `fn serialize_unit_struct(self: Self, _name: &'static str) -> Result<String>` — [`Result`](../../index.md)
 
-- `fn serialize_newtype_variant<T>(self: Self, _name: &'static str, _variant_index: u32, _variant: &'static str, _value: &T) -> Result<String>` — [`Result`](../../error/index.md)
+- `fn serialize_newtype_variant<T>(self: Self, _name: &'static str, _variant_index: u32, _variant: &'static str, _value: &T) -> Result<String>` — [`Result`](../../index.md)
 
-- `fn serialize_none(self: Self) -> Result<String>` — [`Result`](../../error/index.md)
+- `fn serialize_none(self: Self) -> Result<String>` — [`Result`](../../index.md)
 
-- `fn serialize_some<T>(self: Self, _value: &T) -> Result<String>` — [`Result`](../../error/index.md)
+- `fn serialize_some<T>(self: Self, _value: &T) -> Result<String>` — [`Result`](../../index.md)
 
-- `fn serialize_seq(self: Self, _len: Option<usize>) -> Result<<Self as >::SerializeSeq>` — [`Result`](../../error/index.md)
+- `fn serialize_seq(self: Self, _len: Option<usize>) -> Result<<Self as >::SerializeSeq>` — [`Result`](../../index.md)
 
-- `fn serialize_tuple(self: Self, _len: usize) -> Result<<Self as >::SerializeTuple>` — [`Result`](../../error/index.md)
+- `fn serialize_tuple(self: Self, _len: usize) -> Result<<Self as >::SerializeTuple>` — [`Result`](../../index.md)
 
-- `fn serialize_tuple_struct(self: Self, _name: &'static str, _len: usize) -> Result<<Self as >::SerializeTupleStruct>` — [`Result`](../../error/index.md)
+- `fn serialize_tuple_struct(self: Self, _name: &'static str, _len: usize) -> Result<<Self as >::SerializeTupleStruct>` — [`Result`](../../index.md)
 
-- `fn serialize_tuple_variant(self: Self, _name: &'static str, _variant_index: u32, _variant: &'static str, _len: usize) -> Result<<Self as >::SerializeTupleVariant>` — [`Result`](../../error/index.md)
+- `fn serialize_tuple_variant(self: Self, _name: &'static str, _variant_index: u32, _variant: &'static str, _len: usize) -> Result<<Self as >::SerializeTupleVariant>` — [`Result`](../../index.md)
 
-- `fn serialize_map(self: Self, _len: Option<usize>) -> Result<<Self as >::SerializeMap>` — [`Result`](../../error/index.md)
+- `fn serialize_map(self: Self, _len: Option<usize>) -> Result<<Self as >::SerializeMap>` — [`Result`](../../index.md)
 
-- `fn serialize_struct(self: Self, _name: &'static str, _len: usize) -> Result<<Self as >::SerializeStruct>` — [`Result`](../../error/index.md)
+- `fn serialize_struct(self: Self, _name: &'static str, _len: usize) -> Result<<Self as >::SerializeStruct>` — [`Result`](../../index.md)
 
-- `fn serialize_struct_variant(self: Self, _name: &'static str, _variant_index: u32, _variant: &'static str, _len: usize) -> Result<<Self as >::SerializeStructVariant>` — [`Result`](../../error/index.md)
+- `fn serialize_struct_variant(self: Self, _name: &'static str, _variant_index: u32, _variant: &'static str, _len: usize) -> Result<<Self as >::SerializeStructVariant>` — [`Result`](../../index.md)
 
-- `fn collect_str<T>(self: Self, value: &T) -> Result<String>` — [`Result`](../../error/index.md)
+- `fn collect_str<T>(self: Self, value: &T) -> Result<String>` — [`Result`](../../index.md)
 
 ## Enums
 
@@ -310,11 +310,11 @@ enum SerializeMap {
 
 - `type Error = Error`
 
-- `fn serialize_key<T>(self: &mut Self, key: &T) -> Result<()>` — [`Result`](../../error/index.md)
+- `fn serialize_key<T>(self: &mut Self, key: &T) -> Result<()>` — [`Result`](../../index.md)
 
-- `fn serialize_value<T>(self: &mut Self, value: &T) -> Result<()>` — [`Result`](../../error/index.md)
+- `fn serialize_value<T>(self: &mut Self, value: &T) -> Result<()>` — [`Result`](../../index.md)
 
-- `fn end(self: Self) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../index.md)
+- `fn end(self: Self) -> Result<Value>` — [`Result`](../../index.md), [`Value`](../../index.md)
 
 ##### `impl SerializeStruct for SerializeMap`
 
@@ -322,9 +322,9 @@ enum SerializeMap {
 
 - `type Error = Error`
 
-- `fn serialize_field<T>(self: &mut Self, key: &'static str, value: &T) -> Result<()>` — [`Result`](../../error/index.md)
+- `fn serialize_field<T>(self: &mut Self, key: &'static str, value: &T) -> Result<()>` — [`Result`](../../index.md)
 
-- `fn end(self: Self) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../index.md)
+- `fn end(self: Self) -> Result<Value>` — [`Result`](../../index.md), [`Value`](../../index.md)
 
 ## Functions
 

@@ -15,7 +15,7 @@ struct Rev<I> {
 ```
 
 `Rev` is an iterator that produces elements in reverse order. This struct
-is created by the `rev()` method on [`IndexedParallelIterator`](../index.md)
+is created by the `rev()` method on [`IndexedParallelIterator`](../../prelude/index.md)
 
 
 #### Implementations
@@ -26,7 +26,7 @@ is created by the `rev()` method on [`IndexedParallelIterator`](../index.md)
 
 ##### `impl<I: $crate::clone::Clone> Clone for Rev<I>`
 
-- `fn clone(self: &Self) -> Rev<I>` — [`Rev`](#rev)
+- `fn clone(self: &Self) -> Rev<I>` — [`Rev`](../index.md)
 
 ##### `impl<I: $crate::fmt::Debug> Debug for Rev<I>`
 

@@ -16,7 +16,7 @@ struct FlatMapIter<I, F> {
 ```
 
 `FlatMapIter` maps each element to a serial iterator, then flattens these iterators together.
-This struct is created by the `flat_map_iter()` method on [`ParallelIterator`](../index.md)
+This struct is created by the `flat_map_iter()` method on [`ParallelIterator`](../../prelude/index.md)
 
 
 #### Implementations
@@ -27,7 +27,7 @@ This struct is created by the `flat_map_iter()` method on [`ParallelIterator`](.
 
 ##### `impl<I: $crate::clone::Clone, F: $crate::clone::Clone> Clone for FlatMapIter<I, F>`
 
-- `fn clone(self: &Self) -> FlatMapIter<I, F>` — [`FlatMapIter`](#flatmapiter)
+- `fn clone(self: &Self) -> FlatMapIter<I, F>` — [`FlatMapIter`](../index.md)
 
 ##### `impl<I: Debug, F> Debug for FlatMapIter<I, F>`
 

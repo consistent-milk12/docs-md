@@ -4,7 +4,7 @@
 
 # Module `styling`
 
-Terminal [`Styles`](#styles) for help and error output
+Terminal [`Styles`](../index.md) for help and error output
 
 ## Structs
 
@@ -43,27 +43,23 @@ let styles = Styles::styled()
 
 #### Implementations
 
-- `const fn plain() -> Self`
+- `const fn get_header(self: &Self) -> &Style`
 
-- `const fn styled() -> Self`
+- `const fn get_error(self: &Self) -> &Style`
 
-- `const fn header(self: Self, style: Style) -> Self`
+- `const fn get_usage(self: &Self) -> &Style`
 
-- `const fn error(self: Self, style: Style) -> Self`
+- `const fn get_literal(self: &Self) -> &Style`
 
-- `const fn usage(self: Self, style: Style) -> Self`
+- `const fn get_placeholder(self: &Self) -> &Style`
 
-- `const fn literal(self: Self, style: Style) -> Self`
+- `const fn get_valid(self: &Self) -> &Style`
 
-- `const fn placeholder(self: Self, style: Style) -> Self`
+- `const fn get_invalid(self: &Self) -> &Style`
 
-- `const fn valid(self: Self, style: Style) -> Self`
+- `const fn get_context(self: &Self) -> &Style`
 
-- `const fn invalid(self: Self, style: Style) -> Self`
-
-- `const fn context(self: Self, style: Style) -> Self`
-
-- `const fn context_value(self: Self, style: Style) -> Self`
+- `const fn get_context_value(self: &Self) -> &Style`
 
 #### Trait Implementations
 
@@ -71,7 +67,7 @@ let styles = Styles::styled()
 
 ##### `impl Clone for Styles`
 
-- `fn clone(self: &Self) -> Styles` — [`Styles`](#styles)
+- `fn clone(self: &Self) -> Styles` — [`Styles`](../index.md)
 
 ##### `impl Debug for Styles`
 

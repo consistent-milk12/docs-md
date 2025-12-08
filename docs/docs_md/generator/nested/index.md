@@ -56,7 +56,7 @@ output/
 
 #### Implementations
 
-- `const fn new(ctx: &'a GeneratorContext<'a>, output_dir: &'a Path, progress: &'a ProgressBar) -> Self` — [`GeneratorContext`](../context/index.md)
+- `const fn new(ctx: &'a GeneratorContext<'a>, output_dir: &'a Path, progress: &'a ProgressBar) -> Self` — [`GeneratorContext`](../index.md)
 
 - `fn generate(self: &Self, root: &Item) -> Result<(), Error>` — [`Error`](../../error/index.md)
 

@@ -6,8 +6,8 @@
 
 Generic data structure deserialization framework.
 
-The two most important traits in this module are [`Deserialize`](#deserialize) and
-[`Deserializer`](#deserializer).
+The two most important traits in this module are [`Deserialize`](../index.md) and
+[`Deserializer`](../index.md).
 
  - **A type that implements `Deserialize` is a data structure** that can be
    deserialized from any data format supported by Serde, and conversely
@@ -16,26 +16,26 @@ The two most important traits in this module are [`Deserialize`](#deserialize) a
 
 # The Deserialize trait
 
-Serde provides [`Deserialize`](#deserialize) implementations for many Rust primitive and
+Serde provides [`Deserialize`](../index.md) implementations for many Rust primitive and
 standard library types. The complete list is below. All of these can be
 deserialized using Serde out of the box.
 
 Additionally, Serde provides a procedural macro called `serde_derive` to
-automatically generate [`Deserialize`](#deserialize) implementations for structs and enums
+automatically generate [`Deserialize`](../index.md) implementations for structs and enums
 in your program. See the [derive section of the manual] for how to use this.
 
-In rare cases it may be necessary to implement [`Deserialize`](#deserialize) manually for
+In rare cases it may be necessary to implement [`Deserialize`](../index.md) manually for
 some type in your program. See the [Implementing `Deserialize`] section of
 the manual for more about this.
 
-Third-party crates may provide [`Deserialize`](#deserialize) implementations for types
+Third-party crates may provide [`Deserialize`](../index.md) implementations for types
 that they expose. For example the `linked-hash-map` crate provides a
 `LinkedHashMap<K, V>` type that is deserializable by Serde because the
-crate provides an implementation of [`Deserialize`](#deserialize) for it.
+crate provides an implementation of [`Deserialize`](../index.md) for it.
 
 # The Deserializer trait
 
-[`Deserializer`](#deserializer) implementations are provided by third-party crates, for
+[`Deserializer`](../index.md) implementations are provided by third-party crates, for
 example `serde_json`, `serde_yaml` and `postcard`.
 
 A partial list of well-maintained formats is given on the [Serde
@@ -239,7 +239,7 @@ let s: String = NthElement::new(3).deserialize(deserializer)?;
 
 ##### `impl Clone for IgnoredAny`
 
-- `fn clone(self: &Self) -> IgnoredAny` — [`IgnoredAny`](ignored_any/index.md)
+- `fn clone(self: &Self) -> IgnoredAny` — [`IgnoredAny`](#ignoredany)
 
 ##### `impl Copy for IgnoredAny`
 
@@ -249,11 +249,11 @@ let s: String = NthElement::new(3).deserialize(deserializer)?;
 
 ##### `impl Default for IgnoredAny`
 
-- `fn default() -> IgnoredAny` — [`IgnoredAny`](ignored_any/index.md)
+- `fn default() -> IgnoredAny` — [`IgnoredAny`](#ignoredany)
 
 ##### `impl<'de> Deserialize for IgnoredAny`
 
-- `fn deserialize<D>(deserializer: D) -> Result<IgnoredAny, <D as >::Error>` — [`IgnoredAny`](ignored_any/index.md), [`Deserializer`](#deserializer)
+- `fn deserialize<D>(deserializer: D) -> Result<IgnoredAny, <D as >::Error>` — [`IgnoredAny`](#ignoredany), [`Deserializer`](../index.md)
 
 ##### `impl<T> DeserializeOwned for IgnoredAny`
 
@@ -263,7 +263,7 @@ let s: String = NthElement::new(3).deserialize(deserializer)?;
 
 ##### `impl PartialEq for IgnoredAny`
 
-- `fn eq(self: &Self, other: &IgnoredAny) -> bool` — [`IgnoredAny`](ignored_any/index.md)
+- `fn eq(self: &Self, other: &IgnoredAny) -> bool` — [`IgnoredAny`](#ignoredany)
 
 ##### `impl StructuralPartialEq for IgnoredAny`
 
@@ -327,7 +327,7 @@ The slice of names must not be empty.
 
 ##### `impl<T> ToString for OneOf`
 
-- `fn to_string(self: &Self) -> String`
+- `fn to_string(self: &Self) -> String` — [`String`](../lib/index.md)
 
 ### `WithDecimalPoint`
 
@@ -343,7 +343,7 @@ struct WithDecimalPoint(f64);
 
 ##### `impl<T> ToString for WithDecimalPoint`
 
-- `fn to_string(self: &Self) -> String`
+- `fn to_string(self: &Self) -> String` — [`String`](../lib/index.md)
 
 ## Enums
 
@@ -506,7 +506,7 @@ where
 
 ##### `impl<T> ToString for Unexpected<'a>`
 
-- `fn to_string(self: &Self) -> String`
+- `fn to_string(self: &Self) -> String` — [`String`](../lib/index.md)
 
 ## Traits
 

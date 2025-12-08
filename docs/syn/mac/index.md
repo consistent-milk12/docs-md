@@ -26,9 +26,9 @@ A macro invocation: `println!("{}", mac)`.
 
 #### Implementations
 
-- `fn parse_body<T: Parse>(self: &Self) -> Result<T>` — [`Result`](../error/index.md)
+- `fn parse_body<T: Parse>(self: &Self) -> Result<T>` — [`Result`](../index.md)
 
-- `fn parse_body_with<F: Parser>(self: &Self, parser: F) -> Result<<F as >::Output>` — [`Result`](../error/index.md), [`Parser`](../parse/index.md)
+- `fn parse_body_with<F: Parser>(self: &Self, parser: F) -> Result<<F as >::Output>` — [`Result`](../index.md), [`Parser`](../parse/index.md)
 
 #### Trait Implementations
 
@@ -48,7 +48,7 @@ A macro invocation: `println!("{}", mac)`.
 
 ##### `impl Parse for crate::mac::Macro`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::Macro`
 
@@ -80,9 +80,7 @@ A grouping token that surrounds a macro body: `m!(...)` or `m!{...}` or `m![...]
 
 #### Implementations
 
-- `fn span(self: &Self) -> &DelimSpan`
-
-- `fn is_brace(self: &Self) -> bool`
+- `fn surround(self: &Self, tokens: &mut TokenStream, inner: TokenStream)`
 
 #### Trait Implementations
 

@@ -16,7 +16,7 @@ struct Cloned<I> {
 
 `Cloned` is an iterator that clones the elements of an underlying iterator.
 
-This struct is created by the `cloned()` method on [`ParallelIterator`](../index.md)
+This struct is created by the `cloned()` method on [`ParallelIterator`](../../prelude/index.md)
 
 
 #### Implementations
@@ -27,7 +27,7 @@ This struct is created by the `cloned()` method on [`ParallelIterator`](../index
 
 ##### `impl<I: $crate::clone::Clone> Clone for Cloned<I>`
 
-- `fn clone(self: &Self) -> Cloned<I>` — [`Cloned`](#cloned)
+- `fn clone(self: &Self) -> Cloned<I>` — [`Cloned`](../index.md)
 
 ##### `impl<I: $crate::fmt::Debug> Debug for Cloned<I>`
 

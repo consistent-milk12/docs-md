@@ -4,19 +4,19 @@ Miscellaneous tools for concurrent programming.
 
 ## Atomics
 
-* [`AtomicCell`](atomic/atomic_cell/index.md), a thread-safe mutable memory location.
-* [`AtomicConsume`](atomic/consume/index.md), for reading from primitive atomic types with "consume" ordering.
+* [`AtomicCell`](atomic/index.md), a thread-safe mutable memory location.
+* [`AtomicConsume`](atomic/index.md), for reading from primitive atomic types with "consume" ordering.
 
 ## Thread synchronization
 
-* [`Parker`](sync/parker/index.md), a thread parking primitive.
-* [`ShardedLock`](sync/sharded_lock/index.md), a sharded reader-writer lock with fast concurrent reads.
-* [`WaitGroup`](sync/wait_group/index.md), for synchronizing the beginning or end of some computation.
+* [`Parker`](sync/index.md), a thread parking primitive.
+* [`ShardedLock`](sync/index.md), a sharded reader-writer lock with fast concurrent reads.
+* [`WaitGroup`](sync/index.md), for synchronizing the beginning or end of some computation.
 
 ## Utilities
 
-* [`Backoff`](backoff/index.md), for exponential backoff in spin loops.
-* [`CachePadded`](cache_padded/index.md), for padding and aligning a value to the length of a cache line.
+* [`Backoff`](#backoff), for exponential backoff in spin loops.
+* [`CachePadded`](#cachepadded), for padding and aligning a value to the length of a cache line.
 * [`scope`](thread/index.md), for spawning threads that borrow local variables from the stack.
 
 
@@ -105,7 +105,7 @@ struct Queue<T> {
 
 #### Implementations
 
-- `const fn new(t: T) -> CachePadded<T>` — [`CachePadded`](cache_padded/index.md)
+- `const fn new(t: T) -> CachePadded<T>` — [`CachePadded`](#cachepadded)
 
 - `fn into_inner(self: Self) -> T`
 
@@ -113,7 +113,7 @@ struct Queue<T> {
 
 ##### `impl<T: $crate::clone::Clone> Clone for CachePadded<T>`
 
-- `fn clone(self: &Self) -> CachePadded<T>` — [`CachePadded`](cache_padded/index.md)
+- `fn clone(self: &Self) -> CachePadded<T>` — [`CachePadded`](#cachepadded)
 
 ##### `impl<T: $crate::marker::Copy> Copy for CachePadded<T>`
 
@@ -123,7 +123,7 @@ struct Queue<T> {
 
 ##### `impl<T: $crate::default::Default> Default for CachePadded<T>`
 
-- `fn default() -> CachePadded<T>` — [`CachePadded`](cache_padded/index.md)
+- `fn default() -> CachePadded<T>` — [`CachePadded`](#cachepadded)
 
 ##### `impl<T> Deref for CachePadded<T>`
 
@@ -147,7 +147,7 @@ struct Queue<T> {
 
 ##### `impl<T: $crate::cmp::PartialEq> PartialEq for CachePadded<T>`
 
-- `fn eq(self: &Self, other: &CachePadded<T>) -> bool` — [`CachePadded`](cache_padded/index.md)
+- `fn eq(self: &Self, other: &CachePadded<T>) -> bool` — [`CachePadded`](#cachepadded)
 
 ##### `impl<P, T> Receiver for CachePadded<T>`
 
@@ -261,5 +261,5 @@ fn blocking_wait(ready: &AtomicBool) {
 
 ##### `impl Default for Backoff`
 
-- `fn default() -> Backoff` — [`Backoff`](backoff/index.md)
+- `fn default() -> Backoff` — [`Backoff`](#backoff)
 

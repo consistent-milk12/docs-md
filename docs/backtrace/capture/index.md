@@ -29,13 +29,13 @@ enabled, and the `std` feature is enabled by default.
 
 #### Implementations
 
-- `fn new() -> Backtrace` — [`Backtrace`](#backtrace)
+- `fn new() -> Backtrace` — [`Backtrace`](../index.md)
 
-- `fn new_unresolved() -> Backtrace` — [`Backtrace`](#backtrace)
+- `fn new_unresolved() -> Backtrace` — [`Backtrace`](../index.md)
 
-- `fn create(ip: usize) -> Backtrace` — [`Backtrace`](#backtrace)
+- `fn create(ip: usize) -> Backtrace` — [`Backtrace`](../index.md)
 
-- `fn frames(self: &Self) -> &[BacktraceFrame]` — [`BacktraceFrame`](#backtraceframe)
+- `fn frames(self: &Self) -> &[BacktraceFrame]` — [`BacktraceFrame`](../index.md)
 
 - `fn resolve(self: &mut Self)`
 
@@ -43,7 +43,7 @@ enabled, and the `std` feature is enabled by default.
 
 ##### `impl Clone for Backtrace`
 
-- `fn clone(self: &Self) -> Backtrace` — [`Backtrace`](#backtrace)
+- `fn clone(self: &Self) -> Backtrace` — [`Backtrace`](../index.md)
 
 ##### `impl Debug for Backtrace`
 
@@ -51,7 +51,7 @@ enabled, and the `std` feature is enabled by default.
 
 ##### `impl Default for Backtrace`
 
-- `fn default() -> Backtrace` — [`Backtrace`](#backtrace)
+- `fn default() -> Backtrace` — [`Backtrace`](../index.md)
 
 ### `TracePtr`
 
@@ -102,7 +102,7 @@ enabled, and the `std` feature is enabled by default.
 
 - `fn module_base_address(self: &Self) -> Option<*mut c_void>`
 
-- `fn symbols(self: &Self) -> &[BacktraceSymbol]` — [`BacktraceSymbol`](#backtracesymbol)
+- `fn symbols(self: &Self) -> &[BacktraceSymbol]` — [`BacktraceSymbol`](../index.md)
 
 - `fn resolve(self: &mut Self)`
 
@@ -110,7 +110,7 @@ enabled, and the `std` feature is enabled by default.
 
 ##### `impl Clone for BacktraceFrame`
 
-- `fn clone(self: &Self) -> BacktraceFrame` — [`BacktraceFrame`](#backtraceframe)
+- `fn clone(self: &Self) -> BacktraceFrame` — [`BacktraceFrame`](../index.md)
 
 ##### `impl Debug for BacktraceFrame`
 
@@ -140,7 +140,7 @@ enabled, and the `std` feature is enabled by default.
 
 #### Implementations
 
-- `fn name(self: &Self) -> Option<SymbolName<'_>>` — [`SymbolName`](../symbolize/index.md)
+- `fn name(self: &Self) -> Option<SymbolName<'_>>` — [`SymbolName`](../index.md)
 
 - `fn addr(self: &Self) -> Option<*mut c_void>`
 
@@ -154,7 +154,7 @@ enabled, and the `std` feature is enabled by default.
 
 ##### `impl Clone for BacktraceSymbol`
 
-- `fn clone(self: &Self) -> BacktraceSymbol` — [`BacktraceSymbol`](#backtracesymbol)
+- `fn clone(self: &Self) -> BacktraceSymbol` — [`BacktraceSymbol`](../index.md)
 
 ##### `impl Debug for BacktraceSymbol`
 
@@ -178,7 +178,7 @@ enum Frame {
 
 - `fn module_base_address(self: &Self) -> Option<*mut c_void>`
 
-- `fn resolve_symbols(self: &Self) -> Box<[BacktraceSymbol]>` — [`BacktraceSymbol`](#backtracesymbol)
+- `fn resolve_symbols(self: &Self) -> Box<[BacktraceSymbol]>` — [`BacktraceSymbol`](../index.md)
 
 #### Trait Implementations
 

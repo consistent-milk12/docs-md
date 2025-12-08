@@ -69,7 +69,7 @@ let cmd = clap::Command::new("mybin")
 
 ##### `impl Clone for StyledStr`
 
-- `fn clone(self: &Self) -> StyledStr` — [`StyledStr`](#styledstr)
+- `fn clone(self: &Self) -> StyledStr` — [`StyledStr`](../index.md)
 
 ##### `impl Debug for StyledStr`
 
@@ -77,7 +77,7 @@ let cmd = clap::Command::new("mybin")
 
 ##### `impl Default for StyledStr`
 
-- `fn default() -> StyledStr` — [`StyledStr`](#styledstr)
+- `fn default() -> StyledStr` — [`StyledStr`](../index.md)
 
 ##### `impl Display for StyledStr`
 
@@ -87,19 +87,19 @@ let cmd = clap::Command::new("mybin")
 
 ##### `impl<I> IntoResettable for StyledStr`
 
-- `fn into_resettable(self: Self) -> Resettable<StyledStr>` — [`Resettable`](../resettable/index.md), [`StyledStr`](#styledstr)
+- `fn into_resettable(self: Self) -> Resettable<StyledStr>` — [`Resettable`](../index.md), [`StyledStr`](../index.md)
 
 ##### `impl Ord for StyledStr`
 
-- `fn cmp(self: &Self, other: &StyledStr) -> $crate::cmp::Ordering` — [`StyledStr`](#styledstr)
+- `fn cmp(self: &Self, other: &StyledStr) -> $crate::cmp::Ordering` — [`StyledStr`](../index.md)
 
 ##### `impl PartialEq for StyledStr`
 
-- `fn eq(self: &Self, other: &StyledStr) -> bool` — [`StyledStr`](#styledstr)
+- `fn eq(self: &Self, other: &StyledStr) -> bool` — [`StyledStr`](../index.md)
 
 ##### `impl PartialOrd for StyledStr`
 
-- `fn partial_cmp(self: &Self, other: &StyledStr) -> $crate::option::Option<$crate::cmp::Ordering>` — [`StyledStr`](#styledstr)
+- `fn partial_cmp(self: &Self, other: &StyledStr) -> $crate::option::Option<$crate::cmp::Ordering>` — [`StyledStr`](../index.md)
 
 ##### `impl StructuralPartialEq for StyledStr`
 

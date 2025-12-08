@@ -15,7 +15,7 @@ struct FlattenIter<I> {
 ```
 
 `FlattenIter` turns each element to a serial iterator, then flattens these iterators
-together. This struct is created by the `flatten_iter()` method on [`ParallelIterator`](../index.md).
+together. This struct is created by the `flatten_iter()` method on [`ParallelIterator`](../../prelude/index.md).
 
 
 #### Implementations
@@ -26,7 +26,7 @@ together. This struct is created by the `flatten_iter()` method on [`ParallelIte
 
 ##### `impl<I: $crate::clone::Clone> Clone for FlattenIter<I>`
 
-- `fn clone(self: &Self) -> FlattenIter<I>` — [`FlattenIter`](#flatteniter)
+- `fn clone(self: &Self) -> FlattenIter<I>` — [`FlattenIter`](../index.md)
 
 ##### `impl<I: $crate::fmt::Debug> Debug for FlattenIter<I>`
 

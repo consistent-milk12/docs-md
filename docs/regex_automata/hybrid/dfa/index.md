@@ -95,15 +95,35 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn try_search_fwd(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<HalfMatch>, MatchError>` — [`Cache`](#cache), [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`MatchError`](../../index.md)
+- `fn new(pattern: &str) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../index.md)
 
-- `fn try_search_rev(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<HalfMatch>, MatchError>` — [`Cache`](#cache), [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`MatchError`](../../index.md)
+- `fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../index.md)
 
-- `fn try_search_overlapping_fwd(self: &Self, cache: &mut Cache, input: &Input<'_>, state: &mut OverlappingState) -> Result<(), MatchError>` — [`Cache`](#cache), [`Input`](../../index.md), [`OverlappingState`](#overlappingstate), [`MatchError`](../../index.md)
+- `fn always_match() -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../index.md)
 
-- `fn try_search_overlapping_rev(self: &Self, cache: &mut Cache, input: &Input<'_>, state: &mut OverlappingState) -> Result<(), MatchError>` — [`Cache`](#cache), [`Input`](../../index.md), [`OverlappingState`](#overlappingstate), [`MatchError`](../../index.md)
+- `fn never_match() -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../index.md)
 
-- `fn try_which_overlapping_matches(self: &Self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet) -> Result<(), MatchError>` — [`Cache`](#cache), [`Input`](../../index.md), [`PatternSet`](../../index.md), [`MatchError`](../../index.md)
+- `fn config() -> Config` — [`Config`](#config)
+
+- `fn builder() -> Builder` — [`Builder`](#builder)
+
+- `fn create_cache(self: &Self) -> Cache` — [`Cache`](#cache)
+
+- `fn reset_cache(self: &Self, cache: &mut Cache)` — [`Cache`](#cache)
+
+- `fn pattern_len(self: &Self) -> usize`
+
+- `fn byte_classes(self: &Self) -> &ByteClasses` — [`ByteClasses`](../../util/alphabet/index.md)
+
+- `fn get_config(self: &Self) -> &Config` — [`Config`](#config)
+
+- `fn get_nfa(self: &Self) -> &thompson::NFA` — [`NFA`](../../nfa/thompson/index.md)
+
+- `fn stride2(self: &Self) -> usize`
+
+- `fn stride(self: &Self) -> usize`
+
+- `fn memory_usage(self: &Self) -> usize`
 
 #### Trait Implementations
 
@@ -338,19 +358,19 @@ access to the cache.
 
 - `fn as_ref<'a>(self: &'a Self) -> LazyRef<'i, 'a>` — [`LazyRef`](#lazyref)
 
-- `fn cache_next_state(self: &mut Self, current: LazyStateID, unit: alphabet::Unit) -> Result<LazyStateID, CacheError>` — [`LazyStateID`](../id/index.md), [`Unit`](../../util/alphabet/index.md), [`CacheError`](../error/index.md)
+- `fn cache_next_state(self: &mut Self, current: LazyStateID, unit: alphabet::Unit) -> Result<LazyStateID, CacheError>` — [`LazyStateID`](../index.md), [`Unit`](../../util/alphabet/index.md), [`CacheError`](../index.md)
 
-- `fn cache_start_group(self: &mut Self, anchored: Anchored, start: Start) -> Result<LazyStateID, StartError>` — [`Anchored`](../../index.md), [`Start`](../../util/start/index.md), [`LazyStateID`](../id/index.md), [`StartError`](../error/index.md)
+- `fn cache_start_group(self: &mut Self, anchored: Anchored, start: Start) -> Result<LazyStateID, StartError>` — [`Anchored`](../../index.md), [`Start`](../../util/start/index.md), [`LazyStateID`](../index.md), [`StartError`](../index.md)
 
-- `fn cache_start_one(self: &mut Self, nfa_start_id: NFAStateID, start: Start) -> Result<LazyStateID, CacheError>` — [`StateID`](../../util/primitives/index.md), [`Start`](../../util/start/index.md), [`LazyStateID`](../id/index.md), [`CacheError`](../error/index.md)
+- `fn cache_start_one(self: &mut Self, nfa_start_id: NFAStateID, start: Start) -> Result<LazyStateID, CacheError>` — [`StateID`](../../util/primitives/index.md), [`Start`](../../util/start/index.md), [`LazyStateID`](../index.md), [`CacheError`](../index.md)
 
-- `fn add_builder_state(self: &mut Self, builder: StateBuilderNFA, idmap: impl Fn(LazyStateID) -> LazyStateID) -> Result<LazyStateID, CacheError>` — [`StateBuilderNFA`](../../util/determinize/state/index.md), [`LazyStateID`](../id/index.md), [`CacheError`](../error/index.md)
+- `fn add_builder_state(self: &mut Self, builder: StateBuilderNFA, idmap: impl Fn(LazyStateID) -> LazyStateID) -> Result<LazyStateID, CacheError>` — [`StateBuilderNFA`](../../util/determinize/state/index.md), [`LazyStateID`](../index.md), [`CacheError`](../index.md)
 
-- `fn add_state(self: &mut Self, state: State, idmap: impl Fn(LazyStateID) -> LazyStateID) -> Result<LazyStateID, CacheError>` — [`State`](../../util/determinize/state/index.md), [`LazyStateID`](../id/index.md), [`CacheError`](../error/index.md)
+- `fn add_state(self: &mut Self, state: State, idmap: impl Fn(LazyStateID) -> LazyStateID) -> Result<LazyStateID, CacheError>` — [`State`](../../util/determinize/state/index.md), [`LazyStateID`](../index.md), [`CacheError`](../index.md)
 
-- `fn next_state_id(self: &mut Self) -> Result<LazyStateID, CacheError>` — [`LazyStateID`](../id/index.md), [`CacheError`](../error/index.md)
+- `fn next_state_id(self: &mut Self) -> Result<LazyStateID, CacheError>` — [`LazyStateID`](../index.md), [`CacheError`](../index.md)
 
-- `fn try_clear_cache(self: &mut Self) -> Result<(), CacheError>` — [`CacheError`](../error/index.md)
+- `fn try_clear_cache(self: &mut Self) -> Result<(), CacheError>` — [`CacheError`](../index.md)
 
 - `fn reset_cache(self: &mut Self)`
 
@@ -358,15 +378,15 @@ access to the cache.
 
 - `fn init_cache(self: &mut Self)`
 
-- `fn save_state(self: &mut Self, id: LazyStateID)` — [`LazyStateID`](../id/index.md)
+- `fn save_state(self: &mut Self, id: LazyStateID)` — [`LazyStateID`](../index.md)
 
-- `fn saved_state_id(self: &mut Self) -> LazyStateID` — [`LazyStateID`](../id/index.md)
+- `fn saved_state_id(self: &mut Self) -> LazyStateID` — [`LazyStateID`](../index.md)
 
-- `fn set_all_transitions(self: &mut Self, from: LazyStateID, to: LazyStateID)` — [`LazyStateID`](../id/index.md)
+- `fn set_all_transitions(self: &mut Self, from: LazyStateID, to: LazyStateID)` — [`LazyStateID`](../index.md)
 
-- `fn set_transition(self: &mut Self, from: LazyStateID, unit: alphabet::Unit, to: LazyStateID)` — [`LazyStateID`](../id/index.md), [`Unit`](../../util/alphabet/index.md)
+- `fn set_transition(self: &mut Self, from: LazyStateID, unit: alphabet::Unit, to: LazyStateID)` — [`LazyStateID`](../index.md), [`Unit`](../../util/alphabet/index.md)
 
-- `fn set_start_state(self: &mut Self, anchored: Anchored, start: Start, id: LazyStateID)` — [`Anchored`](../../index.md), [`Start`](../../util/start/index.md), [`LazyStateID`](../id/index.md)
+- `fn set_start_state(self: &mut Self, anchored: Anchored, start: Start, id: LazyStateID)` — [`Anchored`](../../index.md), [`Start`](../../util/start/index.md), [`LazyStateID`](../index.md)
 
 - `fn get_state_builder(self: &mut Self) -> StateBuilderEmpty` — [`StateBuilderEmpty`](../../util/determinize/state/index.md)
 
@@ -394,19 +414,19 @@ access to the cache.
 
 - `fn new(dfa: &'i DFA, cache: &'c Cache) -> LazyRef<'i, 'c>` — [`DFA`](#dfa), [`Cache`](#cache), [`LazyRef`](#lazyref)
 
-- `fn get_cached_start_id(self: &Self, anchored: Anchored, start: Start) -> Result<LazyStateID, StartError>` — [`Anchored`](../../index.md), [`Start`](../../util/start/index.md), [`LazyStateID`](../id/index.md), [`StartError`](../error/index.md)
+- `fn get_cached_start_id(self: &Self, anchored: Anchored, start: Start) -> Result<LazyStateID, StartError>` — [`Anchored`](../../index.md), [`Start`](../../util/start/index.md), [`LazyStateID`](../index.md), [`StartError`](../index.md)
 
-- `fn get_cached_state(self: &Self, sid: LazyStateID) -> &State` — [`LazyStateID`](../id/index.md), [`State`](../../util/determinize/state/index.md)
+- `fn get_cached_state(self: &Self, sid: LazyStateID) -> &State` — [`LazyStateID`](../index.md), [`State`](../../util/determinize/state/index.md)
 
-- `fn is_sentinel(self: &Self, id: LazyStateID) -> bool` — [`LazyStateID`](../id/index.md)
+- `fn is_sentinel(self: &Self, id: LazyStateID) -> bool` — [`LazyStateID`](../index.md)
 
-- `fn unknown_id(self: &Self) -> LazyStateID` — [`LazyStateID`](../id/index.md)
+- `fn unknown_id(self: &Self) -> LazyStateID` — [`LazyStateID`](../index.md)
 
-- `fn dead_id(self: &Self) -> LazyStateID` — [`LazyStateID`](../id/index.md)
+- `fn dead_id(self: &Self) -> LazyStateID` — [`LazyStateID`](../index.md)
 
-- `fn quit_id(self: &Self) -> LazyStateID` — [`LazyStateID`](../id/index.md)
+- `fn quit_id(self: &Self) -> LazyStateID` — [`LazyStateID`](../index.md)
 
-- `fn is_valid(self: &Self, id: LazyStateID) -> bool` — [`LazyStateID`](../id/index.md)
+- `fn is_valid(self: &Self, id: LazyStateID) -> bool` — [`LazyStateID`](../index.md)
 
 - `fn state_fits_in_cache(self: &Self, state: &State) -> bool` — [`State`](../../util/determinize/state/index.md)
 
@@ -500,11 +520,11 @@ default) and an [`Anchored::Pattern`](../../index.md) mode is requested via [`In
 
 - `fn get_minimum_bytes_per_state(self: &Self) -> Option<usize>`
 
-- `fn get_minimum_cache_capacity(self: &Self, nfa: &thompson::NFA) -> Result<usize, BuildError>` — [`NFA`](../../nfa/thompson/nfa/index.md), [`BuildError`](../error/index.md)
+- `fn get_minimum_cache_capacity(self: &Self, nfa: &thompson::NFA) -> Result<usize, BuildError>` — [`NFA`](../../nfa/thompson/index.md), [`BuildError`](../index.md)
 
-- `fn byte_classes_from_nfa(self: &Self, nfa: &thompson::NFA, quit: &ByteSet) -> ByteClasses` — [`NFA`](../../nfa/thompson/nfa/index.md), [`ByteSet`](../../util/alphabet/index.md), [`ByteClasses`](../../util/alphabet/index.md)
+- `fn byte_classes_from_nfa(self: &Self, nfa: &thompson::NFA, quit: &ByteSet) -> ByteClasses` — [`NFA`](../../nfa/thompson/index.md), [`ByteSet`](../../util/alphabet/index.md), [`ByteClasses`](../../util/alphabet/index.md)
 
-- `fn quit_set_from_nfa(self: &Self, nfa: &thompson::NFA) -> Result<ByteSet, BuildError>` — [`NFA`](../../nfa/thompson/nfa/index.md), [`ByteSet`](../../util/alphabet/index.md), [`BuildError`](../error/index.md)
+- `fn quit_set_from_nfa(self: &Self, nfa: &thompson::NFA) -> Result<ByteSet, BuildError>` — [`NFA`](../../nfa/thompson/index.md), [`ByteSet`](../../util/alphabet/index.md), [`BuildError`](../index.md)
 
 - `fn overwrite(self: &Self, o: Config) -> Config` — [`Config`](#config)
 
@@ -601,17 +621,17 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - `fn new() -> Builder` — [`Builder`](#builder)
 
-- `fn build(self: &Self, pattern: &str) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../error/index.md)
+- `fn build(self: &Self, pattern: &str) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../index.md)
 
-- `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../error/index.md)
+- `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../index.md)
 
-- `fn build_from_nfa(self: &Self, nfa: thompson::NFA) -> Result<DFA, BuildError>` — [`NFA`](../../nfa/thompson/nfa/index.md), [`DFA`](#dfa), [`BuildError`](../error/index.md)
+- `fn build_from_nfa(self: &Self, nfa: thompson::NFA) -> Result<DFA, BuildError>` — [`NFA`](../../nfa/thompson/index.md), [`DFA`](#dfa), [`BuildError`](../index.md)
 
 - `fn configure(self: &mut Self, config: Config) -> &mut Builder` — [`Config`](#config), [`Builder`](#builder)
 
 - `fn syntax(self: &mut Self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../util/syntax/index.md), [`Builder`](#builder)
 
-- `fn thompson(self: &mut Self, config: thompson::Config) -> &mut Builder` — [`Config`](../../nfa/thompson/compiler/index.md), [`Builder`](#builder)
+- `fn thompson(self: &mut Self, config: thompson::Config) -> &mut Builder` — [`Config`](../../nfa/thompson/index.md), [`Builder`](#builder)
 
 #### Trait Implementations
 
@@ -771,9 +791,9 @@ saved itself with Saved.
 
 - `fn none() -> StateSaver` — [`StateSaver`](#statesaver)
 
-- `fn take_to_save(self: &mut Self) -> Option<(LazyStateID, State)>` — [`LazyStateID`](../id/index.md), [`State`](../../util/determinize/state/index.md)
+- `fn take_to_save(self: &mut Self) -> Option<(LazyStateID, State)>` — [`LazyStateID`](../index.md), [`State`](../../util/determinize/state/index.md)
 
-- `fn take_saved(self: &mut Self) -> Option<LazyStateID>` — [`LazyStateID`](../id/index.md)
+- `fn take_saved(self: &mut Self) -> Option<LazyStateID>` — [`LazyStateID`](../index.md)
 
 #### Trait Implementations
 

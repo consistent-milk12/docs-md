@@ -168,15 +168,15 @@ It is also possible to implement your own version of `try_find`. See the
 
 - `const DEAD: StateID`
 
-- `fn set_matches(self: &mut Self, sid: StateID, pids: impl Iterator<Item = PatternID>)` — [`StateID`](../util/primitives/index.md), [`PatternID`](../util/primitives/index.md)
+- `fn set_matches(self: &mut Self, sid: StateID, pids: impl Iterator<Item = PatternID>)` — [`StateID`](../util/primitives/index.md), [`PatternID`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Automaton for DFA`
 
-- `fn start_state(self: &Self, anchored: Anchored) -> Result<StateID, MatchError>` — [`Anchored`](../util/search/index.md), [`StateID`](../util/primitives/index.md), [`MatchError`](../util/error/index.md)
+- `fn start_state(self: &Self, anchored: Anchored) -> Result<StateID, MatchError>` — [`Anchored`](../index.md), [`StateID`](../util/primitives/index.md), [`MatchError`](../index.md)
 
-- `fn next_state(self: &Self, _anchored: Anchored, sid: StateID, byte: u8) -> StateID` — [`Anchored`](../util/search/index.md), [`StateID`](../util/primitives/index.md)
+- `fn next_state(self: &Self, _anchored: Anchored, sid: StateID, byte: u8) -> StateID` — [`Anchored`](../index.md), [`StateID`](../util/primitives/index.md)
 
 - `fn is_special(self: &Self, sid: StateID) -> bool` — [`StateID`](../util/primitives/index.md)
 
@@ -186,11 +186,11 @@ It is also possible to implement your own version of `try_find`. See the
 
 - `fn is_start(self: &Self, sid: StateID) -> bool` — [`StateID`](../util/primitives/index.md)
 
-- `fn match_kind(self: &Self) -> MatchKind` — [`MatchKind`](../util/search/index.md)
+- `fn match_kind(self: &Self) -> MatchKind` — [`MatchKind`](../index.md)
 
 - `fn patterns_len(self: &Self) -> usize`
 
-- `fn pattern_len(self: &Self, pid: PatternID) -> usize` — [`PatternID`](../util/primitives/index.md)
+- `fn pattern_len(self: &Self, pid: PatternID) -> usize` — [`PatternID`](../index.md)
 
 - `fn min_pattern_len(self: &Self) -> usize`
 
@@ -198,7 +198,7 @@ It is also possible to implement your own version of `try_find`. See the
 
 - `fn match_len(self: &Self, sid: StateID) -> usize` — [`StateID`](../util/primitives/index.md)
 
-- `fn match_pattern(self: &Self, sid: StateID, index: usize) -> PatternID` — [`StateID`](../util/primitives/index.md), [`PatternID`](../util/primitives/index.md)
+- `fn match_pattern(self: &Self, sid: StateID, index: usize) -> PatternID` — [`StateID`](../util/primitives/index.md), [`PatternID`](../index.md)
 
 - `fn memory_usage(self: &Self) -> usize`
 
@@ -234,21 +234,21 @@ their behavior is identical.
 
 - `fn new() -> Builder` — [`Builder`](#builder)
 
-- `fn build<I, P>(self: &Self, patterns: I) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../util/error/index.md)
+- `fn build<I, P>(self: &Self, patterns: I) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../index.md)
 
-- `fn build_from_noncontiguous(self: &Self, nnfa: &noncontiguous::NFA) -> Result<DFA, BuildError>` — [`NFA`](../nfa/noncontiguous/index.md), [`DFA`](#dfa), [`BuildError`](../util/error/index.md)
+- `fn build_from_noncontiguous(self: &Self, nnfa: &noncontiguous::NFA) -> Result<DFA, BuildError>` — [`NFA`](../nfa/noncontiguous/index.md), [`DFA`](#dfa), [`BuildError`](../index.md)
 
-- `fn finish_build_one_start(self: &Self, anchored: Anchored, nnfa: &noncontiguous::NFA, dfa: &mut DFA)` — [`Anchored`](../util/search/index.md), [`NFA`](../nfa/noncontiguous/index.md), [`DFA`](#dfa)
+- `fn finish_build_one_start(self: &Self, anchored: Anchored, nnfa: &noncontiguous::NFA, dfa: &mut DFA)` — [`Anchored`](../index.md), [`NFA`](../nfa/noncontiguous/index.md), [`DFA`](#dfa)
 
 - `fn finish_build_both_starts(self: &Self, nnfa: &noncontiguous::NFA, dfa: &mut DFA)` — [`NFA`](../nfa/noncontiguous/index.md), [`DFA`](#dfa)
 
-- `fn match_kind(self: &mut Self, kind: MatchKind) -> &mut Builder` — [`MatchKind`](../util/search/index.md), [`Builder`](#builder)
+- `fn match_kind(self: &mut Self, kind: MatchKind) -> &mut Builder` — [`MatchKind`](../index.md), [`Builder`](#builder)
 
 - `fn ascii_case_insensitive(self: &mut Self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 
 - `fn prefilter(self: &mut Self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 
-- `fn start_kind(self: &mut Self, kind: StartKind) -> &mut Builder` — [`StartKind`](../util/search/index.md), [`Builder`](#builder)
+- `fn start_kind(self: &mut Self, kind: StartKind) -> &mut Builder` — [`StartKind`](../index.md), [`Builder`](#builder)
 
 - `fn byte_classes(self: &mut Self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 

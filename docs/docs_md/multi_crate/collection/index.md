@@ -6,7 +6,7 @@
 
 Crate collection for multi-crate documentation.
 
-This module provides [`CrateCollection`](#cratecollection), a container for multiple parsed
+This module provides [`CrateCollection`](../../index.md), a container for multiple parsed
 rustdoc crates that maintains a consistent processing order.
 
 ## Structs
@@ -74,7 +74,7 @@ for (name, krate) in collection.iter() {
 
 ##### `impl Default for CrateCollection`
 
-- `fn default() -> CrateCollection` — [`CrateCollection`](#cratecollection)
+- `fn default() -> CrateCollection` — [`CrateCollection`](../../index.md)
 
 ##### `impl<T> Instrument for CrateCollection`
 

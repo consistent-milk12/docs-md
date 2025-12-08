@@ -78,11 +78,11 @@ An iterator over function frames.
 
 - `fn new_empty() -> Self`
 
-- `fn new_location(location: Location<'ctx>) -> Self` — [`Location`](frame/index.md)
+- `fn new_location(location: Location<'ctx>) -> Self` — [`Location`](#location)
 
-- `fn new_frames(unit: &'ctx ResUnit<R>, sections: &'ctx gimli::Dwarf<R>, function: &'ctx Function<R>, inlined_functions: alloc::vec::Vec<&'ctx InlinedFunction<R>>, location: Option<Location<'ctx>>) -> Self` — [`ResUnit`](unit/index.md), [`Function`](function/index.md), [`InlinedFunction`](function/index.md), [`Location`](frame/index.md)
+- `fn new_frames(unit: &'ctx ResUnit<R>, sections: &'ctx gimli::Dwarf<R>, function: &'ctx Function<R>, inlined_functions: alloc::vec::Vec<&'ctx InlinedFunction<R>>, location: Option<Location<'ctx>>) -> Self` — [`ResUnit`](unit/index.md), [`Function`](function/index.md), [`InlinedFunction`](function/index.md), [`Location`](#location)
 
-- `fn next(self: &mut Self) -> Result<Option<Frame<'ctx, R>>, gimli::Error>` — [`Frame`](frame/index.md)
+- `fn next(self: &mut Self) -> Result<Option<Frame<'ctx, R>>, gimli::Error>` — [`Frame`](#frame)
 
 ### `FunctionName<R: gimli::Reader>`
 
@@ -190,7 +190,7 @@ Iterator over `Location`s in a range of addresses, returned by `Context::find_lo
 
 #### Implementations
 
-- `fn next_loc(self: &mut Self) -> Result<Option<(u64, u64, Location<'ctx>)>, gimli::Error>` — [`Location`](frame/index.md)
+- `fn next_loc(self: &mut Self) -> Result<Option<(u64, u64, Location<'ctx>)>, gimli::Error>` — [`Location`](#location)
 
 #### Trait Implementations
 
@@ -225,11 +225,15 @@ when performing lookups for many addresses in the same executable.
 
 #### Implementations
 
-- `fn from_sections(debug_abbrev: gimli::DebugAbbrev<R>, debug_addr: gimli::DebugAddr<R>, debug_aranges: gimli::DebugAranges<R>, debug_info: gimli::DebugInfo<R>, debug_line: gimli::DebugLine<R>, debug_line_str: gimli::DebugLineStr<R>, debug_ranges: gimli::DebugRanges<R>, debug_rnglists: gimli::DebugRngLists<R>, debug_str: gimli::DebugStr<R>, debug_str_offsets: gimli::DebugStrOffsets<R>, default_section: R) -> Result<Self, gimli::Error>`
+- `fn find_dwarf_and_unit(self: &Self, probe: u64) -> LookupResult<impl LookupContinuation<Output = Option<gimli::UnitRef<'_, R>>, Buf = R>>` — [`LookupResult`](#lookupresult), [`LookupContinuation`](#lookupcontinuation)
 
-- `fn from_dwarf(sections: gimli::Dwarf<R>) -> Result<Context<R>, gimli::Error>` — [`Context`](#context)
+- `fn find_location(self: &Self, probe: u64) -> Result<Option<Location<'_>>, gimli::Error>` — [`Location`](#location)
 
-- `fn from_arc_dwarf(sections: Arc<gimli::Dwarf<R>>) -> Result<Context<R>, gimli::Error>` — [`Context`](#context)
+- `fn find_location_range(self: &Self, probe_low: u64, probe_high: u64) -> Result<LocationRangeIter<'_, R>, gimli::Error>` — [`LocationRangeIter`](#locationrangeiter)
+
+- `fn find_frames(self: &Self, probe: u64) -> LookupResult<impl LookupContinuation<Output = Result<FrameIter<'_, R>, gimli::Error>, Buf = R>>` — [`LookupResult`](#lookupresult), [`LookupContinuation`](#lookupcontinuation), [`FrameIter`](#frameiter)
+
+- `fn preload_units(self: &Self, probe: u64) -> impl Iterator<Item = (SplitDwarfLoad<R>, impl FnOnce(Option<Arc<gimli::Dwarf<R>>>) -> Result<(), gimli::Error> + '_)>` — [`SplitDwarfLoad`](#splitdwarfload)
 
 ### `RangeAttributes<R: gimli::Reader>`
 
@@ -303,11 +307,11 @@ This enum is intended to be used in a loop like so:
 
 #### Implementations
 
-- `fn skip_all_loads(self: Self) -> <L as >::Output` — [`LookupContinuation`](lookup/index.md)
+- `fn skip_all_loads(self: Self) -> <L as >::Output` — [`LookupContinuation`](#lookupcontinuation)
 
-- `fn map<T, F: FnOnce(<L as >::Output) -> T>(self: Self, f: F) -> LookupResult<MappedLookup<T, L, F>>` — [`LookupResult`](lookup/index.md), [`MappedLookup`](lookup/index.md)
+- `fn map<T, F: FnOnce(<L as >::Output) -> T>(self: Self, f: F) -> LookupResult<MappedLookup<T, L, F>>` — [`LookupResult`](#lookupresult), [`MappedLookup`](lookup/index.md)
 
-- `fn unwrap(self: Self) -> <L as >::Output` — [`LookupContinuation`](lookup/index.md)
+- `fn unwrap(self: Self) -> <L as >::Output` — [`LookupContinuation`](#lookupcontinuation)
 
 ### `DebugFile`
 

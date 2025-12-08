@@ -29,11 +29,11 @@ just increments the refcount (so the original and its clone share the same state
 
 - `fn hidden() -> Self`
 
-- `fn with_draw_target(len: Option<u64>, draw_target: ProgressDrawTarget) -> Self` — [`ProgressDrawTarget`](../draw_target/index.md)
+- `fn with_draw_target(len: Option<u64>, draw_target: ProgressDrawTarget) -> Self` — [`ProgressDrawTarget`](../index.md)
 
-- `fn style(self: &Self) -> ProgressStyle` — [`ProgressStyle`](../style/index.md)
+- `fn style(self: &Self) -> ProgressStyle` — [`ProgressStyle`](../index.md)
 
-- `fn with_style(self: Self, style: ProgressStyle) -> Self` — [`ProgressStyle`](../style/index.md)
+- `fn with_style(self: Self, style: ProgressStyle) -> Self` — [`ProgressStyle`](../index.md)
 
 - `fn with_tab_width(self: Self, tab_width: usize) -> Self`
 
@@ -45,11 +45,11 @@ just increments the refcount (so the original and its clone share the same state
 
 - `fn with_elapsed(self: Self, elapsed: Duration) -> Self`
 
-- `fn with_finish(self: Self, finish: ProgressFinish) -> Self` — [`ProgressFinish`](../state/index.md)
+- `fn with_finish(self: Self, finish: ProgressFinish) -> Self` — [`ProgressFinish`](../index.md)
 
 - `fn new_spinner() -> Self`
 
-- `fn set_style(self: &Self, style: ProgressStyle)` — [`ProgressStyle`](../style/index.md)
+- `fn set_style(self: &Self, style: ProgressStyle)` — [`ProgressStyle`](../index.md)
 
 - `fn set_tab_width(self: &Self, tab_width: usize)`
 
@@ -73,7 +73,7 @@ just increments the refcount (so the original and its clone share the same state
 
 - `fn println<I: AsRef<str>>(self: &Self, msg: I)`
 
-- `fn update(self: &Self, f: impl FnOnce(&mut ProgressState))` — [`ProgressState`](../state/index.md)
+- `fn update(self: &Self, f: impl FnOnce(&mut ProgressState))` — [`ProgressState`](../index.md)
 
 - `fn set_position(self: &Self, pos: u64)`
 
@@ -91,7 +91,7 @@ just increments the refcount (so the original and its clone share the same state
 
 - `fn set_elapsed(self: &Self, elapsed: Duration)`
 
-- `fn downgrade(self: &Self) -> WeakProgressBar` — [`WeakProgressBar`](#weakprogressbar)
+- `fn downgrade(self: &Self) -> WeakProgressBar` — [`WeakProgressBar`](../index.md)
 
 - `fn reset_eta(self: &Self)`
 
@@ -111,17 +111,17 @@ just increments the refcount (so the original and its clone share the same state
 
 - `fn finish_using_style(self: &Self)`
 
-- `fn set_draw_target(self: &Self, target: ProgressDrawTarget)` — [`ProgressDrawTarget`](../draw_target/index.md)
+- `fn set_draw_target(self: &Self, target: ProgressDrawTarget)` — [`ProgressDrawTarget`](../index.md)
 
 - `fn force_draw(self: &Self)`
 
 - `fn suspend<F: FnOnce() -> R, R>(self: &Self, f: F) -> R`
 
-- `fn wrap_iter<It: Iterator>(self: &Self, it: It) -> ProgressBarIter<It>` — [`ProgressBarIter`](../iter/index.md)
+- `fn wrap_iter<It: Iterator>(self: &Self, it: It) -> ProgressBarIter<It>` — [`ProgressBarIter`](../index.md)
 
-- `fn wrap_read<R: io::Read>(self: &Self, read: R) -> ProgressBarIter<R>` — [`ProgressBarIter`](../iter/index.md)
+- `fn wrap_read<R: io::Read>(self: &Self, read: R) -> ProgressBarIter<R>` — [`ProgressBarIter`](../index.md)
 
-- `fn wrap_write<W: io::Write>(self: &Self, write: W) -> ProgressBarIter<W>` — [`ProgressBarIter`](../iter/index.md)
+- `fn wrap_write<W: io::Write>(self: &Self, write: W) -> ProgressBarIter<W>` — [`ProgressBarIter`](../index.md)
 
 - `fn position(self: &Self) -> u64`
 
@@ -147,7 +147,7 @@ just increments the refcount (so the original and its clone share the same state
 
 ##### `impl Clone for ProgressBar`
 
-- `fn clone(self: &Self) -> ProgressBar` — [`ProgressBar`](#progressbar)
+- `fn clone(self: &Self) -> ProgressBar` — [`ProgressBar`](../index.md)
 
 ##### `impl Debug for ProgressBar`
 
@@ -163,7 +163,7 @@ struct WeakProgressBar {
 }
 ```
 
-A weak reference to a [`ProgressBar`](#progressbar).
+A weak reference to a [`ProgressBar`](../index.md).
 
 Useful for creating custom steady tick implementations
 
@@ -171,17 +171,17 @@ Useful for creating custom steady tick implementations
 
 - `fn new() -> Self`
 
-- `fn upgrade(self: &Self) -> Option<ProgressBar>` — [`ProgressBar`](#progressbar)
+- `fn upgrade(self: &Self) -> Option<ProgressBar>` — [`ProgressBar`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for WeakProgressBar`
 
-- `fn clone(self: &Self) -> WeakProgressBar` — [`WeakProgressBar`](#weakprogressbar)
+- `fn clone(self: &Self) -> WeakProgressBar` — [`WeakProgressBar`](../index.md)
 
 ##### `impl Default for WeakProgressBar`
 
-- `fn default() -> WeakProgressBar` — [`WeakProgressBar`](#weakprogressbar)
+- `fn default() -> WeakProgressBar` — [`WeakProgressBar`](../index.md)
 
 ### `Ticker`
 

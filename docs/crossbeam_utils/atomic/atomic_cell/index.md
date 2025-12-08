@@ -48,21 +48,13 @@ Atomic loads use the `Acquire` ordering and atomic stores use the `Release` orde
 
 #### Implementations
 
-- `fn fetch_add(self: &Self, val: i128) -> i128`
+- `fn fetch_and(self: &Self, val: bool) -> bool`
 
-- `fn fetch_sub(self: &Self, val: i128) -> i128`
+- `fn fetch_nand(self: &Self, val: bool) -> bool`
 
-- `fn fetch_and(self: &Self, val: i128) -> i128`
+- `fn fetch_or(self: &Self, val: bool) -> bool`
 
-- `fn fetch_nand(self: &Self, val: i128) -> i128`
-
-- `fn fetch_or(self: &Self, val: i128) -> i128`
-
-- `fn fetch_xor(self: &Self, val: i128) -> i128`
-
-- `fn fetch_max(self: &Self, val: i128) -> i128`
-
-- `fn fetch_min(self: &Self, val: i128) -> i128`
+- `fn fetch_xor(self: &Self, val: bool) -> bool`
 
 #### Trait Implementations
 
@@ -72,7 +64,7 @@ Atomic loads use the `Acquire` ordering and atomic stores use the `Release` orde
 
 ##### `impl<T: Default> Default for AtomicCell<T>`
 
-- `fn default() -> AtomicCell<T>` — [`AtomicCell`](#atomiccell)
+- `fn default() -> AtomicCell<T>` — [`AtomicCell`](../index.md)
 
 ##### `impl<T> Drop for AtomicCell<T>`
 

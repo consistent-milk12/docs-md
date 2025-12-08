@@ -28,7 +28,7 @@ size and a heap size proportional to the size of the `Hir`.
 
 - `fn new() -> HeapVisitor<'a>` — [`HeapVisitor`](#heapvisitor)
 
-- `fn visit<V: Visitor>(self: &mut Self, hir: &'a Hir, visitor: V) -> Result<<V as >::Output, <V as >::Err>` — [`Hir`](../index.md), [`Visitor`](#visitor)
+- `fn visit<V: Visitor>(self: &mut Self, hir: &'a Hir, visitor: V) -> Result<<V as >::Output, <V as >::Err>` — [`Hir`](../index.md), [`Visitor`](../index.md)
 
 - `fn induct(self: &mut Self, hir: &'a Hir) -> Option<Frame<'a>>` — [`Hir`](../index.md), [`Frame`](#frame)
 
@@ -99,7 +99,7 @@ callers to do case analysis with constant stack usage, which can be
 important since the size of an HIR may be proportional to end user input.
 
 Typical usage of this trait involves providing an implementation and then
-running it using the [`visit`](#visit) function.
+running it using the [`visit`](../index.md) function.
 
 #### Required Methods
 
@@ -142,7 +142,7 @@ fn visit<V: Visitor>(hir: &crate::hir::Hir, visitor: V) -> Result<<V as >::Outpu
 Executes an implementation of `Visitor` in constant stack space.
 
 This function will visit every node in the given `Hir` while calling
-appropriate methods provided by the [`Visitor`](#visitor) trait.
+appropriate methods provided by the [`Visitor`](../index.md) trait.
 
 The primary use case for this method is when one wants to perform case
 analysis over an `Hir` without using a stack size proportional to the depth

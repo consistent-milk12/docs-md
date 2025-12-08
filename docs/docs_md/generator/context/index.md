@@ -6,7 +6,7 @@
 
 Shared context for documentation generation.
 
-This module provides the [`GeneratorContext`](#generatorcontext) struct which holds all shared
+This module provides the [`GeneratorContext`](../index.md) struct which holds all shared
 state needed during markdown generation, including the crate data, lookup
 maps, and configuration options.
 
@@ -14,10 +14,10 @@ maps, and configuration options.
 
 The rendering context is split into focused traits for better abstraction:
 
-- [`ItemAccess`](#itemaccess) - Core data access (crate, items, impls)
-- [`ItemFilter`](#itemfilter) - Visibility and filtering logic
-- [`LinkResolver`](#linkresolver) - Link creation and documentation processing
-- [`RenderContext`](#rendercontext) - Combined super-trait for convenience
+- [`ItemAccess`](../index.md) - Core data access (crate, items, impls)
+- [`ItemFilter`](../index.md) - Visibility and filtering logic
+- [`LinkResolver`](../index.md) - Link creation and documentation processing
+- [`RenderContext`](../index.md) - Combined super-trait for convenience
 
 This allows components to depend only on the traits they need, improving
 testability and reducing coupling.
@@ -110,7 +110,7 @@ This struct is passed to all rendering components and provides:
 
 ##### `impl LinkResolver for GeneratorContext<'_>`
 
-- `fn link_registry(self: &Self) -> Option<&LinkRegistry>` — [`LinkRegistry`](../../linker/index.md)
+- `fn link_registry(self: &Self) -> Option<&LinkRegistry>` — [`LinkRegistry`](../../index.md)
 
 - `fn process_docs(self: &Self, item: &Item, current_file: &str) -> Option<String>`
 
@@ -226,7 +226,7 @@ trait RenderContext: ItemAccess + ItemFilter + LinkResolver { ... }
 
 Combined rendering context trait.
 
-This trait combines [`ItemAccess`](#itemaccess), [`ItemFilter`](#itemfilter), and [`LinkResolver`](#linkresolver)
+This trait combines [`ItemAccess`](../index.md), [`ItemFilter`](../index.md), and [`LinkResolver`](../index.md)
 for components that need full access to the rendering context.
 
 Most renderers should use this trait for convenience, but components

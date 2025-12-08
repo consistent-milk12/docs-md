@@ -14,33 +14,11 @@ struct ReplaceReceiver<'a>(&'a syn::TypePath);
 
 #### Implementations
 
-- `fn visit_type_mut(self: &mut Self, ty: &mut Type)`
+- `fn self_ty(self: &Self, span: Span) -> TypePath`
 
-- `fn visit_type_path_mut(self: &mut Self, ty: &mut TypePath)`
+- `fn self_to_qself(self: &Self, qself: &mut Option<QSelf>, path: &mut Path)`
 
-- `fn visit_expr_path_mut(self: &mut Self, expr: &mut ExprPath)`
-
-- `fn visit_type_mut_impl(self: &mut Self, ty: &mut Type)`
-
-- `fn visit_type_path_mut_impl(self: &mut Self, ty: &mut TypePath)`
-
-- `fn visit_expr_path_mut_impl(self: &mut Self, expr: &mut ExprPath)`
-
-- `fn visit_path_mut(self: &mut Self, path: &mut Path)`
-
-- `fn visit_path_arguments_mut(self: &mut Self, arguments: &mut PathArguments)`
-
-- `fn visit_return_type_mut(self: &mut Self, return_type: &mut ReturnType)`
-
-- `fn visit_type_param_bound_mut(self: &mut Self, bound: &mut TypeParamBound)`
-
-- `fn visit_generics_mut(self: &mut Self, generics: &mut Generics)`
-
-- `fn visit_data_mut(self: &mut Self, data: &mut Data)`
-
-- `fn visit_expr_mut(self: &mut Self, expr: &mut Expr)`
-
-- `fn visit_macro_mut(self: &mut Self, _mac: &mut Macro)`
+- `fn self_to_expr_path(self: &Self, path: &mut Path)`
 
 ## Functions
 

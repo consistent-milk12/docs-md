@@ -115,7 +115,7 @@ A searcher that dispatches to one of several possible Teddy variants.
 
 #### Implementations
 
-- `fn find(self: &Self, haystack: &[u8], at: usize) -> Option<crate::Match>` — [`Match`](../../../util/search/index.md)
+- `fn find(self: &Self, haystack: &[u8], at: usize) -> Option<crate::Match>` — [`Match`](../../../index.md)
 
 - `fn memory_usage(self: &Self) -> usize`
 

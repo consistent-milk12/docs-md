@@ -84,7 +84,13 @@ if cfg!(target_endian = "big") {
 
 #### Implementations
 
-- `fn compute(self: &mut Self, bytes: &[u8])`
+- `fn new() -> Self`
+
+- `const fn from_checksum(sum: u32) -> Self`
+
+- `fn checksum(self: &Self) -> u32`
+
+- `fn write_slice(self: &mut Self, bytes: &[u8])`
 
 #### Trait Implementations
 

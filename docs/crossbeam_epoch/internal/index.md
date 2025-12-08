@@ -90,7 +90,7 @@ A bag of deferred functions.
 
 - `type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md)
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
 
 - `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -131,7 +131,7 @@ A pair of an epoch and a bag.
 
 - `type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md)
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
 
 - `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -173,11 +173,11 @@ The global data for a garbage collector.
 
 - `fn new() -> Self`
 
-- `fn push_bag(self: &Self, bag: &mut Bag, guard: &Guard)` — [`Bag`](#bag), [`Guard`](../guard/index.md)
+- `fn push_bag(self: &Self, bag: &mut Bag, guard: &Guard)` — [`Bag`](#bag), [`Guard`](../index.md)
 
-- `fn collect(self: &Self, guard: &Guard)` — [`Guard`](../guard/index.md)
+- `fn collect(self: &Self, guard: &Guard)` — [`Guard`](../index.md)
 
-- `fn try_advance(self: &Self, guard: &Guard) -> Epoch` — [`Guard`](../guard/index.md), [`Epoch`](../epoch/index.md)
+- `fn try_advance(self: &Self, guard: &Guard) -> Epoch` — [`Guard`](../index.md), [`Epoch`](../epoch/index.md)
 
 #### Trait Implementations
 
@@ -187,7 +187,7 @@ The global data for a garbage collector.
 
 - `type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md)
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
 
 - `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -249,19 +249,19 @@ Participant for garbage collection.
 
 - `const PINNINGS_BETWEEN_COLLECT: usize`
 
-- `fn register(collector: &Collector) -> LocalHandle` — [`Collector`](../collector/index.md), [`LocalHandle`](../collector/index.md)
+- `fn register(collector: &Collector) -> LocalHandle` — [`Collector`](../index.md), [`LocalHandle`](../index.md)
 
 - `fn global(self: &Self) -> &Global` — [`Global`](#global)
 
-- `fn collector(self: &Self) -> &Collector` — [`Collector`](../collector/index.md)
+- `fn collector(self: &Self) -> &Collector` — [`Collector`](../index.md)
 
 - `fn is_pinned(self: &Self) -> bool`
 
-- `unsafe fn defer(self: &Self, deferred: Deferred, guard: &Guard)` — [`Deferred`](../deferred/index.md), [`Guard`](../guard/index.md)
+- `unsafe fn defer(self: &Self, deferred: Deferred, guard: &Guard)` — [`Deferred`](../deferred/index.md), [`Guard`](../index.md)
 
-- `fn flush(self: &Self, guard: &Guard)` — [`Guard`](../guard/index.md)
+- `fn flush(self: &Self, guard: &Guard)` — [`Guard`](../index.md)
 
-- `fn pin(self: &Self) -> Guard` — [`Guard`](../guard/index.md)
+- `fn pin(self: &Self) -> Guard` — [`Guard`](../index.md)
 
 - `fn unpin(self: &Self)`
 
@@ -281,7 +281,7 @@ Participant for garbage collection.
 
 - `unsafe fn element_of(entry: &Entry) -> &Self` — [`Entry`](../sync/list/index.md)
 
-- `unsafe fn finalize(entry: &Entry, guard: &Guard)` — [`Entry`](../sync/list/index.md), [`Guard`](../guard/index.md)
+- `unsafe fn finalize(entry: &Entry, guard: &Guard)` — [`Entry`](../sync/list/index.md), [`Guard`](../index.md)
 
 ##### `impl<T> Pointable for Local`
 
@@ -289,7 +289,7 @@ Participant for garbage collection.
 
 - `type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md)
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
 
 - `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 

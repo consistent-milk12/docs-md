@@ -41,7 +41,7 @@ and `factor_iter_mut` methods.
 
 ##### `impl<L: $crate::clone::Clone, R: $crate::clone::Clone> Clone for IterEither<L, R>`
 
-- `fn clone(self: &Self) -> IterEither<L, R>` — [`IterEither`](iterator/index.md)
+- `fn clone(self: &Self) -> IterEither<L, R>` — [`IterEither`](#itereither)
 
 ##### `impl<L: $crate::fmt::Debug, R: $crate::fmt::Debug> Debug for IterEither<L, R>`
 
@@ -135,17 +135,17 @@ preference.
 
 #### Implementations
 
-- `fn factor_first(self: Self) -> (T, Either<L, R>)` — [`Either`](#either)
+- `fn factor_none(self: Self) -> Option<Either<L, R>>` — [`Either`](#either)
 
 #### Trait Implementations
 
-##### `impl<L, R> AsMut for Either<L, R>`
+##### `impl<L, R, Target> AsMut for Either<L, R>`
 
-- `fn as_mut(self: &mut Self) -> &mut str`
+- `fn as_mut(self: &mut Self) -> &mut Target`
 
-##### `impl<L, R, Target> AsRef for Either<L, R>`
+##### `impl<L, R> AsRef for Either<L, R>`
 
-- `fn as_ref(self: &Self) -> &[Target]`
+- `fn as_ref(self: &Self) -> &str`
 
 ##### `impl<L: Clone, R: Clone> Clone for Either<L, R>`
 

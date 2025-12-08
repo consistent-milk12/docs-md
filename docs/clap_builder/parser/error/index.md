@@ -33,13 +33,13 @@ Violation of `ArgMatches` assumptions
 
 #### Implementations
 
-- `fn unwrap<T>(id: &str, r: Result<T, MatchesError>) -> T` — [`MatchesError`](#matcheserror)
+- `fn unwrap<T>(id: &str, r: Result<T, MatchesError>) -> T` — [`MatchesError`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for MatchesError`
 
-- `fn clone(self: &Self) -> MatchesError` — [`MatchesError`](#matcheserror)
+- `fn clone(self: &Self) -> MatchesError` — [`MatchesError`](../index.md)
 
 ##### `impl Debug for MatchesError`
 

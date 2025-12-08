@@ -16,13 +16,13 @@ struct Split<D, S> {
 ```
 
 `Split` is a parallel iterator using arbitrary data and a splitting function.
-This struct is created by the [`split()`](#split) function.
+This struct is created by the [`split()`](../index.md) function.
 
 #### Trait Implementations
 
 ##### `impl<D: $crate::clone::Clone, S: $crate::clone::Clone> Clone for Split<D, S>`
 
-- `fn clone(self: &Self) -> Split<D, S>` — [`Split`](#split)
+- `fn clone(self: &Self) -> Split<D, S>` — [`Split`](../index.md)
 
 ##### `impl<D: Debug, S> Debug for Split<D, S>`
 

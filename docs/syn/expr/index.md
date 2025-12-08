@@ -45,7 +45,7 @@ A slice literal expression: `[a, b, c, d]`.
 
 ##### `impl Parse for crate::expr::ExprArray`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprArray`
 
@@ -96,7 +96,7 @@ An assignment expression: `a = compute()`.
 
 ##### `impl Parse for crate::expr::ExprAssign`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprAssign`
 
@@ -147,7 +147,7 @@ An async block: `async { ... }`.
 
 ##### `impl Parse for crate::expr::ExprAsync`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprAsync`
 
@@ -198,7 +198,7 @@ An await expression: `fut.await`.
 
 ##### `impl Parse for crate::expr::ExprAwait`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprAwait`
 
@@ -249,7 +249,7 @@ A binary operation: `a + b`, `a += b`.
 
 ##### `impl Parse for crate::expr::ExprBinary`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprBinary`
 
@@ -299,7 +299,7 @@ A blocked scope: `{ ... }`.
 
 ##### `impl Parse for crate::expr::ExprBlock`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprBlock`
 
@@ -351,7 +351,7 @@ expression.
 
 ##### `impl Parse for crate::expr::ExprBreak`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprBreak`
 
@@ -402,7 +402,7 @@ A function call expression: `invoke(a, b)`.
 
 ##### `impl Parse for crate::expr::ExprCall`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprCall`
 
@@ -453,7 +453,7 @@ A cast expression: `foo as f64`.
 
 ##### `impl Parse for crate::expr::ExprCast`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprCast`
 
@@ -511,7 +511,7 @@ A closure expression: `|a, b| a + b`.
 
 ##### `impl Parse for crate::expr::ExprClosure`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprClosure`
 
@@ -561,7 +561,7 @@ A const block: `const { ... }`.
 
 ##### `impl Parse for crate::expr::ExprConst`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprConst`
 
@@ -611,7 +611,7 @@ A `continue`, with an optional label.
 
 ##### `impl Parse for crate::expr::ExprContinue`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprContinue`
 
@@ -663,7 +663,7 @@ field (`obj.0`).
 
 ##### `impl Parse for crate::expr::ExprField`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprField`
 
@@ -717,7 +717,7 @@ A for loop: `for pat in expr { ... }`.
 
 ##### `impl Parse for crate::expr::ExprForLoop`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprForLoop`
 
@@ -823,7 +823,7 @@ expression, not any of the other types of expression.
 
 ##### `impl Parse for crate::expr::ExprIf`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprIf`
 
@@ -874,7 +874,7 @@ A square bracketed indexing expression: `vector[2]`.
 
 ##### `impl Parse for crate::expr::ExprIndex`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprIndex`
 
@@ -923,7 +923,7 @@ The inferred value of a const generic argument, denoted `_`.
 
 ##### `impl Parse for crate::expr::ExprInfer`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprInfer`
 
@@ -975,7 +975,7 @@ A `let` guard: `let Some(x) = opt`.
 
 ##### `impl Parse for crate::expr::ExprLet`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprLet`
 
@@ -1024,7 +1024,7 @@ A literal in place of an expression: `1`, `"foo"`.
 
 ##### `impl Parse for crate::expr::ExprLit`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprLit`
 
@@ -1075,7 +1075,7 @@ Conditionless loop: `loop { ... }`.
 
 ##### `impl Parse for crate::expr::ExprLoop`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprLoop`
 
@@ -1124,7 +1124,7 @@ A macro invocation expression: `format!("{}", q)`.
 
 ##### `impl Parse for crate::expr::ExprMacro`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprMacro`
 
@@ -1176,7 +1176,7 @@ A `match` expression: `match n { Some(n) => {}, None => {} }`.
 
 ##### `impl Parse for crate::expr::ExprMatch`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprMatch`
 
@@ -1230,7 +1230,7 @@ A method call expression: `x.foo::<T>(a, b)`.
 
 ##### `impl Parse for crate::expr::ExprMethodCall`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprMethodCall`
 
@@ -1280,7 +1280,7 @@ A parenthesized expression: `(a + b)`.
 
 ##### `impl Parse for crate::expr::ExprParen`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprParen`
 
@@ -1333,7 +1333,7 @@ A plain identifier like `x` is a path of length 1.
 
 ##### `impl Parse for crate::expr::ExprPath`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprPath`
 
@@ -1384,7 +1384,7 @@ A range expression: `1..2`, `1..`, `..2`, `1..=2`, `..=2`.
 
 ##### `impl Parse for crate::expr::ExprRange`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprRange`
 
@@ -1436,7 +1436,7 @@ Address-of operation: `&raw const place` or `&raw mut place`.
 
 ##### `impl Parse for crate::expr::ExprRawAddr`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprRawAddr`
 
@@ -1487,7 +1487,7 @@ A referencing operation: `&a` or `&mut a`.
 
 ##### `impl Parse for crate::expr::ExprReference`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprReference`
 
@@ -1539,7 +1539,7 @@ An array literal constructed from one repeated element: `[0u8; N]`.
 
 ##### `impl Parse for crate::expr::ExprRepeat`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprRepeat`
 
@@ -1589,7 +1589,7 @@ A `return`, with an optional value to be returned.
 
 ##### `impl Parse for crate::expr::ExprReturn`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprReturn`
 
@@ -1646,7 +1646,7 @@ The `rest` provides the value of the remaining fields as in `S { a:
 
 ##### `impl Parse for crate::expr::ExprStruct`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprStruct`
 
@@ -1696,7 +1696,7 @@ A try-expression: `expr?`.
 
 ##### `impl Parse for crate::expr::ExprTry`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprTry`
 
@@ -1746,7 +1746,7 @@ A try block: `try { ... }`.
 
 ##### `impl Parse for crate::expr::ExprTryBlock`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprTryBlock`
 
@@ -1796,7 +1796,7 @@ A tuple expression: `(a, b, c, d)`.
 
 ##### `impl Parse for crate::expr::ExprTuple`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprTuple`
 
@@ -1846,7 +1846,7 @@ A unary operation: `!x`, `*x`.
 
 ##### `impl Parse for crate::expr::ExprUnary`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprUnary`
 
@@ -1896,7 +1896,7 @@ An unsafe block: `unsafe { ... }`.
 
 ##### `impl Parse for crate::expr::ExprUnsafe`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprUnsafe`
 
@@ -1948,7 +1948,7 @@ A while loop: `while expr { ... }`.
 
 ##### `impl Parse for crate::expr::ExprWhile`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprWhile`
 
@@ -1998,7 +1998,7 @@ A yield expression: `yield expr`.
 
 ##### `impl Parse for crate::expr::ExprYield`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::ExprYield`
 
@@ -2049,7 +2049,7 @@ The index of an unnamed tuple struct field.
 
 ##### `impl Parse for crate::expr::Index`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Index`
 
@@ -2103,7 +2103,7 @@ A field-value pair in a struct literal.
 
 ##### `impl Parse for crate::expr::FieldValue`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::FieldValue`
 
@@ -2148,7 +2148,7 @@ A lifetime labeling a `for`, `while`, or `loop`.
 
 ##### `impl Parse for crate::expr::Label`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::Label`
 
@@ -2197,7 +2197,7 @@ match n {
 
 #### Implementations
 
-- `fn parse_multiple(input: ParseStream<'_>) -> Result<Vec<Self>>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse_multiple(input: ParseStream<'_>) -> Result<Vec<Self>>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 #### Trait Implementations
 
@@ -2217,7 +2217,7 @@ match n {
 
 ##### `impl Parse for crate::expr::Arm`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Arm>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md), [`Arm`](#arm)
+- `fn parse(input: ParseStream<'_>) -> Result<Arm>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md), [`Arm`](../index.md)
 
 ##### `impl PartialEq for crate::Arm`
 
@@ -2539,13 +2539,13 @@ see names getting repeated in your code, like accessing
 
 - `const PLACEHOLDER: Self`
 
-- `fn parse_without_eager_brace(input: ParseStream<'_>) -> Result<Expr>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md), [`Expr`](#expr)
+- `fn parse_without_eager_brace(input: ParseStream<'_>) -> Result<Expr>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md), [`Expr`](../index.md)
 
-- `fn parse_with_earlier_boundary_rule(input: ParseStream<'_>) -> Result<Expr>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md), [`Expr`](#expr)
+- `fn parse_with_earlier_boundary_rule(input: ParseStream<'_>) -> Result<Expr>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md), [`Expr`](../index.md)
 
 - `fn peek(input: ParseStream<'_>) -> bool` — [`ParseStream`](../parse/index.md)
 
-- `fn replace_attrs(self: &mut Self, new: Vec<Attribute>) -> Vec<Attribute>` — [`Attribute`](../attr/index.md)
+- `fn replace_attrs(self: &mut Self, new: Vec<Attribute>) -> Vec<Attribute>` — [`Attribute`](../index.md)
 
 #### Trait Implementations
 
@@ -2565,7 +2565,7 @@ see names getting repeated in your code, like accessing
 
 ##### `impl Parse for crate::expr::Expr`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::Expr`
 
@@ -2631,7 +2631,7 @@ expression.
 
 ##### `impl Parse for crate::expr::Member`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Member`
 
@@ -2670,7 +2670,7 @@ Limit types of a range, inclusive or exclusive.
 
 #### Implementations
 
-- `fn parse_obsolete(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse_obsolete(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 #### Trait Implementations
 
@@ -2692,7 +2692,7 @@ Limit types of a range, inclusive or exclusive.
 
 ##### `impl Parse for crate::expr::RangeLimits`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::RangeLimits`
 
@@ -2738,7 +2738,7 @@ isn't the implicit default.
 
 ##### `impl Parse for crate::expr::PointerMutability`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::PointerMutability`
 

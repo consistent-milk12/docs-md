@@ -88,9 +88,9 @@ let hash = random_state.hash_one("hello world");
 
 Foldhash relies on a single 8-byte per-hasher seed which should be ideally
 be different from each instance to instance, and also a larger
-[`SharedSeed`](seed/index.md) which may be shared by many different instances.
+[`SharedSeed`](#sharedseed) which may be shared by many different instances.
 
-To reduce overhead, this [`SharedSeed`](seed/index.md) is typically initialized once and
+To reduce overhead, this [`SharedSeed`](#sharedseed) is typically initialized once and
 stored. To prevent each hashmap unnecessarily containing a reference to this
 value there are three kinds of [`BuildHasher`](core::hash::BuildHasher)s
 foldhash provides (both for [`fast`](fast/index.md) and [`quality`](quality/index.md)):
@@ -101,7 +101,7 @@ foldhash provides (both for [`fast`](fast/index.md) and [`quality`](quality/inde
    per-hasher seed and implicitly stores a reference to `SharedSeed::global_fixed`.
 3. [`SeedableRandomState`](fast::SeedableRandomState), which works like
    [`RandomState`](fast::RandomState) by default but can be seeded in any manner.
-   This state must include an explicit reference to a [`SharedSeed`](seed/index.md), and thus
+   This state must include an explicit reference to a [`SharedSeed`](#sharedseed), and thus
    this struct is 16 bytes as opposed to just 8 bytes for the previous two.
 
 ## Features
@@ -136,9 +136,9 @@ and [`SeedableRandomState::with_seed`](crate::fast::SeedableRandomState::with_se
 
 #### Implementations
 
-- `fn global_random() -> &'static SharedSeed` — [`SharedSeed`](seed/index.md)
+- `fn global_random() -> &'static SharedSeed` — [`SharedSeed`](#sharedseed)
 
-- `const fn global_fixed() -> &'static SharedSeed` — [`SharedSeed`](seed/index.md)
+- `const fn global_fixed() -> &'static SharedSeed` — [`SharedSeed`](#sharedseed)
 
 - `const fn from_u64(seed: u64) -> Self`
 
@@ -146,7 +146,7 @@ and [`SeedableRandomState::with_seed`](crate::fast::SeedableRandomState::with_se
 
 ##### `impl Clone for SharedSeed`
 
-- `fn clone(self: &Self) -> SharedSeed` — [`SharedSeed`](seed/index.md)
+- `fn clone(self: &Self) -> SharedSeed` — [`SharedSeed`](#sharedseed)
 
 ##### `impl Debug for SharedSeed`
 

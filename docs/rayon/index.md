@@ -15,16 +15,16 @@ There are two ways to use Rayon:
   typically the most efficient.
   - [Parallel iterators] make it easy to convert a sequential iterator to
     execute in parallel.
-    - The [`ParallelIterator`](iter/index.md) trait defines general methods for all parallel iterators.
-    - The [`IndexedParallelIterator`](iter/index.md) trait adds methods for iterators that support random
+    - The [`ParallelIterator`](prelude/index.md) trait defines general methods for all parallel iterators.
+    - The [`IndexedParallelIterator`](prelude/index.md) trait adds methods for iterators that support random
       access.
   - The `par_sort` method sorts `&mut [T]` slices (or vectors) in parallel.
   - `par_extend` can be used to efficiently grow collections with items produced
     by a parallel iterator.
 - **Custom tasks** let you divide your work into parallel tasks yourself.
-  - [`join`](../rayon_core/join/index.md) is used to subdivide a task into two pieces.
-  - [`scope`](../rayon_core/scope/index.md) creates a scope within which you can create any number of parallel tasks.
-  - [`ThreadPoolBuilder`](../rayon_core/index.md) can be used to create your own thread pools or customize
+  - [`join`](#join) is used to subdivide a task into two pieces.
+  - [`scope`](#scope) creates a scope within which you can create any number of parallel tasks.
+  - [`ThreadPoolBuilder`](#threadpoolbuilder) can be used to create your own thread pools or customize
     the global one.
 
 

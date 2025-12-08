@@ -33,19 +33,19 @@ struct ResUnit<R: gimli::Reader> {
 
 - `fn unit_ref<'a>(self: &'a Self, sections: &'a gimli::Dwarf<R>) -> gimli::UnitRef<'a, R>`
 
-- `fn dwarf_and_unit<'unit, 'ctx: 'unit>(self: &'unit Self, ctx: &'ctx Context<R>) -> LookupResult<SimpleLookup<Result<(crate::DebugFile, gimli::UnitRef<'unit, R>), gimli::Error>, R, impl FnOnce(Option<Arc<gimli::Dwarf<R>>>) -> Result<(crate::DebugFile, gimli::UnitRef<'unit, R>), gimli::Error>>>` — [`Context`](../index.md), [`LookupResult`](../lookup/index.md), [`SimpleLookup`](../lookup/index.md), [`DebugFile`](../index.md)
+- `fn dwarf_and_unit<'unit, 'ctx: 'unit>(self: &'unit Self, ctx: &'ctx Context<R>) -> LookupResult<SimpleLookup<Result<(crate::DebugFile, gimli::UnitRef<'unit, R>), gimli::Error>, R, impl FnOnce(Option<Arc<gimli::Dwarf<R>>>) -> Result<(crate::DebugFile, gimli::UnitRef<'unit, R>), gimli::Error>>>` — [`Context`](../index.md), [`LookupResult`](../index.md), [`SimpleLookup`](../lookup/index.md), [`DebugFile`](../index.md)
 
 - `fn parse_lines(self: &Self, sections: &gimli::Dwarf<R>) -> Result<Option<&Lines>, gimli::Error>` — [`Lines`](../line/index.md)
 
-- `fn parse_functions<'unit, 'ctx: 'unit>(self: &'unit Self, ctx: &'ctx Context<R>) -> LookupResult<impl LookupContinuation<Output = Result<&'unit Functions<R>, gimli::Error>, Buf = R>>` — [`Context`](../index.md), [`LookupResult`](../lookup/index.md), [`LookupContinuation`](../lookup/index.md), [`Functions`](../function/index.md)
+- `fn parse_functions<'unit, 'ctx: 'unit>(self: &'unit Self, ctx: &'ctx Context<R>) -> LookupResult<impl LookupContinuation<Output = Result<&'unit Functions<R>, gimli::Error>, Buf = R>>` — [`Context`](../index.md), [`LookupResult`](../index.md), [`LookupContinuation`](../index.md), [`Functions`](../function/index.md)
 
-- `fn parse_inlined_functions<'unit, 'ctx: 'unit>(self: &'unit Self, ctx: &'ctx Context<R>) -> LookupResult<impl LookupContinuation<Output = Result<(), gimli::Error>, Buf = R> + 'unit>` — [`Context`](../index.md), [`LookupResult`](../lookup/index.md), [`LookupContinuation`](../lookup/index.md)
+- `fn parse_inlined_functions<'unit, 'ctx: 'unit>(self: &'unit Self, ctx: &'ctx Context<R>) -> LookupResult<impl LookupContinuation<Output = Result<(), gimli::Error>, Buf = R> + 'unit>` — [`Context`](../index.md), [`LookupResult`](../index.md), [`LookupContinuation`](../index.md)
 
-- `fn find_location(self: &Self, probe: u64, sections: &gimli::Dwarf<R>) -> Result<Option<Location<'_>>, gimli::Error>` — [`Location`](../frame/index.md)
+- `fn find_location(self: &Self, probe: u64, sections: &gimli::Dwarf<R>) -> Result<Option<Location<'_>>, gimli::Error>` — [`Location`](../index.md)
 
 - `fn find_location_range(self: &Self, probe_low: u64, probe_high: u64, sections: &gimli::Dwarf<R>) -> Result<Option<LineLocationRangeIter<'_>>, gimli::Error>` — [`LineLocationRangeIter`](../line/index.md)
 
-- `fn find_function_or_location<'unit, 'ctx: 'unit>(self: &'unit Self, probe: u64, ctx: &'ctx Context<R>) -> LookupResult<impl LookupContinuation<Output = Result<(Option<&'unit Function<R>>, Option<Location<'unit>>), gimli::Error>, Buf = R>>` — [`Context`](../index.md), [`LookupResult`](../lookup/index.md), [`LookupContinuation`](../lookup/index.md), [`Function`](../function/index.md), [`Location`](../frame/index.md)
+- `fn find_function_or_location<'unit, 'ctx: 'unit>(self: &'unit Self, probe: u64, ctx: &'ctx Context<R>) -> LookupResult<impl LookupContinuation<Output = Result<(Option<&'unit Function<R>>, Option<Location<'unit>>), gimli::Error>, Buf = R>>` — [`Context`](../index.md), [`LookupResult`](../index.md), [`LookupContinuation`](../index.md), [`Function`](../function/index.md), [`Location`](../index.md)
 
 ### `ResUnits<R: gimli::Reader>`
 
@@ -68,7 +68,7 @@ struct ResUnits<R: gimli::Reader> {
 
 - `fn find_range(self: &Self, probe_low: u64, probe_high: u64) -> impl Iterator<Item = (&ResUnit<R>, &gimli::Range)>` — [`ResUnit`](#resunit)
 
-- `fn find_location_range<'a>(self: &'a Self, probe_low: u64, probe_high: u64, sections: &'a gimli::Dwarf<R>) -> Result<LocationRangeIter<'a, R>, gimli::Error>` — [`LocationRangeIter`](#locationrangeiter)
+- `fn find_location_range<'a>(self: &'a Self, probe_low: u64, probe_high: u64, sections: &'a gimli::Dwarf<R>) -> Result<LocationRangeIter<'a, R>, gimli::Error>` — [`LocationRangeIter`](../index.md)
 
 ### `DwoUnit<R: gimli::Reader>`
 
@@ -130,7 +130,7 @@ Iterator over `Location`s in a range of addresses, returned by `Context::find_lo
 
 #### Implementations
 
-- `fn next_loc(self: &mut Self) -> Result<Option<(u64, u64, Location<'ctx>)>, gimli::Error>` — [`Location`](../frame/index.md)
+- `fn next_loc(self: &mut Self) -> Result<Option<(u64, u64, Location<'ctx>)>, gimli::Error>` — [`Location`](../index.md)
 
 #### Trait Implementations
 

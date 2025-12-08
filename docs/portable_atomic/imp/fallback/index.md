@@ -27,39 +27,39 @@ struct AtomicI128 {
 
 - `const IS_ALWAYS_LOCK_FREE: bool`
 
-- `fn load(self: &Self, order: Ordering) -> i128`
+- `fn load(self: &Self, order: Ordering) -> i128` — [`Ordering`](../../index.md)
 
-- `fn store(self: &Self, val: i128, order: Ordering)`
+- `fn store(self: &Self, val: i128, order: Ordering)` — [`Ordering`](../../index.md)
 
-- `fn swap(self: &Self, val: i128, _order: Ordering) -> i128`
+- `fn swap(self: &Self, val: i128, _order: Ordering) -> i128` — [`Ordering`](../../index.md)
 
-- `fn compare_exchange(self: &Self, current: i128, new: i128, success: Ordering, failure: Ordering) -> Result<i128, i128>`
+- `fn compare_exchange(self: &Self, current: i128, new: i128, success: Ordering, failure: Ordering) -> Result<i128, i128>` — [`Ordering`](../../index.md)
 
-- `fn compare_exchange_weak(self: &Self, current: i128, new: i128, success: Ordering, failure: Ordering) -> Result<i128, i128>`
+- `fn compare_exchange_weak(self: &Self, current: i128, new: i128, success: Ordering, failure: Ordering) -> Result<i128, i128>` — [`Ordering`](../../index.md)
 
-- `fn fetch_add(self: &Self, val: i128, _order: Ordering) -> i128`
+- `fn fetch_add(self: &Self, val: i128, _order: Ordering) -> i128` — [`Ordering`](../../index.md)
 
-- `fn fetch_sub(self: &Self, val: i128, _order: Ordering) -> i128`
+- `fn fetch_sub(self: &Self, val: i128, _order: Ordering) -> i128` — [`Ordering`](../../index.md)
 
-- `fn fetch_and(self: &Self, val: i128, _order: Ordering) -> i128`
+- `fn fetch_and(self: &Self, val: i128, _order: Ordering) -> i128` — [`Ordering`](../../index.md)
 
-- `fn fetch_nand(self: &Self, val: i128, _order: Ordering) -> i128`
+- `fn fetch_nand(self: &Self, val: i128, _order: Ordering) -> i128` — [`Ordering`](../../index.md)
 
-- `fn fetch_or(self: &Self, val: i128, _order: Ordering) -> i128`
+- `fn fetch_or(self: &Self, val: i128, _order: Ordering) -> i128` — [`Ordering`](../../index.md)
 
-- `fn fetch_xor(self: &Self, val: i128, _order: Ordering) -> i128`
+- `fn fetch_xor(self: &Self, val: i128, _order: Ordering) -> i128` — [`Ordering`](../../index.md)
 
-- `fn fetch_max(self: &Self, val: i128, _order: Ordering) -> i128`
+- `fn fetch_max(self: &Self, val: i128, _order: Ordering) -> i128` — [`Ordering`](../../index.md)
 
-- `fn fetch_min(self: &Self, val: i128, _order: Ordering) -> i128`
+- `fn fetch_min(self: &Self, val: i128, _order: Ordering) -> i128` — [`Ordering`](../../index.md)
 
-- `fn fetch_not(self: &Self, _order: Ordering) -> i128`
+- `fn fetch_not(self: &Self, _order: Ordering) -> i128` — [`Ordering`](../../index.md)
 
-- `fn not(self: &Self, order: Ordering)`
+- `fn not(self: &Self, order: Ordering)` — [`Ordering`](../../index.md)
 
-- `fn fetch_neg(self: &Self, _order: Ordering) -> i128`
+- `fn fetch_neg(self: &Self, _order: Ordering) -> i128` — [`Ordering`](../../index.md)
 
-- `fn neg(self: &Self, order: Ordering)`
+- `fn neg(self: &Self, order: Ordering)` — [`Ordering`](../../index.md)
 
 - `const fn as_ptr(self: &Self) -> *mut i128`
 
@@ -77,15 +77,47 @@ struct AtomicU128 {
 
 #### Implementations
 
-- `fn add(self: &Self, val: u128, order: Ordering)`
+- `const fn new(v: u128) -> Self`
 
-- `fn sub(self: &Self, val: u128, order: Ordering)`
+- `fn is_lock_free() -> bool`
 
-- `fn and(self: &Self, val: u128, order: Ordering)`
+- `const IS_ALWAYS_LOCK_FREE: bool`
 
-- `fn or(self: &Self, val: u128, order: Ordering)`
+- `fn load(self: &Self, order: Ordering) -> u128` — [`Ordering`](../../index.md)
 
-- `fn xor(self: &Self, val: u128, order: Ordering)`
+- `fn store(self: &Self, val: u128, order: Ordering)` — [`Ordering`](../../index.md)
+
+- `fn swap(self: &Self, val: u128, _order: Ordering) -> u128` — [`Ordering`](../../index.md)
+
+- `fn compare_exchange(self: &Self, current: u128, new: u128, success: Ordering, failure: Ordering) -> Result<u128, u128>` — [`Ordering`](../../index.md)
+
+- `fn compare_exchange_weak(self: &Self, current: u128, new: u128, success: Ordering, failure: Ordering) -> Result<u128, u128>` — [`Ordering`](../../index.md)
+
+- `fn fetch_add(self: &Self, val: u128, _order: Ordering) -> u128` — [`Ordering`](../../index.md)
+
+- `fn fetch_sub(self: &Self, val: u128, _order: Ordering) -> u128` — [`Ordering`](../../index.md)
+
+- `fn fetch_and(self: &Self, val: u128, _order: Ordering) -> u128` — [`Ordering`](../../index.md)
+
+- `fn fetch_nand(self: &Self, val: u128, _order: Ordering) -> u128` — [`Ordering`](../../index.md)
+
+- `fn fetch_or(self: &Self, val: u128, _order: Ordering) -> u128` — [`Ordering`](../../index.md)
+
+- `fn fetch_xor(self: &Self, val: u128, _order: Ordering) -> u128` — [`Ordering`](../../index.md)
+
+- `fn fetch_max(self: &Self, val: u128, _order: Ordering) -> u128` — [`Ordering`](../../index.md)
+
+- `fn fetch_min(self: &Self, val: u128, _order: Ordering) -> u128` — [`Ordering`](../../index.md)
+
+- `fn fetch_not(self: &Self, _order: Ordering) -> u128` — [`Ordering`](../../index.md)
+
+- `fn not(self: &Self, order: Ordering)` — [`Ordering`](../../index.md)
+
+- `fn fetch_neg(self: &Self, _order: Ordering) -> u128` — [`Ordering`](../../index.md)
+
+- `fn neg(self: &Self, order: Ordering)` — [`Ordering`](../../index.md)
+
+- `const fn as_ptr(self: &Self) -> *mut u128`
 
 #### Trait Implementations
 

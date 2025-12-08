@@ -43,7 +43,7 @@ struct Split<'s, 'n> {
 trait OsStrExt: private::Sealed { ... }
 ```
 
-String-like methods for [`OsStr`](../../clap_builder/builder/os_str/index.md)
+String-like methods for [`OsStr`](../../clap_builder/builder/index.md)
 
 #### Required Methods
 

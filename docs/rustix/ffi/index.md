@@ -66,7 +66,7 @@ than once.
 
 #### Implementations
 
-- `fn new() -> Patterns`
+- `fn new() -> Patterns` — [`c_void`](#c-void)
 
 - `fn add(self: &mut Self, bytes: &[u8])`
 
@@ -94,7 +94,7 @@ than once.
 
 ##### `impl Clone for Patterns`
 
-- `fn clone(self: &Self) -> Patterns`
+- `fn clone(self: &Self) -> Patterns` — [`c_void`](#c-void)
 
 ##### `impl Debug for Patterns`
 

@@ -1,6 +1,6 @@
 # Crate `owo_colors`
 
-|**Quick Links**|[`OwoColorize`](#owocolorize)|[`Style`](#style)|[`StyledList`](styled_list/index.md)|[`github`](https://github.com/owo-colors/owo-colors)|
+|**Quick Links**|[`OwoColorize`](#owocolorize)|[`Style`](#style)|[`StyledList`](#styledlist)|[`github`](https://github.com/owo-colors/owo-colors)|
 |-|-|-|-|-|
 
 ---
@@ -103,83 +103,83 @@ with the addition of changing the foreground color. Recommended to be constructe
 
 - `const fn color<NewFg: DynColor>(self: Self, fg: NewFg) -> FgDynColorDisplay<'a, NewFg, T>` — [`FgDynColorDisplay`](#fgdyncolordisplay)
 
-- `const fn on_color<NewBg: DynColor>(self: Self, bg: NewBg) -> ComboDynColorDisplay<'a, <Fg as >::DynEquivalent, NewBg, T>` — [`ComboDynColorDisplay`](combo/index.md), [`Color`](#color)
+- `const fn on_color<NewBg: DynColor>(self: Self, bg: NewBg) -> ComboDynColorDisplay<'a, <Fg as >::DynEquivalent, NewBg, T>` — [`ComboDynColorDisplay`](#combodyncolordisplay), [`Color`](#color)
 
 - `const fn fg<C: Color>(self: Self) -> FgColorDisplay<'a, C, T>` — [`FgColorDisplay`](#fgcolordisplay)
 
-- `const fn bg<C: Color>(self: Self) -> ComboColorDisplay<'a, Fg, C, T>` — [`ComboColorDisplay`](combo/index.md)
+- `const fn bg<C: Color>(self: Self) -> ComboColorDisplay<'a, Fg, C, T>` — [`ComboColorDisplay`](#combocolordisplay)
 
 - `const fn black(self: Self) -> FgColorDisplay<'a, colors::Black, T>` — [`FgColorDisplay`](#fgcolordisplay), [`Black`](colors/index.md)
 
-- `const fn on_black(self: Self) -> ComboColorDisplay<'a, Fg, colors::Black, T>` — [`ComboColorDisplay`](combo/index.md), [`Black`](colors/index.md)
+- `const fn on_black(self: Self) -> ComboColorDisplay<'a, Fg, colors::Black, T>` — [`ComboColorDisplay`](#combocolordisplay), [`Black`](colors/index.md)
 
 - `const fn red(self: Self) -> FgColorDisplay<'a, colors::Red, T>` — [`FgColorDisplay`](#fgcolordisplay), [`Red`](colors/index.md)
 
-- `const fn on_red(self: Self) -> ComboColorDisplay<'a, Fg, colors::Red, T>` — [`ComboColorDisplay`](combo/index.md), [`Red`](colors/index.md)
+- `const fn on_red(self: Self) -> ComboColorDisplay<'a, Fg, colors::Red, T>` — [`ComboColorDisplay`](#combocolordisplay), [`Red`](colors/index.md)
 
 - `const fn green(self: Self) -> FgColorDisplay<'a, colors::Green, T>` — [`FgColorDisplay`](#fgcolordisplay), [`Green`](colors/index.md)
 
-- `const fn on_green(self: Self) -> ComboColorDisplay<'a, Fg, colors::Green, T>` — [`ComboColorDisplay`](combo/index.md), [`Green`](colors/index.md)
+- `const fn on_green(self: Self) -> ComboColorDisplay<'a, Fg, colors::Green, T>` — [`ComboColorDisplay`](#combocolordisplay), [`Green`](colors/index.md)
 
 - `const fn yellow(self: Self) -> FgColorDisplay<'a, colors::Yellow, T>` — [`FgColorDisplay`](#fgcolordisplay), [`Yellow`](colors/index.md)
 
-- `const fn on_yellow(self: Self) -> ComboColorDisplay<'a, Fg, colors::Yellow, T>` — [`ComboColorDisplay`](combo/index.md), [`Yellow`](colors/index.md)
+- `const fn on_yellow(self: Self) -> ComboColorDisplay<'a, Fg, colors::Yellow, T>` — [`ComboColorDisplay`](#combocolordisplay), [`Yellow`](colors/index.md)
 
 - `const fn blue(self: Self) -> FgColorDisplay<'a, colors::Blue, T>` — [`FgColorDisplay`](#fgcolordisplay), [`Blue`](colors/index.md)
 
-- `const fn on_blue(self: Self) -> ComboColorDisplay<'a, Fg, colors::Blue, T>` — [`ComboColorDisplay`](combo/index.md), [`Blue`](colors/index.md)
+- `const fn on_blue(self: Self) -> ComboColorDisplay<'a, Fg, colors::Blue, T>` — [`ComboColorDisplay`](#combocolordisplay), [`Blue`](colors/index.md)
 
 - `const fn magenta(self: Self) -> FgColorDisplay<'a, colors::Magenta, T>` — [`FgColorDisplay`](#fgcolordisplay), [`Magenta`](colors/index.md)
 
-- `const fn on_magenta(self: Self) -> ComboColorDisplay<'a, Fg, colors::Magenta, T>` — [`ComboColorDisplay`](combo/index.md), [`Magenta`](colors/index.md)
+- `const fn on_magenta(self: Self) -> ComboColorDisplay<'a, Fg, colors::Magenta, T>` — [`ComboColorDisplay`](#combocolordisplay), [`Magenta`](colors/index.md)
 
 - `const fn purple(self: Self) -> FgColorDisplay<'a, colors::Magenta, T>` — [`FgColorDisplay`](#fgcolordisplay), [`Magenta`](colors/index.md)
 
-- `const fn on_purple(self: Self) -> ComboColorDisplay<'a, Fg, colors::Magenta, T>` — [`ComboColorDisplay`](combo/index.md), [`Magenta`](colors/index.md)
+- `const fn on_purple(self: Self) -> ComboColorDisplay<'a, Fg, colors::Magenta, T>` — [`ComboColorDisplay`](#combocolordisplay), [`Magenta`](colors/index.md)
 
 - `const fn cyan(self: Self) -> FgColorDisplay<'a, colors::Cyan, T>` — [`FgColorDisplay`](#fgcolordisplay), [`Cyan`](colors/index.md)
 
-- `const fn on_cyan(self: Self) -> ComboColorDisplay<'a, Fg, colors::Cyan, T>` — [`ComboColorDisplay`](combo/index.md), [`Cyan`](colors/index.md)
+- `const fn on_cyan(self: Self) -> ComboColorDisplay<'a, Fg, colors::Cyan, T>` — [`ComboColorDisplay`](#combocolordisplay), [`Cyan`](colors/index.md)
 
 - `const fn white(self: Self) -> FgColorDisplay<'a, colors::White, T>` — [`FgColorDisplay`](#fgcolordisplay), [`White`](colors/index.md)
 
-- `const fn on_white(self: Self) -> ComboColorDisplay<'a, Fg, colors::White, T>` — [`ComboColorDisplay`](combo/index.md), [`White`](colors/index.md)
+- `const fn on_white(self: Self) -> ComboColorDisplay<'a, Fg, colors::White, T>` — [`ComboColorDisplay`](#combocolordisplay), [`White`](colors/index.md)
 
 - `const fn bright_black(self: Self) -> FgColorDisplay<'a, colors::BrightBlack, T>` — [`FgColorDisplay`](#fgcolordisplay), [`BrightBlack`](colors/index.md)
 
-- `const fn on_bright_black(self: Self) -> ComboColorDisplay<'a, Fg, colors::BrightBlack, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightBlack`](colors/index.md)
+- `const fn on_bright_black(self: Self) -> ComboColorDisplay<'a, Fg, colors::BrightBlack, T>` — [`ComboColorDisplay`](#combocolordisplay), [`BrightBlack`](colors/index.md)
 
 - `const fn bright_red(self: Self) -> FgColorDisplay<'a, colors::BrightRed, T>` — [`FgColorDisplay`](#fgcolordisplay), [`BrightRed`](colors/index.md)
 
-- `const fn on_bright_red(self: Self) -> ComboColorDisplay<'a, Fg, colors::BrightRed, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightRed`](colors/index.md)
+- `const fn on_bright_red(self: Self) -> ComboColorDisplay<'a, Fg, colors::BrightRed, T>` — [`ComboColorDisplay`](#combocolordisplay), [`BrightRed`](colors/index.md)
 
 - `const fn bright_green(self: Self) -> FgColorDisplay<'a, colors::BrightGreen, T>` — [`FgColorDisplay`](#fgcolordisplay), [`BrightGreen`](colors/index.md)
 
-- `const fn on_bright_green(self: Self) -> ComboColorDisplay<'a, Fg, colors::BrightGreen, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightGreen`](colors/index.md)
+- `const fn on_bright_green(self: Self) -> ComboColorDisplay<'a, Fg, colors::BrightGreen, T>` — [`ComboColorDisplay`](#combocolordisplay), [`BrightGreen`](colors/index.md)
 
 - `const fn bright_yellow(self: Self) -> FgColorDisplay<'a, colors::BrightYellow, T>` — [`FgColorDisplay`](#fgcolordisplay), [`BrightYellow`](colors/index.md)
 
-- `const fn on_bright_yellow(self: Self) -> ComboColorDisplay<'a, Fg, colors::BrightYellow, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightYellow`](colors/index.md)
+- `const fn on_bright_yellow(self: Self) -> ComboColorDisplay<'a, Fg, colors::BrightYellow, T>` — [`ComboColorDisplay`](#combocolordisplay), [`BrightYellow`](colors/index.md)
 
 - `const fn bright_blue(self: Self) -> FgColorDisplay<'a, colors::BrightBlue, T>` — [`FgColorDisplay`](#fgcolordisplay), [`BrightBlue`](colors/index.md)
 
-- `const fn on_bright_blue(self: Self) -> ComboColorDisplay<'a, Fg, colors::BrightBlue, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightBlue`](colors/index.md)
+- `const fn on_bright_blue(self: Self) -> ComboColorDisplay<'a, Fg, colors::BrightBlue, T>` — [`ComboColorDisplay`](#combocolordisplay), [`BrightBlue`](colors/index.md)
 
 - `const fn bright_magenta(self: Self) -> FgColorDisplay<'a, colors::BrightMagenta, T>` — [`FgColorDisplay`](#fgcolordisplay), [`BrightMagenta`](colors/index.md)
 
-- `const fn on_bright_magenta(self: Self) -> ComboColorDisplay<'a, Fg, colors::BrightMagenta, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightMagenta`](colors/index.md)
+- `const fn on_bright_magenta(self: Self) -> ComboColorDisplay<'a, Fg, colors::BrightMagenta, T>` — [`ComboColorDisplay`](#combocolordisplay), [`BrightMagenta`](colors/index.md)
 
 - `const fn bright_purple(self: Self) -> FgColorDisplay<'a, colors::BrightMagenta, T>` — [`FgColorDisplay`](#fgcolordisplay), [`BrightMagenta`](colors/index.md)
 
-- `const fn on_bright_purple(self: Self) -> ComboColorDisplay<'a, Fg, colors::BrightMagenta, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightMagenta`](colors/index.md)
+- `const fn on_bright_purple(self: Self) -> ComboColorDisplay<'a, Fg, colors::BrightMagenta, T>` — [`ComboColorDisplay`](#combocolordisplay), [`BrightMagenta`](colors/index.md)
 
 - `const fn bright_cyan(self: Self) -> FgColorDisplay<'a, colors::BrightCyan, T>` — [`FgColorDisplay`](#fgcolordisplay), [`BrightCyan`](colors/index.md)
 
-- `const fn on_bright_cyan(self: Self) -> ComboColorDisplay<'a, Fg, colors::BrightCyan, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightCyan`](colors/index.md)
+- `const fn on_bright_cyan(self: Self) -> ComboColorDisplay<'a, Fg, colors::BrightCyan, T>` — [`ComboColorDisplay`](#combocolordisplay), [`BrightCyan`](colors/index.md)
 
 - `const fn bright_white(self: Self) -> FgColorDisplay<'a, colors::BrightWhite, T>` — [`FgColorDisplay`](#fgcolordisplay), [`BrightWhite`](colors/index.md)
 
-- `const fn on_bright_white(self: Self) -> ComboColorDisplay<'a, Fg, colors::BrightWhite, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightWhite`](colors/index.md)
+- `const fn on_bright_white(self: Self) -> ComboColorDisplay<'a, Fg, colors::BrightWhite, T>` — [`ComboColorDisplay`](#combocolordisplay), [`BrightWhite`](colors/index.md)
 
 #### Trait Implementations
 
@@ -237,85 +237,85 @@ with the addition of changing the background color. Recommended to be constructe
 
 - `const fn into_styled(self: Self) -> Styled<&'a T>` — [`Styled`](#styled)
 
-- `const fn color<NewFg: DynColor>(self: Self, fg: NewFg) -> ComboDynColorDisplay<'a, NewFg, <Bg as >::DynEquivalent, T>` — [`ComboDynColorDisplay`](combo/index.md), [`Color`](#color)
+- `const fn color<NewFg: DynColor>(self: Self, fg: NewFg) -> ComboDynColorDisplay<'a, NewFg, <Bg as >::DynEquivalent, T>` — [`ComboDynColorDisplay`](#combodyncolordisplay), [`Color`](#color)
 
 - `const fn on_color<NewBg: DynColor>(self: Self, bg: NewBg) -> BgDynColorDisplay<'a, NewBg, T>` — [`BgDynColorDisplay`](#bgdyncolordisplay)
 
-- `const fn fg<C: Color>(self: Self) -> ComboColorDisplay<'a, C, Bg, T>` — [`ComboColorDisplay`](combo/index.md)
+- `const fn fg<C: Color>(self: Self) -> ComboColorDisplay<'a, C, Bg, T>` — [`ComboColorDisplay`](#combocolordisplay)
 
 - `const fn bg<C: Color>(self: Self) -> BgColorDisplay<'a, C, T>` — [`BgColorDisplay`](#bgcolordisplay)
 
 - `const fn on_black(self: Self) -> BgColorDisplay<'a, colors::Black, T>` — [`BgColorDisplay`](#bgcolordisplay), [`Black`](colors/index.md)
 
-- `const fn black(self: Self) -> ComboColorDisplay<'a, colors::Black, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`Black`](colors/index.md)
+- `const fn black(self: Self) -> ComboColorDisplay<'a, colors::Black, Bg, T>` — [`ComboColorDisplay`](#combocolordisplay), [`Black`](colors/index.md)
 
 - `const fn on_red(self: Self) -> BgColorDisplay<'a, colors::Red, T>` — [`BgColorDisplay`](#bgcolordisplay), [`Red`](colors/index.md)
 
-- `const fn red(self: Self) -> ComboColorDisplay<'a, colors::Red, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`Red`](colors/index.md)
+- `const fn red(self: Self) -> ComboColorDisplay<'a, colors::Red, Bg, T>` — [`ComboColorDisplay`](#combocolordisplay), [`Red`](colors/index.md)
 
 - `const fn on_green(self: Self) -> BgColorDisplay<'a, colors::Green, T>` — [`BgColorDisplay`](#bgcolordisplay), [`Green`](colors/index.md)
 
-- `const fn green(self: Self) -> ComboColorDisplay<'a, colors::Green, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`Green`](colors/index.md)
+- `const fn green(self: Self) -> ComboColorDisplay<'a, colors::Green, Bg, T>` — [`ComboColorDisplay`](#combocolordisplay), [`Green`](colors/index.md)
 
 - `const fn on_yellow(self: Self) -> BgColorDisplay<'a, colors::Yellow, T>` — [`BgColorDisplay`](#bgcolordisplay), [`Yellow`](colors/index.md)
 
-- `const fn yellow(self: Self) -> ComboColorDisplay<'a, colors::Yellow, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`Yellow`](colors/index.md)
+- `const fn yellow(self: Self) -> ComboColorDisplay<'a, colors::Yellow, Bg, T>` — [`ComboColorDisplay`](#combocolordisplay), [`Yellow`](colors/index.md)
 
 - `const fn on_blue(self: Self) -> BgColorDisplay<'a, colors::Blue, T>` — [`BgColorDisplay`](#bgcolordisplay), [`Blue`](colors/index.md)
 
-- `const fn blue(self: Self) -> ComboColorDisplay<'a, colors::Blue, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`Blue`](colors/index.md)
+- `const fn blue(self: Self) -> ComboColorDisplay<'a, colors::Blue, Bg, T>` — [`ComboColorDisplay`](#combocolordisplay), [`Blue`](colors/index.md)
 
 - `const fn on_magenta(self: Self) -> BgColorDisplay<'a, colors::Magenta, T>` — [`BgColorDisplay`](#bgcolordisplay), [`Magenta`](colors/index.md)
 
-- `const fn magenta(self: Self) -> ComboColorDisplay<'a, colors::Magenta, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`Magenta`](colors/index.md)
+- `const fn magenta(self: Self) -> ComboColorDisplay<'a, colors::Magenta, Bg, T>` — [`ComboColorDisplay`](#combocolordisplay), [`Magenta`](colors/index.md)
 
 - `const fn on_purple(self: Self) -> BgColorDisplay<'a, colors::Magenta, T>` — [`BgColorDisplay`](#bgcolordisplay), [`Magenta`](colors/index.md)
 
-- `const fn purple(self: Self) -> ComboColorDisplay<'a, colors::Magenta, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`Magenta`](colors/index.md)
+- `const fn purple(self: Self) -> ComboColorDisplay<'a, colors::Magenta, Bg, T>` — [`ComboColorDisplay`](#combocolordisplay), [`Magenta`](colors/index.md)
 
 - `const fn on_cyan(self: Self) -> BgColorDisplay<'a, colors::Cyan, T>` — [`BgColorDisplay`](#bgcolordisplay), [`Cyan`](colors/index.md)
 
-- `const fn cyan(self: Self) -> ComboColorDisplay<'a, colors::Cyan, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`Cyan`](colors/index.md)
+- `const fn cyan(self: Self) -> ComboColorDisplay<'a, colors::Cyan, Bg, T>` — [`ComboColorDisplay`](#combocolordisplay), [`Cyan`](colors/index.md)
 
 - `const fn on_white(self: Self) -> BgColorDisplay<'a, colors::White, T>` — [`BgColorDisplay`](#bgcolordisplay), [`White`](colors/index.md)
 
-- `const fn white(self: Self) -> ComboColorDisplay<'a, colors::White, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`White`](colors/index.md)
+- `const fn white(self: Self) -> ComboColorDisplay<'a, colors::White, Bg, T>` — [`ComboColorDisplay`](#combocolordisplay), [`White`](colors/index.md)
 
 - `const fn on_bright_black(self: Self) -> BgColorDisplay<'a, colors::BrightBlack, T>` — [`BgColorDisplay`](#bgcolordisplay), [`BrightBlack`](colors/index.md)
 
-- `const fn bright_black(self: Self) -> ComboColorDisplay<'a, colors::BrightBlack, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightBlack`](colors/index.md)
+- `const fn bright_black(self: Self) -> ComboColorDisplay<'a, colors::BrightBlack, Bg, T>` — [`ComboColorDisplay`](#combocolordisplay), [`BrightBlack`](colors/index.md)
 
 - `const fn on_bright_red(self: Self) -> BgColorDisplay<'a, colors::BrightRed, T>` — [`BgColorDisplay`](#bgcolordisplay), [`BrightRed`](colors/index.md)
 
-- `const fn bright_red(self: Self) -> ComboColorDisplay<'a, colors::BrightRed, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightRed`](colors/index.md)
+- `const fn bright_red(self: Self) -> ComboColorDisplay<'a, colors::BrightRed, Bg, T>` — [`ComboColorDisplay`](#combocolordisplay), [`BrightRed`](colors/index.md)
 
 - `const fn on_bright_green(self: Self) -> BgColorDisplay<'a, colors::BrightGreen, T>` — [`BgColorDisplay`](#bgcolordisplay), [`BrightGreen`](colors/index.md)
 
-- `const fn bright_green(self: Self) -> ComboColorDisplay<'a, colors::BrightGreen, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightGreen`](colors/index.md)
+- `const fn bright_green(self: Self) -> ComboColorDisplay<'a, colors::BrightGreen, Bg, T>` — [`ComboColorDisplay`](#combocolordisplay), [`BrightGreen`](colors/index.md)
 
 - `const fn on_bright_yellow(self: Self) -> BgColorDisplay<'a, colors::BrightYellow, T>` — [`BgColorDisplay`](#bgcolordisplay), [`BrightYellow`](colors/index.md)
 
-- `const fn bright_yellow(self: Self) -> ComboColorDisplay<'a, colors::BrightYellow, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightYellow`](colors/index.md)
+- `const fn bright_yellow(self: Self) -> ComboColorDisplay<'a, colors::BrightYellow, Bg, T>` — [`ComboColorDisplay`](#combocolordisplay), [`BrightYellow`](colors/index.md)
 
 - `const fn on_bright_blue(self: Self) -> BgColorDisplay<'a, colors::BrightBlue, T>` — [`BgColorDisplay`](#bgcolordisplay), [`BrightBlue`](colors/index.md)
 
-- `const fn bright_blue(self: Self) -> ComboColorDisplay<'a, colors::BrightBlue, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightBlue`](colors/index.md)
+- `const fn bright_blue(self: Self) -> ComboColorDisplay<'a, colors::BrightBlue, Bg, T>` — [`ComboColorDisplay`](#combocolordisplay), [`BrightBlue`](colors/index.md)
 
 - `const fn on_bright_magenta(self: Self) -> BgColorDisplay<'a, colors::BrightMagenta, T>` — [`BgColorDisplay`](#bgcolordisplay), [`BrightMagenta`](colors/index.md)
 
-- `const fn bright_magenta(self: Self) -> ComboColorDisplay<'a, colors::BrightMagenta, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightMagenta`](colors/index.md)
+- `const fn bright_magenta(self: Self) -> ComboColorDisplay<'a, colors::BrightMagenta, Bg, T>` — [`ComboColorDisplay`](#combocolordisplay), [`BrightMagenta`](colors/index.md)
 
 - `const fn on_bright_purple(self: Self) -> BgColorDisplay<'a, colors::BrightMagenta, T>` — [`BgColorDisplay`](#bgcolordisplay), [`BrightMagenta`](colors/index.md)
 
-- `const fn bright_purple(self: Self) -> ComboColorDisplay<'a, colors::BrightMagenta, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightMagenta`](colors/index.md)
+- `const fn bright_purple(self: Self) -> ComboColorDisplay<'a, colors::BrightMagenta, Bg, T>` — [`ComboColorDisplay`](#combocolordisplay), [`BrightMagenta`](colors/index.md)
 
 - `const fn on_bright_cyan(self: Self) -> BgColorDisplay<'a, colors::BrightCyan, T>` — [`BgColorDisplay`](#bgcolordisplay), [`BrightCyan`](colors/index.md)
 
-- `const fn bright_cyan(self: Self) -> ComboColorDisplay<'a, colors::BrightCyan, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightCyan`](colors/index.md)
+- `const fn bright_cyan(self: Self) -> ComboColorDisplay<'a, colors::BrightCyan, Bg, T>` — [`ComboColorDisplay`](#combocolordisplay), [`BrightCyan`](colors/index.md)
 
 - `const fn on_bright_white(self: Self) -> BgColorDisplay<'a, colors::BrightWhite, T>` — [`BgColorDisplay`](#bgcolordisplay), [`BrightWhite`](colors/index.md)
 
-- `const fn bright_white(self: Self) -> ComboColorDisplay<'a, colors::BrightWhite, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightWhite`](colors/index.md)
+- `const fn bright_white(self: Self) -> ComboColorDisplay<'a, colors::BrightWhite, Bg, T>` — [`ComboColorDisplay`](#combocolordisplay), [`BrightWhite`](colors/index.md)
 
 #### Trait Implementations
 
@@ -373,7 +373,7 @@ coloring is not an option.
 
 - `fn into_styled(self: Self) -> Styled<&'a T>` — [`Styled`](#styled)
 
-- `const fn on_color<Bg: DynColor>(self: Self, bg: Bg) -> ComboDynColorDisplay<'a, Fg, Bg, T>` — [`ComboDynColorDisplay`](combo/index.md)
+- `const fn on_color<Bg: DynColor>(self: Self, bg: Bg) -> ComboDynColorDisplay<'a, Fg, Bg, T>` — [`ComboDynColorDisplay`](#combodyncolordisplay)
 
 - `const fn color<NewFg: DynColor>(self: Self, fg: NewFg) -> FgDynColorDisplay<'a, NewFg, T>` — [`FgDynColorDisplay`](#fgdyncolordisplay)
 
@@ -435,7 +435,7 @@ coloring is not an option.
 
 - `const fn on_color<NewBg: DynColor>(self: Self, bg: NewBg) -> BgDynColorDisplay<'a, NewBg, T>` — [`BgDynColorDisplay`](#bgdyncolordisplay)
 
-- `const fn color<Fg: DynColor>(self: Self, fg: Fg) -> ComboDynColorDisplay<'a, Fg, Bg, T>` — [`ComboDynColorDisplay`](combo/index.md)
+- `const fn color<Fg: DynColor>(self: Self, fg: Fg) -> ComboDynColorDisplay<'a, Fg, Bg, T>` — [`ComboDynColorDisplay`](#combodyncolordisplay)
 
 #### Trait Implementations
 
@@ -490,7 +490,7 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 ##### `impl Clone for Rgb`
 
-- `fn clone(self: &Self) -> Rgb` — [`Rgb`](colors/dynamic/index.md)
+- `fn clone(self: &Self) -> Rgb` — [`Rgb`](#rgb)
 
 ##### `impl Copy for Rgb`
 
@@ -514,7 +514,7 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 ##### `impl PartialEq for Rgb`
 
-- `fn eq(self: &Self, other: &Rgb) -> bool` — [`Rgb`](colors/dynamic/index.md)
+- `fn eq(self: &Self, other: &Rgb) -> bool` — [`Rgb`](#rgb)
 
 ##### `impl StructuralPartialEq for Rgb`
 
@@ -532,85 +532,85 @@ A wrapper type which applies both a foreground and background color
 
 - `const fn into_styled(self: Self) -> Styled<&'a T>` — [`Styled`](#styled)
 
-- `const fn on_color<NewBg: DynColor>(self: Self, bg: NewBg) -> ComboDynColorDisplay<'a, <Fg as >::DynEquivalent, NewBg, T>` — [`ComboDynColorDisplay`](combo/index.md), [`Color`](#color)
+- `const fn on_color<NewBg: DynColor>(self: Self, bg: NewBg) -> ComboDynColorDisplay<'a, <Fg as >::DynEquivalent, NewBg, T>` — [`ComboDynColorDisplay`](#combodyncolordisplay), [`Color`](#color)
 
-- `const fn color<NewFg: DynColor>(self: Self, fg: NewFg) -> ComboDynColorDisplay<'a, NewFg, <Bg as >::DynEquivalent, T>` — [`ComboDynColorDisplay`](combo/index.md), [`Color`](#color)
+- `const fn color<NewFg: DynColor>(self: Self, fg: NewFg) -> ComboDynColorDisplay<'a, NewFg, <Bg as >::DynEquivalent, T>` — [`ComboDynColorDisplay`](#combodyncolordisplay), [`Color`](#color)
 
-- `const fn fg<C: Color>(self: Self) -> ComboColorDisplay<'a, C, Bg, T>` — [`ComboColorDisplay`](combo/index.md)
+- `const fn fg<C: Color>(self: Self) -> ComboColorDisplay<'a, C, Bg, T>` — [`ComboColorDisplay`](#combocolordisplay)
 
-- `const fn bg<C: Color>(self: Self) -> ComboColorDisplay<'a, Fg, C, T>` — [`ComboColorDisplay`](combo/index.md)
+- `const fn bg<C: Color>(self: Self) -> ComboColorDisplay<'a, Fg, C, T>` — [`ComboColorDisplay`](#combocolordisplay)
 
-- `const fn on_black(self: Self) -> ComboColorDisplay<'a, Fg, colors::Black, T>` — [`ComboColorDisplay`](combo/index.md), [`Black`](colors/index.md)
+- `const fn on_black(self: Self) -> ComboColorDisplay<'a, Fg, colors::Black, T>` — [`ComboColorDisplay`](#combocolordisplay), [`Black`](colors/index.md)
 
-- `const fn black(self: Self) -> ComboColorDisplay<'a, colors::Black, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`Black`](colors/index.md)
+- `const fn black(self: Self) -> ComboColorDisplay<'a, colors::Black, Bg, T>` — [`ComboColorDisplay`](#combocolordisplay), [`Black`](colors/index.md)
 
-- `const fn on_red(self: Self) -> ComboColorDisplay<'a, Fg, colors::Red, T>` — [`ComboColorDisplay`](combo/index.md), [`Red`](colors/index.md)
+- `const fn on_red(self: Self) -> ComboColorDisplay<'a, Fg, colors::Red, T>` — [`ComboColorDisplay`](#combocolordisplay), [`Red`](colors/index.md)
 
-- `const fn red(self: Self) -> ComboColorDisplay<'a, colors::Red, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`Red`](colors/index.md)
+- `const fn red(self: Self) -> ComboColorDisplay<'a, colors::Red, Bg, T>` — [`ComboColorDisplay`](#combocolordisplay), [`Red`](colors/index.md)
 
-- `const fn on_green(self: Self) -> ComboColorDisplay<'a, Fg, colors::Green, T>` — [`ComboColorDisplay`](combo/index.md), [`Green`](colors/index.md)
+- `const fn on_green(self: Self) -> ComboColorDisplay<'a, Fg, colors::Green, T>` — [`ComboColorDisplay`](#combocolordisplay), [`Green`](colors/index.md)
 
-- `const fn green(self: Self) -> ComboColorDisplay<'a, colors::Green, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`Green`](colors/index.md)
+- `const fn green(self: Self) -> ComboColorDisplay<'a, colors::Green, Bg, T>` — [`ComboColorDisplay`](#combocolordisplay), [`Green`](colors/index.md)
 
-- `const fn on_yellow(self: Self) -> ComboColorDisplay<'a, Fg, colors::Yellow, T>` — [`ComboColorDisplay`](combo/index.md), [`Yellow`](colors/index.md)
+- `const fn on_yellow(self: Self) -> ComboColorDisplay<'a, Fg, colors::Yellow, T>` — [`ComboColorDisplay`](#combocolordisplay), [`Yellow`](colors/index.md)
 
-- `const fn yellow(self: Self) -> ComboColorDisplay<'a, colors::Yellow, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`Yellow`](colors/index.md)
+- `const fn yellow(self: Self) -> ComboColorDisplay<'a, colors::Yellow, Bg, T>` — [`ComboColorDisplay`](#combocolordisplay), [`Yellow`](colors/index.md)
 
-- `const fn on_blue(self: Self) -> ComboColorDisplay<'a, Fg, colors::Blue, T>` — [`ComboColorDisplay`](combo/index.md), [`Blue`](colors/index.md)
+- `const fn on_blue(self: Self) -> ComboColorDisplay<'a, Fg, colors::Blue, T>` — [`ComboColorDisplay`](#combocolordisplay), [`Blue`](colors/index.md)
 
-- `const fn blue(self: Self) -> ComboColorDisplay<'a, colors::Blue, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`Blue`](colors/index.md)
+- `const fn blue(self: Self) -> ComboColorDisplay<'a, colors::Blue, Bg, T>` — [`ComboColorDisplay`](#combocolordisplay), [`Blue`](colors/index.md)
 
-- `const fn on_magenta(self: Self) -> ComboColorDisplay<'a, Fg, colors::Magenta, T>` — [`ComboColorDisplay`](combo/index.md), [`Magenta`](colors/index.md)
+- `const fn on_magenta(self: Self) -> ComboColorDisplay<'a, Fg, colors::Magenta, T>` — [`ComboColorDisplay`](#combocolordisplay), [`Magenta`](colors/index.md)
 
-- `const fn magenta(self: Self) -> ComboColorDisplay<'a, colors::Magenta, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`Magenta`](colors/index.md)
+- `const fn magenta(self: Self) -> ComboColorDisplay<'a, colors::Magenta, Bg, T>` — [`ComboColorDisplay`](#combocolordisplay), [`Magenta`](colors/index.md)
 
-- `const fn on_purple(self: Self) -> ComboColorDisplay<'a, Fg, colors::Magenta, T>` — [`ComboColorDisplay`](combo/index.md), [`Magenta`](colors/index.md)
+- `const fn on_purple(self: Self) -> ComboColorDisplay<'a, Fg, colors::Magenta, T>` — [`ComboColorDisplay`](#combocolordisplay), [`Magenta`](colors/index.md)
 
-- `const fn purple(self: Self) -> ComboColorDisplay<'a, colors::Magenta, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`Magenta`](colors/index.md)
+- `const fn purple(self: Self) -> ComboColorDisplay<'a, colors::Magenta, Bg, T>` — [`ComboColorDisplay`](#combocolordisplay), [`Magenta`](colors/index.md)
 
-- `const fn on_cyan(self: Self) -> ComboColorDisplay<'a, Fg, colors::Cyan, T>` — [`ComboColorDisplay`](combo/index.md), [`Cyan`](colors/index.md)
+- `const fn on_cyan(self: Self) -> ComboColorDisplay<'a, Fg, colors::Cyan, T>` — [`ComboColorDisplay`](#combocolordisplay), [`Cyan`](colors/index.md)
 
-- `const fn cyan(self: Self) -> ComboColorDisplay<'a, colors::Cyan, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`Cyan`](colors/index.md)
+- `const fn cyan(self: Self) -> ComboColorDisplay<'a, colors::Cyan, Bg, T>` — [`ComboColorDisplay`](#combocolordisplay), [`Cyan`](colors/index.md)
 
-- `const fn on_white(self: Self) -> ComboColorDisplay<'a, Fg, colors::White, T>` — [`ComboColorDisplay`](combo/index.md), [`White`](colors/index.md)
+- `const fn on_white(self: Self) -> ComboColorDisplay<'a, Fg, colors::White, T>` — [`ComboColorDisplay`](#combocolordisplay), [`White`](colors/index.md)
 
-- `const fn white(self: Self) -> ComboColorDisplay<'a, colors::White, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`White`](colors/index.md)
+- `const fn white(self: Self) -> ComboColorDisplay<'a, colors::White, Bg, T>` — [`ComboColorDisplay`](#combocolordisplay), [`White`](colors/index.md)
 
-- `const fn on_bright_black(self: Self) -> ComboColorDisplay<'a, Fg, colors::BrightBlack, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightBlack`](colors/index.md)
+- `const fn on_bright_black(self: Self) -> ComboColorDisplay<'a, Fg, colors::BrightBlack, T>` — [`ComboColorDisplay`](#combocolordisplay), [`BrightBlack`](colors/index.md)
 
-- `const fn bright_black(self: Self) -> ComboColorDisplay<'a, colors::BrightBlack, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightBlack`](colors/index.md)
+- `const fn bright_black(self: Self) -> ComboColorDisplay<'a, colors::BrightBlack, Bg, T>` — [`ComboColorDisplay`](#combocolordisplay), [`BrightBlack`](colors/index.md)
 
-- `const fn on_bright_red(self: Self) -> ComboColorDisplay<'a, Fg, colors::BrightRed, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightRed`](colors/index.md)
+- `const fn on_bright_red(self: Self) -> ComboColorDisplay<'a, Fg, colors::BrightRed, T>` — [`ComboColorDisplay`](#combocolordisplay), [`BrightRed`](colors/index.md)
 
-- `const fn bright_red(self: Self) -> ComboColorDisplay<'a, colors::BrightRed, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightRed`](colors/index.md)
+- `const fn bright_red(self: Self) -> ComboColorDisplay<'a, colors::BrightRed, Bg, T>` — [`ComboColorDisplay`](#combocolordisplay), [`BrightRed`](colors/index.md)
 
-- `const fn on_bright_green(self: Self) -> ComboColorDisplay<'a, Fg, colors::BrightGreen, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightGreen`](colors/index.md)
+- `const fn on_bright_green(self: Self) -> ComboColorDisplay<'a, Fg, colors::BrightGreen, T>` — [`ComboColorDisplay`](#combocolordisplay), [`BrightGreen`](colors/index.md)
 
-- `const fn bright_green(self: Self) -> ComboColorDisplay<'a, colors::BrightGreen, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightGreen`](colors/index.md)
+- `const fn bright_green(self: Self) -> ComboColorDisplay<'a, colors::BrightGreen, Bg, T>` — [`ComboColorDisplay`](#combocolordisplay), [`BrightGreen`](colors/index.md)
 
-- `const fn on_bright_yellow(self: Self) -> ComboColorDisplay<'a, Fg, colors::BrightYellow, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightYellow`](colors/index.md)
+- `const fn on_bright_yellow(self: Self) -> ComboColorDisplay<'a, Fg, colors::BrightYellow, T>` — [`ComboColorDisplay`](#combocolordisplay), [`BrightYellow`](colors/index.md)
 
-- `const fn bright_yellow(self: Self) -> ComboColorDisplay<'a, colors::BrightYellow, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightYellow`](colors/index.md)
+- `const fn bright_yellow(self: Self) -> ComboColorDisplay<'a, colors::BrightYellow, Bg, T>` — [`ComboColorDisplay`](#combocolordisplay), [`BrightYellow`](colors/index.md)
 
-- `const fn on_bright_blue(self: Self) -> ComboColorDisplay<'a, Fg, colors::BrightBlue, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightBlue`](colors/index.md)
+- `const fn on_bright_blue(self: Self) -> ComboColorDisplay<'a, Fg, colors::BrightBlue, T>` — [`ComboColorDisplay`](#combocolordisplay), [`BrightBlue`](colors/index.md)
 
-- `const fn bright_blue(self: Self) -> ComboColorDisplay<'a, colors::BrightBlue, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightBlue`](colors/index.md)
+- `const fn bright_blue(self: Self) -> ComboColorDisplay<'a, colors::BrightBlue, Bg, T>` — [`ComboColorDisplay`](#combocolordisplay), [`BrightBlue`](colors/index.md)
 
-- `const fn on_bright_magenta(self: Self) -> ComboColorDisplay<'a, Fg, colors::BrightMagenta, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightMagenta`](colors/index.md)
+- `const fn on_bright_magenta(self: Self) -> ComboColorDisplay<'a, Fg, colors::BrightMagenta, T>` — [`ComboColorDisplay`](#combocolordisplay), [`BrightMagenta`](colors/index.md)
 
-- `const fn bright_magenta(self: Self) -> ComboColorDisplay<'a, colors::BrightMagenta, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightMagenta`](colors/index.md)
+- `const fn bright_magenta(self: Self) -> ComboColorDisplay<'a, colors::BrightMagenta, Bg, T>` — [`ComboColorDisplay`](#combocolordisplay), [`BrightMagenta`](colors/index.md)
 
-- `const fn on_bright_purple(self: Self) -> ComboColorDisplay<'a, Fg, colors::BrightMagenta, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightMagenta`](colors/index.md)
+- `const fn on_bright_purple(self: Self) -> ComboColorDisplay<'a, Fg, colors::BrightMagenta, T>` — [`ComboColorDisplay`](#combocolordisplay), [`BrightMagenta`](colors/index.md)
 
-- `const fn bright_purple(self: Self) -> ComboColorDisplay<'a, colors::BrightMagenta, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightMagenta`](colors/index.md)
+- `const fn bright_purple(self: Self) -> ComboColorDisplay<'a, colors::BrightMagenta, Bg, T>` — [`ComboColorDisplay`](#combocolordisplay), [`BrightMagenta`](colors/index.md)
 
-- `const fn on_bright_cyan(self: Self) -> ComboColorDisplay<'a, Fg, colors::BrightCyan, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightCyan`](colors/index.md)
+- `const fn on_bright_cyan(self: Self) -> ComboColorDisplay<'a, Fg, colors::BrightCyan, T>` — [`ComboColorDisplay`](#combocolordisplay), [`BrightCyan`](colors/index.md)
 
-- `const fn bright_cyan(self: Self) -> ComboColorDisplay<'a, colors::BrightCyan, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightCyan`](colors/index.md)
+- `const fn bright_cyan(self: Self) -> ComboColorDisplay<'a, colors::BrightCyan, Bg, T>` — [`ComboColorDisplay`](#combocolordisplay), [`BrightCyan`](colors/index.md)
 
-- `const fn on_bright_white(self: Self) -> ComboColorDisplay<'a, Fg, colors::BrightWhite, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightWhite`](colors/index.md)
+- `const fn on_bright_white(self: Self) -> ComboColorDisplay<'a, Fg, colors::BrightWhite, T>` — [`ComboColorDisplay`](#combocolordisplay), [`BrightWhite`](colors/index.md)
 
-- `const fn bright_white(self: Self) -> ComboColorDisplay<'a, colors::BrightWhite, Bg, T>` — [`ComboColorDisplay`](combo/index.md), [`BrightWhite`](colors/index.md)
+- `const fn bright_white(self: Self) -> ComboColorDisplay<'a, colors::BrightWhite, Bg, T>` — [`ComboColorDisplay`](#combocolordisplay), [`BrightWhite`](colors/index.md)
 
 #### Trait Implementations
 
@@ -661,7 +661,7 @@ struct ComboDynColorDisplay<'a, Fg: DynColor, Bg: DynColor, T: ?Sized>(&'a T, Fg
 Wrapper around a type which implements all the formatters the wrapped type does, with the
 addition of changing the foreground and background color.
 
-If compile-time coloring is an option, consider using [`ComboColorDisplay`](combo/index.md) instead.
+If compile-time coloring is an option, consider using [`ComboColorDisplay`](#combocolordisplay) instead.
 
 #### Implementations
 
@@ -669,9 +669,9 @@ If compile-time coloring is an option, consider using [`ComboColorDisplay`](comb
 
 - `fn into_styled(self: Self) -> Styled<&'a T>` — [`Styled`](#styled)
 
-- `const fn on_color<NewBg: DynColor>(self: Self, bg: NewBg) -> ComboDynColorDisplay<'a, Fg, NewBg, T>` — [`ComboDynColorDisplay`](combo/index.md)
+- `const fn on_color<NewBg: DynColor>(self: Self, bg: NewBg) -> ComboDynColorDisplay<'a, Fg, NewBg, T>` — [`ComboDynColorDisplay`](#combodyncolordisplay)
 
-- `const fn color<NewFg: DynColor>(self: Self, fg: NewFg) -> ComboDynColorDisplay<'a, NewFg, Bg, T>` — [`ComboDynColorDisplay`](combo/index.md)
+- `const fn color<NewFg: DynColor>(self: Self, fg: NewFg) -> ComboDynColorDisplay<'a, NewFg, Bg, T>` — [`ComboDynColorDisplay`](#combodyncolordisplay)
 
 #### Trait Implementations
 
@@ -869,7 +869,147 @@ println!("{}", "red text, white background, struck through".style(my_style));
 
 #### Implementations
 
-- `fn transition_from(self: &'a Self, from: &Style) -> Transition<'a>` — [`Style`](#style), [`Transition`](styled_list/index.md)
+- `const fn new() -> Self`
+
+- `const fn style<T>(self: &Self, target: T) -> Styled<T>` — [`Styled`](#styled)
+
+- `const fn fg<C: Color>(self: Self) -> Self`
+
+- `const fn bg<C: Color>(self: Self) -> Self`
+
+- `const fn remove_fg(self: Self) -> Self`
+
+- `const fn remove_bg(self: Self) -> Self`
+
+- `const fn black(self: Self) -> Self`
+
+- `const fn on_black(self: Self) -> Self`
+
+- `const fn red(self: Self) -> Self`
+
+- `const fn on_red(self: Self) -> Self`
+
+- `const fn green(self: Self) -> Self`
+
+- `const fn on_green(self: Self) -> Self`
+
+- `const fn yellow(self: Self) -> Self`
+
+- `const fn on_yellow(self: Self) -> Self`
+
+- `const fn blue(self: Self) -> Self`
+
+- `const fn on_blue(self: Self) -> Self`
+
+- `const fn magenta(self: Self) -> Self`
+
+- `const fn on_magenta(self: Self) -> Self`
+
+- `const fn purple(self: Self) -> Self`
+
+- `const fn on_purple(self: Self) -> Self`
+
+- `const fn cyan(self: Self) -> Self`
+
+- `const fn on_cyan(self: Self) -> Self`
+
+- `const fn white(self: Self) -> Self`
+
+- `const fn on_white(self: Self) -> Self`
+
+- `const fn default_color(self: Self) -> Self`
+
+- `const fn on_default_color(self: Self) -> Self`
+
+- `const fn bright_black(self: Self) -> Self`
+
+- `const fn on_bright_black(self: Self) -> Self`
+
+- `const fn bright_red(self: Self) -> Self`
+
+- `const fn on_bright_red(self: Self) -> Self`
+
+- `const fn bright_green(self: Self) -> Self`
+
+- `const fn on_bright_green(self: Self) -> Self`
+
+- `const fn bright_yellow(self: Self) -> Self`
+
+- `const fn on_bright_yellow(self: Self) -> Self`
+
+- `const fn bright_blue(self: Self) -> Self`
+
+- `const fn on_bright_blue(self: Self) -> Self`
+
+- `const fn bright_magenta(self: Self) -> Self`
+
+- `const fn on_bright_magenta(self: Self) -> Self`
+
+- `const fn bright_purple(self: Self) -> Self`
+
+- `const fn on_bright_purple(self: Self) -> Self`
+
+- `const fn bright_cyan(self: Self) -> Self`
+
+- `const fn on_bright_cyan(self: Self) -> Self`
+
+- `const fn bright_white(self: Self) -> Self`
+
+- `const fn on_bright_white(self: Self) -> Self`
+
+- `const fn bold(self: Self) -> Self`
+
+- `const fn dimmed(self: Self) -> Self`
+
+- `const fn italic(self: Self) -> Self`
+
+- `const fn underline(self: Self) -> Self`
+
+- `const fn blink(self: Self) -> Self`
+
+- `const fn blink_fast(self: Self) -> Self`
+
+- `const fn reversed(self: Self) -> Self`
+
+- `const fn hidden(self: Self) -> Self`
+
+- `const fn strikethrough(self: Self) -> Self`
+
+- `const fn set_effect(self: Self, effect: Effect, to: bool) -> Self` — [`Effect`](#effect)
+
+- `const fn set_effects(self: Self, effects: &[Effect], to: bool) -> Self` — [`Effect`](#effect)
+
+- `const fn effect(self: Self, effect: Effect) -> Self` — [`Effect`](#effect)
+
+- `const fn remove_effect(self: Self, effect: Effect) -> Self` — [`Effect`](#effect)
+
+- `const fn effects(self: Self, effects: &[Effect]) -> Self` — [`Effect`](#effect)
+
+- `const fn remove_effects(self: Self, effects: &[Effect]) -> Self` — [`Effect`](#effect)
+
+- `const fn remove_all_effects(self: Self) -> Self`
+
+- `fn color<Color: DynColor>(self: Self, color: Color) -> Self`
+
+- `fn on_color<Color: DynColor>(self: Self, color: Color) -> Self`
+
+- `const fn fg_rgb<const R: u8, const G: u8, const B: u8>(self: Self) -> Self`
+
+- `const fn bg_rgb<const R: u8, const G: u8, const B: u8>(self: Self) -> Self`
+
+- `const fn truecolor(self: Self, r: u8, g: u8, b: u8) -> Self`
+
+- `const fn on_truecolor(self: Self, r: u8, g: u8, b: u8) -> Self`
+
+- `const fn is_plain(self: &Self) -> bool`
+
+- `const fn prefix_formatter(self: &Self) -> StylePrefixFormatter` — [`StylePrefixFormatter`](#styleprefixformatter)
+
+- `const fn suffix_formatter(self: &Self) -> StyleSuffixFormatter` — [`StyleSuffixFormatter`](#stylesuffixformatter)
+
+- `fn fmt_prefix(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+- `fn fmt_suffix(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 #### Trait Implementations
 
@@ -1032,7 +1172,7 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 ##### `impl Clone for AnsiColors`
 
-- `fn clone(self: &Self) -> AnsiColors` — [`AnsiColors`](colors/ansi_colors/index.md)
+- `fn clone(self: &Self) -> AnsiColors` — [`AnsiColors`](#ansicolors)
 
 ##### `impl Copy for AnsiColors`
 
@@ -1056,7 +1196,7 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 ##### `impl PartialEq for AnsiColors`
 
-- `fn eq(self: &Self, other: &AnsiColors) -> bool` — [`AnsiColors`](colors/ansi_colors/index.md)
+- `fn eq(self: &Self, other: &AnsiColors) -> bool` — [`AnsiColors`](#ansicolors)
 
 ##### `impl StructuralPartialEq for AnsiColors`
 
@@ -1221,7 +1361,7 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 ##### `impl Clone for CssColors`
 
-- `fn clone(self: &Self) -> CssColors` — [`CssColors`](colors/css/dynamic/index.md)
+- `fn clone(self: &Self) -> CssColors` — [`CssColors`](#csscolors)
 
 ##### `impl Copy for CssColors`
 
@@ -1245,7 +1385,7 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 ##### `impl PartialEq for CssColors`
 
-- `fn eq(self: &Self, other: &CssColors) -> bool` — [`CssColors`](colors/css/dynamic/index.md)
+- `fn eq(self: &Self, other: &CssColors) -> bool` — [`CssColors`](#csscolors)
 
 ##### `impl StructuralPartialEq for CssColors`
 
@@ -1519,7 +1659,7 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 ##### `impl Clone for XtermColors`
 
-- `fn clone(self: &Self) -> XtermColors` — [`XtermColors`](colors/xterm/dynamic/index.md)
+- `fn clone(self: &Self) -> XtermColors` — [`XtermColors`](#xtermcolors)
 
 ##### `impl Copy for XtermColors`
 
@@ -1543,7 +1683,7 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 ##### `impl PartialEq for XtermColors`
 
-- `fn eq(self: &Self, other: &XtermColors) -> bool` — [`XtermColors`](colors/xterm/dynamic/index.md)
+- `fn eq(self: &Self, other: &XtermColors) -> bool` — [`XtermColors`](#xtermcolors)
 
 ##### `impl StructuralPartialEq for XtermColors`
 

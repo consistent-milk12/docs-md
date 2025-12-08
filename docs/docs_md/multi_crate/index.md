@@ -14,12 +14,12 @@ documentation for entire dependency trees.
 
 The multi-crate system uses these components:
 
-- [`CrateCollection`](collection/index.md): Container for parsed crates with processing order
-- [`MultiCrateParser`](parser/index.md): Scans directories and parses JSON files
-- [`UnifiedLinkRegistry`](registry/index.md): Cross-crate link resolution
-- [`MultiCrateContext`](context/index.md): Shared state during generation
-- [`MultiCrateGenerator`](generator/index.md): Orchestrates per-crate generation
-- [`SummaryGenerator`](summary/index.md): Creates mdBook-compatible SUMMARY.md
+- [`CrateCollection`](../index.md): Container for parsed crates with processing order
+- [`MultiCrateParser`](../index.md): Scans directories and parses JSON files
+- [`UnifiedLinkRegistry`](../index.md): Cross-crate link resolution
+- [`MultiCrateContext`](../index.md): Shared state during generation
+- [`MultiCrateGenerator`](../index.md): Orchestrates per-crate generation
+- [`SummaryGenerator`](#summarygenerator): Creates mdBook-compatible SUMMARY.md
 
 # Usage
 
@@ -106,7 +106,7 @@ for (name, krate) in collection.iter() {
 
 ##### `impl Default for CrateCollection`
 
-- `fn default() -> CrateCollection` — [`CrateCollection`](collection/index.md)
+- `fn default() -> CrateCollection` — [`CrateCollection`](../index.md)
 
 ##### `impl<T> Instrument for CrateCollection`
 
@@ -144,7 +144,7 @@ struct MultiCrateContext<'a> {
 Shared context for multi-crate documentation generation.
 
 Holds references to all crates, the unified link registry, and
-CLI configuration. Used by [`MultiCrateGenerator`](generator/index.md) to coordinate
+CLI configuration. Used by [`MultiCrateGenerator`](../index.md) to coordinate
 generation across crates.
 
 
@@ -171,17 +171,17 @@ generation across crates.
 
 #### Implementations
 
-- `fn new(crates: &'a CrateCollection, args: &'a Args) -> Self` — [`CrateCollection`](collection/index.md), [`Args`](../index.md)
+- `fn new(crates: &'a CrateCollection, args: &'a Args) -> Self` — [`CrateCollection`](../index.md), [`Args`](../index.md)
 
-- `fn build_cross_crate_impls(crates: &'a CrateCollection) -> HashMap<String, HashMap<String, Vec<&'a Impl>>>` — [`CrateCollection`](collection/index.md)
+- `fn build_cross_crate_impls(crates: &'a CrateCollection) -> HashMap<String, HashMap<String, Vec<&'a Impl>>>` — [`CrateCollection`](../index.md)
 
-- `const fn crates(self: &Self) -> &CrateCollection` — [`CrateCollection`](collection/index.md)
+- `const fn crates(self: &Self) -> &CrateCollection` — [`CrateCollection`](../index.md)
 
-- `const fn registry(self: &Self) -> &UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](registry/index.md)
+- `const fn registry(self: &Self) -> &UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](../index.md)
 
 - `const fn args(self: &Self) -> &Args` — [`Args`](../index.md)
 
-- `fn single_crate_view(self: &'a Self, crate_name: &str) -> Option<SingleCrateView<'a>>` — [`SingleCrateView`](context/index.md)
+- `fn single_crate_view(self: &'a Self, crate_name: &str) -> Option<SingleCrateView<'a>>` — [`SingleCrateView`](#singlecrateview)
 
 - `fn find_item(self: &Self, id: &Id) -> Option<(&str, &Item)>`
 
@@ -230,8 +230,8 @@ struct SingleCrateView<'a> {
 
 View of a single crate within multi-crate context.
 
-Provides an interface similar to [`GeneratorContext`](../generator/context/index.md) but uses
-[`UnifiedLinkRegistry`](registry/index.md) for cross-crate link resolution. This
+Provides an interface similar to [`GeneratorContext`](../generator/index.md) but uses
+[`UnifiedLinkRegistry`](../index.md) for cross-crate link resolution. This
 allows existing rendering code to work with minimal changes.
 
 
@@ -272,7 +272,7 @@ allows existing rendering code to work with minimal changes.
 
 #### Implementations
 
-- `fn new(crate_name: &'a str, krate: &'a Crate, registry: &'a UnifiedLinkRegistry, args: &'a Args, ctx: &'a MultiCrateContext<'a>) -> Self` — [`UnifiedLinkRegistry`](registry/index.md), [`Args`](../index.md), [`MultiCrateContext`](context/index.md)
+- `fn new(crate_name: &'a str, krate: &'a Crate, registry: &'a UnifiedLinkRegistry, args: &'a Args, ctx: &'a MultiCrateContext<'a>) -> Self` — [`UnifiedLinkRegistry`](../index.md), [`Args`](../index.md), [`MultiCrateContext`](../index.md)
 
 - `fn build_impl_map(self: &mut Self)`
 
@@ -286,7 +286,7 @@ allows existing rendering code to work with minimal changes.
 
 - `const fn krate(self: &Self) -> &Crate`
 
-- `const fn registry(self: &Self) -> &UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](registry/index.md)
+- `const fn registry(self: &Self) -> &UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](../index.md)
 
 - `const fn args(self: &Self) -> &Args` — [`Args`](../index.md)
 
@@ -362,7 +362,7 @@ allows existing rendering code to work with minimal changes.
 
 ##### `impl LinkResolver for SingleCrateView<'_>`
 
-- `fn link_registry(self: &Self) -> Option<&LinkRegistry>` — [`LinkRegistry`](../linker/index.md)
+- `fn link_registry(self: &Self) -> Option<&LinkRegistry>` — [`LinkRegistry`](../index.md)
 
 - `fn process_docs(self: &Self, item: &Item, current_file: &str) -> Option<String>`
 
@@ -429,19 +429,19 @@ output/
 
 #### Implementations
 
-- `fn new(crates: &'a CrateCollection, args: &'a Args) -> Self` — [`CrateCollection`](collection/index.md), [`Args`](../index.md)
+- `fn new(crates: &'a CrateCollection, args: &'a Args) -> Self` — [`CrateCollection`](../index.md), [`Args`](../index.md)
 
 - `fn generate(self: &Self) -> Result<(), Error>` — [`Error`](../error/index.md)
 
 - `fn collect_rendered_items(self: &Self) -> HashMap<String, HashSet<Id>>`
 
-- `fn collect_crate_items(view: &SingleCrateView<'_>, ids: &mut HashSet<Id>)` — [`SingleCrateView`](context/index.md)
+- `fn collect_crate_items(view: &SingleCrateView<'_>, ids: &mut HashSet<Id>)` — [`SingleCrateView`](#singlecrateview)
 
-- `fn collect_module_items(view: &SingleCrateView<'_>, item: &Item, ids: &mut HashSet<Id>)` — [`SingleCrateView`](context/index.md)
+- `fn collect_module_items(view: &SingleCrateView<'_>, item: &Item, ids: &mut HashSet<Id>)` — [`SingleCrateView`](#singlecrateview)
 
-- `fn generate_crate(self: &Self, view: &SingleCrateView<'_>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](context/index.md), [`Error`](../error/index.md)
+- `fn generate_crate(self: &Self, view: &SingleCrateView<'_>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](#singlecrateview), [`Error`](../error/index.md)
 
-- `fn generate_module(view: &SingleCrateView<'_>, item: &Item, parent_dir: &Path, module_path: Vec<String>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](context/index.md), [`Error`](../error/index.md)
+- `fn generate_module(view: &SingleCrateView<'_>, item: &Item, parent_dir: &Path, module_path: Vec<String>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](#singlecrateview), [`Error`](../error/index.md)
 
 - `fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](../error/index.md)
 
@@ -489,7 +489,7 @@ println!("Found {} crates", crates.len());
 
 #### Implementations
 
-- `fn parse_directory(dir: &Path) -> Result<CrateCollection, Error>` — [`CrateCollection`](collection/index.md), [`Error`](../error/index.md)
+- `fn parse_directory(dir: &Path) -> Result<CrateCollection, Error>` — [`CrateCollection`](../index.md), [`Error`](../error/index.md)
 
 - `fn extract_crate_name(krate: &rustdoc_types::Crate, path: &Path) -> Result<String, Error>` — [`Error`](../error/index.md)
 
@@ -531,7 +531,7 @@ struct UnifiedLinkRegistry {
 
 Registry mapping item IDs to documentation paths across multiple crates.
 
-Unlike [`LinkRegistry`](../linker/index.md) which handles a single crate, this registry
+Unlike [`LinkRegistry`](../index.md) which handles a single crate, this registry
 spans multiple crates and supports cross-crate link resolution with
 disambiguation based on local/primary crate preference.
 
@@ -587,7 +587,7 @@ This avoids allocating a `String` for the crate name on every lookup.
 
 #### Implementations
 
-- `fn build(crates: &CrateCollection, primary_crate: Option<&str>) -> Self` — [`CrateCollection`](collection/index.md)
+- `fn build(crates: &CrateCollection, primary_crate: Option<&str>) -> Self` — [`CrateCollection`](../index.md)
 
 - `fn register_crate(self: &mut Self, crate_name: &str, krate: &Crate)`
 
@@ -631,7 +631,7 @@ This avoids allocating a `String` for the crate name on every lookup.
 
 ##### `impl Default for UnifiedLinkRegistry`
 
-- `fn default() -> UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](registry/index.md)
+- `fn default() -> UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](../index.md)
 
 ##### `impl<T> Instrument for UnifiedLinkRegistry`
 
@@ -717,7 +717,7 @@ struct SearchIndexGenerator<'a> {
 
 Generator for multi-crate search indices.
 
-Traverses all crates in a [`CrateCollection`](collection/index.md) and builds a comprehensive
+Traverses all crates in a [`CrateCollection`](../index.md) and builds a comprehensive
 search index of all public items (or all items if `include_private` is set).
 
 # Example
@@ -751,9 +751,9 @@ generator.write(Path::new("docs/"))?;
 
 #### Implementations
 
-- `const fn new(crates: &'a CrateCollection, include_private: bool, rendered_items: HashMap<String, HashSet<Id>>) -> Self` — [`CrateCollection`](collection/index.md)
+- `const fn new(crates: &'a CrateCollection, include_private: bool, rendered_items: HashMap<String, HashSet<Id>>) -> Self` — [`CrateCollection`](../index.md)
 
-- `fn generate(self: &Self) -> SearchIndex` — [`SearchIndex`](search/index.md)
+- `fn generate(self: &Self) -> SearchIndex` — [`SearchIndex`](../index.md)
 
 - `fn write(self: &Self, output_dir: &Path) -> std::io::Result<()>`
 
@@ -830,7 +830,7 @@ Summary
 
 #### Implementations
 
-- `const fn new(crates: &'a CrateCollection, output_dir: &'a Path, include_private: bool) -> Self` — [`CrateCollection`](collection/index.md)
+- `const fn new(crates: &'a CrateCollection, output_dir: &'a Path, include_private: bool) -> Self` — [`CrateCollection`](../index.md)
 
 - `fn generate(self: &Self) -> Result<(), Error>` — [`Error`](../error/index.md)
 

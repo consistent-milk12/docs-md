@@ -30,17 +30,17 @@ Returned by [`ImageNtHeaders::parse`](super::ImageNtHeaders::parse).
 
 - `fn get(self: &Self, index: usize) -> Option<&'data pe::ImageDataDirectory>` — [`ImageDataDirectory`](../../../pe/index.md)
 
-- `fn export_directory<R: ReadRef<'data>>(self: &Self, data: R, sections: &SectionTable<'data>) -> Result<Option<&'data pe::ImageExportDirectory>>` — [`SectionTable`](../../coff/index.md), [`Result`](../../../index.md), [`ImageExportDirectory`](../../../pe/index.md)
+- `fn export_directory<R: ReadRef<'data>>(self: &Self, data: R, sections: &SectionTable<'data>) -> Result<Option<&'data pe::ImageExportDirectory>>` — [`SectionTable`](../index.md), [`Result`](../../../index.md), [`ImageExportDirectory`](../../../pe/index.md)
 
-- `fn export_table<R: ReadRef<'data>>(self: &Self, data: R, sections: &SectionTable<'data>) -> Result<Option<ExportTable<'data>>>` — [`SectionTable`](../../coff/index.md), [`Result`](../../../index.md), [`ExportTable`](../index.md)
+- `fn export_table<R: ReadRef<'data>>(self: &Self, data: R, sections: &SectionTable<'data>) -> Result<Option<ExportTable<'data>>>` — [`SectionTable`](../index.md), [`Result`](../../../index.md), [`ExportTable`](../index.md)
 
-- `fn import_table<R: ReadRef<'data>>(self: &Self, data: R, sections: &SectionTable<'data>) -> Result<Option<ImportTable<'data>>>` — [`SectionTable`](../../coff/index.md), [`Result`](../../../index.md), [`ImportTable`](../index.md)
+- `fn import_table<R: ReadRef<'data>>(self: &Self, data: R, sections: &SectionTable<'data>) -> Result<Option<ImportTable<'data>>>` — [`SectionTable`](../index.md), [`Result`](../../../index.md), [`ImportTable`](../index.md)
 
-- `fn delay_load_import_table<R: ReadRef<'data>>(self: &Self, data: R, sections: &SectionTable<'data>) -> Result<Option<DelayLoadImportTable<'data>>>` — [`SectionTable`](../../coff/index.md), [`Result`](../../../index.md), [`DelayLoadImportTable`](../index.md)
+- `fn delay_load_import_table<R: ReadRef<'data>>(self: &Self, data: R, sections: &SectionTable<'data>) -> Result<Option<DelayLoadImportTable<'data>>>` — [`SectionTable`](../index.md), [`Result`](../../../index.md), [`DelayLoadImportTable`](../index.md)
 
-- `fn relocation_blocks<R: ReadRef<'data>>(self: &Self, data: R, sections: &SectionTable<'data>) -> Result<Option<RelocationBlockIterator<'data>>>` — [`SectionTable`](../../coff/index.md), [`Result`](../../../index.md), [`RelocationBlockIterator`](../index.md)
+- `fn relocation_blocks<R: ReadRef<'data>>(self: &Self, data: R, sections: &SectionTable<'data>) -> Result<Option<RelocationBlockIterator<'data>>>` — [`SectionTable`](../index.md), [`Result`](../../../index.md), [`RelocationBlockIterator`](../index.md)
 
-- `fn resource_directory<R: ReadRef<'data>>(self: &Self, data: R, sections: &SectionTable<'data>) -> Result<Option<ResourceDirectory<'data>>>` — [`SectionTable`](../../coff/index.md), [`Result`](../../../index.md), [`ResourceDirectory`](../index.md)
+- `fn resource_directory<R: ReadRef<'data>>(self: &Self, data: R, sections: &SectionTable<'data>) -> Result<Option<ResourceDirectory<'data>>>` — [`SectionTable`](../index.md), [`Result`](../../../index.md), [`ResourceDirectory`](../index.md)
 
 #### Trait Implementations
 

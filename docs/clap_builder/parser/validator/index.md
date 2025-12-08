@@ -17,7 +17,7 @@ struct Validator<'cmd> {
 
 #### Implementations
 
-- `fn new(cmd: &'cmd Command) -> Self` — [`Command`](../../builder/command/index.md)
+- `fn new(cmd: &'cmd Command) -> Self` — [`Command`](../../index.md)
 
 - `fn validate(self: &mut Self, matcher: &mut ArgMatcher) -> ClapResult<()>` — [`ArgMatcher`](../arg_matcher/index.md), [`Result`](../../error/index.md)
 
@@ -25,19 +25,19 @@ struct Validator<'cmd> {
 
 - `fn validate_exclusive(self: &Self, matcher: &ArgMatcher) -> ClapResult<()>` — [`ArgMatcher`](../arg_matcher/index.md), [`Result`](../../error/index.md)
 
-- `fn build_conflict_err(self: &Self, name: &Id, conflict_ids: &[Id], matcher: &ArgMatcher) -> ClapResult<()>` — [`Id`](../../util/id/index.md), [`ArgMatcher`](../arg_matcher/index.md), [`Result`](../../error/index.md)
+- `fn build_conflict_err(self: &Self, name: &Id, conflict_ids: &[Id], matcher: &ArgMatcher) -> ClapResult<()>` — [`Id`](../../index.md), [`ArgMatcher`](../arg_matcher/index.md), [`Result`](../../error/index.md)
 
-- `fn build_conflict_err_usage(self: &Self, matcher: &ArgMatcher, conflicting_keys: &[Id]) -> Option<StyledStr>` — [`ArgMatcher`](../arg_matcher/index.md), [`Id`](../../util/id/index.md), [`StyledStr`](../../builder/styled_str/index.md)
+- `fn build_conflict_err_usage(self: &Self, matcher: &ArgMatcher, conflicting_keys: &[Id]) -> Option<StyledStr>` — [`ArgMatcher`](../arg_matcher/index.md), [`Id`](../../index.md), [`StyledStr`](../../builder/index.md)
 
 - `fn gather_requires(self: &mut Self, matcher: &ArgMatcher)` — [`ArgMatcher`](../arg_matcher/index.md)
 
 - `fn validate_required(self: &mut Self, matcher: &ArgMatcher, conflicts: &Conflicts) -> ClapResult<()>` — [`ArgMatcher`](../arg_matcher/index.md), [`Conflicts`](#conflicts), [`Result`](../../error/index.md)
 
-- `fn is_missing_required_ok(self: &Self, a: &Arg, conflicts: &Conflicts) -> bool` — [`Arg`](../../builder/arg/index.md), [`Conflicts`](#conflicts)
+- `fn is_missing_required_ok(self: &Self, a: &Arg, conflicts: &Conflicts) -> bool` — [`Arg`](../../index.md), [`Conflicts`](#conflicts)
 
-- `fn fails_arg_required_unless(self: &Self, a: &Arg, matcher: &ArgMatcher) -> bool` — [`Arg`](../../builder/arg/index.md), [`ArgMatcher`](../arg_matcher/index.md)
+- `fn fails_arg_required_unless(self: &Self, a: &Arg, matcher: &ArgMatcher) -> bool` — [`Arg`](../../index.md), [`ArgMatcher`](../arg_matcher/index.md)
 
-- `fn missing_required_error(self: &Self, matcher: &ArgMatcher, raw_req_args: Vec<Id>) -> ClapResult<()>` — [`ArgMatcher`](../arg_matcher/index.md), [`Id`](../../util/id/index.md), [`Result`](../../error/index.md)
+- `fn missing_required_error(self: &Self, matcher: &ArgMatcher, raw_req_args: Vec<Id>) -> ClapResult<()>` — [`ArgMatcher`](../arg_matcher/index.md), [`Id`](../../index.md), [`Result`](../../error/index.md)
 
 ### `Conflicts`
 
@@ -49,11 +49,11 @@ struct Conflicts {
 
 #### Implementations
 
-- `fn with_args(cmd: &Command, matcher: &ArgMatcher) -> Self` — [`Command`](../../builder/command/index.md), [`ArgMatcher`](../arg_matcher/index.md)
+- `fn with_args(cmd: &Command, matcher: &ArgMatcher) -> Self` — [`Command`](../../index.md), [`ArgMatcher`](../arg_matcher/index.md)
 
-- `fn gather_conflicts(self: &Self, cmd: &Command, arg_id: &Id) -> Vec<Id>` — [`Command`](../../builder/command/index.md), [`Id`](../../util/id/index.md)
+- `fn gather_conflicts(self: &Self, cmd: &Command, arg_id: &Id) -> Vec<Id>` — [`Command`](../../index.md), [`Id`](../../index.md)
 
-- `fn get_direct_conflicts(self: &Self, arg_id: &Id) -> Option<&[Id]>` — [`Id`](../../util/id/index.md)
+- `fn get_direct_conflicts(self: &Self, arg_id: &Id) -> Option<&[Id]>` — [`Id`](../../index.md)
 
 #### Trait Implementations
 

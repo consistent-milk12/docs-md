@@ -48,7 +48,7 @@ accessing the underlying error data in a structured form.
 
 - `fn from_path(depth: usize, pb: PathBuf, err: io::Error) -> Self`
 
-- `fn from_entry(dent: &DirEntry, err: io::Error) -> Self` — [`DirEntry`](../dent/index.md)
+- `fn from_entry(dent: &DirEntry, err: io::Error) -> Self` — [`DirEntry`](../index.md)
 
 - `fn from_io(depth: usize, err: io::Error) -> Self`
 

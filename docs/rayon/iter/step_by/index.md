@@ -16,7 +16,7 @@ struct StepBy<I> {
 ```
 
 `StepBy` is an iterator that skips `n` elements between each yield, where `n` is the given step.
-This struct is created by the `step_by()` method on [`IndexedParallelIterator`](../index.md)
+This struct is created by the `step_by()` method on [`IndexedParallelIterator`](../../prelude/index.md)
 
 
 #### Implementations
@@ -27,7 +27,7 @@ This struct is created by the `step_by()` method on [`IndexedParallelIterator`](
 
 ##### `impl<I: $crate::clone::Clone> Clone for StepBy<I>`
 
-- `fn clone(self: &Self) -> StepBy<I>` — [`StepBy`](#stepby)
+- `fn clone(self: &Self) -> StepBy<I>` — [`StepBy`](../index.md)
 
 ##### `impl<I: $crate::fmt::Debug> Debug for StepBy<I>`
 

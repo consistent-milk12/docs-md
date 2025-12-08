@@ -142,7 +142,7 @@ alternate isn't always obvious to reason about.
 
 #### Implementations
 
-- `fn new<I, S>(exprs: I) -> Result<RegexSet, Error>` — [`RegexSet`](../../index.md), [`Error`](../../error/index.md)
+- `fn new<I, S>(exprs: I) -> Result<RegexSet, Error>` — [`RegexSet`](../../index.md), [`Error`](../../index.md)
 
 - `fn empty() -> RegexSet` — [`RegexSet`](../../index.md)
 

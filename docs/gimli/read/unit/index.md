@@ -96,47 +96,7 @@ type units.
 
 #### Implementations
 
-- `fn offset(self: &Self) -> UnitSectionOffset<Offset>` — [`UnitSectionOffset`](../../index.md)
-
-- `fn size_of_header(self: &Self) -> usize`
-
-- `fn unit_length(self: &Self) -> Offset`
-
-- `fn length_including_self(self: &Self) -> Offset`
-
-- `fn encoding(self: &Self) -> Encoding` — [`Encoding`](../../index.md)
-
-- `fn version(self: &Self) -> u16`
-
-- `fn type_(self: &Self) -> UnitType<Offset>` — [`UnitType`](../index.md)
-
-- `fn debug_abbrev_offset(self: &Self) -> DebugAbbrevOffset<Offset>` — [`DebugAbbrevOffset`](../../index.md)
-
-- `fn address_size(self: &Self) -> u8`
-
-- `fn format(self: &Self) -> Format` — [`Format`](../../index.md)
-
-- `fn header_size(self: &Self) -> Offset`
-
-- `fn is_valid_offset(self: &Self, offset: UnitOffset<Offset>) -> bool` — [`UnitOffset`](../../index.md)
-
-- `fn range(self: &Self, idx: Range<UnitOffset<Offset>>) -> Result<R>` — [`UnitOffset`](../../index.md), [`Result`](../../index.md)
-
-- `fn range_from(self: &Self, idx: RangeFrom<UnitOffset<Offset>>) -> Result<R>` — [`UnitOffset`](../../index.md), [`Result`](../../index.md)
-
-- `fn range_to(self: &Self, idx: RangeTo<UnitOffset<Offset>>) -> Result<R>` — [`UnitOffset`](../../index.md), [`Result`](../../index.md)
-
-- `fn entry<'me, 'abbrev>(self: &'me Self, abbreviations: &'abbrev Abbreviations, offset: UnitOffset<Offset>) -> Result<DebuggingInformationEntry<'abbrev, 'me, R>>` — [`Abbreviations`](../index.md), [`UnitOffset`](../../index.md), [`Result`](../../index.md), [`DebuggingInformationEntry`](../index.md)
-
-- `fn entries<'me, 'abbrev>(self: &'me Self, abbreviations: &'abbrev Abbreviations) -> EntriesCursor<'abbrev, 'me, R>` — [`Abbreviations`](../index.md), [`EntriesCursor`](../index.md)
-
-- `fn entries_at_offset<'me, 'abbrev>(self: &'me Self, abbreviations: &'abbrev Abbreviations, offset: UnitOffset<Offset>) -> Result<EntriesCursor<'abbrev, 'me, R>>` — [`Abbreviations`](../index.md), [`UnitOffset`](../../index.md), [`Result`](../../index.md), [`EntriesCursor`](../index.md)
-
-- `fn entries_tree<'me, 'abbrev>(self: &'me Self, abbreviations: &'abbrev Abbreviations, offset: Option<UnitOffset<Offset>>) -> Result<EntriesTree<'abbrev, 'me, R>>` — [`Abbreviations`](../index.md), [`UnitOffset`](../../index.md), [`Result`](../../index.md), [`EntriesTree`](../index.md)
-
-- `fn entries_raw<'me, 'abbrev>(self: &'me Self, abbreviations: &'abbrev Abbreviations, offset: Option<UnitOffset<Offset>>) -> Result<EntriesRaw<'abbrev, 'me, R>>` — [`Abbreviations`](../index.md), [`UnitOffset`](../../index.md), [`Result`](../../index.md), [`EntriesRaw`](../index.md)
-
-- `fn abbreviations(self: &Self, debug_abbrev: &DebugAbbrev<R>) -> Result<Abbreviations>` — [`DebugAbbrev`](../index.md), [`Result`](../../index.md), [`Abbreviations`](../index.md)
+- `fn new(encoding: Encoding, unit_length: Offset, unit_type: UnitType<Offset>, debug_abbrev_offset: DebugAbbrevOffset<Offset>, unit_offset: UnitSectionOffset<Offset>, entries_buf: R) -> Self` — [`Encoding`](../../index.md), [`UnitType`](../index.md), [`DebugAbbrevOffset`](../../index.md), [`UnitSectionOffset`](../../index.md)
 
 #### Trait Implementations
 
@@ -585,7 +545,7 @@ found in the `.debug_types` section.
 
 #### Implementations
 
-- `fn units(self: &Self) -> DebugTypesUnitHeadersIter<R>` — [`DebugTypesUnitHeadersIter`](../index.md)
+- `fn new(debug_types_section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 

@@ -12,7 +12,7 @@
 struct AsKebabCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a kebab case conversion in [`fmt::Display`](../../miette_derive/fmt/index.md).
+This wrapper performs a kebab case conversion in [`fmt::Display`](../../miette_derive/index.md).
 
 ## Example:
 

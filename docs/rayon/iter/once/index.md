@@ -21,7 +21,7 @@ Iterator adaptor for [the `once()` function].
 
 ##### `impl<T: $crate::clone::Clone> Clone for Once<T>`
 
-- `fn clone(self: &Self) -> Once<T>` — [`Once`](#once)
+- `fn clone(self: &Self) -> Once<T>` — [`Once`](../index.md)
 
 ##### `impl<T: $crate::fmt::Debug> Debug for Once<T>`
 

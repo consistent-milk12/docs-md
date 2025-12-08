@@ -4,7 +4,7 @@
 
 # Module `dispatcher`
 
-Dispatches trace events to [`Subscriber`](../../tracing_core/subscriber/index.md)s.
+Dispatches trace events to [`Subscriber`](../../tracing_core/index.md)s.
 
 The _dispatcher_ is the component of the tracing system which is responsible
 for forwarding trace data from the instrumentation points that generate it
@@ -20,13 +20,13 @@ current subscriber.
 
 By default, the current subscriber is an empty implementation that does
 nothing. To use a subscriber implementation, it must be set as the default.
-There are two methods for doing so: [`with_default`](../../tracing_core/dispatcher/index.md) and
-[`set_global_default`](../../tracing_core/dispatcher/index.md). `with_default` sets the default subscriber for the
+There are two methods for doing so: [`with_default`](#with-default) and
+[`set_global_default`](#set-global-default). `with_default` sets the default subscriber for the
 duration of a scope, while `set_global_default` sets a default subscriber
 for the entire process.
 
 To use either of these functions, we must first wrap our subscriber in a
-[`Dispatch`](../../tracing_core/dispatcher/index.md), a cloneable, type-erased reference to a subscriber. For
+[`Dispatch`](../index.md), a cloneable, type-erased reference to a subscriber. For
 example:
 ```rust
 pub struct FooSubscriber;
@@ -49,7 +49,7 @@ use dispatcher::Dispatch;
 let my_subscriber = FooSubscriber::new();
 let my_dispatch = Dispatch::new(my_subscriber);
 ```
-Then, we can use [`with_default`](../../tracing_core/dispatcher/index.md) to set our `Dispatch` as the default for
+Then, we can use [`with_default`](#with-default) to set our `Dispatch` as the default for
 the duration of a block:
 ```rust
 pub struct FooSubscriber;
@@ -83,7 +83,7 @@ thread's default subscriber to any threads spawned within the `with_default`
 block. To propagate the default subscriber to new threads, either use
 `with_default` from the new thread, or use `set_global_default`.
 
-As an alternative to `with_default`, we can use [`set_global_default`](../../tracing_core/dispatcher/index.md) to
+As an alternative to `with_default`, we can use [`set_global_default`](#set-global-default) to
 set a `Dispatch` as the default for all threads, for the lifetime of the
 program. For example:
 ```rust
@@ -124,7 +124,7 @@ instead.
 ## Accessing the Default Subscriber
 
 A thread's current default subscriber can be accessed using the
-[`get_default`](../../tracing_core/dispatcher/index.md) function, which executes a closure with a reference to the
+[`get_default`](#get-default) function, which executes a closure with a reference to the
 currently default `Dispatch`. This is used primarily by `tracing`
 instrumentation.
 

@@ -36,19 +36,19 @@ trait.
 
 #### Implementations
 
-- `fn nfa(err: nfa::thompson::BuildError) -> BuildError` — [`BuildError`](../../nfa/thompson/error/index.md)
+- `fn nfa(err: nfa::thompson::BuildError) -> BuildError` — [`BuildError`](../../nfa/thompson/index.md)
 
-- `fn insufficient_cache_capacity(minimum: usize, given: usize) -> BuildError` — [`BuildError`](#builderror)
+- `fn insufficient_cache_capacity(minimum: usize, given: usize) -> BuildError` — [`BuildError`](../index.md)
 
-- `fn insufficient_state_id_capacity(err: LazyStateIDError) -> BuildError` — [`LazyStateIDError`](../id/index.md), [`BuildError`](#builderror)
+- `fn insufficient_state_id_capacity(err: LazyStateIDError) -> BuildError` — [`LazyStateIDError`](../id/index.md), [`BuildError`](../index.md)
 
-- `fn unsupported_dfa_word_boundary_unicode() -> BuildError` — [`BuildError`](#builderror)
+- `fn unsupported_dfa_word_boundary_unicode() -> BuildError` — [`BuildError`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for BuildError`
 
-- `fn clone(self: &Self) -> BuildError` — [`BuildError`](#builderror)
+- `fn clone(self: &Self) -> BuildError` — [`BuildError`](../index.md)
 
 ##### `impl Debug for BuildError`
 
@@ -92,15 +92,15 @@ trait.
 
 #### Implementations
 
-- `fn too_many_cache_clears() -> CacheError` — [`CacheError`](#cacheerror)
+- `fn too_many_cache_clears() -> CacheError` — [`CacheError`](../index.md)
 
-- `fn bad_efficiency() -> CacheError` — [`CacheError`](#cacheerror)
+- `fn bad_efficiency() -> CacheError` — [`CacheError`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for CacheError`
 
-- `fn clone(self: &Self) -> CacheError` — [`CacheError`](#cacheerror)
+- `fn clone(self: &Self) -> CacheError` — [`CacheError`](../index.md)
 
 ##### `impl Debug for CacheError`
 
@@ -198,17 +198,17 @@ semver compatible release.
 
 #### Implementations
 
-- `fn cache(err: CacheError) -> StartError` — [`CacheError`](#cacheerror), [`StartError`](#starterror)
+- `fn cache(err: CacheError) -> StartError` — [`CacheError`](../index.md), [`StartError`](../index.md)
 
-- `fn quit(byte: u8) -> StartError` — [`StartError`](#starterror)
+- `fn quit(byte: u8) -> StartError` — [`StartError`](../index.md)
 
-- `fn unsupported_anchored(mode: Anchored) -> StartError` — [`Anchored`](../../index.md), [`StartError`](#starterror)
+- `fn unsupported_anchored(mode: Anchored) -> StartError` — [`Anchored`](../../index.md), [`StartError`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for StartError`
 
-- `fn clone(self: &Self) -> StartError` — [`StartError`](#starterror)
+- `fn clone(self: &Self) -> StartError` — [`StartError`](../index.md)
 
 ##### `impl Debug for StartError`
 

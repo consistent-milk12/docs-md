@@ -114,7 +114,7 @@ named arguments.
 Only a limited set of formatting traits are supported. The current mapping
 of format types to traits is:
 
-* `{}` ⇒ [`IdentFragment`](ident_fragment/index.md)
+* `{}` ⇒ [`IdentFragment`](#identfragment)
 * `{:o}` ⇒ [`Octal`](std::fmt::Octal)
 * `{:x}` ⇒ [`LowerHex`](std::fmt::LowerHex)
 * `{:X}` ⇒ [`UpperHex`](std::fmt::UpperHex)
@@ -126,7 +126,7 @@ See [`std::fmt`](../anstream/fmt/index.md) for more information.
 
 # IdentFragment
 
-Unlike `format!`, this macro uses the [`IdentFragment`](ident_fragment/index.md) formatting trait by
+Unlike `format!`, this macro uses the [`IdentFragment`](#identfragment) formatting trait by
 default. This trait is like `Display`, with a few differences:
 
 * `IdentFragment` is only implemented for a limited set of types, such as
@@ -138,7 +138,7 @@ default. This trait is like `Display`, with a few differences:
 
 # Hygiene
 
-The `Span` of the first `Ident` argument is used as the span of the final
+The [`Span`](#span) of the first `Ident` argument is used as the span of the final
 identifier, falling back to `Span::call_site` when no identifiers are
 provided.
 
@@ -213,10 +213,10 @@ assert_eq!(upper_hex, "Id_A");
 The whole point.
 
 Performs variable interpolation against the input and produces it as
-[`proc_macro2::TokenStream`](../proc_macro2/imp/index.md).
+[`proc_macro2::TokenStream`](../proc_macro2/index.md).
 
 Note: for returning tokens to the compiler in a procedural macro, use
-`.into()` on the result to convert to [`proc_macro::TokenStream`](../proc_macro2/imp/index.md).
+`.into()` on the result to convert to [`proc_macro::TokenStream`](../proc_macro2/index.md).
 
 <br>
 
@@ -225,7 +225,7 @@ Note: for returning tokens to the compiler in a procedural macro, use
 Variable interpolation is done with `#var` (similar to `$var` in
 `macro_rules!` macros). This grabs the `var` variable that is currently in
 scope and inserts it in that location in the output tokens. Any type
-implementing the [`ToTokens`](to_tokens/index.md) trait can be interpolated. This includes most
+implementing the [`ToTokens`](#totokens) trait can be interpolated. This includes most
 Rust primitive types as well as most of the syntax tree types from the [Syn]
 crate.
 
@@ -558,7 +558,7 @@ the macro invocation.
 
 # Syntax
 
-A span expression of type `Span`, followed by `=>`, followed by the tokens
+A span expression of type [`Span`](#span), followed by `=>`, followed by the tokens
 to quote. The span expression should be brief &mdash; use a variable for
 anything more than a few characters. There should be no space before the
 `=>` token.

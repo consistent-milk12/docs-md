@@ -19,7 +19,7 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 ##### `impl Clone for Rgb`
 
-- `fn clone(self: &Self) -> Rgb` — [`Rgb`](#rgb)
+- `fn clone(self: &Self) -> Rgb` — [`Rgb`](../../index.md)
 
 ##### `impl Copy for Rgb`
 
@@ -43,7 +43,7 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 ##### `impl PartialEq for Rgb`
 
-- `fn eq(self: &Self, other: &Rgb) -> bool` — [`Rgb`](#rgb)
+- `fn eq(self: &Self, other: &Rgb) -> bool` — [`Rgb`](../../index.md)
 
 ##### `impl StructuralPartialEq for Rgb`
 

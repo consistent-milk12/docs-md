@@ -1,10 +1,8 @@
-# docs-md
-
 A CLI tool that converts Rust's rustdoc JSON output into readable, per-module markdown files.
 
-## Why This Exists
-
 I wanted something that mirrors how rustdoc actually organizes things: one file per module, with working cross-references between them. So that I could just have docs I can grep through, and have all docs of all of my dependencies in one place locally. Opening up a browser is a hassle and I just end up browsing other sites instead. Especially as a neovim user it's quite annoying to switch between a browser and terminal. I also forget things very quickly so I am extremely dependent on docs to remember how stuff work.
+
+By default, all items (including private ones) are documented. Use `--exclude-private` to only include public items. This ensures maximum detail from rustdoc JSON files, though it may cause broken links if private items are later excluded.
 
 ## What It Does
 
@@ -18,7 +16,7 @@ I wanted something that mirrors how rustdoc actually organizes things: one file 
 - Filters common blanket impls (From, Into, Any, etc.) by default (`--include-blanket-impls` to show)
 - Generates mdBook-compatible `SUMMARY.md` files
 - Produces a `search_index.json` for client-side search (only includes rendered items)
-- Respects visibility throughout—links, search index, and SUMMARY.md all honor `--include-private`
+- Includes all items by default—use `--exclude-private` to limit to public items only (affects links, search index, and SUMMARY.md)
 
 **Example output:** The [`docs/`](docs/) directory in this repository contains generated documentation for this tool's own dependencies, demonstrating multi-crate output with cross-crate linking.
 
@@ -51,7 +49,7 @@ docs_md docs
 # With options
 docs_md docs --primary-crate my_crate    # Prioritize your crate for links
 docs_md docs --clean                      # Full rebuild (cargo clean first)
-docs_md docs --include-private            # Include private items
+docs_md docs --exclude-private            # Only include public items
 docs_md docs -- --all-features            # Pass args to cargo doc
 ```
 
@@ -82,8 +80,8 @@ docs_md --path target/doc/my_crate.json -o docs/
 # Nested format (directory per module)
 docs_md --path target/doc/my_crate.json -o docs/ --format nested
 
-# Include private items
-docs_md --path target/doc/my_crate.json -o docs/ --include-private
+# Exclude private items (public only)
+docs_md --path target/doc/my_crate.json -o docs/ --exclude-private
 ```
 
 _Multiple crates (workspace or with dependencies):_

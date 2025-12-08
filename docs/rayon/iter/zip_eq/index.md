@@ -14,10 +14,10 @@ struct ZipEq<A, B> {
 }
 ```
 
-An [`IndexedParallelIterator`](../index.md) that iterates over two parallel iterators of equal
+An [`IndexedParallelIterator`](../../prelude/index.md) that iterates over two parallel iterators of equal
 length simultaneously.
 
-This struct is created by the [`zip_eq`](#zip-eq) method on [`IndexedParallelIterator`](../index.md),
+This struct is created by the [`zip_eq`](#zip-eq) method on [`IndexedParallelIterator`](../../prelude/index.md),
 see its documentation for more information.
 
 
@@ -29,7 +29,7 @@ see its documentation for more information.
 
 ##### `impl<A: $crate::clone::Clone, B: $crate::clone::Clone> Clone for ZipEq<A, B>`
 
-- `fn clone(self: &Self) -> ZipEq<A, B>` — [`ZipEq`](#zipeq)
+- `fn clone(self: &Self) -> ZipEq<A, B>` — [`ZipEq`](../index.md)
 
 ##### `impl<A: $crate::fmt::Debug, B: $crate::fmt::Debug> Debug for ZipEq<A, B>`
 

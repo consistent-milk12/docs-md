@@ -12,14 +12,14 @@
 struct KindFormatter;
 ```
 
-Report [`ErrorKind`](../kind/index.md)
+Report [`ErrorKind`](../index.md)
 
 No context is included.
 
 <div class="warning">
 
 **NOTE:** Consider removing the `error-context` default feature if using this to remove all
-overhead for [`RichFormatter`](#richformatter).
+overhead for [`RichFormatter`](../index.md).
 
 </div>
 
@@ -27,7 +27,7 @@ overhead for [`RichFormatter`](#richformatter).
 
 ##### `impl ErrorFormatter for KindFormatter`
 
-- `fn format_error(error: &crate::error::Error<Self>) -> StyledStr` — [`Error`](../index.md), [`StyledStr`](../../builder/styled_str/index.md)
+- `fn format_error(error: &crate::error::Error<Self>) -> StyledStr` — [`Error`](../index.md), [`StyledStr`](../../builder/index.md)
 
 ### `RichFormatter`
 
@@ -43,7 +43,7 @@ This follows the [rustc diagnostic style guide](https://rustc-dev-guide.rust-lan
 
 ##### `impl ErrorFormatter for RichFormatter`
 
-- `fn format_error(error: &crate::error::Error<Self>) -> StyledStr` — [`Error`](../index.md), [`StyledStr`](../../builder/styled_str/index.md)
+- `fn format_error(error: &crate::error::Error<Self>) -> StyledStr` — [`Error`](../index.md), [`StyledStr`](../../builder/index.md)
 
 ### `Escape<'s>`
 

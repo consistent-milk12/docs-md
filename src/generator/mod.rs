@@ -216,7 +216,7 @@ impl<'a> Generator<'a> {
             primary_crate: None,
             output: std::path::PathBuf::new(),
             format,
-            include_private,
+            exclude_private: !include_private,
             include_blanket_impls: false,
         };
 

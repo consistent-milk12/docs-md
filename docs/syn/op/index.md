@@ -182,7 +182,7 @@ A binary operator: `+`, `+=`, `&`.
 
 ##### `impl Parse for crate::op::BinOp`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::BinOp`
 
@@ -244,7 +244,7 @@ A unary operator: `*`, `!`, `-`.
 
 ##### `impl Parse for crate::op::UnOp`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::UnOp`
 

@@ -36,19 +36,19 @@ two key differences:
 
 #### Implementations
 
-- `fn dispatch(metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'_>)` — [`Metadata`](../metadata/index.md), [`ValueSet`](../field/index.md)
+- `fn dispatch(metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'_>)` — [`Metadata`](../index.md), [`ValueSet`](../field/index.md)
 
-- `fn new(metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'a>) -> Self` — [`Metadata`](../metadata/index.md), [`ValueSet`](../field/index.md)
+- `fn new(metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'a>) -> Self` — [`Metadata`](../index.md), [`ValueSet`](../field/index.md)
 
-- `fn new_child_of(parent: impl Into<Option<Id>>, metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'a>) -> Self` — [`Id`](../span/index.md), [`Metadata`](../metadata/index.md), [`ValueSet`](../field/index.md)
+- `fn new_child_of(parent: impl Into<Option<Id>>, metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'a>) -> Self` — [`Id`](../span/index.md), [`Metadata`](../index.md), [`ValueSet`](../field/index.md)
 
-- `fn child_of(parent: impl Into<Option<Id>>, metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'_>)` — [`Id`](../span/index.md), [`Metadata`](../metadata/index.md), [`ValueSet`](../field/index.md)
+- `fn child_of(parent: impl Into<Option<Id>>, metadata: &'static Metadata<'static>, fields: &'a field::ValueSet<'_>)` — [`Id`](../span/index.md), [`Metadata`](../index.md), [`ValueSet`](../field/index.md)
 
 - `fn record(self: &Self, visitor: &mut dyn field::Visit)` — [`Visit`](../field/index.md)
 
 - `fn fields(self: &Self) -> field::Iter` — [`Iter`](../field/index.md)
 
-- `fn metadata(self: &Self) -> &'static Metadata<'static>` — [`Metadata`](../metadata/index.md)
+- `fn metadata(self: &Self) -> &'static Metadata<'static>` — [`Metadata`](../index.md)
 
 - `fn is_root(self: &Self) -> bool`
 

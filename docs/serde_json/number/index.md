@@ -30,25 +30,25 @@ Represents a JSON number, whether integer or floating point.
 
 - `fn as_f64(self: &Self) -> Option<f64>`
 
-- `fn from_f64(f: f64) -> Option<Number>` — [`Number`](#number)
+- `fn from_f64(f: f64) -> Option<Number>` — [`Number`](../index.md)
 
 - `fn as_i128(self: &Self) -> Option<i128>`
 
 - `fn as_u128(self: &Self) -> Option<u128>`
 
-- `fn from_i128(i: i128) -> Option<Number>` — [`Number`](#number)
+- `fn from_i128(i: i128) -> Option<Number>` — [`Number`](../index.md)
 
-- `fn from_u128(i: u128) -> Option<Number>` — [`Number`](#number)
+- `fn from_u128(i: u128) -> Option<Number>` — [`Number`](../index.md)
 
 - `fn as_f32(self: &Self) -> Option<f32>`
 
-- `fn from_f32(f: f32) -> Option<Number>` — [`Number`](#number)
+- `fn from_f32(f: f32) -> Option<Number>` — [`Number`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Number`
 
-- `fn clone(self: &Self) -> Number` — [`Number`](#number)
+- `fn clone(self: &Self) -> Number` — [`Number`](../index.md)
 
 ##### `impl Debug for Number`
 
@@ -56,7 +56,7 @@ Represents a JSON number, whether integer or floating point.
 
 ##### `impl<'de> Deserialize for Number`
 
-- `fn deserialize<D>(deserializer: D) -> Result<Number, <D as >::Error>` — [`Number`](#number)
+- `fn deserialize<D>(deserializer: D) -> Result<Number, <D as >::Error>` — [`Number`](../index.md)
 
 ##### `impl<T> DeserializeOwned for Number`
 
@@ -64,31 +64,31 @@ Represents a JSON number, whether integer or floating point.
 
 - `type Error = Error`
 
-- `fn deserialize_any<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
+- `fn deserialize_any<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../index.md)
 
-- `fn deserialize_i8<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
+- `fn deserialize_i8<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../index.md)
 
-- `fn deserialize_i16<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
+- `fn deserialize_i16<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../index.md)
 
-- `fn deserialize_i32<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
+- `fn deserialize_i32<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../index.md)
 
-- `fn deserialize_i64<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
+- `fn deserialize_i64<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../index.md)
 
-- `fn deserialize_i128<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
+- `fn deserialize_i128<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../index.md)
 
-- `fn deserialize_u8<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
+- `fn deserialize_u8<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../index.md)
 
-- `fn deserialize_u16<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
+- `fn deserialize_u16<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../index.md)
 
-- `fn deserialize_u32<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
+- `fn deserialize_u32<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../index.md)
 
-- `fn deserialize_u64<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
+- `fn deserialize_u64<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../index.md)
 
-- `fn deserialize_u128<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
+- `fn deserialize_u128<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../index.md)
 
-- `fn deserialize_f32<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
+- `fn deserialize_f32<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../index.md)
 
-- `fn deserialize_f64<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
+- `fn deserialize_f64<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../index.md)
 
 - `fn deserialize_bool<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
 
@@ -144,7 +144,7 @@ Represents a JSON number, whether integer or floating point.
 
 ##### `impl PartialEq for Number`
 
-- `fn eq(self: &Self, other: &Number) -> bool` — [`Number`](#number)
+- `fn eq(self: &Self, other: &Number) -> bool` — [`Number`](../index.md)
 
 ##### `impl Serialize for Number`
 

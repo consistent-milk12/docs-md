@@ -4,8 +4,8 @@
 
 # Module `scope`
 
-Methods for custom fork-join scopes, created by the [`scope()`](#scope)
-and [`in_place_scope()`](#in-place-scope) functions. These are a more flexible alternative to `join()`.
+Methods for custom fork-join scopes, created by the [`scope()`](../index.md)
+and [`in_place_scope()`](../index.md) functions. These are a more flexible alternative to `join()`.
 
 
 ## Structs
@@ -19,7 +19,7 @@ struct Scope<'scope> {
 ```
 
 Represents a fork-join scope which can be used to spawn any number of tasks.
-See [`scope()`](#scope) for more information.
+See [`scope()`](../index.md) for more information.
 
 #### Implementations
 
@@ -60,7 +60,7 @@ struct ScopeFifo<'scope> {
 
 Represents a fork-join scope which can be used to spawn any number of tasks.
 Those spawned from the same thread are prioritized in relative FIFO order.
-See [`scope_fifo()`](#scope-fifo) for more information.
+See [`scope_fifo()`](../index.md) for more information.
 
 #### Implementations
 
@@ -323,7 +323,7 @@ threads always steal from the other end of the deque, like FIFO
 order.  The idea is that "recent" tasks are most likely to be fresh
 in the local CPU's cache, while other threads can steal older
 "stale" tasks.  For an alternate approach, consider
-[`scope_fifo()`](#scope-fifo) instead.
+[`scope_fifo()`](../index.md) instead.
 
 # Accessing stack data
 
@@ -444,7 +444,7 @@ that have been spawned into `s` complete.
 
 # Task execution
 
-Tasks in a `scope_fifo()` run similarly to [`scope()`](#scope), but there's a
+Tasks in a `scope_fifo()` run similarly to [`scope()`](../index.md), but there's a
 difference in the order of execution. Consider a similar example:
 
 ```rust

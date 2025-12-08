@@ -195,7 +195,7 @@ An iterator over all occurrences of a single byte in a haystack.
 This iterator implements `DoubleEndedIterator`, which means it can also be
 used to find occurrences in reverse order.
 
-This iterator is created by the [`memchr_iter`](memchr/index.md) or `[memrchr_iter`]
+This iterator is created by the [`memchr_iter`](#memchr-iter) or `[memrchr_iter`]
 functions. It can also be created with the `Memchr::new` method.
 
 The lifetime parameter `'h` refers to the lifetime of the haystack being
@@ -203,13 +203,13 @@ searched.
 
 #### Implementations
 
-- `fn new(needle1: u8, haystack: &'h [u8]) -> Memchr<'h>` — [`Memchr`](memchr/index.md)
+- `fn new(needle1: u8, haystack: &'h [u8]) -> Memchr<'h>` — [`Memchr`](#memchr)
 
 #### Trait Implementations
 
 ##### `impl<'h> Clone for Memchr<'h>`
 
-- `fn clone(self: &Self) -> Memchr<'h>` — [`Memchr`](memchr/index.md)
+- `fn clone(self: &Self) -> Memchr<'h>` — [`Memchr`](#memchr)
 
 ##### `impl<'h> Debug for Memchr<'h>`
 
@@ -254,7 +254,7 @@ An iterator over all occurrences of two possible bytes in a haystack.
 This iterator implements `DoubleEndedIterator`, which means it can also be
 used to find occurrences in reverse order.
 
-This iterator is created by the [`memchr2_iter`](memchr/index.md) or `[memrchr2_iter`]
+This iterator is created by the [`memchr2_iter`](#memchr2-iter) or `[memrchr2_iter`]
 functions. It can also be created with the `Memchr2::new` method.
 
 The lifetime parameter `'h` refers to the lifetime of the haystack being
@@ -262,13 +262,13 @@ searched.
 
 #### Implementations
 
-- `fn new(needle1: u8, needle2: u8, haystack: &'h [u8]) -> Memchr2<'h>` — [`Memchr2`](memchr/index.md)
+- `fn new(needle1: u8, needle2: u8, haystack: &'h [u8]) -> Memchr2<'h>` — [`Memchr2`](#memchr2)
 
 #### Trait Implementations
 
 ##### `impl<'h> Clone for Memchr2<'h>`
 
-- `fn clone(self: &Self) -> Memchr2<'h>` — [`Memchr2`](memchr/index.md)
+- `fn clone(self: &Self) -> Memchr2<'h>` — [`Memchr2`](#memchr2)
 
 ##### `impl<'h> Debug for Memchr2<'h>`
 
@@ -312,7 +312,7 @@ An iterator over all occurrences of three possible bytes in a haystack.
 This iterator implements `DoubleEndedIterator`, which means it can also be
 used to find occurrences in reverse order.
 
-This iterator is created by the [`memchr2_iter`](memchr/index.md) or `[memrchr2_iter`]
+This iterator is created by the [`memchr2_iter`](#memchr2-iter) or `[memrchr2_iter`]
 functions. It can also be created with the `Memchr3::new` method.
 
 The lifetime parameter `'h` refers to the lifetime of the haystack being
@@ -320,13 +320,13 @@ searched.
 
 #### Implementations
 
-- `fn new(needle1: u8, needle2: u8, needle3: u8, haystack: &'h [u8]) -> Memchr3<'h>` — [`Memchr3`](memchr/index.md)
+- `fn new(needle1: u8, needle2: u8, needle3: u8, haystack: &'h [u8]) -> Memchr3<'h>` — [`Memchr3`](#memchr3)
 
 #### Trait Implementations
 
 ##### `impl<'h> Clone for Memchr3<'h>`
 
-- `fn clone(self: &Self) -> Memchr3<'h>` — [`Memchr3`](memchr/index.md)
+- `fn clone(self: &Self) -> Memchr3<'h>` — [`Memchr3`](#memchr3)
 
 ##### `impl<'h> Debug for Memchr3<'h>`
 

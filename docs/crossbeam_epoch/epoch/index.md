@@ -76,7 +76,7 @@ and a flag that represents whether it is pinned or unpinned.
 
 - `type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md)
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
 
 - `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -129,7 +129,7 @@ An atomic value that holds an `Epoch`.
 
 - `type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md)
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
 
 - `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 

@@ -52,21 +52,25 @@ let cfg = Arg::new("config")
 
 #### Implementations
 
-- `fn new(name: impl Into<Str>) -> Self` — [`Str`](../str/index.md)
+- `fn get_name(self: &Self) -> &str`
 
-- `fn help(self: Self, help: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](../resettable/index.md), [`StyledStr`](../styled_str/index.md)
+- `fn get_help(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](../index.md)
 
-- `fn hide(self: Self, yes: bool) -> Self`
+- `fn is_hide_set(self: &Self) -> bool`
 
-- `fn alias(self: Self, name: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](../resettable/index.md), [`Str`](../str/index.md)
+- `fn should_show_help(self: &Self) -> bool`
 
-- `fn aliases(self: Self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self` — [`Str`](../str/index.md)
+- `fn get_visible_quoted_name(self: &Self) -> Option<std::borrow::Cow<'_, str>>`
+
+- `fn get_name_and_aliases(self: &Self) -> impl Iterator<Item = &str> + '_`
+
+- `fn matches(self: &Self, value: &str, ignore_case: bool) -> bool`
 
 #### Trait Implementations
 
 ##### `impl Clone for PossibleValue`
 
-- `fn clone(self: &Self) -> PossibleValue` — [`PossibleValue`](#possiblevalue)
+- `fn clone(self: &Self) -> PossibleValue` — [`PossibleValue`](../index.md)
 
 ##### `impl Debug for PossibleValue`
 
@@ -74,13 +78,13 @@ let cfg = Arg::new("config")
 
 ##### `impl Default for PossibleValue`
 
-- `fn default() -> PossibleValue` — [`PossibleValue`](#possiblevalue)
+- `fn default() -> PossibleValue` — [`PossibleValue`](../index.md)
 
 ##### `impl Eq for PossibleValue`
 
 ##### `impl PartialEq for PossibleValue`
 
-- `fn eq(self: &Self, other: &PossibleValue) -> bool` — [`PossibleValue`](#possiblevalue)
+- `fn eq(self: &Self, other: &PossibleValue) -> bool` — [`PossibleValue`](../index.md)
 
 ##### `impl StructuralPartialEq for PossibleValue`
 

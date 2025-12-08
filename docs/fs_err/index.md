@@ -128,27 +128,17 @@ Wrapper around [`std::fs::OpenOptions`](https://doc.rust-lang.org/std/fs/struct.
 
 #### Implementations
 
-- `fn new() -> Self`
+- `fn from_options(options: fs::OpenOptions) -> Self`
 
-- `fn read(self: &mut Self, read: bool) -> &mut Self`
+- `fn options(self: &Self) -> &fs::OpenOptions`
 
-- `fn write(self: &mut Self, write: bool) -> &mut Self`
-
-- `fn append(self: &mut Self, append: bool) -> &mut Self`
-
-- `fn truncate(self: &mut Self, truncate: bool) -> &mut Self`
-
-- `fn create(self: &mut Self, create: bool) -> &mut Self`
-
-- `fn create_new(self: &mut Self, create_new: bool) -> &mut Self`
-
-- `fn open<P>(self: &Self, path: P) -> io::Result<crate::File>` — [`File`](#file)
+- `fn options_mut(self: &mut Self) -> &mut fs::OpenOptions`
 
 #### Trait Implementations
 
 ##### `impl Clone for OpenOptions`
 
-- `fn clone(self: &Self) -> OpenOptions` — [`OpenOptions`](open_options/index.md)
+- `fn clone(self: &Self) -> OpenOptions` — [`OpenOptions`](#openoptions)
 
 ##### `impl Debug for OpenOptions`
 

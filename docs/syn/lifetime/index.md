@@ -33,7 +33,11 @@ Lifetime names must conform to the following rules:
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- `fn new(symbol: &str, span: Span) -> Self`
+
+- `fn span(self: &Self) -> Span`
+
+- `fn set_span(self: &mut Self, span: Span)`
 
 #### Trait Implementations
 
@@ -57,19 +61,19 @@ Lifetime names must conform to the following rules:
 
 ##### `impl Ord for Lifetime`
 
-- `fn cmp(self: &Self, other: &Lifetime) -> Ordering` — [`Lifetime`](#lifetime)
+- `fn cmp(self: &Self, other: &Lifetime) -> Ordering` — [`Lifetime`](../index.md)
 
 ##### `impl Parse for crate::lifetime::Lifetime`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for Lifetime`
 
-- `fn eq(self: &Self, other: &Lifetime) -> bool` — [`Lifetime`](#lifetime)
+- `fn eq(self: &Self, other: &Lifetime) -> bool` — [`Lifetime`](../index.md)
 
 ##### `impl PartialOrd for Lifetime`
 
-- `fn partial_cmp(self: &Self, other: &Lifetime) -> Option<Ordering>` — [`Lifetime`](#lifetime)
+- `fn partial_cmp(self: &Self, other: &Lifetime) -> Option<Ordering>` — [`Lifetime`](../index.md)
 
 ##### `impl Sealed for crate::lifetime::Lifetime`
 

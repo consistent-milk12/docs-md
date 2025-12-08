@@ -18,7 +18,7 @@ The raw contents of the `.debug_macinfo` section.
 
 #### Implementations
 
-- `fn get_macinfo(self: &Self, offset: DebugMacinfoOffset<<R as >::Offset>) -> Result<MacroIter<R>>` — [`DebugMacinfoOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`MacroIter`](../index.md)
+- `fn new(macinfo_section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 
@@ -54,7 +54,7 @@ The raw contents of the `.debug_macro` section.
 
 #### Implementations
 
-- `fn new(macro_section: &'input [u8], endian: Endian) -> Self`
+- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugMacro<R>` — [`DebugMacro`](../index.md)
 
 #### Trait Implementations
 

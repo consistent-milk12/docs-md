@@ -20,13 +20,13 @@ struct BarState {
 
 #### Implementations
 
-- `fn new(len: Option<u64>, draw_target: ProgressDrawTarget, pos: Arc<AtomicPosition>) -> Self` — [`ProgressDrawTarget`](../draw_target/index.md), [`AtomicPosition`](#atomicposition)
+- `fn new(len: Option<u64>, draw_target: ProgressDrawTarget, pos: Arc<AtomicPosition>) -> Self` — [`ProgressDrawTarget`](../index.md), [`AtomicPosition`](#atomicposition)
 
-- `fn finish_using_style(self: &mut Self, now: Instant, finish: ProgressFinish)` — [`ProgressFinish`](#progressfinish)
+- `fn finish_using_style(self: &mut Self, now: Instant, finish: ProgressFinish)` — [`ProgressFinish`](../index.md)
 
 - `fn reset(self: &mut Self, now: Instant, mode: Reset)` — [`Reset`](#reset)
 
-- `fn update(self: &mut Self, now: Instant, f: impl FnOnce(&mut ProgressState), tick: bool)` — [`ProgressState`](#progressstate)
+- `fn update(self: &mut Self, now: Instant, f: impl FnOnce(&mut ProgressState), tick: bool)` — [`ProgressState`](../index.md)
 
 - `fn unset_length(self: &mut Self, now: Instant)`
 
@@ -38,7 +38,7 @@ struct BarState {
 
 - `fn set_tab_width(self: &mut Self, tab_width: usize)`
 
-- `fn set_style(self: &mut Self, style: ProgressStyle)` — [`ProgressStyle`](../style/index.md)
+- `fn set_style(self: &mut Self, style: ProgressStyle)` — [`ProgressStyle`](../index.md)
 
 - `fn tick(self: &mut Self, now: Instant)`
 
@@ -232,7 +232,7 @@ enum ProgressFinish {
 
 Behavior of a progress bar when it is finished
 
-This is invoked when a [`ProgressBar`](../progress_bar/index.md) or [`ProgressBarIter`](../iter/index.md) completes and
+This is invoked when a [`ProgressBar`](../index.md) or [`ProgressBarIter`](../index.md) completes and
 `ProgressBar::is_finished` is false.
 
 
@@ -274,7 +274,7 @@ This is invoked when a [`ProgressBar`](../progress_bar/index.md) or [`ProgressBa
 
 ##### `impl Clone for ProgressFinish`
 
-- `fn clone(self: &Self) -> ProgressFinish` — [`ProgressFinish`](#progressfinish)
+- `fn clone(self: &Self) -> ProgressFinish` — [`ProgressFinish`](../index.md)
 
 ##### `impl Debug for ProgressFinish`
 
@@ -282,7 +282,7 @@ This is invoked when a [`ProgressBar`](../progress_bar/index.md) or [`ProgressBa
 
 ##### `impl Default for ProgressFinish`
 
-- `fn default() -> ProgressFinish` — [`ProgressFinish`](#progressfinish)
+- `fn default() -> ProgressFinish` — [`ProgressFinish`](../index.md)
 
 ### `Status`
 

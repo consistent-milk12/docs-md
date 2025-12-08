@@ -188,71 +188,51 @@ work against the internal interface of the parser.
 
 #### Implementations
 
-- `fn new(parser: P, pattern: &'s str) -> ParserI<'s, P>` — [`ParserI`](#parseri)
+- `fn parse(self: &Self) -> core::result::Result<Ast, ast::Error>` — [`Ast`](../index.md), [`Error`](../index.md)
 
-- `fn parser(self: &Self) -> &Parser` — [`Parser`](#parser)
+- `fn parse_with_comments(self: &Self) -> core::result::Result<ast::WithComments, ast::Error>` — [`WithComments`](../index.md), [`Error`](../index.md)
 
-- `fn pattern(self: &Self) -> &str`
+- `fn parse_uncounted_repetition(self: &Self, concat: ast::Concat, kind: ast::RepetitionKind) -> core::result::Result<ast::Concat, ast::Error>` — [`Concat`](../index.md), [`RepetitionKind`](../index.md), [`Error`](../index.md)
 
-- `fn error(self: &Self, span: Span, kind: ast::ErrorKind) -> ast::Error` — [`Span`](../index.md), [`ErrorKind`](../index.md), [`Error`](../index.md)
+- `fn parse_counted_repetition(self: &Self, concat: ast::Concat) -> core::result::Result<ast::Concat, ast::Error>` — [`Concat`](../index.md), [`Error`](../index.md)
 
-- `fn offset(self: &Self) -> usize`
+- `fn parse_group(self: &Self) -> core::result::Result<Either<ast::SetFlags, ast::Group>, ast::Error>` — [`Either`](../../either/index.md), [`SetFlags`](../index.md), [`Group`](../index.md), [`Error`](../index.md)
 
-- `fn line(self: &Self) -> usize`
+- `fn parse_capture_name(self: &Self, capture_index: u32) -> core::result::Result<ast::CaptureName, ast::Error>` — [`CaptureName`](../index.md), [`Error`](../index.md)
 
-- `fn column(self: &Self) -> usize`
+- `fn parse_flags(self: &Self) -> core::result::Result<ast::Flags, ast::Error>` — [`Flags`](../index.md), [`Error`](../index.md)
 
-- `fn next_capture_index(self: &Self, span: Span) -> core::result::Result<u32, ast::Error>` — [`Span`](../index.md), [`Error`](../index.md)
+- `fn parse_flag(self: &Self) -> core::result::Result<ast::Flag, ast::Error>` — [`Flag`](../index.md), [`Error`](../index.md)
 
-- `fn add_capture_name(self: &Self, cap: &ast::CaptureName) -> core::result::Result<(), ast::Error>` — [`CaptureName`](../index.md), [`Error`](../index.md)
+- `fn parse_primitive(self: &Self) -> core::result::Result<Primitive, ast::Error>` — [`Primitive`](#primitive), [`Error`](../index.md)
 
-- `fn ignore_whitespace(self: &Self) -> bool`
+- `fn parse_escape(self: &Self) -> core::result::Result<Primitive, ast::Error>` — [`Primitive`](#primitive), [`Error`](../index.md)
 
-- `fn char(self: &Self) -> char`
+- `fn maybe_parse_special_word_boundary(self: &Self, wb_start: Position) -> core::result::Result<Option<ast::AssertionKind>, ast::Error>` — [`Position`](../index.md), [`AssertionKind`](../index.md), [`Error`](../index.md)
 
-- `fn char_at(self: &Self, i: usize) -> char`
+- `fn parse_octal(self: &Self) -> ast::Literal` — [`Literal`](../index.md)
 
-- `fn bump(self: &Self) -> bool`
+- `fn parse_hex(self: &Self) -> core::result::Result<ast::Literal, ast::Error>` — [`Literal`](../index.md), [`Error`](../index.md)
 
-- `fn bump_if(self: &Self, prefix: &str) -> bool`
+- `fn parse_hex_digits(self: &Self, kind: ast::HexLiteralKind) -> core::result::Result<ast::Literal, ast::Error>` — [`HexLiteralKind`](../index.md), [`Literal`](../index.md), [`Error`](../index.md)
 
-- `fn is_lookaround_prefix(self: &Self) -> bool`
+- `fn parse_hex_brace(self: &Self, kind: ast::HexLiteralKind) -> core::result::Result<ast::Literal, ast::Error>` — [`HexLiteralKind`](../index.md), [`Literal`](../index.md), [`Error`](../index.md)
 
-- `fn bump_and_bump_space(self: &Self) -> bool`
+- `fn parse_decimal(self: &Self) -> core::result::Result<u32, ast::Error>` — [`Error`](../index.md)
 
-- `fn bump_space(self: &Self)`
+- `fn parse_set_class(self: &Self) -> core::result::Result<ast::ClassBracketed, ast::Error>` — [`ClassBracketed`](../index.md), [`Error`](../index.md)
 
-- `fn peek(self: &Self) -> Option<char>`
+- `fn parse_set_class_range(self: &Self) -> core::result::Result<ast::ClassSetItem, ast::Error>` — [`ClassSetItem`](../index.md), [`Error`](../index.md)
 
-- `fn peek_space(self: &Self) -> Option<char>`
+- `fn parse_set_class_item(self: &Self) -> core::result::Result<Primitive, ast::Error>` — [`Primitive`](#primitive), [`Error`](../index.md)
 
-- `fn is_eof(self: &Self) -> bool`
+- `fn parse_set_class_open(self: &Self) -> core::result::Result<(ast::ClassBracketed, ast::ClassSetUnion), ast::Error>` — [`ClassBracketed`](../index.md), [`ClassSetUnion`](../index.md), [`Error`](../index.md)
 
-- `fn pos(self: &Self) -> Position` — [`Position`](../index.md)
+- `fn maybe_parse_ascii_class(self: &Self) -> Option<ast::ClassAscii>` — [`ClassAscii`](../index.md)
 
-- `fn span(self: &Self) -> Span` — [`Span`](../index.md)
+- `fn parse_unicode_class(self: &Self) -> core::result::Result<ast::ClassUnicode, ast::Error>` — [`ClassUnicode`](../index.md), [`Error`](../index.md)
 
-- `fn span_char(self: &Self) -> Span` — [`Span`](../index.md)
-
-- `fn push_alternate(self: &Self, concat: ast::Concat) -> core::result::Result<ast::Concat, ast::Error>` — [`Concat`](../index.md), [`Error`](../index.md)
-
-- `fn push_or_add_alternation(self: &Self, concat: ast::Concat)` — [`Concat`](../index.md)
-
-- `fn push_group(self: &Self, concat: ast::Concat) -> core::result::Result<ast::Concat, ast::Error>` — [`Concat`](../index.md), [`Error`](../index.md)
-
-- `fn pop_group(self: &Self, group_concat: ast::Concat) -> core::result::Result<ast::Concat, ast::Error>` — [`Concat`](../index.md), [`Error`](../index.md)
-
-- `fn pop_group_end(self: &Self, concat: ast::Concat) -> core::result::Result<Ast, ast::Error>` — [`Concat`](../index.md), [`Ast`](../index.md), [`Error`](../index.md)
-
-- `fn push_class_open(self: &Self, parent_union: ast::ClassSetUnion) -> core::result::Result<ast::ClassSetUnion, ast::Error>` — [`ClassSetUnion`](../index.md), [`Error`](../index.md)
-
-- `fn pop_class(self: &Self, nested_union: ast::ClassSetUnion) -> core::result::Result<Either<ast::ClassSetUnion, ast::ClassBracketed>, ast::Error>` — [`ClassSetUnion`](../index.md), [`Either`](../../either/index.md), [`ClassBracketed`](../index.md), [`Error`](../index.md)
-
-- `fn unclosed_class_error(self: &Self) -> ast::Error` — [`Error`](../index.md)
-
-- `fn push_class_op(self: &Self, next_kind: ast::ClassSetBinaryOpKind, next_union: ast::ClassSetUnion) -> ast::ClassSetUnion` — [`ClassSetBinaryOpKind`](../index.md), [`ClassSetUnion`](../index.md)
-
-- `fn pop_class_op(self: &Self, rhs: ast::ClassSet) -> ast::ClassSet` — [`ClassSet`](../index.md)
+- `fn parse_perl_class(self: &Self) -> ast::ClassPerl` — [`ClassPerl`](../index.md)
 
 #### Trait Implementations
 

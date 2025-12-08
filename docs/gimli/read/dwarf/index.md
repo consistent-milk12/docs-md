@@ -229,63 +229,7 @@ All of the commonly used DWARF sections, and other common information.
 
 #### Implementations
 
-- `fn populate_abbreviations_cache(self: &mut Self, strategy: AbbreviationsCacheStrategy)` — [`AbbreviationsCacheStrategy`](../index.md)
-
-- `fn units(self: &Self) -> DebugInfoUnitHeadersIter<R>` — [`DebugInfoUnitHeadersIter`](../index.md)
-
-- `fn unit(self: &Self, header: UnitHeader<R>) -> Result<Unit<R>>` — [`UnitHeader`](../index.md), [`Result`](../../index.md), [`Unit`](../index.md)
-
-- `fn type_units(self: &Self) -> DebugTypesUnitHeadersIter<R>` — [`DebugTypesUnitHeadersIter`](../index.md)
-
-- `fn abbreviations(self: &Self, unit: &UnitHeader<R>) -> Result<Arc<Abbreviations>>` — [`UnitHeader`](../index.md), [`Result`](../../index.md), [`Abbreviations`](../index.md)
-
-- `fn string_offset(self: &Self, unit: &Unit<R>, index: DebugStrOffsetsIndex<<R as >::Offset>) -> Result<DebugStrOffset<<R as >::Offset>>` — [`Unit`](../index.md), [`DebugStrOffsetsIndex`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`DebugStrOffset`](../../index.md)
-
-- `fn string(self: &Self, offset: DebugStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugStrOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md)
-
-- `fn line_string(self: &Self, offset: DebugLineStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugLineStrOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md)
-
-- `fn sup_string(self: &Self, offset: DebugStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugStrOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md)
-
-- `fn attr_string(self: &Self, unit: &Unit<R>, attr: AttributeValue<R>) -> Result<R>` — [`Unit`](../index.md), [`AttributeValue`](../index.md), [`Result`](../../index.md)
-
-- `fn address(self: &Self, unit: &Unit<R>, index: DebugAddrIndex<<R as >::Offset>) -> Result<u64>` — [`Unit`](../index.md), [`DebugAddrIndex`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md)
-
-- `fn attr_address(self: &Self, unit: &Unit<R>, attr: AttributeValue<R>) -> Result<Option<u64>>` — [`Unit`](../index.md), [`AttributeValue`](../index.md), [`Result`](../../index.md)
-
-- `fn ranges_offset_from_raw(self: &Self, unit: &Unit<R>, offset: RawRangeListsOffset<<R as >::Offset>) -> RangeListsOffset<<R as >::Offset>` — [`Unit`](../index.md), [`RawRangeListsOffset`](../../index.md), [`Reader`](../index.md), [`RangeListsOffset`](../../index.md)
-
-- `fn ranges_offset(self: &Self, unit: &Unit<R>, index: DebugRngListsIndex<<R as >::Offset>) -> Result<RangeListsOffset<<R as >::Offset>>` — [`Unit`](../index.md), [`DebugRngListsIndex`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`RangeListsOffset`](../../index.md)
-
-- `fn ranges(self: &Self, unit: &Unit<R>, offset: RangeListsOffset<<R as >::Offset>) -> Result<RngListIter<R>>` — [`Unit`](../index.md), [`RangeListsOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`RngListIter`](../index.md)
-
-- `fn raw_ranges(self: &Self, unit: &Unit<R>, offset: RangeListsOffset<<R as >::Offset>) -> Result<RawRngListIter<R>>` — [`Unit`](../index.md), [`RangeListsOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`RawRngListIter`](../index.md)
-
-- `fn attr_ranges_offset(self: &Self, unit: &Unit<R>, attr: AttributeValue<R>) -> Result<Option<RangeListsOffset<<R as >::Offset>>>` — [`Unit`](../index.md), [`AttributeValue`](../index.md), [`Result`](../../index.md), [`RangeListsOffset`](../../index.md), [`Reader`](../index.md)
-
-- `fn attr_ranges(self: &Self, unit: &Unit<R>, attr: AttributeValue<R>) -> Result<Option<RngListIter<R>>>` — [`Unit`](../index.md), [`AttributeValue`](../index.md), [`Result`](../../index.md), [`RngListIter`](../index.md)
-
-- `fn die_ranges(self: &Self, unit: &Unit<R>, entry: &DebuggingInformationEntry<'_, '_, R>) -> Result<RangeIter<R>>` — [`Unit`](../index.md), [`DebuggingInformationEntry`](../index.md), [`Result`](../../index.md), [`RangeIter`](../index.md)
-
-- `fn unit_ranges(self: &Self, unit: &Unit<R>) -> Result<RangeIter<R>>` — [`Unit`](../index.md), [`Result`](../../index.md), [`RangeIter`](../index.md)
-
-- `fn locations_offset(self: &Self, unit: &Unit<R>, index: DebugLocListsIndex<<R as >::Offset>) -> Result<LocationListsOffset<<R as >::Offset>>` — [`Unit`](../index.md), [`DebugLocListsIndex`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`LocationListsOffset`](../../index.md)
-
-- `fn locations(self: &Self, unit: &Unit<R>, offset: LocationListsOffset<<R as >::Offset>) -> Result<LocListIter<R>>` — [`Unit`](../index.md), [`LocationListsOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`LocListIter`](../index.md)
-
-- `fn raw_locations(self: &Self, unit: &Unit<R>, offset: LocationListsOffset<<R as >::Offset>) -> Result<RawLocListIter<R>>` — [`Unit`](../index.md), [`LocationListsOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`RawLocListIter`](../index.md)
-
-- `fn attr_locations_offset(self: &Self, unit: &Unit<R>, attr: AttributeValue<R>) -> Result<Option<LocationListsOffset<<R as >::Offset>>>` — [`Unit`](../index.md), [`AttributeValue`](../index.md), [`Result`](../../index.md), [`LocationListsOffset`](../../index.md), [`Reader`](../index.md)
-
-- `fn attr_locations(self: &Self, unit: &Unit<R>, attr: AttributeValue<R>) -> Result<Option<LocListIter<R>>>` — [`Unit`](../index.md), [`AttributeValue`](../index.md), [`Result`](../../index.md), [`LocListIter`](../index.md)
-
-- `fn lookup_offset_id(self: &Self, id: ReaderOffsetId) -> Option<(bool, SectionId, <R as >::Offset)>` — [`ReaderOffsetId`](../index.md), [`SectionId`](../../index.md), [`Reader`](../index.md)
-
-- `fn format_error(self: &Self, err: Error) -> String` — [`Error`](../../index.md)
-
-- `fn macinfo(self: &Self, offset: DebugMacinfoOffset<<R as >::Offset>) -> Result<MacroIter<R>>` — [`DebugMacinfoOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`MacroIter`](../index.md)
-
-- `fn macros(self: &Self, offset: DebugMacroOffset<<R as >::Offset>) -> Result<MacroIter<R>>` — [`DebugMacroOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`MacroIter`](../index.md)
+- `fn make_dwo(self: &mut Self, parent: &Dwarf<R>)` — [`Dwarf`](../index.md)
 
 #### Trait Implementations
 

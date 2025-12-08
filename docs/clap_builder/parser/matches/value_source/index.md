@@ -40,7 +40,7 @@ Origin of the argument's value
 
 ##### `impl Clone for ValueSource`
 
-- `fn clone(self: &Self) -> ValueSource` — [`ValueSource`](#valuesource)
+- `fn clone(self: &Self) -> ValueSource` — [`ValueSource`](../../index.md)
 
 ##### `impl Copy for ValueSource`
 
@@ -52,15 +52,15 @@ Origin of the argument's value
 
 ##### `impl Ord for ValueSource`
 
-- `fn cmp(self: &Self, other: &ValueSource) -> $crate::cmp::Ordering` — [`ValueSource`](#valuesource)
+- `fn cmp(self: &Self, other: &ValueSource) -> $crate::cmp::Ordering` — [`ValueSource`](../../index.md)
 
 ##### `impl PartialEq for ValueSource`
 
-- `fn eq(self: &Self, other: &ValueSource) -> bool` — [`ValueSource`](#valuesource)
+- `fn eq(self: &Self, other: &ValueSource) -> bool` — [`ValueSource`](../../index.md)
 
 ##### `impl PartialOrd for ValueSource`
 
-- `fn partial_cmp(self: &Self, other: &ValueSource) -> $crate::option::Option<$crate::cmp::Ordering>` — [`ValueSource`](#valuesource)
+- `fn partial_cmp(self: &Self, other: &ValueSource) -> $crate::option::Option<$crate::cmp::Ordering>` — [`ValueSource`](../../index.md)
 
 ##### `impl StructuralPartialEq for ValueSource`
 

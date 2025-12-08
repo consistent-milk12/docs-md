@@ -88,7 +88,7 @@ but we don't actually want to expose these details in the API.
 
 ##### `impl ThreadSpawn for DefaultSpawn`
 
-- `fn spawn(self: &mut Self, thread: ThreadBuilder) -> io::Result<()>` — [`ThreadBuilder`](#threadbuilder)
+- `fn spawn(self: &mut Self, thread: ThreadBuilder) -> io::Result<()>` — [`ThreadBuilder`](../index.md)
 
 ### `CustomSpawn<F>`
 
@@ -127,7 +127,7 @@ but we don't actually want to expose these details in the API.
 
 ##### `impl<F> ThreadSpawn for CustomSpawn<F>`
 
-- `fn spawn(self: &mut Self, thread: ThreadBuilder) -> io::Result<()>` — [`ThreadBuilder`](#threadbuilder)
+- `fn spawn(self: &mut Self, thread: ThreadBuilder) -> io::Result<()>` — [`ThreadBuilder`](../index.md)
 
 ### `Registry`
 
@@ -390,9 +390,9 @@ struct WorkerThread {
 
 - `fn find_work(self: &Self) -> Option<JobRef>` — [`JobRef`](../job/index.md)
 
-- `fn yield_now(self: &Self) -> Yield` — [`Yield`](../thread_pool/index.md)
+- `fn yield_now(self: &Self) -> Yield` — [`Yield`](../index.md)
 
-- `fn yield_local(self: &Self) -> Yield` — [`Yield`](../thread_pool/index.md)
+- `fn yield_local(self: &Self) -> Yield` — [`Yield`](../index.md)
 
 - `unsafe fn execute(self: &Self, job: JobRef)` — [`JobRef`](../job/index.md)
 

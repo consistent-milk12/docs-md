@@ -195,11 +195,11 @@ assert_eq!(w.pop(), Some(2));
 
 #### Implementations
 
-- `fn new_fifo() -> Worker<T>` — [`Worker`](#worker)
+- `fn new_fifo() -> Worker<T>` — [`Worker`](../index.md)
 
-- `fn new_lifo() -> Worker<T>` — [`Worker`](#worker)
+- `fn new_lifo() -> Worker<T>` — [`Worker`](../index.md)
 
-- `fn stealer(self: &Self) -> Stealer<T>` — [`Stealer`](#stealer)
+- `fn stealer(self: &Self) -> Stealer<T>` — [`Stealer`](../index.md)
 
 - `unsafe fn resize(self: &Self, new_cap: usize)`
 
@@ -281,21 +281,21 @@ assert_eq!(s.steal(), Steal::Empty);
 
 - `fn len(self: &Self) -> usize`
 
-- `fn steal(self: &Self) -> Steal<T>` — [`Steal`](#steal)
+- `fn steal(self: &Self) -> Steal<T>` — [`Steal`](../index.md)
 
-- `fn steal_batch(self: &Self, dest: &Worker<T>) -> Steal<()>` — [`Worker`](#worker), [`Steal`](#steal)
+- `fn steal_batch(self: &Self, dest: &Worker<T>) -> Steal<()>` — [`Worker`](../index.md), [`Steal`](../index.md)
 
-- `fn steal_batch_with_limit(self: &Self, dest: &Worker<T>, limit: usize) -> Steal<()>` — [`Worker`](#worker), [`Steal`](#steal)
+- `fn steal_batch_with_limit(self: &Self, dest: &Worker<T>, limit: usize) -> Steal<()>` — [`Worker`](../index.md), [`Steal`](../index.md)
 
-- `fn steal_batch_and_pop(self: &Self, dest: &Worker<T>) -> Steal<T>` — [`Worker`](#worker), [`Steal`](#steal)
+- `fn steal_batch_and_pop(self: &Self, dest: &Worker<T>) -> Steal<T>` — [`Worker`](../index.md), [`Steal`](../index.md)
 
-- `fn steal_batch_with_limit_and_pop(self: &Self, dest: &Worker<T>, limit: usize) -> Steal<T>` — [`Worker`](#worker), [`Steal`](#steal)
+- `fn steal_batch_with_limit_and_pop(self: &Self, dest: &Worker<T>, limit: usize) -> Steal<T>` — [`Worker`](../index.md), [`Steal`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<T> Clone for Stealer<T>`
 
-- `fn clone(self: &Self) -> Stealer<T>` — [`Stealer`](#stealer)
+- `fn clone(self: &Self) -> Stealer<T>` — [`Stealer`](../index.md)
 
 ##### `impl<T> Debug for Stealer<T>`
 
@@ -491,19 +491,19 @@ assert_eq!(q.steal(), Steal::Empty);
 
 #### Implementations
 
-- `fn new() -> Injector<T>` — [`Injector`](#injector)
+- `fn new() -> Injector<T>` — [`Injector`](../index.md)
 
 - `fn push(self: &Self, task: T)`
 
-- `fn steal(self: &Self) -> Steal<T>` — [`Steal`](#steal)
+- `fn steal(self: &Self) -> Steal<T>` — [`Steal`](../index.md)
 
-- `fn steal_batch(self: &Self, dest: &Worker<T>) -> Steal<()>` — [`Worker`](#worker), [`Steal`](#steal)
+- `fn steal_batch(self: &Self, dest: &Worker<T>) -> Steal<()>` — [`Worker`](../index.md), [`Steal`](../index.md)
 
-- `fn steal_batch_with_limit(self: &Self, dest: &Worker<T>, limit: usize) -> Steal<()>` — [`Worker`](#worker), [`Steal`](#steal)
+- `fn steal_batch_with_limit(self: &Self, dest: &Worker<T>, limit: usize) -> Steal<()>` — [`Worker`](../index.md), [`Steal`](../index.md)
 
-- `fn steal_batch_and_pop(self: &Self, dest: &Worker<T>) -> Steal<T>` — [`Worker`](#worker), [`Steal`](#steal)
+- `fn steal_batch_and_pop(self: &Self, dest: &Worker<T>) -> Steal<T>` — [`Worker`](../index.md), [`Steal`](../index.md)
 
-- `fn steal_batch_with_limit_and_pop(self: &Self, dest: &Worker<T>, limit: usize) -> Steal<T>` — [`Worker`](#worker), [`Steal`](#steal)
+- `fn steal_batch_with_limit_and_pop(self: &Self, dest: &Worker<T>, limit: usize) -> Steal<T>` — [`Worker`](../index.md), [`Steal`](../index.md)
 
 - `fn is_empty(self: &Self) -> bool`
 
@@ -651,13 +651,13 @@ assert_eq!(collect(vec![Retry, Empty]).or_else(|| Success(1)), Success(1));
 
 - `fn success(self: Self) -> Option<T>`
 
-- `fn or_else<F>(self: Self, f: F) -> Steal<T>` — [`Steal`](#steal)
+- `fn or_else<F>(self: Self, f: F) -> Steal<T>` — [`Steal`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<T: $crate::clone::Clone> Clone for Steal<T>`
 
-- `fn clone(self: &Self) -> Steal<T>` — [`Steal`](#steal)
+- `fn clone(self: &Self) -> Steal<T>` — [`Steal`](../index.md)
 
 ##### `impl<T: $crate::marker::Copy> Copy for Steal<T>`
 
@@ -669,11 +669,11 @@ assert_eq!(collect(vec![Retry, Empty]).or_else(|| Success(1)), Success(1));
 
 ##### `impl<T> FromIterator for Steal<T>`
 
-- `fn from_iter<I>(iter: I) -> Steal<T>` — [`Steal`](#steal)
+- `fn from_iter<I>(iter: I) -> Steal<T>` — [`Steal`](../index.md)
 
 ##### `impl<T: $crate::cmp::PartialEq> PartialEq for Steal<T>`
 
-- `fn eq(self: &Self, other: &Steal<T>) -> bool` — [`Steal`](#steal)
+- `fn eq(self: &Self, other: &Steal<T>) -> bool` — [`Steal`](../index.md)
 
 ##### `impl<T> Pointable for Steal<T>`
 

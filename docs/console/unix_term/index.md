@@ -17,7 +17,7 @@ enum Input<T> {
 
 #### Implementations
 
-- `fn buffered() -> io::Result<Self>`
+- `fn unbuffered() -> io::Result<Self>`
 
 #### Trait Implementations
 

@@ -23,14 +23,14 @@ users of concurrent collections don't have to worry much about.
 
 # Pointers
 
-Concurrent collections are built using atomic pointers. This module provides [`Atomic`](atomic/index.md), which
-is just a shared atomic pointer to a heap-allocated object. Loading an [`Atomic`](atomic/index.md) yields a
-[`Shared`](atomic/index.md), which is an epoch-protected pointer through which the loaded object can be safely
+Concurrent collections are built using atomic pointers. This module provides [`Atomic`](#atomic), which
+is just a shared atomic pointer to a heap-allocated object. Loading an [`Atomic`](#atomic) yields a
+[`Shared`](#shared), which is an epoch-protected pointer through which the loaded object can be safely
 read.
 
 # Pinning
 
-Before an [`Atomic`](atomic/index.md) can be loaded, a participant must be [`pin`](default/index.md)ned. By pinning a participant
+Before an [`Atomic`](#atomic) can be loaded, a participant must be [`pin`](#pin)ned. By pinning a participant
 we declare that any object that gets removed from now on must not be destructed just
 yet. Garbage collection of newly removed objects is suspended until the participant gets
 unpinned.
@@ -47,8 +47,8 @@ structures may defer the deallocation of an object.
 
 # APIs
 
-For majority of use cases, just use the default garbage collector by invoking [`pin`](default/index.md). If you
-want to create your own garbage collector, use the [`Collector`](collector/index.md) API.
+For majority of use cases, just use the default garbage collector by invoking [`pin`](#pin). If you
+want to create your own garbage collector, use the [`Collector`](#collector) API.
 
 ## Modules
 
@@ -79,13 +79,13 @@ The pointer must be properly aligned. Since it is aligned, a tag can be stored i
 least significant bits of the address. For example, the tag for a pointer to a sized type `T`
 should be less than `(1 << mem::align_of::<T>().trailing_zeros())`.
 
-Any method that loads the pointer must be passed a reference to a [`Guard`](guard/index.md).
+Any method that loads the pointer must be passed a reference to a [`Guard`](#guard).
 
-Crossbeam supports dynamically sized types.  See [`Pointable`](atomic/index.md) for details.
+Crossbeam supports dynamically sized types.  See [`Pointable`](#pointable) for details.
 
 #### Implementations
 
-- `fn new(init: T) -> Atomic<T>` — [`Atomic`](atomic/index.md)
+- `fn new(init: T) -> Atomic<T>` — [`Atomic`](#atomic)
 
 #### Trait Implementations
 
@@ -107,7 +107,7 @@ Crossbeam supports dynamically sized types.  See [`Pointable`](atomic/index.md) 
 
 - `type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](atomic/index.md)
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](#pointable)
 
 - `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -156,7 +156,7 @@ The error returned on failed compare-and-swap operation.
 
 - `type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](atomic/index.md)
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](#pointable)
 
 - `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -182,13 +182,11 @@ least significant bits of the address.
 
 #### Implementations
 
-- `fn init(init: <T as >::Init) -> Owned<T>` — [`Pointable`](atomic/index.md), [`Owned`](atomic/index.md)
+- `unsafe fn from_raw(raw: *mut T) -> Owned<T>` — [`Owned`](#owned)
 
-- `fn into_shared<'g>(self: Self, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](guard/index.md), [`Shared`](atomic/index.md)
+- `fn into_box(self: Self) -> Box<T>`
 
-- `fn tag(self: &Self) -> usize`
-
-- `fn with_tag(self: Self, tag: usize) -> Owned<T>` — [`Owned`](atomic/index.md)
+- `fn new(init: T) -> Owned<T>` — [`Owned`](#owned)
 
 #### Trait Implementations
 
@@ -228,7 +226,7 @@ least significant bits of the address.
 
 - `type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](atomic/index.md)
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](#pointable)
 
 - `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -264,23 +262,7 @@ least significant bits of the address.
 
 #### Implementations
 
-- `fn null() -> Shared<'g, T>` — [`Shared`](atomic/index.md)
-
-- `fn is_null(self: &Self) -> bool`
-
-- `unsafe fn deref(self: &Self) -> &'g T`
-
-- `unsafe fn deref_mut(self: &mut Self) -> &'g mut T`
-
-- `unsafe fn as_ref(self: &Self) -> Option<&'g T>`
-
-- `unsafe fn into_owned(self: Self) -> Owned<T>` — [`Owned`](atomic/index.md)
-
-- `unsafe fn try_into_owned(self: Self) -> Option<Owned<T>>` — [`Owned`](atomic/index.md)
-
-- `fn tag(self: &Self) -> usize`
-
-- `fn with_tag(self: &Self, tag: usize) -> Shared<'g, T>` — [`Shared`](atomic/index.md)
+- `fn as_raw(self: &Self) -> *const T`
 
 #### Trait Implementations
 
@@ -318,7 +300,7 @@ least significant bits of the address.
 
 - `type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](atomic/index.md)
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](#pointable)
 
 - `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -344,7 +326,7 @@ An epoch-based garbage collector.
 
 - `fn new() -> Self`
 
-- `fn register(self: &Self) -> LocalHandle` — [`LocalHandle`](collector/index.md)
+- `fn register(self: &Self) -> LocalHandle` — [`LocalHandle`](#localhandle)
 
 #### Trait Implementations
 
@@ -364,7 +346,7 @@ An epoch-based garbage collector.
 
 ##### `impl PartialEq for Collector`
 
-- `fn eq(self: &Self, rhs: &Collector) -> bool` — [`Collector`](collector/index.md)
+- `fn eq(self: &Self, rhs: &Collector) -> bool` — [`Collector`](#collector)
 
 ##### `impl<T> Pointable for Collector`
 
@@ -372,7 +354,7 @@ An epoch-based garbage collector.
 
 - `type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](atomic/index.md)
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](#pointable)
 
 - `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -396,11 +378,11 @@ A handle to a garbage collector.
 
 #### Implementations
 
-- `fn pin(self: &Self) -> Guard` — [`Guard`](guard/index.md)
+- `fn pin(self: &Self) -> Guard` — [`Guard`](#guard)
 
 - `fn is_pinned(self: &Self) -> bool`
 
-- `fn collector(self: &Self) -> &Collector` — [`Collector`](collector/index.md)
+- `fn collector(self: &Self) -> &Collector` — [`Collector`](#collector)
 
 #### Trait Implementations
 
@@ -418,7 +400,7 @@ A handle to a garbage collector.
 
 - `type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](atomic/index.md)
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](#pointable)
 
 - `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -438,7 +420,7 @@ A guard that keeps the current thread pinned.
 
 # Pinning
 
-The current thread is pinned by calling [`pin`](default/index.md), which returns a new guard:
+The current thread is pinned by calling [`pin`](#pin), which returns a new guard:
 
 ```rust
 use crossbeam_epoch as epoch;
@@ -500,7 +482,7 @@ assert!(!epoch::is_pinned());
 
 - `unsafe fn defer_unchecked<F, R>(self: &Self, f: F)`
 
-- `unsafe fn defer_destroy<T>(self: &Self, ptr: Shared<'_, T>)` — [`Shared`](atomic/index.md)
+- `unsafe fn defer_destroy<T>(self: &Self, ptr: Shared<'_, T>)` — [`Shared`](#shared)
 
 - `fn flush(self: &Self)`
 
@@ -508,7 +490,7 @@ assert!(!epoch::is_pinned());
 
 - `fn repin_after<F, R>(self: &mut Self, f: F) -> R`
 
-- `fn collector(self: &Self) -> Option<&Collector>` — [`Collector`](collector/index.md)
+- `fn collector(self: &Self) -> Option<&Collector>` — [`Collector`](#collector)
 
 #### Trait Implementations
 
@@ -526,7 +508,7 @@ assert!(!epoch::is_pinned());
 
 - `type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](atomic/index.md)
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](#pointable)
 
 - `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 

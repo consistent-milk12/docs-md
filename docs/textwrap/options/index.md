@@ -54,11 +54,11 @@ Holds configuration options for wrapping and filling text.
 - **`wrap_algorithm`**: `crate::WrapAlgorithm`
 
   Wrapping algorithm to use, see the implementations of the
-  [`WrapAlgorithm`](../wrap_algorithms/index.md) trait for details.
+  [`WrapAlgorithm`](../index.md) trait for details.
 
 - **`word_separator`**: `crate::WordSeparator`
 
-  The line breaking algorithm to use, see the [`WordSeparator`](../word_separators/index.md)
+  The line breaking algorithm to use, see the [`WordSeparator`](../index.md)
   trait for an overview and possible implementations.
 
 - **`word_splitter`**: `crate::WordSplitter`
@@ -71,7 +71,7 @@ Holds configuration options for wrapping and filling text.
 
 - `const fn new(width: usize) -> Self`
 
-- `fn line_ending(self: Self, line_ending: LineEnding) -> Self` — [`LineEnding`](../line_ending/index.md)
+- `fn line_ending(self: Self, line_ending: LineEnding) -> Self` — [`LineEnding`](../index.md)
 
 - `fn width(self: Self, width: usize) -> Self`
 
@@ -81,17 +81,17 @@ Holds configuration options for wrapping and filling text.
 
 - `fn break_words(self: Self, break_words: bool) -> Self`
 
-- `fn word_separator(self: Self, word_separator: WordSeparator) -> Options<'a>` — [`WordSeparator`](../word_separators/index.md), [`Options`](#options)
+- `fn word_separator(self: Self, word_separator: WordSeparator) -> Options<'a>` — [`WordSeparator`](../index.md), [`Options`](../index.md)
 
-- `fn wrap_algorithm(self: Self, wrap_algorithm: WrapAlgorithm) -> Options<'a>` — [`WrapAlgorithm`](../wrap_algorithms/index.md), [`Options`](#options)
+- `fn wrap_algorithm(self: Self, wrap_algorithm: WrapAlgorithm) -> Options<'a>` — [`WrapAlgorithm`](../index.md), [`Options`](../index.md)
 
-- `fn word_splitter(self: Self, word_splitter: WordSplitter) -> Options<'a>` — [`WordSplitter`](../word_splitters/index.md), [`Options`](#options)
+- `fn word_splitter(self: Self, word_splitter: WordSplitter) -> Options<'a>` — [`WordSplitter`](../index.md), [`Options`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'a> Clone for Options<'a>`
 
-- `fn clone(self: &Self) -> Options<'a>` — [`Options`](#options)
+- `fn clone(self: &Self) -> Options<'a>` — [`Options`](../index.md)
 
 ##### `impl<'a> Debug for Options<'a>`
 

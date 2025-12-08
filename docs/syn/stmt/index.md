@@ -30,7 +30,7 @@ A braced block containing Rust statements.
 
 #### Implementations
 
-- `fn parse_within(input: ParseStream<'_>) -> Result<Vec<Stmt>>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md), [`Stmt`](#stmt)
+- `fn parse_within(input: ParseStream<'_>) -> Result<Vec<Stmt>>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md), [`Stmt`](../index.md)
 
 #### Trait Implementations
 
@@ -50,7 +50,7 @@ A braced block containing Rust statements.
 
 ##### `impl Parse for crate::stmt::Block`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::Block`
 
@@ -255,7 +255,7 @@ A statement, usually ending in a semicolon.
 
 ##### `impl Parse for crate::stmt::Stmt`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 ##### `impl PartialEq for crate::Stmt`
 

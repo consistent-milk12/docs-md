@@ -1332,7 +1332,7 @@ the compiled regular expression.
 
 - `fn new(pattern: &str) -> RegexBuilder` — [`RegexBuilder`](#regexbuilder)
 
-- `fn build(self: &Self) -> Result<Regex, Error>` — [`Regex`](#regex), [`Error`](error/index.md)
+- `fn build(self: &Self) -> Result<Regex, Error>` — [`Regex`](#regex), [`Error`](#error)
 
 - `fn unicode(self: &mut Self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
 
@@ -1387,7 +1387,7 @@ and a size limit on the compiled regular expression.
 
 - `fn new<I, S>(patterns: I) -> RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
 
-- `fn build(self: &Self) -> Result<RegexSet, Error>` — [`RegexSet`](#regexset), [`Error`](error/index.md)
+- `fn build(self: &Self) -> Result<RegexSet, Error>` — [`RegexSet`](#regexset), [`Error`](#error)
 
 - `fn unicode(self: &mut Self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
 
@@ -1528,7 +1528,7 @@ assert_eq!(hay.split(&re).collect::<Vec<_>>(), vec!["a", "b", "c"]);
 
 #### Implementations
 
-- `fn new(re: &str) -> Result<Regex, Error>` — [`Regex`](#regex), [`Error`](error/index.md)
+- `fn new(re: &str) -> Result<Regex, Error>` — [`Regex`](#regex), [`Error`](#error)
 
 - `fn is_match(self: &Self, haystack: &str) -> bool`
 
@@ -1568,7 +1568,7 @@ assert_eq!(hay.split(&re).collect::<Vec<_>>(), vec!["a", "b", "c"]);
 
 - `type Err = Error`
 
-- `fn from_str(s: &str) -> Result<Regex, Error>` — [`Regex`](#regex), [`Error`](error/index.md)
+- `fn from_str(s: &str) -> Result<Regex, Error>` — [`Regex`](#regex), [`Error`](#error)
 
 ##### `impl<T> ToString for Regex`
 
@@ -1755,11 +1755,11 @@ assert_eq!("y", &caps["last"]);
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<'h> Index for Captures<'h>`
+##### `impl<'h, 'n> Index for Captures<'h>`
 
 - `type Output = str`
 
-- `fn index<'a>(self: &'a Self, i: usize) -> &'a str`
+- `fn index<'a>(self: &'a Self, name: &'n str) -> &'a str`
 
 ### `CaptureLocations`
 
@@ -2326,7 +2326,7 @@ alternate isn't always obvious to reason about.
 
 #### Implementations
 
-- `fn new<I, S>(exprs: I) -> Result<RegexSet, Error>` — [`RegexSet`](#regexset), [`Error`](error/index.md)
+- `fn new<I, S>(exprs: I) -> Result<RegexSet, Error>` — [`RegexSet`](#regexset), [`Error`](#error)
 
 - `fn empty() -> RegexSet` — [`RegexSet`](#regexset)
 
@@ -2556,13 +2556,13 @@ An error that occurred during parsing or compiling a regular expression.
 
 #### Implementations
 
-- `fn from_meta_build_error(err: meta::BuildError) -> Error` — [`Error`](error/index.md)
+- `fn from_meta_build_error(err: meta::BuildError) -> Error` — [`Error`](#error)
 
 #### Trait Implementations
 
 ##### `impl Clone for Error`
 
-- `fn clone(self: &Self) -> Error` — [`Error`](error/index.md)
+- `fn clone(self: &Self) -> Error` — [`Error`](#error)
 
 ##### `impl Debug for Error`
 
@@ -2578,7 +2578,7 @@ An error that occurred during parsing or compiling a regular expression.
 
 ##### `impl PartialEq for Error`
 
-- `fn eq(self: &Self, other: &Error) -> bool` — [`Error`](error/index.md)
+- `fn eq(self: &Self, other: &Error) -> bool` — [`Error`](#error)
 
 ##### `impl StructuralPartialEq for Error`
 

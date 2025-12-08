@@ -43,7 +43,7 @@ feature
 
 ##### `impl Clone for Str`
 
-- `fn clone(self: &Self) -> Str` — [`Str`](#str)
+- `fn clone(self: &Self) -> Str` — [`Str`](../index.md)
 
 ##### `impl Debug for Str`
 
@@ -51,7 +51,7 @@ feature
 
 ##### `impl Default for Str`
 
-- `fn default() -> Str` — [`Str`](#str)
+- `fn default() -> Str` — [`Str`](../index.md)
 
 ##### `impl Deref for Str`
 
@@ -71,19 +71,19 @@ feature
 
 ##### `impl<I> IntoResettable for Str`
 
-- `fn into_resettable(self: Self) -> Resettable<Id>` — [`Resettable`](../resettable/index.md), [`Id`](../../util/id/index.md)
+- `fn into_resettable(self: Self) -> Resettable<String>` — [`Resettable`](../index.md)
 
 ##### `impl Ord for Str`
 
-- `fn cmp(self: &Self, other: &Str) -> $crate::cmp::Ordering` — [`Str`](#str)
+- `fn cmp(self: &Self, other: &Str) -> $crate::cmp::Ordering` — [`Str`](../index.md)
 
-##### `impl PartialEq for Str`
+##### `impl PartialEq for crate::builder::Str`
 
-- `fn eq(self: &Self, other: &str) -> bool`
+- `fn eq(self: &Self, other: &Id) -> bool` — [`Id`](../../index.md)
 
 ##### `impl PartialOrd for Str`
 
-- `fn partial_cmp(self: &Self, other: &Str) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Str`](#str)
+- `fn partial_cmp(self: &Self, other: &Str) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Str`](../index.md)
 
 ##### `impl<P, T> Receiver for Str`
 

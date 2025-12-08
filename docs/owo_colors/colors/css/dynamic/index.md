@@ -167,7 +167,7 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 ##### `impl Clone for CssColors`
 
-- `fn clone(self: &Self) -> CssColors` — [`CssColors`](#csscolors)
+- `fn clone(self: &Self) -> CssColors` — [`CssColors`](../../../index.md)
 
 ##### `impl Copy for CssColors`
 
@@ -191,7 +191,7 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 ##### `impl PartialEq for CssColors`
 
-- `fn eq(self: &Self, other: &CssColors) -> bool` — [`CssColors`](#csscolors)
+- `fn eq(self: &Self, other: &CssColors) -> bool` — [`CssColors`](../../../index.md)
 
 ##### `impl StructuralPartialEq for CssColors`
 

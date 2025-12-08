@@ -72,8 +72,8 @@ When possible, prefer using [`AhoCorasick`](crate::AhoCorasick) instead of
 this type directly. Using a `DFA` directly is typically only necessary when
 one needs access to the `Automaton` trait implementation.
 
-This DFA can only be built by first constructing a [`noncontiguous::NFA`](../../rayon/range_inclusive/index.md).
-Both [`DFA::new`](../../addr2line/index.md) and `Builder::build` do this for you automatically, but
+This DFA can only be built by first constructing a [`noncontiguous::NFA`](#noncontiguousnfa).
+Both [`DFA::new`](../../docs_md/error/index.md) and `Builder::build` do this for you automatically, but
 [`Builder::build_from_noncontiguous`](../../clap_builder/index.md) permits doing it explicitly.
 
 A DFA provides the best possible search performance (in this crate) via two
@@ -203,7 +203,7 @@ It is also possible to implement your own version of `try_find`. See the
 
 - `fn set_matches(self: &mut Self, sid: StateID, pids: impl Iterator<Item = PatternID>)`
 
-- `fn new<I, P>(patterns: I) -> Result<DFA, BuildError>` — [`FmtWrite`](#fmtwrite)
+- `fn new<I, P>(patterns: I) -> Result<DFA, BuildError>` — [`FmtWrite`](#fmtwrite), [`default`](#default), [`FmtWrite`](#fmtwrite)
 
 - `fn builder() -> Builder`
 
@@ -239,11 +239,11 @@ It is also possible to implement your own version of `try_find`. See the
 
 - `fn memory_usage(self: &Self) -> usize`
 
-- `fn prefilter(self: &Self) -> Option<&Prefilter>`
+- `fn prefilter(self: &Self) -> Option<&Prefilter>` — [`Cow`](#cow)
 
 ##### `impl Clone for DFA`
 
-- `fn clone(self: &Self) -> DFA`
+- `fn clone(self: &Self) -> DFA` — [`default`](#default)
 
 ##### `impl Debug for DFA`
 

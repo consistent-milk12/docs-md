@@ -83,7 +83,7 @@ lifetime-free type by value or by reference, even if the generic type is not
 A type is considered lifetime-free if it contains no generic lifetime
 bounds, ensuring that all possible instantiations of the type are always
 `'static`. To mark a type as being lifetime-free and enable it to be casted
-to in this manner by this macro it must implement the [`LifetimeFree`](lifetime_free/index.md)
+to in this manner by this macro it must implement the [`LifetimeFree`](#lifetimefree)
 trait. This is implemented automatically for all primitive types and for
 several [`core`](../clap_builder/output/textwrap/core/index.md) types. If you enable the `std` crate feature, then it will
 also be implemented for several `std` types as well. If you enable the

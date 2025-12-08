@@ -33,7 +33,7 @@ These do not apply to `ValueSource::DefaultValue`
 
 ##### `impl Clone for ArgPredicate`
 
-- `fn clone(self: &Self) -> ArgPredicate` — [`ArgPredicate`](#argpredicate)
+- `fn clone(self: &Self) -> ArgPredicate` — [`ArgPredicate`](../index.md)
 
 ##### `impl Debug for ArgPredicate`
 
@@ -43,7 +43,7 @@ These do not apply to `ValueSource::DefaultValue`
 
 ##### `impl PartialEq for ArgPredicate`
 
-- `fn eq(self: &Self, other: &ArgPredicate) -> bool` — [`ArgPredicate`](#argpredicate)
+- `fn eq(self: &Self, other: &ArgPredicate) -> bool` — [`ArgPredicate`](../index.md)
 
 ##### `impl StructuralPartialEq for ArgPredicate`
 

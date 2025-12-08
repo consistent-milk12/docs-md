@@ -4,17 +4,17 @@ Rayon-core houses the core stable APIs of Rayon.
 
 These APIs have been mirrored in the Rayon crate and it is recommended to use these from there.
 
-[`join()`](join/index.md) is used to take two closures and potentially run them in parallel.
+[`join()`](#join) is used to take two closures and potentially run them in parallel.
   - It will run in parallel if task B gets stolen before task A can finish.
   - It will run sequentially if task A finishes before task B is stolen and can continue on task B.
 
-[`scope()`](scope/index.md) creates a scope in which you can run any number of parallel tasks.
+[`scope()`](#scope) creates a scope in which you can run any number of parallel tasks.
 These tasks can spawn nested tasks and scopes, but given the nature of work stealing, the order of execution can not be guaranteed.
 The scope will exist until all tasks spawned within the scope have been completed.
 
-[`spawn()`](spawn/index.md) add a task into the 'static' or 'global' scope, or a local scope created by the [`scope()`](scope/index.md) function.
+[`spawn()`](#spawn) add a task into the 'static' or 'global' scope, or a local scope created by the [`scope()`](#scope) function.
 
-[`ThreadPool`](thread_pool/index.md) can be used to create your own thread pools (using [`ThreadPoolBuilder`](#threadpoolbuilder)) or to customize the global one.
+[`ThreadPool`](#threadpool) can be used to create your own thread pools (using [`ThreadPoolBuilder`](#threadpoolbuilder)) or to customize the global one.
 Tasks spawned within the pool (using [`install()`][tpinstall], [`join()`][tpjoin], etc.) will be added to a deque,
 where it becomes available for work stealing from other threads in the local thread pool.
 
@@ -90,7 +90,7 @@ Provides context to a closure called by `broadcast`.
 
 #### Implementations
 
-- `fn with<R>(f: impl FnOnce(BroadcastContext<'_>) -> R) -> R` — [`BroadcastContext`](broadcast/index.md)
+- `fn with<R>(f: impl FnOnce(BroadcastContext<'_>) -> R) -> R` — [`BroadcastContext`](#broadcastcontext)
 
 - `fn index(self: &Self) -> usize`
 
@@ -170,7 +170,7 @@ struct Scope<'scope> {
 ```
 
 Represents a fork-join scope which can be used to spawn any number of tasks.
-See [`scope()`](scope/index.md) for more information.
+See [`scope()`](#scope) for more information.
 
 #### Implementations
 
@@ -211,7 +211,7 @@ struct ScopeFifo<'scope> {
 
 Represents a fork-join scope which can be used to spawn any number of tasks.
 Those spawned from the same thread are prioritized in relative FIFO order.
-See [`scope_fifo()`](scope/index.md) for more information.
+See [`scope_fifo()`](#scope-fifo) for more information.
 
 #### Implementations
 
@@ -253,7 +253,7 @@ Represents a user-created [thread pool].
 
 Use a [`ThreadPoolBuilder`](#threadpoolbuilder) to specify the number and/or names of threads
 in the pool. After calling `ThreadPoolBuilder::build()`, you can then
-execute functions explicitly within this [`ThreadPool`](thread_pool/index.md) using
+execute functions explicitly within this [`ThreadPool`](#threadpool) using
 `ThreadPool::install()`. By contrast, top-level rayon functions
 (like `join()`) will execute implicitly within the current thread pool.
 
@@ -278,9 +278,9 @@ terminate.
 
 #### Implementations
 
-- `fn new(configuration: crate::Configuration) -> Result<ThreadPool, Box<dyn Error>>` — [`Configuration`](#configuration), [`ThreadPool`](thread_pool/index.md)
+- `fn new(configuration: crate::Configuration) -> Result<ThreadPool, Box<dyn Error>>` — [`Configuration`](#configuration), [`ThreadPool`](#threadpool)
 
-- `fn build<S>(builder: ThreadPoolBuilder<S>) -> Result<ThreadPool, ThreadPoolBuildError>` — [`ThreadPoolBuilder`](#threadpoolbuilder), [`ThreadPool`](thread_pool/index.md), [`ThreadPoolBuildError`](#threadpoolbuilderror)
+- `fn build<S>(builder: ThreadPoolBuilder<S>) -> Result<ThreadPool, ThreadPoolBuildError>` — [`ThreadPoolBuilder`](#threadpoolbuilder), [`ThreadPool`](#threadpool), [`ThreadPoolBuildError`](#threadpoolbuilderror)
 
 - `fn install<OP, R>(self: &Self, op: OP) -> R`
 
@@ -308,9 +308,9 @@ terminate.
 
 - `fn spawn_broadcast<OP>(self: &Self, op: OP)`
 
-- `fn yield_now(self: &Self) -> Option<Yield>` — [`Yield`](thread_pool/index.md)
+- `fn yield_now(self: &Self) -> Option<Yield>` — [`Yield`](#yield)
 
-- `fn yield_local(self: &Self) -> Option<Yield>` — [`Yield`](thread_pool/index.md)
+- `fn yield_local(self: &Self) -> Option<Yield>` — [`Yield`](#yield)
 
 #### Trait Implementations
 
@@ -402,7 +402,7 @@ struct ThreadPoolBuilder<S> {
 }
 ```
 
-Used to create a new [`ThreadPool`](thread_pool/index.md) or to configure the global rayon thread pool.
+Used to create a new [`ThreadPool`](#threadpool) or to configure the global rayon thread pool.
 ## Creating a ThreadPool
 The following creates a thread pool with 22 threads.
 
@@ -464,39 +464,7 @@ rayon::ThreadPoolBuilder::new().num_threads(22).build_global().unwrap();
 
 #### Implementations
 
-- `fn spawn_handler<F>(self: Self, spawn: F) -> ThreadPoolBuilder<CustomSpawn<F>>` — [`ThreadPoolBuilder`](#threadpoolbuilder), [`CustomSpawn`](registry/index.md)
-
-- `fn get_spawn_handler(self: &mut Self) -> &mut S`
-
-- `fn get_num_threads(self: &Self) -> usize`
-
-- `fn get_thread_name(self: &mut Self, index: usize) -> Option<String>`
-
-- `fn thread_name<F>(self: Self, closure: F) -> Self`
-
-- `fn num_threads(self: Self, num_threads: usize) -> Self`
-
-- `fn use_current_thread(self: Self) -> Self`
-
-- `fn take_panic_handler(self: &mut Self) -> Option<Box<dyn Fn(Box<dyn Any + Send>) + Send + Sync>>`
-
-- `fn panic_handler<H>(self: Self, panic_handler: H) -> Self`
-
-- `fn get_stack_size(self: &Self) -> Option<usize>`
-
-- `fn stack_size(self: Self, stack_size: usize) -> Self`
-
-- `fn breadth_first(self: Self) -> Self`
-
-- `fn get_breadth_first(self: &Self) -> bool`
-
-- `fn take_start_handler(self: &mut Self) -> Option<Box<dyn Fn(usize) + Send + Sync>>`
-
-- `fn start_handler<H>(self: Self, start_handler: H) -> Self`
-
-- `fn take_exit_handler(self: &mut Self) -> Option<Box<dyn Fn(usize) + Send + Sync>>`
-
-- `fn exit_handler<H>(self: Self, exit_handler: H) -> Self`
+- `fn build_scoped<W, F, R>(self: Self, wrapper: W, with_pool: F) -> Result<R, ThreadPoolBuildError>` — [`ThreadPoolBuildError`](#threadpoolbuilderror)
 
 #### Trait Implementations
 
@@ -536,7 +504,7 @@ Contains the rayon thread pool configuration. Use [`ThreadPoolBuilder`](#threadp
 
 - `fn new() -> Configuration` — [`Configuration`](#configuration)
 
-- `fn build(self: Self) -> Result<ThreadPool, Box<dyn Error>>` — [`ThreadPool`](thread_pool/index.md)
+- `fn build(self: Self) -> Result<ThreadPool, Box<dyn Error>>` — [`ThreadPool`](#threadpool)
 
 - `fn thread_name<F>(self: Self, closure: F) -> Self`
 
@@ -597,7 +565,7 @@ Provides the calling context to a closure called by `join_context`.
 
 #### Implementations
 
-- `fn new(migrated: bool) -> Self`
+- `fn migrated(self: &Self) -> bool`
 
 #### Trait Implementations
 
@@ -630,7 +598,7 @@ enum Yield {
 }
 ```
 
-Result of [`yield_now()`](thread_pool/index.md) or [`yield_local()`](thread_pool/index.md).
+Result of [`yield_now()`](#yield-now) or [`yield_local()`](#yield-local).
 
 #### Variants
 
@@ -646,7 +614,7 @@ Result of [`yield_now()`](thread_pool/index.md) or [`yield_local()`](thread_pool
 
 ##### `impl Clone for Yield`
 
-- `fn clone(self: &Self) -> Yield` — [`Yield`](thread_pool/index.md)
+- `fn clone(self: &Self) -> Yield` — [`Yield`](#yield)
 
 ##### `impl Copy for Yield`
 
@@ -658,7 +626,7 @@ Result of [`yield_now()`](thread_pool/index.md) or [`yield_local()`](thread_pool
 
 ##### `impl PartialEq for Yield`
 
-- `fn eq(self: &Self, other: &Yield) -> bool` — [`Yield`](thread_pool/index.md)
+- `fn eq(self: &Self, other: &Yield) -> bool` — [`Yield`](#yield)
 
 ##### `impl<T> Pointable for Yield`
 

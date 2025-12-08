@@ -115,7 +115,7 @@ The `parse_quote!` macro also uses this approach.
 # The `Parser` trait
 
 Some types can be parsed in several ways depending on context. For example
-an [`Attribute`](../attr/index.md) can be either "outer" like `#[...]` or "inner" like
+an [`Attribute`](../index.md) can be either "outer" like `#[...]` or "inner" like
 `#![...]` and parsing the wrong one would be a bug. Similarly [`Punctuated`](../punctuated/index.md)
 may or may not allow trailing punctuation, and parsing it the wrong way
 would either reject valid input or accept invalid input.
@@ -280,7 +280,7 @@ mod expand {
 
 - `fn into_compile_error(self: Self) -> TokenStream`
 
-- `fn combine(self: &mut Self, another: Error)` — [`Error`](../error/index.md)
+- `fn combine(self: &mut Self, another: Error)` — [`Error`](../index.md)
 
 #### Trait Implementations
 
@@ -461,7 +461,7 @@ Ok(())
 
 ##### `impl Peek for End`
 
-##### `impl<T> Sealed for End`
+##### `impl Sealed for End`
 
 ##### `impl<T> Token for End`
 
@@ -535,7 +535,7 @@ impl Parse for GenericParam {
 
 - `fn peek<T: Peek>(self: &Self, token: T) -> bool`
 
-- `fn error(self: Self) -> Error` — [`Error`](../error/index.md)
+- `fn error(self: Self) -> Error` — [`Error`](../index.md)
 
 ### `ParseBuffer<'a>`
 
@@ -570,9 +570,9 @@ you will need to go through one of the public parsing entry points.
 
 #### Implementations
 
-- `fn parse<T: Parse>(self: &Self) -> Result<T>` — [`Result`](../error/index.md)
+- `fn parse<T: Parse>(self: &Self) -> Result<T>` — [`Result`](../index.md)
 
-- `fn call<T>(self: &'a Self, function: fn(ParseStream<'a>) -> Result<T>) -> Result<T>` — [`ParseStream`](#parsestream), [`Result`](../error/index.md)
+- `fn call<T>(self: &'a Self, function: fn(ParseStream<'a>) -> Result<T>) -> Result<T>` — [`ParseStream`](#parsestream), [`Result`](../index.md)
 
 - `fn peek<T: Peek>(self: &Self, token: T) -> bool`
 
@@ -580,29 +580,29 @@ you will need to go through one of the public parsing entry points.
 
 - `fn peek3<T: Peek>(self: &Self, token: T) -> bool`
 
-- `fn parse_terminated<T, P>(self: &'a Self, parser: fn(ParseStream<'a>) -> Result<T>, separator: P) -> Result<Punctuated<T, <P as >::Token>>` — [`ParseStream`](#parsestream), [`Result`](../error/index.md), [`Punctuated`](../punctuated/index.md), [`Peek`](../lookahead/index.md)
+- `fn parse_terminated<T, P>(self: &'a Self, parser: fn(ParseStream<'a>) -> Result<T>, separator: P) -> Result<Punctuated<T, <P as >::Token>>` — [`ParseStream`](#parsestream), [`Result`](../index.md), [`Punctuated`](../punctuated/index.md), [`Peek`](#peek)
 
 - `fn is_empty(self: &Self) -> bool`
 
-- `fn lookahead1(self: &Self) -> Lookahead1<'a>` — [`Lookahead1`](../lookahead/index.md)
+- `fn lookahead1(self: &Self) -> Lookahead1<'a>` — [`Lookahead1`](#lookahead1)
 
 - `fn fork(self: &Self) -> Self`
 
-- `fn error<T: Display>(self: &Self, message: T) -> Error` — [`Error`](../error/index.md)
+- `fn error<T: Display>(self: &Self, message: T) -> Error` — [`Error`](../index.md)
 
-- `fn step<F, R>(self: &Self, function: F) -> Result<R>` — [`Result`](../error/index.md)
+- `fn step<F, R>(self: &Self, function: F) -> Result<R>` — [`Result`](../index.md)
 
 - `fn span(self: &Self) -> Span`
 
 - `fn cursor(self: &Self) -> Cursor<'a>` — [`Cursor`](../buffer/index.md)
 
-- `fn check_unexpected(self: &Self) -> Result<()>` — [`Result`](../error/index.md)
+- `fn check_unexpected(self: &Self) -> Result<()>` — [`Result`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<'a> AnyDelimiter for crate::parse::ParseBuffer<'a>`
 
-- `fn parse_any_delimiter(self: &Self) -> Result<(Delimiter, DelimSpan, ParseBuffer<'_>)>` — [`Result`](../error/index.md), [`ParseBuffer`](#parsebuffer)
+- `fn parse_any_delimiter(self: &Self) -> Result<(Delimiter, DelimSpan, ParseBuffer<'_>)>` — [`Result`](../index.md), [`ParseBuffer`](#parsebuffer)
 
 ##### `impl<'a> Debug for ParseBuffer<'a>`
 
@@ -683,7 +683,7 @@ assert_eq!(remainder.to_string(), "b c");
 
 #### Implementations
 
-- `fn error<T: Display>(self: Self, message: T) -> Error` — [`Error`](../error/index.md)
+- `fn error<T: Display>(self: Self, message: T) -> Error` — [`Error`](../index.md)
 
 #### Trait Implementations
 
@@ -760,7 +760,7 @@ error: unexpected token
 
 ##### `impl Parse for Nothing`
 
-- `fn parse(_input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](#parsestream), [`Result`](../error/index.md)
+- `fn parse(_input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](#parsestream), [`Result`](../index.md)
 
 ##### `impl PartialEq for Nothing`
 

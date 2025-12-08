@@ -297,6 +297,13 @@ impl UnifiedLinkRegistry {
                         .map_or(ItemKind::Use, |target| Self::item_enum_to_kind(&target.inner));
                     self.register_item(crate_name, item_id, export_name, &file_path, kind);
 
+                    // Also register the TARGET item's ID to this path
+                    // This ensures links using the target ID resolve to the re-export location
+                    // instead of the original (possibly private) module location
+                    if let Some(target_id) = use_item.id {
+                        self.register_item(crate_name, target_id, export_name, &file_path, kind);
+                    }
+
                     // For ALL re-exports, store the source path so we can
                     // resolve to the original definition (which has a heading)
                     if !use_item.source.is_empty() {

@@ -148,7 +148,7 @@ let b = ab - Flags::A;
 let c = !ab;
 ```
 
-See the docs for the [`Flags`](traits/index.md) trait for more details on operators and how they behave.
+See the docs for the [`Flags`](#flags) trait for more details on operators and how they behave.
 
 # Formatting and parsing
 

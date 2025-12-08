@@ -17,7 +17,7 @@ fn unfill(text: &str) -> (String, crate::Options<'_>)
 Unpack a paragraph of already-wrapped text.
 
 This function attempts to recover the original text from a single
-paragraph of wrapped text, such as what [`fill()`](../fill/index.md) would produce.
+paragraph of wrapped text, such as what [`fill()`](../index.md) would produce.
 This means that it turns
 
 ```text
@@ -80,8 +80,8 @@ where
 
 Refill a paragraph of wrapped text with a new width.
 
-This function will first use [`unfill()`](#unfill) to remove newlines from
-the text. Afterwards the text is filled again using [`fill()`](../fill/index.md).
+This function will first use [`unfill()`](../index.md) to remove newlines from
+the text. Afterwards the text is filled again using [`fill()`](../index.md).
 
 The `new_width_or_options` argument specify the new width and can
 specify other options as well — except for

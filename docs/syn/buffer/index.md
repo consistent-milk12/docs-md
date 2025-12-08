@@ -64,13 +64,13 @@ object and get a cursor to its first token with `begin()`.
 
 - `fn eof(self: Self) -> bool`
 
-- `fn ident(self: Self) -> Option<(Ident, Cursor<'a>)>` — [`Cursor`](#cursor)
+- `fn ident(self: Self) -> Option<(Ident, Cursor<'a>)>` — [`Ident`](../index.md), [`Cursor`](#cursor)
 
 - `fn punct(self: Self) -> Option<(Punct, Cursor<'a>)>` — [`Cursor`](#cursor)
 
 - `fn literal(self: Self) -> Option<(Literal, Cursor<'a>)>` — [`Cursor`](#cursor)
 
-- `fn lifetime(self: Self) -> Option<(Lifetime, Cursor<'a>)>` — [`Lifetime`](../lifetime/index.md), [`Cursor`](#cursor)
+- `fn lifetime(self: Self) -> Option<(Lifetime, Cursor<'a>)>` — [`Lifetime`](../index.md), [`Cursor`](#cursor)
 
 - `fn group(self: Self, delim: Delimiter) -> Option<(Cursor<'a>, DelimSpan, Cursor<'a>)>` — [`Cursor`](#cursor)
 

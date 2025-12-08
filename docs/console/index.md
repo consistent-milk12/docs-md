@@ -106,31 +106,31 @@ clones which means it largely acts as a handle.
 
 #### Implementations
 
-- `fn with_inner(inner: TermInner) -> Term` — [`TermInner`](term/index.md), [`Term`](term/index.md)
+- `fn with_inner(inner: TermInner) -> Term` — [`TermInner`](term/index.md), [`Term`](#term)
 
-- `fn stdout() -> Term` — [`Term`](term/index.md)
+- `fn stdout() -> Term` — [`Term`](#term)
 
-- `fn stderr() -> Term` — [`Term`](term/index.md)
+- `fn stderr() -> Term` — [`Term`](#term)
 
-- `fn buffered_stdout() -> Term` — [`Term`](term/index.md)
+- `fn buffered_stdout() -> Term` — [`Term`](#term)
 
-- `fn buffered_stderr() -> Term` — [`Term`](term/index.md)
+- `fn buffered_stderr() -> Term` — [`Term`](#term)
 
-- `fn read_write_pair<R, W>(read: R, write: W) -> Term` — [`Term`](term/index.md)
+- `fn read_write_pair<R, W>(read: R, write: W) -> Term` — [`Term`](#term)
 
-- `fn read_write_pair_with_style<R, W>(read: R, write: W, style: Style) -> Term` — [`Style`](utils/index.md), [`Term`](term/index.md)
+- `fn read_write_pair_with_style<R, W>(read: R, write: W, style: Style) -> Term` — [`Style`](#style), [`Term`](#term)
 
-- `fn style(self: &Self) -> Style` — [`Style`](utils/index.md)
+- `fn style(self: &Self) -> Style` — [`Style`](#style)
 
-- `fn target(self: &Self) -> TermTarget` — [`TermTarget`](term/index.md)
+- `fn target(self: &Self) -> TermTarget` — [`TermTarget`](#termtarget)
 
 - `fn write_line(self: &Self, s: &str) -> io::Result<()>`
 
 - `fn read_char(self: &Self) -> io::Result<char>`
 
-- `fn read_key(self: &Self) -> io::Result<Key>` — [`Key`](kb/index.md)
+- `fn read_key(self: &Self) -> io::Result<Key>` — [`Key`](#key)
 
-- `fn read_key_raw(self: &Self) -> io::Result<Key>` — [`Key`](kb/index.md)
+- `fn read_key_raw(self: &Self) -> io::Result<Key>` — [`Key`](#key)
 
 - `fn read_line(self: &Self) -> io::Result<String>`
 
@@ -142,7 +142,7 @@ clones which means it largely acts as a handle.
 
 - `fn is_term(self: &Self) -> bool`
 
-- `fn features(self: &Self) -> TermFeatures<'_>` — [`TermFeatures`](term/index.md)
+- `fn features(self: &Self) -> TermFeatures<'_>` — [`TermFeatures`](#termfeatures)
 
 - `fn size(self: &Self) -> (u16, u16)`
 
@@ -186,7 +186,7 @@ clones which means it largely acts as a handle.
 
 ##### `impl Clone for Term`
 
-- `fn clone(self: &Self) -> Term` — [`Term`](term/index.md)
+- `fn clone(self: &Self) -> Term` — [`Term`](#term)
 
 ##### `impl Debug for Term`
 
@@ -222,13 +222,13 @@ Gives access to the terminal features.
 
 - `fn wants_emoji(self: &Self) -> bool`
 
-- `fn family(self: &Self) -> TermFamily` — [`TermFamily`](term/index.md)
+- `fn family(self: &Self) -> TermFamily` — [`TermFamily`](#termfamily)
 
 #### Trait Implementations
 
 ##### `impl<'a> Clone for TermFeatures<'a>`
 
-- `fn clone(self: &Self) -> TermFeatures<'a>` — [`TermFeatures`](term/index.md)
+- `fn clone(self: &Self) -> TermFeatures<'a>` — [`TermFeatures`](#termfeatures)
 
 ##### `impl<'a> Debug for TermFeatures<'a>`
 
@@ -255,13 +255,13 @@ println!("[4/4] {} Done!", Emoji("✨", ":-)"));
 
 #### Implementations
 
-- `fn new(emoji: &'a str, fallback: &'b str) -> Emoji<'a, 'b>` — [`Emoji`](utils/index.md)
+- `fn new(emoji: &'a str, fallback: &'b str) -> Emoji<'a, 'b>` — [`Emoji`](#emoji)
 
 #### Trait Implementations
 
 ##### `impl<'a, 'b> Clone for Emoji<'a, 'b>`
 
-- `fn clone(self: &Self) -> Emoji<'a, 'b>` — [`Emoji`](utils/index.md)
+- `fn clone(self: &Self) -> Emoji<'a, 'b>` — [`Emoji`](#emoji)
 
 ##### `impl<'a, 'b> Copy for Emoji<'a, 'b>`
 
@@ -295,7 +295,7 @@ A stored style that can be applied.
 
 - `fn from_dotted_str(s: &str) -> Self`
 
-- `fn apply_to<D>(self: &Self, val: D) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
+- `fn apply_to<D>(self: &Self, val: D) -> StyledObject<D>` — [`StyledObject`](#styledobject)
 
 - `const fn force_styling(self: Self, value: bool) -> Self`
 
@@ -303,11 +303,11 @@ A stored style that can be applied.
 
 - `const fn for_stdout(self: Self) -> Self`
 
-- `const fn fg(self: Self, color: Color) -> Self` — [`Color`](utils/index.md)
+- `const fn fg(self: Self, color: Color) -> Self` — [`Color`](#color)
 
-- `const fn bg(self: Self, color: Color) -> Self` — [`Color`](utils/index.md)
+- `const fn bg(self: Self, color: Color) -> Self` — [`Color`](#color)
 
-- `const fn attr(self: Self, attr: Attribute) -> Self` — [`Attribute`](utils/index.md)
+- `const fn attr(self: Self, attr: Attribute) -> Self` — [`Attribute`](#attribute)
 
 - `const fn black(self: Self) -> Self`
 
@@ -371,7 +371,7 @@ A stored style that can be applied.
 
 ##### `impl Clone for Style`
 
-- `fn clone(self: &Self) -> Style` — [`Style`](utils/index.md)
+- `fn clone(self: &Self) -> Style` — [`Style`](#style)
 
 ##### `impl Debug for Style`
 
@@ -385,7 +385,7 @@ A stored style that can be applied.
 
 ##### `impl PartialEq for Style`
 
-- `fn eq(self: &Self, other: &Style) -> bool` — [`Style`](utils/index.md)
+- `fn eq(self: &Self, other: &Style) -> bool` — [`Style`](#style)
 
 ##### `impl StructuralPartialEq for Style`
 
@@ -402,75 +402,75 @@ A formatting wrapper that can be styled for a terminal.
 
 #### Implementations
 
-- `fn force_styling(self: Self, value: bool) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
+- `fn force_styling(self: Self, value: bool) -> StyledObject<D>` — [`StyledObject`](#styledobject)
 
-- `fn for_stderr(self: Self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
+- `fn for_stderr(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
 
-- `const fn for_stdout(self: Self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
+- `const fn for_stdout(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
 
-- `const fn fg(self: Self, color: Color) -> StyledObject<D>` — [`Color`](utils/index.md), [`StyledObject`](utils/index.md)
+- `const fn fg(self: Self, color: Color) -> StyledObject<D>` — [`Color`](#color), [`StyledObject`](#styledobject)
 
-- `const fn bg(self: Self, color: Color) -> StyledObject<D>` — [`Color`](utils/index.md), [`StyledObject`](utils/index.md)
+- `const fn bg(self: Self, color: Color) -> StyledObject<D>` — [`Color`](#color), [`StyledObject`](#styledobject)
 
-- `const fn attr(self: Self, attr: Attribute) -> StyledObject<D>` — [`Attribute`](utils/index.md), [`StyledObject`](utils/index.md)
+- `const fn attr(self: Self, attr: Attribute) -> StyledObject<D>` — [`Attribute`](#attribute), [`StyledObject`](#styledobject)
 
-- `const fn black(self: Self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
+- `const fn black(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
 
-- `const fn red(self: Self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
+- `const fn red(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
 
-- `const fn green(self: Self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
+- `const fn green(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
 
-- `const fn yellow(self: Self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
+- `const fn yellow(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
 
-- `const fn blue(self: Self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
+- `const fn blue(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
 
-- `const fn magenta(self: Self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
+- `const fn magenta(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
 
-- `const fn cyan(self: Self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
+- `const fn cyan(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
 
-- `const fn white(self: Self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
+- `const fn white(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
 
-- `const fn color256(self: Self, color: u8) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
+- `const fn color256(self: Self, color: u8) -> StyledObject<D>` — [`StyledObject`](#styledobject)
 
-- `const fn bright(self: Self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
+- `const fn bright(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
 
-- `const fn on_black(self: Self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
+- `const fn on_black(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
 
-- `const fn on_red(self: Self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
+- `const fn on_red(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
 
-- `const fn on_green(self: Self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
+- `const fn on_green(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
 
-- `const fn on_yellow(self: Self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
+- `const fn on_yellow(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
 
-- `const fn on_blue(self: Self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
+- `const fn on_blue(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
 
-- `const fn on_magenta(self: Self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
+- `const fn on_magenta(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
 
-- `const fn on_cyan(self: Self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
+- `const fn on_cyan(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
 
-- `const fn on_white(self: Self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
+- `const fn on_white(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
 
-- `const fn on_color256(self: Self, color: u8) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
+- `const fn on_color256(self: Self, color: u8) -> StyledObject<D>` — [`StyledObject`](#styledobject)
 
-- `const fn on_bright(self: Self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
+- `const fn on_bright(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
 
-- `const fn bold(self: Self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
+- `const fn bold(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
 
-- `const fn dim(self: Self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
+- `const fn dim(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
 
-- `const fn italic(self: Self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
+- `const fn italic(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
 
-- `const fn underlined(self: Self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
+- `const fn underlined(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
 
-- `const fn blink(self: Self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
+- `const fn blink(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
 
-- `const fn blink_fast(self: Self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
+- `const fn blink_fast(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
 
-- `const fn reverse(self: Self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
+- `const fn reverse(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
 
-- `const fn hidden(self: Self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
+- `const fn hidden(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
 
-- `const fn strikethrough(self: Self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
+- `const fn strikethrough(self: Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
 
 #### Trait Implementations
 
@@ -480,7 +480,7 @@ A formatting wrapper that can be styled for a terminal.
 
 ##### `impl<D: $crate::clone::Clone> Clone for StyledObject<D>`
 
-- `fn clone(self: &Self) -> StyledObject<D>` — [`StyledObject`](utils/index.md)
+- `fn clone(self: &Self) -> StyledObject<D>` — [`StyledObject`](#styledobject)
 
 ##### `impl<D: fmt::Debug> Debug for StyledObject<D>`
 
@@ -539,7 +539,7 @@ ansi codes or string values.
 
 #### Implementations
 
-- `fn new(s: &'a str) -> AnsiCodeIterator<'a>` — [`AnsiCodeIterator`](ansi/index.md)
+- `fn new(s: &'a str) -> AnsiCodeIterator<'a>` — [`AnsiCodeIterator`](#ansicodeiterator)
 
 - `fn current_slice(self: &Self) -> &str`
 
@@ -571,7 +571,7 @@ struct WithoutAnsi<'a> {
 }
 ```
 
-A wrapper struct that implements [`core::fmt::Display`](../miette_derive/fmt/index.md), only displaying non-ansi parts.
+A wrapper struct that implements [`core::fmt::Display`](../miette_derive/index.md), only displaying non-ansi parts.
 
 #### Implementations
 
@@ -632,7 +632,7 @@ from the keyboard.
 
 ##### `impl Clone for Key`
 
-- `fn clone(self: &Self) -> Key` — [`Key`](kb/index.md)
+- `fn clone(self: &Self) -> Key` — [`Key`](#key)
 
 ##### `impl Debug for Key`
 
@@ -646,7 +646,7 @@ from the keyboard.
 
 ##### `impl PartialEq for Key`
 
-- `fn eq(self: &Self, other: &Key) -> bool` — [`Key`](kb/index.md)
+- `fn eq(self: &Self, other: &Key) -> bool` — [`Key`](#key)
 
 ##### `impl StructuralPartialEq for Key`
 
@@ -685,7 +685,7 @@ The family of the terminal.
 
 ##### `impl Clone for TermFamily`
 
-- `fn clone(self: &Self) -> TermFamily` — [`TermFamily`](term/index.md)
+- `fn clone(self: &Self) -> TermFamily` — [`TermFamily`](#termfamily)
 
 ##### `impl Copy for TermFamily`
 
@@ -697,7 +697,7 @@ The family of the terminal.
 
 ##### `impl PartialEq for TermFamily`
 
-- `fn eq(self: &Self, other: &TermFamily) -> bool` — [`TermFamily`](term/index.md)
+- `fn eq(self: &Self, other: &TermFamily) -> bool` — [`TermFamily`](#termfamily)
 
 ##### `impl StructuralPartialEq for TermFamily`
 
@@ -717,7 +717,7 @@ Where the term is writing.
 
 ##### `impl Clone for TermTarget`
 
-- `fn clone(self: &Self) -> TermTarget` — [`TermTarget`](term/index.md)
+- `fn clone(self: &Self) -> TermTarget` — [`TermTarget`](#termtarget)
 
 ##### `impl Debug for TermTarget`
 
@@ -739,7 +739,7 @@ Defines the alignment for padding operations.
 
 ##### `impl Clone for Alignment`
 
-- `fn clone(self: &Self) -> Alignment` — [`Alignment`](utils/index.md)
+- `fn clone(self: &Self) -> Alignment` — [`Alignment`](#alignment)
 
 ##### `impl Copy for Alignment`
 
@@ -751,7 +751,7 @@ Defines the alignment for padding operations.
 
 ##### `impl PartialEq for Alignment`
 
-- `fn eq(self: &Self, other: &Alignment) -> bool` — [`Alignment`](utils/index.md)
+- `fn eq(self: &Self, other: &Alignment) -> bool` — [`Alignment`](#alignment)
 
 ##### `impl StructuralPartialEq for Alignment`
 
@@ -781,7 +781,7 @@ A terminal style attribute.
 
 ##### `impl Clone for Attribute`
 
-- `fn clone(self: &Self) -> Attribute` — [`Attribute`](utils/index.md)
+- `fn clone(self: &Self) -> Attribute` — [`Attribute`](#attribute)
 
 ##### `impl Copy for Attribute`
 
@@ -793,15 +793,15 @@ A terminal style attribute.
 
 ##### `impl Ord for Attribute`
 
-- `fn cmp(self: &Self, other: &Attribute) -> $crate::cmp::Ordering` — [`Attribute`](utils/index.md)
+- `fn cmp(self: &Self, other: &Attribute) -> $crate::cmp::Ordering` — [`Attribute`](#attribute)
 
 ##### `impl PartialEq for Attribute`
 
-- `fn eq(self: &Self, other: &Attribute) -> bool` — [`Attribute`](utils/index.md)
+- `fn eq(self: &Self, other: &Attribute) -> bool` — [`Attribute`](#attribute)
 
 ##### `impl PartialOrd for Attribute`
 
-- `fn partial_cmp(self: &Self, other: &Attribute) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Attribute`](utils/index.md)
+- `fn partial_cmp(self: &Self, other: &Attribute) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Attribute`](#attribute)
 
 ##### `impl StructuralPartialEq for Attribute`
 
@@ -833,7 +833,7 @@ A terminal color.
 
 ##### `impl Clone for Color`
 
-- `fn clone(self: &Self) -> Color` — [`Color`](utils/index.md)
+- `fn clone(self: &Self) -> Color` — [`Color`](#color)
 
 ##### `impl Copy for Color`
 
@@ -845,7 +845,7 @@ A terminal color.
 
 ##### `impl PartialEq for Color`
 
-- `fn eq(self: &Self, other: &Color) -> bool` — [`Color`](utils/index.md)
+- `fn eq(self: &Self, other: &Color) -> bool` — [`Color`](#color)
 
 ##### `impl StructuralPartialEq for Color`
 

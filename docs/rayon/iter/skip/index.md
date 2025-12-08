@@ -16,7 +16,7 @@ struct Skip<I> {
 ```
 
 `Skip` is an iterator that skips over the first `n` elements.
-This struct is created by the `skip()` method on [`IndexedParallelIterator`](../index.md)
+This struct is created by the `skip()` method on [`IndexedParallelIterator`](../../prelude/index.md)
 
 
 #### Implementations
@@ -27,7 +27,7 @@ This struct is created by the `skip()` method on [`IndexedParallelIterator`](../
 
 ##### `impl<I: $crate::clone::Clone> Clone for Skip<I>`
 
-- `fn clone(self: &Self) -> Skip<I>` — [`Skip`](#skip)
+- `fn clone(self: &Self) -> Skip<I>` — [`Skip`](../index.md)
 
 ##### `impl<I: $crate::fmt::Debug> Debug for Skip<I>`
 

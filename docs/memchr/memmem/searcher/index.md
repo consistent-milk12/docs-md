@@ -36,7 +36,7 @@ chosen substring search implementation.
 
 #### Implementations
 
-- `fn new<R: HeuristicFrequencyRank>(prefilter: PrefilterConfig, ranker: R, needle: &[u8]) -> Searcher` — [`PrefilterConfig`](#prefilterconfig), [`Searcher`](#searcher)
+- `fn new<R: HeuristicFrequencyRank>(prefilter: PrefilterConfig, ranker: R, needle: &[u8]) -> Searcher` — [`Prefilter`](../index.md), [`Searcher`](#searcher)
 
 - `fn twoway(needle: &[u8], rabinkarp: rabinkarp::Finder, prestrat: Option<Prefilter>) -> Searcher` — [`Finder`](../../arch/all/rabinkarp/index.md), [`Prefilter`](#prefilter), [`Searcher`](#searcher)
 
@@ -364,7 +364,7 @@ useful.
 
 ##### `impl Clone for PrefilterConfig`
 
-- `fn clone(self: &Self) -> PrefilterConfig` — [`PrefilterConfig`](#prefilterconfig)
+- `fn clone(self: &Self) -> PrefilterConfig` — [`Prefilter`](../index.md)
 
 ##### `impl Copy for PrefilterConfig`
 
@@ -374,7 +374,7 @@ useful.
 
 ##### `impl Default for PrefilterConfig`
 
-- `fn default() -> PrefilterConfig` — [`PrefilterConfig`](#prefilterconfig)
+- `fn default() -> PrefilterConfig` — [`Prefilter`](../index.md)
 
 ## Functions
 

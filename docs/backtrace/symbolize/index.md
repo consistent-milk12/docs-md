@@ -30,11 +30,11 @@ always available in a symbol, however, so all methods return an `Option`.
 
 #### Implementations
 
-- `fn name(self: &Self) -> Option<SymbolName<'_>>` — [`SymbolName`](#symbolname)
+- `fn name(self: &Self) -> Option<SymbolName<'_>>` — [`SymbolName`](../index.md)
 
 - `fn addr(self: &Self) -> Option<*mut c_void>`
 
-- `fn filename_raw(self: &Self) -> Option<BytesOrWideString<'_>>` — [`BytesOrWideString`](../types/index.md)
+- `fn filename_raw(self: &Self) -> Option<BytesOrWideString<'_>>` — [`BytesOrWideString`](../index.md)
 
 - `fn colno(self: &Self) -> Option<u32>`
 
@@ -62,7 +62,7 @@ demangled name, the raw bytes, the raw string, etc.
 
 #### Implementations
 
-- `fn new(bytes: &'a [u8]) -> SymbolName<'a>` — [`SymbolName`](#symbolname)
+- `fn new(bytes: &'a [u8]) -> SymbolName<'a>` — [`SymbolName`](../index.md)
 
 - `fn as_str(self: &Self) -> Option<&'a str>`
 

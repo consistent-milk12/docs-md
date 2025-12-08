@@ -62,13 +62,13 @@ generator.generate()?;
 
 - `fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](error/index.md)
 
-- `fn generate_to_capture(krate: &Crate, format: CliOutputFormat, include_private: bool) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](#clioutputformat), [`MarkdownCapture`](generator/capture/index.md), [`Error`](error/index.md)
+- `fn generate_to_capture(krate: &Crate, format: CliOutputFormat, include_private: bool) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](#clioutputformat), [`MarkdownCapture`](#markdowncapture), [`Error`](error/index.md)
 
-- `fn generate_flat_to_capture(ctx: &GeneratorContext<'_>, root: &Item, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](generator/context/index.md), [`MarkdownCapture`](generator/capture/index.md), [`Error`](error/index.md)
+- `fn generate_flat_to_capture(ctx: &GeneratorContext<'_>, root: &Item, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](generator/index.md), [`MarkdownCapture`](#markdowncapture), [`Error`](error/index.md)
 
-- `fn generate_flat_recursive_capture(ctx: &GeneratorContext<'_>, item: &Item, prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](generator/context/index.md), [`MarkdownCapture`](generator/capture/index.md), [`Error`](error/index.md)
+- `fn generate_flat_recursive_capture(ctx: &GeneratorContext<'_>, item: &Item, prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](generator/index.md), [`MarkdownCapture`](#markdowncapture), [`Error`](error/index.md)
 
-- `fn generate_nested_to_capture(ctx: &GeneratorContext<'_>, root: &Item, path_prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](generator/context/index.md), [`MarkdownCapture`](generator/capture/index.md), [`Error`](error/index.md)
+- `fn generate_nested_to_capture(ctx: &GeneratorContext<'_>, root: &Item, path_prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](generator/index.md), [`MarkdownCapture`](#markdowncapture), [`Error`](error/index.md)
 
 - `fn run(krate: &'a Crate, args: &'a Args) -> Result<(), Error>` — [`Args`](#args), [`Error`](error/index.md)
 
@@ -143,7 +143,7 @@ side effects.
 
 ##### `impl Default for MarkdownCapture`
 
-- `fn default() -> MarkdownCapture` — [`MarkdownCapture`](generator/capture/index.md)
+- `fn default() -> MarkdownCapture` — [`MarkdownCapture`](#markdowncapture)
 
 ##### `impl<T> Instrument for MarkdownCapture`
 
@@ -222,7 +222,7 @@ create links between items.
 
 ##### `impl Default for LinkRegistry`
 
-- `fn default() -> LinkRegistry` — [`LinkRegistry`](linker/index.md)
+- `fn default() -> LinkRegistry` — [`LinkRegistry`](#linkregistry)
 
 ##### `impl<T> Instrument for LinkRegistry`
 
@@ -309,7 +309,7 @@ for (name, krate) in collection.iter() {
 
 ##### `impl Default for CrateCollection`
 
-- `fn default() -> CrateCollection` — [`CrateCollection`](multi_crate/collection/index.md)
+- `fn default() -> CrateCollection` — [`CrateCollection`](#cratecollection)
 
 ##### `impl<T> Instrument for CrateCollection`
 
@@ -347,7 +347,7 @@ struct MultiCrateContext<'a> {
 Shared context for multi-crate documentation generation.
 
 Holds references to all crates, the unified link registry, and
-CLI configuration. Used by [`MultiCrateGenerator`](multi_crate/generator/index.md) to coordinate
+CLI configuration. Used by [`MultiCrateGenerator`](#multicrategenerator) to coordinate
 generation across crates.
 
 
@@ -374,17 +374,17 @@ generation across crates.
 
 #### Implementations
 
-- `fn new(crates: &'a CrateCollection, args: &'a Args) -> Self` — [`CrateCollection`](multi_crate/collection/index.md), [`Args`](#args)
+- `fn new(crates: &'a CrateCollection, args: &'a Args) -> Self` — [`CrateCollection`](#cratecollection), [`Args`](#args)
 
-- `fn build_cross_crate_impls(crates: &'a CrateCollection) -> HashMap<String, HashMap<String, Vec<&'a Impl>>>` — [`CrateCollection`](multi_crate/collection/index.md)
+- `fn build_cross_crate_impls(crates: &'a CrateCollection) -> HashMap<String, HashMap<String, Vec<&'a Impl>>>` — [`CrateCollection`](#cratecollection)
 
-- `const fn crates(self: &Self) -> &CrateCollection` — [`CrateCollection`](multi_crate/collection/index.md)
+- `const fn crates(self: &Self) -> &CrateCollection` — [`CrateCollection`](#cratecollection)
 
-- `const fn registry(self: &Self) -> &UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](multi_crate/registry/index.md)
+- `const fn registry(self: &Self) -> &UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](#unifiedlinkregistry)
 
 - `const fn args(self: &Self) -> &Args` — [`Args`](#args)
 
-- `fn single_crate_view(self: &'a Self, crate_name: &str) -> Option<SingleCrateView<'a>>` — [`SingleCrateView`](multi_crate/context/index.md)
+- `fn single_crate_view(self: &'a Self, crate_name: &str) -> Option<SingleCrateView<'a>>` — [`SingleCrateView`](multi_crate/index.md)
 
 - `fn find_item(self: &Self, id: &Id) -> Option<(&str, &Item)>`
 
@@ -457,19 +457,19 @@ output/
 
 #### Implementations
 
-- `fn new(crates: &'a CrateCollection, args: &'a Args) -> Self` — [`CrateCollection`](multi_crate/collection/index.md), [`Args`](#args)
+- `fn new(crates: &'a CrateCollection, args: &'a Args) -> Self` — [`CrateCollection`](#cratecollection), [`Args`](#args)
 
 - `fn generate(self: &Self) -> Result<(), Error>` — [`Error`](error/index.md)
 
 - `fn collect_rendered_items(self: &Self) -> HashMap<String, HashSet<Id>>`
 
-- `fn collect_crate_items(view: &SingleCrateView<'_>, ids: &mut HashSet<Id>)` — [`SingleCrateView`](multi_crate/context/index.md)
+- `fn collect_crate_items(view: &SingleCrateView<'_>, ids: &mut HashSet<Id>)` — [`SingleCrateView`](multi_crate/index.md)
 
-- `fn collect_module_items(view: &SingleCrateView<'_>, item: &Item, ids: &mut HashSet<Id>)` — [`SingleCrateView`](multi_crate/context/index.md)
+- `fn collect_module_items(view: &SingleCrateView<'_>, item: &Item, ids: &mut HashSet<Id>)` — [`SingleCrateView`](multi_crate/index.md)
 
-- `fn generate_crate(self: &Self, view: &SingleCrateView<'_>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](multi_crate/context/index.md), [`Error`](error/index.md)
+- `fn generate_crate(self: &Self, view: &SingleCrateView<'_>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](multi_crate/index.md), [`Error`](error/index.md)
 
-- `fn generate_module(view: &SingleCrateView<'_>, item: &Item, parent_dir: &Path, module_path: Vec<String>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](multi_crate/context/index.md), [`Error`](error/index.md)
+- `fn generate_module(view: &SingleCrateView<'_>, item: &Item, parent_dir: &Path, module_path: Vec<String>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](multi_crate/index.md), [`Error`](error/index.md)
 
 - `fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](error/index.md)
 
@@ -517,7 +517,7 @@ println!("Found {} crates", crates.len());
 
 #### Implementations
 
-- `fn parse_directory(dir: &Path) -> Result<CrateCollection, Error>` — [`CrateCollection`](multi_crate/collection/index.md), [`Error`](error/index.md)
+- `fn parse_directory(dir: &Path) -> Result<CrateCollection, Error>` — [`CrateCollection`](#cratecollection), [`Error`](error/index.md)
 
 - `fn extract_crate_name(krate: &rustdoc_types::Crate, path: &Path) -> Result<String, Error>` — [`Error`](error/index.md)
 
@@ -607,7 +607,7 @@ struct SearchIndexGenerator<'a> {
 
 Generator for multi-crate search indices.
 
-Traverses all crates in a [`CrateCollection`](multi_crate/collection/index.md) and builds a comprehensive
+Traverses all crates in a [`CrateCollection`](#cratecollection) and builds a comprehensive
 search index of all public items (or all items if `include_private` is set).
 
 # Example
@@ -641,9 +641,9 @@ generator.write(Path::new("docs/"))?;
 
 #### Implementations
 
-- `const fn new(crates: &'a CrateCollection, include_private: bool, rendered_items: HashMap<String, HashSet<Id>>) -> Self` — [`CrateCollection`](multi_crate/collection/index.md)
+- `const fn new(crates: &'a CrateCollection, include_private: bool, rendered_items: HashMap<String, HashSet<Id>>) -> Self` — [`CrateCollection`](#cratecollection)
 
-- `fn generate(self: &Self) -> SearchIndex` — [`SearchIndex`](multi_crate/search/index.md)
+- `fn generate(self: &Self) -> SearchIndex` — [`SearchIndex`](#searchindex)
 
 - `fn write(self: &Self, output_dir: &Path) -> std::io::Result<()>`
 
@@ -691,7 +691,7 @@ struct UnifiedLinkRegistry {
 
 Registry mapping item IDs to documentation paths across multiple crates.
 
-Unlike [`LinkRegistry`](linker/index.md) which handles a single crate, this registry
+Unlike [`LinkRegistry`](#linkregistry) which handles a single crate, this registry
 spans multiple crates and supports cross-crate link resolution with
 disambiguation based on local/primary crate preference.
 
@@ -747,7 +747,7 @@ This avoids allocating a `String` for the crate name on every lookup.
 
 #### Implementations
 
-- `fn build(crates: &CrateCollection, primary_crate: Option<&str>) -> Self` — [`CrateCollection`](multi_crate/collection/index.md)
+- `fn build(crates: &CrateCollection, primary_crate: Option<&str>) -> Self` — [`CrateCollection`](#cratecollection)
 
 - `fn register_crate(self: &mut Self, crate_name: &str, krate: &Crate)`
 
@@ -791,7 +791,7 @@ This avoids allocating a `String` for the crate name on every lookup.
 
 ##### `impl Default for UnifiedLinkRegistry`
 
-- `fn default() -> UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](multi_crate/registry/index.md)
+- `fn default() -> UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](#unifiedlinkregistry)
 
 ##### `impl<T> Instrument for UnifiedLinkRegistry`
 
@@ -897,7 +897,7 @@ struct DocsArgs {
     pub output: std::path::PathBuf,
     pub format: CliOutputFormat,
     pub primary_crate: Option<String>,
-    pub include_private: bool,
+    pub exclude_private: bool,
     pub include_blanket_impls: bool,
     pub no_mdbook: bool,
     pub no_search_index: bool,
@@ -926,9 +926,12 @@ Arguments for the `docs` subcommand (build + generate).
   
   If not specified, attempts to detect from Cargo.toml.
 
-- **`include_private`**: `bool`
+- **`exclude_private`**: `bool`
 
-  Include private (non-public) items in the output.
+  Exclude private (non-public) items from the output.
+  
+  By default, all items are documented including private ones.
+  Enable this to only include public items.
 
 - **`include_blanket_impls`**: `bool`
 
@@ -1017,7 +1020,7 @@ struct GenerateArgs {
     pub primary_crate: Option<String>,
     pub output: std::path::PathBuf,
     pub format: CliOutputFormat,
-    pub include_private: bool,
+    pub exclude_private: bool,
     pub include_blanket_impls: bool,
 }
 ```
@@ -1092,12 +1095,13 @@ The tool accepts input from two mutually exclusive sources:
   - `flat`: All files in one directory (default)
   - `nested`: Directory hierarchy mirroring modules
 
-- **`include_private`**: `bool`
+- **`exclude_private`**: `bool`
 
-  Include private (non-public) items in the output.
+  Exclude private (non-public) items from the output.
   
-  By default, only public items are documented. Enable this
-  to also include `pub(crate)`, `pub(super)`, and private items.
+  By default, all items are documented including `pub(crate)`,
+  `pub(super)`, and private items. Enable this to only include
+  public items.
 
 - **`include_blanket_impls`**: `bool`
 

@@ -17,7 +17,7 @@ struct SkipAnyWhile<I, P> {
 
 `SkipAnyWhile` is an iterator that skips over elements from anywhere in `I`
 until the callback returns `false`.
-This struct is created by the `skip_any_while()` method on [`ParallelIterator`](../index.md)
+This struct is created by the `skip_any_while()` method on [`ParallelIterator`](../../prelude/index.md)
 
 
 #### Implementations
@@ -28,7 +28,7 @@ This struct is created by the `skip_any_while()` method on [`ParallelIterator`](
 
 ##### `impl<I: $crate::clone::Clone, P: $crate::clone::Clone> Clone for SkipAnyWhile<I, P>`
 
-- `fn clone(self: &Self) -> SkipAnyWhile<I, P>` — [`SkipAnyWhile`](#skipanywhile)
+- `fn clone(self: &Self) -> SkipAnyWhile<I, P>` — [`SkipAnyWhile`](../index.md)
 
 ##### `impl<I: fmt::Debug, P> Debug for SkipAnyWhile<I, P>`
 

@@ -61,5 +61,5 @@ struct LineColIterator<I> {
 
 - `type Item = Result<u8, Error>`
 
-- `fn next(self: &mut Self) -> Option<io::Result<u8>>`
+- `fn next(self: &mut Self) -> Option<io::Result<u8>>` — [`Result`](../io/index.md)
 

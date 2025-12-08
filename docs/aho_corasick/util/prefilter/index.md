@@ -32,7 +32,7 @@ much else. If you have a use case for more APIs, please submit an issue.
 
 #### Implementations
 
-- `fn find_in(self: &Self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../search/index.md), [`Candidate`](#candidate)
+- `fn find_in(self: &Self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../../index.md), [`Candidate`](#candidate)
 
 - `fn memory_usage(self: &Self) -> usize`
 
@@ -66,7 +66,7 @@ if any, and discard the rest.
 
 #### Implementations
 
-- `fn new(kind: MatchKind) -> Builder` — [`MatchKind`](../search/index.md), [`Builder`](#builder)
+- `fn new(kind: MatchKind) -> Builder` — [`MatchKind`](../../index.md), [`Builder`](#builder)
 
 - `fn ascii_case_insensitive(self: Self, yes: bool) -> Builder` — [`Builder`](#builder)
 
@@ -101,7 +101,7 @@ interface.
 
 ##### `impl PrefilterI for Packed`
 
-- `fn find_in(self: &Self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../search/index.md), [`Candidate`](#candidate)
+- `fn find_in(self: &Self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../../index.md), [`Candidate`](#candidate)
 
 ### `MemmemBuilder`
 
@@ -173,7 +173,7 @@ feature detection.
 
 ##### `impl PrefilterI for Memmem`
 
-- `fn find_in(self: &Self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../search/index.md), [`Candidate`](#candidate)
+- `fn find_in(self: &Self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../../index.md), [`Candidate`](#candidate)
 
 ### `RareBytesBuilder`
 
@@ -362,7 +362,7 @@ A prefilter for scanning for a single "rare" byte.
 
 ##### `impl PrefilterI for RareBytesOne`
 
-- `fn find_in(self: &Self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../search/index.md), [`Candidate`](#candidate)
+- `fn find_in(self: &Self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../../index.md), [`Candidate`](#candidate)
 
 ### `RareBytesTwo`
 
@@ -388,7 +388,7 @@ A prefilter for scanning for two "rare" bytes.
 
 ##### `impl PrefilterI for RareBytesTwo`
 
-- `fn find_in(self: &Self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../search/index.md), [`Candidate`](#candidate)
+- `fn find_in(self: &Self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../../index.md), [`Candidate`](#candidate)
 
 ### `RareBytesThree`
 
@@ -415,7 +415,7 @@ A prefilter for scanning for three "rare" bytes.
 
 ##### `impl PrefilterI for RareBytesThree`
 
-- `fn find_in(self: &Self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../search/index.md), [`Candidate`](#candidate)
+- `fn find_in(self: &Self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../../index.md), [`Candidate`](#candidate)
 
 ### `StartBytesBuilder`
 
@@ -505,7 +505,7 @@ A prefilter for scanning for a single starting byte.
 
 ##### `impl PrefilterI for StartBytesOne`
 
-- `fn find_in(self: &Self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../search/index.md), [`Candidate`](#candidate)
+- `fn find_in(self: &Self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../../index.md), [`Candidate`](#candidate)
 
 ### `StartBytesTwo`
 
@@ -530,7 +530,7 @@ A prefilter for scanning for two starting bytes.
 
 ##### `impl PrefilterI for StartBytesTwo`
 
-- `fn find_in(self: &Self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../search/index.md), [`Candidate`](#candidate)
+- `fn find_in(self: &Self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../../index.md), [`Candidate`](#candidate)
 
 ### `StartBytesThree`
 
@@ -556,7 +556,7 @@ A prefilter for scanning for three starting bytes.
 
 ##### `impl PrefilterI for StartBytesThree`
 
-- `fn find_in(self: &Self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../search/index.md), [`Candidate`](#candidate)
+- `fn find_in(self: &Self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../../index.md), [`Candidate`](#candidate)
 
 ## Enums
 

@@ -30,7 +30,7 @@ struct Parser<'cmd> {
 
 #### Implementations
 
-- `fn new(cmd: &'cmd mut Command) -> Self` — [`Command`](../../builder/command/index.md)
+- `fn new(cmd: &'cmd mut Command) -> Self` — [`Command`](../../index.md)
 
 ### `PendingArg`
 

@@ -58,7 +58,7 @@ This section contains the type unit index.
 
 #### Implementations
 
-- `fn new(section: &'input [u8], endian: Endian) -> Self`
+- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugTuIndex<R>` — [`DebugTuIndex`](../index.md)
 
 #### Trait Implementations
 

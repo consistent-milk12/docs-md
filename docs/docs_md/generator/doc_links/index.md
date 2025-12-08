@@ -6,7 +6,7 @@
 
 Intra-doc link processing for documentation generation.
 
-This module provides [`DocLinkProcessor`](#doclinkprocessor) which transforms rustdoc
+This module provides [`DocLinkProcessor`](../index.md) which transforms rustdoc
 intra-doc link syntax into proper markdown links.
 
 # Processing Pipeline
@@ -80,7 +80,7 @@ Links inside fenced code blocks are not processed.
 
 #### Implementations
 
-- `fn new(krate: &'a Crate, link_registry: &'a LinkRegistry, current_file: &'a str) -> Self` — [`LinkRegistry`](../../linker/index.md)
+- `fn new(krate: &'a Crate, link_registry: &'a LinkRegistry, current_file: &'a str) -> Self` — [`LinkRegistry`](../../index.md)
 
 - `fn process(self: &Self, docs: &str, item_links: &HashMap<String, Id>) -> String`
 

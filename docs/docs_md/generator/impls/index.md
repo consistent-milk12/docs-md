@@ -29,7 +29,7 @@ This struct handles:
 - Method signatures within impl blocks
 - Associated types and constants
 
-The renderer is generic over [`RenderContext`](../context/index.md), allowing it to work with
+The renderer is generic over [`RenderContext`](../index.md), allowing it to work with
 both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes.
 
 #### Fields
@@ -48,7 +48,7 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 #### Implementations
 
-- `fn new(ctx: &'a dyn RenderContext, current_file: &'a str) -> Self` — [`RenderContext`](../context/index.md)
+- `fn new(ctx: &'a dyn RenderContext, current_file: &'a str) -> Self` — [`RenderContext`](../index.md)
 
 - `fn process_docs(self: &Self, item: &Item) -> Option<String>`
 

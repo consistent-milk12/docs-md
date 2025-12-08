@@ -40,7 +40,7 @@ JSON input source that reads from a std::io input stream.
 
 #### Implementations
 
-- `fn parse_str_bytes<'s, T, F>(self: &'s mut Self, scratch: &'s mut Vec<u8>, validate: bool, result: F) -> Result<T>` — [`Result`](../error/index.md)
+- `fn parse_str_bytes<'s, T, F>(self: &'s mut Self, scratch: &'s mut Vec<u8>, validate: bool, result: F) -> Result<T>` — [`Result`](../index.md)
 
 #### Trait Implementations
 
@@ -75,7 +75,7 @@ JSON input source that reads from a slice of bytes.
 
 - `fn skip_to_escape_slow(self: &mut Self)`
 
-- `fn parse_str_bytes<'s, T, F>(self: &'s mut Self, scratch: &'s mut Vec<u8>, validate: bool, result: F) -> Result<Reference<'a, 's, T>>` — [`Result`](../error/index.md), [`Reference`](#reference)
+- `fn parse_str_bytes<'s, T, F>(self: &'s mut Self, scratch: &'s mut Vec<u8>, validate: bool, result: F) -> Result<Reference<'a, 's, T>>` — [`Result`](../index.md), [`Reference`](#reference)
 
 #### Trait Implementations
 

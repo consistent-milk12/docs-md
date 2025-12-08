@@ -12,7 +12,7 @@
 struct AsTitleCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a title case conversion in [`fmt::Display`](../../miette_derive/fmt/index.md).
+This wrapper performs a title case conversion in [`fmt::Display`](../../miette_derive/index.md).
 
 ## Example:
 

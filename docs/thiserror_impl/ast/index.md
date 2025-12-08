@@ -40,11 +40,7 @@ struct Enum<'a> {
 
 #### Implementations
 
-- `fn has_source(self: &Self) -> bool`
-
-- `fn has_backtrace(self: &Self) -> bool`
-
-- `fn has_display(self: &Self) -> bool`
+- `fn validate(self: &Self) -> Result<()>`
 
 ### `Variant<'a>`
 
@@ -59,7 +55,7 @@ struct Variant<'a> {
 
 #### Implementations
 
-- `fn from_syn(node: &'a syn::Variant, scope: &ParamsInScope<'a>) -> Result<Self>` — [`ParamsInScope`](../generics/index.md)
+- `fn validate(self: &Self) -> Result<()>`
 
 ### `Field<'a>`
 
@@ -75,9 +71,7 @@ struct Field<'a> {
 
 #### Implementations
 
-- `fn is_backtrace(self: &Self) -> bool`
-
-- `fn source_span(self: &Self) -> Span`
+- `fn validate(self: &Self) -> Result<()>`
 
 ## Enums
 
@@ -92,7 +86,7 @@ enum Input<'a> {
 
 #### Implementations
 
-- `fn from_syn(node: &'a DeriveInput) -> Result<Self>`
+- `fn validate(self: &Self) -> Result<()>`
 
 ### `ContainerKind`
 

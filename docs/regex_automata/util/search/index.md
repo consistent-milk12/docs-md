@@ -272,11 +272,11 @@ have a pattern ID of `0`.
 
 #### Implementations
 
-- `fn new(pattern: PatternID, offset: usize) -> HalfMatch` — [`PatternID`](../primitives/index.md), [`HalfMatch`](../../index.md)
+- `fn new(pattern: PatternID, offset: usize) -> HalfMatch` — [`PatternID`](../../index.md), [`HalfMatch`](../../index.md)
 
 - `fn must(pattern: usize, offset: usize) -> HalfMatch` — [`HalfMatch`](../../index.md)
 
-- `fn pattern(self: &Self) -> PatternID` — [`PatternID`](../primitives/index.md)
+- `fn pattern(self: &Self) -> PatternID` — [`PatternID`](../../index.md)
 
 - `fn offset(self: &Self) -> usize`
 
@@ -315,7 +315,7 @@ struct Match {
 
 A representation of a match reported by a regex engine.
 
-A match has two essential pieces of information: the [`PatternID`](../primitives/index.md) that
+A match has two essential pieces of information: the [`PatternID`](../../index.md) that
 matches, and the [`Span`](../../index.md) of the match in a haystack.
 
 The pattern is identified by an ID, which corresponds to its position
@@ -338,11 +338,11 @@ start offset as less than or equal to its end offset.
 
 #### Implementations
 
-- `fn new<S: Into<Span>>(pattern: PatternID, span: S) -> Match` — [`PatternID`](../primitives/index.md), [`Match`](../../index.md)
+- `fn new<S: Into<Span>>(pattern: PatternID, span: S) -> Match` — [`PatternID`](../../index.md), [`Match`](../../index.md)
 
 - `fn must<S: Into<Span>>(pattern: usize, span: S) -> Match` — [`Match`](../../index.md)
 
-- `fn pattern(self: &Self) -> PatternID` — [`PatternID`](../primitives/index.md)
+- `fn pattern(self: &Self) -> PatternID` — [`PatternID`](../../index.md)
 
 - `fn start(self: &Self) -> usize`
 
@@ -457,11 +457,11 @@ assert!(set.is_empty());
 
 - `fn clear(self: &mut Self)`
 
-- `fn contains(self: &Self, pid: PatternID) -> bool` — [`PatternID`](../primitives/index.md)
+- `fn contains(self: &Self, pid: PatternID) -> bool` — [`PatternID`](../../index.md)
 
-- `fn insert(self: &mut Self, pid: PatternID) -> bool` — [`PatternID`](../primitives/index.md)
+- `fn insert(self: &mut Self, pid: PatternID) -> bool` — [`PatternID`](../../index.md)
 
-- `fn try_insert(self: &mut Self, pid: PatternID) -> Result<bool, PatternSetInsertError>` — [`PatternID`](../primitives/index.md), [`PatternSetInsertError`](../../index.md)
+- `fn try_insert(self: &mut Self, pid: PatternID) -> Result<bool, PatternSetInsertError>` — [`PatternID`](../../index.md), [`PatternSetInsertError`](../../index.md)
 
 - `fn is_empty(self: &Self) -> bool`
 
@@ -555,7 +555,7 @@ This iterator is created by the `PatternSet::iter` method.
 
 ##### `impl<'a> DoubleEndedIterator for PatternSetIter<'a>`
 
-- `fn next_back(self: &mut Self) -> Option<PatternID>` — [`PatternID`](../primitives/index.md)
+- `fn next_back(self: &mut Self) -> Option<PatternID>` — [`PatternID`](../../index.md)
 
 ##### `impl<I> IntoIterator for PatternSetIter<'a>`
 
@@ -569,7 +569,7 @@ This iterator is created by the `PatternSet::iter` method.
 
 - `type Item = PatternID`
 
-- `fn next(self: &mut Self) -> Option<PatternID>` — [`PatternID`](../primitives/index.md)
+- `fn next(self: &mut Self) -> Option<PatternID>` — [`PatternID`](../../index.md)
 
 - `fn size_hint(self: &Self) -> (usize, Option<usize>)`
 
@@ -802,7 +802,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - `fn is_anchored(self: &Self) -> bool`
 
-- `fn pattern(self: &Self) -> Option<PatternID>` — [`PatternID`](../primitives/index.md)
+- `fn pattern(self: &Self) -> Option<PatternID>` — [`PatternID`](../../index.md)
 
 #### Trait Implementations
 

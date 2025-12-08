@@ -29,9 +29,9 @@ These two types come with conversion routines:
 [`Hir`](hir::Hir).
 
 As a convenience, the above two conversion routines are combined into one via
-the top-level [`Parser`](parser/index.md) type. This `Parser` will first convert your pattern to
+the top-level [`Parser`](#parser) type. This `Parser` will first convert your pattern to
 an `Ast` and then convert the `Ast` to an `Hir`. It's also exposed as top-level
-[`parse`](parser/index.md) free function.
+[`parse`](#parse) free function.
 
 
 # Example
@@ -200,19 +200,19 @@ convenience for never having to deal with it at all.
 If callers have more fine grained use cases that need an AST, then please
 see the [`ast::parse`](ast/parse/index.md) module.
 
-A `Parser` can be configured in more detail via a [`ParserBuilder`](parser/index.md).
+A `Parser` can be configured in more detail via a [`ParserBuilder`](#parserbuilder).
 
 #### Implementations
 
-- `fn new() -> Parser` — [`Parser`](parser/index.md)
+- `fn new() -> Parser` — [`Parser`](#parser)
 
-- `fn parse(self: &mut Self, pattern: &str) -> Result<hir::Hir, Error>` — [`Hir`](hir/index.md), [`Error`](error/index.md)
+- `fn parse(self: &mut Self, pattern: &str) -> Result<hir::Hir, Error>` — [`Hir`](hir/index.md), [`Error`](#error)
 
 #### Trait Implementations
 
 ##### `impl Clone for Parser`
 
-- `fn clone(self: &Self) -> Parser` — [`Parser`](parser/index.md)
+- `fn clone(self: &Self) -> Parser` — [`Parser`](#parser)
 
 ##### `impl Debug for Parser`
 
@@ -237,37 +237,37 @@ This type combines the builder options for both the [AST
 
 #### Implementations
 
-- `fn new() -> ParserBuilder` — [`ParserBuilder`](parser/index.md)
+- `fn new() -> ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- `fn build(self: &Self) -> Parser` — [`Parser`](parser/index.md)
+- `fn build(self: &Self) -> Parser` — [`Parser`](#parser)
 
-- `fn nest_limit(self: &mut Self, limit: u32) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md)
+- `fn nest_limit(self: &mut Self, limit: u32) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- `fn octal(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md)
+- `fn octal(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- `fn utf8(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md)
+- `fn utf8(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- `fn ignore_whitespace(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md)
+- `fn ignore_whitespace(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- `fn case_insensitive(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md)
+- `fn case_insensitive(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- `fn multi_line(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md)
+- `fn multi_line(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- `fn dot_matches_new_line(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md)
+- `fn dot_matches_new_line(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- `fn crlf(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md)
+- `fn crlf(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- `fn line_terminator(self: &mut Self, byte: u8) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md)
+- `fn line_terminator(self: &mut Self, byte: u8) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- `fn swap_greed(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md)
+- `fn swap_greed(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- `fn unicode(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md)
+- `fn unicode(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
 #### Trait Implementations
 
 ##### `impl Clone for ParserBuilder`
 
-- `fn clone(self: &Self) -> ParserBuilder` — [`ParserBuilder`](parser/index.md)
+- `fn clone(self: &Self) -> ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
 ##### `impl Debug for ParserBuilder`
 
@@ -275,7 +275,7 @@ This type combines the builder options for both the [AST
 
 ##### `impl Default for ParserBuilder`
 
-- `fn default() -> ParserBuilder` — [`ParserBuilder`](parser/index.md)
+- `fn default() -> ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
 ### `UnicodeWordError`
 
@@ -337,7 +337,7 @@ new variant is not considered a breaking change.
 
 ##### `impl Clone for Error`
 
-- `fn clone(self: &Self) -> Error` — [`Error`](error/index.md)
+- `fn clone(self: &Self) -> Error` — [`Error`](#error)
 
 ##### `impl Debug for Error`
 
@@ -353,7 +353,7 @@ new variant is not considered a breaking change.
 
 ##### `impl PartialEq for Error`
 
-- `fn eq(self: &Self, other: &Error) -> bool` — [`Error`](error/index.md)
+- `fn eq(self: &Self, other: &Error) -> bool` — [`Error`](#error)
 
 ##### `impl StructuralPartialEq for Error`
 

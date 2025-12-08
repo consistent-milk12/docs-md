@@ -20,7 +20,7 @@ An epoch-based garbage collector.
 
 - `fn new() -> Self`
 
-- `fn register(self: &Self) -> LocalHandle` — [`LocalHandle`](#localhandle)
+- `fn register(self: &Self) -> LocalHandle` — [`LocalHandle`](../index.md)
 
 #### Trait Implementations
 
@@ -40,7 +40,7 @@ An epoch-based garbage collector.
 
 ##### `impl PartialEq for Collector`
 
-- `fn eq(self: &Self, rhs: &Collector) -> bool` — [`Collector`](#collector)
+- `fn eq(self: &Self, rhs: &Collector) -> bool` — [`Collector`](../index.md)
 
 ##### `impl<T> Pointable for Collector`
 
@@ -48,7 +48,7 @@ An epoch-based garbage collector.
 
 - `type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md)
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
 
 - `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -72,11 +72,11 @@ A handle to a garbage collector.
 
 #### Implementations
 
-- `fn pin(self: &Self) -> Guard` — [`Guard`](../guard/index.md)
+- `fn pin(self: &Self) -> Guard` — [`Guard`](../index.md)
 
 - `fn is_pinned(self: &Self) -> bool`
 
-- `fn collector(self: &Self) -> &Collector` — [`Collector`](#collector)
+- `fn collector(self: &Self) -> &Collector` — [`Collector`](../index.md)
 
 #### Trait Implementations
 
@@ -94,7 +94,7 @@ A handle to a garbage collector.
 
 - `type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md)
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../index.md)
 
 - `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 

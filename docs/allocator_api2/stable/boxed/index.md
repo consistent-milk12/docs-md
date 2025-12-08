@@ -58,15 +58,15 @@ big `Cons` needs to be.
 
 # Memory layout
 
-For non-zero-sized values, a [`Box`](#box) will use the [`Global`](../alloc/global/index.md) allocator for
+For non-zero-sized values, a [`Box`](#box) will use the [`Global`](../alloc/index.md) allocator for
 its allocation. It is valid to convert both ways between a [`Box`](#box) and a
-raw pointer allocated with the [`Global`](../alloc/global/index.md) allocator, given that the
+raw pointer allocated with the [`Global`](../alloc/index.md) allocator, given that the
 [`Layout`](../alloc/index.md) used with the allocator is correct for the type. More precisely,
-a `value: *mut T` that has been allocated with the [`Global`](../alloc/global/index.md) allocator
+a `value: *mut T` that has been allocated with the [`Global`](../alloc/index.md) allocator
 with `Layout::for_value(&*value)` may be converted into a box using
 `Box::<T>::from_raw(value)`. Conversely, the memory backing a `value: *mut
 T` obtained from `Box::<T>::into_raw` may be deallocated using the
-[`Global`](../alloc/global/index.md) allocator with `Layout::for_value(&*value)`.
+[`Global`](../alloc/index.md) allocator with `Layout::for_value(&*value)`.
 
 For zero-sized values, the `Box` pointer still has to be [`valid`](../../../thiserror_impl/valid/index.md) for reads
 and writes and sufficiently aligned. In particular, casting any aligned
@@ -162,9 +162,19 @@ See the [module-level documentation](../../std/boxed/index.html) for more.
 
 #### Implementations
 
-- `fn slice(b: Self) -> Box<[T], A>` — [`Box`](#box)
+- `const unsafe fn from_raw_in(raw: *mut T, alloc: A) -> Self`
 
-- `fn into_vec(self: Self) -> Vec<T, A>` — [`Vec`](../vec/index.md)
+- `fn into_raw(b: Self) -> *mut T`
+
+- `fn into_raw_with_allocator(b: Self) -> (*mut T, A)`
+
+- `fn into_non_null(b: Self) -> (NonNull<T>, A)`
+
+- `const fn allocator(b: &Self) -> &A`
+
+- `fn leak<'a>(b: Self) -> &'a mut T`
+
+- `fn into_pin(boxed: Self) -> Pin<Self>`
 
 #### Trait Implementations
 
@@ -182,15 +192,17 @@ See the [module-level documentation](../../std/boxed/index.html) for more.
 
 - `fn last(self: Self) -> Option<<I as >::Item>`
 
-##### `impl Clone for Box<str>`
+##### `impl<T: Clone, A: Allocator + Clone> Clone for Box<[T], A>`
 
 - `fn clone(self: &Self) -> Self`
+
+- `fn clone_from(self: &mut Self, other: &Self)`
 
 ##### `impl<T: fmt::Debug + ?Sized, A: Allocator> Debug for Box<T, A>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<T: Default> Default for Box<T>`
+##### `impl<T, A: Allocator + Default> Default for Box<[T], A>`
 
 - `fn default() -> Self`
 

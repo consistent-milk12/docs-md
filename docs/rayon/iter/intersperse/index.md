@@ -19,18 +19,18 @@ where
 
 `Intersperse` is an iterator that inserts a particular item between each
 item of the adapted iterator.  This struct is created by the
-`intersperse()` method on [`ParallelIterator`](../index.md)
+`intersperse()` method on [`ParallelIterator`](../../prelude/index.md)
 
 
 #### Implementations
 
-- `fn new(base: I, item: <I as >::Item) -> Self` — [`ParallelIterator`](../index.md)
+- `fn new(base: I, item: <I as >::Item) -> Self` — [`ParallelIterator`](../../prelude/index.md)
 
 #### Trait Implementations
 
 ##### `impl<I> Clone for Intersperse<I>`
 
-- `fn clone(self: &Self) -> Intersperse<I>` — [`Intersperse`](#intersperse)
+- `fn clone(self: &Self) -> Intersperse<I>` — [`Intersperse`](../index.md)
 
 ##### `impl<I> Debug for Intersperse<I>`
 

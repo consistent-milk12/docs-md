@@ -6,8 +6,8 @@
 
 Multi-crate JSON parser.
 
-This module provides [`MultiCrateParser`](#multicrateparser) which scans a directory for
-rustdoc JSON files and parses them into a [`CrateCollection`](../collection/index.md).
+This module provides [`MultiCrateParser`](../../index.md) which scans a directory for
+rustdoc JSON files and parses them into a [`CrateCollection`](../../index.md).
 
 ## Structs
 
@@ -31,7 +31,7 @@ println!("Found {} crates", crates.len());
 
 #### Implementations
 
-- `fn parse_directory(dir: &Path) -> Result<CrateCollection, Error>` — [`CrateCollection`](../collection/index.md), [`Error`](../../error/index.md)
+- `fn parse_directory(dir: &Path) -> Result<CrateCollection, Error>` — [`CrateCollection`](../../index.md), [`Error`](../../error/index.md)
 
 - `fn extract_crate_name(krate: &rustdoc_types::Crate, path: &Path) -> Result<String, Error>` — [`Error`](../../error/index.md)
 

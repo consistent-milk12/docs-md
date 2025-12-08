@@ -6,7 +6,7 @@
 
 Module markdown rendering for documentation generation.
 
-This module provides the [`ModuleRenderer`](#modulerenderer) struct which handles rendering
+This module provides the [`ModuleRenderer`](../index.md) struct which handles rendering
 a Rust module's documentation to markdown format, including all its items
 organized by type.
 
@@ -30,7 +30,7 @@ including:
 - Module-level documentation
 - Sections for each item type (Modules, Structs, Enums, etc.)
 
-The renderer is generic over [`RenderContext`](../context/index.md), allowing it to work with
+The renderer is generic over [`RenderContext`](../index.md), allowing it to work with
 both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes.
 
 #### Fields
@@ -49,7 +49,7 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 #### Implementations
 
-- `fn new(ctx: &'a dyn RenderContext, current_file: &'a str, is_root: bool) -> Self` — [`RenderContext`](../context/index.md)
+- `fn new(ctx: &'a dyn RenderContext, current_file: &'a str, is_root: bool) -> Self` — [`RenderContext`](../index.md)
 
 - `fn process_docs(self: &Self, item: &Item) -> Option<String>`
 

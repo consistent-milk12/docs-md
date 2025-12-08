@@ -181,19 +181,19 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new(pattern: &str) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../error/index.md)
+- `fn new(pattern: &str) -> Result<NFA, BuildError>` — [`NFA`](../index.md), [`BuildError`](../index.md)
 
-- `fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../error/index.md)
+- `fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<NFA, BuildError>` — [`NFA`](../index.md), [`BuildError`](../index.md)
 
-- `fn always_match() -> NFA` — [`NFA`](#nfa)
+- `fn always_match() -> NFA` — [`NFA`](../index.md)
 
-- `fn never_match() -> NFA` — [`NFA`](#nfa)
+- `fn never_match() -> NFA` — [`NFA`](../index.md)
 
-- `fn config() -> Config` — [`Config`](../compiler/index.md)
+- `fn config() -> Config` — [`Config`](../index.md)
 
-- `fn compiler() -> Compiler` — [`Compiler`](../compiler/index.md)
+- `fn compiler() -> Compiler` — [`Compiler`](../index.md)
 
-- `fn patterns(self: &Self) -> PatternIter<'_>` — [`PatternIter`](#patterniter)
+- `fn patterns(self: &Self) -> PatternIter<'_>` — [`PatternIter`](../index.md)
 
 - `fn pattern_len(self: &Self) -> usize`
 
@@ -201,15 +201,15 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - `fn start_unanchored(self: &Self) -> StateID` — [`StateID`](../../../util/primitives/index.md)
 
-- `fn start_pattern(self: &Self, pid: PatternID) -> Option<StateID>` — [`PatternID`](../../../util/primitives/index.md), [`StateID`](../../../util/primitives/index.md)
+- `fn start_pattern(self: &Self, pid: PatternID) -> Option<StateID>` — [`PatternID`](../../../index.md), [`StateID`](../../../util/primitives/index.md)
 
 - `fn byte_class_set(self: &Self) -> &ByteClassSet` — [`ByteClassSet`](../../../util/alphabet/index.md)
 
 - `fn byte_classes(self: &Self) -> &ByteClasses` — [`ByteClasses`](../../../util/alphabet/index.md)
 
-- `fn state(self: &Self, id: StateID) -> &State` — [`StateID`](../../../util/primitives/index.md), [`State`](#state)
+- `fn state(self: &Self, id: StateID) -> &State` — [`StateID`](../../../util/primitives/index.md), [`State`](../index.md)
 
-- `fn states(self: &Self) -> &[State]` — [`State`](#state)
+- `fn states(self: &Self) -> &[State]` — [`State`](../index.md)
 
 - `fn group_info(self: &Self) -> &GroupInfo` — [`GroupInfo`](../../../util/captures/index.md)
 
@@ -235,7 +235,7 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ##### `impl Clone for NFA`
 
-- `fn clone(self: &Self) -> NFA` — [`NFA`](#nfa)
+- `fn clone(self: &Self) -> NFA` — [`NFA`](../index.md)
 
 ##### `impl Debug for NFA`
 
@@ -373,11 +373,11 @@ get its own module.)
 
 #### Implementations
 
-- `fn into_nfa(self: Self) -> NFA` — [`NFA`](#nfa)
+- `fn into_nfa(self: Self) -> NFA` — [`NFA`](../index.md)
 
 - `fn group_info(self: &Self) -> &GroupInfo` — [`GroupInfo`](../../../util/captures/index.md)
 
-- `fn add(self: &mut Self, state: State) -> StateID` — [`State`](#state), [`StateID`](../../../util/primitives/index.md)
+- `fn add(self: &mut Self, state: State) -> StateID` — [`State`](../index.md), [`StateID`](../../../util/primitives/index.md)
 
 - `fn set_starts(self: &mut Self, start_anchored: StateID, start_unanchored: StateID, start_pattern: &[StateID])` — [`StateID`](../../../util/primitives/index.md)
 
@@ -435,7 +435,7 @@ corresponding transition.
 
 ##### `impl Clone for SparseTransitions`
 
-- `fn clone(self: &Self) -> SparseTransitions` — [`SparseTransitions`](#sparsetransitions)
+- `fn clone(self: &Self) -> SparseTransitions` — [`SparseTransitions`](../index.md)
 
 ##### `impl Debug for SparseTransitions`
 
@@ -445,7 +445,7 @@ corresponding transition.
 
 ##### `impl PartialEq for SparseTransitions`
 
-- `fn eq(self: &Self, other: &SparseTransitions) -> bool` — [`SparseTransitions`](#sparsetransitions)
+- `fn eq(self: &Self, other: &SparseTransitions) -> bool` — [`SparseTransitions`](../index.md)
 
 ##### `impl StructuralPartialEq for SparseTransitions`
 
@@ -483,13 +483,13 @@ usually requires (much) more heap memory.
 
 - `fn matches_byte(self: &Self, byte: u8) -> Option<StateID>` — [`StateID`](../../../util/primitives/index.md)
 
-- `fn iter(self: &Self) -> impl Iterator<Item = Transition> + '_` — [`Transition`](#transition)
+- `fn iter(self: &Self) -> impl Iterator<Item = Transition> + '_` — [`Transition`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for DenseTransitions`
 
-- `fn clone(self: &Self) -> DenseTransitions` — [`DenseTransitions`](#densetransitions)
+- `fn clone(self: &Self) -> DenseTransitions` — [`DenseTransitions`](../index.md)
 
 ##### `impl Debug for DenseTransitions`
 
@@ -499,7 +499,7 @@ usually requires (much) more heap memory.
 
 ##### `impl PartialEq for DenseTransitions`
 
-- `fn eq(self: &Self, other: &DenseTransitions) -> bool` — [`DenseTransitions`](#densetransitions)
+- `fn eq(self: &Self, other: &DenseTransitions) -> bool` — [`DenseTransitions`](../index.md)
 
 ##### `impl StructuralPartialEq for DenseTransitions`
 
@@ -544,7 +544,7 @@ falls in the inclusive range of bytes specified.
 
 ##### `impl Clone for Transition`
 
-- `fn clone(self: &Self) -> Transition` — [`Transition`](#transition)
+- `fn clone(self: &Self) -> Transition` — [`Transition`](../index.md)
 
 ##### `impl Copy for Transition`
 
@@ -560,7 +560,7 @@ falls in the inclusive range of bytes specified.
 
 ##### `impl PartialEq for Transition`
 
-- `fn eq(self: &Self, other: &Transition) -> bool` — [`Transition`](#transition)
+- `fn eq(self: &Self, other: &Transition) -> bool` — [`Transition`](../index.md)
 
 ##### `impl StructuralPartialEq for Transition`
 
@@ -608,7 +608,7 @@ this pattern iterator was created.
 
 - `type Item = PatternID`
 
-- `fn next(self: &mut Self) -> Option<PatternID>` — [`PatternID`](../../../util/primitives/index.md)
+- `fn next(self: &mut Self) -> Option<PatternID>` — [`PatternID`](../../../index.md)
 
 ## Enums
 
@@ -762,7 +762,7 @@ need to do some kind of analysis on the NFA.
 
 ##### `impl Clone for State`
 
-- `fn clone(self: &Self) -> State` — [`State`](#state)
+- `fn clone(self: &Self) -> State` — [`State`](../index.md)
 
 ##### `impl Debug for State`
 
@@ -772,7 +772,7 @@ need to do some kind of analysis on the NFA.
 
 ##### `impl PartialEq for State`
 
-- `fn eq(self: &Self, other: &State) -> bool` — [`State`](#state)
+- `fn eq(self: &Self, other: &State) -> bool` — [`State`](../index.md)
 
 ##### `impl StructuralPartialEq for State`
 

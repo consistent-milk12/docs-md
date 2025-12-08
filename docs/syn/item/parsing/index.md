@@ -24,11 +24,11 @@ struct FlexibleItemType {
 
 #### Implementations
 
-- `fn parse(input: ParseStream<'_>, allow_defaultness: TypeDefaultness, where_clause_location: WhereClauseLocation) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`TypeDefaultness`](#typedefaultness), [`WhereClauseLocation`](#whereclauselocation), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>, allow_defaultness: TypeDefaultness, where_clause_location: WhereClauseLocation) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`TypeDefaultness`](#typedefaultness), [`WhereClauseLocation`](#whereclauselocation), [`Result`](../../index.md)
 
-- `fn parse_optional_bounds(input: ParseStream<'_>) -> Result<(Option<$crate::token::Colon>, Punctuated<TypeParamBound, $crate::token::Plus>)>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md), [`Colon`](../../token/index.md), [`Punctuated`](../../punctuated/index.md), [`TypeParamBound`](../../generics/index.md), [`Plus`](../../token/index.md)
+- `fn parse_optional_bounds(input: ParseStream<'_>) -> Result<(Option<$crate::token::Colon>, Punctuated<TypeParamBound, $crate::token::Plus>)>` — [`ParseStream`](../../parse/index.md), [`Result`](../../index.md), [`Colon`](../../token/index.md), [`Punctuated`](../../punctuated/index.md), [`TypeParamBound`](../../index.md), [`Plus`](../../token/index.md)
 
-- `fn parse_optional_definition(input: ParseStream<'_>) -> Result<Option<($crate::token::Eq, Type)>>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md), [`Eq`](../../token/index.md), [`Type`](../../ty/index.md)
+- `fn parse_optional_definition(input: ParseStream<'_>) -> Result<Option<($crate::token::Eq, Type)>>` — [`ParseStream`](../../parse/index.md), [`Result`](../../index.md), [`Eq`](../../token/index.md), [`Type`](../../index.md)
 
 ## Enums
 

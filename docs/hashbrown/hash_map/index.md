@@ -215,7 +215,7 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
 
 ##### `impl<'a, K, V, S, A> Extend for HashMap<K, V, S, A>`
 
-- `fn extend<T: IntoIterator<Item = (&'a K, &'a V)>>(self: &mut Self, iter: T)`
+- `fn extend<T: IntoIterator<Item = &'a (K, V)>>(self: &mut Self, iter: T)`
 
 ##### `impl<K, V, S, A> FromIterator for HashMap<K, V, S, A>`
 
@@ -251,7 +251,7 @@ struct Iter<'a, K, V> {
 An iterator over the entries of a `HashMap` in arbitrary order.
 The iterator element type is `(&'a K, &'a V)`.
 
-This `struct` is created by the [`iter`](#iter) method on [`HashMap`](#hashmap). See its
+This `struct` is created by the [`iter`](#iter) method on [`HashMap`](../index.md). See its
 documentation for more.
 
 
@@ -325,7 +325,7 @@ struct IterMut<'a, K, V> {
 A mutable iterator over the entries of a `HashMap` in arbitrary order.
 The iterator element type is `(&'a K, &'a mut V)`.
 
-This `struct` is created by the `iter_mut` method on [`HashMap`](#hashmap). See its
+This `struct` is created by the `iter_mut` method on [`HashMap`](../index.md). See its
 documentation for more.
 
 
@@ -399,7 +399,7 @@ struct IntoIter<K, V, A: Allocator> {
 An owning iterator over the entries of a `HashMap` in arbitrary order.
 The iterator element type is `(K, V)`.
 
-This `struct` is created by the `into_iter` method on [`HashMap`](#hashmap)
+This `struct` is created by the `into_iter` method on [`HashMap`](../index.md)
 (provided by the `IntoIterator` trait). See its documentation for more.
 The map cannot be used after calling that method.
 
@@ -474,7 +474,7 @@ struct IntoKeys<K, V, A: Allocator> {
 An owning iterator over the keys of a `HashMap` in arbitrary order.
 The iterator element type is `K`.
 
-This `struct` is created by the `into_keys` method on [`HashMap`](#hashmap).
+This `struct` is created by the `into_keys` method on [`HashMap`](../index.md).
 See its documentation for more.
 The map cannot be used after calling that method.
 
@@ -544,7 +544,7 @@ struct IntoValues<K, V, A: Allocator> {
 An owning iterator over the values of a `HashMap` in arbitrary order.
 The iterator element type is `V`.
 
-This `struct` is created by the `into_values` method on [`HashMap`](#hashmap).
+This `struct` is created by the `into_values` method on [`HashMap`](../index.md).
 See its documentation for more. The map cannot be used after calling that method.
 
 
@@ -613,7 +613,7 @@ struct Keys<'a, K, V> {
 An iterator over the keys of a `HashMap` in arbitrary order.
 The iterator element type is `&'a K`.
 
-This `struct` is created by the `keys` method on [`HashMap`](#hashmap). See its
+This `struct` is created by the `keys` method on [`HashMap`](../index.md). See its
 documentation for more.
 
 
@@ -686,7 +686,7 @@ struct Values<'a, K, V> {
 An iterator over the values of a `HashMap` in arbitrary order.
 The iterator element type is `&'a V`.
 
-This `struct` is created by the `values` method on [`HashMap`](#hashmap). See its
+This `struct` is created by the `values` method on [`HashMap`](../index.md). See its
 documentation for more.
 
 
@@ -759,7 +759,7 @@ struct Drain<'a, K, V, A: Allocator> {
 A draining iterator over the entries of a `HashMap` in arbitrary
 order. The iterator element type is `(K, V)`.
 
-This `struct` is created by the `drain` method on [`HashMap`](#hashmap). See its
+This `struct` is created by the `drain` method on [`HashMap`](../index.md). See its
 documentation for more.
 
 
@@ -829,7 +829,7 @@ struct ExtractIf<'a, K, V, F, A: Allocator> {
 A draining iterator over entries of a `HashMap` which don't satisfy the predicate
 `f(&k, &mut v)` in arbitrary order. The iterator element type is `(K, V)`.
 
-This `struct` is created by the `extract_if` method on [`HashMap`](#hashmap). See its
+This `struct` is created by the `extract_if` method on [`HashMap`](../index.md). See its
 documentation for more.
 
 
@@ -887,7 +887,7 @@ struct ValuesMut<'a, K, V> {
 A mutable iterator over the values of a `HashMap` in arbitrary order.
 The iterator element type is `&'a mut V`.
 
-This `struct` is created by the `values_mut` method on [`HashMap`](#hashmap). See its
+This `struct` is created by the `values_mut` method on [`HashMap`](../index.md). See its
 documentation for more.
 
 
@@ -954,7 +954,7 @@ struct OccupiedEntry<'a, K, V, S, A: Allocator> {
 }
 ```
 
-A view into an occupied entry in a [`HashMap`](#hashmap).
+A view into an occupied entry in a [`HashMap`](../index.md).
 It is part of the [`Entry`](#entry) and [`EntryRef`](#entryref) enums.
 
 # Examples
@@ -1204,7 +1204,7 @@ where
 
 A view into a single entry in a map, which may either be vacant or occupied.
 
-This `enum` is constructed from the `entry` method on [`HashMap`](#hashmap).
+This `enum` is constructed from the `entry` method on [`HashMap`](../index.md).
 
 
 # Examples
@@ -1303,7 +1303,7 @@ A view into a single entry in a map, which may either be vacant or occupied,
 with any borrowed form of the map's key type.
 
 
-This `enum` is constructed from the `entry_ref` method on [`HashMap`](#hashmap).
+This `enum` is constructed from the `entry_ref` method on [`HashMap`](../index.md).
 
 `Hash` and `Eq` on the borrowed form of the map's key type *must* match those
 for the key type. It also require that key may be constructed from the borrowed

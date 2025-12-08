@@ -110,7 +110,7 @@ Semantics for a piece of error information
 
 ##### `impl Clone for ContextKind`
 
-- `fn clone(self: &Self) -> ContextKind` — [`ContextKind`](#contextkind)
+- `fn clone(self: &Self) -> ContextKind` — [`ContextKind`](../index.md)
 
 ##### `impl Copy for ContextKind`
 
@@ -130,7 +130,7 @@ Semantics for a piece of error information
 
 ##### `impl PartialEq for ContextKind`
 
-- `fn eq(self: &Self, other: &ContextKind) -> bool` — [`ContextKind`](#contextkind)
+- `fn eq(self: &Self, other: &ContextKind) -> bool` — [`ContextKind`](../index.md)
 
 ##### `impl StructuralPartialEq for ContextKind`
 
@@ -158,7 +158,7 @@ A piece of error information
 
 - **`None`**
 
-  [`ContextKind`](#contextkind) is self-sufficient, no additional information needed
+  [`ContextKind`](../index.md) is self-sufficient, no additional information needed
 
 - **`Bool`**
 
@@ -188,7 +188,7 @@ A piece of error information
 
 ##### `impl Clone for ContextValue`
 
-- `fn clone(self: &Self) -> ContextValue` — [`ContextValue`](#contextvalue)
+- `fn clone(self: &Self) -> ContextValue` — [`ContextValue`](../index.md)
 
 ##### `impl Debug for ContextValue`
 
@@ -202,7 +202,7 @@ A piece of error information
 
 ##### `impl PartialEq for ContextValue`
 
-- `fn eq(self: &Self, other: &ContextValue) -> bool` — [`ContextValue`](#contextvalue)
+- `fn eq(self: &Self, other: &ContextValue) -> bool` — [`ContextValue`](../index.md)
 
 ##### `impl StructuralPartialEq for ContextValue`
 

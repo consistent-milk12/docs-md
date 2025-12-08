@@ -4,7 +4,7 @@
 
 # Module `dispatcher`
 
-Dispatches trace events to [`Subscriber`](../subscriber/index.md)s.
+Dispatches trace events to [`Subscriber`](../index.md)s.
 
 The _dispatcher_ is the component of the tracing system which is responsible
 for forwarding trace data from the instrumentation points that generate it
@@ -26,7 +26,7 @@ duration of a scope, while `set_global_default` sets a default subscriber
 for the entire process.
 
 To use either of these functions, we must first wrap our subscriber in a
-[`Dispatch`](#dispatch), a cloneable, type-erased reference to a subscriber. For
+[`Dispatch`](../index.md), a cloneable, type-erased reference to a subscriber. For
 example:
 ```rust
 pub struct FooSubscriber;
@@ -139,7 +139,7 @@ struct Dispatch {
 }
 ```
 
-`Dispatch` trace data to a [`Subscriber`](../subscriber/index.md).
+`Dispatch` trace data to a [`Subscriber`](../index.md).
 
 #### Implementations
 
@@ -151,11 +151,11 @@ struct Dispatch {
 
 - `fn downgrade(self: &Self) -> WeakDispatch` — [`WeakDispatch`](#weakdispatch)
 
-- `fn subscriber(self: &Self) -> &dyn Subscriber + Send + Sync` — [`Subscriber`](../subscriber/index.md)
+- `fn subscriber(self: &Self) -> &dyn Subscriber + Send + Sync` — [`Subscriber`](../index.md)
 
-- `fn register_callsite(self: &Self, metadata: &'static Metadata<'static>) -> subscriber::Interest` — [`Metadata`](../metadata/index.md), [`Interest`](../subscriber/index.md)
+- `fn register_callsite(self: &Self, metadata: &'static Metadata<'static>) -> subscriber::Interest` — [`Metadata`](../index.md), [`Interest`](../index.md)
 
-- `fn max_level_hint(self: &Self) -> Option<LevelFilter>` — [`LevelFilter`](../metadata/index.md)
+- `fn max_level_hint(self: &Self) -> Option<LevelFilter>` — [`LevelFilter`](../index.md)
 
 - `fn new_span(self: &Self, span: &span::Attributes<'_>) -> span::Id` — [`Attributes`](../span/index.md), [`Id`](../span/index.md)
 
@@ -163,9 +163,9 @@ struct Dispatch {
 
 - `fn record_follows_from(self: &Self, span: &span::Id, follows: &span::Id)` — [`Id`](../span/index.md)
 
-- `fn enabled(self: &Self, metadata: &Metadata<'_>) -> bool` — [`Metadata`](../metadata/index.md)
+- `fn enabled(self: &Self, metadata: &Metadata<'_>) -> bool` — [`Metadata`](../index.md)
 
-- `fn event(self: &Self, event: &Event<'_>)` — [`Event`](../event/index.md)
+- `fn event(self: &Self, event: &Event<'_>)` — [`Event`](../index.md)
 
 - `fn enter(self: &Self, span: &span::Id)` — [`Id`](../span/index.md)
 
@@ -187,7 +187,7 @@ struct Dispatch {
 
 ##### `impl Clone for Dispatch`
 
-- `fn clone(self: &Self) -> Dispatch` — [`Dispatch`](#dispatch)
+- `fn clone(self: &Self) -> Dispatch` — [`Dispatch`](../index.md)
 
 ##### `impl Debug for Dispatch`
 
@@ -205,27 +205,27 @@ struct WeakDispatch {
 }
 ```
 
-`WeakDispatch` is a version of [`Dispatch`](#dispatch) that holds a non-owning reference
-to a [`Subscriber`](../subscriber/index.md).
+`WeakDispatch` is a version of [`Dispatch`](../index.md) that holds a non-owning reference
+to a [`Subscriber`](../index.md).
 
 The `Subscriber` may be accessed by calling `WeakDispatch::upgrade`,
-which returns an `Option<Dispatch>`. If all [`Dispatch`](#dispatch) clones that point
+which returns an `Option<Dispatch>`. If all [`Dispatch`](../index.md) clones that point
 at the `Subscriber` have been dropped, `WeakDispatch::upgrade` will return
 `None`. Otherwise, it will return `Some(Dispatch)`.
 
-A `WeakDispatch` may be created from a [`Dispatch`](#dispatch) by calling the
+A `WeakDispatch` may be created from a [`Dispatch`](../index.md) by calling the
 `Dispatch::downgrade` method. The primary use for creating a
 [`WeakDispatch`](#weakdispatch) is to allow a Subscriber` to hold a cyclical reference to
 itself without creating a memory leak. See [here] for details.
 
 This type is analogous to the `std::sync::Weak` type, but for a
-[`Dispatch`](#dispatch) rather than an `Arc`.
+[`Dispatch`](../index.md) rather than an `Arc`.
 
 
 
 #### Implementations
 
-- `fn upgrade(self: &Self) -> Option<Dispatch>` — [`Dispatch`](#dispatch)
+- `fn upgrade(self: &Self) -> Option<Dispatch>` — [`Dispatch`](../index.md)
 
 #### Trait Implementations
 
@@ -266,7 +266,7 @@ The dispatch state of a thread.
 
 #### Implementations
 
-- `fn set_default(new_dispatch: Dispatch) -> DefaultGuard` — [`Dispatch`](#dispatch), [`DefaultGuard`](#defaultguard)
+- `fn set_default(new_dispatch: Dispatch) -> DefaultGuard` — [`Dispatch`](../index.md), [`DefaultGuard`](#defaultguard)
 
 - `fn enter(self: &Self) -> Option<Entered<'_>>` — [`Entered`](#entered)
 
@@ -282,7 +282,7 @@ Dropping the guard will allow the dispatch context to be re-entered.
 
 #### Implementations
 
-- `fn current(self: &Self) -> Ref<'a, Dispatch>` — [`Dispatch`](#dispatch)
+- `fn current(self: &Self) -> Ref<'a, Dispatch>` — [`Dispatch`](../index.md)
 
 #### Trait Implementations
 
@@ -347,7 +347,7 @@ struct Registrar(Kind<alloc::sync::Weak<dyn Subscriber + Send + Sync>>);
 
 #### Implementations
 
-- `fn upgrade(self: &Self) -> Option<Dispatch>` — [`Dispatch`](#dispatch)
+- `fn upgrade(self: &Self) -> Option<Dispatch>` — [`Dispatch`](../index.md)
 
 ## Enums
 
@@ -362,7 +362,7 @@ enum Kind<T> {
 
 #### Implementations
 
-- `fn downgrade(self: &Self) -> Kind<Weak<dyn Subscriber + Send + Sync>>` — [`Kind`](#kind), [`Subscriber`](../subscriber/index.md)
+- `fn downgrade(self: &Self) -> Kind<Weak<dyn Subscriber + Send + Sync>>` — [`Kind`](#kind), [`Subscriber`](../index.md)
 
 #### Trait Implementations
 
@@ -381,7 +381,7 @@ fn with_default<T>(dispatcher: &Dispatch, f: impl FnOnce() -> T) -> T
 Sets this dispatch as the default for the duration of a closure.
 
 The default dispatcher is used when creating a new [`span`](../span/index.md) or
-[`Event`](../event/index.md).
+[`Event`](../index.md).
 
 <pre class="ignore" style="white-space:normal;font:inherit;">
     <strong>Note</strong>: This function required the Rust standard library.

@@ -5,7 +5,7 @@
 # Module `thread_pool`
 
 Contains support for user-managed thread pools, represented by the
-the [`ThreadPool`](#threadpool) type (see that struct for details).
+the [`ThreadPool`](../index.md) type (see that struct for details).
 
 ## Structs
 
@@ -21,7 +21,7 @@ Represents a user-created [thread pool].
 
 Use a [`ThreadPoolBuilder`](../index.md) to specify the number and/or names of threads
 in the pool. After calling `ThreadPoolBuilder::build()`, you can then
-execute functions explicitly within this [`ThreadPool`](#threadpool) using
+execute functions explicitly within this [`ThreadPool`](../index.md) using
 `ThreadPool::install()`. By contrast, top-level rayon functions
 (like `join()`) will execute implicitly within the current thread pool.
 
@@ -46,9 +46,9 @@ terminate.
 
 #### Implementations
 
-- `fn new(configuration: crate::Configuration) -> Result<ThreadPool, Box<dyn Error>>` — [`Configuration`](../index.md), [`ThreadPool`](#threadpool)
+- `fn new(configuration: crate::Configuration) -> Result<ThreadPool, Box<dyn Error>>` — [`Configuration`](../index.md), [`ThreadPool`](../index.md)
 
-- `fn build<S>(builder: ThreadPoolBuilder<S>) -> Result<ThreadPool, ThreadPoolBuildError>` — [`ThreadPoolBuilder`](../index.md), [`ThreadPool`](#threadpool), [`ThreadPoolBuildError`](../index.md)
+- `fn build<S>(builder: ThreadPoolBuilder<S>) -> Result<ThreadPool, ThreadPoolBuildError>` — [`ThreadPoolBuilder`](../index.md), [`ThreadPool`](../index.md), [`ThreadPoolBuildError`](../index.md)
 
 - `fn install<OP, R>(self: &Self, op: OP) -> R`
 
@@ -76,9 +76,9 @@ terminate.
 
 - `fn spawn_broadcast<OP>(self: &Self, op: OP)`
 
-- `fn yield_now(self: &Self) -> Option<Yield>` — [`Yield`](#yield)
+- `fn yield_now(self: &Self) -> Option<Yield>` — [`Yield`](../index.md)
 
-- `fn yield_local(self: &Self) -> Option<Yield>` — [`Yield`](#yield)
+- `fn yield_local(self: &Self) -> Option<Yield>` — [`Yield`](../index.md)
 
 #### Trait Implementations
 
@@ -115,7 +115,7 @@ enum Yield {
 }
 ```
 
-Result of [`yield_now()`](#yield-now) or [`yield_local()`](#yield-local).
+Result of [`yield_now()`](../index.md) or [`yield_local()`](../index.md).
 
 #### Variants
 
@@ -131,7 +131,7 @@ Result of [`yield_now()`](#yield-now) or [`yield_local()`](#yield-local).
 
 ##### `impl Clone for Yield`
 
-- `fn clone(self: &Self) -> Yield` — [`Yield`](#yield)
+- `fn clone(self: &Self) -> Yield` — [`Yield`](../index.md)
 
 ##### `impl Copy for Yield`
 
@@ -143,7 +143,7 @@ Result of [`yield_now()`](#yield-now) or [`yield_local()`](#yield-local).
 
 ##### `impl PartialEq for Yield`
 
-- `fn eq(self: &Self, other: &Yield) -> bool` — [`Yield`](#yield)
+- `fn eq(self: &Self, other: &Yield) -> bool` — [`Yield`](../index.md)
 
 ##### `impl<T> Pointable for Yield`
 
@@ -233,7 +233,7 @@ If the current thread is part of a rayon thread pool, this looks for a
 single unit of pending work in this thread's queue, then executes it.
 Completion of that work might include nested work or further work stealing.
 
-This is similar to [`yield_now()`](#yield-now), but does not steal from other threads.
+This is similar to [`yield_now()`](../index.md), but does not steal from other threads.
 
 Returns `Some(Yield::Executed)` if anything was executed, `Some(Yield::Idle)` if
 nothing was available, or `None` if this thread is not part of any pool at all.

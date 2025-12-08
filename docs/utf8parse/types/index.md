@@ -1,4 +1,4 @@
-_[utf8parse](../index.md) / [types](index.md)_
+*[utf8parse](../index.md) / [types](index.md)*
 
 ---
 
@@ -152,3 +152,4 @@ the following bytes are subject to different conditions than a tail byte.
 - `fn eq(self: &Self, other: &State) -> bool` — [`State`](#state)
 
 ##### `impl StructuralPartialEq for State`
+

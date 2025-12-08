@@ -18,7 +18,7 @@ where
 
 Low-level hash table with explicit hashing.
 
-The primary use case for this type over [`HashMap`](../hash_map/index.md) or [`HashSet`](../hash_set/index.md) is to
+The primary use case for this type over [`HashMap`](../index.md) or [`HashSet`](../index.md) is to
 support types that do not implement the `Hash` and `Eq` traits, but
 instead require additional data not contained in the key itself to compute a
 hash and compare two elements for equality.
@@ -41,7 +41,7 @@ instead be wrapped in a helper type which handles the work of calculating
 hash values and comparing elements.
 
 Due to its low-level nature, this type provides fewer guarantees than
-[`HashMap`](../hash_map/index.md) and [`HashSet`](../hash_set/index.md). Specifically, the API allows you to shoot
+[`HashMap`](../index.md) and [`HashSet`](../index.md). Specifically, the API allows you to shoot
 yourself in the foot by having multiple elements with identical keys in the
 table. The table itself will still function correctly and lookups will
 arbitrarily return one of the matching elements. However you should avoid
@@ -54,9 +54,81 @@ doing this because it changes the runtime of hash table operations from
 
 #### Implementations
 
-- `const fn new() -> Self`
+- `const fn new_in(alloc: A) -> Self`
 
-- `fn with_capacity(capacity: usize) -> Self`
+- `fn with_capacity_in(capacity: usize, alloc: A) -> Self`
+
+- `fn allocator(self: &Self) -> &A`
+
+- `fn find(self: &Self, hash: u64, eq: impl FnMut(&T) -> bool) -> Option<&T>`
+
+- `fn find_mut(self: &mut Self, hash: u64, eq: impl FnMut(&T) -> bool) -> Option<&mut T>`
+
+- `fn find_entry(self: &mut Self, hash: u64, eq: impl FnMut(&T) -> bool) -> Result<OccupiedEntry<'_, T, A>, AbsentEntry<'_, T, A>>` — [`OccupiedEntry`](../hash_table/index.md), [`AbsentEntry`](../hash_table/index.md)
+
+- `fn find_bucket_index(self: &Self, hash: u64, eq: impl FnMut(&T) -> bool) -> Option<usize>`
+
+- `fn entry(self: &mut Self, hash: u64, eq: impl FnMut(&T) -> bool, hasher: impl Fn(&T) -> u64) -> Entry<'_, T, A>` — [`Entry`](../hash_table/index.md)
+
+- `fn get_bucket_entry(self: &mut Self, index: usize) -> Result<OccupiedEntry<'_, T, A>, AbsentEntry<'_, T, A>>` — [`OccupiedEntry`](../hash_table/index.md), [`AbsentEntry`](../hash_table/index.md)
+
+- `unsafe fn get_bucket_entry_unchecked(self: &mut Self, index: usize) -> OccupiedEntry<'_, T, A>` — [`OccupiedEntry`](../hash_table/index.md)
+
+- `fn get_bucket(self: &Self, index: usize) -> Option<&T>`
+
+- `unsafe fn get_bucket_unchecked(self: &Self, index: usize) -> &T`
+
+- `fn get_bucket_mut(self: &mut Self, index: usize) -> Option<&mut T>`
+
+- `unsafe fn get_bucket_unchecked_mut(self: &mut Self, index: usize) -> &mut T`
+
+- `fn insert_unique(self: &mut Self, hash: u64, value: T, hasher: impl Fn(&T) -> u64) -> OccupiedEntry<'_, T, A>` — [`OccupiedEntry`](../hash_table/index.md)
+
+- `fn clear(self: &mut Self)`
+
+- `fn shrink_to_fit(self: &mut Self, hasher: impl Fn(&T) -> u64)`
+
+- `fn shrink_to(self: &mut Self, min_capacity: usize, hasher: impl Fn(&T) -> u64)`
+
+- `fn reserve(self: &mut Self, additional: usize, hasher: impl Fn(&T) -> u64)`
+
+- `fn try_reserve(self: &mut Self, additional: usize, hasher: impl Fn(&T) -> u64) -> Result<(), TryReserveError>` — [`TryReserveError`](../index.md)
+
+- `fn num_buckets(self: &Self) -> usize`
+
+- `fn capacity(self: &Self) -> usize`
+
+- `fn len(self: &Self) -> usize`
+
+- `fn is_empty(self: &Self) -> bool`
+
+- `fn iter(self: &Self) -> Iter<'_, T>` — [`Iter`](../hash_table/index.md)
+
+- `fn iter_mut(self: &mut Self) -> IterMut<'_, T>` — [`IterMut`](../hash_table/index.md)
+
+- `fn iter_buckets(self: &Self) -> IterBuckets<'_, T>` — [`IterBuckets`](../hash_table/index.md)
+
+- `fn iter_hash(self: &Self, hash: u64) -> IterHash<'_, T>` — [`IterHash`](../hash_table/index.md)
+
+- `fn iter_hash_mut(self: &mut Self, hash: u64) -> IterHashMut<'_, T>` — [`IterHashMut`](../hash_table/index.md)
+
+- `fn iter_hash_buckets(self: &Self, hash: u64) -> IterHashBuckets<'_, T>` — [`IterHashBuckets`](../hash_table/index.md)
+
+- `fn retain(self: &mut Self, f: impl FnMut(&mut T) -> bool)`
+
+- `fn drain(self: &mut Self) -> Drain<'_, T, A>` — [`Drain`](../hash_table/index.md)
+
+- `fn extract_if<F>(self: &mut Self, f: F) -> ExtractIf<'_, T, F, A>` — [`ExtractIf`](../hash_table/index.md)
+
+- `fn get_disjoint_mut<const N: usize>(self: &mut Self, hashes: [u64; N], eq: impl FnMut(usize, &T) -> bool) -> [Option<&mut T>; N]`
+
+- `fn get_many_mut<const N: usize>(self: &mut Self, hashes: [u64; N], eq: impl FnMut(usize, &T) -> bool) -> [Option<&mut T>; N]`
+
+- `unsafe fn get_disjoint_unchecked_mut<const N: usize>(self: &mut Self, hashes: [u64; N], eq: impl FnMut(usize, &T) -> bool) -> [Option<&mut T>; N]`
+
+- `unsafe fn get_many_unchecked_mut<const N: usize>(self: &mut Self, hashes: [u64; N], eq: impl FnMut(usize, &T) -> bool) -> [Option<&mut T>; N]`
+
+- `fn allocation_size(self: &Self) -> usize`
 
 #### Trait Implementations
 
@@ -150,7 +222,7 @@ fn main() {
 
 - `fn into_mut(self: Self) -> &'a mut T`
 
-- `fn into_table(self: Self) -> &'a mut HashTable<T, A>` — [`HashTable`](../hash_table/index.md)
+- `fn into_table(self: Self) -> &'a mut HashTable<T, A>` — [`HashTable`](../index.md)
 
 - `fn bucket_index(self: &Self) -> usize`
 
@@ -218,7 +290,7 @@ fn main() {
 
 - `fn insert(self: Self, value: T) -> OccupiedEntry<'a, T, A>` — [`OccupiedEntry`](../hash_table/index.md)
 
-- `fn into_table(self: Self) -> &'a mut HashTable<T, A>` — [`HashTable`](../hash_table/index.md)
+- `fn into_table(self: Self) -> &'a mut HashTable<T, A>` — [`HashTable`](../index.md)
 
 #### Trait Implementations
 
@@ -279,7 +351,7 @@ fn main() {
 
 #### Implementations
 
-- `fn into_table(self: Self) -> &'a mut HashTable<T, A>` — [`HashTable`](../hash_table/index.md)
+- `fn into_table(self: Self) -> &'a mut HashTable<T, A>` — [`HashTable`](../index.md)
 
 #### Trait Implementations
 
@@ -299,7 +371,7 @@ struct Iter<'a, T> {
 An iterator over the entries of a `HashTable` in arbitrary order.
 The iterator element type is `&'a T`.
 
-This `struct` is created by the [`iter`](#iter) method on [`HashTable`](../hash_table/index.md). See its
+This `struct` is created by the [`iter`](#iter) method on [`HashTable`](../index.md). See its
 documentation for more.
 
 
@@ -354,7 +426,7 @@ struct IterMut<'a, T> {
 A mutable iterator over the entries of a `HashTable` in arbitrary order.
 The iterator element type is `&'a mut T`.
 
-This `struct` is created by the `iter_mut` method on [`HashTable`](../hash_table/index.md). See its
+This `struct` is created by the `iter_mut` method on [`HashTable`](../index.md). See its
 documentation for more.
 
 
@@ -459,7 +531,7 @@ struct IterHash<'a, T> {
 An iterator over the entries of a `HashTable` that could match a given hash.
 The iterator element type is `&'a T`.
 
-This `struct` is created by the `iter_hash` method on [`HashTable`](../hash_table/index.md). See its
+This `struct` is created by the `iter_hash` method on [`HashTable`](../index.md). See its
 documentation for more.
 
 
@@ -508,7 +580,7 @@ struct IterHashMut<'a, T> {
 A mutable iterator over the entries of a `HashTable` that could match a given hash.
 The iterator element type is `&'a mut T`.
 
-This `struct` is created by the `iter_hash_mut` method on [`HashTable`](../hash_table/index.md). See its
+This `struct` is created by the `iter_hash_mut` method on [`HashTable`](../index.md). See its
 documentation for more.
 
 
@@ -598,7 +670,7 @@ where
 An owning iterator over the entries of a `HashTable` in arbitrary order.
 The iterator element type is `T`.
 
-This `struct` is created by the `into_iter` method on [`HashTable`](../hash_table/index.md)
+This `struct` is created by the `into_iter` method on [`HashTable`](../index.md)
 (provided by the `IntoIterator` trait). See its documentation for more.
 The table cannot be used after calling that method.
 
@@ -649,7 +721,7 @@ struct Drain<'a, T, A: Allocator> {
 
 A draining iterator over the items of a `HashTable`.
 
-This `struct` is created by the `drain` method on [`HashTable`](../hash_table/index.md).
+This `struct` is created by the `drain` method on [`HashTable`](../index.md).
 See its documentation for more.
 
 
@@ -733,7 +805,7 @@ where
 
 A view into a single entry in a table, which may either be vacant or occupied.
 
-This `enum` is constructed from the `entry` method on [`HashTable`](../hash_table/index.md).
+This `enum` is constructed from the `entry` method on [`HashTable`](../index.md).
 
 
 # Examples

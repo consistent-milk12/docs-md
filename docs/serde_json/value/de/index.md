@@ -23,7 +23,7 @@ struct EnumDeserializer {
 
 - `type Variant = VariantDeserializer`
 
-- `fn variant_seed<V>(self: Self, seed: V) -> Result<(<V as >::Value, VariantDeserializer), Error>` — [`VariantDeserializer`](#variantdeserializer), [`Error`](../../error/index.md)
+- `fn variant_seed<V>(self: Self, seed: V) -> Result<(<V as >::Value, VariantDeserializer), Error>` — [`VariantDeserializer`](#variantdeserializer), [`Error`](../../index.md)
 
 ### `VariantDeserializer`
 
@@ -39,13 +39,13 @@ struct VariantDeserializer {
 
 - `type Error = Error`
 
-- `fn unit_variant(self: Self) -> Result<(), Error>` — [`Error`](../../error/index.md)
+- `fn unit_variant(self: Self) -> Result<(), Error>` — [`Error`](../../index.md)
 
-- `fn newtype_variant_seed<T>(self: Self, seed: T) -> Result<<T as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn newtype_variant_seed<T>(self: Self, seed: T) -> Result<<T as >::Value, Error>` — [`Error`](../../index.md)
 
-- `fn tuple_variant<V>(self: Self, _len: usize, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn tuple_variant<V>(self: Self, _len: usize, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
 
-- `fn struct_variant<V>(self: Self, _fields: &'static [&'static str], visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn struct_variant<V>(self: Self, _fields: &'static [&'static str], visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
 
 ### `SeqDeserializer`
 
@@ -57,7 +57,7 @@ struct SeqDeserializer {
 
 #### Implementations
 
-- `fn new(vec: Vec<Value>) -> Self` — [`Value`](../index.md)
+- `fn new(vec: Vec<Value>) -> Self` — [`Value`](../../index.md)
 
 #### Trait Implementations
 
@@ -65,7 +65,7 @@ struct SeqDeserializer {
 
 - `type Error = Error`
 
-- `fn next_element_seed<T>(self: &mut Self, seed: T) -> Result<Option<<T as >::Value>, Error>` — [`Error`](../../error/index.md)
+- `fn next_element_seed<T>(self: &mut Self, seed: T) -> Result<Option<<T as >::Value>, Error>` — [`Error`](../../index.md)
 
 - `fn size_hint(self: &Self) -> Option<usize>`
 
@@ -80,7 +80,7 @@ struct MapDeserializer {
 
 #### Implementations
 
-- `fn new(map: Map<String, Value>) -> Self` — [`Map`](../../map/index.md), [`Value`](../index.md)
+- `fn new(map: Map<String, Value>) -> Self` — [`Map`](../../index.md), [`Value`](../../index.md)
 
 #### Trait Implementations
 
@@ -88,9 +88,9 @@ struct MapDeserializer {
 
 - `type Error = Error`
 
-- `fn next_key_seed<T>(self: &mut Self, seed: T) -> Result<Option<<T as >::Value>, Error>` — [`Error`](../../error/index.md)
+- `fn next_key_seed<T>(self: &mut Self, seed: T) -> Result<Option<<T as >::Value>, Error>` — [`Error`](../../index.md)
 
-- `fn next_value_seed<T>(self: &mut Self, seed: T) -> Result<<T as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn next_value_seed<T>(self: &mut Self, seed: T) -> Result<<T as >::Value, Error>` — [`Error`](../../index.md)
 
 - `fn size_hint(self: &Self) -> Option<usize>`
 
@@ -111,7 +111,7 @@ struct EnumRefDeserializer<'de> {
 
 - `type Variant = VariantRefDeserializer<'de>`
 
-- `fn variant_seed<V>(self: Self, seed: V) -> Result<(<V as >::Value, <Self as >::Variant), Error>` — [`Error`](../../error/index.md)
+- `fn variant_seed<V>(self: Self, seed: V) -> Result<(<V as >::Value, <Self as >::Variant), Error>` — [`Error`](../../index.md)
 
 ### `VariantRefDeserializer<'de>`
 
@@ -127,13 +127,13 @@ struct VariantRefDeserializer<'de> {
 
 - `type Error = Error`
 
-- `fn unit_variant(self: Self) -> Result<(), Error>` — [`Error`](../../error/index.md)
+- `fn unit_variant(self: Self) -> Result<(), Error>` — [`Error`](../../index.md)
 
-- `fn newtype_variant_seed<T>(self: Self, seed: T) -> Result<<T as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn newtype_variant_seed<T>(self: Self, seed: T) -> Result<<T as >::Value, Error>` — [`Error`](../../index.md)
 
-- `fn tuple_variant<V>(self: Self, _len: usize, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn tuple_variant<V>(self: Self, _len: usize, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
 
-- `fn struct_variant<V>(self: Self, _fields: &'static [&'static str], visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn struct_variant<V>(self: Self, _fields: &'static [&'static str], visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
 
 ### `SeqRefDeserializer<'de>`
 
@@ -145,7 +145,7 @@ struct SeqRefDeserializer<'de> {
 
 #### Implementations
 
-- `fn new(slice: &'de [Value]) -> Self` — [`Value`](../index.md)
+- `fn new(slice: &'de [Value]) -> Self` — [`Value`](../../index.md)
 
 #### Trait Implementations
 
@@ -153,7 +153,7 @@ struct SeqRefDeserializer<'de> {
 
 - `type Error = Error`
 
-- `fn next_element_seed<T>(self: &mut Self, seed: T) -> Result<Option<<T as >::Value>, Error>` — [`Error`](../../error/index.md)
+- `fn next_element_seed<T>(self: &mut Self, seed: T) -> Result<Option<<T as >::Value>, Error>` — [`Error`](../../index.md)
 
 - `fn size_hint(self: &Self) -> Option<usize>`
 
@@ -168,7 +168,7 @@ struct MapRefDeserializer<'de> {
 
 #### Implementations
 
-- `fn new(map: &'de Map<String, Value>) -> Self` — [`Map`](../../map/index.md), [`Value`](../index.md)
+- `fn new(map: &'de Map<String, Value>) -> Self` — [`Map`](../../index.md), [`Value`](../../index.md)
 
 #### Trait Implementations
 
@@ -176,9 +176,9 @@ struct MapRefDeserializer<'de> {
 
 - `type Error = Error`
 
-- `fn next_key_seed<T>(self: &mut Self, seed: T) -> Result<Option<<T as >::Value>, Error>` — [`Error`](../../error/index.md)
+- `fn next_key_seed<T>(self: &mut Self, seed: T) -> Result<Option<<T as >::Value>, Error>` — [`Error`](../../index.md)
 
-- `fn next_value_seed<T>(self: &mut Self, seed: T) -> Result<<T as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn next_value_seed<T>(self: &mut Self, seed: T) -> Result<<T as >::Value, Error>` — [`Error`](../../index.md)
 
 - `fn size_hint(self: &Self) -> Option<usize>`
 
@@ -196,39 +196,39 @@ struct MapKeyDeserializer<'de> {
 
 - `type Error = Error`
 
-- `fn deserialize_any<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_any<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
 
-- `fn deserialize_i8<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_i8<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
 
-- `fn deserialize_i16<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_i16<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
 
-- `fn deserialize_i32<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_i32<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
 
-- `fn deserialize_i64<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_i64<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
 
-- `fn deserialize_u8<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_u8<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
 
-- `fn deserialize_u16<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_u16<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
 
-- `fn deserialize_u32<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_u32<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
 
-- `fn deserialize_u64<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_u64<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
 
-- `fn deserialize_f32<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_f32<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
 
-- `fn deserialize_f64<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_f64<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
 
-- `fn deserialize_i128<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_i128<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
 
-- `fn deserialize_u128<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_u128<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
 
-- `fn deserialize_bool<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_bool<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
 
-- `fn deserialize_option<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_option<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
 
-- `fn deserialize_newtype_struct<V>(self: Self, _name: &'static str, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_newtype_struct<V>(self: Self, _name: &'static str, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
 
-- `fn deserialize_enum<V>(self: Self, name: &'static str, variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_enum<V>(self: Self, name: &'static str, variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
 
 - `fn deserialize_char<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
 
@@ -304,9 +304,9 @@ struct BorrowedCowStrDeserializer<'de> {
 
 - `type Error = Error`
 
-- `fn deserialize_any<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_any<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
 
-- `fn deserialize_enum<V>(self: Self, _name: &str, _variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_enum<V>(self: Self, _name: &str, _variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
 
 - `fn deserialize_bool<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
 
@@ -372,7 +372,7 @@ struct BorrowedCowStrDeserializer<'de> {
 
 - `type Variant = UnitOnly`
 
-- `fn variant_seed<T>(self: Self, seed: T) -> Result<(<T as >::Value, <Self as >::Variant), Error>` — [`Error`](../../error/index.md)
+- `fn variant_seed<T>(self: Self, seed: T) -> Result<(<T as >::Value, <Self as >::Variant), Error>` — [`Error`](../../index.md)
 
 ### `UnitOnly`
 
@@ -386,13 +386,13 @@ struct UnitOnly;
 
 - `type Error = Error`
 
-- `fn unit_variant(self: Self) -> Result<(), Error>` — [`Error`](../../error/index.md)
+- `fn unit_variant(self: Self) -> Result<(), Error>` — [`Error`](../../index.md)
 
-- `fn newtype_variant_seed<T>(self: Self, _seed: T) -> Result<<T as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn newtype_variant_seed<T>(self: Self, _seed: T) -> Result<<T as >::Value, Error>` — [`Error`](../../index.md)
 
-- `fn tuple_variant<V>(self: Self, _len: usize, _visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn tuple_variant<V>(self: Self, _len: usize, _visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
 
-- `fn struct_variant<V>(self: Self, _fields: &'static [&'static str], _visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn struct_variant<V>(self: Self, _fields: &'static [&'static str], _visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../index.md)
 
 ## Enums
 

@@ -6,7 +6,7 @@
 
 Unified link registry for cross-crate documentation.
 
-This module provides [`UnifiedLinkRegistry`](#unifiedlinkregistry) which maps item IDs across
+This module provides [`UnifiedLinkRegistry`](../../index.md) which maps item IDs across
 multiple crates to their documentation file paths, enabling cross-crate
 linking in the generated markdown.
 
@@ -76,7 +76,7 @@ struct UnifiedLinkRegistry {
 
 Registry mapping item IDs to documentation paths across multiple crates.
 
-Unlike [`LinkRegistry`](../../linker/index.md) which handles a single crate, this registry
+Unlike [`LinkRegistry`](../../index.md) which handles a single crate, this registry
 spans multiple crates and supports cross-crate link resolution with
 disambiguation based on local/primary crate preference.
 
@@ -132,7 +132,7 @@ This avoids allocating a `String` for the crate name on every lookup.
 
 #### Implementations
 
-- `fn build(crates: &CrateCollection, primary_crate: Option<&str>) -> Self` — [`CrateCollection`](../collection/index.md)
+- `fn build(crates: &CrateCollection, primary_crate: Option<&str>) -> Self` — [`CrateCollection`](../../index.md)
 
 - `fn register_crate(self: &mut Self, crate_name: &str, krate: &Crate)`
 
@@ -176,7 +176,7 @@ This avoids allocating a `String` for the crate name on every lookup.
 
 ##### `impl Default for UnifiedLinkRegistry`
 
-- `fn default() -> UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](#unifiedlinkregistry)
+- `fn default() -> UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](../../index.md)
 
 ##### `impl<T> Instrument for UnifiedLinkRegistry`
 

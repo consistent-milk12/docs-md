@@ -233,35 +233,35 @@ assembly.
 
 - `const fn into_inner(self: Self) -> bool`
 
-- `fn load(self: &Self, order: Ordering) -> bool`
+- `fn load(self: &Self, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn store(self: &Self, val: bool, order: Ordering)`
+- `fn store(self: &Self, val: bool, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn swap(self: &Self, val: bool, order: Ordering) -> bool`
+- `fn swap(self: &Self, val: bool, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn compare_exchange(self: &Self, current: bool, new: bool, success: Ordering, failure: Ordering) -> Result<bool, bool>`
+- `fn compare_exchange(self: &Self, current: bool, new: bool, success: Ordering, failure: Ordering) -> Result<bool, bool>` — [`Ordering`](#ordering)
 
-- `fn compare_exchange_weak(self: &Self, current: bool, new: bool, success: Ordering, failure: Ordering) -> Result<bool, bool>`
+- `fn compare_exchange_weak(self: &Self, current: bool, new: bool, success: Ordering, failure: Ordering) -> Result<bool, bool>` — [`Ordering`](#ordering)
 
-- `fn fetch_and(self: &Self, val: bool, order: Ordering) -> bool`
+- `fn fetch_and(self: &Self, val: bool, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn and(self: &Self, val: bool, order: Ordering)`
+- `fn and(self: &Self, val: bool, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_nand(self: &Self, val: bool, order: Ordering) -> bool`
+- `fn fetch_nand(self: &Self, val: bool, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn fetch_or(self: &Self, val: bool, order: Ordering) -> bool`
+- `fn fetch_or(self: &Self, val: bool, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn or(self: &Self, val: bool, order: Ordering)`
+- `fn or(self: &Self, val: bool, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_xor(self: &Self, val: bool, order: Ordering) -> bool`
+- `fn fetch_xor(self: &Self, val: bool, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn xor(self: &Self, val: bool, order: Ordering)`
+- `fn xor(self: &Self, val: bool, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_not(self: &Self, order: Ordering) -> bool`
+- `fn fetch_not(self: &Self, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn not(self: &Self, order: Ordering)`
+- `fn not(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<bool, bool>`
+- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<bool, bool>` — [`Ordering`](#ordering)
 
 - `const fn as_ptr(self: &Self) -> *mut bool`
 
@@ -313,37 +313,37 @@ assembly.
 
 - `const fn into_inner(self: Self) -> *mut T`
 
-- `fn load(self: &Self, order: Ordering) -> *mut T`
+- `fn load(self: &Self, order: Ordering) -> *mut T` — [`Ordering`](#ordering)
 
-- `fn store(self: &Self, ptr: *mut T, order: Ordering)`
+- `fn store(self: &Self, ptr: *mut T, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn swap(self: &Self, ptr: *mut T, order: Ordering) -> *mut T`
+- `fn swap(self: &Self, ptr: *mut T, order: Ordering) -> *mut T` — [`Ordering`](#ordering)
 
-- `fn compare_exchange(self: &Self, current: *mut T, new: *mut T, success: Ordering, failure: Ordering) -> Result<*mut T, *mut T>`
+- `fn compare_exchange(self: &Self, current: *mut T, new: *mut T, success: Ordering, failure: Ordering) -> Result<*mut T, *mut T>` — [`Ordering`](#ordering)
 
-- `fn compare_exchange_weak(self: &Self, current: *mut T, new: *mut T, success: Ordering, failure: Ordering) -> Result<*mut T, *mut T>`
+- `fn compare_exchange_weak(self: &Self, current: *mut T, new: *mut T, success: Ordering, failure: Ordering) -> Result<*mut T, *mut T>` — [`Ordering`](#ordering)
 
-- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<*mut T, *mut T>`
+- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<*mut T, *mut T>` — [`Ordering`](#ordering)
 
-- `fn fetch_ptr_add(self: &Self, val: usize, order: Ordering) -> *mut T`
+- `fn fetch_ptr_add(self: &Self, val: usize, order: Ordering) -> *mut T` — [`Ordering`](#ordering)
 
-- `fn fetch_ptr_sub(self: &Self, val: usize, order: Ordering) -> *mut T`
+- `fn fetch_ptr_sub(self: &Self, val: usize, order: Ordering) -> *mut T` — [`Ordering`](#ordering)
 
-- `fn fetch_byte_add(self: &Self, val: usize, order: Ordering) -> *mut T`
+- `fn fetch_byte_add(self: &Self, val: usize, order: Ordering) -> *mut T` — [`Ordering`](#ordering)
 
-- `fn fetch_byte_sub(self: &Self, val: usize, order: Ordering) -> *mut T`
+- `fn fetch_byte_sub(self: &Self, val: usize, order: Ordering) -> *mut T` — [`Ordering`](#ordering)
 
-- `fn fetch_or(self: &Self, val: usize, order: Ordering) -> *mut T`
+- `fn fetch_or(self: &Self, val: usize, order: Ordering) -> *mut T` — [`Ordering`](#ordering)
 
-- `fn fetch_and(self: &Self, val: usize, order: Ordering) -> *mut T`
+- `fn fetch_and(self: &Self, val: usize, order: Ordering) -> *mut T` — [`Ordering`](#ordering)
 
-- `fn fetch_xor(self: &Self, val: usize, order: Ordering) -> *mut T`
+- `fn fetch_xor(self: &Self, val: usize, order: Ordering) -> *mut T` — [`Ordering`](#ordering)
 
-- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool`
+- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool`
+- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool`
+- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
 - `fn as_atomic_usize(self: &Self) -> &AtomicUsize` — [`AtomicUsize`](#atomicusize)
 
@@ -397,57 +397,57 @@ atomic instructions or locks will be used.
 
 - `const fn into_inner(self: Self) -> isize`
 
-- `fn load(self: &Self, order: Ordering) -> isize`
+- `fn load(self: &Self, order: Ordering) -> isize` — [`Ordering`](#ordering)
 
-- `fn store(self: &Self, val: isize, order: Ordering)`
+- `fn store(self: &Self, val: isize, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn swap(self: &Self, val: isize, order: Ordering) -> isize`
+- `fn swap(self: &Self, val: isize, order: Ordering) -> isize` — [`Ordering`](#ordering)
 
-- `fn compare_exchange(self: &Self, current: isize, new: isize, success: Ordering, failure: Ordering) -> Result<isize, isize>`
+- `fn compare_exchange(self: &Self, current: isize, new: isize, success: Ordering, failure: Ordering) -> Result<isize, isize>` — [`Ordering`](#ordering)
 
-- `fn compare_exchange_weak(self: &Self, current: isize, new: isize, success: Ordering, failure: Ordering) -> Result<isize, isize>`
+- `fn compare_exchange_weak(self: &Self, current: isize, new: isize, success: Ordering, failure: Ordering) -> Result<isize, isize>` — [`Ordering`](#ordering)
 
-- `fn fetch_add(self: &Self, val: isize, order: Ordering) -> isize`
+- `fn fetch_add(self: &Self, val: isize, order: Ordering) -> isize` — [`Ordering`](#ordering)
 
-- `fn add(self: &Self, val: isize, order: Ordering)`
+- `fn add(self: &Self, val: isize, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_sub(self: &Self, val: isize, order: Ordering) -> isize`
+- `fn fetch_sub(self: &Self, val: isize, order: Ordering) -> isize` — [`Ordering`](#ordering)
 
-- `fn sub(self: &Self, val: isize, order: Ordering)`
+- `fn sub(self: &Self, val: isize, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_and(self: &Self, val: isize, order: Ordering) -> isize`
+- `fn fetch_and(self: &Self, val: isize, order: Ordering) -> isize` — [`Ordering`](#ordering)
 
-- `fn and(self: &Self, val: isize, order: Ordering)`
+- `fn and(self: &Self, val: isize, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_nand(self: &Self, val: isize, order: Ordering) -> isize`
+- `fn fetch_nand(self: &Self, val: isize, order: Ordering) -> isize` — [`Ordering`](#ordering)
 
-- `fn fetch_or(self: &Self, val: isize, order: Ordering) -> isize`
+- `fn fetch_or(self: &Self, val: isize, order: Ordering) -> isize` — [`Ordering`](#ordering)
 
-- `fn or(self: &Self, val: isize, order: Ordering)`
+- `fn or(self: &Self, val: isize, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_xor(self: &Self, val: isize, order: Ordering) -> isize`
+- `fn fetch_xor(self: &Self, val: isize, order: Ordering) -> isize` — [`Ordering`](#ordering)
 
-- `fn xor(self: &Self, val: isize, order: Ordering)`
+- `fn xor(self: &Self, val: isize, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<isize, isize>`
+- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<isize, isize>` — [`Ordering`](#ordering)
 
-- `fn fetch_max(self: &Self, val: isize, order: Ordering) -> isize`
+- `fn fetch_max(self: &Self, val: isize, order: Ordering) -> isize` — [`Ordering`](#ordering)
 
-- `fn fetch_min(self: &Self, val: isize, order: Ordering) -> isize`
+- `fn fetch_min(self: &Self, val: isize, order: Ordering) -> isize` — [`Ordering`](#ordering)
 
-- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool`
+- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool`
+- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool`
+- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn fetch_not(self: &Self, order: Ordering) -> isize`
+- `fn fetch_not(self: &Self, order: Ordering) -> isize` — [`Ordering`](#ordering)
 
-- `fn not(self: &Self, order: Ordering)`
+- `fn not(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_neg(self: &Self, order: Ordering) -> isize`
+- `fn fetch_neg(self: &Self, order: Ordering) -> isize` — [`Ordering`](#ordering)
 
-- `fn neg(self: &Self, order: Ordering)`
+- `fn neg(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
 
 - `const fn as_ptr(self: &Self) -> *mut isize`
 
@@ -495,57 +495,57 @@ atomic instructions or locks will be used.
 
 - `const fn into_inner(self: Self) -> usize`
 
-- `fn load(self: &Self, order: Ordering) -> usize`
+- `fn load(self: &Self, order: Ordering) -> usize` — [`Ordering`](#ordering)
 
-- `fn store(self: &Self, val: usize, order: Ordering)`
+- `fn store(self: &Self, val: usize, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn swap(self: &Self, val: usize, order: Ordering) -> usize`
+- `fn swap(self: &Self, val: usize, order: Ordering) -> usize` — [`Ordering`](#ordering)
 
-- `fn compare_exchange(self: &Self, current: usize, new: usize, success: Ordering, failure: Ordering) -> Result<usize, usize>`
+- `fn compare_exchange(self: &Self, current: usize, new: usize, success: Ordering, failure: Ordering) -> Result<usize, usize>` — [`Ordering`](#ordering)
 
-- `fn compare_exchange_weak(self: &Self, current: usize, new: usize, success: Ordering, failure: Ordering) -> Result<usize, usize>`
+- `fn compare_exchange_weak(self: &Self, current: usize, new: usize, success: Ordering, failure: Ordering) -> Result<usize, usize>` — [`Ordering`](#ordering)
 
-- `fn fetch_add(self: &Self, val: usize, order: Ordering) -> usize`
+- `fn fetch_add(self: &Self, val: usize, order: Ordering) -> usize` — [`Ordering`](#ordering)
 
-- `fn add(self: &Self, val: usize, order: Ordering)`
+- `fn add(self: &Self, val: usize, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_sub(self: &Self, val: usize, order: Ordering) -> usize`
+- `fn fetch_sub(self: &Self, val: usize, order: Ordering) -> usize` — [`Ordering`](#ordering)
 
-- `fn sub(self: &Self, val: usize, order: Ordering)`
+- `fn sub(self: &Self, val: usize, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_and(self: &Self, val: usize, order: Ordering) -> usize`
+- `fn fetch_and(self: &Self, val: usize, order: Ordering) -> usize` — [`Ordering`](#ordering)
 
-- `fn and(self: &Self, val: usize, order: Ordering)`
+- `fn and(self: &Self, val: usize, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_nand(self: &Self, val: usize, order: Ordering) -> usize`
+- `fn fetch_nand(self: &Self, val: usize, order: Ordering) -> usize` — [`Ordering`](#ordering)
 
-- `fn fetch_or(self: &Self, val: usize, order: Ordering) -> usize`
+- `fn fetch_or(self: &Self, val: usize, order: Ordering) -> usize` — [`Ordering`](#ordering)
 
-- `fn or(self: &Self, val: usize, order: Ordering)`
+- `fn or(self: &Self, val: usize, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_xor(self: &Self, val: usize, order: Ordering) -> usize`
+- `fn fetch_xor(self: &Self, val: usize, order: Ordering) -> usize` — [`Ordering`](#ordering)
 
-- `fn xor(self: &Self, val: usize, order: Ordering)`
+- `fn xor(self: &Self, val: usize, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<usize, usize>`
+- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<usize, usize>` — [`Ordering`](#ordering)
 
-- `fn fetch_max(self: &Self, val: usize, order: Ordering) -> usize`
+- `fn fetch_max(self: &Self, val: usize, order: Ordering) -> usize` — [`Ordering`](#ordering)
 
-- `fn fetch_min(self: &Self, val: usize, order: Ordering) -> usize`
+- `fn fetch_min(self: &Self, val: usize, order: Ordering) -> usize` — [`Ordering`](#ordering)
 
-- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool`
+- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool`
+- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool`
+- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn fetch_not(self: &Self, order: Ordering) -> usize`
+- `fn fetch_not(self: &Self, order: Ordering) -> usize` — [`Ordering`](#ordering)
 
-- `fn not(self: &Self, order: Ordering)`
+- `fn not(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_neg(self: &Self, order: Ordering) -> usize`
+- `fn fetch_neg(self: &Self, order: Ordering) -> usize` — [`Ordering`](#ordering)
 
-- `fn neg(self: &Self, order: Ordering)`
+- `fn neg(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
 
 - `const fn as_ptr(self: &Self) -> *mut usize`
 
@@ -593,57 +593,57 @@ atomic instructions or locks will be used.
 
 - `const fn into_inner(self: Self) -> i8`
 
-- `fn load(self: &Self, order: Ordering) -> i8`
+- `fn load(self: &Self, order: Ordering) -> i8` — [`Ordering`](#ordering)
 
-- `fn store(self: &Self, val: i8, order: Ordering)`
+- `fn store(self: &Self, val: i8, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn swap(self: &Self, val: i8, order: Ordering) -> i8`
+- `fn swap(self: &Self, val: i8, order: Ordering) -> i8` — [`Ordering`](#ordering)
 
-- `fn compare_exchange(self: &Self, current: i8, new: i8, success: Ordering, failure: Ordering) -> Result<i8, i8>`
+- `fn compare_exchange(self: &Self, current: i8, new: i8, success: Ordering, failure: Ordering) -> Result<i8, i8>` — [`Ordering`](#ordering)
 
-- `fn compare_exchange_weak(self: &Self, current: i8, new: i8, success: Ordering, failure: Ordering) -> Result<i8, i8>`
+- `fn compare_exchange_weak(self: &Self, current: i8, new: i8, success: Ordering, failure: Ordering) -> Result<i8, i8>` — [`Ordering`](#ordering)
 
-- `fn fetch_add(self: &Self, val: i8, order: Ordering) -> i8`
+- `fn fetch_add(self: &Self, val: i8, order: Ordering) -> i8` — [`Ordering`](#ordering)
 
-- `fn add(self: &Self, val: i8, order: Ordering)`
+- `fn add(self: &Self, val: i8, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_sub(self: &Self, val: i8, order: Ordering) -> i8`
+- `fn fetch_sub(self: &Self, val: i8, order: Ordering) -> i8` — [`Ordering`](#ordering)
 
-- `fn sub(self: &Self, val: i8, order: Ordering)`
+- `fn sub(self: &Self, val: i8, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_and(self: &Self, val: i8, order: Ordering) -> i8`
+- `fn fetch_and(self: &Self, val: i8, order: Ordering) -> i8` — [`Ordering`](#ordering)
 
-- `fn and(self: &Self, val: i8, order: Ordering)`
+- `fn and(self: &Self, val: i8, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_nand(self: &Self, val: i8, order: Ordering) -> i8`
+- `fn fetch_nand(self: &Self, val: i8, order: Ordering) -> i8` — [`Ordering`](#ordering)
 
-- `fn fetch_or(self: &Self, val: i8, order: Ordering) -> i8`
+- `fn fetch_or(self: &Self, val: i8, order: Ordering) -> i8` — [`Ordering`](#ordering)
 
-- `fn or(self: &Self, val: i8, order: Ordering)`
+- `fn or(self: &Self, val: i8, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_xor(self: &Self, val: i8, order: Ordering) -> i8`
+- `fn fetch_xor(self: &Self, val: i8, order: Ordering) -> i8` — [`Ordering`](#ordering)
 
-- `fn xor(self: &Self, val: i8, order: Ordering)`
+- `fn xor(self: &Self, val: i8, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<i8, i8>`
+- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<i8, i8>` — [`Ordering`](#ordering)
 
-- `fn fetch_max(self: &Self, val: i8, order: Ordering) -> i8`
+- `fn fetch_max(self: &Self, val: i8, order: Ordering) -> i8` — [`Ordering`](#ordering)
 
-- `fn fetch_min(self: &Self, val: i8, order: Ordering) -> i8`
+- `fn fetch_min(self: &Self, val: i8, order: Ordering) -> i8` — [`Ordering`](#ordering)
 
-- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool`
+- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool`
+- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool`
+- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn fetch_not(self: &Self, order: Ordering) -> i8`
+- `fn fetch_not(self: &Self, order: Ordering) -> i8` — [`Ordering`](#ordering)
 
-- `fn not(self: &Self, order: Ordering)`
+- `fn not(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_neg(self: &Self, order: Ordering) -> i8`
+- `fn fetch_neg(self: &Self, order: Ordering) -> i8` — [`Ordering`](#ordering)
 
-- `fn neg(self: &Self, order: Ordering)`
+- `fn neg(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
 
 - `const fn as_ptr(self: &Self) -> *mut i8`
 
@@ -691,57 +691,57 @@ atomic instructions or locks will be used.
 
 - `const fn into_inner(self: Self) -> u8`
 
-- `fn load(self: &Self, order: Ordering) -> u8`
+- `fn load(self: &Self, order: Ordering) -> u8` — [`Ordering`](#ordering)
 
-- `fn store(self: &Self, val: u8, order: Ordering)`
+- `fn store(self: &Self, val: u8, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn swap(self: &Self, val: u8, order: Ordering) -> u8`
+- `fn swap(self: &Self, val: u8, order: Ordering) -> u8` — [`Ordering`](#ordering)
 
-- `fn compare_exchange(self: &Self, current: u8, new: u8, success: Ordering, failure: Ordering) -> Result<u8, u8>`
+- `fn compare_exchange(self: &Self, current: u8, new: u8, success: Ordering, failure: Ordering) -> Result<u8, u8>` — [`Ordering`](#ordering)
 
-- `fn compare_exchange_weak(self: &Self, current: u8, new: u8, success: Ordering, failure: Ordering) -> Result<u8, u8>`
+- `fn compare_exchange_weak(self: &Self, current: u8, new: u8, success: Ordering, failure: Ordering) -> Result<u8, u8>` — [`Ordering`](#ordering)
 
-- `fn fetch_add(self: &Self, val: u8, order: Ordering) -> u8`
+- `fn fetch_add(self: &Self, val: u8, order: Ordering) -> u8` — [`Ordering`](#ordering)
 
-- `fn add(self: &Self, val: u8, order: Ordering)`
+- `fn add(self: &Self, val: u8, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_sub(self: &Self, val: u8, order: Ordering) -> u8`
+- `fn fetch_sub(self: &Self, val: u8, order: Ordering) -> u8` — [`Ordering`](#ordering)
 
-- `fn sub(self: &Self, val: u8, order: Ordering)`
+- `fn sub(self: &Self, val: u8, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_and(self: &Self, val: u8, order: Ordering) -> u8`
+- `fn fetch_and(self: &Self, val: u8, order: Ordering) -> u8` — [`Ordering`](#ordering)
 
-- `fn and(self: &Self, val: u8, order: Ordering)`
+- `fn and(self: &Self, val: u8, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_nand(self: &Self, val: u8, order: Ordering) -> u8`
+- `fn fetch_nand(self: &Self, val: u8, order: Ordering) -> u8` — [`Ordering`](#ordering)
 
-- `fn fetch_or(self: &Self, val: u8, order: Ordering) -> u8`
+- `fn fetch_or(self: &Self, val: u8, order: Ordering) -> u8` — [`Ordering`](#ordering)
 
-- `fn or(self: &Self, val: u8, order: Ordering)`
+- `fn or(self: &Self, val: u8, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_xor(self: &Self, val: u8, order: Ordering) -> u8`
+- `fn fetch_xor(self: &Self, val: u8, order: Ordering) -> u8` — [`Ordering`](#ordering)
 
-- `fn xor(self: &Self, val: u8, order: Ordering)`
+- `fn xor(self: &Self, val: u8, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<u8, u8>`
+- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<u8, u8>` — [`Ordering`](#ordering)
 
-- `fn fetch_max(self: &Self, val: u8, order: Ordering) -> u8`
+- `fn fetch_max(self: &Self, val: u8, order: Ordering) -> u8` — [`Ordering`](#ordering)
 
-- `fn fetch_min(self: &Self, val: u8, order: Ordering) -> u8`
+- `fn fetch_min(self: &Self, val: u8, order: Ordering) -> u8` — [`Ordering`](#ordering)
 
-- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool`
+- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool`
+- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool`
+- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn fetch_not(self: &Self, order: Ordering) -> u8`
+- `fn fetch_not(self: &Self, order: Ordering) -> u8` — [`Ordering`](#ordering)
 
-- `fn not(self: &Self, order: Ordering)`
+- `fn not(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_neg(self: &Self, order: Ordering) -> u8`
+- `fn fetch_neg(self: &Self, order: Ordering) -> u8` — [`Ordering`](#ordering)
 
-- `fn neg(self: &Self, order: Ordering)`
+- `fn neg(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
 
 - `const fn as_ptr(self: &Self) -> *mut u8`
 
@@ -789,57 +789,57 @@ atomic instructions or locks will be used.
 
 - `const fn into_inner(self: Self) -> i16`
 
-- `fn load(self: &Self, order: Ordering) -> i16`
+- `fn load(self: &Self, order: Ordering) -> i16` — [`Ordering`](#ordering)
 
-- `fn store(self: &Self, val: i16, order: Ordering)`
+- `fn store(self: &Self, val: i16, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn swap(self: &Self, val: i16, order: Ordering) -> i16`
+- `fn swap(self: &Self, val: i16, order: Ordering) -> i16` — [`Ordering`](#ordering)
 
-- `fn compare_exchange(self: &Self, current: i16, new: i16, success: Ordering, failure: Ordering) -> Result<i16, i16>`
+- `fn compare_exchange(self: &Self, current: i16, new: i16, success: Ordering, failure: Ordering) -> Result<i16, i16>` — [`Ordering`](#ordering)
 
-- `fn compare_exchange_weak(self: &Self, current: i16, new: i16, success: Ordering, failure: Ordering) -> Result<i16, i16>`
+- `fn compare_exchange_weak(self: &Self, current: i16, new: i16, success: Ordering, failure: Ordering) -> Result<i16, i16>` — [`Ordering`](#ordering)
 
-- `fn fetch_add(self: &Self, val: i16, order: Ordering) -> i16`
+- `fn fetch_add(self: &Self, val: i16, order: Ordering) -> i16` — [`Ordering`](#ordering)
 
-- `fn add(self: &Self, val: i16, order: Ordering)`
+- `fn add(self: &Self, val: i16, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_sub(self: &Self, val: i16, order: Ordering) -> i16`
+- `fn fetch_sub(self: &Self, val: i16, order: Ordering) -> i16` — [`Ordering`](#ordering)
 
-- `fn sub(self: &Self, val: i16, order: Ordering)`
+- `fn sub(self: &Self, val: i16, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_and(self: &Self, val: i16, order: Ordering) -> i16`
+- `fn fetch_and(self: &Self, val: i16, order: Ordering) -> i16` — [`Ordering`](#ordering)
 
-- `fn and(self: &Self, val: i16, order: Ordering)`
+- `fn and(self: &Self, val: i16, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_nand(self: &Self, val: i16, order: Ordering) -> i16`
+- `fn fetch_nand(self: &Self, val: i16, order: Ordering) -> i16` — [`Ordering`](#ordering)
 
-- `fn fetch_or(self: &Self, val: i16, order: Ordering) -> i16`
+- `fn fetch_or(self: &Self, val: i16, order: Ordering) -> i16` — [`Ordering`](#ordering)
 
-- `fn or(self: &Self, val: i16, order: Ordering)`
+- `fn or(self: &Self, val: i16, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_xor(self: &Self, val: i16, order: Ordering) -> i16`
+- `fn fetch_xor(self: &Self, val: i16, order: Ordering) -> i16` — [`Ordering`](#ordering)
 
-- `fn xor(self: &Self, val: i16, order: Ordering)`
+- `fn xor(self: &Self, val: i16, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<i16, i16>`
+- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<i16, i16>` — [`Ordering`](#ordering)
 
-- `fn fetch_max(self: &Self, val: i16, order: Ordering) -> i16`
+- `fn fetch_max(self: &Self, val: i16, order: Ordering) -> i16` — [`Ordering`](#ordering)
 
-- `fn fetch_min(self: &Self, val: i16, order: Ordering) -> i16`
+- `fn fetch_min(self: &Self, val: i16, order: Ordering) -> i16` — [`Ordering`](#ordering)
 
-- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool`
+- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool`
+- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool`
+- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn fetch_not(self: &Self, order: Ordering) -> i16`
+- `fn fetch_not(self: &Self, order: Ordering) -> i16` — [`Ordering`](#ordering)
 
-- `fn not(self: &Self, order: Ordering)`
+- `fn not(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_neg(self: &Self, order: Ordering) -> i16`
+- `fn fetch_neg(self: &Self, order: Ordering) -> i16` — [`Ordering`](#ordering)
 
-- `fn neg(self: &Self, order: Ordering)`
+- `fn neg(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
 
 - `const fn as_ptr(self: &Self) -> *mut i16`
 
@@ -887,57 +887,57 @@ atomic instructions or locks will be used.
 
 - `const fn into_inner(self: Self) -> u16`
 
-- `fn load(self: &Self, order: Ordering) -> u16`
+- `fn load(self: &Self, order: Ordering) -> u16` — [`Ordering`](#ordering)
 
-- `fn store(self: &Self, val: u16, order: Ordering)`
+- `fn store(self: &Self, val: u16, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn swap(self: &Self, val: u16, order: Ordering) -> u16`
+- `fn swap(self: &Self, val: u16, order: Ordering) -> u16` — [`Ordering`](#ordering)
 
-- `fn compare_exchange(self: &Self, current: u16, new: u16, success: Ordering, failure: Ordering) -> Result<u16, u16>`
+- `fn compare_exchange(self: &Self, current: u16, new: u16, success: Ordering, failure: Ordering) -> Result<u16, u16>` — [`Ordering`](#ordering)
 
-- `fn compare_exchange_weak(self: &Self, current: u16, new: u16, success: Ordering, failure: Ordering) -> Result<u16, u16>`
+- `fn compare_exchange_weak(self: &Self, current: u16, new: u16, success: Ordering, failure: Ordering) -> Result<u16, u16>` — [`Ordering`](#ordering)
 
-- `fn fetch_add(self: &Self, val: u16, order: Ordering) -> u16`
+- `fn fetch_add(self: &Self, val: u16, order: Ordering) -> u16` — [`Ordering`](#ordering)
 
-- `fn add(self: &Self, val: u16, order: Ordering)`
+- `fn add(self: &Self, val: u16, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_sub(self: &Self, val: u16, order: Ordering) -> u16`
+- `fn fetch_sub(self: &Self, val: u16, order: Ordering) -> u16` — [`Ordering`](#ordering)
 
-- `fn sub(self: &Self, val: u16, order: Ordering)`
+- `fn sub(self: &Self, val: u16, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_and(self: &Self, val: u16, order: Ordering) -> u16`
+- `fn fetch_and(self: &Self, val: u16, order: Ordering) -> u16` — [`Ordering`](#ordering)
 
-- `fn and(self: &Self, val: u16, order: Ordering)`
+- `fn and(self: &Self, val: u16, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_nand(self: &Self, val: u16, order: Ordering) -> u16`
+- `fn fetch_nand(self: &Self, val: u16, order: Ordering) -> u16` — [`Ordering`](#ordering)
 
-- `fn fetch_or(self: &Self, val: u16, order: Ordering) -> u16`
+- `fn fetch_or(self: &Self, val: u16, order: Ordering) -> u16` — [`Ordering`](#ordering)
 
-- `fn or(self: &Self, val: u16, order: Ordering)`
+- `fn or(self: &Self, val: u16, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_xor(self: &Self, val: u16, order: Ordering) -> u16`
+- `fn fetch_xor(self: &Self, val: u16, order: Ordering) -> u16` — [`Ordering`](#ordering)
 
-- `fn xor(self: &Self, val: u16, order: Ordering)`
+- `fn xor(self: &Self, val: u16, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<u16, u16>`
+- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<u16, u16>` — [`Ordering`](#ordering)
 
-- `fn fetch_max(self: &Self, val: u16, order: Ordering) -> u16`
+- `fn fetch_max(self: &Self, val: u16, order: Ordering) -> u16` — [`Ordering`](#ordering)
 
-- `fn fetch_min(self: &Self, val: u16, order: Ordering) -> u16`
+- `fn fetch_min(self: &Self, val: u16, order: Ordering) -> u16` — [`Ordering`](#ordering)
 
-- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool`
+- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool`
+- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool`
+- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn fetch_not(self: &Self, order: Ordering) -> u16`
+- `fn fetch_not(self: &Self, order: Ordering) -> u16` — [`Ordering`](#ordering)
 
-- `fn not(self: &Self, order: Ordering)`
+- `fn not(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_neg(self: &Self, order: Ordering) -> u16`
+- `fn fetch_neg(self: &Self, order: Ordering) -> u16` — [`Ordering`](#ordering)
 
-- `fn neg(self: &Self, order: Ordering)`
+- `fn neg(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
 
 - `const fn as_ptr(self: &Self) -> *mut u16`
 
@@ -985,57 +985,57 @@ atomic instructions or locks will be used.
 
 - `const fn into_inner(self: Self) -> i32`
 
-- `fn load(self: &Self, order: Ordering) -> i32`
+- `fn load(self: &Self, order: Ordering) -> i32` — [`Ordering`](#ordering)
 
-- `fn store(self: &Self, val: i32, order: Ordering)`
+- `fn store(self: &Self, val: i32, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn swap(self: &Self, val: i32, order: Ordering) -> i32`
+- `fn swap(self: &Self, val: i32, order: Ordering) -> i32` — [`Ordering`](#ordering)
 
-- `fn compare_exchange(self: &Self, current: i32, new: i32, success: Ordering, failure: Ordering) -> Result<i32, i32>`
+- `fn compare_exchange(self: &Self, current: i32, new: i32, success: Ordering, failure: Ordering) -> Result<i32, i32>` — [`Ordering`](#ordering)
 
-- `fn compare_exchange_weak(self: &Self, current: i32, new: i32, success: Ordering, failure: Ordering) -> Result<i32, i32>`
+- `fn compare_exchange_weak(self: &Self, current: i32, new: i32, success: Ordering, failure: Ordering) -> Result<i32, i32>` — [`Ordering`](#ordering)
 
-- `fn fetch_add(self: &Self, val: i32, order: Ordering) -> i32`
+- `fn fetch_add(self: &Self, val: i32, order: Ordering) -> i32` — [`Ordering`](#ordering)
 
-- `fn add(self: &Self, val: i32, order: Ordering)`
+- `fn add(self: &Self, val: i32, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_sub(self: &Self, val: i32, order: Ordering) -> i32`
+- `fn fetch_sub(self: &Self, val: i32, order: Ordering) -> i32` — [`Ordering`](#ordering)
 
-- `fn sub(self: &Self, val: i32, order: Ordering)`
+- `fn sub(self: &Self, val: i32, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_and(self: &Self, val: i32, order: Ordering) -> i32`
+- `fn fetch_and(self: &Self, val: i32, order: Ordering) -> i32` — [`Ordering`](#ordering)
 
-- `fn and(self: &Self, val: i32, order: Ordering)`
+- `fn and(self: &Self, val: i32, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_nand(self: &Self, val: i32, order: Ordering) -> i32`
+- `fn fetch_nand(self: &Self, val: i32, order: Ordering) -> i32` — [`Ordering`](#ordering)
 
-- `fn fetch_or(self: &Self, val: i32, order: Ordering) -> i32`
+- `fn fetch_or(self: &Self, val: i32, order: Ordering) -> i32` — [`Ordering`](#ordering)
 
-- `fn or(self: &Self, val: i32, order: Ordering)`
+- `fn or(self: &Self, val: i32, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_xor(self: &Self, val: i32, order: Ordering) -> i32`
+- `fn fetch_xor(self: &Self, val: i32, order: Ordering) -> i32` — [`Ordering`](#ordering)
 
-- `fn xor(self: &Self, val: i32, order: Ordering)`
+- `fn xor(self: &Self, val: i32, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<i32, i32>`
+- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<i32, i32>` — [`Ordering`](#ordering)
 
-- `fn fetch_max(self: &Self, val: i32, order: Ordering) -> i32`
+- `fn fetch_max(self: &Self, val: i32, order: Ordering) -> i32` — [`Ordering`](#ordering)
 
-- `fn fetch_min(self: &Self, val: i32, order: Ordering) -> i32`
+- `fn fetch_min(self: &Self, val: i32, order: Ordering) -> i32` — [`Ordering`](#ordering)
 
-- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool`
+- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool`
+- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool`
+- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn fetch_not(self: &Self, order: Ordering) -> i32`
+- `fn fetch_not(self: &Self, order: Ordering) -> i32` — [`Ordering`](#ordering)
 
-- `fn not(self: &Self, order: Ordering)`
+- `fn not(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_neg(self: &Self, order: Ordering) -> i32`
+- `fn fetch_neg(self: &Self, order: Ordering) -> i32` — [`Ordering`](#ordering)
 
-- `fn neg(self: &Self, order: Ordering)`
+- `fn neg(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
 
 - `const fn as_ptr(self: &Self) -> *mut i32`
 
@@ -1083,57 +1083,57 @@ atomic instructions or locks will be used.
 
 - `const fn into_inner(self: Self) -> u32`
 
-- `fn load(self: &Self, order: Ordering) -> u32`
+- `fn load(self: &Self, order: Ordering) -> u32` — [`Ordering`](#ordering)
 
-- `fn store(self: &Self, val: u32, order: Ordering)`
+- `fn store(self: &Self, val: u32, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn swap(self: &Self, val: u32, order: Ordering) -> u32`
+- `fn swap(self: &Self, val: u32, order: Ordering) -> u32` — [`Ordering`](#ordering)
 
-- `fn compare_exchange(self: &Self, current: u32, new: u32, success: Ordering, failure: Ordering) -> Result<u32, u32>`
+- `fn compare_exchange(self: &Self, current: u32, new: u32, success: Ordering, failure: Ordering) -> Result<u32, u32>` — [`Ordering`](#ordering)
 
-- `fn compare_exchange_weak(self: &Self, current: u32, new: u32, success: Ordering, failure: Ordering) -> Result<u32, u32>`
+- `fn compare_exchange_weak(self: &Self, current: u32, new: u32, success: Ordering, failure: Ordering) -> Result<u32, u32>` — [`Ordering`](#ordering)
 
-- `fn fetch_add(self: &Self, val: u32, order: Ordering) -> u32`
+- `fn fetch_add(self: &Self, val: u32, order: Ordering) -> u32` — [`Ordering`](#ordering)
 
-- `fn add(self: &Self, val: u32, order: Ordering)`
+- `fn add(self: &Self, val: u32, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_sub(self: &Self, val: u32, order: Ordering) -> u32`
+- `fn fetch_sub(self: &Self, val: u32, order: Ordering) -> u32` — [`Ordering`](#ordering)
 
-- `fn sub(self: &Self, val: u32, order: Ordering)`
+- `fn sub(self: &Self, val: u32, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_and(self: &Self, val: u32, order: Ordering) -> u32`
+- `fn fetch_and(self: &Self, val: u32, order: Ordering) -> u32` — [`Ordering`](#ordering)
 
-- `fn and(self: &Self, val: u32, order: Ordering)`
+- `fn and(self: &Self, val: u32, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_nand(self: &Self, val: u32, order: Ordering) -> u32`
+- `fn fetch_nand(self: &Self, val: u32, order: Ordering) -> u32` — [`Ordering`](#ordering)
 
-- `fn fetch_or(self: &Self, val: u32, order: Ordering) -> u32`
+- `fn fetch_or(self: &Self, val: u32, order: Ordering) -> u32` — [`Ordering`](#ordering)
 
-- `fn or(self: &Self, val: u32, order: Ordering)`
+- `fn or(self: &Self, val: u32, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_xor(self: &Self, val: u32, order: Ordering) -> u32`
+- `fn fetch_xor(self: &Self, val: u32, order: Ordering) -> u32` — [`Ordering`](#ordering)
 
-- `fn xor(self: &Self, val: u32, order: Ordering)`
+- `fn xor(self: &Self, val: u32, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<u32, u32>`
+- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<u32, u32>` — [`Ordering`](#ordering)
 
-- `fn fetch_max(self: &Self, val: u32, order: Ordering) -> u32`
+- `fn fetch_max(self: &Self, val: u32, order: Ordering) -> u32` — [`Ordering`](#ordering)
 
-- `fn fetch_min(self: &Self, val: u32, order: Ordering) -> u32`
+- `fn fetch_min(self: &Self, val: u32, order: Ordering) -> u32` — [`Ordering`](#ordering)
 
-- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool`
+- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool`
+- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool`
+- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn fetch_not(self: &Self, order: Ordering) -> u32`
+- `fn fetch_not(self: &Self, order: Ordering) -> u32` — [`Ordering`](#ordering)
 
-- `fn not(self: &Self, order: Ordering)`
+- `fn not(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_neg(self: &Self, order: Ordering) -> u32`
+- `fn fetch_neg(self: &Self, order: Ordering) -> u32` — [`Ordering`](#ordering)
 
-- `fn neg(self: &Self, order: Ordering)`
+- `fn neg(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
 
 - `const fn as_ptr(self: &Self) -> *mut u32`
 
@@ -1181,57 +1181,57 @@ atomic instructions or locks will be used.
 
 - `const fn into_inner(self: Self) -> i64`
 
-- `fn load(self: &Self, order: Ordering) -> i64`
+- `fn load(self: &Self, order: Ordering) -> i64` — [`Ordering`](#ordering)
 
-- `fn store(self: &Self, val: i64, order: Ordering)`
+- `fn store(self: &Self, val: i64, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn swap(self: &Self, val: i64, order: Ordering) -> i64`
+- `fn swap(self: &Self, val: i64, order: Ordering) -> i64` — [`Ordering`](#ordering)
 
-- `fn compare_exchange(self: &Self, current: i64, new: i64, success: Ordering, failure: Ordering) -> Result<i64, i64>`
+- `fn compare_exchange(self: &Self, current: i64, new: i64, success: Ordering, failure: Ordering) -> Result<i64, i64>` — [`Ordering`](#ordering)
 
-- `fn compare_exchange_weak(self: &Self, current: i64, new: i64, success: Ordering, failure: Ordering) -> Result<i64, i64>`
+- `fn compare_exchange_weak(self: &Self, current: i64, new: i64, success: Ordering, failure: Ordering) -> Result<i64, i64>` — [`Ordering`](#ordering)
 
-- `fn fetch_add(self: &Self, val: i64, order: Ordering) -> i64`
+- `fn fetch_add(self: &Self, val: i64, order: Ordering) -> i64` — [`Ordering`](#ordering)
 
-- `fn add(self: &Self, val: i64, order: Ordering)`
+- `fn add(self: &Self, val: i64, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_sub(self: &Self, val: i64, order: Ordering) -> i64`
+- `fn fetch_sub(self: &Self, val: i64, order: Ordering) -> i64` — [`Ordering`](#ordering)
 
-- `fn sub(self: &Self, val: i64, order: Ordering)`
+- `fn sub(self: &Self, val: i64, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_and(self: &Self, val: i64, order: Ordering) -> i64`
+- `fn fetch_and(self: &Self, val: i64, order: Ordering) -> i64` — [`Ordering`](#ordering)
 
-- `fn and(self: &Self, val: i64, order: Ordering)`
+- `fn and(self: &Self, val: i64, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_nand(self: &Self, val: i64, order: Ordering) -> i64`
+- `fn fetch_nand(self: &Self, val: i64, order: Ordering) -> i64` — [`Ordering`](#ordering)
 
-- `fn fetch_or(self: &Self, val: i64, order: Ordering) -> i64`
+- `fn fetch_or(self: &Self, val: i64, order: Ordering) -> i64` — [`Ordering`](#ordering)
 
-- `fn or(self: &Self, val: i64, order: Ordering)`
+- `fn or(self: &Self, val: i64, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_xor(self: &Self, val: i64, order: Ordering) -> i64`
+- `fn fetch_xor(self: &Self, val: i64, order: Ordering) -> i64` — [`Ordering`](#ordering)
 
-- `fn xor(self: &Self, val: i64, order: Ordering)`
+- `fn xor(self: &Self, val: i64, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<i64, i64>`
+- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<i64, i64>` — [`Ordering`](#ordering)
 
-- `fn fetch_max(self: &Self, val: i64, order: Ordering) -> i64`
+- `fn fetch_max(self: &Self, val: i64, order: Ordering) -> i64` — [`Ordering`](#ordering)
 
-- `fn fetch_min(self: &Self, val: i64, order: Ordering) -> i64`
+- `fn fetch_min(self: &Self, val: i64, order: Ordering) -> i64` — [`Ordering`](#ordering)
 
-- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool`
+- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool`
+- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool`
+- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn fetch_not(self: &Self, order: Ordering) -> i64`
+- `fn fetch_not(self: &Self, order: Ordering) -> i64` — [`Ordering`](#ordering)
 
-- `fn not(self: &Self, order: Ordering)`
+- `fn not(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_neg(self: &Self, order: Ordering) -> i64`
+- `fn fetch_neg(self: &Self, order: Ordering) -> i64` — [`Ordering`](#ordering)
 
-- `fn neg(self: &Self, order: Ordering)`
+- `fn neg(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
 
 - `const fn as_ptr(self: &Self) -> *mut i64`
 
@@ -1279,57 +1279,57 @@ atomic instructions or locks will be used.
 
 - `const fn into_inner(self: Self) -> u64`
 
-- `fn load(self: &Self, order: Ordering) -> u64`
+- `fn load(self: &Self, order: Ordering) -> u64` — [`Ordering`](#ordering)
 
-- `fn store(self: &Self, val: u64, order: Ordering)`
+- `fn store(self: &Self, val: u64, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn swap(self: &Self, val: u64, order: Ordering) -> u64`
+- `fn swap(self: &Self, val: u64, order: Ordering) -> u64` — [`Ordering`](#ordering)
 
-- `fn compare_exchange(self: &Self, current: u64, new: u64, success: Ordering, failure: Ordering) -> Result<u64, u64>`
+- `fn compare_exchange(self: &Self, current: u64, new: u64, success: Ordering, failure: Ordering) -> Result<u64, u64>` — [`Ordering`](#ordering)
 
-- `fn compare_exchange_weak(self: &Self, current: u64, new: u64, success: Ordering, failure: Ordering) -> Result<u64, u64>`
+- `fn compare_exchange_weak(self: &Self, current: u64, new: u64, success: Ordering, failure: Ordering) -> Result<u64, u64>` — [`Ordering`](#ordering)
 
-- `fn fetch_add(self: &Self, val: u64, order: Ordering) -> u64`
+- `fn fetch_add(self: &Self, val: u64, order: Ordering) -> u64` — [`Ordering`](#ordering)
 
-- `fn add(self: &Self, val: u64, order: Ordering)`
+- `fn add(self: &Self, val: u64, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_sub(self: &Self, val: u64, order: Ordering) -> u64`
+- `fn fetch_sub(self: &Self, val: u64, order: Ordering) -> u64` — [`Ordering`](#ordering)
 
-- `fn sub(self: &Self, val: u64, order: Ordering)`
+- `fn sub(self: &Self, val: u64, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_and(self: &Self, val: u64, order: Ordering) -> u64`
+- `fn fetch_and(self: &Self, val: u64, order: Ordering) -> u64` — [`Ordering`](#ordering)
 
-- `fn and(self: &Self, val: u64, order: Ordering)`
+- `fn and(self: &Self, val: u64, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_nand(self: &Self, val: u64, order: Ordering) -> u64`
+- `fn fetch_nand(self: &Self, val: u64, order: Ordering) -> u64` — [`Ordering`](#ordering)
 
-- `fn fetch_or(self: &Self, val: u64, order: Ordering) -> u64`
+- `fn fetch_or(self: &Self, val: u64, order: Ordering) -> u64` — [`Ordering`](#ordering)
 
-- `fn or(self: &Self, val: u64, order: Ordering)`
+- `fn or(self: &Self, val: u64, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_xor(self: &Self, val: u64, order: Ordering) -> u64`
+- `fn fetch_xor(self: &Self, val: u64, order: Ordering) -> u64` — [`Ordering`](#ordering)
 
-- `fn xor(self: &Self, val: u64, order: Ordering)`
+- `fn xor(self: &Self, val: u64, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<u64, u64>`
+- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<u64, u64>` — [`Ordering`](#ordering)
 
-- `fn fetch_max(self: &Self, val: u64, order: Ordering) -> u64`
+- `fn fetch_max(self: &Self, val: u64, order: Ordering) -> u64` — [`Ordering`](#ordering)
 
-- `fn fetch_min(self: &Self, val: u64, order: Ordering) -> u64`
+- `fn fetch_min(self: &Self, val: u64, order: Ordering) -> u64` — [`Ordering`](#ordering)
 
-- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool`
+- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool`
+- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool`
+- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn fetch_not(self: &Self, order: Ordering) -> u64`
+- `fn fetch_not(self: &Self, order: Ordering) -> u64` — [`Ordering`](#ordering)
 
-- `fn not(self: &Self, order: Ordering)`
+- `fn not(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_neg(self: &Self, order: Ordering) -> u64`
+- `fn fetch_neg(self: &Self, order: Ordering) -> u64` — [`Ordering`](#ordering)
 
-- `fn neg(self: &Self, order: Ordering)`
+- `fn neg(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
 
 - `const fn as_ptr(self: &Self) -> *mut u64`
 
@@ -1377,57 +1377,57 @@ atomic instructions or locks will be used.
 
 - `const fn into_inner(self: Self) -> i128`
 
-- `fn load(self: &Self, order: Ordering) -> i128`
+- `fn load(self: &Self, order: Ordering) -> i128` — [`Ordering`](#ordering)
 
-- `fn store(self: &Self, val: i128, order: Ordering)`
+- `fn store(self: &Self, val: i128, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn swap(self: &Self, val: i128, order: Ordering) -> i128`
+- `fn swap(self: &Self, val: i128, order: Ordering) -> i128` — [`Ordering`](#ordering)
 
-- `fn compare_exchange(self: &Self, current: i128, new: i128, success: Ordering, failure: Ordering) -> Result<i128, i128>`
+- `fn compare_exchange(self: &Self, current: i128, new: i128, success: Ordering, failure: Ordering) -> Result<i128, i128>` — [`Ordering`](#ordering)
 
-- `fn compare_exchange_weak(self: &Self, current: i128, new: i128, success: Ordering, failure: Ordering) -> Result<i128, i128>`
+- `fn compare_exchange_weak(self: &Self, current: i128, new: i128, success: Ordering, failure: Ordering) -> Result<i128, i128>` — [`Ordering`](#ordering)
 
-- `fn fetch_add(self: &Self, val: i128, order: Ordering) -> i128`
+- `fn fetch_add(self: &Self, val: i128, order: Ordering) -> i128` — [`Ordering`](#ordering)
 
-- `fn add(self: &Self, val: i128, order: Ordering)`
+- `fn add(self: &Self, val: i128, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_sub(self: &Self, val: i128, order: Ordering) -> i128`
+- `fn fetch_sub(self: &Self, val: i128, order: Ordering) -> i128` — [`Ordering`](#ordering)
 
-- `fn sub(self: &Self, val: i128, order: Ordering)`
+- `fn sub(self: &Self, val: i128, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_and(self: &Self, val: i128, order: Ordering) -> i128`
+- `fn fetch_and(self: &Self, val: i128, order: Ordering) -> i128` — [`Ordering`](#ordering)
 
-- `fn and(self: &Self, val: i128, order: Ordering)`
+- `fn and(self: &Self, val: i128, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_nand(self: &Self, val: i128, order: Ordering) -> i128`
+- `fn fetch_nand(self: &Self, val: i128, order: Ordering) -> i128` — [`Ordering`](#ordering)
 
-- `fn fetch_or(self: &Self, val: i128, order: Ordering) -> i128`
+- `fn fetch_or(self: &Self, val: i128, order: Ordering) -> i128` — [`Ordering`](#ordering)
 
-- `fn or(self: &Self, val: i128, order: Ordering)`
+- `fn or(self: &Self, val: i128, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_xor(self: &Self, val: i128, order: Ordering) -> i128`
+- `fn fetch_xor(self: &Self, val: i128, order: Ordering) -> i128` — [`Ordering`](#ordering)
 
-- `fn xor(self: &Self, val: i128, order: Ordering)`
+- `fn xor(self: &Self, val: i128, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<i128, i128>`
+- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<i128, i128>` — [`Ordering`](#ordering)
 
-- `fn fetch_max(self: &Self, val: i128, order: Ordering) -> i128`
+- `fn fetch_max(self: &Self, val: i128, order: Ordering) -> i128` — [`Ordering`](#ordering)
 
-- `fn fetch_min(self: &Self, val: i128, order: Ordering) -> i128`
+- `fn fetch_min(self: &Self, val: i128, order: Ordering) -> i128` — [`Ordering`](#ordering)
 
-- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool`
+- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool`
+- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool`
+- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn fetch_not(self: &Self, order: Ordering) -> i128`
+- `fn fetch_not(self: &Self, order: Ordering) -> i128` — [`Ordering`](#ordering)
 
-- `fn not(self: &Self, order: Ordering)`
+- `fn not(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_neg(self: &Self, order: Ordering) -> i128`
+- `fn fetch_neg(self: &Self, order: Ordering) -> i128` — [`Ordering`](#ordering)
 
-- `fn neg(self: &Self, order: Ordering)`
+- `fn neg(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
 
 - `const fn as_ptr(self: &Self) -> *mut i128`
 
@@ -1475,57 +1475,57 @@ atomic instructions or locks will be used.
 
 - `const fn into_inner(self: Self) -> u128`
 
-- `fn load(self: &Self, order: Ordering) -> u128`
+- `fn load(self: &Self, order: Ordering) -> u128` — [`Ordering`](#ordering)
 
-- `fn store(self: &Self, val: u128, order: Ordering)`
+- `fn store(self: &Self, val: u128, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn swap(self: &Self, val: u128, order: Ordering) -> u128`
+- `fn swap(self: &Self, val: u128, order: Ordering) -> u128` — [`Ordering`](#ordering)
 
-- `fn compare_exchange(self: &Self, current: u128, new: u128, success: Ordering, failure: Ordering) -> Result<u128, u128>`
+- `fn compare_exchange(self: &Self, current: u128, new: u128, success: Ordering, failure: Ordering) -> Result<u128, u128>` — [`Ordering`](#ordering)
 
-- `fn compare_exchange_weak(self: &Self, current: u128, new: u128, success: Ordering, failure: Ordering) -> Result<u128, u128>`
+- `fn compare_exchange_weak(self: &Self, current: u128, new: u128, success: Ordering, failure: Ordering) -> Result<u128, u128>` — [`Ordering`](#ordering)
 
-- `fn fetch_add(self: &Self, val: u128, order: Ordering) -> u128`
+- `fn fetch_add(self: &Self, val: u128, order: Ordering) -> u128` — [`Ordering`](#ordering)
 
-- `fn add(self: &Self, val: u128, order: Ordering)`
+- `fn add(self: &Self, val: u128, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_sub(self: &Self, val: u128, order: Ordering) -> u128`
+- `fn fetch_sub(self: &Self, val: u128, order: Ordering) -> u128` — [`Ordering`](#ordering)
 
-- `fn sub(self: &Self, val: u128, order: Ordering)`
+- `fn sub(self: &Self, val: u128, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_and(self: &Self, val: u128, order: Ordering) -> u128`
+- `fn fetch_and(self: &Self, val: u128, order: Ordering) -> u128` — [`Ordering`](#ordering)
 
-- `fn and(self: &Self, val: u128, order: Ordering)`
+- `fn and(self: &Self, val: u128, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_nand(self: &Self, val: u128, order: Ordering) -> u128`
+- `fn fetch_nand(self: &Self, val: u128, order: Ordering) -> u128` — [`Ordering`](#ordering)
 
-- `fn fetch_or(self: &Self, val: u128, order: Ordering) -> u128`
+- `fn fetch_or(self: &Self, val: u128, order: Ordering) -> u128` — [`Ordering`](#ordering)
 
-- `fn or(self: &Self, val: u128, order: Ordering)`
+- `fn or(self: &Self, val: u128, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_xor(self: &Self, val: u128, order: Ordering) -> u128`
+- `fn fetch_xor(self: &Self, val: u128, order: Ordering) -> u128` — [`Ordering`](#ordering)
 
-- `fn xor(self: &Self, val: u128, order: Ordering)`
+- `fn xor(self: &Self, val: u128, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<u128, u128>`
+- `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<u128, u128>` — [`Ordering`](#ordering)
 
-- `fn fetch_max(self: &Self, val: u128, order: Ordering) -> u128`
+- `fn fetch_max(self: &Self, val: u128, order: Ordering) -> u128` — [`Ordering`](#ordering)
 
-- `fn fetch_min(self: &Self, val: u128, order: Ordering) -> u128`
+- `fn fetch_min(self: &Self, val: u128, order: Ordering) -> u128` — [`Ordering`](#ordering)
 
-- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool`
+- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool`
+- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool`
+- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](#ordering)
 
-- `fn fetch_not(self: &Self, order: Ordering) -> u128`
+- `fn fetch_not(self: &Self, order: Ordering) -> u128` — [`Ordering`](#ordering)
 
-- `fn not(self: &Self, order: Ordering)`
+- `fn not(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
 
-- `fn fetch_neg(self: &Self, order: Ordering) -> u128`
+- `fn fetch_neg(self: &Self, order: Ordering) -> u128` — [`Ordering`](#ordering)
 
-- `fn neg(self: &Self, order: Ordering)`
+- `fn neg(self: &Self, order: Ordering)` — [`Ordering`](#ordering)
 
 - `const fn as_ptr(self: &Self) -> *mut u128`
 

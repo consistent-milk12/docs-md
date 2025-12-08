@@ -52,10 +52,10 @@ as shown in the following build timings.
 Helper macro when implementing the `Deserializer` part of a new data format
 for Serde.
 
-Some [`Deserializer`](de/index.md) implementations for self-describing formats do not
+Some [`Deserializer`](#deserializer) implementations for self-describing formats do not
 care what hint the [`Visitor`](de/index.md) gives them, they just want to blindly call
 the [`Visitor`](de/index.md) method corresponding to the data they can tell is in the
-input. This requires repetitive implementations of all the [`Deserializer`](de/index.md)
+input. This requires repetitive implementations of all the [`Deserializer`](#deserializer)
 trait methods.
 
 ```edition2021

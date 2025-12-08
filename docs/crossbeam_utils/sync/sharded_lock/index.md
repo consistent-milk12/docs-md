@@ -101,13 +101,13 @@ let lock = ShardedLock::new(5);
 
 - `fn get_mut(self: &mut Self) -> LockResult<&mut T>`
 
-- `fn try_read(self: &Self) -> TryLockResult<ShardedLockReadGuard<'_, T>>` — [`ShardedLockReadGuard`](#shardedlockreadguard)
+- `fn try_read(self: &Self) -> TryLockResult<ShardedLockReadGuard<'_, T>>` — [`ShardedLockReadGuard`](../index.md)
 
-- `fn read(self: &Self) -> LockResult<ShardedLockReadGuard<'_, T>>` — [`ShardedLockReadGuard`](#shardedlockreadguard)
+- `fn read(self: &Self) -> LockResult<ShardedLockReadGuard<'_, T>>` — [`ShardedLockReadGuard`](../index.md)
 
-- `fn try_write(self: &Self) -> TryLockResult<ShardedLockWriteGuard<'_, T>>` — [`ShardedLockWriteGuard`](#shardedlockwriteguard)
+- `fn try_write(self: &Self) -> TryLockResult<ShardedLockWriteGuard<'_, T>>` — [`ShardedLockWriteGuard`](../index.md)
 
-- `fn write(self: &Self) -> LockResult<ShardedLockWriteGuard<'_, T>>` — [`ShardedLockWriteGuard`](#shardedlockwriteguard)
+- `fn write(self: &Self) -> LockResult<ShardedLockWriteGuard<'_, T>>` — [`ShardedLockWriteGuard`](../index.md)
 
 #### Trait Implementations
 
@@ -117,7 +117,7 @@ let lock = ShardedLock::new(5);
 
 ##### `impl<T: Default> Default for ShardedLock<T>`
 
-- `fn default() -> ShardedLock<T>` — [`ShardedLock`](#shardedlock)
+- `fn default() -> ShardedLock<T>` — [`ShardedLock`](../index.md)
 
 ##### `impl<T: ?Sized> RefUnwindSafe for ShardedLock<T>`
 
@@ -137,7 +137,7 @@ struct ShardedLockReadGuard<'a, T: ?Sized> {
 }
 ```
 
-A guard used to release the shared read access of a [`ShardedLock`](#shardedlock) when dropped.
+A guard used to release the shared read access of a [`ShardedLock`](../index.md) when dropped.
 
 #### Trait Implementations
 
@@ -174,7 +174,7 @@ struct ShardedLockWriteGuard<'a, T: ?Sized> {
 }
 ```
 
-A guard used to release the exclusive write access of a [`ShardedLock`](#shardedlock) when dropped.
+A guard used to release the exclusive write access of a [`ShardedLock`](../index.md) when dropped.
 
 #### Trait Implementations
 

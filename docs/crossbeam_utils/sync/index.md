@@ -6,9 +6,9 @@
 
 Thread synchronization primitives.
 
-* [`Parker`](parker/index.md), a thread parking primitive.
-* [`ShardedLock`](sharded_lock/index.md), a sharded reader-writer lock with fast concurrent reads.
-* [`WaitGroup`](wait_group/index.md), for synchronizing the beginning or end of some computation.
+* [`Parker`](#parker), a thread parking primitive.
+* [`ShardedLock`](#shardedlock), a sharded reader-writer lock with fast concurrent reads.
+* [`WaitGroup`](#waitgroup), for synchronizing the beginning or end of some computation.
 
 ## Modules
 
@@ -76,7 +76,7 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 
 #### Implementations
 
-- `fn new() -> Parker` — [`Parker`](parker/index.md)
+- `fn new() -> Parker` — [`Parker`](#parker)
 
 - `fn park(self: &Self)`
 
@@ -84,11 +84,11 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 
 - `fn park_deadline(self: &Self, deadline: Instant)`
 
-- `fn unparker(self: &Self) -> &Unparker` — [`Unparker`](parker/index.md)
+- `fn unparker(self: &Self) -> &Unparker` — [`Unparker`](#unparker)
 
-- `fn into_raw(this: Parker) -> *const ()` — [`Parker`](parker/index.md)
+- `fn into_raw(this: Parker) -> *const ()` — [`Parker`](#parker)
 
-- `unsafe fn from_raw(ptr: *const ()) -> Parker` — [`Parker`](parker/index.md)
+- `unsafe fn from_raw(ptr: *const ()) -> Parker` — [`Parker`](#parker)
 
 #### Trait Implementations
 
@@ -110,21 +110,21 @@ struct Unparker {
 }
 ```
 
-Unparks a thread parked by the associated [`Parker`](parker/index.md).
+Unparks a thread parked by the associated [`Parker`](#parker).
 
 #### Implementations
 
 - `fn unpark(self: &Self)`
 
-- `fn into_raw(this: Unparker) -> *const ()` — [`Unparker`](parker/index.md)
+- `fn into_raw(this: Unparker) -> *const ()` — [`Unparker`](#unparker)
 
-- `unsafe fn from_raw(ptr: *const ()) -> Unparker` — [`Unparker`](parker/index.md)
+- `unsafe fn from_raw(ptr: *const ()) -> Unparker` — [`Unparker`](#unparker)
 
 #### Trait Implementations
 
 ##### `impl Clone for Unparker`
 
-- `fn clone(self: &Self) -> Unparker` — [`Unparker`](parker/index.md)
+- `fn clone(self: &Self) -> Unparker` — [`Unparker`](#unparker)
 
 ##### `impl Debug for Unparker`
 
@@ -205,13 +205,13 @@ let lock = ShardedLock::new(5);
 
 - `fn get_mut(self: &mut Self) -> LockResult<&mut T>`
 
-- `fn try_read(self: &Self) -> TryLockResult<ShardedLockReadGuard<'_, T>>` — [`ShardedLockReadGuard`](sharded_lock/index.md)
+- `fn try_read(self: &Self) -> TryLockResult<ShardedLockReadGuard<'_, T>>` — [`ShardedLockReadGuard`](#shardedlockreadguard)
 
-- `fn read(self: &Self) -> LockResult<ShardedLockReadGuard<'_, T>>` — [`ShardedLockReadGuard`](sharded_lock/index.md)
+- `fn read(self: &Self) -> LockResult<ShardedLockReadGuard<'_, T>>` — [`ShardedLockReadGuard`](#shardedlockreadguard)
 
-- `fn try_write(self: &Self) -> TryLockResult<ShardedLockWriteGuard<'_, T>>` — [`ShardedLockWriteGuard`](sharded_lock/index.md)
+- `fn try_write(self: &Self) -> TryLockResult<ShardedLockWriteGuard<'_, T>>` — [`ShardedLockWriteGuard`](#shardedlockwriteguard)
 
-- `fn write(self: &Self) -> LockResult<ShardedLockWriteGuard<'_, T>>` — [`ShardedLockWriteGuard`](sharded_lock/index.md)
+- `fn write(self: &Self) -> LockResult<ShardedLockWriteGuard<'_, T>>` — [`ShardedLockWriteGuard`](#shardedlockwriteguard)
 
 #### Trait Implementations
 
@@ -221,7 +221,7 @@ let lock = ShardedLock::new(5);
 
 ##### `impl<T: Default> Default for ShardedLock<T>`
 
-- `fn default() -> ShardedLock<T>` — [`ShardedLock`](sharded_lock/index.md)
+- `fn default() -> ShardedLock<T>` — [`ShardedLock`](#shardedlock)
 
 ##### `impl<T: ?Sized> RefUnwindSafe for ShardedLock<T>`
 
@@ -241,7 +241,7 @@ struct ShardedLockReadGuard<'a, T: ?Sized> {
 }
 ```
 
-A guard used to release the shared read access of a [`ShardedLock`](sharded_lock/index.md) when dropped.
+A guard used to release the shared read access of a [`ShardedLock`](#shardedlock) when dropped.
 
 #### Trait Implementations
 
@@ -278,7 +278,7 @@ struct ShardedLockWriteGuard<'a, T: ?Sized> {
 }
 ```
 
-A guard used to release the exclusive write access of a [`ShardedLock`](sharded_lock/index.md) when dropped.
+A guard used to release the exclusive write access of a [`ShardedLock`](#shardedlock) when dropped.
 
 #### Trait Implementations
 
@@ -374,7 +374,7 @@ std::thread::sleep(std::time::Duration::from_millis(500)); // wait for backgroun
 
 ##### `impl Clone for WaitGroup`
 
-- `fn clone(self: &Self) -> WaitGroup` — [`WaitGroup`](wait_group/index.md)
+- `fn clone(self: &Self) -> WaitGroup` — [`WaitGroup`](#waitgroup)
 
 ##### `impl Debug for WaitGroup`
 

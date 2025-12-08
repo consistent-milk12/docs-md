@@ -19,13 +19,13 @@ External iterator for replacements for a string's characters.
 
 #### Implementations
 
-- `fn new_cjk_compat_variants(iter: I) -> Replacements<I>` — [`Replacements`](#replacements)
+- `fn new_cjk_compat_variants(iter: I) -> Replacements<I>` — [`Replacements`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl<I: $crate::clone::Clone> Clone for Replacements<I>`
 
-- `fn clone(self: &Self) -> Replacements<I>` — [`Replacements`](#replacements)
+- `fn clone(self: &Self) -> Replacements<I>` — [`Replacements`](../index.md)
 
 ##### `impl<I: Iterator<Item = char> + Clone> Display for Replacements<I>`
 
@@ -55,15 +55,15 @@ External iterator for replacements for a string's characters.
 
 ##### `impl<I> UnicodeNormalization for Replacements<I>`
 
-- `fn nfd(self: Self) -> Decompositions<I>` — [`Decompositions`](../decompose/index.md)
+- `fn nfd(self: Self) -> Decompositions<I>` — [`Decompositions`](../index.md)
 
-- `fn nfkd(self: Self) -> Decompositions<I>` — [`Decompositions`](../decompose/index.md)
+- `fn nfkd(self: Self) -> Decompositions<I>` — [`Decompositions`](../index.md)
 
-- `fn nfc(self: Self) -> Recompositions<I>` — [`Recompositions`](../recompose/index.md)
+- `fn nfc(self: Self) -> Recompositions<I>` — [`Recompositions`](../index.md)
 
-- `fn nfkc(self: Self) -> Recompositions<I>` — [`Recompositions`](../recompose/index.md)
+- `fn nfkc(self: Self) -> Recompositions<I>` — [`Recompositions`](../index.md)
 
-- `fn cjk_compat_variants(self: Self) -> Replacements<I>` — [`Replacements`](#replacements)
+- `fn cjk_compat_variants(self: Self) -> Replacements<I>` — [`Replacements`](../index.md)
 
-- `fn stream_safe(self: Self) -> StreamSafe<I>` — [`StreamSafe`](../stream_safe/index.md)
+- `fn stream_safe(self: Self) -> StreamSafe<I>` — [`StreamSafe`](../index.md)
 

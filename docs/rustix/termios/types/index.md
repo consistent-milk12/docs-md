@@ -25,7 +25,7 @@ struct Termios {
 }
 ```
 
-`struct termios` for use with [`tcgetattr`](../index.md) and [`tcsetattr`](../index.md).
+`struct termios` for use with [`tcgetattr`](../../backend/termios/syscalls/index.md) and [`tcsetattr`](../../backend/termios/syscalls/index.md).
 
 
 
@@ -77,11 +77,11 @@ struct Termios {
 
 - `fn output_speed(self: &Self) -> u32`
 
-- `fn set_speed(self: &mut Self, new_speed: u32) -> io::Result<()>` — [`Result`](../../io/errno/index.md)
+- `fn set_speed(self: &mut Self, new_speed: u32) -> io::Result<()>` — [`Result`](../../io/index.md)
 
-- `fn set_input_speed(self: &mut Self, new_speed: u32) -> io::Result<()>` — [`Result`](../../io/errno/index.md)
+- `fn set_input_speed(self: &mut Self, new_speed: u32) -> io::Result<()>` — [`Result`](../../io/index.md)
 
-- `fn set_output_speed(self: &mut Self, new_speed: u32) -> io::Result<()>` — [`Result`](../../io/errno/index.md)
+- `fn set_output_speed(self: &mut Self, new_speed: u32) -> io::Result<()>` — [`Result`](../../io/index.md)
 
 #### Trait Implementations
 
@@ -103,9 +103,45 @@ Flags controlling terminal input.
 
 #### Implementations
 
-- `const fn iter(self: &Self) -> $crate::iter::Iter<InputModes>` — [`InputModes`](../index.md)
+- `const fn empty() -> Self`
 
-- `const fn iter_names(self: &Self) -> $crate::iter::IterNames<InputModes>` — [`InputModes`](../index.md)
+- `const fn all() -> Self`
+
+- `const fn bits(self: &Self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md)
+
+- `const fn from_bits(bits: ffi::c_uint) -> $crate::__private::core::option::Option<Self>` — [`c_uint`](../../ffi/index.md)
+
+- `const fn from_bits_truncate(bits: ffi::c_uint) -> Self` — [`c_uint`](../../ffi/index.md)
+
+- `const fn from_bits_retain(bits: ffi::c_uint) -> Self` — [`c_uint`](../../ffi/index.md)
+
+- `fn from_name(name: &str) -> $crate::__private::core::option::Option<Self>`
+
+- `const fn is_empty(self: &Self) -> bool`
+
+- `const fn is_all(self: &Self) -> bool`
+
+- `const fn intersects(self: &Self, other: Self) -> bool`
+
+- `const fn contains(self: &Self, other: Self) -> bool`
+
+- `fn insert(self: &mut Self, other: Self)`
+
+- `fn remove(self: &mut Self, other: Self)`
+
+- `fn toggle(self: &mut Self, other: Self)`
+
+- `fn set(self: &mut Self, other: Self, value: bool)`
+
+- `const fn intersection(self: Self, other: Self) -> Self`
+
+- `const fn union(self: Self, other: Self) -> Self`
+
+- `const fn difference(self: Self, other: Self) -> Self`
+
+- `const fn symmetric_difference(self: Self, other: Self) -> Self`
+
+- `const fn complement(self: Self) -> Self`
 
 #### Trait Implementations
 
@@ -165,9 +201,9 @@ Flags controlling terminal input.
 
 - `type Bits = u32`
 
-- `fn bits(self: &Self) -> ffi::c_uint`
+- `fn bits(self: &Self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md)
 
-- `fn from_bits_retain(bits: ffi::c_uint) -> InputModes` — [`InputModes`](../index.md)
+- `fn from_bits_retain(bits: ffi::c_uint) -> InputModes` — [`c_uint`](../../ffi/index.md), [`InputModes`](../index.md)
 
 ##### `impl FromIterator for InputModes`
 
@@ -235,67 +271,45 @@ Flags controlling terminal output.
 
 #### Implementations
 
-- `const OPOST: Self`
+- `const fn empty() -> Self`
 
-- `const OLCUC: Self`
+- `const fn all() -> Self`
 
-- `const ONLCR: Self`
+- `const fn bits(self: &Self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md)
 
-- `const OCRNL: Self`
+- `const fn from_bits(bits: ffi::c_uint) -> $crate::__private::core::option::Option<Self>` — [`c_uint`](../../ffi/index.md)
 
-- `const ONOCR: Self`
+- `const fn from_bits_truncate(bits: ffi::c_uint) -> Self` — [`c_uint`](../../ffi/index.md)
 
-- `const ONLRET: Self`
+- `const fn from_bits_retain(bits: ffi::c_uint) -> Self` — [`c_uint`](../../ffi/index.md)
 
-- `const OFILL: Self`
+- `fn from_name(name: &str) -> $crate::__private::core::option::Option<Self>`
 
-- `const OFDEL: Self`
+- `const fn is_empty(self: &Self) -> bool`
 
-- `const NLDLY: Self`
+- `const fn is_all(self: &Self) -> bool`
 
-- `const NL0: Self`
+- `const fn intersects(self: &Self, other: Self) -> bool`
 
-- `const NL1: Self`
+- `const fn contains(self: &Self, other: Self) -> bool`
 
-- `const CRDLY: Self`
+- `fn insert(self: &mut Self, other: Self)`
 
-- `const CR0: Self`
+- `fn remove(self: &mut Self, other: Self)`
 
-- `const CR1: Self`
+- `fn toggle(self: &mut Self, other: Self)`
 
-- `const CR2: Self`
+- `fn set(self: &mut Self, other: Self, value: bool)`
 
-- `const CR3: Self`
+- `const fn intersection(self: Self, other: Self) -> Self`
 
-- `const TABDLY: Self`
+- `const fn union(self: Self, other: Self) -> Self`
 
-- `const TAB0: Self`
+- `const fn difference(self: Self, other: Self) -> Self`
 
-- `const TAB1: Self`
+- `const fn symmetric_difference(self: Self, other: Self) -> Self`
 
-- `const TAB2: Self`
-
-- `const TAB3: Self`
-
-- `const XTABS: Self`
-
-- `const BSDLY: Self`
-
-- `const BS0: Self`
-
-- `const BS1: Self`
-
-- `const FFDLY: Self`
-
-- `const FF0: Self`
-
-- `const FF1: Self`
-
-- `const VTDLY: Self`
-
-- `const VT0: Self`
-
-- `const VT1: Self`
+- `const fn complement(self: Self) -> Self`
 
 #### Trait Implementations
 
@@ -355,9 +369,9 @@ Flags controlling terminal output.
 
 - `type Bits = u32`
 
-- `fn bits(self: &Self) -> ffi::c_uint`
+- `fn bits(self: &Self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md)
 
-- `fn from_bits_retain(bits: ffi::c_uint) -> OutputModes` — [`OutputModes`](../index.md)
+- `fn from_bits_retain(bits: ffi::c_uint) -> OutputModes` — [`c_uint`](../../ffi/index.md), [`OutputModes`](../index.md)
 
 ##### `impl FromIterator for OutputModes`
 
@@ -431,31 +445,9 @@ probably these flags.
 
 #### Implementations
 
-- `const CSIZE: Self`
+- `const fn iter(self: &Self) -> $crate::iter::Iter<ControlModes>` — [`ControlModes`](../index.md)
 
-- `const CS5: Self`
-
-- `const CS6: Self`
-
-- `const CS7: Self`
-
-- `const CS8: Self`
-
-- `const CSTOPB: Self`
-
-- `const CREAD: Self`
-
-- `const PARENB: Self`
-
-- `const PARODD: Self`
-
-- `const HUPCL: Self`
-
-- `const CLOCAL: Self`
-
-- `const CRTSCTS: Self`
-
-- `const CMSPAR: Self`
+- `const fn iter_names(self: &Self) -> $crate::iter::IterNames<ControlModes>` — [`ControlModes`](../index.md)
 
 #### Trait Implementations
 
@@ -515,9 +507,9 @@ probably these flags.
 
 - `type Bits = u32`
 
-- `fn bits(self: &Self) -> ffi::c_uint`
+- `fn bits(self: &Self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md)
 
-- `fn from_bits_retain(bits: ffi::c_uint) -> ControlModes` — [`ControlModes`](../index.md)
+- `fn from_bits_retain(bits: ffi::c_uint) -> ControlModes` — [`c_uint`](../../ffi/index.md), [`ControlModes`](../index.md)
 
 ##### `impl FromIterator for ControlModes`
 
@@ -585,9 +577,45 @@ Flags controlling “local” terminal modes.
 
 #### Implementations
 
-- `const fn iter(self: &Self) -> $crate::iter::Iter<LocalModes>` — [`LocalModes`](../index.md)
+- `const fn empty() -> Self`
 
-- `const fn iter_names(self: &Self) -> $crate::iter::IterNames<LocalModes>` — [`LocalModes`](../index.md)
+- `const fn all() -> Self`
+
+- `const fn bits(self: &Self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md)
+
+- `const fn from_bits(bits: ffi::c_uint) -> $crate::__private::core::option::Option<Self>` — [`c_uint`](../../ffi/index.md)
+
+- `const fn from_bits_truncate(bits: ffi::c_uint) -> Self` — [`c_uint`](../../ffi/index.md)
+
+- `const fn from_bits_retain(bits: ffi::c_uint) -> Self` — [`c_uint`](../../ffi/index.md)
+
+- `fn from_name(name: &str) -> $crate::__private::core::option::Option<Self>`
+
+- `const fn is_empty(self: &Self) -> bool`
+
+- `const fn is_all(self: &Self) -> bool`
+
+- `const fn intersects(self: &Self, other: Self) -> bool`
+
+- `const fn contains(self: &Self, other: Self) -> bool`
+
+- `fn insert(self: &mut Self, other: Self)`
+
+- `fn remove(self: &mut Self, other: Self)`
+
+- `fn toggle(self: &mut Self, other: Self)`
+
+- `fn set(self: &mut Self, other: Self, value: bool)`
+
+- `const fn intersection(self: Self, other: Self) -> Self`
+
+- `const fn union(self: Self, other: Self) -> Self`
+
+- `const fn difference(self: Self, other: Self) -> Self`
+
+- `const fn symmetric_difference(self: Self, other: Self) -> Self`
+
+- `const fn complement(self: Self) -> Self`
 
 #### Trait Implementations
 
@@ -647,9 +675,9 @@ Flags controlling “local” terminal modes.
 
 - `type Bits = u32`
 
-- `fn bits(self: &Self) -> ffi::c_uint`
+- `fn bits(self: &Self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md)
 
-- `fn from_bits_retain(bits: ffi::c_uint) -> LocalModes` — [`LocalModes`](../index.md)
+- `fn from_bits_retain(bits: ffi::c_uint) -> LocalModes` — [`c_uint`](../../ffi/index.md), [`LocalModes`](../index.md)
 
 ##### `impl FromIterator for LocalModes`
 
@@ -878,7 +906,7 @@ enum OptionalActions {
 }
 ```
 
-`TCSA*` values for use with [`tcsetattr`](../index.md).
+`TCSA*` values for use with [`tcsetattr`](../../backend/termios/syscalls/index.md).
 
 
 #### Variants
@@ -930,7 +958,7 @@ enum QueueSelector {
 }
 ```
 
-`TC*` values for use with [`tcflush`](../../backend/termios/syscalls/index.md).
+`TC*` values for use with [`tcflush`](../index.md).
 
 
 #### Variants
@@ -982,7 +1010,7 @@ enum Action {
 }
 ```
 
-`TC*` values for use with [`tcflow`](../index.md).
+`TC*` values for use with [`tcflow`](../../backend/termios/syscalls/index.md).
 
 
 #### Variants

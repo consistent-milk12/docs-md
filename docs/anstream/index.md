@@ -4,7 +4,7 @@
 
 *A portmanteau of "ansi stream"*
 
-[`AutoStream`](auto/index.md) always accepts [ANSI escape codes](https://en.wikipedia.org/wiki/ANSI_escape_code),
+[`AutoStream`](#autostream) always accepts [ANSI escape codes](https://en.wikipedia.org/wiki/ANSI_escape_code),
 [adapting to the user's terminal's capabilities][AutoStream].
 
 Benefits
@@ -61,11 +61,11 @@ This includes
 
 You can customize auto-detection by calling into
 [anstyle_query](https://docs.rs/anstyle-query/latest/anstyle_query/)
-to get a [`ColorChoice`](../colorchoice/index.md) and then calling `AutoStream::new(stream, choice)`.
+to get a [`ColorChoice`](#colorchoice) and then calling `AutoStream::new(stream, choice)`.
 
 #### Implementations
 
-- `fn lock(self: Self) -> AutoStream<std::io::StdoutLock<'static>>` — [`AutoStream`](auto/index.md)
+- `fn lock(self: Self) -> AutoStream<std::io::StdoutLock<'static>>` — [`AutoStream`](#autostream)
 
 #### Trait Implementations
 

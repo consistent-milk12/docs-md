@@ -90,7 +90,7 @@ create links between items.
 
 ##### `impl Default for LinkRegistry`
 
-- `fn default() -> LinkRegistry` — [`LinkRegistry`](#linkregistry)
+- `fn default() -> LinkRegistry` — [`LinkRegistry`](../index.md)
 
 ##### `impl<T> Instrument for LinkRegistry`
 

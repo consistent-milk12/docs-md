@@ -16,7 +16,7 @@ struct Chain<A, B> {
 ```
 
 `Chain` is an iterator that joins `b` after `a` in one continuous iterator.
-This struct is created by the `chain()` method on [`ParallelIterator`](../index.md)
+This struct is created by the `chain()` method on [`ParallelIterator`](../../prelude/index.md)
 
 
 #### Implementations
@@ -27,7 +27,7 @@ This struct is created by the `chain()` method on [`ParallelIterator`](../index.
 
 ##### `impl<A: $crate::clone::Clone, B: $crate::clone::Clone> Clone for Chain<A, B>`
 
-- `fn clone(self: &Self) -> Chain<A, B>` — [`Chain`](#chain)
+- `fn clone(self: &Self) -> Chain<A, B>` — [`Chain`](../index.md)
 
 ##### `impl<A: $crate::fmt::Debug, B: $crate::fmt::Debug> Debug for Chain<A, B>`
 

@@ -36,13 +36,7 @@ struct ErrorImpl<E> {
 
 #### Implementations
 
-- `unsafe fn error<'a>(this: Ref<'a, Self>) -> &'a dyn StdError + Send + Sync` — [`Ref`](../ptr/index.md)
-
-- `unsafe fn diagnostic<'a>(this: Ref<'a, Self>) -> &'a dyn Diagnostic + Send + Sync` — [`Ref`](../ptr/index.md), [`Diagnostic`](../../index.md)
-
-- `unsafe fn diagnostic_mut<'a>(this: Mut<'a, Self>) -> &'a mut dyn Diagnostic + Send + Sync` — [`Mut`](../ptr/index.md), [`Diagnostic`](../../index.md)
-
-- `unsafe fn chain(this: Ref<'_, Self>) -> Chain<'_>` — [`Ref`](../ptr/index.md), [`Chain`](../../chain/index.md)
+- `fn erase(self: &Self) -> Ref<'_, ErrorImpl<()>>` — [`Ref`](../ptr/index.md), [`ErrorImpl`](#errorimpl)
 
 #### Trait Implementations
 
@@ -99,7 +93,7 @@ struct ContextError<D, E> {
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<D, E> Error for super::error::ContextError<D, E>`
+##### `impl<D> Error for super::error::ContextError<D, super::Report>`
 
 - `fn source(self: &Self) -> Option<&dyn StdError>`
 

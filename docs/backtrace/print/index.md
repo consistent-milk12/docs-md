@@ -25,11 +25,11 @@ implementation already uses this printing format.
 
 #### Implementations
 
-- `fn new(fmt: &'a mut fmt::Formatter<'b>, format: PrintFmt, print_path: &'a mut dyn FnMut(&mut fmt::Formatter<'_>, BytesOrWideString<'_>) -> fmt::Result) -> Self` — [`PrintFmt`](#printfmt), [`BytesOrWideString`](../types/index.md)
+- `fn new(fmt: &'a mut fmt::Formatter<'b>, format: PrintFmt, print_path: &'a mut dyn FnMut(&mut fmt::Formatter<'_>, BytesOrWideString<'_>) -> fmt::Result) -> Self` — [`PrintFmt`](../index.md), [`BytesOrWideString`](../index.md)
 
 - `fn add_context(self: &mut Self) -> fmt::Result`
 
-- `fn frame(self: &mut Self) -> BacktraceFrameFmt<'_, 'a, 'b>` — [`BacktraceFrameFmt`](#backtraceframefmt)
+- `fn frame(self: &mut Self) -> BacktraceFrameFmt<'_, 'a, 'b>` — [`BacktraceFrameFmt`](../index.md)
 
 - `fn finish(self: &mut Self) -> fmt::Result`
 
@@ -52,19 +52,19 @@ This type is created by the `BacktraceFmt::frame` function.
 
 #### Implementations
 
-- `fn backtrace_frame(self: &mut Self, frame: &BacktraceFrame) -> fmt::Result` — [`BacktraceFrame`](../capture/index.md)
+- `fn backtrace_frame(self: &mut Self, frame: &BacktraceFrame) -> fmt::Result` — [`BacktraceFrame`](../index.md)
 
-- `fn backtrace_symbol(self: &mut Self, frame: &BacktraceFrame, symbol: &BacktraceSymbol) -> fmt::Result` — [`BacktraceFrame`](../capture/index.md), [`BacktraceSymbol`](../capture/index.md)
+- `fn backtrace_symbol(self: &mut Self, frame: &BacktraceFrame, symbol: &BacktraceSymbol) -> fmt::Result` — [`BacktraceFrame`](../index.md), [`BacktraceSymbol`](../index.md)
 
-- `fn symbol(self: &mut Self, frame: &Frame, symbol: &super::Symbol) -> fmt::Result` — [`Frame`](../backtrace/index.md), [`Symbol`](../symbolize/index.md)
+- `fn symbol(self: &mut Self, frame: &Frame, symbol: &super::Symbol) -> fmt::Result` — [`Frame`](../index.md), [`Symbol`](../index.md)
 
-- `fn print_raw(self: &mut Self, frame_ip: *mut c_void, symbol_name: Option<SymbolName<'_>>, filename: Option<BytesOrWideString<'_>>, lineno: Option<u32>) -> fmt::Result` — [`SymbolName`](../symbolize/index.md), [`BytesOrWideString`](../types/index.md)
+- `fn print_raw(self: &mut Self, frame_ip: *mut c_void, symbol_name: Option<SymbolName<'_>>, filename: Option<BytesOrWideString<'_>>, lineno: Option<u32>) -> fmt::Result` — [`SymbolName`](../index.md), [`BytesOrWideString`](../index.md)
 
-- `fn print_raw_with_column(self: &mut Self, frame_ip: *mut c_void, symbol_name: Option<SymbolName<'_>>, filename: Option<BytesOrWideString<'_>>, lineno: Option<u32>, colno: Option<u32>) -> fmt::Result` — [`SymbolName`](../symbolize/index.md), [`BytesOrWideString`](../types/index.md)
+- `fn print_raw_with_column(self: &mut Self, frame_ip: *mut c_void, symbol_name: Option<SymbolName<'_>>, filename: Option<BytesOrWideString<'_>>, lineno: Option<u32>, colno: Option<u32>) -> fmt::Result` — [`SymbolName`](../index.md), [`BytesOrWideString`](../index.md)
 
-- `fn print_raw_generic(self: &mut Self, frame_ip: *mut c_void, symbol_name: Option<SymbolName<'_>>, filename: Option<BytesOrWideString<'_>>, lineno: Option<u32>, colno: Option<u32>) -> fmt::Result` — [`SymbolName`](../symbolize/index.md), [`BytesOrWideString`](../types/index.md)
+- `fn print_raw_generic(self: &mut Self, frame_ip: *mut c_void, symbol_name: Option<SymbolName<'_>>, filename: Option<BytesOrWideString<'_>>, lineno: Option<u32>, colno: Option<u32>) -> fmt::Result` — [`SymbolName`](../index.md), [`BytesOrWideString`](../index.md)
 
-- `fn print_fileline(self: &mut Self, file: BytesOrWideString<'_>, line: u32, colno: Option<u32>) -> fmt::Result` — [`BytesOrWideString`](../types/index.md)
+- `fn print_fileline(self: &mut Self, file: BytesOrWideString<'_>, line: u32, colno: Option<u32>) -> fmt::Result` — [`BytesOrWideString`](../index.md)
 
 - `fn print_raw_fuchsia(self: &mut Self, frame_ip: *mut c_void) -> fmt::Result`
 
@@ -101,7 +101,7 @@ The styles of printing that we can print
 
 ##### `impl Clone for PrintFmt`
 
-- `fn clone(self: &Self) -> PrintFmt` — [`PrintFmt`](#printfmt)
+- `fn clone(self: &Self) -> PrintFmt` — [`PrintFmt`](../index.md)
 
 ##### `impl Copy for PrintFmt`
 
@@ -109,7 +109,7 @@ The styles of printing that we can print
 
 ##### `impl PartialEq for PrintFmt`
 
-- `fn eq(self: &Self, other: &PrintFmt) -> bool` — [`PrintFmt`](#printfmt)
+- `fn eq(self: &Self, other: &PrintFmt) -> bool` — [`PrintFmt`](../index.md)
 
 ##### `impl StructuralPartialEq for PrintFmt`
 

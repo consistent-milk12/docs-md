@@ -30,7 +30,7 @@ External iterator for a string recomposition's characters.
 
 ##### `impl<I: $crate::clone::Clone> Clone for Recompositions<I>`
 
-- `fn clone(self: &Self) -> Recompositions<I>` — [`Recompositions`](#recompositions)
+- `fn clone(self: &Self) -> Recompositions<I>` — [`Recompositions`](../index.md)
 
 ##### `impl<I: Iterator<Item = char> + Clone> Display for Recompositions<I>`
 
@@ -58,17 +58,17 @@ External iterator for a string recomposition's characters.
 
 ##### `impl<I> UnicodeNormalization for Recompositions<I>`
 
-- `fn nfd(self: Self) -> Decompositions<I>` — [`Decompositions`](../decompose/index.md)
+- `fn nfd(self: Self) -> Decompositions<I>` — [`Decompositions`](../index.md)
 
-- `fn nfkd(self: Self) -> Decompositions<I>` — [`Decompositions`](../decompose/index.md)
+- `fn nfkd(self: Self) -> Decompositions<I>` — [`Decompositions`](../index.md)
 
-- `fn nfc(self: Self) -> Recompositions<I>` — [`Recompositions`](#recompositions)
+- `fn nfc(self: Self) -> Recompositions<I>` — [`Recompositions`](../index.md)
 
-- `fn nfkc(self: Self) -> Recompositions<I>` — [`Recompositions`](#recompositions)
+- `fn nfkc(self: Self) -> Recompositions<I>` — [`Recompositions`](../index.md)
 
-- `fn cjk_compat_variants(self: Self) -> Replacements<I>` — [`Replacements`](../replace/index.md)
+- `fn cjk_compat_variants(self: Self) -> Replacements<I>` — [`Replacements`](../index.md)
 
-- `fn stream_safe(self: Self) -> StreamSafe<I>` — [`StreamSafe`](../stream_safe/index.md)
+- `fn stream_safe(self: Self) -> StreamSafe<I>` — [`StreamSafe`](../index.md)
 
 ## Enums
 

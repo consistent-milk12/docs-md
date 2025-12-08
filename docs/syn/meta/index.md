@@ -40,11 +40,11 @@ Refer to usage examples on the following two entry-points:
 
 #### Implementations
 
-- `fn value(self: &Self) -> Result<ParseStream<'a>>` — [`Result`](../error/index.md), [`ParseStream`](../parse/index.md)
+- `fn value(self: &Self) -> Result<ParseStream<'a>>` — [`Result`](../index.md), [`ParseStream`](../parse/index.md)
 
-- `fn parse_nested_meta(self: &Self, logic: impl FnMut(ParseNestedMeta<'_>) -> Result<()>) -> Result<()>` — [`ParseNestedMeta`](#parsenestedmeta), [`Result`](../error/index.md)
+- `fn parse_nested_meta(self: &Self, logic: impl FnMut(ParseNestedMeta<'_>) -> Result<()>) -> Result<()>` — [`ParseNestedMeta`](#parsenestedmeta), [`Result`](../index.md)
 
-- `fn error(self: &Self, msg: impl Display) -> Error` — [`Error`](../error/index.md)
+- `fn error(self: &Self, msg: impl Display) -> Error` — [`Error`](../index.md)
 
 ## Functions
 

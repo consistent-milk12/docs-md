@@ -32,9 +32,9 @@ An iterator over function frames.
 
 - `fn new_location(location: Location<'ctx>) -> Self` — [`f64`](#f64)
 
-- `fn new_frames(unit: &'ctx ResUnit<R>, sections: &'ctx gimli::Dwarf<R>, function: &'ctx Function<R>, inlined_functions: alloc::vec::Vec<&'ctx InlinedFunction<R>>, location: Option<Location<'ctx>>) -> Self` — [`CStr`](#cstr), [`crate_root`](../crate_root/index.md), [`CString`](#cstring), [`lib`](#lib), [`f64`](#f64)
+- `fn new_frames(unit: &'ctx ResUnit<R>, sections: &'ctx gimli::Dwarf<R>, function: &'ctx Function<R>, inlined_functions: alloc::vec::Vec<&'ctx InlinedFunction<R>>, location: Option<Location<'ctx>>) -> Self` — [`VecDeque`](#vecdeque), [`CStr`](#cstr), [`CStr`](#cstr), [`crate_root`](../crate_root/index.md), [`CString`](#cstring), [`lib`](#lib), [`f64`](#f64)
 
-- `fn next(self: &mut Self) -> Result<Option<Frame<'ctx, R>>, gimli::Error>` — [`lib`](#lib), [`Cow`](#cow), [`net`](#net)
+- `fn next(self: &mut Self) -> Result<Option<Frame<'ctx, R>>, gimli::Error>` — [`PhantomData`](#phantomdata), [`lib`](#lib), [`Cow`](#cow), [`net`](#net)
 
 ### `VecDeque<R: gimli::Reader>`
 
@@ -55,19 +55,19 @@ struct VecDeque<R: gimli::Reader> {
 
 - `fn unit_ref<'a>(self: &'a Self, sections: &'a gimli::Dwarf<R>) -> gimli::UnitRef<'a, R>` — [`CStr`](#cstr)
 
-- `fn dwarf_and_unit<'unit, 'ctx: 'unit>(self: &'unit Self, ctx: &'ctx Context<R>) -> LookupResult<SimpleLookup<Result<(crate::DebugFile, gimli::UnitRef<'unit, R>), gimli::Error>, R, impl FnOnce(Option<Arc<gimli::Dwarf<R>>>) -> Result<(crate::DebugFile, gimli::UnitRef<'unit, R>), gimli::Error>>>` — [`Visitor`](../de/index.md), [`net`](#net), [`lib`](#lib), [`I8Deserializer`](../de/value/index.md), [`CStr`](#cstr)
+- `fn dwarf_and_unit<'unit, 'ctx: 'unit>(self: &'unit Self, ctx: &'ctx Context<R>) -> LookupResult<SimpleLookup<Result<(crate::DebugFile, gimli::UnitRef<'unit, R>), gimli::Error>, R, impl FnOnce(Option<Arc<gimli::Dwarf<R>>>) -> Result<(crate::DebugFile, gimli::UnitRef<'unit, R>), gimli::Error>>>` — [`PhantomData`](#phantomdata), [`Visitor`](../de/index.md), [`net`](#net), [`lib`](#lib), [`I8Deserializer`](../de/value/index.md), [`CStr`](#cstr)
 
-- `fn parse_lines(self: &Self, sections: &gimli::Dwarf<R>) -> Result<Option<&Lines>, gimli::Error>` — [`CStr`](#cstr), [`lib`](#lib), [`net`](#net)
+- `fn parse_lines(self: &Self, sections: &gimli::Dwarf<R>) -> Result<Option<&Lines>, gimli::Error>` — [`CStr`](#cstr), [`PhantomData`](#phantomdata), [`lib`](#lib), [`net`](#net)
 
-- `fn parse_functions<'unit, 'ctx: 'unit>(self: &'unit Self, ctx: &'ctx Context<R>) -> LookupResult<impl LookupContinuation<Output = Result<&'unit Functions<R>, gimli::Error>, Buf = R>>` — [`net`](#net)
+- `fn parse_functions<'unit, 'ctx: 'unit>(self: &'unit Self, ctx: &'ctx Context<R>) -> LookupResult<impl LookupContinuation<Output = Result<&'unit Functions<R>, gimli::Error>, Buf = R>>` — [`PhantomData`](#phantomdata), [`net`](#net)
 
-- `fn parse_inlined_functions<'unit, 'ctx: 'unit>(self: &'unit Self, ctx: &'ctx Context<R>) -> LookupResult<impl LookupContinuation<Output = Result<(), gimli::Error>, Buf = R> + 'unit>` — [`net`](#net)
+- `fn parse_inlined_functions<'unit, 'ctx: 'unit>(self: &'unit Self, ctx: &'ctx Context<R>) -> LookupResult<impl LookupContinuation<Output = Result<(), gimli::Error>, Buf = R> + 'unit>` — [`PhantomData`](#phantomdata), [`net`](#net)
 
-- `fn find_location(self: &Self, probe: u64, sections: &gimli::Dwarf<R>) -> Result<Option<Location<'_>>, gimli::Error>` — [`CStr`](#cstr), [`lib`](#lib), [`f64`](#f64), [`net`](#net)
+- `fn find_location(self: &Self, probe: u64, sections: &gimli::Dwarf<R>) -> Result<Option<Location<'_>>, gimli::Error>` — [`CStr`](#cstr), [`PhantomData`](#phantomdata), [`lib`](#lib), [`f64`](#f64), [`net`](#net)
 
-- `fn find_location_range(self: &Self, probe_low: u64, probe_high: u64, sections: &gimli::Dwarf<R>) -> Result<Option<LineLocationRangeIter<'_>>, gimli::Error>` — [`CStr`](#cstr), [`lib`](#lib), [`net`](#net)
+- `fn find_location_range(self: &Self, probe_low: u64, probe_high: u64, sections: &gimli::Dwarf<R>) -> Result<Option<LineLocationRangeIter<'_>>, gimli::Error>` — [`CStr`](#cstr), [`PhantomData`](#phantomdata), [`lib`](#lib), [`net`](#net)
 
-- `fn find_function_or_location<'unit, 'ctx: 'unit>(self: &'unit Self, probe: u64, ctx: &'ctx Context<R>) -> LookupResult<impl LookupContinuation<Output = Result<(Option<&'unit Function<R>>, Option<Location<'unit>>), gimli::Error>, Buf = R>>` — [`lib`](#lib), [`f64`](#f64), [`net`](#net)
+- `fn find_function_or_location<'unit, 'ctx: 'unit>(self: &'unit Self, probe: u64, ctx: &'ctx Context<R>) -> LookupResult<impl LookupContinuation<Output = Result<(Option<&'unit Function<R>>, Option<Location<'unit>>), gimli::Error>, Buf = R>>` — [`PhantomData`](#phantomdata), [`lib`](#lib), [`CStr`](#cstr), [`f64`](#f64), [`net`](#net)
 
 ### `CStr<R: gimli::Reader>`
 
@@ -94,11 +94,11 @@ struct CStr<R: gimli::Reader> {
 
 #### Implementations
 
-- `fn parse(dw_die_offset: gimli::UnitOffset<<R as >::Offset>, file: DebugFile, unit: gimli::UnitRef<'_, R>, ctx: &Context<R>) -> Result<Self, gimli::Error>` — [`result`](#result), [`Visitor`](../de/index.md), [`net`](#net)
+- `fn parse(dw_die_offset: gimli::UnitOffset<<R as >::Offset>, file: DebugFile, unit: gimli::UnitRef<'_, R>, ctx: &Context<R>) -> Result<Self, gimli::Error>` — [`RangeTo`](#rangeto), [`result`](#result), [`Visitor`](../de/index.md), [`PhantomData`](#phantomdata), [`net`](#net)
 
-- `fn parse_children(state: &mut InlinedState<'_, R>, depth: isize, inlined_depth: usize) -> Result<(), gimli::Error>` — [`net`](#net)
+- `fn parse_children(state: &mut InlinedState<'_, R>, depth: isize, inlined_depth: usize) -> Result<(), gimli::Error>` — [`PhantomData`](#phantomdata), [`net`](#net)
 
-- `fn skip(entries: &mut gimli::EntriesRaw<'_, '_, R>, abbrev: &gimli::Abbreviation, depth: isize) -> Result<(), gimli::Error>` — [`net`](#net)
+- `fn skip(entries: &mut gimli::EntriesRaw<'_, '_, R>, abbrev: &gimli::Abbreviation, depth: isize) -> Result<(), gimli::Error>` — [`PhantomData`](#phantomdata), [`net`](#net)
 
 - `fn find_inlined_functions(self: &Self, probe: u64) -> alloc::vec::Vec<&InlinedFunction<R>>` — [`crate_root`](../crate_root/index.md), [`CString`](#cstring)
 

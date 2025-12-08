@@ -276,7 +276,7 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 ##### `impl Clone for XtermColors`
 
-- `fn clone(self: &Self) -> XtermColors` — [`XtermColors`](#xtermcolors)
+- `fn clone(self: &Self) -> XtermColors` — [`XtermColors`](../../../index.md)
 
 ##### `impl Copy for XtermColors`
 
@@ -300,7 +300,7 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 ##### `impl PartialEq for XtermColors`
 
-- `fn eq(self: &Self, other: &XtermColors) -> bool` — [`XtermColors`](#xtermcolors)
+- `fn eq(self: &Self, other: &XtermColors) -> bool` — [`XtermColors`](../../../index.md)
 
 ##### `impl StructuralPartialEq for XtermColors`
 

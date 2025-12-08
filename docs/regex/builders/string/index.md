@@ -25,7 +25,7 @@ the compiled regular expression.
 
 - `fn new(pattern: &str) -> RegexBuilder` — [`RegexBuilder`](../../index.md)
 
-- `fn build(self: &Self) -> Result<Regex, Error>` — [`Regex`](../../index.md), [`Error`](../../error/index.md)
+- `fn build(self: &Self) -> Result<Regex, Error>` — [`Regex`](../../index.md), [`Error`](../../index.md)
 
 - `fn unicode(self: &mut Self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](../../index.md)
 
@@ -80,7 +80,7 @@ and a size limit on the compiled regular expression.
 
 - `fn new<I, S>(patterns: I) -> RegexSetBuilder` — [`RegexSetBuilder`](../../index.md)
 
-- `fn build(self: &Self) -> Result<RegexSet, Error>` — [`RegexSet`](../../index.md), [`Error`](../../error/index.md)
+- `fn build(self: &Self) -> Result<RegexSet, Error>` — [`RegexSet`](../../index.md), [`Error`](../../index.md)
 
 - `fn unicode(self: &mut Self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](../../index.md)
 

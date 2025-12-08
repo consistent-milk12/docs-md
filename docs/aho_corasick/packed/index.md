@@ -19,11 +19,11 @@ searcher directly.
 
 The primary types in this sub-module are:
 
-* [`Searcher`](api/index.md) executes the actual search algorithm to report matches in a
+* [`Searcher`](#searcher) executes the actual search algorithm to report matches in a
 haystack.
-* [`Builder`](api/index.md) accumulates patterns incrementally and can construct a
+* [`Builder`](#builder) accumulates patterns incrementally and can construct a
 `Searcher`.
-* [`Config`](api/index.md) permits tuning the searcher, and itself will produce a `Builder`
+* [`Config`](#config) permits tuning the searcher, and itself will produce a `Builder`
 (which can then be used to build a `Searcher`). Currently, the only tuneable
 knob are the match semantics, but this may be expanded in the future.
 
@@ -31,7 +31,7 @@ knob are the match semantics, but this may be expanded in the future.
 
 This example shows how to create a searcher from an iterator of patterns.
 By default, leftmost-first match semantics are used. (See the top-level
-[`MatchKind`](api/index.md) type for more details about match semantics, which apply
+[`MatchKind`](#matchkind) type for more details about match semantics, which apply
 similarly to packed substring search.)
 
 ```rust
@@ -54,7 +54,7 @@ if cfg!(all(feature = "std", any(
 }
 ```
 
-This example shows how to use [`Config`](api/index.md) to change the match semantics to
+This example shows how to use [`Config`](#config) to change the match semantics to
 leftmost-longest:
 
 ```rust
@@ -179,17 +179,17 @@ if cfg!(all(feature = "std", any(
 
 #### Implementations
 
-- `fn new() -> Builder` — [`Builder`](api/index.md)
+- `fn new() -> Builder` — [`Builder`](#builder)
 
-- `fn from_config(config: Config) -> Builder` — [`Config`](api/index.md), [`Builder`](api/index.md)
+- `fn from_config(config: Config) -> Builder` — [`Config`](#config), [`Builder`](#builder)
 
-- `fn build(self: &Self) -> Option<Searcher>` — [`Searcher`](api/index.md)
+- `fn build(self: &Self) -> Option<Searcher>` — [`Searcher`](#searcher)
 
 - `fn build_teddy(self: &Self, patterns: Arc<Patterns>) -> Option<self::builder::Searcher>` — [`Patterns`](pattern/index.md), [`Searcher`](teddy/builder/index.md)
 
-- `fn add<P: AsRef<[u8]>>(self: &mut Self, pattern: P) -> &mut Builder` — [`Builder`](api/index.md)
+- `fn add<P: AsRef<[u8]>>(self: &mut Self, pattern: P) -> &mut Builder` — [`Builder`](#builder)
 
-- `fn extend<I, P>(self: &mut Self, patterns: I) -> &mut Builder` — [`Builder`](api/index.md)
+- `fn extend<I, P>(self: &mut Self, patterns: I) -> &mut Builder` — [`Builder`](#builder)
 
 - `fn len(self: &Self) -> usize`
 
@@ -199,7 +199,7 @@ if cfg!(all(feature = "std", any(
 
 ##### `impl Clone for Builder`
 
-- `fn clone(self: &Self) -> Builder` — [`Builder`](api/index.md)
+- `fn clone(self: &Self) -> Builder` — [`Builder`](#builder)
 
 ##### `impl Debug for Builder`
 
@@ -207,7 +207,7 @@ if cfg!(all(feature = "std", any(
 
 ##### `impl Default for Builder`
 
-- `fn default() -> Builder` — [`Builder`](api/index.md)
+- `fn default() -> Builder` — [`Builder`](#builder)
 
 ### `Config`
 
@@ -262,19 +262,19 @@ if cfg!(all(feature = "std", any(
 
 #### Implementations
 
-- `fn new() -> Config` — [`Config`](api/index.md)
+- `fn new() -> Config` — [`Config`](#config)
 
-- `fn builder(self: &Self) -> Builder` — [`Builder`](api/index.md)
+- `fn builder(self: &Self) -> Builder` — [`Builder`](#builder)
 
-- `fn match_kind(self: &mut Self, kind: MatchKind) -> &mut Config` — [`MatchKind`](api/index.md), [`Config`](api/index.md)
+- `fn match_kind(self: &mut Self, kind: MatchKind) -> &mut Config` — [`MatchKind`](#matchkind), [`Config`](#config)
 
-- `fn heuristic_pattern_limits(self: &mut Self, yes: bool) -> &mut Config` — [`Config`](api/index.md)
+- `fn heuristic_pattern_limits(self: &mut Self, yes: bool) -> &mut Config` — [`Config`](#config)
 
 #### Trait Implementations
 
 ##### `impl Clone for Config`
 
-- `fn clone(self: &Self) -> Config` — [`Config`](api/index.md)
+- `fn clone(self: &Self) -> Config` — [`Config`](#config)
 
 ##### `impl Debug for Config`
 
@@ -282,7 +282,7 @@ if cfg!(all(feature = "std", any(
 
 ##### `impl Default for Config`
 
-- `fn default() -> Config` — [`Config`](api/index.md)
+- `fn default() -> Config` — [`Config`](#config)
 
 ### `FindIter<'s, 'h>`
 
@@ -296,7 +296,7 @@ struct FindIter<'s, 'h> {
 
 An iterator over non-overlapping matches from a packed searcher.
 
-The lifetime `'s` refers to the lifetime of the underlying [`Searcher`](api/index.md),
+The lifetime `'s` refers to the lifetime of the underlying [`Searcher`](#searcher),
 while the lifetime `'h` refers to the lifetime of the haystack being
 searched.
 
@@ -318,7 +318,7 @@ searched.
 
 - `type Item = Match`
 
-- `fn next(self: &mut Self) -> Option<Match>` — [`Match`](../util/search/index.md)
+- `fn next(self: &mut Self) -> Option<Match>` — [`Match`](../index.md)
 
 ### `Searcher`
 
@@ -335,7 +335,7 @@ A packed searcher for quickly finding occurrences of multiple patterns.
 
 If callers need more flexible construction, or if one wants to change the
 match semantics (either leftmost-first or leftmost-longest), then one can
-use the [`Config`](api/index.md) and/or [`Builder`](api/index.md) types for more fine grained control.
+use the [`Config`](#config) and/or [`Builder`](#builder) types for more fine grained control.
 
 # Example
 
@@ -364,31 +364,31 @@ if cfg!(all(feature = "std", any(
 
 #### Implementations
 
-- `fn new<I, P>(patterns: I) -> Option<Searcher>` — [`Searcher`](api/index.md)
+- `fn new<I, P>(patterns: I) -> Option<Searcher>` — [`Searcher`](#searcher)
 
-- `fn config() -> Config` — [`Config`](api/index.md)
+- `fn config() -> Config` — [`Config`](#config)
 
-- `fn builder() -> Builder` — [`Builder`](api/index.md)
+- `fn builder() -> Builder` — [`Builder`](#builder)
 
-- `fn find<B: AsRef<[u8]>>(self: &Self, haystack: B) -> Option<Match>` — [`Match`](../util/search/index.md)
+- `fn find<B: AsRef<[u8]>>(self: &Self, haystack: B) -> Option<Match>` — [`Match`](../index.md)
 
-- `fn find_in<B: AsRef<[u8]>>(self: &Self, haystack: B, span: Span) -> Option<Match>` — [`Span`](../util/search/index.md), [`Match`](../util/search/index.md)
+- `fn find_in<B: AsRef<[u8]>>(self: &Self, haystack: B, span: Span) -> Option<Match>` — [`Span`](../index.md), [`Match`](../index.md)
 
-- `fn find_iter<'a, 'b, B: ?Sized + AsRef<[u8]>>(self: &'a Self, haystack: &'b B) -> FindIter<'a, 'b>` — [`FindIter`](api/index.md)
+- `fn find_iter<'a, 'b, B: ?Sized + AsRef<[u8]>>(self: &'a Self, haystack: &'b B) -> FindIter<'a, 'b>` — [`FindIter`](#finditer)
 
-- `fn match_kind(self: &Self) -> &MatchKind` — [`MatchKind`](api/index.md)
+- `fn match_kind(self: &Self) -> &MatchKind` — [`MatchKind`](#matchkind)
 
 - `fn minimum_len(self: &Self) -> usize`
 
 - `fn memory_usage(self: &Self) -> usize`
 
-- `fn find_in_slow(self: &Self, haystack: &[u8], span: Span) -> Option<Match>` — [`Span`](../util/search/index.md), [`Match`](../util/search/index.md)
+- `fn find_in_slow(self: &Self, haystack: &[u8], span: Span) -> Option<Match>` — [`Span`](../index.md), [`Match`](../index.md)
 
 #### Trait Implementations
 
 ##### `impl Clone for Searcher`
 
-- `fn clone(self: &Self) -> Searcher` — [`Searcher`](api/index.md)
+- `fn clone(self: &Self) -> Searcher` — [`Searcher`](#searcher)
 
 ##### `impl Debug for Searcher`
 
@@ -440,7 +440,7 @@ type are leftmost-first.
 
 ##### `impl Clone for MatchKind`
 
-- `fn clone(self: &Self) -> MatchKind` — [`MatchKind`](api/index.md)
+- `fn clone(self: &Self) -> MatchKind` — [`MatchKind`](#matchkind)
 
 ##### `impl Copy for MatchKind`
 
@@ -450,13 +450,13 @@ type are leftmost-first.
 
 ##### `impl Default for MatchKind`
 
-- `fn default() -> MatchKind` — [`MatchKind`](api/index.md)
+- `fn default() -> MatchKind` — [`MatchKind`](#matchkind)
 
 ##### `impl Eq for MatchKind`
 
 ##### `impl PartialEq for MatchKind`
 
-- `fn eq(self: &Self, other: &MatchKind) -> bool` — [`MatchKind`](api/index.md)
+- `fn eq(self: &Self, other: &MatchKind) -> bool` — [`MatchKind`](#matchkind)
 
 ##### `impl StructuralPartialEq for MatchKind`
 

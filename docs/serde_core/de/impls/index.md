@@ -94,11 +94,11 @@ struct StringVisitor;
 
 - `fn visit_str<E>(self: Self, v: &str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
-- `fn visit_string<E>(self: Self, v: String) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- `fn visit_string<E>(self: Self, v: String) -> Result<<Self as >::Value, E>` — [`String`](../../lib/index.md), [`Visitor`](../index.md)
 
 - `fn visit_bytes<E>(self: Self, v: &[u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
-- `fn visit_byte_buf<E>(self: Self, v: Vec<u8>) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- `fn visit_byte_buf<E>(self: Self, v: Vec<u8>) -> Result<<Self as >::Value, E>` — [`Vec`](../../lib/index.md), [`Visitor`](../index.md)
 
 ### `StringInPlaceVisitor<'a>`
 
@@ -120,11 +120,11 @@ struct StringInPlaceVisitor<'a>(&'a mut String);
 
 - `fn visit_str<E>(self: Self, v: &str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
-- `fn visit_string<E>(self: Self, v: String) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- `fn visit_string<E>(self: Self, v: String) -> Result<<Self as >::Value, E>` — [`String`](../../lib/index.md), [`Visitor`](../index.md)
 
 - `fn visit_bytes<E>(self: Self, v: &[u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
-- `fn visit_byte_buf<E>(self: Self, v: Vec<u8>) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- `fn visit_byte_buf<E>(self: Self, v: Vec<u8>) -> Result<<Self as >::Value, E>` — [`Vec`](../../lib/index.md), [`Visitor`](../index.md)
 
 ### `StrVisitor`
 
@@ -192,11 +192,11 @@ struct CStringVisitor;
 
 - `fn visit_bytes<E>(self: Self, v: &[u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
-- `fn visit_byte_buf<E>(self: Self, v: Vec<u8>) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- `fn visit_byte_buf<E>(self: Self, v: Vec<u8>) -> Result<<Self as >::Value, E>` — [`Vec`](../../lib/index.md), [`Visitor`](../index.md)
 
 - `fn visit_str<E>(self: Self, v: &str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
-- `fn visit_string<E>(self: Self, v: String) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- `fn visit_string<E>(self: Self, v: String) -> Result<<Self as >::Value, E>` — [`String`](../../lib/index.md), [`Visitor`](../index.md)
 
 ### `OptionVisitor<T>`
 
@@ -264,9 +264,9 @@ struct ArrayVisitor<A> {
 
 - `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de, T> Visitor for ArrayVisitor<[T; 25]>`
+##### `impl<'de, T> Visitor for ArrayVisitor<[T; 3]>`
 
-- `type Value = [T; 25]`
+- `type Value = [T; 3]`
 
 - `fn expecting(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -284,7 +284,7 @@ struct ArrayInPlaceVisitor<'a, A: 'a>(&'a mut A);
 
 - `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a, 'de, T> Visitor for ArrayInPlaceVisitor<'a, [T; 29]>`
+##### `impl<'a, 'de, T> Visitor for ArrayInPlaceVisitor<'a, [T; 17]>`
 
 - `type Value = ()`
 
@@ -334,11 +334,11 @@ struct PathBufVisitor;
 
 - `fn visit_str<E>(self: Self, v: &str) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
-- `fn visit_string<E>(self: Self, v: String) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- `fn visit_string<E>(self: Self, v: String) -> Result<<Self as >::Value, E>` — [`String`](../../lib/index.md), [`Visitor`](../index.md)
 
 - `fn visit_bytes<E>(self: Self, v: &[u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
 
-- `fn visit_byte_buf<E>(self: Self, v: Vec<u8>) -> Result<<Self as >::Value, E>` — [`Visitor`](../index.md)
+- `fn visit_byte_buf<E>(self: Self, v: Vec<u8>) -> Result<<Self as >::Value, E>` — [`Vec`](../../lib/index.md), [`Visitor`](../index.md)
 
 ### `OsStringVisitor`
 
@@ -402,7 +402,7 @@ enum OsStringKind {
 
 ##### `impl<'de> Deserialize for OsStringKind`
 
-- `fn deserialize<D>(deserializer: D) -> Result<Self, <D as >::Error>` — [`Deserializer`](../index.md)
+- `fn deserialize<D>(deserializer: D) -> Result<Self, <D as >::Error>` — [`Deserializer`](../../index.md)
 
 ##### `impl<T> DeserializeOwned for OsStringKind`
 
