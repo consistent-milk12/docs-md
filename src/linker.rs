@@ -146,7 +146,7 @@ fn slugify_anchor_impl(name: &str) -> String {
 
 /// Check if an item kind generates a heading anchor in markdown.
 ///
-/// Only certain item types get `### \`Name\`` headings in the generated output.
+/// Only certain item types get `### \`Name\` headings in the generated output.
 /// Other items (methods, fields, variants) are rendered as bullet points
 /// without heading anchors.
 ///
@@ -162,7 +162,7 @@ fn slugify_anchor_impl(name: &str) -> String {
 /// - Associated types/constants
 /// - Trait methods
 #[must_use]
-pub fn item_has_anchor(kind: ItemKind) -> bool {
+pub const fn item_has_anchor(kind: ItemKind) -> bool {
     matches!(
         kind,
         ItemKind::Struct

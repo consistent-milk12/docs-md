@@ -18,7 +18,7 @@ use crate::generator::doc_links::{
     strip_reference_definitions, unhide_code_lines,
 };
 use crate::generator::{ItemAccess, ItemFilter, LinkResolver};
-use crate::linker::{item_has_anchor, LinkRegistry, slugify_anchor};
+use crate::linker::{LinkRegistry, item_has_anchor, slugify_anchor};
 use crate::multi_crate::{CrateCollection, UnifiedLinkRegistry};
 
 /// Regex for backtick code links: [`Name`] not followed by ( or [
@@ -688,6 +688,7 @@ impl<'a> SingleCrateView<'a> {
     ///
     /// Returns `Some(markdown_link)` if the item can be resolved,
     /// `None` if it should remain as plain text.
+    #[expect(clippy::similar_names)]
     #[tracing::instrument(skip(self), level = "trace")]
     fn resolve_plain_link(&self, link_text: &str, current_file: &str) -> Option<String> {
         // Try to find the item in the registry
@@ -757,13 +758,8 @@ impl<'a> SingleCrateView<'a> {
                 target_path = %target_path,
                 "Creating cross-file link"
             );
-            let relative = self.build_markdown_link(
-                current_file,
-                &target_crate,
-                target_path,
-                link_text,
-                None,
-            );
+            let relative =
+                self.build_markdown_link(current_file, &target_crate, target_path, link_text, None);
             Some(relative)
         }
     }
@@ -897,14 +893,15 @@ impl<'a> SingleCrateView<'a> {
         // For simple names without ::, check if the item exists and has a heading.
         // Only structs, enums, traits, functions, etc. get headings.
         // Methods, fields, and variants don't have headings (they're bullet points).
-        if let Some((_, id)) = self.registry.resolve_name(link_text, self.crate_name) {
-            if let Some(path_info) = self.krate.paths.get(&id) {
-                if item_has_anchor(path_info.kind) {
-                    return Some(format!("[`{link_text}`](#{})", slugify_anchor(link_text)));
-                }
-                // Item exists but no anchor - link to page without anchor
-                return Some(format!("[`{link_text}`]()"));
+        if let Some((_, id)) = self.registry.resolve_name(link_text, self.crate_name)
+            && let Some(path_info) = self.krate.paths.get(&id)
+        {
+            if item_has_anchor(path_info.kind) {
+                return Some(format!("[`{link_text}`](#{})", slugify_anchor(link_text)));
             }
+
+            // Item exists but no anchor - link to page without anchor
+            return Some(format!("[`{link_text}`]()"));
         }
         // Unknown item - return None (renders as inline code)
         None
@@ -939,6 +936,7 @@ impl<'a> SingleCrateView<'a> {
     ///
     /// Output: Some("[`ConfigBuilder`](../config/index.md)")
     /// ```
+    #[expect(clippy::too_many_lines)]
     #[tracing::instrument(skip(self), level = "trace")]
     fn build_link_to_id(
         &self,
@@ -984,53 +982,46 @@ impl<'a> SingleCrateView<'a> {
             // Method 2a: If the Use item has a target ID, look up via paths
             // This handles cases where source is relative (e.g., "self::event::Event")
             // but the ID points to the actual item in another crate
-            if let Some(target_id) = use_item.id {
-                if let Some(path_info) = self.krate.paths.get(&target_id) {
-                    if let Some(external_crate) = path_info.path.first() {
-                        tracing::trace!(
-                            external_crate = %external_crate,
-                            path = ?path_info.path,
-                            "Following Use item target ID to external crate"
-                        );
+            if let Some(target_id) = use_item.id
+                && let Some(path_info) = self.krate.paths.get(&target_id)
+                && let Some(external_crate) = path_info.path.first()
+            {
+                tracing::trace!(
+                    external_crate = %external_crate,
+                    path = ?path_info.path,
+                    "Following Use item target ID to external crate"
+                );
 
-                        // Try to find the item in the external crate by name
-                        let item_name = path_info.path.last().unwrap_or(&path_info.path[0]);
-                        if let Some((resolved_crate, resolved_id)) =
-                            self.registry.resolve_name(item_name, external_crate)
-                        {
-                            if let Some(target_path) =
-                                self.registry.get_path(&resolved_crate, resolved_id)
-                            {
-                                return Some(self.build_markdown_link(
-                                    current_file,
-                                    &resolved_crate,
-                                    target_path,
-                                    display_name,
-                                    anchor,
-                                ));
-                            }
-                        }
-                    }
+                // Try to find the item in the external crate by name
+                let item_name = path_info.path.last().unwrap_or(&path_info.path[0]);
+
+                if let Some((resolved_crate, resolved_id)) =
+                    self.registry.resolve_name(item_name, external_crate)
+                    && let Some(target_path) = self.registry.get_path(&resolved_crate, resolved_id)
+                {
+                    return Some(self.build_markdown_link(
+                        current_file,
+                        &resolved_crate,
+                        target_path,
+                        display_name,
+                        anchor,
+                    ));
                 }
             }
 
             // Method 2b: Try to resolve the source path directly
-            if !use_item.source.is_empty() {
-                if let Some((original_crate, original_id)) =
+            if !use_item.source.is_empty()
+                && let Some((original_crate, original_id)) =
                     self.registry.resolve_path(&use_item.source)
-                {
-                    if let Some(target_path) =
-                        self.registry.get_path(&original_crate, original_id)
-                    {
-                        return Some(self.build_markdown_link(
-                            current_file,
-                            &original_crate,
-                            target_path,
-                            display_name,
-                            anchor,
-                        ));
-                    }
-                }
+                && let Some(target_path) = self.registry.get_path(&original_crate, original_id)
+            {
+                return Some(self.build_markdown_link(
+                    current_file,
+                    &original_crate,
+                    target_path,
+                    display_name,
+                    anchor,
+                ));
             }
         }
 
@@ -1079,6 +1070,7 @@ impl<'a> SingleCrateView<'a> {
                         target_path = %target_path,
                         "Found external item by direct ID lookup"
                     );
+
                     return Some(self.build_markdown_link(
                         current_file,
                         external_crate,
@@ -1141,10 +1133,7 @@ impl<'a> SingleCrateView<'a> {
                 }
             }
         } else {
-            tracing::trace!(
-                strategy = "external_paths",
-                "No path info found for ID"
-            );
+            tracing::trace!(strategy = "external_paths", "No path info found for ID");
         }
 
         tracing::trace!("All strategies exhausted, returning None");

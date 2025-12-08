@@ -88,7 +88,7 @@ mod json_parsing {
 // =============================================================================
 
 mod slugify {
-    use docs_md::slugify_anchor;
+    use cargo_docs_md::slugify_anchor;
 
     use super::black_box;
 

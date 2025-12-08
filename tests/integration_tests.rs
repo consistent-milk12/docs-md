@@ -18,10 +18,10 @@
 
 use std::path::{Path, PathBuf};
 
-use docs_md::generator::Generator;
-use docs_md::linker::LinkRegistry;
-use docs_md::parser::Parser;
-use docs_md::{CliOutputFormat, MarkdownCapture};
+use cargo_docs_md::generator::Generator;
+use cargo_docs_md::linker::LinkRegistry;
+use cargo_docs_md::parser::Parser;
+use cargo_docs_md::{CliOutputFormat, MarkdownCapture};
 
 /// Helper to get the path to the test fixture.
 fn fixture_path() -> PathBuf {

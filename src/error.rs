@@ -158,4 +158,48 @@ pub enum Error {
         help("Check the progress bar template syntax")
     )]
     ProgressBarTemplate(#[source] indicatif::style::TemplateError),
+
+    // ========== Source parsing errors (source-parsing feature) ==========
+    /// Failed to locate crate source in the Cargo registry.
+    ///
+    /// This occurs when:
+    /// - The crate is not downloaded in ~/.cargo/registry/src/
+    /// - The specified version doesn't exist
+    /// - The registry path is misconfigured
+    #[cfg(feature = "source-parsing")]
+    #[error("Source locator error: {0}")]
+    #[diagnostic(
+        code(docs_md::source::locator),
+        help("Ensure the crate is a dependency and has been downloaded (cargo fetch)")
+    )]
+    SourceLocator(String),
+
+    /// Failed to parse Rust source code with syn.
+    ///
+    /// This occurs when:
+    /// - The source file contains invalid Rust syntax
+    /// - The file cannot be read
+    /// - Module resolution fails
+    #[cfg(feature = "source-parsing")]
+    #[error("Source parser error: {0}")]
+    #[diagnostic(
+        code(docs_md::source::parser),
+        help("Check that the source files contain valid Rust code")
+    )]
+    SourceParser(String),
+
+    /// Failed to collect dependency sources.
+    ///
+    /// This occurs when:
+    /// - Cargo metadata cannot be loaded
+    /// - The registry path doesn't exist
+    /// - File copy operations fail
+    /// - Too many .source_* directories exist
+    #[cfg(feature = "source-parsing")]
+    #[error("Source collector error: {0}")]
+    #[diagnostic(
+        code(docs_md::source::collector),
+        help("Ensure cargo metadata is available and ~/.cargo/registry/src/ exists")
+    )]
+    SourceCollector(String),
 }

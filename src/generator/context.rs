@@ -202,10 +202,10 @@ impl<'a> GeneratorContext<'a> {
     /// Inherent impls (no trait) sort before trait impls.
     /// Trait impls are sorted by trait name.
     fn impl_sort_key(impl_block: &Impl) -> (u8, String) {
-        match &impl_block.trait_ {
-            None => (0, String::new()), // Inherent impls first
-            Some(path) => (1, path.path.clone()), // Then trait impls by name
-        }
+        impl_block
+            .trait_
+            .as_ref()
+            .map_or_else(|| (0, String::new()), |path| (1, path.path.clone()))
     }
 
     /// Extract the item ID from a Type if it's a resolved path.

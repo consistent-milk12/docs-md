@@ -23,7 +23,7 @@ use std::sync::LazyLock;
 use regex::Regex;
 use rustdoc_types::{Crate, Id, ItemKind};
 
-use crate::linker::{item_has_anchor, LinkRegistry};
+use crate::linker::{LinkRegistry, item_has_anchor};
 
 // =============================================================================
 // Static Regex Patterns (compiled once, reused everywhere)
@@ -742,7 +742,9 @@ impl<'a> DocLinkProcessor<'a> {
         // Sort by full path for deterministic selection
         matches.sort_by(|a, b| a.path.join("::").cmp(&b.path.join("::")));
 
-        matches.first().and_then(|path_info| Self::get_docs_rs_url(path_info))
+        matches
+            .first()
+            .and_then(|path_info| Self::get_docs_rs_url(path_info))
     }
 
     /// Check if the HTML link kind matches the rustdoc item kind.

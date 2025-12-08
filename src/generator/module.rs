@@ -174,13 +174,19 @@ impl<'a> ModuleRenderer<'a> {
         seen_items: &mut HashSet<&'a Id>,
     ) {
         // Get target module ID
-        let Some(target_id) = &use_item.id else { return };
+        let Some(target_id) = &use_item.id else {
+            return;
+        };
 
         // Look up target module
-        let Some(target_module) = self.ctx.get_item(target_id) else { return };
+        let Some(target_module) = self.ctx.get_item(target_id) else {
+            return;
+        };
 
         // Must be a module
-        let ItemEnum::Module(module) = &target_module.inner else { return };
+        let ItemEnum::Module(module) = &target_module.inner else {
+            return;
+        };
 
         // Add each public item from the target module
         for child_id in &module.items {
@@ -189,7 +195,9 @@ impl<'a> ModuleRenderer<'a> {
                 continue;
             }
 
-            let Some(child) = self.ctx.get_item(child_id) else { continue };
+            let Some(child) = self.ctx.get_item(child_id) else {
+                continue;
+            };
 
             // Respect visibility settings
             if !self.ctx.should_include_item(child) {
@@ -372,10 +380,10 @@ struct CategorizedItems<'a> {
     type_aliases: Vec<&'a Item>,
 }
 
-impl<'a> CategorizedItems<'a> {
+impl CategorizedItems<'_> {
     /// Sort all item categories alphabetically by name for deterministic output.
     ///
-    /// This ensures consistent ordering regardless of HashMap iteration order
+    /// This ensures consistent ordering regardless of `HashMap` iteration order
     /// in the rustdoc JSON index.
     fn sort(&mut self) {
         // Helper to get item name for sorting
@@ -384,15 +392,22 @@ impl<'a> CategorizedItems<'a> {
         }
 
         // Sort items with IDs by name
-        self.modules.sort_by(|a, b| item_name(a.1).cmp(item_name(b.1)));
-        self.structs.sort_by(|a, b| item_name(a.1).cmp(item_name(b.1)));
-        self.enums.sort_by(|a, b| item_name(a.1).cmp(item_name(b.1)));
-        self.traits.sort_by(|a, b| item_name(a.1).cmp(item_name(b.1)));
+        self.modules
+            .sort_by(|a, b| item_name(a.1).cmp(item_name(b.1)));
+        self.structs
+            .sort_by(|a, b| item_name(a.1).cmp(item_name(b.1)));
+        self.enums
+            .sort_by(|a, b| item_name(a.1).cmp(item_name(b.1)));
+        self.traits
+            .sort_by(|a, b| item_name(a.1).cmp(item_name(b.1)));
 
         // Sort items without IDs by name
-        self.functions.sort_by(|a, b| item_name(a).cmp(item_name(b)));
+        self.functions
+            .sort_by(|a, b| item_name(a).cmp(item_name(b)));
         self.macros.sort_by(|a, b| item_name(a).cmp(item_name(b)));
-        self.constants.sort_by(|a, b| item_name(a).cmp(item_name(b)));
-        self.type_aliases.sort_by(|a, b| item_name(a).cmp(item_name(b)));
+        self.constants
+            .sort_by(|a, b| item_name(a).cmp(item_name(b)));
+        self.type_aliases
+            .sort_by(|a, b| item_name(a).cmp(item_name(b)));
     }
 }
