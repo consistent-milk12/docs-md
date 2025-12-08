@@ -18,7 +18,7 @@ By default, all items (including private ones) are documented. Use `--exclude-pr
 - Produces a `search_index.json` for client-side search (only includes rendered items)
 - Includes all items by default—use `--exclude-private` to limit to public items only (affects links, search index, and SUMMARY.md)
 
-**Example output:** The [`docs/`](docs/) directory in this repository contains generated documentation for this tool's own dependencies, demonstrating multi-crate output with cross-crate linking.
+**Example output:** The [`generated_docs/`](generated_docs/) directory in this repository contains generated documentation for this tool's own dependencies, demonstrating multi-crate output with cross-crate linking.
 
 ## Installation
 
@@ -55,7 +55,7 @@ docs_md docs -- --all-features            # Pass args to cargo doc
 
 This requires the nightly toolchain (`rustup toolchain install nightly`).
 
-**Defaults:** The `docs` subcommand uses nested format and generates `SUMMARY.md` + `search_index.json` by default. Use `--format flat`, `--no-mdbook`, or `--no-search-index` to change this.
+**Defaults:** Nested format is used by default. The `docs` subcommand also generates `SUMMARY.md` + `search_index.json` by default. Use `--format flat`, `--no-mdbook`, or `--no-search-index` to change this.
 
 ### Manual Two-Step Process
 
@@ -74,14 +74,14 @@ This creates JSON files in `target/doc/`. Each crate gets its own `{crate_name}.
 _Single crate:_
 
 ```bash
-# Flat format (all files in one directory)
-docs_md --path target/doc/my_crate.json -o docs/
+# Nested format (directory per module) - default
+docs_md --path target/doc/my_crate.json -o generated_docs/
 
-# Nested format (directory per module)
-docs_md --path target/doc/my_crate.json -o docs/ --format nested
+# Flat format (all files in one directory)
+docs_md --path target/doc/my_crate.json -o generated_docs/ --format flat
 
 # Exclude private items (public only)
-docs_md --path target/doc/my_crate.json -o docs/ --exclude-private
+docs_md --path target/doc/my_crate.json -o generated_docs/ --exclude-private
 ```
 
 _Multiple crates (workspace or with dependencies):_
@@ -90,16 +90,16 @@ Multi-crate mode always uses a nested structure (one directory per crate), regar
 
 ```bash
 # Basic multi-crate generation
-docs_md --dir target/doc/ -o docs/
+docs_md --dir target/doc/ -o generated_docs/
 
 # With mdBook support (generates SUMMARY.md)
-docs_md --dir target/doc/ -o docs/ --mdbook
+docs_md --dir target/doc/ -o generated_docs/ --mdbook
 
 # With search index
-docs_md --dir target/doc/ -o docs/ --mdbook --search-index
+docs_md --dir target/doc/ -o generated_docs/ --mdbook --search-index
 
 # Prioritize your crate for ambiguous links
-docs_md --dir target/doc/ -o docs/ --mdbook --primary-crate my_crate
+docs_md --dir target/doc/ -o generated_docs/ --mdbook --primary-crate my_crate
 ```
 
 ### Development Scripts
@@ -125,7 +125,7 @@ Both scripts include helpful error messages if the nightly toolchain is missing.
 **Flat format:**
 
 ```bash
-docs/
+generated_docs/
 ├── index.md           # Crate root
 ├── module_a.md
 ├── module_a__submodule.md   # Double underscore = nesting
@@ -135,7 +135,7 @@ docs/
 **Nested format:**
 
 ```bash
-docs/
+generated_docs/
 ├── index.md
 ├── module_a/
 │   ├── index.md
@@ -148,7 +148,7 @@ docs/
 **Multi-crate:**
 
 ```bash
-docs/
+generated_docs/
 ├── my_crate/
 │   └── index.md
 ├── dependency_a/

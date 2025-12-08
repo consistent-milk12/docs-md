@@ -105,8 +105,8 @@ pub enum Command {
 pub struct DocsArgs {
     /// Output directory for generated markdown files.
     ///
-    /// Defaults to `docs/` in the current directory.
-    #[arg(short, long, default_value = "docs")]
+    /// Defaults to `generated_docs/` in the current directory.
+    #[arg(short, long, default_value = "generated_docs")]
     pub output: PathBuf,
 
     /// Output format (flat or nested).
@@ -220,15 +220,15 @@ pub struct GenerateArgs {
     /// Output directory for generated markdown files.
     ///
     /// The directory will be created if it doesn't exist.
-    /// Defaults to `docs/` in the current directory.
-    #[arg(short, long, default_value = "docs")]
+    /// Defaults to `generated_docs/` in the current directory.
+    #[arg(short, long, default_value = "generated_docs")]
     pub output: PathBuf,
 
     /// Output format (flat or nested).
     ///
-    /// - `flat`: All files in one directory (default)
-    /// - `nested`: Directory hierarchy mirroring modules
-    #[arg(short, long, value_enum, default_value_t = CliOutputFormat::Flat)]
+    /// - `flat`: All files in one directory
+    /// - `nested`: Directory hierarchy mirroring modules (default)
+    #[arg(short, long, value_enum, default_value_t = CliOutputFormat::Nested)]
     pub format: CliOutputFormat,
 
     /// Exclude private (non-public) items from the output.

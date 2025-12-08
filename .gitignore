@@ -3,8 +3,8 @@
 # Ignore all markdown files except README.md and docs/
 *.md
 !README.md
-!docs/
-!docs/**
+!generated_docs/
+!generated_docs/**
 
 SourceCode/
 !source_docs/**

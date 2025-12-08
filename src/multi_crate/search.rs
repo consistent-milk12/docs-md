@@ -27,7 +27,7 @@
 //!
 //! ```ignore
 //! let generator = SearchIndexGenerator::new(&crates);
-//! generator.write(Path::new("docs/"))?;
+//! generator.write(Path::new("generated_docs/"))?;
 //! ```
 
 use std::collections::{HashMap, HashSet};
@@ -88,7 +88,7 @@ pub struct SearchIndex {
 /// let crates = MultiCrateParser::parse_directory(Path::new("target/doc"))?;
 /// let rendered_items = generator.generate();  // Returns HashMap<String, HashSet<Id>>
 /// let generator = SearchIndexGenerator::new(&crates, false, rendered_items);
-/// generator.write(Path::new("docs/"))?;
+/// generator.write(Path::new("generated_docs/"))?;
 /// ```
 pub struct SearchIndexGenerator<'a> {
     /// Collection of crates to index.

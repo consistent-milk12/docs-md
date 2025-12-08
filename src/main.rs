@@ -11,10 +11,10 @@
 //! docs-md docs
 //!
 //! # From local JSON file
-//! docs-md --path target/doc/my_crate.json -o docs/
+//! docs-md --path target/doc/my_crate.json -o generated_docs/
 //!
 //! # With nested directory structure
-//! docs-md --path target/doc/my_crate.json -o docs/ --format nested
+//! docs-md --path target/doc/my_crate.json -o generated_docs/ --format nested
 //! ```
 //!
 //! # Output Formats
