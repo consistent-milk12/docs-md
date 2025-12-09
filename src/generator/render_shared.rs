@@ -14,7 +14,7 @@ use std::path::Path;
 use rustdoc_types::{Crate, Id, Impl, Item, ItemEnum, Span, StructKind, VariantKind, Visibility};
 
 use crate::generator::context::RenderContext;
-use crate::linker::{assoc_item_anchor, method_anchor, AssocItemKind};
+use crate::linker::{AssocItemKind, assoc_item_anchor, method_anchor};
 use crate::types::TypeRenderer;
 
 // =============================================================================

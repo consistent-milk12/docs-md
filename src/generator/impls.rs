@@ -117,7 +117,11 @@ pub fn is_trivial_derive_impl(impl_block: &Impl) -> bool {
 
     // Extract the trait name (last segment of the path)
     // Using rsplit().next() is more efficient than split().last()
-    let trait_name = trait_ref.path.rsplit("::").next().unwrap_or(&trait_ref.path);
+    let trait_name = trait_ref
+        .path
+        .rsplit("::")
+        .next()
+        .unwrap_or(&trait_ref.path);
 
     TRIVIAL_DERIVE_TRAITS.contains(&trait_name)
 }
@@ -149,7 +153,11 @@ pub fn is_blanket_impl(impl_block: &Impl) -> bool {
 
     // Extract the trait name (last segment of the path)
     // Using rsplit().next() is more efficient than split().last()
-    let trait_name = trait_ref.path.rsplit("::").next().unwrap_or(&trait_ref.path);
+    let trait_name = trait_ref
+        .path
+        .rsplit("::")
+        .next()
+        .unwrap_or(&trait_ref.path);
 
     BLANKET_TRAITS.contains(&trait_name)
 }
@@ -221,8 +229,7 @@ fn generic_args_contain_generic(args: &rustdoc_types::GenericArgs) -> bool {
             })
         },
         rustdoc_types::GenericArgs::Parenthesized { inputs, output } => {
-            inputs.iter().any(is_generic_type)
-                || output.as_ref().is_some_and(is_generic_type)
+            inputs.iter().any(is_generic_type) || output.as_ref().is_some_and(is_generic_type)
         },
         rustdoc_types::GenericArgs::ReturnTypeNotation => false,
     }
@@ -374,7 +381,11 @@ impl<'a> ImplRenderer<'a> {
 
         for impl_block in impls {
             if let Some(trait_ref) = &impl_block.trait_ {
-                let trait_name = trait_ref.path.rsplit("::").next().unwrap_or(&trait_ref.path);
+                let trait_name = trait_ref
+                    .path
+                    .rsplit("::")
+                    .next()
+                    .unwrap_or(&trait_ref.path);
                 let description =
                     get_trivial_derive_description(trait_name).unwrap_or("Derived trait");
                 _ = writeln!(md, "| `{trait_name}` | {description} |");

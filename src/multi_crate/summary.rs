@@ -6,7 +6,7 @@
 use std::fmt::Write;
 use std::path::Path;
 
-use fs_err as fs;
+use fs_err as FsErr;
 use rustdoc_types::{ItemEnum, Visibility};
 
 use crate::error::Error;
@@ -81,7 +81,7 @@ impl<'a> SummaryGenerator<'a> {
         }
 
         let summary_path = self.output_dir.join("SUMMARY.md");
-        fs::write(&summary_path, content).map_err(Error::FileWrite)?;
+        FsErr::write(&summary_path, content).map_err(Error::FileWrite)?;
 
         Ok(())
     }

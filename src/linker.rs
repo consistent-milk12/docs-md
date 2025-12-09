@@ -41,8 +41,10 @@ use unicode_normalization::UnicodeNormalization;
 pub enum AssocItemKind {
     /// A method or function (`fn`)
     Method,
+
     /// An associated constant (`const`)
     Const,
+
     /// An associated type (`type`)
     Type,
 }
@@ -76,8 +78,10 @@ pub fn assoc_item_anchor(type_name: &str, item_name: &str, kind: AssocItemKind) 
     match kind {
         // Methods use the simple format for backward compatibility
         AssocItemKind::Method => format!("{type_slug}-{item_slug}"),
+
         // Constants and types include the kind to disambiguate from methods
         AssocItemKind::Const => format!("{type_slug}-const-{item_slug}"),
+
         AssocItemKind::Type => format!("{type_slug}-type-{item_slug}"),
     }
 }
@@ -153,12 +157,15 @@ fn slugify_anchor_ascii(name: &str) -> String {
     for ch in name.chars() {
         match ch {
             '`' => {},
+
             '<' => in_generics += 1,
+
             '>' => {
                 if in_generics > 0 {
                     in_generics -= 1;
                 }
             },
+
             _ if in_generics == 0 => {
                 if ch.is_alphanumeric() {
                     result.push(ch.to_ascii_lowercase());
@@ -168,6 +175,7 @@ fn slugify_anchor_ascii(name: &str) -> String {
                     last_was_hyphen = true;
                 }
             },
+
             _ => {},
         }
     }
@@ -188,23 +196,29 @@ fn slugify_anchor_impl(name: &str) -> String {
     for ch in name.chars() {
         match ch {
             '`' => {},
+
             '<' => in_generics += 1,
+
             '>' => {
                 if in_generics > 0 {
                     in_generics -= 1;
                 }
             },
+
             _ if in_generics == 0 => {
                 if ch.is_alphanumeric() {
                     for lower_ch in ch.to_lowercase() {
                         result.push(lower_ch);
                     }
+
                     last_was_hyphen = false;
                 } else if (ch == ' ' || ch == '_' || ch == '-') && !last_was_hyphen {
                     result.push('-');
+
                     last_was_hyphen = true;
                 }
             },
+
             _ => {},
         }
     }
@@ -359,12 +373,14 @@ impl LinkRegistry {
                                         if registry.item_paths.contains_key(child_id) {
                                             continue; // Already registered
                                         }
+
                                         if let Some(child) = krate.index.get(child_id) {
                                             if !include_private
                                                 && !matches!(child.visibility, Visibility::Public)
                                             {
                                                 continue;
                                             }
+
                                             let name = child.name.as_deref().unwrap_or("unnamed");
                                             registry
                                                 .item_paths
@@ -836,6 +852,9 @@ mod tests {
     /// Test: Method anchor preserves case normalization.
     #[test]
     fn test_method_anchor_case() {
-        assert_eq!(method_anchor("MyStruct", "DoSomething"), "mystruct-dosomething");
+        assert_eq!(
+            method_anchor("MyStruct", "DoSomething"),
+            "mystruct-dosomething"
+        );
     }
 }
