@@ -133,7 +133,7 @@ trait FileHeader: Debug + Pod { ... }
 
 A trait for generic access to [`xcoff::FileHeader32`](../../../xcoff/index.md) and [`xcoff::FileHeader64`](../../../xcoff/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
 
@@ -148,6 +148,8 @@ A trait for generic access to [`xcoff::FileHeader32`](../../../xcoff/index.md) a
 - `type CsectAux: 1`
 
 - `type Rel: 1`
+
+#### Required Methods
 
 - `fn is_type_64(&self) -> bool`
 
@@ -167,6 +169,8 @@ A trait for generic access to [`xcoff::FileHeader32`](../../../xcoff/index.md) a
 
 - `fn f_flags(&self) -> u16`
 
+#### Provided Methods
+
 - `fn parse<'data, R: ReadRef<'data>>(data: R, offset: &mut u64) -> Result<&'data Self>`
 
   Read the file header.
@@ -185,6 +189,11 @@ A trait for generic access to [`xcoff::FileHeader32`](../../../xcoff/index.md) a
 
   Return the symbol table.
 
+#### Implementors
+
+- [`FileHeader32`](../../../xcoff/index.md)
+- [`FileHeader64`](../../../xcoff/index.md)
+
 ### `AuxHeader`
 
 ```rust
@@ -193,9 +202,11 @@ trait AuxHeader: Debug + Pod { ... }
 
 A trait for generic access to [`xcoff::AuxHeader32`](../../../xcoff/index.md) and [`xcoff::AuxHeader64`](../../../xcoff/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
+
+#### Required Methods
 
 - `fn o_mflag(&self) -> u16`
 
@@ -256,6 +267,11 @@ A trait for generic access to [`xcoff::AuxHeader32`](../../../xcoff/index.md) an
 - `fn o_sntbss(&self) -> u16`
 
 - `fn o_x64flags(&self) -> Option<u16>`
+
+#### Implementors
+
+- [`AuxHeader32`](../../../xcoff/index.md)
+- [`AuxHeader64`](../../../xcoff/index.md)
 
 ## Type Aliases
 

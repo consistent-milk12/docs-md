@@ -349,7 +349,7 @@ Adds rich metadata to your Error that can be used by
 [`Report`](crate::Report) to print really nice and human-friendly error
 messages.
 
-#### Required Methods
+#### Provided Methods
 
 - `fn code<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
@@ -383,6 +383,20 @@ messages.
 
   The cause of the error.
 
+#### Implementors
+
+- [`BoxedError`](../eyreish/wrapper/index.md)
+- [`ContextError`](../eyreish/error/index.md)
+- [`DiagnosticError`](../eyreish/into_diagnostic/index.md)
+- [`DisplayError`](../eyreish/wrapper/index.md)
+- [`InstallError`](../index.md)
+- [`MessageError`](../eyreish/wrapper/index.md)
+- [`MietteDiagnostic`](../index.md)
+- [`MietteError`](../index.md)
+- [`Panic`](../panic/index.md)
+- [`WithSourceCode`](../eyreish/wrapper/index.md)
+- `std::convert::Infallible`
+
 ### `SourceCode`
 
 ```rust
@@ -405,6 +419,18 @@ gigabytes or larger in size.
 
   Read the bytes for a specific span from this `SourceCode`, keeping a
 
+#### Implementors
+
+- [`NamedSource`](../index.md)
+- `&[u8]`
+- `&str`
+- `String`
+- `Vec<u8>`
+- `[u8]`
+- `std::borrow::Cow<'_, T>`
+- `std::sync::Arc<T>`
+- `str`
+
 ### `SpanContents<'a>`
 
 ```rust
@@ -425,10 +451,6 @@ Includes line and column information to optimize highlight calculations.
 
   [`SourceSpan`](../index.md) representing the span covered by this `SpanContents`.
 
-- `fn name(&self) -> Option<&str>`
-
-  An optional (file?) name for the container of this `SpanContents`.
-
 - `fn line(&self) -> usize`
 
   The 0-indexed line in the associated [`SourceCode`](../index.md) where the data
@@ -441,9 +463,19 @@ Includes line and column information to optimize highlight calculations.
 
   Total number of lines covered by this `SpanContents`.
 
+#### Provided Methods
+
+- `fn name(&self) -> Option<&str>`
+
+  An optional (file?) name for the container of this `SpanContents`.
+
 - `fn language(&self) -> Option<&str>`
 
   Optional method. The language name for this source code, if any.
+
+#### Implementors
+
+- [`MietteSpanContents`](../index.md)
 
 ## Type Aliases
 

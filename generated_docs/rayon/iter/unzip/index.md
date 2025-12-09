@@ -461,19 +461,30 @@ This trait abstracts the different ways we can "unzip" one parallel
 iterator into two distinct consumers, which we can handle almost
 identically apart from how to process the individual items.
 
-#### Required Methods
+#### Associated Types
 
 - `type Left: 1`
 
 - `type Right: 1`
 
+#### Required Methods
+
 - `fn consume<FA, FB>(&self, item: T, left: FA, right: FB) -> (FA, FB)`
 
   Consumes one item and feeds it to one or both of the underlying folders.
 
+#### Provided Methods
+
 - `fn indexable() -> bool`
 
   Reports whether this op may support indexed consumers.
+
+#### Implementors
+
+- [`PartitionMap`](#partitionmap)
+- [`Partition`](#partition)
+- [`UnEither`](#uneither)
+- [`Unzip`](#unzip)
 
 ## Functions
 

@@ -96,25 +96,25 @@ unwinding-based backtraces!
   - [`capture`](#capture)
   - [`lock`](#lock)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`Frame`](#frame)
+  - [`Symbol`](#symbol)
+  - [`SymbolName`](#symbolname)
+  - [`BacktraceFmt`](#backtracefmt)
+  - [`BacktraceFrameFmt`](#backtraceframefmt)
+  - [`Backtrace`](#backtrace)
+  - [`BacktraceFrame`](#backtraceframe)
+  - [`BacktraceSymbol`](#backtracesymbol)
 - [Enums](#enums)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`BytesOrWideString`](#bytesorwidestring)
+  - [`PrintFmt`](#printfmt)
 - [Functions](#functions)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`trace_unsynchronized`](#trace_unsynchronized)
+  - [`resolve_frame_unsynchronized`](#resolve_frame_unsynchronized)
+  - [`resolve_unsynchronized`](#resolve_unsynchronized)
+  - [`clear_symbol_cache`](#clear_symbol_cache)
+  - [`trace`](#trace)
+  - [`resolve`](#resolve)
+  - [`resolve_frame`](#resolve_frame)
 
 ## Quick Reference
 
@@ -126,32 +126,32 @@ unwinding-based backtraces!
 | [`print`](#print) | mod |  |
 | [`capture`](#capture) | mod |  |
 | [`lock`](#lock) | mod |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
+| [`Frame`](#frame) | struct |  |
+| [`Symbol`](#symbol) | struct |  |
+| [`SymbolName`](#symbolname) | struct |  |
+| [`BacktraceFmt`](#backtracefmt) | struct |  |
+| [`BacktraceFrameFmt`](#backtraceframefmt) | struct |  |
+| [`Backtrace`](#backtrace) | struct |  |
+| [`BacktraceFrame`](#backtraceframe) | struct |  |
+| [`BacktraceSymbol`](#backtracesymbol) | struct |  |
+| [`BytesOrWideString`](#bytesorwidestring) | enum |  |
+| [`PrintFmt`](#printfmt) | enum |  |
+| [`trace_unsynchronized`](#trace_unsynchronized) | fn |  |
+| [`resolve_frame_unsynchronized`](#resolve_frame_unsynchronized) | fn |  |
+| [`resolve_unsynchronized`](#resolve_unsynchronized) | fn |  |
+| [`clear_symbol_cache`](#clear_symbol_cache) | fn |  |
+| [`trace`](#trace) | fn |  |
+| [`resolve`](#resolve) | fn |  |
+| [`resolve_frame`](#resolve_frame) | fn |  |
 
 ## Modules
 
-- [`backtrace`](backtrace/index.md) - 
-- [`symbolize`](symbolize/index.md) - 
-- [`types`](types/index.md) - Platform dependent types.
-- [`print`](print/index.md) - 
-- [`capture`](capture/index.md) - 
-- [`lock`](lock/index.md) - 
+- [`backtrace`](backtrace/index.md)
+- [`symbolize`](symbolize/index.md)
+- [`types`](types/index.md) — Platform dependent types.
+- [`print`](print/index.md)
+- [`capture`](capture/index.md)
+- [`lock`](lock/index.md)
 
 ## Structs
 

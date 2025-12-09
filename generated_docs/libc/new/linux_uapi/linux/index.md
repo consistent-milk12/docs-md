@@ -17,6 +17,6 @@ Directory: `linux/`
 
 ## Modules
 
-- [`can`](can/index.md) - Header: `uapi/linux/can.h`
-- [`keyctl`](keyctl/index.md) - Header: `linux/keyctl.h`
+- [`can`](can/index.md) — Header: `uapi/linux/can.h`
+- [`keyctl`](keyctl/index.md) — Header: `linux/keyctl.h`
 

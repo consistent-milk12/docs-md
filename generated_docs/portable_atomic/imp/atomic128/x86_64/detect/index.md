@@ -59,9 +59,9 @@ struct CpuInfo(u32);
 
 #### Implementations
 
-- <span id="cpuinfo-cmpxchg16b"></span>`fn cmpxchg16b(self) -> bool`
+- <span id="cpuinfo-set"></span>`fn set(&mut self, bit: CpuInfoFlag)` — [`CpuInfoFlag`](#cpuinfoflag)
 
-- <span id="cpuinfo-vmovdqa-atomic"></span>`fn vmovdqa_atomic(self) -> bool`
+- <span id="cpuinfo-test"></span>`fn test(self, bit: CpuInfoFlag) -> bool` — [`CpuInfoFlag`](#cpuinfoflag)
 
 #### Trait Implementations
 

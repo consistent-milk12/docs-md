@@ -56,9 +56,9 @@ Defines an abstract syntax for regular expressions.
   - [`FlagsItemKind`](#flagsitemkind)
   - [`Flag`](#flag)
 - [Traits](#traits)
-  - [`unnamed`](#unnamed)
+  - [`Visitor`](#visitor)
 - [Functions](#functions)
-  - [`unnamed`](#unnamed)
+  - [`visit`](#visit)
 
 ## Quick Reference
 
@@ -108,14 +108,14 @@ Defines an abstract syntax for regular expressions.
 | [`GroupKind`](#groupkind) | enum | The kind of a group. |
 | [`FlagsItemKind`](#flagsitemkind) | enum | The kind of an item in a group of flags. |
 | [`Flag`](#flag) | enum | A single flag. |
-| [`unnamed`](#unnamed) | trait |  |
-| [`unnamed`](#unnamed) | fn |  |
+| [`Visitor`](#visitor) | trait |  |
+| [`visit`](#visit) | fn |  |
 
 ## Modules
 
-- [`parse`](parse/index.md) - This module provides a regular expression parser.
-- [`print`](print/index.md) - This module provides a regular expression printer for `Ast`.
-- [`visitor`](visitor/index.md) - 
+- [`parse`](parse/index.md) — This module provides a regular expression parser.
+- [`print`](print/index.md) — This module provides a regular expression printer for `Ast`.
+- [`visitor`](visitor/index.md)
 
 ## Structs
 
@@ -2600,6 +2600,88 @@ A single flag.
 ##### `impl StructuralPartialEq for Flag`
 
 ## Traits
+
+### `Visitor`
+
+```rust
+trait Visitor { ... }
+```
+
+A trait for visiting an abstract syntax tree (AST) in depth first order.
+
+The principle aim of this trait is to enable callers to perform case
+analysis on an abstract syntax tree without necessarily using recursion.
+In particular, this permits callers to do case analysis with constant stack
+usage, which can be important since the size of an abstract syntax tree
+may be proportional to end user input.
+
+Typical usage of this trait involves providing an implementation and then
+running it using the [`visit`](#visit) function.
+
+Note that the abstract syntax tree for a regular expression is quite
+complex. Unless you specifically need it, you might be able to use the much
+simpler [high-level intermediate representation](crate::hir::Hir) and its
+[corresponding `Visitor` trait](crate::hir::Visitor) instead.
+
+#### Associated Types
+
+- `type Output`
+
+- `type Err`
+
+#### Required Methods
+
+- `fn finish(self) -> Result<<Self as >::Output, <Self as >::Err>`
+
+  All implementors of `Visitor` must provide a `finish` method, which
+
+#### Provided Methods
+
+- `fn start(&mut self)`
+
+  This method is called before beginning traversal of the AST.
+
+- `fn visit_pre(&mut self, _ast: &Ast) -> Result<(), <Self as >::Err>`
+
+  This method is called on an `Ast` before descending into child `Ast`
+
+- `fn visit_post(&mut self, _ast: &Ast) -> Result<(), <Self as >::Err>`
+
+  This method is called on an `Ast` after descending all of its child
+
+- `fn visit_alternation_in(&mut self) -> Result<(), <Self as >::Err>`
+
+  This method is called between child nodes of an
+
+- `fn visit_concat_in(&mut self) -> Result<(), <Self as >::Err>`
+
+  This method is called between child nodes of a concatenation.
+
+- `fn visit_class_set_item_pre(&mut self, _ast: &ast::ClassSetItem) -> Result<(), <Self as >::Err>`
+
+  This method is called on every [`ClassSetItem`](ast::ClassSetItem)
+
+- `fn visit_class_set_item_post(&mut self, _ast: &ast::ClassSetItem) -> Result<(), <Self as >::Err>`
+
+  This method is called on every [`ClassSetItem`](ast::ClassSetItem)
+
+- `fn visit_class_set_binary_op_pre(&mut self, _ast: &ast::ClassSetBinaryOp) -> Result<(), <Self as >::Err>`
+
+  This method is called on every
+
+- `fn visit_class_set_binary_op_post(&mut self, _ast: &ast::ClassSetBinaryOp) -> Result<(), <Self as >::Err>`
+
+  This method is called on every
+
+- `fn visit_class_set_binary_op_in(&mut self, _ast: &ast::ClassSetBinaryOp) -> Result<(), <Self as >::Err>`
+
+  This method is called between the left hand and right hand child nodes
+
+#### Implementors
+
+- [`NestLimiter`](parse/index.md)
+- [`TranslatorI`](../hir/translate/index.md)
+- [`Writer`](print/index.md)
 
 ## Functions
 

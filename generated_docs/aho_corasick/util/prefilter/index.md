@@ -684,6 +684,18 @@ participate in a match.
 
   Returns the next possible match candidate. This may yield false
 
+#### Implementors
+
+- [`Memmem`](#memmem)
+- [`Packed`](#packed)
+- [`RareBytesOne`](#rarebytesone)
+- [`RareBytesThree`](#rarebytesthree)
+- [`RareBytesTwo`](#rarebytestwo)
+- [`StartBytesOne`](#startbytesone)
+- [`StartBytesThree`](#startbytesthree)
+- [`StartBytesTwo`](#startbytestwo)
+- `alloc::sync::Arc<P>`
+
 ## Functions
 
 ### `opposite_ascii_case`

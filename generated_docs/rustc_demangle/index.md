@@ -66,8 +66,8 @@ assert_eq!(format!("{:#}", demangle("_ZN3foo17h05af221e174051e9E")), "foo");
 
 ## Modules
 
-- [`legacy`](legacy/index.md) - 
-- [`v0`](v0/index.md) - 
+- [`legacy`](legacy/index.md)
+- [`v0`](v0/index.md)
 
 ## Structs
 

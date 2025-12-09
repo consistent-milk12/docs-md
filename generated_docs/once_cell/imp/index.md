@@ -42,7 +42,7 @@
 
 ## Modules
 
-- [`strict`](strict/index.md) - 
+- [`strict`](strict/index.md)
 
 ## Structs
 

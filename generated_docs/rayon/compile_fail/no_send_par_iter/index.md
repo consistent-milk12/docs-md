@@ -14,7 +14,7 @@
 
 ## Modules
 
-- [`map`](map/index.md) -  ```compile_fail,E0277
-- [`filter_map`](filter_map/index.md) -  ```compile_fail,E0277
-- [`cloned`](cloned/index.md) -  ```compile_fail,E0277
+- [`map`](map/index.md) —  ```compile_fail,E0277
+- [`filter_map`](filter_map/index.md) —  ```compile_fail,E0277
+- [`cloned`](cloned/index.md) —  ```compile_fail,E0277
 

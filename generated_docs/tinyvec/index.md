@@ -100,12 +100,12 @@ unlikely to clash with any future methods added to `Vec`.
 
 ## Modules
 
-- [`array`](array/index.md) - 
-- [`arrayvec`](arrayvec/index.md) - 
-- [`arrayvec_drain`](arrayvec_drain/index.md) - 
-- [`slicevec`](slicevec/index.md) - 
-- [`tinyvec`](tinyvec/index.md) - 
-- [`const_generic_impl`](const_generic_impl/index.md) - 
+- [`array`](array/index.md)
+- [`arrayvec`](arrayvec/index.md)
+- [`arrayvec_drain`](arrayvec_drain/index.md)
+- [`slicevec`](slicevec/index.md)
+- [`tinyvec`](tinyvec/index.md)
+- [`const_generic_impl`](const_generic_impl/index.md)
 
 ## Structs
 
@@ -630,7 +630,7 @@ working with to make it easier to manipulate.
 
 ##### `impl<'s, T> PartialEq for SliceVec<'s, T>`
 
-- <span id="slicevec-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="slicevec-eq"></span>`fn eq(&self, other: &&[T]) -> bool`
 
 ##### `impl<'s, T> PartialOrd for SliceVec<'s, T>`
 
@@ -774,25 +774,55 @@ let some_ints = tiny_vec!([i32; 4] => 1, 2, 3);
 
 #### Implementations
 
-- <span id="tinyvec-is-heap"></span>`fn is_heap(&self) -> bool`
+- <span id="tinyvec-append"></span>`fn append(&mut self, other: &mut Self)`
 
-- <span id="tinyvec-is-inline"></span>`fn is_inline(&self) -> bool`
+- <span id="tinyvec-swap-remove"></span>`fn swap_remove(&mut self, index: usize) -> <A as >::Item` — [`Array`](#array)
 
-- <span id="tinyvec-shrink-to-fit"></span>`fn shrink_to_fit(&mut self)`
+- <span id="tinyvec-pop"></span>`fn pop(&mut self) -> Option<<A as >::Item>` — [`Array`](#array)
 
-- <span id="tinyvec-move-to-the-heap"></span>`fn move_to_the_heap(&mut self)`
+- <span id="tinyvec-remove"></span>`fn remove(&mut self, index: usize) -> <A as >::Item` — [`Array`](#array)
 
-- <span id="tinyvec-move-to-the-heap-and-reserve"></span>`fn move_to_the_heap_and_reserve(&mut self, n: usize)`
+- <span id="tinyvec-len"></span>`fn len(&self) -> usize`
 
-- <span id="tinyvec-reserve"></span>`fn reserve(&mut self, n: usize)`
+- <span id="tinyvec-capacity"></span>`fn capacity(&self) -> usize`
 
-- <span id="tinyvec-reserve-exact"></span>`fn reserve_exact(&mut self, n: usize)`
+- <span id="tinyvec-truncate"></span>`fn truncate(&mut self, new_len: usize)`
 
-- <span id="tinyvec-with-capacity"></span>`fn with_capacity(cap: usize) -> Self`
+- <span id="tinyvec-as-mut-ptr"></span>`fn as_mut_ptr(&mut self) -> *mut <A as >::Item` — [`Array`](#array)
 
-- <span id="tinyvec-into-boxed-slice"></span>`fn into_boxed_slice(self) -> alloc::boxed::Box<[<A as >::Item]>` — [`Array`](#array)
+- <span id="tinyvec-as-ptr"></span>`fn as_ptr(&self) -> *const <A as >::Item` — [`Array`](#array)
 
-- <span id="tinyvec-into-vec"></span>`fn into_vec(self) -> Vec<<A as >::Item>` — [`Array`](#array)
+- <span id="tinyvec-retain"></span>`fn retain<F: FnMut(&<A as >::Item) -> bool>(&mut self, acceptable: F)`
+
+- <span id="tinyvec-as-mut-slice"></span>`fn as_mut_slice(&mut self) -> &mut [<A as >::Item]` — [`Array`](#array)
+
+- <span id="tinyvec-as-slice"></span>`fn as_slice(&self) -> &[<A as >::Item]` — [`Array`](#array)
+
+- <span id="tinyvec-clear"></span>`fn clear(&mut self)`
+
+- <span id="tinyvec-drain"></span>`fn drain<R: RangeBounds<usize>>(&mut self, range: R) -> TinyVecDrain<'_, A>` — [`TinyVecDrain`](#tinyvecdrain)
+
+- <span id="tinyvec-extend-from-slice"></span>`fn extend_from_slice(&mut self, sli: &[<A as >::Item])` — [`Array`](#array)
+
+- <span id="tinyvec-from-array-len"></span>`fn from_array_len(data: A, len: usize) -> Self`
+
+- <span id="tinyvec-insert"></span>`fn insert(&mut self, index: usize, item: <A as >::Item)` — [`Array`](#array)
+
+- <span id="tinyvec-is-empty"></span>`fn is_empty(&self) -> bool`
+
+- <span id="tinyvec-new"></span>`fn new() -> Self`
+
+- <span id="tinyvec-push"></span>`fn push(&mut self, val: <A as >::Item)` — [`Array`](#array)
+
+- <span id="tinyvec-resize"></span>`fn resize(&mut self, new_len: usize, new_val: <A as >::Item)` — [`Array`](#array)
+
+- <span id="tinyvec-resize-with"></span>`fn resize_with<F: FnMut() -> <A as >::Item>(&mut self, new_len: usize, f: F)`
+
+- <span id="tinyvec-split-off"></span>`fn split_off(&mut self, at: usize) -> Self`
+
+- <span id="tinyvec-splice"></span>`fn splice<R, I>(&mut self, range: R, replacement: I) -> TinyVecSplice<'_, A, core::iter::Fuse<<I as >::IntoIter>>` — [`TinyVecSplice`](#tinyvecsplice)
+
+- <span id="tinyvec-try-from-array-len"></span>`fn try_from_array_len(data: A, len: usize) -> Result<Self, A>`
 
 #### Trait Implementations
 
@@ -886,7 +916,7 @@ let some_ints = tiny_vec!([i32; 4] => 1, 2, 3);
 
 ##### `impl<A: Array> PartialEq for TinyVec<A>`
 
-- <span id="tinyvec-eq"></span>`fn eq(&self, other: &&A) -> bool`
+- <span id="tinyvec-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl<A: Array> PartialOrd for TinyVec<A>`
 
@@ -1038,11 +1068,15 @@ already implemented for all array lengths.
 Just a reminder: this trait is 100% safe, which means that `unsafe` code
 **must not** rely on an instance of this trait being correct.
 
-#### Required Methods
+#### Associated Types
 
 - `type Item: 1`
 
+#### Associated Constants
+
 - `const CAPACITY: usize`
+
+#### Required Methods
 
 - `fn as_slice(&self) -> &[<Self as >::Item]`
 
@@ -1055,6 +1089,10 @@ Just a reminder: this trait is 100% safe, which means that `unsafe` code
 - `fn default() -> Self`
 
   Create a default-initialized instance of ourself, similar to the
+
+#### Implementors
+
+- `[T; N]`
 
 ## Macros
 

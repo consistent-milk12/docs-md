@@ -13,7 +13,7 @@
 
 ## Modules
 
-- [`unix`](unix/index.md) - 
+- [`unix`](unix/index.md)
 
 ## Structs
 

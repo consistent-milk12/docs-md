@@ -10,13 +10,13 @@ Methods for composing and decomposing characters.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn | Return whether the given character is assigned (`General_Category` != `Unassigned`) |
+| [`compose`](#compose) | fn |  |
+| [`decompose_canonical`](#decompose_canonical) | fn |  |
+| [`decompose_cjk_compat_variants`](#decompose_cjk_compat_variants) | fn |  |
+| [`decompose_compatible`](#decompose_compatible) | fn |  |
+| [`canonical_combining_class`](#canonical_combining_class) | fn |  |
+| [`is_combining_mark`](#is_combining_mark) | fn |  |
+| [`is_public_assigned`](#is_public_assigned) | fn | Return whether the given character is assigned (`General_Category` != `Unassigned`) |
 
 ## Functions
 

@@ -13,7 +13,7 @@
 
 ## Modules
 
-- [`inner`](inner/index.md) - 
+- [`inner`](inner/index.md)
 
 ## Structs
 

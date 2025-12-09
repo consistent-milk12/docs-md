@@ -13,35 +13,35 @@ module.
 - [Modules](#modules)
   - [`core`](#core)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`ptr`](#ptr)
+  - [`default`](#default)
 - [Functions](#functions)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`convert`](#convert)
+  - [`fmt`](#fmt)
+  - [`FmtWrite`](#fmtwrite)
+  - [`PhantomData`](#phantomdata)
+  - [`result`](#result)
+  - [`String`](#string)
+  - [`ToString`](#tostring)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
 | [`core`](#core) | mod |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
+| [`ptr`](#ptr) | struct |  |
+| [`default`](#default) | struct |  |
+| [`convert`](#convert) | fn |  |
+| [`fmt`](#fmt) | fn |  |
+| [`FmtWrite`](#fmtwrite) | fn |  |
+| [`PhantomData`](#phantomdata) | fn |  |
+| [`result`](#result) | fn |  |
+| [`String`](#string) | fn |  |
+| [`ToString`](#tostring) | fn |  |
 
 ## Modules
 
-- [`core`](core/index.md) - 
+- [`core`](core/index.md)
 
 ## Structs
 
@@ -104,7 +104,7 @@ this type directly. Using a `DFA` directly is typically only necessary when
 one needs access to the `Automaton` trait implementation.
 
 This DFA can only be built by first constructing a [`noncontiguous::NFA`](#noncontiguousnfa).
-Both [`DFA::new`](../../addr2line/index.md) and `Builder::build` do this for you automatically, but
+Both [`DFA::new`](../../cargo_docs_md/error/index.md) and `Builder::build` do this for you automatically, but
 [`Builder::build_from_noncontiguous`](../../clap_builder/index.md) permits doing it explicitly.
 
 A DFA provides the best possible search performance (in this crate) via two
@@ -230,13 +230,13 @@ It is also possible to implement your own version of `try_find`. See the
 
 #### Implementations
 
-- <span id="dfa-new"></span>`fn new<I, P>(patterns: I) -> Result<DFA, BuildError>` — [`FmtWrite`](#fmtwrite), [`default`](#default), [`FmtWrite`](#fmtwrite)
-
-- <span id="dfa-builder"></span>`fn builder() -> Builder`
-
 - <span id="dfa-dead"></span>`const DEAD: StateID`
 
 - <span id="dfa-set-matches"></span>`fn set_matches(&mut self, sid: StateID, pids: impl Iterator<Item = PatternID>)`
+
+- <span id="dfa-new"></span>`fn new<I, P>(patterns: I) -> Result<DFA, BuildError>` — [`FmtWrite`](#fmtwrite), [`default`](#default), [`FmtWrite`](#fmtwrite)
+
+- <span id="dfa-builder"></span>`fn builder() -> Builder`
 
 #### Trait Implementations
 

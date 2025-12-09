@@ -30,7 +30,7 @@ Currently supported syntax highlighters and their feature flags:
 
 ## Modules
 
-- [`blank`](blank/index.md) - 
+- [`blank`](blank/index.md)
 
 ## Structs
 
@@ -144,6 +144,10 @@ A syntax highlighter for highlighting miette [`SourceCode`](crate::SourceCode) s
 
    Creates a new [`HighlighterState`](#highlighterstate) to begin parsing and highlighting
 
+#### Implementors
+
+- [`BlankHighlighter`](#blankhighlighter)
+
 ### `HighlighterState`
 
 ```rust
@@ -166,4 +170,8 @@ mutable parsing and highlighting state.
 - `fn highlight_line<'s>(&mut self, line: &'s str) -> Vec<Styled<&'s str>>`
 
   Highlight an individual line from the source code by returning a vector of [Styled]
+
+#### Implementors
+
+- [`BlankHighlighterState`](#blankhighlighterstate)
 

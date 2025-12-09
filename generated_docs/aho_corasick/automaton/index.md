@@ -15,16 +15,16 @@ permit walking the state transitions of an Aho-Corasick automaton manually.
 - [Modules](#modules)
   - [`private`](#private)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`Prefilter`](#prefilter)
+  - [`StateID`](#stateid)
+  - [`StateIDError`](#stateiderror)
   - [`OverlappingState`](#overlappingstate)
   - [`FindIter`](#finditer)
   - [`FindOverlappingIter`](#findoverlappingiter)
   - [`StreamFindIter`](#streamfinditer)
   - [`StreamChunkIter`](#streamchunkiter)
 - [Enums](#enums)
-  - [`unnamed`](#unnamed)
+  - [`Candidate`](#candidate)
   - [`StreamChunk`](#streamchunk)
 - [Traits](#traits)
   - [`Automaton`](#automaton)
@@ -42,15 +42,15 @@ permit walking the state transitions of an Aho-Corasick automaton manually.
 | Item | Kind | Description |
 |------|------|-------------|
 | [`private`](#private) | mod | We seal the `Automaton` trait for now. |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
+| [`Prefilter`](#prefilter) | struct |  |
+| [`StateID`](#stateid) | struct |  |
+| [`StateIDError`](#stateiderror) | struct |  |
 | [`OverlappingState`](#overlappingstate) | struct | Represents the current state of an overlapping search. |
 | [`FindIter`](#finditer) | struct | An iterator of non-overlapping matches in a particular haystack. |
 | [`FindOverlappingIter`](#findoverlappingiter) | struct | An iterator of overlapping matches in a particular haystack. |
 | [`StreamFindIter`](#streamfinditer) | struct | An iterator that reports matches in a stream. |
 | [`StreamChunkIter`](#streamchunkiter) | struct | An iterator that reports matches in a stream. |
-| [`unnamed`](#unnamed) | enum |  |
+| [`Candidate`](#candidate) | enum |  |
 | [`StreamChunk`](#streamchunk) | enum | A single chunk yielded by the stream chunk iterator. |
 | [`Automaton`](#automaton) | trait | A trait that abstracts over Aho-Corasick automata. |
 | [`try_find_fwd`](#try_find_fwd) | fn |  |
@@ -63,7 +63,7 @@ permit walking the state transitions of an Aho-Corasick automaton manually.
 
 ## Modules
 
-- [`private`](private/index.md) - We seal the `Automaton` trait for now. It's a big trait, and it's
+- [`private`](private/index.md) — We seal the `Automaton` trait for now. It's a big trait, and it's
 
 ## Structs
 
@@ -961,6 +961,8 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
   Returns a prefilter, if available, that can be used to accelerate
 
+#### Provided Methods
+
 - `fn try_find(&self, input: &Input<'_>) -> Result<Option<Match>, MatchError>`
 
   Executes a non-overlapping search with this automaton using the given
@@ -1004,6 +1006,13 @@ Ok::<(), Box<dyn std::error::Error>>(())
 - `fn try_stream_replace_all_with<R, W, F>(&self, rdr: R, wtr: W, replace_with: F) -> std::io::Result<()>`
 
   Replaces all non-overlapping matches in `rdr` by calling the
+
+#### Implementors
+
+- [`DFA`](../dfa/index.md)
+- [`NFA`](../nfa/contiguous/index.md)
+- [`NFA`](../nfa/noncontiguous/index.md)
+- `&'a A`
 
 ## Functions
 

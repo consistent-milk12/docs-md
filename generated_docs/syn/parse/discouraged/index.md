@@ -29,6 +29,10 @@ Extensions to the `ParseStream` API to support speculative parsing.
 
   Advance this parse stream to the position of a forked parse stream.
 
+#### Implementors
+
+- [`ParseBuffer`](../index.md)
+
 ### `AnyDelimiter`
 
 ```rust
@@ -43,4 +47,8 @@ delimiters the same as if they were visible.
 - `fn parse_any_delimiter(&self) -> Result<(Delimiter, DelimSpan, ParseBuffer<'_>)>`
 
   Returns the delimiter, the span of the delimiter token, and the nested
+
+#### Implementors
+
+- [`ParseBuffer`](../index.md)
 

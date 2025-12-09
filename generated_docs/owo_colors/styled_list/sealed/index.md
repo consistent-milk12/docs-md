@@ -18,11 +18,18 @@
 trait IsStyled { ... }
 ```
 
-#### Required Methods
+#### Associated Types
 
 - `type Inner: 1`
+
+#### Required Methods
 
 - `fn style(&self) -> &crate::Style`
 
 - `fn inner(&self) -> &<Self as >::Inner`
+
+#### Implementors
+
+- [`Styled`](../../index.md)
+- `&T`
 

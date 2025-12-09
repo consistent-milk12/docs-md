@@ -221,14 +221,14 @@ pub fn convert_html_links(docs: &str) -> String {
         let item_name = &caps[2];
 
         // If there's a method/variant anchor part, create a method anchor
-        if let Some(method_match) = caps.get(4) {
-            let method_name = method_match.as_str();
-            let anchor = method_anchor(item_name, method_name);
-            format!("(#{anchor})")
-        } else {
-            // Type-level anchor
-            format!("(#{})", item_name.to_lowercase())
-        }
+        caps.get(4).map_or_else(
+            || format!("(#{})", item_name.to_lowercase()),
+            |method_match| {
+                let method_name = method_match.as_str();
+                let anchor = method_anchor(item_name, method_name);
+                format!("(#{anchor})")
+            },
+        )
     })
 }
 

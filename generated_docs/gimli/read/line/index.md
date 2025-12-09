@@ -86,7 +86,7 @@ found in the `.debug_line` section.
 
 #### Implementations
 
-- <span id="debugline-program"></span>`fn program(&self, offset: DebugLineOffset<<R as >::Offset>, address_size: u8, comp_dir: Option<R>, comp_name: Option<R>) -> Result<IncompleteLineProgram<R>>` — [`DebugLineOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`IncompleteLineProgram`](../index.md)
+- <span id="debugline-borrow"></span>`fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugLine<R>` — [`DebugLine`](../index.md)
 
 #### Trait Implementations
 
@@ -166,7 +166,7 @@ for more details.
 
 #### Implementations
 
-- <span id="lineinstructions-remove-trailing"></span>`fn remove_trailing(&self, other: &LineInstructions<R>) -> Result<LineInstructions<R>>` — [`LineInstructions`](../index.md), [`Result`](../../index.md)
+- <span id="lineinstructions-next-instruction"></span>`fn next_instruction(&mut self, header: &LineProgramHeader<R>) -> Result<Option<LineInstruction<R>>>` — [`LineProgramHeader`](../index.md), [`Result`](../../index.md), [`LineInstruction`](../index.md)
 
 #### Trait Implementations
 
@@ -920,6 +920,11 @@ never need to use or see this trait.
 - `fn add_file(&mut self, file: FileEntry<R, Offset>)`
 
   Add a file to the file table if necessary.
+
+#### Implementors
+
+- [`IncompleteLineProgram`](../index.md)
+- `&'program CompleteLineProgram<R, Offset>`
 
 ## Functions
 

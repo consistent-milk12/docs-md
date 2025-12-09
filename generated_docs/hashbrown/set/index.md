@@ -148,13 +148,49 @@ let viking_names: HashSet<&'static str> =
 
 #### Implementations
 
-- <span id="hashset-allocator"></span>`fn allocator(&self) -> &A`
+- <span id="hashset-reserve"></span>`fn reserve(&mut self, additional: usize)`
 
-- <span id="hashset-with-hasher-in"></span>`const fn with_hasher_in(hasher: S, alloc: A) -> Self`
+- <span id="hashset-try-reserve"></span>`fn try_reserve(&mut self, additional: usize) -> Result<(), TryReserveError>` — [`TryReserveError`](../index.md)
 
-- <span id="hashset-with-capacity-and-hasher-in"></span>`fn with_capacity_and_hasher_in(capacity: usize, hasher: S, alloc: A) -> Self`
+- <span id="hashset-shrink-to-fit"></span>`fn shrink_to_fit(&mut self)`
 
-- <span id="hashset-hasher"></span>`fn hasher(&self) -> &S`
+- <span id="hashset-shrink-to"></span>`fn shrink_to(&mut self, min_capacity: usize)`
+
+- <span id="hashset-difference"></span>`fn difference<'a>(self: &'a Self, other: &'a Self) -> Difference<'a, T, S, A>` — [`Difference`](../hash_set/index.md)
+
+- <span id="hashset-symmetric-difference"></span>`fn symmetric_difference<'a>(self: &'a Self, other: &'a Self) -> SymmetricDifference<'a, T, S, A>` — [`SymmetricDifference`](../hash_set/index.md)
+
+- <span id="hashset-intersection"></span>`fn intersection<'a>(self: &'a Self, other: &'a Self) -> Intersection<'a, T, S, A>` — [`Intersection`](../hash_set/index.md)
+
+- <span id="hashset-union"></span>`fn union<'a>(self: &'a Self, other: &'a Self) -> Union<'a, T, S, A>` — [`Union`](../hash_set/index.md)
+
+- <span id="hashset-contains"></span>`fn contains<Q>(&self, value: &Q) -> bool`
+
+- <span id="hashset-get"></span>`fn get<Q>(&self, value: &Q) -> Option<&T>`
+
+- <span id="hashset-get-or-insert"></span>`fn get_or_insert(&mut self, value: T) -> &T`
+
+- <span id="hashset-get-or-insert-with"></span>`fn get_or_insert_with<Q, F>(&mut self, value: &Q, f: F) -> &T`
+
+- <span id="hashset-entry"></span>`fn entry(&mut self, value: T) -> Entry<'_, T, S, A>` — [`Entry`](../hash_set/index.md)
+
+- <span id="hashset-is-disjoint"></span>`fn is_disjoint(&self, other: &Self) -> bool`
+
+- <span id="hashset-is-subset"></span>`fn is_subset(&self, other: &Self) -> bool`
+
+- <span id="hashset-is-superset"></span>`fn is_superset(&self, other: &Self) -> bool`
+
+- <span id="hashset-insert"></span>`fn insert(&mut self, value: T) -> bool`
+
+- <span id="hashset-insert-unique-unchecked"></span>`unsafe fn insert_unique_unchecked(&mut self, value: T) -> &T`
+
+- <span id="hashset-replace"></span>`fn replace(&mut self, value: T) -> Option<T>`
+
+- <span id="hashset-remove"></span>`fn remove<Q>(&mut self, value: &Q) -> bool`
+
+- <span id="hashset-take"></span>`fn take<Q>(&mut self, value: &Q) -> Option<T>`
+
+- <span id="hashset-allocation-size"></span>`fn allocation_size(&self) -> usize`
 
 #### Trait Implementations
 
@@ -190,9 +226,9 @@ let viking_names: HashSet<&'static str> =
 
 - <span id="hashset-equivalent"></span>`fn equivalent(&self, key: &K) -> bool`
 
-##### `impl<T, S, A> Extend for HashSet<T, S, A>`
+##### `impl<'a, T, S, A> Extend for HashSet<T, S, A>`
 
-- <span id="hashset-extend"></span>`fn extend<I: IntoIterator<Item = T>>(&mut self, iter: I)`
+- <span id="hashset-extend"></span>`fn extend<I: IntoIterator<Item = &'a T>>(&mut self, iter: I)`
 
 ##### `impl<T, S, A> FromIterator for HashSet<T, S, A>`
 
@@ -588,7 +624,7 @@ struct OccupiedEntry<'a, T, S, A: Allocator> {
 ```
 
 A view into an occupied entry in a `HashSet`.
-It is part of the [`Entry`](../hash_set/index.md) enum.
+It is part of the [`Entry`](../hash_table/index.md) enum.
 
 # Examples
 
@@ -643,7 +679,7 @@ struct VacantEntry<'a, T, S, A: Allocator> {
 ```
 
 A view into a vacant entry in a `HashSet`.
-It is part of the [`Entry`](../hash_set/index.md) enum.
+It is part of the [`Entry`](../hash_table/index.md) enum.
 
 # Examples
 

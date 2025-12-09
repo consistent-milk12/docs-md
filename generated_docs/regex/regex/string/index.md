@@ -365,11 +365,11 @@ assert_eq!("y", &caps["last"]);
 
 - <span id="captures-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<'h, 'n> Index for Captures<'h>`
+##### `impl<'h> Index for Captures<'h>`
 
 - <span id="captures-output"></span>`type Output = str`
 
-- <span id="captures-index"></span>`fn index<'a>(self: &'a Self, name: &'n str) -> &'a str`
+- <span id="captures-index"></span>`fn index<'a>(self: &'a Self, i: usize) -> &'a str`
 
 ### `CaptureLocations`
 
@@ -847,6 +847,8 @@ assert_eq!(result, "Bruce Springsteen");
 
   Appends possibly empty data to `dst` to replace the current match.
 
+#### Provided Methods
+
 - `fn no_expansion<'r>(self: &'r mut Self) -> Option<Cow<'r, str>>`
 
   Return a fixed unchanging replacement string.
@@ -854,6 +856,17 @@ assert_eq!(result, "Bruce Springsteen");
 - `fn by_ref<'r>(self: &'r mut Self) -> ReplacerRef<'r, Self>`
 
   Returns a type that implements `Replacer`, but that borrows and wraps
+
+#### Implementors
+
+- [`NoExpand`](../../index.md)
+- [`ReplacerRef`](../../index.md)
+- `&'a alloc::borrow::Cow<'a, str>`
+- `&'a alloc::string::String`
+- `&'a str`
+- `F`
+- `alloc::borrow::Cow<'a, str>`
+- `alloc::string::String`
 
 ## Functions
 

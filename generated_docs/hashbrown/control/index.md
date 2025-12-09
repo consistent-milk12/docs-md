@@ -14,7 +14,7 @@
 
 ## Modules
 
-- [`bitmask`](bitmask/index.md) - 
-- [`group`](group/index.md) - 
-- [`tag`](tag/index.md) - 
+- [`bitmask`](bitmask/index.md)
+- [`group`](group/index.md)
+- [`tag`](tag/index.md)
 

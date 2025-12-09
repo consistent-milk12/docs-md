@@ -35,6 +35,21 @@ Implementation details of `ParallelIterator for Iter<Self>`
 
 - `fn opt_len(iter: &Iter<Self>) -> Option<usize>`
 
+#### Implementors
+
+- `i128`
+- `i16`
+- `i32`
+- `i64`
+- `i8`
+- `isize`
+- `u128`
+- `u16`
+- `u32`
+- `u64`
+- `u8`
+- `usize`
+
 ### `IndexedRangeInteger`
 
 ```rust
@@ -50,4 +65,15 @@ Implementation details of `IndexedParallelIterator for Iter<Self>`
 - `fn len(iter: &Iter<Self>) -> usize`
 
 - `fn with_producer<CB>(iter: Iter<Self>, callback: CB) -> <CB as >::Output`
+
+#### Implementors
+
+- `i16`
+- `i32`
+- `i8`
+- `isize`
+- `u16`
+- `u32`
+- `u8`
+- `usize`
 

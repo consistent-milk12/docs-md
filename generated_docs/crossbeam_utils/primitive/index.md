@@ -13,6 +13,6 @@
 
 ## Modules
 
-- [`hint`](hint/index.md) - 
-- [`sync`](sync/index.md) - 
+- [`hint`](hint/index.md)
+- [`sync`](sync/index.md)
 

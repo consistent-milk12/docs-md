@@ -431,7 +431,7 @@
 
 ## Modules
 
-- [`generic`](generic/index.md) - 
+- [`generic`](generic/index.md)
 
 ## Structs
 

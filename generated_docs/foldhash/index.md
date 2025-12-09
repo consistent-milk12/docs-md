@@ -120,7 +120,7 @@ containers, but can be turned off for `#![no_std]` crates.
   - [`quality`](#quality)
   - [`seed`](#seed)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
+  - [`SharedSeed`](#sharedseed)
 - [Functions](#functions)
   - [`folded_multiply`](#folded_multiply)
   - [`rotate_right`](#rotate_right)
@@ -149,7 +149,7 @@ containers, but can be turned off for `#![no_std]` crates.
 | [`fast`](#fast) | mod | The foldhash implementation optimized for speed. |
 | [`quality`](#quality) | mod | The foldhash implementation optimized for quality. |
 | [`seed`](#seed) | mod |  |
-| [`unnamed`](#unnamed) | struct |  |
+| [`SharedSeed`](#sharedseed) | struct |  |
 | [`folded_multiply`](#folded_multiply) | fn |  |
 | [`rotate_right`](#rotate_right) | fn |  |
 | [`cold_path`](#cold_path) | fn |  |
@@ -171,9 +171,9 @@ containers, but can be turned off for `#![no_std]` crates.
 
 ## Modules
 
-- [`fast`](fast/index.md) - The foldhash implementation optimized for speed.
-- [`quality`](quality/index.md) - The foldhash implementation optimized for quality.
-- [`seed`](seed/index.md) - 
+- [`fast`](fast/index.md) — The foldhash implementation optimized for speed.
+- [`quality`](quality/index.md) — The foldhash implementation optimized for quality.
+- [`seed`](seed/index.md)
 
 ## Structs
 

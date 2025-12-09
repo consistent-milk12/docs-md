@@ -18,11 +18,11 @@
 
 ## Modules
 
-- [`help`](help/index.md) - 
-- [`help_template`](help_template/index.md) - 
-- [`usage`](usage/index.md) - 
-- [`fmt`](fmt/index.md) - 
-- [`textwrap`](textwrap/index.md) - Fork of `textwrap` crate
+- [`help`](help/index.md)
+- [`help_template`](help_template/index.md)
+- [`usage`](usage/index.md)
+- [`fmt`](fmt/index.md)
+- [`textwrap`](textwrap/index.md) — Fork of `textwrap` crate
 
 ## Constants
 

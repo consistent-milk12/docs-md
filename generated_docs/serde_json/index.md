@@ -310,28 +310,28 @@ For JSON support in Serde without a memory allocator, please see the
   - [`number`](#number)
   - [`read`](#read)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`Deserializer`](#deserializer)
+  - [`StreamDeserializer`](#streamdeserializer)
+  - [`Error`](#error)
+  - [`Serializer`](#serializer)
+  - [`Map`](#map)
+  - [`Number`](#number)
 - [Enums](#enums)
-  - [`unnamed`](#unnamed)
+  - [`Value`](#value)
 - [Functions](#functions)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`from_reader`](#from_reader)
+  - [`from_slice`](#from_slice)
+  - [`from_str`](#from_str)
+  - [`to_string`](#to_string)
+  - [`to_string_pretty`](#to_string_pretty)
+  - [`to_vec`](#to_vec)
+  - [`to_vec_pretty`](#to_vec_pretty)
+  - [`to_writer`](#to_writer)
+  - [`to_writer_pretty`](#to_writer_pretty)
+  - [`from_value`](#from_value)
+  - [`to_value`](#to_value)
 - [Type Aliases](#type-aliases)
-  - [`unnamed`](#unnamed)
+  - [`Result`](#result)
 - [Macros](#macros)
   - [`tri!`](#tri)
   - [`json!`](#json)
@@ -350,40 +350,40 @@ For JSON support in Serde without a memory allocator, please see the
 | [`iter`](#iter) | mod |  |
 | [`number`](#number) | mod |  |
 | [`read`](#read) | mod |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | type |  |
+| [`Deserializer`](#deserializer) | struct |  |
+| [`StreamDeserializer`](#streamdeserializer) | struct |  |
+| [`Error`](#error) | struct |  |
+| [`Serializer`](#serializer) | struct |  |
+| [`Map`](#map) | struct |  |
+| [`Number`](#number) | struct |  |
+| [`Value`](#value) | enum |  |
+| [`from_reader`](#from_reader) | fn |  |
+| [`from_slice`](#from_slice) | fn |  |
+| [`from_str`](#from_str) | fn |  |
+| [`to_string`](#to_string) | fn |  |
+| [`to_string_pretty`](#to_string_pretty) | fn |  |
+| [`to_vec`](#to_vec) | fn |  |
+| [`to_vec_pretty`](#to_vec_pretty) | fn |  |
+| [`to_writer`](#to_writer) | fn |  |
+| [`to_writer_pretty`](#to_writer_pretty) | fn |  |
+| [`from_value`](#from_value) | fn |  |
+| [`to_value`](#to_value) | fn |  |
+| [`Result`](#result) | type |  |
 | [`tri!`](#tri) | macro |  |
 | [`json!`](#json) | macro | Construct a `serde_json::Value` from a JSON literal. |
 
 ## Modules
 
-- [`macros`](macros/index.md) - 
-- [`de`](de/index.md) - Deserialize JSON data to a Rust data structure.
-- [`error`](error/index.md) - When serializing or deserializing JSON goes wrong.
-- [`map`](map/index.md) - A map of String to serde_json::Value.
-- [`ser`](ser/index.md) - Serialize a Rust data structure into JSON data.
-- [`value`](value/index.md) - The Value enum, a loosely typed way of representing any valid JSON value.
-- [`io`](io/index.md) - A tiny, `no_std`-friendly facade around `std::io`.
-- [`iter`](iter/index.md) - 
-- [`number`](number/index.md) - 
-- [`read`](read/index.md) - 
+- [`macros`](macros/index.md)
+- [`de`](de/index.md) — Deserialize JSON data to a Rust data structure.
+- [`error`](error/index.md) — When serializing or deserializing JSON goes wrong.
+- [`map`](map/index.md) — A map of String to serde_json::Value.
+- [`ser`](ser/index.md) — Serialize a Rust data structure into JSON data.
+- [`value`](value/index.md) — The Value enum, a loosely typed way of representing any valid JSON value.
+- [`io`](io/index.md) — A tiny, `no_std`-friendly facade around `std::io`.
+- [`iter`](iter/index.md)
+- [`number`](number/index.md)
+- [`read`](read/index.md)
 
 ## Structs
 
@@ -512,11 +512,7 @@ deserializing JSON data.
 
 ##### `impl Error for Error`
 
-- <span id="error-custom"></span>`fn custom<T: Display>(msg: T) -> Error` — [`Error`](#error)
-
-- <span id="error-invalid-type"></span>`fn invalid_type(unexp: de::Unexpected<'_>, exp: &dyn de::Expected) -> Self`
-
-- <span id="error-invalid-value"></span>`fn invalid_value(unexp: de::Unexpected<'_>, exp: &dyn de::Expected) -> Self`
+- <span id="error-source"></span>`fn source(&self) -> Option<&dyn error::Error>`
 
 ##### `impl<T> ToString for Error`
 
@@ -535,9 +531,7 @@ A structure for serializing Rust values into JSON.
 
 #### Implementations
 
-- <span id="serializer-with-formatter"></span>`fn with_formatter(writer: W, formatter: F) -> Self`
-
-- <span id="serializer-into-inner"></span>`fn into_inner(self) -> W`
+- <span id="serializer-pretty"></span>`fn pretty(writer: W) -> Self`
 
 ### `Map<K, V>`
 
@@ -950,57 +944,9 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 
 #### Implementations
 
-- <span id="value-get"></span>`fn get<I: Index>(&self, index: I) -> Option<&Value>` — [`Value`](#value)
+- <span id="cratevaluevalue-invalid-type"></span>`fn invalid_type<E>(&self, exp: &dyn Expected) -> E`
 
-- <span id="value-get-mut"></span>`fn get_mut<I: Index>(&mut self, index: I) -> Option<&mut Value>` — [`Value`](#value)
-
-- <span id="value-is-object"></span>`fn is_object(&self) -> bool`
-
-- <span id="value-as-object"></span>`fn as_object(&self) -> Option<&Map<String, Value>>` — [`Map`](#map), [`Value`](#value)
-
-- <span id="value-as-object-mut"></span>`fn as_object_mut(&mut self) -> Option<&mut Map<String, Value>>` — [`Map`](#map), [`Value`](#value)
-
-- <span id="value-is-array"></span>`fn is_array(&self) -> bool`
-
-- <span id="value-as-array"></span>`fn as_array(&self) -> Option<&Vec<Value>>` — [`Value`](#value)
-
-- <span id="value-as-array-mut"></span>`fn as_array_mut(&mut self) -> Option<&mut Vec<Value>>` — [`Value`](#value)
-
-- <span id="value-is-string"></span>`fn is_string(&self) -> bool`
-
-- <span id="value-as-str"></span>`fn as_str(&self) -> Option<&str>`
-
-- <span id="value-is-number"></span>`fn is_number(&self) -> bool`
-
-- <span id="value-as-number"></span>`fn as_number(&self) -> Option<&Number>` — [`Number`](#number)
-
-- <span id="value-is-i64"></span>`fn is_i64(&self) -> bool`
-
-- <span id="value-is-u64"></span>`fn is_u64(&self) -> bool`
-
-- <span id="value-is-f64"></span>`fn is_f64(&self) -> bool`
-
-- <span id="value-as-i64"></span>`fn as_i64(&self) -> Option<i64>`
-
-- <span id="value-as-u64"></span>`fn as_u64(&self) -> Option<u64>`
-
-- <span id="value-as-f64"></span>`fn as_f64(&self) -> Option<f64>`
-
-- <span id="value-is-boolean"></span>`fn is_boolean(&self) -> bool`
-
-- <span id="value-as-bool"></span>`fn as_bool(&self) -> Option<bool>`
-
-- <span id="value-is-null"></span>`fn is_null(&self) -> bool`
-
-- <span id="value-as-null"></span>`fn as_null(&self) -> Option<()>`
-
-- <span id="value-pointer"></span>`fn pointer(&self, pointer: &str) -> Option<&Value>` — [`Value`](#value)
-
-- <span id="value-pointer-mut"></span>`fn pointer_mut(&mut self, pointer: &str) -> Option<&mut Value>` — [`Value`](#value)
-
-- <span id="value-take"></span>`fn take(&mut self) -> Value` — [`Value`](#value)
-
-- <span id="value-sort-all-objects"></span>`fn sort_all_objects(&mut self)`
+- <span id="cratevaluevalue-unexpected"></span>`fn unexpected(&self) -> Unexpected<'_>`
 
 #### Trait Implementations
 
@@ -1094,9 +1040,9 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 
 ##### `impl Eq for Value`
 
-##### `impl<T: Into<super::Value>> FromIterator for super::Value`
+##### `impl<K: Into<alloc::string::String>, V: Into<super::Value>> FromIterator for super::Value`
 
-- <span id="supervalue-from-iter"></span>`fn from_iter<I: IntoIterator<Item = T>>(iter: I) -> Self`
+- <span id="supervalue-from-iter"></span>`fn from_iter<I: IntoIterator<Item = (K, V)>>(iter: I) -> Self`
 
 ##### `impl FromStr for crate::value::Value`
 
@@ -1126,7 +1072,7 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 
 ##### `impl PartialEq for Value`
 
-- <span id="value-eq"></span>`fn eq(&self, other: &Value) -> bool` — [`Value`](#value)
+- <span id="value-eq"></span>`fn eq(&self, other: &i32) -> bool`
 
 ##### `impl Serialize for crate::value::Value`
 

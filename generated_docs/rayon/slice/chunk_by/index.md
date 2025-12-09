@@ -179,7 +179,14 @@ trait ChunkBySlice<T>: AsRef<[T]> + Default + Send { ... }
 
 - `fn chunk_by(self, pred: &impl Fn(&T, &T) -> bool) -> impl Iterator<Item = Self>`
 
+#### Provided Methods
+
 - `fn find(&self, pred: &impl Fn(&T, &T) -> bool, start: usize, end: usize) -> Option<usize>`
 
 - `fn rfind(&self, pred: &impl Fn(&T, &T) -> bool, end: usize) -> Option<usize>`
+
+#### Implementors
+
+- `&[T]`
+- `&mut [T]`
 

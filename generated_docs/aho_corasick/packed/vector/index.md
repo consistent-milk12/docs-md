@@ -15,8 +15,8 @@
 
 ## Modules
 
-- [`x86_64_ssse3`](x86_64_ssse3/index.md) - 
-- [`x86_64_avx2`](x86_64_avx2/index.md) - 
+- [`x86_64_ssse3`](x86_64_ssse3/index.md)
+- [`x86_64_avx2`](x86_64_avx2/index.md)
 
 ## Traits
 
@@ -43,11 +43,13 @@ avoid marking the routines with `#[target_feature]` and instead mark
 them as `#[inline(always)]` to ensure they get appropriately inlined.
 (`inline(always)` cannot be used with target_feature.)
 
-#### Required Methods
+#### Associated Constants
 
 - `const BITS: usize`
 
 - `const BYTES: usize`
+
+#### Required Methods
 
 - `fn splat(byte: u8) -> Self`
 
@@ -97,6 +99,11 @@ them as `#[inline(always)]` to ensure they get appropriately inlined.
 
   Call the provided function for each 64-bit lane in this vector. The
 
+#### Implementors
+
+- `__m128i`
+- `__m256i`
+
 ### `FatVector`
 
 ```rust
@@ -127,9 +134,11 @@ operates on the full 128-bit vector and not on each 64-bit half.) I didn't
 do a careful survey of NEON to see if it could easily support these
 operations.
 
-#### Required Methods
+#### Associated Types
 
 - `type Half: 1`
+
+#### Required Methods
 
 - `fn load_half_unaligned(data: *const u8) -> Self`
 
@@ -162,4 +171,8 @@ operations.
 - `fn for_each_low_64bit_lane<T>(self, vector2: Self, f: impl FnMut(usize, u64) -> Option<T>) -> Option<T>`
 
   Call the provided function for each 64-bit lane in the lower half
+
+#### Implementors
+
+- `__m256i`
 

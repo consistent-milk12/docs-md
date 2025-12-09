@@ -32,7 +32,7 @@ This is the default unwinding API for all non-Windows platforms currently.
 
 ## Modules
 
-- [`uw`](uw/index.md) - Unwind library interface used for backtraces
+- [`uw`](uw/index.md) — Unwind library interface used for backtraces
 
 ## Structs
 

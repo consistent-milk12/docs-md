@@ -32,7 +32,7 @@
 
 ## Modules
 
-- [`__private`](__private/index.md) - 
+- [`__private`](__private/index.md)
 
 ## Structs
 
@@ -139,11 +139,25 @@ bitflags! {
 assert_eq!(3, defined_flags::<MyFlags>());
 ```
 
-#### Required Methods
+#### Associated Types
+
+- `type Bits: 1`
+
+#### Associated Constants
 
 - `const FLAGS: &'static [Flag<Self>]`
 
-- `type Bits: 1`
+#### Required Methods
+
+- `fn bits(&self) -> <Self as >::Bits`
+
+  Get the underlying bits value.
+
+- `fn from_bits_retain(bits: <Self as >::Bits) -> Self`
+
+  Convert from a bits value exactly.
+
+#### Provided Methods
 
 - `fn empty() -> Self`
 
@@ -157,10 +171,6 @@ assert_eq!(3, defined_flags::<MyFlags>());
 
   This method will return `true` if any unknown bits are set.
 
-- `fn bits(&self) -> <Self as >::Bits`
-
-  Get the underlying bits value.
-
 - `fn from_bits(bits: <Self as >::Bits) -> Option<Self>`
 
   Convert from a bits value.
@@ -168,10 +178,6 @@ assert_eq!(3, defined_flags::<MyFlags>());
 - `fn from_bits_truncate(bits: <Self as >::Bits) -> Self`
 
   Convert from a bits value, unsetting any unknown bits.
-
-- `fn from_bits_retain(bits: <Self as >::Bits) -> Self`
-
-  Convert from a bits value exactly.
 
 - `fn from_name(name: &str) -> Option<Self>`
 
@@ -257,17 +263,47 @@ trait Bits: Clone + Copy + PartialEq + BitAnd<Output = Self> + BitOr<Output = Se
 
 A bits type that can be used as storage for a flags type.
 
-#### Required Methods
+#### Associated Constants
 
 - `const EMPTY: Self`
 
 - `const ALL: Self`
+
+#### Implementors
+
+- `i128`
+- `i16`
+- `i32`
+- `i64`
+- `i8`
+- `isize`
+- `u128`
+- `u16`
+- `u32`
+- `u64`
+- `u8`
+- `usize`
 
 ### `Primitive`
 
 ```rust
 trait Primitive { ... }
 ```
+
+#### Implementors
+
+- `i128`
+- `i16`
+- `i32`
+- `i64`
+- `i8`
+- `isize`
+- `u128`
+- `u16`
+- `u32`
+- `u64`
+- `u8`
+- `usize`
 
 ### `PublicFlags`
 
@@ -278,7 +314,7 @@ trait PublicFlags { ... }
 A trait for referencing the `bitflags`-owned internal type
 without exposing it publicly.
 
-#### Required Methods
+#### Associated Types
 
 - `type Primitive: 1`
 

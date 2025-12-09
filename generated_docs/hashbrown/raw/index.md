@@ -67,7 +67,7 @@
 
 ## Modules
 
-- [`alloc`](alloc/index.md) - 
+- [`alloc`](alloc/index.md)
 
 ## Structs
 
@@ -234,81 +234,9 @@ of how many different key-value types are used.
 
 #### Implementations
 
-- <span id="rawtableinner-new-uninitialized"></span>`unsafe fn new_uninitialized<A>(alloc: &A, table_layout: TableLayout, buckets: usize, fallibility: Fallibility) -> Result<Self, TryReserveError>` — [`TableLayout`](#tablelayout), [`Fallibility`](#fallibility), [`TryReserveError`](../index.md)
+- <span id="rawtableinner-new"></span>`const NEW: Self`
 
-- <span id="rawtableinner-fallible-with-capacity"></span>`fn fallible_with_capacity<A>(alloc: &A, table_layout: TableLayout, capacity: usize, fallibility: Fallibility) -> Result<Self, TryReserveError>` — [`TableLayout`](#tablelayout), [`Fallibility`](#fallibility), [`TryReserveError`](../index.md)
-
-- <span id="rawtableinner-with-capacity"></span>`fn with_capacity<A>(alloc: &A, table_layout: TableLayout, capacity: usize) -> Self` — [`TableLayout`](#tablelayout)
-
-- <span id="rawtableinner-fix-insert-index"></span>`unsafe fn fix_insert_index(&self, index: usize) -> usize`
-
-- <span id="rawtableinner-find-insert-index-in-group"></span>`fn find_insert_index_in_group(&self, group: &Group, probe_seq: &ProbeSeq) -> Option<usize>` — [`Group`](../control/group/sse2/index.md), [`ProbeSeq`](#probeseq)
-
-- <span id="rawtableinner-find-or-find-insert-index-inner"></span>`unsafe fn find_or_find_insert_index_inner(&self, hash: u64, eq: &mut dyn FnMut(usize) -> bool) -> Result<usize, usize>`
-
-- <span id="rawtableinner-prepare-insert-index"></span>`unsafe fn prepare_insert_index(&mut self, hash: u64) -> (usize, Tag)` — [`Tag`](../control/tag/index.md)
-
-- <span id="rawtableinner-find-insert-index"></span>`unsafe fn find_insert_index(&self, hash: u64) -> usize`
-
-- <span id="rawtableinner-find-inner"></span>`unsafe fn find_inner(&self, hash: u64, eq: &mut dyn FnMut(usize) -> bool) -> Option<usize>`
-
-- <span id="rawtableinner-prepare-rehash-in-place"></span>`unsafe fn prepare_rehash_in_place(&mut self)`
-
-- <span id="rawtableinner-iter"></span>`unsafe fn iter<T>(&self) -> RawIter<T>` — [`RawIter`](#rawiter)
-
-- <span id="rawtableinner-drop-elements"></span>`unsafe fn drop_elements<T>(&mut self)`
-
-- <span id="rawtableinner-drop-inner-table"></span>`unsafe fn drop_inner_table<T, A: Allocator>(&mut self, alloc: &A, table_layout: TableLayout)` — [`TableLayout`](#tablelayout)
-
-- <span id="rawtableinner-bucket"></span>`unsafe fn bucket<T>(&self, index: usize) -> Bucket<T>` — [`Bucket`](#bucket)
-
-- <span id="rawtableinner-bucket-ptr"></span>`unsafe fn bucket_ptr(&self, index: usize, size_of: usize) -> *mut u8`
-
-- <span id="rawtableinner-data-end"></span>`fn data_end<T>(&self) -> NonNull<T>`
-
-- <span id="rawtableinner-probe-seq"></span>`fn probe_seq(&self, hash: u64) -> ProbeSeq` — [`ProbeSeq`](#probeseq)
-
-- <span id="rawtableinner-record-item-insert-at"></span>`unsafe fn record_item_insert_at(&mut self, index: usize, old_ctrl: Tag, new_ctrl: Tag)` — [`Tag`](../control/tag/index.md)
-
-- <span id="rawtableinner-is-in-same-group"></span>`fn is_in_same_group(&self, i: usize, new_i: usize, hash: u64) -> bool`
-
-- <span id="rawtableinner-set-ctrl-hash"></span>`unsafe fn set_ctrl_hash(&mut self, index: usize, hash: u64)`
-
-- <span id="rawtableinner-replace-ctrl-hash"></span>`unsafe fn replace_ctrl_hash(&mut self, index: usize, hash: u64) -> Tag` — [`Tag`](../control/tag/index.md)
-
-- <span id="rawtableinner-set-ctrl"></span>`unsafe fn set_ctrl(&mut self, index: usize, ctrl: Tag)` — [`Tag`](../control/tag/index.md)
-
-- <span id="rawtableinner-ctrl"></span>`unsafe fn ctrl(&self, index: usize) -> *mut Tag` — [`Tag`](../control/tag/index.md)
-
-- <span id="rawtableinner-ctrl-slice"></span>`fn ctrl_slice(&mut self) -> &mut [Tag]` — [`Tag`](../control/tag/index.md)
-
-- <span id="rawtableinner-buckets"></span>`fn buckets(&self) -> usize`
-
-- <span id="rawtableinner-is-bucket-full"></span>`unsafe fn is_bucket_full(&self, index: usize) -> bool`
-
-- <span id="rawtableinner-num-ctrl-bytes"></span>`fn num_ctrl_bytes(&self) -> usize`
-
-- <span id="rawtableinner-is-empty-singleton"></span>`fn is_empty_singleton(&self) -> bool`
-
-- <span id="rawtableinner-prepare-resize"></span>`fn prepare_resize<'a, A>(&self, alloc: &'a A, table_layout: TableLayout, capacity: usize, fallibility: Fallibility) -> Result<crate::scopeguard::ScopeGuard<Self, impl FnMut(&mut Self) + 'a>, TryReserveError>` — [`TableLayout`](#tablelayout), [`Fallibility`](#fallibility), [`ScopeGuard`](../scopeguard/index.md), [`TryReserveError`](../index.md)
-
-- <span id="rawtableinner-reserve-rehash-inner"></span>`unsafe fn reserve_rehash_inner<A>(&mut self, alloc: &A, additional: usize, hasher: &dyn Fn(&mut Self, usize) -> u64, fallibility: Fallibility, layout: TableLayout, drop: Option<fn(*mut u8)>) -> Result<(), TryReserveError>` — [`Fallibility`](#fallibility), [`TableLayout`](#tablelayout), [`TryReserveError`](../index.md)
-
-- <span id="rawtableinner-full-buckets-indices"></span>`unsafe fn full_buckets_indices(&self) -> FullBucketsIndices` — [`FullBucketsIndices`](#fullbucketsindices)
-
-- <span id="rawtableinner-resize-inner"></span>`unsafe fn resize_inner<A>(&mut self, alloc: &A, capacity: usize, hasher: &dyn Fn(&mut Self, usize) -> u64, fallibility: Fallibility, layout: TableLayout) -> Result<(), TryReserveError>` — [`Fallibility`](#fallibility), [`TableLayout`](#tablelayout), [`TryReserveError`](../index.md)
-
-- <span id="rawtableinner-rehash-in-place"></span>`unsafe fn rehash_in_place(&mut self, hasher: &dyn Fn(&mut Self, usize) -> u64, size_of: usize, drop: Option<fn(*mut u8)>)`
-
-- <span id="rawtableinner-free-buckets"></span>`unsafe fn free_buckets<A>(&mut self, alloc: &A, table_layout: TableLayout)` — [`TableLayout`](#tablelayout)
-
-- <span id="rawtableinner-allocation-info"></span>`unsafe fn allocation_info(&self, table_layout: TableLayout) -> (NonNull<u8>, Layout)` — [`TableLayout`](#tablelayout)
-
-- <span id="rawtableinner-allocation-size-or-zero"></span>`unsafe fn allocation_size_or_zero(&self, table_layout: TableLayout) -> usize` — [`TableLayout`](#tablelayout)
-
-- <span id="rawtableinner-clear-no-drop"></span>`fn clear_no_drop(&mut self)`
-
-- <span id="rawtableinner-erase"></span>`unsafe fn erase(&mut self, index: usize)`
+- <span id="rawtableinner-new"></span>`const fn new() -> Self`
 
 ### `RawIterRange<T>`
 
@@ -716,11 +644,15 @@ Whether memory allocation errors should return an error or abort.
 trait SizedTypeProperties: Sized { ... }
 ```
 
-#### Required Methods
+#### Associated Constants
 
 - `const IS_ZERO_SIZED: bool`
 
 - `const NEEDS_DROP: bool`
+
+#### Implementors
+
+- `T`
 
 ### `RawTableClone`
 
@@ -733,6 +665,10 @@ Specialization of `clone_from` for `Copy` types
 #### Required Methods
 
 - `fn clone_from_spec(&mut self, source: &Self)`
+
+#### Implementors
+
+- [`RawTable`](#rawtable)
 
 ## Functions
 

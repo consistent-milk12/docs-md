@@ -14,8 +14,8 @@
 
 ## Modules
 
-- [`parsing`](parsing/index.md) - 
-- [`printing`](printing/index.md) - 
+- [`parsing`](parsing/index.md)
+- [`printing`](printing/index.md)
 
 ## Structs
 
@@ -41,11 +41,7 @@ Lifetime names must conform to the following rules:
 
 #### Implementations
 
-- <span id="lifetime-new"></span>`fn new(symbol: &str, span: Span) -> Self`
-
-- <span id="lifetime-span"></span>`fn span(&self) -> Span`
-
-- <span id="lifetime-set-span"></span>`fn set_span(&mut self, span: Span)`
+- <span id="cratelifetime-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 

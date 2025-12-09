@@ -41,15 +41,21 @@ println!("{style}{value}{style:#}");
 
 #### Implementations
 
-- <span id="style-get-fg-color"></span>`const fn get_fg_color(self) -> Option<crate::Color>` — [`Color`](../index.md)
+- <span id="style-bold"></span>`const fn bold(self) -> Self`
 
-- <span id="style-get-bg-color"></span>`const fn get_bg_color(self) -> Option<crate::Color>` — [`Color`](../index.md)
+- <span id="style-dimmed"></span>`const fn dimmed(self) -> Self`
 
-- <span id="style-get-underline-color"></span>`const fn get_underline_color(self) -> Option<crate::Color>` — [`Color`](../index.md)
+- <span id="style-italic"></span>`const fn italic(self) -> Self`
 
-- <span id="style-get-effects"></span>`const fn get_effects(self) -> crate::Effects` — [`Effects`](../index.md)
+- <span id="style-underline"></span>`const fn underline(self) -> Self`
 
-- <span id="style-is-plain"></span>`const fn is_plain(self) -> bool`
+- <span id="style-blink"></span>`const fn blink(self) -> Self`
+
+- <span id="style-invert"></span>`const fn invert(self) -> Self`
+
+- <span id="style-hidden"></span>`const fn hidden(self) -> Self`
+
+- <span id="style-strikethrough"></span>`const fn strikethrough(self) -> Self`
 
 #### Trait Implementations
 
@@ -93,7 +99,7 @@ println!("{style}{value}{style:#}");
 
 ##### `impl PartialEq for Style`
 
-- <span id="style-eq"></span>`fn eq(&self, other: &crate::Effects) -> bool` — [`Effects`](../index.md)
+- <span id="style-eq"></span>`fn eq(&self, other: &Style) -> bool` — [`Style`](../index.md)
 
 ##### `impl PartialOrd for Style`
 

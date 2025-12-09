@@ -38,7 +38,7 @@ to major sections (Types, Traits, Functions, etc.) with nested links to individu
 struct TocEntry {
     pub title: String,
     pub anchor: String,
-    pub children: Vec<TocEntry>,
+    pub children: Vec<Self>,
 }
 ```
 
@@ -58,7 +58,7 @@ for nested navigation.
 
   Anchor link target (without the `#` prefix).
 
-- **`children`**: `Vec<TocEntry>`
+- **`children`**: `Vec<Self>`
 
   Child entries for nested navigation.
 
@@ -66,7 +66,7 @@ for nested navigation.
 
 - <span id="tocentry-new"></span>`fn new(title: impl Into<String>, anchor: impl Into<String>) -> Self`
 
-- <span id="tocentry-with-children"></span>`fn with_children(title: impl Into<String>, anchor: impl Into<String>, children: Vec<TocEntry>) -> Self` — [`TocEntry`](../index.md)
+- <span id="tocentry-with-children"></span>`fn with_children(title: impl Into<String>, anchor: impl Into<String>, children: Vec<Self>) -> Self`
 
 - <span id="tocentry-count"></span>`fn count(&self) -> usize`
 
@@ -128,7 +128,7 @@ modules with unnecessary navigation.
 
 - <span id="tocgenerator-generate"></span>`fn generate(&self, entries: &[TocEntry]) -> Option<String>` — [`TocEntry`](../index.md)
 
-- <span id="tocgenerator-render-entry"></span>`fn render_entry(&self, md: &mut String, entry: &TocEntry, depth: usize)` — [`TocEntry`](../index.md)
+- <span id="tocgenerator-render-entry"></span>`fn render_entry(md: &mut String, entry: &TocEntry, depth: usize)` — [`TocEntry`](../index.md)
 
 #### Trait Implementations
 

@@ -227,7 +227,7 @@ to create a span where `start > end`.
 
 ##### `impl PartialEq for Span`
 
-- <span id="span-eq"></span>`fn eq(&self, range: &Range<usize>) -> bool`
+- <span id="span-eq"></span>`fn eq(&self, other: &Span) -> bool` — [`Span`](../../index.md)
 
 ##### `impl StructuralPartialEq for Span`
 

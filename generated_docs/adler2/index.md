@@ -20,7 +20,7 @@ This implementation features:
 
 ## Modules
 
-- [`algo`](algo/index.md) - 
+- [`algo`](algo/index.md)
 
 ## Structs
 

@@ -15,7 +15,7 @@
 
 ## Modules
 
-- [`onepass`](onepass/index.md) - 
+- [`onepass`](onepass/index.md)
 
 ## Structs
 
@@ -168,4 +168,8 @@ DFAs are partitioned.
 - `fn remap(&mut self, map: impl Fn(StateID) -> StateID)`
 
   This must remap every single state ID in the underlying value according
+
+#### Implementors
+
+- [`DFA`](../onepass/index.md)
 

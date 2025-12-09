@@ -66,11 +66,11 @@ Reporters included with `miette`.
 
 ## Modules
 
-- [`debug`](debug/index.md) - 
-- [`graphical`](graphical/index.md) - 
-- [`json`](json/index.md) - 
-- [`narratable`](narratable/index.md) - 
-- [`theme`](theme/index.md) - 
+- [`debug`](debug/index.md)
+- [`graphical`](graphical/index.md)
+- [`json`](json/index.md)
+- [`narratable`](narratable/index.md)
+- [`theme`](theme/index.md)
 
 ## Structs
 
@@ -144,47 +144,47 @@ printer.
 
 #### Implementations
 
-- <span id="graphicalreporthandler-render-report"></span>`fn render_report(&self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic) -> fmt::Result` — [`Diagnostic`](../index.md)
+- <span id="graphicalreporthandler-new"></span>`fn new() -> Self`
 
-- <span id="graphicalreporthandler-render-report-inner"></span>`fn render_report_inner(&self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic, parent_src: Option<&dyn SourceCode>) -> fmt::Result` — [`Diagnostic`](../index.md), [`SourceCode`](../index.md)
+- <span id="graphicalreporthandler-new-themed"></span>`fn new_themed(theme: GraphicalTheme) -> Self` — [`GraphicalTheme`](#graphicaltheme)
 
-- <span id="graphicalreporthandler-render-header"></span>`fn render_header(&self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic, is_nested: bool) -> fmt::Result` — [`Diagnostic`](../index.md)
+- <span id="graphicalreporthandler-tab-width"></span>`fn tab_width(self, width: usize) -> Self`
 
-- <span id="graphicalreporthandler-render-causes"></span>`fn render_causes(&self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic, parent_src: Option<&dyn SourceCode>) -> fmt::Result` — [`Diagnostic`](../index.md), [`SourceCode`](../index.md)
+- <span id="graphicalreporthandler-with-links"></span>`fn with_links(self, links: bool) -> Self`
 
-- <span id="graphicalreporthandler-render-footer"></span>`fn render_footer(&self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic) -> fmt::Result` — [`Diagnostic`](../index.md)
+- <span id="graphicalreporthandler-with-cause-chain"></span>`fn with_cause_chain(self) -> Self`
 
-- <span id="graphicalreporthandler-render-related"></span>`fn render_related(&self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic, parent_src: Option<&dyn SourceCode>) -> fmt::Result` — [`Diagnostic`](../index.md), [`SourceCode`](../index.md)
+- <span id="graphicalreporthandler-without-cause-chain"></span>`fn without_cause_chain(self) -> Self`
 
-- <span id="graphicalreporthandler-render-snippets"></span>`fn render_snippets(&self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic, opt_source: Option<&dyn SourceCode>) -> fmt::Result` — [`Diagnostic`](../index.md), [`SourceCode`](../index.md)
+- <span id="graphicalreporthandler-with-primary-span-start"></span>`fn with_primary_span_start(self) -> Self`
 
-- <span id="graphicalreporthandler-render-context"></span>`fn render_context(&self, f: &mut impl fmt::Write, source: &dyn SourceCode, context: &LabeledSpan, labels: &[LabeledSpan]) -> fmt::Result` — [`SourceCode`](../index.md), [`LabeledSpan`](../index.md)
+- <span id="graphicalreporthandler-without-primary-span-start"></span>`fn without_primary_span_start(self) -> Self`
 
-- <span id="graphicalreporthandler-render-multi-line-end"></span>`fn render_multi_line_end(&self, f: &mut impl fmt::Write, labels: &[FancySpan], max_gutter: usize, linum_width: usize, line: &Line, label: &FancySpan) -> fmt::Result` — [`FancySpan`](graphical/index.md), [`Line`](graphical/index.md)
+- <span id="graphicalreporthandler-with-urls"></span>`fn with_urls(self, urls: bool) -> Self`
 
-- <span id="graphicalreporthandler-render-line-gutter"></span>`fn render_line_gutter(&self, f: &mut impl fmt::Write, max_gutter: usize, line: &Line, highlights: &[FancySpan]) -> fmt::Result` — [`Line`](graphical/index.md), [`FancySpan`](graphical/index.md)
+- <span id="graphicalreporthandler-with-theme"></span>`fn with_theme(self, theme: GraphicalTheme) -> Self` — [`GraphicalTheme`](#graphicaltheme)
 
-- <span id="graphicalreporthandler-render-highlight-gutter"></span>`fn render_highlight_gutter(&self, f: &mut impl fmt::Write, max_gutter: usize, line: &Line, highlights: &[FancySpan], render_mode: LabelRenderMode) -> fmt::Result` — [`Line`](graphical/index.md), [`FancySpan`](graphical/index.md), [`LabelRenderMode`](graphical/index.md)
+- <span id="graphicalreporthandler-with-width"></span>`fn with_width(self, width: usize) -> Self`
 
-- <span id="graphicalreporthandler-wrap"></span>`fn wrap(&self, text: &str, opts: textwrap::Options<'_>) -> String`
+- <span id="graphicalreporthandler-with-wrap-lines"></span>`fn with_wrap_lines(self, wrap_lines: bool) -> Self`
 
-- <span id="graphicalreporthandler-write-linum"></span>`fn write_linum(&self, f: &mut impl fmt::Write, width: usize, linum: usize) -> fmt::Result`
+- <span id="graphicalreporthandler-with-break-words"></span>`fn with_break_words(self, break_words: bool) -> Self`
 
-- <span id="graphicalreporthandler-write-no-linum"></span>`fn write_no_linum(&self, f: &mut impl fmt::Write, width: usize) -> fmt::Result`
+- <span id="graphicalreporthandler-with-word-separator"></span>`fn with_word_separator(self, word_separator: textwrap::WordSeparator) -> Self`
 
-- <span id="graphicalreporthandler-line-visual-char-width"></span>`fn line_visual_char_width<'a>(&self, text: &'a str) -> impl Iterator<Item = usize> + 'a`
+- <span id="graphicalreporthandler-with-word-splitter"></span>`fn with_word_splitter(self, word_splitter: textwrap::WordSplitter) -> Self`
 
-- <span id="graphicalreporthandler-visual-offset"></span>`fn visual_offset(&self, line: &Line, offset: usize, start: bool) -> usize` — [`Line`](graphical/index.md)
+- <span id="graphicalreporthandler-with-footer"></span>`fn with_footer(self, footer: String) -> Self`
 
-- <span id="graphicalreporthandler-render-line-text"></span>`fn render_line_text(&self, f: &mut impl fmt::Write, text: &str) -> fmt::Result`
+- <span id="graphicalreporthandler-with-context-lines"></span>`fn with_context_lines(self, lines: usize) -> Self`
 
-- <span id="graphicalreporthandler-render-single-line-highlights"></span>`fn render_single_line_highlights(&self, f: &mut impl fmt::Write, line: &Line, linum_width: usize, max_gutter: usize, single_liners: &[&FancySpan], all_highlights: &[FancySpan]) -> fmt::Result` — [`Line`](graphical/index.md), [`FancySpan`](graphical/index.md)
+- <span id="graphicalreporthandler-with-show-related-as-nested"></span>`fn with_show_related_as_nested(self, show_related_as_nested: bool) -> Self`
 
-- <span id="graphicalreporthandler-write-label-text"></span>`fn write_label_text(&self, f: &mut impl fmt::Write, line: &Line, linum_width: usize, max_gutter: usize, all_highlights: &[FancySpan], chars: &ThemeCharacters, vbar_offsets: &[(&&FancySpan, usize)], hl: &&FancySpan, label: &str, render_mode: LabelRenderMode) -> fmt::Result` — [`Line`](graphical/index.md), [`FancySpan`](graphical/index.md), [`ThemeCharacters`](#themecharacters), [`LabelRenderMode`](graphical/index.md)
+- <span id="graphicalreporthandler-with-syntax-highlighting"></span>`fn with_syntax_highlighting(self, highlighter: impl Highlighter + Send + Sync + 'static) -> Self` — [`Highlighter`](../highlighters/index.md)
 
-- <span id="graphicalreporthandler-render-multi-line-end-single"></span>`fn render_multi_line_end_single(&self, f: &mut impl fmt::Write, label: &str, style: Style, render_mode: LabelRenderMode) -> fmt::Result` — [`LabelRenderMode`](graphical/index.md)
+- <span id="graphicalreporthandler-without-syntax-highlighting"></span>`fn without_syntax_highlighting(self) -> Self`
 
-- <span id="graphicalreporthandler-get-lines"></span>`fn get_lines<'a>(self: &'a Self, source: &'a dyn SourceCode, context_span: &'a SourceSpan) -> Result<(Box<dyn SpanContents<'a>>, Vec<Line>), fmt::Error>` — [`SourceCode`](../index.md), [`SourceSpan`](../index.md), [`SpanContents`](../index.md), [`Line`](graphical/index.md)
+- <span id="graphicalreporthandler-with-link-display-text"></span>`fn with_link_display_text(self, text: impl Into<String>) -> Self`
 
 #### Trait Implementations
 

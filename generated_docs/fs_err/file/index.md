@@ -15,7 +15,7 @@
 
 ## Modules
 
-- [`unix`](unix/index.md) - 
+- [`unix`](unix/index.md)
 
 ## Structs
 
@@ -34,15 +34,21 @@ information to all errors.
 
 #### Implementations
 
-- <span id="file-lock"></span>`fn lock(&self) -> Result<(), io::Error>`
+- <span id="file-from-parts"></span>`fn from_parts<P>(file: fs::File, path: P) -> Self`
 
-- <span id="file-lock-shared"></span>`fn lock_shared(&self) -> Result<(), io::Error>`
+- <span id="file-into-parts"></span>`fn into_parts(self) -> (fs::File, PathBuf)`
 
-- <span id="file-try-lock"></span>`fn try_lock(&self) -> Result<(), fs::TryLockError>`
+- <span id="file-into-file"></span>`fn into_file(self) -> fs::File`
 
-- <span id="file-try-lock-shared"></span>`fn try_lock_shared(&self) -> Result<(), fs::TryLockError>`
+- <span id="file-into-path"></span>`fn into_path(self) -> PathBuf`
 
-- <span id="file-unlock"></span>`fn unlock(&self) -> Result<(), io::Error>`
+- <span id="file-file"></span>`fn file(&self) -> &fs::File`
+
+- <span id="file-file-mut"></span>`fn file_mut(&mut self) -> &mut fs::File`
+
+- <span id="file-path"></span>`fn path(&self) -> &Path`
+
+- <span id="file-error"></span>`fn error(&self, source: io::Error, kind: ErrorKind) -> io::Error` — [`ErrorKind`](../errors/index.md)
 
 #### Trait Implementations
 

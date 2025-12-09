@@ -43,29 +43,29 @@ unicode-normalization = "0.1.20"
   - [`tables`](#tables)
   - [`char`](#char)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`Decompositions`](#decompositions)
+  - [`Recompositions`](#recompositions)
+  - [`Replacements`](#replacements)
+  - [`StreamSafe`](#streamsafe)
 - [Enums](#enums)
-  - [`unnamed`](#unnamed)
+  - [`IsNormalized`](#isnormalized)
 - [Traits](#traits)
   - [`UnicodeNormalization`](#unicodenormalization)
 - [Functions](#functions)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`is_nfc`](#is_nfc)
+  - [`is_nfc_quick`](#is_nfc_quick)
+  - [`is_nfc_stream_safe`](#is_nfc_stream_safe)
+  - [`is_nfc_stream_safe_quick`](#is_nfc_stream_safe_quick)
+  - [`is_nfd`](#is_nfd)
+  - [`is_nfd_quick`](#is_nfd_quick)
+  - [`is_nfd_stream_safe`](#is_nfd_stream_safe)
+  - [`is_nfd_stream_safe_quick`](#is_nfd_stream_safe_quick)
+  - [`is_nfkc`](#is_nfkc)
+  - [`is_nfkc_quick`](#is_nfkc_quick)
+  - [`is_nfkd`](#is_nfkd)
+  - [`is_nfkd_quick`](#is_nfkd_quick)
 - [Constants](#constants)
-  - [`unnamed`](#unnamed)
+  - [`UNICODE_VERSION`](#unicode_version)
 
 ## Quick Reference
 
@@ -81,38 +81,38 @@ unicode-normalization = "0.1.20"
 | [`stream_safe`](#stream_safe) | mod |  |
 | [`tables`](#tables) | mod |  |
 | [`char`](#char) | mod | Methods for composing and decomposing characters. |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | enum |  |
+| [`Decompositions`](#decompositions) | struct |  |
+| [`Recompositions`](#recompositions) | struct |  |
+| [`Replacements`](#replacements) | struct |  |
+| [`StreamSafe`](#streamsafe) | struct |  |
+| [`IsNormalized`](#isnormalized) | enum |  |
 | [`UnicodeNormalization`](#unicodenormalization) | trait | Methods for iterating over strings while applying Unicode normalizations |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | const |  |
+| [`is_nfc`](#is_nfc) | fn |  |
+| [`is_nfc_quick`](#is_nfc_quick) | fn |  |
+| [`is_nfc_stream_safe`](#is_nfc_stream_safe) | fn |  |
+| [`is_nfc_stream_safe_quick`](#is_nfc_stream_safe_quick) | fn |  |
+| [`is_nfd`](#is_nfd) | fn |  |
+| [`is_nfd_quick`](#is_nfd_quick) | fn |  |
+| [`is_nfd_stream_safe`](#is_nfd_stream_safe) | fn |  |
+| [`is_nfd_stream_safe_quick`](#is_nfd_stream_safe_quick) | fn |  |
+| [`is_nfkc`](#is_nfkc) | fn |  |
+| [`is_nfkc_quick`](#is_nfkc_quick) | fn |  |
+| [`is_nfkd`](#is_nfkd) | fn |  |
+| [`is_nfkd_quick`](#is_nfkd_quick) | fn |  |
+| [`UNICODE_VERSION`](#unicode_version) | const |  |
 
 ## Modules
 
-- [`decompose`](decompose/index.md) - 
-- [`lookups`](lookups/index.md) - Lookups of unicode properties using minimal perfect hashing.
-- [`normalize`](normalize/index.md) - Functions for computing canonical and compatible decompositions for Unicode characters.
-- [`perfect_hash`](perfect_hash/index.md) - Support for lookups based on minimal perfect hashing.
-- [`quick_check`](quick_check/index.md) - 
-- [`recompose`](recompose/index.md) - 
-- [`replace`](replace/index.md) - 
-- [`stream_safe`](stream_safe/index.md) - 
-- [`tables`](tables/index.md) - 
-- [`char`](char/index.md) - Methods for composing and decomposing characters.
+- [`decompose`](decompose/index.md)
+- [`lookups`](lookups/index.md) — Lookups of unicode properties using minimal perfect hashing.
+- [`normalize`](normalize/index.md) — Functions for computing canonical and compatible decompositions for Unicode characters.
+- [`perfect_hash`](perfect_hash/index.md) — Support for lookups based on minimal perfect hashing.
+- [`quick_check`](quick_check/index.md)
+- [`recompose`](recompose/index.md)
+- [`replace`](replace/index.md)
+- [`stream_safe`](stream_safe/index.md)
+- [`tables`](tables/index.md)
+- [`char`](char/index.md) — Methods for composing and decomposing characters.
 
 ## Structs
 
@@ -441,6 +441,16 @@ as described in
 - `fn stream_safe(self) -> StreamSafe<I>`
 
   An Iterator over the string with Conjoining Grapheme Joiner characters
+
+#### Implementors
+
+- [`Decompositions`](#decompositions)
+- [`Recompositions`](#recompositions)
+- [`Replacements`](#replacements)
+- [`StreamSafe`](#streamsafe)
+- `&'a str`
+- `I`
+- `char`
 
 ## Functions
 

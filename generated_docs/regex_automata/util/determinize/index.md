@@ -51,7 +51,7 @@ it into logical sub-components works better.
 
 ## Modules
 
-- [`state`](state/index.md) - This module defines a DFA state representation and builders for constructing
+- [`state`](state/index.md) — This module defines a DFA state representation and builders for constructing
 
 ## Functions
 

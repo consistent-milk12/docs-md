@@ -16,7 +16,7 @@
   - [`unique`](#unique)
   - [`collections`](#collections)
 - [Traits](#traits)
-  - [`unnamed`](#unnamed)
+  - [`SliceExt`](#sliceext)
 - [Functions](#functions)
   - [`assume`](#assume)
   - [`addr`](#addr)
@@ -34,23 +34,51 @@
 | [`slice`](#slice) | mod |  |
 | [`unique`](#unique) | mod |  |
 | [`collections`](#collections) | mod |  |
-| [`unnamed`](#unnamed) | trait |  |
+| [`SliceExt`](#sliceext) | trait |  |
 | [`assume`](#assume) | fn |  |
 | [`addr`](#addr) | fn |  |
 | [`invalid_mut`](#invalid_mut) | fn |  |
 
 ## Modules
 
-- [`alloc`](alloc/index.md) - Memory allocation APIs
-- [`boxed`](boxed/index.md) - The `Box<T>` type for heap allocation.
-- [`raw_vec`](raw_vec/index.md) - 
-- [`vec`](vec/index.md) - A contiguous growable array type with heap-allocated contents, written
-- [`macros`](macros/index.md) - 
-- [`slice`](slice/index.md) - 
-- [`unique`](unique/index.md) - 
-- [`collections`](collections/index.md) - 
+- [`alloc`](alloc/index.md) — Memory allocation APIs
+- [`boxed`](boxed/index.md) — The `Box<T>` type for heap allocation.
+- [`raw_vec`](raw_vec/index.md)
+- [`vec`](vec/index.md) — A contiguous growable array type with heap-allocated contents, written
+- [`macros`](macros/index.md)
+- [`slice`](slice/index.md)
+- [`unique`](unique/index.md)
+- [`collections`](collections/index.md)
 
 ## Traits
+
+### `SliceExt<T>`
+
+```rust
+trait SliceExt<T> { ... }
+```
+
+Slice methods that use `Box` and `Vec` from this crate.
+
+#### Required Methods
+
+- `fn to_vec_in<A: Allocator>(&self, alloc: A) -> Vec<T, A>`
+
+  Copies `self` into a new `Vec` with an allocator.
+
+- `fn repeat(&self, n: usize) -> Vec<T, Global>`
+
+  Creates a vector by copying a slice `n` times.
+
+#### Provided Methods
+
+- `fn to_vec(&self) -> Vec<T, Global>`
+
+  Copies `self` into a new `Vec`.
+
+#### Implementors
+
+- `[T]`
 
 ## Functions
 

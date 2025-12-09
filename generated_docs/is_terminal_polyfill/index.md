@@ -12,7 +12,7 @@
 
 ## Modules
 
-- [`sealed`](sealed/index.md) - 
+- [`sealed`](sealed/index.md)
 
 ## Traits
 
@@ -29,6 +29,16 @@ Trait to determine if a descriptor/handle refers to a terminal/tty.
 - `fn is_terminal(&self) -> bool`
 
   Returns `true` if the descriptor/handle refers to a terminal/tty.
+
+#### Implementors
+
+- `std::fs::File`
+- `std::io::StderrLock<'_>`
+- `std::io::Stderr`
+- `std::io::StdinLock<'_>`
+- `std::io::Stdin`
+- `std::io::StdoutLock<'_>`
+- `std::io::Stdout`
 
 ## Macros
 

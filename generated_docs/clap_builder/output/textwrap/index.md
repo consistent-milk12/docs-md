@@ -19,7 +19,7 @@ Benefits of forking:
 
 ## Modules
 
-- [`core`](core/index.md) - 
+- [`core`](core/index.md)
 
 ## Functions
 

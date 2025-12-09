@@ -172,13 +172,20 @@ trait NoteHeader: Debug + Pod { ... }
 
 A trait for generic access to [`elf::NoteHeader32`](../../../elf/index.md) and [`elf::NoteHeader64`](../../../elf/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Endian: 1`
+
+#### Required Methods
 
 - `fn n_namesz(&self, endian: <Self as >::Endian) -> u32`
 
 - `fn n_descsz(&self, endian: <Self as >::Endian) -> u32`
 
 - `fn n_type(&self, endian: <Self as >::Endian) -> u32`
+
+#### Implementors
+
+- [`NoteHeader32`](../../../elf/index.md)
+- [`NoteHeader64`](../../../elf/index.md)
 

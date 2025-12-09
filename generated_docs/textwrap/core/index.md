@@ -177,6 +177,10 @@ the displayed width of each part, which this trait provides.
 
   Displayed width of the penalty that must be inserted if the
 
+#### Implementors
+
+- [`Word`](#word)
+
 ## Functions
 
 ### `skip_ansi_escape_sequence`

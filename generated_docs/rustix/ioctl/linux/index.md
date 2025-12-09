@@ -43,7 +43,7 @@
 
 ## Modules
 
-- [`consts`](consts/index.md) - 
+- [`consts`](consts/index.md)
 
 ## Functions
 

@@ -122,7 +122,7 @@ struct ContextError<D, E> {
 
 - <span id="contexterror-ext-report"></span>`fn ext_report<D>(self, msg: D) -> Report` — [`Report`](../../index.md)
 
-##### `impl<D> Diagnostic for super::error::ContextError<D, super::Report>`
+##### `impl<D, E> Diagnostic for super::error::ContextError<D, E>`
 
 - <span id="supererrorcontexterror-code"></span>`fn code<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 

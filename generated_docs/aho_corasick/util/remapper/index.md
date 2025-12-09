@@ -164,3 +164,7 @@ DFAs are partitioned.
 
   This must remap every single state ID in the underlying value according
 
+#### Implementors
+
+- [`NFA`](../../nfa/noncontiguous/index.md)
+

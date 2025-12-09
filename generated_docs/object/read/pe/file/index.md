@@ -284,11 +284,13 @@ trait ImageNtHeaders: Debug + Pod { ... }
 
 A trait for generic access to [`pe::ImageNtHeaders32`](../../../pe/index.md) and [`pe::ImageNtHeaders64`](../../../pe/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type ImageOptionalHeader: 1`
 
 - `type ImageThunkData: 1`
+
+#### Required Methods
 
 - `fn is_type_64(&self) -> bool`
 
@@ -310,6 +312,8 @@ A trait for generic access to [`pe::ImageNtHeaders32`](../../../pe/index.md) and
 
   Return the optional header.
 
+#### Provided Methods
+
 - `fn parse<'data, R: ReadRef<'data>>(data: R, offset: &mut u64) -> read::Result<(&'data Self, DataDirectories<'data>)>`
 
   Read the NT headers, including the data directories.
@@ -321,6 +325,11 @@ A trait for generic access to [`pe::ImageNtHeaders32`](../../../pe/index.md) and
 - `fn symbols<'data, R: ReadRef<'data>>(&self, data: R) -> read::Result<SymbolTable<'data, R>>`
 
   Read the COFF symbol table and string table.
+
+#### Implementors
+
+- [`ImageNtHeaders32`](../../../pe/index.md)
+- [`ImageNtHeaders64`](../../../pe/index.md)
 
 ### `ImageOptionalHeader`
 
@@ -391,6 +400,11 @@ A trait for generic access to [`pe::ImageOptionalHeader32`](../../../pe/index.md
 - `fn loader_flags(&self) -> u32`
 
 - `fn number_of_rva_and_sizes(&self) -> u32`
+
+#### Implementors
+
+- [`ImageOptionalHeader32`](../../../pe/index.md)
+- [`ImageOptionalHeader64`](../../../pe/index.md)
 
 ## Functions
 

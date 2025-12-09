@@ -37,22 +37,22 @@ the functionality of the `addr2line` command line tool distributed with
   - [`lookup`](#lookup)
   - [`unit`](#unit)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`Frame`](#frame)
+  - [`FrameIter`](#frameiter)
+  - [`FunctionName`](#functionname)
+  - [`Location`](#location)
+  - [`SplitDwarfLoad`](#splitdwarfload)
+  - [`LocationRangeIter`](#locationrangeiter)
   - [`Context`](#context)
   - [`RangeAttributes`](#rangeattributes)
 - [Enums](#enums)
-  - [`unnamed`](#unnamed)
+  - [`LookupResult`](#lookupresult)
   - [`DebugFile`](#debugfile)
 - [Traits](#traits)
-  - [`unnamed`](#unnamed)
+  - [`LookupContinuation`](#lookupcontinuation)
 - [Functions](#functions)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`demangle`](#demangle)
+  - [`demangle_auto`](#demangle_auto)
 - [Type Aliases](#type-aliases)
   - [`Error`](#error)
   - [`LazyResult`](#lazyresult)
@@ -67,30 +67,30 @@ the functionality of the `addr2line` command line tool distributed with
 | [`line`](#line) | mod |  |
 | [`lookup`](#lookup) | mod |  |
 | [`unit`](#unit) | mod |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
+| [`Frame`](#frame) | struct |  |
+| [`FrameIter`](#frameiter) | struct |  |
+| [`FunctionName`](#functionname) | struct |  |
+| [`Location`](#location) | struct |  |
+| [`SplitDwarfLoad`](#splitdwarfload) | struct |  |
+| [`LocationRangeIter`](#locationrangeiter) | struct |  |
 | [`Context`](#context) | struct | The state necessary to perform address to line translation. |
 | [`RangeAttributes`](#rangeattributes) | struct |  |
-| [`unnamed`](#unnamed) | enum |  |
+| [`LookupResult`](#lookupresult) | enum |  |
 | [`DebugFile`](#debugfile) | enum |  |
-| [`unnamed`](#unnamed) | trait |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
+| [`LookupContinuation`](#lookupcontinuation) | trait |  |
+| [`demangle`](#demangle) | fn |  |
+| [`demangle_auto`](#demangle_auto) | fn |  |
 | [`Error`](#error) | type |  |
 | [`LazyResult`](#lazyresult) | type |  |
 
 ## Modules
 
-- [`maybe_small`](maybe_small/index.md) - 
-- [`frame`](frame/index.md) - 
-- [`function`](function/index.md) - 
-- [`line`](line/index.md) - 
-- [`lookup`](lookup/index.md) - 
-- [`unit`](unit/index.md) - 
+- [`maybe_small`](maybe_small/index.md)
+- [`frame`](frame/index.md)
+- [`function`](function/index.md)
+- [`line`](line/index.md)
+- [`lookup`](lookup/index.md)
+- [`unit`](unit/index.md)
 
 ## Structs
 
@@ -281,15 +281,11 @@ when performing lookups for many addresses in the same executable.
 
 #### Implementations
 
-- <span id="context-find-dwarf-and-unit"></span>`fn find_dwarf_and_unit(&self, probe: u64) -> LookupResult<impl LookupContinuation<Output = Option<gimli::UnitRef<'_, R>>, Buf = R>>` — [`LookupResult`](#lookupresult), [`LookupContinuation`](#lookupcontinuation)
+- <span id="context-from-sections"></span>`fn from_sections(debug_abbrev: gimli::DebugAbbrev<R>, debug_addr: gimli::DebugAddr<R>, debug_aranges: gimli::DebugAranges<R>, debug_info: gimli::DebugInfo<R>, debug_line: gimli::DebugLine<R>, debug_line_str: gimli::DebugLineStr<R>, debug_ranges: gimli::DebugRanges<R>, debug_rnglists: gimli::DebugRngLists<R>, debug_str: gimli::DebugStr<R>, debug_str_offsets: gimli::DebugStrOffsets<R>, default_section: R) -> Result<Self, gimli::Error>`
 
-- <span id="context-find-location"></span>`fn find_location(&self, probe: u64) -> Result<Option<Location<'_>>, gimli::Error>` — [`Location`](#location)
+- <span id="context-from-dwarf"></span>`fn from_dwarf(sections: gimli::Dwarf<R>) -> Result<Context<R>, gimli::Error>` — [`Context`](#context)
 
-- <span id="context-find-location-range"></span>`fn find_location_range(&self, probe_low: u64, probe_high: u64) -> Result<LocationRangeIter<'_, R>, gimli::Error>` — [`LocationRangeIter`](#locationrangeiter)
-
-- <span id="context-find-frames"></span>`fn find_frames(&self, probe: u64) -> LookupResult<impl LookupContinuation<Output = Result<FrameIter<'_, R>, gimli::Error>, Buf = R>>` — [`LookupResult`](#lookupresult), [`LookupContinuation`](#lookupcontinuation), [`FrameIter`](#frameiter)
-
-- <span id="context-preload-units"></span>`fn preload_units(&self, probe: u64) -> impl Iterator<Item = (SplitDwarfLoad<R>, impl FnOnce(Option<Arc<gimli::Dwarf<R>>>) -> Result<(), gimli::Error> + '_)>` — [`SplitDwarfLoad`](#splitdwarfload)
+- <span id="context-from-arc-dwarf"></span>`fn from_arc_dwarf(sections: Arc<gimli::Dwarf<R>>) -> Result<Context<R>, gimli::Error>` — [`Context`](#context)
 
 ### `RangeAttributes<R: gimli::Reader>`
 
@@ -400,6 +396,34 @@ enum DebugFile {
 ##### `impl StructuralPartialEq for DebugFile`
 
 ## Traits
+
+### `LookupContinuation`
+
+```rust
+trait LookupContinuation: Sized { ... }
+```
+
+This trait represents a partially complete operation that can be resumed
+once a load of needed split DWARF data is completed or abandoned by the
+API consumer.
+
+#### Associated Types
+
+- `type Output`
+
+- `type Buf: 1`
+
+#### Required Methods
+
+- `fn resume(self, input: Option<Arc<gimli::Dwarf<<Self as >::Buf>>>) -> LookupResult<Self>`
+
+  Resumes the operation with the provided data.
+
+#### Implementors
+
+- [`LoopingLookup`](lookup/index.md)
+- [`MappedLookup`](lookup/index.md)
+- [`SimpleLookup`](lookup/index.md)
 
 ## Functions
 

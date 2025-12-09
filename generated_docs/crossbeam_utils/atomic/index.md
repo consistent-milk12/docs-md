@@ -16,14 +16,14 @@ Atomic types.
 | [`seq_lock`](#seq_lock) | mod |  |
 | [`atomic_cell`](#atomic_cell) | mod |  |
 | [`consume`](#consume) | mod |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | trait |  |
+| [`AtomicCell`](#atomiccell) | struct |  |
+| [`AtomicConsume`](#atomicconsume) | trait |  |
 
 ## Modules
 
-- [`seq_lock`](seq_lock/index.md) - 
-- [`atomic_cell`](atomic_cell/index.md) - 
-- [`consume`](consume/index.md) - 
+- [`seq_lock`](seq_lock/index.md)
+- [`atomic_cell`](atomic_cell/index.md)
+- [`consume`](consume/index.md)
 
 ## Structs
 
@@ -69,21 +69,21 @@ Atomic loads use the `Acquire` ordering and atomic stores use the `Release` orde
 
 #### Implementations
 
-- <span id="atomiccell-fetch-add"></span>`fn fetch_add(&self, val: u128) -> u128`
+- <span id="atomiccell-fetch-add"></span>`fn fetch_add(&self, val: i32) -> i32`
 
-- <span id="atomiccell-fetch-sub"></span>`fn fetch_sub(&self, val: u128) -> u128`
+- <span id="atomiccell-fetch-sub"></span>`fn fetch_sub(&self, val: i32) -> i32`
 
-- <span id="atomiccell-fetch-and"></span>`fn fetch_and(&self, val: u128) -> u128`
+- <span id="atomiccell-fetch-and"></span>`fn fetch_and(&self, val: i32) -> i32`
 
-- <span id="atomiccell-fetch-nand"></span>`fn fetch_nand(&self, val: u128) -> u128`
+- <span id="atomiccell-fetch-nand"></span>`fn fetch_nand(&self, val: i32) -> i32`
 
-- <span id="atomiccell-fetch-or"></span>`fn fetch_or(&self, val: u128) -> u128`
+- <span id="atomiccell-fetch-or"></span>`fn fetch_or(&self, val: i32) -> i32`
 
-- <span id="atomiccell-fetch-xor"></span>`fn fetch_xor(&self, val: u128) -> u128`
+- <span id="atomiccell-fetch-xor"></span>`fn fetch_xor(&self, val: i32) -> i32`
 
-- <span id="atomiccell-fetch-max"></span>`fn fetch_max(&self, val: u128) -> u128`
+- <span id="atomiccell-fetch-max"></span>`fn fetch_max(&self, val: i32) -> i32`
 
-- <span id="atomiccell-fetch-min"></span>`fn fetch_min(&self, val: u128) -> u128`
+- <span id="atomiccell-fetch-min"></span>`fn fetch_min(&self, val: i32) -> i32`
 
 #### Trait Implementations
 
@@ -108,4 +108,37 @@ Atomic loads use the `Acquire` ordering and atomic stores use the `Release` orde
 ##### `impl<T> UnwindSafe for AtomicCell<T>`
 
 ## Traits
+
+### `AtomicConsume`
+
+```rust
+trait AtomicConsume { ... }
+```
+
+Trait which allows reading from primitive atomic types with "consume" ordering.
+
+#### Associated Types
+
+- `type Val`
+
+#### Required Methods
+
+- `fn load_consume(&self) -> <Self as >::Val`
+
+  Loads a value from the atomic using a "consume" memory ordering.
+
+#### Implementors
+
+- `core::sync::atomic::AtomicBool`
+- `core::sync::atomic::AtomicI16`
+- `core::sync::atomic::AtomicI32`
+- `core::sync::atomic::AtomicI64`
+- `core::sync::atomic::AtomicI8`
+- `core::sync::atomic::AtomicIsize`
+- `core::sync::atomic::AtomicPtr<T>`
+- `core::sync::atomic::AtomicU16`
+- `core::sync::atomic::AtomicU32`
+- `core::sync::atomic::AtomicU64`
+- `core::sync::atomic::AtomicU8`
+- `core::sync::atomic::AtomicUsize`
 

@@ -153,7 +153,7 @@ trait FileHeader: Debug + Pod { ... }
 
 A trait for generic access to [`elf::FileHeader32`](../../../elf/index.md) and [`elf::FileHeader64`](../../../elf/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 3`
 
@@ -178,6 +178,8 @@ A trait for generic access to [`elf::FileHeader32`](../../../elf/index.md) and [
 - `type Rela: 2`
 
 - `type Relr: 1`
+
+#### Required Methods
 
 - `fn is_type_64(&self) -> bool`
 
@@ -214,6 +216,8 @@ A trait for generic access to [`elf::FileHeader32`](../../../elf/index.md) and [
 - `fn e_shnum(&self, endian: <Self as >::Endian) -> u16`
 
 - `fn e_shstrndx(&self, endian: <Self as >::Endian) -> u16`
+
+#### Provided Methods
 
 - `fn parse<'data, R: ReadRef<'data>>(data: R) -> read::Result<&'data Self>`
 
@@ -272,6 +276,11 @@ A trait for generic access to [`elf::FileHeader32`](../../../elf/index.md) and [
 - `fn is_mips64el(&self, endian: <Self as >::Endian) -> bool`
 
   Returns whether this is a mips64el elf file.
+
+#### Implementors
+
+- [`FileHeader32`](../../../elf/index.md)
+- [`FileHeader64`](../../../elf/index.md)
 
 ## Type Aliases
 

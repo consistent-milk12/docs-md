@@ -2684,7 +2684,7 @@ See Section 7.12, Table 7.17.
 
 #### Implementations
 
-- <span id="dwlang-default-lower-bound"></span>`fn default_lower_bound(self) -> Option<usize>`
+- <span id="dwlang-static-string"></span>`fn static_string(&self) -> Option<&'static str>`
 
 #### Trait Implementations
 

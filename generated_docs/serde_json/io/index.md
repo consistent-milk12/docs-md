@@ -17,9 +17,9 @@ and/or now relying on OS-specific `std::backtrace::Backtrace`.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
+| [`ErrorKind`](#errorkind) | fn |  |
+| [`Bytes`](#bytes) | fn |  |
+| [`Read`](#read) | fn |  |
 
 ## Functions
 

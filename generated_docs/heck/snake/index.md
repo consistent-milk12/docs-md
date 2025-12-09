@@ -20,7 +20,7 @@
 struct AsSnakeCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a snake case conversion in [`fmt::Display`](../../miette_derive/fmt/index.md).
+This wrapper performs a snake case conversion in [`fmt::Display`](../../miette_derive/index.md).
 
 ## Example:
 
@@ -68,6 +68,10 @@ assert_eq!(sentence.to_snake_case(), "we_carry_a_new_world_here_in_our_hearts");
 
   Convert this type to snake case.
 
+#### Implementors
+
+- `str`
+
 ### `ToSnekCase`
 
 ```rust
@@ -82,4 +86,8 @@ more documentation.
 - `fn to_snek_case(&self) -> <Self as >::Owned`
 
   Convert this type to snek case.
+
+#### Implementors
+
+- `T`
 

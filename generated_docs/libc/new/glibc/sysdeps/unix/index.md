@@ -16,5 +16,5 @@ Source directory: `sysdeps/unix/`
 
 ## Modules
 
-- [`linux`](linux/index.md) - Source directory: `sysdeps/unix/sysv/linux` (the `sysv` is flattened).
+- [`linux`](linux/index.md) — Source directory: `sysdeps/unix/sysv/linux` (the `sysv` is flattened).
 

@@ -3,7 +3,7 @@
 //! This module provides [`MultiCrateGenerator`] which orchestrates
 //! documentation generation across multiple crates with cross-crate linking.
 
-use std::collections::{HashMap, HashSet};
+use std::collections::{BTreeSet, HashMap, HashSet};
 use std::fmt::Write;
 use std::path::Path;
 use std::sync::Arc;
@@ -11,22 +11,22 @@ use std::sync::Arc;
 use fs_err as fs;
 use indicatif::{ProgressBar, ProgressStyle};
 use rayon::prelude::*;
-use rustdoc_types::{Id, Item, ItemEnum, StructKind};
+use rustdoc_types::{Crate, Id, Item, ItemEnum, StructKind};
 use tracing::{debug, info, info_span, instrument};
 
 use crate::Args;
 use crate::error::Error;
-use crate::generator::config::RenderConfig;
 use crate::generator::breadcrumbs::BreadcrumbGenerator;
+use crate::generator::config::RenderConfig;
 use crate::generator::impls::is_blanket_impl;
 use crate::generator::quick_ref::{QuickRefEntry, QuickRefGenerator, extract_summary};
-use crate::generator::toc::{TocEntry, TocGenerator};
 use crate::generator::render_shared::{
-    append_docs, impl_sort_key, render_constant_definition, render_enum_definition,
-    render_enum_variants_docs, render_function_definition, render_impl_items, render_macro_heading,
-    render_struct_definition, render_struct_fields, render_trait_definition, render_trait_item,
+    CategorizedTraitItems, TraitRenderer, append_docs, impl_sort_key, render_constant_definition,
+    render_enum_definition, render_enum_variants_docs, render_function_definition,
+    render_impl_items, render_macro_heading, render_struct_definition, render_struct_fields,
     render_type_alias_definition,
 };
+use crate::generator::toc::{TocEntry, TocGenerator};
 use crate::generator::{ItemAccess, ItemFilter, LinkResolver};
 use crate::multi_crate::context::SingleCrateView;
 use crate::multi_crate::search::SearchIndexGenerator;
@@ -429,6 +429,10 @@ impl<'a> MultiCrateModuleRenderer<'a> {
     }
 
     /// Render module contents (items, types, functions, etc.).
+    #[expect(
+        clippy::too_many_lines,
+        reason = "Inherently complex. Will probably grow more."
+    )]
     fn render_module_contents(
         &self,
         md: &mut String,
@@ -442,7 +446,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
         let mut modules: Vec<&Item> = Vec::new();
         let mut structs: Vec<(&Id, &Item)> = Vec::new();
         let mut enums: Vec<(&Id, &Item)> = Vec::new();
-        let mut traits: Vec<&Item> = Vec::new();
+        let mut traits: Vec<(&Id, &Item)> = Vec::new();
         let mut functions: Vec<&Item> = Vec::new();
         let mut types: Vec<&Item> = Vec::new();
         let mut constants: Vec<&Item> = Vec::new();
@@ -466,7 +470,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
 
                     ItemEnum::Enum(_) => enums.push((item_id, item)),
 
-                    ItemEnum::Trait(_) => traits.push(item),
+                    ItemEnum::Trait(_) => traits.push((item_id, item)),
 
                     ItemEnum::Function(_) => functions.push(item),
 
@@ -519,7 +523,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
 
                                     ItemEnum::Enum(_) => enums.push((item_id, item)),
 
-                                    ItemEnum::Trait(_) => traits.push(item),
+                                    ItemEnum::Trait(_) => traits.push((item_id, item)),
 
                                     ItemEnum::Function(_) => functions.push(item),
 
@@ -607,7 +611,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
         // === Table of Contents (if above threshold) ===
         let config = self.view.render_config();
         let toc_gen = TocGenerator::new(config.toc_threshold);
-        let toc_entries = self.build_toc_entries(
+        let toc_entries = Self::build_toc_entries(
             &modules, &structs, &enums, &traits, &functions, &types, &constants, &macros,
         );
         if let Some(toc) = toc_gen.generate(&toc_entries) {
@@ -616,7 +620,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
 
         // === Quick Reference (if enabled) ===
         if config.quick_reference {
-            let quick_ref_entries = self.build_quick_ref_entries(
+            let quick_ref_entries = Self::build_quick_ref_entries(
                 &modules, &structs, &enums, &traits, &functions, &types, &constants, &macros,
             );
             if !quick_ref_entries.is_empty() {
@@ -626,7 +630,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
         }
 
         // Render sections with full detail
-        Self::render_modules_section(md, &modules);
+        Self::render_modules_section(md, &modules, self.view.krate());
         self.render_structs_section(md, &structs);
         self.render_enums_section(md, &enums);
         self.render_traits_section(md, &traits);
@@ -637,7 +641,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
     }
 
     /// Render modules section (links to subdirectories).
-    fn render_modules_section(md: &mut String, modules: &[&Item]) {
+    fn render_modules_section(md: &mut String, modules: &[&Item], krate: &Crate) {
         if modules.is_empty() {
             return;
         }
@@ -645,8 +649,12 @@ impl<'a> MultiCrateModuleRenderer<'a> {
         _ = writeln!(md, "## Modules\n");
 
         for item in modules {
-            let (name, summary) = Self::get_item_name_and_summary(item);
-            _ = writeln!(md, "- [`{name}`]({name}/index.md) - {summary}");
+            let (name, summary) = Self::get_item_name_and_summary_with_fallback(item, Some(krate));
+            if summary.is_empty() {
+                _ = writeln!(md, "- [`{name}`]({name}/index.md)");
+            } else {
+                _ = writeln!(md, "- [`{name}`]({name}/index.md) — {summary}");
+            }
         }
 
         _ = writeln!(md);
@@ -679,15 +687,15 @@ impl<'a> MultiCrateModuleRenderer<'a> {
     }
 
     /// Render traits section with full detail.
-    fn render_traits_section(&self, md: &mut String, traits: &[&Item]) {
+    fn render_traits_section(&self, md: &mut String, traits: &[(&Id, &Item)]) {
         if traits.is_empty() {
             return;
         }
 
         _ = writeln!(md, "## Traits\n");
 
-        for item in traits {
-            self.render_trait(md, item);
+        for (item_id, item) in traits {
+            self.render_trait(md, **item_id, item);
         }
     }
 
@@ -744,29 +752,74 @@ impl<'a> MultiCrateModuleRenderer<'a> {
     }
 
     /// Get name and summary for an item, handling re-exports.
+    ///
+    /// For re-exports (Use items), if the Use item has no docs, falls back to
+    /// the target item's docs when a crate reference is provided.
+    #[expect(dead_code, reason = "Kept for API consistency, use _with_fallback for docs")]
     fn get_item_name_and_summary(item: &Item) -> (String, String) {
+        Self::get_item_name_and_summary_with_fallback(item, None)
+    }
+
+    /// Get name and summary for an item with optional fallback lookup.
+    ///
+    /// When `krate` is provided and the item is a re-export without docs,
+    /// looks up the target item's docs as a fallback.
+    fn get_item_name_and_summary_with_fallback(
+        item: &Item,
+        krate: Option<&Crate>,
+    ) -> (String, String) {
         if let ItemEnum::Use(use_item) = &item.inner {
             // For re-exports, the name is always from the Use item
             let name = use_item.name.clone();
-            let docs = item.docs.as_deref().unwrap_or("");
-            let summary = docs.lines().next().unwrap_or("").to_string();
+
+            // First try the Use item's own docs
+            let summary = if let Some(docs) = &item.docs
+                && !docs.trim().is_empty()
+            {
+                docs.lines().next().unwrap_or("").to_string()
+            } else if let Some(krate) = krate
+                && let Some(target_id) = &use_item.id
+                && let Some(target_item) = krate.index.get(target_id)
+                && let Some(target_docs) = &target_item.docs
+            {
+                // Fall back to target item's docs
+                target_docs.lines().next().unwrap_or("").to_string()
+            } else {
+                String::new()
+            };
+
             (name, summary)
         } else {
             let name = item.name.clone().unwrap_or_else(|| "unnamed".to_string());
             let docs = item.docs.as_deref().unwrap_or("");
             let summary = docs.lines().next().unwrap_or("").to_string();
+
             (name, summary)
         }
     }
 
+    /// Get the display name for an item, handling re-exports.
+    ///
+    /// For `Use` items (re-exports), the name is stored in `use_item.name`.
+    /// For all other items, the name is in `item.name`.
+    fn get_item_name(item: &Item) -> &str {
+        if let ItemEnum::Use(use_item) = &item.inner {
+            &use_item.name
+        } else {
+            item.name.as_deref().unwrap_or("unnamed")
+        }
+    }
+
     /// Build TOC entries from categorized module items.
-    #[expect(clippy::too_many_arguments, reason = "Matches categorization structure")]
+    #[expect(
+        clippy::too_many_arguments,
+        reason = "Matches categorization structure"
+    )]
     fn build_toc_entries(
-        &self,
         modules: &[&Item],
         structs: &[(&Id, &Item)],
         enums: &[(&Id, &Item)],
-        traits: &[&Item],
+        traits: &[(&Id, &Item)],
         functions: &[&Item],
         types: &[&Item],
         constants: &[&Item],
@@ -779,7 +832,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             let children: Vec<TocEntry> = modules
                 .iter()
                 .map(|item| {
-                    let name = item.name.as_deref().unwrap_or("unnamed");
+                    let name = Self::get_item_name(item);
                     TocEntry::new(format!("`{name}`"), name.to_lowercase())
                 })
                 .collect();
@@ -791,7 +844,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             let children: Vec<TocEntry> = structs
                 .iter()
                 .map(|(_, item)| {
-                    let name = item.name.as_deref().unwrap_or("unnamed");
+                    let name = Self::get_item_name(item);
                     TocEntry::new(format!("`{name}`"), name.to_lowercase())
                 })
                 .collect();
@@ -803,7 +856,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             let children: Vec<TocEntry> = enums
                 .iter()
                 .map(|(_, item)| {
-                    let name = item.name.as_deref().unwrap_or("unnamed");
+                    let name = Self::get_item_name(item);
                     TocEntry::new(format!("`{name}`"), name.to_lowercase())
                 })
                 .collect();
@@ -814,8 +867,8 @@ impl<'a> MultiCrateModuleRenderer<'a> {
         if !traits.is_empty() {
             let children: Vec<TocEntry> = traits
                 .iter()
-                .map(|item| {
-                    let name = item.name.as_deref().unwrap_or("unnamed");
+                .map(|(_, item)| {
+                    let name = Self::get_item_name(item);
                     TocEntry::new(format!("`{name}`"), name.to_lowercase())
                 })
                 .collect();
@@ -827,7 +880,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             let children: Vec<TocEntry> = functions
                 .iter()
                 .map(|item| {
-                    let name = item.name.as_deref().unwrap_or("unnamed");
+                    let name = Self::get_item_name(item);
                     TocEntry::new(format!("`{name}`"), name.to_lowercase())
                 })
                 .collect();
@@ -839,11 +892,15 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             let children: Vec<TocEntry> = types
                 .iter()
                 .map(|item| {
-                    let name = item.name.as_deref().unwrap_or("unnamed");
+                    let name = Self::get_item_name(item);
                     TocEntry::new(format!("`{name}`"), name.to_lowercase())
                 })
                 .collect();
-            entries.push(TocEntry::with_children("Type Aliases", "type-aliases", children));
+            entries.push(TocEntry::with_children(
+                "Type Aliases",
+                "type-aliases",
+                children,
+            ));
         }
 
         // Constants section
@@ -851,7 +908,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             let children: Vec<TocEntry> = constants
                 .iter()
                 .map(|item| {
-                    let name = item.name.as_deref().unwrap_or("unnamed");
+                    let name = Self::get_item_name(item);
                     TocEntry::new(format!("`{name}`"), name.to_lowercase())
                 })
                 .collect();
@@ -863,7 +920,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             let children: Vec<TocEntry> = macros
                 .iter()
                 .map(|item| {
-                    let name = item.name.as_deref().unwrap_or("unnamed");
+                    let name = Self::get_item_name(item);
                     TocEntry::new(format!("`{name}!`"), name.to_lowercase())
                 })
                 .collect();
@@ -874,13 +931,15 @@ impl<'a> MultiCrateModuleRenderer<'a> {
     }
 
     /// Build Quick Reference entries from categorized module items.
-    #[expect(clippy::too_many_arguments, reason = "Matches categorization structure")]
+    #[expect(
+        clippy::too_many_arguments,
+        reason = "Matches categorization structure"
+    )]
     fn build_quick_ref_entries(
-        &self,
         modules: &[&Item],
         structs: &[(&Id, &Item)],
         enums: &[(&Id, &Item)],
-        traits: &[&Item],
+        traits: &[(&Id, &Item)],
         functions: &[&Item],
         types: &[&Item],
         constants: &[&Item],
@@ -890,56 +949,86 @@ impl<'a> MultiCrateModuleRenderer<'a> {
 
         // Modules
         for item in modules {
-            let name = item.name.as_deref().unwrap_or("unnamed");
+            let name = Self::get_item_name(item);
             let summary = extract_summary(item.docs.as_deref());
-            entries.push(QuickRefEntry::new(name, "mod", name.to_lowercase(), summary));
+            entries.push(QuickRefEntry::new(
+                name,
+                "mod",
+                name.to_lowercase(),
+                summary,
+            ));
         }
 
         // Structs
         for (_, item) in structs {
-            let name = item.name.as_deref().unwrap_or("unnamed");
+            let name = Self::get_item_name(item);
             let summary = extract_summary(item.docs.as_deref());
-            entries.push(QuickRefEntry::new(name, "struct", name.to_lowercase(), summary));
+            entries.push(QuickRefEntry::new(
+                name,
+                "struct",
+                name.to_lowercase(),
+                summary,
+            ));
         }
 
         // Enums
         for (_, item) in enums {
-            let name = item.name.as_deref().unwrap_or("unnamed");
+            let name = Self::get_item_name(item);
             let summary = extract_summary(item.docs.as_deref());
-            entries.push(QuickRefEntry::new(name, "enum", name.to_lowercase(), summary));
+            entries.push(QuickRefEntry::new(
+                name,
+                "enum",
+                name.to_lowercase(),
+                summary,
+            ));
         }
 
         // Traits
-        for item in traits {
-            let name = item.name.as_deref().unwrap_or("unnamed");
+        for (_, item) in traits {
+            let name = Self::get_item_name(item);
             let summary = extract_summary(item.docs.as_deref());
-            entries.push(QuickRefEntry::new(name, "trait", name.to_lowercase(), summary));
+            entries.push(QuickRefEntry::new(
+                name,
+                "trait",
+                name.to_lowercase(),
+                summary,
+            ));
         }
 
         // Functions
         for item in functions {
-            let name = item.name.as_deref().unwrap_or("unnamed");
+            let name = Self::get_item_name(item);
             let summary = extract_summary(item.docs.as_deref());
             entries.push(QuickRefEntry::new(name, "fn", name.to_lowercase(), summary));
         }
 
         // Type aliases
         for item in types {
-            let name = item.name.as_deref().unwrap_or("unnamed");
+            let name = Self::get_item_name(item);
             let summary = extract_summary(item.docs.as_deref());
-            entries.push(QuickRefEntry::new(name, "type", name.to_lowercase(), summary));
+            entries.push(QuickRefEntry::new(
+                name,
+                "type",
+                name.to_lowercase(),
+                summary,
+            ));
         }
 
         // Constants
         for item in constants {
-            let name = item.name.as_deref().unwrap_or("unnamed");
+            let name = Self::get_item_name(item);
             let summary = extract_summary(item.docs.as_deref());
-            entries.push(QuickRefEntry::new(name, "const", name.to_lowercase(), summary));
+            entries.push(QuickRefEntry::new(
+                name,
+                "const",
+                name.to_lowercase(),
+                summary,
+            ));
         }
 
         // Macros
         for item in macros {
-            let name = item.name.as_deref().unwrap_or("unnamed");
+            let name = Self::get_item_name(item);
             let summary = extract_summary(item.docs.as_deref());
             entries.push(QuickRefEntry::new(
                 format!("{name}!"),
@@ -1123,29 +1212,132 @@ impl<'a> MultiCrateModuleRenderer<'a> {
     }
 
     /// Render a trait definition to markdown.
-    fn render_trait(&self, md: &mut String, item: &Item) {
-        let krate = self.view.krate();
-        let name = item.name.as_deref().unwrap_or("unnamed");
+    fn render_trait(&self, md: &mut String, item_id: Id, item: &Item) {
+        let current_krate = self.view.krate();
 
-        if let ItemEnum::Trait(t) = &item.inner {
-            // Trait definition (heading + code block)
-            render_trait_definition(md, name, t, &self.type_renderer);
+        // Handle re-exports: resolve to actual trait item
+        let (name, actual_item, actual_id): (&str, &Item, Id) =
+            if let ItemEnum::Use(use_item) = &item.inner {
+                let name = use_item.name.as_str();
 
-            // Documentation
-            append_docs(md, self.view.process_docs(item, self.file_path));
-
-            // Required methods section
-            if !t.items.is_empty() {
-                md.push_str("#### Required Methods\n\n");
-
-                for method_id in &t.items {
-                    if let Some(method) = krate.index.get(method_id) {
-                        render_trait_item(md, method, &self.type_renderer, |m| {
-                            self.view.process_docs(m, self.file_path)
-                        });
+                if let Some(ref target_id) = use_item.id {
+                    // Has ID - try local crate first, then search all crates
+                    if let Some(target) = current_krate.index.get(target_id) {
+                        (name, target, *target_id)
+                    } else if let Some((_, target)) =
+                        self.view.lookup_item_across_crates(target_id)
+                    {
+                        (name, target, *target_id)
+                    } else {
+                        return;
+                    }
+                } else {
+                    // No ID - try to resolve by path (external re-export)
+                    if let Some((_, target, target_id)) =
+                        self.view.resolve_external_path(&use_item.source)
+                    {
+                        (name, target, target_id)
+                    } else {
+                        return;
                     }
                 }
+            } else {
+                (
+                    item.name.as_deref().unwrap_or("unnamed"),
+                    item,
+                    item_id,
+                )
+            };
+
+        if let ItemEnum::Trait(t) = &actual_item.inner {
+            // Trait definition (heading + code block)
+            TraitRenderer::render_trait_definition(md, name, t, &self.type_renderer);
+
+            // Documentation
+            append_docs(md, self.view.process_docs(actual_item, self.file_path));
+
+            // Categorize trait items
+            let items = CategorizedTraitItems::categorize_trait_items(&t.items, current_krate);
+
+            // Associated Types
+            if !items.associated_types.is_empty() {
+                _ = writeln!(md, "#### Associated Types\n");
+
+                for type_item in &items.associated_types {
+                    TraitRenderer::render_trait_item(md, type_item, &self.type_renderer, |m| {
+                        self.view.process_docs(m, self.file_path)
+                    });
+                }
             }
+
+            // Associated Constants
+            if !items.associated_consts.is_empty() {
+                _ = writeln!(md, "#### Associated Constants\n");
+
+                for const_item in &items.associated_consts {
+                    TraitRenderer::render_trait_item(md, const_item, &self.type_renderer, |m| {
+                        self.view.process_docs(m, self.file_path)
+                    });
+                }
+            }
+
+            // Required Methods
+            if !items.required_methods.is_empty() {
+                _ = writeln!(md, "#### Required Methods\n");
+
+                for method in &items.required_methods {
+                    TraitRenderer::render_trait_item(md, method, &self.type_renderer, |m| {
+                        self.view.process_docs(m, self.file_path)
+                    });
+                }
+            }
+
+            // Provided Methods
+            if !items.provided_methods.is_empty() {
+                _ = writeln!(md, "#### Provided Methods\n");
+
+                for method in &items.provided_methods {
+                    TraitRenderer::render_trait_item(md, method, &self.type_renderer, |m| {
+                        self.view.process_docs(m, self.file_path)
+                    });
+                }
+            }
+
+            // Implementors section
+            self.render_trait_implementors(md, actual_id);
+        }
+    }
+
+    /// Render the implementors section for a trait.
+    fn render_trait_implementors(&self, md: &mut String, trait_id: Id) {
+        let krate = self.view.krate();
+        let mut implementors: BTreeSet<String> = BTreeSet::new();
+
+        for item in krate.index.values() {
+            if let ItemEnum::Impl(impl_block) = &item.inner
+                && let Some(trait_path) = &impl_block.trait_
+                && trait_path.id == trait_id
+            {
+                let for_type = self.type_renderer.render_type(&impl_block.for_);
+
+                let entry = self
+                    .type_renderer
+                    .get_type_id(&impl_block.for_)
+                    .and_then(|type_id| {
+                        LinkResolver::create_link(self.view, type_id, self.file_path)
+                    })
+                    .unwrap_or_else(|| format!("`{for_type}`"));
+
+                implementors.insert(entry);
+            }
+        }
+
+        if !implementors.is_empty() {
+            md.push_str("#### Implementors\n\n");
+            for implementor in implementors {
+                _ = writeln!(md, "- {implementor}");
+            }
+            md.push('\n');
         }
     }
 
@@ -1196,7 +1388,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
         modules: &mut Vec<&'b Item>,
         structs: &mut Vec<(&'b Id, &'b Item)>,
         enums: &mut Vec<(&'b Id, &'b Item)>,
-        traits: &mut Vec<&'b Item>,
+        traits: &mut Vec<(&'b Id, &'b Item)>,
         functions: &mut Vec<&'b Item>,
         types: &mut Vec<&'b Item>,
         constants: &mut Vec<&'b Item>,
@@ -1235,7 +1427,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                 ItemEnum::Module(_) => modules.push(child),
                 ItemEnum::Struct(_) => structs.push((child_id, child)),
                 ItemEnum::Enum(_) => enums.push((child_id, child)),
-                ItemEnum::Trait(_) => traits.push(child),
+                ItemEnum::Trait(_) => traits.push((child_id, child)),
                 ItemEnum::Function(_) => functions.push(child),
                 ItemEnum::TypeAlias(_) => types.push(child),
                 ItemEnum::Constant { .. } => constants.push(child),
@@ -1370,6 +1562,87 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                     Some(for_type.as_ref()),
                 );
             }
+        }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    mod get_item_name_tests {
+        use rustdoc_types::{Item, ItemEnum, Use, Visibility};
+
+        use super::*;
+
+        /// Create a regular item with the given name.
+        fn make_item(name: Option<&str>) -> Item {
+            Item {
+                id: Id(0),
+                crate_id: 0,
+                name: name.map(ToString::to_string),
+                span: None,
+                visibility: Visibility::Public,
+                docs: None,
+                links: std::collections::HashMap::new(),
+                attrs: Vec::new(),
+                deprecation: None,
+                inner: ItemEnum::Module(rustdoc_types::Module {
+                    is_crate: false,
+                    items: Vec::new(),
+                    is_stripped: false,
+                }),
+            }
+        }
+
+        /// Create a Use item (re-export) with the given name.
+        fn make_use_item(use_name: &str) -> Item {
+            Item {
+                id: Id(0),
+                crate_id: 0,
+                name: None, // Use items don't have item.name set
+                span: None,
+                visibility: Visibility::Public,
+                docs: None,
+                links: std::collections::HashMap::new(),
+                attrs: Vec::new(),
+                deprecation: None,
+                inner: ItemEnum::Use(Use {
+                    source: "some::path".to_string(),
+                    name: use_name.to_string(),
+                    id: None,
+                    is_glob: false,
+                }),
+            }
+        }
+
+        #[test]
+        fn regular_item_with_name() {
+            let item = make_item(Some("MyStruct"));
+            assert_eq!(MultiCrateModuleRenderer::get_item_name(&item), "MyStruct");
+        }
+
+        #[test]
+        fn regular_item_without_name_returns_unnamed() {
+            let item = make_item(None);
+            assert_eq!(MultiCrateModuleRenderer::get_item_name(&item), "unnamed");
+        }
+
+        #[test]
+        fn use_item_returns_reexport_name() {
+            let item = make_use_item("Parser");
+            assert_eq!(MultiCrateModuleRenderer::get_item_name(&item), "Parser");
+        }
+
+        #[test]
+        fn use_item_ignores_item_name() {
+            // Even if item.name were somehow set, we should use use_item.name
+            let mut item = make_use_item("CorrectName");
+            item.name = Some("WrongName".to_string());
+            assert_eq!(
+                MultiCrateModuleRenderer::get_item_name(&item),
+                "CorrectName"
+            );
         }
     }
 }

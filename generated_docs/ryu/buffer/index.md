@@ -69,6 +69,11 @@ A floating point number, f32 or f64, that can be written into a
 This trait is sealed and cannot be implemented for types outside of the
 `ryu` crate.
 
+#### Implementors
+
+- `f32`
+- `f64`
+
 ### `Sealed`
 
 ```rust
@@ -82,6 +87,11 @@ trait Sealed: Copy { ... }
 - `fn format_nonfinite(self) -> &'static str`
 
 - `fn write_to_ryu_buffer(self, result: *mut u8) -> usize`
+
+#### Implementors
+
+- `f32`
+- `f64`
 
 ## Constants
 

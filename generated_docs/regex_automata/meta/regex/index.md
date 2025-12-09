@@ -268,15 +268,15 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- <span id="regex-search-with"></span>`fn search_with(&self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>` — [`Cache`](../index.md), [`Input`](../../index.md), [`Match`](../../index.md)
+- <span id="regex-search"></span>`fn search(&self, input: &Input<'_>) -> Option<Match>` — [`Input`](../../index.md), [`Match`](../../index.md)
 
-- <span id="regex-search-half-with"></span>`fn search_half_with(&self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>` — [`Cache`](../index.md), [`Input`](../../index.md), [`HalfMatch`](../../index.md)
+- <span id="regex-search-half"></span>`fn search_half(&self, input: &Input<'_>) -> Option<HalfMatch>` — [`Input`](../../index.md), [`HalfMatch`](../../index.md)
 
-- <span id="regex-search-captures-with"></span>`fn search_captures_with(&self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures)` — [`Cache`](../index.md), [`Input`](../../index.md), [`Captures`](../../util/captures/index.md)
+- <span id="regex-search-captures"></span>`fn search_captures(&self, input: &Input<'_>, caps: &mut Captures)` — [`Input`](../../index.md), [`Captures`](../../util/captures/index.md)
 
-- <span id="regex-search-slots-with"></span>`fn search_slots_with(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](../index.md), [`Input`](../../index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../index.md)
+- <span id="regex-search-slots"></span>`fn search_slots(&self, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Input`](../../index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../index.md)
 
-- <span id="regex-which-overlapping-matches-with"></span>`fn which_overlapping_matches_with(&self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)` — [`Cache`](../index.md), [`Input`](../../index.md), [`PatternSet`](../../index.md)
+- <span id="regex-which-overlapping-matches"></span>`fn which_overlapping_matches(&self, input: &Input<'_>, patset: &mut PatternSet)` — [`Input`](../../index.md), [`PatternSet`](../../index.md)
 
 #### Trait Implementations
 

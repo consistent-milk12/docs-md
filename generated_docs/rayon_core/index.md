@@ -70,33 +70,33 @@ succeed.
   - [`unwind`](#unwind)
   - [`compile_fail`](#compile_fail)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`BroadcastContext`](#broadcastcontext)
+  - [`ThreadBuilder`](#threadbuilder)
+  - [`Scope`](#scope)
+  - [`ScopeFifo`](#scopefifo)
+  - [`ThreadPool`](#threadpool)
   - [`ThreadPoolBuildError`](#threadpoolbuilderror)
   - [`ThreadPoolBuilder`](#threadpoolbuilder)
   - [`Configuration`](#configuration)
   - [`FnContext`](#fncontext)
 - [Enums](#enums)
-  - [`unnamed`](#unnamed)
+  - [`Yield`](#yield)
   - [`ErrorKind`](#errorkind)
 - [Functions](#functions)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`broadcast`](#broadcast)
+  - [`spawn_broadcast`](#spawn_broadcast)
+  - [`join`](#join)
+  - [`join_context`](#join_context)
+  - [`in_place_scope`](#in_place_scope)
+  - [`scope`](#scope)
+  - [`in_place_scope_fifo`](#in_place_scope_fifo)
+  - [`scope_fifo`](#scope_fifo)
+  - [`spawn`](#spawn)
+  - [`spawn_fifo`](#spawn_fifo)
+  - [`current_thread_has_pending_tasks`](#current_thread_has_pending_tasks)
+  - [`current_thread_index`](#current_thread_index)
+  - [`yield_local`](#yield_local)
+  - [`yield_now`](#yield_now)
   - [`max_num_threads`](#max_num_threads)
   - [`current_num_threads`](#current_num_threads)
   - [`initialize`](#initialize)
@@ -124,31 +124,31 @@ succeed.
 | [`thread_pool`](#thread_pool) | mod | Contains support for user-managed thread pools, represented by the |
 | [`unwind`](#unwind) | mod | Package up unwind recovery. |
 | [`compile_fail`](#compile_fail) | mod |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
+| [`BroadcastContext`](#broadcastcontext) | struct |  |
+| [`ThreadBuilder`](#threadbuilder) | struct |  |
+| [`Scope`](#scope) | struct |  |
+| [`ScopeFifo`](#scopefifo) | struct |  |
+| [`ThreadPool`](#threadpool) | struct |  |
 | [`ThreadPoolBuildError`](#threadpoolbuilderror) | struct | Error when initializing a thread pool. |
 | [`ThreadPoolBuilder`](#threadpoolbuilder) | struct | Used to create a new [`ThreadPool`] or to configure the global rayon thread pool. |
 | [`Configuration`](#configuration) | struct | Contains the rayon thread pool configuration. |
 | [`FnContext`](#fncontext) | struct | Provides the calling context to a closure called by `join_context`. |
-| [`unnamed`](#unnamed) | enum |  |
+| [`Yield`](#yield) | enum |  |
 | [`ErrorKind`](#errorkind) | enum |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
+| [`broadcast`](#broadcast) | fn |  |
+| [`spawn_broadcast`](#spawn_broadcast) | fn |  |
+| [`join`](#join) | fn |  |
+| [`join_context`](#join_context) | fn |  |
+| [`in_place_scope`](#in_place_scope) | fn |  |
+| [`scope`](#scope) | fn |  |
+| [`in_place_scope_fifo`](#in_place_scope_fifo) | fn |  |
+| [`scope_fifo`](#scope_fifo) | fn |  |
+| [`spawn`](#spawn) | fn |  |
+| [`spawn_fifo`](#spawn_fifo) | fn |  |
+| [`current_thread_has_pending_tasks`](#current_thread_has_pending_tasks) | fn |  |
+| [`current_thread_index`](#current_thread_index) | fn |  |
+| [`yield_local`](#yield_local) | fn |  |
+| [`yield_now`](#yield_now) | fn |  |
 | [`max_num_threads`](#max_num_threads) | fn | Returns the maximum number of threads that Rayon supports in a single thread pool. |
 | [`current_num_threads`](#current_num_threads) | fn | Returns the number of threads in the current registry. |
 | [`initialize`](#initialize) | fn | Deprecated in favor of `ThreadPoolBuilder::build_global`. |
@@ -160,18 +160,18 @@ succeed.
 
 ## Modules
 
-- [`private`](private/index.md) - The public parts of this private module are used to create traits
-- [`broadcast`](broadcast/index.md) - 
-- [`job`](job/index.md) - 
-- [`join`](join/index.md) - 
-- [`latch`](latch/index.md) - 
-- [`registry`](registry/index.md) - 
-- [`scope`](scope/index.md) - Methods for custom fork-join scopes, created by the [`scope()`]
-- [`sleep`](sleep/index.md) - Code that decides when workers should go to sleep. See README.md
-- [`spawn`](spawn/index.md) - 
-- [`thread_pool`](thread_pool/index.md) - Contains support for user-managed thread pools, represented by the
-- [`unwind`](unwind/index.md) - Package up unwind recovery. Note that if you are in some sensitive
-- [`compile_fail`](compile_fail/index.md) - 
+- [`private`](private/index.md) — The public parts of this private module are used to create traits
+- [`broadcast`](broadcast/index.md)
+- [`job`](job/index.md)
+- [`join`](join/index.md)
+- [`latch`](latch/index.md)
+- [`registry`](registry/index.md)
+- [`scope`](scope/index.md) — Methods for custom fork-join scopes, created by the [`scope()`]
+- [`sleep`](sleep/index.md) — Code that decides when workers should go to sleep. See README.md
+- [`spawn`](spawn/index.md)
+- [`thread_pool`](thread_pool/index.md) — Contains support for user-managed thread pools, represented by the
+- [`unwind`](unwind/index.md) — Package up unwind recovery. Note that if you are in some sensitive
+- [`compile_fail`](compile_fail/index.md)
 
 ## Structs
 
@@ -671,7 +671,7 @@ Provides the calling context to a closure called by `join_context`.
 
 #### Implementations
 
-- <span id="fncontext-new"></span>`fn new(migrated: bool) -> Self`
+- <span id="fncontext-migrated"></span>`fn migrated(&self) -> bool`
 
 #### Trait Implementations
 

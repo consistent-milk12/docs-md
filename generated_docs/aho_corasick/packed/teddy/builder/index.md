@@ -15,7 +15,7 @@
 
 ## Modules
 
-- [`x86_64`](x86_64/index.md) - 
+- [`x86_64`](x86_64/index.md)
 
 ## Structs
 
@@ -179,4 +179,10 @@ requires `alloc`, there's no real reason (AFAIK) to go down this path. (The
 - `fn find(&self, start: *const u8, end: *const u8) -> Option<Match>`
 
   Execute a search on the given haystack (identified by `start` and `end`
+
+#### Implementors
+
+- [`FatAVX2`](x86_64/index.md)
+- [`SlimAVX2`](x86_64/index.md)
+- [`SlimSSSE3`](x86_64/index.md)
 

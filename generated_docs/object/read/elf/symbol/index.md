@@ -267,11 +267,13 @@ trait Sym: Debug + Pod { ... }
 
 A trait for generic access to [`elf::Sym32`](../../../elf/index.md) and [`elf::Sym64`](../../../elf/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
 
 - `type Endian: 1`
+
+#### Required Methods
 
 - `fn st_name(&self, endian: <Self as >::Endian) -> u32`
 
@@ -290,6 +292,8 @@ A trait for generic access to [`elf::Sym32`](../../../elf/index.md) and [`elf::S
 - `fn st_value(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
 - `fn st_size(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+
+#### Provided Methods
 
 - `fn name<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, strings: StringTable<'data, R>) -> read::Result<&'data [u8]>`
 
@@ -318,6 +322,11 @@ A trait for generic access to [`elf::Sym32`](../../../elf/index.md) and [`elf::S
 - `fn is_weak(&self) -> bool`
 
   Return true if the symbol binding is `STB_WEAK`.
+
+#### Implementors
+
+- [`Sym32`](../../../elf/index.md)
+- [`Sym64`](../../../elf/index.md)
 
 ## Type Aliases
 

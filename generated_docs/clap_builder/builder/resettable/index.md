@@ -109,3 +109,38 @@ Convert to the intended resettable type
 
   Convert to the intended resettable type
 
+#### Implementors
+
+- [`ArgAction`](../../index.md)
+- [`BoolValueParser`](../index.md)
+- [`BoolishValueParser`](../index.md)
+- [`EnumValueParser`](../index.md)
+- [`FalseyValueParser`](../index.md)
+- [`Id`](../../index.md)
+- [`MapValueParser`](../index.md)
+- [`NonEmptyStringValueParser`](../index.md)
+- [`OsStr`](../index.md)
+- [`OsStringValueParser`](../index.md)
+- [`PathBufValueParser`](../index.md)
+- [`PossibleValuesParser`](../index.md)
+- [`RangedI64ValueParser`](../index.md)
+- [`RangedU64ValueParser`](../index.md)
+- [`Resettable`](../index.md)
+- [`Str`](../index.md)
+- [`StringValueParser`](../index.md)
+- [`StyledStr`](../index.md)
+- [`TryMapValueParser`](../index.md)
+- [`UnknownArgumentValueParser`](../index.md)
+- [`ValueHint`](../../index.md)
+- [`ValueParser`](../index.md)
+- [`ValueRange`](../index.md)
+- `I`
+- `Option<&'static str>`
+- `Option<char>`
+- `Option<crate::builder::ArgAction>`
+- `Option<crate::builder::ValueHint>`
+- `Option<crate::builder::ValueParser>`
+- `Option<usize>`
+- `char`
+- `usize`
+

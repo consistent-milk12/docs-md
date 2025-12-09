@@ -19,8 +19,8 @@ Adapted from
 
 ## Modules
 
-- [`case_ignorable`](case_ignorable/index.md) - 
-- [`cased`](cased/index.md) - 
+- [`case_ignorable`](case_ignorable/index.md)
+- [`cased`](cased/index.md)
 
 ## Functions
 

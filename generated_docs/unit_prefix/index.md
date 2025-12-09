@@ -160,7 +160,7 @@ assert_eq!(
 
 ## Modules
 
-- [`parse`](parse/index.md) - 
+- [`parse`](parse/index.md)
 
 ## Enums
 
@@ -377,13 +377,20 @@ Traits for floating-point values for both the possible multipliers. They
 need to be Copy, have defined 1000 and 1024s, and implement a bunch of
 operators.
 
-#### Required Methods
+#### Associated Constants
 
 - `const NUM_1000: Self`
 
 - `const NUM_1024: Self`
 
+#### Required Methods
+
 - `fn is_negative(self) -> bool`
 
   Whether this number is negative.
+
+#### Implementors
+
+- `f32`
+- `f64`
 

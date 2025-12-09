@@ -39,11 +39,11 @@ specialized architecture dependent routines are unavailable.
 
 ## Modules
 
-- [`memchr`](memchr/index.md) - Provides architecture independent implementations of `memchr` and friends.
-- [`packedpair`](packedpair/index.md) - Provides an architecture independent implementation of the "packed pair"
-- [`rabinkarp`](rabinkarp/index.md) - An implementation of the [Rabin-Karp substring search algorithm][rabinkarp].
-- [`shiftor`](shiftor/index.md) - An implementation of the [Shift-Or substring search algorithm][shiftor].
-- [`twoway`](twoway/index.md) - An implementation of the [Two-Way substring search algorithm][two-way].
+- [`memchr`](memchr/index.md) — Provides architecture independent implementations of `memchr` and friends.
+- [`packedpair`](packedpair/index.md) — Provides an architecture independent implementation of the "packed pair"
+- [`rabinkarp`](rabinkarp/index.md) — An implementation of the [Rabin-Karp substring search algorithm][rabinkarp].
+- [`shiftor`](shiftor/index.md) — An implementation of the [Shift-Or substring search algorithm][shiftor].
+- [`twoway`](twoway/index.md) — An implementation of the [Two-Way substring search algorithm][two-way].
 
 ## Functions
 

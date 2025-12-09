@@ -34,8 +34,8 @@
 
 ## Modules
 
-- [`parsing`](parsing/index.md) - 
-- [`printing`](printing/index.md) - 
+- [`parsing`](parsing/index.md)
+- [`printing`](printing/index.md)
 
 ## Structs
 
@@ -483,11 +483,17 @@ This type is a [syntax tree enum].
 trait FilterAttrs<'a> { ... }
 ```
 
-#### Required Methods
+#### Associated Types
 
 - `type Ret: 1`
+
+#### Required Methods
 
 - `fn outer(self) -> <Self as >::Ret`
 
 - `fn inner(self) -> <Self as >::Ret`
+
+#### Implementors
+
+- `&'a [Attribute]`
 

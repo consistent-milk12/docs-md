@@ -36,22 +36,22 @@ See [CONTRIBUTING](CONTRIBUTING.md) for more details.
   - [`output`](#output)
   - [`util`](#util)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`Command`](#command)
+  - [`Arg`](#arg)
+  - [`ArgGroup`](#arggroup)
+  - [`ArgMatches`](#argmatches)
+  - [`Id`](#id)
 - [Enums](#enums)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`ArgAction`](#argaction)
+  - [`ValueHint`](#valuehint)
+  - [`ColorChoice`](#colorchoice)
 - [Traits](#traits)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`Args`](#args)
+  - [`CommandFactory`](#commandfactory)
+  - [`FromArgMatches`](#fromargmatches)
+  - [`Parser`](#parser)
+  - [`Subcommand`](#subcommand)
+  - [`ValueEnum`](#valueenum)
 - [Type Aliases](#type-aliases)
   - [`Error`](#error)
 - [Constants](#constants)
@@ -73,20 +73,20 @@ See [CONTRIBUTING](CONTRIBUTING.md) for more details.
 | [`mkeymap`](#mkeymap) | mod |  |
 | [`output`](#output) | mod |  |
 | [`util`](#util) | mod |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | trait |  |
-| [`unnamed`](#unnamed) | trait |  |
-| [`unnamed`](#unnamed) | trait |  |
-| [`unnamed`](#unnamed) | trait |  |
-| [`unnamed`](#unnamed) | trait |  |
-| [`unnamed`](#unnamed) | trait |  |
+| [`Command`](#command) | struct |  |
+| [`Arg`](#arg) | struct |  |
+| [`ArgGroup`](#arggroup) | struct |  |
+| [`ArgMatches`](#argmatches) | struct |  |
+| [`Id`](#id) | struct |  |
+| [`ArgAction`](#argaction) | enum |  |
+| [`ValueHint`](#valuehint) | enum |  |
+| [`ColorChoice`](#colorchoice) | enum |  |
+| [`Args`](#args) | trait |  |
+| [`CommandFactory`](#commandfactory) | trait |  |
+| [`FromArgMatches`](#fromargmatches) | trait |  |
+| [`Parser`](#parser) | trait |  |
+| [`Subcommand`](#subcommand) | trait |  |
+| [`ValueEnum`](#valueenum) | trait |  |
 | [`Error`](#error) | type | Command Line Argument Parser Error |
 | [`INTERNAL_ERROR_MSG`](#internal_error_msg) | const |  |
 | [`command!`](#command) | macro | Requires `cargo` feature flag to be enabled. |
@@ -95,14 +95,14 @@ See [CONTRIBUTING](CONTRIBUTING.md) for more details.
 
 ## Modules
 
-- [`macros`](macros/index.md) - 
-- [`derive`](derive/index.md) - This module contains traits that are usable with the `#[derive(...)]`
-- [`builder`](builder/index.md) - Define [`Command`] line [arguments][`Arg`]
-- [`error`](error/index.md) - Error reporting
-- [`parser`](parser/index.md) - [`Command`][crate::Command] line argument parser
-- [`mkeymap`](mkeymap/index.md) - 
-- [`output`](output/index.md) - 
-- [`util`](util/index.md) - 
+- [`macros`](macros/index.md)
+- [`derive`](derive/index.md) — This module contains traits that are usable with the `#[derive(...)]`
+- [`builder`](builder/index.md) — Define [`Command`] line [arguments][`Arg`]
+- [`error`](error/index.md) — Error reporting
+- [`parser`](parser/index.md) — [`Command`][crate::Command] line argument parser
+- [`mkeymap`](mkeymap/index.md)
+- [`output`](output/index.md)
+- [`util`](util/index.md)
 
 ## Structs
 
@@ -188,143 +188,41 @@ let m = Command::new("My Program")
 
 #### Implementations
 
-- <span id="command-get-usage-name"></span>`fn get_usage_name(&self) -> Option<&str>`
+- <span id="command-no-binary-name"></span>`fn no_binary_name(self, yes: bool) -> Self`
 
-- <span id="command-get-usage-name-fallback"></span>`fn get_usage_name_fallback(&self) -> &str`
+- <span id="command-ignore-errors"></span>`fn ignore_errors(self, yes: bool) -> Self`
 
-- <span id="command-get-display-name"></span>`fn get_display_name(&self) -> Option<&str>`
+- <span id="command-args-override-self"></span>`fn args_override_self(self, yes: bool) -> Self`
 
-- <span id="command-get-bin-name"></span>`fn get_bin_name(&self) -> Option<&str>`
+- <span id="command-dont-delimit-trailing-values"></span>`fn dont_delimit_trailing_values(self, yes: bool) -> Self`
 
-- <span id="command-get-bin-name-fallback"></span>`fn get_bin_name_fallback(&self) -> &str`
+- <span id="command-color"></span>`fn color(self, color: ColorChoice) -> Self` — [`ColorChoice`](#colorchoice)
 
-- <span id="command-set-bin-name"></span>`fn set_bin_name(&mut self, name: impl Into<String>)`
+- <span id="command-styles"></span>`fn styles(self, styles: Styles) -> Self` — [`Styles`](builder/index.md)
 
-- <span id="command-get-name"></span>`fn get_name(&self) -> &str`
+- <span id="command-term-width"></span>`fn term_width(self, width: usize) -> Self`
 
-- <span id="command-get-name-str"></span>`fn get_name_str(&self) -> &Str` — [`Str`](builder/index.md)
+- <span id="command-max-term-width"></span>`fn max_term_width(self, width: usize) -> Self`
 
-- <span id="command-get-name-and-visible-aliases"></span>`fn get_name_and_visible_aliases(&self) -> Vec<&str>`
+- <span id="command-disable-version-flag"></span>`fn disable_version_flag(self, yes: bool) -> Self`
 
-- <span id="command-get-version"></span>`fn get_version(&self) -> Option<&str>`
+- <span id="command-propagate-version"></span>`fn propagate_version(self, yes: bool) -> Self`
 
-- <span id="command-get-long-version"></span>`fn get_long_version(&self) -> Option<&str>`
+- <span id="command-next-line-help"></span>`fn next_line_help(self, yes: bool) -> Self`
 
-- <span id="command-get-display-order"></span>`fn get_display_order(&self) -> usize`
+- <span id="command-disable-help-flag"></span>`fn disable_help_flag(self, yes: bool) -> Self`
 
-- <span id="command-get-author"></span>`fn get_author(&self) -> Option<&str>`
+- <span id="command-disable-help-subcommand"></span>`fn disable_help_subcommand(self, yes: bool) -> Self`
 
-- <span id="command-get-short-flag"></span>`fn get_short_flag(&self) -> Option<char>`
+- <span id="command-disable-colored-help"></span>`fn disable_colored_help(self, yes: bool) -> Self`
 
-- <span id="command-get-long-flag"></span>`fn get_long_flag(&self) -> Option<&str>`
+- <span id="command-help-expected"></span>`fn help_expected(self, yes: bool) -> Self`
 
-- <span id="command-get-about"></span>`fn get_about(&self) -> Option<&StyledStr>` — [`StyledStr`](builder/index.md)
+- <span id="command-hide-possible-values"></span>`fn hide_possible_values(self, yes: bool) -> Self`
 
-- <span id="command-get-long-about"></span>`fn get_long_about(&self) -> Option<&StyledStr>` — [`StyledStr`](builder/index.md)
+- <span id="command-infer-long-args"></span>`fn infer_long_args(self, yes: bool) -> Self`
 
-- <span id="command-is-flatten-help-set"></span>`fn is_flatten_help_set(&self) -> bool`
-
-- <span id="command-get-next-help-heading"></span>`fn get_next_help_heading(&self) -> Option<&str>`
-
-- <span id="command-get-visible-aliases"></span>`fn get_visible_aliases(&self) -> impl Iterator<Item = &str> + '_`
-
-- <span id="command-get-visible-short-flag-aliases"></span>`fn get_visible_short_flag_aliases(&self) -> impl Iterator<Item = char> + '_`
-
-- <span id="command-get-visible-long-flag-aliases"></span>`fn get_visible_long_flag_aliases(&self) -> impl Iterator<Item = &str> + '_`
-
-- <span id="command-get-all-aliases"></span>`fn get_all_aliases(&self) -> impl Iterator<Item = &str> + '_`
-
-- <span id="command-get-all-short-flag-aliases"></span>`fn get_all_short_flag_aliases(&self) -> impl Iterator<Item = char> + '_`
-
-- <span id="command-get-all-long-flag-aliases"></span>`fn get_all_long_flag_aliases(&self) -> impl Iterator<Item = &str> + '_`
-
-- <span id="command-get-aliases"></span>`fn get_aliases(&self) -> impl Iterator<Item = &str> + '_`
-
-- <span id="command-is-set"></span>`fn is_set(&self, s: AppSettings) -> bool` — [`AppSettings`](builder/app_settings/index.md)
-
-- <span id="command-get-color"></span>`fn get_color(&self) -> ColorChoice` — [`ColorChoice`](#colorchoice)
-
-- <span id="command-get-styles"></span>`fn get_styles(&self) -> &Styles` — [`Styles`](builder/index.md)
-
-- <span id="command-get-subcommands"></span>`fn get_subcommands(&self) -> impl Iterator<Item = &Command>` — [`Command`](#command)
-
-- <span id="command-get-subcommands-mut"></span>`fn get_subcommands_mut(&mut self) -> impl Iterator<Item = &mut Command>` — [`Command`](#command)
-
-- <span id="command-has-subcommands"></span>`fn has_subcommands(&self) -> bool`
-
-- <span id="command-get-subcommand-help-heading"></span>`fn get_subcommand_help_heading(&self) -> Option<&str>`
-
-- <span id="command-get-subcommand-value-name"></span>`fn get_subcommand_value_name(&self) -> Option<&str>`
-
-- <span id="command-get-before-help"></span>`fn get_before_help(&self) -> Option<&StyledStr>` — [`StyledStr`](builder/index.md)
-
-- <span id="command-get-before-long-help"></span>`fn get_before_long_help(&self) -> Option<&StyledStr>` — [`StyledStr`](builder/index.md)
-
-- <span id="command-get-after-help"></span>`fn get_after_help(&self) -> Option<&StyledStr>` — [`StyledStr`](builder/index.md)
-
-- <span id="command-get-after-long-help"></span>`fn get_after_long_help(&self) -> Option<&StyledStr>` — [`StyledStr`](builder/index.md)
-
-- <span id="command-find-subcommand"></span>`fn find_subcommand(&self, name: impl AsRef<std::ffi::OsStr>) -> Option<&Command>` — [`Command`](#command)
-
-- <span id="command-find-subcommand-mut"></span>`fn find_subcommand_mut(&mut self, name: impl AsRef<std::ffi::OsStr>) -> Option<&mut Command>` — [`Command`](#command)
-
-- <span id="command-get-groups"></span>`fn get_groups(&self) -> impl Iterator<Item = &ArgGroup>` — [`ArgGroup`](#arggroup)
-
-- <span id="command-get-arguments"></span>`fn get_arguments(&self) -> impl Iterator<Item = &Arg>` — [`Arg`](#arg)
-
-- <span id="command-get-positionals"></span>`fn get_positionals(&self) -> impl Iterator<Item = &Arg>` — [`Arg`](#arg)
-
-- <span id="command-get-opts"></span>`fn get_opts(&self) -> impl Iterator<Item = &Arg>` — [`Arg`](#arg)
-
-- <span id="command-get-arg-conflicts-with"></span>`fn get_arg_conflicts_with(&self, arg: &Arg) -> Vec<&Arg>` — [`Arg`](#arg)
-
-- <span id="command-get-global-arg-conflicts-with"></span>`fn get_global_arg_conflicts_with(&self, arg: &Arg) -> Vec<&Arg>` — [`Arg`](#arg)
-
-- <span id="command-get-subcommands-containing"></span>`fn get_subcommands_containing(&self, arg: &Arg) -> Vec<&Self>` — [`Arg`](#arg)
-
-- <span id="command-is-no-binary-name-set"></span>`fn is_no_binary_name_set(&self) -> bool`
-
-- <span id="command-is-ignore-errors-set"></span>`fn is_ignore_errors_set(&self) -> bool`
-
-- <span id="command-is-dont-delimit-trailing-values-set"></span>`fn is_dont_delimit_trailing_values_set(&self) -> bool`
-
-- <span id="command-is-disable-version-flag-set"></span>`fn is_disable_version_flag_set(&self) -> bool`
-
-- <span id="command-is-propagate-version-set"></span>`fn is_propagate_version_set(&self) -> bool`
-
-- <span id="command-is-next-line-help-set"></span>`fn is_next_line_help_set(&self) -> bool`
-
-- <span id="command-is-disable-help-flag-set"></span>`fn is_disable_help_flag_set(&self) -> bool`
-
-- <span id="command-is-disable-help-subcommand-set"></span>`fn is_disable_help_subcommand_set(&self) -> bool`
-
-- <span id="command-is-disable-colored-help-set"></span>`fn is_disable_colored_help_set(&self) -> bool`
-
-- <span id="command-is-help-expected-set"></span>`fn is_help_expected_set(&self) -> bool`
-
-- <span id="command-is-infer-long-args-set"></span>`fn is_infer_long_args_set(&self) -> bool`
-
-- <span id="command-is-infer-subcommands-set"></span>`fn is_infer_subcommands_set(&self) -> bool`
-
-- <span id="command-is-arg-required-else-help-set"></span>`fn is_arg_required_else_help_set(&self) -> bool`
-
-- <span id="command-is-allow-missing-positional-set"></span>`fn is_allow_missing_positional_set(&self) -> bool`
-
-- <span id="command-is-hide-set"></span>`fn is_hide_set(&self) -> bool`
-
-- <span id="command-is-subcommand-required-set"></span>`fn is_subcommand_required_set(&self) -> bool`
-
-- <span id="command-is-allow-external-subcommands-set"></span>`fn is_allow_external_subcommands_set(&self) -> bool`
-
-- <span id="command-get-external-subcommand-value-parser"></span>`fn get_external_subcommand_value_parser(&self) -> Option<&super::ValueParser>` — [`ValueParser`](builder/index.md)
-
-- <span id="command-is-args-conflicts-with-subcommands-set"></span>`fn is_args_conflicts_with_subcommands_set(&self) -> bool`
-
-- <span id="command-is-subcommand-precedence-over-arg-set"></span>`fn is_subcommand_precedence_over_arg_set(&self) -> bool`
-
-- <span id="command-is-subcommand-negates-reqs-set"></span>`fn is_subcommand_negates_reqs_set(&self) -> bool`
-
-- <span id="command-is-multicall-set"></span>`fn is_multicall_set(&self) -> bool`
+- <span id="command-infer-subcommands"></span>`fn infer_subcommands(self, yes: bool) -> Self`
 
 #### Trait Implementations
 
@@ -421,41 +319,91 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 
 #### Implementations
 
-- <span id="arg-group"></span>`fn group(self, group_id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](builder/index.md), [`Id`](#id)
+- <span id="arg-get-id"></span>`fn get_id(&self) -> &Id` — [`Id`](#id)
 
-- <span id="arg-groups"></span>`fn groups(self, group_ids: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](#id)
+- <span id="arg-get-help"></span>`fn get_help(&self) -> Option<&StyledStr>` — [`StyledStr`](builder/index.md)
 
-- <span id="arg-default-value-if"></span>`fn default_value_if(self, arg_id: impl Into<Id>, predicate: impl Into<ArgPredicate>, default: impl IntoResettable<OsStr>) -> Self` — [`Id`](#id), [`ArgPredicate`](builder/index.md), [`IntoResettable`](builder/index.md), [`OsStr`](builder/index.md)
+- <span id="arg-get-long-help"></span>`fn get_long_help(&self) -> Option<&StyledStr>` — [`StyledStr`](builder/index.md)
 
-- <span id="arg-default-values-if"></span>`fn default_values_if(self, arg_id: impl Into<Id>, predicate: impl Into<ArgPredicate>, defaults: impl IntoIterator<Item = impl Into<OsStr>>) -> Self` — [`Id`](#id), [`ArgPredicate`](builder/index.md), [`OsStr`](builder/index.md)
+- <span id="arg-get-display-order"></span>`fn get_display_order(&self) -> usize`
 
-- <span id="arg-default-value-ifs"></span>`fn default_value_ifs(self, ifs: impl IntoIterator<Item = (impl Into<Id>, impl Into<ArgPredicate>, impl IntoResettable<OsStr>)>) -> Self` — [`Id`](#id), [`ArgPredicate`](builder/index.md), [`IntoResettable`](builder/index.md), [`OsStr`](builder/index.md)
+- <span id="arg-get-help-heading"></span>`fn get_help_heading(&self) -> Option<&str>`
 
-- <span id="arg-default-values-ifs"></span>`fn default_values_ifs(self, ifs: impl IntoIterator<Item = (impl Into<Id>, impl Into<ArgPredicate>, impl IntoIterator<Item = impl Into<OsStr>>)>) -> Self` — [`Id`](#id), [`ArgPredicate`](builder/index.md), [`OsStr`](builder/index.md)
+- <span id="arg-get-short"></span>`fn get_short(&self) -> Option<char>`
 
-- <span id="arg-required-unless-present"></span>`fn required_unless_present(self, arg_id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](builder/index.md), [`Id`](#id)
+- <span id="arg-get-visible-short-aliases"></span>`fn get_visible_short_aliases(&self) -> Option<Vec<char>>`
 
-- <span id="arg-required-unless-present-all"></span>`fn required_unless_present_all(self, names: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](#id)
+- <span id="arg-get-all-short-aliases"></span>`fn get_all_short_aliases(&self) -> Option<Vec<char>>`
 
-- <span id="arg-required-unless-present-any"></span>`fn required_unless_present_any(self, names: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](#id)
+- <span id="arg-get-short-and-visible-aliases"></span>`fn get_short_and_visible_aliases(&self) -> Option<Vec<char>>`
 
-- <span id="arg-required-if-eq"></span>`fn required_if_eq(self, arg_id: impl Into<Id>, val: impl Into<OsStr>) -> Self` — [`Id`](#id), [`OsStr`](builder/index.md)
+- <span id="arg-get-long"></span>`fn get_long(&self) -> Option<&str>`
 
-- <span id="arg-required-if-eq-any"></span>`fn required_if_eq_any(self, ifs: impl IntoIterator<Item = (impl Into<Id>, impl Into<OsStr>)>) -> Self` — [`Id`](#id), [`OsStr`](builder/index.md)
+- <span id="arg-get-visible-aliases"></span>`fn get_visible_aliases(&self) -> Option<Vec<&str>>`
 
-- <span id="arg-required-if-eq-all"></span>`fn required_if_eq_all(self, ifs: impl IntoIterator<Item = (impl Into<Id>, impl Into<OsStr>)>) -> Self` — [`Id`](#id), [`OsStr`](builder/index.md)
+- <span id="arg-get-all-aliases"></span>`fn get_all_aliases(&self) -> Option<Vec<&str>>`
 
-- <span id="arg-requires-if"></span>`fn requires_if(self, val: impl Into<ArgPredicate>, arg_id: impl Into<Id>) -> Self` — [`ArgPredicate`](builder/index.md), [`Id`](#id)
+- <span id="arg-get-long-and-visible-aliases"></span>`fn get_long_and_visible_aliases(&self) -> Option<Vec<&str>>`
 
-- <span id="arg-requires-ifs"></span>`fn requires_ifs(self, ifs: impl IntoIterator<Item = (impl Into<ArgPredicate>, impl Into<Id>)>) -> Self` — [`ArgPredicate`](builder/index.md), [`Id`](#id)
+- <span id="arg-get-aliases"></span>`fn get_aliases(&self) -> Option<Vec<&str>>`
 
-- <span id="arg-conflicts-with"></span>`fn conflicts_with(self, arg_id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](builder/index.md), [`Id`](#id)
+- <span id="arg-get-possible-values"></span>`fn get_possible_values(&self) -> Vec<PossibleValue>` — [`PossibleValue`](builder/index.md)
 
-- <span id="arg-conflicts-with-all"></span>`fn conflicts_with_all(self, names: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](#id)
+- <span id="arg-get-value-names"></span>`fn get_value_names(&self) -> Option<&[Str]>` — [`Str`](builder/index.md)
 
-- <span id="arg-overrides-with"></span>`fn overrides_with(self, arg_id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](builder/index.md), [`Id`](#id)
+- <span id="arg-get-num-args"></span>`fn get_num_args(&self) -> Option<ValueRange>` — [`ValueRange`](builder/index.md)
 
-- <span id="arg-overrides-with-all"></span>`fn overrides_with_all(self, names: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](#id)
+- <span id="arg-get-min-vals"></span>`fn get_min_vals(&self) -> usize`
+
+- <span id="arg-get-value-delimiter"></span>`fn get_value_delimiter(&self) -> Option<char>`
+
+- <span id="arg-get-value-terminator"></span>`fn get_value_terminator(&self) -> Option<&Str>` — [`Str`](builder/index.md)
+
+- <span id="arg-get-index"></span>`fn get_index(&self) -> Option<usize>`
+
+- <span id="arg-get-value-hint"></span>`fn get_value_hint(&self) -> ValueHint` — [`ValueHint`](#valuehint)
+
+- <span id="arg-get-default-values"></span>`fn get_default_values(&self) -> &[OsStr]` — [`OsStr`](builder/index.md)
+
+- <span id="arg-is-positional"></span>`fn is_positional(&self) -> bool`
+
+- <span id="arg-is-required-set"></span>`fn is_required_set(&self) -> bool`
+
+- <span id="arg-is-multiple-values-set"></span>`fn is_multiple_values_set(&self) -> bool`
+
+- <span id="arg-is-takes-value-set"></span>`fn is_takes_value_set(&self) -> bool`
+
+- <span id="arg-is-allow-hyphen-values-set"></span>`fn is_allow_hyphen_values_set(&self) -> bool`
+
+- <span id="arg-is-allow-negative-numbers-set"></span>`fn is_allow_negative_numbers_set(&self) -> bool`
+
+- <span id="arg-get-action"></span>`fn get_action(&self) -> &ArgAction` — [`ArgAction`](#argaction)
+
+- <span id="arg-get-value-parser"></span>`fn get_value_parser(&self) -> &super::ValueParser` — [`ValueParser`](builder/index.md)
+
+- <span id="arg-is-global-set"></span>`fn is_global_set(&self) -> bool`
+
+- <span id="arg-is-next-line-help-set"></span>`fn is_next_line_help_set(&self) -> bool`
+
+- <span id="arg-is-hide-set"></span>`fn is_hide_set(&self) -> bool`
+
+- <span id="arg-is-hide-default-value-set"></span>`fn is_hide_default_value_set(&self) -> bool`
+
+- <span id="arg-is-hide-possible-values-set"></span>`fn is_hide_possible_values_set(&self) -> bool`
+
+- <span id="arg-is-hide-short-help-set"></span>`fn is_hide_short_help_set(&self) -> bool`
+
+- <span id="arg-is-hide-long-help-set"></span>`fn is_hide_long_help_set(&self) -> bool`
+
+- <span id="arg-is-require-equals-set"></span>`fn is_require_equals_set(&self) -> bool`
+
+- <span id="arg-is-exclusive-set"></span>`fn is_exclusive_set(&self) -> bool`
+
+- <span id="arg-is-trailing-var-arg-set"></span>`fn is_trailing_var_arg_set(&self) -> bool`
+
+- <span id="arg-is-last-set"></span>`fn is_last_set(&self) -> bool`
+
+- <span id="arg-is-ignore-case-set"></span>`fn is_ignore_case_set(&self) -> bool`
 
 #### Trait Implementations
 
@@ -571,29 +519,9 @@ assert_eq!(matches
 
 #### Implementations
 
-- <span id="arggroup-new"></span>`fn new(id: impl Into<Id>) -> Self` — [`Id`](#id)
+- <span id="arggroup-get-id"></span>`fn get_id(&self) -> &Id` — [`Id`](#id)
 
-- <span id="arggroup-id"></span>`fn id(self, id: impl Into<Id>) -> Self` — [`Id`](#id)
-
-- <span id="arggroup-arg"></span>`fn arg(self, arg_id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](builder/index.md), [`Id`](#id)
-
-- <span id="arggroup-args"></span>`fn args(self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](#id)
-
-- <span id="arggroup-get-args"></span>`fn get_args(&self) -> impl Iterator<Item = &Id>` — [`Id`](#id)
-
-- <span id="arggroup-multiple"></span>`fn multiple(self, yes: bool) -> Self`
-
-- <span id="arggroup-is-multiple"></span>`fn is_multiple(&mut self) -> bool`
-
-- <span id="arggroup-required"></span>`fn required(self, yes: bool) -> Self`
-
-- <span id="arggroup-requires"></span>`fn requires(self, id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](builder/index.md), [`Id`](#id)
-
-- <span id="arggroup-requires-all"></span>`fn requires_all(self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](#id)
-
-- <span id="arggroup-conflicts-with"></span>`fn conflicts_with(self, id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](builder/index.md), [`Id`](#id)
-
-- <span id="arggroup-conflicts-with-all"></span>`fn conflicts_with_all(self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](#id)
+- <span id="arggroup-is-required-set"></span>`fn is_required_set(&self) -> bool`
 
 #### Trait Implementations
 
@@ -677,25 +605,13 @@ if matches.contains_id("out") {
 
 #### Implementations
 
-- <span id="argmatches-try-get-one"></span>`fn try_get_one<T: Any + Clone + Send + Sync + 'static>(&self, id: &str) -> Result<Option<&T>, MatchesError>` — [`MatchesError`](parser/index.md)
+- <span id="argmatches-subcommand"></span>`fn subcommand(&self) -> Option<(&str, &ArgMatches)>` — [`ArgMatches`](#argmatches)
 
-- <span id="argmatches-try-get-many"></span>`fn try_get_many<T: Any + Clone + Send + Sync + 'static>(&self, id: &str) -> Result<Option<ValuesRef<'_, T>>, MatchesError>` — [`ValuesRef`](parser/index.md), [`MatchesError`](parser/index.md)
+- <span id="argmatches-remove-subcommand"></span>`fn remove_subcommand(&mut self) -> Option<(String, ArgMatches)>` — [`ArgMatches`](#argmatches)
 
-- <span id="argmatches-try-get-occurrences"></span>`fn try_get_occurrences<T: Any + Clone + Send + Sync + 'static>(&self, id: &str) -> Result<Option<OccurrencesRef<'_, T>>, MatchesError>` — [`OccurrencesRef`](parser/matches/arg_matches/index.md), [`MatchesError`](parser/index.md)
+- <span id="argmatches-subcommand-matches"></span>`fn subcommand_matches(&self, name: &str) -> Option<&ArgMatches>` — [`ArgMatches`](#argmatches)
 
-- <span id="argmatches-try-get-raw"></span>`fn try_get_raw(&self, id: &str) -> Result<Option<RawValues<'_>>, MatchesError>` — [`RawValues`](parser/index.md), [`MatchesError`](parser/index.md)
-
-- <span id="argmatches-try-get-raw-occurrences"></span>`fn try_get_raw_occurrences(&self, id: &str) -> Result<Option<RawOccurrences<'_>>, MatchesError>` — [`RawOccurrences`](parser/matches/arg_matches/index.md), [`MatchesError`](parser/index.md)
-
-- <span id="argmatches-try-remove-one"></span>`fn try_remove_one<T: Any + Clone + Send + Sync + 'static>(&mut self, id: &str) -> Result<Option<T>, MatchesError>` — [`MatchesError`](parser/index.md)
-
-- <span id="argmatches-try-remove-many"></span>`fn try_remove_many<T: Any + Clone + Send + Sync + 'static>(&mut self, id: &str) -> Result<Option<Values<T>>, MatchesError>` — [`Values`](parser/index.md), [`MatchesError`](parser/index.md)
-
-- <span id="argmatches-try-remove-occurrences"></span>`fn try_remove_occurrences<T: Any + Clone + Send + Sync + 'static>(&mut self, id: &str) -> Result<Option<Occurrences<T>>, MatchesError>` — [`Occurrences`](parser/matches/arg_matches/index.md), [`MatchesError`](parser/index.md)
-
-- <span id="argmatches-try-contains-id"></span>`fn try_contains_id(&self, id: &str) -> Result<bool, MatchesError>` — [`MatchesError`](parser/index.md)
-
-- <span id="argmatches-try-clear-id"></span>`fn try_clear_id(&mut self, id: &str) -> Result<bool, MatchesError>` — [`MatchesError`](parser/index.md)
+- <span id="argmatches-subcommand-name"></span>`fn subcommand_name(&self) -> Option<&str>`
 
 #### Trait Implementations
 
@@ -783,7 +699,7 @@ relationships between `Arg`s and `ArgGroup`s with functions like
 
 ##### `impl PartialEq for Id`
 
-- <span id="id-eq"></span>`fn eq(&self, other: &&str) -> bool`
+- <span id="id-eq"></span>`fn eq(&self, other: &str) -> bool`
 
 ##### `impl PartialOrd for Id`
 
@@ -1471,6 +1387,243 @@ Represents the color preferences for program output
 - <span id="colorchoice-to-possible-value"></span>`fn to_possible_value(&self) -> Option<PossibleValue>` — [`PossibleValue`](builder/index.md)
 
 ## Traits
+
+### `Args`
+
+```rust
+trait Args: FromArgMatches + Sized { ... }
+```
+
+Parse a set of arguments into a user-defined container.
+
+Implementing this trait lets a parent container delegate argument parsing behavior to `Self`.
+with:
+- `#[command(flatten)] args: ChildArgs`: Attribute can only be used with struct fields that impl
+  `Args`.
+- `Variant(ChildArgs)`: No attribute is used with enum variants that impl `Args`.
+
+<div class="warning">
+
+**NOTE:** Deriving requires the `derive` feature flag
+
+</div>
+
+#### Required Methods
+
+- `fn augment_args(cmd: Command) -> Command`
+
+  Append to [`Command`](#command) so it can instantiate `Self` via
+
+- `fn augment_args_for_update(cmd: Command) -> Command`
+
+  Append to [`Command`](#command) so it can instantiate `self` via
+
+#### Provided Methods
+
+- `fn group_id() -> Option<crate::Id>`
+
+  Report the `ArgGroup::id` for this set of arguments
+
+#### Implementors
+
+- `()`
+- `Box<T>`
+
+### `CommandFactory`
+
+```rust
+trait CommandFactory: Sized { ... }
+```
+
+Create a [`Command`](#command) relevant for a user-defined container.
+
+Derived as part of [`Parser`](#parser).
+
+#### Required Methods
+
+- `fn command() -> Command`
+
+  Build a [`Command`](#command) that can instantiate `Self`.
+
+- `fn command_for_update() -> Command`
+
+  Build a [`Command`](#command) that can update `self`.
+
+#### Implementors
+
+- `Box<T>`
+
+### `FromArgMatches`
+
+```rust
+trait FromArgMatches: Sized { ... }
+```
+
+Converts an instance of [`ArgMatches`](#argmatches) to a user-defined container.
+
+Derived as part of [`Parser`](#parser), [`Args`](#args), and [`Subcommand`](#subcommand).
+
+#### Required Methods
+
+- `fn from_arg_matches(matches: &ArgMatches) -> Result<Self, Error>`
+
+  Instantiate `Self` from [`ArgMatches`](#argmatches), parsing the arguments as needed.
+
+- `fn update_from_arg_matches(&mut self, matches: &ArgMatches) -> Result<(), Error>`
+
+  Assign values from `ArgMatches` to `self`.
+
+#### Provided Methods
+
+- `fn from_arg_matches_mut(matches: &mut ArgMatches) -> Result<Self, Error>`
+
+  Instantiate `Self` from [`ArgMatches`](#argmatches), parsing the arguments as needed.
+
+- `fn update_from_arg_matches_mut(&mut self, matches: &mut ArgMatches) -> Result<(), Error>`
+
+  Assign values from `ArgMatches` to `self`.
+
+#### Implementors
+
+- `()`
+- `Box<T>`
+- `std::convert::Infallible`
+
+### `Parser`
+
+```rust
+trait Parser: FromArgMatches + CommandFactory + Sized { ... }
+```
+
+Parse command-line arguments into `Self`.
+
+The primary one-stop-shop trait used to create an instance of a `clap`
+[`Command`](#command), conduct the parsing, and turn the resulting [`ArgMatches`](#argmatches) back
+into concrete instance of the user struct.
+
+This trait is primarily a convenience on top of [`FromArgMatches`](#fromargmatches) +
+[`CommandFactory`](#commandfactory) which uses those two underlying traits to build the two
+fundamental functions `parse` which uses the `std::env::args_os` iterator,
+and `parse_from` which allows the consumer to supply the iterator (along
+with fallible options for each).
+
+See also [`Subcommand`](#subcommand) and [`Args`](#args).
+
+<div class="warning">
+
+**NOTE:** Deriving requires the `derive` feature flag
+
+</div>
+
+#### Provided Methods
+
+- `fn parse() -> Self`
+
+  Parse from `std::env::args_os()`, `exit` on error.
+
+- `fn try_parse() -> Result<Self, Error>`
+
+  Parse from `std::env::args_os()`, return Err on error.
+
+- `fn parse_from<I, T>(itr: I) -> Self`
+
+  Parse from iterator, `exit` on error.
+
+- `fn try_parse_from<I, T>(itr: I) -> Result<Self, Error>`
+
+  Parse from iterator, return Err on error.
+
+- `fn update_from<I, T>(&mut self, itr: I)`
+
+  Update from iterator, `exit` on error.
+
+- `fn try_update_from<I, T>(&mut self, itr: I) -> Result<(), Error>`
+
+  Update from iterator, return Err on error.
+
+#### Implementors
+
+- `Box<T>`
+
+### `Subcommand`
+
+```rust
+trait Subcommand: FromArgMatches + Sized { ... }
+```
+
+Parse a sub-command into a user-defined enum.
+
+Implementing this trait lets a parent container delegate subcommand behavior to `Self`.
+with:
+- `#[command(subcommand)] field: SubCmd`: Attribute can be used with either struct fields or enum
+  variants that impl `Subcommand`.
+- `#[command(flatten)] Variant(SubCmd)`: Attribute can only be used with enum variants that impl
+  `Subcommand`.
+
+<div class="warning">
+
+**NOTE:** Deriving requires the `derive` feature flag
+
+</div>
+
+#### Required Methods
+
+- `fn augment_subcommands(cmd: Command) -> Command`
+
+  Append to [`Command`](#command) so it can instantiate `Self` via
+
+- `fn augment_subcommands_for_update(cmd: Command) -> Command`
+
+  Append to [`Command`](#command) so it can instantiate `self` via
+
+- `fn has_subcommand(name: &str) -> bool`
+
+  Test whether `Self` can parse a specific subcommand
+
+#### Implementors
+
+- `()`
+- `Box<T>`
+- `std::convert::Infallible`
+
+### `ValueEnum`
+
+```rust
+trait ValueEnum: Sized + Clone { ... }
+```
+
+Parse arguments into enums.
+
+When deriving [`Parser`](#parser), a field whose type implements `ValueEnum` can have the attribute
+`#[arg(value_enum)]` which will
+- Call `EnumValueParser`
+- Allowing using the `#[arg(default_value_t)]` attribute without implementing `Display`.
+
+<div class="warning">
+
+**NOTE:** Deriving requires the `derive` feature flag
+
+</div>
+
+#### Required Methods
+
+- `fn value_variants<'a>() -> &'a [Self]`
+
+  All possible argument values, in display order.
+
+- `fn to_possible_value(&self) -> Option<PossibleValue>`
+
+  The canonical argument value.
+
+#### Provided Methods
+
+- `fn from_str(input: &str, ignore_case: bool) -> Result<Self, String>`
+
+  Parse an argument into `Self`.
+
+#### Implementors
+
+- [`ColorChoice`](#colorchoice)
 
 ## Type Aliases
 

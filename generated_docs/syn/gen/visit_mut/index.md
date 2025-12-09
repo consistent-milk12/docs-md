@@ -497,7 +497,7 @@ place.
 See the [module documentation] for details.
 
 
-#### Required Methods
+#### Provided Methods
 
 - `fn visit_abi_mut(&mut self, i: &mut crate::Abi)`
 

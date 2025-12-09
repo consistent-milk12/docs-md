@@ -13,19 +13,19 @@ Error reporting
   - [`format`](#format)
   - [`kind`](#kind)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`KindFormatter`](#kindformatter)
+  - [`RichFormatter`](#richformatter)
+  - [`DefaultFormatter`](#defaultformatter)
   - [`Error`](#error)
   - [`ErrorInner`](#errorinner)
   - [`Backtrace`](#backtrace)
 - [Enums](#enums)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`ErrorKind`](#errorkind)
+  - [`ContextKind`](#contextkind)
+  - [`ContextValue`](#contextvalue)
   - [`Message`](#message)
 - [Traits](#traits)
-  - [`unnamed`](#unnamed)
+  - [`ErrorFormatter`](#errorformatter)
 - [Type Aliases](#type-aliases)
   - [`Result`](#result)
 
@@ -36,24 +36,24 @@ Error reporting
 | [`context`](#context) | mod |  |
 | [`format`](#format) | mod |  |
 | [`kind`](#kind) | mod |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
+| [`KindFormatter`](#kindformatter) | struct |  |
+| [`RichFormatter`](#richformatter) | struct |  |
+| [`DefaultFormatter`](#defaultformatter) | struct |  |
 | [`Error`](#error) | struct | Command Line Argument Parser Error |
 | [`ErrorInner`](#errorinner) | struct |  |
 | [`Backtrace`](#backtrace) | struct |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
+| [`ErrorKind`](#errorkind) | enum |  |
+| [`ContextKind`](#contextkind) | enum |  |
+| [`ContextValue`](#contextvalue) | enum |  |
 | [`Message`](#message) | enum |  |
-| [`unnamed`](#unnamed) | trait |  |
+| [`ErrorFormatter`](#errorformatter) | trait |  |
 | [`Result`](#result) | type | Short hand for [`Result`] type |
 
 ## Modules
 
-- [`context`](context/index.md) - 
-- [`format`](format/index.md) - 
-- [`kind`](kind/index.md) - 
+- [`context`](context/index.md)
+- [`format`](format/index.md)
+- [`kind`](kind/index.md)
 
 ## Structs
 
@@ -914,6 +914,25 @@ enum Message {
 - <span id="message-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Traits
+
+### `ErrorFormatter`
+
+```rust
+trait ErrorFormatter: Sized { ... }
+```
+
+Defines how to format an error for displaying to the user
+
+#### Required Methods
+
+- `fn format_error(error: &crate::error::Error<Self>) -> StyledStr`
+
+  Stylize the error for the terminal
+
+#### Implementors
+
+- [`DefaultFormatter`](#defaultformatter)
+- [`KindFormatter`](#kindformatter)
 
 ## Type Aliases
 

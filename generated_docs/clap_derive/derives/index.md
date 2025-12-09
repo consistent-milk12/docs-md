@@ -16,9 +16,9 @@
 
 ## Modules
 
-- [`args`](args/index.md) - 
-- [`into_app`](into_app/index.md) - 
-- [`parser`](parser/index.md) - 
-- [`subcommand`](subcommand/index.md) - 
-- [`value_enum`](value_enum/index.md) - 
+- [`args`](args/index.md)
+- [`into_app`](into_app/index.md)
+- [`parser`](parser/index.md)
+- [`subcommand`](subcommand/index.md)
+- [`value_enum`](value_enum/index.md)
 

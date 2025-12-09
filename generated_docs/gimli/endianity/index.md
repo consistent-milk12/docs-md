@@ -169,6 +169,8 @@ A trait describing the endianity of some buffer.
 
   Return true for big endian byte order.
 
+#### Provided Methods
+
 - `fn is_little_endian(self) -> bool`
 
   Return true for little endian byte order.
@@ -220,6 +222,12 @@ A trait describing the endianity of some buffer.
 - `fn write_u64(self, buf: &mut [u8], n: u64)`
 
   Writes an unsigned 64 bit integer `n` to `buf`.
+
+#### Implementors
+
+- [`BigEndian`](../index.md)
+- [`LittleEndian`](../index.md)
+- [`RunTimeEndian`](../index.md)
 
 ## Type Aliases
 

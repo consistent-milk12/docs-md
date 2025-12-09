@@ -86,9 +86,9 @@ Only 1, 2, 3 and 4 bytes are supported as minimum lengths.
 
 - <span id="slim-find"></span>`unsafe fn find(&self, start: *const u8, end: *const u8) -> Option<Match>` — [`Match`](#match)
 
-- <span id="slim-find-one"></span>`unsafe fn find_one(&self, cur: *const u8, end: *const u8) -> Option<Match>` — [`Match`](#match)
+- <span id="slim-find-one"></span>`unsafe fn find_one(&self, cur: *const u8, end: *const u8, prev0: &mut V, prev1: &mut V) -> Option<Match>` — [`Match`](#match)
 
-- <span id="slim-candidate"></span>`unsafe fn candidate(&self, cur: *const u8) -> V`
+- <span id="slim-candidate"></span>`unsafe fn candidate(&self, cur: *const u8, prev0: &mut V, prev1: &mut V) -> V`
 
 #### Trait Implementations
 
@@ -127,11 +127,11 @@ Only 1, 2, 3 and 4 bytes are supported as minimum lengths.
 
 #### Implementations
 
-- <span id="fat-find"></span>`unsafe fn find(&self, start: *const u8, end: *const u8) -> Option<Match>` — [`Match`](#match)
+- <span id="fat-new"></span>`unsafe fn new(patterns: Arc<Patterns>) -> Fat<V, BYTES>` — [`Patterns`](../../pattern/index.md), [`Fat`](#fat)
 
-- <span id="fat-find-one"></span>`unsafe fn find_one(&self, cur: *const u8, end: *const u8, prev0: &mut V, prev1: &mut V, prev2: &mut V) -> Option<Match>` — [`Match`](#match)
+- <span id="fat-memory-usage"></span>`fn memory_usage(&self) -> usize`
 
-- <span id="fat-candidate"></span>`unsafe fn candidate(&self, cur: *const u8, prev0: &mut V, prev1: &mut V, prev2: &mut V) -> V`
+- <span id="fat-minimum-len"></span>`fn minimum_len(&self) -> usize`
 
 #### Trait Implementations
 
@@ -181,15 +181,7 @@ be quite expensive if `N` is not a multiple of 2.
 
 #### Implementations
 
-- <span id="teddy-new"></span>`fn new(patterns: Arc<Patterns>) -> Teddy<BUCKETS>` — [`Patterns`](../../pattern/index.md), [`Teddy`](#teddy)
-
-- <span id="teddy-verify64"></span>`unsafe fn verify64(&self, cur: *const u8, end: *const u8, candidate_chunk: u64) -> Option<Match>` — [`Match`](#match)
-
-- <span id="teddy-verify-bucket"></span>`unsafe fn verify_bucket(&self, cur: *const u8, end: *const u8, bucket: usize) -> Option<Match>` — [`Match`](#match)
-
-- <span id="teddy-mask-len"></span>`fn mask_len(&self) -> usize`
-
-- <span id="teddy-memory-usage"></span>`fn memory_usage(&self) -> usize`
+- <span id="teddy-verify"></span>`unsafe fn verify<V: FatVector>(&self, cur: *const u8, end: *const u8, candidate: V) -> Option<Match>` — [`Match`](#match)
 
 #### Trait Implementations
 

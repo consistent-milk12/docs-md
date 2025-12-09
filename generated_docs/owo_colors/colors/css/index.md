@@ -320,7 +320,7 @@ Reference: <https://developer.mozilla.org/en-US/docs/Web/CSS/color_value>
 
 ## Modules
 
-- [`dynamic`](dynamic/index.md) - 
+- [`dynamic`](dynamic/index.md)
 
 ## Type Aliases
 

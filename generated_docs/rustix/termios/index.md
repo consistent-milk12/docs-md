@@ -91,11 +91,11 @@ not supported by the platform or the device.
 
 ## Modules
 
-- [`ioctl`](ioctl/index.md) - Terminal-related `ioctl` functions.
-- [`tc`](tc/index.md) - 
-- [`tty`](tty/index.md) - Functions which operate on file descriptors which might be terminals.
-- [`types`](types/index.md) - 
-- [`speed`](speed/index.md) - Speeds for use with [`Termios::set_speed`], [`Termios::set_input_speed`],
+- [`ioctl`](ioctl/index.md) — Terminal-related `ioctl` functions.
+- [`tc`](tc/index.md)
+- [`tty`](tty/index.md) — Functions which operate on file descriptors which might be terminals.
+- [`types`](types/index.md)
+- [`speed`](speed/index.md) — Speeds for use with [`Termios::set_speed`], [`Termios::set_input_speed`],
 
 ## Structs
 
@@ -114,7 +114,7 @@ struct Termios {
 }
 ```
 
-`struct termios` for use with [`tcgetattr`](#tcgetattr) and [`tcsetattr`](../backend/termios/syscalls/index.md).
+`struct termios` for use with [`tcgetattr`](../backend/termios/syscalls/index.md) and [`tcsetattr`](#tcsetattr).
 
 
 
@@ -192,9 +192,45 @@ Flags controlling terminal input.
 
 #### Implementations
 
-- <span id="inputmodes-iter"></span>`const fn iter(&self) -> iter::Iter<InputModes>` — [`InputModes`](#inputmodes)
+- <span id="inputmodes-empty"></span>`const fn empty() -> Self`
 
-- <span id="inputmodes-iter-names"></span>`const fn iter_names(&self) -> iter::IterNames<InputModes>` — [`InputModes`](#inputmodes)
+- <span id="inputmodes-all"></span>`const fn all() -> Self`
+
+- <span id="inputmodes-bits"></span>`const fn bits(&self) -> ffi::c_uint` — [`c_uint`](../ffi/index.md)
+
+- <span id="inputmodes-from-bits"></span>`const fn from_bits(bits: ffi::c_uint) -> __private::core::option::Option<Self>` — [`c_uint`](../ffi/index.md)
+
+- <span id="inputmodes-from-bits-truncate"></span>`const fn from_bits_truncate(bits: ffi::c_uint) -> Self` — [`c_uint`](../ffi/index.md)
+
+- <span id="inputmodes-from-bits-retain"></span>`const fn from_bits_retain(bits: ffi::c_uint) -> Self` — [`c_uint`](../ffi/index.md)
+
+- <span id="inputmodes-from-name"></span>`fn from_name(name: &str) -> __private::core::option::Option<Self>`
+
+- <span id="inputmodes-is-empty"></span>`const fn is_empty(&self) -> bool`
+
+- <span id="inputmodes-is-all"></span>`const fn is_all(&self) -> bool`
+
+- <span id="inputmodes-intersects"></span>`const fn intersects(&self, other: Self) -> bool`
+
+- <span id="inputmodes-contains"></span>`const fn contains(&self, other: Self) -> bool`
+
+- <span id="inputmodes-insert"></span>`fn insert(&mut self, other: Self)`
+
+- <span id="inputmodes-remove"></span>`fn remove(&mut self, other: Self)`
+
+- <span id="inputmodes-toggle"></span>`fn toggle(&mut self, other: Self)`
+
+- <span id="inputmodes-set"></span>`fn set(&mut self, other: Self, value: bool)`
+
+- <span id="inputmodes-intersection"></span>`const fn intersection(self, other: Self) -> Self`
+
+- <span id="inputmodes-union"></span>`const fn union(self, other: Self) -> Self`
+
+- <span id="inputmodes-difference"></span>`const fn difference(self, other: Self) -> Self`
+
+- <span id="inputmodes-symmetric-difference"></span>`const fn symmetric_difference(self, other: Self) -> Self`
+
+- <span id="inputmodes-complement"></span>`const fn complement(self) -> Self`
 
 #### Trait Implementations
 
@@ -462,45 +498,31 @@ probably these flags.
 
 #### Implementations
 
-- <span id="controlmodes-empty"></span>`const fn empty() -> Self`
+- <span id="controlmodes-csize"></span>`const CSIZE: Self`
 
-- <span id="controlmodes-all"></span>`const fn all() -> Self`
+- <span id="controlmodes-cs5"></span>`const CS5: Self`
 
-- <span id="controlmodes-bits"></span>`const fn bits(&self) -> ffi::c_uint` — [`c_uint`](../ffi/index.md)
+- <span id="controlmodes-cs6"></span>`const CS6: Self`
 
-- <span id="controlmodes-from-bits"></span>`const fn from_bits(bits: ffi::c_uint) -> __private::core::option::Option<Self>` — [`c_uint`](../ffi/index.md)
+- <span id="controlmodes-cs7"></span>`const CS7: Self`
 
-- <span id="controlmodes-from-bits-truncate"></span>`const fn from_bits_truncate(bits: ffi::c_uint) -> Self` — [`c_uint`](../ffi/index.md)
+- <span id="controlmodes-cs8"></span>`const CS8: Self`
 
-- <span id="controlmodes-from-bits-retain"></span>`const fn from_bits_retain(bits: ffi::c_uint) -> Self` — [`c_uint`](../ffi/index.md)
+- <span id="controlmodes-cstopb"></span>`const CSTOPB: Self`
 
-- <span id="controlmodes-from-name"></span>`fn from_name(name: &str) -> __private::core::option::Option<Self>`
+- <span id="controlmodes-cread"></span>`const CREAD: Self`
 
-- <span id="controlmodes-is-empty"></span>`const fn is_empty(&self) -> bool`
+- <span id="controlmodes-parenb"></span>`const PARENB: Self`
 
-- <span id="controlmodes-is-all"></span>`const fn is_all(&self) -> bool`
+- <span id="controlmodes-parodd"></span>`const PARODD: Self`
 
-- <span id="controlmodes-intersects"></span>`const fn intersects(&self, other: Self) -> bool`
+- <span id="controlmodes-hupcl"></span>`const HUPCL: Self`
 
-- <span id="controlmodes-contains"></span>`const fn contains(&self, other: Self) -> bool`
+- <span id="controlmodes-clocal"></span>`const CLOCAL: Self`
 
-- <span id="controlmodes-insert"></span>`fn insert(&mut self, other: Self)`
+- <span id="controlmodes-crtscts"></span>`const CRTSCTS: Self`
 
-- <span id="controlmodes-remove"></span>`fn remove(&mut self, other: Self)`
-
-- <span id="controlmodes-toggle"></span>`fn toggle(&mut self, other: Self)`
-
-- <span id="controlmodes-set"></span>`fn set(&mut self, other: Self, value: bool)`
-
-- <span id="controlmodes-intersection"></span>`const fn intersection(self, other: Self) -> Self`
-
-- <span id="controlmodes-union"></span>`const fn union(self, other: Self) -> Self`
-
-- <span id="controlmodes-difference"></span>`const fn difference(self, other: Self) -> Self`
-
-- <span id="controlmodes-symmetric-difference"></span>`const fn symmetric_difference(self, other: Self) -> Self`
-
-- <span id="controlmodes-complement"></span>`const fn complement(self) -> Self`
+- <span id="controlmodes-cmspar"></span>`const CMSPAR: Self`
 
 #### Trait Implementations
 
@@ -630,9 +652,45 @@ Flags controlling “local” terminal modes.
 
 #### Implementations
 
-- <span id="localmodes-iter"></span>`const fn iter(&self) -> iter::Iter<LocalModes>` — [`LocalModes`](#localmodes)
+- <span id="localmodes-empty"></span>`const fn empty() -> Self`
 
-- <span id="localmodes-iter-names"></span>`const fn iter_names(&self) -> iter::IterNames<LocalModes>` — [`LocalModes`](#localmodes)
+- <span id="localmodes-all"></span>`const fn all() -> Self`
+
+- <span id="localmodes-bits"></span>`const fn bits(&self) -> ffi::c_uint` — [`c_uint`](../ffi/index.md)
+
+- <span id="localmodes-from-bits"></span>`const fn from_bits(bits: ffi::c_uint) -> __private::core::option::Option<Self>` — [`c_uint`](../ffi/index.md)
+
+- <span id="localmodes-from-bits-truncate"></span>`const fn from_bits_truncate(bits: ffi::c_uint) -> Self` — [`c_uint`](../ffi/index.md)
+
+- <span id="localmodes-from-bits-retain"></span>`const fn from_bits_retain(bits: ffi::c_uint) -> Self` — [`c_uint`](../ffi/index.md)
+
+- <span id="localmodes-from-name"></span>`fn from_name(name: &str) -> __private::core::option::Option<Self>`
+
+- <span id="localmodes-is-empty"></span>`const fn is_empty(&self) -> bool`
+
+- <span id="localmodes-is-all"></span>`const fn is_all(&self) -> bool`
+
+- <span id="localmodes-intersects"></span>`const fn intersects(&self, other: Self) -> bool`
+
+- <span id="localmodes-contains"></span>`const fn contains(&self, other: Self) -> bool`
+
+- <span id="localmodes-insert"></span>`fn insert(&mut self, other: Self)`
+
+- <span id="localmodes-remove"></span>`fn remove(&mut self, other: Self)`
+
+- <span id="localmodes-toggle"></span>`fn toggle(&mut self, other: Self)`
+
+- <span id="localmodes-set"></span>`fn set(&mut self, other: Self, value: bool)`
+
+- <span id="localmodes-intersection"></span>`const fn intersection(self, other: Self) -> Self`
+
+- <span id="localmodes-union"></span>`const fn union(self, other: Self) -> Self`
+
+- <span id="localmodes-difference"></span>`const fn difference(self, other: Self) -> Self`
+
+- <span id="localmodes-symmetric-difference"></span>`const fn symmetric_difference(self, other: Self) -> Self`
+
+- <span id="localmodes-complement"></span>`const fn complement(self) -> Self`
 
 #### Trait Implementations
 
@@ -923,7 +981,7 @@ enum OptionalActions {
 }
 ```
 
-`TCSA*` values for use with [`tcsetattr`](../backend/termios/syscalls/index.md).
+`TCSA*` values for use with [`tcsetattr`](#tcsetattr).
 
 
 #### Variants
@@ -975,7 +1033,7 @@ enum QueueSelector {
 }
 ```
 
-`TC*` values for use with [`tcflush`](#tcflush).
+`TC*` values for use with [`tcflush`](../backend/termios/syscalls/index.md).
 
 
 #### Variants
@@ -1027,7 +1085,7 @@ enum Action {
 }
 ```
 
-`TC*` values for use with [`tcflow`](#tcflow).
+`TC*` values for use with [`tcflow`](../backend/termios/syscalls/index.md).
 
 
 #### Variants

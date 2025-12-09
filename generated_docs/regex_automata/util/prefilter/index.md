@@ -72,11 +72,11 @@ running the full regex engine.
 
 ## Modules
 
-- [`aho_corasick`](aho_corasick/index.md) - 
-- [`byteset`](byteset/index.md) - 
-- [`memchr`](memchr/index.md) - 
-- [`memmem`](memmem/index.md) - 
-- [`teddy`](teddy/index.md) - 
+- [`aho_corasick`](aho_corasick/index.md)
+- [`byteset`](byteset/index.md)
+- [`memchr`](memchr/index.md)
+- [`memmem`](memmem/index.md)
+- [`teddy`](teddy/index.md)
 
 ## Structs
 
@@ -284,6 +284,17 @@ and to an enum, then it's likely this trait could be removed.
 - `fn is_fast(&self) -> bool`
 
   Implementations might return true here if they believe themselves to
+
+#### Implementors
+
+- [`AhoCorasick`](aho_corasick/index.md)
+- [`ByteSet`](byteset/index.md)
+- [`Memchr2`](memchr/index.md)
+- [`Memchr3`](memchr/index.md)
+- [`Memchr`](memchr/index.md)
+- [`Memmem`](memmem/index.md)
+- [`Teddy`](teddy/index.md)
+- `alloc::sync::Arc<P>`
 
 ## Functions
 

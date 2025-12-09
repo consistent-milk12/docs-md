@@ -96,15 +96,15 @@
 
 ## Modules
 
-- [`enum_`](enum_/index.md) - 
-- [`enum_adjacently`](enum_adjacently/index.md) - Deserialization for adjacently tagged enums:
-- [`enum_externally`](enum_externally/index.md) - Deserialization for externally tagged enums:
-- [`enum_internally`](enum_internally/index.md) - Deserialization for internally tagged enums:
-- [`enum_untagged`](enum_untagged/index.md) - Deserialization for untagged enums:
-- [`identifier`](identifier/index.md) - Deserialization of struct field identifiers and enum variant identifiers by
-- [`struct_`](struct_/index.md) - 
-- [`tuple`](tuple/index.md) - 
-- [`unit`](unit/index.md) - 
+- [`enum_`](enum_/index.md)
+- [`enum_adjacently`](enum_adjacently/index.md) — Deserialization for adjacently tagged enums:
+- [`enum_externally`](enum_externally/index.md) — Deserialization for externally tagged enums:
+- [`enum_internally`](enum_internally/index.md) — Deserialization for internally tagged enums:
+- [`enum_untagged`](enum_untagged/index.md) — Deserialization for untagged enums:
+- [`identifier`](identifier/index.md) — Deserialization of struct field identifiers and enum variant identifiers by
+- [`struct_`](struct_/index.md)
+- [`tuple`](tuple/index.md)
+- [`unit`](unit/index.md)
 
 ## Structs
 

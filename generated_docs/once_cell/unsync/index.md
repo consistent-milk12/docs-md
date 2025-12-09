@@ -122,9 +122,13 @@ println!("{}", *lazy);
 
 #### Implementations
 
-- <span id="lazy-new"></span>`const fn new(init: F) -> Lazy<T, F>` — [`Lazy`](#lazy)
+- <span id="lazy-force"></span>`fn force(this: &Lazy<T, F>) -> &T` — [`Lazy`](#lazy)
 
-- <span id="lazy-into-value"></span>`fn into_value(this: Lazy<T, F>) -> Result<T, F>` — [`Lazy`](#lazy)
+- <span id="lazy-force-mut"></span>`fn force_mut(this: &mut Lazy<T, F>) -> &mut T` — [`Lazy`](#lazy)
+
+- <span id="lazy-get"></span>`fn get(this: &Lazy<T, F>) -> Option<&T>` — [`Lazy`](#lazy)
+
+- <span id="lazy-get-mut"></span>`fn get_mut(this: &mut Lazy<T, F>) -> Option<&mut T>` — [`Lazy`](#lazy)
 
 #### Trait Implementations
 

@@ -20,51 +20,13 @@
 struct FdFlags(<FdFlags as __private::PublicFlags>::Internal);
 ```
 
-`FD_*` constants for use with [`fcntl_getfd`](../../../io/index.md) and [`fcntl_setfd`](../../../io/index.md).
+`FD_*` constants for use with [`fcntl_getfd`](../../../io/index.md) and [`fcntl_setfd`](../syscalls/index.md).
 
 
 
 #### Implementations
 
-- <span id="fdflags-empty"></span>`const fn empty() -> Self`
-
-- <span id="fdflags-all"></span>`const fn all() -> Self`
-
-- <span id="fdflags-bits"></span>`const fn bits(&self) -> ffi::c_uint` — [`c_uint`](../../../ffi/index.md)
-
-- <span id="fdflags-from-bits"></span>`const fn from_bits(bits: ffi::c_uint) -> __private::core::option::Option<Self>` — [`c_uint`](../../../ffi/index.md)
-
-- <span id="fdflags-from-bits-truncate"></span>`const fn from_bits_truncate(bits: ffi::c_uint) -> Self` — [`c_uint`](../../../ffi/index.md)
-
-- <span id="fdflags-from-bits-retain"></span>`const fn from_bits_retain(bits: ffi::c_uint) -> Self` — [`c_uint`](../../../ffi/index.md)
-
-- <span id="fdflags-from-name"></span>`fn from_name(name: &str) -> __private::core::option::Option<Self>`
-
-- <span id="fdflags-is-empty"></span>`const fn is_empty(&self) -> bool`
-
-- <span id="fdflags-is-all"></span>`const fn is_all(&self) -> bool`
-
-- <span id="fdflags-intersects"></span>`const fn intersects(&self, other: Self) -> bool`
-
-- <span id="fdflags-contains"></span>`const fn contains(&self, other: Self) -> bool`
-
-- <span id="fdflags-insert"></span>`fn insert(&mut self, other: Self)`
-
-- <span id="fdflags-remove"></span>`fn remove(&mut self, other: Self)`
-
-- <span id="fdflags-toggle"></span>`fn toggle(&mut self, other: Self)`
-
-- <span id="fdflags-set"></span>`fn set(&mut self, other: Self, value: bool)`
-
-- <span id="fdflags-intersection"></span>`const fn intersection(self, other: Self) -> Self`
-
-- <span id="fdflags-union"></span>`const fn union(self, other: Self) -> Self`
-
-- <span id="fdflags-difference"></span>`const fn difference(self, other: Self) -> Self`
-
-- <span id="fdflags-symmetric-difference"></span>`const fn symmetric_difference(self, other: Self) -> Self`
-
-- <span id="fdflags-complement"></span>`const fn complement(self) -> Self`
+- <span id="fdflags-cloexec"></span>`const CLOEXEC: Self`
 
 #### Trait Implementations
 
@@ -190,51 +152,21 @@ struct FdFlags(<FdFlags as __private::PublicFlags>::Internal);
 struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 ```
 
-`RWF_*` constants for use with [`preadv2`](../../../io/index.md) and [`pwritev2`](../syscalls/index.md).
+`RWF_*` constants for use with [`preadv2`](../syscalls/index.md) and [`pwritev2`](../syscalls/index.md).
 
 
 
 #### Implementations
 
-- <span id="readwriteflags-empty"></span>`const fn empty() -> Self`
+- <span id="readwriteflags-dsync"></span>`const DSYNC: Self`
 
-- <span id="readwriteflags-all"></span>`const fn all() -> Self`
+- <span id="readwriteflags-hipri"></span>`const HIPRI: Self`
 
-- <span id="readwriteflags-bits"></span>`const fn bits(&self) -> ffi::c_uint` — [`c_uint`](../../../ffi/index.md)
+- <span id="readwriteflags-sync"></span>`const SYNC: Self`
 
-- <span id="readwriteflags-from-bits"></span>`const fn from_bits(bits: ffi::c_uint) -> __private::core::option::Option<Self>` — [`c_uint`](../../../ffi/index.md)
+- <span id="readwriteflags-nowait"></span>`const NOWAIT: Self`
 
-- <span id="readwriteflags-from-bits-truncate"></span>`const fn from_bits_truncate(bits: ffi::c_uint) -> Self` — [`c_uint`](../../../ffi/index.md)
-
-- <span id="readwriteflags-from-bits-retain"></span>`const fn from_bits_retain(bits: ffi::c_uint) -> Self` — [`c_uint`](../../../ffi/index.md)
-
-- <span id="readwriteflags-from-name"></span>`fn from_name(name: &str) -> __private::core::option::Option<Self>`
-
-- <span id="readwriteflags-is-empty"></span>`const fn is_empty(&self) -> bool`
-
-- <span id="readwriteflags-is-all"></span>`const fn is_all(&self) -> bool`
-
-- <span id="readwriteflags-intersects"></span>`const fn intersects(&self, other: Self) -> bool`
-
-- <span id="readwriteflags-contains"></span>`const fn contains(&self, other: Self) -> bool`
-
-- <span id="readwriteflags-insert"></span>`fn insert(&mut self, other: Self)`
-
-- <span id="readwriteflags-remove"></span>`fn remove(&mut self, other: Self)`
-
-- <span id="readwriteflags-toggle"></span>`fn toggle(&mut self, other: Self)`
-
-- <span id="readwriteflags-set"></span>`fn set(&mut self, other: Self, value: bool)`
-
-- <span id="readwriteflags-intersection"></span>`const fn intersection(self, other: Self) -> Self`
-
-- <span id="readwriteflags-union"></span>`const fn union(self, other: Self) -> Self`
-
-- <span id="readwriteflags-difference"></span>`const fn difference(self, other: Self) -> Self`
-
-- <span id="readwriteflags-symmetric-difference"></span>`const fn symmetric_difference(self, other: Self) -> Self`
-
-- <span id="readwriteflags-complement"></span>`const fn complement(self) -> Self`
+- <span id="readwriteflags-append"></span>`const APPEND: Self`
 
 #### Trait Implementations
 

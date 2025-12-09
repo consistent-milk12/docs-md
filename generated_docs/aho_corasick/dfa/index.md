@@ -174,9 +174,9 @@ It is also possible to implement your own version of `try_find`. See the
 
 #### Implementations
 
-- <span id="dfa-new"></span>`fn new<I, P>(patterns: I) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../index.md)
+- <span id="dfa-dead"></span>`const DEAD: StateID`
 
-- <span id="dfa-builder"></span>`fn builder() -> Builder` — [`Builder`](#builder)
+- <span id="dfa-set-matches"></span>`fn set_matches(&mut self, sid: StateID, pids: impl Iterator<Item = PatternID>)` — [`StateID`](../util/primitives/index.md), [`PatternID`](../index.md)
 
 #### Trait Implementations
 

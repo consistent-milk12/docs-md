@@ -150,3 +150,7 @@ assert_eq!(&*output, &["one!", "three!", "two!"]);
 
   Creates a bridge from this type to a `ParallelIterator`.
 
+#### Implementors
+
+- `T`
+

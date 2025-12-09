@@ -28,11 +28,11 @@ The original C++ version of [SwissTable] can be found [here], and this
   - [`hash_set`](#hash_set)
   - [`hash_table`](#hash_table)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`DefaultHashBuilder`](#defaulthashbuilder)
+  - [`DefaultHasher`](#defaulthasher)
+  - [`HashMap`](#hashmap)
+  - [`HashSet`](#hashset)
+  - [`HashTable`](#hashtable)
 - [Enums](#enums)
   - [`TryReserveError`](#tryreserveerror)
 
@@ -54,29 +54,29 @@ The original C++ version of [SwissTable] can be found [here], and this
 | [`hash_map`](#hash_map) | mod | A hash map implemented with quadratic probing and SIMD lookup. |
 | [`hash_set`](#hash_set) | mod | A hash set implemented as a `HashMap` where the value is `()`. |
 | [`hash_table`](#hash_table) | mod | A hash table implemented with quadratic probing and SIMD lookup. |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
+| [`DefaultHashBuilder`](#defaulthashbuilder) | struct |  |
+| [`DefaultHasher`](#defaulthasher) | struct |  |
+| [`HashMap`](#hashmap) | struct |  |
+| [`HashSet`](#hashset) | struct |  |
+| [`HashTable`](#hashtable) | struct |  |
 | [`TryReserveError`](#tryreserveerror) | enum | The error type for `try_reserve` methods. |
 
 ## Modules
 
-- [`macros`](macros/index.md) - 
-- [`control`](control/index.md) - 
-- [`hasher`](hasher/index.md) - 
-- [`raw`](raw/index.md) - 
-- [`util`](util/index.md) - 
-- [`external_trait_impls`](external_trait_impls/index.md) - 
-- [`map`](map/index.md) - 
-- [`raw_entry`](raw_entry/index.md) - 
-- [`scopeguard`](scopeguard/index.md) - 
-- [`set`](set/index.md) - 
-- [`table`](table/index.md) - 
-- [`hash_map`](hash_map/index.md) - A hash map implemented with quadratic probing and SIMD lookup.
-- [`hash_set`](hash_set/index.md) - A hash set implemented as a `HashMap` where the value is `()`.
-- [`hash_table`](hash_table/index.md) - A hash table implemented with quadratic probing and SIMD lookup.
+- [`macros`](macros/index.md)
+- [`control`](control/index.md)
+- [`hasher`](hasher/index.md)
+- [`raw`](raw/index.md)
+- [`util`](util/index.md)
+- [`external_trait_impls`](external_trait_impls/index.md)
+- [`map`](map/index.md)
+- [`raw_entry`](raw_entry/index.md)
+- [`scopeguard`](scopeguard/index.md)
+- [`set`](set/index.md)
+- [`table`](table/index.md)
+- [`hash_map`](hash_map/index.md) — A hash map implemented with quadratic probing and SIMD lookup.
+- [`hash_set`](hash_set/index.md) — A hash set implemented as a `HashMap` where the value is `()`.
+- [`hash_table`](hash_table/index.md) — A hash table implemented with quadratic probing and SIMD lookup.
 
 ## Structs
 
@@ -340,9 +340,9 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
 
 #### Implementations
 
-- <span id="hashmap-new"></span>`fn new() -> Self`
+- <span id="cratehashmap-raw-entry-mut"></span>`fn raw_entry_mut(&mut self) -> RawEntryBuilderMut<'_, K, V, S, A>` — [`RawEntryBuilderMut`](raw_entry/index.md)
 
-- <span id="hashmap-with-capacity"></span>`fn with_capacity(capacity: usize) -> Self`
+- <span id="cratehashmap-raw-entry"></span>`fn raw_entry(&self) -> RawEntryBuilder<'_, K, V, S, A>` — [`RawEntryBuilder`](raw_entry/index.md)
 
 #### Trait Implementations
 
@@ -497,13 +497,49 @@ let viking_names: HashSet<&'static str> =
 
 #### Implementations
 
-- <span id="hashset-allocator"></span>`fn allocator(&self) -> &A`
+- <span id="hashset-reserve"></span>`fn reserve(&mut self, additional: usize)`
 
-- <span id="hashset-with-hasher-in"></span>`const fn with_hasher_in(hasher: S, alloc: A) -> Self`
+- <span id="hashset-try-reserve"></span>`fn try_reserve(&mut self, additional: usize) -> Result<(), TryReserveError>` — [`TryReserveError`](#tryreserveerror)
 
-- <span id="hashset-with-capacity-and-hasher-in"></span>`fn with_capacity_and_hasher_in(capacity: usize, hasher: S, alloc: A) -> Self`
+- <span id="hashset-shrink-to-fit"></span>`fn shrink_to_fit(&mut self)`
 
-- <span id="hashset-hasher"></span>`fn hasher(&self) -> &S`
+- <span id="hashset-shrink-to"></span>`fn shrink_to(&mut self, min_capacity: usize)`
+
+- <span id="hashset-difference"></span>`fn difference<'a>(self: &'a Self, other: &'a Self) -> Difference<'a, T, S, A>` — [`Difference`](hash_set/index.md)
+
+- <span id="hashset-symmetric-difference"></span>`fn symmetric_difference<'a>(self: &'a Self, other: &'a Self) -> SymmetricDifference<'a, T, S, A>` — [`SymmetricDifference`](hash_set/index.md)
+
+- <span id="hashset-intersection"></span>`fn intersection<'a>(self: &'a Self, other: &'a Self) -> Intersection<'a, T, S, A>` — [`Intersection`](hash_set/index.md)
+
+- <span id="hashset-union"></span>`fn union<'a>(self: &'a Self, other: &'a Self) -> Union<'a, T, S, A>` — [`Union`](hash_set/index.md)
+
+- <span id="hashset-contains"></span>`fn contains<Q>(&self, value: &Q) -> bool`
+
+- <span id="hashset-get"></span>`fn get<Q>(&self, value: &Q) -> Option<&T>`
+
+- <span id="hashset-get-or-insert"></span>`fn get_or_insert(&mut self, value: T) -> &T`
+
+- <span id="hashset-get-or-insert-with"></span>`fn get_or_insert_with<Q, F>(&mut self, value: &Q, f: F) -> &T`
+
+- <span id="hashset-entry"></span>`fn entry(&mut self, value: T) -> Entry<'_, T, S, A>` — [`Entry`](hash_set/index.md)
+
+- <span id="hashset-is-disjoint"></span>`fn is_disjoint(&self, other: &Self) -> bool`
+
+- <span id="hashset-is-subset"></span>`fn is_subset(&self, other: &Self) -> bool`
+
+- <span id="hashset-is-superset"></span>`fn is_superset(&self, other: &Self) -> bool`
+
+- <span id="hashset-insert"></span>`fn insert(&mut self, value: T) -> bool`
+
+- <span id="hashset-insert-unique-unchecked"></span>`unsafe fn insert_unique_unchecked(&mut self, value: T) -> &T`
+
+- <span id="hashset-replace"></span>`fn replace(&mut self, value: T) -> Option<T>`
+
+- <span id="hashset-remove"></span>`fn remove<Q>(&mut self, value: &Q) -> bool`
+
+- <span id="hashset-take"></span>`fn take<Q>(&mut self, value: &Q) -> Option<T>`
+
+- <span id="hashset-allocation-size"></span>`fn allocation_size(&self) -> usize`
 
 #### Trait Implementations
 
@@ -539,9 +575,9 @@ let viking_names: HashSet<&'static str> =
 
 - <span id="hashset-equivalent"></span>`fn equivalent(&self, key: &K) -> bool`
 
-##### `impl<T, S, A> Extend for HashSet<T, S, A>`
+##### `impl<'a, T, S, A> Extend for HashSet<T, S, A>`
 
-- <span id="hashset-extend"></span>`fn extend<I: IntoIterator<Item = T>>(&mut self, iter: I)`
+- <span id="hashset-extend"></span>`fn extend<I: IntoIterator<Item = &'a T>>(&mut self, iter: I)`
 
 ##### `impl<T, S, A> FromIterator for HashSet<T, S, A>`
 

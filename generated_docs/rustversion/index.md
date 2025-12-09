@@ -207,18 +207,18 @@ extern crate alloc;
 
 ## Modules
 
-- [`attr`](attr/index.md) - 
-- [`bound`](bound/index.md) - 
-- [`constfn`](constfn/index.md) - 
-- [`date`](date/index.md) - 
-- [`error`](error/index.md) - 
-- [`expand`](expand/index.md) - 
-- [`expr`](expr/index.md) - 
-- [`iter`](iter/index.md) - 
-- [`release`](release/index.md) - 
-- [`time`](time/index.md) - 
-- [`token`](token/index.md) - 
-- [`version`](version/index.md) - 
+- [`attr`](attr/index.md)
+- [`bound`](bound/index.md)
+- [`constfn`](constfn/index.md)
+- [`date`](date/index.md)
+- [`error`](error/index.md)
+- [`expand`](expand/index.md)
+- [`expr`](expr/index.md)
+- [`iter`](iter/index.md)
+- [`release`](release/index.md)
+- [`time`](time/index.md)
+- [`token`](token/index.md)
+- [`version`](version/index.md)
 
 ## Constants
 

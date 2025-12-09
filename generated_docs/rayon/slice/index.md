@@ -18,16 +18,16 @@ to name one of the iterator types.
   - [`rchunks`](#rchunks)
   - [`sort`](#sort)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`ChunkBy`](#chunkby)
+  - [`ChunkByMut`](#chunkbymut)
+  - [`Chunks`](#chunks)
+  - [`ChunksExact`](#chunksexact)
+  - [`ChunksExactMut`](#chunksexactmut)
+  - [`ChunksMut`](#chunksmut)
+  - [`RChunks`](#rchunks)
+  - [`RChunksExact`](#rchunksexact)
+  - [`RChunksExactMut`](#rchunksexactmut)
+  - [`RChunksMut`](#rchunksmut)
   - [`Iter`](#iter)
   - [`IterProducer`](#iterproducer)
   - [`Windows`](#windows)
@@ -50,16 +50,16 @@ to name one of the iterator types.
 | [`chunks`](#chunks) | mod |  |
 | [`rchunks`](#rchunks) | mod |  |
 | [`sort`](#sort) | mod | **Parallel** Slice sorting |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
+| [`ChunkBy`](#chunkby) | struct |  |
+| [`ChunkByMut`](#chunkbymut) | struct |  |
+| [`Chunks`](#chunks) | struct |  |
+| [`ChunksExact`](#chunksexact) | struct |  |
+| [`ChunksExactMut`](#chunksexactmut) | struct |  |
+| [`ChunksMut`](#chunksmut) | struct |  |
+| [`RChunks`](#rchunks) | struct |  |
+| [`RChunksExact`](#rchunksexact) | struct |  |
+| [`RChunksExactMut`](#rchunksexactmut) | struct |  |
+| [`RChunksMut`](#rchunksmut) | struct |  |
 | [`Iter`](#iter) | struct | Parallel iterator over immutable items in a slice |
 | [`IterProducer`](#iterproducer) | struct |  |
 | [`Windows`](#windows) | struct | Parallel iterator over immutable overlapping windows of a slice |
@@ -75,10 +75,10 @@ to name one of the iterator types.
 
 ## Modules
 
-- [`chunk_by`](chunk_by/index.md) - 
-- [`chunks`](chunks/index.md) - 
-- [`rchunks`](rchunks/index.md) - 
-- [`sort`](sort/index.md) - **Parallel** Slice sorting
+- [`chunk_by`](chunk_by/index.md)
+- [`chunks`](chunks/index.md)
+- [`rchunks`](rchunks/index.md)
+- [`sort`](sort/index.md) — **Parallel** Slice sorting
 
 ## Structs
 
@@ -1219,6 +1219,8 @@ Parallel extensions for slices.
 
   Returns a plain slice, which is used to implement the rest of the
 
+#### Provided Methods
+
 - `fn par_split<P>(&self, separator: P) -> Split<'_, T, P>`
 
   Returns a parallel iterator over subslices separated by elements that
@@ -1251,6 +1253,10 @@ Parallel extensions for slices.
 
   Returns a parallel iterator over the slice producing non-overlapping runs
 
+#### Implementors
+
+- `[T]`
+
 ### `ParallelSliceMut<T: Send>`
 
 ```rust
@@ -1264,6 +1270,8 @@ Parallel extensions for mutable slices.
 - `fn as_parallel_slice_mut(&mut self) -> &mut [T]`
 
   Returns a plain mutable slice, which is used to implement the rest of
+
+#### Provided Methods
 
 - `fn par_split_mut<P>(&mut self, separator: P) -> SplitMut<'_, T, P>`
 
@@ -1320,4 +1328,8 @@ Parallel extensions for mutable slices.
 - `fn par_chunk_by_mut<F>(&mut self, pred: F) -> ChunkByMut<'_, T, F>`
 
   Returns a parallel iterator over the slice producing non-overlapping mutable
+
+#### Implementors
+
+- `[T]`
 

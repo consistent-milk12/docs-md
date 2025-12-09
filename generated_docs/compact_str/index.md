@@ -187,8 +187,8 @@ Thanks for readingme!
 - [Enums](#enums)
   - [`ToCompactStringError`](#tocompactstringerror)
 - [Traits](#traits)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`CompactStringExt`](#compactstringext)
+  - [`ToCompactString`](#tocompactstring)
   - [`UnwrapWithMsg`](#unwrapwithmsg)
 - [Functions](#functions)
   - [`convert_while_ascii`](#convert_while_ascii)
@@ -210,8 +210,8 @@ Thanks for readingme!
 | [`Drain`](#drain) | struct | An iterator over the exacted data by [`CompactString::drain()`]. |
 | [`ReserveError`](#reserveerror) | struct | A possible error value if allocating or resizing a [`CompactString`] failed. |
 | [`ToCompactStringError`](#tocompactstringerror) | enum | A possible error value if [`ToCompactString::try_to_compact_string()`] failed. |
-| [`unnamed`](#unnamed) | trait |  |
-| [`unnamed`](#unnamed) | trait |  |
+| [`CompactStringExt`](#compactstringext) | trait |  |
+| [`ToCompactString`](#tocompactstring) | trait |  |
 | [`UnwrapWithMsg`](#unwrapwithmsg) | trait |  |
 | [`convert_while_ascii`](#convert_while_ascii) | fn | Converts the bytes while the bytes are still ascii. |
 | [`unwrap_with_msg_fail`](#unwrap_with_msg_fail) | fn |  |
@@ -219,11 +219,11 @@ Thanks for readingme!
 
 ## Modules
 
-- [`features`](features/index.md) - A module that contains the implementations for optional features. For example `serde` support
-- [`macros`](macros/index.md) - 
-- [`unicode_data`](unicode_data/index.md) - Adapted from
-- [`repr`](repr/index.md) - 
-- [`traits`](traits/index.md) - 
+- [`features`](features/index.md) — A module that contains the implementations for optional features. For example `serde` support
+- [`macros`](macros/index.md)
+- [`unicode_data`](unicode_data/index.md) — Adapted from
+- [`repr`](repr/index.md)
+- [`traits`](traits/index.md)
 
 ## Structs
 
@@ -453,7 +453,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
 ##### `impl AsRef for CompactString`
 
-- <span id="compactstring-as-ref"></span>`fn as_ref(&self) -> &str`
+- <span id="compactstring-as-ref"></span>`fn as_ref(&self) -> &[u8]`
 
 ##### `impl Clone for CompactString`
 
@@ -485,13 +485,13 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
 ##### `impl Eq for CompactString`
 
-##### `impl Extend for CompactString`
+##### `impl<'a> Extend for CompactString`
 
-- <span id="compactstring-extend"></span>`fn extend<T: IntoIterator<Item = CompactString>>(&mut self, iter: T)`
+- <span id="compactstring-extend"></span>`fn extend<T: IntoIterator<Item = &'a char>>(&mut self, iter: T)`
 
-##### `impl<'a> FromIterator for CompactString`
+##### `impl FromIterator for CompactString`
 
-- <span id="compactstring-from-iter"></span>`fn from_iter<T: IntoIterator<Item = &'a char>>(iter: T) -> Self`
+- <span id="compactstring-from-iter"></span>`fn from_iter<T: IntoIterator<Item = String>>(iter: T) -> Self`
 
 ##### `impl FromStr for CompactString`
 
@@ -760,17 +760,99 @@ A possible error value if `ToCompactString::try_to_compact_string()` failed.
 
 ## Traits
 
+### `CompactStringExt`
+
+```rust
+trait CompactStringExt { ... }
+```
+
+A trait that provides convenience methods for creating a [`CompactString`](#compactstring) from a collection of
+items. It is implemented for all types that can be converted into an iterator, and that iterator
+yields types that can be converted into a `str`.
+
+i.e. `C: IntoIterator<Item = AsRef<str>>`.
+
+# Concatenate and Join
+Two methods that this trait provides are `concat_compact(...)` and `join_compact(...)`
+```rust
+use compact_str::CompactStringExt;
+
+let words = vec!["☀️", "🌕", "🌑", "☀️"];
+
+// directly concatenate all the words together
+let concat = words.iter().concat_compact();
+assert_eq!(concat, "☀️🌕🌑☀️");
+
+// join the words, with a separator
+let join = words.iter().join_compact(" ➡️ ");
+assert_eq!(join, "☀️ ➡️ 🌕 ➡️ 🌑 ➡️ ☀️");
+```
+
+#### Required Methods
+
+- `fn concat_compact(self) -> CompactString`
+
+  Concatenates all the items of a collection into a [`CompactString`](#compactstring)
+
+- `fn join_compact<S: AsRef<str>>(self, separator: S) -> CompactString`
+
+  Joins all the items of a collection, placing a separator between them, forming a
+
+#### Implementors
+
+- `C`
+
+### `ToCompactString`
+
+```rust
+trait ToCompactString { ... }
+```
+
+A trait for converting a value to a `CompactString`.
+
+This trait is automatically implemented for any type which implements the
+[`fmt::Display`](../miette_derive/index.md) trait. As such, [`ToCompactString`](#tocompactstring) shouldn't be implemented directly:
+[`fmt::Display`](../miette_derive/index.md) should be implemented instead, and you get the [`ToCompactString`](#tocompactstring)
+implementation for free.
+
+#### Required Methods
+
+- `fn try_to_compact_string(&self) -> Result<CompactString, ToCompactStringError>`
+
+  Fallible version of `ToCompactString::to_compact_string()`
+
+#### Provided Methods
+
+- `fn to_compact_string(&self) -> CompactString`
+
+  Converts the given value to a [`CompactString`](#compactstring).
+
+#### Implementors
+
+- [`CompactString`](#compactstring)
+- [`Drain`](#drain)
+- [`ReserveError`](#reserveerror)
+- [`ToCompactStringError`](#tocompactstringerror)
+- [`Utf16Error`](#utf16error)
+- `T`
+
 ### `UnwrapWithMsg`
 
 ```rust
 trait UnwrapWithMsg { ... }
 ```
 
-#### Required Methods
+#### Associated Types
 
 - `type T`
 
+#### Required Methods
+
 - `fn unwrap_with_msg(self) -> <Self as >::T`
+
+#### Implementors
+
+- `Result<T, E>`
 
 ## Functions
 
@@ -813,7 +895,7 @@ depending on the intended destination of the string.
 
 To convert a single value to a string, use the
 `ToCompactString::to_compact_string` method, which uses
-the [`std::fmt::Display`](../miette_derive/fmt/index.md) formatting trait.
+the [`std::fmt::Display`](../miette_derive/index.md) formatting trait.
 
 # Panics
 

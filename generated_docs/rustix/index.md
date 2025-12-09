@@ -54,7 +54,7 @@ rustix's APIs perform the following tasks:
  - Error values are translated to [`Result`](../clap_builder/error/index.md)s.
  - Buffers are passed as Rust slices.
  - Out-parameters are presented as return values.
- - Path arguments use [`Arg`](#arg), so they accept any string type.
+ - Path arguments use `Arg`, so they accept any string type.
  - File descriptors are passed and returned via [`AsFd`](fd/index.md) and [`OwnedFd`](fd/index.md)
    instead of bare integers, ensuring I/O safety.
  - Constants use `enum`s and [`bitflags`](../bitflags/index.md) types, and enable [support for
@@ -137,19 +137,19 @@ which does perform sandboxing and restricts ambient authorities.
 
 ## Modules
 
-- [`buffer`](buffer/index.md) - Utilities for functions that return data via buffers.
-- [`cstr`](cstr/index.md) - 
-- [`utils`](utils/index.md) - Miscellaneous minor utilities.
-- [`maybe_polyfill`](maybe_polyfill/index.md) - Imports from `std` that would be polyfilled for `no_std` builds (see
-- [`bitcast`](bitcast/index.md) - The `bitcast` and `bitflags_bits` macros.
-- [`backend`](backend/index.md) - The linux_raw backend.
-- [`fd`](fd/index.md) - Export the `*Fd` types and traits that are used in rustix's public API.
-- [`ffi`](ffi/index.md) - Utilities related to FFI bindings.
-- [`io`](io/index.md) - I/O operations.
-- [`ioctl`](ioctl/index.md) - Unsafe `ioctl` API.
-- [`termios`](termios/index.md) - Terminal I/O stream operations.
-- [`pid`](pid/index.md) - The `Pid` type.
-- [`not_implemented`](not_implemented/index.md) - Documentation about unimplemented functions.
+- [`buffer`](buffer/index.md) — Utilities for functions that return data via buffers.
+- [`cstr`](cstr/index.md)
+- [`utils`](utils/index.md) — Miscellaneous minor utilities.
+- [`maybe_polyfill`](maybe_polyfill/index.md) — Imports from `std` that would be polyfilled for `no_std` builds (see
+- [`bitcast`](bitcast/index.md) — The `bitcast` and `bitflags_bits` macros.
+- [`backend`](backend/index.md) — The linux_raw backend.
+- [`fd`](fd/index.md) — Export the `*Fd` types and traits that are used in rustix's public API.
+- [`ffi`](ffi/index.md) — Utilities related to FFI bindings.
+- [`io`](io/index.md) — I/O operations.
+- [`ioctl`](ioctl/index.md) — Unsafe `ioctl` API.
+- [`termios`](termios/index.md) — Terminal I/O stream operations.
+- [`pid`](pid/index.md) — The `Pid` type.
+- [`not_implemented`](not_implemented/index.md) — Documentation about unimplemented functions.
 
 ## Macros
 

@@ -88,33 +88,33 @@ By default all features are enabled.  The following features exist:
   - [`utils`](#utils)
   - [`ansi`](#ansi)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`Term`](#term)
+  - [`TermFeatures`](#termfeatures)
+  - [`Emoji`](#emoji)
+  - [`Style`](#style)
+  - [`StyledObject`](#styledobject)
+  - [`AnsiCodeIterator`](#ansicodeiterator)
+  - [`WithoutAnsi`](#withoutansi)
 - [Enums](#enums)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`Key`](#key)
+  - [`TermFamily`](#termfamily)
+  - [`TermTarget`](#termtarget)
+  - [`Alignment`](#alignment)
+  - [`Attribute`](#attribute)
+  - [`Color`](#color)
 - [Functions](#functions)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`user_attended`](#user_attended)
+  - [`user_attended_stderr`](#user_attended_stderr)
+  - [`colors_enabled`](#colors_enabled)
+  - [`colors_enabled_stderr`](#colors_enabled_stderr)
+  - [`measure_text_width`](#measure_text_width)
+  - [`pad_str`](#pad_str)
+  - [`pad_str_with`](#pad_str_with)
+  - [`set_colors_enabled`](#set_colors_enabled)
+  - [`set_colors_enabled_stderr`](#set_colors_enabled_stderr)
+  - [`style`](#style)
+  - [`truncate_str`](#truncate_str)
+  - [`strip_ansi_codes`](#strip_ansi_codes)
 
 ## Quick Reference
 
@@ -126,40 +126,40 @@ By default all features are enabled.  The following features exist:
 | [`unix_term`](#unix_term) | mod |  |
 | [`utils`](#utils) | mod |  |
 | [`ansi`](#ansi) | mod |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
+| [`Term`](#term) | struct |  |
+| [`TermFeatures`](#termfeatures) | struct |  |
+| [`Emoji`](#emoji) | struct |  |
+| [`Style`](#style) | struct |  |
+| [`StyledObject`](#styledobject) | struct |  |
+| [`AnsiCodeIterator`](#ansicodeiterator) | struct |  |
+| [`WithoutAnsi`](#withoutansi) | struct |  |
+| [`Key`](#key) | enum |  |
+| [`TermFamily`](#termfamily) | enum |  |
+| [`TermTarget`](#termtarget) | enum |  |
+| [`Alignment`](#alignment) | enum |  |
+| [`Attribute`](#attribute) | enum |  |
+| [`Color`](#color) | enum |  |
+| [`user_attended`](#user_attended) | fn |  |
+| [`user_attended_stderr`](#user_attended_stderr) | fn |  |
+| [`colors_enabled`](#colors_enabled) | fn |  |
+| [`colors_enabled_stderr`](#colors_enabled_stderr) | fn |  |
+| [`measure_text_width`](#measure_text_width) | fn |  |
+| [`pad_str`](#pad_str) | fn |  |
+| [`pad_str_with`](#pad_str_with) | fn |  |
+| [`set_colors_enabled`](#set_colors_enabled) | fn |  |
+| [`set_colors_enabled_stderr`](#set_colors_enabled_stderr) | fn |  |
+| [`style`](#style) | fn |  |
+| [`truncate_str`](#truncate_str) | fn |  |
+| [`strip_ansi_codes`](#strip_ansi_codes) | fn |  |
 
 ## Modules
 
-- [`common_term`](common_term/index.md) - 
-- [`kb`](kb/index.md) - 
-- [`term`](term/index.md) - 
-- [`unix_term`](unix_term/index.md) - 
-- [`utils`](utils/index.md) - 
-- [`ansi`](ansi/index.md) - 
+- [`common_term`](common_term/index.md)
+- [`kb`](kb/index.md)
+- [`term`](term/index.md)
+- [`unix_term`](unix_term/index.md)
+- [`utils`](utils/index.md)
+- [`ansi`](ansi/index.md)
 
 ## Structs
 
@@ -645,7 +645,7 @@ struct WithoutAnsi<'a> {
 }
 ```
 
-A wrapper struct that implements [`core::fmt::Display`](../miette_derive/fmt/index.md), only displaying non-ansi parts.
+A wrapper struct that implements [`core::fmt::Display`](../miette_derive/index.md), only displaying non-ansi parts.
 
 #### Implementations
 

@@ -21,6 +21,6 @@ library.
 
 ## Modules
 
-- [`io`](io/index.md) - 
-- [`os`](os/index.md) - 
+- [`io`](io/index.md)
+- [`os`](os/index.md)
 

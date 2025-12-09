@@ -50,7 +50,7 @@ struct Errno(u16);
 
 `errno`—An error code.
 
-The error type for `rustix` APIs. This is similar to [`std::io::Error`](../../../../addr2line/index.md),
+The error type for `rustix` APIs. This is similar to [`std::io::Error`](../../../../cargo_docs_md/error/index.md),
 but only holds an OS error code, and no extra error value.
 
 # References
@@ -75,7 +75,13 @@ but only holds an OS error code, and no extra error value.
 
 #### Implementations
 
-- <span id="errno-kind"></span>`fn kind(self) -> std::io::ErrorKind`
+- <span id="errno-from-io-error"></span>`fn from_io_error(io_err: &std::io::Error) -> Option<Self>`
+
+- <span id="errno-raw-os-error"></span>`const fn raw_os_error(self) -> i32`
+
+- <span id="errno-from-raw-os-error"></span>`const fn from_raw_os_error(raw: i32) -> Self`
+
+- <span id="errno-from-errno"></span>`const fn from_errno(raw: u32) -> Self`
 
 #### Trait Implementations
 

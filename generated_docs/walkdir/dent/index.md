@@ -130,3 +130,7 @@ Unix-specific extension methods for `walkdir::DirEntry`
 
   Returns the underlying `d_ino` field in the contained `dirent`
 
+#### Implementors
+
+- [`DirEntry`](../index.md)
+

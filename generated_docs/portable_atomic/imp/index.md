@@ -15,8 +15,8 @@
 
 ## Modules
 
-- [`core_atomic`](core_atomic/index.md) - 
-- [`x86`](x86/index.md) - 
-- [`atomic128`](atomic128/index.md) - 
-- [`fallback`](fallback/index.md) - 
+- [`core_atomic`](core_atomic/index.md)
+- [`x86`](x86/index.md)
+- [`atomic128`](atomic128/index.md)
+- [`fallback`](fallback/index.md)
 

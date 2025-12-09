@@ -18,3 +18,8 @@
 trait Sealed { ... }
 ```
 
+#### Implementors
+
+- `Option<T>`
+- `Result<T, E>`
+

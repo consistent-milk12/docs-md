@@ -20,7 +20,7 @@ for an overview.
 
 ## Modules
 
-- [`counters`](counters/index.md) - 
+- [`counters`](counters/index.md)
 
 ## Structs
 

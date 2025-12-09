@@ -10,12 +10,26 @@ Collects and records trace data.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`unnamed`](#unnamed) | trait |  |
+| [`DefaultGuard`](#defaultguard) | trait |  |
 | [`with_default`](#with_default) | fn | Sets this [`Subscriber`] as the default for the current thread for the |
 | [`set_global_default`](#set_global_default) | fn | Sets this subscriber as the global default for the duration of the entire program. |
 | [`set_default`](#set_default) | fn | Sets the [`Subscriber`] as the default for the current thread for the |
 
 ## Traits
+
+### `DefaultGuard`
+
+```rust
+trait DefaultGuard: Automaton + Debug + Send + Sync + UnwindSafe + RefUnwindSafe + 'static { ... }
+```
+
+A trait that effectively gives us practical dynamic dispatch over anything
+that impls `Automaton`, but without needing to add a bunch of bounds to
+the core `Automaton` trait. Basically, we provide all of the marker traits
+that our automatons have, in addition to `Debug` impls and requiring that
+there is no borrowed data. Without these, the main `AhoCorasick` type would
+not be able to meaningfully impl `Debug` or the marker traits without also
+requiring that all impls of `Automaton` do so, which would be not great.
 
 ## Functions
 

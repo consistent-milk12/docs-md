@@ -14,7 +14,7 @@
 
 ## Modules
 
-- [`private`](private/index.md) - 
+- [`private`](private/index.md)
 
 ## Structs
 
@@ -71,4 +71,11 @@ let first = &inner[0];
 
 assert_eq!(first, 1);
 ```
+
+#### Implementors
+
+- `&T`
+- `alloc::string::String`
+- `str`
+- `usize`
 

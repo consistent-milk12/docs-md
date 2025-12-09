@@ -14,7 +14,7 @@
 
 ## Modules
 
-- [`sealed`](sealed/index.md) - 
+- [`sealed`](sealed/index.md)
 
 ## Structs
 

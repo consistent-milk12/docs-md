@@ -9,9 +9,9 @@ Deserialize JSON data to a Rust data structure.
 ## Contents
 
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`SliceRead`](#sliceread)
+  - [`StrRead`](#strread)
+  - [`IoRead`](#ioread)
   - [`Deserializer`](#deserializer)
   - [`SeqAccess`](#seqaccess)
   - [`MapAccess`](#mapaccess)
@@ -22,7 +22,7 @@ Deserialize JSON data to a Rust data structure.
 - [Enums](#enums)
   - [`ParserNumber`](#parsernumber)
 - [Traits](#traits)
-  - [`unnamed`](#unnamed)
+  - [`Read`](#read)
 - [Functions](#functions)
   - [`from_trait`](#from_trait)
   - [`from_reader`](#from_reader)
@@ -39,9 +39,9 @@ Deserialize JSON data to a Rust data structure.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
+| [`SliceRead`](#sliceread) | struct |  |
+| [`StrRead`](#strread) | struct |  |
+| [`IoRead`](#ioread) | struct |  |
 | [`Deserializer`](#deserializer) | struct | A structure that deserializes JSON into Rust values. |
 | [`SeqAccess`](#seqaccess) | struct |  |
 | [`MapAccess`](#mapaccess) | struct |  |
@@ -50,7 +50,7 @@ Deserialize JSON data to a Rust data structure.
 | [`MapKey`](#mapkey) | struct | Only deserialize from this after peeking a '"' byte! Otherwise it may |
 | [`StreamDeserializer`](#streamdeserializer) | struct | Iterator that deserializes a stream into multiple JSON values. |
 | [`ParserNumber`](#parsernumber) | enum |  |
-| [`unnamed`](#unnamed) | trait |  |
+| [`Read`](#read) | trait |  |
 | [`from_trait`](#from_trait) | fn |  |
 | [`from_reader`](#from_reader) | fn | Deserialize an instance of type `T` from an I/O stream of JSON. |
 | [`from_slice`](#from_slice) | fn | Deserialize an instance of type `T` from bytes of JSON text. |
@@ -441,6 +441,26 @@ enum ParserNumber {
 - <span id="parsernumber-invalid-type"></span>`fn invalid_type(self, exp: &dyn Expected) -> Error` — [`Error`](../index.md)
 
 ## Traits
+
+### `Read<'de>`
+
+```rust
+trait Read<'de>: private::Sealed { ... }
+```
+
+Trait used by the deserializer for iterating over input. This is manually
+"specialized" for iterating over `&[u8]`. Once feature(specialization) is
+stable we can use actual specialization.
+
+This trait is sealed and cannot be implemented for types outside of
+`serde_json`.
+
+#### Implementors
+
+- [`IoRead`](../read/index.md)
+- [`SliceRead`](../read/index.md)
+- [`StrRead`](../read/index.md)
+- `&mut R`
 
 ## Functions
 

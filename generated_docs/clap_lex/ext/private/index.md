@@ -18,3 +18,7 @@
 trait Sealed { ... }
 ```
 
+#### Implementors
+
+- `std::ffi::OsStr`
+

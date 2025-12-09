@@ -90,5 +90,5 @@ enum DiagnosticDefArgs {
 
 #### Implementations
 
-- <span id="diagnosticdefargs-forward-or-override-enum"></span>`fn forward_or_override_enum(&self, variant: &syn::Ident, which_fn: WhichFn, f: impl FnMut(&DiagnosticConcreteArgs) -> Option<TokenStream>) -> Option<TokenStream>` — [`WhichFn`](../forward/index.md), [`DiagnosticConcreteArgs`](#diagnosticconcreteargs)
+- <span id="diagnosticdefargs-parse"></span>`fn parse(_ident: &syn::Ident, fields: &syn::Fields, attrs: &[&syn::Attribute], allow_transparent: bool) -> syn::Result<Self>`
 

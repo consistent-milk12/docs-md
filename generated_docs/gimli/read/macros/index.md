@@ -65,7 +65,7 @@ The raw contents of the `.debug_macro` section.
 
 #### Implementations
 
-- <span id="debugmacro-get-macros"></span>`fn get_macros(&self, offset: DebugMacroOffset<<R as >::Offset>) -> Result<MacroIter<R>>` — [`DebugMacroOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`MacroIter`](../index.md)
+- <span id="debugmacro-borrow"></span>`fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugMacro<R>` — [`DebugMacro`](../index.md)
 
 #### Trait Implementations
 

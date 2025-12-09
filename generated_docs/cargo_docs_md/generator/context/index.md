@@ -191,6 +191,11 @@ Provides read-only access to the crate structure, items, and impl blocks.
 
   Get the rendering configuration.
 
+#### Implementors
+
+- [`GeneratorContext`](../index.md)
+- [`SingleCrateView`](../../multi_crate/index.md)
+
 ### `ItemFilter`
 
 ```rust
@@ -214,6 +219,11 @@ Determines which items should be included in the generated documentation.
 - `fn include_blanket_impls(&self) -> bool`
 
   Whether blanket trait implementations should be included.
+
+#### Implementors
+
+- [`GeneratorContext`](../index.md)
+- [`SingleCrateView`](../../multi_crate/index.md)
 
 ### `LinkResolver`
 
@@ -239,6 +249,11 @@ Handles intra-doc link resolution and markdown link generation.
 
   Create a markdown link to an item.
 
+#### Implementors
+
+- [`GeneratorContext`](../index.md)
+- [`SingleCrateView`](../../multi_crate/index.md)
+
 ### `RenderContext`
 
 ```rust
@@ -252,4 +267,10 @@ for components that need full access to the rendering context.
 
 Most renderers should use this trait for convenience, but components
 with limited requirements can depend on individual sub-traits.
+
+#### Implementors
+
+- [`GeneratorContext`](../index.md)
+- [`SingleCrateView`](../../multi_crate/index.md)
+- `T`
 

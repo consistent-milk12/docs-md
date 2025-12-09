@@ -21,7 +21,7 @@ trait IdentFragment { ... }
 
 Specialized formatting trait used by `format_ident!`.
 
-[`Ident`](../../proc_macro2/imp/index.md) arguments formatted using this trait will have their `r#` prefix
+[`Ident`](../../proc_macro2/index.md) arguments formatted using this trait will have their `r#` prefix
 stripped, if present.
 
 See `format_ident!` for more information.
@@ -33,9 +33,28 @@ See `format_ident!` for more information.
 
   Format this value as an identifier fragment.
 
+#### Provided Methods
+
 - `fn span(&self) -> Option<Span>`
 
   Span associated with this `IdentFragment`.
+
+#### Implementors
+
+- `&T`
+- `&mut T`
+- `String`
+- `alloc::borrow::Cow<'_, T>`
+- `bool`
+- `char`
+- `proc_macro2::Ident`
+- `str`
+- `u128`
+- `u16`
+- `u32`
+- `u64`
+- `u8`
+- `usize`
 
 ## Macros
 

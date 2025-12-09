@@ -38,9 +38,7 @@ convenient I think.
 
 #### Implementations
 
-- <span id="lazy-get"></span>`fn get(&self) -> &T`
-
-- <span id="lazy-poll"></span>`fn poll(&self) -> Option<&T>`
+- <span id="lazy-new"></span>`const fn new(create: F) -> Lazy<T, F>` — [`Lazy`](#lazy)
 
 #### Trait Implementations
 

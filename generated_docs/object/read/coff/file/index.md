@@ -145,11 +145,13 @@ trait CoffHeader: Debug + Pod { ... }
 
 A trait for generic access to [`pe::ImageFileHeader`](../../../pe/index.md) and [`pe::AnonObjectHeaderBigobj`](../../../pe/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type ImageSymbol: 1`
 
 - `type ImageSymbolBytes: 2`
+
+#### Required Methods
 
 - `fn is_type_bigobj() -> bool`
 
@@ -169,6 +171,8 @@ A trait for generic access to [`pe::ImageFileHeader`](../../../pe/index.md) and 
 
   Read the file header.
 
+#### Provided Methods
+
 - `fn sections<'data, R: ReadRef<'data>>(&self, data: R, offset: u64) -> read::Result<SectionTable<'data>>`
 
   Read the section table.
@@ -176,6 +180,11 @@ A trait for generic access to [`pe::ImageFileHeader`](../../../pe/index.md) and 
 - `fn symbols<'data, R: ReadRef<'data>>(&self, data: R) -> read::Result<SymbolTable<'data, R, Self>>`
 
   Read the symbol table and string table.
+
+#### Implementors
+
+- [`AnonObjectHeaderBigobj`](../../../pe/index.md)
+- [`ImageFileHeader`](../../../pe/index.md)
 
 ## Functions
 

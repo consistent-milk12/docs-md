@@ -122,12 +122,12 @@ implementation detail, here are some common reasons:
   - [`teddy`](#teddy)
   - [`vector`](#vector)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`Builder`](#builder)
+  - [`Config`](#config)
+  - [`FindIter`](#finditer)
+  - [`Searcher`](#searcher)
 - [Enums](#enums)
-  - [`unnamed`](#unnamed)
+  - [`MatchKind`](#matchkind)
 
 ## Quick Reference
 
@@ -139,20 +139,20 @@ implementation detail, here are some common reasons:
 | [`rabinkarp`](#rabinkarp) | mod |  |
 | [`teddy`](#teddy) | mod |  |
 | [`vector`](#vector) | mod |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | enum |  |
+| [`Builder`](#builder) | struct |  |
+| [`Config`](#config) | struct |  |
+| [`FindIter`](#finditer) | struct |  |
+| [`Searcher`](#searcher) | struct |  |
+| [`MatchKind`](#matchkind) | enum |  |
 
 ## Modules
 
-- [`api`](api/index.md) - 
-- [`ext`](ext/index.md) - 
-- [`pattern`](pattern/index.md) - 
-- [`rabinkarp`](rabinkarp/index.md) - 
-- [`teddy`](teddy/index.md) - 
-- [`vector`](vector/index.md) - 
+- [`api`](api/index.md)
+- [`ext`](ext/index.md)
+- [`pattern`](pattern/index.md)
+- [`rabinkarp`](rabinkarp/index.md)
+- [`teddy`](teddy/index.md)
+- [`vector`](vector/index.md)
 
 ## Structs
 

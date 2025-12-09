@@ -10,7 +10,7 @@ Functions which duplicate file descriptors.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`unnamed`](#unnamed) | struct |  |
+| [`DupFlags`](#dupflags) | struct |  |
 | [`dup`](#dup) | fn | `dup(fd)`—Creates a new `OwnedFd` instance that shares the same |
 | [`dup2`](#dup2) | fn | `dup2(fd, new)`—Changes the [file description] of a file descriptor. |
 | [`dup3`](#dup3) | fn | `dup3(fd, new, flags)`—Changes the [file description] of a file |
@@ -160,7 +160,7 @@ fn dup<Fd: AsFd>(fd: Fd) -> io::Result<crate::fd::OwnedFd>
 underlying [file description] as `fd`.
 
 This function does not set the `O_CLOEXEC` flag. To do a `dup` that does
-set `O_CLOEXEC`, use [`fcntl_dupfd_cloexec`](../index.md).
+set `O_CLOEXEC`, use [`fcntl_dupfd_cloexec`](../../backend/io/syscalls/index.md).
 
 POSIX guarantees that `dup` will use the lowest unused file descriptor,
 however it is not safe in general to rely on this, as file descriptors may
@@ -203,7 +203,7 @@ be subsequently used.
 
 This function does not set the `O_CLOEXEC` flag. To do a `dup2` that does
 set `O_CLOEXEC`, use [`dup3`](../index.md) with `DupFlags::CLOEXEC` on platforms which
-support it, or [`fcntl_dupfd_cloexec`](../index.md).
+support it, or [`fcntl_dupfd_cloexec`](../../backend/io/syscalls/index.md).
 
 For `dup2` to stdin, stdout, and stderr, see `stdio::dup2_stdin`,
 `stdio::dup2_stdout`, and `stdio::dup2_stderr`.

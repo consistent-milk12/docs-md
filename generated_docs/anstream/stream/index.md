@@ -17,7 +17,7 @@ Higher-level traits to describe writeable streams
 
 ## Modules
 
-- [`private`](private/index.md) - 
+- [`private`](private/index.md)
 
 ## Traits
 
@@ -28,6 +28,20 @@ trait RawStream: std::io::Write + IsTerminal + private::Sealed { ... }
 ```
 
 Required functionality for underlying [`std::io::Write`](../../fs_err/index.md) for adaptation
+
+#### Implementors
+
+- `&mut T`
+- `Box<T>`
+- `Vec<u8>`
+- `dyn std::io::Write + Send + Sync`
+- `dyn std::io::Write + Send`
+- `dyn std::io::Write`
+- `std::fs::File`
+- `std::io::StderrLock<'_>`
+- `std::io::Stderr`
+- `std::io::StdoutLock<'_>`
+- `std::io::Stdout`
 
 ### `IsTerminal`
 
@@ -43,6 +57,21 @@ Trait to determine if a descriptor/handle refers to a terminal/tty.
 
   Returns `true` if the descriptor/handle refers to a terminal/tty.
 
+#### Implementors
+
+- `&T`
+- `&mut T`
+- `Box<T>`
+- `Vec<u8>`
+- `dyn std::io::Write + Send + Sync`
+- `dyn std::io::Write + Send`
+- `dyn std::io::Write`
+- `std::fs::File`
+- `std::io::StderrLock<'_>`
+- `std::io::Stderr`
+- `std::io::StdoutLock<'_>`
+- `std::io::Stdout`
+
 ### `AsLockedWrite`
 
 ```rust
@@ -51,11 +80,27 @@ trait AsLockedWrite: private::Sealed { ... }
 
 Lock a stream
 
-#### Required Methods
+#### Associated Types
 
 - `type Write: 2`
+
+#### Required Methods
 
 - `fn as_locked_write(&mut self) -> <Self as >::Write`
 
   Lock a stream
+
+#### Implementors
+
+- `&mut T`
+- `Box<T>`
+- `Vec<u8>`
+- `dyn std::io::Write + Send + Sync`
+- `dyn std::io::Write + Send`
+- `dyn std::io::Write`
+- `std::fs::File`
+- `std::io::StderrLock<'static>`
+- `std::io::Stderr`
+- `std::io::StdoutLock<'static>`
+- `std::io::Stdout`
 

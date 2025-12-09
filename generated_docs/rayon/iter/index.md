@@ -142,60 +142,60 @@ because `ParallelIterator` is **not object-safe**.
   - [`zip_eq`](#zip_eq)
   - [`private`](#private)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`ExponentialBlocks`](#exponentialblocks)
+  - [`UniformBlocks`](#uniformblocks)
+  - [`Chain`](#chain)
+  - [`Chunks`](#chunks)
+  - [`Cloned`](#cloned)
+  - [`Copied`](#copied)
+  - [`Empty`](#empty)
+  - [`Enumerate`](#enumerate)
+  - [`Filter`](#filter)
+  - [`FilterMap`](#filtermap)
+  - [`FlatMap`](#flatmap)
+  - [`FlatMapIter`](#flatmapiter)
+  - [`Flatten`](#flatten)
+  - [`FlattenIter`](#flatteniter)
+  - [`Fold`](#fold)
+  - [`FoldWith`](#foldwith)
+  - [`FoldChunks`](#foldchunks)
+  - [`FoldChunksWith`](#foldchunkswith)
+  - [`Inspect`](#inspect)
+  - [`Interleave`](#interleave)
+  - [`InterleaveShortest`](#interleaveshortest)
+  - [`Intersperse`](#intersperse)
+  - [`MaxLen`](#maxlen)
+  - [`MinLen`](#minlen)
+  - [`Map`](#map)
+  - [`MapInit`](#mapinit)
+  - [`MapWith`](#mapwith)
+  - [`MultiZip`](#multizip)
+  - [`Once`](#once)
+  - [`PanicFuse`](#panicfuse)
+  - [`IterBridge`](#iterbridge)
+  - [`Positions`](#positions)
+  - [`Repeat`](#repeat)
+  - [`RepeatN`](#repeatn)
+  - [`Rev`](#rev)
+  - [`Skip`](#skip)
+  - [`SkipAny`](#skipany)
+  - [`SkipAnyWhile`](#skipanywhile)
+  - [`Split`](#split)
+  - [`StepBy`](#stepby)
+  - [`Take`](#take)
+  - [`TakeAny`](#takeany)
+  - [`TakeAnyWhile`](#takeanywhile)
+  - [`TryFold`](#tryfold)
+  - [`TryFoldWith`](#tryfoldwith)
+  - [`Update`](#update)
+  - [`WalkTree`](#walktree)
+  - [`WalkTreePostfix`](#walktreepostfix)
+  - [`WalkTreePrefix`](#walktreeprefix)
+  - [`WhileSome`](#whilesome)
+  - [`Zip`](#zip)
+  - [`ZipEq`](#zipeq)
 - [Traits](#traits)
-  - [`unnamed`](#unnamed)
+  - [`ParallelBridge`](#parallelbridge)
   - [`IntoParallelIterator`](#intoparalleliterator)
   - [`IntoParallelRefIterator`](#intoparallelrefiterator)
   - [`IntoParallelRefMutIterator`](#intoparallelrefmutiterator)
@@ -206,15 +206,15 @@ because `ParallelIterator` is **not object-safe**.
   - [`ParallelDrainFull`](#paralleldrainfull)
   - [`ParallelDrainRange`](#paralleldrainrange)
 - [Functions](#functions)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`empty`](#empty)
+  - [`once`](#once)
+  - [`repeat`](#repeat)
+  - [`repeat_n`](#repeat_n)
+  - [`split`](#split)
+  - [`walk_tree`](#walk_tree)
+  - [`walk_tree_postfix`](#walk_tree_postfix)
+  - [`walk_tree_prefix`](#walk_tree_prefix)
+  - [`repeatn`](#repeatn)
 
 ## Quick Reference
 
@@ -279,59 +279,59 @@ because `ParallelIterator` is **not object-safe**.
 | [`zip`](#zip) | mod |  |
 | [`zip_eq`](#zip_eq) | mod |  |
 | [`private`](#private) | mod | We hide the `Try` trait in a private module, as it's only meant to be a |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | trait |  |
+| [`ExponentialBlocks`](#exponentialblocks) | struct |  |
+| [`UniformBlocks`](#uniformblocks) | struct |  |
+| [`Chain`](#chain) | struct |  |
+| [`Chunks`](#chunks) | struct |  |
+| [`Cloned`](#cloned) | struct |  |
+| [`Copied`](#copied) | struct |  |
+| [`Empty`](#empty) | struct |  |
+| [`Enumerate`](#enumerate) | struct |  |
+| [`Filter`](#filter) | struct |  |
+| [`FilterMap`](#filtermap) | struct |  |
+| [`FlatMap`](#flatmap) | struct |  |
+| [`FlatMapIter`](#flatmapiter) | struct |  |
+| [`Flatten`](#flatten) | struct |  |
+| [`FlattenIter`](#flatteniter) | struct |  |
+| [`Fold`](#fold) | struct |  |
+| [`FoldWith`](#foldwith) | struct |  |
+| [`FoldChunks`](#foldchunks) | struct |  |
+| [`FoldChunksWith`](#foldchunkswith) | struct |  |
+| [`Inspect`](#inspect) | struct |  |
+| [`Interleave`](#interleave) | struct |  |
+| [`InterleaveShortest`](#interleaveshortest) | struct |  |
+| [`Intersperse`](#intersperse) | struct |  |
+| [`MaxLen`](#maxlen) | struct |  |
+| [`MinLen`](#minlen) | struct |  |
+| [`Map`](#map) | struct |  |
+| [`MapInit`](#mapinit) | struct |  |
+| [`MapWith`](#mapwith) | struct |  |
+| [`MultiZip`](#multizip) | struct |  |
+| [`Once`](#once) | struct |  |
+| [`PanicFuse`](#panicfuse) | struct |  |
+| [`IterBridge`](#iterbridge) | struct |  |
+| [`Positions`](#positions) | struct |  |
+| [`Repeat`](#repeat) | struct |  |
+| [`RepeatN`](#repeatn) | struct |  |
+| [`Rev`](#rev) | struct |  |
+| [`Skip`](#skip) | struct |  |
+| [`SkipAny`](#skipany) | struct |  |
+| [`SkipAnyWhile`](#skipanywhile) | struct |  |
+| [`Split`](#split) | struct |  |
+| [`StepBy`](#stepby) | struct |  |
+| [`Take`](#take) | struct |  |
+| [`TakeAny`](#takeany) | struct |  |
+| [`TakeAnyWhile`](#takeanywhile) | struct |  |
+| [`TryFold`](#tryfold) | struct |  |
+| [`TryFoldWith`](#tryfoldwith) | struct |  |
+| [`Update`](#update) | struct |  |
+| [`WalkTree`](#walktree) | struct |  |
+| [`WalkTreePostfix`](#walktreepostfix) | struct |  |
+| [`WalkTreePrefix`](#walktreeprefix) | struct |  |
+| [`WhileSome`](#whilesome) | struct |  |
+| [`Zip`](#zip) | struct |  |
+| [`ZipEq`](#zipeq) | struct |  |
+| [`ParallelBridge`](#parallelbridge) | trait |  |
 | [`IntoParallelIterator`](#intoparalleliterator) | trait | `IntoParallelIterator` implements the conversion to a [`ParallelIterator`]. |
 | [`IntoParallelRefIterator`](#intoparallelrefiterator) | trait | `IntoParallelRefIterator` implements the conversion to a |
 | [`IntoParallelRefMutIterator`](#intoparallelrefmutiterator) | trait | `IntoParallelRefMutIterator` implements the conversion to a |
@@ -341,77 +341,77 @@ because `ParallelIterator` is **not object-safe**.
 | [`ParallelExtend`](#parallelextend) | trait | `ParallelExtend` extends an existing collection with items from a [`ParallelIterator`]. |
 | [`ParallelDrainFull`](#paralleldrainfull) | trait | `ParallelDrainFull` creates a parallel iterator that moves all items |
 | [`ParallelDrainRange`](#paralleldrainrange) | trait | `ParallelDrainRange` creates a parallel iterator that moves a range of items |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
+| [`empty`](#empty) | fn |  |
+| [`once`](#once) | fn |  |
+| [`repeat`](#repeat) | fn |  |
+| [`repeat_n`](#repeat_n) | fn |  |
+| [`split`](#split) | fn |  |
+| [`walk_tree`](#walk_tree) | fn |  |
+| [`walk_tree_postfix`](#walk_tree_postfix) | fn |  |
+| [`walk_tree_prefix`](#walk_tree_prefix) | fn |  |
+| [`repeatn`](#repeatn) | fn |  |
 
 ## Modules
 
-- [`plumbing`](plumbing/index.md) - Traits and functions used to implement parallel iteration.  These are
-- [`blocks`](blocks/index.md) - 
-- [`chain`](chain/index.md) - 
-- [`chunks`](chunks/index.md) - 
-- [`cloned`](cloned/index.md) - 
-- [`collect`](collect/index.md) - 
-- [`copied`](copied/index.md) - 
-- [`empty`](empty/index.md) - 
-- [`enumerate`](enumerate/index.md) - 
-- [`extend`](extend/index.md) - 
-- [`filter`](filter/index.md) - 
-- [`filter_map`](filter_map/index.md) - 
-- [`find`](find/index.md) - 
-- [`find_first_last`](find_first_last/index.md) - 
-- [`flat_map`](flat_map/index.md) - 
-- [`flat_map_iter`](flat_map_iter/index.md) - 
-- [`flatten`](flatten/index.md) - 
-- [`flatten_iter`](flatten_iter/index.md) - 
-- [`fold`](fold/index.md) - 
-- [`fold_chunks`](fold_chunks/index.md) - 
-- [`fold_chunks_with`](fold_chunks_with/index.md) - 
-- [`for_each`](for_each/index.md) - 
-- [`from_par_iter`](from_par_iter/index.md) - 
-- [`inspect`](inspect/index.md) - 
-- [`interleave`](interleave/index.md) - 
-- [`interleave_shortest`](interleave_shortest/index.md) - 
-- [`intersperse`](intersperse/index.md) - 
-- [`len`](len/index.md) - 
-- [`map`](map/index.md) - 
-- [`map_with`](map_with/index.md) - 
-- [`multizip`](multizip/index.md) - 
-- [`noop`](noop/index.md) - 
-- [`once`](once/index.md) - 
-- [`panic_fuse`](panic_fuse/index.md) - 
-- [`par_bridge`](par_bridge/index.md) - 
-- [`positions`](positions/index.md) - 
-- [`product`](product/index.md) - 
-- [`reduce`](reduce/index.md) - 
-- [`repeat`](repeat/index.md) - 
-- [`rev`](rev/index.md) - 
-- [`skip`](skip/index.md) - 
-- [`skip_any`](skip_any/index.md) - 
-- [`skip_any_while`](skip_any_while/index.md) - 
-- [`splitter`](splitter/index.md) - 
-- [`step_by`](step_by/index.md) - 
-- [`sum`](sum/index.md) - 
-- [`take`](take/index.md) - 
-- [`take_any`](take_any/index.md) - 
-- [`take_any_while`](take_any_while/index.md) - 
-- [`try_fold`](try_fold/index.md) - 
-- [`try_reduce`](try_reduce/index.md) - 
-- [`try_reduce_with`](try_reduce_with/index.md) - 
-- [`unzip`](unzip/index.md) - 
-- [`update`](update/index.md) - 
-- [`walk_tree`](walk_tree/index.md) - 
-- [`while_some`](while_some/index.md) - 
-- [`zip`](zip/index.md) - 
-- [`zip_eq`](zip_eq/index.md) - 
-- [`private`](private/index.md) - We hide the `Try` trait in a private module, as it's only meant to be a
+- [`plumbing`](plumbing/index.md) — Traits and functions used to implement parallel iteration.  These are
+- [`blocks`](blocks/index.md)
+- [`chain`](chain/index.md)
+- [`chunks`](chunks/index.md)
+- [`cloned`](cloned/index.md)
+- [`collect`](collect/index.md)
+- [`copied`](copied/index.md)
+- [`empty`](empty/index.md)
+- [`enumerate`](enumerate/index.md)
+- [`extend`](extend/index.md)
+- [`filter`](filter/index.md)
+- [`filter_map`](filter_map/index.md)
+- [`find`](find/index.md)
+- [`find_first_last`](find_first_last/index.md)
+- [`flat_map`](flat_map/index.md)
+- [`flat_map_iter`](flat_map_iter/index.md)
+- [`flatten`](flatten/index.md)
+- [`flatten_iter`](flatten_iter/index.md)
+- [`fold`](fold/index.md)
+- [`fold_chunks`](fold_chunks/index.md)
+- [`fold_chunks_with`](fold_chunks_with/index.md)
+- [`for_each`](for_each/index.md)
+- [`from_par_iter`](from_par_iter/index.md)
+- [`inspect`](inspect/index.md)
+- [`interleave`](interleave/index.md)
+- [`interleave_shortest`](interleave_shortest/index.md)
+- [`intersperse`](intersperse/index.md)
+- [`len`](len/index.md)
+- [`map`](map/index.md)
+- [`map_with`](map_with/index.md)
+- [`multizip`](multizip/index.md)
+- [`noop`](noop/index.md)
+- [`once`](once/index.md)
+- [`panic_fuse`](panic_fuse/index.md)
+- [`par_bridge`](par_bridge/index.md)
+- [`positions`](positions/index.md)
+- [`product`](product/index.md)
+- [`reduce`](reduce/index.md)
+- [`repeat`](repeat/index.md)
+- [`rev`](rev/index.md)
+- [`skip`](skip/index.md)
+- [`skip_any`](skip_any/index.md)
+- [`skip_any_while`](skip_any_while/index.md)
+- [`splitter`](splitter/index.md)
+- [`step_by`](step_by/index.md)
+- [`sum`](sum/index.md)
+- [`take`](take/index.md)
+- [`take_any`](take_any/index.md)
+- [`take_any_while`](take_any_while/index.md)
+- [`try_fold`](try_fold/index.md)
+- [`try_reduce`](try_reduce/index.md)
+- [`try_reduce_with`](try_reduce_with/index.md)
+- [`unzip`](unzip/index.md)
+- [`update`](update/index.md)
+- [`walk_tree`](walk_tree/index.md)
+- [`while_some`](while_some/index.md)
+- [`zip`](zip/index.md)
+- [`zip_eq`](zip_eq/index.md)
+- [`private`](private/index.md) — We hide the `Try` trait in a private module, as it's only meant to be a
 
 ## Structs
 
@@ -2236,7 +2236,7 @@ assert_eq!(tuple, (vec![1, 2, 3], vec![-4, -3, -2], vec![-6, -2, 2]));
 
 - <span id="multizip-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<A, B, C, D, E, F, G> IndexedParallelIterator for MultiZip<(A, B, C, D, E, F, G)>`
+##### `impl<A, B, C, D, E, F> IndexedParallelIterator for MultiZip<(A, B, C, D, E, F)>`
 
 - <span id="multizip-drive"></span>`fn drive<CONSUMER>(self, consumer: CONSUMER) -> <CONSUMER as >::Result` — [`Consumer`](plumbing/index.md)
 
@@ -2254,9 +2254,9 @@ assert_eq!(tuple, (vec![1, 2, 3], vec![-4, -3, -2], vec![-6, -2, 2]));
 
 - <span id="multizip-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<A, B, C, D> ParallelIterator for MultiZip<(A, B, C, D)>`
+##### `impl<A, B, C> ParallelIterator for MultiZip<(A, B, C)>`
 
-- <span id="multizip-item"></span>`type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item, <C as ParallelIterator>::Item, <D as ParallelIterator>::Item)`
+- <span id="multizip-item"></span>`type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item, <C as ParallelIterator>::Item)`
 
 - <span id="multizip-drive-unindexed"></span>`fn drive_unindexed<CONSUMER>(self, consumer: CONSUMER) -> <CONSUMER as >::Result` — [`Consumer`](plumbing/index.md)
 
@@ -3708,6 +3708,63 @@ see its documentation for more information.
 
 ## Traits
 
+### `ParallelBridge`
+
+```rust
+trait ParallelBridge: Sized { ... }
+```
+
+Conversion trait to convert an `Iterator` to a `ParallelIterator`.
+
+This creates a "bridge" from a sequential iterator to a parallel one, by distributing its items
+across the Rayon thread pool. This has the advantage of being able to parallelize just about
+anything, but the resulting `ParallelIterator` can be less efficient than if you started with
+`par_iter` instead. However, it can still be useful for iterators that are difficult to
+parallelize by other means, like channels or file or network I/O.
+
+Iterator items are pulled by `next()` one at a time, synchronized from each thread that is
+ready for work, so this may become a bottleneck if the serial iterator can't keep up with the
+parallel demand. The items are not buffered by `IterBridge`, so it's fine to use this with
+large or even unbounded iterators.
+
+The resulting iterator is not guaranteed to keep the order of the original iterator.
+
+# Examples
+
+To use this trait, take an existing `Iterator` and call `par_bridge` on it. After that, you can
+use any of the `ParallelIterator` methods:
+
+```rust
+use rayon::iter::ParallelBridge;
+use rayon::prelude::ParallelIterator;
+use std::sync::mpsc::channel;
+
+let rx = {
+    let (tx, rx) = channel();
+
+    tx.send("one!");
+    tx.send("two!");
+    tx.send("three!");
+
+    rx
+};
+
+let mut output: Vec<&'static str> = rx.into_iter().par_bridge().collect();
+output.sort_unstable();
+
+assert_eq!(&*output, &["one!", "three!", "two!"]);
+```
+
+#### Required Methods
+
+- `fn par_bridge(self) -> IterBridge<Self>`
+
+  Creates a bridge from this type to a `ParallelIterator`.
+
+#### Implementors
+
+- `T`
+
 ### `IntoParallelIterator`
 
 ```rust
@@ -3720,15 +3777,211 @@ By implementing `IntoParallelIterator` for a type, you define how it will
 transformed into an iterator. This is a parallel version of the standard
 library's `std::iter::IntoIterator` trait.
 
-#### Required Methods
+#### Associated Types
 
 - `type Iter: 1`
 
 - `type Item: 1`
 
+#### Required Methods
+
 - `fn into_par_iter(self) -> <Self as >::Iter`
 
   Converts `self` into a parallel iterator.
+
+#### Implementors
+
+- [`Bytes`](../str/index.md)
+- [`Chain`](#chain)
+- [`CharIndices`](../str/index.md)
+- [`Chars`](../str/index.md)
+- [`ChunkByMut`](../slice/index.md)
+- [`ChunkBy`](../slice/index.md)
+- [`ChunksExactMut`](../slice/index.md)
+- [`ChunksExact`](../slice/index.md)
+- [`ChunksMut`](../slice/index.md)
+- [`Chunks`](#chunks)
+- [`Chunks`](../slice/index.md)
+- [`Cloned`](#cloned)
+- [`Copied`](#copied)
+- [`Drain`](../collections/binary_heap/index.md)
+- [`Drain`](../collections/hash_map/index.md)
+- [`Drain`](../collections/hash_set/index.md)
+- [`Drain`](../collections/vec_deque/index.md)
+- [`Drain`](../string/index.md)
+- [`Drain`](../vec/index.md)
+- [`Empty`](#empty)
+- [`EncodeUtf16`](../str/index.md)
+- [`Enumerate`](#enumerate)
+- [`ExponentialBlocks`](#exponentialblocks)
+- [`FilterMap`](#filtermap)
+- [`Filter`](#filter)
+- [`FlatMapIter`](#flatmapiter)
+- [`FlatMap`](#flatmap)
+- [`FlattenIter`](#flatteniter)
+- [`Flatten`](#flatten)
+- [`FoldChunksWith`](#foldchunkswith)
+- [`FoldChunks`](#foldchunks)
+- [`FoldWith`](#foldwith)
+- [`Fold`](#fold)
+- [`Inspect`](#inspect)
+- [`InterleaveShortest`](#interleaveshortest)
+- [`Interleave`](#interleave)
+- [`Intersperse`](#intersperse)
+- [`IntoIter`](../array/index.md)
+- [`IntoIter`](../collections/binary_heap/index.md)
+- [`IntoIter`](../collections/btree_map/index.md)
+- [`IntoIter`](../collections/btree_set/index.md)
+- [`IntoIter`](../collections/hash_map/index.md)
+- [`IntoIter`](../collections/hash_set/index.md)
+- [`IntoIter`](../collections/linked_list/index.md)
+- [`IntoIter`](../collections/vec_deque/index.md)
+- [`IntoIter`](../option/index.md)
+- [`IntoIter`](../result/index.md)
+- [`IntoIter`](../vec/index.md)
+- [`IterBridge`](#iterbridge)
+- [`IterMut`](../collections/btree_map/index.md)
+- [`IterMut`](../collections/hash_map/index.md)
+- [`IterMut`](../collections/linked_list/index.md)
+- [`IterMut`](../collections/vec_deque/index.md)
+- [`IterMut`](../option/index.md)
+- [`IterMut`](../result/index.md)
+- [`IterMut`](../slice/index.md)
+- [`Iter`](../collections/binary_heap/index.md)
+- [`Iter`](../collections/btree_map/index.md)
+- [`Iter`](../collections/btree_set/index.md)
+- [`Iter`](../collections/hash_map/index.md)
+- [`Iter`](../collections/hash_set/index.md)
+- [`Iter`](../collections/linked_list/index.md)
+- [`Iter`](../collections/vec_deque/index.md)
+- [`Iter`](../option/index.md)
+- [`Iter`](../range/index.md)
+- [`Iter`](../range_inclusive/index.md)
+- [`Iter`](../result/index.md)
+- [`Iter`](../slice/index.md)
+- [`Lines`](../str/index.md)
+- [`MapInit`](#mapinit)
+- [`MapWith`](#mapwith)
+- [`Map`](#map)
+- [`MatchIndices`](../str/index.md)
+- [`Matches`](../str/index.md)
+- [`MaxLen`](#maxlen)
+- [`MinLen`](#minlen)
+- [`MultiZip`](#multizip)
+- [`Once`](#once)
+- [`PanicFuse`](#panicfuse)
+- [`Positions`](#positions)
+- [`RChunksExactMut`](../slice/index.md)
+- [`RChunksExact`](../slice/index.md)
+- [`RChunksMut`](../slice/index.md)
+- [`RChunks`](../slice/index.md)
+- [`RepeatN`](#repeatn)
+- [`Repeat`](#repeat)
+- [`Rev`](#rev)
+- [`SkipAnyWhile`](#skipanywhile)
+- [`SkipAny`](#skipany)
+- [`Skip`](#skip)
+- [`SplitAsciiWhitespace`](../str/index.md)
+- [`SplitInclusiveMut`](../slice/index.md)
+- [`SplitInclusive`](../slice/index.md)
+- [`SplitInclusive`](../str/index.md)
+- [`SplitMut`](../slice/index.md)
+- [`SplitTerminator`](../str/index.md)
+- [`SplitWhitespace`](../str/index.md)
+- [`Split`](#split)
+- [`Split`](../slice/index.md)
+- [`Split`](../str/index.md)
+- [`StepBy`](#stepby)
+- [`TakeAnyWhile`](#takeanywhile)
+- [`TakeAny`](#takeany)
+- [`Take`](#take)
+- [`TryFoldWith`](#tryfoldwith)
+- [`TryFold`](#tryfold)
+- [`UniformBlocks`](#uniformblocks)
+- [`UnzipA`](unzip/index.md)
+- [`UnzipB`](unzip/index.md)
+- [`Update`](#update)
+- [`WalkTreePostfix`](#walktreepostfix)
+- [`WalkTreePrefix`](#walktreeprefix)
+- [`WalkTree`](#walktree)
+- [`WhileSome`](#whilesome)
+- [`Windows`](../slice/index.md)
+- [`ZipEq`](#zipeq)
+- [`Zip`](#zip)
+- `&'a (A)`
+- `&'a (A, B)`
+- `&'a (A, B, C)`
+- `&'a (A, B, C, D)`
+- `&'a (A, B, C, D, E)`
+- `&'a (A, B, C, D, E, F)`
+- `&'a (A, B, C, D, E, F, G)`
+- `&'a (A, B, C, D, E, F, G, H)`
+- `&'a (A, B, C, D, E, F, G, H, I)`
+- `&'a (A, B, C, D, E, F, G, H, I, J)`
+- `&'a (A, B, C, D, E, F, G, H, I, J, K)`
+- `&'a (A, B, C, D, E, F, G, H, I, J, K, L)`
+- `&'a Option<T>`
+- `&'a Result<T, E>`
+- `&'a mut (A)`
+- `&'a mut (A, B)`
+- `&'a mut (A, B, C)`
+- `&'a mut (A, B, C, D)`
+- `&'a mut (A, B, C, D, E)`
+- `&'a mut (A, B, C, D, E, F)`
+- `&'a mut (A, B, C, D, E, F, G)`
+- `&'a mut (A, B, C, D, E, F, G, H)`
+- `&'a mut (A, B, C, D, E, F, G, H, I)`
+- `&'a mut (A, B, C, D, E, F, G, H, I, J)`
+- `&'a mut (A, B, C, D, E, F, G, H, I, J, K)`
+- `&'a mut (A, B, C, D, E, F, G, H, I, J, K, L)`
+- `&'a mut Option<T>`
+- `&'a mut Result<T, E>`
+- `&'a mut std::collections::BTreeMap<K, V>`
+- `&'a mut std::collections::HashMap<K, V, S>`
+- `&'a mut std::collections::LinkedList<T>`
+- `&'a mut std::collections::VecDeque<T>`
+- `&'a std::collections::BTreeMap<K, V>`
+- `&'a std::collections::BTreeSet<T>`
+- `&'a std::collections::BinaryHeap<T>`
+- `&'a std::collections::HashMap<K, V, S>`
+- `&'a std::collections::HashSet<T, S>`
+- `&'a std::collections::LinkedList<T>`
+- `&'a std::collections::VecDeque<T>`
+- `&'data Box<[T]>`
+- `&'data Vec<T>`
+- `&'data [T; N]`
+- `&'data [T]`
+- `&'data mut Box<[T]>`
+- `&'data mut Vec<T>`
+- `&'data mut [T; N]`
+- `&'data mut [T]`
+- `(A)`
+- `(A, B)`
+- `(A, B, C)`
+- `(A, B, C, D)`
+- `(A, B, C, D, E)`
+- `(A, B, C, D, E, F)`
+- `(A, B, C, D, E, F, G)`
+- `(A, B, C, D, E, F, G, H)`
+- `(A, B, C, D, E, F, G, H, I)`
+- `(A, B, C, D, E, F, G, H, I, J)`
+- `(A, B, C, D, E, F, G, H, I, J, K)`
+- `(A, B, C, D, E, F, G, H, I, J, K, L)`
+- `Box<[T]>`
+- `Option<T>`
+- `Result<T, E>`
+- `T`
+- `Vec<T>`
+- `[T; N]`
+- `std::collections::BTreeMap<K, V>`
+- `std::collections::BTreeSet<T>`
+- `std::collections::BinaryHeap<T>`
+- `std::collections::HashMap<K, V, S>`
+- `std::collections::HashSet<T, S>`
+- `std::collections::LinkedList<T>`
+- `std::collections::VecDeque<T>`
+- `std::ops::Range<T>`
+- `std::ops::RangeInclusive<T>`
 
 ### `IntoParallelRefIterator<'data>`
 
@@ -3747,15 +4000,21 @@ This trait is automatically implemented
 will want to implement [`IntoParallelIterator`](../prelude/index.md) rather than implement
 this trait directly.
 
-#### Required Methods
+#### Associated Types
 
 - `type Iter: 1`
 
 - `type Item: 2`
 
+#### Required Methods
+
 - `fn par_iter(self: &'data Self) -> <Self as >::Iter`
 
   Converts `self` into a parallel iterator.
+
+#### Implementors
+
+- `I`
 
 ### `IntoParallelRefMutIterator<'data>`
 
@@ -3774,15 +4033,21 @@ This trait is automatically implemented
 will want to implement [`IntoParallelIterator`](../prelude/index.md) rather than implement
 this trait directly.
 
-#### Required Methods
+#### Associated Types
 
 - `type Iter: 1`
 
 - `type Item: 2`
 
+#### Required Methods
+
 - `fn par_iter_mut(self: &'data mut Self) -> <Self as >::Iter`
 
   Creates the parallel iterator from `self`.
+
+#### Implementors
+
+- `I`
 
 ### `ParallelIterator`
 
@@ -3803,9 +4068,17 @@ For examples of using parallel iterators, see [the docs on the
 `iter` module][iter](#iter).
 
 
-#### Required Methods
+#### Associated Types
 
 - `type Item: 1`
+
+#### Required Methods
+
+- `fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result`
+
+  Internal method used to define the behavior of this parallel
+
+#### Provided Methods
 
 - `fn for_each<OP>(self, op: OP)`
 
@@ -4035,13 +4308,130 @@ For examples of using parallel iterators, see [the docs on the
 
   Collects this iterator into a linked list of vectors.
 
-- `fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result`
-
-  Internal method used to define the behavior of this parallel
-
 - `fn opt_len(&self) -> Option<usize>`
 
   Internal method used to define the behavior of this parallel
+
+#### Implementors
+
+- [`Bytes`](../str/index.md)
+- [`Chain`](#chain)
+- [`CharIndices`](../str/index.md)
+- [`Chars`](../str/index.md)
+- [`ChunkByMut`](../slice/index.md)
+- [`ChunkBy`](../slice/index.md)
+- [`ChunksExactMut`](../slice/index.md)
+- [`ChunksExact`](../slice/index.md)
+- [`ChunksMut`](../slice/index.md)
+- [`Chunks`](#chunks)
+- [`Chunks`](../slice/index.md)
+- [`Cloned`](#cloned)
+- [`Copied`](#copied)
+- [`Drain`](../collections/binary_heap/index.md)
+- [`Drain`](../collections/hash_map/index.md)
+- [`Drain`](../collections/hash_set/index.md)
+- [`Drain`](../collections/vec_deque/index.md)
+- [`Drain`](../string/index.md)
+- [`Drain`](../vec/index.md)
+- [`Either`](#either)
+- [`Empty`](#empty)
+- [`EncodeUtf16`](../str/index.md)
+- [`Enumerate`](#enumerate)
+- [`ExponentialBlocks`](#exponentialblocks)
+- [`FilterMap`](#filtermap)
+- [`Filter`](#filter)
+- [`FlatMapIter`](#flatmapiter)
+- [`FlatMap`](#flatmap)
+- [`FlattenIter`](#flatteniter)
+- [`Flatten`](#flatten)
+- [`FoldChunksWith`](#foldchunkswith)
+- [`FoldChunks`](#foldchunks)
+- [`FoldWith`](#foldwith)
+- [`Fold`](#fold)
+- [`Inspect`](#inspect)
+- [`InterleaveShortest`](#interleaveshortest)
+- [`Interleave`](#interleave)
+- [`Intersperse`](#intersperse)
+- [`IntoIter`](../array/index.md)
+- [`IntoIter`](../collections/binary_heap/index.md)
+- [`IntoIter`](../collections/btree_map/index.md)
+- [`IntoIter`](../collections/btree_set/index.md)
+- [`IntoIter`](../collections/hash_map/index.md)
+- [`IntoIter`](../collections/hash_set/index.md)
+- [`IntoIter`](../collections/linked_list/index.md)
+- [`IntoIter`](../collections/vec_deque/index.md)
+- [`IntoIter`](../option/index.md)
+- [`IntoIter`](../result/index.md)
+- [`IntoIter`](../vec/index.md)
+- [`IterBridge`](#iterbridge)
+- [`IterMut`](../collections/btree_map/index.md)
+- [`IterMut`](../collections/hash_map/index.md)
+- [`IterMut`](../collections/linked_list/index.md)
+- [`IterMut`](../collections/vec_deque/index.md)
+- [`IterMut`](../option/index.md)
+- [`IterMut`](../result/index.md)
+- [`IterMut`](../slice/index.md)
+- [`Iter`](../collections/binary_heap/index.md)
+- [`Iter`](../collections/btree_map/index.md)
+- [`Iter`](../collections/btree_set/index.md)
+- [`Iter`](../collections/hash_map/index.md)
+- [`Iter`](../collections/hash_set/index.md)
+- [`Iter`](../collections/linked_list/index.md)
+- [`Iter`](../collections/vec_deque/index.md)
+- [`Iter`](../option/index.md)
+- [`Iter`](../range/index.md)
+- [`Iter`](../range_inclusive/index.md)
+- [`Iter`](../result/index.md)
+- [`Iter`](../slice/index.md)
+- [`Lines`](../str/index.md)
+- [`MapInit`](#mapinit)
+- [`MapWith`](#mapwith)
+- [`Map`](#map)
+- [`MatchIndices`](../str/index.md)
+- [`Matches`](../str/index.md)
+- [`MaxLen`](#maxlen)
+- [`MinLen`](#minlen)
+- [`MultiZip`](#multizip)
+- [`Once`](#once)
+- [`PanicFuse`](#panicfuse)
+- [`Positions`](#positions)
+- [`RChunksExactMut`](../slice/index.md)
+- [`RChunksExact`](../slice/index.md)
+- [`RChunksMut`](../slice/index.md)
+- [`RChunks`](../slice/index.md)
+- [`RepeatN`](#repeatn)
+- [`Repeat`](#repeat)
+- [`Rev`](#rev)
+- [`SkipAnyWhile`](#skipanywhile)
+- [`SkipAny`](#skipany)
+- [`Skip`](#skip)
+- [`SplitAsciiWhitespace`](../str/index.md)
+- [`SplitInclusiveMut`](../slice/index.md)
+- [`SplitInclusive`](../slice/index.md)
+- [`SplitInclusive`](../str/index.md)
+- [`SplitMut`](../slice/index.md)
+- [`SplitTerminator`](../str/index.md)
+- [`SplitWhitespace`](../str/index.md)
+- [`Split`](#split)
+- [`Split`](../slice/index.md)
+- [`Split`](../str/index.md)
+- [`StepBy`](#stepby)
+- [`TakeAnyWhile`](#takeanywhile)
+- [`TakeAny`](#takeany)
+- [`Take`](#take)
+- [`TryFoldWith`](#tryfoldwith)
+- [`TryFold`](#tryfold)
+- [`UniformBlocks`](#uniformblocks)
+- [`UnzipA`](unzip/index.md)
+- [`UnzipB`](unzip/index.md)
+- [`Update`](#update)
+- [`WalkTreePostfix`](#walktreepostfix)
+- [`WalkTreePrefix`](#walktreeprefix)
+- [`WalkTree`](#walktree)
+- [`WhileSome`](#whilesome)
+- [`Windows`](../slice/index.md)
+- [`ZipEq`](#zipeq)
+- [`Zip`](#zip)
 
 ### `IndexedParallelIterator`
 
@@ -4056,6 +4446,20 @@ those points.
 **Note:** Not implemented for `u64`, `i64`, `u128`, or `i128` ranges
 
 #### Required Methods
+
+- `fn len(&self) -> usize`
+
+  Produces an exact count of how many items this iterator will
+
+- `fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result`
+
+  Internal method used to define the behavior of this parallel
+
+- `fn with_producer<CB: ProducerCallback<<Self as >::Item>>(self, callback: CB) -> <CB as >::Output`
+
+  Internal method used to define the behavior of this parallel
+
+#### Provided Methods
 
 - `fn by_exponential_blocks(self) -> ExponentialBlocks<Self>`
 
@@ -4177,17 +4581,66 @@ those points.
 
   Sets the maximum length of iterators desired to process in each
 
-- `fn len(&self) -> usize`
+#### Implementors
 
-  Produces an exact count of how many items this iterator will
-
-- `fn drive<C: Consumer<<Self as >::Item>>(self, consumer: C) -> <C as >::Result`
-
-  Internal method used to define the behavior of this parallel
-
-- `fn with_producer<CB: ProducerCallback<<Self as >::Item>>(self, callback: CB) -> <CB as >::Output`
-
-  Internal method used to define the behavior of this parallel
+- [`Chain`](#chain)
+- [`ChunksExactMut`](../slice/index.md)
+- [`ChunksExact`](../slice/index.md)
+- [`ChunksMut`](../slice/index.md)
+- [`Chunks`](#chunks)
+- [`Chunks`](../slice/index.md)
+- [`Cloned`](#cloned)
+- [`Copied`](#copied)
+- [`Drain`](../collections/binary_heap/index.md)
+- [`Drain`](../collections/vec_deque/index.md)
+- [`Drain`](../vec/index.md)
+- [`Either`](#either)
+- [`Empty`](#empty)
+- [`Enumerate`](#enumerate)
+- [`FoldChunksWith`](#foldchunkswith)
+- [`FoldChunks`](#foldchunks)
+- [`Inspect`](#inspect)
+- [`InterleaveShortest`](#interleaveshortest)
+- [`Interleave`](#interleave)
+- [`Intersperse`](#intersperse)
+- [`IntoIter`](../array/index.md)
+- [`IntoIter`](../collections/binary_heap/index.md)
+- [`IntoIter`](../collections/vec_deque/index.md)
+- [`IntoIter`](../option/index.md)
+- [`IntoIter`](../result/index.md)
+- [`IntoIter`](../vec/index.md)
+- [`IterMut`](../collections/vec_deque/index.md)
+- [`IterMut`](../option/index.md)
+- [`IterMut`](../result/index.md)
+- [`IterMut`](../slice/index.md)
+- [`Iter`](../collections/binary_heap/index.md)
+- [`Iter`](../collections/vec_deque/index.md)
+- [`Iter`](../option/index.md)
+- [`Iter`](../range/index.md)
+- [`Iter`](../range_inclusive/index.md)
+- [`Iter`](../result/index.md)
+- [`Iter`](../slice/index.md)
+- [`MapInit`](#mapinit)
+- [`MapWith`](#mapwith)
+- [`Map`](#map)
+- [`MaxLen`](#maxlen)
+- [`MinLen`](#minlen)
+- [`MultiZip`](#multizip)
+- [`Once`](#once)
+- [`PanicFuse`](#panicfuse)
+- [`RChunksExactMut`](../slice/index.md)
+- [`RChunksExact`](../slice/index.md)
+- [`RChunksMut`](../slice/index.md)
+- [`RChunks`](../slice/index.md)
+- [`RepeatN`](#repeatn)
+- [`Rev`](#rev)
+- [`Skip`](#skip)
+- [`StepBy`](#stepby)
+- [`Take`](#take)
+- [`Update`](#update)
+- [`Windows`](../slice/index.md)
+- [`ZipEq`](#zipeq)
+- [`Zip`](#zip)
 
 ### `FromParallelIterator<T>`
 
@@ -4236,6 +4689,29 @@ assert_eq!(bh.mass, 4000);
 
   Creates an instance of the collection from the parallel iterator `par_iter`.
 
+#### Implementors
+
+- `()`
+- `(A, B)`
+- `(FromA, FromB)`
+- `Box<[T]>`
+- `Box<str>`
+- `Option<C>`
+- `Result<C, E>`
+- `String`
+- `Vec<T>`
+- `std::borrow::Cow<'a, C>`
+- `std::collections::BTreeMap<K, V>`
+- `std::collections::BTreeSet<V>`
+- `std::collections::BinaryHeap<T>`
+- `std::collections::HashMap<K, V, S>`
+- `std::collections::HashSet<V, S>`
+- `std::collections::LinkedList<T>`
+- `std::collections::VecDeque<T>`
+- `std::ffi::OsString`
+- `std::rc::Rc<[T]>`
+- `std::sync::Arc<[T]>`
+
 ### `ParallelExtend<T>`
 
 ```rust
@@ -4279,6 +4755,24 @@ assert_eq!(bh.mass, 4080);
 
   Extends an instance of the collection with the elements drawn
 
+#### Implementors
+
+- [`Collector`](unzip/index.md)
+- [`Either`](#either)
+- `()`
+- `(A, B)`
+- `(FromA, FromB)`
+- `String`
+- `Vec<T>`
+- `std::collections::BTreeMap<K, V>`
+- `std::collections::BTreeSet<T>`
+- `std::collections::BinaryHeap<T>`
+- `std::collections::HashMap<K, V, S>`
+- `std::collections::HashSet<T, S>`
+- `std::collections::LinkedList<T>`
+- `std::collections::VecDeque<T>`
+- `std::ffi::OsString`
+
 ### `ParallelDrainFull`
 
 ```rust
@@ -4291,15 +4785,23 @@ from a collection while retaining the original capacity.
 Types which are indexable typically implement [`ParallelDrainRange`](../prelude/index.md)
 instead, where you can drain fully with `par_drain(..)`.
 
-#### Required Methods
+#### Associated Types
 
 - `type Iter: 1`
 
 - `type Item: 1`
 
+#### Required Methods
+
 - `fn par_drain(self) -> <Self as >::Iter`
 
   Returns a draining parallel iterator over an entire collection.
+
+#### Implementors
+
+- `&'a mut std::collections::BinaryHeap<T>`
+- `&'a mut std::collections::HashMap<K, V, S>`
+- `&'a mut std::collections::HashSet<T, S>`
 
 ### `ParallelDrainRange<Idx>`
 
@@ -4312,15 +4814,24 @@ from a collection while retaining the original capacity.
 
 Types which are not indexable may implement [`ParallelDrainFull`](../prelude/index.md) instead.
 
-#### Required Methods
+#### Associated Types
 
 - `type Iter: 1`
 
 - `type Item: 1`
 
+#### Required Methods
+
 - `fn par_drain<R: RangeBounds<Idx>>(self, range: R) -> <Self as >::Iter`
 
   Returns a draining parallel iterator over a range of the collection.
+
+#### Implementors
+
+- `&'a mut DrainGuard<'_, T, C>`
+- `&'a mut String`
+- `&'a mut std::collections::VecDeque<T>`
+- `&'data mut Vec<T>`
 
 ## Functions
 

@@ -92,9 +92,9 @@ notation.
   - [`pretty`](#pretty)
   - [`raw`](#raw)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
+  - [`Buffer`](#buffer)
 - [Traits](#traits)
-  - [`unnamed`](#unnamed)
+  - [`Float`](#float)
 
 ## Quick Reference
 
@@ -110,21 +110,21 @@ notation.
 | [`f2s_intrinsics`](#f2s_intrinsics) | mod |  |
 | [`pretty`](#pretty) | mod |  |
 | [`raw`](#raw) | mod | Unsafe functions that mirror the API of the C implementation of Ryū. |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | trait |  |
+| [`Buffer`](#buffer) | struct |  |
+| [`Float`](#float) | trait |  |
 
 ## Modules
 
-- [`buffer`](buffer/index.md) - 
-- [`common`](common/index.md) - 
-- [`d2s`](d2s/index.md) - 
-- [`d2s_full_table`](d2s_full_table/index.md) - 
-- [`d2s_intrinsics`](d2s_intrinsics/index.md) - 
-- [`digit_table`](digit_table/index.md) - 
-- [`f2s`](f2s/index.md) - 
-- [`f2s_intrinsics`](f2s_intrinsics/index.md) - 
-- [`pretty`](pretty/index.md) - 
-- [`raw`](raw/index.md) - Unsafe functions that mirror the API of the C implementation of Ryū.
+- [`buffer`](buffer/index.md)
+- [`common`](common/index.md)
+- [`d2s`](d2s/index.md)
+- [`d2s_full_table`](d2s_full_table/index.md)
+- [`d2s_intrinsics`](d2s_intrinsics/index.md)
+- [`digit_table`](digit_table/index.md)
+- [`f2s`](f2s/index.md)
+- [`f2s_intrinsics`](f2s_intrinsics/index.md)
+- [`pretty`](pretty/index.md)
+- [`raw`](raw/index.md) — Unsafe functions that mirror the API of the C implementation of Ryū.
 
 ## Structs
 
@@ -167,4 +167,21 @@ assert_eq!(printed, "1.234");
 - <span id="buffer-default"></span>`fn default() -> Self`
 
 ## Traits
+
+### `Float`
+
+```rust
+trait Float: Sealed { ... }
+```
+
+A floating point number, f32 or f64, that can be written into a
+[`ryu::Buffer`][Buffer].
+
+This trait is sealed and cannot be implemented for types outside of the
+`ryu` crate.
+
+#### Implementors
+
+- `f32`
+- `f64`
 

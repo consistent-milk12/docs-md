@@ -88,14 +88,14 @@ fn find_task<T>(
 | Item | Kind | Description |
 |------|------|-------------|
 | [`deque`](#deque) | mod |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | enum |  |
+| [`Injector`](#injector) | struct |  |
+| [`Stealer`](#stealer) | struct |  |
+| [`Worker`](#worker) | struct |  |
+| [`Steal`](#steal) | enum |  |
 
 ## Modules
 
-- [`deque`](deque/index.md) - 
+- [`deque`](deque/index.md)
 
 ## Structs
 

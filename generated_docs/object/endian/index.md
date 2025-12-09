@@ -555,13 +555,15 @@ This trait does not require that the endianness is known at compile time.
 
   Construct a specification for the endianness of some values.
 
-- `fn from_little_endian(little_endian: bool) -> Option<Self>`
-
-  Construct a specification for the endianness of some values.
-
 - `fn is_big_endian(self) -> bool`
 
   Return true for big endian byte order.
+
+#### Provided Methods
+
+- `fn from_little_endian(little_endian: bool) -> Option<Self>`
+
+  Construct a specification for the endianness of some values.
 
 - `fn is_little_endian(self) -> bool`
 
@@ -662,6 +664,12 @@ This trait does not require that the endianness is known at compile time.
 - `fn write_i64_bytes(self, n: i64) -> [u8; 8]`
 
   Converts an unaligned signed 64 bit integer from native endian.
+
+#### Implementors
+
+- [`BigEndian`](../index.md)
+- [`Endianness`](../index.md)
+- [`LittleEndian`](../index.md)
 
 ## Type Aliases
 

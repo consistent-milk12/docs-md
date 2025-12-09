@@ -93,9 +93,9 @@ code it is convenient for a human to read and debug.
   - [`ident_fragment`](#ident_fragment)
   - [`to_tokens`](#to_tokens)
 - [Traits](#traits)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`TokenStreamExt`](#tokenstreamext)
+  - [`IdentFragment`](#identfragment)
+  - [`ToTokens`](#totokens)
 - [Macros](#macros)
   - [`__quote!`](#__quote)
   - [`__quote_spanned!`](#__quote_spanned)
@@ -111,9 +111,9 @@ code it is convenient for a human to read and debug.
 | [`format`](#format) | mod |  |
 | [`ident_fragment`](#ident_fragment) | mod |  |
 | [`to_tokens`](#to_tokens) | mod |  |
-| [`unnamed`](#unnamed) | trait |  |
-| [`unnamed`](#unnamed) | trait |  |
-| [`unnamed`](#unnamed) | trait |  |
+| [`TokenStreamExt`](#tokenstreamext) | trait |  |
+| [`IdentFragment`](#identfragment) | trait |  |
+| [`ToTokens`](#totokens) | trait |  |
 | [`__quote!`](#__quote) | macro |  |
 | [`__quote_spanned!`](#__quote_spanned) | macro |  |
 | [`format_ident!`](#format_ident) | macro | Formatting macro for constructing `Ident`s. |
@@ -122,12 +122,146 @@ code it is convenient for a human to read and debug.
 
 ## Modules
 
-- [`ext`](ext/index.md) - 
-- [`format`](format/index.md) - 
-- [`ident_fragment`](ident_fragment/index.md) - 
-- [`to_tokens`](to_tokens/index.md) - 
+- [`ext`](ext/index.md)
+- [`format`](format/index.md)
+- [`ident_fragment`](ident_fragment/index.md)
+- [`to_tokens`](to_tokens/index.md)
 
 ## Traits
+
+### `TokenStreamExt`
+
+```rust
+trait TokenStreamExt: private::Sealed { ... }
+```
+
+TokenStream extension trait with methods for appending tokens.
+
+This trait is sealed and cannot be implemented outside of the `quote` crate.
+
+#### Required Methods
+
+- `fn append<U>(&mut self, token: U)`
+
+  For use by `ToTokens` implementations.
+
+- `fn append_all<I>(&mut self, iter: I)`
+
+  For use by `ToTokens` implementations.
+
+- `fn append_separated<I, U>(&mut self, iter: I, op: U)`
+
+  For use by `ToTokens` implementations.
+
+- `fn append_terminated<I, U>(&mut self, iter: I, term: U)`
+
+  For use by `ToTokens` implementations.
+
+#### Implementors
+
+- `proc_macro2::TokenStream`
+
+### `IdentFragment`
+
+```rust
+trait IdentFragment { ... }
+```
+
+Specialized formatting trait used by `format_ident!`.
+
+[`Ident`](../proc_macro2/index.md) arguments formatted using this trait will have their `r#` prefix
+stripped, if present.
+
+See `format_ident!` for more information.
+
+
+#### Required Methods
+
+- `fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+  Format this value as an identifier fragment.
+
+#### Provided Methods
+
+- `fn span(&self) -> Option<Span>`
+
+  Span associated with this `IdentFragment`.
+
+#### Implementors
+
+- `&T`
+- `&mut T`
+- `String`
+- `alloc::borrow::Cow<'_, T>`
+- `bool`
+- `char`
+- `proc_macro2::Ident`
+- `str`
+- `u128`
+- `u16`
+- `u32`
+- `u64`
+- `u8`
+- `usize`
+
+### `ToTokens`
+
+```rust
+trait ToTokens { ... }
+```
+
+Types that can be interpolated inside a `quote!` invocation.
+
+#### Required Methods
+
+- `fn to_tokens(&self, tokens: &mut TokenStream)`
+
+  Write `self` to the given `TokenStream`.
+
+#### Provided Methods
+
+- `fn to_token_stream(&self) -> TokenStream`
+
+  Convert `self` directly into a `TokenStream` object.
+
+- `fn into_token_stream(self) -> TokenStream`
+
+  Convert `self` directly into a `TokenStream` object.
+
+#### Implementors
+
+- `&T`
+- `&mut T`
+- `Box<T>`
+- `Option<T>`
+- `String`
+- `alloc::borrow::Cow<'a, T>`
+- `alloc::rc::Rc<T>`
+- `bool`
+- `char`
+- `f32`
+- `f64`
+- `i128`
+- `i16`
+- `i32`
+- `i64`
+- `i8`
+- `isize`
+- `proc_macro2::Group`
+- `proc_macro2::Ident`
+- `proc_macro2::Literal`
+- `proc_macro2::Punct`
+- `proc_macro2::TokenStream`
+- `proc_macro2::TokenTree`
+- `std::ffi::CStr`
+- `std::ffi::CString`
+- `str`
+- `u128`
+- `u16`
+- `u32`
+- `u64`
+- `u8`
+- `usize`
 
 ## Macros
 

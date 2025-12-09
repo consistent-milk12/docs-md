@@ -995,8 +995,8 @@
 
 ## Modules
 
-- [`b64`](b64/index.md) - 64-bit specific definitions for linux-like values
-- [`x86_64`](x86_64/index.md) - x86_64-specific definitions for 64-bit linux-like values
+- [`b64`](b64/index.md) — 64-bit specific definitions for linux-like values
+- [`x86_64`](x86_64/index.md) — x86_64-specific definitions for 64-bit linux-like values
 
 ## Structs
 

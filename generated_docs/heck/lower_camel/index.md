@@ -19,7 +19,7 @@
 struct AsLowerCamelCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a lower camel case conversion in [`fmt::Display`](../../miette_derive/fmt/index.md).
+This wrapper performs a lower camel case conversion in [`fmt::Display`](../../miette_derive/index.md).
 
 ## Example:
 
@@ -67,4 +67,8 @@ assert_eq!(sentence.to_lower_camel_case(), "itIsWeWhoBuiltThesePalacesAndCities"
 - `fn to_lower_camel_case(&self) -> <Self as >::Owned`
 
   Convert this type to lower camel case.
+
+#### Implementors
+
+- `str`
 

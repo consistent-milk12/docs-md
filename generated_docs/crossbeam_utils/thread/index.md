@@ -145,7 +145,7 @@ thread::scope(|s| {
 
 ## Modules
 
-- [`unix`](unix/index.md) - Unix-specific extensions.
+- [`unix`](unix/index.md) — Unix-specific extensions.
 
 ## Structs
 

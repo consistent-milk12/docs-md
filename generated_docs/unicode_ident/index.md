@@ -236,11 +236,11 @@ this data structure is straight-line code with no need for branching.
 | [`tables`](#tables) | mod |  |
 | [`is_xid_start`](#is_xid_start) | fn | Whether the character has the Unicode property XID\_Start. |
 | [`is_xid_continue`](#is_xid_continue) | fn | Whether the character has the Unicode property XID\_Continue. |
-| [`unnamed`](#unnamed) | const |  |
+| [`UNICODE_VERSION`](#unicode_version) | const |  |
 
 ## Modules
 
-- [`tables`](tables/index.md) - 
+- [`tables`](tables/index.md)
 
 ## Functions
 

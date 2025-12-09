@@ -535,7 +535,7 @@ XTerm 256-bit colors. Not as widely supported as standard ANSI but contains 240 
 
 ## Modules
 
-- [`dynamic`](dynamic/index.md) - 
+- [`dynamic`](dynamic/index.md)
 
 ## Structs
 

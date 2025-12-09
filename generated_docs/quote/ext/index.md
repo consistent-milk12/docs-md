@@ -13,7 +13,7 @@
 
 ## Modules
 
-- [`private`](private/index.md) - 
+- [`private`](private/index.md)
 
 ## Traits
 
@@ -44,4 +44,8 @@ This trait is sealed and cannot be implemented outside of the `quote` crate.
 - `fn append_terminated<I, U>(&mut self, iter: I, term: U)`
 
   For use by `ToTokens` implementations.
+
+#### Implementors
+
+- `proc_macro2::TokenStream`
 

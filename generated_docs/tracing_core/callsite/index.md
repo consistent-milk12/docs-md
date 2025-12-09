@@ -136,8 +136,8 @@ additional performance optimizations.
 
 ## Modules
 
-- [`private`](private/index.md) - 
-- [`dispatchers`](dispatchers/index.md) - 
+- [`private`](private/index.md)
+- [`dispatchers`](dispatchers/index.md)
 
 ## Structs
 
@@ -261,6 +261,10 @@ callsites.
 - `fn metadata(&self) -> &Metadata<'_>`
 
   Returns the [`metadata`](../metadata/index.md) associated with the callsite.
+
+#### Implementors
+
+- [`DefaultCallsite`](#defaultcallsite)
 
 ## Functions
 

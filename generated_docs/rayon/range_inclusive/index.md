@@ -34,7 +34,7 @@ assert_eq!((0..=100).sum::<u64>(), r);
 
 ## Modules
 
-- [`private`](private/index.md) - These traits help drive integer type inference. Without them, an unknown `{integer}` type only
+- [`private`](private/index.md) — These traits help drive integer type inference. Without them, an unknown `{integer}` type only
 
 ## Structs
 
@@ -100,9 +100,9 @@ assert_eq!(p, s);
 
 - <span id="iter-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl<T: RangeInteger> ParallelIterator for Iter<T>`
+##### `impl ParallelIterator for Iter<char>`
 
-- <span id="iter-item"></span>`type Item = T`
+- <span id="iter-item"></span>`type Item = char`
 
 - <span id="iter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 

@@ -9,13 +9,30 @@ Implementation block rendering for documentation generation.
 This module provides the [`ImplRenderer`](#implrenderer) struct which handles rendering
 impl blocks (both inherent and trait implementations) to markdown format.
 
+## Contents
+
+- [Structs](#structs)
+  - [`ImplRenderer`](#implrenderer)
+- [Functions](#functions)
+  - [`is_trivial_derive_impl`](#is_trivial_derive_impl)
+  - [`get_trivial_derive_description`](#get_trivial_derive_description)
+  - [`is_blanket_impl`](#is_blanket_impl)
+- [Constants](#constants)
+  - [`BLANKET_TRAITS`](#blanket_traits)
+  - [`TRIVIAL_DERIVE_TRAITS`](#trivial_derive_traits)
+  - [`TRIVIAL_DERIVE_DESCRIPTIONS`](#trivial_derive_descriptions)
+
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
 | [`ImplRenderer`](#implrenderer) | struct | Renders impl blocks to markdown. |
+| [`is_trivial_derive_impl`](#is_trivial_derive_impl) | fn | Check if an impl block is for a trivial derive trait. |
+| [`get_trivial_derive_description`](#get_trivial_derive_description) | fn | Get the description for a trivial derive trait. |
 | [`is_blanket_impl`](#is_blanket_impl) | fn | Check if an impl block is for a blanket trait that should be filtered. |
 | [`BLANKET_TRAITS`](#blanket_traits) | const | Blanket trait implementations to filter from output. |
+| [`TRIVIAL_DERIVE_TRAITS`](#trivial_derive_traits) | const | Trivial derive trait implementations that can be collapsed. |
+| [`TRIVIAL_DERIVE_DESCRIPTIONS`](#trivial_derive_descriptions) | const | Short descriptions for trivial derive traits, used in summary tables. |
 
 ## Structs
 
@@ -62,6 +79,8 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 - <span id="implrenderer-render-impl-blocks"></span>`fn render_impl_blocks(&self, md: &mut String, item_id: Id)`
 
+- <span id="implrenderer-render-trivial-derives-collapsed"></span>`fn render_trivial_derives_collapsed(md: &mut String, impls: &[&&Impl])`
+
 - <span id="implrenderer-render-trait-impl"></span>`fn render_trait_impl(&self, md: &mut String, impl_block: &Impl)`
 
 - <span id="implrenderer-render-impl-methods"></span>`fn render_impl_methods(&self, md: &mut String, impl_block: &Impl)`
@@ -94,6 +113,35 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 ## Functions
 
+### `is_trivial_derive_impl`
+
+```rust
+fn is_trivial_derive_impl(impl_block: &rustdoc_types::Impl) -> bool
+```
+
+Check if an impl block is for a trivial derive trait.
+
+Returns `true` if the impl is for one of the commonly derived traits
+`(Clone, Copy, Debug, Default, PartialEq, Eq, Hash, PartialOrd, Ord)`.
+
+# Examples
+
+```rust
+use rustdoc_types::Impl;
+// For an impl block with trait "Clone", returns true
+// For an impl block with trait "Display", returns false
+```
+
+### `get_trivial_derive_description`
+
+```rust
+fn get_trivial_derive_description(trait_name: &str) -> Option<&'static str>
+```
+
+Get the description for a trivial derive trait.
+
+Returns `None` if the trait is not in the trivial derives list.
+
 ### `is_blanket_impl`
 
 ```rust
@@ -117,4 +165,34 @@ Blanket trait implementations to filter from output.
 
 These are automatically derived by the compiler and add noise to documentation
 without providing useful information. Users who want them can use `--include-blanket-impls`.
+
+### `TRIVIAL_DERIVE_TRAITS`
+
+```rust
+const TRIVIAL_DERIVE_TRAITS: &[&str];
+```
+
+Trivial derive trait implementations that can be collapsed.
+
+These are traits commonly derived via `#[derive(...)]` that have standard,
+predictable implementations. When `RenderConfig.hide_trivial_derives` is enabled,
+these are grouped into a collapsible `<details>` block with a summary table.
+
+The list includes:
+- **Cloning**: `Clone`, `Copy`
+- **Formatting**: `Debug`
+- **Default values**: `Default`
+- **Equality**: `PartialEq`, `Eq`
+- **Hashing**: `Hash`
+- **Ordering**: `PartialOrd`, `Ord`
+
+### `TRIVIAL_DERIVE_DESCRIPTIONS`
+
+```rust
+const TRIVIAL_DERIVE_DESCRIPTIONS: &[(&str, &str)];
+```
+
+Short descriptions for trivial derive traits, used in summary tables.
+
+Maps trait names to brief descriptions for the collapsible summary table.
 

@@ -29,10 +29,6 @@ Anything that implements this trait can be used a draw target via `ProgressDrawT
 
   Return the terminal width
 
-- `fn height(&self) -> u16`
-
-  Return the terminal height
-
 - `fn move_cursor_up(&self, n: usize) -> io::Result<()>`
 
   Move the cursor up by `n` lines
@@ -62,4 +58,14 @@ Anything that implements this trait can be used a draw target via `ProgressDrawT
   Clear the current line and reset the cursor to beginning of the line
 
 - `fn flush(&self) -> io::Result<()>`
+
+#### Provided Methods
+
+- `fn height(&self) -> u16`
+
+  Return the terminal height
+
+#### Implementors
+
+- `console::Term`
 

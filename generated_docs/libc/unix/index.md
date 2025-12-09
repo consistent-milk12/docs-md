@@ -3249,8 +3249,8 @@ according to the platform in question.
 
 ## Modules
 
-- [`linux_like`](linux_like/index.md) - 
-- [`linux`](linux/index.md) - Linux-specific definitions for linux-like values
+- [`linux_like`](linux_like/index.md)
+- [`linux`](linux/index.md) — Linux-specific definitions for linux-like values
 
 ## Structs
 

@@ -550,7 +550,7 @@ enables `alloc` and `nfa-thompson`.
   - [`nfa`](#nfa)
   - [`util`](#util)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
+  - [`PatternID`](#patternid)
   - [`Input`](#input)
   - [`Span`](#span)
   - [`HalfMatch`](#halfmatch)
@@ -574,7 +574,7 @@ enables `alloc` and `nfa-thompson`.
 | [`meta`](#meta) | mod | Provides a regex matcher that composes several other regex matchers |
 | [`nfa`](#nfa) | mod | Provides non-deterministic finite automata (NFA) and regex engines that use |
 | [`util`](#util) | mod | A collection of modules that provide APIs that are useful across many regex |
-| [`unnamed`](#unnamed) | struct |  |
+| [`PatternID`](#patternid) | struct |  |
 | [`Input`](#input) | struct | The parameters for a regex search including the haystack to search. |
 | [`Span`](#span) | struct | A representation of a span reported by a regex engine. |
 | [`HalfMatch`](#halfmatch) | struct | A representation of "half" of a match reported by a DFA. |
@@ -589,12 +589,12 @@ enables `alloc` and `nfa-thompson`.
 
 ## Modules
 
-- [`macros`](macros/index.md) - 
-- [`dfa`](dfa/index.md) - A module for building and searching with deterministic finite automata (DFAs).
-- [`hybrid`](hybrid/index.md) - A module for building and searching with lazy deterministic finite automata
-- [`meta`](meta/index.md) - Provides a regex matcher that composes several other regex matchers
-- [`nfa`](nfa/index.md) - Provides non-deterministic finite automata (NFA) and regex engines that use
-- [`util`](util/index.md) - A collection of modules that provide APIs that are useful across many regex
+- [`macros`](macros/index.md)
+- [`dfa`](dfa/index.md) — A module for building and searching with deterministic finite automata (DFAs).
+- [`hybrid`](hybrid/index.md) — A module for building and searching with lazy deterministic finite automata
+- [`meta`](meta/index.md) — Provides a regex matcher that composes several other regex matchers
+- [`nfa`](nfa/index.md) — Provides non-deterministic finite automata (NFA) and regex engines that use
+- [`util`](util/index.md) — A collection of modules that provide APIs that are useful across many regex
 
 ## Structs
 

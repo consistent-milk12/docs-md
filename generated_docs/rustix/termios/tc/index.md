@@ -7,7 +7,7 @@
 ## Contents
 
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
+  - [`Pid`](#pid)
 - [Functions](#functions)
   - [`tcgetattr`](#tcgetattr)
   - [`tcgetwinsize`](#tcgetwinsize)
@@ -25,7 +25,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`unnamed`](#unnamed) | struct |  |
+| [`Pid`](#pid) | struct |  |
 | [`tcgetattr`](#tcgetattr) | fn | `tcgetattr(fd)`—Get terminal attributes. |
 | [`tcgetwinsize`](#tcgetwinsize) | fn | `tcgetwinsize(fd)`—Get the current terminal window size. |
 | [`tcgetpgrp`](#tcgetpgrp) | fn | `tcgetpgrp(fd)`—Get the terminal foreground process group. |

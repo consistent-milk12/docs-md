@@ -14,8 +14,8 @@
   - [`FLOAT_MANTISSA_BITS`](#float_mantissa_bits)
   - [`FLOAT_EXPONENT_BITS`](#float_exponent_bits)
   - [`FLOAT_BIAS`](#float_bias)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`FLOAT_POW5_BITCOUNT`](#float_pow5_bitcount)
+  - [`FLOAT_POW5_INV_BITCOUNT`](#float_pow5_inv_bitcount)
 
 ## Quick Reference
 
@@ -26,8 +26,8 @@
 | [`FLOAT_MANTISSA_BITS`](#float_mantissa_bits) | const |  |
 | [`FLOAT_EXPONENT_BITS`](#float_exponent_bits) | const |  |
 | [`FLOAT_BIAS`](#float_bias) | const |  |
-| [`unnamed`](#unnamed) | const |  |
-| [`unnamed`](#unnamed) | const |  |
+| [`FLOAT_POW5_BITCOUNT`](#float_pow5_bitcount) | const |  |
+| [`FLOAT_POW5_INV_BITCOUNT`](#float_pow5_inv_bitcount) | const |  |
 
 ## Structs
 

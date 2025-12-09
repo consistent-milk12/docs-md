@@ -47,7 +47,7 @@ See also [`Subcommand`](../index.md) and [`Args`](../index.md).
 
 </div>
 
-#### Required Methods
+#### Provided Methods
 
 - `fn parse() -> Self`
 
@@ -73,6 +73,10 @@ See also [`Subcommand`](../index.md) and [`Args`](../index.md).
 
   Update from iterator, return Err on error.
 
+#### Implementors
+
+- `Box<T>`
+
 ### `CommandFactory`
 
 ```rust
@@ -93,6 +97,10 @@ Derived as part of [`Parser`](../index.md).
 
   Build a [`Command`](../index.md) that can update `self`.
 
+#### Implementors
+
+- `Box<T>`
+
 ### `FromArgMatches`
 
 ```rust
@@ -109,17 +117,25 @@ Derived as part of [`Parser`](../index.md), [`Args`](../index.md), and [`Subcomm
 
   Instantiate `Self` from [`ArgMatches`](../index.md), parsing the arguments as needed.
 
-- `fn from_arg_matches_mut(matches: &mut ArgMatches) -> Result<Self, Error>`
-
-  Instantiate `Self` from [`ArgMatches`](../index.md), parsing the arguments as needed.
-
 - `fn update_from_arg_matches(&mut self, matches: &ArgMatches) -> Result<(), Error>`
 
   Assign values from `ArgMatches` to `self`.
 
+#### Provided Methods
+
+- `fn from_arg_matches_mut(matches: &mut ArgMatches) -> Result<Self, Error>`
+
+  Instantiate `Self` from [`ArgMatches`](../index.md), parsing the arguments as needed.
+
 - `fn update_from_arg_matches_mut(&mut self, matches: &mut ArgMatches) -> Result<(), Error>`
 
   Assign values from `ArgMatches` to `self`.
+
+#### Implementors
+
+- `()`
+- `Box<T>`
+- `std::convert::Infallible`
 
 ### `Args`
 
@@ -143,10 +159,6 @@ with:
 
 #### Required Methods
 
-- `fn group_id() -> Option<crate::Id>`
-
-  Report the `ArgGroup::id` for this set of arguments
-
 - `fn augment_args(cmd: Command) -> Command`
 
   Append to [`Command`](../index.md) so it can instantiate `Self` via
@@ -154,6 +166,17 @@ with:
 - `fn augment_args_for_update(cmd: Command) -> Command`
 
   Append to [`Command`](../index.md) so it can instantiate `self` via
+
+#### Provided Methods
+
+- `fn group_id() -> Option<crate::Id>`
+
+  Report the `ArgGroup::id` for this set of arguments
+
+#### Implementors
+
+- `()`
+- `Box<T>`
 
 ### `Subcommand`
 
@@ -190,6 +213,12 @@ with:
 
   Test whether `Self` can parse a specific subcommand
 
+#### Implementors
+
+- `()`
+- `Box<T>`
+- `std::convert::Infallible`
+
 ### `ValueEnum`
 
 ```rust
@@ -215,13 +244,19 @@ When deriving [`Parser`](../index.md), a field whose type implements `ValueEnum`
 
   All possible argument values, in display order.
 
+- `fn to_possible_value(&self) -> Option<PossibleValue>`
+
+  The canonical argument value.
+
+#### Provided Methods
+
 - `fn from_str(input: &str, ignore_case: bool) -> Result<Self, String>`
 
   Parse an argument into `Self`.
 
-- `fn to_possible_value(&self) -> Option<PossibleValue>`
+#### Implementors
 
-  The canonical argument value.
+- [`ColorChoice`](../index.md)
 
 ## Functions
 

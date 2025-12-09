@@ -80,9 +80,9 @@ assert_eq!(map.len(), 6);
 
 #### Implementations
 
-- <span id="rawentrybuildermut-from-hash"></span>`fn from_hash<F>(self, hash: u64, is_match: F) -> RawEntryMut<'a, K, V, S, A>` — [`RawEntryMut`](#rawentrymut)
+- <span id="rawentrybuildermut-from-key"></span>`fn from_key<Q>(self, k: &Q) -> RawEntryMut<'a, K, V, S, A>` — [`RawEntryMut`](#rawentrymut)
 
-- <span id="rawentrybuildermut-search"></span>`fn search<F>(self, hash: u64, is_match: F) -> RawEntryMut<'a, K, V, S, A>` — [`RawEntryMut`](#rawentrymut)
+- <span id="rawentrybuildermut-from-key-hashed-nocheck"></span>`fn from_key_hashed_nocheck<Q>(self, hash: u64, k: &Q) -> RawEntryMut<'a, K, V, S, A>` — [`RawEntryMut`](#rawentrymut)
 
 #### Trait Implementations
 
@@ -341,7 +341,7 @@ enum RawEntryMut<'a, K, V, S, A: Allocator> {
 
 A view into a single entry in a map, which may either be vacant or occupied.
 
-This is a lower-level version of [`Entry`](../hash_set/index.md).
+This is a lower-level version of [`Entry`](../hash_table/index.md).
 
 This `enum` is constructed through the `raw_entry_mut` method on [`HashMap`](../index.md),
 then calling one of the methods of that [`RawEntryBuilderMut`](#rawentrybuildermut).

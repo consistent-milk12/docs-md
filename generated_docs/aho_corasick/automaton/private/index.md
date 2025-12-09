@@ -25,3 +25,11 @@ conservative step.
 trait Sealed { ... }
 ```
 
+#### Implementors
+
+- [`DFA`](../../dfa/index.md)
+- [`NFA`](../../nfa/contiguous/index.md)
+- [`NFA`](../../nfa/noncontiguous/index.md)
+- `&'a T`
+- `alloc::sync::Arc<dyn AcAutomaton>`
+

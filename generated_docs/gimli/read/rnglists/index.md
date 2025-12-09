@@ -49,7 +49,7 @@ The raw contents of the `.debug_ranges` section.
 
 #### Implementations
 
-- <span id="debugranges-new"></span>`fn new(section: &'input [u8], endian: Endian) -> Self`
+- <span id="debugranges-borrow"></span>`fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugRanges<R>` — [`DebugRanges`](../index.md)
 
 #### Trait Implementations
 
@@ -123,13 +123,7 @@ The DWARF data found in `.debug_ranges` and `.debug_rnglists` sections.
 
 #### Implementations
 
-- <span id="rangelists-new"></span>`fn new(debug_ranges: DebugRanges<R>, debug_rnglists: DebugRngLists<R>) -> RangeLists<R>` — [`DebugRanges`](../index.md), [`DebugRngLists`](../index.md), [`RangeLists`](../index.md)
-
-- <span id="rangelists-debug-ranges"></span>`fn debug_ranges(&self) -> &DebugRanges<R>` — [`DebugRanges`](../index.md)
-
-- <span id="rangelists-set-debug-ranges"></span>`fn set_debug_ranges(&mut self, debug_ranges: DebugRanges<R>)` — [`DebugRanges`](../index.md)
-
-- <span id="rangelists-debug-rnglists"></span>`fn debug_rnglists(&self) -> &DebugRngLists<R>` — [`DebugRngLists`](../index.md)
+- <span id="rangelists-borrow"></span>`fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> RangeLists<R>` — [`RangeLists`](../index.md)
 
 #### Trait Implementations
 

@@ -27,13 +27,13 @@ if let Some((Width(w), Height(h))) = size {
 | [`unix`](#unix) | mod |  |
 | [`Width`](#width) | struct |  |
 | [`Height`](#height) | struct |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
+| [`terminal_size`](#terminal_size) | fn |  |
+| [`terminal_size_of`](#terminal_size_of) | fn |  |
+| [`terminal_size_using_fd`](#terminal_size_using_fd) | fn |  |
 
 ## Modules
 
-- [`unix`](unix/index.md) - 
+- [`unix`](unix/index.md)
 
 ## Structs
 

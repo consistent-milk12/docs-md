@@ -18,3 +18,7 @@
 trait Sealed { ... }
 ```
 
+#### Implementors
+
+- `proc_macro2::TokenStream`
+

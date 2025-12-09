@@ -26,7 +26,7 @@ This module principally defines two types:
 
 ## Modules
 
-- [`is_word_char`](is_word_char/index.md) - A module that looks for word codepoints using regex-syntax's data tables.
+- [`is_word_char`](is_word_char/index.md) — A module that looks for word codepoints using regex-syntax's data tables.
 
 ## Structs
 

@@ -18,7 +18,7 @@ values that are shared safely across multiple threads simultaneously.
 
 ## Modules
 
-- [`lazy`](lazy/index.md) - 
+- [`lazy`](lazy/index.md)
 
 ## Structs
 
@@ -71,7 +71,7 @@ assert_eq!(expected, RE.find(b"zzzfoo12345barzzz"));
 
 #### Implementations
 
-- <span id="lazy-new"></span>`const fn new(create: F) -> Lazy<T, F>` — [`Lazy`](#lazy)
+- <span id="lazy-get"></span>`fn get(this: &Lazy<T, F>) -> &T` — [`Lazy`](#lazy)
 
 #### Trait Implementations
 

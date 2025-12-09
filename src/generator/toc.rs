@@ -33,7 +33,7 @@ pub struct TocEntry {
     pub anchor: String,
 
     /// Child entries for nested navigation.
-    pub children: Vec<TocEntry>,
+    pub children: Vec<Self>,
 }
 
 impl TocEntry {
@@ -63,7 +63,7 @@ impl TocEntry {
     pub fn with_children(
         title: impl Into<String>,
         anchor: impl Into<String>,
-        children: Vec<TocEntry>,
+        children: Vec<Self>,
     ) -> Self {
         Self {
             title: title.into(),
@@ -75,7 +75,7 @@ impl TocEntry {
     /// Count total items in this entry and all descendants.
     #[must_use]
     pub fn count(&self) -> usize {
-        1 + self.children.iter().map(TocEntry::count).sum::<usize>()
+        1 + self.children.iter().map(Self::count).sum::<usize>()
     }
 }
 
@@ -125,7 +125,7 @@ impl TocGenerator {
         md.push_str("## Contents\n\n");
 
         for entry in entries {
-            self.render_entry(&mut md, entry, 0);
+            Self::render_entry(&mut md, entry, 0);
         }
 
         md.push('\n');
@@ -133,12 +133,12 @@ impl TocGenerator {
     }
 
     /// Render a single TOC entry with proper indentation.
-    fn render_entry(&self, md: &mut String, entry: &TocEntry, depth: usize) {
+    fn render_entry(md: &mut String, entry: &TocEntry, depth: usize) {
         let indent = "  ".repeat(depth);
         _ = writeln!(md, "{indent}- [{}](#{})", entry.title, entry.anchor);
 
         for child in &entry.children {
-            self.render_entry(md, child, depth + 1);
+            Self::render_entry(md, child, depth + 1);
         }
     }
 }

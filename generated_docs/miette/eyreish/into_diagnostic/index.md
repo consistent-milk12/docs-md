@@ -59,12 +59,12 @@ trait IntoDiagnostic<T, E> { ... }
 ```
 
 Convenience trait that adds a [`.into_diagnostic()`](IntoDiagnostic::into_diagnostic) method that converts a type implementing
-[`std::error::Error`](../../../addr2line/index.md) to a [`Result<T, Report>`](../../../clap_builder/error/index.md).
+[`std::error::Error`](../../../cargo_docs_md/error/index.md) to a [`Result<T, Report>`](../../../clap_builder/error/index.md).
 
 ## Warning
 
 Calling this on a type implementing [`Diagnostic`](../../index.md) will reduce it to the common denominator of
-[`std::error::Error`](../../../addr2line/index.md). Meaning all extra information provided by [`Diagnostic`](../../index.md) will be
+[`std::error::Error`](../../../cargo_docs_md/error/index.md). Meaning all extra information provided by [`Diagnostic`](../../index.md) will be
 inaccessible. If you have a type implementing [`Diagnostic`](../../index.md) consider simply returning it or using
 `Into` or the [`Try`](std::ops::Try) operator (`?`).
 
@@ -72,5 +72,9 @@ inaccessible. If you have a type implementing [`Diagnostic`](../../index.md) con
 
 - `fn into_diagnostic(self) -> Result<T, Report>`
 
-  Converts [`Result`](../../../clap_builder/error/index.md) types that return regular [`std::error::Error`](../../../addr2line/index.md)s
+  Converts [`Result`](../../../clap_builder/error/index.md) types that return regular [`std::error::Error`](../../../cargo_docs_md/error/index.md)s
+
+#### Implementors
+
+- `Result<T, E>`
 

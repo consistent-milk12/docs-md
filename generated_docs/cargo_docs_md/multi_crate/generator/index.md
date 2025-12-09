@@ -150,7 +150,7 @@ resolve items across crate boundaries.
 
 - <span id="multicratemodulerenderer-render-enums-section"></span>`fn render_enums_section(&self, md: &mut String, enums: &[(&Id, &Item)])`
 
-- <span id="multicratemodulerenderer-render-traits-section"></span>`fn render_traits_section(&self, md: &mut String, traits: &[&Item])`
+- <span id="multicratemodulerenderer-render-traits-section"></span>`fn render_traits_section(&self, md: &mut String, traits: &[(&Id, &Item)])`
 
 - <span id="multicratemodulerenderer-render-functions-section"></span>`fn render_functions_section(&self, md: &mut String, functions: &[&Item])`
 
@@ -162,15 +162,19 @@ resolve items across crate boundaries.
 
 - <span id="multicratemodulerenderer-get-item-name-and-summary"></span>`fn get_item_name_and_summary(item: &Item) -> (String, String)`
 
-- <span id="multicratemodulerenderer-build-toc-entries"></span>`fn build_toc_entries(&self, modules: &[&Item], structs: &[(&Id, &Item)], enums: &[(&Id, &Item)], traits: &[&Item], functions: &[&Item], types: &[&Item], constants: &[&Item], macros: &[&Item]) -> Vec<TocEntry>` — [`TocEntry`](../../generator/index.md)
+- <span id="multicratemodulerenderer-get-item-name"></span>`fn get_item_name(item: &Item) -> &str`
 
-- <span id="multicratemodulerenderer-build-quick-ref-entries"></span>`fn build_quick_ref_entries(&self, modules: &[&Item], structs: &[(&Id, &Item)], enums: &[(&Id, &Item)], traits: &[&Item], functions: &[&Item], types: &[&Item], constants: &[&Item], macros: &[&Item]) -> Vec<QuickRefEntry>` — [`QuickRefEntry`](../../generator/index.md)
+- <span id="multicratemodulerenderer-build-toc-entries"></span>`fn build_toc_entries(modules: &[&Item], structs: &[(&Id, &Item)], enums: &[(&Id, &Item)], traits: &[(&Id, &Item)], functions: &[&Item], types: &[&Item], constants: &[&Item], macros: &[&Item]) -> Vec<TocEntry>` — [`TocEntry`](../../generator/index.md)
+
+- <span id="multicratemodulerenderer-build-quick-ref-entries"></span>`fn build_quick_ref_entries(modules: &[&Item], structs: &[(&Id, &Item)], enums: &[(&Id, &Item)], traits: &[(&Id, &Item)], functions: &[&Item], types: &[&Item], constants: &[&Item], macros: &[&Item]) -> Vec<QuickRefEntry>` — [`QuickRefEntry`](../../generator/index.md)
 
 - <span id="multicratemodulerenderer-render-struct"></span>`fn render_struct(&self, md: &mut String, item_id: Id, item: &Item)`
 
 - <span id="multicratemodulerenderer-render-enum"></span>`fn render_enum(&self, md: &mut String, item_id: Id, item: &Item)`
 
-- <span id="multicratemodulerenderer-render-trait"></span>`fn render_trait(&self, md: &mut String, item: &Item)`
+- <span id="multicratemodulerenderer-render-trait"></span>`fn render_trait(&self, md: &mut String, item_id: Id, item: &Item)`
+
+- <span id="multicratemodulerenderer-render-trait-implementors"></span>`fn render_trait_implementors(&self, md: &mut String, trait_id: Id)`
 
 - <span id="multicratemodulerenderer-render-function"></span>`fn render_function(&self, md: &mut String, item: &Item)`
 
@@ -180,7 +184,7 @@ resolve items across crate boundaries.
 
 - <span id="multicratemodulerenderer-render-macro"></span>`fn render_macro(&self, md: &mut String, item: &Item)`
 
-- <span id="multicratemodulerenderer-expand-glob-reexport"></span>`fn expand_glob_reexport<'b>(&self, modules: &mut Vec<&'b Item>, structs: &mut Vec<(&'b Id, &'b Item)>, enums: &mut Vec<(&'b Id, &'b Item)>, traits: &mut Vec<&'b Item>, functions: &mut Vec<&'b Item>, types: &mut Vec<&'b Item>, constants: &mut Vec<&'b Item>, macros: &mut Vec<&'b Item>, use_item: &rustdoc_types::Use, seen_items: &mut HashSet<Id>)`
+- <span id="multicratemodulerenderer-expand-glob-reexport"></span>`fn expand_glob_reexport<'b>(&self, modules: &mut Vec<&'b Item>, structs: &mut Vec<(&'b Id, &'b Item)>, enums: &mut Vec<(&'b Id, &'b Item)>, traits: &mut Vec<(&'b Id, &'b Item)>, functions: &mut Vec<&'b Item>, types: &mut Vec<&'b Item>, constants: &mut Vec<&'b Item>, macros: &mut Vec<&'b Item>, use_item: &rustdoc_types::Use, seen_items: &mut HashSet<Id>)`
 
 - <span id="multicratemodulerenderer-render-impl-blocks"></span>`fn render_impl_blocks(&self, md: &mut String, item_id: Id, source_crate_name: Option<&str>)`
 

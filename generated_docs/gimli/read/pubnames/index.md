@@ -59,7 +59,7 @@ found in the `.debug_pubnames` section.
 
 #### Implementations
 
-- <span id="debugpubnames-items"></span>`fn items(&self) -> PubNamesEntryIter<R>` — [`PubNamesEntryIter`](../index.md)
+- <span id="debugpubnames-new"></span>`fn new(debug_pubnames_section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 

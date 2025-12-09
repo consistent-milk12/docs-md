@@ -68,6 +68,8 @@ the size that was read.
 
   Get a reference to a delimited `u8` slice which starts at range.start.
 
+#### Provided Methods
+
 - `fn read_bytes(self, offset: &mut u64, size: u64) -> result::Result<&'a [u8], ()>`
 
   Get a reference to a `u8` slice at the given offset, and update the offset.
@@ -87,6 +89,12 @@ the size that was read.
 - `fn read_slice_at<T: Pod>(self, offset: u64, count: usize) -> result::Result<&'a [T], ()>`
 
   Get a reference to a slice of a `Pod` type at the given offset.
+
+#### Implementors
+
+- [`ReadCacheRange`](../index.md)
+- `&'a ReadCache<R>`
+- `&'a [u8]`
 
 ## Type Aliases
 

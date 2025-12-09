@@ -281,7 +281,7 @@ trait MachHeader: Debug + Pod { ... }
 
 A trait for generic access to [`macho::MachHeader32`](../../../macho/index.md) and [`macho::MachHeader64`](../../../macho/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
 
@@ -292,6 +292,8 @@ A trait for generic access to [`macho::MachHeader32`](../../../macho/index.md) a
 - `type Section: 1`
 
 - `type Nlist: 1`
+
+#### Required Methods
 
 - `fn is_type_64(&self) -> bool`
 
@@ -319,6 +321,8 @@ A trait for generic access to [`macho::MachHeader32`](../../../macho/index.md) a
 
 - `fn flags(&self, endian: <Self as >::Endian) -> u32`
 
+#### Provided Methods
+
 - `fn parse<'data, R: ReadRef<'data>>(data: R, offset: u64) -> read::Result<&'data Self>`
 
   Read the file header.
@@ -332,6 +336,11 @@ A trait for generic access to [`macho::MachHeader32`](../../../macho/index.md) a
 - `fn uuid<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R, header_offset: u64) -> Result<Option<[u8; 16]>>`
 
   Return the UUID from the `LC_UUID` load command, if one is present.
+
+#### Implementors
+
+- [`MachHeader32`](../../../macho/index.md)
+- [`MachHeader64`](../../../macho/index.md)
 
 ## Type Aliases
 

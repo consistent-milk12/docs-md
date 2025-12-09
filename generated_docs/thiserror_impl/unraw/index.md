@@ -49,7 +49,7 @@ struct IdentUnraw(proc_macro2::Ident);
 
 ##### `impl PartialEq for IdentUnraw`
 
-- <span id="identunraw-eq"></span>`fn eq(&self, other: &str) -> bool`
+- <span id="identunraw-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl PartialOrd for IdentUnraw`
 

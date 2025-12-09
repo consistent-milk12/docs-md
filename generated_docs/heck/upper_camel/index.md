@@ -20,7 +20,7 @@
 struct AsUpperCamelCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a upper camel case conversion in [`fmt::Display`](../../miette_derive/fmt/index.md).
+This wrapper performs a upper camel case conversion in [`fmt::Display`](../../miette_derive/index.md).
 
 ## Example:
 
@@ -69,6 +69,10 @@ assert_eq!(sentence.to_upper_camel_case(), "WeAreNotInTheLeastAfraidOfRuins");
 
   Convert this type to upper camel case.
 
+#### Implementors
+
+- `str`
+
 ### `ToPascalCase`
 
 ```rust
@@ -83,4 +87,8 @@ documentation.
 - `fn to_pascal_case(&self) -> <Self as >::Owned`
 
   Convert this type to upper camel case.
+
+#### Implementors
+
+- `T`
 

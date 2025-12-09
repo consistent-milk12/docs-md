@@ -212,13 +212,21 @@ This trait represents a partially complete operation that can be resumed
 once a load of needed split DWARF data is completed or abandoned by the
 API consumer.
 
-#### Required Methods
+#### Associated Types
 
 - `type Output`
 
 - `type Buf: 1`
 
+#### Required Methods
+
 - `fn resume(self, input: Option<Arc<gimli::Dwarf<<Self as >::Buf>>>) -> LookupResult<Self>`
 
   Resumes the operation with the provided data.
+
+#### Implementors
+
+- [`LoopingLookup`](#loopinglookup)
+- [`MappedLookup`](#mappedlookup)
+- [`SimpleLookup`](#simplelookup)
 

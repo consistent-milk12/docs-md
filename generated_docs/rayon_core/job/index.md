@@ -300,3 +300,10 @@ deque is managed by the `thread_pool` module.
 
   Unsafe: this may be called from a different thread than the one
 
+#### Implementors
+
+- [`ArcJob`](#arcjob)
+- [`HeapJob`](#heapjob)
+- [`JobFifo`](#jobfifo)
+- [`StackJob`](#stackjob)
+

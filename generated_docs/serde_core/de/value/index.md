@@ -115,7 +115,7 @@ impl FromStr for Setting {
 
 ## Modules
 
-- [`private`](private/index.md) - 
+- [`private`](private/index.md)
 
 ## Structs
 
@@ -146,7 +146,7 @@ A minimal representation of all possible errors that can occur using the
 
 ##### `impl Error for Error`
 
-- <span id="error-description"></span>`fn description(&self) -> &str`
+- <span id="error-custom"></span>`fn custom<T>(msg: T) -> Self`
 
 ##### `impl PartialEq for Error`
 

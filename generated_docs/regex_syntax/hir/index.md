@@ -30,7 +30,7 @@ to its simplified structure.
   - [`translate`](#translate)
   - [`visitor`](#visitor)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
+  - [`CaseFoldError`](#casefolderror)
   - [`Error`](#error)
   - [`Hir`](#hir)
   - [`Literal`](#literal)
@@ -53,9 +53,9 @@ to its simplified structure.
   - [`Look`](#look)
   - [`Dot`](#dot)
 - [Traits](#traits)
-  - [`unnamed`](#unnamed)
+  - [`Visitor`](#visitor)
 - [Functions](#functions)
-  - [`unnamed`](#unnamed)
+  - [`visit`](#visit)
   - [`class_chars`](#class_chars)
   - [`class_bytes`](#class_bytes)
   - [`singleton_chars`](#singleton_chars)
@@ -71,7 +71,7 @@ to its simplified structure.
 | [`print`](#print) | mod | This module provides a regular expression printer for `Hir`. |
 | [`translate`](#translate) | mod | Defines a translator that converts an `Ast` to an `Hir`. |
 | [`visitor`](#visitor) | mod |  |
-| [`unnamed`](#unnamed) | struct |  |
+| [`CaseFoldError`](#casefolderror) | struct |  |
 | [`Error`](#error) | struct | An error that can occur while translating an `Ast` to a `Hir`. |
 | [`Hir`](#hir) | struct | A high-level intermediate representation (HIR) for a regular expression. |
 | [`Literal`](#literal) | struct | The high-level intermediate representation of a literal. |
@@ -92,8 +92,8 @@ to its simplified structure.
 | [`Class`](#class) | enum | The high-level intermediate representation of a character class. |
 | [`Look`](#look) | enum | The high-level intermediate representation for a look-around assertion. |
 | [`Dot`](#dot) | enum | A type describing the different flavors of `.`. |
-| [`unnamed`](#unnamed) | trait |  |
-| [`unnamed`](#unnamed) | fn |  |
+| [`Visitor`](#visitor) | trait |  |
+| [`visit`](#visit) | fn |  |
 | [`class_chars`](#class_chars) | fn | Given a sequence of HIR values where each value corresponds to a Unicode |
 | [`class_bytes`](#class_bytes) | fn | Given a sequence of HIR values where each value corresponds to a byte class |
 | [`singleton_chars`](#singleton_chars) | fn | Given a sequence of HIR values where each value corresponds to a literal |
@@ -102,11 +102,11 @@ to its simplified structure.
 
 ## Modules
 
-- [`interval`](interval/index.md) - 
-- [`literal`](literal/index.md) - Provides literal extraction from `Hir` expressions.
-- [`print`](print/index.md) - This module provides a regular expression printer for `Hir`.
-- [`translate`](translate/index.md) - Defines a translator that converts an `Ast` to an `Hir`.
-- [`visitor`](visitor/index.md) - 
+- [`interval`](interval/index.md)
+- [`literal`](literal/index.md) — Provides literal extraction from `Hir` expressions.
+- [`print`](print/index.md) — This module provides a regular expression printer for `Hir`.
+- [`translate`](translate/index.md) — Defines a translator that converts an `Ast` to an `Hir`.
+- [`visitor`](visitor/index.md)
 
 ## Structs
 
@@ -285,25 +285,13 @@ the `Properties` inlined into every `Hir` value to make it less noisy).
 
 #### Implementations
 
-- <span id="hir-empty"></span>`fn empty() -> Hir` — [`Hir`](#hir)
+- <span id="hir-kind"></span>`fn kind(&self) -> &HirKind` — [`HirKind`](#hirkind)
 
-- <span id="hir-fail"></span>`fn fail() -> Hir` — [`Hir`](#hir)
+- <span id="hir-into-kind"></span>`fn into_kind(self) -> HirKind` — [`HirKind`](#hirkind)
 
-- <span id="hir-literal"></span>`fn literal<B: Into<Box<[u8]>>>(lit: B) -> Hir` — [`Hir`](#hir)
+- <span id="hir-properties"></span>`fn properties(&self) -> &Properties` — [`Properties`](#properties)
 
-- <span id="hir-class"></span>`fn class(class: Class) -> Hir` — [`Class`](#class), [`Hir`](#hir)
-
-- <span id="hir-look"></span>`fn look(look: Look) -> Hir` — [`Look`](#look), [`Hir`](#hir)
-
-- <span id="hir-repetition"></span>`fn repetition(rep: Repetition) -> Hir` — [`Repetition`](#repetition), [`Hir`](#hir)
-
-- <span id="hir-capture"></span>`fn capture(capture: Capture) -> Hir` — [`Capture`](#capture), [`Hir`](#hir)
-
-- <span id="hir-concat"></span>`fn concat(subs: Vec<Hir>) -> Hir` — [`Hir`](#hir)
-
-- <span id="hir-alternation"></span>`fn alternation(subs: Vec<Hir>) -> Hir` — [`Hir`](#hir)
-
-- <span id="hir-dot"></span>`fn dot(dot: Dot) -> Hir` — [`Dot`](#dot), [`Hir`](#hir)
+- <span id="hir-into-parts"></span>`fn into_parts(self) -> (HirKind, Properties)` — [`HirKind`](#hirkind), [`Properties`](#properties)
 
 #### Trait Implementations
 
@@ -840,33 +828,21 @@ be cheap to call.
 
 #### Implementations
 
-- <span id="properties-minimum-len"></span>`fn minimum_len(&self) -> Option<usize>`
+- <span id="properties-empty"></span>`fn empty() -> Properties` — [`Properties`](#properties)
 
-- <span id="properties-maximum-len"></span>`fn maximum_len(&self) -> Option<usize>`
+- <span id="properties-literal"></span>`fn literal(lit: &Literal) -> Properties` — [`Literal`](#literal), [`Properties`](#properties)
 
-- <span id="properties-look-set"></span>`fn look_set(&self) -> LookSet` — [`LookSet`](#lookset)
+- <span id="properties-class"></span>`fn class(class: &Class) -> Properties` — [`Class`](#class), [`Properties`](#properties)
 
-- <span id="properties-look-set-prefix"></span>`fn look_set_prefix(&self) -> LookSet` — [`LookSet`](#lookset)
+- <span id="properties-look"></span>`fn look(look: Look) -> Properties` — [`Look`](#look), [`Properties`](#properties)
 
-- <span id="properties-look-set-prefix-any"></span>`fn look_set_prefix_any(&self) -> LookSet` — [`LookSet`](#lookset)
+- <span id="properties-repetition"></span>`fn repetition(rep: &Repetition) -> Properties` — [`Repetition`](#repetition), [`Properties`](#properties)
 
-- <span id="properties-look-set-suffix"></span>`fn look_set_suffix(&self) -> LookSet` — [`LookSet`](#lookset)
+- <span id="properties-capture"></span>`fn capture(capture: &Capture) -> Properties` — [`Capture`](#capture), [`Properties`](#properties)
 
-- <span id="properties-look-set-suffix-any"></span>`fn look_set_suffix_any(&self) -> LookSet` — [`LookSet`](#lookset)
+- <span id="properties-concat"></span>`fn concat(concat: &[Hir]) -> Properties` — [`Hir`](#hir), [`Properties`](#properties)
 
-- <span id="properties-is-utf8"></span>`fn is_utf8(&self) -> bool`
-
-- <span id="properties-explicit-captures-len"></span>`fn explicit_captures_len(&self) -> usize`
-
-- <span id="properties-static-explicit-captures-len"></span>`fn static_explicit_captures_len(&self) -> Option<usize>`
-
-- <span id="properties-is-literal"></span>`fn is_literal(&self) -> bool`
-
-- <span id="properties-is-alternation-literal"></span>`fn is_alternation_literal(&self) -> bool`
-
-- <span id="properties-memory-usage"></span>`fn memory_usage(&self) -> usize`
-
-- <span id="properties-union"></span>`fn union<I, P>(props: I) -> Properties` — [`Properties`](#properties)
+- <span id="properties-alternation"></span>`fn alternation(alts: &[Hir]) -> Properties` — [`Hir`](#hir), [`Properties`](#properties)
 
 #### Trait Implementations
 
@@ -1610,6 +1586,61 @@ routine for building HIR values derived from the `.` regex.
 ##### `impl StructuralPartialEq for Dot`
 
 ## Traits
+
+### `Visitor`
+
+```rust
+trait Visitor { ... }
+```
+
+A trait for visiting the high-level IR (HIR) in depth first order.
+
+The principle aim of this trait is to enable callers to perform case
+analysis on a high-level intermediate representation of a regular
+expression without necessarily using recursion. In particular, this permits
+callers to do case analysis with constant stack usage, which can be
+important since the size of an HIR may be proportional to end user input.
+
+Typical usage of this trait involves providing an implementation and then
+running it using the [`visit`](#visit) function.
+
+#### Associated Types
+
+- `type Output`
+
+- `type Err`
+
+#### Required Methods
+
+- `fn finish(self) -> Result<<Self as >::Output, <Self as >::Err>`
+
+  All implementors of `Visitor` must provide a `finish` method, which
+
+#### Provided Methods
+
+- `fn start(&mut self)`
+
+  This method is called before beginning traversal of the HIR.
+
+- `fn visit_pre(&mut self, _hir: &Hir) -> Result<(), <Self as >::Err>`
+
+  This method is called on an `Hir` before descending into child `Hir`
+
+- `fn visit_post(&mut self, _hir: &Hir) -> Result<(), <Self as >::Err>`
+
+  This method is called on an `Hir` after descending all of its child
+
+- `fn visit_alternation_in(&mut self) -> Result<(), <Self as >::Err>`
+
+  This method is called between child nodes of an alternation.
+
+- `fn visit_concat_in(&mut self) -> Result<(), <Self as >::Err>`
+
+  This method is called between child nodes of a concatenation.
+
+#### Implementors
+
+- [`Writer`](print/index.md)
 
 ## Functions
 

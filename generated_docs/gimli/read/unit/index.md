@@ -165,7 +165,47 @@ type units.
 
 #### Implementations
 
-- <span id="unitheader-new"></span>`fn new(encoding: Encoding, unit_length: Offset, unit_type: UnitType<Offset>, debug_abbrev_offset: DebugAbbrevOffset<Offset>, unit_offset: UnitSectionOffset<Offset>, entries_buf: R) -> Self` — [`Encoding`](../../index.md), [`UnitType`](../index.md), [`DebugAbbrevOffset`](../../index.md), [`UnitSectionOffset`](../../index.md)
+- <span id="unitheader-offset"></span>`fn offset(&self) -> UnitSectionOffset<Offset>` — [`UnitSectionOffset`](../../index.md)
+
+- <span id="unitheader-size-of-header"></span>`fn size_of_header(&self) -> usize`
+
+- <span id="unitheader-unit-length"></span>`fn unit_length(&self) -> Offset`
+
+- <span id="unitheader-length-including-self"></span>`fn length_including_self(&self) -> Offset`
+
+- <span id="unitheader-encoding"></span>`fn encoding(&self) -> Encoding` — [`Encoding`](../../index.md)
+
+- <span id="unitheader-version"></span>`fn version(&self) -> u16`
+
+- <span id="unitheader-type"></span>`fn type_(&self) -> UnitType<Offset>` — [`UnitType`](../index.md)
+
+- <span id="unitheader-debug-abbrev-offset"></span>`fn debug_abbrev_offset(&self) -> DebugAbbrevOffset<Offset>` — [`DebugAbbrevOffset`](../../index.md)
+
+- <span id="unitheader-address-size"></span>`fn address_size(&self) -> u8`
+
+- <span id="unitheader-format"></span>`fn format(&self) -> Format` — [`Format`](../../index.md)
+
+- <span id="unitheader-header-size"></span>`fn header_size(&self) -> Offset`
+
+- <span id="unitheader-is-valid-offset"></span>`fn is_valid_offset(&self, offset: UnitOffset<Offset>) -> bool` — [`UnitOffset`](../../index.md)
+
+- <span id="unitheader-range"></span>`fn range(&self, idx: Range<UnitOffset<Offset>>) -> Result<R>` — [`UnitOffset`](../../index.md), [`Result`](../../index.md)
+
+- <span id="unitheader-range-from"></span>`fn range_from(&self, idx: RangeFrom<UnitOffset<Offset>>) -> Result<R>` — [`UnitOffset`](../../index.md), [`Result`](../../index.md)
+
+- <span id="unitheader-range-to"></span>`fn range_to(&self, idx: RangeTo<UnitOffset<Offset>>) -> Result<R>` — [`UnitOffset`](../../index.md), [`Result`](../../index.md)
+
+- <span id="unitheader-entry"></span>`fn entry<'me, 'abbrev>(self: &'me Self, abbreviations: &'abbrev Abbreviations, offset: UnitOffset<Offset>) -> Result<DebuggingInformationEntry<'abbrev, 'me, R>>` — [`Abbreviations`](../index.md), [`UnitOffset`](../../index.md), [`Result`](../../index.md), [`DebuggingInformationEntry`](../index.md)
+
+- <span id="unitheader-entries"></span>`fn entries<'me, 'abbrev>(self: &'me Self, abbreviations: &'abbrev Abbreviations) -> EntriesCursor<'abbrev, 'me, R>` — [`Abbreviations`](../index.md), [`EntriesCursor`](../index.md)
+
+- <span id="unitheader-entries-at-offset"></span>`fn entries_at_offset<'me, 'abbrev>(self: &'me Self, abbreviations: &'abbrev Abbreviations, offset: UnitOffset<Offset>) -> Result<EntriesCursor<'abbrev, 'me, R>>` — [`Abbreviations`](../index.md), [`UnitOffset`](../../index.md), [`Result`](../../index.md), [`EntriesCursor`](../index.md)
+
+- <span id="unitheader-entries-tree"></span>`fn entries_tree<'me, 'abbrev>(self: &'me Self, abbreviations: &'abbrev Abbreviations, offset: Option<UnitOffset<Offset>>) -> Result<EntriesTree<'abbrev, 'me, R>>` — [`Abbreviations`](../index.md), [`UnitOffset`](../../index.md), [`Result`](../../index.md), [`EntriesTree`](../index.md)
+
+- <span id="unitheader-entries-raw"></span>`fn entries_raw<'me, 'abbrev>(self: &'me Self, abbreviations: &'abbrev Abbreviations, offset: Option<UnitOffset<Offset>>) -> Result<EntriesRaw<'abbrev, 'me, R>>` — [`Abbreviations`](../index.md), [`UnitOffset`](../../index.md), [`Result`](../../index.md), [`EntriesRaw`](../index.md)
+
+- <span id="unitheader-abbreviations"></span>`fn abbreviations(&self, debug_abbrev: &DebugAbbrev<R>) -> Result<Abbreviations>` — [`DebugAbbrev`](../index.md), [`Result`](../../index.md), [`Abbreviations`](../index.md)
 
 #### Trait Implementations
 
@@ -614,7 +654,7 @@ found in the `.debug_types` section.
 
 #### Implementations
 
-- <span id="debugtypes-units"></span>`fn units(&self) -> DebugTypesUnitHeadersIter<R>` — [`DebugTypesUnitHeadersIter`](../index.md)
+- <span id="debugtypes-new"></span>`fn new(debug_types_section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 

@@ -93,6 +93,12 @@ This allows consumers to choose a size that is appropriate for their address spa
 
   Checked subtraction. Computes `self - other`.
 
+#### Implementors
+
+- `u32`
+- `u64`
+- `usize`
+
 ### `ReaderAddress`
 
 ```rust
@@ -122,9 +128,15 @@ in the future to support user-defined address types.
 
   The all-ones value of an address of the given size.
 
+#### Provided Methods
+
 - `fn min_tombstone(size: u8) -> Self`
 
   Return the minimum value for a tombstone address.
+
+#### Implementors
+
+- `u64`
 
 ### `Reader`
 
@@ -152,11 +164,13 @@ thread safe or not.
 | [`EndianArcSlice`](./struct.EndianArcSlice.html)  | Reference counted | Yes         | The same as `EndianRcSlice`, but uses atomic reference counting, and therefore reference counting operations are slower but `EndianArcSlice`s may be sent across threads. |
 | [`EndianReader<T>`](./struct.EndianReader.html)   | Same as `T`       | Same as `T` | Escape hatch for easily defining your own type of `Reader`. |
 
-#### Required Methods
+#### Associated Types
 
 - `type Endian: 1`
 
 - `type Offset: 1`
+
+#### Required Methods
 
 - `fn endian(&self) -> <Self as >::Endian`
 
@@ -213,6 +227,8 @@ thread safe or not.
 - `fn read_slice(&mut self, buf: &mut [u8]) -> Result<()>`
 
   Read exactly `buf.len()` bytes into `buf`.
+
+#### Provided Methods
 
 - `fn read_u8_array<A>(&mut self) -> Result<A>`
 
@@ -317,4 +333,9 @@ thread safe or not.
 - `fn read_sized_offset(&mut self, size: u8) -> Result<<Self as >::Offset>`
 
   Parse a section offset of the given size.
+
+#### Implementors
+
+- [`EndianSlice`](../index.md)
+- [`RelocateReader`](../index.md)
 

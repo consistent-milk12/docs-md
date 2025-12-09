@@ -28,7 +28,7 @@ struct Display {
 
 #### Implementations
 
-- <span id="display-expand-shorthand"></span>`fn expand_shorthand(&mut self, members: &Set<Member>)`
+- <span id="cratefmtdisplay-expand-shorthand-cloned"></span>`fn expand_shorthand_cloned(&self, members: &HashSet<syn::Member>) -> (syn::LitStr, TokenStream)`
 
 #### Trait Implementations
 

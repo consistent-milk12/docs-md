@@ -38,12 +38,12 @@ See [CONTRIBUTING](CONTRIBUTING.md) for more details.
 
 ## Modules
 
-- [`macros`](macros/index.md) - 
-- [`attr`](attr/index.md) - 
-- [`derives`](derives/index.md) - 
-- [`dummies`](dummies/index.md) - Dummy implementations that we emit along with an error.
-- [`item`](item/index.md) - 
-- [`utils`](utils/index.md) - 
+- [`macros`](macros/index.md)
+- [`attr`](attr/index.md)
+- [`derives`](derives/index.md)
+- [`dummies`](dummies/index.md) — Dummy implementations that we emit along with an error.
+- [`item`](item/index.md)
+- [`utils`](utils/index.md)
 
 ## Functions
 

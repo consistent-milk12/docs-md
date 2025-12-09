@@ -63,24 +63,24 @@ want to create your own garbage collector, use the [`Collector`](#collector) API
   - [`sync`](#sync)
   - [`default`](#default)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`Atomic`](#atomic)
+  - [`CompareExchangeError`](#compareexchangeerror)
+  - [`Owned`](#owned)
+  - [`Shared`](#shared)
+  - [`Collector`](#collector)
+  - [`LocalHandle`](#localhandle)
+  - [`Guard`](#guard)
 - [Traits](#traits)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`CompareAndSetOrdering`](#compareandsetordering)
+  - [`Pointable`](#pointable)
+  - [`Pointer`](#pointer)
 - [Functions](#functions)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`unprotected`](#unprotected)
+  - [`default_collector`](#default_collector)
+  - [`is_pinned`](#is_pinned)
+  - [`pin`](#pin)
 - [Type Aliases](#type-aliases)
-  - [`unnamed`](#unnamed)
+  - [`CompareAndSetError`](#compareandseterror)
 
 ## Quick Reference
 
@@ -95,33 +95,33 @@ want to create your own garbage collector, use the [`Collector`](#collector) API
 | [`internal`](#internal) | mod | The global data and participant for garbage collection. |
 | [`sync`](#sync) | mod | Synchronization primitives. |
 | [`default`](#default) | mod | The default garbage collector. |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | trait |  |
-| [`unnamed`](#unnamed) | trait |  |
-| [`unnamed`](#unnamed) | trait |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | type |  |
+| [`Atomic`](#atomic) | struct |  |
+| [`CompareExchangeError`](#compareexchangeerror) | struct |  |
+| [`Owned`](#owned) | struct |  |
+| [`Shared`](#shared) | struct |  |
+| [`Collector`](#collector) | struct |  |
+| [`LocalHandle`](#localhandle) | struct |  |
+| [`Guard`](#guard) | struct |  |
+| [`CompareAndSetOrdering`](#compareandsetordering) | trait |  |
+| [`Pointable`](#pointable) | trait |  |
+| [`Pointer`](#pointer) | trait |  |
+| [`unprotected`](#unprotected) | fn |  |
+| [`default_collector`](#default_collector) | fn |  |
+| [`is_pinned`](#is_pinned) | fn |  |
+| [`pin`](#pin) | fn |  |
+| [`CompareAndSetError`](#compareandseterror) | type |  |
 
 ## Modules
 
-- [`primitive`](primitive/index.md) - 
-- [`atomic`](atomic/index.md) - 
-- [`collector`](collector/index.md) - 
-- [`deferred`](deferred/index.md) - 
-- [`epoch`](epoch/index.md) - The global epoch
-- [`guard`](guard/index.md) - 
-- [`internal`](internal/index.md) - The global data and participant for garbage collection.
-- [`sync`](sync/index.md) - Synchronization primitives.
-- [`default`](default/index.md) - The default garbage collector.
+- [`primitive`](primitive/index.md)
+- [`atomic`](atomic/index.md)
+- [`collector`](collector/index.md)
+- [`deferred`](deferred/index.md)
+- [`epoch`](epoch/index.md) — The global epoch
+- [`guard`](guard/index.md)
+- [`internal`](internal/index.md) — The global data and participant for garbage collection.
+- [`sync`](sync/index.md) — Synchronization primitives.
+- [`default`](default/index.md) — The default garbage collector.
 
 ## Structs
 
@@ -146,7 +146,39 @@ Crossbeam supports dynamically sized types.  See [`Pointable`](#pointable) for d
 
 #### Implementations
 
-- <span id="atomic-new"></span>`fn new(init: T) -> Atomic<T>` — [`Atomic`](#atomic)
+- <span id="atomic-init"></span>`fn init(init: <T as >::Init) -> Atomic<T>` — [`Pointable`](#pointable), [`Atomic`](#atomic)
+
+- <span id="atomic-from-usize"></span>`fn from_usize(data: usize) -> Self`
+
+- <span id="atomic-null"></span>`const fn null() -> Atomic<T>` — [`Atomic`](#atomic)
+
+- <span id="atomic-load"></span>`fn load<'g>(&self, ord: Ordering, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](#guard), [`Shared`](#shared)
+
+- <span id="atomic-load-consume"></span>`fn load_consume<'g>(&self, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](#guard), [`Shared`](#shared)
+
+- <span id="atomic-store"></span>`fn store<P: Pointer<T>>(&self, new: P, ord: Ordering)`
+
+- <span id="atomic-swap"></span>`fn swap<'g, P: Pointer<T>>(&self, new: P, ord: Ordering, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](#guard), [`Shared`](#shared)
+
+- <span id="atomic-compare-exchange"></span>`fn compare_exchange<'g, P>(&self, current: Shared<'_, T>, new: P, success: Ordering, failure: Ordering, _: &'g Guard) -> Result<Shared<'g, T>, CompareExchangeError<'g, T, P>>` — [`Shared`](#shared), [`Guard`](#guard), [`CompareExchangeError`](#compareexchangeerror)
+
+- <span id="atomic-compare-exchange-weak"></span>`fn compare_exchange_weak<'g, P>(&self, current: Shared<'_, T>, new: P, success: Ordering, failure: Ordering, _: &'g Guard) -> Result<Shared<'g, T>, CompareExchangeError<'g, T, P>>` — [`Shared`](#shared), [`Guard`](#guard), [`CompareExchangeError`](#compareexchangeerror)
+
+- <span id="atomic-fetch-update"></span>`fn fetch_update<'g, F>(&self, set_order: Ordering, fail_order: Ordering, guard: &'g Guard, func: F) -> Result<Shared<'g, T>, Shared<'g, T>>` — [`Guard`](#guard), [`Shared`](#shared)
+
+- <span id="atomic-compare-and-set"></span>`fn compare_and_set<'g, O, P>(&self, current: Shared<'_, T>, new: P, ord: O, guard: &'g Guard) -> Result<Shared<'g, T>, CompareAndSetError<'g, T, P>>` — [`Shared`](#shared), [`Guard`](#guard), [`CompareAndSetError`](#compareandseterror)
+
+- <span id="atomic-compare-and-set-weak"></span>`fn compare_and_set_weak<'g, O, P>(&self, current: Shared<'_, T>, new: P, ord: O, guard: &'g Guard) -> Result<Shared<'g, T>, CompareAndSetError<'g, T, P>>` — [`Shared`](#shared), [`Guard`](#guard), [`CompareAndSetError`](#compareandseterror)
+
+- <span id="atomic-fetch-and"></span>`fn fetch_and<'g>(&self, val: usize, ord: Ordering, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](#guard), [`Shared`](#shared)
+
+- <span id="atomic-fetch-or"></span>`fn fetch_or<'g>(&self, val: usize, ord: Ordering, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](#guard), [`Shared`](#shared)
+
+- <span id="atomic-fetch-xor"></span>`fn fetch_xor<'g>(&self, val: usize, ord: Ordering, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](#guard), [`Shared`](#shared)
+
+- <span id="atomic-into-owned"></span>`unsafe fn into_owned(self) -> Owned<T>` — [`Owned`](#owned)
+
+- <span id="atomic-try-into-owned"></span>`unsafe fn try_into_owned(self) -> Option<Owned<T>>` — [`Owned`](#owned)
 
 #### Trait Implementations
 
@@ -243,13 +275,11 @@ least significant bits of the address.
 
 #### Implementations
 
-- <span id="owned-init"></span>`fn init(init: <T as >::Init) -> Owned<T>` — [`Pointable`](#pointable), [`Owned`](#owned)
+- <span id="owned-from-raw"></span>`unsafe fn from_raw(raw: *mut T) -> Owned<T>` — [`Owned`](#owned)
 
-- <span id="owned-into-shared"></span>`fn into_shared<'g>(self, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](#guard), [`Shared`](#shared)
+- <span id="owned-into-box"></span>`fn into_box(self) -> Box<T>`
 
-- <span id="owned-tag"></span>`fn tag(&self) -> usize`
-
-- <span id="owned-with-tag"></span>`fn with_tag(self, tag: usize) -> Owned<T>` — [`Owned`](#owned)
+- <span id="owned-new"></span>`fn new(init: T) -> Owned<T>` — [`Owned`](#owned)
 
 #### Trait Implementations
 
@@ -598,6 +628,143 @@ assert!(!epoch::is_pinned());
 - <span id="guard-drop"></span>`unsafe fn drop(ptr: usize)`
 
 ## Traits
+
+### `CompareAndSetOrdering`
+
+```rust
+trait CompareAndSetOrdering { ... }
+```
+
+Memory orderings for compare-and-set operations.
+
+A compare-and-set operation can have different memory orderings depending on whether it
+succeeds or fails. This trait generalizes different ways of specifying memory orderings.
+
+The two ways of specifying orderings for compare-and-set are:
+
+1. Just one `Ordering` for the success case. In case of failure, the strongest appropriate
+   ordering is chosen.
+2. A pair of `Ordering`s. The first one is for the success case, while the second one is
+   for the failure case.
+
+#### Required Methods
+
+- `fn success(&self) -> Ordering`
+
+  The ordering of the operation when it succeeds.
+
+- `fn failure(&self) -> Ordering`
+
+  The ordering of the operation when it fails.
+
+#### Implementors
+
+- `(core::sync::atomic::Ordering, core::sync::atomic::Ordering)`
+- `core::sync::atomic::Ordering`
+
+### `Pointable`
+
+```rust
+trait Pointable { ... }
+```
+
+Types that are pointed to by a single word.
+
+In concurrent programming, it is necessary to represent an object within a word because atomic
+operations (e.g., reads, writes, read-modify-writes) support only single words.  This trait
+qualifies such types that are pointed to by a single word.
+
+The trait generalizes `Box<T>` for a sized type `T`.  In a box, an object of type `T` is
+allocated in heap and it is owned by a single-word pointer.  This trait is also implemented for
+`[MaybeUninit<T>]` by storing its size along with its elements and pointing to the pair of array
+size and elements.
+
+Pointers to `Pointable` types can be stored in [`Atomic`](#atomic), [`Owned`](#owned), and [`Shared`](#shared).  In
+particular, Crossbeam supports dynamically sized slices as follows.
+
+```rust
+use std::mem::MaybeUninit;
+use crossbeam_epoch::Owned;
+
+let o = Owned::<[MaybeUninit<i32>]>::init(10); // allocating [i32; 10]
+```
+
+#### Associated Types
+
+- `type Init`
+
+#### Associated Constants
+
+- `const ALIGN: usize`
+
+#### Required Methods
+
+- `fn init(init: <Self as >::Init) -> usize`
+
+  Initializes a with the given initializer.
+
+- `fn deref<'a>(ptr: usize) -> &'a Self`
+
+  Dereferences the given pointer.
+
+- `fn deref_mut<'a>(ptr: usize) -> &'a mut Self`
+
+  Mutably dereferences the given pointer.
+
+- `fn drop(ptr: usize)`
+
+  Drops the object pointed to by the given pointer.
+
+#### Implementors
+
+- [`Array`](atomic/index.md)
+- [`AtomicEpoch`](epoch/index.md)
+- [`Atomic`](#atomic)
+- [`Bag`](internal/index.md)
+- [`Collector`](#collector)
+- [`CompareExchangeError`](#compareexchangeerror)
+- [`Deferred`](deferred/index.md)
+- [`Entry`](sync/list/index.md)
+- [`Epoch`](epoch/index.md)
+- [`Global`](internal/index.md)
+- [`Guard`](#guard)
+- [`IterError`](sync/list/index.md)
+- [`Iter`](sync/list/index.md)
+- [`List`](sync/list/index.md)
+- [`LocalHandle`](#localhandle)
+- [`Local`](internal/index.md)
+- [`Node`](sync/queue/index.md)
+- [`OnceLock`](sync/once_lock/index.md)
+- [`Owned`](#owned)
+- [`Queue`](sync/queue/index.md)
+- [`SealedBag`](internal/index.md)
+- [`Shared`](#shared)
+- [`UnsafeCell`](primitive/cell/index.md)
+- `T`
+- `[core::mem::MaybeUninit<T>]`
+
+### `Pointer<T: ?Sized + Pointable>`
+
+```rust
+trait Pointer<T: ?Sized + Pointable> { ... }
+```
+
+A trait for either `Owned` or `Shared` pointers.
+
+#### Required Methods
+
+- `fn into_usize(self) -> usize`
+
+  Returns the machine representation of the pointer.
+
+- `fn from_usize(data: usize) -> Self`
+
+  Returns a new pointer pointing to the tagged pointer `data`.
+
+#### Implementors
+
+- [`Owned`](#owned)
+- [`Shared`](#shared)
 
 ## Functions
 

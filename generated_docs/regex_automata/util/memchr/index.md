@@ -16,5 +16,5 @@ otherwise we use a naive implementation which is still pretty fast.
 
 ## Modules
 
-- [`inner`](inner/index.md) - 
+- [`inner`](inner/index.md)
 

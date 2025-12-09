@@ -138,6 +138,21 @@ Implementors of this trait should not write the `0x` prefix.
 
   Write the value as hex.
 
+#### Implementors
+
+- `i128`
+- `i16`
+- `i32`
+- `i64`
+- `i8`
+- `isize`
+- `u128`
+- `u16`
+- `u32`
+- `u64`
+- `u8`
+- `usize`
+
 ### `ParseHex`
 
 ```rust
@@ -151,6 +166,21 @@ Parse a value from a hex string.
 - `fn parse_hex(input: &str) -> Result<Self, ParseError>`
 
   Parse the value from hex.
+
+#### Implementors
+
+- `i128`
+- `i16`
+- `i32`
+- `i64`
+- `i8`
+- `isize`
+- `u128`
+- `u16`
+- `u32`
+- `u64`
+- `u8`
+- `usize`
 
 ## Functions
 

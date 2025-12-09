@@ -15,8 +15,8 @@
 
 ## Modules
 
-- [`error`](error/index.md) - 
-- [`doc_comments`](doc_comments/index.md) - The preprocessing we apply to doc comments.
-- [`spanned`](spanned/index.md) - 
-- [`ty`](ty/index.md) - Special types handling
+- [`error`](error/index.md)
+- [`doc_comments`](doc_comments/index.md) — The preprocessing we apply to doc comments.
+- [`spanned`](spanned/index.md)
+- [`ty`](ty/index.md) — Special types handling
 

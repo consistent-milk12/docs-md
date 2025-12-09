@@ -87,11 +87,7 @@ deserializing JSON data.
 
 ##### `impl Error for Error`
 
-- <span id="error-custom"></span>`fn custom<T: Display>(msg: T) -> Error` — [`Error`](../index.md)
-
-- <span id="error-invalid-type"></span>`fn invalid_type(unexp: de::Unexpected<'_>, exp: &dyn de::Expected) -> Self`
-
-- <span id="error-invalid-value"></span>`fn invalid_value(unexp: de::Unexpected<'_>, exp: &dyn de::Expected) -> Self`
+- <span id="error-source"></span>`fn source(&self) -> Option<&dyn error::Error>`
 
 ##### `impl<T> ToString for Error`
 

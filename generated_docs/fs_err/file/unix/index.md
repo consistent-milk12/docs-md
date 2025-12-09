@@ -12,5 +12,5 @@
 
 ## Modules
 
-- [`io_safety`](io_safety/index.md) - 
+- [`io_safety`](io_safety/index.md)
 

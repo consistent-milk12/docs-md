@@ -42,10 +42,10 @@ as shown in the following build timings.
   - [`ser`](#ser)
   - [`format`](#format)
 - [Traits](#traits)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`Deserialize`](#deserialize)
+  - [`Deserializer`](#deserializer)
+  - [`Serialize`](#serialize)
+  - [`Serializer`](#serializer)
 - [Macros](#macros)
   - [`tri!`](#tri)
   - [`forward_to_deserialize_any!`](#forward_to_deserialize_any)
@@ -60,23 +60,898 @@ as shown in the following build timings.
 | [`de`](#de) | mod | Generic data structure deserialization framework. |
 | [`ser`](#ser) | mod | Generic data structure serialization framework. |
 | [`format`](#format) | mod |  |
-| [`unnamed`](#unnamed) | trait |  |
-| [`unnamed`](#unnamed) | trait |  |
-| [`unnamed`](#unnamed) | trait |  |
-| [`unnamed`](#unnamed) | trait |  |
+| [`Deserialize`](#deserialize) | trait |  |
+| [`Deserializer`](#deserializer) | trait |  |
+| [`Serialize`](#serialize) | trait |  |
+| [`Serializer`](#serializer) | trait |  |
 | [`tri!`](#tri) | macro |  |
 | [`forward_to_deserialize_any!`](#forward_to_deserialize_any) | macro | Helper macro when implementing the `Deserializer` part of a new data format |
 
 ## Modules
 
-- [`crate_root`](crate_root/index.md) - 
-- [`macros`](macros/index.md) - 
-- [`lib`](lib/index.md) - A facade around all the types we need from the `std`, `core`, and `alloc`
-- [`de`](de/index.md) - Generic data structure deserialization framework.
-- [`ser`](ser/index.md) - Generic data structure serialization framework.
-- [`format`](format/index.md) - 
+- [`crate_root`](crate_root/index.md)
+- [`macros`](macros/index.md)
+- [`lib`](lib/index.md) — A facade around all the types we need from the `std`, `core`, and `alloc`
+- [`de`](de/index.md) — Generic data structure deserialization framework.
+- [`ser`](ser/index.md) — Generic data structure serialization framework.
+- [`format`](format/index.md)
 
 ## Traits
+
+### `Deserialize<'de>`
+
+```rust
+trait Deserialize<'de>: Sized { ... }
+```
+
+A **data structure** that can be deserialized from any data format supported
+by Serde.
+
+Serde provides `Deserialize` implementations for many Rust primitive and
+standard library types. The complete list is `here`. All of these
+can be deserialized using Serde out of the box.
+
+Additionally, Serde provides a procedural macro called `serde_derive` to
+automatically generate `Deserialize` implementations for structs and enums
+in your program. See the [derive section of the manual][`derive`](../clap_builder/derive/index.md) for how to
+use this.
+
+In rare cases it may be necessary to implement `Deserialize` manually for
+some type in your program. See the [Implementing
+`Deserialize`][impl-deserialize] section of the manual for more about this.
+
+Third-party crates may provide `Deserialize` implementations for types that
+they expose. For example the `linked-hash-map` crate provides a
+`LinkedHashMap<K, V>` type that is deserializable by Serde because the crate
+provides an implementation of `Deserialize` for it.
+
+
+# Lifetime
+
+The `'de` lifetime of this trait is the lifetime of data that may be
+borrowed by `Self` when deserialized. See the page [Understanding
+deserializer lifetimes] for a more detailed explanation of these lifetimes.
+
+
+#### Required Methods
+
+- `fn deserialize<D>(deserializer: D) -> Result<Self, <D as >::Error>`
+
+  Deserialize this value from the given Serde deserializer.
+
+#### Implementors
+
+- [`AtomicBool`](lib/index.md)
+- [`AtomicI16`](lib/index.md)
+- [`AtomicI32`](lib/index.md)
+- [`AtomicI64`](lib/index.md)
+- [`AtomicI8`](lib/index.md)
+- [`AtomicIsize`](lib/index.md)
+- [`AtomicU16`](lib/index.md)
+- [`AtomicU32`](lib/index.md)
+- [`AtomicU64`](lib/index.md)
+- [`AtomicU8`](lib/index.md)
+- [`AtomicUsize`](lib/index.md)
+- [`BTreeMap`](lib/index.md)
+- [`BTreeSet`](lib/index.md)
+- [`BinaryHeap`](lib/index.md)
+- [`Bound`](lib/index.md)
+- [`Box`](lib/index.md)
+- [`CString`](lib/index.md)
+- [`Cell`](lib/index.md)
+- [`Cow`](lib/index.md)
+- [`Duration`](lib/index.md)
+- [`Field`](de/impls/range/index.md)
+- [`Field`](de/impls/range_from/index.md)
+- [`Field`](de/impls/range_to/index.md)
+- [`HashMap`](lib/index.md)
+- [`HashSet`](lib/index.md)
+- [`IgnoredAny`](de/index.md)
+- [`LinkedList`](lib/index.md)
+- [`Mutex`](lib/index.md)
+- [`OsStringKind`](de/impls/index.md)
+- [`OsString`](lib/index.md)
+- [`PathBuf`](lib/index.md)
+- [`PhantomData`](lib/index.md)
+- [`RangeFrom`](lib/index.md)
+- [`RangeInclusive`](lib/index.md)
+- [`RangeTo`](lib/index.md)
+- [`Range`](lib/index.md)
+- [`RefCell`](lib/index.md)
+- [`Reverse`](lib/index.md)
+- [`RwLock`](lib/index.md)
+- [`Saturating`](lib/index.md)
+- [`String`](lib/index.md)
+- [`SystemTime`](lib/index.md)
+- [`VecDeque`](lib/index.md)
+- [`Vec`](lib/index.md)
+- [`Wrapping`](lib/index.md)
+- `&'a Path`
+- `&'a [u8]`
+- `&'a str`
+- `()`
+- `(T)`
+- `(T0, T1)`
+- `(T0, T1, T2)`
+- `(T0, T1, T2, T3)`
+- `(T0, T1, T2, T3, T4)`
+- `(T0, T1, T2, T3, T4, T5)`
+- `(T0, T1, T2, T3, T4, T5, T6)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15)`
+- `Option<T>`
+- `Result<T, E>`
+- `[T; 0]`
+- `[T; 10]`
+- `[T; 11]`
+- `[T; 12]`
+- `[T; 13]`
+- `[T; 14]`
+- `[T; 15]`
+- `[T; 16]`
+- `[T; 17]`
+- `[T; 18]`
+- `[T; 19]`
+- `[T; 1]`
+- `[T; 20]`
+- `[T; 21]`
+- `[T; 22]`
+- `[T; 23]`
+- `[T; 24]`
+- `[T; 25]`
+- `[T; 26]`
+- `[T; 27]`
+- `[T; 28]`
+- `[T; 29]`
+- `[T; 2]`
+- `[T; 30]`
+- `[T; 31]`
+- `[T; 32]`
+- `[T; 3]`
+- `[T; 4]`
+- `[T; 5]`
+- `[T; 6]`
+- `[T; 7]`
+- `[T; 8]`
+- `[T; 9]`
+- `bool`
+- `char`
+- `f32`
+- `f64`
+- `i128`
+- `i16`
+- `i32`
+- `i64`
+- `i8`
+- `isize`
+- `net::IpAddr`
+- `net::Ipv4Addr`
+- `net::Ipv6Addr`
+- `net::SocketAddrV4`
+- `net::SocketAddrV6`
+- `net::SocketAddr`
+- `num::NonZeroI128`
+- `num::NonZeroI16`
+- `num::NonZeroI32`
+- `num::NonZeroI64`
+- `num::NonZeroI8`
+- `num::NonZeroIsize`
+- `num::NonZeroU128`
+- `num::NonZeroU16`
+- `num::NonZeroU32`
+- `num::NonZeroU64`
+- `num::NonZeroU8`
+- `num::NonZeroUsize`
+- `u128`
+- `u16`
+- `u32`
+- `u64`
+- `u8`
+- `usize`
+
+### `Deserializer<'de>`
+
+```rust
+trait Deserializer<'de>: Sized { ... }
+```
+
+A **data format** that can deserialize any data structure supported by
+Serde.
+
+The role of this trait is to define the deserialization half of the [Serde
+data model], which is a way to categorize every Rust data type into one of
+29 possible types. Each method of the `Deserializer` trait corresponds to one
+of the types of the data model.
+
+Implementations of `Deserialize` map themselves into this data model by
+passing to the `Deserializer` a `Visitor` implementation that can receive
+these various types.
+
+The types that make up the Serde data model are:
+
+ - **14 primitive types**
+   - bool
+   - i8, i16, i32, i64, i128
+   - u8, u16, u32, u64, u128
+   - f32, f64
+   - char
+ - **string**
+   - UTF-8 bytes with a length and no null terminator.
+   - When serializing, all strings are handled equally. When deserializing,
+     there are three flavors of strings: transient, owned, and borrowed.
+ - **byte array** - \[u8\]
+   - Similar to strings, during deserialization byte arrays can be
+     transient, owned, or borrowed.
+ - **option**
+   - Either none or some value.
+ - **unit**
+   - The type of `()` in Rust. It represents an anonymous value containing
+     no data.
+ - **unit_struct**
+   - For example `struct Unit` or `PhantomData<T>`. It represents a named
+     value containing no data.
+ - **unit_variant**
+   - For example the `E::A` and `E::B` in `enum E { A, B }`.
+ - **newtype_struct**
+   - For example `struct Millimeters(u8)`.
+ - **newtype_variant**
+   - For example the `E::N` in `enum E { N(u8) }`.
+ - **seq**
+   - A variably sized heterogeneous sequence of values, for example `Vec<T>`
+     or `HashSet<T>`. When serializing, the length may or may not be known
+     before iterating through all the data. When deserializing, the length
+     is determined by looking at the serialized data.
+ - **tuple**
+   - A statically sized heterogeneous sequence of values for which the
+     length will be known at deserialization time without looking at the
+     serialized data, for example `(u8,)` or `(String, u64, Vec<T>)` or
+     `[u64; 10]`.
+ - **tuple_struct**
+   - A named tuple, for example `struct Rgb(u8, u8, u8)`.
+ - **tuple_variant**
+   - For example the `E::T` in `enum E { T(u8, u8) }`.
+ - **map**
+   - A heterogeneous key-value pairing, for example `BTreeMap<K, V>`.
+ - **struct**
+   - A heterogeneous key-value pairing in which the keys are strings and
+     will be known at deserialization time without looking at the serialized
+     data, for example `struct S { r: u8, g: u8, b: u8 }`.
+ - **struct_variant**
+   - For example the `E::S` in `enum E { S { r: u8, g: u8, b: u8 } }`.
+
+The `Deserializer` trait supports two entry point styles which enables
+different kinds of deserialization.
+
+1. The `deserialize_any` method. Self-describing data formats like JSON are
+   able to look at the serialized data and tell what it represents. For
+   example the JSON deserializer may see an opening curly brace (`{`) and
+   know that it is seeing a map. If the data format supports
+   `Deserializer::deserialize_any`, it will drive the Visitor using whatever
+   type it sees in the input. JSON uses this approach when deserializing
+   `serde_json::Value` which is an enum that can represent any JSON
+   document. Without knowing what is in a JSON document, we can deserialize
+   it to `serde_json::Value` by going through
+   `Deserializer::deserialize_any`.
+
+2. The various `deserialize_*` methods. Non-self-describing formats like
+   Postcard need to be told what is in the input in order to deserialize it.
+   The `deserialize_*` methods are hints to the deserializer for how to
+   interpret the next piece of input. Non-self-describing formats are not
+   able to deserialize something like `serde_json::Value` which relies on
+   `Deserializer::deserialize_any`.
+
+When implementing `Deserialize`, you should avoid relying on
+`Deserializer::deserialize_any` unless you need to be told by the
+Deserializer what type is in the input. Know that relying on
+`Deserializer::deserialize_any` means your data type will be able to
+deserialize from self-describing formats only, ruling out Postcard and many
+others.
+
+# Lifetime
+
+The `'de` lifetime of this trait is the lifetime of data that may be
+borrowed from the input when deserializing. See the page [Understanding
+deserializer lifetimes] for a more detailed explanation of these lifetimes.
+
+# Example implementation
+
+The [example data format] presented on the website contains example code for
+a basic JSON `Deserializer`.
+
+
+#### Associated Types
+
+- `type Error: 1`
+
+#### Required Methods
+
+- `fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+
+  Require the `Deserializer` to figure out how to drive the visitor based
+
+- `fn deserialize_bool<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+
+  Hint that the `Deserialize` type is expecting a `bool` value.
+
+- `fn deserialize_i8<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+
+  Hint that the `Deserialize` type is expecting an `i8` value.
+
+- `fn deserialize_i16<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+
+  Hint that the `Deserialize` type is expecting an `i16` value.
+
+- `fn deserialize_i32<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+
+  Hint that the `Deserialize` type is expecting an `i32` value.
+
+- `fn deserialize_i64<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+
+  Hint that the `Deserialize` type is expecting an `i64` value.
+
+- `fn deserialize_u8<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+
+  Hint that the `Deserialize` type is expecting a `u8` value.
+
+- `fn deserialize_u16<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+
+  Hint that the `Deserialize` type is expecting a `u16` value.
+
+- `fn deserialize_u32<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+
+  Hint that the `Deserialize` type is expecting a `u32` value.
+
+- `fn deserialize_u64<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+
+  Hint that the `Deserialize` type is expecting a `u64` value.
+
+- `fn deserialize_f32<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+
+  Hint that the `Deserialize` type is expecting a `f32` value.
+
+- `fn deserialize_f64<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+
+  Hint that the `Deserialize` type is expecting a `f64` value.
+
+- `fn deserialize_char<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+
+  Hint that the `Deserialize` type is expecting a `char` value.
+
+- `fn deserialize_str<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+
+  Hint that the `Deserialize` type is expecting a string value and does
+
+- `fn deserialize_string<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+
+  Hint that the `Deserialize` type is expecting a string value and would
+
+- `fn deserialize_bytes<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+
+  Hint that the `Deserialize` type is expecting a byte array and does not
+
+- `fn deserialize_byte_buf<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+
+  Hint that the `Deserialize` type is expecting a byte array and would
+
+- `fn deserialize_option<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+
+  Hint that the `Deserialize` type is expecting an optional value.
+
+- `fn deserialize_unit<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+
+  Hint that the `Deserialize` type is expecting a unit value.
+
+- `fn deserialize_unit_struct<V>(self, name: &'static str, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+
+  Hint that the `Deserialize` type is expecting a unit struct with a
+
+- `fn deserialize_newtype_struct<V>(self, name: &'static str, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+
+  Hint that the `Deserialize` type is expecting a newtype struct with a
+
+- `fn deserialize_seq<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+
+  Hint that the `Deserialize` type is expecting a sequence of values.
+
+- `fn deserialize_tuple<V>(self, len: usize, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+
+  Hint that the `Deserialize` type is expecting a sequence of values and
+
+- `fn deserialize_tuple_struct<V>(self, name: &'static str, len: usize, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+
+  Hint that the `Deserialize` type is expecting a tuple struct with a
+
+- `fn deserialize_map<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+
+  Hint that the `Deserialize` type is expecting a map of key-value pairs.
+
+- `fn deserialize_struct<V>(self, name: &'static str, fields: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+
+  Hint that the `Deserialize` type is expecting a struct with a particular
+
+- `fn deserialize_enum<V>(self, name: &'static str, variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+
+  Hint that the `Deserialize` type is expecting an enum value with a
+
+- `fn deserialize_identifier<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+
+  Hint that the `Deserialize` type is expecting the name of a struct
+
+- `fn deserialize_ignored_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+
+  Hint that the `Deserialize` type needs to deserialize a value whose type
+
+#### Provided Methods
+
+- `fn deserialize_i128<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+
+  Hint that the `Deserialize` type is expecting an `i128` value.
+
+- `fn deserialize_u128<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+
+  Hint that the `Deserialize` type is expecting an `u128` value.
+
+- `fn is_human_readable(&self) -> bool`
+
+  Determine whether `Deserialize` implementations should expect to
+
+#### Implementors
+
+- [`BoolDeserializer`](de/value/index.md)
+- [`BorrowedBytesDeserializer`](de/value/index.md)
+- [`BorrowedStrDeserializer`](de/value/index.md)
+- [`BytesDeserializer`](de/value/index.md)
+- [`CharDeserializer`](de/value/index.md)
+- [`CowStrDeserializer`](de/value/index.md)
+- [`EnumAccessDeserializer`](de/value/index.md)
+- [`F32Deserializer`](de/value/index.md)
+- [`F64Deserializer`](de/value/index.md)
+- [`I128Deserializer`](de/value/index.md)
+- [`I16Deserializer`](de/value/index.md)
+- [`I32Deserializer`](de/value/index.md)
+- [`I64Deserializer`](de/value/index.md)
+- [`I8Deserializer`](de/value/index.md)
+- [`IsizeDeserializer`](de/value/index.md)
+- [`MapAccessDeserializer`](de/value/index.md)
+- [`MapDeserializer`](de/value/index.md)
+- [`PairDeserializer`](de/value/index.md)
+- [`SeqAccessDeserializer`](de/value/index.md)
+- [`SeqDeserializer`](de/value/index.md)
+- [`StrDeserializer`](de/value/index.md)
+- [`StringDeserializer`](de/value/index.md)
+- [`U128Deserializer`](de/value/index.md)
+- [`U16Deserializer`](de/value/index.md)
+- [`U32Deserializer`](de/value/index.md)
+- [`U64Deserializer`](de/value/index.md)
+- [`U8Deserializer`](de/value/index.md)
+- [`UnitDeserializer`](de/value/index.md)
+- [`UsizeDeserializer`](de/value/index.md)
+
+### `Serialize`
+
+```rust
+trait Serialize { ... }
+```
+
+A **data structure** that can be serialized into any data format supported
+by Serde.
+
+Serde provides `Serialize` implementations for many Rust primitive and
+standard library types. The complete list is `here`. All of
+these can be serialized using Serde out of the box.
+
+Additionally, Serde provides a procedural macro called `serde_derive` to
+automatically generate `Serialize` implementations for structs and enums in
+your program. See the [derive section of the manual] for how to use this.
+
+In rare cases it may be necessary to implement `Serialize` manually for some
+type in your program. See the [Implementing `Serialize`] section of the
+manual for more about this.
+
+Third-party crates may provide `Serialize` implementations for types that
+they expose. For example the `linked-hash-map` crate provides a
+`LinkedHashMap<K, V>` type that is serializable by Serde because the crate
+provides an implementation of `Serialize` for it.
+
+
+
+
+
+
+#### Required Methods
+
+- `fn serialize<S>(&self, serializer: S) -> Result<<S as >::Ok, <S as >::Error>`
+
+  Serialize this value into the given Serde serializer.
+
+#### Implementors
+
+- [`AtomicBool`](lib/index.md)
+- [`AtomicI16`](lib/index.md)
+- [`AtomicI32`](lib/index.md)
+- [`AtomicI64`](lib/index.md)
+- [`AtomicI8`](lib/index.md)
+- [`AtomicIsize`](lib/index.md)
+- [`AtomicU16`](lib/index.md)
+- [`AtomicU32`](lib/index.md)
+- [`AtomicU64`](lib/index.md)
+- [`AtomicU8`](lib/index.md)
+- [`AtomicUsize`](lib/index.md)
+- [`BTreeMap`](lib/index.md)
+- [`BTreeSet`](lib/index.md)
+- [`BinaryHeap`](lib/index.md)
+- [`Bound`](lib/index.md)
+- [`Box`](lib/index.md)
+- [`CStr`](lib/index.md)
+- [`CString`](lib/index.md)
+- [`Cell`](lib/index.md)
+- [`Cow`](lib/index.md)
+- [`Duration`](lib/index.md)
+- [`HashMap`](lib/index.md)
+- [`HashSet`](lib/index.md)
+- [`LinkedList`](lib/index.md)
+- [`Mutex`](lib/index.md)
+- [`OsStr`](lib/index.md)
+- [`OsString`](lib/index.md)
+- [`PathBuf`](lib/index.md)
+- [`Path`](lib/index.md)
+- [`PhantomData`](lib/index.md)
+- [`RangeFrom`](lib/index.md)
+- [`RangeInclusive`](lib/index.md)
+- [`RangeTo`](lib/index.md)
+- [`Range`](lib/index.md)
+- [`RefCell`](lib/index.md)
+- [`Reverse`](lib/index.md)
+- [`RwLock`](lib/index.md)
+- [`Saturating`](lib/index.md)
+- [`String`](lib/index.md)
+- [`SystemTime`](lib/index.md)
+- [`VecDeque`](lib/index.md)
+- [`Vec`](lib/index.md)
+- [`Wrapping`](lib/index.md)
+- `&'a T`
+- `&'a mut T`
+- `()`
+- `(T)`
+- `(T0, T1)`
+- `(T0, T1, T2)`
+- `(T0, T1, T2, T3)`
+- `(T0, T1, T2, T3, T4)`
+- `(T0, T1, T2, T3, T4, T5)`
+- `(T0, T1, T2, T3, T4, T5, T6)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15)`
+- `Option<T>`
+- `Result<T, E>`
+- `[T; 0]`
+- `[T; 10]`
+- `[T; 11]`
+- `[T; 12]`
+- `[T; 13]`
+- `[T; 14]`
+- `[T; 15]`
+- `[T; 16]`
+- `[T; 17]`
+- `[T; 18]`
+- `[T; 19]`
+- `[T; 1]`
+- `[T; 20]`
+- `[T; 21]`
+- `[T; 22]`
+- `[T; 23]`
+- `[T; 24]`
+- `[T; 25]`
+- `[T; 26]`
+- `[T; 27]`
+- `[T; 28]`
+- `[T; 29]`
+- `[T; 2]`
+- `[T; 30]`
+- `[T; 31]`
+- `[T; 32]`
+- `[T; 3]`
+- `[T; 4]`
+- `[T; 5]`
+- `[T; 6]`
+- `[T; 7]`
+- `[T; 8]`
+- `[T; 9]`
+- `[T]`
+- `bool`
+- `char`
+- `f32`
+- `f64`
+- `fmt::Arguments<'a>`
+- `i128`
+- `i16`
+- `i32`
+- `i64`
+- `i8`
+- `isize`
+- `net::IpAddr`
+- `net::Ipv4Addr`
+- `net::Ipv6Addr`
+- `net::SocketAddrV4`
+- `net::SocketAddrV6`
+- `net::SocketAddr`
+- `num::NonZeroI128`
+- `num::NonZeroI16`
+- `num::NonZeroI32`
+- `num::NonZeroI64`
+- `num::NonZeroI8`
+- `num::NonZeroIsize`
+- `num::NonZeroU128`
+- `num::NonZeroU16`
+- `num::NonZeroU32`
+- `num::NonZeroU64`
+- `num::NonZeroU8`
+- `num::NonZeroUsize`
+- `str`
+- `u128`
+- `u16`
+- `u32`
+- `u64`
+- `u8`
+- `usize`
+
+### `Serializer`
+
+```rust
+trait Serializer: Sized { ... }
+```
+
+A **data format** that can serialize any data structure supported by Serde.
+
+The role of this trait is to define the serialization half of the [Serde
+data model], which is a way to categorize every Rust data structure into one
+of 29 possible types. Each method of the `Serializer` trait corresponds to
+one of the types of the data model.
+
+Implementations of `Serialize` map themselves into this data model by
+invoking exactly one of the `Serializer` methods.
+
+The types that make up the Serde data model are:
+
+ - **14 primitive types**
+   - bool
+   - i8, i16, i32, i64, i128
+   - u8, u16, u32, u64, u128
+   - f32, f64
+   - char
+ - **string**
+   - UTF-8 bytes with a length and no null terminator.
+   - When serializing, all strings are handled equally. When deserializing,
+     there are three flavors of strings: transient, owned, and borrowed.
+ - **byte array** - \[u8\]
+   - Similar to strings, during deserialization byte arrays can be
+     transient, owned, or borrowed.
+ - **option**
+   - Either none or some value.
+ - **unit**
+   - The type of `()` in Rust. It represents an anonymous value containing
+     no data.
+ - **unit_struct**
+   - For example `struct Unit` or `PhantomData<T>`. It represents a named
+     value containing no data.
+ - **unit_variant**
+   - For example the `E::A` and `E::B` in `enum E { A, B }`.
+ - **newtype_struct**
+   - For example `struct Millimeters(u8)`.
+ - **newtype_variant**
+   - For example the `E::N` in `enum E { N(u8) }`.
+ - **seq**
+   - A variably sized heterogeneous sequence of values, for example
+     `Vec<T>` or `HashSet<T>`. When serializing, the length may or may not
+     be known before iterating through all the data. When deserializing,
+     the length is determined by looking at the serialized data.
+ - **tuple**
+   - A statically sized heterogeneous sequence of values for which the
+     length will be known at deserialization time without looking at the
+     serialized data, for example `(u8,)` or `(String, u64, Vec<T>)` or
+     `[u64; 10]`.
+ - **tuple_struct**
+   - A named tuple, for example `struct Rgb(u8, u8, u8)`.
+ - **tuple_variant**
+   - For example the `E::T` in `enum E { T(u8, u8) }`.
+ - **map**
+   - A heterogeneous key-value pairing, for example `BTreeMap<K, V>`.
+ - **struct**
+   - A heterogeneous key-value pairing in which the keys are strings and
+     will be known at deserialization time without looking at the
+     serialized data, for example `struct S { r: u8, g: u8, b: u8 }`.
+ - **struct_variant**
+   - For example the `E::S` in `enum E { S { r: u8, g: u8, b: u8 } }`.
+
+Many Serde serializers produce text or binary data as output, for example
+JSON or Postcard. This is not a requirement of the `Serializer` trait, and
+there are serializers that do not produce text or binary output. One example
+is the `serde_json::value::Serializer` (distinct from the main `serde_json`
+serializer) that produces a `serde_json::Value` data structure in memory as
+output.
+
+# Example implementation
+
+The [example data format] presented on the website contains example code for
+a basic JSON `Serializer`.
+
+
+#### Associated Types
+
+- `type Ok`
+
+- `type Error: 1`
+
+- `type SerializeSeq: 1`
+
+- `type SerializeTuple: 1`
+
+- `type SerializeTupleStruct: 1`
+
+- `type SerializeTupleVariant: 1`
+
+- `type SerializeMap: 1`
+
+- `type SerializeStruct: 1`
+
+- `type SerializeStructVariant: 1`
+
+#### Required Methods
+
+- `fn serialize_bool(self, v: bool) -> Result<<Self as >::Ok, <Self as >::Error>`
+
+  Serialize a `bool` value.
+
+- `fn serialize_i8(self, v: i8) -> Result<<Self as >::Ok, <Self as >::Error>`
+
+  Serialize an `i8` value.
+
+- `fn serialize_i16(self, v: i16) -> Result<<Self as >::Ok, <Self as >::Error>`
+
+  Serialize an `i16` value.
+
+- `fn serialize_i32(self, v: i32) -> Result<<Self as >::Ok, <Self as >::Error>`
+
+  Serialize an `i32` value.
+
+- `fn serialize_i64(self, v: i64) -> Result<<Self as >::Ok, <Self as >::Error>`
+
+  Serialize an `i64` value.
+
+- `fn serialize_u8(self, v: u8) -> Result<<Self as >::Ok, <Self as >::Error>`
+
+  Serialize a `u8` value.
+
+- `fn serialize_u16(self, v: u16) -> Result<<Self as >::Ok, <Self as >::Error>`
+
+  Serialize a `u16` value.
+
+- `fn serialize_u32(self, v: u32) -> Result<<Self as >::Ok, <Self as >::Error>`
+
+  Serialize a `u32` value.
+
+- `fn serialize_u64(self, v: u64) -> Result<<Self as >::Ok, <Self as >::Error>`
+
+  Serialize a `u64` value.
+
+- `fn serialize_f32(self, v: f32) -> Result<<Self as >::Ok, <Self as >::Error>`
+
+  Serialize an `f32` value.
+
+- `fn serialize_f64(self, v: f64) -> Result<<Self as >::Ok, <Self as >::Error>`
+
+  Serialize an `f64` value.
+
+- `fn serialize_char(self, v: char) -> Result<<Self as >::Ok, <Self as >::Error>`
+
+  Serialize a character.
+
+- `fn serialize_str(self, v: &str) -> Result<<Self as >::Ok, <Self as >::Error>`
+
+  Serialize a `&str`.
+
+- `fn serialize_bytes(self, v: &[u8]) -> Result<<Self as >::Ok, <Self as >::Error>`
+
+  Serialize a chunk of raw byte data.
+
+- `fn serialize_none(self) -> Result<<Self as >::Ok, <Self as >::Error>`
+
+  Serialize a `None` value.
+
+- `fn serialize_some<T>(self, value: &T) -> Result<<Self as >::Ok, <Self as >::Error>`
+
+  Serialize a `Some(T)` value.
+
+- `fn serialize_unit(self) -> Result<<Self as >::Ok, <Self as >::Error>`
+
+  Serialize a `()` value.
+
+- `fn serialize_unit_struct(self, name: &'static str) -> Result<<Self as >::Ok, <Self as >::Error>`
+
+  Serialize a unit struct like `struct Unit` or `PhantomData<T>`.
+
+- `fn serialize_unit_variant(self, name: &'static str, variant_index: u32, variant: &'static str) -> Result<<Self as >::Ok, <Self as >::Error>`
+
+  Serialize a unit variant like `E::A` in `enum E { A, B }`.
+
+- `fn serialize_newtype_struct<T>(self, name: &'static str, value: &T) -> Result<<Self as >::Ok, <Self as >::Error>`
+
+  Serialize a newtype struct like `struct Millimeters(u8)`.
+
+- `fn serialize_newtype_variant<T>(self, name: &'static str, variant_index: u32, variant: &'static str, value: &T) -> Result<<Self as >::Ok, <Self as >::Error>`
+
+  Serialize a newtype variant like `E::N` in `enum E { N(u8) }`.
+
+- `fn serialize_seq(self, len: Option<usize>) -> Result<<Self as >::SerializeSeq, <Self as >::Error>`
+
+  Begin to serialize a variably sized sequence. This call must be
+
+- `fn serialize_tuple(self, len: usize) -> Result<<Self as >::SerializeTuple, <Self as >::Error>`
+
+  Begin to serialize a statically sized sequence whose length will be
+
+- `fn serialize_tuple_struct(self, name: &'static str, len: usize) -> Result<<Self as >::SerializeTupleStruct, <Self as >::Error>`
+
+  Begin to serialize a tuple struct like `struct Rgb(u8, u8, u8)`. This
+
+- `fn serialize_tuple_variant(self, name: &'static str, variant_index: u32, variant: &'static str, len: usize) -> Result<<Self as >::SerializeTupleVariant, <Self as >::Error>`
+
+  Begin to serialize a tuple variant like `E::T` in `enum E { T(u8, u8)
+
+- `fn serialize_map(self, len: Option<usize>) -> Result<<Self as >::SerializeMap, <Self as >::Error>`
+
+  Begin to serialize a map. This call must be followed by zero or more
+
+- `fn serialize_struct(self, name: &'static str, len: usize) -> Result<<Self as >::SerializeStruct, <Self as >::Error>`
+
+  Begin to serialize a struct like `struct Rgb { r: u8, g: u8, b: u8 }`.
+
+- `fn serialize_struct_variant(self, name: &'static str, variant_index: u32, variant: &'static str, len: usize) -> Result<<Self as >::SerializeStructVariant, <Self as >::Error>`
+
+  Begin to serialize a struct variant like `E::S` in `enum E { S { r: u8,
+
+#### Provided Methods
+
+- `fn serialize_i128(self, v: i128) -> Result<<Self as >::Ok, <Self as >::Error>`
+
+  Serialize an `i128` value.
+
+- `fn serialize_u128(self, v: u128) -> Result<<Self as >::Ok, <Self as >::Error>`
+
+  Serialize a `u128` value.
+
+- `fn collect_seq<I>(self, iter: I) -> Result<<Self as >::Ok, <Self as >::Error>`
+
+  Collect an iterator as a sequence.
+
+- `fn collect_map<K, V, I>(self, iter: I) -> Result<<Self as >::Ok, <Self as >::Error>`
+
+  Collect an iterator as a map.
+
+- `fn collect_str<T>(self, value: &T) -> Result<<Self as >::Ok, <Self as >::Error>`
+
+  Serialize a string produced by an implementation of `Display`.
+
+- `fn is_human_readable(&self) -> bool`
+
+  Determine whether `Serialize` implementations should serialize in
+
+#### Implementors
+
+- `&mut fmt::Formatter<'a>`
 
 ## Macros
 

@@ -56,3 +56,7 @@ struct IdentAny;
 trait Sealed { ... }
 ```
 
+#### Implementors
+
+- [`Ident`](../../index.md)
+

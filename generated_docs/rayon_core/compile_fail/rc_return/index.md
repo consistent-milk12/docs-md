@@ -13,6 +13,6 @@
 
 ## Modules
 
-- [`left`](left/index.md) -  ```compile_fail,E0277
-- [`right`](right/index.md) -  ```compile_fail,E0277
+- [`left`](left/index.md) —  ```compile_fail,E0277
+- [`right`](right/index.md) —  ```compile_fail,E0277
 

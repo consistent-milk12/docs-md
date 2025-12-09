@@ -48,14 +48,14 @@
 
 ## Modules
 
-- [`capacity`](capacity/index.md) - 
-- [`heap`](heap/index.md) - 
-- [`inline`](inline/index.md) - 
-- [`iter`](iter/index.md) - Implementations of the [`FromIterator`] trait to make building [`Repr`]s more ergonomic
-- [`last_utf8_char`](last_utf8_char/index.md) - 
-- [`num`](num/index.md) - Implementations for efficiently converting a number into a [`Repr`]
-- [`static_str`](static_str/index.md) - 
-- [`traits`](traits/index.md) - 
+- [`capacity`](capacity/index.md)
+- [`heap`](heap/index.md)
+- [`inline`](inline/index.md)
+- [`iter`](iter/index.md) — Implementations of the [`FromIterator`] trait to make building [`Repr`]s more ergonomic
+- [`last_utf8_char`](last_utf8_char/index.md)
+- [`num`](num/index.md) — Implementations for efficiently converting a number into a [`Repr`]
+- [`static_str`](static_str/index.md)
+- [`traits`](traits/index.md)
 
 ## Structs
 
@@ -139,13 +139,13 @@ struct Repr(*const (), usize, u32, u16, u8, last_utf8_char::LastByte);
 
 - <span id="repr-drop"></span>`fn drop(&mut self)`
 
-##### `impl<'a> Extend for Repr`
+##### `impl Extend for Repr`
 
-- <span id="repr-extend"></span>`fn extend<T: IntoIterator<Item = &'a str>>(&mut self, iter: T)`
+- <span id="repr-extend"></span>`fn extend<T: IntoIterator<Item = Box<str>>>(&mut self, iter: T)`
 
 ##### `impl FromIterator for super::Repr`
 
-- <span id="superrepr-from-iter"></span>`fn from_iter<T: IntoIterator<Item = String>>(iter: T) -> Self`
+- <span id="superrepr-from-iter"></span>`fn from_iter<T: IntoIterator<Item = Box<str>>>(iter: T) -> Self`
 
 ##### `impl LifetimeFree for super::repr::Repr`
 

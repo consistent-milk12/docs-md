@@ -10,8 +10,8 @@ Unsafe functions that mirror the API of the C implementation of Ryū.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
+| [`format32`](#format32) | fn |  |
+| [`format64`](#format64) | fn |  |
 
 ## Functions
 

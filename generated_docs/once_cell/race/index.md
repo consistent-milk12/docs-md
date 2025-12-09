@@ -33,11 +33,11 @@ architectures versus `Relaxed`.
 | [`OnceNonZeroUsize`](#oncenonzerousize) | struct | A thread-safe cell which can be written to only once. |
 | [`OnceBool`](#oncebool) | struct | A thread-safe cell which can be written to only once. |
 | [`OnceRef`](#onceref) | struct | A thread-safe cell which can be written to only once. |
-| [`unnamed`](#unnamed) | struct |  |
+| [`OnceBox`](#oncebox) | struct |  |
 
 ## Modules
 
-- [`once_box`](once_box/index.md) - 
+- [`once_box`](once_box/index.md)
 
 ## Structs
 

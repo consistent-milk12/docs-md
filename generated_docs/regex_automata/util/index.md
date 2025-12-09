@@ -84,25 +84,25 @@ with the `regex-syntax` crate.
 
 ## Modules
 
-- [`alphabet`](alphabet/index.md) - This module provides APIs for dealing with the alphabets of finite state
-- [`captures`](captures/index.md) - Provides types for dealing with capturing groups.
-- [`escape`](escape/index.md) - Provides convenience routines for escaping raw bytes.
-- [`interpolate`](interpolate/index.md) - Provides routines for interpolating capture group references.
-- [`iter`](iter/index.md) - Generic helpers for iteration of matches from a regex engine in a haystack.
-- [`lazy`](lazy/index.md) - A lazily initialized value for safe sharing between threads.
-- [`look`](look/index.md) - Types and routines for working with look-around assertions.
-- [`pool`](pool/index.md) - A thread safe memory pool.
-- [`prefilter`](prefilter/index.md) - Defines a prefilter for accelerating regex searches.
-- [`primitives`](primitives/index.md) - Lower level primitive types that are useful in a variety of circumstances.
-- [`start`](start/index.md) - Provides helpers for dealing with start state configurations in DFAs.
-- [`syntax`](syntax/index.md) - Utilities for dealing with the syntax of a regular expression.
-- [`wire`](wire/index.md) - Types and routines that support the wire format of finite automata.
-- [`determinize`](determinize/index.md) - This module contains types and routines for implementing determinization.
-- [`empty`](empty/index.md) - This module provides helper routines for dealing with zero-width matches.
-- [`int`](int/index.md) - This module provides several integer oriented traits for converting between
-- [`memchr`](memchr/index.md) - This module defines simple wrapper routines for the memchr functions from the
-- [`search`](search/index.md) - Types and routines that support the search APIs of most regex engines.
-- [`sparse_set`](sparse_set/index.md) - This module defines a sparse set data structure. Its most interesting
-- [`unicode_data`](unicode_data/index.md) - 
-- [`utf8`](utf8/index.md) - Utilities for dealing with UTF-8.
+- [`alphabet`](alphabet/index.md) — This module provides APIs for dealing with the alphabets of finite state
+- [`captures`](captures/index.md) — Provides types for dealing with capturing groups.
+- [`escape`](escape/index.md) — Provides convenience routines for escaping raw bytes.
+- [`interpolate`](interpolate/index.md) — Provides routines for interpolating capture group references.
+- [`iter`](iter/index.md) — Generic helpers for iteration of matches from a regex engine in a haystack.
+- [`lazy`](lazy/index.md) — A lazily initialized value for safe sharing between threads.
+- [`look`](look/index.md) — Types and routines for working with look-around assertions.
+- [`pool`](pool/index.md) — A thread safe memory pool.
+- [`prefilter`](prefilter/index.md) — Defines a prefilter for accelerating regex searches.
+- [`primitives`](primitives/index.md) — Lower level primitive types that are useful in a variety of circumstances.
+- [`start`](start/index.md) — Provides helpers for dealing with start state configurations in DFAs.
+- [`syntax`](syntax/index.md) — Utilities for dealing with the syntax of a regular expression.
+- [`wire`](wire/index.md) — Types and routines that support the wire format of finite automata.
+- [`determinize`](determinize/index.md) — This module contains types and routines for implementing determinization.
+- [`empty`](empty/index.md) — This module provides helper routines for dealing with zero-width matches.
+- [`int`](int/index.md) — This module provides several integer oriented traits for converting between
+- [`memchr`](memchr/index.md) — This module defines simple wrapper routines for the memchr functions from the
+- [`search`](search/index.md) — Types and routines that support the search APIs of most regex engines.
+- [`sparse_set`](sparse_set/index.md) — This module defines a sparse set data structure. Its most interesting
+- [`unicode_data`](unicode_data/index.md)
+- [`utf8`](utf8/index.md) — Utilities for dealing with UTF-8.
 

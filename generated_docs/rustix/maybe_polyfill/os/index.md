@@ -12,5 +12,5 @@
 
 ## Modules
 
-- [`fd`](fd/index.md) - 
+- [`fd`](fd/index.md)
 

@@ -58,7 +58,7 @@
 
 ## Modules
 
-- [`private`](private/index.md) - 
+- [`private`](private/index.md)
 
 ## Structs
 
@@ -124,13 +124,15 @@ assert_eq!(port, 3001);
 
 #### Implementations
 
-- <span id="valueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr, source: ValueSource) -> Result<AnyValue, crate::Error>` — [`Command`](../../index.md), [`Arg`](../../index.md), [`ValueSource`](../../parser/index.md), [`AnyValue`](../../util/any_value/index.md), [`Error`](../../index.md)
+- <span id="valueparser-new"></span>`fn new<P>(other: P) -> Self`
 
-- <span id="valueparser-type-id"></span>`fn type_id(&self) -> AnyValueId` — [`AnyValueId`](../../util/any_value/index.md)
+- <span id="valueparser-bool"></span>`const fn bool() -> Self`
 
-- <span id="valueparser-possible-values"></span>`fn possible_values(&self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>` — [`PossibleValue`](../index.md)
+- <span id="valueparser-string"></span>`const fn string() -> Self`
 
-- <span id="valueparser-any-value-parser"></span>`fn any_value_parser(&self) -> &dyn AnyValueParser` — [`AnyValueParser`](#anyvalueparser)
+- <span id="valueparser-os-string"></span>`const fn os_string() -> Self`
+
+- <span id="valueparser-path-buf"></span>`const fn path_buf() -> Self`
 
 #### Trait Implementations
 
@@ -1062,8 +1064,6 @@ A type-erased wrapper for [`TypedValueParser`](../index.md).
 
 - `fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<AnyValue, crate::Error>`
 
-- `fn parse_ref_(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr, _source: ValueSource) -> Result<AnyValue, crate::Error>`
-
 - `fn type_id(&self) -> AnyValueId`
 
   Describes the content of `AnyValue`
@@ -1071,6 +1071,14 @@ A type-erased wrapper for [`TypedValueParser`](../index.md).
 - `fn possible_values(&self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>`
 
 - `fn clone_any(&self) -> Box<dyn AnyValueParser>`
+
+#### Provided Methods
+
+- `fn parse_ref_(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr, _source: ValueSource) -> Result<AnyValue, crate::Error>`
+
+#### Implementors
+
+- `P`
 
 ### `TypedValueParser`
 
@@ -1130,13 +1138,17 @@ impl clap::builder::TypedValueParser for CustomValueParser {
 }
 ```
 
-#### Required Methods
+#### Associated Types
 
 - `type Value: 3`
+
+#### Required Methods
 
 - `fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>`
 
   Parse the argument value
+
+#### Provided Methods
 
 - `fn parse_ref_(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr, _source: ValueSource) -> Result<<Self as >::Value, crate::Error>`
 
@@ -1161,6 +1173,24 @@ impl clap::builder::TypedValueParser for CustomValueParser {
 - `fn try_map<T, E, F>(self, func: F) -> TryMapValueParser<Self, F>`
 
   Adapt a `TypedValueParser` from one value to another
+
+#### Implementors
+
+- [`BoolValueParser`](../index.md)
+- [`BoolishValueParser`](../index.md)
+- [`EnumValueParser`](../index.md)
+- [`FalseyValueParser`](../index.md)
+- [`MapValueParser`](../index.md)
+- [`NonEmptyStringValueParser`](../index.md)
+- [`OsStringValueParser`](../index.md)
+- [`PathBufValueParser`](../index.md)
+- [`PossibleValuesParser`](../index.md)
+- [`RangedI64ValueParser`](../index.md)
+- [`RangedU64ValueParser`](../index.md)
+- [`StringValueParser`](../index.md)
+- [`TryMapValueParser`](../index.md)
+- [`UnknownArgumentValueParser`](../index.md)
+- `F`
 
 ### `ValueParserFactory`
 
@@ -1204,11 +1234,35 @@ impl clap::builder::TypedValueParser for CustomValueParser {
 let parser: CustomValueParser = clap::value_parser!(Custom);
 ```
 
-#### Required Methods
+#### Associated Types
 
 - `type Parser`
+
+#### Required Methods
 
 - `fn value_parser() -> <Self as >::Parser`
 
   Create the specified `Self::Parser`
+
+#### Implementors
+
+- `Box<T>`
+- `Box<std::ffi::OsStr>`
+- `Box<std::path::Path>`
+- `Box<str>`
+- `String`
+- `bool`
+- `i16`
+- `i32`
+- `i64`
+- `i8`
+- `std::ffi::OsString`
+- `std::num::Saturating<T>`
+- `std::num::Wrapping<T>`
+- `std::path::PathBuf`
+- `std::sync::Arc<T>`
+- `u16`
+- `u32`
+- `u64`
+- `u8`
 

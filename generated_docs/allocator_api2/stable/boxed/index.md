@@ -189,15 +189,17 @@ See the [module-level documentation](../../std/boxed/index.html) for more.
 
 - <span id="box-last"></span>`fn last(self) -> Option<<I as >::Item>`
 
-##### `impl Clone for Box<str>`
+##### `impl<T: Clone, A: Allocator + Clone> Clone for Box<T, A>`
 
 - <span id="box-clone"></span>`fn clone(&self) -> Self`
+
+- <span id="box-clone-from"></span>`fn clone_from(&mut self, source: &Self)`
 
 ##### `impl<T: fmt::Debug + ?Sized, A: Allocator> Debug for Box<T, A>`
 
 - <span id="box-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<A: Allocator + Default> Default for Box<str, A>`
+##### `impl<T, A: Allocator + Default> Default for Box<[T], A>`
 
 - <span id="box-default"></span>`fn default() -> Self`
 
@@ -353,9 +355,15 @@ See the [module-level documentation](../../std/boxed/index.html) for more.
 trait BoxIter { ... }
 ```
 
-#### Required Methods
+#### Associated Types
 
 - `type Item`
 
+#### Required Methods
+
 - `fn last(self) -> Option<<Self as >::Item>`
+
+#### Implementors
+
+- [`Box`](#box)
 

@@ -44,3 +44,11 @@ Implementing this trait is not permitted outside of `rayon`.
 
 - `fn fold_match_indices<'ch, F>(&self, haystack: &'ch str, folder: F, base: usize) -> F`
 
+#### Implementors
+
+- `&[char; N]`
+- `&[char]`
+- `FN`
+- `[char; N]`
+- `char`
+

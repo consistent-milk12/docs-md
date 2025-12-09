@@ -57,15 +57,15 @@ level routines such as `Regex::search_with`.
   - [`strategy`](#strategy)
   - [`wrappers`](#wrappers)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`BuildError`](#builderror)
+  - [`Builder`](#builder)
+  - [`Cache`](#cache)
+  - [`CapturesMatches`](#capturesmatches)
+  - [`Config`](#config)
+  - [`FindMatches`](#findmatches)
+  - [`Regex`](#regex)
+  - [`Split`](#split)
+  - [`SplitN`](#splitn)
 
 ## Quick Reference
 
@@ -79,26 +79,26 @@ level routines such as `Regex::search_with`.
 | [`stopat`](#stopat) | mod | This module defines two bespoke forward DFA search routines. |
 | [`strategy`](#strategy) | mod |  |
 | [`wrappers`](#wrappers) | mod | This module contains a boat load of wrappers around each of our internal regex |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
+| [`BuildError`](#builderror) | struct |  |
+| [`Builder`](#builder) | struct |  |
+| [`Cache`](#cache) | struct |  |
+| [`CapturesMatches`](#capturesmatches) | struct |  |
+| [`Config`](#config) | struct |  |
+| [`FindMatches`](#findmatches) | struct |  |
+| [`Regex`](#regex) | struct |  |
+| [`Split`](#split) | struct |  |
+| [`SplitN`](#splitn) | struct |  |
 
 ## Modules
 
-- [`error`](error/index.md) - 
-- [`limited`](limited/index.md) - This module defines two bespoke reverse DFA searching routines. (One for the
-- [`literal`](literal/index.md) - 
-- [`regex`](regex/index.md) - 
-- [`reverse_inner`](reverse_inner/index.md) - A module dedicated to plucking inner literals out of a regex pattern, and
-- [`stopat`](stopat/index.md) - This module defines two bespoke forward DFA search routines. One for the lazy
-- [`strategy`](strategy/index.md) - 
-- [`wrappers`](wrappers/index.md) - This module contains a boat load of wrappers around each of our internal regex
+- [`error`](error/index.md)
+- [`limited`](limited/index.md) — This module defines two bespoke reverse DFA searching routines. (One for the
+- [`literal`](literal/index.md)
+- [`regex`](regex/index.md)
+- [`reverse_inner`](reverse_inner/index.md) — A module dedicated to plucking inner literals out of a regex pattern, and
+- [`stopat`](stopat/index.md) — This module defines two bespoke forward DFA search routines. One for the lazy
+- [`strategy`](strategy/index.md)
+- [`wrappers`](wrappers/index.md) — This module contains a boat load of wrappers around each of our internal regex
 
 ## Structs
 
@@ -829,15 +829,15 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- <span id="regex-search-with"></span>`fn search_with(&self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>` — [`Cache`](#cache), [`Input`](../index.md), [`Match`](../index.md)
+- <span id="regex-search"></span>`fn search(&self, input: &Input<'_>) -> Option<Match>` — [`Input`](../index.md), [`Match`](../index.md)
 
-- <span id="regex-search-half-with"></span>`fn search_half_with(&self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>` — [`Cache`](#cache), [`Input`](../index.md), [`HalfMatch`](../index.md)
+- <span id="regex-search-half"></span>`fn search_half(&self, input: &Input<'_>) -> Option<HalfMatch>` — [`Input`](../index.md), [`HalfMatch`](../index.md)
 
-- <span id="regex-search-captures-with"></span>`fn search_captures_with(&self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures)` — [`Cache`](#cache), [`Input`](../index.md), [`Captures`](../util/captures/index.md)
+- <span id="regex-search-captures"></span>`fn search_captures(&self, input: &Input<'_>, caps: &mut Captures)` — [`Input`](../index.md), [`Captures`](../util/captures/index.md)
 
-- <span id="regex-search-slots-with"></span>`fn search_slots_with(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](#cache), [`Input`](../index.md), [`NonMaxUsize`](../util/primitives/index.md), [`PatternID`](../index.md)
+- <span id="regex-search-slots"></span>`fn search_slots(&self, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Input`](../index.md), [`NonMaxUsize`](../util/primitives/index.md), [`PatternID`](../index.md)
 
-- <span id="regex-which-overlapping-matches-with"></span>`fn which_overlapping_matches_with(&self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)` — [`Cache`](#cache), [`Input`](../index.md), [`PatternSet`](../index.md)
+- <span id="regex-which-overlapping-matches"></span>`fn which_overlapping_matches(&self, input: &Input<'_>, patset: &mut PatternSet)` — [`Input`](../index.md), [`PatternSet`](../index.md)
 
 #### Trait Implementations
 

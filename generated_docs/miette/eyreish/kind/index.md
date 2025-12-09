@@ -67,9 +67,13 @@ struct Boxed;
 trait AdhocKind: Sized { ... }
 ```
 
-#### Required Methods
+#### Provided Methods
 
 - `fn miette_kind(&self) -> Adhoc`
+
+#### Implementors
+
+- `&T`
 
 ### `TraitKind`
 
@@ -77,9 +81,24 @@ trait AdhocKind: Sized { ... }
 trait TraitKind: Sized { ... }
 ```
 
-#### Required Methods
+#### Provided Methods
 
 - `fn miette_kind(&self) -> Trait`
+
+#### Implementors
+
+- [`BoxedError`](../wrapper/index.md)
+- [`ContextError`](../error/index.md)
+- [`DiagnosticError`](../into_diagnostic/index.md)
+- [`DisplayError`](../wrapper/index.md)
+- [`InstallError`](../../index.md)
+- [`MessageError`](../wrapper/index.md)
+- [`MietteDiagnostic`](../../index.md)
+- [`MietteError`](../../index.md)
+- [`Panic`](../../panic/index.md)
+- [`Report`](../../index.md)
+- [`WithSourceCode`](../wrapper/index.md)
+- `E`
 
 ### `BoxedKind`
 
@@ -87,7 +106,11 @@ trait TraitKind: Sized { ... }
 trait BoxedKind: Sized { ... }
 ```
 
-#### Required Methods
+#### Provided Methods
 
 - `fn miette_kind(&self) -> Boxed`
+
+#### Implementors
+
+- `Box<dyn Diagnostic + Send + Sync>`
 

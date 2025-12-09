@@ -255,26 +255,26 @@ assert_eq!("33,857,009.1235", HumanFloatCount(33857009.123456).to_string());
   - [`style`](#style)
   - [`term_like`](#term_like)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`ProgressDrawTarget`](#progressdrawtarget)
+  - [`BinaryBytes`](#binarybytes)
+  - [`DecimalBytes`](#decimalbytes)
+  - [`FormattedDuration`](#formattedduration)
+  - [`HumanBytes`](#humanbytes)
+  - [`HumanCount`](#humancount)
+  - [`HumanDuration`](#humanduration)
+  - [`HumanFloatCount`](#humanfloatcount)
+  - [`ProgressBarIter`](#progressbariter)
+  - [`MultiProgress`](#multiprogress)
+  - [`ProgressBar`](#progressbar)
+  - [`WeakProgressBar`](#weakprogressbar)
+  - [`ProgressState`](#progressstate)
+  - [`ProgressStyle`](#progressstyle)
 - [Enums](#enums)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`MultiProgressAlignment`](#multiprogressalignment)
+  - [`ProgressFinish`](#progressfinish)
 - [Traits](#traits)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`ProgressIterator`](#progressiterator)
+  - [`TermLike`](#termlike)
 
 ## Quick Reference
 
@@ -288,35 +288,35 @@ assert_eq!("33,857,009.1235", HumanFloatCount(33857009.123456).to_string());
 | [`state`](#state) | mod |  |
 | [`style`](#style) | mod |  |
 | [`term_like`](#term_like) | mod |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | trait |  |
-| [`unnamed`](#unnamed) | trait |  |
+| [`ProgressDrawTarget`](#progressdrawtarget) | struct |  |
+| [`BinaryBytes`](#binarybytes) | struct |  |
+| [`DecimalBytes`](#decimalbytes) | struct |  |
+| [`FormattedDuration`](#formattedduration) | struct |  |
+| [`HumanBytes`](#humanbytes) | struct |  |
+| [`HumanCount`](#humancount) | struct |  |
+| [`HumanDuration`](#humanduration) | struct |  |
+| [`HumanFloatCount`](#humanfloatcount) | struct |  |
+| [`ProgressBarIter`](#progressbariter) | struct |  |
+| [`MultiProgress`](#multiprogress) | struct |  |
+| [`ProgressBar`](#progressbar) | struct |  |
+| [`WeakProgressBar`](#weakprogressbar) | struct |  |
+| [`ProgressState`](#progressstate) | struct |  |
+| [`ProgressStyle`](#progressstyle) | struct |  |
+| [`MultiProgressAlignment`](#multiprogressalignment) | enum |  |
+| [`ProgressFinish`](#progressfinish) | enum |  |
+| [`ProgressIterator`](#progressiterator) | trait |  |
+| [`TermLike`](#termlike) | trait |  |
 
 ## Modules
 
-- [`draw_target`](draw_target/index.md) - 
-- [`format`](format/index.md) - 
-- [`iter`](iter/index.md) - 
-- [`multi`](multi/index.md) - 
-- [`progress_bar`](progress_bar/index.md) - 
-- [`state`](state/index.md) - 
-- [`style`](style/index.md) - 
-- [`term_like`](term_like/index.md) - 
+- [`draw_target`](draw_target/index.md)
+- [`format`](format/index.md)
+- [`iter`](iter/index.md)
+- [`multi`](multi/index.md)
+- [`progress_bar`](progress_bar/index.md)
+- [`state`](state/index.md)
+- [`style`](style/index.md)
+- [`term_like`](term_like/index.md)
 
 ## Structs
 
@@ -1098,4 +1098,100 @@ This is invoked when a [`ProgressBar`](#progressbar) or [`ProgressBarIter`](#pro
 - <span id="progressfinish-default"></span>`fn default() -> ProgressFinish` — [`ProgressFinish`](#progressfinish)
 
 ## Traits
+
+### `ProgressIterator`
+
+```rust
+trait ProgressIterator
+where
+    Self: Sized + Iterator { ... }
+```
+
+Wraps an iterator to display its progress.
+
+#### Required Methods
+
+- `fn progress_with(self, progress: ProgressBar) -> ProgressBarIter<Self>`
+
+  Wrap an iterator with a custom progress bar.
+
+#### Provided Methods
+
+- `fn try_progress(self) -> Option<ProgressBarIter<Self>>`
+
+  Wrap an iterator with default styling. Uses `Iterator::size_hint()` to get length.
+
+- `fn progress(self) -> ProgressBarIter<Self>`
+
+  Wrap an iterator with default styling.
+
+- `fn progress_count(self, len: u64) -> ProgressBarIter<Self>`
+
+  Wrap an iterator with an explicit element count.
+
+- `fn progress_with_style(self, style: crate::ProgressStyle) -> ProgressBarIter<Self>`
+
+  Wrap an iterator with a progress bar and style it.
+
+#### Implementors
+
+- [`ProgressBarIter`](#progressbariter)
+- `T`
+
+### `TermLike`
+
+```rust
+trait TermLike: Debug + Send + Sync { ... }
+```
+
+A trait for minimal terminal-like behavior.
+
+Anything that implements this trait can be used a draw target via `ProgressDrawTarget::term_like`.
+
+
+#### Required Methods
+
+- `fn width(&self) -> u16`
+
+  Return the terminal width
+
+- `fn move_cursor_up(&self, n: usize) -> io::Result<()>`
+
+  Move the cursor up by `n` lines
+
+- `fn move_cursor_down(&self, n: usize) -> io::Result<()>`
+
+  Move the cursor down by `n` lines
+
+- `fn move_cursor_right(&self, n: usize) -> io::Result<()>`
+
+  Move the cursor right by `n` chars
+
+- `fn move_cursor_left(&self, n: usize) -> io::Result<()>`
+
+  Move the cursor left by `n` chars
+
+- `fn write_line(&self, s: &str) -> io::Result<()>`
+
+  Write a string and add a newline.
+
+- `fn write_str(&self, s: &str) -> io::Result<()>`
+
+  Write a string
+
+- `fn clear_line(&self) -> io::Result<()>`
+
+  Clear the current line and reset the cursor to beginning of the line
+
+- `fn flush(&self) -> io::Result<()>`
+
+#### Provided Methods
+
+- `fn height(&self) -> u16`
+
+  Return the terminal height
+
+#### Implementors
+
+- `console::Term`
 

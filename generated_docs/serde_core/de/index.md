@@ -124,7 +124,7 @@ One example is `OsStr`.
   - [`ignored_any`](#ignored_any)
   - [`impls`](#impls)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
+  - [`IgnoredAny`](#ignoredany)
   - [`OneOf`](#oneof)
   - [`WithDecimalPoint`](#withdecimalpoint)
 - [Enums](#enums)
@@ -152,7 +152,7 @@ One example is `OsStr`.
 | [`value`](#value) | mod | Building blocks for deserializing basic values using the `IntoDeserializer` |
 | [`ignored_any`](#ignored_any) | mod |  |
 | [`impls`](#impls) | mod |  |
-| [`unnamed`](#unnamed) | struct |  |
+| [`IgnoredAny`](#ignoredany) | struct |  |
 | [`OneOf`](#oneof) | struct | Used in error messages. |
 | [`WithDecimalPoint`](#withdecimalpoint) | struct |  |
 | [`Unexpected`](#unexpected) | enum | `Unexpected` represents an unexpected invocation of any one of the `Visitor` |
@@ -172,9 +172,9 @@ One example is `OsStr`.
 
 ## Modules
 
-- [`value`](value/index.md) - Building blocks for deserializing basic values using the `IntoDeserializer`
-- [`ignored_any`](ignored_any/index.md) - 
-- [`impls`](impls/index.md) - 
+- [`value`](value/index.md) — Building blocks for deserializing basic values using the `IntoDeserializer`
+- [`ignored_any`](ignored_any/index.md)
+- [`impls`](impls/index.md)
 
 ## Structs
 
@@ -595,6 +595,8 @@ type appropriate for a basic JSON data format.
 
   Raised when there is general error when deserializing a type.
 
+#### Provided Methods
+
 - `fn invalid_type(unexp: Unexpected<'_>, exp: &dyn Expected) -> Self`
 
   Raised when a `Deserialize` receives a type different from what it was
@@ -622,6 +624,10 @@ type appropriate for a basic JSON data format.
 - `fn duplicate_field(field: &'static str) -> Self`
 
   Raised when a `Deserialize` struct type received more than one of the
+
+#### Implementors
+
+- [`Error`](value/index.md)
 
 ### `Expected`
 
@@ -687,6 +693,33 @@ return Err(de::Error::invalid_type(
 
   Format an explanation of what data was being expected. Same signature as
 
+#### Implementors
+
+- [`ArrayInPlaceVisitor`](impls/index.md)
+- [`ArrayVisitor`](impls/index.md)
+- [`BoolVisitor`](impls/index.md)
+- [`BytesVisitor`](impls/index.md)
+- [`CStringVisitor`](impls/index.md)
+- [`CharVisitor`](impls/index.md)
+- [`ExpectedInMap`](value/index.md)
+- [`ExpectedInSeq`](value/index.md)
+- [`FromStrVisitor`](impls/index.md)
+- [`IgnoredAny`](#ignoredany)
+- [`OptionVisitor`](impls/index.md)
+- [`OsStringVisitor`](impls/index.md)
+- [`PathBufVisitor`](impls/index.md)
+- [`PathVisitor`](impls/index.md)
+- [`PhantomDataVisitor`](impls/index.md)
+- [`RangeFromVisitor`](impls/range_from/index.md)
+- [`RangeToVisitor`](impls/range_to/index.md)
+- [`RangeVisitor`](impls/range/index.md)
+- [`StrVisitor`](impls/index.md)
+- [`StringInPlaceVisitor`](impls/index.md)
+- [`StringVisitor`](impls/index.md)
+- [`UnitVisitor`](impls/index.md)
+- `&str`
+- `T`
+
 ### `Deserialize<'de>`
 
 ```rust
@@ -728,6 +761,143 @@ deserializer lifetimes] for a more detailed explanation of these lifetimes.
 
   Deserialize this value from the given Serde deserializer.
 
+#### Implementors
+
+- [`AtomicBool`](../lib/index.md)
+- [`AtomicI16`](../lib/index.md)
+- [`AtomicI32`](../lib/index.md)
+- [`AtomicI64`](../lib/index.md)
+- [`AtomicI8`](../lib/index.md)
+- [`AtomicIsize`](../lib/index.md)
+- [`AtomicU16`](../lib/index.md)
+- [`AtomicU32`](../lib/index.md)
+- [`AtomicU64`](../lib/index.md)
+- [`AtomicU8`](../lib/index.md)
+- [`AtomicUsize`](../lib/index.md)
+- [`BTreeMap`](../lib/index.md)
+- [`BTreeSet`](../lib/index.md)
+- [`BinaryHeap`](../lib/index.md)
+- [`Bound`](../lib/index.md)
+- [`Box`](../lib/index.md)
+- [`CString`](../lib/index.md)
+- [`Cell`](../lib/index.md)
+- [`Cow`](../lib/index.md)
+- [`Duration`](../lib/index.md)
+- [`Field`](impls/range/index.md)
+- [`Field`](impls/range_from/index.md)
+- [`Field`](impls/range_to/index.md)
+- [`HashMap`](../lib/index.md)
+- [`HashSet`](../lib/index.md)
+- [`IgnoredAny`](#ignoredany)
+- [`LinkedList`](../lib/index.md)
+- [`Mutex`](../lib/index.md)
+- [`OsStringKind`](impls/index.md)
+- [`OsString`](../lib/index.md)
+- [`PathBuf`](../lib/index.md)
+- [`PhantomData`](../lib/index.md)
+- [`RangeFrom`](../lib/index.md)
+- [`RangeInclusive`](../lib/index.md)
+- [`RangeTo`](../lib/index.md)
+- [`Range`](../lib/index.md)
+- [`RefCell`](../lib/index.md)
+- [`Reverse`](../lib/index.md)
+- [`RwLock`](../lib/index.md)
+- [`Saturating`](../lib/index.md)
+- [`String`](../lib/index.md)
+- [`SystemTime`](../lib/index.md)
+- [`VecDeque`](../lib/index.md)
+- [`Vec`](../lib/index.md)
+- [`Wrapping`](../lib/index.md)
+- `&'a Path`
+- `&'a [u8]`
+- `&'a str`
+- `()`
+- `(T)`
+- `(T0, T1)`
+- `(T0, T1, T2)`
+- `(T0, T1, T2, T3)`
+- `(T0, T1, T2, T3, T4)`
+- `(T0, T1, T2, T3, T4, T5)`
+- `(T0, T1, T2, T3, T4, T5, T6)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15)`
+- `Option<T>`
+- `Result<T, E>`
+- `[T; 0]`
+- `[T; 10]`
+- `[T; 11]`
+- `[T; 12]`
+- `[T; 13]`
+- `[T; 14]`
+- `[T; 15]`
+- `[T; 16]`
+- `[T; 17]`
+- `[T; 18]`
+- `[T; 19]`
+- `[T; 1]`
+- `[T; 20]`
+- `[T; 21]`
+- `[T; 22]`
+- `[T; 23]`
+- `[T; 24]`
+- `[T; 25]`
+- `[T; 26]`
+- `[T; 27]`
+- `[T; 28]`
+- `[T; 29]`
+- `[T; 2]`
+- `[T; 30]`
+- `[T; 31]`
+- `[T; 32]`
+- `[T; 3]`
+- `[T; 4]`
+- `[T; 5]`
+- `[T; 6]`
+- `[T; 7]`
+- `[T; 8]`
+- `[T; 9]`
+- `bool`
+- `char`
+- `f32`
+- `f64`
+- `i128`
+- `i16`
+- `i32`
+- `i64`
+- `i8`
+- `isize`
+- `net::IpAddr`
+- `net::Ipv4Addr`
+- `net::Ipv6Addr`
+- `net::SocketAddrV4`
+- `net::SocketAddrV6`
+- `net::SocketAddr`
+- `num::NonZeroI128`
+- `num::NonZeroI16`
+- `num::NonZeroI32`
+- `num::NonZeroI64`
+- `num::NonZeroI8`
+- `num::NonZeroIsize`
+- `num::NonZeroU128`
+- `num::NonZeroU16`
+- `num::NonZeroU32`
+- `num::NonZeroU64`
+- `num::NonZeroU8`
+- `num::NonZeroUsize`
+- `u128`
+- `u16`
+- `u32`
+- `u64`
+- `u8`
+- `usize`
+
 ### `DeserializeOwned`
 
 ```rust
@@ -764,6 +934,15 @@ The relationship between `Deserialize` and `DeserializeOwned` in trait
 bounds is explained in more detail on the page [Understanding deserializer
 lifetimes].
 
+
+#### Implementors
+
+- [`Field`](impls/range/index.md)
+- [`Field`](impls/range_from/index.md)
+- [`Field`](impls/range_to/index.md)
+- [`IgnoredAny`](#ignoredany)
+- [`OsStringKind`](impls/index.md)
+- `T`
 
 ### `DeserializeSeed<'de>`
 
@@ -932,13 +1111,21 @@ let flattened: Vec<u64> = deserializer.deserialize_seq(visitor)?;
 }
 ```
 
-#### Required Methods
+#### Associated Types
 
 - `type Value`
+
+#### Required Methods
 
 - `fn deserialize<D>(self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>`
 
   Equivalent to the more common `Deserialize::deserialize` method, except
+
+#### Implementors
+
+- [`PhantomData`](../lib/index.md)
+- [`SeedStructVariant`](value/private/index.md)
+- [`SeedTupleVariant`](value/private/index.md)
 
 ### `Deserializer<'de>`
 
@@ -1050,9 +1237,11 @@ The [example data format] presented on the website contains example code for
 a basic JSON `Deserializer`.
 
 
-#### Required Methods
+#### Associated Types
 
 - `type Error: 1`
+
+#### Required Methods
 
 - `fn deserialize_any<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
@@ -1078,10 +1267,6 @@ a basic JSON `Deserializer`.
 
   Hint that the `Deserialize` type is expecting an `i64` value.
 
-- `fn deserialize_i128<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
-
-  Hint that the `Deserialize` type is expecting an `i128` value.
-
 - `fn deserialize_u8<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a `u8` value.
@@ -1097,10 +1282,6 @@ a basic JSON `Deserializer`.
 - `fn deserialize_u64<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Hint that the `Deserialize` type is expecting a `u64` value.
-
-- `fn deserialize_u128<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
-
-  Hint that the `Deserialize` type is expecting an `u128` value.
 
 - `fn deserialize_f32<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
@@ -1178,9 +1359,51 @@ a basic JSON `Deserializer`.
 
   Hint that the `Deserialize` type needs to deserialize a value whose type
 
+#### Provided Methods
+
+- `fn deserialize_i128<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+
+  Hint that the `Deserialize` type is expecting an `i128` value.
+
+- `fn deserialize_u128<V>(self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
+
+  Hint that the `Deserialize` type is expecting an `u128` value.
+
 - `fn is_human_readable(&self) -> bool`
 
   Determine whether `Deserialize` implementations should expect to
+
+#### Implementors
+
+- [`BoolDeserializer`](value/index.md)
+- [`BorrowedBytesDeserializer`](value/index.md)
+- [`BorrowedStrDeserializer`](value/index.md)
+- [`BytesDeserializer`](value/index.md)
+- [`CharDeserializer`](value/index.md)
+- [`CowStrDeserializer`](value/index.md)
+- [`EnumAccessDeserializer`](value/index.md)
+- [`F32Deserializer`](value/index.md)
+- [`F64Deserializer`](value/index.md)
+- [`I128Deserializer`](value/index.md)
+- [`I16Deserializer`](value/index.md)
+- [`I32Deserializer`](value/index.md)
+- [`I64Deserializer`](value/index.md)
+- [`I8Deserializer`](value/index.md)
+- [`IsizeDeserializer`](value/index.md)
+- [`MapAccessDeserializer`](value/index.md)
+- [`MapDeserializer`](value/index.md)
+- [`PairDeserializer`](value/index.md)
+- [`SeqAccessDeserializer`](value/index.md)
+- [`SeqDeserializer`](value/index.md)
+- [`StrDeserializer`](value/index.md)
+- [`StringDeserializer`](value/index.md)
+- [`U128Deserializer`](value/index.md)
+- [`U16Deserializer`](value/index.md)
+- [`U32Deserializer`](value/index.md)
+- [`U64Deserializer`](value/index.md)
+- [`U8Deserializer`](value/index.md)
+- [`UnitDeserializer`](value/index.md)
+- [`UsizeDeserializer`](value/index.md)
 
 ### `Visitor<'de>`
 
@@ -1228,13 +1451,17 @@ impl<'de> Visitor<'de> for LongString {
 }
 ```
 
-#### Required Methods
+#### Associated Types
 
 - `type Value`
+
+#### Required Methods
 
 - `fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
   Format a message stating what data this Visitor expects to receive.
+
+#### Provided Methods
 
 - `fn visit_bool<E>(self, v: bool) -> Result<<Self as >::Value, E>`
 
@@ -1344,6 +1571,29 @@ impl<'de> Visitor<'de> for LongString {
 
   The input contains an enum.
 
+#### Implementors
+
+- [`ArrayInPlaceVisitor`](impls/index.md)
+- [`ArrayVisitor`](impls/index.md)
+- [`BoolVisitor`](impls/index.md)
+- [`BytesVisitor`](impls/index.md)
+- [`CStringVisitor`](impls/index.md)
+- [`CharVisitor`](impls/index.md)
+- [`FromStrVisitor`](impls/index.md)
+- [`IgnoredAny`](#ignoredany)
+- [`OptionVisitor`](impls/index.md)
+- [`OsStringVisitor`](impls/index.md)
+- [`PathBufVisitor`](impls/index.md)
+- [`PathVisitor`](impls/index.md)
+- [`PhantomDataVisitor`](impls/index.md)
+- [`RangeFromVisitor`](impls/range_from/index.md)
+- [`RangeToVisitor`](impls/range_to/index.md)
+- [`RangeVisitor`](impls/range/index.md)
+- [`StrVisitor`](impls/index.md)
+- [`StringInPlaceVisitor`](impls/index.md)
+- [`StringVisitor`](impls/index.md)
+- [`UnitVisitor`](impls/index.md)
+
 ### `SeqAccess<'de>`
 
 ```rust
@@ -1367,13 +1617,17 @@ The [example data format] presented on the website demonstrates an
 implementation of `SeqAccess` for a basic JSON data format.
 
 
-#### Required Methods
+#### Associated Types
 
 - `type Error: 1`
+
+#### Required Methods
 
 - `fn next_element_seed<T>(&mut self, seed: T) -> Result<Option<<T as >::Value>, <Self as >::Error>`
 
   This returns `Ok(Some(value))` for the next value in the sequence, or
+
+#### Provided Methods
 
 - `fn next_element<T>(&mut self) -> Result<Option<T>, <Self as >::Error>`
 
@@ -1382,6 +1636,13 @@ implementation of `SeqAccess` for a basic JSON data format.
 - `fn size_hint(&self) -> Option<usize>`
 
   Returns the number of elements remaining in the sequence, if known.
+
+#### Implementors
+
+- [`MapDeserializer`](value/index.md)
+- [`PairVisitor`](value/index.md)
+- [`SeqDeserializer`](value/index.md)
+- `&mut A`
 
 ### `MapAccess<'de>`
 
@@ -1405,9 +1666,11 @@ The [example data format] presented on the website demonstrates an
 implementation of `MapAccess` for a basic JSON data format.
 
 
-#### Required Methods
+#### Associated Types
 
 - `type Error: 1`
+
+#### Required Methods
 
 - `fn next_key_seed<K>(&mut self, seed: K) -> Result<Option<<K as >::Value>, <Self as >::Error>`
 
@@ -1416,6 +1679,8 @@ implementation of `MapAccess` for a basic JSON data format.
 - `fn next_value_seed<V>(&mut self, seed: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   This returns a `Ok(value)` for the next value in the map.
+
+#### Provided Methods
 
 - `fn next_entry_seed<K, V>(&mut self, kseed: K, vseed: V) -> Result<Option<(<K as >::Value, <V as >::Value)>, <Self as >::Error>`
 
@@ -1436,6 +1701,11 @@ implementation of `MapAccess` for a basic JSON data format.
 - `fn size_hint(&self) -> Option<usize>`
 
   Returns the number of entries remaining in the map, if known.
+
+#### Implementors
+
+- [`MapDeserializer`](value/index.md)
+- `&mut A`
 
 ### `EnumAccess<'de>`
 
@@ -1460,19 +1730,32 @@ The [example data format] presented on the website demonstrates an
 implementation of `EnumAccess` for a basic JSON data format.
 
 
-#### Required Methods
+#### Associated Types
 
 - `type Error: 1`
 
 - `type Variant: 1`
 
+#### Required Methods
+
 - `fn variant_seed<V>(self, seed: V) -> Result<(<V as >::Value, <Self as >::Variant), <Self as >::Error>`
 
   `variant` is called to identify which variant to deserialize.
 
+#### Provided Methods
+
 - `fn variant<V>(self) -> Result<(V, <Self as >::Variant), <Self as >::Error>`
 
   `variant` is called to identify which variant to deserialize.
+
+#### Implementors
+
+- [`BorrowedStrDeserializer`](value/index.md)
+- [`CowStrDeserializer`](value/index.md)
+- [`MapAccessDeserializer`](value/index.md)
+- [`StrDeserializer`](value/index.md)
+- [`StringDeserializer`](value/index.md)
+- [`U32Deserializer`](value/index.md)
 
 ### `VariantAccess<'de>`
 
@@ -1496,19 +1779,17 @@ The [example data format] presented on the website demonstrates an
 implementation of `VariantAccess` for a basic JSON data format.
 
 
-#### Required Methods
+#### Associated Types
 
 - `type Error: 1`
+
+#### Required Methods
 
 - `fn unit_variant(self) -> Result<(), <Self as >::Error>`
 
   Called when deserializing a variant with no values.
 
 - `fn newtype_variant_seed<T>(self, seed: T) -> Result<<T as >::Value, <Self as >::Error>`
-
-  Called when deserializing a variant with a single value.
-
-- `fn newtype_variant<T>(self) -> Result<T, <Self as >::Error>`
 
   Called when deserializing a variant with a single value.
 
@@ -1519,6 +1800,17 @@ implementation of `VariantAccess` for a basic JSON data format.
 - `fn struct_variant<V>(self, fields: &'static [&'static str], visitor: V) -> Result<<V as >::Value, <Self as >::Error>`
 
   Called when deserializing a struct-like variant.
+
+#### Provided Methods
+
+- `fn newtype_variant<T>(self) -> Result<T, <Self as >::Error>`
+
+  Called when deserializing a variant with a single value.
+
+#### Implementors
+
+- [`MapAsEnum`](value/private/index.md)
+- [`UnitOnly`](value/private/index.md)
 
 ### `IntoDeserializer<'de, E: Error>`
 
@@ -1557,13 +1849,72 @@ impl FromStr for Setting {
 }
 ```
 
-#### Required Methods
+#### Associated Types
 
 - `type Deserializer: 1`
+
+#### Required Methods
 
 - `fn into_deserializer(self) -> <Self as >::Deserializer`
 
   Convert this value into a deserializer.
+
+#### Implementors
+
+- [`BTreeMap`](../lib/index.md)
+- [`BTreeSet`](../lib/index.md)
+- [`BoolDeserializer`](value/index.md)
+- [`BorrowedBytesDeserializer`](value/index.md)
+- [`BorrowedStrDeserializer`](value/index.md)
+- [`BytesDeserializer`](value/index.md)
+- [`CharDeserializer`](value/index.md)
+- [`CowStrDeserializer`](value/index.md)
+- [`Cow`](../lib/index.md)
+- [`EnumAccessDeserializer`](value/index.md)
+- [`F32Deserializer`](value/index.md)
+- [`F64Deserializer`](value/index.md)
+- [`HashMap`](../lib/index.md)
+- [`HashSet`](../lib/index.md)
+- [`I128Deserializer`](value/index.md)
+- [`I16Deserializer`](value/index.md)
+- [`I32Deserializer`](value/index.md)
+- [`I64Deserializer`](value/index.md)
+- [`I8Deserializer`](value/index.md)
+- [`IsizeDeserializer`](value/index.md)
+- [`MapAccessDeserializer`](value/index.md)
+- [`MapDeserializer`](value/index.md)
+- [`SeqAccessDeserializer`](value/index.md)
+- [`SeqDeserializer`](value/index.md)
+- [`StrDeserializer`](value/index.md)
+- [`StringDeserializer`](value/index.md)
+- [`String`](../lib/index.md)
+- [`U128Deserializer`](value/index.md)
+- [`U16Deserializer`](value/index.md)
+- [`U32Deserializer`](value/index.md)
+- [`U64Deserializer`](value/index.md)
+- [`U8Deserializer`](value/index.md)
+- [`UnitDeserializer`](value/index.md)
+- [`UsizeDeserializer`](value/index.md)
+- [`Vec`](../lib/index.md)
+- `&'a [u8]`
+- `&'a str`
+- `()`
+- `bool`
+- `char`
+- `f32`
+- `f64`
+- `i128`
+- `i16`
+- `i32`
+- `i64`
+- `i8`
+- `isize`
+- `u128`
+- `u16`
+- `u32`
+- `u64`
+- `u8`
+- `usize`
 
 ## Macros
 

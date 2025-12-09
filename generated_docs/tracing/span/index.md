@@ -324,7 +324,7 @@
 ## Contents
 
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
+  - [`Id`](#id)
   - [`Span`](#span)
   - [`Inner`](#inner)
   - [`Entered`](#entered)
@@ -333,7 +333,7 @@
 - [Traits](#traits)
   - [`AsId`](#asid)
 - [Functions](#functions)
-  - [`unnamed`](#unnamed)
+  - [`Attributes`](#attributes)
 - [Constants](#constants)
   - [`PhantomNotSend`](#phantomnotsend)
 
@@ -341,14 +341,14 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`unnamed`](#unnamed) | struct |  |
+| [`Id`](#id) | struct |  |
 | [`Span`](#span) | struct | A handle representing a span, with the capability to enter the span if it |
 | [`Inner`](#inner) | struct | A handle representing the capacity to enter a span which is known to exist. |
 | [`Entered`](#entered) | struct | A guard representing a span which has been entered and is currently |
 | [`EnteredSpan`](#enteredspan) | struct | An owned version of [`Entered`], a guard representing a span which has been |
 | [`PhantomNotSend`](#phantomnotsend) | struct | Technically, `EnteredSpan` _can_ implement both `Send` *and* |
 | [`AsId`](#asid) | trait | Trait implemented by types which have a span `Id`. |
-| [`unnamed`](#unnamed) | fn |  |
+| [`Attributes`](#attributes) | fn |  |
 | [`PhantomNotSend`](#phantomnotsend) | const |  |
 
 ## Structs
@@ -372,6 +372,12 @@ when performing lookups for many addresses in the same executable.
 
 #### Implementations
 
+- <span id="context-from-sections"></span>`fn from_sections(debug_abbrev: gimli::DebugAbbrev<R>, debug_addr: gimli::DebugAddr<R>, debug_aranges: gimli::DebugAranges<R>, debug_info: gimli::DebugInfo<R>, debug_line: gimli::DebugLine<R>, debug_line_str: gimli::DebugLineStr<R>, debug_ranges: gimli::DebugRanges<R>, debug_rnglists: gimli::DebugRngLists<R>, debug_str: gimli::DebugStr<R>, debug_str_offsets: gimli::DebugStrOffsets<R>, default_section: R) -> Result<Self, gimli::Error>` — [`Record`](#record)
+
+- <span id="context-from-dwarf"></span>`fn from_dwarf(sections: gimli::Dwarf<R>) -> Result<Context<R>, gimli::Error>` — [`Record`](#record), [`Id`](#id)
+
+- <span id="context-from-arc-dwarf"></span>`fn from_arc_dwarf(sections: Arc<gimli::Dwarf<R>>) -> Result<Context<R>, gimli::Error>` — [`Record`](#record), [`Id`](#id)
+
 - <span id="context-find-dwarf-and-unit"></span>`fn find_dwarf_and_unit(&self, probe: u64) -> LookupResult<impl LookupContinuation<Output = Option<gimli::UnitRef<'_, R>>, Buf = R>>` — [`DefaultGuard`](../subscriber/index.md)
 
 - <span id="context-find-location"></span>`fn find_location(&self, probe: u64) -> Result<Option<Location<'_>>, gimli::Error>` — [`Record`](#record), [`DefaultGuard`](../subscriber/index.md), [`set_global_default`](../dispatcher/index.md)
@@ -381,12 +387,6 @@ when performing lookups for many addresses in the same executable.
 - <span id="context-find-frames"></span>`fn find_frames(&self, probe: u64) -> LookupResult<impl LookupContinuation<Output = Result<FrameIter<'_, R>, gimli::Error>, Buf = R>>` — [`Record`](#record)
 
 - <span id="context-preload-units"></span>`fn preload_units(&self, probe: u64) -> impl Iterator<Item = (SplitDwarfLoad<R>, impl FnOnce(Option<Arc<gimli::Dwarf<R>>>) -> Result<(), gimli::Error> + '_)>` — [`DefaultGuard`](../subscriber/index.md), [`DefaultGuard`](../subscriber/index.md), [`Record`](#record)
-
-- <span id="context-from-sections"></span>`fn from_sections(debug_abbrev: gimli::DebugAbbrev<R>, debug_addr: gimli::DebugAddr<R>, debug_aranges: gimli::DebugAranges<R>, debug_info: gimli::DebugInfo<R>, debug_line: gimli::DebugLine<R>, debug_line_str: gimli::DebugLineStr<R>, debug_ranges: gimli::DebugRanges<R>, debug_rnglists: gimli::DebugRngLists<R>, debug_str: gimli::DebugStr<R>, debug_str_offsets: gimli::DebugStrOffsets<R>, default_section: R) -> Result<Self, gimli::Error>` — [`Record`](#record)
-
-- <span id="context-from-dwarf"></span>`fn from_dwarf(sections: gimli::Dwarf<R>) -> Result<Context<R>, gimli::Error>` — [`Record`](#record), [`Id`](#id)
-
-- <span id="context-from-arc-dwarf"></span>`fn from_arc_dwarf(sections: Arc<gimli::Dwarf<R>>) -> Result<Context<R>, gimli::Error>` — [`Record`](#record), [`Id`](#id)
 
 - <span id="context-find-unit"></span>`fn find_unit(&self, offset: gimli::DebugInfoOffset<<R as >::Offset>, file: DebugFile) -> Result<(&gimli::Unit<R>, gimli::UnitOffset<<R as >::Offset>), gimli::Error>` — [`Id`](#id), [`Record`](#record)
 

@@ -44,9 +44,9 @@ This module contains functionality for decompression.
 
 ## Modules
 
-- [`core`](core/index.md) - Streaming decompression functionality.
-- [`output_buffer`](output_buffer/index.md) - 
-- [`stream`](stream/index.md) - Extra streaming decompression functionality.
+- [`core`](core/index.md) — Streaming decompression functionality.
+- [`output_buffer`](output_buffer/index.md)
+- [`stream`](stream/index.md) — Extra streaming decompression functionality.
 
 ## Enums
 

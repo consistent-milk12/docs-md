@@ -24,12 +24,12 @@ could probably be implemented but are not yet.
 
 ## Modules
 
-- [`memory_allocation`](memory_allocation/index.md) - Memory-allocation functions are out of scope for rustix.
-- [`libc_internals`](libc_internals/index.md) - Functions which need access to libc internals are out of scope for rustix.
-- [`higher_level`](higher_level/index.md) - Functions which provide higher-level functionality are out of scope for
-- [`impossible`](impossible/index.md) - Functions which don't seem possible to even call from Rust with current
-- [`yet`](yet/index.md) - These functions are not yet implemented in rustix, but probably could be.
-- [`quite_yet`](quite_yet/index.md) - These functions are not quite yet finished in rustix.
+- [`memory_allocation`](memory_allocation/index.md) — Memory-allocation functions are out of scope for rustix.
+- [`libc_internals`](libc_internals/index.md) — Functions which need access to libc internals are out of scope for rustix.
+- [`higher_level`](higher_level/index.md) — Functions which provide higher-level functionality are out of scope for
+- [`impossible`](impossible/index.md) — Functions which don't seem possible to even call from Rust with current
+- [`yet`](yet/index.md) — These functions are not yet implemented in rustix, but probably could be.
+- [`quite_yet`](quite_yet/index.md) — These functions are not quite yet finished in rustix.
 
 ## Macros
 

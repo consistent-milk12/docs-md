@@ -19,7 +19,7 @@ level crate API.
 
 ## Modules
 
-- [`all`](all/index.md) - Contains architecture independent routines.
-- [`generic`](generic/index.md) - This module defines "generic" routines that can be specialized to specific
-- [`x86_64`](x86_64/index.md) - Vector algorithms for the `x86_64` target.
+- [`all`](all/index.md) — Contains architecture independent routines.
+- [`generic`](generic/index.md) — This module defines "generic" routines that can be specialized to specific
+- [`x86_64`](x86_64/index.md) — Vector algorithms for the `x86_64` target.
 

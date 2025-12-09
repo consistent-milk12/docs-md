@@ -43,7 +43,7 @@
 
 ## Modules
 
-- [`kw`](kw/index.md) - 
+- [`kw`](kw/index.md)
 
 ## Structs
 

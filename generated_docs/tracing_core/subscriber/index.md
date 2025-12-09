@@ -228,21 +228,9 @@ The following methods are likely of interest:
 
 #### Required Methods
 
-- `fn on_register_dispatch(&self, subscriber: &Dispatch)`
-
-  Invoked when this subscriber becomes a [`Dispatch`](../index.md).
-
-- `fn register_callsite(&self, metadata: &'static Metadata<'static>) -> Interest`
-
-  Registers a new [`callsite`](../callsite/index.md) with this subscriber, returning whether or not
-
 - `fn enabled(&self, metadata: &Metadata<'_>) -> bool`
 
   Returns true if a span or event with the specified [`metadata`](../metadata/index.md) would be
-
-- `fn max_level_hint(&self) -> Option<LevelFilter>`
-
-  Returns the highest [verbosity level][`level`](../../tracing_attributes/attr/kw/index.md) that this `Subscriber` will
 
 - `fn new_span(&self, span: &span::Attributes<'_>) -> span::Id`
 
@@ -256,10 +244,6 @@ The following methods are likely of interest:
 
   Adds an indication that `span` follows from the span with the id
 
-- `fn event_enabled(&self, event: &Event<'_>) -> bool`
-
-  Determine if an [`Event`](../index.md) should be recorded.
-
 - `fn event(&self, event: &Event<'_>)`
 
   Records that an [`Event`](../index.md) has occurred.
@@ -271,6 +255,24 @@ The following methods are likely of interest:
 - `fn exit(&self, span: &span::Id)`
 
   Records that a span has been exited.
+
+#### Provided Methods
+
+- `fn on_register_dispatch(&self, subscriber: &Dispatch)`
+
+  Invoked when this subscriber becomes a [`Dispatch`](../index.md).
+
+- `fn register_callsite(&self, metadata: &'static Metadata<'static>) -> Interest`
+
+  Registers a new [`callsite`](../callsite/index.md) with this subscriber, returning whether or not
+
+- `fn max_level_hint(&self) -> Option<LevelFilter>`
+
+  Returns the highest [verbosity level][`level`](../../tracing_attributes/attr/kw/index.md) that this `Subscriber` will
+
+- `fn event_enabled(&self, event: &Event<'_>) -> bool`
+
+  Determine if an [`Event`](../index.md) should be recorded.
 
 - `fn clone_span(&self, id: &span::Id) -> span::Id`
 
@@ -291,4 +293,10 @@ The following methods are likely of interest:
 - `fn downcast_raw(&self, id: TypeId) -> Option<*const ()>`
 
   If `self` is the same type as the provided `TypeId`, returns an untyped
+
+#### Implementors
+
+- [`NoSubscriber`](#nosubscriber)
+- `alloc::boxed::Box<S>`
+- `alloc::sync::Arc<S>`
 

@@ -215,10 +215,10 @@ RUSTFLAGS="--cfg portable_atomic_no_outline_atomics" cargo ...
   - [`AtomicI128`](#atomici128)
   - [`AtomicU128`](#atomicu128)
 - [Functions](#functions)
-  - [`unnamed`](#unnamed)
+  - [`Ordering`](#ordering)
 - [Macros](#macros)
-  - [`unnamed!`](#unnamed)
-  - [`unnamed!`](#unnamed)
+  - [`cfg_has_atomic_ptr!`](#cfg_has_atomic_ptr)
+  - [`cfg_no_atomic_ptr!`](#cfg_no_atomic_ptr)
   - [`atomic_int!`](#atomic_int)
   - [`cfg_has_atomic_8!`](#cfg_has_atomic_8)
   - [`cfg_no_atomic_8!`](#cfg_no_atomic_8)
@@ -255,9 +255,9 @@ RUSTFLAGS="--cfg portable_atomic_no_outline_atomics" cargo ...
 | [`AtomicU64`](#atomicu64) | struct | An integer type which can be safely shared between threads. |
 | [`AtomicI128`](#atomici128) | struct | An integer type which can be safely shared between threads. |
 | [`AtomicU128`](#atomicu128) | struct | An integer type which can be safely shared between threads. |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed!`](#unnamed) | macro |  |
-| [`unnamed!`](#unnamed) | macro |  |
+| [`Ordering`](#ordering) | fn |  |
+| [`cfg_has_atomic_ptr!`](#cfg_has_atomic_ptr) | macro |  |
+| [`cfg_no_atomic_ptr!`](#cfg_no_atomic_ptr) | macro |  |
 | [`atomic_int!`](#atomic_int) | macro |  |
 | [`cfg_has_atomic_8!`](#cfg_has_atomic_8) | macro |  |
 | [`cfg_no_atomic_8!`](#cfg_no_atomic_8) | macro |  |
@@ -274,10 +274,10 @@ RUSTFLAGS="--cfg portable_atomic_no_outline_atomics" cargo ...
 
 ## Modules
 
-- [`cfgs`](cfgs/index.md) - 
-- [`utils`](utils/index.md) - 
-- [`imp`](imp/index.md) - 
-- [`hint`](hint/index.md) - Re-export of the [`core::hint`] module.
+- [`cfgs`](cfgs/index.md)
+- [`utils`](utils/index.md)
+- [`imp`](imp/index.md)
+- [`hint`](hint/index.md) — Re-export of the [`core::hint`] module.
 
 ## Structs
 

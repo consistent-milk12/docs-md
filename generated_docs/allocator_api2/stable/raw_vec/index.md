@@ -108,15 +108,11 @@ Note that the excess of a zero-sized types is always infinite, so `capacity()` a
 
 #### Implementations
 
-- <span id="rawvec-needs-to-grow"></span>`fn needs_to_grow(&self, len: usize, additional: usize) -> bool`
+- <span id="rawvec-new"></span>`const fn new() -> Self`
 
-- <span id="rawvec-set-ptr-and-cap"></span>`fn set_ptr_and_cap(&mut self, ptr: NonNull<[u8]>, cap: usize)`
+- <span id="rawvec-with-capacity"></span>`fn with_capacity(capacity: usize) -> Self`
 
-- <span id="rawvec-grow-amortized"></span>`fn grow_amortized(&mut self, len: usize, additional: usize) -> Result<(), TryReserveError>` — [`TryReserveError`](../collections/index.md)
-
-- <span id="rawvec-grow-exact"></span>`fn grow_exact(&mut self, len: usize, additional: usize) -> Result<(), TryReserveError>` — [`TryReserveError`](../collections/index.md)
-
-- <span id="rawvec-shrink"></span>`fn shrink(&mut self, cap: usize) -> Result<(), TryReserveError>` — [`TryReserveError`](../collections/index.md)
+- <span id="rawvec-with-capacity-zeroed"></span>`fn with_capacity_zeroed(capacity: usize) -> Self`
 
 #### Trait Implementations
 

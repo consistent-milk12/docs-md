@@ -416,12 +416,12 @@ All modules are only crate-public since we don't reexport this structure.
 
 ## Modules
 
-- [`common`](common/index.md) - Interfaces that are common across multiple platforms
-- [`linux_uapi`](linux_uapi/index.md) - This directory maps to `include/uapi` in the Linux source tree.
-- [`glibc`](glibc/index.md) - GNU libc.
-- [`bcm`](bcm/index.md) - Header: `linux/can/bcm.h`
-- [`j1939`](j1939/index.md) - `linux/can/j1939.h`
-- [`raw`](raw/index.md) - Header: `linux/can/raw.h`
+- [`common`](common/index.md) — Interfaces that are common across multiple platforms
+- [`linux_uapi`](linux_uapi/index.md) — This directory maps to `include/uapi` in the Linux source tree.
+- [`glibc`](glibc/index.md) — GNU libc.
+- [`bcm`](bcm/index.md) — Header: `linux/can/bcm.h`
+- [`j1939`](j1939/index.md) — `linux/can/j1939.h`
+- [`raw`](raw/index.md) — Header: `linux/can/raw.h`
 
 ## Structs
 

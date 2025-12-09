@@ -149,3 +149,9 @@ should be used whenever possible.
 
   Attempts to convert `&self` into a `Field` with the specified `metadata`.
 
+#### Implementors
+
+- `&Field`
+- `Field`
+- `str`
+

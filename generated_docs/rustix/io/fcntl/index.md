@@ -17,7 +17,7 @@ the [`io`](../../maybe_polyfill/io/index.md) module instead.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`unnamed`](#unnamed) | struct |  |
+| [`FdFlags`](#fdflags) | struct |  |
 | [`fcntl_getfd`](#fcntl_getfd) | fn | `fcntl(fd, F_GETFD)`—Returns a file descriptor's flags. |
 | [`fcntl_setfd`](#fcntl_setfd) | fn | `fcntl(fd, F_SETFD, flags)`—Sets a file descriptor's flags. |
 | [`fcntl_dupfd_cloexec`](#fcntl_dupfd_cloexec) | fn | `fcntl(fd, F_DUPFD_CLOEXEC)`—Creates a new `OwnedFd` instance, with value |
@@ -30,51 +30,13 @@ the [`io`](../../maybe_polyfill/io/index.md) module instead.
 struct FdFlags(<FdFlags as __private::PublicFlags>::Internal);
 ```
 
-`FD_*` constants for use with [`fcntl_getfd`](../index.md) and [`fcntl_setfd`](../index.md).
+`FD_*` constants for use with [`fcntl_getfd`](../index.md) and [`fcntl_setfd`](../../backend/io/syscalls/index.md).
 
 
 
 #### Implementations
 
-- <span id="fdflags-empty"></span>`const fn empty() -> Self`
-
-- <span id="fdflags-all"></span>`const fn all() -> Self`
-
-- <span id="fdflags-bits"></span>`const fn bits(&self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md)
-
-- <span id="fdflags-from-bits"></span>`const fn from_bits(bits: ffi::c_uint) -> __private::core::option::Option<Self>` — [`c_uint`](../../ffi/index.md)
-
-- <span id="fdflags-from-bits-truncate"></span>`const fn from_bits_truncate(bits: ffi::c_uint) -> Self` — [`c_uint`](../../ffi/index.md)
-
-- <span id="fdflags-from-bits-retain"></span>`const fn from_bits_retain(bits: ffi::c_uint) -> Self` — [`c_uint`](../../ffi/index.md)
-
-- <span id="fdflags-from-name"></span>`fn from_name(name: &str) -> __private::core::option::Option<Self>`
-
-- <span id="fdflags-is-empty"></span>`const fn is_empty(&self) -> bool`
-
-- <span id="fdflags-is-all"></span>`const fn is_all(&self) -> bool`
-
-- <span id="fdflags-intersects"></span>`const fn intersects(&self, other: Self) -> bool`
-
-- <span id="fdflags-contains"></span>`const fn contains(&self, other: Self) -> bool`
-
-- <span id="fdflags-insert"></span>`fn insert(&mut self, other: Self)`
-
-- <span id="fdflags-remove"></span>`fn remove(&mut self, other: Self)`
-
-- <span id="fdflags-toggle"></span>`fn toggle(&mut self, other: Self)`
-
-- <span id="fdflags-set"></span>`fn set(&mut self, other: Self, value: bool)`
-
-- <span id="fdflags-intersection"></span>`const fn intersection(self, other: Self) -> Self`
-
-- <span id="fdflags-union"></span>`const fn union(self, other: Self) -> Self`
-
-- <span id="fdflags-difference"></span>`const fn difference(self, other: Self) -> Self`
-
-- <span id="fdflags-symmetric-difference"></span>`const fn symmetric_difference(self, other: Self) -> Self`
-
-- <span id="fdflags-complement"></span>`const fn complement(self) -> Self`
+- <span id="fdflags-cloexec"></span>`const CLOEXEC: Self`
 
 #### Trait Implementations
 

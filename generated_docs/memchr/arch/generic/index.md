@@ -23,6 +23,6 @@ write the code once (usually).
 
 ## Modules
 
-- [`memchr`](memchr/index.md) - Generic crate-internal routines for the `memchr` family of functions.
-- [`packedpair`](packedpair/index.md) - Generic crate-internal routines for the "packed pair" SIMD algorithm.
+- [`memchr`](memchr/index.md) — Generic crate-internal routines for the `memchr` family of functions.
+- [`packedpair`](packedpair/index.md) — Generic crate-internal routines for the "packed pair" SIMD algorithm.
 

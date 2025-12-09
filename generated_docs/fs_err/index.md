@@ -117,12 +117,12 @@ If the `tokio` feature is enabled, this crate will inherit the MSRV of the selec
   - [`unix`](#unix)
   - [`unix`](#unix)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
+  - [`OpenOptions`](#openoptions)
   - [`ReadDir`](#readdir)
   - [`DirEntry`](#direntry)
   - [`File`](#file)
 - [Traits](#traits)
-  - [`unnamed`](#unnamed)
+  - [`PathExt`](#pathext)
 - [Functions](#functions)
   - [`read`](#read)
   - [`read_to_string`](#read_to_string)
@@ -160,11 +160,11 @@ If the `tokio` feature is enabled, this crate will inherit the MSRV of the selec
 | [`private`](#private) | mod |  |
 | [`unix`](#unix) | mod |  |
 | [`unix`](#unix) | mod |  |
-| [`unnamed`](#unnamed) | struct |  |
+| [`OpenOptions`](#openoptions) | struct |  |
 | [`ReadDir`](#readdir) | struct | Wrapper around [`std::fs::ReadDir`][std::fs::ReadDir] which adds more |
 | [`DirEntry`](#direntry) | struct | Wrapper around [`std::fs::DirEntry`][std::fs::DirEntry] which adds more |
 | [`File`](#file) | struct | Wrapper around [`std::fs::File`][std::fs::File] which adds more helpful |
-| [`unnamed`](#unnamed) | trait |  |
+| [`PathExt`](#pathext) | trait |  |
 | [`read`](#read) | fn | Read the entire contents of a file into a bytes vector. |
 | [`read_to_string`](#read_to_string) | fn | Read the entire contents of a file into a string. |
 | [`write`](#write) | fn | Write a slice as the entire contents of a file. |
@@ -190,15 +190,15 @@ If the `tokio` feature is enabled, this crate will inherit the MSRV of the selec
 
 ## Modules
 
-- [`dir`](dir/index.md) - 
-- [`errors`](errors/index.md) - 
-- [`file`](file/index.md) - 
-- [`open_options`](open_options/index.md) - 
-- [`os`](os/index.md) - OS-specific functionality.
-- [`path`](path/index.md) - 
-- [`private`](private/index.md) - 
-- [`unix`](unix/index.md) - 
-- [`unix`](unix/index.md) - 
+- [`dir`](dir/index.md)
+- [`errors`](errors/index.md)
+- [`file`](file/index.md)
+- [`open_options`](open_options/index.md)
+- [`os`](os/index.md) — OS-specific functionality.
+- [`path`](path/index.md)
+- [`private`](private/index.md)
+- [`unix`](unix/index.md)
+- [`unix`](unix/index.md)
 
 ## Structs
 
@@ -319,15 +319,21 @@ information to all errors.
 
 #### Implementations
 
-- <span id="file-lock"></span>`fn lock(&self) -> Result<(), io::Error>`
+- <span id="file-from-parts"></span>`fn from_parts<P>(file: fs::File, path: P) -> Self`
 
-- <span id="file-lock-shared"></span>`fn lock_shared(&self) -> Result<(), io::Error>`
+- <span id="file-into-parts"></span>`fn into_parts(self) -> (fs::File, PathBuf)`
 
-- <span id="file-try-lock"></span>`fn try_lock(&self) -> Result<(), fs::TryLockError>`
+- <span id="file-into-file"></span>`fn into_file(self) -> fs::File`
 
-- <span id="file-try-lock-shared"></span>`fn try_lock_shared(&self) -> Result<(), fs::TryLockError>`
+- <span id="file-into-path"></span>`fn into_path(self) -> PathBuf`
 
-- <span id="file-unlock"></span>`fn unlock(&self) -> Result<(), io::Error>`
+- <span id="file-file"></span>`fn file(&self) -> &fs::File`
+
+- <span id="file-file-mut"></span>`fn file_mut(&mut self) -> &mut fs::File`
+
+- <span id="file-path"></span>`fn path(&self) -> &Path`
+
+- <span id="file-error"></span>`fn error(&self, source: io::Error, kind: ErrorKind) -> io::Error` — [`ErrorKind`](errors/index.md)
 
 #### Trait Implementations
 
@@ -374,6 +380,46 @@ information to all errors.
 - <span id="file-flush"></span>`fn flush(&mut self) -> std::io::Result<()>`
 
 ## Traits
+
+### `PathExt`
+
+```rust
+trait PathExt: crate::Sealed { ... }
+```
+
+Defines aliases on [`Path`](https://doc.rust-lang.org/std/path/struct.Path.html) for `fs_err` functions.
+
+This trait is sealed and can not be implemented by other crates.
+
+#### Required Methods
+
+- `fn fs_err_try_exists(&self) -> io::Result<bool>`
+
+  Returns Ok(true) if the path points at an existing entity.
+
+- `fn fs_err_metadata(&self) -> io::Result<fs::Metadata>`
+
+  Given a path, query the file system to get information about a file, directory, etc.
+
+- `fn fs_err_symlink_metadata(&self) -> io::Result<fs::Metadata>`
+
+  Query the metadata about a file without following symlinks.
+
+- `fn fs_err_canonicalize(&self) -> io::Result<PathBuf>`
+
+  Returns the canonical, absolute form of a path with all intermediate components
+
+- `fn fs_err_read_link(&self) -> io::Result<PathBuf>`
+
+  Reads a symbolic link, returning the file that the link points to.
+
+- `fn fs_err_read_dir(&self) -> io::Result<crate::ReadDir>`
+
+  Returns an iterator over the entries within a directory.
+
+#### Implementors
+
+- `std::path::Path`
 
 ## Functions
 

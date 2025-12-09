@@ -8,7 +8,7 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`unnamed`](#unnamed) | struct |  |
+| [`IoSliceMut`](#ioslicemut) | struct |  |
 
 ## Structs
 

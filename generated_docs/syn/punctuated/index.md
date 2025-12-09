@@ -71,7 +71,7 @@ a_function_call(arg1, arg2, arg3);
 
 ## Modules
 
-- [`printing`](printing/index.md) - 
+- [`printing`](printing/index.md)
 
 ## Structs
 
@@ -170,7 +170,7 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 ##### `impl<T, P> FromIterator for Punctuated<T, P>`
 
-- <span id="punctuated-from-iter"></span>`fn from_iter<I: IntoIterator<Item = T>>(i: I) -> Self`
+- <span id="punctuated-from-iter"></span>`fn from_iter<I: IntoIterator<Item = Pair<T, P>>>(i: I) -> Self`
 
 ##### `impl<T, P> Hash for Punctuated<T, P>`
 
@@ -554,7 +554,19 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 #### Implementations
 
-- <span id="pair-cloned"></span>`fn cloned(self) -> Pair<T, P>` — [`Pair`](#pair)
+- <span id="pair-into-value"></span>`fn into_value(self) -> T`
+
+- <span id="pair-value"></span>`fn value(&self) -> &T`
+
+- <span id="pair-value-mut"></span>`fn value_mut(&mut self) -> &mut T`
+
+- <span id="pair-punct"></span>`fn punct(&self) -> Option<&P>`
+
+- <span id="pair-punct-mut"></span>`fn punct_mut(&mut self) -> Option<&mut P>`
+
+- <span id="pair-new"></span>`fn new(t: T, p: Option<P>) -> Self`
+
+- <span id="pair-into-tuple"></span>`fn into_tuple(self) -> (T, Option<P>)`
 
 #### Trait Implementations
 
@@ -586,11 +598,19 @@ trait IterTrait<'a, T: 'a>: Iterator<Item = &'a T> + DoubleEndedIterator + Exact
 
 - `fn clone_box(&self) -> Box<NoDrop<dyn IterTrait<'a, T>>>`
 
+#### Implementors
+
+- `I`
+
 ### `IterMutTrait<'a, T: 'a>`
 
 ```rust
 trait IterMutTrait<'a, T: 'a>: DoubleEndedIterator<Item = &'a mut T> + ExactSizeIterator<Item = &'a mut T> { ... }
 ```
+
+#### Implementors
+
+- `I`
 
 ## Functions
 

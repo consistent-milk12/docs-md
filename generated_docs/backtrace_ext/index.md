@@ -22,11 +22,17 @@ See [`short_frames_strict`][] for details.
 trait Backtraceish { ... }
 ```
 
-#### Required Methods
+#### Associated Types
 
 - `type Frame: 1`
 
+#### Required Methods
+
 - `fn frames(&self) -> &[<Self as >::Frame]`
+
+#### Implementors
+
+- `Backtrace`
 
 ### `Frameish`
 
@@ -34,11 +40,17 @@ trait Backtraceish { ... }
 trait Frameish { ... }
 ```
 
-#### Required Methods
+#### Associated Types
 
 - `type Symbol: 1`
 
+#### Required Methods
+
 - `fn symbols(&self) -> &[<Self as >::Symbol]`
+
+#### Implementors
+
+- `BacktraceFrame`
 
 ### `Symbolish`
 
@@ -49,6 +61,10 @@ trait Symbolish { ... }
 #### Required Methods
 
 - `fn name_str(&self) -> Option<&str>`
+
+#### Implementors
+
+- `BacktraceSymbol`
 
 ## Functions
 

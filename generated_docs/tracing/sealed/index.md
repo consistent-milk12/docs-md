@@ -18,3 +18,9 @@
 trait Sealed { ... }
 ```
 
+#### Implementors
+
+- `&Field`
+- `Field`
+- `str`
+

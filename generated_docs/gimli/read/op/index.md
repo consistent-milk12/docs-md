@@ -1043,13 +1043,17 @@ let result = eval.as_result();
 println!("{:?}", result);
 ```
 
-#### Required Methods
+#### Associated Types
 
 - `type Stack: 1`
 
 - `type ExpressionStack: 1`
 
 - `type Result: 1`
+
+#### Implementors
+
+- [`StoreOnHeap`](../../index.md)
 
 ## Functions
 

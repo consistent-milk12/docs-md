@@ -97,16 +97,16 @@ See [the Rayon FAQ][faq].
 - [Structs](#structs)
   - [`SendPtr`](#sendptr)
 - [Functions](#functions)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`FnContext`](#fncontext)
+  - [`ThreadBuilder`](#threadbuilder)
+  - [`ThreadPool`](#threadpool)
+  - [`ThreadPoolBuildError`](#threadpoolbuilderror)
+  - [`ThreadPoolBuilder`](#threadpoolbuilder)
+  - [`broadcast`](#broadcast)
+  - [`in_place_scope_fifo`](#in_place_scope_fifo)
+  - [`scope_fifo`](#scope_fifo)
+  - [`spawn`](#spawn)
+  - [`Yield`](#yield)
 
 ## Quick Reference
 
@@ -131,37 +131,37 @@ See [the Rayon FAQ][faq].
 | [`par_either`](#par_either) | mod |  |
 | [`compile_fail`](#compile_fail) | mod |  |
 | [`SendPtr`](#sendptr) | struct | We need to transmit raw pointers across threads. |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
+| [`FnContext`](#fncontext) | fn |  |
+| [`ThreadBuilder`](#threadbuilder) | fn |  |
+| [`ThreadPool`](#threadpool) | fn |  |
+| [`ThreadPoolBuildError`](#threadpoolbuilderror) | fn |  |
+| [`ThreadPoolBuilder`](#threadpoolbuilder) | fn |  |
+| [`broadcast`](#broadcast) | fn |  |
+| [`in_place_scope_fifo`](#in_place_scope_fifo) | fn |  |
+| [`scope_fifo`](#scope_fifo) | fn |  |
+| [`spawn`](#spawn) | fn |  |
+| [`Yield`](#yield) | fn |  |
 
 ## Modules
 
-- [`delegate`](delegate/index.md) - Macros for delegating newtype iterators to inner types.
-- [`private`](private/index.md) - The public parts of this private module are used to create traits
-- [`split_producer`](split_producer/index.md) - Common splitter for strings and slices
-- [`array`](array/index.md) - Parallel iterator types for [arrays] (`[T; N]`)
-- [`collections`](collections/index.md) - Parallel iterator types for [standard collections]
-- [`iter`](iter/index.md) - Traits for writing parallel programs using an iterator-style interface
-- [`option`](option/index.md) - Parallel iterator types for [options]
-- [`prelude`](prelude/index.md) - The rayon prelude imports the various `ParallelIterator` traits.
-- [`range`](range/index.md) - Parallel iterator types for [ranges],
-- [`range_inclusive`](range_inclusive/index.md) - Parallel iterator types for [inclusive ranges],
-- [`result`](result/index.md) - Parallel iterator types for [results]
-- [`slice`](slice/index.md) - Parallel iterator types for [slices]
-- [`str`](str/index.md) - Parallel iterator types for [strings]
-- [`string`](string/index.md) - This module contains the parallel iterator types for owned strings
-- [`vec`](vec/index.md) - Parallel iterator types for [vectors] (`Vec<T>`)
-- [`math`](math/index.md) - 
-- [`par_either`](par_either/index.md) - 
-- [`compile_fail`](compile_fail/index.md) - 
+- [`delegate`](delegate/index.md) — Macros for delegating newtype iterators to inner types.
+- [`private`](private/index.md) — The public parts of this private module are used to create traits
+- [`split_producer`](split_producer/index.md) — Common splitter for strings and slices
+- [`array`](array/index.md) — Parallel iterator types for [arrays] (`[T; N]`)
+- [`collections`](collections/index.md) — Parallel iterator types for [standard collections]
+- [`iter`](iter/index.md) — Traits for writing parallel programs using an iterator-style interface
+- [`option`](option/index.md) — Parallel iterator types for [options]
+- [`prelude`](prelude/index.md) — The rayon prelude imports the various `ParallelIterator` traits.
+- [`range`](range/index.md) — Parallel iterator types for [ranges],
+- [`range_inclusive`](range_inclusive/index.md) — Parallel iterator types for [inclusive ranges],
+- [`result`](result/index.md) — Parallel iterator types for [results]
+- [`slice`](slice/index.md) — Parallel iterator types for [slices]
+- [`str`](str/index.md) — Parallel iterator types for [strings]
+- [`string`](string/index.md) — This module contains the parallel iterator types for owned strings
+- [`vec`](vec/index.md) — Parallel iterator types for [vectors] (`Vec<T>`)
+- [`math`](math/index.md)
+- [`par_either`](par_either/index.md)
+- [`compile_fail`](compile_fail/index.md)
 
 ## Structs
 

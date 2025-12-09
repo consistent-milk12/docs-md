@@ -9,8 +9,8 @@
 ## Contents
 
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`IoSliceMut`](#ioslicemut)
+  - [`ReadWriteFlags`](#readwriteflags)
 - [Functions](#functions)
   - [`read`](#read)
   - [`write`](#write)
@@ -27,8 +27,8 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
+| [`IoSliceMut`](#ioslicemut) | struct |  |
+| [`ReadWriteFlags`](#readwriteflags) | struct |  |
 | [`read`](#read) | fn | `read(fd, buf)`—Reads from a stream. |
 | [`write`](#write) | fn | `write(fd, buf)`—Writes to a stream. |
 | [`pread`](#pread) | fn | `pread(fd, buf, offset)`—Reads from a file at a given position. |
@@ -64,51 +64,21 @@ where
 struct ReadWriteFlags(<ReadWriteFlags as __private::PublicFlags>::Internal);
 ```
 
-`RWF_*` constants for use with [`preadv2`](../index.md) and [`pwritev2`](../../backend/io/syscalls/index.md).
+`RWF_*` constants for use with [`preadv2`](../../backend/io/syscalls/index.md) and [`pwritev2`](../../backend/io/syscalls/index.md).
 
 
 
 #### Implementations
 
-- <span id="readwriteflags-empty"></span>`const fn empty() -> Self`
+- <span id="readwriteflags-dsync"></span>`const DSYNC: Self`
 
-- <span id="readwriteflags-all"></span>`const fn all() -> Self`
+- <span id="readwriteflags-hipri"></span>`const HIPRI: Self`
 
-- <span id="readwriteflags-bits"></span>`const fn bits(&self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md)
+- <span id="readwriteflags-sync"></span>`const SYNC: Self`
 
-- <span id="readwriteflags-from-bits"></span>`const fn from_bits(bits: ffi::c_uint) -> __private::core::option::Option<Self>` — [`c_uint`](../../ffi/index.md)
+- <span id="readwriteflags-nowait"></span>`const NOWAIT: Self`
 
-- <span id="readwriteflags-from-bits-truncate"></span>`const fn from_bits_truncate(bits: ffi::c_uint) -> Self` — [`c_uint`](../../ffi/index.md)
-
-- <span id="readwriteflags-from-bits-retain"></span>`const fn from_bits_retain(bits: ffi::c_uint) -> Self` — [`c_uint`](../../ffi/index.md)
-
-- <span id="readwriteflags-from-name"></span>`fn from_name(name: &str) -> __private::core::option::Option<Self>`
-
-- <span id="readwriteflags-is-empty"></span>`const fn is_empty(&self) -> bool`
-
-- <span id="readwriteflags-is-all"></span>`const fn is_all(&self) -> bool`
-
-- <span id="readwriteflags-intersects"></span>`const fn intersects(&self, other: Self) -> bool`
-
-- <span id="readwriteflags-contains"></span>`const fn contains(&self, other: Self) -> bool`
-
-- <span id="readwriteflags-insert"></span>`fn insert(&mut self, other: Self)`
-
-- <span id="readwriteflags-remove"></span>`fn remove(&mut self, other: Self)`
-
-- <span id="readwriteflags-toggle"></span>`fn toggle(&mut self, other: Self)`
-
-- <span id="readwriteflags-set"></span>`fn set(&mut self, other: Self, value: bool)`
-
-- <span id="readwriteflags-intersection"></span>`const fn intersection(self, other: Self) -> Self`
-
-- <span id="readwriteflags-union"></span>`const fn union(self, other: Self) -> Self`
-
-- <span id="readwriteflags-difference"></span>`const fn difference(self, other: Self) -> Self`
-
-- <span id="readwriteflags-symmetric-difference"></span>`const fn symmetric_difference(self, other: Self) -> Self`
-
-- <span id="readwriteflags-complement"></span>`const fn complement(self) -> Self`
+- <span id="readwriteflags-append"></span>`const APPEND: Self`
 
 #### Trait Implementations
 

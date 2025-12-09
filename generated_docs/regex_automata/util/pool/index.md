@@ -24,7 +24,7 @@ being quite expensive.
 
 ## Modules
 
-- [`inner`](inner/index.md) - 
+- [`inner`](inner/index.md)
 
 ## Structs
 
@@ -99,7 +99,7 @@ assert_eq!(expected, RE.find(&mut CACHE.get(), b"zzzfoo12345barzzz"));
 
 #### Implementations
 
-- <span id="pool-new"></span>`fn new(create: F) -> Pool<T, F>` — [`Pool`](#pool)
+- <span id="pool-get"></span>`fn get(&self) -> PoolGuard<'_, T, F>` — [`PoolGuard`](#poolguard)
 
 #### Trait Implementations
 

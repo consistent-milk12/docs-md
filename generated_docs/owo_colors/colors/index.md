@@ -32,7 +32,7 @@ Color types for used for being generic over the color
   - [`BrightMagenta`](#brightmagenta)
   - [`BrightCyan`](#brightcyan)
   - [`BrightWhite`](#brightwhite)
-  - [`unnamed`](#unnamed)
+  - [`CustomColor`](#customcolor)
 - [Macros](#macros)
   - [`colors!`](#colors)
   - [`impl_fmt_for!`](#impl_fmt_for)
@@ -64,18 +64,18 @@ Color types for used for being generic over the color
 | [`BrightMagenta`](#brightmagenta) | struct | A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods. |
 | [`BrightCyan`](#brightcyan) | struct | A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods. |
 | [`BrightWhite`](#brightwhite) | struct | A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods. |
-| [`unnamed`](#unnamed) | struct |  |
+| [`CustomColor`](#customcolor) | struct |  |
 | [`colors!`](#colors) | macro |  |
 | [`impl_fmt_for!`](#impl_fmt_for) | macro |  |
 | [`impl_fmt_for_dyn!`](#impl_fmt_for_dyn) | macro |  |
 
 ## Modules
 
-- [`ansi_colors`](ansi_colors/index.md) - 
-- [`css`](css/index.md) - CSS named colors. Not as widely supported as standard ANSI as it relies on 48bit color support.
-- [`xterm`](xterm/index.md) - XTerm 256-bit colors. Not as widely supported as standard ANSI but contains 240 more colors.
-- [`custom`](custom/index.md) - 
-- [`dynamic`](dynamic/index.md) - 
+- [`ansi_colors`](ansi_colors/index.md)
+- [`css`](css/index.md) — CSS named colors. Not as widely supported as standard ANSI as it relies on 48bit color support.
+- [`xterm`](xterm/index.md) — XTerm 256-bit colors. Not as widely supported as standard ANSI but contains 240 more colors.
+- [`custom`](custom/index.md)
+- [`dynamic`](dynamic/index.md)
 
 ## Structs
 

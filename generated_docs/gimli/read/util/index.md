@@ -14,7 +14,7 @@
 
 ## Modules
 
-- [`sealed`](sealed/index.md) - 
+- [`sealed`](sealed/index.md)
 
 ## Structs
 
@@ -29,7 +29,17 @@ struct ArrayVec<A: ArrayLike> {
 
 #### Implementations
 
-- <span id="arrayvec-into-vec"></span>`fn into_vec(self) -> Vec<T>`
+- <span id="arrayvec-new"></span>`fn new() -> Self`
+
+- <span id="arrayvec-clear"></span>`fn clear(&mut self)`
+
+- <span id="arrayvec-try-push"></span>`fn try_push(&mut self, value: <A as >::Item) -> Result<(), CapacityFull>` — [`ArrayLike`](../index.md), [`CapacityFull`](sealed/index.md)
+
+- <span id="arrayvec-try-insert"></span>`fn try_insert(&mut self, index: usize, element: <A as >::Item) -> Result<(), CapacityFull>` — [`ArrayLike`](../index.md), [`CapacityFull`](sealed/index.md)
+
+- <span id="arrayvec-pop"></span>`fn pop(&mut self) -> Option<<A as >::Item>` — [`ArrayLike`](../index.md)
+
+- <span id="arrayvec-swap-remove"></span>`fn swap_remove(&mut self, index: usize) -> <A as >::Item` — [`ArrayLike`](../index.md)
 
 #### Trait Implementations
 
@@ -81,7 +91,13 @@ Marker trait for types that can be used as backing storage when a growable array
 
 This trait is sealed and cannot be implemented for types outside this crate.
 
-#### Required Methods
+#### Associated Types
 
 - `type Item`
+
+#### Implementors
+
+- `[T; N]`
+- `alloc::boxed::Box<[T; N]>`
+- `alloc::vec::Vec<T>`
 

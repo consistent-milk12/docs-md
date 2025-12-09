@@ -519,6 +519,11 @@ but we don't actually want to expose these details in the API.
 
   Spawn a thread with the `ThreadBuilder` parameters, and then
 
+#### Implementors
+
+- [`CustomSpawn`](#customspawn)
+- [`DefaultSpawn`](#defaultspawn)
+
 ## Functions
 
 ### `global_registry`

@@ -231,14 +231,14 @@ fn main() -> Result<(), Box<dyn Error>> {
 
 ## Modules
 
-- [`dyld_cache`](dyld_cache/index.md) - 
-- [`fat`](fat/index.md) - 
-- [`file`](file/index.md) - 
-- [`load_command`](load_command/index.md) - 
-- [`segment`](segment/index.md) - 
-- [`section`](section/index.md) - 
-- [`symbol`](symbol/index.md) - 
-- [`relocation`](relocation/index.md) - 
+- [`dyld_cache`](dyld_cache/index.md)
+- [`fat`](fat/index.md)
+- [`file`](file/index.md)
+- [`load_command`](load_command/index.md)
+- [`segment`](segment/index.md)
+- [`section`](section/index.md)
+- [`symbol`](symbol/index.md)
+- [`relocation`](relocation/index.md)
 
 ## Structs
 
@@ -2006,11 +2006,15 @@ trait FatArch: Pod { ... }
 
 A trait for generic access to [`macho::FatArch32`](../../macho/index.md) and [`macho::FatArch64`](../../macho/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
 
+#### Associated Constants
+
 - `const MAGIC: u32`
+
+#### Required Methods
 
 - `fn cputype(&self) -> u32`
 
@@ -2022,11 +2026,18 @@ A trait for generic access to [`macho::FatArch32`](../../macho/index.md) and [`m
 
 - `fn align(&self) -> u32`
 
+#### Provided Methods
+
 - `fn architecture(&self) -> Architecture`
 
 - `fn file_range(&self) -> (u64, u64)`
 
 - `fn data<'data, R: ReadRef<'data>>(&self, file: R) -> Result<&'data [u8]>`
+
+#### Implementors
+
+- [`FatArch32`](../../macho/index.md)
+- [`FatArch64`](../../macho/index.md)
 
 ### `MachHeader`
 
@@ -2036,7 +2047,7 @@ trait MachHeader: Debug + Pod { ... }
 
 A trait for generic access to [`macho::MachHeader32`](../../macho/index.md) and [`macho::MachHeader64`](../../macho/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
 
@@ -2047,6 +2058,8 @@ A trait for generic access to [`macho::MachHeader32`](../../macho/index.md) and 
 - `type Section: 1`
 
 - `type Nlist: 1`
+
+#### Required Methods
 
 - `fn is_type_64(&self) -> bool`
 
@@ -2074,6 +2087,8 @@ A trait for generic access to [`macho::MachHeader32`](../../macho/index.md) and 
 
 - `fn flags(&self, endian: <Self as >::Endian) -> u32`
 
+#### Provided Methods
+
 - `fn parse<'data, R: ReadRef<'data>>(data: R, offset: u64) -> read::Result<&'data Self>`
 
   Read the file header.
@@ -2088,6 +2103,11 @@ A trait for generic access to [`macho::MachHeader32`](../../macho/index.md) and 
 
   Return the UUID from the `LC_UUID` load command, if one is present.
 
+#### Implementors
+
+- [`MachHeader32`](../../macho/index.md)
+- [`MachHeader64`](../../macho/index.md)
+
 ### `Segment`
 
 ```rust
@@ -2096,13 +2116,15 @@ trait Segment: Debug + Pod { ... }
 
 A trait for generic access to [`macho::SegmentCommand32`](../../macho/index.md) and [`macho::SegmentCommand64`](../../macho/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
 
 - `type Endian: 1`
 
 - `type Section: 1`
+
+#### Required Methods
 
 - `fn from_command(command: LoadCommandData<'_, <Self as >::Endian>) -> Result<Option<(&Self, &[u8])>>`
 
@@ -2128,6 +2150,8 @@ A trait for generic access to [`macho::SegmentCommand32`](../../macho/index.md) 
 
 - `fn flags(&self, endian: <Self as >::Endian) -> u32`
 
+#### Provided Methods
+
 - `fn name(&self) -> &[u8]`
 
   Return the `segname` bytes up until the null terminator.
@@ -2144,6 +2168,11 @@ A trait for generic access to [`macho::SegmentCommand32`](../../macho/index.md) 
 
   Get the array of sections from the data following the segment command.
 
+#### Implementors
+
+- [`SegmentCommand32`](../../macho/index.md)
+- [`SegmentCommand64`](../../macho/index.md)
+
 ### `Section`
 
 ```rust
@@ -2152,11 +2181,13 @@ trait Section: Debug + Pod { ... }
 
 A trait for generic access to [`macho::Section32`](../../macho/index.md) and [`macho::Section64`](../../macho/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
 
 - `type Endian: 1`
+
+#### Required Methods
 
 - `fn sectname(&self) -> &[u8; 16]`
 
@@ -2175,6 +2206,8 @@ A trait for generic access to [`macho::Section32`](../../macho/index.md) and [`m
 - `fn nreloc(&self, endian: <Self as >::Endian) -> u32`
 
 - `fn flags(&self, endian: <Self as >::Endian) -> u32`
+
+#### Provided Methods
 
 - `fn name(&self) -> &[u8]`
 
@@ -2196,6 +2229,11 @@ A trait for generic access to [`macho::Section32`](../../macho/index.md) and [`m
 
   Return the relocation array.
 
+#### Implementors
+
+- [`Section32`](../../macho/index.md)
+- [`Section64`](../../macho/index.md)
+
 ### `Nlist`
 
 ```rust
@@ -2204,11 +2242,13 @@ trait Nlist: Debug + Pod { ... }
 
 A trait for generic access to [`macho::Nlist32`](../../macho/index.md) and [`macho::Nlist64`](../../macho/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
 
 - `type Endian: 1`
+
+#### Required Methods
 
 - `fn n_strx(&self, endian: <Self as >::Endian) -> u32`
 
@@ -2219,6 +2259,8 @@ A trait for generic access to [`macho::Nlist32`](../../macho/index.md) and [`mac
 - `fn n_desc(&self, endian: <Self as >::Endian) -> u16`
 
 - `fn n_value(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+
+#### Provided Methods
 
 - `fn name<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, strings: StringTable<'data, R>) -> Result<&'data [u8]>`
 
@@ -2237,6 +2279,11 @@ A trait for generic access to [`macho::Nlist32`](../../macho/index.md) and [`mac
 - `fn library_ordinal(&self, endian: <Self as >::Endian) -> u8`
 
   Return the library ordinal.
+
+#### Implementors
+
+- [`Nlist32`](../../macho/index.md)
+- [`Nlist64`](../../macho/index.md)
 
 ## Type Aliases
 

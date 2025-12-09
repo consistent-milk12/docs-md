@@ -21,6 +21,6 @@ from different locations based on the platform, which we mimic here with reexpor
 
 ## Modules
 
-- [`posix`](posix/index.md) - Source directory: `posix/`
-- [`sysdeps`](sysdeps/index.md) - Source directory: `sysdeps/`
+- [`posix`](posix/index.md) — Source directory: `posix/`
+- [`sysdeps`](sysdeps/index.md) — Source directory: `sysdeps/`
 

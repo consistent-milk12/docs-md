@@ -16,12 +16,12 @@
   - [`ptr`](#ptr)
   - [`wrapper`](#wrapper)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
+  - [`Error`](#error)
   - [`Report`](#report)
   - [`InstallError`](#installerror)
   - [`DiagnosticError`](#diagnosticerror)
 - [Traits](#traits)
-  - [`unnamed`](#unnamed)
+  - [`Context`](#context)
   - [`ReportHandler`](#reporthandler)
   - [`WrapErr`](#wraperr)
   - [`IntoDiagnostic`](#intodiagnostic)
@@ -45,11 +45,11 @@
 | [`macros`](#macros) | mod |  |
 | [`ptr`](#ptr) | mod |  |
 | [`wrapper`](#wrapper) | mod |  |
-| [`unnamed`](#unnamed) | struct | Compatibility re-export of `Report` for interop with `anyhow` |
+| [`Error`](#error) | struct | Compatibility re-export of `Report` for interop with `anyhow` |
 | [`Report`](#report) | struct | Core Diagnostic wrapper type. |
 | [`InstallError`](#installerror) | struct | Error indicating that [`set_hook()`] was unable to install the provided |
 | [`DiagnosticError`](#diagnosticerror) | struct | Convenience [`Diagnostic`] that can be used as an "anonymous" wrapper for |
-| [`unnamed`](#unnamed) | trait | Compatibility re-export of `WrapErr` for interop with `anyhow` |
+| [`Context`](#context) | trait | Compatibility re-export of `WrapErr` for interop with `anyhow` |
 | [`ReportHandler`](#reporthandler) | trait | Error Report Handler trait for customizing `miette::Report` |
 | [`WrapErr`](#wraperr) | trait | Provides the [`wrap_err()`](WrapErr::wrap_err) method for [`Result`]. |
 | [`IntoDiagnostic`](#intodiagnostic) | trait | Convenience trait that adds a [`.into_diagnostic()`](IntoDiagnostic::into_diagnostic) method that converts a type implementing |
@@ -61,14 +61,14 @@
 
 ## Modules
 
-- [`context`](context/index.md) - 
-- [`error`](error/index.md) - 
-- [`fmt`](fmt/index.md) - 
-- [`into_diagnostic`](into_diagnostic/index.md) - 
-- [`kind`](kind/index.md) - 
-- [`macros`](macros/index.md) - 
-- [`ptr`](ptr/index.md) - 
-- [`wrapper`](wrapper/index.md) - 
+- [`context`](context/index.md)
+- [`error`](error/index.md)
+- [`fmt`](fmt/index.md)
+- [`into_diagnostic`](into_diagnostic/index.md)
+- [`kind`](kind/index.md)
+- [`macros`](macros/index.md)
+- [`ptr`](ptr/index.md)
+- [`wrapper`](wrapper/index.md)
 
 ## Structs
 
@@ -132,7 +132,7 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 ##### `impl AsRef for super::Report`
 
-- <span id="superreport-as-ref"></span>`fn as_ref(&self) -> &dyn Diagnostic` — [`Diagnostic`](../index.md)
+- <span id="superreport-as-ref"></span>`fn as_ref(&self) -> &dyn Diagnostic + Send + Sync` — [`Diagnostic`](../index.md)
 
 ##### `impl Debug for super::Report`
 
@@ -236,7 +236,7 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 ##### `impl AsRef for super::Report`
 
-- <span id="superreport-as-ref"></span>`fn as_ref(&self) -> &dyn Diagnostic` — [`Diagnostic`](../index.md)
+- <span id="superreport-as-ref"></span>`fn as_ref(&self) -> &dyn Diagnostic + Send + Sync` — [`Diagnostic`](../index.md)
 
 ##### `impl Debug for super::Report`
 
@@ -354,6 +354,210 @@ Errors. This is intended to be paired with [`IntoDiagnostic`](#intodiagnostic).
 
 ## Traits
 
+### `Context<T, E>`
+
+```rust
+trait Context<T, E>: context::private::Sealed { ... }
+```
+
+Provides the [`wrap_err()`](WrapErr::wrap_err) method for [`Result`](../index.md).
+
+This trait is sealed and cannot be implemented for types outside of
+`miette`.
+
+# Example
+
+```rust
+use miette::{WrapErr, IntoDiagnostic, Result};
+use std::{fs, path::PathBuf};
+
+pub struct ImportantThing {
+    path: PathBuf,
+}
+
+impl ImportantThing {
+    const IGNORE: &'static str = stringify! {
+    pub fn detach(&mut self) -> Result<()> {...}
+    };
+    fn detach(&mut self) -> Result<()> {
+        unimplemented!()
+    }
+}
+
+pub fn do_it(mut it: ImportantThing) -> Result<Vec<u8>> {
+    it.detach().wrap_err("Failed to detach the important thing")?;
+
+    let path = &it.path;
+    let content = fs::read(path)
+        .into_diagnostic()
+        .wrap_err_with(|| format!(
+            "Failed to read instrs from {}",
+            path.display())
+        )?;
+
+    Ok(content)
+}
+```
+
+When printed, the outermost error would be printed first and the lower
+level underlying causes would be enumerated below.
+
+```console
+Error: Failed to read instrs from ./path/to/instrs.json
+
+Caused by:
+    No such file or directory (os error 2)
+```
+
+# Wrapping Types That Do Not Implement `Error`
+
+For example `&str` and `Box<dyn Error>`.
+
+Due to restrictions for coherence `Report` cannot implement `From` for types
+that don't implement `Error`. Attempts to do so will give `"this type might
+implement Error in the future"` as an error. As such, `wrap_err()`, which
+uses `From` under the hood, cannot be used to wrap these types. Instead we
+encourage you to use the combinators provided for `Result` in `std`/`core`.
+
+For example, instead of this:
+
+```rust,compile_fail
+use std::error::Error;
+use miette::{WrapErr, Report};
+
+fn wrap_example(err: Result<(), Box<dyn Error + Send + Sync + 'static>>)
+    -> Result<(), Report>
+{
+    err.wrap_err("saw a downstream error")
+}
+```
+
+We encourage you to write this:
+
+```rust
+use miette::{miette, Report, WrapErr};
+use std::error::Error;
+
+fn wrap_example(err: Result<(), Box<dyn Error + Send + Sync + 'static>>) -> Result<(), Report> {
+    err.map_err(|e| miette!(e))
+        .wrap_err("saw a downstream error")
+}
+```
+
+# Effect on Downcasting
+
+After attaching a message of type `D` onto an error of type `E`, the
+resulting `miette::Error` may be downcast to `D` **or** to `E`.
+
+That is, in codebases that rely on downcasting, `miette`'s `wrap_err()`
+supports both of the following use cases:
+
+  - **Attaching messages whose type is insignificant onto errors whose type
+    is used in downcasts.**
+
+    In other error libraries whose `wrap_err()` is not designed this way, it
+    can be risky to introduce messages to existing code because new message
+    might break existing working downcasts. In miette, any downcast that
+    worked before adding the message will continue to work after you add a
+    message, so you should freely wrap errors wherever it would be helpful.
+
+    ```rust
+    use miette::bail;
+    use thiserror::Error;
+
+    #[derive(Error, Debug)]
+    #[error("???")]
+    struct SuspiciousError;
+
+    fn helper() -> Result<()> {
+        bail!(SuspiciousError);
+    }
+
+    use miette::{WrapErr, Result};
+
+    fn do_it() -> Result<()> {
+        helper().wrap_err("Failed to complete the work")?;
+        const IGNORE: &str = stringify! {
+        ...
+        };
+        unreachable!()
+    }
+
+    fn main() {
+        let err = do_it().unwrap_err();
+        if let Some(e) = err.downcast_ref::<SuspiciousError>() {
+            // If helper() returned SuspiciousError, this downcast will
+            // correctly succeed even with the message in between.
+            return;
+        }
+        panic!("expected downcast to succeed");
+    }
+    ```
+
+  - **Attaching message whose type is used in downcasts onto errors whose
+    type is insignificant.**
+
+    Some codebases prefer to use machine-readable messages to categorize
+    lower level errors in a way that will be actionable to higher levels of
+    the application.
+
+    ```rust
+    use miette::bail;
+    use thiserror::Error;
+
+    #[derive(Error, Debug)]
+    #[error("???")]
+    struct HelperFailed;
+
+    fn helper() -> Result<()> {
+        bail!("no such file or directory");
+    }
+
+    use miette::{WrapErr, Result};
+
+    fn do_it() -> Result<()> {
+        helper().wrap_err(HelperFailed)?;
+        const IGNORE: &str = stringify! {
+        ...
+        };
+        unreachable!()
+    }
+
+    fn main() {
+        let err = do_it().unwrap_err();
+        if let Some(e) = err.downcast_ref::<HelperFailed>() {
+            // If helper failed, this downcast will succeed because
+            // HelperFailed is the message that has been attached to
+            // that error.
+            return;
+        }
+        panic!("expected downcast to succeed");
+    }
+    ```
+
+#### Required Methods
+
+- `fn wrap_err<D>(self, msg: D) -> Result<T, Report>`
+
+  Wrap the error value with a new adhoc error
+
+- `fn wrap_err_with<D, F>(self, f: F) -> Result<T, Report>`
+
+  Wrap the error value with a new adhoc error that is evaluated lazily
+
+- `fn context<D>(self, msg: D) -> Result<T, Report>`
+
+  Compatibility re-export of `wrap_err()` for interop with `anyhow`
+
+- `fn with_context<D, F>(self, f: F) -> Result<T, Report>`
+
+  Compatibility re-export of `wrap_err_with()` for interop with `anyhow`
+
+#### Implementors
+
+- `Option<T>`
+- `Result<T, E>`
+
 ### `ReportHandler`
 
 ```rust
@@ -368,6 +572,8 @@ Error Report Handler trait for customizing `miette::Report`
 
   Define the report format
 
+#### Provided Methods
+
 - `fn display(&self, error: &dyn StdError, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
   Override for the `Display` format
@@ -375,6 +581,14 @@ Error Report Handler trait for customizing `miette::Report`
 - `fn track_caller(&mut self, location: &'static std::panic::Location<'static>)`
 
   Store the location of the caller who constructed this error report
+
+#### Implementors
+
+- [`DebugReportHandler`](../handlers/index.md)
+- [`GraphicalReportHandler`](../handlers/index.md)
+- [`JSONReportHandler`](../handlers/index.md)
+- [`MietteHandler`](../index.md)
+- [`NarratableReportHandler`](../handlers/index.md)
 
 ### `WrapErr<T, E>`
 
@@ -575,6 +789,11 @@ supports both of the following use cases:
 
   Compatibility re-export of `wrap_err_with()` for interop with `anyhow`
 
+#### Implementors
+
+- `Option<T>`
+- `Result<T, E>`
+
 ### `IntoDiagnostic<T, E>`
 
 ```rust
@@ -582,12 +801,12 @@ trait IntoDiagnostic<T, E> { ... }
 ```
 
 Convenience trait that adds a [`.into_diagnostic()`](IntoDiagnostic::into_diagnostic) method that converts a type implementing
-[`std::error::Error`](../../addr2line/index.md) to a [`Result<T, Report>`](../../clap_builder/error/index.md).
+[`std::error::Error`](../../cargo_docs_md/error/index.md) to a [`Result<T, Report>`](../../clap_builder/error/index.md).
 
 ## Warning
 
 Calling this on a type implementing [`Diagnostic`](../index.md) will reduce it to the common denominator of
-[`std::error::Error`](../../addr2line/index.md). Meaning all extra information provided by [`Diagnostic`](../index.md) will be
+[`std::error::Error`](../../cargo_docs_md/error/index.md). Meaning all extra information provided by [`Diagnostic`](../index.md) will be
 inaccessible. If you have a type implementing [`Diagnostic`](../index.md) consider simply returning it or using
 `Into` or the [`Try`](std::ops::Try) operator (`?`).
 
@@ -595,7 +814,11 @@ inaccessible. If you have a type implementing [`Diagnostic`](../index.md) consid
 
 - `fn into_diagnostic(self) -> Result<T, Report>`
 
-  Converts [`Result`](../../clap_builder/error/index.md) types that return regular [`std::error::Error`](../../addr2line/index.md)s
+  Converts [`Result`](../../clap_builder/error/index.md) types that return regular [`std::error::Error`](../../cargo_docs_md/error/index.md)s
+
+#### Implementors
+
+- `Result<T, E>`
 
 ## Functions
 

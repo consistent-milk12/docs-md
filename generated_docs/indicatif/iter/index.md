@@ -116,6 +116,12 @@ Wraps an iterator to display its progress.
 
 #### Required Methods
 
+- `fn progress_with(self, progress: ProgressBar) -> ProgressBarIter<Self>`
+
+  Wrap an iterator with a custom progress bar.
+
+#### Provided Methods
+
 - `fn try_progress(self) -> Option<ProgressBarIter<Self>>`
 
   Wrap an iterator with default styling. Uses `Iterator::size_hint()` to get length.
@@ -128,11 +134,12 @@ Wraps an iterator to display its progress.
 
   Wrap an iterator with an explicit element count.
 
-- `fn progress_with(self, progress: ProgressBar) -> ProgressBarIter<Self>`
-
-  Wrap an iterator with a custom progress bar.
-
 - `fn progress_with_style(self, style: crate::ProgressStyle) -> ProgressBarIter<Self>`
 
   Wrap an iterator with a progress bar and style it.
+
+#### Implementors
+
+- [`ProgressBarIter`](../index.md)
+- `T`
 

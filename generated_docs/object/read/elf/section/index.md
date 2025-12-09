@@ -241,13 +241,15 @@ trait SectionHeader: Debug + Pod { ... }
 
 A trait for generic access to [`elf::SectionHeader32`](../../../elf/index.md) and [`elf::SectionHeader64`](../../../elf/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Elf: 1`
 
 - `type Word: 1`
 
 - `type Endian: 1`
+
+#### Required Methods
 
 - `fn sh_name(&self, endian: <Self as >::Endian) -> u32`
 
@@ -268,6 +270,8 @@ A trait for generic access to [`elf::SectionHeader32`](../../../elf/index.md) an
 - `fn sh_addralign(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
 - `fn sh_entsize(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+
+#### Provided Methods
 
 - `fn name<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, strings: StringTable<'data, R>) -> read::Result<&'data [u8]>`
 
@@ -372,6 +376,11 @@ A trait for generic access to [`elf::SectionHeader32`](../../../elf/index.md) an
 - `fn compression<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<(&'data <<Self as >::Elf as FileHeader>::CompressionHeader, u64, u64)>>`
 
   Parse the compression header if present.
+
+#### Implementors
+
+- [`SectionHeader32`](../../../elf/index.md)
+- [`SectionHeader64`](../../../elf/index.md)
 
 ## Type Aliases
 

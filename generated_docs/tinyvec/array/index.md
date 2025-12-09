@@ -13,7 +13,7 @@
 
 ## Modules
 
-- [`const_generic_impl`](const_generic_impl/index.md) - 
+- [`const_generic_impl`](const_generic_impl/index.md)
 
 ## Traits
 
@@ -41,11 +41,15 @@ already implemented for all array lengths.
 Just a reminder: this trait is 100% safe, which means that `unsafe` code
 **must not** rely on an instance of this trait being correct.
 
-#### Required Methods
+#### Associated Types
 
 - `type Item: 1`
 
+#### Associated Constants
+
 - `const CAPACITY: usize`
+
+#### Required Methods
 
 - `fn as_slice(&self) -> &[<Self as >::Item]`
 
@@ -58,4 +62,8 @@ Just a reminder: this trait is 100% safe, which means that `unsafe` code
 - `fn default() -> Self`
 
   Create a default-initialized instance of ourself, similar to the
+
+#### Implementors
+
+- `[T; N]`
 

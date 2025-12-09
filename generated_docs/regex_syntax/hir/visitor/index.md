@@ -110,15 +110,19 @@ important since the size of an HIR may be proportional to end user input.
 Typical usage of this trait involves providing an implementation and then
 running it using the [`visit`](../index.md) function.
 
-#### Required Methods
+#### Associated Types
 
 - `type Output`
 
 - `type Err`
 
+#### Required Methods
+
 - `fn finish(self) -> Result<<Self as >::Output, <Self as >::Err>`
 
   All implementors of `Visitor` must provide a `finish` method, which
+
+#### Provided Methods
 
 - `fn start(&mut self)`
 
@@ -139,6 +143,10 @@ running it using the [`visit`](../index.md) function.
 - `fn visit_concat_in(&mut self) -> Result<(), <Self as >::Err>`
 
   This method is called between child nodes of a concatenation.
+
+#### Implementors
+
+- [`Writer`](../print/index.md)
 
 ## Functions
 

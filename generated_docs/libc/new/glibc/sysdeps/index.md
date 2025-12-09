@@ -17,6 +17,6 @@ Source directory: `sysdeps/`
 
 ## Modules
 
-- [`nptl`](nptl/index.md) - Source directory: `sysdeps/nptl/`o
-- [`unix`](unix/index.md) - Source directory: `sysdeps/unix/`
+- [`nptl`](nptl/index.md) — Source directory: `sysdeps/nptl/`o
+- [`unix`](unix/index.md) — Source directory: `sysdeps/unix/`
 

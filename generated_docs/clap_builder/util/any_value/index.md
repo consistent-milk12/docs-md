@@ -79,7 +79,7 @@ struct AnyValueId {
 
 ##### `impl PartialEq for AnyValueId`
 
-- <span id="anyvalueid-eq"></span>`fn eq(&self, other: &std::any::TypeId) -> bool`
+- <span id="anyvalueid-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
 ##### `impl PartialOrd for AnyValueId`
 

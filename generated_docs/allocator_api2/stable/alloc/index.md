@@ -11,16 +11,16 @@ Memory allocation APIs
 | Item | Kind | Description |
 |------|------|-------------|
 | [`global`](#global) | mod |  |
-| [`unnamed`](#unnamed) | mod |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
+| [`Layout`](#layout) | mod |  |
+| [`GlobalAlloc`](#globalalloc) | struct |  |
+| [`Global`](#global) | struct |  |
 | [`AllocError`](#allocerror) | struct | The `AllocError` error indicates an allocation failure |
 | [`Allocator`](#allocator) | trait | An implementation of `Allocator` can allocate, grow, shrink, and deallocate arbitrary blocks of |
 
 ## Modules
 
-- [`global`](global/index.md) - 
-- [`Layout`](Layout/index.md) - 
+- [`global`](global/index.md)
+- [`Layout`](Layout/index.md)
 
 ## Structs
 
@@ -198,13 +198,15 @@ following conditions must hold:
 
   Attempts to allocate a block of memory.
 
-- `fn allocate_zeroed(&self, layout: Layout) -> Result<NonNull<[u8]>, AllocError>`
-
-  Behaves like `allocate`, but also ensures that the returned memory is zero-initialized.
-
 - `fn deallocate(&self, ptr: NonNull<u8>, layout: Layout)`
 
   Deallocates the memory referenced by `ptr`.
+
+#### Provided Methods
+
+- `fn allocate_zeroed(&self, layout: Layout) -> Result<NonNull<[u8]>, AllocError>`
+
+  Behaves like `allocate`, but also ensures that the returned memory is zero-initialized.
 
 - `fn grow(&self, ptr: NonNull<u8>, old_layout: Layout, new_layout: Layout) -> Result<NonNull<[u8]>, AllocError>`
 
@@ -221,4 +223,9 @@ following conditions must hold:
 - `fn by_ref(&self) -> &Self`
 
   Creates a "by reference" adapter for this instance of `Allocator`.
+
+#### Implementors
+
+- [`Global`](#global)
+- `&A`
 

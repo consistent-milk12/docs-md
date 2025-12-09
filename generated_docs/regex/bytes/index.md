@@ -359,27 +359,19 @@ assert_eq!(&caps["f2"], "💩".as_bytes());
 
 #### Implementations
 
-- <span id="regex-new"></span>`fn new(re: &str) -> Result<Regex, Error>` — [`Regex`](../regex/bytes/index.md), [`Error`](../index.md)
+- <span id="regex-shortest-match"></span>`fn shortest_match(&self, haystack: &[u8]) -> Option<usize>`
 
-- <span id="regex-is-match"></span>`fn is_match(&self, haystack: &[u8]) -> bool`
+- <span id="regex-shortest-match-at"></span>`fn shortest_match_at(&self, haystack: &[u8], start: usize) -> Option<usize>`
 
-- <span id="regex-find"></span>`fn find<'h>(&self, haystack: &'h [u8]) -> Option<Match<'h>>` — [`Match`](../regex/bytes/index.md)
+- <span id="regex-is-match-at"></span>`fn is_match_at(&self, haystack: &[u8], start: usize) -> bool`
 
-- <span id="regex-find-iter"></span>`fn find_iter<'r, 'h>(self: &'r Self, haystack: &'h [u8]) -> Matches<'r, 'h>` — [`Matches`](../regex/bytes/index.md)
+- <span id="regex-find-at"></span>`fn find_at<'h>(&self, haystack: &'h [u8], start: usize) -> Option<Match<'h>>` — [`Match`](../regex/bytes/index.md)
 
-- <span id="regex-captures"></span>`fn captures<'h>(&self, haystack: &'h [u8]) -> Option<Captures<'h>>` — [`Captures`](../regex/bytes/index.md)
+- <span id="regex-captures-at"></span>`fn captures_at<'h>(&self, haystack: &'h [u8], start: usize) -> Option<Captures<'h>>` — [`Captures`](../regex/bytes/index.md)
 
-- <span id="regex-captures-iter"></span>`fn captures_iter<'r, 'h>(self: &'r Self, haystack: &'h [u8]) -> CaptureMatches<'r, 'h>` — [`CaptureMatches`](../regex/bytes/index.md)
+- <span id="regex-captures-read"></span>`fn captures_read<'h>(&self, locs: &mut CaptureLocations, haystack: &'h [u8]) -> Option<Match<'h>>` — [`CaptureLocations`](../regex/bytes/index.md), [`Match`](../regex/bytes/index.md)
 
-- <span id="regex-split"></span>`fn split<'r, 'h>(self: &'r Self, haystack: &'h [u8]) -> Split<'r, 'h>` — [`Split`](../regex/bytes/index.md)
-
-- <span id="regex-splitn"></span>`fn splitn<'r, 'h>(self: &'r Self, haystack: &'h [u8], limit: usize) -> SplitN<'r, 'h>` — [`SplitN`](../regex/bytes/index.md)
-
-- <span id="regex-replace"></span>`fn replace<'h, R: Replacer>(&self, haystack: &'h [u8], rep: R) -> Cow<'h, [u8]>`
-
-- <span id="regex-replace-all"></span>`fn replace_all<'h, R: Replacer>(&self, haystack: &'h [u8], rep: R) -> Cow<'h, [u8]>`
-
-- <span id="regex-replacen"></span>`fn replacen<'h, R: Replacer>(&self, haystack: &'h [u8], limit: usize, rep: R) -> Cow<'h, [u8]>`
+- <span id="regex-captures-read-at"></span>`fn captures_read_at<'h>(&self, locs: &mut CaptureLocations, haystack: &'h [u8], start: usize) -> Option<Match<'h>>` — [`CaptureLocations`](../regex/bytes/index.md), [`Match`](../regex/bytes/index.md)
 
 #### Trait Implementations
 
@@ -1390,6 +1382,8 @@ assert_eq!(result, &b"Bruce Springsteen"[..]);
 
   Appends possibly empty data to `dst` to replace the current match.
 
+#### Provided Methods
+
 - `fn no_expansion<'r>(self: &'r mut Self) -> Option<Cow<'r, [u8]>>`
 
   Return a fixed unchanging replacement byte string.
@@ -1397,6 +1391,19 @@ assert_eq!(result, &b"Bruce Springsteen"[..]);
 - `fn by_ref<'r>(self: &'r mut Self) -> ReplacerRef<'r, Self>`
 
   Returns a type that implements `Replacer`, but that borrows and wraps
+
+#### Implementors
+
+- [`NoExpand`](../regex/bytes/index.md)
+- [`ReplacerRef`](../regex/bytes/index.md)
+- `&'a [u8; N]`
+- `&'a [u8]`
+- `&'a alloc::borrow::Cow<'a, [u8]>`
+- `&'a alloc::vec::Vec<u8>`
+- `F`
+- `[u8; N]`
+- `alloc::borrow::Cow<'a, [u8]>`
+- `alloc::vec::Vec<u8>`
 
 ## Functions
 

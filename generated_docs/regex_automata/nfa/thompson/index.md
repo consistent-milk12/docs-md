@@ -70,18 +70,18 @@ seen as a sequence of instructions for how to match a regex.
   - [`pikevm`](#pikevm)
   - [`range_trie`](#range_trie)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`Builder`](#builder)
+  - [`BuildError`](#builderror)
+  - [`DenseTransitions`](#densetransitions)
+  - [`PatternIter`](#patterniter)
+  - [`SparseTransitions`](#sparsetransitions)
+  - [`Transition`](#transition)
+  - [`NFA`](#nfa)
+  - [`Compiler`](#compiler)
+  - [`Config`](#config)
 - [Enums](#enums)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`State`](#state)
+  - [`WhichCaptures`](#whichcaptures)
 
 ## Quick Reference
 
@@ -96,29 +96,29 @@ seen as a sequence of instructions for how to match a regex.
 | [`nfa`](#nfa) | mod |  |
 | [`pikevm`](#pikevm) | mod | An NFA backed Pike VM for executing regex searches with capturing groups. |
 | [`range_trie`](#range_trie) | mod |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
+| [`Builder`](#builder) | struct |  |
+| [`BuildError`](#builderror) | struct |  |
+| [`DenseTransitions`](#densetransitions) | struct |  |
+| [`PatternIter`](#patterniter) | struct |  |
+| [`SparseTransitions`](#sparsetransitions) | struct |  |
+| [`Transition`](#transition) | struct |  |
+| [`NFA`](#nfa) | struct |  |
+| [`Compiler`](#compiler) | struct |  |
+| [`Config`](#config) | struct |  |
+| [`State`](#state) | enum |  |
+| [`WhichCaptures`](#whichcaptures) | enum |  |
 
 ## Modules
 
-- [`backtrack`](backtrack/index.md) - An NFA backed bounded backtracker for executing regex searches with capturing
-- [`builder`](builder/index.md) - 
-- [`compiler`](compiler/index.md) - 
-- [`error`](error/index.md) - 
-- [`literal_trie`](literal_trie/index.md) - 
-- [`map`](map/index.md) - 
-- [`nfa`](nfa/index.md) - 
-- [`pikevm`](pikevm/index.md) - An NFA backed Pike VM for executing regex searches with capturing groups.
-- [`range_trie`](range_trie/index.md) - 
+- [`backtrack`](backtrack/index.md) — An NFA backed bounded backtracker for executing regex searches with capturing
+- [`builder`](builder/index.md)
+- [`compiler`](compiler/index.md)
+- [`error`](error/index.md)
+- [`literal_trie`](literal_trie/index.md)
+- [`map`](map/index.md)
+- [`nfa`](nfa/index.md)
+- [`pikevm`](pikevm/index.md) — An NFA backed Pike VM for executing regex searches with capturing groups.
+- [`range_trie`](range_trie/index.md)
 
 ## Structs
 
@@ -431,7 +431,7 @@ This error does not provide many introspection capabilities. There are
 generally only two things you can do with it:
 
 * Obtain a human readable message via its `std::fmt::Display` impl.
-* Access an underlying [`regex_syntax::Error`](../../../regex_syntax/index.md) type from its `source`
+* Access an underlying [`regex_syntax::Error`](../../../regex_syntax/hir/index.md) type from its `source`
 method via the `std::error::Error` trait. This error only occurs when using
 convenience routines for building an NFA directly from a pattern string.
 

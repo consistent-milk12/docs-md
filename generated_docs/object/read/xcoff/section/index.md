@@ -192,7 +192,7 @@ trait SectionHeader: Debug + Pod { ... }
 
 A trait for generic access to [`xcoff::SectionHeader32`](../../../xcoff/index.md) and [`xcoff::SectionHeader64`](../../../xcoff/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
 
@@ -201,6 +201,8 @@ A trait for generic access to [`xcoff::SectionHeader32`](../../../xcoff/index.md
 - `type Xcoff: 1`
 
 - `type Rel: 1`
+
+#### Required Methods
 
 - `fn s_name(&self) -> &[u8; 8]`
 
@@ -222,6 +224,12 @@ A trait for generic access to [`xcoff::SectionHeader32`](../../../xcoff/index.md
 
 - `fn s_flags(&self) -> u32`
 
+- `fn relocations<'data, R: ReadRef<'data>>(&self, data: R) -> read::Result<&'data [<Self as >::Rel]>`
+
+  Read the relocations.
+
+#### Provided Methods
+
 - `fn name(&self) -> &[u8]`
 
   Return the section name.
@@ -234,9 +242,10 @@ A trait for generic access to [`xcoff::SectionHeader32`](../../../xcoff/index.md
 
   Return the section data.
 
-- `fn relocations<'data, R: ReadRef<'data>>(&self, data: R) -> read::Result<&'data [<Self as >::Rel]>`
+#### Implementors
 
-  Read the relocations.
+- [`SectionHeader32`](../../../xcoff/index.md)
+- [`SectionHeader64`](../../../xcoff/index.md)
 
 ## Type Aliases
 

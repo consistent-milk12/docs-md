@@ -31,11 +31,7 @@ Only pass printable data to the inner `Write`
 
 #### Implementations
 
-- <span id="stripstream-new"></span>`fn new(raw: S) -> Self`
-
-- <span id="stripstream-into-inner"></span>`fn into_inner(self) -> S`
-
-- <span id="stripstream-as-inner"></span>`fn as_inner(&self) -> &S`
+- <span id="stripstream-lock"></span>`fn lock(self) -> StripStream<std::io::StdoutLock<'static>>` — [`StripStream`](../index.md)
 
 #### Trait Implementations
 

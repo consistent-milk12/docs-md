@@ -112,15 +112,11 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- <span id="regex-new"></span>`fn new(pattern: &str) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../index.md)
+- <span id="regex-is-match"></span>`fn is_match<'h, I: Into<Input<'h>>>(&self, cache: &mut Cache, input: I) -> bool` — [`Cache`](#cache)
 
-- <span id="regex-new-many"></span>`fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../index.md)
+- <span id="regex-find"></span>`fn find<'h, I: Into<Input<'h>>>(&self, cache: &mut Cache, input: I) -> Option<Match>` — [`Cache`](#cache), [`Match`](../../index.md)
 
-- <span id="regex-builder"></span>`fn builder() -> Builder` — [`Builder`](#builder)
-
-- <span id="regex-create-cache"></span>`fn create_cache(&self) -> Cache` — [`Cache`](#cache)
-
-- <span id="regex-reset-cache"></span>`fn reset_cache(&self, cache: &mut Cache)` — [`Cache`](#cache)
+- <span id="regex-find-iter"></span>`fn find_iter<'r, 'c, 'h, I: Into<Input<'h>>>(self: &'r Self, cache: &'c mut Cache, input: I) -> FindMatches<'r, 'c, 'h>` — [`Cache`](#cache), [`FindMatches`](#findmatches)
 
 #### Trait Implementations
 

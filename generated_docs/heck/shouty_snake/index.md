@@ -20,7 +20,7 @@
 struct AsShoutySnakeCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a shouty snake  case conversion in [`fmt::Display`](../../miette_derive/fmt/index.md).
+This wrapper performs a shouty snake  case conversion in [`fmt::Display`](../../miette_derive/index.md).
 
 ## Example:
 
@@ -69,6 +69,10 @@ assert_eq!(sentence.to_shouty_snake_case(), "THAT_WORLD_IS_GROWING_IN_THIS_MINUT
 
   Convert this type to shouty snake case.
 
+#### Implementors
+
+- `str`
+
 ### `ToShoutySnekCase`
 
 ```rust
@@ -83,4 +87,8 @@ ToShoutySnakeCase for more documentation.
 - `fn TO_SHOUTY_SNEK_CASE(&self) -> <Self as >::Owned`
 
   CONVERT THIS TYPE TO SNEK CASE.
+
+#### Implementors
+
+- `T`
 

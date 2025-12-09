@@ -38,7 +38,7 @@ Common producer for splitting on a predicate.
 
 #### Implementations
 
-- <span id="splitproducer-fold-with"></span>`fn fold_with<F>(self, folder: F, skip_last: bool) -> F`
+- <span id="splitproducer-new"></span>`fn new(data: V, separator: &'p P) -> Self`
 
 #### Trait Implementations
 
@@ -89,6 +89,12 @@ Helper trait so `&str`, `&[T]`, and `&mut [T]` can share `SplitProducer`.
 - `fn split_once<const INCL: bool>(self, index: usize) -> (Self, Self)`
 
 - `fn fold_splits<F, const INCL: bool>(self, separator: &P, folder: F, skip_last: bool) -> F`
+
+#### Implementors
+
+- `&[T]`
+- `&mut [T]`
+- `&str`
 
 ## Type Aliases
 

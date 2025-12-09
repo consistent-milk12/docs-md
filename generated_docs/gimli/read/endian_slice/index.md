@@ -34,11 +34,21 @@ This implements the `Reader` trait, which is used for all reading of DWARF secti
 
 #### Implementations
 
-- <span id="endianslice-range"></span>`fn range(&self, idx: Range<usize>) -> EndianSlice<'input, Endian>` — [`EndianSlice`](../index.md)
+- <span id="endianslice-new"></span>`fn new(slice: &'input [u8], endian: Endian) -> EndianSlice<'input, Endian>` — [`EndianSlice`](../index.md)
 
-- <span id="endianslice-range-from"></span>`fn range_from(&self, idx: RangeFrom<usize>) -> EndianSlice<'input, Endian>` — [`EndianSlice`](../index.md)
+- <span id="endianslice-slice"></span>`fn slice(&self) -> &'input [u8]`
 
-- <span id="endianslice-range-to"></span>`fn range_to(&self, idx: RangeTo<usize>) -> EndianSlice<'input, Endian>` — [`EndianSlice`](../index.md)
+- <span id="endianslice-split-at"></span>`fn split_at(&self, idx: usize) -> (EndianSlice<'input, Endian>, EndianSlice<'input, Endian>)` — [`EndianSlice`](../index.md)
+
+- <span id="endianslice-find"></span>`fn find(&self, byte: u8) -> Option<usize>`
+
+- <span id="endianslice-offset-from"></span>`fn offset_from(&self, base: EndianSlice<'input, Endian>) -> usize` — [`EndianSlice`](../index.md)
+
+- <span id="endianslice-to-string"></span>`fn to_string(&self) -> Result<&'input str>` — [`Result`](../../index.md)
+
+- <span id="endianslice-to-string-lossy"></span>`fn to_string_lossy(&self) -> Cow<'input, str>`
+
+- <span id="endianslice-read-slice"></span>`fn read_slice(&mut self, len: usize) -> Result<&'input [u8]>` — [`Result`](../../index.md)
 
 #### Trait Implementations
 

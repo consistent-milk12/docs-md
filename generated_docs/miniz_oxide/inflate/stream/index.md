@@ -166,6 +166,12 @@ Tag that determines reset policy of [InflateState](#inflatestate)
 
   Performs reset
 
+#### Implementors
+
+- [`FullReset`](#fullreset)
+- [`MinReset`](#minreset)
+- [`ZeroReset`](#zeroreset)
+
 ## Functions
 
 ### `inflate`

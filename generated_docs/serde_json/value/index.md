@@ -104,13 +104,13 @@ untyped_example().unwrap();
   - [`partial_eq`](#partial_eq)
   - [`ser`](#ser)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`Serializer`](#serializer)
+  - [`Map`](#map)
+  - [`Number`](#number)
 - [Enums](#enums)
   - [`Value`](#value)
 - [Traits](#traits)
-  - [`unnamed`](#unnamed)
+  - [`Index`](#index)
 - [Functions](#functions)
   - [`parse_index`](#parse_index)
   - [`to_value`](#to_value)
@@ -125,22 +125,22 @@ untyped_example().unwrap();
 | [`index`](#index) | mod |  |
 | [`partial_eq`](#partial_eq) | mod |  |
 | [`ser`](#ser) | mod |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
+| [`Serializer`](#serializer) | struct |  |
+| [`Map`](#map) | struct |  |
+| [`Number`](#number) | struct |  |
 | [`Value`](#value) | enum | Represents any valid JSON value. |
-| [`unnamed`](#unnamed) | trait |  |
+| [`Index`](#index) | trait |  |
 | [`parse_index`](#parse_index) | fn |  |
 | [`to_value`](#to_value) | fn | Convert a `T` into `serde_json::Value` which is an enum that can represent |
 | [`from_value`](#from_value) | fn | Interpret a `serde_json::Value` as an instance of type `T`. |
 
 ## Modules
 
-- [`de`](de/index.md) - 
-- [`from`](from/index.md) - 
-- [`index`](index/index.md) - 
-- [`partial_eq`](partial_eq/index.md) - 
-- [`ser`](ser/index.md) - 
+- [`de`](de/index.md)
+- [`from`](from/index.md)
+- [`index`](index/index.md)
+- [`partial_eq`](partial_eq/index.md)
+- [`ser`](ser/index.md)
 
 ## Structs
 
@@ -666,57 +666,9 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 
 #### Implementations
 
-- <span id="value-get"></span>`fn get<I: Index>(&self, index: I) -> Option<&Value>` — [`Value`](../index.md)
+- <span id="cratevaluevalue-invalid-type"></span>`fn invalid_type<E>(&self, exp: &dyn Expected) -> E`
 
-- <span id="value-get-mut"></span>`fn get_mut<I: Index>(&mut self, index: I) -> Option<&mut Value>` — [`Value`](../index.md)
-
-- <span id="value-is-object"></span>`fn is_object(&self) -> bool`
-
-- <span id="value-as-object"></span>`fn as_object(&self) -> Option<&Map<String, Value>>` — [`Map`](../index.md), [`Value`](../index.md)
-
-- <span id="value-as-object-mut"></span>`fn as_object_mut(&mut self) -> Option<&mut Map<String, Value>>` — [`Map`](../index.md), [`Value`](../index.md)
-
-- <span id="value-is-array"></span>`fn is_array(&self) -> bool`
-
-- <span id="value-as-array"></span>`fn as_array(&self) -> Option<&Vec<Value>>` — [`Value`](../index.md)
-
-- <span id="value-as-array-mut"></span>`fn as_array_mut(&mut self) -> Option<&mut Vec<Value>>` — [`Value`](../index.md)
-
-- <span id="value-is-string"></span>`fn is_string(&self) -> bool`
-
-- <span id="value-as-str"></span>`fn as_str(&self) -> Option<&str>`
-
-- <span id="value-is-number"></span>`fn is_number(&self) -> bool`
-
-- <span id="value-as-number"></span>`fn as_number(&self) -> Option<&Number>` — [`Number`](../index.md)
-
-- <span id="value-is-i64"></span>`fn is_i64(&self) -> bool`
-
-- <span id="value-is-u64"></span>`fn is_u64(&self) -> bool`
-
-- <span id="value-is-f64"></span>`fn is_f64(&self) -> bool`
-
-- <span id="value-as-i64"></span>`fn as_i64(&self) -> Option<i64>`
-
-- <span id="value-as-u64"></span>`fn as_u64(&self) -> Option<u64>`
-
-- <span id="value-as-f64"></span>`fn as_f64(&self) -> Option<f64>`
-
-- <span id="value-is-boolean"></span>`fn is_boolean(&self) -> bool`
-
-- <span id="value-as-bool"></span>`fn as_bool(&self) -> Option<bool>`
-
-- <span id="value-is-null"></span>`fn is_null(&self) -> bool`
-
-- <span id="value-as-null"></span>`fn as_null(&self) -> Option<()>`
-
-- <span id="value-pointer"></span>`fn pointer(&self, pointer: &str) -> Option<&Value>` — [`Value`](../index.md)
-
-- <span id="value-pointer-mut"></span>`fn pointer_mut(&mut self, pointer: &str) -> Option<&mut Value>` — [`Value`](../index.md)
-
-- <span id="value-take"></span>`fn take(&mut self) -> Value` — [`Value`](../index.md)
-
-- <span id="value-sort-all-objects"></span>`fn sort_all_objects(&mut self)`
+- <span id="cratevaluevalue-unexpected"></span>`fn unexpected(&self) -> Unexpected<'_>`
 
 #### Trait Implementations
 
@@ -810,9 +762,9 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 
 ##### `impl Eq for Value`
 
-##### `impl<T: Into<super::Value>> FromIterator for super::Value`
+##### `impl<K: Into<alloc::string::String>, V: Into<super::Value>> FromIterator for super::Value`
 
-- <span id="supervalue-from-iter"></span>`fn from_iter<I: IntoIterator<Item = T>>(iter: I) -> Self`
+- <span id="supervalue-from-iter"></span>`fn from_iter<I: IntoIterator<Item = (K, V)>>(iter: I) -> Self`
 
 ##### `impl FromStr for crate::value::Value`
 
@@ -842,7 +794,7 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 
 ##### `impl PartialEq for Value`
 
-- <span id="value-eq"></span>`fn eq(&self, other: &Value) -> bool` — [`Value`](../index.md)
+- <span id="value-eq"></span>`fn eq(&self, other: &i32) -> bool`
 
 ##### `impl Serialize for crate::value::Value`
 
@@ -855,6 +807,47 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 - <span id="value-to-string"></span>`fn to_string(&self) -> String`
 
 ## Traits
+
+### `Index`
+
+```rust
+trait Index: private::Sealed { ... }
+```
+
+A type that can be used to index into a `serde_json::Value`.
+
+The [`get`](#get) and `get_mut` methods of `Value` accept any type that
+implements `Index`, as does the [square-bracket indexing operator]. This
+trait is implemented for strings which are used as the index into a JSON
+map, and for `usize` which is used as the index into a JSON array.
+
+
+
+This trait is sealed and cannot be implemented for types outside of
+`serde_json`.
+
+# Examples
+
+```rust
+use serde_json::json;
+
+let data = json!({ "inner": [1, 2, 3] });
+
+// Data is a JSON map so it can be indexed with a string.
+let inner = &data["inner"];
+
+// Inner is a JSON array so it can be indexed with an integer.
+let first = &inner[0];
+
+assert_eq!(first, 1);
+```
+
+#### Implementors
+
+- `&T`
+- `alloc::string::String`
+- `str`
+- `usize`
 
 ## Functions
 

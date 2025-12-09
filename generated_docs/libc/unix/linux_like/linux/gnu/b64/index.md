@@ -859,8 +859,8 @@
 
 ## Modules
 
-- [`x86_64`](x86_64/index.md) - x86_64-specific definitions for 64-bit linux-like values
-- [`not_x32`](not_x32/index.md) - 
+- [`x86_64`](x86_64/index.md) — x86_64-specific definitions for 64-bit linux-like values
+- [`not_x32`](not_x32/index.md)
 
 ## Structs
 

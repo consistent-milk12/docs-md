@@ -30,7 +30,7 @@ whether to convert to [`Left`](../index.md) or [`Right`](../index.md).
 The [`into_either_with`](IntoEither::into_either_with) method takes a
 [predicate function](FnOnce) to determine whether to convert to [`Left`](../index.md) or [`Right`](../index.md).
 
-#### Required Methods
+#### Provided Methods
 
 - `fn into_either(self, into_left: bool) -> Either<Self, Self>`
 
@@ -39,4 +39,10 @@ The [`into_either_with`](IntoEither::into_either_with) method takes a
 - `fn into_either_with<F>(self, into_left: F) -> Either<Self, Self>`
 
   Converts `self` into a [`Left`](../index.md) variant of [`Either<Self, Self>`](Either)
+
+#### Implementors
+
+- [`Either`](../index.md)
+- [`IterEither`](../index.md)
+- `T`
 

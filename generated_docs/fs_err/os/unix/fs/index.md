@@ -37,6 +37,10 @@ This trait is sealed and can not be implemented by other crates.
 
   Wrapper for [`FileExt::write_at`](https://doc.rust-lang.org/std/os/unix/fs/trait.FileExt.html#tymethod.write_at)
 
+#### Implementors
+
+- [`File`](../../../index.md)
+
 ### `OpenOptionsExt`
 
 ```rust
@@ -57,6 +61,10 @@ This trait is sealed and can not be implemented by other crates.
 - `fn custom_flags(&mut self, flags: i32) -> &mut Self`
 
   Wrapper for [`OpenOptionsExt::custom_flags`](https://doc.rust-lang.org/std/os/unix/fs/trait.OpenOptionsExt.html#tymethod.custom_flags)
+
+#### Implementors
+
+- [`OpenOptions`](../../../index.md)
 
 ## Functions
 

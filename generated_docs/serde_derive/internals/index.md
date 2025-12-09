@@ -17,11 +17,11 @@
   - [`respan`](#respan)
   - [`symbol`](#symbol)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
+  - [`Ctxt`](#ctxt)
 - [Enums](#enums)
   - [`Derive`](#derive)
 - [Functions](#functions)
-  - [`unnamed`](#unnamed)
+  - [`replace_receiver`](#replace_receiver)
   - [`ungroup`](#ungroup)
 
 ## Quick Reference
@@ -37,22 +37,22 @@
 | [`receiver`](#receiver) | mod |  |
 | [`respan`](#respan) | mod |  |
 | [`symbol`](#symbol) | mod |  |
-| [`unnamed`](#unnamed) | struct |  |
+| [`Ctxt`](#ctxt) | struct |  |
 | [`Derive`](#derive) | enum |  |
-| [`unnamed`](#unnamed) | fn |  |
+| [`replace_receiver`](#replace_receiver) | fn |  |
 | [`ungroup`](#ungroup) | fn |  |
 
 ## Modules
 
-- [`ast`](ast/index.md) - A Serde ast, parsed from the Syn ast and ready to generate Rust code.
-- [`attr`](attr/index.md) - 
-- [`name`](name/index.md) - 
-- [`case`](case/index.md) - Code to convert the Rust-styled field/variant (e.g. `my_field`, `MyType`) to the
-- [`check`](check/index.md) - 
-- [`ctxt`](ctxt/index.md) - 
-- [`receiver`](receiver/index.md) - 
-- [`respan`](respan/index.md) - 
-- [`symbol`](symbol/index.md) - 
+- [`ast`](ast/index.md) — A Serde ast, parsed from the Syn ast and ready to generate Rust code.
+- [`attr`](attr/index.md)
+- [`name`](name/index.md)
+- [`case`](case/index.md) — Code to convert the Rust-styled field/variant (e.g. `my_field`, `MyType`) to the
+- [`check`](check/index.md)
+- [`ctxt`](ctxt/index.md)
+- [`receiver`](receiver/index.md)
+- [`respan`](respan/index.md)
+- [`symbol`](symbol/index.md)
 
 ## Structs
 

@@ -222,51 +222,71 @@ work against the internal interface of the parser.
 
 #### Implementations
 
-- <span id="parseri-parse"></span>`fn parse(&self) -> core::result::Result<Ast, ast::Error>` — [`Ast`](../index.md), [`Error`](../index.md)
+- <span id="parseri-new"></span>`fn new(parser: P, pattern: &'s str) -> ParserI<'s, P>` — [`ParserI`](#parseri)
 
-- <span id="parseri-parse-with-comments"></span>`fn parse_with_comments(&self) -> core::result::Result<ast::WithComments, ast::Error>` — [`WithComments`](../index.md), [`Error`](../index.md)
+- <span id="parseri-parser"></span>`fn parser(&self) -> &Parser` — [`Parser`](#parser)
 
-- <span id="parseri-parse-uncounted-repetition"></span>`fn parse_uncounted_repetition(&self, concat: ast::Concat, kind: ast::RepetitionKind) -> core::result::Result<ast::Concat, ast::Error>` — [`Concat`](../index.md), [`RepetitionKind`](../index.md), [`Error`](../index.md)
+- <span id="parseri-pattern"></span>`fn pattern(&self) -> &str`
 
-- <span id="parseri-parse-counted-repetition"></span>`fn parse_counted_repetition(&self, concat: ast::Concat) -> core::result::Result<ast::Concat, ast::Error>` — [`Concat`](../index.md), [`Error`](../index.md)
+- <span id="parseri-error"></span>`fn error(&self, span: Span, kind: ast::ErrorKind) -> ast::Error` — [`Span`](../index.md), [`ErrorKind`](../index.md), [`Error`](../index.md)
 
-- <span id="parseri-parse-group"></span>`fn parse_group(&self) -> core::result::Result<Either<ast::SetFlags, ast::Group>, ast::Error>` — [`Either`](../../either/index.md), [`SetFlags`](../index.md), [`Group`](../index.md), [`Error`](../index.md)
+- <span id="parseri-offset"></span>`fn offset(&self) -> usize`
 
-- <span id="parseri-parse-capture-name"></span>`fn parse_capture_name(&self, capture_index: u32) -> core::result::Result<ast::CaptureName, ast::Error>` — [`CaptureName`](../index.md), [`Error`](../index.md)
+- <span id="parseri-line"></span>`fn line(&self) -> usize`
 
-- <span id="parseri-parse-flags"></span>`fn parse_flags(&self) -> core::result::Result<ast::Flags, ast::Error>` — [`Flags`](../index.md), [`Error`](../index.md)
+- <span id="parseri-column"></span>`fn column(&self) -> usize`
 
-- <span id="parseri-parse-flag"></span>`fn parse_flag(&self) -> core::result::Result<ast::Flag, ast::Error>` — [`Flag`](../index.md), [`Error`](../index.md)
+- <span id="parseri-next-capture-index"></span>`fn next_capture_index(&self, span: Span) -> core::result::Result<u32, ast::Error>` — [`Span`](../index.md), [`Error`](../index.md)
 
-- <span id="parseri-parse-primitive"></span>`fn parse_primitive(&self) -> core::result::Result<Primitive, ast::Error>` — [`Primitive`](#primitive), [`Error`](../index.md)
+- <span id="parseri-add-capture-name"></span>`fn add_capture_name(&self, cap: &ast::CaptureName) -> core::result::Result<(), ast::Error>` — [`CaptureName`](../index.md), [`Error`](../index.md)
 
-- <span id="parseri-parse-escape"></span>`fn parse_escape(&self) -> core::result::Result<Primitive, ast::Error>` — [`Primitive`](#primitive), [`Error`](../index.md)
+- <span id="parseri-ignore-whitespace"></span>`fn ignore_whitespace(&self) -> bool`
 
-- <span id="parseri-maybe-parse-special-word-boundary"></span>`fn maybe_parse_special_word_boundary(&self, wb_start: Position) -> core::result::Result<Option<ast::AssertionKind>, ast::Error>` — [`Position`](../index.md), [`AssertionKind`](../index.md), [`Error`](../index.md)
+- <span id="parseri-char"></span>`fn char(&self) -> char`
 
-- <span id="parseri-parse-octal"></span>`fn parse_octal(&self) -> ast::Literal` — [`Literal`](../index.md)
+- <span id="parseri-char-at"></span>`fn char_at(&self, i: usize) -> char`
 
-- <span id="parseri-parse-hex"></span>`fn parse_hex(&self) -> core::result::Result<ast::Literal, ast::Error>` — [`Literal`](../index.md), [`Error`](../index.md)
+- <span id="parseri-bump"></span>`fn bump(&self) -> bool`
 
-- <span id="parseri-parse-hex-digits"></span>`fn parse_hex_digits(&self, kind: ast::HexLiteralKind) -> core::result::Result<ast::Literal, ast::Error>` — [`HexLiteralKind`](../index.md), [`Literal`](../index.md), [`Error`](../index.md)
+- <span id="parseri-bump-if"></span>`fn bump_if(&self, prefix: &str) -> bool`
 
-- <span id="parseri-parse-hex-brace"></span>`fn parse_hex_brace(&self, kind: ast::HexLiteralKind) -> core::result::Result<ast::Literal, ast::Error>` — [`HexLiteralKind`](../index.md), [`Literal`](../index.md), [`Error`](../index.md)
+- <span id="parseri-is-lookaround-prefix"></span>`fn is_lookaround_prefix(&self) -> bool`
 
-- <span id="parseri-parse-decimal"></span>`fn parse_decimal(&self) -> core::result::Result<u32, ast::Error>` — [`Error`](../index.md)
+- <span id="parseri-bump-and-bump-space"></span>`fn bump_and_bump_space(&self) -> bool`
 
-- <span id="parseri-parse-set-class"></span>`fn parse_set_class(&self) -> core::result::Result<ast::ClassBracketed, ast::Error>` — [`ClassBracketed`](../index.md), [`Error`](../index.md)
+- <span id="parseri-bump-space"></span>`fn bump_space(&self)`
 
-- <span id="parseri-parse-set-class-range"></span>`fn parse_set_class_range(&self) -> core::result::Result<ast::ClassSetItem, ast::Error>` — [`ClassSetItem`](../index.md), [`Error`](../index.md)
+- <span id="parseri-peek"></span>`fn peek(&self) -> Option<char>`
 
-- <span id="parseri-parse-set-class-item"></span>`fn parse_set_class_item(&self) -> core::result::Result<Primitive, ast::Error>` — [`Primitive`](#primitive), [`Error`](../index.md)
+- <span id="parseri-peek-space"></span>`fn peek_space(&self) -> Option<char>`
 
-- <span id="parseri-parse-set-class-open"></span>`fn parse_set_class_open(&self) -> core::result::Result<(ast::ClassBracketed, ast::ClassSetUnion), ast::Error>` — [`ClassBracketed`](../index.md), [`ClassSetUnion`](../index.md), [`Error`](../index.md)
+- <span id="parseri-is-eof"></span>`fn is_eof(&self) -> bool`
 
-- <span id="parseri-maybe-parse-ascii-class"></span>`fn maybe_parse_ascii_class(&self) -> Option<ast::ClassAscii>` — [`ClassAscii`](../index.md)
+- <span id="parseri-pos"></span>`fn pos(&self) -> Position` — [`Position`](../index.md)
 
-- <span id="parseri-parse-unicode-class"></span>`fn parse_unicode_class(&self) -> core::result::Result<ast::ClassUnicode, ast::Error>` — [`ClassUnicode`](../index.md), [`Error`](../index.md)
+- <span id="parseri-span"></span>`fn span(&self) -> Span` — [`Span`](../index.md)
 
-- <span id="parseri-parse-perl-class"></span>`fn parse_perl_class(&self) -> ast::ClassPerl` — [`ClassPerl`](../index.md)
+- <span id="parseri-span-char"></span>`fn span_char(&self) -> Span` — [`Span`](../index.md)
+
+- <span id="parseri-push-alternate"></span>`fn push_alternate(&self, concat: ast::Concat) -> core::result::Result<ast::Concat, ast::Error>` — [`Concat`](../index.md), [`Error`](../index.md)
+
+- <span id="parseri-push-or-add-alternation"></span>`fn push_or_add_alternation(&self, concat: ast::Concat)` — [`Concat`](../index.md)
+
+- <span id="parseri-push-group"></span>`fn push_group(&self, concat: ast::Concat) -> core::result::Result<ast::Concat, ast::Error>` — [`Concat`](../index.md), [`Error`](../index.md)
+
+- <span id="parseri-pop-group"></span>`fn pop_group(&self, group_concat: ast::Concat) -> core::result::Result<ast::Concat, ast::Error>` — [`Concat`](../index.md), [`Error`](../index.md)
+
+- <span id="parseri-pop-group-end"></span>`fn pop_group_end(&self, concat: ast::Concat) -> core::result::Result<Ast, ast::Error>` — [`Concat`](../index.md), [`Ast`](../index.md), [`Error`](../index.md)
+
+- <span id="parseri-push-class-open"></span>`fn push_class_open(&self, parent_union: ast::ClassSetUnion) -> core::result::Result<ast::ClassSetUnion, ast::Error>` — [`ClassSetUnion`](../index.md), [`Error`](../index.md)
+
+- <span id="parseri-pop-class"></span>`fn pop_class(&self, nested_union: ast::ClassSetUnion) -> core::result::Result<Either<ast::ClassSetUnion, ast::ClassBracketed>, ast::Error>` — [`ClassSetUnion`](../index.md), [`Either`](../../either/index.md), [`ClassBracketed`](../index.md), [`Error`](../index.md)
+
+- <span id="parseri-unclosed-class-error"></span>`fn unclosed_class_error(&self) -> ast::Error` — [`Error`](../index.md)
+
+- <span id="parseri-push-class-op"></span>`fn push_class_op(&self, next_kind: ast::ClassSetBinaryOpKind, next_union: ast::ClassSetUnion) -> ast::ClassSetUnion` — [`ClassSetBinaryOpKind`](../index.md), [`ClassSetUnion`](../index.md)
+
+- <span id="parseri-pop-class-op"></span>`fn pop_class_op(&self, rhs: ast::ClassSet) -> ast::ClassSet` — [`ClassSet`](../index.md)
 
 #### Trait Implementations
 

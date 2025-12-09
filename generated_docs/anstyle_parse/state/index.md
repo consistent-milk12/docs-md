@@ -12,15 +12,15 @@ ANSI escape code parsing state machine
 |------|------|-------------|
 | [`definitions`](#definitions) | mod |  |
 | [`table`](#table) | mod |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
+| [`Action`](#action) | enum |  |
+| [`State`](#state) | enum |  |
 | [`state_change`](#state_change) | fn | Transition to next [`State`] |
 | [`state_change_`](#state_change_) | fn |  |
 
 ## Modules
 
-- [`definitions`](definitions/index.md) - 
-- [`table`](table/index.md) - 
+- [`definitions`](definitions/index.md)
+- [`table`](table/index.md)
 
 ## Enums
 

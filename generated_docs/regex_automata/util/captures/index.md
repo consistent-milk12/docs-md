@@ -216,39 +216,13 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- <span id="captures-all"></span>`fn all(group_info: GroupInfo) -> Captures` — [`GroupInfo`](#groupinfo), [`Captures`](#captures)
+- <span id="captures-clear"></span>`fn clear(&mut self)`
 
-- <span id="captures-matches"></span>`fn matches(group_info: GroupInfo) -> Captures` — [`GroupInfo`](#groupinfo), [`Captures`](#captures)
+- <span id="captures-set-pattern"></span>`fn set_pattern(&mut self, pid: Option<PatternID>)` — [`PatternID`](../../index.md)
 
-- <span id="captures-empty"></span>`fn empty(group_info: GroupInfo) -> Captures` — [`GroupInfo`](#groupinfo), [`Captures`](#captures)
+- <span id="captures-slots"></span>`fn slots(&self) -> &[Option<NonMaxUsize>]` — [`NonMaxUsize`](../primitives/index.md)
 
-- <span id="captures-is-match"></span>`fn is_match(&self) -> bool`
-
-- <span id="captures-pattern"></span>`fn pattern(&self) -> Option<PatternID>` — [`PatternID`](../../index.md)
-
-- <span id="captures-get-match"></span>`fn get_match(&self) -> Option<Match>` — [`Match`](../../index.md)
-
-- <span id="captures-get-group"></span>`fn get_group(&self, index: usize) -> Option<Span>` — [`Span`](../../index.md)
-
-- <span id="captures-get-group-by-name"></span>`fn get_group_by_name(&self, name: &str) -> Option<Span>` — [`Span`](../../index.md)
-
-- <span id="captures-iter"></span>`fn iter(&self) -> CapturesPatternIter<'_>` — [`CapturesPatternIter`](#capturespatterniter)
-
-- <span id="captures-group-len"></span>`fn group_len(&self) -> usize`
-
-- <span id="captures-group-info"></span>`fn group_info(&self) -> &GroupInfo` — [`GroupInfo`](#groupinfo)
-
-- <span id="captures-interpolate-string"></span>`fn interpolate_string(&self, haystack: &str, replacement: &str) -> String`
-
-- <span id="captures-interpolate-string-into"></span>`fn interpolate_string_into(&self, haystack: &str, replacement: &str, dst: &mut String)`
-
-- <span id="captures-interpolate-bytes"></span>`fn interpolate_bytes(&self, haystack: &[u8], replacement: &[u8]) -> Vec<u8>`
-
-- <span id="captures-interpolate-bytes-into"></span>`fn interpolate_bytes_into(&self, haystack: &[u8], replacement: &[u8], dst: &mut Vec<u8>)`
-
-- <span id="captures-extract"></span>`fn extract<'h, const N: usize>(&self, haystack: &'h str) -> (&'h str, [&'h str; N])`
-
-- <span id="captures-extract-bytes"></span>`fn extract_bytes<'h, const N: usize>(&self, haystack: &'h [u8]) -> (&'h [u8], [&'h [u8]; N])`
+- <span id="captures-slots-mut"></span>`fn slots_mut(&mut self) -> &mut [Option<NonMaxUsize>]` — [`NonMaxUsize`](../primitives/index.md)
 
 #### Trait Implementations
 

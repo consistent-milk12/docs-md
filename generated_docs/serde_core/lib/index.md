@@ -13,48 +13,48 @@ module.
 - [Modules](#modules)
   - [`core`](#core)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`BinaryHeap`](#binaryheap)
+  - [`VecDeque`](#vecdeque)
+  - [`CStr`](#cstr)
+  - [`Write`](#write)
 - [Enums](#enums)
-  - [`unnamed`](#unnamed)
+  - [`BTreeSet`](#btreeset)
 - [Functions](#functions)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`Cell`](#cell)
+  - [`RefCell`](#refcell)
+  - [`Reverse`](#reverse)
+  - [`Debug`](#debug)
+  - [`Debug`](#debug)
+  - [`FmtWrite`](#fmtwrite)
+  - [`Bound`](#bound)
+  - [`RangeTo`](#rangeto)
+  - [`LinkedList`](#linkedlist)
+  - [`CString`](#cstring)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
 | [`core`](#core) | mod |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
+| [`BinaryHeap`](#binaryheap) | struct |  |
+| [`VecDeque`](#vecdeque) | struct |  |
+| [`CStr`](#cstr) | struct |  |
+| [`Write`](#write) | struct |  |
+| [`BTreeSet`](#btreeset) | enum |  |
+| [`Cell`](#cell) | fn |  |
+| [`RefCell`](#refcell) | fn |  |
+| [`Reverse`](#reverse) | fn |  |
+| [`Debug`](#debug) | fn |  |
+| [`Debug`](#debug) | fn |  |
+| [`FmtWrite`](#fmtwrite) | fn |  |
+| [`Bound`](#bound) | fn |  |
+| [`RangeTo`](#rangeto) | fn |  |
+| [`LinkedList`](#linkedlist) | fn |  |
+| [`CString`](#cstring) | fn |  |
 
 ## Modules
 
-- [`core`](core/index.md) - 
+- [`core`](core/index.md)
 
 ## Structs
 

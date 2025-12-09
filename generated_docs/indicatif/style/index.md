@@ -384,6 +384,10 @@ Trait for defining stateful or stateless formatters
 
   Provides access to the progress bar display buffer for custom messages
 
+#### Implementors
+
+- `F`
+
 ## Functions
 
 ### `segment`

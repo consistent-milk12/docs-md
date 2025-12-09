@@ -18,11 +18,11 @@ sum type with two cases.
   - [`iterator`](#iterator)
   - [`into_either`](#into_either)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
+  - [`IterEither`](#itereither)
 - [Enums](#enums)
   - [`Either`](#either)
 - [Traits](#traits)
-  - [`unnamed`](#unnamed)
+  - [`IntoEither`](#intoeither)
 - [Functions](#functions)
   - [`_unsized_ref_propagation`](#_unsized_ref_propagation)
 - [Macros](#macros)
@@ -39,9 +39,9 @@ sum type with two cases.
 |------|------|-------------|
 | [`iterator`](#iterator) | mod |  |
 | [`into_either`](#into_either) | mod | The trait [`IntoEither`] provides methods for converting a type `Self`, whose |
-| [`unnamed`](#unnamed) | struct |  |
+| [`IterEither`](#itereither) | struct |  |
 | [`Either`](#either) | enum | The enum `Either` with variants `Left` and `Right` is a general purpose |
-| [`unnamed`](#unnamed) | trait |  |
+| [`IntoEither`](#intoeither) | trait |  |
 | [`_unsized_ref_propagation`](#_unsized_ref_propagation) | fn |  |
 | [`map_either!`](#map_either) | macro |  |
 | [`impl_specific_ref_and_mut!`](#impl_specific_ref_and_mut) | macro |  |
@@ -52,8 +52,8 @@ sum type with two cases.
 
 ## Modules
 
-- [`iterator`](iterator/index.md) - 
-- [`into_either`](into_either/index.md) - The trait [`IntoEither`] provides methods for converting a type `Self`, whose
+- [`iterator`](iterator/index.md)
+- [`into_either`](into_either/index.md) — The trait [`IntoEither`] provides methods for converting a type `Self`, whose
 
 ## Structs
 
@@ -173,7 +173,9 @@ preference.
 
 #### Implementations
 
-- <span id="either-factor-none"></span>`fn factor_none(self) -> Option<Either<L, R>>` — [`Either`](#either)
+- <span id="either-cloned"></span>`fn cloned(self) -> Either<L, R>` — [`Either`](#either)
+
+- <span id="either-copied"></span>`fn copied(self) -> Either<L, R>` — [`Either`](#either)
 
 #### Trait Implementations
 
@@ -183,7 +185,7 @@ preference.
 
 ##### `impl<L, R, Target> AsRef for Either<L, R>`
 
-- <span id="either-as-ref"></span>`fn as_ref(&self) -> &[Target]`
+- <span id="either-as-ref"></span>`fn as_ref(&self) -> &Target`
 
 ##### `impl<L: Clone, R: Clone> Clone for Either<L, R>`
 
@@ -320,6 +322,37 @@ preference.
 - <span id="either-write-fmt"></span>`fn write_fmt(&mut self, args: fmt::Arguments<'_>) -> fmt::Result`
 
 ## Traits
+
+### `IntoEither`
+
+```rust
+trait IntoEither: Sized { ... }
+```
+
+Provides methods for converting a type `Self` into either a [`Left`](#left) or [`Right`](#right)
+variant of [`Either<Self, Self>`](Either).
+
+The [`into_either`](IntoEither::into_either) method takes a `bool` to determine
+whether to convert to [`Left`](#left) or [`Right`](#right).
+
+The [`into_either_with`](IntoEither::into_either_with) method takes a
+[predicate function](FnOnce) to determine whether to convert to [`Left`](#left) or [`Right`](#right).
+
+#### Provided Methods
+
+- `fn into_either(self, into_left: bool) -> Either<Self, Self>`
+
+  Converts `self` into a [`Left`](#left) variant of [`Either<Self, Self>`](Either)
+
+- `fn into_either_with<F>(self, into_left: F) -> Either<Self, Self>`
+
+  Converts `self` into a [`Left`](#left) variant of [`Either<Self, Self>`](Either)
+
+#### Implementors
+
+- [`Either`](#either)
+- [`IterEither`](#itereither)
+- `T`
 
 ## Functions
 

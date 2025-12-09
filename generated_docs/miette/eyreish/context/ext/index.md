@@ -22,3 +22,18 @@ trait Diag { ... }
 
 - `fn ext_report<D>(self, msg: D) -> Report`
 
+#### Implementors
+
+- [`BoxedError`](../../wrapper/index.md)
+- [`ContextError`](../../error/index.md)
+- [`DiagnosticError`](../../into_diagnostic/index.md)
+- [`DisplayError`](../../wrapper/index.md)
+- [`InstallError`](../../../index.md)
+- [`MessageError`](../../wrapper/index.md)
+- [`MietteDiagnostic`](../../../index.md)
+- [`MietteError`](../../../index.md)
+- [`Panic`](../../../panic/index.md)
+- [`Report`](../../../index.md)
+- [`WithSourceCode`](../../wrapper/index.md)
+- `E`
+

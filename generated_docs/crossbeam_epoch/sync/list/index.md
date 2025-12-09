@@ -302,3 +302,7 @@ struct B {
 
   The function that is called when an entry is unlinked from list.
 
+#### Implementors
+
+- [`Local`](../../internal/index.md)
+

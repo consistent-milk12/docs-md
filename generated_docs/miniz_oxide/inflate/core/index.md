@@ -109,7 +109,7 @@ Streaming decompression functionality.
 
 ## Modules
 
-- [`inflate_flags`](inflate_flags/index.md) - Flags to [`decompress()`] to control how inflation works.
+- [`inflate_flags`](inflate_flags/index.md) — Flags to [`decompress()`] to control how inflation works.
 
 ## Structs
 

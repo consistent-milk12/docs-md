@@ -90,29 +90,9 @@ assert_eq!(matches
 
 #### Implementations
 
-- <span id="arggroup-new"></span>`fn new(id: impl Into<Id>) -> Self` — [`Id`](../../index.md)
+- <span id="arggroup-get-id"></span>`fn get_id(&self) -> &Id` — [`Id`](../../index.md)
 
-- <span id="arggroup-id"></span>`fn id(self, id: impl Into<Id>) -> Self` — [`Id`](../../index.md)
-
-- <span id="arggroup-arg"></span>`fn arg(self, arg_id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](../index.md), [`Id`](../../index.md)
-
-- <span id="arggroup-args"></span>`fn args(self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../../index.md)
-
-- <span id="arggroup-get-args"></span>`fn get_args(&self) -> impl Iterator<Item = &Id>` — [`Id`](../../index.md)
-
-- <span id="arggroup-multiple"></span>`fn multiple(self, yes: bool) -> Self`
-
-- <span id="arggroup-is-multiple"></span>`fn is_multiple(&mut self) -> bool`
-
-- <span id="arggroup-required"></span>`fn required(self, yes: bool) -> Self`
-
-- <span id="arggroup-requires"></span>`fn requires(self, id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](../index.md), [`Id`](../../index.md)
-
-- <span id="arggroup-requires-all"></span>`fn requires_all(self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../../index.md)
-
-- <span id="arggroup-conflicts-with"></span>`fn conflicts_with(self, id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](../index.md), [`Id`](../../index.md)
-
-- <span id="arggroup-conflicts-with-all"></span>`fn conflicts_with_all(self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../../index.md)
+- <span id="arggroup-is-required-set"></span>`fn is_required_set(&self) -> bool`
 
 #### Trait Implementations
 

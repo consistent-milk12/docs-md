@@ -92,17 +92,7 @@ faster by avoiding mutex unlocking.
 
 #### Implementations
 
-- <span id="pool-get"></span>`fn get(&self) -> PoolGuard<'_, T, F>` — [`PoolGuard`](#poolguard)
-
-- <span id="pool-get-slow"></span>`fn get_slow(&self, caller: usize, owner: usize) -> PoolGuard<'_, T, F>` — [`PoolGuard`](#poolguard)
-
-- <span id="pool-put-value"></span>`fn put_value(&self, value: Box<T>)`
-
-- <span id="pool-guard-owned"></span>`fn guard_owned(&self, caller: usize) -> PoolGuard<'_, T, F>` — [`PoolGuard`](#poolguard)
-
-- <span id="pool-guard-stack"></span>`fn guard_stack(&self, value: Box<T>) -> PoolGuard<'_, T, F>` — [`PoolGuard`](#poolguard)
-
-- <span id="pool-guard-stack-transient"></span>`fn guard_stack_transient(&self, value: Box<T>) -> PoolGuard<'_, T, F>` — [`PoolGuard`](#poolguard)
+- <span id="pool-new"></span>`fn new(create: F) -> Pool<T, F>` — [`Pool`](#pool)
 
 #### Trait Implementations
 

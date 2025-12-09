@@ -42,11 +42,21 @@ trait Sealed { ... }
 # Safety
 Implementer must not modify the content in storage.
 
-#### Required Methods
+#### Associated Types
 
 - `type Storage`
 
+#### Required Methods
+
 - `fn new_storage() -> <Self as >::Storage`
 
+#### Provided Methods
+
 - `fn grow(_storage: &mut <Self as >::Storage, _additional: usize) -> Result<(), CapacityFull>`
+
+#### Implementors
+
+- `[T; N]`
+- `alloc::boxed::Box<[T; N]>`
+- `alloc::vec::Vec<T>`
 

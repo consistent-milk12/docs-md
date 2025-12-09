@@ -16,8 +16,8 @@
 
 ## Modules
 
-- [`x86sse2`](x86sse2/index.md) - 
-- [`x86avx2`](x86avx2/index.md) - 
+- [`x86sse2`](x86sse2/index.md)
+- [`x86avx2`](x86avx2/index.md)
 
 ## Structs
 
@@ -94,13 +94,17 @@ routines with #[target_feature] and instead mark them as #[inline(always)]
 to ensure they get appropriately inlined. (inline(always) cannot be used
 with target_feature.)
 
-#### Required Methods
+#### Associated Types
+
+- `type Mask: 1`
+
+#### Associated Constants
 
 - `const BYTES: usize`
 
 - `const ALIGN: usize`
 
-- `type Mask: 1`
+#### Required Methods
 
 - `fn splat(byte: u8) -> Self`
 
@@ -130,9 +134,16 @@ with target_feature.)
 
   _mm_or or _mm256_or_si256
 
+#### Provided Methods
+
 - `fn movemask_will_have_non_zero(self) -> bool`
 
   Returns true if and only if `Self::movemask` would return a mask that
+
+#### Implementors
+
+- `__m128i`
+- `__m256i`
 
 ### `MoveMask`
 
@@ -188,4 +199,8 @@ representation with this trait and define the operations we actually need.
 - `fn last_offset(self) -> usize`
 
   Returns the offset of the last non-zero lane this mask represents.
+
+#### Implementors
+
+- [`SensibleMoveMask`](#sensiblemovemask)
 

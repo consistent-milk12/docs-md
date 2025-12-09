@@ -59,12 +59,12 @@ This is the default symbolication implementation for Rust.
 
 ## Modules
 
-- [`mmap`](mmap/index.md) - 
-- [`lru`](lru/index.md) - 
-- [`stash`](stash/index.md) - 
-- [`elf`](elf/index.md) - 
-- [`libs_dl_iterate_phdr`](libs_dl_iterate_phdr/index.md) - 
-- [`parse_running_mmaps`](parse_running_mmaps/index.md) - 
+- [`mmap`](mmap/index.md)
+- [`lru`](lru/index.md)
+- [`stash`](stash/index.md)
+- [`elf`](elf/index.md)
+- [`libs_dl_iterate_phdr`](libs_dl_iterate_phdr/index.md)
+- [`parse_running_mmaps`](parse_running_mmaps/index.md)
 
 ## Structs
 

@@ -248,11 +248,13 @@ trait Nlist: Debug + Pod { ... }
 
 A trait for generic access to [`macho::Nlist32`](../../../macho/index.md) and [`macho::Nlist64`](../../../macho/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
 
 - `type Endian: 1`
+
+#### Required Methods
 
 - `fn n_strx(&self, endian: <Self as >::Endian) -> u32`
 
@@ -263,6 +265,8 @@ A trait for generic access to [`macho::Nlist32`](../../../macho/index.md) and [`
 - `fn n_desc(&self, endian: <Self as >::Endian) -> u16`
 
 - `fn n_value(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+
+#### Provided Methods
 
 - `fn name<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, strings: StringTable<'data, R>) -> Result<&'data [u8]>`
 
@@ -281,6 +285,11 @@ A trait for generic access to [`macho::Nlist32`](../../../macho/index.md) and [`
 - `fn library_ordinal(&self, endian: <Self as >::Endian) -> u8`
 
   Return the library ordinal.
+
+#### Implementors
+
+- [`Nlist32`](../../../macho/index.md)
+- [`Nlist64`](../../../macho/index.md)
 
 ## Type Aliases
 

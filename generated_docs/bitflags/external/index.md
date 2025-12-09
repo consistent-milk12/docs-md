@@ -14,5 +14,5 @@ Conditional trait implementations for external libraries.
 
 ## Modules
 
-- [`__private`](__private/index.md) - 
+- [`__private`](__private/index.md)
 

@@ -13,6 +13,6 @@
 
 ## Modules
 
-- [`bytes`](bytes/index.md) - 
-- [`string`](string/index.md) - 
+- [`bytes`](bytes/index.md)
+- [`string`](string/index.md)
 

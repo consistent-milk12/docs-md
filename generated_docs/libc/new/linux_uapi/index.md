@@ -14,5 +14,5 @@ This directory maps to `include/uapi` in the Linux source tree.
 
 ## Modules
 
-- [`linux`](linux/index.md) - Directory: `linux/`
+- [`linux`](linux/index.md) — Directory: `linux/`
 

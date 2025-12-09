@@ -34,12 +34,12 @@ parameters, which integers are owned or borrowed file descriptors, etc.
 
 ## Modules
 
-- [`arch`](arch/index.md) - Architecture-specific syscall code.
-- [`conv`](conv/index.md) - Convert values to [`ArgReg`] and from [`RetReg`].
-- [`reg`](reg/index.md) - Encapsulation for system call arguments and return values.
-- [`io`](io/index.md) - 
-- [`termios`](termios/index.md) - 
-- [`c`](c/index.md) - Adapt the Linux API to resemble a POSIX-style libc API.
+- [`arch`](arch/index.md) — Architecture-specific syscall code.
+- [`conv`](conv/index.md) — Convert values to [`ArgReg`] and from [`RetReg`].
+- [`reg`](reg/index.md) — Encapsulation for system call arguments and return values.
+- [`io`](io/index.md)
+- [`termios`](termios/index.md)
+- [`c`](c/index.md) — Adapt the Linux API to resemble a POSIX-style libc API.
 
 ## Constants
 

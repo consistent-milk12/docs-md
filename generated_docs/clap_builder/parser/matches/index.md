@@ -11,14 +11,14 @@
   - [`matched_arg`](#matched_arg)
   - [`value_source`](#value_source)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`IdsRef`](#idsref)
+  - [`RawValues`](#rawvalues)
+  - [`Values`](#values)
+  - [`ValuesRef`](#valuesref)
+  - [`ArgMatches`](#argmatches)
+  - [`Indices`](#indices)
 - [Enums](#enums)
-  - [`unnamed`](#unnamed)
+  - [`ValueSource`](#valuesource)
 
 ## Quick Reference
 
@@ -27,19 +27,19 @@
 | [`arg_matches`](#arg_matches) | mod |  |
 | [`matched_arg`](#matched_arg) | mod |  |
 | [`value_source`](#value_source) | mod |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | enum |  |
+| [`IdsRef`](#idsref) | struct |  |
+| [`RawValues`](#rawvalues) | struct |  |
+| [`Values`](#values) | struct |  |
+| [`ValuesRef`](#valuesref) | struct |  |
+| [`ArgMatches`](#argmatches) | struct |  |
+| [`Indices`](#indices) | struct |  |
+| [`ValueSource`](#valuesource) | enum |  |
 
 ## Modules
 
-- [`arg_matches`](arg_matches/index.md) - 
-- [`matched_arg`](matched_arg/index.md) - 
-- [`value_source`](value_source/index.md) - 
+- [`arg_matches`](arg_matches/index.md)
+- [`matched_arg`](matched_arg/index.md)
+- [`value_source`](value_source/index.md)
 
 ## Structs
 
@@ -370,25 +370,13 @@ if matches.contains_id("out") {
 
 #### Implementations
 
-- <span id="argmatches-try-get-one"></span>`fn try_get_one<T: Any + Clone + Send + Sync + 'static>(&self, id: &str) -> Result<Option<&T>, MatchesError>` — [`MatchesError`](../index.md)
+- <span id="argmatches-subcommand"></span>`fn subcommand(&self) -> Option<(&str, &ArgMatches)>` — [`ArgMatches`](../../index.md)
 
-- <span id="argmatches-try-get-many"></span>`fn try_get_many<T: Any + Clone + Send + Sync + 'static>(&self, id: &str) -> Result<Option<ValuesRef<'_, T>>, MatchesError>` — [`ValuesRef`](../index.md), [`MatchesError`](../index.md)
+- <span id="argmatches-remove-subcommand"></span>`fn remove_subcommand(&mut self) -> Option<(String, ArgMatches)>` — [`ArgMatches`](../../index.md)
 
-- <span id="argmatches-try-get-occurrences"></span>`fn try_get_occurrences<T: Any + Clone + Send + Sync + 'static>(&self, id: &str) -> Result<Option<OccurrencesRef<'_, T>>, MatchesError>` — [`OccurrencesRef`](arg_matches/index.md), [`MatchesError`](../index.md)
+- <span id="argmatches-subcommand-matches"></span>`fn subcommand_matches(&self, name: &str) -> Option<&ArgMatches>` — [`ArgMatches`](../../index.md)
 
-- <span id="argmatches-try-get-raw"></span>`fn try_get_raw(&self, id: &str) -> Result<Option<RawValues<'_>>, MatchesError>` — [`RawValues`](../index.md), [`MatchesError`](../index.md)
-
-- <span id="argmatches-try-get-raw-occurrences"></span>`fn try_get_raw_occurrences(&self, id: &str) -> Result<Option<RawOccurrences<'_>>, MatchesError>` — [`RawOccurrences`](arg_matches/index.md), [`MatchesError`](../index.md)
-
-- <span id="argmatches-try-remove-one"></span>`fn try_remove_one<T: Any + Clone + Send + Sync + 'static>(&mut self, id: &str) -> Result<Option<T>, MatchesError>` — [`MatchesError`](../index.md)
-
-- <span id="argmatches-try-remove-many"></span>`fn try_remove_many<T: Any + Clone + Send + Sync + 'static>(&mut self, id: &str) -> Result<Option<Values<T>>, MatchesError>` — [`Values`](../index.md), [`MatchesError`](../index.md)
-
-- <span id="argmatches-try-remove-occurrences"></span>`fn try_remove_occurrences<T: Any + Clone + Send + Sync + 'static>(&mut self, id: &str) -> Result<Option<Occurrences<T>>, MatchesError>` — [`Occurrences`](arg_matches/index.md), [`MatchesError`](../index.md)
-
-- <span id="argmatches-try-contains-id"></span>`fn try_contains_id(&self, id: &str) -> Result<bool, MatchesError>` — [`MatchesError`](../index.md)
-
-- <span id="argmatches-try-clear-id"></span>`fn try_clear_id(&mut self, id: &str) -> Result<bool, MatchesError>` — [`MatchesError`](../index.md)
+- <span id="argmatches-subcommand-name"></span>`fn subcommand_name(&self) -> Option<&str>`
 
 #### Trait Implementations
 

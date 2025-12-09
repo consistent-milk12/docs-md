@@ -37,7 +37,7 @@ libc - Raw FFI bindings to platforms' system libraries
   - [`DIR`](#dir)
   - [`FILE`](#file)
 - [Functions](#functions)
-  - [`unnamed`](#unnamed)
+  - [`c_void`](#c_void)
   - [`isalnum`](#isalnum)
   - [`isalpha`](#isalpha)
   - [`iscntrl`](#iscntrl)
@@ -558,7 +558,7 @@ libc - Raw FFI bindings to platforms' system libraries
 | [`in6_addr`](#in6_addr) | struct |  |
 | [`DIR`](#dir) | enum |  |
 | [`FILE`](#file) | enum |  |
-| [`unnamed`](#unnamed) | fn |  |
+| [`c_void`](#c_void) | fn |  |
 | [`isalnum`](#isalnum) | fn |  |
 | [`isalpha`](#isalpha) | fn |  |
 | [`iscntrl`](#iscntrl) | fn |  |
@@ -1046,16 +1046,16 @@ libc - Raw FFI bindings to platforms' system libraries
 
 ## Modules
 
-- [`macros`](macros/index.md) - 
-- [`new`](new/index.md) - This module contains the future directory structure. If possible, new definitions should
-- [`primitives`](primitives/index.md) - This module contains type aliases for C's platform-specific types
-- [`unix`](unix/index.md) - Definitions found commonly among almost all Unix derivatives
-- [`types`](types/index.md) - Platform-agnostic support types.
-- [`prelude`](prelude/index.md) - Frequently-used types that are available on all platforms
-- [`common`](common/index.md) - Interfaces that are common across multiple platforms
-- [`linux_uapi`](linux_uapi/index.md) - This directory maps to `include/uapi` in the Linux source tree.
-- [`glibc`](glibc/index.md) - GNU libc.
-- [`linux_like`](linux_like/index.md) - 
+- [`macros`](macros/index.md)
+- [`new`](new/index.md) — This module contains the future directory structure. If possible, new definitions should
+- [`primitives`](primitives/index.md) — This module contains type aliases for C's platform-specific types
+- [`unix`](unix/index.md) — Definitions found commonly among almost all Unix derivatives
+- [`types`](types/index.md) — Platform-agnostic support types.
+- [`prelude`](prelude/index.md) — Frequently-used types that are available on all platforms
+- [`common`](common/index.md) — Interfaces that are common across multiple platforms
+- [`linux_uapi`](linux_uapi/index.md) — This directory maps to `include/uapi` in the Linux source tree.
+- [`glibc`](glibc/index.md) — GNU libc.
+- [`linux_like`](linux_like/index.md)
 
 ## Structs
 

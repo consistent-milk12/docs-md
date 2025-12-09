@@ -73,7 +73,7 @@ See `examples/is_stderr.rs` for a runnable example and compare the output of:
 
 ## Modules
 
-- [`unix`](unix/index.md) - 
+- [`unix`](unix/index.md)
 
 ## Structs
 

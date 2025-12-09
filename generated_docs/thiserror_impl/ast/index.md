@@ -82,9 +82,9 @@ struct Field<'a> {
 
 #### Implementations
 
-- <span id="field-multiple-from-syn"></span>`fn multiple_from_syn(fields: &'a Fields, scope: &ParamsInScope<'a>) -> Result<Vec<Self>>` — [`ParamsInScope`](../generics/index.md)
+- <span id="crateastfield-is-backtrace"></span>`fn is_backtrace(&self) -> bool`
 
-- <span id="field-from-syn"></span>`fn from_syn(i: usize, node: &'a syn::Field, scope: &ParamsInScope<'a>) -> Result<Self>` — [`ParamsInScope`](../generics/index.md)
+- <span id="crateastfield-source-span"></span>`fn source_span(&self) -> Span`
 
 ## Enums
 

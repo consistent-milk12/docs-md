@@ -145,15 +145,15 @@ and thousands of others.
 
 ## Modules
 
-- [`assert_cfg`](assert_cfg/index.md) - 
-- [`assert_eq_align`](assert_eq_align/index.md) - 
-- [`assert_eq_size`](assert_eq_size/index.md) - 
-- [`assert_fields`](assert_fields/index.md) - 
-- [`assert_impl`](assert_impl/index.md) - 
-- [`assert_obj_safe`](assert_obj_safe/index.md) - 
-- [`assert_trait`](assert_trait/index.md) - 
-- [`assert_type`](assert_type/index.md) - 
-- [`const_assert`](const_assert/index.md) - 
+- [`assert_cfg`](assert_cfg/index.md)
+- [`assert_eq_align`](assert_eq_align/index.md)
+- [`assert_eq_size`](assert_eq_size/index.md)
+- [`assert_fields`](assert_fields/index.md)
+- [`assert_impl`](assert_impl/index.md)
+- [`assert_obj_safe`](assert_obj_safe/index.md)
+- [`assert_trait`](assert_trait/index.md)
+- [`assert_type`](assert_type/index.md)
+- [`const_assert`](const_assert/index.md)
 
 ## Macros
 

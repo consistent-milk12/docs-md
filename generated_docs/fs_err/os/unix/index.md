@@ -14,5 +14,5 @@ Platform-specific extensions for Unix platforms.
 
 ## Modules
 
-- [`fs`](fs/index.md) - Unix-specific extensions to wrappers in `fs_err` for `std::fs` types.
+- [`fs`](fs/index.md) — Unix-specific extensions to wrappers in `fs_err` for `std::fs` types.
 

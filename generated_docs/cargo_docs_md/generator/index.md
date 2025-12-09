@@ -60,29 +60,29 @@ generator.generate()?;
   - [`toc`](#toc)
   - [`config`](#config)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`BreadcrumbGenerator`](#breadcrumbgenerator)
+  - [`MarkdownCapture`](#markdowncapture)
+  - [`QuickRefEntry`](#quickrefentry)
+  - [`QuickRefGenerator`](#quickrefgenerator)
+  - [`TocEntry`](#tocentry)
+  - [`TocGenerator`](#tocgenerator)
+  - [`RenderConfig`](#renderconfig)
+  - [`SourceConfig`](#sourceconfig)
+  - [`GeneratorContext`](#generatorcontext)
+  - [`DocLinkProcessor`](#doclinkprocessor)
+  - [`ModuleRenderer`](#modulerenderer)
   - [`Generator`](#generator)
 - [Traits](#traits)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`ItemAccess`](#itemaccess)
+  - [`ItemFilter`](#itemfilter)
+  - [`LinkResolver`](#linkresolver)
+  - [`RenderContext`](#rendercontext)
 - [Functions](#functions)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`extract_summary`](#extract_summary)
+  - [`convert_html_links`](#convert_html_links)
+  - [`convert_path_reference_links`](#convert_path_reference_links)
+  - [`strip_duplicate_title`](#strip_duplicate_title)
+  - [`strip_reference_definitions`](#strip_reference_definitions)
 
 ## Quick Reference
 
@@ -101,43 +101,43 @@ generator.generate()?;
 | [`render_shared`](#render_shared) | mod | Shared rendering functions for documentation generation. |
 | [`toc`](#toc) | mod | Table of Contents generation for module documentation. |
 | [`config`](#config) | mod | Configuration for markdown rendering. |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
+| [`BreadcrumbGenerator`](#breadcrumbgenerator) | struct |  |
+| [`MarkdownCapture`](#markdowncapture) | struct |  |
+| [`QuickRefEntry`](#quickrefentry) | struct |  |
+| [`QuickRefGenerator`](#quickrefgenerator) | struct |  |
+| [`TocEntry`](#tocentry) | struct |  |
+| [`TocGenerator`](#tocgenerator) | struct |  |
+| [`RenderConfig`](#renderconfig) | struct |  |
+| [`SourceConfig`](#sourceconfig) | struct |  |
+| [`GeneratorContext`](#generatorcontext) | struct |  |
+| [`DocLinkProcessor`](#doclinkprocessor) | struct |  |
+| [`ModuleRenderer`](#modulerenderer) | struct |  |
 | [`Generator`](#generator) | struct | Main documentation generator. |
-| [`unnamed`](#unnamed) | trait |  |
-| [`unnamed`](#unnamed) | trait |  |
-| [`unnamed`](#unnamed) | trait |  |
-| [`unnamed`](#unnamed) | trait |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
+| [`ItemAccess`](#itemaccess) | trait |  |
+| [`ItemFilter`](#itemfilter) | trait |  |
+| [`LinkResolver`](#linkresolver) | trait |  |
+| [`RenderContext`](#rendercontext) | trait |  |
+| [`extract_summary`](#extract_summary) | fn |  |
+| [`convert_html_links`](#convert_html_links) | fn |  |
+| [`convert_path_reference_links`](#convert_path_reference_links) | fn |  |
+| [`strip_duplicate_title`](#strip_duplicate_title) | fn |  |
+| [`strip_reference_definitions`](#strip_reference_definitions) | fn |  |
 
 ## Modules
 
-- [`breadcrumbs`](breadcrumbs/index.md) - Breadcrumb navigation generation for nested module pages.
-- [`capture`](capture/index.md) - In-memory markdown capture for testing.
-- [`context`](context/index.md) - Shared context for documentation generation.
-- [`doc_links`](doc_links/index.md) - Intra-doc link processing for documentation generation.
-- [`flat`](flat/index.md) - Flat format documentation generation.
-- [`impls`](impls/index.md) - Implementation block rendering for documentation generation.
-- [`items`](items/index.md) - Item rendering for documentation generation.
-- [`module`](module/index.md) - Module markdown rendering for documentation generation.
-- [`nested`](nested/index.md) - Nested format documentation generation.
-- [`quick_ref`](quick_ref/index.md) - Quick Reference table generation for module documentation.
-- [`render_shared`](render_shared/index.md) - Shared rendering functions for documentation generation.
-- [`toc`](toc/index.md) - Table of Contents generation for module documentation.
-- [`config`](config/index.md) - Configuration for markdown rendering.
+- [`breadcrumbs`](breadcrumbs/index.md) — Breadcrumb navigation generation for nested module pages.
+- [`capture`](capture/index.md) — In-memory markdown capture for testing.
+- [`context`](context/index.md) — Shared context for documentation generation.
+- [`doc_links`](doc_links/index.md) — Intra-doc link processing for documentation generation.
+- [`flat`](flat/index.md) — Flat format documentation generation.
+- [`impls`](impls/index.md) — Implementation block rendering for documentation generation.
+- [`items`](items/index.md) — Item rendering for documentation generation.
+- [`module`](module/index.md) — Module markdown rendering for documentation generation.
+- [`nested`](nested/index.md) — Nested format documentation generation.
+- [`quick_ref`](quick_ref/index.md) — Quick Reference table generation for module documentation.
+- [`render_shared`](render_shared/index.md) — Shared rendering functions for documentation generation.
+- [`toc`](toc/index.md) — Table of Contents generation for module documentation.
+- [`config`](config/index.md) — Configuration for markdown rendering.
 
 ## Structs
 
@@ -395,7 +395,7 @@ kinds, and first-sentence descriptions.
 struct TocEntry {
     pub title: String,
     pub anchor: String,
-    pub children: Vec<TocEntry>,
+    pub children: Vec<Self>,
 }
 ```
 
@@ -415,7 +415,7 @@ for nested navigation.
 
   Anchor link target (without the `#` prefix).
 
-- **`children`**: `Vec<TocEntry>`
+- **`children`**: `Vec<Self>`
 
   Child entries for nested navigation.
 
@@ -423,7 +423,7 @@ for nested navigation.
 
 - <span id="tocentry-new"></span>`fn new(title: impl Into<String>, anchor: impl Into<String>) -> Self`
 
-- <span id="tocentry-with-children"></span>`fn with_children(title: impl Into<String>, anchor: impl Into<String>, children: Vec<TocEntry>) -> Self` — [`TocEntry`](#tocentry)
+- <span id="tocentry-with-children"></span>`fn with_children(title: impl Into<String>, anchor: impl Into<String>, children: Vec<Self>) -> Self`
 
 - <span id="tocentry-count"></span>`fn count(&self) -> usize`
 
@@ -485,7 +485,7 @@ modules with unnecessary navigation.
 
 - <span id="tocgenerator-generate"></span>`fn generate(&self, entries: &[TocEntry]) -> Option<String>` — [`TocEntry`](#tocentry)
 
-- <span id="tocgenerator-render-entry"></span>`fn render_entry(&self, md: &mut String, entry: &TocEntry, depth: usize)` — [`TocEntry`](#tocentry)
+- <span id="tocgenerator-render-entry"></span>`fn render_entry(md: &mut String, entry: &TocEntry, depth: usize)` — [`TocEntry`](#tocentry)
 
 #### Trait Implementations
 
@@ -627,7 +627,7 @@ Requires the `source-parsing` feature to have any effect.
 
 - **`source_locations`**: `bool`
 
-  Add file:line references to items.
+  Add <file:line> references to items.
 
 #### Trait Implementations
 
@@ -641,7 +641,7 @@ Requires the `source-parsing` feature to have any effect.
 
 ##### `impl Default for SourceConfig`
 
-- <span id="sourceconfig-default"></span>`fn default() -> Self`
+- <span id="sourceconfig-default"></span>`fn default() -> SourceConfig` — [`SourceConfig`](../index.md)
 
 ##### `impl<T> Instrument for SourceConfig`
 
@@ -952,9 +952,9 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 - <span id="modulerenderer-render-all-sections"></span>`fn render_all_sections(&self, md: &mut String, items: &CategorizedItems<'_>)` — [`CategorizedItems`](module/index.md)
 
-- <span id="modulerenderer-build-toc-entries"></span>`fn build_toc_entries(&self, items: &CategorizedItems<'_>) -> Vec<TocEntry>` — [`CategorizedItems`](module/index.md), [`TocEntry`](#tocentry)
+- <span id="modulerenderer-build-toc-entries"></span>`fn build_toc_entries(items: &CategorizedItems<'_>) -> Vec<TocEntry>` — [`CategorizedItems`](module/index.md), [`TocEntry`](#tocentry)
 
-- <span id="modulerenderer-build-quick-ref-entries"></span>`fn build_quick_ref_entries(&self, items: &CategorizedItems<'_>) -> Vec<QuickRefEntry>` — [`CategorizedItems`](module/index.md), [`QuickRefEntry`](#quickrefentry)
+- <span id="modulerenderer-build-quick-ref-entries"></span>`fn build_quick_ref_entries(items: &CategorizedItems<'_>) -> Vec<QuickRefEntry>` — [`CategorizedItems`](module/index.md), [`QuickRefEntry`](#quickrefentry)
 
 - <span id="modulerenderer-render-modules-section"></span>`fn render_modules_section(&self, md: &mut String, modules: &[(&Id, &Item)])`
 
@@ -1043,6 +1043,8 @@ generator.generate()?;
 
 - <span id="generator-generate-to-capture"></span>`fn generate_to_capture(krate: &Crate, format: CliOutputFormat, include_private: bool) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](../index.md), [`MarkdownCapture`](../index.md), [`Error`](../error/index.md)
 
+- <span id="generator-generate-to-capture-with-config"></span>`fn generate_to_capture_with_config(krate: &Crate, format: CliOutputFormat, include_private: bool, config: RenderConfig) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](../index.md), [`RenderConfig`](../index.md), [`MarkdownCapture`](../index.md), [`Error`](../error/index.md)
+
 - <span id="generator-generate-flat-to-capture"></span>`fn generate_flat_to_capture(ctx: &GeneratorContext<'_>, root: &Item, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](#generatorcontext), [`MarkdownCapture`](../index.md), [`Error`](../error/index.md)
 
 - <span id="generator-generate-flat-recursive-capture"></span>`fn generate_flat_recursive_capture(ctx: &GeneratorContext<'_>, item: &Item, prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](#generatorcontext), [`MarkdownCapture`](../index.md), [`Error`](../error/index.md)
@@ -1076,6 +1078,125 @@ generator.generate()?;
 ##### `impl<T> WithSubscriber for Generator<'a>`
 
 ## Traits
+
+### `ItemAccess`
+
+```rust
+trait ItemAccess { ... }
+```
+
+Core data access for crate documentation.
+
+Provides read-only access to the crate structure, items, and impl blocks.
+
+#### Required Methods
+
+- `fn krate(&self) -> &Crate`
+
+  Get the crate being documented.
+
+- `fn crate_name(&self) -> &str`
+
+  Get the crate name.
+
+- `fn get_item(&self, id: &Id) -> Option<&Item>`
+
+  Get an item by its ID.
+
+- `fn get_impls(&self, id: &Id) -> Option<&[&Impl]>`
+
+  Get impl blocks for a type.
+
+- `fn crate_version(&self) -> Option<&str>`
+
+  Get the crate version for display in headers.
+
+- `fn render_config(&self) -> &RenderConfig`
+
+  Get the rendering configuration.
+
+#### Implementors
+
+- [`GeneratorContext`](#generatorcontext)
+- [`SingleCrateView`](../multi_crate/index.md)
+
+### `ItemFilter`
+
+```rust
+trait ItemFilter { ... }
+```
+
+Item visibility and filtering logic.
+
+Determines which items should be included in the generated documentation.
+
+#### Required Methods
+
+- `fn should_include_item(&self, item: &Item) -> bool`
+
+  Check if an item should be included based on visibility.
+
+- `fn include_private(&self) -> bool`
+
+  Whether private items should be included.
+
+- `fn include_blanket_impls(&self) -> bool`
+
+  Whether blanket trait implementations should be included.
+
+#### Implementors
+
+- [`GeneratorContext`](#generatorcontext)
+- [`SingleCrateView`](../multi_crate/index.md)
+
+### `LinkResolver`
+
+```rust
+trait LinkResolver { ... }
+```
+
+Link creation and documentation processing.
+
+Handles intra-doc link resolution and markdown link generation.
+
+#### Required Methods
+
+- `fn link_registry(&self) -> Option<&LinkRegistry>`
+
+  Get the link registry for single-crate mode.
+
+- `fn process_docs(&self, item: &Item, current_file: &str) -> Option<String>`
+
+  Process documentation string with intra-doc link resolution.
+
+- `fn create_link(&self, id: Id, current_file: &str) -> Option<String>`
+
+  Create a markdown link to an item.
+
+#### Implementors
+
+- [`GeneratorContext`](#generatorcontext)
+- [`SingleCrateView`](../multi_crate/index.md)
+
+### `RenderContext`
+
+```rust
+trait RenderContext: ItemAccess + ItemFilter + LinkResolver { ... }
+```
+
+Combined rendering context trait.
+
+This trait combines [`ItemAccess`](#itemaccess), [`ItemFilter`](#itemfilter), and [`LinkResolver`](#linkresolver)
+for components that need full access to the rendering context.
+
+Most renderers should use this trait for convenience, but components
+with limited requirements can depend on individual sub-traits.
+
+#### Implementors
+
+- [`GeneratorContext`](#generatorcontext)
+- [`SingleCrateView`](../multi_crate/index.md)
+- `T`
 
 ## Functions
 

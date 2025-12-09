@@ -117,13 +117,13 @@ println!("{args:?}");
 - [Modules](#modules)
   - [`ext`](#ext)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
+  - [`SeekFrom`](#seekfrom)
   - [`RawArgs`](#rawargs)
   - [`ArgCursor`](#argcursor)
   - [`ParsedArg`](#parsedarg)
   - [`ShortFlags`](#shortflags)
 - [Traits](#traits)
-  - [`unnamed`](#unnamed)
+  - [`OsStrExt`](#osstrext)
 - [Functions](#functions)
   - [`split_nonutf8_once`](#split_nonutf8_once)
   - [`is_number`](#is_number)
@@ -133,18 +133,18 @@ println!("{args:?}");
 | Item | Kind | Description |
 |------|------|-------------|
 | [`ext`](#ext) | mod |  |
-| [`unnamed`](#unnamed) | struct |  |
+| [`SeekFrom`](#seekfrom) | struct |  |
 | [`RawArgs`](#rawargs) | struct | Command-line arguments |
 | [`ArgCursor`](#argcursor) | struct | Position within [`RawArgs`] |
 | [`ParsedArg`](#parsedarg) | struct | Command-line Argument |
 | [`ShortFlags`](#shortflags) | struct | Walk through short flags within a [`ParsedArg`] |
-| [`unnamed`](#unnamed) | trait |  |
+| [`OsStrExt`](#osstrext) | trait |  |
 | [`split_nonutf8_once`](#split_nonutf8_once) | fn |  |
 | [`is_number`](#is_number) | fn |  |
 
 ## Modules
 
-- [`ext`](ext/index.md) - 
+- [`ext`](ext/index.md)
 
 ## Structs
 
@@ -394,6 +394,48 @@ Walk through short flags within a [`ParsedArg`](#parsedarg)
 - <span id="shortflags-next"></span>`fn next(&mut self) -> Option<<Self as >::Item>`
 
 ## Traits
+
+### `OsStrExt`
+
+```rust
+trait OsStrExt: private::Sealed { ... }
+```
+
+String-like methods for [`OsStr`](../clap_builder/builder/index.md)
+
+#### Required Methods
+
+- `fn try_str(&self) -> Result<&str, std::str::Utf8Error>`
+
+  Converts to a string slice.
+
+- `fn contains(&self, needle: &str) -> bool`
+
+  Returns `true` if the given pattern matches a sub-slice of
+
+- `fn find(&self, needle: &str) -> Option<usize>`
+
+  Returns the byte index of the first character of this string slice that
+
+- `fn strip_prefix(&self, prefix: &str) -> Option<&OsStr>`
+
+  Returns a string slice with the prefix removed.
+
+- `fn starts_with(&self, prefix: &str) -> bool`
+
+  Returns `true` if the given pattern matches a prefix of this
+
+- `fn split<'s, 'n>(self: &'s Self, needle: &'n str) -> Split<'s, 'n>`
+
+  An iterator over substrings of this string slice, separated by
+
+- `fn split_once(&self, needle: &str) -> Option<(&OsStr, &OsStr)>`
+
+  Splits the string on the first occurrence of the specified delimiter and
+
+#### Implementors
+
+- `std::ffi::OsStr`
 
 ## Functions
 

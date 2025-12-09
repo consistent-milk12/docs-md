@@ -125,7 +125,11 @@ A raw pointer that represents a unique borrow of its pointee
 trait CastTo { ... }
 ```
 
-#### Required Methods
+#### Associated Types
 
 - `type Target`
+
+#### Implementors
+
+- `T`
 

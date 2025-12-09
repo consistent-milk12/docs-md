@@ -116,6 +116,11 @@ Defines how to format an error for displaying to the user
 
   Stylize the error for the terminal
 
+#### Implementors
+
+- [`DefaultFormatter`](../index.md)
+- [`KindFormatter`](../index.md)
+
 ## Functions
 
 ### `start_error`

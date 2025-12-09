@@ -25,15 +25,25 @@ Clone of `std::ops::Try`.
 
 Implementing this trait is not permitted outside of `rayon`.
 
-#### Required Methods
+#### Associated Types
 
 - `type Output`
 
 - `type Residual`
+
+#### Required Methods
 
 - `fn from_output(output: <Self as >::Output) -> Self`
 
 - `fn from_residual(residual: <Self as >::Residual) -> Self`
 
 - `fn branch(self) -> ControlFlow<<Self as >::Residual, <Self as >::Output>`
+
+#### Implementors
+
+- `Option<T>`
+- `Result<T, E>`
+- `std::ops::ControlFlow<B, C>`
+- `std::task::Poll<Option<Result<T, E>>>`
+- `std::task::Poll<Result<T, E>>`
 

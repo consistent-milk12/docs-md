@@ -13,6 +13,6 @@
 
 ## Modules
 
-- [`cell`](cell/index.md) - 
-- [`sync`](sync/index.md) - 
+- [`cell`](cell/index.md)
+- [`sync`](sync/index.md)
 

@@ -384,6 +384,11 @@ subset.
 
   Writes a u128 to the given destination buffer in a particular
 
+#### Implementors
+
+- [`BE`](#be)
+- [`LE`](#le)
+
 ## Functions
 
 ### `u32s_to_state_ids`

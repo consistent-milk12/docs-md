@@ -36,8 +36,8 @@ Just type `:q` to exit.
   - [`params`](#params)
   - [`state`](#state)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`Params`](#params)
+  - [`ParamsIter`](#paramsiter)
   - [`Parser`](#parser)
   - [`AsciiParser`](#asciiparser)
   - [`Utf8Parser`](#utf8parser)
@@ -57,8 +57,8 @@ Just type `:q` to exit.
 |------|------|-------------|
 | [`params`](#params) | mod | Fixed size parameters list with optional subparameters. |
 | [`state`](#state) | mod | ANSI escape code parsing state machine |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
+| [`Params`](#params) | struct |  |
+| [`ParamsIter`](#paramsiter) | struct |  |
 | [`Parser`](#parser) | struct | Parser for raw _VTE_ protocol which delegates actions to a [`Perform`] |
 | [`AsciiParser`](#asciiparser) | struct | Only allow parsing 7-bit ASCII |
 | [`Utf8Parser`](#utf8parser) | struct | Allow parsing UTF-8 |
@@ -71,8 +71,8 @@ Just type `:q` to exit.
 
 ## Modules
 
-- [`params`](params/index.md) - Fixed size parameters list with optional subparameters.
-- [`state`](state/index.md) - ANSI escape code parsing state machine
+- [`params`](params/index.md) — Fixed size parameters list with optional subparameters.
+- [`state`](state/index.md) — ANSI escape code parsing state machine
 
 ## Structs
 
@@ -340,6 +340,11 @@ Build a `char` out of bytes
 
   Build a `char` out of bytes
 
+#### Implementors
+
+- [`AsciiParser`](#asciiparser)
+- [`Utf8Parser`](#utf8parser)
+
 ### `Perform`
 
 ```rust
@@ -357,7 +362,7 @@ a useful way in my own words for completeness, but the site should be
 referenced if something isn't clear. If the site disappears at some point in
 the future, consider checking archive.org.
 
-#### Required Methods
+#### Provided Methods
 
 - `fn print(&mut self, _c: char)`
 

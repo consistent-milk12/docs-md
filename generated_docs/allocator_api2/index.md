@@ -45,15 +45,15 @@ allocator-api2 crate.
 
 ## Modules
 
-- [`stable`](stable/index.md) - 
-- [`alloc`](alloc/index.md) - Memory allocation APIs
-- [`boxed`](boxed/index.md) - The `Box<T>` type for heap allocation.
-- [`raw_vec`](raw_vec/index.md) - 
-- [`vec`](vec/index.md) - A contiguous growable array type with heap-allocated contents, written
-- [`macros`](macros/index.md) - 
-- [`slice`](slice/index.md) - 
-- [`unique`](unique/index.md) - 
-- [`collections`](collections/index.md) - 
+- [`stable`](stable/index.md)
+- [`alloc`](alloc/index.md) — Memory allocation APIs
+- [`boxed`](boxed/index.md) — The `Box<T>` type for heap allocation.
+- [`raw_vec`](raw_vec/index.md)
+- [`vec`](vec/index.md) — A contiguous growable array type with heap-allocated contents, written
+- [`macros`](macros/index.md)
+- [`slice`](slice/index.md)
+- [`unique`](unique/index.md)
+- [`collections`](collections/index.md)
 
 ## Functions
 

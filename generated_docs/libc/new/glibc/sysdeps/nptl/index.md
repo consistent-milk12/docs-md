@@ -18,5 +18,5 @@ Native POSIX threading library.
 
 ## Modules
 
-- [`pthread`](pthread/index.md) - Source header: `sysdeps/nptl/pthread.h`
+- [`pthread`](pthread/index.md) — Source header: `sysdeps/nptl/pthread.h`
 

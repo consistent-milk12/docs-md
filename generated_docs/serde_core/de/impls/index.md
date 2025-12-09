@@ -101,9 +101,9 @@
 
 ## Modules
 
-- [`range`](range/index.md) - 
-- [`range_from`](range_from/index.md) - 
-- [`range_to`](range_to/index.md) - 
+- [`range`](range/index.md)
+- [`range_from`](range_from/index.md)
+- [`range_to`](range_to/index.md)
 
 ## Structs
 
@@ -359,9 +359,9 @@ struct ArrayVisitor<A> {
 
 - <span id="arrayvisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de, T> Visitor for ArrayVisitor<[T; 1]>`
+##### `impl<'de, T> Visitor for ArrayVisitor<[T; 15]>`
 
-- <span id="arrayvisitor-value"></span>`type Value = [T; 1]`
+- <span id="arrayvisitor-value"></span>`type Value = [T; 15]`
 
 - <span id="arrayvisitor-expecting"></span>`fn expecting(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -379,7 +379,7 @@ struct ArrayInPlaceVisitor<'a, A: 'a>(&'a mut A);
 
 - <span id="arrayinplacevisitor-fmt"></span>`fn fmt(&self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a, 'de, T> Visitor for ArrayInPlaceVisitor<'a, [T; 2]>`
+##### `impl<'a, 'de, T> Visitor for ArrayInPlaceVisitor<'a, [T; 15]>`
 
 - <span id="arrayinplacevisitor-value"></span>`type Value = ()`
 

@@ -16,7 +16,7 @@
   - [`BorrowAttribute`](#borrowattribute)
   - [`Field`](#field)
 - [Enums](#enums)
-  - [`unnamed`](#unnamed)
+  - [`RenameRule`](#renamerule)
   - [`TagType`](#tagtype)
   - [`Identifier`](#identifier)
   - [`Default`](#default)
@@ -62,7 +62,7 @@
 | [`Variant`](#variant) | struct | Represents variant attribute information |
 | [`BorrowAttribute`](#borrowattribute) | struct |  |
 | [`Field`](#field) | struct | Represents field attribute information |
-| [`unnamed`](#unnamed) | enum |  |
+| [`RenameRule`](#renamerule) | enum |  |
 | [`TagType`](#tagtype) | enum | Styles of representing an enum. |
 | [`Identifier`](#identifier) | enum | Whether this enum represents the fields of a struct or the variants of an |
 | [`Default`](#default) | enum | Represents the default to use for a field when deserializing. |

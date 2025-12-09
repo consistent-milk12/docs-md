@@ -127,13 +127,15 @@ trait ProgramHeader: Debug + Pod { ... }
 
 A trait for generic access to [`elf::ProgramHeader32`](../../../elf/index.md) and [`elf::ProgramHeader64`](../../../elf/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Elf: 1`
 
 - `type Word: 1`
 
 - `type Endian: 1`
+
+#### Required Methods
 
 - `fn p_type(&self, endian: <Self as >::Endian) -> u32`
 
@@ -150,6 +152,8 @@ A trait for generic access to [`elf::ProgramHeader32`](../../../elf/index.md) an
 - `fn p_memsz(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
 - `fn p_align(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+
+#### Provided Methods
 
 - `fn file_range(&self, endian: <Self as >::Endian) -> (u64, u64)`
 
@@ -178,6 +182,11 @@ A trait for generic access to [`elf::ProgramHeader32`](../../../elf/index.md) an
 - `fn notes<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> read::Result<Option<NoteIterator<'data, <Self as >::Elf>>>`
 
   Return a note iterator for the segment data.
+
+#### Implementors
+
+- [`ProgramHeader32`](../../../elf/index.md)
+- [`ProgramHeader64`](../../../elf/index.md)
 
 ## Type Aliases
 

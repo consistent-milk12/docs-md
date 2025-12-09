@@ -16,5 +16,5 @@ Source directory: `sysdeps/unix/sysv/linux/net`
 
 ## Modules
 
-- [`route`](route/index.md) - Header: `net/route.h`
+- [`route`](route/index.md) — Header: `net/route.h`
 

@@ -235,15 +235,19 @@ complex. Unless you specifically need it, you might be able to use the much
 simpler [high-level intermediate representation](crate::hir::Hir) and its
 [corresponding `Visitor` trait](crate::hir::Visitor) instead.
 
-#### Required Methods
+#### Associated Types
 
 - `type Output`
 
 - `type Err`
 
+#### Required Methods
+
 - `fn finish(self) -> Result<<Self as >::Output, <Self as >::Err>`
 
   All implementors of `Visitor` must provide a `finish` method, which
+
+#### Provided Methods
 
 - `fn start(&mut self)`
 
@@ -284,6 +288,12 @@ simpler [high-level intermediate representation](crate::hir::Hir) and its
 - `fn visit_class_set_binary_op_in(&mut self, _ast: &ast::ClassSetBinaryOp) -> Result<(), <Self as >::Err>`
 
   This method is called between the left hand and right hand child nodes
+
+#### Implementors
+
+- [`NestLimiter`](../parse/index.md)
+- [`TranslatorI`](../../hir/translate/index.md)
+- [`Writer`](../print/index.md)
 
 ## Functions
 

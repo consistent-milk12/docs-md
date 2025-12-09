@@ -12,5 +12,5 @@
 
 ## Modules
 
-- [`atomic`](atomic/index.md) - 
+- [`atomic`](atomic/index.md)
 

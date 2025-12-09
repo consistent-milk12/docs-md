@@ -18,3 +18,10 @@
 trait Sealed { ... }
 ```
 
+#### Implementors
+
+- [`IoRead`](../index.md)
+- [`SliceRead`](../index.md)
+- [`StrRead`](../index.md)
+- `&mut R`
+

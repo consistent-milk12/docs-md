@@ -52,10 +52,10 @@
 
 ## Modules
 
-- [`debug_impls`](debug_impls/index.md) - 
-- [`parsing`](parsing/index.md) - 
-- [`printing`](printing/index.md) - 
-- [`value`](value/index.md) - 
+- [`debug_impls`](debug_impls/index.md)
+- [`parsing`](parsing/index.md)
+- [`printing`](printing/index.md)
+- [`value`](value/index.md)
 
 ## Structs
 
@@ -71,21 +71,7 @@ A UTF-8 string literal: `"foo"`.
 
 #### Implementations
 
-- <span id="litstr-new"></span>`fn new(value: &str, span: Span) -> Self`
-
-- <span id="litstr-value"></span>`fn value(&self) -> String`
-
-- <span id="litstr-parse"></span>`fn parse<T: Parse>(&self) -> Result<T>` — [`Result`](../index.md)
-
-- <span id="litstr-parse-with"></span>`fn parse_with<F: Parser>(&self, parser: F) -> Result<<F as >::Output>` — [`Result`](../index.md), [`Parser`](../parse/index.md)
-
-- <span id="litstr-span"></span>`fn span(&self) -> Span`
-
-- <span id="litstr-set-span"></span>`fn set_span(&mut self, span: Span)`
-
-- <span id="litstr-suffix"></span>`fn suffix(&self) -> &str`
-
-- <span id="litstr-token"></span>`fn token(&self) -> Literal`
+- <span id="cratelitlitstr-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
@@ -195,17 +181,7 @@ A nul-terminated C-string literal: `c"foo"`.
 
 #### Implementations
 
-- <span id="litcstr-new"></span>`fn new(value: &CStr, span: Span) -> Self`
-
-- <span id="litcstr-value"></span>`fn value(&self) -> CString`
-
-- <span id="litcstr-span"></span>`fn span(&self) -> Span`
-
-- <span id="litcstr-set-span"></span>`fn set_span(&mut self, span: Span)`
-
-- <span id="litcstr-suffix"></span>`fn suffix(&self) -> &str`
-
-- <span id="litcstr-token"></span>`fn token(&self) -> Literal`
+- <span id="cratelitlitcstr-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
@@ -231,7 +207,7 @@ A nul-terminated C-string literal: `c"foo"`.
 
 - <span id="litcstr-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for LitCStr`
+##### `impl Sealed for crate::lit::LitCStr`
 
 ##### `impl<T> Spanned for LitCStr`
 
@@ -281,7 +257,7 @@ A byte literal: `b'f'`.
 
 - <span id="litbyte-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl Sealed for crate::lit::LitByte`
+##### `impl<T> Sealed for LitByte`
 
 ##### `impl<T> Spanned for LitByte`
 
@@ -305,17 +281,7 @@ A character literal: `'a'`.
 
 #### Implementations
 
-- <span id="litchar-new"></span>`fn new(value: char, span: Span) -> Self`
-
-- <span id="litchar-value"></span>`fn value(&self) -> char`
-
-- <span id="litchar-span"></span>`fn span(&self) -> Span`
-
-- <span id="litchar-set-span"></span>`fn set_span(&mut self, span: Span)`
-
-- <span id="litchar-suffix"></span>`fn suffix(&self) -> &str`
-
-- <span id="litchar-token"></span>`fn token(&self) -> Literal`
+- <span id="cratelitlitchar-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
@@ -422,7 +388,7 @@ An integer literal: `1` or `1u16`.
 
 - <span id="litint-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for LitInt`
+##### `impl Sealed for crate::lit::LitInt`
 
 ##### `impl<T> Spanned for LitInt`
 
@@ -543,15 +509,7 @@ A boolean literal: `true` or `false`.
 
 #### Implementations
 
-- <span id="litbool-new"></span>`fn new(value: bool, span: Span) -> Self`
-
-- <span id="litbool-value"></span>`fn value(&self) -> bool`
-
-- <span id="litbool-span"></span>`fn span(&self) -> Span`
-
-- <span id="litbool-set-span"></span>`fn set_span(&mut self, span: Span)`
-
-- <span id="litbool-token"></span>`fn token(&self) -> Ident` — [`Ident`](../index.md)
+- <span id="cratelitlitbool-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 

@@ -243,18 +243,18 @@ fn main() -> Result<(), Box<dyn Error>> {
 
 ## Modules
 
-- [`file`](file/index.md) - 
-- [`segment`](segment/index.md) - 
-- [`section`](section/index.md) - 
-- [`symbol`](symbol/index.md) - 
-- [`relocation`](relocation/index.md) - 
-- [`comdat`](comdat/index.md) - 
-- [`dynamic`](dynamic/index.md) - 
-- [`compression`](compression/index.md) - 
-- [`note`](note/index.md) - 
-- [`hash`](hash/index.md) - 
-- [`version`](version/index.md) - 
-- [`attributes`](attributes/index.md) - 
+- [`file`](file/index.md)
+- [`segment`](segment/index.md)
+- [`section`](section/index.md)
+- [`symbol`](symbol/index.md)
+- [`relocation`](relocation/index.md)
+- [`comdat`](comdat/index.md)
+- [`dynamic`](dynamic/index.md)
+- [`compression`](compression/index.md)
+- [`note`](note/index.md)
+- [`hash`](hash/index.md)
+- [`version`](version/index.md)
+- [`attributes`](attributes/index.md)
 
 ## Structs
 
@@ -2168,7 +2168,7 @@ trait FileHeader: Debug + Pod { ... }
 
 A trait for generic access to [`elf::FileHeader32`](../../elf/index.md) and [`elf::FileHeader64`](../../elf/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 3`
 
@@ -2193,6 +2193,8 @@ A trait for generic access to [`elf::FileHeader32`](../../elf/index.md) and [`el
 - `type Rela: 2`
 
 - `type Relr: 1`
+
+#### Required Methods
 
 - `fn is_type_64(&self) -> bool`
 
@@ -2229,6 +2231,8 @@ A trait for generic access to [`elf::FileHeader32`](../../elf/index.md) and [`el
 - `fn e_shnum(&self, endian: <Self as >::Endian) -> u16`
 
 - `fn e_shstrndx(&self, endian: <Self as >::Endian) -> u16`
+
+#### Provided Methods
 
 - `fn parse<'data, R: ReadRef<'data>>(data: R) -> read::Result<&'data Self>`
 
@@ -2288,6 +2292,11 @@ A trait for generic access to [`elf::FileHeader32`](../../elf/index.md) and [`el
 
   Returns whether this is a mips64el elf file.
 
+#### Implementors
+
+- [`FileHeader32`](../../elf/index.md)
+- [`FileHeader64`](../../elf/index.md)
+
 ### `ProgramHeader`
 
 ```rust
@@ -2296,13 +2305,15 @@ trait ProgramHeader: Debug + Pod { ... }
 
 A trait for generic access to [`elf::ProgramHeader32`](../../elf/index.md) and [`elf::ProgramHeader64`](../../elf/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Elf: 1`
 
 - `type Word: 1`
 
 - `type Endian: 1`
+
+#### Required Methods
 
 - `fn p_type(&self, endian: <Self as >::Endian) -> u32`
 
@@ -2319,6 +2330,8 @@ A trait for generic access to [`elf::ProgramHeader32`](../../elf/index.md) and [
 - `fn p_memsz(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
 - `fn p_align(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+
+#### Provided Methods
 
 - `fn file_range(&self, endian: <Self as >::Endian) -> (u64, u64)`
 
@@ -2348,6 +2361,11 @@ A trait for generic access to [`elf::ProgramHeader32`](../../elf/index.md) and [
 
   Return a note iterator for the segment data.
 
+#### Implementors
+
+- [`ProgramHeader32`](../../elf/index.md)
+- [`ProgramHeader64`](../../elf/index.md)
+
 ### `SectionHeader`
 
 ```rust
@@ -2356,13 +2374,15 @@ trait SectionHeader: Debug + Pod { ... }
 
 A trait for generic access to [`elf::SectionHeader32`](../../elf/index.md) and [`elf::SectionHeader64`](../../elf/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Elf: 1`
 
 - `type Word: 1`
 
 - `type Endian: 1`
+
+#### Required Methods
 
 - `fn sh_name(&self, endian: <Self as >::Endian) -> u32`
 
@@ -2383,6 +2403,8 @@ A trait for generic access to [`elf::SectionHeader32`](../../elf/index.md) and [
 - `fn sh_addralign(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
 - `fn sh_entsize(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+
+#### Provided Methods
 
 - `fn name<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, strings: StringTable<'data, R>) -> read::Result<&'data [u8]>`
 
@@ -2488,6 +2510,11 @@ A trait for generic access to [`elf::SectionHeader32`](../../elf/index.md) and [
 
   Parse the compression header if present.
 
+#### Implementors
+
+- [`SectionHeader32`](../../elf/index.md)
+- [`SectionHeader64`](../../elf/index.md)
+
 ### `Sym`
 
 ```rust
@@ -2496,11 +2523,13 @@ trait Sym: Debug + Pod { ... }
 
 A trait for generic access to [`elf::Sym32`](../../elf/index.md) and [`elf::Sym64`](../../elf/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
 
 - `type Endian: 1`
+
+#### Required Methods
 
 - `fn st_name(&self, endian: <Self as >::Endian) -> u32`
 
@@ -2519,6 +2548,8 @@ A trait for generic access to [`elf::Sym32`](../../elf/index.md) and [`elf::Sym6
 - `fn st_value(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
 - `fn st_size(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+
+#### Provided Methods
 
 - `fn name<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, strings: StringTable<'data, R>) -> read::Result<&'data [u8]>`
 
@@ -2548,6 +2579,11 @@ A trait for generic access to [`elf::Sym32`](../../elf/index.md) and [`elf::Sym6
 
   Return true if the symbol binding is `STB_WEAK`.
 
+#### Implementors
+
+- [`Sym32`](../../elf/index.md)
+- [`Sym64`](../../elf/index.md)
+
 ### `Rel`
 
 ```rust
@@ -2556,13 +2592,15 @@ trait Rel: Debug + Pod + Clone { ... }
 
 A trait for generic access to [`elf::Rel32`](../../elf/index.md) and [`elf::Rel64`](../../elf/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
 
 - `type Sword: 1`
 
 - `type Endian: 1`
+
+#### Required Methods
 
 - `fn r_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
@@ -2572,9 +2610,16 @@ A trait for generic access to [`elf::Rel32`](../../elf/index.md) and [`elf::Rel6
 
 - `fn r_type(&self, endian: <Self as >::Endian) -> u32`
 
+#### Provided Methods
+
 - `fn symbol(&self, endian: <Self as >::Endian) -> Option<SymbolIndex>`
 
   Get the symbol index referenced by the relocation.
+
+#### Implementors
+
+- [`Rel32`](../../elf/index.md)
+- [`Rel64`](../../elf/index.md)
 
 ### `Rela`
 
@@ -2584,13 +2629,15 @@ trait Rela: Debug + Pod + Clone { ... }
 
 A trait for generic access to [`elf::Rela32`](../../elf/index.md) and [`elf::Rela64`](../../elf/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
 
 - `type Sword: 1`
 
 - `type Endian: 1`
+
+#### Required Methods
 
 - `fn r_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
@@ -2602,9 +2649,16 @@ A trait for generic access to [`elf::Rela32`](../../elf/index.md) and [`elf::Rel
 
 - `fn r_type(&self, endian: <Self as >::Endian, is_mips64el: bool) -> u32`
 
+#### Provided Methods
+
 - `fn symbol(&self, endian: <Self as >::Endian, is_mips64el: bool) -> Option<SymbolIndex>`
 
   Get the symbol index referenced by the relocation.
+
+#### Implementors
+
+- [`Rela32`](../../elf/index.md)
+- [`Rela64`](../../elf/index.md)
 
 ### `Relr`
 
@@ -2614,13 +2668,17 @@ trait Relr: Debug + Pod + Clone { ... }
 
 A trait for generic access to [`elf::Relr32`](../../elf/index.md) and [`elf::Relr64`](../../elf/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
 
 - `type Endian: 1`
 
+#### Associated Constants
+
 - `const COUNT: u8`
+
+#### Required Methods
 
 - `fn get(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
@@ -2630,6 +2688,11 @@ A trait for generic access to [`elf::Relr32`](../../elf/index.md) and [`elf::Rel
 
   Return the offset corresponding to the next bit in the bit mask.
 
+#### Implementors
+
+- [`Relr32`](../../elf/index.md)
+- [`Relr64`](../../elf/index.md)
+
 ### `Dyn`
 
 ```rust
@@ -2638,15 +2701,19 @@ trait Dyn: Debug + Pod { ... }
 
 A trait for generic access to [`elf::Dyn32`](../../elf/index.md) and [`elf::Dyn64`](../../elf/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
 
 - `type Endian: 1`
 
+#### Required Methods
+
 - `fn d_tag(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
 - `fn d_val(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+
+#### Provided Methods
 
 - `fn tag32(&self, endian: <Self as >::Endian) -> Option<u32>`
 
@@ -2668,6 +2735,11 @@ A trait for generic access to [`elf::Dyn32`](../../elf/index.md) and [`elf::Dyn6
 
   Return true if the value is an address.
 
+#### Implementors
+
+- [`Dyn32`](../../elf/index.md)
+- [`Dyn64`](../../elf/index.md)
+
 ### `CompressionHeader`
 
 ```rust
@@ -2676,17 +2748,24 @@ trait CompressionHeader: Debug + Pod { ... }
 
 A trait for generic access to [`elf::CompressionHeader32`](../../elf/index.md) and [`elf::CompressionHeader64`](../../elf/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
 
 - `type Endian: 1`
+
+#### Required Methods
 
 - `fn ch_type(&self, endian: <Self as >::Endian) -> u32`
 
 - `fn ch_size(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
 - `fn ch_addralign(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+
+#### Implementors
+
+- [`CompressionHeader32`](../../elf/index.md)
+- [`CompressionHeader64`](../../elf/index.md)
 
 ### `NoteHeader`
 
@@ -2696,15 +2775,22 @@ trait NoteHeader: Debug + Pod { ... }
 
 A trait for generic access to [`elf::NoteHeader32`](../../elf/index.md) and [`elf::NoteHeader64`](../../elf/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Endian: 1`
+
+#### Required Methods
 
 - `fn n_namesz(&self, endian: <Self as >::Endian) -> u32`
 
 - `fn n_descsz(&self, endian: <Self as >::Endian) -> u32`
 
 - `fn n_type(&self, endian: <Self as >::Endian) -> u32`
+
+#### Implementors
+
+- [`NoteHeader32`](../../elf/index.md)
+- [`NoteHeader64`](../../elf/index.md)
 
 ## Functions
 

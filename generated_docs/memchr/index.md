@@ -180,22 +180,22 @@ Originally, this crate was literally just a safe wrapper function around the
   - [`memmem`](#memmem)
   - [`vector`](#vector)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`Memchr`](#memchr)
+  - [`Memchr2`](#memchr2)
+  - [`Memchr3`](#memchr3)
 - [Functions](#functions)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`memchr`](#memchr)
+  - [`memchr2`](#memchr2)
+  - [`memchr2_iter`](#memchr2_iter)
+  - [`memchr3`](#memchr3)
+  - [`memchr3_iter`](#memchr3_iter)
+  - [`memchr_iter`](#memchr_iter)
+  - [`memrchr`](#memrchr)
+  - [`memrchr2`](#memrchr2)
+  - [`memrchr2_iter`](#memrchr2_iter)
+  - [`memrchr3`](#memrchr3)
+  - [`memrchr3_iter`](#memrchr3_iter)
+  - [`memrchr_iter`](#memrchr_iter)
 
 ## Quick Reference
 
@@ -208,31 +208,31 @@ Originally, this crate was literally just a safe wrapper function around the
 | [`memchr`](#memchr) | mod |  |
 | [`memmem`](#memmem) | mod | This module provides forward and reverse substring search routines. |
 | [`vector`](#vector) | mod |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
+| [`Memchr`](#memchr) | struct |  |
+| [`Memchr2`](#memchr2) | struct |  |
+| [`Memchr3`](#memchr3) | struct |  |
+| [`memchr`](#memchr) | fn |  |
+| [`memchr2`](#memchr2) | fn |  |
+| [`memchr2_iter`](#memchr2_iter) | fn |  |
+| [`memchr3`](#memchr3) | fn |  |
+| [`memchr3_iter`](#memchr3_iter) | fn |  |
+| [`memchr_iter`](#memchr_iter) | fn |  |
+| [`memrchr`](#memrchr) | fn |  |
+| [`memrchr2`](#memrchr2) | fn |  |
+| [`memrchr2_iter`](#memrchr2_iter) | fn |  |
+| [`memrchr3`](#memrchr3) | fn |  |
+| [`memrchr3_iter`](#memrchr3_iter) | fn |  |
+| [`memrchr_iter`](#memrchr_iter) | fn |  |
 
 ## Modules
 
-- [`macros`](macros/index.md) - 
-- [`arch`](arch/index.md) - A module with low-level architecture dependent routines.
-- [`cow`](cow/index.md) - 
-- [`ext`](ext/index.md) - 
-- [`memchr`](memchr/index.md) - 
-- [`memmem`](memmem/index.md) - This module provides forward and reverse substring search routines.
-- [`vector`](vector/index.md) - 
+- [`macros`](macros/index.md)
+- [`arch`](arch/index.md) — A module with low-level architecture dependent routines.
+- [`cow`](cow/index.md)
+- [`ext`](ext/index.md)
+- [`memchr`](memchr/index.md)
+- [`memmem`](memmem/index.md) — This module provides forward and reverse substring search routines.
+- [`vector`](vector/index.md)
 
 ## Structs
 

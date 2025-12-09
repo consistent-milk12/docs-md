@@ -57,8 +57,8 @@ fn main() -> Result<(), Box<dyn Error>> {
   - [`resource`](#resource)
   - [`rich`](#rich)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`SectionTable`](#sectiontable)
+  - [`SymbolTable`](#symboltable)
   - [`PeFile`](#pefile)
   - [`PeComdatIterator`](#pecomdatiterator)
   - [`PeComdat`](#pecomdat)
@@ -127,8 +127,8 @@ fn main() -> Result<(), Box<dyn Error>> {
 | [`relocation`](#relocation) | mod |  |
 | [`resource`](#resource) | mod |  |
 | [`rich`](#rich) | mod | PE rich header handling |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
+| [`SectionTable`](#sectiontable) | struct |  |
+| [`SymbolTable`](#symboltable) | struct |  |
 | [`PeFile`](#pefile) | struct | A PE image file. |
 | [`PeComdatIterator`](#pecomdatiterator) | struct | An iterator for the COMDAT section groups in a [`PeFile`]. |
 | [`PeComdat`](#pecomdat) | struct | A COMDAT section group in a [`PeFile`]. |
@@ -183,14 +183,14 @@ fn main() -> Result<(), Box<dyn Error>> {
 
 ## Modules
 
-- [`file`](file/index.md) - 
-- [`section`](section/index.md) - 
-- [`data_directory`](data_directory/index.md) - 
-- [`export`](export/index.md) - 
-- [`import`](import/index.md) - 
-- [`relocation`](relocation/index.md) - 
-- [`resource`](resource/index.md) - 
-- [`rich`](rich/index.md) - PE rich header handling
+- [`file`](file/index.md)
+- [`section`](section/index.md)
+- [`data_directory`](data_directory/index.md)
+- [`export`](export/index.md)
+- [`import`](import/index.md)
+- [`relocation`](relocation/index.md)
+- [`resource`](resource/index.md)
+- [`rich`](rich/index.md) — PE rich header handling
 
 ## Structs
 
@@ -209,21 +209,13 @@ Returned by `CoffHeader::sections` and
 
 #### Implementations
 
-- <span id="sectiontable-parse"></span>`fn parse<Coff: CoffHeader, R: ReadRef<'data>>(header: &Coff, data: R, offset: u64) -> Result<Self>` — [`Result`](../../index.md)
+- <span id="supersectiontable-pe-file-range-at"></span>`fn pe_file_range_at(&self, va: u32) -> Option<(u32, u32)>`
 
-- <span id="sectiontable-iter"></span>`fn iter(&self) -> slice::Iter<'data, pe::ImageSectionHeader>` — [`ImageSectionHeader`](../../pe/index.md)
+- <span id="supersectiontable-pe-data-at"></span>`fn pe_data_at<R: ReadRef<'data>>(&self, data: R, va: u32) -> Option<&'data [u8]>`
 
-- <span id="sectiontable-enumerate"></span>`fn enumerate(&self) -> impl Iterator<Item = (SectionIndex, &'data pe::ImageSectionHeader)>` — [`SectionIndex`](../../index.md), [`ImageSectionHeader`](../../pe/index.md)
+- <span id="supersectiontable-pe-data-containing"></span>`fn pe_data_containing<R: ReadRef<'data>>(&self, data: R, va: u32) -> Option<(&'data [u8], u32)>`
 
-- <span id="sectiontable-is-empty"></span>`fn is_empty(&self) -> bool`
-
-- <span id="sectiontable-len"></span>`fn len(&self) -> usize`
-
-- <span id="sectiontable-section"></span>`fn section(&self, index: SectionIndex) -> read::Result<&'data pe::ImageSectionHeader>` — [`SectionIndex`](../../index.md), [`Result`](../../index.md), [`ImageSectionHeader`](../../pe/index.md)
-
-- <span id="sectiontable-section-by-name"></span>`fn section_by_name<R: ReadRef<'data>>(&self, strings: StringTable<'data, R>, name: &[u8]) -> Option<(SectionIndex, &'data pe::ImageSectionHeader)>` — [`StringTable`](../index.md), [`SectionIndex`](../../index.md), [`ImageSectionHeader`](../../pe/index.md)
-
-- <span id="sectiontable-max-section-file-offset"></span>`fn max_section_file_offset(&self) -> u64`
+- <span id="supersectiontable-section-containing"></span>`fn section_containing(&self, va: u32) -> Option<&'data ImageSectionHeader>` — [`ImageSectionHeader`](../../pe/index.md)
 
 #### Trait Implementations
 
@@ -1554,11 +1546,13 @@ trait ImageNtHeaders: Debug + Pod { ... }
 
 A trait for generic access to [`pe::ImageNtHeaders32`](../../pe/index.md) and [`pe::ImageNtHeaders64`](../../pe/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type ImageOptionalHeader: 1`
 
 - `type ImageThunkData: 1`
+
+#### Required Methods
 
 - `fn is_type_64(&self) -> bool`
 
@@ -1580,6 +1574,8 @@ A trait for generic access to [`pe::ImageNtHeaders32`](../../pe/index.md) and [`
 
   Return the optional header.
 
+#### Provided Methods
+
 - `fn parse<'data, R: ReadRef<'data>>(data: R, offset: &mut u64) -> read::Result<(&'data Self, DataDirectories<'data>)>`
 
   Read the NT headers, including the data directories.
@@ -1591,6 +1587,11 @@ A trait for generic access to [`pe::ImageNtHeaders32`](../../pe/index.md) and [`
 - `fn symbols<'data, R: ReadRef<'data>>(&self, data: R) -> read::Result<SymbolTable<'data, R>>`
 
   Read the COFF symbol table and string table.
+
+#### Implementors
+
+- [`ImageNtHeaders32`](../../pe/index.md)
+- [`ImageNtHeaders64`](../../pe/index.md)
 
 ### `ImageOptionalHeader`
 
@@ -1662,6 +1663,11 @@ A trait for generic access to [`pe::ImageOptionalHeader32`](../../pe/index.md) a
 
 - `fn number_of_rva_and_sizes(&self) -> u32`
 
+#### Implementors
+
+- [`ImageOptionalHeader32`](../../pe/index.md)
+- [`ImageOptionalHeader64`](../../pe/index.md)
+
 ### `ImageThunkData`
 
 ```rust
@@ -1687,6 +1693,11 @@ A trait for generic access to [`pe::ImageThunkData32`](../../pe/index.md) and [`
 - `fn address(self) -> u32`
 
   Return the RVA portion of the thunk.
+
+#### Implementors
+
+- [`ImageThunkData32`](../../pe/index.md)
+- [`ImageThunkData64`](../../pe/index.md)
 
 ## Functions
 

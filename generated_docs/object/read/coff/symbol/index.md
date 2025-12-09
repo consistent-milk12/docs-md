@@ -298,6 +298,8 @@ A trait for generic access to [`pe::ImageSymbol`](../../../pe/index.md) and [`pe
 
 - `fn number_of_aux_symbols(&self) -> u8`
 
+#### Provided Methods
+
 - `fn name<'data, R: ReadRef<'data>>(self: &'data Self, strings: StringTable<'data, R>) -> Result<&'data [u8]>`
 
   Parse a COFF symbol name.
@@ -333,6 +335,11 @@ A trait for generic access to [`pe::ImageSymbol`](../../../pe/index.md) and [`pe
 - `fn base_type(&self) -> u16`
 
 - `fn derived_type(&self) -> u16`
+
+#### Implementors
+
+- [`ImageSymbolEx`](../../../pe/index.md)
+- [`ImageSymbol`](../../../pe/index.md)
 
 ## Type Aliases
 

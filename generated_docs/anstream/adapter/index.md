@@ -12,17 +12,17 @@ Gracefully degrade styled output
   - [`strip`](#strip)
   - [`wincon`](#wincon)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`StripBytes`](#stripbytes)
+  - [`StripBytesIter`](#stripbytesiter)
+  - [`StripStr`](#stripstr)
+  - [`StripStrIter`](#stripstriter)
+  - [`StrippedBytes`](#strippedbytes)
+  - [`StrippedStr`](#strippedstr)
+  - [`WinconBytes`](#winconbytes)
+  - [`WinconBytesIter`](#winconbytesiter)
 - [Functions](#functions)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`strip_bytes`](#strip_bytes)
+  - [`strip_str`](#strip_str)
 
 ## Quick Reference
 
@@ -30,21 +30,21 @@ Gracefully degrade styled output
 |------|------|-------------|
 | [`strip`](#strip) | mod |  |
 | [`wincon`](#wincon) | mod |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
+| [`StripBytes`](#stripbytes) | struct |  |
+| [`StripBytesIter`](#stripbytesiter) | struct |  |
+| [`StripStr`](#stripstr) | struct |  |
+| [`StripStrIter`](#stripstriter) | struct |  |
+| [`StrippedBytes`](#strippedbytes) | struct |  |
+| [`StrippedStr`](#strippedstr) | struct |  |
+| [`WinconBytes`](#winconbytes) | struct |  |
+| [`WinconBytesIter`](#winconbytesiter) | struct |  |
+| [`strip_bytes`](#strip_bytes) | fn |  |
+| [`strip_str`](#strip_str) | fn |  |
 
 ## Modules
 
-- [`strip`](strip/index.md) - 
-- [`wincon`](wincon/index.md) - 
+- [`strip`](strip/index.md)
+- [`wincon`](wincon/index.md)
 
 ## Structs
 

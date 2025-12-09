@@ -14,7 +14,7 @@
 
 ## Modules
 
-- [`parsing`](parsing/index.md) - 
+- [`parsing`](parsing/index.md)
 
 ## Functions
 

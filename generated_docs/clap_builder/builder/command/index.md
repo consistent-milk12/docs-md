@@ -99,143 +99,41 @@ let m = Command::new("My Program")
 
 #### Implementations
 
-- <span id="command-get-usage-name"></span>`fn get_usage_name(&self) -> Option<&str>`
+- <span id="command-no-binary-name"></span>`fn no_binary_name(self, yes: bool) -> Self`
 
-- <span id="command-get-usage-name-fallback"></span>`fn get_usage_name_fallback(&self) -> &str`
+- <span id="command-ignore-errors"></span>`fn ignore_errors(self, yes: bool) -> Self`
 
-- <span id="command-get-display-name"></span>`fn get_display_name(&self) -> Option<&str>`
+- <span id="command-args-override-self"></span>`fn args_override_self(self, yes: bool) -> Self`
 
-- <span id="command-get-bin-name"></span>`fn get_bin_name(&self) -> Option<&str>`
+- <span id="command-dont-delimit-trailing-values"></span>`fn dont_delimit_trailing_values(self, yes: bool) -> Self`
 
-- <span id="command-get-bin-name-fallback"></span>`fn get_bin_name_fallback(&self) -> &str`
+- <span id="command-color"></span>`fn color(self, color: ColorChoice) -> Self` — [`ColorChoice`](../../index.md)
 
-- <span id="command-set-bin-name"></span>`fn set_bin_name(&mut self, name: impl Into<String>)`
+- <span id="command-styles"></span>`fn styles(self, styles: Styles) -> Self` — [`Styles`](../index.md)
 
-- <span id="command-get-name"></span>`fn get_name(&self) -> &str`
+- <span id="command-term-width"></span>`fn term_width(self, width: usize) -> Self`
 
-- <span id="command-get-name-str"></span>`fn get_name_str(&self) -> &Str` — [`Str`](../index.md)
+- <span id="command-max-term-width"></span>`fn max_term_width(self, width: usize) -> Self`
 
-- <span id="command-get-name-and-visible-aliases"></span>`fn get_name_and_visible_aliases(&self) -> Vec<&str>`
+- <span id="command-disable-version-flag"></span>`fn disable_version_flag(self, yes: bool) -> Self`
 
-- <span id="command-get-version"></span>`fn get_version(&self) -> Option<&str>`
+- <span id="command-propagate-version"></span>`fn propagate_version(self, yes: bool) -> Self`
 
-- <span id="command-get-long-version"></span>`fn get_long_version(&self) -> Option<&str>`
+- <span id="command-next-line-help"></span>`fn next_line_help(self, yes: bool) -> Self`
 
-- <span id="command-get-display-order"></span>`fn get_display_order(&self) -> usize`
+- <span id="command-disable-help-flag"></span>`fn disable_help_flag(self, yes: bool) -> Self`
 
-- <span id="command-get-author"></span>`fn get_author(&self) -> Option<&str>`
+- <span id="command-disable-help-subcommand"></span>`fn disable_help_subcommand(self, yes: bool) -> Self`
 
-- <span id="command-get-short-flag"></span>`fn get_short_flag(&self) -> Option<char>`
+- <span id="command-disable-colored-help"></span>`fn disable_colored_help(self, yes: bool) -> Self`
 
-- <span id="command-get-long-flag"></span>`fn get_long_flag(&self) -> Option<&str>`
+- <span id="command-help-expected"></span>`fn help_expected(self, yes: bool) -> Self`
 
-- <span id="command-get-about"></span>`fn get_about(&self) -> Option<&StyledStr>` — [`StyledStr`](../index.md)
+- <span id="command-hide-possible-values"></span>`fn hide_possible_values(self, yes: bool) -> Self`
 
-- <span id="command-get-long-about"></span>`fn get_long_about(&self) -> Option<&StyledStr>` — [`StyledStr`](../index.md)
+- <span id="command-infer-long-args"></span>`fn infer_long_args(self, yes: bool) -> Self`
 
-- <span id="command-is-flatten-help-set"></span>`fn is_flatten_help_set(&self) -> bool`
-
-- <span id="command-get-next-help-heading"></span>`fn get_next_help_heading(&self) -> Option<&str>`
-
-- <span id="command-get-visible-aliases"></span>`fn get_visible_aliases(&self) -> impl Iterator<Item = &str> + '_`
-
-- <span id="command-get-visible-short-flag-aliases"></span>`fn get_visible_short_flag_aliases(&self) -> impl Iterator<Item = char> + '_`
-
-- <span id="command-get-visible-long-flag-aliases"></span>`fn get_visible_long_flag_aliases(&self) -> impl Iterator<Item = &str> + '_`
-
-- <span id="command-get-all-aliases"></span>`fn get_all_aliases(&self) -> impl Iterator<Item = &str> + '_`
-
-- <span id="command-get-all-short-flag-aliases"></span>`fn get_all_short_flag_aliases(&self) -> impl Iterator<Item = char> + '_`
-
-- <span id="command-get-all-long-flag-aliases"></span>`fn get_all_long_flag_aliases(&self) -> impl Iterator<Item = &str> + '_`
-
-- <span id="command-get-aliases"></span>`fn get_aliases(&self) -> impl Iterator<Item = &str> + '_`
-
-- <span id="command-is-set"></span>`fn is_set(&self, s: AppSettings) -> bool` — [`AppSettings`](../app_settings/index.md)
-
-- <span id="command-get-color"></span>`fn get_color(&self) -> ColorChoice` — [`ColorChoice`](../../index.md)
-
-- <span id="command-get-styles"></span>`fn get_styles(&self) -> &Styles` — [`Styles`](../index.md)
-
-- <span id="command-get-subcommands"></span>`fn get_subcommands(&self) -> impl Iterator<Item = &Command>` — [`Command`](../../index.md)
-
-- <span id="command-get-subcommands-mut"></span>`fn get_subcommands_mut(&mut self) -> impl Iterator<Item = &mut Command>` — [`Command`](../../index.md)
-
-- <span id="command-has-subcommands"></span>`fn has_subcommands(&self) -> bool`
-
-- <span id="command-get-subcommand-help-heading"></span>`fn get_subcommand_help_heading(&self) -> Option<&str>`
-
-- <span id="command-get-subcommand-value-name"></span>`fn get_subcommand_value_name(&self) -> Option<&str>`
-
-- <span id="command-get-before-help"></span>`fn get_before_help(&self) -> Option<&StyledStr>` — [`StyledStr`](../index.md)
-
-- <span id="command-get-before-long-help"></span>`fn get_before_long_help(&self) -> Option<&StyledStr>` — [`StyledStr`](../index.md)
-
-- <span id="command-get-after-help"></span>`fn get_after_help(&self) -> Option<&StyledStr>` — [`StyledStr`](../index.md)
-
-- <span id="command-get-after-long-help"></span>`fn get_after_long_help(&self) -> Option<&StyledStr>` — [`StyledStr`](../index.md)
-
-- <span id="command-find-subcommand"></span>`fn find_subcommand(&self, name: impl AsRef<std::ffi::OsStr>) -> Option<&Command>` — [`Command`](../../index.md)
-
-- <span id="command-find-subcommand-mut"></span>`fn find_subcommand_mut(&mut self, name: impl AsRef<std::ffi::OsStr>) -> Option<&mut Command>` — [`Command`](../../index.md)
-
-- <span id="command-get-groups"></span>`fn get_groups(&self) -> impl Iterator<Item = &ArgGroup>` — [`ArgGroup`](../../index.md)
-
-- <span id="command-get-arguments"></span>`fn get_arguments(&self) -> impl Iterator<Item = &Arg>` — [`Arg`](../../index.md)
-
-- <span id="command-get-positionals"></span>`fn get_positionals(&self) -> impl Iterator<Item = &Arg>` — [`Arg`](../../index.md)
-
-- <span id="command-get-opts"></span>`fn get_opts(&self) -> impl Iterator<Item = &Arg>` — [`Arg`](../../index.md)
-
-- <span id="command-get-arg-conflicts-with"></span>`fn get_arg_conflicts_with(&self, arg: &Arg) -> Vec<&Arg>` — [`Arg`](../../index.md)
-
-- <span id="command-get-global-arg-conflicts-with"></span>`fn get_global_arg_conflicts_with(&self, arg: &Arg) -> Vec<&Arg>` — [`Arg`](../../index.md)
-
-- <span id="command-get-subcommands-containing"></span>`fn get_subcommands_containing(&self, arg: &Arg) -> Vec<&Self>` — [`Arg`](../../index.md)
-
-- <span id="command-is-no-binary-name-set"></span>`fn is_no_binary_name_set(&self) -> bool`
-
-- <span id="command-is-ignore-errors-set"></span>`fn is_ignore_errors_set(&self) -> bool`
-
-- <span id="command-is-dont-delimit-trailing-values-set"></span>`fn is_dont_delimit_trailing_values_set(&self) -> bool`
-
-- <span id="command-is-disable-version-flag-set"></span>`fn is_disable_version_flag_set(&self) -> bool`
-
-- <span id="command-is-propagate-version-set"></span>`fn is_propagate_version_set(&self) -> bool`
-
-- <span id="command-is-next-line-help-set"></span>`fn is_next_line_help_set(&self) -> bool`
-
-- <span id="command-is-disable-help-flag-set"></span>`fn is_disable_help_flag_set(&self) -> bool`
-
-- <span id="command-is-disable-help-subcommand-set"></span>`fn is_disable_help_subcommand_set(&self) -> bool`
-
-- <span id="command-is-disable-colored-help-set"></span>`fn is_disable_colored_help_set(&self) -> bool`
-
-- <span id="command-is-help-expected-set"></span>`fn is_help_expected_set(&self) -> bool`
-
-- <span id="command-is-infer-long-args-set"></span>`fn is_infer_long_args_set(&self) -> bool`
-
-- <span id="command-is-infer-subcommands-set"></span>`fn is_infer_subcommands_set(&self) -> bool`
-
-- <span id="command-is-arg-required-else-help-set"></span>`fn is_arg_required_else_help_set(&self) -> bool`
-
-- <span id="command-is-allow-missing-positional-set"></span>`fn is_allow_missing_positional_set(&self) -> bool`
-
-- <span id="command-is-hide-set"></span>`fn is_hide_set(&self) -> bool`
-
-- <span id="command-is-subcommand-required-set"></span>`fn is_subcommand_required_set(&self) -> bool`
-
-- <span id="command-is-allow-external-subcommands-set"></span>`fn is_allow_external_subcommands_set(&self) -> bool`
-
-- <span id="command-get-external-subcommand-value-parser"></span>`fn get_external_subcommand_value_parser(&self) -> Option<&super::ValueParser>` — [`ValueParser`](../index.md)
-
-- <span id="command-is-args-conflicts-with-subcommands-set"></span>`fn is_args_conflicts_with_subcommands_set(&self) -> bool`
-
-- <span id="command-is-subcommand-precedence-over-arg-set"></span>`fn is_subcommand_precedence_over_arg_set(&self) -> bool`
-
-- <span id="command-is-subcommand-negates-reqs-set"></span>`fn is_subcommand_negates_reqs_set(&self) -> bool`
-
-- <span id="command-is-multicall-set"></span>`fn is_multicall_set(&self) -> bool`
+- <span id="command-infer-subcommands"></span>`fn infer_subcommands(self, yes: bool) -> Self`
 
 #### Trait Implementations
 
@@ -324,11 +222,21 @@ trait Captures<'a> { ... }
 A workaround:
 <https://github.com/rust-lang/rust/issues/34511#issuecomment-373423999>
 
+#### Implementors
+
+- `T`
+
 ### `AppExt`
 
 ```rust
 trait AppExt: Extension { ... }
 ```
+
+#### Implementors
+
+- [`MaxTermWidth`](#maxtermwidth)
+- [`Styles`](../index.md)
+- [`TermWidth`](#termwidth)
 
 ## Functions
 

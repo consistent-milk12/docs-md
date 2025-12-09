@@ -187,11 +187,13 @@ trait Section: Debug + Pod { ... }
 
 A trait for generic access to [`macho::Section32`](../../../macho/index.md) and [`macho::Section64`](../../../macho/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
 
 - `type Endian: 1`
+
+#### Required Methods
 
 - `fn sectname(&self) -> &[u8; 16]`
 
@@ -210,6 +212,8 @@ A trait for generic access to [`macho::Section32`](../../../macho/index.md) and 
 - `fn nreloc(&self, endian: <Self as >::Endian) -> u32`
 
 - `fn flags(&self, endian: <Self as >::Endian) -> u32`
+
+#### Provided Methods
 
 - `fn name(&self) -> &[u8]`
 
@@ -230,6 +234,11 @@ A trait for generic access to [`macho::Section32`](../../../macho/index.md) and 
 - `fn relocations<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, data: R) -> Result<&'data [macho::Relocation<<Self as >::Endian>]>`
 
   Return the relocation array.
+
+#### Implementors
+
+- [`Section32`](../../../macho/index.md)
+- [`Section64`](../../../macho/index.md)
 
 ## Type Aliases
 

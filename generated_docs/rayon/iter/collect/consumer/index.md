@@ -32,7 +32,7 @@ struct CollectConsumer<'c, T: Send> {
 
 #### Implementations
 
-- <span id="collectconsumer-appender"></span>`fn appender(vec: &mut Vec<T>, len: usize) -> CollectConsumer<'_, T>` — [`CollectConsumer`](#collectconsumer)
+- <span id="collectconsumer-new"></span>`unsafe fn new(start: *mut T, len: usize) -> Self`
 
 #### Trait Implementations
 

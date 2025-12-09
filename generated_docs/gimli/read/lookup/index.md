@@ -140,11 +140,13 @@ where
 trait LookupParser<R: Reader> { ... }
 ```
 
-#### Required Methods
+#### Associated Types
 
 - `type Header`
 
 - `type Entry`
+
+#### Required Methods
 
 - `fn parse_header(input: &mut R) -> Result<(R, <Self as >::Header)>`
 
@@ -153,6 +155,10 @@ trait LookupParser<R: Reader> { ... }
 - `fn parse_entry(input: &mut R, header: &<Self as >::Header) -> Result<Option<<Self as >::Entry>>`
 
   Parse a single entry from `input`. Returns either a parsed representation of the entry
+
+#### Implementors
+
+- [`PubStuffParser`](#pubstuffparser)
 
 ### `PubStuffEntry<R: Reader>`
 
@@ -163,4 +169,9 @@ trait PubStuffEntry<R: Reader> { ... }
 #### Required Methods
 
 - `fn new(die_offset: UnitOffset<<R as >::Offset>, name: R, unit_header_offset: DebugInfoOffset<<R as >::Offset>) -> Self`
+
+#### Implementors
+
+- [`PubNamesEntry`](../index.md)
+- [`PubTypesEntry`](../index.md)
 

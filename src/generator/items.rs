@@ -4,14 +4,17 @@
 //! individual Rust items (structs, enums, traits, functions, macros, constants,
 //! and type aliases) to markdown format.
 
+use std::fmt::Write;
+
 use rustdoc_types::{Id, Item, ItemEnum, StructKind};
 
 use crate::generator::context::RenderContext;
 use crate::generator::impls::ImplRenderer;
 use crate::generator::render_shared::{
-    append_docs, render_constant_definition, render_enum_definition, render_enum_variants_docs,
-    render_function_definition, render_macro_heading, render_struct_definition,
-    render_struct_fields, render_trait_definition, render_trait_item, render_type_alias_definition,
+    CategorizedTraitItems, TraitRenderer, append_docs, render_constant_definition,
+    render_enum_definition, render_enum_variants_docs, render_function_definition,
+    render_macro_heading, render_struct_definition, render_struct_fields,
+    render_type_alias_definition,
 };
 use crate::types::TypeRenderer;
 
@@ -82,7 +85,6 @@ impl<'a> ItemRenderer<'a> {
             {
                 return Some((name, target));
             }
-
             // Can't resolve - return None
             None
         } else {
@@ -205,42 +207,125 @@ impl<'a> ItemRenderer<'a> {
     /// - Heading with trait name and generics
     /// - Rust code block showing trait signature with supertraits
     /// - Documentation from doc comments
-    /// - Required methods section listing all trait items
-    ///
-    /// # Trait Items
-    ///
-    /// Traits can contain:
-    /// - **Methods**: `fn method(&self) -> T`
-    /// - **Associated Types**: `type Item;`
-    /// - **Associated Constants**: `const VALUE: T;`
+    /// - Associated Types section (if any)
+    /// - Associated Constants section (if any)
+    /// - Required Methods section (methods without default impl)
+    /// - Provided Methods section (methods with default impl)
+    /// - Implementors section (types that implement this trait)
     ///
     /// # Re-exports
     ///
     /// Also handles `pub use` re-exports where the item is a Use pointing to a trait.
-    pub fn render_trait(&self, md: &mut String, item: &Item) {
+    pub fn render_trait(&self, md: &mut String, item_id: Id, item: &Item) {
         // Resolve Use items to their target
         let Some((name, actual_item)) = self.resolve_use_target(item) else {
             return;
         };
 
+        // Get actual ID for implementation
+        let actual_id = if let ItemEnum::Use(use_item) = &item.inner {
+            use_item.id.unwrap_or(item_id)
+        } else {
+            item_id
+        };
+
+        let krate = self.ctx.krate();
+
         if let ItemEnum::Trait(t) = &actual_item.inner {
             // Trait definition (heading + code block)
-            render_trait_definition(md, name, t, &self.type_renderer);
-        }
+            TraitRenderer::render_trait_definition(md, name, t, &self.type_renderer);
 
-        // Documentation
-        append_docs(md, self.process_docs(actual_item));
+            // Documentation
+            append_docs(md, self.process_docs(actual_item));
 
-        // Required methods section
-        if let ItemEnum::Trait(t) = &actual_item.inner
-            && !t.items.is_empty()
-        {
-            md.push_str("#### Required Methods\n\n");
-            for method_id in &t.items {
-                if let Some(method) = self.ctx.krate().index.get(method_id) {
-                    render_trait_item(md, method, &self.type_renderer, |m| self.process_docs(m));
+            // Categorize trait items
+            let items = CategorizedTraitItems::categorize_trait_items(&t.items, krate);
+
+            // Associated Types
+            if !items.associated_types.is_empty() {
+                _ = writeln!(md, "#### Associated Types\n");
+
+                for type_item in &items.associated_types {
+                    TraitRenderer::render_trait_item(md, type_item, &self.type_renderer, |m| {
+                        self.process_docs(m)
+                    });
                 }
             }
+
+            // Associated Constants
+            if !items.associated_consts.is_empty() {
+                _ = writeln!(md, "#### Associated Constants\n");
+
+                for const_item in &items.associated_consts {
+                    TraitRenderer::render_trait_item(md, const_item, &self.type_renderer, |m| {
+                        self.process_docs(m)
+                    });
+                }
+            }
+
+            // Required Methods
+            if !items.required_methods.is_empty() {
+                _ = writeln!(md, "#### Required Methods\n");
+
+                for required_method in &items.required_methods {
+                    TraitRenderer::render_trait_item(
+                        md,
+                        required_method,
+                        &self.type_renderer,
+                        |m| self.process_docs(m),
+                    );
+                }
+            }
+
+            // Provided Methods
+            if !items.provided_methods.is_empty() {
+                _ = writeln!(md, "#### Provided Methods \n");
+
+                for provided_method in &items.provided_methods {
+                    TraitRenderer::render_trait_item(
+                        md,
+                        provided_method,
+                        &self.type_renderer,
+                        |m| self.process_docs(m),
+                    );
+                }
+            }
+
+            // Implementors section
+            self.render_trait_implementors(md, actual_id);
+        }
+    }
+
+    /// Render the implementors section for a trait.
+    fn render_trait_implementors(&self, md: &mut String, trait_id: Id) {
+        use std::collections::BTreeSet;
+
+        let krate = self.ctx.krate();
+        let mut implementors: BTreeSet<String> = BTreeSet::new();
+
+        for item in krate.index.values() {
+            if let ItemEnum::Impl(impl_block) = &item.inner
+                && let Some(trait_path) = &impl_block.trait_
+                && trait_path.id == trait_id
+            {
+                let for_type = self.type_renderer.render_type(&impl_block.for_);
+
+                let entry = self
+                    .type_renderer
+                    .get_type_id(&impl_block.for_)
+                    .and_then(|type_id| self.ctx.create_link(type_id, self.current_file))
+                    .unwrap_or_else(|| format!("`{for_type}`"));
+
+                implementors.insert(entry);
+            }
+        }
+
+        if !implementors.is_empty() {
+            md.push_str("#### Implementors\n\n");
+            for implementor in implementors {
+                _ = writeln!(md, "- {implementor}");
+            }
+            md.push('\n');
         }
     }
 

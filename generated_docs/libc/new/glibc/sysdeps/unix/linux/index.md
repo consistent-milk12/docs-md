@@ -16,5 +16,5 @@ Source directory: `sysdeps/unix/sysv/linux` (the `sysv` is flattened).
 
 ## Modules
 
-- [`net`](net/index.md) - Directory: `net/`
+- [`net`](net/index.md) — Directory: `net/`
 

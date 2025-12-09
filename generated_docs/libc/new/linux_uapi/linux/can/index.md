@@ -124,9 +124,9 @@ Header: `uapi/linux/can.h`
 
 ## Modules
 
-- [`bcm`](bcm/index.md) - Header: `linux/can/bcm.h`
-- [`j1939`](j1939/index.md) - `linux/can/j1939.h`
-- [`raw`](raw/index.md) - Header: `linux/can/raw.h`
+- [`bcm`](bcm/index.md) — Header: `linux/can/bcm.h`
+- [`j1939`](j1939/index.md) — `linux/can/j1939.h`
+- [`raw`](raw/index.md) — Header: `linux/can/raw.h`
 
 ## Structs
 

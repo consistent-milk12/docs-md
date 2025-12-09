@@ -22,10 +22,6 @@ Slice methods that use `Box` and `Vec` from this crate.
 
 #### Required Methods
 
-- `fn to_vec(&self) -> Vec<T, Global>`
-
-  Copies `self` into a new `Vec`.
-
 - `fn to_vec_in<A: Allocator>(&self, alloc: A) -> Vec<T, A>`
 
   Copies `self` into a new `Vec` with an allocator.
@@ -33,4 +29,14 @@ Slice methods that use `Box` and `Vec` from this crate.
 - `fn repeat(&self, n: usize) -> Vec<T, Global>`
 
   Creates a vector by copying a slice `n` times.
+
+#### Provided Methods
+
+- `fn to_vec(&self) -> Vec<T, Global>`
+
+  Copies `self` into a new `Vec`.
+
+#### Implementors
+
+- `[T]`
 

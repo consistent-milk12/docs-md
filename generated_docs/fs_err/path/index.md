@@ -48,3 +48,7 @@ This trait is sealed and can not be implemented by other crates.
 
   Returns an iterator over the entries within a directory.
 
+#### Implementors
+
+- `std::path::Path`
+

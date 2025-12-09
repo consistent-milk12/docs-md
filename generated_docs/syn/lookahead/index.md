@@ -263,7 +263,7 @@ Ok(())
 
 ##### `impl Peek for End`
 
-##### `impl Sealed for End`
+##### `impl<T> Sealed for End`
 
 ##### `impl<T> Token for End`
 
@@ -295,6 +295,12 @@ without consuming it from the stream.
 
 This trait is sealed and cannot be implemented for types outside of Syn.
 
+
+#### Implementors
+
+- [`End`](../parse/index.md)
+- [`PeekFn`](../ext/private/index.md)
+- `F`
 
 ## Functions
 

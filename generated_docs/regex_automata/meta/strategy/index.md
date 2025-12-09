@@ -324,6 +324,14 @@ is, a benchmark to test the overall latency of a search call.
 
 - `fn which_overlapping_matches(&self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)`
 
+#### Implementors
+
+- [`Core`](#core)
+- [`Pre`](#pre)
+- [`ReverseAnchored`](#reverseanchored)
+- [`ReverseInner`](#reverseinner)
+- [`ReverseSuffix`](#reversesuffix)
+
 ## Functions
 
 ### `new`

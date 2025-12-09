@@ -255,17 +255,7 @@ All of the commonly used DWARF sections, and other common information.
 
 #### Implementations
 
-- <span id="dwarf-load"></span>`fn load<F, E>(section: F) -> core::result::Result<Self, E>`
-
-- <span id="dwarf-load-sup"></span>`fn load_sup<F, E>(&mut self, section: F) -> core::result::Result<(), E>`
-
-- <span id="dwarf-from-sections"></span>`fn from_sections(sections: DwarfSections<T>) -> Self` — [`DwarfSections`](../index.md)
-
-- <span id="dwarf-borrow"></span>`fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> Dwarf<R>` — [`Dwarf`](../index.md)
-
-- <span id="dwarf-set-sup"></span>`fn set_sup(&mut self, sup: Dwarf<T>)` — [`Dwarf`](../index.md)
-
-- <span id="dwarf-sup"></span>`fn sup(&self) -> Option<&Dwarf<T>>` — [`Dwarf`](../index.md)
+- <span id="dwarf-make-dwo"></span>`fn make_dwo(&mut self, parent: &Dwarf<R>)` — [`Dwarf`](../index.md)
 
 #### Trait Implementations
 

@@ -17,7 +17,7 @@ Utilities for functions that return data via buffers.
 
 ## Modules
 
-- [`private`](private/index.md) - 
+- [`private`](private/index.md)
 
 ## Structs
 
@@ -142,6 +142,16 @@ If you see errors like
 "captured variable cannot escape `FnMut` closure body",
 use an explicit loop instead of `retry_on_intr`, assuming you're using
 that. See `error_retry_closure_uninit` in examples/buffer_errors.rs.
+
+#### Implementors
+
+- [`SpareCapacity`](#sparecapacity)
+- `&mut [T; N]`
+- `&mut [T]`
+- `&mut [core::mem::MaybeUninit<T>; N]`
+- `&mut [core::mem::MaybeUninit<T>]`
+- `&mut alloc::vec::Vec<T>`
+- `&mut alloc::vec::Vec<core::mem::MaybeUninit<T>>`
 
 ## Functions
 

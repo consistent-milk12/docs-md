@@ -42,15 +42,15 @@ generator.generate()?;
   - [`search`](#search)
   - [`summary`](#summary)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`CrateCollection`](#cratecollection)
+  - [`MultiCrateContext`](#multicratecontext)
+  - [`SingleCrateView`](#singlecrateview)
+  - [`MultiCrateGenerator`](#multicrategenerator)
+  - [`MultiCrateParser`](#multicrateparser)
+  - [`UnifiedLinkRegistry`](#unifiedlinkregistry)
+  - [`SearchIndex`](#searchindex)
+  - [`SearchIndexGenerator`](#searchindexgenerator)
+  - [`SummaryGenerator`](#summarygenerator)
 - [Constants](#constants)
   - [`RUST_PATH_SEP`](#rust_path_sep)
   - [`FILE_PATH_SEP`](#file_path_sep)
@@ -66,27 +66,27 @@ generator.generate()?;
 | [`registry`](#registry) | mod | Unified link registry for cross-crate documentation. |
 | [`search`](#search) | mod | Search index generation for multi-crate documentation. |
 | [`summary`](#summary) | mod | mdBook SUMMARY.md generator. |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
+| [`CrateCollection`](#cratecollection) | struct |  |
+| [`MultiCrateContext`](#multicratecontext) | struct |  |
+| [`SingleCrateView`](#singlecrateview) | struct |  |
+| [`MultiCrateGenerator`](#multicrategenerator) | struct |  |
+| [`MultiCrateParser`](#multicrateparser) | struct |  |
+| [`UnifiedLinkRegistry`](#unifiedlinkregistry) | struct |  |
+| [`SearchIndex`](#searchindex) | struct |  |
+| [`SearchIndexGenerator`](#searchindexgenerator) | struct |  |
+| [`SummaryGenerator`](#summarygenerator) | struct |  |
 | [`RUST_PATH_SEP`](#rust_path_sep) | const | Rust module path separator (e.g., `serde_json::de::from_str`). |
 | [`FILE_PATH_SEP`](#file_path_sep) | const | File system path separator for generated documentation. |
 
 ## Modules
 
-- [`collection`](collection/index.md) - Crate collection for multi-crate documentation.
-- [`context`](context/index.md) - Multi-crate generation context.
-- [`generator`](generator/index.md) - Multi-crate documentation generator.
-- [`parser`](parser/index.md) - Multi-crate JSON parser.
-- [`registry`](registry/index.md) - Unified link registry for cross-crate documentation.
-- [`search`](search/index.md) - Search index generation for multi-crate documentation.
-- [`summary`](summary/index.md) - mdBook SUMMARY.md generator.
+- [`collection`](collection/index.md) — Crate collection for multi-crate documentation.
+- [`context`](context/index.md) — Multi-crate generation context.
+- [`generator`](generator/index.md) — Multi-crate documentation generator.
+- [`parser`](parser/index.md) — Multi-crate JSON parser.
+- [`registry`](registry/index.md) — Unified link registry for cross-crate documentation.
+- [`search`](search/index.md) — Search index generation for multi-crate documentation.
+- [`summary`](summary/index.md) — mdBook SUMMARY.md generator.
 
 ## Structs
 

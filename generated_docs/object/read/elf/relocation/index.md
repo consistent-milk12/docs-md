@@ -449,13 +449,15 @@ trait Rel: Debug + Pod + Clone { ... }
 
 A trait for generic access to [`elf::Rel32`](../../../elf/index.md) and [`elf::Rel64`](../../../elf/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
 
 - `type Sword: 1`
 
 - `type Endian: 1`
+
+#### Required Methods
 
 - `fn r_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
@@ -465,9 +467,16 @@ A trait for generic access to [`elf::Rel32`](../../../elf/index.md) and [`elf::R
 
 - `fn r_type(&self, endian: <Self as >::Endian) -> u32`
 
+#### Provided Methods
+
 - `fn symbol(&self, endian: <Self as >::Endian) -> Option<SymbolIndex>`
 
   Get the symbol index referenced by the relocation.
+
+#### Implementors
+
+- [`Rel32`](../../../elf/index.md)
+- [`Rel64`](../../../elf/index.md)
 
 ### `Rela`
 
@@ -477,13 +486,15 @@ trait Rela: Debug + Pod + Clone { ... }
 
 A trait for generic access to [`elf::Rela32`](../../../elf/index.md) and [`elf::Rela64`](../../../elf/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
 
 - `type Sword: 1`
 
 - `type Endian: 1`
+
+#### Required Methods
 
 - `fn r_offset(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
@@ -495,9 +506,16 @@ A trait for generic access to [`elf::Rela32`](../../../elf/index.md) and [`elf::
 
 - `fn r_type(&self, endian: <Self as >::Endian, is_mips64el: bool) -> u32`
 
+#### Provided Methods
+
 - `fn symbol(&self, endian: <Self as >::Endian, is_mips64el: bool) -> Option<SymbolIndex>`
 
   Get the symbol index referenced by the relocation.
+
+#### Implementors
+
+- [`Rela32`](../../../elf/index.md)
+- [`Rela64`](../../../elf/index.md)
 
 ### `Relr`
 
@@ -507,13 +525,17 @@ trait Relr: Debug + Pod + Clone { ... }
 
 A trait for generic access to [`elf::Relr32`](../../../elf/index.md) and [`elf::Relr64`](../../../elf/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
 
 - `type Endian: 1`
 
+#### Associated Constants
+
 - `const COUNT: u8`
+
+#### Required Methods
 
 - `fn get(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
@@ -522,6 +544,11 @@ A trait for generic access to [`elf::Relr32`](../../../elf/index.md) and [`elf::
 - `fn next(offset: &mut <Self as >::Word, bits: &mut <Self as >::Word) -> Option<<Self as >::Word>`
 
   Return the offset corresponding to the next bit in the bit mask.
+
+#### Implementors
+
+- [`Relr32`](../../../elf/index.md)
+- [`Relr64`](../../../elf/index.md)
 
 ## Functions
 

@@ -30,3 +30,8 @@ A trait for adding some helper routines to pointers.
 
   Casts this pointer to `usize`.
 
+#### Implementors
+
+- `*const T`
+- `*mut T`
+

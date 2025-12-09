@@ -145,11 +145,11 @@ compiled DFAs.
   - [`regex`](#regex)
   - [`search`](#search)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`BuildError`](#builderror)
+  - [`CacheError`](#cacheerror)
+  - [`LazyStateID`](#lazystateid)
 - [Enums](#enums)
-  - [`unnamed`](#unnamed)
+  - [`StartError`](#starterror)
 
 ## Quick Reference
 
@@ -160,18 +160,18 @@ compiled DFAs.
 | [`id`](#id) | mod |  |
 | [`regex`](#regex) | mod | A lazy DFA backed `Regex`. |
 | [`search`](#search) | mod |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | enum |  |
+| [`BuildError`](#builderror) | struct |  |
+| [`CacheError`](#cacheerror) | struct |  |
+| [`LazyStateID`](#lazystateid) | struct |  |
+| [`StartError`](#starterror) | enum |  |
 
 ## Modules
 
-- [`dfa`](dfa/index.md) - Types and routines specific to lazy DFAs.
-- [`error`](error/index.md) - 
-- [`id`](id/index.md) - 
-- [`regex`](regex/index.md) - A lazy DFA backed `Regex`.
-- [`search`](search/index.md) - 
+- [`dfa`](dfa/index.md) — Types and routines specific to lazy DFAs.
+- [`error`](error/index.md)
+- [`id`](id/index.md)
+- [`regex`](regex/index.md) — A lazy DFA backed `Regex`.
+- [`search`](search/index.md)
 
 ## Structs
 

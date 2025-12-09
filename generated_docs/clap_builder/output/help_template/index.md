@@ -78,19 +78,31 @@ Wraps a writer stream providing different methods to generate help for `clap` ob
 
 #### Implementations
 
-- <span id="helptemplate-write-display-name"></span>`fn write_display_name(&mut self)`
+- <span id="helptemplate-write-all-args"></span>`fn write_all_args(&mut self)`
 
-- <span id="helptemplate-write-bin-name"></span>`fn write_bin_name(&mut self)`
+- <span id="helptemplate-write-args"></span>`fn write_args(&mut self, args: &[&Arg], _category: &str, sort_key: fn(&crate::builder::Arg) -> (usize, String))` — [`Arg`](../../index.md)
 
-- <span id="helptemplate-write-version"></span>`fn write_version(&mut self)`
+- <span id="helptemplate-write-arg"></span>`fn write_arg(&mut self, arg: &Arg, next_line_help: bool, longest: usize)` — [`Arg`](../../index.md)
 
-- <span id="helptemplate-write-author"></span>`fn write_author(&mut self, before_new_line: bool, after_new_line: bool)`
+- <span id="helptemplate-short"></span>`fn short(&mut self, arg: &Arg)` — [`Arg`](../../index.md)
 
-- <span id="helptemplate-write-about"></span>`fn write_about(&mut self, before_new_line: bool, after_new_line: bool)`
+- <span id="helptemplate-long"></span>`fn long(&mut self, arg: &Arg)` — [`Arg`](../../index.md)
 
-- <span id="helptemplate-write-before-help"></span>`fn write_before_help(&mut self)`
+- <span id="helptemplate-align-to-about"></span>`fn align_to_about(&mut self, arg: &Arg, next_line_help: bool, longest: usize)` — [`Arg`](../../index.md)
 
-- <span id="helptemplate-write-after-help"></span>`fn write_after_help(&mut self)`
+- <span id="helptemplate-help"></span>`fn help(&mut self, arg: Option<&Arg>, about: &StyledStr, spec_vals: &str, next_line_help: bool, longest: usize)` — [`Arg`](../../index.md), [`StyledStr`](../../builder/index.md)
+
+- <span id="helptemplate-will-args-wrap"></span>`fn will_args_wrap(&self, args: &[&Arg], longest: usize) -> bool` — [`Arg`](../../index.md)
+
+- <span id="helptemplate-arg-next-line-help"></span>`fn arg_next_line_help(&self, arg: &Arg, spec_vals: &str, longest: usize) -> bool` — [`Arg`](../../index.md)
+
+- <span id="helptemplate-spec-vals"></span>`fn spec_vals(&self, a: &Arg) -> String` — [`Arg`](../../index.md)
+
+- <span id="helptemplate-get-spaces"></span>`fn get_spaces(&self, n: usize) -> String`
+
+- <span id="helptemplate-write-padding"></span>`fn write_padding(&mut self, amount: usize)`
+
+- <span id="helptemplate-use-long-pv"></span>`fn use_long_pv(&self, arg: &Arg) -> bool` — [`Arg`](../../index.md)
 
 ## Functions
 

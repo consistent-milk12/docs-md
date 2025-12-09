@@ -62,7 +62,7 @@ assert_eq!(val, 98765);
 
 ## Modules
 
-- [`read`](read/index.md) - A module for reading signed and unsigned integers that have been LEB128
+- [`read`](read/index.md) — A module for reading signed and unsigned integers that have been LEB128
 
 ## Functions
 

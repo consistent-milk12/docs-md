@@ -39,8 +39,8 @@
 
 ## Modules
 
-- [`heap_capacity`](heap_capacity/index.md) - 
-- [`inline_capacity`](inline_capacity/index.md) - 
+- [`heap_capacity`](heap_capacity/index.md)
+- [`inline_capacity`](inline_capacity/index.md)
 
 ## Structs
 

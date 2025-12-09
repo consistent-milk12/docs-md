@@ -250,9 +250,9 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
 
 #### Implementations
 
-- <span id="hashmap-new"></span>`fn new() -> Self`
+- <span id="cratehashmap-raw-entry-mut"></span>`fn raw_entry_mut(&mut self) -> RawEntryBuilderMut<'_, K, V, S, A>` — [`RawEntryBuilderMut`](../raw_entry/index.md)
 
-- <span id="hashmap-with-capacity"></span>`fn with_capacity(capacity: usize) -> Self`
+- <span id="cratehashmap-raw-entry"></span>`fn raw_entry(&self) -> RawEntryBuilder<'_, K, V, S, A>` — [`RawEntryBuilder`](../raw_entry/index.md)
 
 #### Trait Implementations
 
@@ -1095,7 +1095,7 @@ struct VacantEntry<'a, K, V, S, A: Allocator> {
 ```
 
 A view into a vacant entry in a `HashMap`.
-It is part of the [`Entry`](../hash_set/index.md) enum.
+It is part of the [`Entry`](../hash_table/index.md) enum.
 
 # Examples
 
@@ -1316,9 +1316,9 @@ assert_eq!(map.len(), 6);
 
 #### Implementations
 
-- <span id="rawentrybuildermut-from-hash"></span>`fn from_hash<F>(self, hash: u64, is_match: F) -> RawEntryMut<'a, K, V, S, A>` — [`RawEntryMut`](../raw_entry/index.md)
+- <span id="rawentrybuildermut-from-key"></span>`fn from_key<Q>(self, k: &Q) -> RawEntryMut<'a, K, V, S, A>` — [`RawEntryMut`](../raw_entry/index.md)
 
-- <span id="rawentrybuildermut-search"></span>`fn search<F>(self, hash: u64, is_match: F) -> RawEntryMut<'a, K, V, S, A>` — [`RawEntryMut`](../raw_entry/index.md)
+- <span id="rawentrybuildermut-from-key-hashed-nocheck"></span>`fn from_key_hashed_nocheck<Q>(self, hash: u64, k: &Q) -> RawEntryMut<'a, K, V, S, A>` — [`RawEntryMut`](../raw_entry/index.md)
 
 #### Trait Implementations
 
@@ -1655,7 +1655,21 @@ assert_eq!(vec, [("a", 1), ("b", 2), ("c", 3), ("d", 4), ("e", 5), ("f", 6)]);
 
 #### Implementations
 
-- <span id="entry-or-default"></span>`fn or_default(self) -> &'a mut V`
+- <span id="entry-insert"></span>`fn insert(self, value: V) -> OccupiedEntry<'a, K, V, S, A>` — [`OccupiedEntry`](../hash_map/index.md)
+
+- <span id="entry-or-insert"></span>`fn or_insert(self, default: V) -> &'a mut V`
+
+- <span id="entry-or-insert-entry"></span>`fn or_insert_entry(self, default: V) -> OccupiedEntry<'a, K, V, S, A>` — [`OccupiedEntry`](../hash_map/index.md)
+
+- <span id="entry-or-insert-with"></span>`fn or_insert_with<F: FnOnce() -> V>(self, default: F) -> &'a mut V`
+
+- <span id="entry-or-insert-with-key"></span>`fn or_insert_with_key<F: FnOnce(&K) -> V>(self, default: F) -> &'a mut V`
+
+- <span id="entry-key"></span>`fn key(&self) -> &K`
+
+- <span id="entry-and-modify"></span>`fn and_modify<F>(self, f: F) -> Self`
+
+- <span id="entry-and-replace-entry-with"></span>`fn and_replace_entry_with<F>(self, f: F) -> Self`
 
 #### Trait Implementations
 
@@ -1761,17 +1775,9 @@ assert_eq!(map.len(), 6);
 
 #### Implementations
 
-- <span id="entryref-insert"></span>`fn insert(self, value: V) -> OccupiedEntry<'a, K, V, S, A>` — [`OccupiedEntry`](../hash_map/index.md)
+- <span id="entryref-or-default"></span>`fn or_default(self) -> &'a mut V`
 
-- <span id="entryref-or-insert"></span>`fn or_insert(self, default: V) -> &'a mut V`
-
-- <span id="entryref-or-insert-with"></span>`fn or_insert_with<F: FnOnce() -> V>(self, default: F) -> &'a mut V`
-
-- <span id="entryref-or-insert-with-key"></span>`fn or_insert_with_key<F: FnOnce(&Q) -> V>(self, default: F) -> &'a mut V`
-
-- <span id="entryref-key"></span>`fn key(&self) -> &Q`
-
-- <span id="entryref-and-modify"></span>`fn and_modify<F>(self, f: F) -> Self`
+- <span id="entryref-or-default-entry"></span>`fn or_default_entry(self) -> OccupiedEntry<'a, K, V, S, A>` — [`OccupiedEntry`](../hash_map/index.md)
 
 #### Trait Implementations
 
@@ -1790,7 +1796,7 @@ enum RawEntryMut<'a, K, V, S, A: Allocator> {
 
 A view into a single entry in a map, which may either be vacant or occupied.
 
-This is a lower-level version of [`Entry`](../hash_set/index.md).
+This is a lower-level version of [`Entry`](../hash_table/index.md).
 
 This `enum` is constructed through the `raw_entry_mut` method on [`HashMap`](../index.md),
 then calling one of the methods of that [`RawEntryBuilderMut`](../raw_entry/index.md).

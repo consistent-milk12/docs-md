@@ -86,9 +86,7 @@ A structure for serializing Rust values into JSON.
 
 #### Implementations
 
-- <span id="serializer-with-formatter"></span>`fn with_formatter(writer: W, formatter: F) -> Self`
-
-- <span id="serializer-into-inner"></span>`fn into_inner(self) -> W`
+- <span id="serializer-pretty"></span>`fn pretty(writer: W) -> Self`
 
 ### `MapKeySerializer<'a, W: 'a, F: 'a>`
 
@@ -328,7 +326,7 @@ trait Formatter { ... }
 This trait abstracts away serializing the JSON control characters, which allows the user to
 optionally pretty print the JSON output.
 
-#### Required Methods
+#### Provided Methods
 
 - `fn write_null<W>(&mut self, writer: &mut W) -> io::Result<()>`
 
@@ -453,6 +451,11 @@ optionally pretty print the JSON output.
 - `fn write_raw_fragment<W>(&mut self, writer: &mut W, fragment: &str) -> io::Result<()>`
 
   Writes a raw JSON fragment that doesn't need any escaping to the
+
+#### Implementors
+
+- [`CompactFormatter`](#compactformatter)
+- [`PrettyFormatter`](#prettyformatter)
 
 ## Functions
 

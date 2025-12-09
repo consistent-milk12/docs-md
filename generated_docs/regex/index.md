@@ -1331,7 +1331,7 @@ this for literal optimizations.
   - [`SetMatchesIntoIter`](#setmatchesintoiter)
   - [`SetMatchesIter`](#setmatchesiter)
 - [Enums](#enums)
-  - [`unnamed`](#unnamed)
+  - [`Error`](#error)
 - [Traits](#traits)
   - [`Replacer`](#replacer)
 - [Functions](#functions)
@@ -1366,19 +1366,19 @@ this for literal optimizations.
 | [`SetMatches`](#setmatches) | struct | A set of matches returned by a regex set. |
 | [`SetMatchesIntoIter`](#setmatchesintoiter) | struct | An owned iterator over the set of matches from a regex set. |
 | [`SetMatchesIter`](#setmatchesiter) | struct | A borrowed iterator over the set of matches from a regex set. |
-| [`unnamed`](#unnamed) | enum |  |
+| [`Error`](#error) | enum |  |
 | [`Replacer`](#replacer) | trait | A trait for types that can be used to replace matches in a haystack. |
 | [`escape`](#escape) | fn | Escapes all regular expression meta characters in `pattern`. |
 | [`no_expansion`](#no_expansion) | fn | Quickly checks the given replacement string for whether interpolation |
 
 ## Modules
 
-- [`builders`](builders/index.md) - 
-- [`bytes`](bytes/index.md) - Search for regex matches in `&[u8]` haystacks.
-- [`error`](error/index.md) - 
-- [`find_byte`](find_byte/index.md) - 
-- [`regex`](regex/index.md) - 
-- [`regexset`](regexset/index.md) - 
+- [`builders`](builders/index.md)
+- [`bytes`](bytes/index.md) — Search for regex matches in `&[u8]` haystacks.
+- [`error`](error/index.md)
+- [`find_byte`](find_byte/index.md)
+- [`regex`](regex/index.md)
+- [`regexset`](regexset/index.md)
 
 ## Structs
 
@@ -1812,11 +1812,11 @@ assert_eq!("y", &caps["last"]);
 
 - <span id="captures-fmt"></span>`fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<'h, 'n> Index for Captures<'h>`
+##### `impl<'h> Index for Captures<'h>`
 
 - <span id="captures-output"></span>`type Output = str`
 
-- <span id="captures-index"></span>`fn index<'a>(self: &'a Self, name: &'n str) -> &'a str`
+- <span id="captures-index"></span>`fn index<'a>(self: &'a Self, i: usize) -> &'a str`
 
 ### `CaptureLocations`
 
@@ -2690,6 +2690,8 @@ assert_eq!(result, "Bruce Springsteen");
 
   Appends possibly empty data to `dst` to replace the current match.
 
+#### Provided Methods
+
 - `fn no_expansion<'r>(self: &'r mut Self) -> Option<Cow<'r, str>>`
 
   Return a fixed unchanging replacement string.
@@ -2697,6 +2699,17 @@ assert_eq!(result, "Bruce Springsteen");
 - `fn by_ref<'r>(self: &'r mut Self) -> ReplacerRef<'r, Self>`
 
   Returns a type that implements `Replacer`, but that borrows and wraps
+
+#### Implementors
+
+- [`NoExpand`](#noexpand)
+- [`ReplacerRef`](#replacerref)
+- `&'a alloc::borrow::Cow<'a, str>`
+- `&'a alloc::string::String`
+- `&'a str`
+- `F`
+- `alloc::borrow::Cow<'a, str>`
+- `alloc::string::String`
 
 ## Functions
 

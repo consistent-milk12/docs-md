@@ -17,7 +17,7 @@ on the `Action` returned from unpacking a transition.
 
 ## Modules
 
-- [`types`](types/index.md) - Types supporting the UTF-8 parser
+- [`types`](types/index.md) — Types supporting the UTF-8 parser
 
 ## Structs
 

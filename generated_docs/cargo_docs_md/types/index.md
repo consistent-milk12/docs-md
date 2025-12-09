@@ -87,6 +87,8 @@ let generics = renderer.render_generics(&params);
 
 - <span id="typerenderer-new"></span>`const fn new(krate: &'a Crate) -> Self`
 
+- <span id="typerenderer-get-type-id"></span>`const fn get_type_id(&self, ty: &Type) -> Option<Id>`
+
 - <span id="typerenderer-render-type"></span>`fn render_type<'t>(&self, ty: &'t Type) -> Cow<'t, str>`
 
 - <span id="typerenderer-render-generic-args"></span>`fn render_generic_args(self, args: &GenericArgs) -> String`

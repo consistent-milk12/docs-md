@@ -16,7 +16,7 @@ Vector algorithms for the `x86_64` target.
 
 ## Modules
 
-- [`avx2`](avx2/index.md) - Algorithms for the `x86_64` target using 256-bit vectors via AVX2.
-- [`sse2`](sse2/index.md) - Algorithms for the `x86_64` target using 128-bit vectors via SSE2.
-- [`memchr`](memchr/index.md) - Wrapper routines for `memchr` and friends.
+- [`avx2`](avx2/index.md) — Algorithms for the `x86_64` target using 256-bit vectors via AVX2.
+- [`sse2`](sse2/index.md) — Algorithms for the `x86_64` target using 128-bit vectors via SSE2.
+- [`memchr`](memchr/index.md) — Wrapper routines for `memchr` and friends.
 

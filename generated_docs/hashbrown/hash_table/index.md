@@ -132,7 +132,7 @@ where
 ```
 
 A view into an occupied entry in a `HashTable`.
-It is part of the [`Entry`](../hash_set/index.md) enum.
+It is part of the [`Entry`](#entry) enum.
 
 # Examples
 
@@ -217,7 +217,7 @@ where
 ```
 
 A view into a vacant entry in a `HashTable`.
-It is part of the [`Entry`](../hash_set/index.md) enum.
+It is part of the [`Entry`](#entry) enum.
 
 # Examples
 

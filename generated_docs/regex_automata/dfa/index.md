@@ -332,8 +332,8 @@ dramatically.
 
 ## Modules
 
-- [`onepass`](onepass/index.md) - A DFA that can return spans for matching capturing groups.
-- [`remapper`](remapper/index.md) - 
+- [`onepass`](onepass/index.md) — A DFA that can return spans for matching capturing groups.
+- [`remapper`](remapper/index.md)
 
 ## Constants
 

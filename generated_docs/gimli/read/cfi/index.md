@@ -311,7 +311,9 @@ for some discussion on the differences between `.debug_frame` and
 
 #### Implementations
 
-- <span id="ehframe-new"></span>`fn new(section: &'input [u8], endian: Endian) -> Self`
+- <span id="ehframe-set-address-size"></span>`fn set_address_size(&mut self, address_size: u8)`
+
+- <span id="ehframe-set-vendor"></span>`fn set_vendor(&mut self, vendor: Vendor)` — [`Vendor`](../../index.md)
 
 #### Trait Implementations
 
@@ -964,7 +966,33 @@ unreachable!()
 
 #### Implementations
 
-- <span id="unwindcontext-new"></span>`fn new() -> Self`
+- <span id="unwindcontext-new-in"></span>`fn new_in() -> Self`
+
+- <span id="unwindcontext-initialize"></span>`fn initialize<Section, R>(&mut self, section: &Section, bases: &BaseAddresses, cie: &CommonInformationEntry<R>) -> Result<()>` — [`BaseAddresses`](../index.md), [`CommonInformationEntry`](../index.md), [`Result`](../../index.md)
+
+- <span id="unwindcontext-reset"></span>`fn reset(&mut self)`
+
+- <span id="unwindcontext-row"></span>`fn row(&self) -> &UnwindTableRow<T, S>` — [`UnwindTableRow`](../index.md)
+
+- <span id="unwindcontext-row-mut"></span>`fn row_mut(&mut self) -> &mut UnwindTableRow<T, S>` — [`UnwindTableRow`](../index.md)
+
+- <span id="unwindcontext-save-initial-rules"></span>`fn save_initial_rules(&mut self) -> Result<()>` — [`Result`](../../index.md)
+
+- <span id="unwindcontext-start-address"></span>`fn start_address(&self) -> u64`
+
+- <span id="unwindcontext-set-start-address"></span>`fn set_start_address(&mut self, start_address: u64)`
+
+- <span id="unwindcontext-set-register-rule"></span>`fn set_register_rule(&mut self, register: Register, rule: RegisterRule<T>) -> Result<()>` — [`Register`](../../index.md), [`RegisterRule`](../index.md), [`Result`](../../index.md)
+
+- <span id="unwindcontext-get-initial-rule"></span>`fn get_initial_rule(&self, register: Register) -> Option<RegisterRule<T>>` — [`Register`](../../index.md), [`RegisterRule`](../index.md)
+
+- <span id="unwindcontext-set-cfa"></span>`fn set_cfa(&mut self, cfa: CfaRule<T>)` — [`CfaRule`](../index.md)
+
+- <span id="unwindcontext-cfa-mut"></span>`fn cfa_mut(&mut self) -> &mut CfaRule<T>` — [`CfaRule`](../index.md)
+
+- <span id="unwindcontext-push-row"></span>`fn push_row(&mut self) -> Result<()>` — [`Result`](../../index.md)
+
+- <span id="unwindcontext-pop-row"></span>`fn pop_row(&mut self) -> Result<()>` — [`Result`](../../index.md)
 
 #### Trait Implementations
 
@@ -1944,6 +1972,11 @@ An offset into an `UnwindSection`.
 
   Convert an `UnwindOffset<T>` into a `T`.
 
+#### Implementors
+
+- [`DebugFrameOffset`](../../index.md)
+- [`EhFrameOffset`](../../index.md)
+
 ### `UnwindSection<R: Reader>`
 
 ```rust
@@ -1954,9 +1987,11 @@ A section holding unwind information: either `.debug_frame` or
 `.eh_frame`. See [`DebugFrame`](./struct.DebugFrame.html) and
 [`EhFrame`](./struct.EhFrame.html) respectively.
 
-#### Required Methods
+#### Associated Types
 
 - `type Offset: 1`
+
+#### Provided Methods
 
 - `fn entries<'bases>(&self, bases: &'bases BaseAddresses) -> CfiEntriesIter<'bases, Self, R>`
 
@@ -1981,6 +2016,11 @@ A section holding unwind information: either `.debug_frame` or
 - `fn unwind_info_for_address<'ctx, F, S>(&self, bases: &BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, address: u64, get_cie: F) -> Result<&'ctx UnwindTableRow<<R as >::Offset, S>>`
 
   Find the frame unwind information for the given address.
+
+#### Implementors
+
+- [`DebugFrame`](../index.md)
+- [`EhFrame`](../index.md)
 
 ### `UnwindContextStorage<T: ReaderOffset>`
 
@@ -2034,11 +2074,15 @@ unreachable!()
 }
 ```
 
-#### Required Methods
+#### Associated Types
 
 - `type Rules: 1`
 
 - `type Stack: 1`
+
+#### Implementors
+
+- [`StoreOnHeap`](../../index.md)
 
 ## Functions
 

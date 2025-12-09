@@ -93,6 +93,10 @@ The implementor **must** hash like `K`, if it is hashable.
 
   Compare self to `key` and return `true` if they are equal.
 
+#### Implementors
+
+- `Q`
+
 ### `Comparable<K: ?Sized>`
 
 ```rust
@@ -111,4 +115,8 @@ like `BTreeMap` does, so that you can pass `&str` to lookup into a map with
 - `fn compare(&self, key: &K) -> Ordering`
 
   Compare self to `key` and return their ordering.
+
+#### Implementors
+
+- `Q`
 

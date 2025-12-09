@@ -157,7 +157,7 @@ Extension trait allowing futures to be
 instrumented with a `tracing` [`span`](../span/index.md).
 
 
-#### Required Methods
+#### Provided Methods
 
 - `fn instrument(self, span: Span) -> Instrumented<Self>`
 
@@ -166,6 +166,17 @@ instrumented with a `tracing` [`span`](../span/index.md).
 - `fn in_current_span(self) -> Instrumented<Self>`
 
   Instruments this type with the [current] [`Span`](../index.md), returning an
+
+#### Implementors
+
+- [`EnteredSpan`](../span/index.md)
+- [`Entered`](../span/index.md)
+- [`Inner`](../span/index.md)
+- [`Instrumented`](#instrumented)
+- [`PhantomNotSend`](../span/index.md)
+- [`Span`](../index.md)
+- [`WithDispatch`](#withdispatch)
+- `T`
 
 ### `WithSubscriber`
 
@@ -176,7 +187,7 @@ trait WithSubscriber: Sized { ... }
 Extension trait allowing futures to be instrumented with
 a `tracing` [`Subscriber`](crate::Subscriber).
 
-#### Required Methods
+#### Provided Methods
 
 - `fn with_subscriber<S>(self, subscriber: S) -> WithDispatch<Self>`
 
@@ -185,4 +196,15 @@ a `tracing` [`Subscriber`](crate::Subscriber).
 - `fn with_current_subscriber(self) -> WithDispatch<Self>`
 
   Attaches the current [`default`](../../crossbeam_epoch/default/index.md) [`Subscriber`](../../tracing_core/index.md) to this type, returning a
+
+#### Implementors
+
+- [`EnteredSpan`](../span/index.md)
+- [`Entered`](../span/index.md)
+- [`Inner`](../span/index.md)
+- [`Instrumented`](#instrumented)
+- [`PhantomNotSend`](../span/index.md)
+- [`Span`](../index.md)
+- [`WithDispatch`](#withdispatch)
+- `T`
 

@@ -14,8 +14,8 @@
 
 ## Modules
 
-- [`ext`](ext/index.md) - 
-- [`private`](private/index.md) - 
+- [`ext`](ext/index.md)
+- [`private`](private/index.md)
 
 ## Structs
 

@@ -16,7 +16,7 @@
 
 ## Modules
 
-- [`consumer`](consumer/index.md) - 
+- [`consumer`](consumer/index.md)
 
 ## Functions
 

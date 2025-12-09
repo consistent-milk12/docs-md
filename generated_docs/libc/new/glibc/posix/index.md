@@ -16,5 +16,5 @@ Source directory: `posix/`
 
 ## Modules
 
-- [`unistd`](unistd/index.md) - Header: `unistd.h`
+- [`unistd`](unistd/index.md) — Header: `unistd.h`
 

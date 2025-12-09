@@ -61,6 +61,10 @@ trait U8 { ... }
 
 - `fn as_usize(self) -> usize`
 
+#### Implementors
+
+- `u8`
+
 ### `U16`
 
 ```rust
@@ -74,6 +78,10 @@ trait U16 { ... }
 - `fn low_u8(self) -> u8`
 
 - `fn high_u8(self) -> u8`
+
+#### Implementors
+
+- `u16`
 
 ### `U32`
 
@@ -90,6 +98,10 @@ trait U32 { ... }
 - `fn low_u16(self) -> u16`
 
 - `fn high_u16(self) -> u16`
+
+#### Implementors
+
+- `u32`
 
 ### `U64`
 
@@ -109,6 +121,10 @@ trait U64 { ... }
 
 - `fn high_u32(self) -> u32`
 
+#### Implementors
+
+- `u64`
+
 ### `I8`
 
 ```rust
@@ -122,6 +138,10 @@ trait I8 { ... }
 - `fn to_bits(self) -> u8`
 
 - `fn from_bits(n: u8) -> i8`
+
+#### Implementors
+
+- `i8`
 
 ### `I32`
 
@@ -137,6 +157,10 @@ trait I32 { ... }
 
 - `fn from_bits(n: u32) -> i32`
 
+#### Implementors
+
+- `i32`
+
 ### `I64`
 
 ```rust
@@ -150,6 +174,10 @@ trait I64 { ... }
 - `fn to_bits(self) -> u64`
 
 - `fn from_bits(n: u64) -> i64`
+
+#### Implementors
+
+- `i64`
 
 ### `Usize`
 
@@ -167,6 +195,10 @@ trait Usize { ... }
 
 - `fn as_u64(self) -> u64`
 
+#### Implementors
+
+- `usize`
+
 ### `Pointer`
 
 ```rust
@@ -176,4 +208,8 @@ trait Pointer { ... }
 #### Required Methods
 
 - `fn as_usize(self) -> usize`
+
+#### Implementors
+
+- `*const T`
 

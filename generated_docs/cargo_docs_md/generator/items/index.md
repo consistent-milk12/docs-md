@@ -69,7 +69,9 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 - <span id="itemrenderer-render-enum"></span>`fn render_enum(&self, md: &mut String, item_id: Id, item: &Item)`
 
-- <span id="itemrenderer-render-trait"></span>`fn render_trait(&self, md: &mut String, item: &Item)`
+- <span id="itemrenderer-render-trait"></span>`fn render_trait(&self, md: &mut String, item_id: Id, item: &Item)`
+
+- <span id="itemrenderer-render-trait-implementors"></span>`fn render_trait_implementors(&self, md: &mut String, trait_id: Id)`
 
 - <span id="itemrenderer-render-function"></span>`fn render_function(&self, md: &mut String, item: &Item)`
 

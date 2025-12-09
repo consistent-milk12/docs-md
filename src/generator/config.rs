@@ -5,6 +5,10 @@
 
 /// Configuration options for markdown rendering.
 #[derive(Debug, Clone)]
+#[expect(
+    clippy::struct_excessive_bools,
+    reason = "TODO: Consider cache line efficiency later"
+)]
 pub struct RenderConfig {
     /// Generate table of contents for modules with more than this many items.
     pub toc_threshold: usize,
@@ -28,7 +32,11 @@ pub struct RenderConfig {
 /// Configuration for source code integration.
 ///
 /// Requires the `source-parsing` feature to have any effect.
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Default)]
+#[expect(
+    clippy::struct_excessive_bools,
+    reason = "TODO: Consider cache line efficiency later"
+)]
 pub struct SourceConfig {
     /// Include function bodies in collapsible sections.
     pub function_bodies: bool,
@@ -39,7 +47,7 @@ pub struct SourceConfig {
     /// Include private items in a separate section.
     pub private_items: bool,
 
-    /// Add file:line references to items.
+    /// Add <file:line> references to items.
     pub source_locations: bool,
 }
 
@@ -52,17 +60,6 @@ impl Default for RenderConfig {
             hide_trivial_derives: false,
             method_anchors: true,
             include_source: SourceConfig::default(),
-        }
-    }
-}
-
-impl Default for SourceConfig {
-    fn default() -> Self {
-        Self {
-            function_bodies: false,
-            const_values: false,
-            private_items: false,
-            source_locations: false,
         }
     }
 }

@@ -149,12 +149,12 @@ fn main() -> Result<(), Box<dyn Error>> {
 
 ## Modules
 
-- [`file`](file/index.md) - 
-- [`section`](section/index.md) - 
-- [`symbol`](symbol/index.md) - 
-- [`relocation`](relocation/index.md) - 
-- [`comdat`](comdat/index.md) - 
-- [`import`](import/index.md) - Support for reading short import files.
+- [`file`](file/index.md)
+- [`section`](section/index.md)
+- [`symbol`](symbol/index.md)
+- [`relocation`](relocation/index.md)
+- [`comdat`](comdat/index.md)
+- [`import`](import/index.md) — Support for reading short import files.
 
 ## Structs
 
@@ -292,21 +292,13 @@ Returned by `CoffHeader::sections` and
 
 #### Implementations
 
-- <span id="sectiontable-parse"></span>`fn parse<Coff: CoffHeader, R: ReadRef<'data>>(header: &Coff, data: R, offset: u64) -> Result<Self>` — [`Result`](../../index.md)
+- <span id="supersectiontable-pe-file-range-at"></span>`fn pe_file_range_at(&self, va: u32) -> Option<(u32, u32)>`
 
-- <span id="sectiontable-iter"></span>`fn iter(&self) -> slice::Iter<'data, pe::ImageSectionHeader>` — [`ImageSectionHeader`](../../pe/index.md)
+- <span id="supersectiontable-pe-data-at"></span>`fn pe_data_at<R: ReadRef<'data>>(&self, data: R, va: u32) -> Option<&'data [u8]>`
 
-- <span id="sectiontable-enumerate"></span>`fn enumerate(&self) -> impl Iterator<Item = (SectionIndex, &'data pe::ImageSectionHeader)>` — [`SectionIndex`](../../index.md), [`ImageSectionHeader`](../../pe/index.md)
+- <span id="supersectiontable-pe-data-containing"></span>`fn pe_data_containing<R: ReadRef<'data>>(&self, data: R, va: u32) -> Option<(&'data [u8], u32)>`
 
-- <span id="sectiontable-is-empty"></span>`fn is_empty(&self) -> bool`
-
-- <span id="sectiontable-len"></span>`fn len(&self) -> usize`
-
-- <span id="sectiontable-section"></span>`fn section(&self, index: SectionIndex) -> read::Result<&'data pe::ImageSectionHeader>` — [`SectionIndex`](../../index.md), [`Result`](../../index.md), [`ImageSectionHeader`](../../pe/index.md)
-
-- <span id="sectiontable-section-by-name"></span>`fn section_by_name<R: ReadRef<'data>>(&self, strings: StringTable<'data, R>, name: &[u8]) -> Option<(SectionIndex, &'data pe::ImageSectionHeader)>` — [`StringTable`](../index.md), [`SectionIndex`](../../index.md), [`ImageSectionHeader`](../../pe/index.md)
-
-- <span id="sectiontable-max-section-file-offset"></span>`fn max_section_file_offset(&self) -> u64`
+- <span id="supersectiontable-section-containing"></span>`fn section_containing(&self, va: u32) -> Option<&'data ImageSectionHeader>` — [`ImageSectionHeader`](../../pe/index.md)
 
 #### Trait Implementations
 
@@ -1062,11 +1054,13 @@ trait CoffHeader: Debug + Pod { ... }
 
 A trait for generic access to [`pe::ImageFileHeader`](../../pe/index.md) and [`pe::AnonObjectHeaderBigobj`](../../pe/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type ImageSymbol: 1`
 
 - `type ImageSymbolBytes: 2`
+
+#### Required Methods
 
 - `fn is_type_bigobj() -> bool`
 
@@ -1086,6 +1080,8 @@ A trait for generic access to [`pe::ImageFileHeader`](../../pe/index.md) and [`p
 
   Read the file header.
 
+#### Provided Methods
+
 - `fn sections<'data, R: ReadRef<'data>>(&self, data: R, offset: u64) -> read::Result<SectionTable<'data>>`
 
   Read the section table.
@@ -1093,6 +1089,11 @@ A trait for generic access to [`pe::ImageFileHeader`](../../pe/index.md) and [`p
 - `fn symbols<'data, R: ReadRef<'data>>(&self, data: R) -> read::Result<SymbolTable<'data, R, Self>>`
 
   Read the symbol table and string table.
+
+#### Implementors
+
+- [`AnonObjectHeaderBigobj`](../../pe/index.md)
+- [`ImageFileHeader`](../../pe/index.md)
 
 ### `ImageSymbol`
 
@@ -1115,6 +1116,8 @@ A trait for generic access to [`pe::ImageSymbol`](../../pe/index.md) and [`pe::I
 - `fn storage_class(&self) -> u8`
 
 - `fn number_of_aux_symbols(&self) -> u8`
+
+#### Provided Methods
 
 - `fn name<'data, R: ReadRef<'data>>(self: &'data Self, strings: StringTable<'data, R>) -> Result<&'data [u8]>`
 
@@ -1151,6 +1154,11 @@ A trait for generic access to [`pe::ImageSymbol`](../../pe/index.md) and [`pe::I
 - `fn base_type(&self) -> u16`
 
 - `fn derived_type(&self) -> u16`
+
+#### Implementors
+
+- [`ImageSymbolEx`](../../pe/index.md)
+- [`ImageSymbol`](../../pe/index.md)
 
 ## Functions
 

@@ -15,6 +15,9 @@ to a specific rendering context, avoiding code duplication between the two modes
 
 ## Contents
 
+- [Structs](#structs)
+  - [`CategorizedTraitItems`](#categorizedtraititems)
+  - [`TraitRenderer`](#traitrenderer)
 - [Traits](#traits)
   - [`DocsProcessor`](#docsprocessor)
 - [Functions](#functions)
@@ -25,8 +28,6 @@ to a specific rendering context, avoiding code duplication between the two modes
   - [`render_enum_definition`](#render_enum_definition)
   - [`render_enum_variant`](#render_enum_variant)
   - [`render_enum_variants_docs`](#render_enum_variants_docs)
-  - [`render_trait_definition`](#render_trait_definition)
-  - [`render_trait_item`](#render_trait_item)
   - [`render_function_definition`](#render_function_definition)
   - [`render_constant_definition`](#render_constant_definition)
   - [`render_type_alias_definition`](#render_type_alias_definition)
@@ -35,12 +36,16 @@ to a specific rendering context, avoiding code duplication between the two modes
   - [`render_function_type_links_inline`](#render_function_type_links_inline)
   - [`render_impl_function`](#render_impl_function)
   - [`append_docs`](#append_docs)
+  - [`render_collapsible_start`](#render_collapsible_start)
+  - [`render_collapsible_end`](#render_collapsible_end)
   - [`impl_sort_key`](#impl_sort_key)
 
 ## Quick Reference
 
 | Item | Kind | Description |
 |------|------|-------------|
+| [`CategorizedTraitItems`](#categorizedtraititems) | struct | Categorized trait items for structured rendering. |
+| [`TraitRenderer`](#traitrenderer) | struct | Unit struct to ornagize trait related functions. |
 | [`DocsProcessor`](#docsprocessor) | trait | Check if a render context can resolve documentation. |
 | [`sanitize_path`](#sanitize_path) | fn | Sanitize trait paths by removing macro artifacts. |
 | [`sanitize_self_param`](#sanitize_self_param) | fn | Sanitize self parameter in function signatures. |
@@ -49,8 +54,6 @@ to a specific rendering context, avoiding code duplication between the two modes
 | [`render_enum_definition`](#render_enum_definition) | fn | Render an enum definition code block to markdown. |
 | [`render_enum_variant`](#render_enum_variant) | fn | Render a single enum variant within the definition code block. |
 | [`render_enum_variants_docs`](#render_enum_variants_docs) | fn | Render documented enum variants to markdown. |
-| [`render_trait_definition`](#render_trait_definition) | fn | Render a trait definition code block to markdown. |
-| [`render_trait_item`](#render_trait_item) | fn | Render a single trait item (method, associated type, or constant). |
 | [`render_function_definition`](#render_function_definition) | fn | Render a function definition to markdown. |
 | [`render_constant_definition`](#render_constant_definition) | fn | Render a constant definition to markdown. |
 | [`render_type_alias_definition`](#render_type_alias_definition) | fn | Render a type alias definition to markdown. |
@@ -59,7 +62,112 @@ to a specific rendering context, avoiding code duplication between the two modes
 | [`render_function_type_links_inline`](#render_function_type_links_inline) | fn | Render type links for a function signature inline (for impl methods). |
 | [`render_impl_function`](#render_impl_function) | fn | Render a function signature within an impl block. |
 | [`append_docs`](#append_docs) | fn | Append processed documentation to markdown. |
+| [`render_collapsible_start`](#render_collapsible_start) | fn | Render the opening of a collapsible `<details>` block with a summary. |
+| [`render_collapsible_end`](#render_collapsible_end) | fn | Render the closing of a collapsible `<details>` block. |
 | [`impl_sort_key`](#impl_sort_key) | fn | Generate a sort key for an impl block for deterministic ordering. |
+
+## Structs
+
+### `CategorizedTraitItems<'a>`
+
+```rust
+struct CategorizedTraitItems<'a> {
+    pub required_methods: Vec<&'a rustdoc_types::Item>,
+    pub provided_methods: Vec<&'a rustdoc_types::Item>,
+    pub associated_types: Vec<&'a rustdoc_types::Item>,
+    pub associated_consts: Vec<&'a rustdoc_types::Item>,
+}
+```
+
+Categorized trait items for structured rendering.
+
+#### Fields
+
+- **`required_methods`**: `Vec<&'a rustdoc_types::Item>`
+
+  Required methods (no default body)
+
+- **`provided_methods`**: `Vec<&'a rustdoc_types::Item>`
+
+  Provided methods (have default body)
+
+- **`associated_types`**: `Vec<&'a rustdoc_types::Item>`
+
+  Associated types
+
+- **`associated_consts`**: `Vec<&'a rustdoc_types::Item>`
+
+  Associated constants
+
+#### Implementations
+
+- <span id="categorizedtraititems-categorize-trait-items"></span>`fn categorize_trait_items(trait_items: &[Id], krate: &'a Crate) -> Self`
+
+#### Trait Implementations
+
+##### `impl<'a> Default for CategorizedTraitItems<'a>`
+
+- <span id="categorizedtraititems-default"></span>`fn default() -> CategorizedTraitItems<'a>` — [`CategorizedTraitItems`](#categorizedtraititems)
+
+##### `impl<T> Instrument for CategorizedTraitItems<'a>`
+
+##### `impl<T> IntoEither for CategorizedTraitItems<'a>`
+
+##### `impl<D> OwoColorize for CategorizedTraitItems<'a>`
+
+##### `impl<T> Pointable for CategorizedTraitItems<'a>`
+
+- <span id="categorizedtraititems-align"></span>`const ALIGN: usize`
+
+- <span id="categorizedtraititems-init"></span>`type Init = T`
+
+- <span id="categorizedtraititems-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- <span id="categorizedtraititems-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- <span id="categorizedtraititems-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- <span id="categorizedtraititems-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for CategorizedTraitItems<'a>`
+
+### `TraitRenderer`
+
+```rust
+struct TraitRenderer;
+```
+
+Unit struct to ornagize trait related functions.
+
+#### Implementations
+
+- <span id="traitrenderer-render-trait-definition"></span>`fn render_trait_definition(md: &mut String, name: &str, t: &rustdoc_types::Trait, type_renderer: &TypeRenderer<'_>)` — [`TypeRenderer`](../../types/index.md)
+
+- <span id="traitrenderer-render-trait-item"></span>`fn render_trait_item<F>(md: &mut String, item: &Item, type_renderer: &TypeRenderer<'_>, process_docs: F)` — [`TypeRenderer`](../../types/index.md)
+
+#### Trait Implementations
+
+##### `impl<T> Instrument for TraitRenderer`
+
+##### `impl<T> IntoEither for TraitRenderer`
+
+##### `impl<D> OwoColorize for TraitRenderer`
+
+##### `impl<T> Pointable for TraitRenderer`
+
+- <span id="traitrenderer-align"></span>`const ALIGN: usize`
+
+- <span id="traitrenderer-init"></span>`type Init = T`
+
+- <span id="traitrenderer-init"></span>`unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- <span id="traitrenderer-deref"></span>`unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- <span id="traitrenderer-deref-mut"></span>`unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- <span id="traitrenderer-drop"></span>`unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for TraitRenderer`
 
 ## Traits
 
@@ -78,6 +186,10 @@ This trait provides a unified way to process docs from different contexts.
 - `fn process_item_docs(&self, item: &Item) -> Option<String>`
 
   Process documentation for an item, resolving intra-doc links.
+
+#### Implementors
+
+- `(&T, &str)`
 
 ## Functions
 
@@ -218,44 +330,6 @@ Produces a "Variants" section with each documented variant as a bullet point.
 * `krate` - Crate containing variant definitions
 * `process_docs` - Closure to process documentation with intra-doc link resolution
 
-### `render_trait_definition`
-
-```rust
-fn render_trait_definition(md: &mut String, name: &str, t: &rustdoc_types::Trait, type_renderer: &crate::types::TypeRenderer<'_>)
-```
-
-Render a trait definition code block to markdown.
-
-Produces a heading with the trait name and generics, followed by a Rust
-code block showing the trait signature with supertraits.
-
-# Arguments
-
-* `md` - Output markdown string
-* `name` - The trait name
-* `t` - The trait data from rustdoc
-* `type_renderer` - Type renderer for generics and bounds
-
-### `render_trait_item`
-
-```rust
-fn render_trait_item<F>(md: &mut String, item: &rustdoc_types::Item, type_renderer: &crate::types::TypeRenderer<'_>, process_docs: F)
-where
-    F: Fn(&rustdoc_types::Item) -> Option<String>
-```
-
-Render a single trait item (method, associated type, or constant).
-
-Each item is rendered as a bullet point with its signature in backticks.
-For methods, the first line of documentation is included.
-
-# Arguments
-
-* `md` - Output markdown string
-* `item` - The trait item (function, assoc type, or assoc const)
-* `type_renderer` - Type renderer for types
-* `process_docs` - Closure to process documentation with intra-doc link resolution
-
 ### `render_function_definition`
 
 ```rust
@@ -384,6 +458,49 @@ fn append_docs(md: &mut String, docs: Option<String>)
 Append processed documentation to markdown.
 
 Helper function to add documentation with consistent formatting.
+
+### `render_collapsible_start`
+
+```rust
+fn render_collapsible_start(summary: &str) -> String
+```
+
+Render the opening of a collapsible `<details>` block with a summary.
+
+Produces HTML that creates a collapsible section in markdown. Use with
+[`render_collapsible_end`](#render-collapsible-end) to close the block.
+
+# Arguments
+
+* `summary` - The text to display in the summary line (clickable header)
+
+# Example
+
+```rust
+use cargo_docs_md::generator::render_shared::render_collapsible_start;
+
+let start = render_collapsible_start("Derived Traits (9 implementations)");
+assert!(start.contains("<details>"));
+assert!(start.contains("<summary>Derived Traits (9 implementations)</summary>"));
+```
+
+### `render_collapsible_end`
+
+```rust
+const fn render_collapsible_end() -> &'static str
+```
+
+Render the closing of a collapsible `<details>` block.
+
+Returns a static string to close a block opened with [`render_collapsible_start`](#render-collapsible-start).
+
+# Example
+
+```rust
+use cargo_docs_md::generator::render_shared::render_collapsible_end;
+
+assert_eq!(render_collapsible_end(), "\n</details>\n\n");
+```
 
 ### `impl_sort_key`
 

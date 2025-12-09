@@ -24,6 +24,6 @@ an unused warning on untested platforms (rather than exposing incorrect API).
 
 ## Modules
 
-- [`linux_like`](linux_like/index.md) - API that primarily comes from Linux but is also used other platforms (e.g. Android).
-- [`posix`](posix/index.md) - POSIX APIs that are used by a number of platforms
+- [`linux_like`](linux_like/index.md) — API that primarily comes from Linux but is also used other platforms (e.g. Android).
+- [`posix`](posix/index.md) — POSIX APIs that are used by a number of platforms
 

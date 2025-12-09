@@ -167,7 +167,7 @@ working with to make it easier to manipulate.
 
 ##### `impl<'s, T> PartialEq for SliceVec<'s, T>`
 
-- <span id="slicevec-eq"></span>`fn eq(&self, other: &Self) -> bool`
+- <span id="slicevec-eq"></span>`fn eq(&self, other: &&[T]) -> bool`
 
 ##### `impl<'s, T> PartialOrd for SliceVec<'s, T>`
 

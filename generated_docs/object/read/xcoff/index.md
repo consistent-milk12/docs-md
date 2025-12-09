@@ -166,12 +166,12 @@ fn main() -> Result<(), Box<dyn Error>> {
 
 ## Modules
 
-- [`file`](file/index.md) - 
-- [`section`](section/index.md) - 
-- [`symbol`](symbol/index.md) - 
-- [`relocation`](relocation/index.md) - 
-- [`comdat`](comdat/index.md) - XCOFF doesn't support the COMDAT section.
-- [`segment`](segment/index.md) - TODO: Support the segment for XCOFF when auxiliary file header and loader section is ready.
+- [`file`](file/index.md)
+- [`section`](section/index.md)
+- [`symbol`](symbol/index.md)
+- [`relocation`](relocation/index.md)
+- [`comdat`](comdat/index.md) — XCOFF doesn't support the COMDAT section.
+- [`segment`](segment/index.md) — TODO: Support the segment for XCOFF when auxiliary file header and loader section is ready.
 
 ## Structs
 
@@ -891,7 +891,7 @@ trait FileHeader: Debug + Pod { ... }
 
 A trait for generic access to [`xcoff::FileHeader32`](../../xcoff/index.md) and [`xcoff::FileHeader64`](../../xcoff/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
 
@@ -906,6 +906,8 @@ A trait for generic access to [`xcoff::FileHeader32`](../../xcoff/index.md) and 
 - `type CsectAux: 1`
 
 - `type Rel: 1`
+
+#### Required Methods
 
 - `fn is_type_64(&self) -> bool`
 
@@ -925,6 +927,8 @@ A trait for generic access to [`xcoff::FileHeader32`](../../xcoff/index.md) and 
 
 - `fn f_flags(&self) -> u16`
 
+#### Provided Methods
+
 - `fn parse<'data, R: ReadRef<'data>>(data: R, offset: &mut u64) -> Result<&'data Self>`
 
   Read the file header.
@@ -943,6 +947,11 @@ A trait for generic access to [`xcoff::FileHeader32`](../../xcoff/index.md) and 
 
   Return the symbol table.
 
+#### Implementors
+
+- [`FileHeader32`](../../xcoff/index.md)
+- [`FileHeader64`](../../xcoff/index.md)
+
 ### `AuxHeader`
 
 ```rust
@@ -951,9 +960,11 @@ trait AuxHeader: Debug + Pod { ... }
 
 A trait for generic access to [`xcoff::AuxHeader32`](../../xcoff/index.md) and [`xcoff::AuxHeader64`](../../xcoff/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
+
+#### Required Methods
 
 - `fn o_mflag(&self) -> u16`
 
@@ -1015,6 +1026,11 @@ A trait for generic access to [`xcoff::AuxHeader32`](../../xcoff/index.md) and [
 
 - `fn o_x64flags(&self) -> Option<u16>`
 
+#### Implementors
+
+- [`AuxHeader32`](../../xcoff/index.md)
+- [`AuxHeader64`](../../xcoff/index.md)
+
 ### `SectionHeader`
 
 ```rust
@@ -1023,7 +1039,7 @@ trait SectionHeader: Debug + Pod { ... }
 
 A trait for generic access to [`xcoff::SectionHeader32`](../../xcoff/index.md) and [`xcoff::SectionHeader64`](../../xcoff/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
 
@@ -1032,6 +1048,8 @@ A trait for generic access to [`xcoff::SectionHeader32`](../../xcoff/index.md) a
 - `type Xcoff: 1`
 
 - `type Rel: 1`
+
+#### Required Methods
 
 - `fn s_name(&self) -> &[u8; 8]`
 
@@ -1053,6 +1071,12 @@ A trait for generic access to [`xcoff::SectionHeader32`](../../xcoff/index.md) a
 
 - `fn s_flags(&self) -> u32`
 
+- `fn relocations<'data, R: ReadRef<'data>>(&self, data: R) -> read::Result<&'data [<Self as >::Rel]>`
+
+  Read the relocations.
+
+#### Provided Methods
+
 - `fn name(&self) -> &[u8]`
 
   Return the section name.
@@ -1065,9 +1089,10 @@ A trait for generic access to [`xcoff::SectionHeader32`](../../xcoff/index.md) a
 
   Return the section data.
 
-- `fn relocations<'data, R: ReadRef<'data>>(&self, data: R) -> read::Result<&'data [<Self as >::Rel]>`
+#### Implementors
 
-  Read the relocations.
+- [`SectionHeader32`](../../xcoff/index.md)
+- [`SectionHeader64`](../../xcoff/index.md)
 
 ### `Symbol`
 
@@ -1077,9 +1102,11 @@ trait Symbol: Debug + Pod { ... }
 
 A trait for generic access to [`xcoff::Symbol32`](../../xcoff/index.md) and [`xcoff::Symbol64`](../../xcoff/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
+
+#### Required Methods
 
 - `fn n_value(&self) -> <Self as >::Word`
 
@@ -1094,6 +1121,8 @@ A trait for generic access to [`xcoff::Symbol32`](../../xcoff/index.md) and [`xc
 - `fn name_offset(&self) -> Option<u32>`
 
 - `fn name<'data, R: ReadRef<'data>>(self: &'data Self, strings: StringTable<'data, R>) -> Result<&'data [u8]>`
+
+#### Provided Methods
 
 - `fn section(&self) -> Option<SectionIndex>`
 
@@ -1115,6 +1144,11 @@ A trait for generic access to [`xcoff::Symbol32`](../../xcoff/index.md) and [`xc
 
   Return true if the symbol has csect auxiliary entry.
 
+#### Implementors
+
+- [`Symbol32`](../../xcoff/index.md)
+- [`Symbol64`](../../xcoff/index.md)
+
 ### `FileAux`
 
 ```rust
@@ -1131,11 +1165,18 @@ A trait for generic access to [`xcoff::FileAux32`](../../xcoff/index.md) and [`x
 
 - `fn x_auxtype(&self) -> Option<u8>`
 
+#### Provided Methods
+
 - `fn name_offset(&self) -> Option<u32>`
 
 - `fn fname<'data, R: ReadRef<'data>>(self: &'data Self, strings: StringTable<'data, R>) -> Result<&'data [u8]>`
 
   Parse the x_fname field, which may be an inline string or a string table offset.
+
+#### Implementors
+
+- [`FileAux32`](../../xcoff/index.md)
+- [`FileAux64`](../../xcoff/index.md)
 
 ### `CsectAux`
 
@@ -1163,9 +1204,16 @@ A trait for generic access to [`xcoff::CsectAux32`](../../xcoff/index.md) and [`
 
 - `fn x_auxtype(&self) -> Option<u8>`
 
+#### Provided Methods
+
 - `fn alignment(&self) -> u8`
 
 - `fn sym_type(&self) -> u8`
+
+#### Implementors
+
+- [`CsectAux32`](../../xcoff/index.md)
+- [`CsectAux64`](../../xcoff/index.md)
 
 ### `Rel`
 
@@ -1175,9 +1223,11 @@ trait Rel: Debug + Pod { ... }
 
 A trait for generic access to [`xcoff::Rel32`](../../xcoff/index.md) and [`xcoff::Rel64`](../../xcoff/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
+
+#### Required Methods
 
 - `fn r_vaddr(&self) -> <Self as >::Word`
 
@@ -1187,7 +1237,14 @@ A trait for generic access to [`xcoff::Rel32`](../../xcoff/index.md) and [`xcoff
 
 - `fn r_rtype(&self) -> u8`
 
+#### Provided Methods
+
 - `fn symbol(&self) -> SymbolIndex`
+
+#### Implementors
+
+- [`Rel32`](../../xcoff/index.md)
+- [`Rel64`](../../xcoff/index.md)
 
 ## Type Aliases
 

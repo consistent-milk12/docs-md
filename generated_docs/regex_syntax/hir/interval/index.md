@@ -127,9 +127,11 @@ An iterator over intervals.
 trait Interval: Clone + Copy + Debug + Default + Eq + PartialEq + PartialOrd + Ord { ... }
 ```
 
-#### Required Methods
+#### Associated Types
 
 - `type Bound: 1`
+
+#### Required Methods
 
 - `fn lower(&self) -> <Self as >::Bound`
 
@@ -140,6 +142,8 @@ trait Interval: Clone + Copy + Debug + Default + Eq + PartialEq + PartialOrd + O
 - `fn set_upper(&mut self, bound: <Self as >::Bound)`
 
 - `fn case_fold_simple(&self, intervals: &mut Vec<Self>) -> Result<(), unicode::CaseFoldError>`
+
+#### Provided Methods
 
 - `fn create(lower: <Self as >::Bound, upper: <Self as >::Bound) -> Self`
 
@@ -169,6 +173,11 @@ trait Interval: Clone + Copy + Debug + Default + Eq + PartialEq + PartialOrd + O
 
   Returns true if and only if this range is a subset of the other range.
 
+#### Implementors
+
+- [`ClassBytesRange`](../index.md)
+- [`ClassUnicodeRange`](../index.md)
+
 ### `Bound`
 
 ```rust
@@ -186,4 +195,9 @@ trait Bound: Copy + Clone + Debug + Eq + PartialEq + PartialOrd + Ord { ... }
 - `fn increment(self) -> Self`
 
 - `fn decrement(self) -> Self`
+
+#### Implementors
+
+- `char`
+- `u8`
 

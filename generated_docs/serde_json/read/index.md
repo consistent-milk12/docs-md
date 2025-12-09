@@ -59,7 +59,7 @@
 
 ## Modules
 
-- [`private`](private/index.md) - 
+- [`private`](private/index.md)
 
 ## Structs
 
@@ -200,6 +200,13 @@ stable we can use actual specialization.
 This trait is sealed and cannot be implemented for types outside of
 `serde_json`.
 
+#### Implementors
+
+- [`IoRead`](#ioread)
+- [`SliceRead`](#sliceread)
+- [`StrRead`](#strread)
+- `&mut R`
+
 ### `Fused`
 
 ```rust
@@ -207,6 +214,11 @@ trait Fused: private::Sealed { ... }
 ```
 
 Marker for whether StreamDeserializer can implement FusedIterator.
+
+#### Implementors
+
+- [`SliceRead`](#sliceread)
+- [`StrRead`](#strread)
 
 ## Functions
 

@@ -42,6 +42,7 @@ mod capture;
 mod context;
 pub mod doc_links;
 mod flat;
+pub mod impl_category;
 pub mod impls;
 mod items;
 pub mod module;
@@ -53,8 +54,6 @@ pub mod toc;
 pub use breadcrumbs::BreadcrumbGenerator;
 pub use capture::MarkdownCapture;
 pub mod config;
-pub use quick_ref::{QuickRefEntry, QuickRefGenerator, extract_summary};
-pub use toc::{TocEntry, TocGenerator};
 pub use config::{RenderConfig, SourceConfig};
 pub use context::{GeneratorContext, ItemAccess, ItemFilter, LinkResolver, RenderContext};
 pub use doc_links::{
@@ -63,10 +62,13 @@ pub use doc_links::{
 };
 use flat::FlatGenerator;
 use fs_err as fs;
+pub use impl_category::ImplCategory;
 use indicatif::{ProgressBar, ProgressStyle};
 pub use module::ModuleRenderer;
 use nested::NestedGenerator;
+pub use quick_ref::{QuickRefEntry, QuickRefGenerator, extract_summary};
 use rustdoc_types::{Crate, Item, ItemEnum};
+pub use toc::{TocEntry, TocGenerator};
 use tracing::{debug, info, instrument};
 
 use crate::error::Error;
@@ -233,6 +235,64 @@ impl<'a> Generator<'a> {
             .ok_or_else(|| Error::ItemNotFound(krate.root.0.to_string()))?;
 
         let ctx = GeneratorContext::new(krate, &args, RenderConfig::default());
+        let mut capture = MarkdownCapture::new();
+
+        match format {
+            CliOutputFormat::Flat => {
+                Self::generate_flat_to_capture(&ctx, root_item, &mut capture)?;
+            },
+            CliOutputFormat::Nested => {
+                Self::generate_nested_to_capture(&ctx, root_item, "", &mut capture)?;
+            },
+        }
+
+        Ok(capture)
+    }
+
+    /// Generate markdown to an in-memory capture with custom configuration.
+    ///
+    /// This variant allows specifying a custom [`RenderConfig`] for testing
+    /// different rendering options like `hide_trivial_derives`.
+    ///
+    /// # Arguments
+    ///
+    /// * `krate` - The parsed rustdoc JSON crate
+    /// * `format` - Output format (Flat or Nested)
+    /// * `include_private` - Whether to include private items
+    /// * `config` - Custom rendering configuration
+    ///
+    /// # Returns
+    ///
+    /// A `MarkdownCapture` containing all generated markdown files.
+    ///
+    /// # Errors
+    ///
+    /// Returns an error if the root item cannot be found in the crate index.
+    pub fn generate_to_capture_with_config(
+        krate: &Crate,
+        format: CliOutputFormat,
+        include_private: bool,
+        config: RenderConfig,
+    ) -> Result<MarkdownCapture, Error> {
+        // Create a mock Args for the context
+        let args = Args {
+            path: None,
+            dir: None,
+            mdbook: false,
+            search_index: false,
+            primary_crate: None,
+            output: std::path::PathBuf::new(),
+            format,
+            exclude_private: !include_private,
+            include_blanket_impls: false,
+        };
+
+        let root_item = krate
+            .index
+            .get(&krate.root)
+            .ok_or_else(|| Error::ItemNotFound(krate.root.0.to_string()))?;
+
+        let ctx = GeneratorContext::new(krate, &args, config);
         let mut capture = MarkdownCapture::new();
 
         match format {

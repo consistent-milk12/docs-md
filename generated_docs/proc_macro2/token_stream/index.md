@@ -10,7 +10,7 @@ Public implementation details for the `TokenStream` type, such as iterators.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`unnamed`](#unnamed) | struct |  |
+| [`TokenStream`](#tokenstream) | struct |  |
 | [`IntoIter`](#intoiter) | struct | An iterator over `TokenStream`'s `TokenTree`s. |
 
 ## Structs

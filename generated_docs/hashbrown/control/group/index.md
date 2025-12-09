@@ -12,5 +12,5 @@
 
 ## Modules
 
-- [`sse2`](sse2/index.md) - 
+- [`sse2`](sse2/index.md)
 

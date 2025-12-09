@@ -66,7 +66,7 @@ instructions.
 
 ## Modules
 
-- [`private`](private/index.md) - Seal our various traits using the technique documented [here].
+- [`private`](private/index.md) — Seal our various traits using the technique documented [here].
 
 ## Structs
 
@@ -266,6 +266,11 @@ trait ToAsm: private::Sealed { ... }
 
   Convert `self` to a `usize` ready to be passed to a syscall
 
+#### Implementors
+
+- [`ArgReg`](#argreg)
+- [`SyscallNumber`](#syscallnumber)
+
 ### `FromAsm`
 
 ```rust
@@ -278,17 +283,34 @@ trait FromAsm: private::Sealed { ... }
 
   Convert `raw` from a value produced by a syscall machine instruction
 
+#### Implementors
+
+- [`RetReg`](#retreg)
+
 ### `ArgNumber`
 
 ```rust
 trait ArgNumber: private::Sealed { ... }
 ```
 
+#### Implementors
+
+- [`A0`](#a0)
+- [`A1`](#a1)
+- [`A2`](#a2)
+- [`A3`](#a3)
+- [`A4`](#a4)
+- [`A5`](#a5)
+
 ### `RetNumber`
 
 ```rust
 trait RetNumber: private::Sealed { ... }
 ```
+
+#### Implementors
+
+- [`R0`](#r0)
 
 ## Functions
 

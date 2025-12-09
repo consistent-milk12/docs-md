@@ -46,15 +46,15 @@ Please refer to [https://serde.rs/derive.html] for how to set this up.
 
 ## Modules
 
-- [`internals`](internals/index.md) - 
-- [`bound`](bound/index.md) - 
-- [`fragment`](fragment/index.md) - 
-- [`de`](de/index.md) - 
-- [`deprecated`](deprecated/index.md) - 
-- [`dummy`](dummy/index.md) - 
-- [`pretend`](pretend/index.md) - 
-- [`ser`](ser/index.md) - 
-- [`this`](this/index.md) - 
+- [`internals`](internals/index.md)
+- [`bound`](bound/index.md)
+- [`fragment`](fragment/index.md)
+- [`de`](de/index.md)
+- [`deprecated`](deprecated/index.md)
+- [`dummy`](dummy/index.md)
+- [`pretend`](pretend/index.md)
+- [`ser`](ser/index.md)
+- [`this`](this/index.md)
 
 ## Structs
 

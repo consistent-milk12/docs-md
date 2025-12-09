@@ -36,7 +36,7 @@ use std::borrow::Cow;
 
 use rustdoc_types::{
     AssocItemConstraint, AssocItemConstraintKind, Crate, GenericArg, GenericArgs, GenericBound,
-    GenericParamDef, GenericParamDefKind, Term, TraitBoundModifier, Type,
+    GenericParamDef, GenericParamDefKind, Id, Term, TraitBoundModifier, Type,
 };
 
 use crate::generator::render_shared::sanitize_path;
@@ -79,6 +79,23 @@ impl<'a> TypeRenderer<'a> {
     #[must_use]
     pub const fn new(krate: &'a Crate) -> Self {
         Self { krate }
+    }
+
+    /// Get the ID of a resolved type, if available.
+    ///
+    /// Returns `Some(Id)` for resolved path types (named types like structs,
+    /// enums, traits), `None` for primitives and other type variants.
+    ///
+    /// # Arguments
+    ///
+    /// * `ty` - The type to extract the ID from
+    #[must_use]
+    pub const fn get_type_id(&self, ty: &Type) -> Option<Id> {
+        match ty {
+            Type::ResolvedPath(path) => Some(path.id),
+
+            _ => None,
+        }
     }
 
     /// Render a rustdoc `Type` to its Rust syntax string representation.

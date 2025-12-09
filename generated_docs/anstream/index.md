@@ -43,8 +43,8 @@ And this will correctly handle piping to a file, etc
   - [`fmt`](#fmt)
   - [`strip`](#strip)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`AutoStream`](#autostream)
+  - [`StripStream`](#stripstream)
 - [Functions](#functions)
   - [`stdout`](#stdout)
   - [`stderr`](#stderr)
@@ -68,8 +68,8 @@ And this will correctly handle piping to a file, etc
 | [`buffer`](#buffer) | mod |  |
 | [`fmt`](#fmt) | mod |  |
 | [`strip`](#strip) | mod |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
+| [`AutoStream`](#autostream) | struct |  |
+| [`StripStream`](#stripstream) | struct |  |
 | [`stdout`](#stdout) | fn | Create an ANSI escape code compatible stdout |
 | [`stderr`](#stderr) | fn | Create an ANSI escape code compatible stderr |
 | [`Stdout`](#stdout) | type | An adaptive wrapper around the global standard output stream of the current process |
@@ -82,12 +82,12 @@ And this will correctly handle piping to a file, etc
 
 ## Modules
 
-- [`adapter`](adapter/index.md) - Gracefully degrade styled output
-- [`stream`](stream/index.md) - Higher-level traits to describe writeable streams
-- [`auto`](auto/index.md) - 
-- [`buffer`](buffer/index.md) - 
-- [`fmt`](fmt/index.md) - 
-- [`strip`](strip/index.md) - 
+- [`adapter`](adapter/index.md) — Gracefully degrade styled output
+- [`stream`](stream/index.md) — Higher-level traits to describe writeable streams
+- [`auto`](auto/index.md)
+- [`buffer`](buffer/index.md)
+- [`fmt`](fmt/index.md)
+- [`strip`](strip/index.md)
 
 ## Structs
 
@@ -112,29 +112,7 @@ to get a [`ColorChoice`](#colorchoice) and then calling `AutoStream::new(stream,
 
 #### Implementations
 
-- <span id="autostream-new"></span>`fn new(raw: S, choice: ColorChoice) -> Self` — [`ColorChoice`](#colorchoice)
-
-- <span id="autostream-auto"></span>`fn auto(raw: S) -> Self`
-
-- <span id="autostream-choice"></span>`fn choice(raw: &S) -> ColorChoice` — [`ColorChoice`](#colorchoice)
-
-- <span id="autostream-always-ansi"></span>`fn always_ansi(raw: S) -> Self`
-
-- <span id="autostream-always-ansi"></span>`fn always_ansi_(raw: S) -> Self`
-
-- <span id="autostream-always"></span>`fn always(raw: S) -> Self`
-
-- <span id="autostream-never"></span>`fn never(raw: S) -> Self`
-
-- <span id="autostream-wincon"></span>`fn wincon(raw: S) -> Result<Self, S>`
-
-- <span id="autostream-into-inner"></span>`fn into_inner(self) -> S`
-
-- <span id="autostream-as-inner"></span>`fn as_inner(&self) -> &S`
-
-- <span id="autostream-is-terminal"></span>`fn is_terminal(&self) -> bool`
-
-- <span id="autostream-current-choice"></span>`fn current_choice(&self) -> ColorChoice` — [`ColorChoice`](#colorchoice)
+- <span id="autostream-lock"></span>`fn lock(self) -> AutoStream<std::io::StderrLock<'static>>` — [`AutoStream`](#autostream)
 
 #### Trait Implementations
 
@@ -169,11 +147,7 @@ Only pass printable data to the inner `Write`
 
 #### Implementations
 
-- <span id="stripstream-new"></span>`fn new(raw: S) -> Self`
-
-- <span id="stripstream-into-inner"></span>`fn into_inner(self) -> S`
-
-- <span id="stripstream-as-inner"></span>`fn as_inner(&self) -> &S`
+- <span id="stripstream-lock"></span>`fn lock(self) -> StripStream<std::io::StdoutLock<'static>>` — [`StripStream`](#stripstream)
 
 #### Trait Implementations
 

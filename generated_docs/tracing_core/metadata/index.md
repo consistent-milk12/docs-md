@@ -403,7 +403,7 @@ recorded in.
 
 ##### `impl PartialEq for Level`
 
-- <span id="level-eq"></span>`fn eq(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](../index.md)
+- <span id="level-eq"></span>`fn eq(&self, other: &Level) -> bool` — [`Level`](../index.md)
 
 ##### `impl PartialOrd for Level`
 
@@ -511,7 +511,7 @@ and `LevelFilter`s interact.
 
 ##### `impl PartialEq for LevelFilter`
 
-- <span id="levelfilter-eq"></span>`fn eq(&self, other: &Level) -> bool` — [`Level`](../index.md)
+- <span id="levelfilter-eq"></span>`fn eq(&self, other: &LevelFilter) -> bool` — [`LevelFilter`](../index.md)
 
 ##### `impl PartialOrd for LevelFilter`
 

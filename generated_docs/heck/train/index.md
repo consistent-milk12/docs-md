@@ -19,7 +19,7 @@
 struct AsTrainCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a train case conversion in [`fmt::Display`](../../miette_derive/fmt/index.md).
+This wrapper performs a train case conversion in [`fmt::Display`](../../miette_derive/index.md).
 
 ## Example:
 
@@ -67,4 +67,8 @@ assert_eq!(sentence.to_train_case(), "We-Are-Going-To-Inherit-The-Earth");
 - `fn to_train_case(&self) -> <Self as >::Owned`
 
   Convert this type to Train-Case.
+
+#### Implementors
+
+- `str`
 

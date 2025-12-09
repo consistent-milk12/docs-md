@@ -15,7 +15,7 @@
   - [`str_to_bool`](#str_to_bool)
   - [`color`](#color)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
+  - [`Id`](#id)
 - [Functions](#functions)
   - [`eq_ignore_case`](#eq_ignore_case)
 - [Constants](#constants)
@@ -33,20 +33,20 @@
 | [`id`](#id) | mod |  |
 | [`str_to_bool`](#str_to_bool) | mod |  |
 | [`color`](#color) | mod |  |
-| [`unnamed`](#unnamed) | struct |  |
+| [`Id`](#id) | struct |  |
 | [`eq_ignore_case`](#eq_ignore_case) | fn |  |
 | [`SUCCESS_CODE`](#success_code) | const |  |
 | [`USAGE_CODE`](#usage_code) | const |  |
 
 ## Modules
 
-- [`any_value`](any_value/index.md) - 
-- [`flat_map`](flat_map/index.md) - 
-- [`flat_set`](flat_set/index.md) - 
-- [`graph`](graph/index.md) - 
-- [`id`](id/index.md) - 
-- [`str_to_bool`](str_to_bool/index.md) - 
-- [`color`](color/index.md) - 
+- [`any_value`](any_value/index.md)
+- [`flat_map`](flat_map/index.md)
+- [`flat_set`](flat_set/index.md)
+- [`graph`](graph/index.md)
+- [`id`](id/index.md)
+- [`str_to_bool`](str_to_bool/index.md)
+- [`color`](color/index.md)
 
 ## Structs
 
@@ -114,7 +114,7 @@ relationships between `Arg`s and `ArgGroup`s with functions like
 
 ##### `impl PartialEq for Id`
 
-- <span id="id-eq"></span>`fn eq(&self, other: &&str) -> bool`
+- <span id="id-eq"></span>`fn eq(&self, other: &str) -> bool`
 
 ##### `impl PartialOrd for Id`
 

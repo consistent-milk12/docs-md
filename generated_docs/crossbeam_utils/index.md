@@ -35,8 +35,8 @@ Miscellaneous tools for concurrent programming.
   - [`sync`](#sync)
   - [`thread`](#thread)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`CachePadded`](#cachepadded)
+  - [`Backoff`](#backoff)
 
 ## Quick Reference
 
@@ -48,17 +48,17 @@ Miscellaneous tools for concurrent programming.
 | [`backoff`](#backoff) | mod |  |
 | [`sync`](#sync) | mod | Thread synchronization primitives. |
 | [`thread`](#thread) | mod | Threads that can borrow variables from the stack. |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
+| [`CachePadded`](#cachepadded) | struct |  |
+| [`Backoff`](#backoff) | struct |  |
 
 ## Modules
 
-- [`primitive`](primitive/index.md) - 
-- [`atomic`](atomic/index.md) - Atomic types.
-- [`cache_padded`](cache_padded/index.md) - 
-- [`backoff`](backoff/index.md) - 
-- [`sync`](sync/index.md) - Thread synchronization primitives.
-- [`thread`](thread/index.md) - Threads that can borrow variables from the stack.
+- [`primitive`](primitive/index.md)
+- [`atomic`](atomic/index.md) — Atomic types.
+- [`cache_padded`](cache_padded/index.md)
+- [`backoff`](backoff/index.md)
+- [`sync`](sync/index.md) — Thread synchronization primitives.
+- [`thread`](thread/index.md) — Threads that can borrow variables from the stack.
 
 ## Structs
 

@@ -422,6 +422,13 @@ Latches need to guarantee two things:
 
   Set the latch, signalling others.
 
+#### Implementors
+
+- [`CountLatch`](#countlatch)
+- [`LatchRef`](#latchref)
+- [`LockLatch`](#locklatch)
+- [`SpinLatch`](#spinlatch)
+
 ### `AsCoreLatch`
 
 ```rust
@@ -431,6 +438,12 @@ trait AsCoreLatch { ... }
 #### Required Methods
 
 - `fn as_core_latch(&self) -> &CoreLatch`
+
+#### Implementors
+
+- [`CoreLatch`](#corelatch)
+- [`OnceLatch`](#oncelatch)
+- [`SpinLatch`](#spinlatch)
 
 ## Constants
 

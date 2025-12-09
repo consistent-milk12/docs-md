@@ -59,9 +59,11 @@ trait Rel: Debug + Pod { ... }
 
 A trait for generic access to [`xcoff::Rel32`](../../../xcoff/index.md) and [`xcoff::Rel64`](../../../xcoff/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
+
+#### Required Methods
 
 - `fn r_vaddr(&self) -> <Self as >::Word`
 
@@ -71,7 +73,14 @@ A trait for generic access to [`xcoff::Rel32`](../../../xcoff/index.md) and [`xc
 
 - `fn r_rtype(&self) -> u8`
 
+#### Provided Methods
+
 - `fn symbol(&self) -> SymbolIndex`
+
+#### Implementors
+
+- [`Rel32`](../../../xcoff/index.md)
+- [`Rel64`](../../../xcoff/index.md)
 
 ## Type Aliases
 

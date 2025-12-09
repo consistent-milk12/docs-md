@@ -72,6 +72,19 @@ assert_eq!(num_digits, 20);
 
 - `fn num_chars(val: Self) -> usize`
 
+#### Implementors
+
+- `i16`
+- `i32`
+- `i64`
+- `i8`
+- `isize`
+- `u16`
+- `u32`
+- `u64`
+- `u8`
+- `usize`
+
 ## Constants
 
 ### `DEC_DIGITS_LUT`

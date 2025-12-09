@@ -15,7 +15,7 @@
 
 ## Modules
 
-- [`private`](private/index.md) - 
+- [`private`](private/index.md)
 
 ## Structs
 
@@ -83,6 +83,10 @@ String-like methods for [`OsStr`](../../clap_builder/builder/index.md)
 - `fn split_once(&self, needle: &str) -> Option<(&OsStr, &OsStr)>`
 
   Splits the string on the first occurrence of the specified delimiter and
+
+#### Implementors
+
+- `std::ffi::OsStr`
 
 ## Functions
 

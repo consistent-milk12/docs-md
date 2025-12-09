@@ -36,8 +36,8 @@ Used a rust back-end for the
 
 ## Modules
 
-- [`inflate`](inflate/index.md) - This module contains functionality for decompression.
-- [`shared`](shared/index.md) - 
+- [`inflate`](inflate/index.md) — This module contains functionality for decompression.
+- [`shared`](shared/index.md)
 
 ## Structs
 

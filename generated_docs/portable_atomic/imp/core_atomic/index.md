@@ -63,17 +63,9 @@ struct AtomicPtr<T> {
 
 #### Implementations
 
-- <span id="atomicptr-new"></span>`const fn new(v: *mut T) -> Self`
+- <span id="atomicptr-compare-exchange"></span>`fn compare_exchange(&self, current: *mut T, new: *mut T, success: Ordering, failure: Ordering) -> Result<*mut T, *mut T>` — [`Ordering`](../../index.md)
 
-- <span id="atomicptr-is-lock-free"></span>`fn is_lock_free() -> bool`
-
-- <span id="atomicptr-is-always-lock-free"></span>`const IS_ALWAYS_LOCK_FREE: bool`
-
-- <span id="atomicptr-load"></span>`fn load(&self, order: Ordering) -> *mut T` — [`Ordering`](../../index.md)
-
-- <span id="atomicptr-store"></span>`fn store(&self, ptr: *mut T, order: Ordering)` — [`Ordering`](../../index.md)
-
-- <span id="atomicptr-as-ptr"></span>`const fn as_ptr(&self) -> *mut *mut T`
+- <span id="atomicptr-compare-exchange-weak"></span>`fn compare_exchange_weak(&self, current: *mut T, new: *mut T, success: Ordering, failure: Ordering) -> Result<*mut T, *mut T>` — [`Ordering`](../../index.md)
 
 #### Trait Implementations
 
@@ -98,19 +90,17 @@ struct AtomicIsize {
 
 #### Implementations
 
-- <span id="atomicisize-compare-exchange"></span>`fn compare_exchange(&self, current: isize, new: isize, success: Ordering, failure: Ordering) -> Result<isize, isize>` — [`Ordering`](../../index.md)
+- <span id="atomicisize-new"></span>`const fn new(v: isize) -> Self`
 
-- <span id="atomicisize-compare-exchange-weak"></span>`fn compare_exchange_weak(&self, current: isize, new: isize, success: Ordering, failure: Ordering) -> Result<isize, isize>` — [`Ordering`](../../index.md)
+- <span id="atomicisize-is-lock-free"></span>`fn is_lock_free() -> bool`
 
-- <span id="atomicisize-fetch-update"></span>`fn fetch_update_<F>(&self, order: Ordering, f: F) -> isize` — [`Ordering`](../../index.md)
+- <span id="atomicisize-is-always-lock-free"></span>`const IS_ALWAYS_LOCK_FREE: bool`
 
-- <span id="atomicisize-fetch-max"></span>`fn fetch_max(&self, val: isize, order: Ordering) -> isize` — [`Ordering`](../../index.md)
+- <span id="atomicisize-load"></span>`fn load(&self, order: Ordering) -> isize` — [`Ordering`](../../index.md)
 
-- <span id="atomicisize-fetch-min"></span>`fn fetch_min(&self, val: isize, order: Ordering) -> isize` — [`Ordering`](../../index.md)
+- <span id="atomicisize-store"></span>`fn store(&self, val: isize, order: Ordering)` — [`Ordering`](../../index.md)
 
-- <span id="atomicisize-fetch-not"></span>`fn fetch_not(&self, order: Ordering) -> isize` — [`Ordering`](../../index.md)
-
-- <span id="atomicisize-fetch-neg"></span>`fn fetch_neg(&self, order: Ordering) -> isize` — [`Ordering`](../../index.md)
+- <span id="atomicisize-as-ptr"></span>`const fn as_ptr(&self) -> *mut isize`
 
 #### Trait Implementations
 
@@ -135,17 +125,19 @@ struct AtomicUsize {
 
 #### Implementations
 
-- <span id="atomicusize-new"></span>`const fn new(v: usize) -> Self`
+- <span id="atomicusize-compare-exchange"></span>`fn compare_exchange(&self, current: usize, new: usize, success: Ordering, failure: Ordering) -> Result<usize, usize>` — [`Ordering`](../../index.md)
 
-- <span id="atomicusize-is-lock-free"></span>`fn is_lock_free() -> bool`
+- <span id="atomicusize-compare-exchange-weak"></span>`fn compare_exchange_weak(&self, current: usize, new: usize, success: Ordering, failure: Ordering) -> Result<usize, usize>` — [`Ordering`](../../index.md)
 
-- <span id="atomicusize-is-always-lock-free"></span>`const IS_ALWAYS_LOCK_FREE: bool`
+- <span id="atomicusize-fetch-update"></span>`fn fetch_update_<F>(&self, order: Ordering, f: F) -> usize` — [`Ordering`](../../index.md)
 
-- <span id="atomicusize-load"></span>`fn load(&self, order: Ordering) -> usize` — [`Ordering`](../../index.md)
+- <span id="atomicusize-fetch-max"></span>`fn fetch_max(&self, val: usize, order: Ordering) -> usize` — [`Ordering`](../../index.md)
 
-- <span id="atomicusize-store"></span>`fn store(&self, val: usize, order: Ordering)` — [`Ordering`](../../index.md)
+- <span id="atomicusize-fetch-min"></span>`fn fetch_min(&self, val: usize, order: Ordering) -> usize` — [`Ordering`](../../index.md)
 
-- <span id="atomicusize-as-ptr"></span>`const fn as_ptr(&self) -> *mut usize`
+- <span id="atomicusize-fetch-not"></span>`fn fetch_not(&self, order: Ordering) -> usize` — [`Ordering`](../../index.md)
+
+- <span id="atomicusize-fetch-neg"></span>`fn fetch_neg(&self, order: Ordering) -> usize` — [`Ordering`](../../index.md)
 
 #### Trait Implementations
 
@@ -170,19 +162,9 @@ struct AtomicI8 {
 
 #### Implementations
 
-- <span id="atomici8-compare-exchange"></span>`fn compare_exchange(&self, current: i8, new: i8, success: Ordering, failure: Ordering) -> Result<i8, i8>` — [`Ordering`](../../index.md)
+- <span id="supercore-atomicatomici8-not"></span>`fn not(&self, _order: Ordering)` — [`Ordering`](../../index.md)
 
-- <span id="atomici8-compare-exchange-weak"></span>`fn compare_exchange_weak(&self, current: i8, new: i8, success: Ordering, failure: Ordering) -> Result<i8, i8>` — [`Ordering`](../../index.md)
-
-- <span id="atomici8-fetch-update"></span>`fn fetch_update_<F>(&self, order: Ordering, f: F) -> i8` — [`Ordering`](../../index.md)
-
-- <span id="atomici8-fetch-max"></span>`fn fetch_max(&self, val: i8, order: Ordering) -> i8` — [`Ordering`](../../index.md)
-
-- <span id="atomici8-fetch-min"></span>`fn fetch_min(&self, val: i8, order: Ordering) -> i8` — [`Ordering`](../../index.md)
-
-- <span id="atomici8-fetch-not"></span>`fn fetch_not(&self, order: Ordering) -> i8` — [`Ordering`](../../index.md)
-
-- <span id="atomici8-fetch-neg"></span>`fn fetch_neg(&self, order: Ordering) -> i8` — [`Ordering`](../../index.md)
+- <span id="supercore-atomicatomici8-neg"></span>`fn neg(&self, _order: Ordering)` — [`Ordering`](../../index.md)
 
 #### Trait Implementations
 
@@ -207,19 +189,9 @@ struct AtomicU8 {
 
 #### Implementations
 
-- <span id="atomicu8-compare-exchange"></span>`fn compare_exchange(&self, current: u8, new: u8, success: Ordering, failure: Ordering) -> Result<u8, u8>` — [`Ordering`](../../index.md)
+- <span id="supercore-atomicatomicu8-not"></span>`fn not(&self, _order: Ordering)` — [`Ordering`](../../index.md)
 
-- <span id="atomicu8-compare-exchange-weak"></span>`fn compare_exchange_weak(&self, current: u8, new: u8, success: Ordering, failure: Ordering) -> Result<u8, u8>` — [`Ordering`](../../index.md)
-
-- <span id="atomicu8-fetch-update"></span>`fn fetch_update_<F>(&self, order: Ordering, f: F) -> u8` — [`Ordering`](../../index.md)
-
-- <span id="atomicu8-fetch-max"></span>`fn fetch_max(&self, val: u8, order: Ordering) -> u8` — [`Ordering`](../../index.md)
-
-- <span id="atomicu8-fetch-min"></span>`fn fetch_min(&self, val: u8, order: Ordering) -> u8` — [`Ordering`](../../index.md)
-
-- <span id="atomicu8-fetch-not"></span>`fn fetch_not(&self, order: Ordering) -> u8` — [`Ordering`](../../index.md)
-
-- <span id="atomicu8-fetch-neg"></span>`fn fetch_neg(&self, order: Ordering) -> u8` — [`Ordering`](../../index.md)
+- <span id="supercore-atomicatomicu8-neg"></span>`fn neg(&self, _order: Ordering)` — [`Ordering`](../../index.md)
 
 #### Trait Implementations
 
@@ -281,15 +253,11 @@ struct AtomicU16 {
 
 #### Implementations
 
-- <span id="atomicu16-add"></span>`fn add(&self, val: u16, order: Ordering)` — [`Ordering`](../../index.md)
+- <span id="supercore-atomicatomicu16-bit-set"></span>`fn bit_set(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](../../index.md)
 
-- <span id="atomicu16-sub"></span>`fn sub(&self, val: u16, order: Ordering)` — [`Ordering`](../../index.md)
+- <span id="supercore-atomicatomicu16-bit-clear"></span>`fn bit_clear(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](../../index.md)
 
-- <span id="atomicu16-and"></span>`fn and(&self, val: u16, order: Ordering)` — [`Ordering`](../../index.md)
-
-- <span id="atomicu16-or"></span>`fn or(&self, val: u16, order: Ordering)` — [`Ordering`](../../index.md)
-
-- <span id="atomicu16-xor"></span>`fn xor(&self, val: u16, order: Ordering)` — [`Ordering`](../../index.md)
+- <span id="supercore-atomicatomicu16-bit-toggle"></span>`fn bit_toggle(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](../../index.md)
 
 #### Trait Implementations
 
@@ -314,15 +282,9 @@ struct AtomicI32 {
 
 #### Implementations
 
-- <span id="atomici32-add"></span>`fn add(&self, val: i32, order: Ordering)` — [`Ordering`](../../index.md)
+- <span id="supercore-atomicatomici32-not"></span>`fn not(&self, _order: Ordering)` — [`Ordering`](../../index.md)
 
-- <span id="atomici32-sub"></span>`fn sub(&self, val: i32, order: Ordering)` — [`Ordering`](../../index.md)
-
-- <span id="atomici32-and"></span>`fn and(&self, val: i32, order: Ordering)` — [`Ordering`](../../index.md)
-
-- <span id="atomici32-or"></span>`fn or(&self, val: i32, order: Ordering)` — [`Ordering`](../../index.md)
-
-- <span id="atomici32-xor"></span>`fn xor(&self, val: i32, order: Ordering)` — [`Ordering`](../../index.md)
+- <span id="supercore-atomicatomici32-neg"></span>`fn neg(&self, _order: Ordering)` — [`Ordering`](../../index.md)
 
 #### Trait Implementations
 
@@ -347,15 +309,19 @@ struct AtomicU32 {
 
 #### Implementations
 
-- <span id="atomicu32-add"></span>`fn add(&self, val: u32, order: Ordering)` — [`Ordering`](../../index.md)
+- <span id="atomicu32-compare-exchange"></span>`fn compare_exchange(&self, current: u32, new: u32, success: Ordering, failure: Ordering) -> Result<u32, u32>` — [`Ordering`](../../index.md)
 
-- <span id="atomicu32-sub"></span>`fn sub(&self, val: u32, order: Ordering)` — [`Ordering`](../../index.md)
+- <span id="atomicu32-compare-exchange-weak"></span>`fn compare_exchange_weak(&self, current: u32, new: u32, success: Ordering, failure: Ordering) -> Result<u32, u32>` — [`Ordering`](../../index.md)
 
-- <span id="atomicu32-and"></span>`fn and(&self, val: u32, order: Ordering)` — [`Ordering`](../../index.md)
+- <span id="atomicu32-fetch-update"></span>`fn fetch_update_<F>(&self, order: Ordering, f: F) -> u32` — [`Ordering`](../../index.md)
 
-- <span id="atomicu32-or"></span>`fn or(&self, val: u32, order: Ordering)` — [`Ordering`](../../index.md)
+- <span id="atomicu32-fetch-max"></span>`fn fetch_max(&self, val: u32, order: Ordering) -> u32` — [`Ordering`](../../index.md)
 
-- <span id="atomicu32-xor"></span>`fn xor(&self, val: u32, order: Ordering)` — [`Ordering`](../../index.md)
+- <span id="atomicu32-fetch-min"></span>`fn fetch_min(&self, val: u32, order: Ordering) -> u32` — [`Ordering`](../../index.md)
+
+- <span id="atomicu32-fetch-not"></span>`fn fetch_not(&self, order: Ordering) -> u32` — [`Ordering`](../../index.md)
+
+- <span id="atomicu32-fetch-neg"></span>`fn fetch_neg(&self, order: Ordering) -> u32` — [`Ordering`](../../index.md)
 
 #### Trait Implementations
 
@@ -380,17 +346,19 @@ struct AtomicI64 {
 
 #### Implementations
 
-- <span id="atomici64-new"></span>`const fn new(v: i64) -> Self`
+- <span id="atomici64-compare-exchange"></span>`fn compare_exchange(&self, current: i64, new: i64, success: Ordering, failure: Ordering) -> Result<i64, i64>` — [`Ordering`](../../index.md)
 
-- <span id="atomici64-is-lock-free"></span>`fn is_lock_free() -> bool`
+- <span id="atomici64-compare-exchange-weak"></span>`fn compare_exchange_weak(&self, current: i64, new: i64, success: Ordering, failure: Ordering) -> Result<i64, i64>` — [`Ordering`](../../index.md)
 
-- <span id="atomici64-is-always-lock-free"></span>`const IS_ALWAYS_LOCK_FREE: bool`
+- <span id="atomici64-fetch-update"></span>`fn fetch_update_<F>(&self, order: Ordering, f: F) -> i64` — [`Ordering`](../../index.md)
 
-- <span id="atomici64-load"></span>`fn load(&self, order: Ordering) -> i64` — [`Ordering`](../../index.md)
+- <span id="atomici64-fetch-max"></span>`fn fetch_max(&self, val: i64, order: Ordering) -> i64` — [`Ordering`](../../index.md)
 
-- <span id="atomici64-store"></span>`fn store(&self, val: i64, order: Ordering)` — [`Ordering`](../../index.md)
+- <span id="atomici64-fetch-min"></span>`fn fetch_min(&self, val: i64, order: Ordering) -> i64` — [`Ordering`](../../index.md)
 
-- <span id="atomici64-as-ptr"></span>`const fn as_ptr(&self) -> *mut i64`
+- <span id="atomici64-fetch-not"></span>`fn fetch_not(&self, order: Ordering) -> i64` — [`Ordering`](../../index.md)
+
+- <span id="atomici64-fetch-neg"></span>`fn fetch_neg(&self, order: Ordering) -> i64` — [`Ordering`](../../index.md)
 
 #### Trait Implementations
 
@@ -415,17 +383,11 @@ struct AtomicU64 {
 
 #### Implementations
 
-- <span id="atomicu64-new"></span>`const fn new(v: u64) -> Self`
+- <span id="supercore-atomicatomicu64-bit-set"></span>`fn bit_set(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](../../index.md)
 
-- <span id="atomicu64-is-lock-free"></span>`fn is_lock_free() -> bool`
+- <span id="supercore-atomicatomicu64-bit-clear"></span>`fn bit_clear(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](../../index.md)
 
-- <span id="atomicu64-is-always-lock-free"></span>`const IS_ALWAYS_LOCK_FREE: bool`
-
-- <span id="atomicu64-load"></span>`fn load(&self, order: Ordering) -> u64` — [`Ordering`](../../index.md)
-
-- <span id="atomicu64-store"></span>`fn store(&self, val: u64, order: Ordering)` — [`Ordering`](../../index.md)
-
-- <span id="atomicu64-as-ptr"></span>`const fn as_ptr(&self) -> *mut u64`
+- <span id="supercore-atomicatomicu64-bit-toggle"></span>`fn bit_toggle(&self, bit: u32, order: Ordering) -> bool` — [`Ordering`](../../index.md)
 
 #### Trait Implementations
 

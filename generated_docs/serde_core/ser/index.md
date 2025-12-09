@@ -119,7 +119,7 @@ website][data formats].
   - [`impls`](#impls)
   - [`impossible`](#impossible)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
+  - [`Impossible`](#impossible)
 - [Traits](#traits)
   - [`Error`](#error)
   - [`Serialize`](#serialize)
@@ -143,7 +143,7 @@ website][data formats].
 | [`fmt`](#fmt) | mod |  |
 | [`impls`](#impls) | mod |  |
 | [`impossible`](#impossible) | mod | This module contains `Impossible` serializer and its implementations. |
-| [`unnamed`](#unnamed) | struct |  |
+| [`Impossible`](#impossible) | struct |  |
 | [`Error`](#error) | trait | Trait used by `Serialize` implementations to generically construct |
 | [`Serialize`](#serialize) | trait | A **data structure** that can be serialized into any data format supported |
 | [`Serializer`](#serializer) | trait | A **data format** that can serialize any data structure supported by Serde. |
@@ -159,9 +159,9 @@ website][data formats].
 
 ## Modules
 
-- [`fmt`](fmt/index.md) - 
-- [`impls`](impls/index.md) - 
-- [`impossible`](impossible/index.md) - This module contains `Impossible` serializer and its implementations.
+- [`fmt`](fmt/index.md)
+- [`impls`](impls/index.md)
+- [`impossible`](impossible/index.md) — This module contains `Impossible` serializer and its implementations.
 
 ## Structs
 
@@ -323,6 +323,11 @@ type appropriate for a basic JSON data format.
 
   Used when a [`Serialize`](../index.md) implementation encounters any error
 
+#### Implementors
+
+- [`Error`](../de/value/index.md)
+- `fmt::Error`
+
 ### `Serialize`
 
 ```rust
@@ -359,6 +364,143 @@ provides an implementation of `Serialize` for it.
 - `fn serialize<S>(&self, serializer: S) -> Result<<S as >::Ok, <S as >::Error>`
 
   Serialize this value into the given Serde serializer.
+
+#### Implementors
+
+- [`AtomicBool`](../lib/index.md)
+- [`AtomicI16`](../lib/index.md)
+- [`AtomicI32`](../lib/index.md)
+- [`AtomicI64`](../lib/index.md)
+- [`AtomicI8`](../lib/index.md)
+- [`AtomicIsize`](../lib/index.md)
+- [`AtomicU16`](../lib/index.md)
+- [`AtomicU32`](../lib/index.md)
+- [`AtomicU64`](../lib/index.md)
+- [`AtomicU8`](../lib/index.md)
+- [`AtomicUsize`](../lib/index.md)
+- [`BTreeMap`](../lib/index.md)
+- [`BTreeSet`](../lib/index.md)
+- [`BinaryHeap`](../lib/index.md)
+- [`Bound`](../lib/index.md)
+- [`Box`](../lib/index.md)
+- [`CStr`](../lib/index.md)
+- [`CString`](../lib/index.md)
+- [`Cell`](../lib/index.md)
+- [`Cow`](../lib/index.md)
+- [`Duration`](../lib/index.md)
+- [`HashMap`](../lib/index.md)
+- [`HashSet`](../lib/index.md)
+- [`LinkedList`](../lib/index.md)
+- [`Mutex`](../lib/index.md)
+- [`OsStr`](../lib/index.md)
+- [`OsString`](../lib/index.md)
+- [`PathBuf`](../lib/index.md)
+- [`Path`](../lib/index.md)
+- [`PhantomData`](../lib/index.md)
+- [`RangeFrom`](../lib/index.md)
+- [`RangeInclusive`](../lib/index.md)
+- [`RangeTo`](../lib/index.md)
+- [`Range`](../lib/index.md)
+- [`RefCell`](../lib/index.md)
+- [`Reverse`](../lib/index.md)
+- [`RwLock`](../lib/index.md)
+- [`Saturating`](../lib/index.md)
+- [`String`](../lib/index.md)
+- [`SystemTime`](../lib/index.md)
+- [`VecDeque`](../lib/index.md)
+- [`Vec`](../lib/index.md)
+- [`Wrapping`](../lib/index.md)
+- `&'a T`
+- `&'a mut T`
+- `()`
+- `(T)`
+- `(T0, T1)`
+- `(T0, T1, T2)`
+- `(T0, T1, T2, T3)`
+- `(T0, T1, T2, T3, T4)`
+- `(T0, T1, T2, T3, T4, T5)`
+- `(T0, T1, T2, T3, T4, T5, T6)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14)`
+- `(T0, T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15)`
+- `Option<T>`
+- `Result<T, E>`
+- `[T; 0]`
+- `[T; 10]`
+- `[T; 11]`
+- `[T; 12]`
+- `[T; 13]`
+- `[T; 14]`
+- `[T; 15]`
+- `[T; 16]`
+- `[T; 17]`
+- `[T; 18]`
+- `[T; 19]`
+- `[T; 1]`
+- `[T; 20]`
+- `[T; 21]`
+- `[T; 22]`
+- `[T; 23]`
+- `[T; 24]`
+- `[T; 25]`
+- `[T; 26]`
+- `[T; 27]`
+- `[T; 28]`
+- `[T; 29]`
+- `[T; 2]`
+- `[T; 30]`
+- `[T; 31]`
+- `[T; 32]`
+- `[T; 3]`
+- `[T; 4]`
+- `[T; 5]`
+- `[T; 6]`
+- `[T; 7]`
+- `[T; 8]`
+- `[T; 9]`
+- `[T]`
+- `bool`
+- `char`
+- `f32`
+- `f64`
+- `fmt::Arguments<'a>`
+- `i128`
+- `i16`
+- `i32`
+- `i64`
+- `i8`
+- `isize`
+- `net::IpAddr`
+- `net::Ipv4Addr`
+- `net::Ipv6Addr`
+- `net::SocketAddrV4`
+- `net::SocketAddrV6`
+- `net::SocketAddr`
+- `num::NonZeroI128`
+- `num::NonZeroI16`
+- `num::NonZeroI32`
+- `num::NonZeroI64`
+- `num::NonZeroI8`
+- `num::NonZeroIsize`
+- `num::NonZeroU128`
+- `num::NonZeroU16`
+- `num::NonZeroU32`
+- `num::NonZeroU64`
+- `num::NonZeroU8`
+- `num::NonZeroUsize`
+- `str`
+- `u128`
+- `u16`
+- `u32`
+- `u64`
+- `u8`
+- `usize`
 
 ### `Serializer`
 
@@ -441,7 +583,7 @@ The [example data format] presented on the website contains example code for
 a basic JSON `Serializer`.
 
 
-#### Required Methods
+#### Associated Types
 
 - `type Ok`
 
@@ -460,6 +602,8 @@ a basic JSON `Serializer`.
 - `type SerializeStruct: 1`
 
 - `type SerializeStructVariant: 1`
+
+#### Required Methods
 
 - `fn serialize_bool(self, v: bool) -> Result<<Self as >::Ok, <Self as >::Error>`
 
@@ -481,10 +625,6 @@ a basic JSON `Serializer`.
 
   Serialize an `i64` value.
 
-- `fn serialize_i128(self, v: i128) -> Result<<Self as >::Ok, <Self as >::Error>`
-
-  Serialize an `i128` value.
-
 - `fn serialize_u8(self, v: u8) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a `u8` value.
@@ -500,10 +640,6 @@ a basic JSON `Serializer`.
 - `fn serialize_u64(self, v: u64) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Serialize a `u64` value.
-
-- `fn serialize_u128(self, v: u128) -> Result<<Self as >::Ok, <Self as >::Error>`
-
-  Serialize a `u128` value.
 
 - `fn serialize_f32(self, v: f32) -> Result<<Self as >::Ok, <Self as >::Error>`
 
@@ -581,6 +717,16 @@ a basic JSON `Serializer`.
 
   Begin to serialize a struct variant like `E::S` in `enum E { S { r: u8,
 
+#### Provided Methods
+
+- `fn serialize_i128(self, v: i128) -> Result<<Self as >::Ok, <Self as >::Error>`
+
+  Serialize an `i128` value.
+
+- `fn serialize_u128(self, v: u128) -> Result<<Self as >::Ok, <Self as >::Error>`
+
+  Serialize a `u128` value.
+
 - `fn collect_seq<I>(self, iter: I) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Collect an iterator as a sequence.
@@ -596,6 +742,10 @@ a basic JSON `Serializer`.
 - `fn is_human_readable(&self) -> bool`
 
   Determine whether `Serialize` implementations should serialize in
+
+#### Implementors
+
+- `&mut fmt::Formatter<'a>`
 
 ### `SerializeSeq`
 
@@ -651,11 +801,13 @@ The [example data format] presented on the website demonstrates an
 implementation of `SerializeSeq` for a basic JSON data format.
 
 
-#### Required Methods
+#### Associated Types
 
 - `type Ok`
 
 - `type Error: 1`
+
+#### Required Methods
 
 - `fn serialize_element<T>(&mut self, value: &T) -> Result<(), <Self as >::Error>`
 
@@ -664,6 +816,10 @@ implementation of `SerializeSeq` for a basic JSON data format.
 - `fn end(self) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Finish serializing a sequence.
+
+#### Implementors
+
+- [`Impossible`](#impossible)
 
 ### `SerializeTuple`
 
@@ -755,11 +911,13 @@ The [example data format] presented on the website demonstrates an
 implementation of `SerializeTuple` for a basic JSON data format.
 
 
-#### Required Methods
+#### Associated Types
 
 - `type Ok`
 
 - `type Error: 1`
+
+#### Required Methods
 
 - `fn serialize_element<T>(&mut self, value: &T) -> Result<(), <Self as >::Error>`
 
@@ -768,6 +926,10 @@ implementation of `SerializeTuple` for a basic JSON data format.
 - `fn end(self) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Finish serializing a tuple.
+
+#### Implementors
+
+- [`Impossible`](#impossible)
 
 ### `SerializeTupleStruct`
 
@@ -804,11 +966,13 @@ The [example data format] presented on the website demonstrates an
 implementation of `SerializeTupleStruct` for a basic JSON data format.
 
 
-#### Required Methods
+#### Associated Types
 
 - `type Ok`
 
 - `type Error: 1`
+
+#### Required Methods
 
 - `fn serialize_field<T>(&mut self, value: &T) -> Result<(), <Self as >::Error>`
 
@@ -817,6 +981,10 @@ implementation of `SerializeTupleStruct` for a basic JSON data format.
 - `fn end(self) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Finish serializing a tuple struct.
+
+#### Implementors
+
+- [`Impossible`](#impossible)
 
 ### `SerializeTupleVariant`
 
@@ -866,11 +1034,13 @@ The [example data format] presented on the website demonstrates an
 implementation of `SerializeTupleVariant` for a basic JSON data format.
 
 
-#### Required Methods
+#### Associated Types
 
 - `type Ok`
 
 - `type Error: 1`
+
+#### Required Methods
 
 - `fn serialize_field<T>(&mut self, value: &T) -> Result<(), <Self as >::Error>`
 
@@ -879,6 +1049,10 @@ implementation of `SerializeTupleVariant` for a basic JSON data format.
 - `fn end(self) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Finish serializing a tuple variant.
+
+#### Implementors
+
+- [`Impossible`](#impossible)
 
 ### `SerializeMap`
 
@@ -936,11 +1110,13 @@ The [example data format] presented on the website demonstrates an
 implementation of `SerializeMap` for a basic JSON data format.
 
 
-#### Required Methods
+#### Associated Types
 
 - `type Ok`
 
 - `type Error: 1`
+
+#### Required Methods
 
 - `fn serialize_key<T>(&mut self, key: &T) -> Result<(), <Self as >::Error>`
 
@@ -950,13 +1126,19 @@ implementation of `SerializeMap` for a basic JSON data format.
 
   Serialize a map value.
 
+- `fn end(self) -> Result<<Self as >::Ok, <Self as >::Error>`
+
+  Finish serializing a map.
+
+#### Provided Methods
+
 - `fn serialize_entry<K, V>(&mut self, key: &K, value: &V) -> Result<(), <Self as >::Error>`
 
   Serialize a map entry consisting of a key and a value.
 
-- `fn end(self) -> Result<<Self as >::Ok, <Self as >::Error>`
+#### Implementors
 
-  Finish serializing a map.
+- [`Impossible`](#impossible)
 
 ### `SerializeStruct`
 
@@ -997,23 +1179,31 @@ The [example data format] presented on the website demonstrates an
 implementation of `SerializeStruct` for a basic JSON data format.
 
 
-#### Required Methods
+#### Associated Types
 
 - `type Ok`
 
 - `type Error: 1`
 
+#### Required Methods
+
 - `fn serialize_field<T>(&mut self, key: &'static str, value: &T) -> Result<(), <Self as >::Error>`
 
   Serialize a struct field.
+
+- `fn end(self) -> Result<<Self as >::Ok, <Self as >::Error>`
+
+  Finish serializing a struct.
+
+#### Provided Methods
 
 - `fn skip_field(&mut self, key: &'static str) -> Result<(), <Self as >::Error>`
 
   Indicate that a struct field has been skipped.
 
-- `fn end(self) -> Result<<Self as >::Ok, <Self as >::Error>`
+#### Implementors
 
-  Finish serializing a struct.
+- [`Impossible`](#impossible)
 
 ### `SerializeStructVariant`
 
@@ -1060,23 +1250,31 @@ The [example data format] presented on the website demonstrates an
 implementation of `SerializeStructVariant` for a basic JSON data format.
 
 
-#### Required Methods
+#### Associated Types
 
 - `type Ok`
 
 - `type Error: 1`
 
+#### Required Methods
+
 - `fn serialize_field<T>(&mut self, key: &'static str, value: &T) -> Result<(), <Self as >::Error>`
 
   Serialize a struct variant field.
+
+- `fn end(self) -> Result<<Self as >::Ok, <Self as >::Error>`
+
+  Finish serializing a struct variant.
+
+#### Provided Methods
 
 - `fn skip_field(&mut self, key: &'static str) -> Result<(), <Self as >::Error>`
 
   Indicate that a struct variant field has been skipped.
 
-- `fn end(self) -> Result<<Self as >::Ok, <Self as >::Error>`
+#### Implementors
 
-  Finish serializing a struct variant.
+- [`Impossible`](#impossible)
 
 ## Functions
 

@@ -178,13 +178,13 @@ The following features are available:
   - [`unicode_tables`](#unicode_tables)
   - [`utf8`](#utf8)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`Parser`](#parser)
+  - [`ParserBuilder`](#parserbuilder)
+  - [`UnicodeWordError`](#unicodeworderror)
 - [Enums](#enums)
-  - [`unnamed`](#unnamed)
+  - [`Error`](#error)
 - [Functions](#functions)
-  - [`unnamed`](#unnamed)
+  - [`parse`](#parse)
   - [`escape`](#escape)
   - [`escape_into`](#escape_into)
   - [`is_meta_character`](#is_meta_character)
@@ -207,11 +207,11 @@ The following features are available:
 | [`unicode`](#unicode) | mod |  |
 | [`unicode_tables`](#unicode_tables) | mod |  |
 | [`utf8`](#utf8) | mod | Converts ranges of Unicode scalar values to equivalent ranges of UTF-8 bytes. |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | fn |  |
+| [`Parser`](#parser) | struct |  |
+| [`ParserBuilder`](#parserbuilder) | struct |  |
+| [`UnicodeWordError`](#unicodeworderror) | struct |  |
+| [`Error`](#error) | enum |  |
+| [`parse`](#parse) | fn |  |
 | [`escape`](#escape) | fn | Escapes all regular expression meta characters in `text`. |
 | [`escape_into`](#escape_into) | fn | Escapes all meta characters in `text` and writes the result into `buf`. |
 | [`is_meta_character`](#is_meta_character) | fn | Returns true if the given character has significance in a regex. |
@@ -222,16 +222,16 @@ The following features are available:
 
 ## Modules
 
-- [`ast`](ast/index.md) - Defines an abstract syntax for regular expressions.
-- [`debug`](debug/index.md) - 
-- [`either`](either/index.md) - 
-- [`error`](error/index.md) - 
-- [`hir`](hir/index.md) - Defines a high-level intermediate (HIR) representation for regular expressions.
-- [`parser`](parser/index.md) - 
-- [`rank`](rank/index.md) - 
-- [`unicode`](unicode/index.md) - 
-- [`unicode_tables`](unicode_tables/index.md) - 
-- [`utf8`](utf8/index.md) - Converts ranges of Unicode scalar values to equivalent ranges of UTF-8 bytes.
+- [`ast`](ast/index.md) — Defines an abstract syntax for regular expressions.
+- [`debug`](debug/index.md)
+- [`either`](either/index.md)
+- [`error`](error/index.md)
+- [`hir`](hir/index.md) — Defines a high-level intermediate (HIR) representation for regular expressions.
+- [`parser`](parser/index.md)
+- [`rank`](rank/index.md)
+- [`unicode`](unicode/index.md)
+- [`unicode_tables`](unicode_tables/index.md)
+- [`utf8`](utf8/index.md) — Converts ranges of Unicode scalar values to equivalent ranges of UTF-8 bytes.
 
 ## Structs
 

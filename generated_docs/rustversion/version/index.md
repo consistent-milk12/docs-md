@@ -35,9 +35,9 @@ struct Version {
 
 - <span id="version-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl PartialEq for Version`
+##### `impl PartialEq for crate::version::Version`
 
-- <span id="version-eq"></span>`fn eq(&self, other: &Version) -> bool` — [`Version`](#version)
+- <span id="crateversionversion-eq"></span>`fn eq(&self, rhs: &Bound) -> bool` — [`Bound`](../bound/index.md)
 
 ##### `impl PartialOrd for crate::version::Version`
 

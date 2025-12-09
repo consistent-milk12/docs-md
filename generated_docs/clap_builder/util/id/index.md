@@ -76,7 +76,7 @@ relationships between `Arg`s and `ArgGroup`s with functions like
 
 ##### `impl PartialEq for Id`
 
-- <span id="id-eq"></span>`fn eq(&self, other: &&str) -> bool`
+- <span id="id-eq"></span>`fn eq(&self, other: &str) -> bool`
 
 ##### `impl PartialOrd for Id`
 

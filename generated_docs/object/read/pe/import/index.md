@@ -279,3 +279,8 @@ A trait for generic access to [`pe::ImageThunkData32`](../../../pe/index.md) and
 
   Return the RVA portion of the thunk.
 
+#### Implementors
+
+- [`ImageThunkData32`](../../../pe/index.md)
+- [`ImageThunkData64`](../../../pe/index.md)
+

@@ -31,7 +31,7 @@ instructions.
 
 ## Modules
 
-- [`asm`](asm/index.md) - x86-64 Linux system calls.
+- [`asm`](asm/index.md) — x86-64 Linux system calls.
 
 ## Macros
 

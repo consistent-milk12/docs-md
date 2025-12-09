@@ -209,21 +209,21 @@ These Cargo features enable new functionality:
   - [`word_separators`](#word_separators)
   - [`wrap`](#wrap)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
+  - [`Options`](#options)
 - [Enums](#enums)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`LineEnding`](#lineending)
+  - [`WordSeparator`](#wordseparator)
+  - [`WordSplitter`](#wordsplitter)
+  - [`WrapAlgorithm`](#wrapalgorithm)
 - [Functions](#functions)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`wrap_columns`](#wrap_columns)
+  - [`fill`](#fill)
+  - [`fill_inplace`](#fill_inplace)
+  - [`dedent`](#dedent)
+  - [`indent`](#indent)
+  - [`refill`](#refill)
+  - [`unfill`](#unfill)
+  - [`wrap`](#wrap)
 
 ## Quick Reference
 
@@ -240,33 +240,33 @@ These Cargo features enable new functionality:
 | [`refill`](#refill) | mod | Functionality for unfilling and refilling text. |
 | [`word_separators`](#word_separators) | mod | Functionality for finding words. |
 | [`wrap`](#wrap) | mod | Functions for wrapping text. |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
+| [`Options`](#options) | struct |  |
+| [`LineEnding`](#lineending) | enum |  |
+| [`WordSeparator`](#wordseparator) | enum |  |
+| [`WordSplitter`](#wordsplitter) | enum |  |
+| [`WrapAlgorithm`](#wrapalgorithm) | enum |  |
+| [`wrap_columns`](#wrap_columns) | fn |  |
+| [`fill`](#fill) | fn |  |
+| [`fill_inplace`](#fill_inplace) | fn |  |
+| [`dedent`](#dedent) | fn |  |
+| [`indent`](#indent) | fn |  |
+| [`refill`](#refill) | fn |  |
+| [`unfill`](#unfill) | fn |  |
+| [`wrap`](#wrap) | fn |  |
 
 ## Modules
 
-- [`core`](core/index.md) - Building blocks for advanced wrapping functionality.
-- [`word_splitters`](word_splitters/index.md) - Word splitting functionality.
-- [`wrap_algorithms`](wrap_algorithms/index.md) - Word wrapping algorithms.
-- [`columns`](columns/index.md) - Functionality for wrapping text into columns.
-- [`fill`](fill/index.md) - Functions for filling text.
-- [`indentation`](indentation/index.md) - Functions related to adding and removing indentation from lines of
-- [`line_ending`](line_ending/index.md) - Line ending detection and conversion.
-- [`options`](options/index.md) - Options for wrapping text.
-- [`refill`](refill/index.md) - Functionality for unfilling and refilling text.
-- [`word_separators`](word_separators/index.md) - Functionality for finding words.
-- [`wrap`](wrap/index.md) - Functions for wrapping text.
+- [`core`](core/index.md) — Building blocks for advanced wrapping functionality.
+- [`word_splitters`](word_splitters/index.md) — Word splitting functionality.
+- [`wrap_algorithms`](wrap_algorithms/index.md) — Word wrapping algorithms.
+- [`columns`](columns/index.md) — Functionality for wrapping text into columns.
+- [`fill`](fill/index.md) — Functions for filling text.
+- [`indentation`](indentation/index.md) — Functions related to adding and removing indentation from lines of
+- [`line_ending`](line_ending/index.md) — Line ending detection and conversion.
+- [`options`](options/index.md) — Options for wrapping text.
+- [`refill`](refill/index.md) — Functionality for unfilling and refilling text.
+- [`word_separators`](word_separators/index.md) — Functionality for finding words.
+- [`wrap`](wrap/index.md) — Functions for wrapping text.
 
 ## Structs
 

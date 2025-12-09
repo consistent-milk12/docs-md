@@ -49,21 +49,13 @@ Returned by `CoffHeader::sections` and
 
 #### Implementations
 
-- <span id="sectiontable-parse"></span>`fn parse<Coff: CoffHeader, R: ReadRef<'data>>(header: &Coff, data: R, offset: u64) -> Result<Self>` — [`Result`](../../../index.md)
+- <span id="supersectiontable-pe-file-range-at"></span>`fn pe_file_range_at(&self, va: u32) -> Option<(u32, u32)>`
 
-- <span id="sectiontable-iter"></span>`fn iter(&self) -> slice::Iter<'data, pe::ImageSectionHeader>` — [`ImageSectionHeader`](../../../pe/index.md)
+- <span id="supersectiontable-pe-data-at"></span>`fn pe_data_at<R: ReadRef<'data>>(&self, data: R, va: u32) -> Option<&'data [u8]>`
 
-- <span id="sectiontable-enumerate"></span>`fn enumerate(&self) -> impl Iterator<Item = (SectionIndex, &'data pe::ImageSectionHeader)>` — [`SectionIndex`](../../../index.md), [`ImageSectionHeader`](../../../pe/index.md)
+- <span id="supersectiontable-pe-data-containing"></span>`fn pe_data_containing<R: ReadRef<'data>>(&self, data: R, va: u32) -> Option<(&'data [u8], u32)>`
 
-- <span id="sectiontable-is-empty"></span>`fn is_empty(&self) -> bool`
-
-- <span id="sectiontable-len"></span>`fn len(&self) -> usize`
-
-- <span id="sectiontable-section"></span>`fn section(&self, index: SectionIndex) -> read::Result<&'data pe::ImageSectionHeader>` — [`SectionIndex`](../../../index.md), [`Result`](../../../index.md), [`ImageSectionHeader`](../../../pe/index.md)
-
-- <span id="sectiontable-section-by-name"></span>`fn section_by_name<R: ReadRef<'data>>(&self, strings: StringTable<'data, R>, name: &[u8]) -> Option<(SectionIndex, &'data pe::ImageSectionHeader)>` — [`StringTable`](../../index.md), [`SectionIndex`](../../../index.md), [`ImageSectionHeader`](../../../pe/index.md)
-
-- <span id="sectiontable-max-section-file-offset"></span>`fn max_section_file_offset(&self) -> u64`
+- <span id="supersectiontable-section-containing"></span>`fn section_containing(&self, va: u32) -> Option<&'data ImageSectionHeader>` — [`ImageSectionHeader`](../../../pe/index.md)
 
 #### Trait Implementations
 

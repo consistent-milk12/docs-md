@@ -124,13 +124,19 @@ trait Pair { ... }
 Avoid having to restate the generic types on `MapDeserializer`. The
 `Iterator::Item` contains enough information to figure out K and V.
 
-#### Required Methods
+#### Associated Types
 
 - `type First`
 
 - `type Second`
 
+#### Required Methods
+
 - `fn split(self) -> (<Self as >::First, <Self as >::Second)`
+
+#### Implementors
+
+- `(A, B)`
 
 ## Functions
 

@@ -163,13 +163,19 @@ the plumbing README][r] for more details.
 
 
 
-#### Required Methods
+#### Associated Types
 
 - `type Output`
+
+#### Required Methods
 
 - `fn callback<P>(self, producer: P) -> <Self as >::Output`
 
   Invokes the callback with the given producer as argument. The
+
+#### Implementors
+
+- [`BlocksCallback`](../blocks/index.md)
 
 ### `Producer`
 
@@ -201,15 +207,23 @@ IntoIterator here until that issue is fixed.
 
 
 
-#### Required Methods
+#### Associated Types
 
 - `type Item`
 
 - `type IntoIter: 3`
 
+#### Required Methods
+
 - `fn into_iter(self) -> <Self as >::IntoIter`
 
   Convert `self` into an iterator; at this point, no more parallel splits
+
+- `fn split_at(self, index: usize) -> (Self, Self)`
+
+  Split into two producers; one produces items `0..index`, the
+
+#### Provided Methods
 
 - `fn min_len(&self) -> usize`
 
@@ -219,13 +233,46 @@ IntoIterator here until that issue is fixed.
 
   The maximum number of items that we will process
 
-- `fn split_at(self, index: usize) -> (Self, Self)`
-
-  Split into two producers; one produces items `0..index`, the
-
 - `fn fold_with<F>(self, folder: F) -> F`
 
   Iterate the producer, feeding each element to `folder`, and
+
+#### Implementors
+
+- [`ChainProducer`](../chain/index.md)
+- [`ChunkProducer`](../chunks/index.md)
+- [`ChunksExactMutProducer`](../../slice/chunks/index.md)
+- [`ChunksExactProducer`](../../slice/chunks/index.md)
+- [`ChunksMutProducer`](../../slice/chunks/index.md)
+- [`ChunksProducer`](../../slice/chunks/index.md)
+- [`ClonedProducer`](../cloned/index.md)
+- [`CopiedProducer`](../copied/index.md)
+- [`DrainProducer`](../../vec/index.md)
+- [`EmptyProducer`](../empty/index.md)
+- [`EnumerateProducer`](../enumerate/index.md)
+- [`InspectProducer`](../inspect/index.md)
+- [`InterleaveProducer`](../interleave/index.md)
+- [`IntersperseProducer`](../intersperse/index.md)
+- [`IterMutProducer`](../../slice/index.md)
+- [`IterProducer`](../../range/index.md)
+- [`IterProducer`](../../slice/index.md)
+- [`MapInitProducer`](../map_with/index.md)
+- [`MapProducer`](../map/index.md)
+- [`MapWithProducer`](../map_with/index.md)
+- [`MaxLenProducer`](../len/index.md)
+- [`MinLenProducer`](../len/index.md)
+- [`OptionProducer`](../../option/index.md)
+- [`PanicFuseProducer`](../panic_fuse/index.md)
+- [`RChunksExactMutProducer`](../../slice/rchunks/index.md)
+- [`RChunksExactProducer`](../../slice/rchunks/index.md)
+- [`RChunksMutProducer`](../../slice/rchunks/index.md)
+- [`RChunksProducer`](../../slice/rchunks/index.md)
+- [`RepeatNProducer`](../repeat/index.md)
+- [`RevProducer`](../rev/index.md)
+- [`StepByProducer`](../step_by/index.md)
+- [`UpdateProducer`](../update/index.md)
+- [`WindowsProducer`](../../slice/index.md)
+- [`ZipProducer`](../zip/index.md)
 
 ### `Consumer<Item>`
 
@@ -245,13 +292,15 @@ README][r] for further details.
 
 
 
-#### Required Methods
+#### Associated Types
 
 - `type Folder: 1`
 
 - `type Reducer: 1`
 
 - `type Result: 1`
+
+#### Required Methods
 
 - `fn split_at(self, index: usize) -> (Self, Self, <Self as >::Reducer)`
 
@@ -265,6 +314,48 @@ README][r] for further details.
 
   Hint whether this `Consumer` would like to stop processing
 
+#### Implementors
+
+- [`ClonedConsumer`](../cloned/index.md)
+- [`CollectConsumer`](../collect/consumer/index.md)
+- [`CopiedConsumer`](../copied/index.md)
+- [`FilterConsumer`](../filter/index.md)
+- [`FilterMapConsumer`](../filter_map/index.md)
+- [`FindConsumer`](../find/index.md)
+- [`FindConsumer`](../find_first_last/index.md)
+- [`FlatMapConsumer`](../flat_map/index.md)
+- [`FlatMapIterConsumer`](../flat_map_iter/index.md)
+- [`FlattenConsumer`](../flatten/index.md)
+- [`FlattenIterConsumer`](../flatten_iter/index.md)
+- [`FoldConsumer`](../fold/index.md)
+- [`FoldWithConsumer`](../fold/index.md)
+- [`ForEachConsumer`](../for_each/index.md)
+- [`InspectConsumer`](../inspect/index.md)
+- [`IntersperseConsumer`](../intersperse/index.md)
+- [`ListConsumer`](../extend/index.md)
+- [`ListStringConsumer`](../extend/index.md)
+- [`ListVecConsumer`](../extend/index.md)
+- [`MapConsumer`](../map/index.md)
+- [`MapInitConsumer`](../map_with/index.md)
+- [`MapWithConsumer`](../map_with/index.md)
+- [`NoopConsumer`](../noop/index.md)
+- [`PanicFuseConsumer`](../panic_fuse/index.md)
+- [`PositionsConsumer`](../positions/index.md)
+- [`ProductConsumer`](../product/index.md)
+- [`ReduceConsumer`](../reduce/index.md)
+- [`SkipAnyConsumer`](../skip_any/index.md)
+- [`SkipAnyWhileConsumer`](../skip_any_while/index.md)
+- [`SumConsumer`](../sum/index.md)
+- [`TakeAnyConsumer`](../take_any/index.md)
+- [`TakeAnyWhileConsumer`](../take_any_while/index.md)
+- [`TryFoldConsumer`](../try_fold/index.md)
+- [`TryFoldWithConsumer`](../try_fold/index.md)
+- [`TryReduceConsumer`](../try_reduce/index.md)
+- [`TryReduceWithConsumer`](../try_reduce_with/index.md)
+- [`UnzipConsumer`](../unzip/index.md)
+- [`UpdateConsumer`](../update/index.md)
+- [`WhileSomeConsumer`](../while_some/index.md)
+
 ### `Folder<Item>`
 
 ```rust
@@ -277,17 +368,15 @@ method. At the end, once all items have been consumed, it can then
 be converted (using `complete`) into a final value.
 
 
-#### Required Methods
+#### Associated Types
 
 - `type Result`
+
+#### Required Methods
 
 - `fn consume(self, item: Item) -> Self`
 
   Consume next item and return new sequential state.
-
-- `fn consume_iter<I>(self, iter: I) -> Self`
-
-  Consume items from the iterator until full, and return new sequential state.
 
 - `fn complete(self) -> <Self as >::Result`
 
@@ -296,6 +385,51 @@ be converted (using `complete`) into a final value.
 - `fn full(&self) -> bool`
 
   Hint whether this `Folder` would like to stop processing
+
+#### Provided Methods
+
+- `fn consume_iter<I>(self, iter: I) -> Self`
+
+  Consume items from the iterator until full, and return new sequential state.
+
+#### Implementors
+
+- [`ClonedFolder`](../cloned/index.md)
+- [`CollectResult`](../collect/consumer/index.md)
+- [`CopiedFolder`](../copied/index.md)
+- [`FilterFolder`](../filter/index.md)
+- [`FilterMapFolder`](../filter_map/index.md)
+- [`FindFolder`](../find/index.md)
+- [`FindFolder`](../find_first_last/index.md)
+- [`FlatMapFolder`](../flat_map/index.md)
+- [`FlatMapIterFolder`](../flat_map_iter/index.md)
+- [`FlattenFolder`](../flatten/index.md)
+- [`FlattenIterFolder`](../flatten_iter/index.md)
+- [`FoldFolder`](../fold/index.md)
+- [`ForEachConsumer`](../for_each/index.md)
+- [`InspectFolder`](../inspect/index.md)
+- [`IntersperseFolder`](../intersperse/index.md)
+- [`ListFolder`](../extend/index.md)
+- [`ListStringFolder`](../extend/index.md)
+- [`ListVecFolder`](../extend/index.md)
+- [`MapFolder`](../map/index.md)
+- [`MapWithFolder`](../map_with/index.md)
+- [`NoopConsumer`](../noop/index.md)
+- [`PanicFuseFolder`](../panic_fuse/index.md)
+- [`PositionsFolder`](../positions/index.md)
+- [`ProductFolder`](../product/index.md)
+- [`ReduceFolder`](../reduce/index.md)
+- [`SkipAnyFolder`](../skip_any/index.md)
+- [`SkipAnyWhileFolder`](../skip_any_while/index.md)
+- [`SumFolder`](../sum/index.md)
+- [`TakeAnyFolder`](../take_any/index.md)
+- [`TakeAnyWhileFolder`](../take_any_while/index.md)
+- [`TryFoldFolder`](../try_fold/index.md)
+- [`TryReduceFolder`](../try_reduce/index.md)
+- [`TryReduceWithFolder`](../try_reduce_with/index.md)
+- [`UnzipFolder`](../unzip/index.md)
+- [`UpdateFolder`](../update/index.md)
+- [`WhileSomeFolder`](../while_some/index.md)
 
 ### `Reducer<Result>`
 
@@ -315,6 +449,21 @@ README][r] for further details.
 - `fn reduce(self, left: Result, right: Result) -> Result`
 
   Reduce two final results into one; this is executed after a
+
+#### Implementors
+
+- [`CollectReducer`](../collect/consumer/index.md)
+- [`FindReducer`](../find/index.md)
+- [`FindReducer`](../find_first_last/index.md)
+- [`ListReducer`](../extend/index.md)
+- [`NoopReducer`](../noop/index.md)
+- [`PanicFuseReducer`](../panic_fuse/index.md)
+- [`ProductConsumer`](../product/index.md)
+- [`ReduceConsumer`](../reduce/index.md)
+- [`SumConsumer`](../sum/index.md)
+- [`TryReduceConsumer`](../try_reduce/index.md)
+- [`TryReduceWithConsumer`](../try_reduce_with/index.md)
+- [`UnzipReducer`](../unzip/index.md)
 
 ### `UnindexedConsumer<I>`
 
@@ -338,6 +487,47 @@ produces an unindexed consumer).
 
   Creates a reducer that can be used to combine the results from
 
+#### Implementors
+
+- [`ClonedConsumer`](../cloned/index.md)
+- [`CollectConsumer`](../collect/consumer/index.md)
+- [`CopiedConsumer`](../copied/index.md)
+- [`FilterConsumer`](../filter/index.md)
+- [`FilterMapConsumer`](../filter_map/index.md)
+- [`FindConsumer`](../find/index.md)
+- [`FindConsumer`](../find_first_last/index.md)
+- [`FlatMapConsumer`](../flat_map/index.md)
+- [`FlatMapIterConsumer`](../flat_map_iter/index.md)
+- [`FlattenConsumer`](../flatten/index.md)
+- [`FlattenIterConsumer`](../flatten_iter/index.md)
+- [`FoldConsumer`](../fold/index.md)
+- [`FoldWithConsumer`](../fold/index.md)
+- [`ForEachConsumer`](../for_each/index.md)
+- [`InspectConsumer`](../inspect/index.md)
+- [`IntersperseConsumer`](../intersperse/index.md)
+- [`ListConsumer`](../extend/index.md)
+- [`ListStringConsumer`](../extend/index.md)
+- [`ListVecConsumer`](../extend/index.md)
+- [`MapConsumer`](../map/index.md)
+- [`MapInitConsumer`](../map_with/index.md)
+- [`MapWithConsumer`](../map_with/index.md)
+- [`NoopConsumer`](../noop/index.md)
+- [`PanicFuseConsumer`](../panic_fuse/index.md)
+- [`ProductConsumer`](../product/index.md)
+- [`ReduceConsumer`](../reduce/index.md)
+- [`SkipAnyConsumer`](../skip_any/index.md)
+- [`SkipAnyWhileConsumer`](../skip_any_while/index.md)
+- [`SumConsumer`](../sum/index.md)
+- [`TakeAnyConsumer`](../take_any/index.md)
+- [`TakeAnyWhileConsumer`](../take_any_while/index.md)
+- [`TryFoldConsumer`](../try_fold/index.md)
+- [`TryFoldWithConsumer`](../try_fold/index.md)
+- [`TryReduceConsumer`](../try_reduce/index.md)
+- [`TryReduceWithConsumer`](../try_reduce_with/index.md)
+- [`UnzipConsumer`](../unzip/index.md)
+- [`UpdateConsumer`](../update/index.md)
+- [`WhileSomeConsumer`](../while_some/index.md)
+
 ### `UnindexedProducer`
 
 ```rust
@@ -353,9 +543,11 @@ particular point. Instead, you just ask them to split 'somewhere'.
 does not because to do so would require producers to carry their
 own length with them.)
 
-#### Required Methods
+#### Associated Types
 
 - `type Item`
+
+#### Required Methods
 
 - `fn split(self) -> (Self, Option<Self>)`
 
@@ -364,6 +556,24 @@ own length with them.)
 - `fn fold_with<F>(self, folder: F) -> F`
 
   Iterate the producer, feeding each element to `folder`, and
+
+#### Implementors
+
+- [`BytesProducer`](../../str/index.md)
+- [`CharIndicesProducer`](../../str/index.md)
+- [`CharsProducer`](../../str/index.md)
+- [`ChunkByProducer`](../../slice/chunk_by/index.md)
+- [`EncodeUtf16Producer`](../../str/index.md)
+- [`IterProducer`](../../range/index.md)
+- [`MatchIndicesProducer`](../../str/index.md)
+- [`MatchesProducer`](../../str/index.md)
+- [`RepeatProducer`](../repeat/index.md)
+- [`SplitProducer`](../../split_producer/index.md)
+- [`SplitProducer`](../splitter/index.md)
+- [`SplitTerminatorProducer`](../../str/index.md)
+- [`WalkTreePostfixProducer`](../walk_tree/index.md)
+- [`WalkTreePrefixProducer`](../walk_tree/index.md)
+- `&IterParallelProducer<'_, Iter>`
 
 ## Functions
 

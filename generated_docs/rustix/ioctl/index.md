@@ -66,9 +66,9 @@ to make the `ioctl` call.
 
 ## Modules
 
-- [`patterns`](patterns/index.md) - Implements typical patterns for `ioctl` usage.
-- [`linux`](linux/index.md) - `ioctl` opcode behavior for Linux platforms.
-- [`opcode`](opcode/index.md) - Const functions for computing opcode values.
+- [`patterns`](patterns/index.md) — Implements typical patterns for `ioctl` usage.
+- [`linux`](linux/index.md) — `ioctl` opcode behavior for Linux platforms.
+- [`opcode`](opcode/index.md) — Const functions for computing opcode values.
 
 ## Structs
 
@@ -383,11 +383,15 @@ By implementing this trait, you guarantee that:
  - If `IS_MUTATING` is false, that no userspace data will be modified by
    the `ioctl` call.
 
-#### Required Methods
+#### Associated Types
 
 - `type Output`
 
+#### Associated Constants
+
 - `const IS_MUTATING: bool`
+
+#### Required Methods
 
 - `fn opcode(&self) -> Opcode`
 
@@ -400,6 +404,14 @@ By implementing this trait, you guarantee that:
 - `fn output_from_ptr(out: IoctlOutput, extract_output: *mut c::c_void) -> Result<<Self as >::Output>`
 
   Cast the output data to the correct type.
+
+#### Implementors
+
+- [`Getter`](#getter)
+- [`IntegerSetter`](#integersetter)
+- [`NoArg`](#noarg)
+- [`Setter`](#setter)
+- [`Updater`](#updater)
 
 ## Functions
 

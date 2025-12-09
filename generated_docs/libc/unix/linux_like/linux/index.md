@@ -7962,10 +7962,10 @@ Linux-specific definitions for linux-like values
 
 ## Modules
 
-- [`gnu`](gnu/index.md) - 
-- [`arch`](arch/index.md) - 
-- [`b64`](b64/index.md) - 64-bit specific definitions for linux-like values
-- [`generic`](generic/index.md) - 
+- [`gnu`](gnu/index.md)
+- [`arch`](arch/index.md)
+- [`b64`](b64/index.md) — 64-bit specific definitions for linux-like values
+- [`generic`](generic/index.md)
 
 ## Structs
 

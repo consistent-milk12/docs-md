@@ -15,7 +15,7 @@
 
 ## Modules
 
-- [`libunwind`](libunwind/index.md) - Backtrace support using libunwind/gcc_s/etc APIs.
+- [`libunwind`](libunwind/index.md) — Backtrace support using libunwind/gcc_s/etc APIs.
 
 ## Structs
 

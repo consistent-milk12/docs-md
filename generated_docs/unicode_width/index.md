@@ -151,12 +151,12 @@ Canonically equivalent strings are assigned the same width (CJK and non-CJK).
 | [`private`](#private) | mod |  |
 | [`UnicodeWidthChar`](#unicodewidthchar) | trait | Methods for determining displayed width of Unicode characters. |
 | [`UnicodeWidthStr`](#unicodewidthstr) | trait | Methods for determining displayed width of Unicode strings. |
-| [`unnamed`](#unnamed) | const |  |
+| [`UNICODE_VERSION`](#unicode_version) | const |  |
 
 ## Modules
 
-- [`tables`](tables/index.md) - 
-- [`private`](private/index.md) - 
+- [`tables`](tables/index.md)
+- [`private`](private/index.md)
 
 ## Traits
 
@@ -178,6 +178,10 @@ Methods for determining displayed width of Unicode characters.
 
   Returns the character's displayed width in columns, or `None` if the
 
+#### Implementors
+
+- `char`
+
 ### `UnicodeWidthStr`
 
 ```rust
@@ -195,6 +199,10 @@ Methods for determining displayed width of Unicode strings.
 - `fn width_cjk(&self) -> usize`
 
   Returns the string's displayed width in columns.
+
+#### Implementors
+
+- `str`
 
 ## Constants
 

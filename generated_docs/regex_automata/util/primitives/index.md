@@ -781,11 +781,15 @@ to access indices as "small index" types. We require ExactSizeIterator so
 that iterator construction can do a single check to make sure the index of
 each element is representable by its small index type.
 
-#### Required Methods
+#### Provided Methods
 
 - `fn with_pattern_ids(self) -> WithPatternIDIter<Self>`
 
 - `fn with_state_ids(self) -> WithStateIDIter<Self>`
+
+#### Implementors
+
+- `I`
 
 ## Macros
 

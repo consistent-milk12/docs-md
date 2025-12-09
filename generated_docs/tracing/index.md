@@ -913,12 +913,12 @@
   - [`subscriber`](#subscriber)
   - [`sealed`](#sealed)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
+  - [`Span`](#span)
 - [Traits](#traits)
-  - [`unnamed`](#unnamed)
+  - [`Instrument`](#instrument)
 - [Functions](#functions)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`Value`](#value)
+  - [`Subscriber`](#subscriber)
 - [Macros](#macros)
   - [`event!`](#event)
   - [`span!`](#span)
@@ -949,10 +949,10 @@
 | [`span`](#span) | mod | Spans represent periods of time in which a program was executing in a |
 | [`subscriber`](#subscriber) | mod | Collects and records trace data. |
 | [`sealed`](#sealed) | mod |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | trait |  |
-| [`unnamed`](#unnamed) | fn |  |
-| [`unnamed`](#unnamed) | fn |  |
+| [`Span`](#span) | struct |  |
+| [`Instrument`](#instrument) | trait |  |
+| [`Value`](#value) | fn |  |
+| [`Subscriber`](#subscriber) | fn |  |
 | [`event!`](#event) | macro | Constructs a new `Event`. |
 | [`span!`](#span) | macro | Constructs a new span. |
 | [`record_all!`](#record_all) | macro | Records multiple values on a span in a single call. |
@@ -972,14 +972,14 @@
 
 ## Modules
 
-- [`macros`](macros/index.md) - 
-- [`dispatcher`](dispatcher/index.md) - Dispatches trace events to [`Subscriber`]s.
-- [`field`](field/index.md) - `Span` and `Event` key-value data.
-- [`instrument`](instrument/index.md) - Attach a span to a `std::future::Future`.
-- [`level_filters`](level_filters/index.md) - Trace verbosity level filtering.
-- [`span`](span/index.md) -  Spans represent periods of time in which a program was executing in a
-- [`subscriber`](subscriber/index.md) - Collects and records trace data.
-- [`sealed`](sealed/index.md) - 
+- [`macros`](macros/index.md)
+- [`dispatcher`](dispatcher/index.md) — Dispatches trace events to [`Subscriber`]s.
+- [`field`](field/index.md) — `Span` and `Event` key-value data.
+- [`instrument`](instrument/index.md) — Attach a span to a `std::future::Future`.
+- [`level_filters`](level_filters/index.md) — Trace verbosity level filtering.
+- [`span`](span/index.md) —  Spans represent periods of time in which a program was executing in a
+- [`subscriber`](subscriber/index.md) — Collects and records trace data.
+- [`sealed`](sealed/index.md)
 
 ## Structs
 
@@ -1087,6 +1087,39 @@ manner regardless of whether or not the trace is currently being collected.
 ##### `impl<T> WithSubscriber for Span`
 
 ## Traits
+
+### `Instrument`
+
+```rust
+trait Instrument: Sized { ... }
+```
+
+Attaches spans to a `std::future::Future`.
+
+Extension trait allowing futures to be
+instrumented with a `tracing` [`span`](span/index.md).
+
+
+#### Provided Methods
+
+- `fn instrument(self, span: Span) -> Instrumented<Self>`
+
+  Instruments this type with the provided [`Span`](#span), returning an
+
+- `fn in_current_span(self) -> Instrumented<Self>`
+
+  Instruments this type with the [current] [`Span`](#span), returning an
+
+#### Implementors
+
+- [`EnteredSpan`](span/index.md)
+- [`Entered`](span/index.md)
+- [`Inner`](span/index.md)
+- [`Instrumented`](instrument/index.md)
+- [`PhantomNotSend`](span/index.md)
+- [`Span`](#span)
+- [`WithDispatch`](instrument/index.md)
+- `T`
 
 ## Functions
 

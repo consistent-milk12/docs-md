@@ -103,8 +103,8 @@ Ok(())
   - [`error`](#error)
   - [`util`](#util)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`DirEntry`](#direntry)
+  - [`Error`](#error)
   - [`WalkDir`](#walkdir)
   - [`WalkDirOptions`](#walkdiroptions)
   - [`IntoIter`](#intoiter)
@@ -113,7 +113,7 @@ Ok(())
 - [Enums](#enums)
   - [`DirList`](#dirlist)
 - [Traits](#traits)
-  - [`unnamed`](#unnamed)
+  - [`DirEntryExt`](#direntryext)
 - [Type Aliases](#type-aliases)
   - [`Result`](#result)
 - [Macros](#macros)
@@ -126,23 +126,23 @@ Ok(())
 | [`dent`](#dent) | mod |  |
 | [`error`](#error) | mod |  |
 | [`util`](#util) | mod |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
+| [`DirEntry`](#direntry) | struct |  |
+| [`Error`](#error) | struct |  |
 | [`WalkDir`](#walkdir) | struct | A builder to create an iterator for recursively walking a directory. |
 | [`WalkDirOptions`](#walkdiroptions) | struct |  |
 | [`IntoIter`](#intoiter) | struct | An iterator for recursively descending into a directory. |
 | [`Ancestor`](#ancestor) | struct | An ancestor is an item in the directory tree traversed by walkdir, and is |
 | [`FilterEntry`](#filterentry) | struct | A recursive directory iterator that skips entries. |
 | [`DirList`](#dirlist) | enum | A sequence of unconsumed directory entries. |
-| [`unnamed`](#unnamed) | trait |  |
+| [`DirEntryExt`](#direntryext) | trait |  |
 | [`Result`](#result) | type | A result type for walkdir operations. |
 | [`itry!`](#itry) | macro | Like try, but for iterators that return [`Option<Result<_, _>>`]. |
 
 ## Modules
 
-- [`dent`](dent/index.md) - 
-- [`error`](error/index.md) - 
-- [`util`](util/index.md) - 
+- [`dent`](dent/index.md)
+- [`error`](error/index.md)
+- [`util`](util/index.md)
 
 ## Structs
 
@@ -734,6 +734,24 @@ proceeds over a `Vec<fs::DirEntry>`.
 - <span id="dirlist-next"></span>`fn next(&mut self) -> Option<Result<DirEntry>>` — [`Result`](#result), [`DirEntry`](#direntry)
 
 ## Traits
+
+### `DirEntryExt`
+
+```rust
+trait DirEntryExt { ... }
+```
+
+Unix-specific extension methods for `walkdir::DirEntry`
+
+#### Required Methods
+
+- `fn ino(&self) -> u64`
+
+  Returns the underlying `d_ino` field in the contained `dirent`
+
+#### Implementors
+
+- [`DirEntry`](#direntry)
 
 ## Type Aliases
 

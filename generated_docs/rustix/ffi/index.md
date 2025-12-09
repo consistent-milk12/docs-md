@@ -10,8 +10,8 @@ Utilities related to FFI bindings.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | fn |  |
+| [`c_void`](#c_void) | struct |  |
+| [`c_uint`](#c_uint) | fn |  |
 
 ## Structs
 

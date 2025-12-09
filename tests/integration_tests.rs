@@ -18,6 +18,7 @@
 
 use std::path::{Path, PathBuf};
 
+use cargo_docs_md::generator::config::RenderConfig;
 use cargo_docs_md::generator::Generator;
 use cargo_docs_md::linker::LinkRegistry;
 use cargo_docs_md::parser::Parser;
@@ -810,4 +811,238 @@ fn test_method_anchors_are_unique_per_type() {
             );
         }
     }
+}
+
+// =============================================================================
+// Collapsible Impl Block Tests
+// =============================================================================
+
+#[test]
+fn test_hide_trivial_derives_produces_collapsible_block() {
+    if !fixture_exists() {
+        eprintln!("Skipping test: fixture not found. Run `cargo doc --output-format json`");
+        return;
+    }
+
+    let krate = load_fixture();
+
+    // Generate with hide_trivial_derives enabled
+    let config = RenderConfig {
+        hide_trivial_derives: true,
+        ..RenderConfig::default()
+    };
+
+    let capture =
+        Generator::generate_to_capture_with_config(&krate, CliOutputFormat::Flat, false, config)
+            .expect("Generation failed");
+
+    // Check if any file contains collapsible blocks for trivial derives
+    let mut found_collapsible = false;
+    let mut found_derived_traits_summary = false;
+
+    for path in capture.paths() {
+        let content = capture.get(path).unwrap();
+
+        if content.contains("<details>") && content.contains("</details>") {
+            found_collapsible = true;
+        }
+
+        if content.contains("Derived Traits") && content.contains("implementations") {
+            found_derived_traits_summary = true;
+        }
+    }
+
+    // Note: The fixture may or may not have types with trivial derive implementations
+    // If found, they should be in collapsible blocks
+    if found_derived_traits_summary {
+        assert!(
+            found_collapsible,
+            "When hide_trivial_derives is enabled and trivial derives exist, \
+             output should contain <details> blocks"
+        );
+    }
+
+    eprintln!(
+        "Collapsible blocks found: {found_collapsible}, \
+         Derived traits summary found: {found_derived_traits_summary}"
+    );
+}
+
+#[test]
+fn test_default_config_no_collapsible_derives() {
+    if !fixture_exists() {
+        eprintln!("Skipping test: fixture not found. Run `cargo doc --output-format json`");
+        return;
+    }
+
+    let krate = load_fixture();
+
+    // Generate with default config (hide_trivial_derives = false)
+    let capture = Generator::generate_to_capture(&krate, CliOutputFormat::Flat, false)
+        .expect("Generation failed");
+
+    // With default config, should not have "Derived Traits (N implementations)" summary
+    let mut found_derived_traits_summary = false;
+
+    for path in capture.paths() {
+        let content = capture.get(path).unwrap();
+
+        // Look for the specific collapsible summary pattern we generate
+        if content.contains("<summary>Derived Traits") {
+            found_derived_traits_summary = true;
+            break;
+        }
+    }
+
+    assert!(
+        !found_derived_traits_summary,
+        "With default config (hide_trivial_derives=false), should not have \
+         collapsible 'Derived Traits' summary blocks"
+    );
+}
+
+#[test]
+fn test_collapsible_block_contains_trait_table() {
+    if !fixture_exists() {
+        eprintln!("Skipping test: fixture not found. Run `cargo doc --output-format json`");
+        return;
+    }
+
+    let krate = load_fixture();
+
+    // Generate with hide_trivial_derives enabled
+    let config = RenderConfig {
+        hide_trivial_derives: true,
+        ..RenderConfig::default()
+    };
+
+    let capture =
+        Generator::generate_to_capture_with_config(&krate, CliOutputFormat::Flat, false, config)
+            .expect("Generation failed");
+
+    // If we find a collapsible Derived Traits block, it should contain a table
+    for path in capture.paths() {
+        let content = capture.get(path).unwrap();
+
+        if content.contains("<summary>Derived Traits") {
+            // Should contain table headers
+            assert!(
+                content.contains("| Trait | Description |"),
+                "Collapsible Derived Traits block should contain trait table headers"
+            );
+            assert!(
+                content.contains("| ----- | ----------- |"),
+                "Collapsible Derived Traits block should contain table separator"
+            );
+            break;
+        }
+    }
+}
+
+// =============================================================================
+// Trait Definition Rendering Tests
+// =============================================================================
+
+/// Helper to get the walkdir test fixture path.
+fn walkdir_fixture_path() -> PathBuf {
+    PathBuf::from(env!("CARGO_MANIFEST_DIR"))
+        .join("target")
+        .join("doc")
+        .join("walkdir.json")
+}
+
+/// Check if the walkdir fixture exists.
+fn walkdir_fixture_exists() -> bool {
+    walkdir_fixture_path().exists()
+}
+
+/// Load the walkdir fixture crate.
+fn load_walkdir_fixture() -> rustdoc_types::Crate {
+    let path = walkdir_fixture_path();
+    Parser::parse_file(&path)
+        .expect("Failed to parse walkdir fixture. Run `cargo doc --output-format json` first.")
+}
+
+#[test]
+fn test_trait_definition_renders_required_methods() {
+    if !walkdir_fixture_exists() {
+        eprintln!("Skipping test: walkdir fixture not found. Run `cargo doc --output-format json`");
+        return;
+    }
+
+    let krate = load_walkdir_fixture();
+    let capture = Generator::generate_to_capture(&krate, CliOutputFormat::Nested, false)
+        .expect("Generation failed");
+
+    let index = capture.get("index.md").expect("Should have index.md");
+
+    // Verify DirEntryExt trait is rendered
+    assert!(
+        index.contains("### `DirEntryExt`"),
+        "Index should contain DirEntryExt trait heading"
+    );
+
+    // Verify Required Methods section exists
+    assert!(
+        index.contains("#### Required Methods"),
+        "Trait should have Required Methods section"
+    );
+
+    // Verify the ino method is listed
+    assert!(
+        index.contains("fn ino(&self) -> u64"),
+        "Required Methods should include ino method"
+    );
+}
+
+#[test]
+fn test_trait_definition_renders_implementors() {
+    if !walkdir_fixture_exists() {
+        eprintln!("Skipping test: walkdir fixture not found. Run `cargo doc --output-format json`");
+        return;
+    }
+
+    let krate = load_walkdir_fixture();
+    let capture = Generator::generate_to_capture(&krate, CliOutputFormat::Nested, false)
+        .expect("Generation failed");
+
+    let index = capture.get("index.md").expect("Should have index.md");
+
+    // Verify Implementors section exists
+    assert!(
+        index.contains("#### Implementors"),
+        "Trait should have Implementors section"
+    );
+
+    // Verify DirEntry is listed as implementor
+    assert!(
+        index.contains("DirEntry"),
+        "Implementors should include DirEntry"
+    );
+}
+
+#[test]
+fn test_trait_definition_has_traits_section() {
+    if !walkdir_fixture_exists() {
+        eprintln!("Skipping test: walkdir fixture not found. Run `cargo doc --output-format json`");
+        return;
+    }
+
+    let krate = load_walkdir_fixture();
+    let capture = Generator::generate_to_capture(&krate, CliOutputFormat::Nested, false)
+        .expect("Generation failed");
+
+    let index = capture.get("index.md").expect("Should have index.md");
+
+    // Verify Traits section exists and contains DirEntryExt
+    assert!(
+        index.contains("## Traits"),
+        "Index should have Traits section"
+    );
+
+    // Verify the trait code block is rendered
+    assert!(
+        index.contains("```rust\ntrait DirEntryExt"),
+        "Trait should have code block with signature"
+    );
 }

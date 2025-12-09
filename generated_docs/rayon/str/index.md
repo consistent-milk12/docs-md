@@ -90,7 +90,7 @@ and any function or closure `F: Fn(char) -> bool + Sync + Send`.
 
 ## Modules
 
-- [`private`](private/index.md) - We hide the `Pattern` trait in a private module, as its API is not meant
+- [`private`](private/index.md) — We hide the `Pattern` trait in a private module, as its API is not meant
 
 ## Structs
 
@@ -968,6 +968,8 @@ Parallel extensions for strings.
 
   Returns a plain string slice, which is used to implement the rest of
 
+#### Provided Methods
+
 - `fn par_chars(&self) -> Chars<'_>`
 
   Returns a parallel iterator over the characters of a string.
@@ -1015,6 +1017,10 @@ Parallel extensions for strings.
 - `fn par_match_indices<P: Pattern>(&self, pattern: P) -> MatchIndices<'_, P>`
 
   Returns a parallel iterator over substrings that match a given character
+
+#### Implementors
+
+- `str`
 
 ## Functions
 

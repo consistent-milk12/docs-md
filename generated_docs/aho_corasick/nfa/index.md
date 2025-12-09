@@ -50,6 +50,6 @@ before you hit this limit.)
 
 ## Modules
 
-- [`contiguous`](contiguous/index.md) - Provides a contiguous NFA implementation of Aho-Corasick.
-- [`noncontiguous`](noncontiguous/index.md) - Provides a noncontiguous NFA implementation of Aho-Corasick.
+- [`contiguous`](contiguous/index.md) — Provides a contiguous NFA implementation of Aho-Corasick.
+- [`noncontiguous`](noncontiguous/index.md) — Provides a noncontiguous NFA implementation of Aho-Corasick.
 

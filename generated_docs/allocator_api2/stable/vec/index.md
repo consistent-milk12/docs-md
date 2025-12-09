@@ -65,9 +65,9 @@ v[1] = v[1] + 5;
   - [`partial_eq`](#partial_eq)
   - [`set_len_on_drop`](#set_len_on_drop)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`Splice`](#splice)
+  - [`Drain`](#drain)
+  - [`IntoIter`](#intoiter)
   - [`Vec`](#vec)
   - [`ExtendElement`](#extendelement)
 - [Traits](#traits)
@@ -82,20 +82,20 @@ v[1] = v[1] + 5;
 | [`into_iter`](#into_iter) | mod |  |
 | [`partial_eq`](#partial_eq) | mod |  |
 | [`set_len_on_drop`](#set_len_on_drop) | mod |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
+| [`Splice`](#splice) | struct |  |
+| [`Drain`](#drain) | struct |  |
+| [`IntoIter`](#intoiter) | struct |  |
 | [`Vec`](#vec) | struct | A contiguous growable array type, written as `Vec<T>`, short for 'vector'. |
 | [`ExtendElement`](#extendelement) | struct |  |
 | [`ExtendWith`](#extendwith) | trait |  |
 
 ## Modules
 
-- [`splice`](splice/index.md) - 
-- [`drain`](drain/index.md) - 
-- [`into_iter`](into_iter/index.md) - 
-- [`partial_eq`](partial_eq/index.md) - 
-- [`set_len_on_drop`](set_len_on_drop/index.md) - 
+- [`splice`](splice/index.md)
+- [`drain`](drain/index.md)
+- [`into_iter`](into_iter/index.md)
+- [`partial_eq`](partial_eq/index.md)
+- [`set_len_on_drop`](set_len_on_drop/index.md)
 
 ## Structs
 
@@ -580,11 +580,7 @@ The order has changed in the past and may change again.
 
 #### Implementations
 
-- <span id="vec-resize"></span>`fn resize(&mut self, new_len: usize, value: T)`
-
-- <span id="vec-extend-from-slice"></span>`fn extend_from_slice(&mut self, other: &[T])`
-
-- <span id="vec-extend-from-within"></span>`fn extend_from_within<R>(&mut self, src: R)`
+- <span id="vec-extend-with"></span>`fn extend_with<E: ExtendWith<T>>(&mut self, n: usize, value: E)`
 
 #### Trait Implementations
 
@@ -626,9 +622,9 @@ The order has changed in the past and may change again.
 
 ##### `impl<T: Eq, A: Allocator> Eq for Vec<T, A>`
 
-##### `impl<'a, T: Copy + 'a, A: Allocator + 'a> Extend for Vec<T, A>`
+##### `impl<T, A: Allocator> Extend for Vec<T, A>`
 
-- <span id="vec-extend"></span>`fn extend<I: IntoIterator<Item = &'a T>>(&mut self, iter: I)`
+- <span id="vec-extend"></span>`fn extend<I: IntoIterator<Item = T>>(&mut self, iter: I)`
 
 ##### `impl<T> FromIterator for Vec<T>`
 
@@ -662,9 +658,9 @@ The order has changed in the past and may change again.
 
 ##### `impl<T, U, A: Allocator> PartialEq for super::Vec<T, A>`
 
-- <span id="supervec-eq"></span>`fn eq(&self, other: &&mut [U]) -> bool`
+- <span id="supervec-eq"></span>`fn eq(&self, other: &&[U]) -> bool`
 
-- <span id="supervec-ne"></span>`fn ne(&self, other: &&mut [U]) -> bool`
+- <span id="supervec-ne"></span>`fn ne(&self, other: &&[U]) -> bool`
 
 ##### `impl<T: PartialOrd, A: Allocator> PartialOrd for Vec<T, A>`
 
@@ -701,4 +697,8 @@ trait ExtendWith<T> { ... }
 - `fn next(&mut self) -> T`
 
 - `fn last(self) -> T`
+
+#### Implementors
+
+- [`ExtendElement`](#extendelement)
 

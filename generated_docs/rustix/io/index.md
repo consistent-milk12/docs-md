@@ -20,9 +20,9 @@ If you're looking for [`SeekFrom`](#seekfrom), it's in the `fs` module.
   - [`ioctl`](#ioctl)
   - [`read_write`](#read_write)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
+  - [`Errno`](#errno)
 - [Functions](#functions)
-  - [`unnamed`](#unnamed)
+  - [`retry_on_intr`](#retry_on_intr)
   - [`close`](#close)
   - [`dup`](#dup)
   - [`dup2`](#dup2)
@@ -45,7 +45,7 @@ If you're looking for [`SeekFrom`](#seekfrom), it's in the `fs` module.
   - [`preadv2`](#preadv2)
   - [`pwritev2`](#pwritev2)
 - [Type Aliases](#type-aliases)
-  - [`unnamed`](#unnamed)
+  - [`Result`](#result)
 
 ## Quick Reference
 
@@ -57,8 +57,8 @@ If you're looking for [`SeekFrom`](#seekfrom), it's in the `fs` module.
 | [`fcntl`](#fcntl) | mod | The Unix `fcntl` function is effectively lots of different functions hidden |
 | [`ioctl`](#ioctl) | mod | The Unix `ioctl` function is effectively lots of different functions hidden |
 | [`read_write`](#read_write) | mod | `read` and `write`, optionally positioned, optionally vectored. |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | fn |  |
+| [`Errno`](#errno) | struct |  |
+| [`retry_on_intr`](#retry_on_intr) | fn |  |
 | [`close`](#close) | fn | `close(raw_fd)`—Closes a `RawFd` directly. |
 | [`dup`](#dup) | fn | `dup(fd)`—Creates a new `OwnedFd` instance that shares the same |
 | [`dup2`](#dup2) | fn | `dup2(fd, new)`—Changes the [file description] of a file descriptor. |
@@ -80,16 +80,16 @@ If you're looking for [`SeekFrom`](#seekfrom), it's in the `fs` module.
 | [`pwritev`](#pwritev) | fn | `pwritev(fd, bufs, offset)`—Writes to a file at a given position from |
 | [`preadv2`](#preadv2) | fn | `preadv2(fd, bufs, offset, flags)`—Reads data, with several options. |
 | [`pwritev2`](#pwritev2) | fn | `pwritev2(fd, bufs, offset, flags)`—Writes data, with several options. |
-| [`unnamed`](#unnamed) | type |  |
+| [`Result`](#result) | type |  |
 
 ## Modules
 
-- [`close`](close/index.md) - The unsafe `close` for raw file descriptors.
-- [`dup`](dup/index.md) - Functions which duplicate file descriptors.
-- [`errno`](errno/index.md) - The `Errno` type, which is a minimal wrapper around an error code.
-- [`fcntl`](fcntl/index.md) - The Unix `fcntl` function is effectively lots of different functions hidden
-- [`ioctl`](ioctl/index.md) - The Unix `ioctl` function is effectively lots of different functions hidden
-- [`read_write`](read_write/index.md) - `read` and `write`, optionally positioned, optionally vectored.
+- [`close`](close/index.md) — The unsafe `close` for raw file descriptors.
+- [`dup`](dup/index.md) — Functions which duplicate file descriptors.
+- [`errno`](errno/index.md) — The `Errno` type, which is a minimal wrapper around an error code.
+- [`fcntl`](fcntl/index.md) — The Unix `fcntl` function is effectively lots of different functions hidden
+- [`ioctl`](ioctl/index.md) — The Unix `ioctl` function is effectively lots of different functions hidden
+- [`read_write`](read_write/index.md) — `read` and `write`, optionally positioned, optionally vectored.
 
 ## Structs
 
@@ -101,7 +101,7 @@ struct Errno(u16);
 
 `errno`—An error code.
 
-The error type for `rustix` APIs. This is similar to [`std::io::Error`](../../addr2line/index.md),
+The error type for `rustix` APIs. This is similar to [`std::io::Error`](../../cargo_docs_md/error/index.md),
 but only holds an OS error code, and no extra error value.
 
 # References
@@ -126,7 +126,13 @@ but only holds an OS error code, and no extra error value.
 
 #### Implementations
 
-- <span id="errno-kind"></span>`fn kind(self) -> std::io::ErrorKind`
+- <span id="errno-from-io-error"></span>`fn from_io_error(io_err: &std::io::Error) -> Option<Self>`
+
+- <span id="errno-raw-os-error"></span>`const fn raw_os_error(self) -> i32`
+
+- <span id="errno-from-raw-os-error"></span>`const fn from_raw_os_error(raw: i32) -> Self`
+
+- <span id="errno-from-errno"></span>`const fn from_errno(raw: u32) -> Self`
 
 #### Trait Implementations
 
@@ -219,7 +225,7 @@ fn dup<Fd: AsFd>(fd: Fd) -> io::Result<crate::fd::OwnedFd>
 underlying [file description] as `fd`.
 
 This function does not set the `O_CLOEXEC` flag. To do a `dup` that does
-set `O_CLOEXEC`, use [`fcntl_dupfd_cloexec`](#fcntl-dupfd-cloexec).
+set `O_CLOEXEC`, use [`fcntl_dupfd_cloexec`](../backend/io/syscalls/index.md).
 
 POSIX guarantees that `dup` will use the lowest unused file descriptor,
 however it is not safe in general to rely on this, as file descriptors may
@@ -262,7 +268,7 @@ be subsequently used.
 
 This function does not set the `O_CLOEXEC` flag. To do a `dup2` that does
 set `O_CLOEXEC`, use [`dup3`](#dup3) with `DupFlags::CLOEXEC` on platforms which
-support it, or [`fcntl_dupfd_cloexec`](#fcntl-dupfd-cloexec).
+support it, or [`fcntl_dupfd_cloexec`](../backend/io/syscalls/index.md).
 
 For `dup2` to stdin, stdout, and stderr, see `stdio::dup2_stdin`,
 `stdio::dup2_stdout`, and `stdio::dup2_stderr`.

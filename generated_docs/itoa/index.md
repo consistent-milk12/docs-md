@@ -58,8 +58,8 @@ fn main() {
 
 ## Modules
 
-- [`udiv128`](udiv128/index.md) - 
-- [`private`](private/index.md) - 
+- [`udiv128`](udiv128/index.md)
+- [`private`](private/index.md)
 
 ## Structs
 
@@ -112,9 +112,24 @@ An integer that can be written into an [`itoa::Buffer`][Buffer].
 
 This trait is sealed and cannot be implemented for types outside of itoa.
 
-#### Required Methods
+#### Associated Constants
 
 - `const MAX_STR_LEN: usize`
+
+#### Implementors
+
+- `i128`
+- `i16`
+- `i32`
+- `i64`
+- `i8`
+- `isize`
+- `u128`
+- `u16`
+- `u32`
+- `u64`
+- `u8`
+- `usize`
 
 ## Constants
 

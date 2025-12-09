@@ -164,7 +164,39 @@ Crossbeam supports dynamically sized types.  See [`Pointable`](../index.md) for 
 
 #### Implementations
 
-- <span id="atomic-new"></span>`fn new(init: T) -> Atomic<T>` — [`Atomic`](../index.md)
+- <span id="atomic-init"></span>`fn init(init: <T as >::Init) -> Atomic<T>` — [`Pointable`](../index.md), [`Atomic`](../index.md)
+
+- <span id="atomic-from-usize"></span>`fn from_usize(data: usize) -> Self`
+
+- <span id="atomic-null"></span>`const fn null() -> Atomic<T>` — [`Atomic`](../index.md)
+
+- <span id="atomic-load"></span>`fn load<'g>(&self, ord: Ordering, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](../index.md), [`Shared`](../index.md)
+
+- <span id="atomic-load-consume"></span>`fn load_consume<'g>(&self, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](../index.md), [`Shared`](../index.md)
+
+- <span id="atomic-store"></span>`fn store<P: Pointer<T>>(&self, new: P, ord: Ordering)`
+
+- <span id="atomic-swap"></span>`fn swap<'g, P: Pointer<T>>(&self, new: P, ord: Ordering, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](../index.md), [`Shared`](../index.md)
+
+- <span id="atomic-compare-exchange"></span>`fn compare_exchange<'g, P>(&self, current: Shared<'_, T>, new: P, success: Ordering, failure: Ordering, _: &'g Guard) -> Result<Shared<'g, T>, CompareExchangeError<'g, T, P>>` — [`Shared`](../index.md), [`Guard`](../index.md), [`CompareExchangeError`](../index.md)
+
+- <span id="atomic-compare-exchange-weak"></span>`fn compare_exchange_weak<'g, P>(&self, current: Shared<'_, T>, new: P, success: Ordering, failure: Ordering, _: &'g Guard) -> Result<Shared<'g, T>, CompareExchangeError<'g, T, P>>` — [`Shared`](../index.md), [`Guard`](../index.md), [`CompareExchangeError`](../index.md)
+
+- <span id="atomic-fetch-update"></span>`fn fetch_update<'g, F>(&self, set_order: Ordering, fail_order: Ordering, guard: &'g Guard, func: F) -> Result<Shared<'g, T>, Shared<'g, T>>` — [`Guard`](../index.md), [`Shared`](../index.md)
+
+- <span id="atomic-compare-and-set"></span>`fn compare_and_set<'g, O, P>(&self, current: Shared<'_, T>, new: P, ord: O, guard: &'g Guard) -> Result<Shared<'g, T>, CompareAndSetError<'g, T, P>>` — [`Shared`](../index.md), [`Guard`](../index.md), [`CompareAndSetError`](../index.md)
+
+- <span id="atomic-compare-and-set-weak"></span>`fn compare_and_set_weak<'g, O, P>(&self, current: Shared<'_, T>, new: P, ord: O, guard: &'g Guard) -> Result<Shared<'g, T>, CompareAndSetError<'g, T, P>>` — [`Shared`](../index.md), [`Guard`](../index.md), [`CompareAndSetError`](../index.md)
+
+- <span id="atomic-fetch-and"></span>`fn fetch_and<'g>(&self, val: usize, ord: Ordering, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](../index.md), [`Shared`](../index.md)
+
+- <span id="atomic-fetch-or"></span>`fn fetch_or<'g>(&self, val: usize, ord: Ordering, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](../index.md), [`Shared`](../index.md)
+
+- <span id="atomic-fetch-xor"></span>`fn fetch_xor<'g>(&self, val: usize, ord: Ordering, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](../index.md), [`Shared`](../index.md)
+
+- <span id="atomic-into-owned"></span>`unsafe fn into_owned(self) -> Owned<T>` — [`Owned`](../index.md)
+
+- <span id="atomic-try-into-owned"></span>`unsafe fn try_into_owned(self) -> Option<Owned<T>>` — [`Owned`](../index.md)
 
 #### Trait Implementations
 
@@ -220,13 +252,11 @@ least significant bits of the address.
 
 #### Implementations
 
-- <span id="owned-init"></span>`fn init(init: <T as >::Init) -> Owned<T>` — [`Pointable`](../index.md), [`Owned`](../index.md)
+- <span id="owned-from-raw"></span>`unsafe fn from_raw(raw: *mut T) -> Owned<T>` — [`Owned`](../index.md)
 
-- <span id="owned-into-shared"></span>`fn into_shared<'g>(self, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](../index.md), [`Shared`](../index.md)
+- <span id="owned-into-box"></span>`fn into_box(self) -> Box<T>`
 
-- <span id="owned-tag"></span>`fn tag(&self) -> usize`
-
-- <span id="owned-with-tag"></span>`fn with_tag(self, tag: usize) -> Owned<T>` — [`Owned`](../index.md)
+- <span id="owned-new"></span>`fn new(init: T) -> Owned<T>` — [`Owned`](../index.md)
 
 #### Trait Implementations
 
@@ -400,6 +430,11 @@ The two ways of specifying orderings for compare-and-set are:
 
   The ordering of the operation when it fails.
 
+#### Implementors
+
+- `(core::sync::atomic::Ordering, core::sync::atomic::Ordering)`
+- `core::sync::atomic::Ordering`
+
 ### `Pointable`
 
 ```rust
@@ -427,11 +462,15 @@ use crossbeam_epoch::Owned;
 let o = Owned::<[MaybeUninit<i32>]>::init(10); // allocating [i32; 10]
 ```
 
-#### Required Methods
+#### Associated Types
+
+- `type Init`
+
+#### Associated Constants
 
 - `const ALIGN: usize`
 
-- `type Init`
+#### Required Methods
 
 - `fn init(init: <Self as >::Init) -> usize`
 
@@ -448,6 +487,34 @@ let o = Owned::<[MaybeUninit<i32>]>::init(10); // allocating [i32; 10]
 - `fn drop(ptr: usize)`
 
   Drops the object pointed to by the given pointer.
+
+#### Implementors
+
+- [`Array`](#array)
+- [`AtomicEpoch`](../epoch/index.md)
+- [`Atomic`](../index.md)
+- [`Bag`](../internal/index.md)
+- [`Collector`](../index.md)
+- [`CompareExchangeError`](../index.md)
+- [`Deferred`](../deferred/index.md)
+- [`Entry`](../sync/list/index.md)
+- [`Epoch`](../epoch/index.md)
+- [`Global`](../internal/index.md)
+- [`Guard`](../index.md)
+- [`IterError`](../sync/list/index.md)
+- [`Iter`](../sync/list/index.md)
+- [`List`](../sync/list/index.md)
+- [`LocalHandle`](../index.md)
+- [`Local`](../internal/index.md)
+- [`Node`](../sync/queue/index.md)
+- [`OnceLock`](../sync/once_lock/index.md)
+- [`Owned`](../index.md)
+- [`Queue`](../sync/queue/index.md)
+- [`SealedBag`](../internal/index.md)
+- [`Shared`](../index.md)
+- [`UnsafeCell`](../primitive/cell/index.md)
+- `T`
+- `[core::mem::MaybeUninit<T>]`
 
 ### `Pointer<T: ?Sized + Pointable>`
 
@@ -466,6 +533,11 @@ A trait for either `Owned` or `Shared` pointers.
 - `fn from_usize(data: usize) -> Self`
 
   Returns a new pointer pointing to the tagged pointer `data`.
+
+#### Implementors
+
+- [`Owned`](../index.md)
+- [`Shared`](../index.md)
 
 ## Functions
 

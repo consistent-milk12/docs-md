@@ -27,7 +27,7 @@ This module is based heavily on "winnt.h" (10.0.17763.0).
   - [`ImageNtHeaders32`](#imagentheaders32)
   - [`ImageRomHeaders`](#imageromheaders)
   - [`Guid`](#guid)
-  - [`unnamed`](#unnamed)
+  - [`ClsId`](#clsid)
   - [`AnonObjectHeader`](#anonobjectheader)
   - [`AnonObjectHeaderV2`](#anonobjectheaderv2)
   - [`AnonObjectHeaderBigobj`](#anonobjectheaderbigobj)
@@ -817,7 +817,7 @@ This module is based heavily on "winnt.h" (10.0.17763.0).
 | [`ImageNtHeaders32`](#imagentheaders32) | struct |  |
 | [`ImageRomHeaders`](#imageromheaders) | struct |  |
 | [`Guid`](#guid) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
+| [`ClsId`](#clsid) | struct |  |
 | [`AnonObjectHeader`](#anonobjectheader) | struct | Non-COFF Object file header |
 | [`AnonObjectHeaderV2`](#anonobjectheaderv2) | struct |  |
 | [`AnonObjectHeaderBigobj`](#anonobjectheaderbigobj) | struct |  |

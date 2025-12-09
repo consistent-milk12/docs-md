@@ -19,7 +19,7 @@
 struct AsKebabCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a kebab case conversion in [`fmt::Display`](../../miette_derive/fmt/index.md).
+This wrapper performs a kebab case conversion in [`fmt::Display`](../../miette_derive/index.md).
 
 ## Example:
 
@@ -66,4 +66,8 @@ assert_eq!(sentence.to_kebab_case(), "we-are-going-to-inherit-the-earth");
 - `fn to_kebab_case(&self) -> <Self as >::Owned`
 
   Convert this type to kebab case.
+
+#### Implementors
+
+- `str`
 

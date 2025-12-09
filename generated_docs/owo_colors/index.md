@@ -88,10 +88,10 @@ println!("{}", text.style(my_style));
   - [`BgColorDisplay`](#bgcolordisplay)
   - [`FgDynColorDisplay`](#fgdyncolordisplay)
   - [`BgDynColorDisplay`](#bgdyncolordisplay)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`Rgb`](#rgb)
+  - [`ComboColorDisplay`](#combocolordisplay)
+  - [`ComboDynColorDisplay`](#combodyncolordisplay)
+  - [`StyledList`](#styledlist)
   - [`ParseColorError`](#parsecolorerror)
   - [`Styled`](#styled)
   - [`Style`](#style)
@@ -99,9 +99,9 @@ println!("{}", text.style(my_style));
   - [`StylePrefixFormatter`](#styleprefixformatter)
   - [`StyleSuffixFormatter`](#stylesuffixformatter)
 - [Enums](#enums)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`AnsiColors`](#ansicolors)
+  - [`CssColors`](#csscolors)
+  - [`XtermColors`](#xtermcolors)
   - [`DynColors`](#dyncolors)
   - [`Effect`](#effect)
 - [Traits](#traits)
@@ -143,19 +143,19 @@ println!("{}", text.style(my_style));
 | [`BgColorDisplay`](#bgcolordisplay) | struct | Transparent wrapper around a type which implements all the formatters the wrapped type does |
 | [`FgDynColorDisplay`](#fgdyncolordisplay) | struct | Wrapper around a type which implements all the formatters the wrapped type does |
 | [`BgDynColorDisplay`](#bgdyncolordisplay) | struct | Wrapper around a type which implements all the formatters the wrapped type does |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
+| [`Rgb`](#rgb) | struct |  |
+| [`ComboColorDisplay`](#combocolordisplay) | struct |  |
+| [`ComboDynColorDisplay`](#combodyncolordisplay) | struct |  |
+| [`StyledList`](#styledlist) | struct |  |
 | [`ParseColorError`](#parsecolorerror) | struct | An error for when the color can not be parsed from a string at runtime |
 | [`Styled`](#styled) | struct | A wrapper type which applies a [`Style`] when displaying the inner type |
 | [`Style`](#style) | struct | A pre-computed style that can be applied to a struct using [`OwoColorize::style`]. |
 | [`StyleFlags`](#styleflags) | struct |  |
 | [`StylePrefixFormatter`](#styleprefixformatter) | struct | Formatter for the prefix of a [`Style`]. |
 | [`StyleSuffixFormatter`](#stylesuffixformatter) | struct | Formatter for the suffix of a [`Style`]. |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
+| [`AnsiColors`](#ansicolors) | enum |  |
+| [`CssColors`](#csscolors) | enum |  |
+| [`XtermColors`](#xtermcolors) | enum |  |
 | [`DynColors`](#dyncolors) | enum | An enum describing runtime-configurable colors |
 | [`Effect`](#effect) | enum | A runtime-configurable text effect for use with [`Style`] |
 | [`Color`](#color) | trait | A trait for describing a type which can be used with [`FgColorDisplay`] or |
@@ -179,14 +179,14 @@ println!("{}", text.style(my_style));
 
 ## Modules
 
-- [`colors`](colors/index.md) - Color types for used for being generic over the color
-- [`combo`](combo/index.md) - 
-- [`dyn_colors`](dyn_colors/index.md) - 
-- [`dyn_styles`](dyn_styles/index.md) - 
-- [`styled_list`](styled_list/index.md) - 
-- [`styles`](styles/index.md) - Different display styles (strikethrough, bold, etc.)
-- [`private`](private/index.md) - 
-- [`colored`](colored/index.md) - Module for drop-in [`colored`](https://docs.rs/colored) support to aid in porting code from
+- [`colors`](colors/index.md) — Color types for used for being generic over the color
+- [`combo`](combo/index.md)
+- [`dyn_colors`](dyn_colors/index.md)
+- [`dyn_styles`](dyn_styles/index.md)
+- [`styled_list`](styled_list/index.md)
+- [`styles`](styles/index.md) — Different display styles (strikethrough, bold, etc.)
+- [`private`](private/index.md)
+- [`colored`](colored/index.md) — Module for drop-in [`colored`](https://docs.rs/colored) support to aid in porting code from
 
 ## Structs
 
@@ -974,147 +974,7 @@ println!("{}", "red text, white background, struck through".style(my_style));
 
 #### Implementations
 
-- <span id="style-new"></span>`const fn new() -> Self`
-
-- <span id="style-style"></span>`const fn style<T>(&self, target: T) -> Styled<T>` — [`Styled`](#styled)
-
-- <span id="style-fg"></span>`const fn fg<C: Color>(self) -> Self`
-
-- <span id="style-bg"></span>`const fn bg<C: Color>(self) -> Self`
-
-- <span id="style-remove-fg"></span>`const fn remove_fg(self) -> Self`
-
-- <span id="style-remove-bg"></span>`const fn remove_bg(self) -> Self`
-
-- <span id="style-black"></span>`const fn black(self) -> Self`
-
-- <span id="style-on-black"></span>`const fn on_black(self) -> Self`
-
-- <span id="style-red"></span>`const fn red(self) -> Self`
-
-- <span id="style-on-red"></span>`const fn on_red(self) -> Self`
-
-- <span id="style-green"></span>`const fn green(self) -> Self`
-
-- <span id="style-on-green"></span>`const fn on_green(self) -> Self`
-
-- <span id="style-yellow"></span>`const fn yellow(self) -> Self`
-
-- <span id="style-on-yellow"></span>`const fn on_yellow(self) -> Self`
-
-- <span id="style-blue"></span>`const fn blue(self) -> Self`
-
-- <span id="style-on-blue"></span>`const fn on_blue(self) -> Self`
-
-- <span id="style-magenta"></span>`const fn magenta(self) -> Self`
-
-- <span id="style-on-magenta"></span>`const fn on_magenta(self) -> Self`
-
-- <span id="style-purple"></span>`const fn purple(self) -> Self`
-
-- <span id="style-on-purple"></span>`const fn on_purple(self) -> Self`
-
-- <span id="style-cyan"></span>`const fn cyan(self) -> Self`
-
-- <span id="style-on-cyan"></span>`const fn on_cyan(self) -> Self`
-
-- <span id="style-white"></span>`const fn white(self) -> Self`
-
-- <span id="style-on-white"></span>`const fn on_white(self) -> Self`
-
-- <span id="style-default-color"></span>`const fn default_color(self) -> Self`
-
-- <span id="style-on-default-color"></span>`const fn on_default_color(self) -> Self`
-
-- <span id="style-bright-black"></span>`const fn bright_black(self) -> Self`
-
-- <span id="style-on-bright-black"></span>`const fn on_bright_black(self) -> Self`
-
-- <span id="style-bright-red"></span>`const fn bright_red(self) -> Self`
-
-- <span id="style-on-bright-red"></span>`const fn on_bright_red(self) -> Self`
-
-- <span id="style-bright-green"></span>`const fn bright_green(self) -> Self`
-
-- <span id="style-on-bright-green"></span>`const fn on_bright_green(self) -> Self`
-
-- <span id="style-bright-yellow"></span>`const fn bright_yellow(self) -> Self`
-
-- <span id="style-on-bright-yellow"></span>`const fn on_bright_yellow(self) -> Self`
-
-- <span id="style-bright-blue"></span>`const fn bright_blue(self) -> Self`
-
-- <span id="style-on-bright-blue"></span>`const fn on_bright_blue(self) -> Self`
-
-- <span id="style-bright-magenta"></span>`const fn bright_magenta(self) -> Self`
-
-- <span id="style-on-bright-magenta"></span>`const fn on_bright_magenta(self) -> Self`
-
-- <span id="style-bright-purple"></span>`const fn bright_purple(self) -> Self`
-
-- <span id="style-on-bright-purple"></span>`const fn on_bright_purple(self) -> Self`
-
-- <span id="style-bright-cyan"></span>`const fn bright_cyan(self) -> Self`
-
-- <span id="style-on-bright-cyan"></span>`const fn on_bright_cyan(self) -> Self`
-
-- <span id="style-bright-white"></span>`const fn bright_white(self) -> Self`
-
-- <span id="style-on-bright-white"></span>`const fn on_bright_white(self) -> Self`
-
-- <span id="style-bold"></span>`const fn bold(self) -> Self`
-
-- <span id="style-dimmed"></span>`const fn dimmed(self) -> Self`
-
-- <span id="style-italic"></span>`const fn italic(self) -> Self`
-
-- <span id="style-underline"></span>`const fn underline(self) -> Self`
-
-- <span id="style-blink"></span>`const fn blink(self) -> Self`
-
-- <span id="style-blink-fast"></span>`const fn blink_fast(self) -> Self`
-
-- <span id="style-reversed"></span>`const fn reversed(self) -> Self`
-
-- <span id="style-hidden"></span>`const fn hidden(self) -> Self`
-
-- <span id="style-strikethrough"></span>`const fn strikethrough(self) -> Self`
-
-- <span id="style-set-effect"></span>`const fn set_effect(self, effect: Effect, to: bool) -> Self` — [`Effect`](#effect)
-
-- <span id="style-set-effects"></span>`const fn set_effects(self, effects: &[Effect], to: bool) -> Self` — [`Effect`](#effect)
-
-- <span id="style-effect"></span>`const fn effect(self, effect: Effect) -> Self` — [`Effect`](#effect)
-
-- <span id="style-remove-effect"></span>`const fn remove_effect(self, effect: Effect) -> Self` — [`Effect`](#effect)
-
-- <span id="style-effects"></span>`const fn effects(self, effects: &[Effect]) -> Self` — [`Effect`](#effect)
-
-- <span id="style-remove-effects"></span>`const fn remove_effects(self, effects: &[Effect]) -> Self` — [`Effect`](#effect)
-
-- <span id="style-remove-all-effects"></span>`const fn remove_all_effects(self) -> Self`
-
-- <span id="style-color"></span>`fn color<Color: DynColor>(self, color: Color) -> Self`
-
-- <span id="style-on-color"></span>`fn on_color<Color: DynColor>(self, color: Color) -> Self`
-
-- <span id="style-fg-rgb"></span>`const fn fg_rgb<const R: u8, const G: u8, const B: u8>(self) -> Self`
-
-- <span id="style-bg-rgb"></span>`const fn bg_rgb<const R: u8, const G: u8, const B: u8>(self) -> Self`
-
-- <span id="style-truecolor"></span>`const fn truecolor(self, r: u8, g: u8, b: u8) -> Self`
-
-- <span id="style-on-truecolor"></span>`const fn on_truecolor(self, r: u8, g: u8, b: u8) -> Self`
-
-- <span id="style-is-plain"></span>`const fn is_plain(&self) -> bool`
-
-- <span id="style-prefix-formatter"></span>`const fn prefix_formatter(&self) -> StylePrefixFormatter` — [`StylePrefixFormatter`](#styleprefixformatter)
-
-- <span id="style-suffix-formatter"></span>`const fn suffix_formatter(&self) -> StyleSuffixFormatter` — [`StyleSuffixFormatter`](#stylesuffixformatter)
-
-- <span id="style-fmt-prefix"></span>`fn fmt_prefix(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-- <span id="style-fmt-suffix"></span>`fn fmt_suffix(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+- <span id="cratestyle-transition-from"></span>`fn transition_from(self: &'a Self, from: &Style) -> Transition<'a>` — [`Style`](#style), [`Transition`](styled_list/index.md)
 
 #### Trait Implementations
 
@@ -1889,7 +1749,7 @@ trait Color: private::Sealed { ... }
 A trait for describing a type which can be used with [`FgColorDisplay`](#fgcolordisplay) or
 [`BgColorDisplay`](#bgcolordisplay)
 
-#### Required Methods
+#### Associated Constants
 
 - `const ANSI_FG: &'static str`
 
@@ -1898,6 +1758,283 @@ A trait for describing a type which can be used with [`FgColorDisplay`](#fgcolor
 - `const RAW_ANSI_FG: &'static str`
 
 - `const RAW_ANSI_BG: &'static str`
+
+#### Implementors
+
+- [`AeroBlue`](colors/xterm/index.md)
+- [`AltoBeige`](colors/xterm/index.md)
+- [`Alto`](colors/xterm/index.md)
+- [`AnakiwaBlue`](colors/xterm/index.md)
+- [`Aqua`](colors/xterm/index.md)
+- [`Aquamarine`](colors/xterm/index.md)
+- [`AzureRadiance`](colors/xterm/index.md)
+- [`BayLeaf`](colors/xterm/index.md)
+- [`Bermuda`](colors/xterm/index.md)
+- [`BittersweetOrange`](colors/xterm/index.md)
+- [`Black`](colors/index.md)
+- [`Black`](colors/xterm/index.md)
+- [`BlazeOrange`](colors/xterm/index.md)
+- [`BlueRibbon`](colors/xterm/index.md)
+- [`BlueStone`](colors/xterm/index.md)
+- [`Blue`](colors/index.md)
+- [`Blue`](colors/xterm/index.md)
+- [`BlushPink`](colors/xterm/index.md)
+- [`BondiBlue`](colors/xterm/index.md)
+- [`Boulder`](colors/xterm/index.md)
+- [`Bouquet`](colors/xterm/index.md)
+- [`BrightBlack`](colors/index.md)
+- [`BrightBlue`](colors/index.md)
+- [`BrightCyan`](colors/index.md)
+- [`BrightElectricViolet`](colors/xterm/index.md)
+- [`BrightGreen`](colors/index.md)
+- [`BrightGreen`](colors/xterm/index.md)
+- [`BrightHeliotrope`](colors/xterm/index.md)
+- [`BrightMagenta`](colors/index.md)
+- [`BrightRed`](colors/index.md)
+- [`BrightRed`](colors/xterm/index.md)
+- [`BrightTurquoise`](colors/xterm/index.md)
+- [`BrightWhite`](colors/index.md)
+- [`BrightYellow`](colors/index.md)
+- [`BrighterElectricViolet`](colors/xterm/index.md)
+- [`Brown`](colors/xterm/index.md)
+- [`BuddhaGold`](colors/xterm/index.md)
+- [`CamaroneGreen`](colors/xterm/index.md)
+- [`CanCanPink`](colors/xterm/index.md)
+- [`Canary`](colors/xterm/index.md)
+- [`Caramel`](colors/xterm/index.md)
+- [`CaribbeanGreen`](colors/xterm/index.md)
+- [`Celadon`](colors/xterm/index.md)
+- [`Cerulean`](colors/xterm/index.md)
+- [`ChartreuseGreen`](colors/xterm/index.md)
+- [`ChartreuseYellow`](colors/xterm/index.md)
+- [`ChelseaCucumber`](colors/xterm/index.md)
+- [`ChetwodeBlue`](colors/xterm/index.md)
+- [`ClamShell`](colors/xterm/index.md)
+- [`ClayCreekOlive`](colors/xterm/index.md)
+- [`CodGray`](colors/xterm/index.md)
+- [`ConiferGreen`](colors/xterm/index.md)
+- [`CopperRose`](colors/xterm/index.md)
+- [`Copperfield`](colors/xterm/index.md)
+- [`Corn`](colors/xterm/index.md)
+- [`CornflowerBlue`](colors/xterm/index.md)
+- [`CosmosSalmon`](colors/xterm/index.md)
+- [`CottonCandy`](colors/xterm/index.md)
+- [`CranberryPink`](colors/xterm/index.md)
+- [`Cumulus`](colors/xterm/index.md)
+- [`CustomColor`](colors/index.md)
+- [`Cyan`](colors/index.md)
+- [`Cyan`](colors/xterm/index.md)
+- [`Dandelion`](colors/xterm/index.md)
+- [`DarkAlto`](colors/xterm/index.md)
+- [`DarkAnakiwaBlue`](colors/xterm/index.md)
+- [`DarkAquamarine`](colors/xterm/index.md)
+- [`DarkBlue`](colors/xterm/index.md)
+- [`DarkBrightGreen`](colors/xterm/index.md)
+- [`DarkCodGray`](colors/xterm/index.md)
+- [`DarkCorn`](colors/xterm/index.md)
+- [`DarkCornflowerBlue`](colors/xterm/index.md)
+- [`DarkDoveGray`](colors/xterm/index.md)
+- [`DarkFeijoaGreen`](colors/xterm/index.md)
+- [`DarkFlirt`](colors/xterm/index.md)
+- [`DarkFreshEggplant`](colors/xterm/index.md)
+- [`DarkGray`](colors/xterm/index.md)
+- [`DarkGreen`](colors/xterm/index.md)
+- [`DarkHeliotropePurple`](colors/xterm/index.md)
+- [`DarkHotPink`](colors/xterm/index.md)
+- [`DarkLavenderRose`](colors/xterm/index.md)
+- [`DarkLimeade`](colors/xterm/index.md)
+- [`DarkMalibuBlue`](colors/xterm/index.md)
+- [`DarkMediumPurple`](colors/xterm/index.md)
+- [`DarkMineShaft`](colors/xterm/index.md)
+- [`DarkMintGreen`](colors/xterm/index.md)
+- [`DarkPastelGreen`](colors/xterm/index.md)
+- [`DarkPurplePizzazz`](colors/xterm/index.md)
+- [`DarkPurple`](colors/xterm/index.md)
+- [`DarkRose`](colors/xterm/index.md)
+- [`DarkScreaminGreen`](colors/xterm/index.md)
+- [`DarkSilverChalice`](colors/xterm/index.md)
+- [`DarkSilver`](colors/xterm/index.md)
+- [`DarkSpringGreen`](colors/xterm/index.md)
+- [`DarkTachaOrange`](colors/xterm/index.md)
+- [`DarkTundora`](colors/xterm/index.md)
+- [`DarkViolet`](colors/xterm/index.md)
+- [`DecoOrange`](colors/xterm/index.md)
+- [`DeepCerulean`](colors/xterm/index.md)
+- [`DeepSeaGreen`](colors/xterm/index.md)
+- [`Default`](colors/index.md)
+- [`DelugePurple`](colors/xterm/index.md)
+- [`DollyYellow`](colors/xterm/index.md)
+- [`DoveGray`](colors/xterm/index.md)
+- [`DownyTeal`](colors/xterm/index.md)
+- [`DustyGray`](colors/xterm/index.md)
+- [`ElectricIndigo`](colors/xterm/index.md)
+- [`ElectricPurple`](colors/xterm/index.md)
+- [`ElectricViolet`](colors/xterm/index.md)
+- [`EndeavourBlue`](colors/xterm/index.md)
+- [`Feijoa`](colors/xterm/index.md)
+- [`FernGreen`](colors/xterm/index.md)
+- [`Flirt`](colors/xterm/index.md)
+- [`FlushOrange`](colors/xterm/index.md)
+- [`FogPink`](colors/xterm/index.md)
+- [`FrenchPassLightBlue`](colors/xterm/index.md)
+- [`FuchsiaPink`](colors/xterm/index.md)
+- [`Fuchsia`](colors/xterm/index.md)
+- [`GalleryGray`](colors/xterm/index.md)
+- [`GladeGreen`](colors/xterm/index.md)
+- [`Gold`](colors/xterm/index.md)
+- [`GrandisCaramel`](colors/xterm/index.md)
+- [`Gray`](colors/xterm/index.md)
+- [`GreenYellow`](colors/xterm/index.md)
+- [`Green`](colors/index.md)
+- [`Green`](colors/xterm/index.md)
+- [`GuardsmanRed`](colors/xterm/index.md)
+- [`GulfStream`](colors/xterm/index.md)
+- [`HavelockBlue`](colors/xterm/index.md)
+- [`Heliotrope`](colors/xterm/index.md)
+- [`HillaryOlive`](colors/xterm/index.md)
+- [`HippieBlue`](colors/xterm/index.md)
+- [`HollywoodCerise`](colors/xterm/index.md)
+- [`Honeysuckle`](colors/xterm/index.md)
+- [`HopbushPink`](colors/xterm/index.md)
+- [`HotPink`](colors/xterm/index.md)
+- [`Indigo`](colors/xterm/index.md)
+- [`Jade`](colors/xterm/index.md)
+- [`JapaneseLaurel`](colors/xterm/index.md)
+- [`JungleMist`](colors/xterm/index.md)
+- [`JuniperGreen`](colors/xterm/index.md)
+- [`LaserLemon`](colors/xterm/index.md)
+- [`LavenderRose`](colors/xterm/index.md)
+- [`Lavender`](colors/xterm/index.md)
+- [`LightAnakiwaBlue`](colors/xterm/index.md)
+- [`LightAquamarine`](colors/xterm/index.md)
+- [`LightAzureRadiance`](colors/xterm/index.md)
+- [`LightCaribbeanGreen`](colors/xterm/index.md)
+- [`LightCodGray`](colors/xterm/index.md)
+- [`LightElectricViolet`](colors/xterm/index.md)
+- [`LightFlirt`](colors/xterm/index.md)
+- [`LightFreshEggplant`](colors/xterm/index.md)
+- [`LightGray`](colors/xterm/index.md)
+- [`LightHeliotrope`](colors/xterm/index.md)
+- [`LightHollywoodCerise`](colors/xterm/index.md)
+- [`LightJapaneseLaurel`](colors/xterm/index.md)
+- [`LightLimeade`](colors/xterm/index.md)
+- [`LightMalibuBlue`](colors/xterm/index.md)
+- [`LightMineShaft`](colors/xterm/index.md)
+- [`LightMintGreen`](colors/xterm/index.md)
+- [`LightOrchid`](colors/xterm/index.md)
+- [`LightPastelGreen`](colors/xterm/index.md)
+- [`LightScreaminGreen`](colors/xterm/index.md)
+- [`LightSilverChalice`](colors/xterm/index.md)
+- [`LightSpringGreen`](colors/xterm/index.md)
+- [`LighterAquamarine`](colors/xterm/index.md)
+- [`LighterHeliotrope`](colors/xterm/index.md)
+- [`Lilac`](colors/xterm/index.md)
+- [`Lime`](colors/xterm/index.md)
+- [`Limeade`](colors/xterm/index.md)
+- [`LochmaraBlue`](colors/xterm/index.md)
+- [`Magenta`](colors/index.md)
+- [`Malachite`](colors/xterm/index.md)
+- [`MalibuBlue`](colors/xterm/index.md)
+- [`MangoTango`](colors/xterm/index.md)
+- [`Maroon`](colors/xterm/index.md)
+- [`MatrixPink`](colors/xterm/index.md)
+- [`Mauve`](colors/xterm/index.md)
+- [`MediumPurple`](colors/xterm/index.md)
+- [`MediumVioletRed`](colors/xterm/index.md)
+- [`MelroseLilac`](colors/xterm/index.md)
+- [`Mercury`](colors/xterm/index.md)
+- [`MidnightBlue`](colors/xterm/index.md)
+- [`MineShaft`](colors/xterm/index.md)
+- [`MintGreen`](colors/xterm/index.md)
+- [`MuesliOrange`](colors/xterm/index.md)
+- [`NavyBlue`](colors/xterm/index.md)
+- [`NobelGray`](colors/xterm/index.md)
+- [`OliveGreen`](colors/xterm/index.md)
+- [`Olive`](colors/xterm/index.md)
+- [`Orchid`](colors/xterm/index.md)
+- [`OrientBlue`](colors/xterm/index.md)
+- [`OysterBay`](colors/xterm/index.md)
+- [`PaleGoldenrod`](colors/xterm/index.md)
+- [`PastelGreen`](colors/xterm/index.md)
+- [`PersianGreen`](colors/xterm/index.md)
+- [`PharlapPink`](colors/xterm/index.md)
+- [`PigmentIndigo`](colors/xterm/index.md)
+- [`PinkFlamingo`](colors/xterm/index.md)
+- [`PinkLace`](colors/xterm/index.md)
+- [`PinkSalmon`](colors/xterm/index.md)
+- [`PirateGold`](colors/xterm/index.md)
+- [`Pistachio`](colors/xterm/index.md)
+- [`PixieGreen`](colors/xterm/index.md)
+- [`PoloBlue`](colors/xterm/index.md)
+- [`PompadourMagenta`](colors/xterm/index.md)
+- [`PortafinoYellow`](colors/xterm/index.md)
+- [`PurplePizzazz`](colors/xterm/index.md)
+- [`Purple`](colors/xterm/index.md)
+- [`RazzmatazzCerise`](colors/xterm/index.md)
+- [`Red`](colors/index.md)
+- [`Red`](colors/xterm/index.md)
+- [`ReefPaleYellow`](colors/xterm/index.md)
+- [`RioGrandeGreen`](colors/xterm/index.md)
+- [`RobinEggBlue`](colors/xterm/index.md)
+- [`RomanOrange`](colors/xterm/index.md)
+- [`Rose`](colors/xterm/index.md)
+- [`RoseofSharonOrange`](colors/xterm/index.md)
+- [`Rosewood`](colors/xterm/index.md)
+- [`Salmon`](colors/xterm/index.md)
+- [`ScampiIndigo`](colors/xterm/index.md)
+- [`ScienceBlue`](colors/xterm/index.md)
+- [`ScorpionGray`](colors/xterm/index.md)
+- [`ScorpionOlive`](colors/xterm/index.md)
+- [`ScreaminGreen`](colors/xterm/index.md)
+- [`SeaPink`](colors/xterm/index.md)
+- [`ShakespeareBlue`](colors/xterm/index.md)
+- [`SilverChalice`](colors/xterm/index.md)
+- [`SilverTree`](colors/xterm/index.md)
+- [`Silver`](colors/xterm/index.md)
+- [`SlateBlue`](colors/xterm/index.md)
+- [`SnowyMint`](colors/xterm/index.md)
+- [`SpringGreen`](colors/xterm/index.md)
+- [`StratosBlue`](colors/xterm/index.md)
+- [`StrikemasterPurple`](colors/xterm/index.md)
+- [`Sundown`](colors/xterm/index.md)
+- [`Tacao`](colors/xterm/index.md)
+- [`TachaOrange`](colors/xterm/index.md)
+- [`TanBeige`](colors/xterm/index.md)
+- [`TapestryPink`](colors/xterm/index.md)
+- [`Teal`](colors/xterm/index.md)
+- [`TennOrange`](colors/xterm/index.md)
+- [`TexasRose`](colors/xterm/index.md)
+- [`ThistlePink`](colors/xterm/index.md)
+- [`Tradewind`](colors/xterm/index.md)
+- [`Tundora`](colors/xterm/index.md)
+- [`UserBlack`](colors/xterm/index.md)
+- [`UserBlue`](colors/xterm/index.md)
+- [`UserBrightBlack`](colors/xterm/index.md)
+- [`UserBrightBlue`](colors/xterm/index.md)
+- [`UserBrightCyan`](colors/xterm/index.md)
+- [`UserBrightGreen`](colors/xterm/index.md)
+- [`UserBrightMagenta`](colors/xterm/index.md)
+- [`UserBrightRed`](colors/xterm/index.md)
+- [`UserBrightWhite`](colors/xterm/index.md)
+- [`UserBrightYellow`](colors/xterm/index.md)
+- [`UserCyan`](colors/xterm/index.md)
+- [`UserGreen`](colors/xterm/index.md)
+- [`UserMagenta`](colors/xterm/index.md)
+- [`UserRed`](colors/xterm/index.md)
+- [`UserWhite`](colors/xterm/index.md)
+- [`UserYellow`](colors/xterm/index.md)
+- [`VerdunGreen`](colors/xterm/index.md)
+- [`Viking`](colors/xterm/index.md)
+- [`VistaBlue`](colors/xterm/index.md)
+- [`VividTangerine`](colors/xterm/index.md)
+- [`White`](colors/index.md)
+- [`White`](colors/xterm/index.md)
+- [`WildBlueYonder`](colors/xterm/index.md)
+- [`WildWatermelon`](colors/xterm/index.md)
+- [`WistfulLilac`](colors/xterm/index.md)
+- [`YellowSea`](colors/xterm/index.md)
+- [`Yellow`](colors/index.md)
+- [`Yellow`](colors/xterm/index.md)
 
 ### `DynColor`
 
@@ -1926,6 +2063,15 @@ is recommended you avoid this.
 - `fn fmt_raw_ansi_bg(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
   A function to output a raw ANSI code to a formatter to set the background to this color,
+
+#### Implementors
+
+- [`AnsiColors`](#ansicolors)
+- [`CssColors`](#csscolors)
+- [`DynColors`](#dyncolors)
+- [`Rgb`](#rgb)
+- [`XtermColors`](#xtermcolors)
+- `str`
 
 ### `OwoColorize`
 
@@ -1986,7 +2132,7 @@ Use the [`color`](OwoColorize::color), [`on_color`](OwoColorize::on_color),
 Use [`style`](OwoColorize::style) to apply a [`Style`](#style)
 
 
-#### Required Methods
+#### Provided Methods
 
 - `fn fg<C: Color>(&self) -> FgColorDisplay<'_, C, Self>`
 
@@ -2211,6 +2357,314 @@ Use [`style`](OwoColorize::style) to apply a [`Style`](#style)
 - `fn style(&self, style: Style) -> Styled<&Self>`
 
   Apply a runtime-determined style
+
+#### Implementors
+
+- [`AeroBlue`](colors/xterm/index.md)
+- [`AltoBeige`](colors/xterm/index.md)
+- [`Alto`](colors/xterm/index.md)
+- [`AnakiwaBlue`](colors/xterm/index.md)
+- [`AnsiColors`](#ansicolors)
+- [`Aqua`](colors/xterm/index.md)
+- [`Aquamarine`](colors/xterm/index.md)
+- [`AzureRadiance`](colors/xterm/index.md)
+- [`BayLeaf`](colors/xterm/index.md)
+- [`Bermuda`](colors/xterm/index.md)
+- [`BgColorDisplay`](#bgcolordisplay)
+- [`BgDynColorDisplay`](#bgdyncolordisplay)
+- [`BittersweetOrange`](colors/xterm/index.md)
+- [`Black`](colors/index.md)
+- [`Black`](colors/xterm/index.md)
+- [`BlazeOrange`](colors/xterm/index.md)
+- [`BlinkDisplay`](styles/index.md)
+- [`BlinkFastDisplay`](styles/index.md)
+- [`BlueRibbon`](colors/xterm/index.md)
+- [`BlueStone`](colors/xterm/index.md)
+- [`Blue`](colors/index.md)
+- [`Blue`](colors/xterm/index.md)
+- [`BlushPink`](colors/xterm/index.md)
+- [`BoldDisplay`](styles/index.md)
+- [`BondiBlue`](colors/xterm/index.md)
+- [`Boulder`](colors/xterm/index.md)
+- [`Bouquet`](colors/xterm/index.md)
+- [`BrightBlack`](colors/index.md)
+- [`BrightBlue`](colors/index.md)
+- [`BrightCyan`](colors/index.md)
+- [`BrightElectricViolet`](colors/xterm/index.md)
+- [`BrightGreen`](colors/index.md)
+- [`BrightGreen`](colors/xterm/index.md)
+- [`BrightHeliotrope`](colors/xterm/index.md)
+- [`BrightMagenta`](colors/index.md)
+- [`BrightRed`](colors/index.md)
+- [`BrightRed`](colors/xterm/index.md)
+- [`BrightTurquoise`](colors/xterm/index.md)
+- [`BrightWhite`](colors/index.md)
+- [`BrightYellow`](colors/index.md)
+- [`BrighterElectricViolet`](colors/xterm/index.md)
+- [`Brown`](colors/xterm/index.md)
+- [`BuddhaGold`](colors/xterm/index.md)
+- [`CamaroneGreen`](colors/xterm/index.md)
+- [`CanCanPink`](colors/xterm/index.md)
+- [`Canary`](colors/xterm/index.md)
+- [`Caramel`](colors/xterm/index.md)
+- [`CaribbeanGreen`](colors/xterm/index.md)
+- [`Celadon`](colors/xterm/index.md)
+- [`Cerulean`](colors/xterm/index.md)
+- [`ChartreuseGreen`](colors/xterm/index.md)
+- [`ChartreuseYellow`](colors/xterm/index.md)
+- [`ChelseaCucumber`](colors/xterm/index.md)
+- [`ChetwodeBlue`](colors/xterm/index.md)
+- [`ClamShell`](colors/xterm/index.md)
+- [`ClayCreekOlive`](colors/xterm/index.md)
+- [`CodGray`](colors/xterm/index.md)
+- [`ComboColorDisplay`](#combocolordisplay)
+- [`ComboDynColorDisplay`](#combodyncolordisplay)
+- [`ConiferGreen`](colors/xterm/index.md)
+- [`CopperRose`](colors/xterm/index.md)
+- [`Copperfield`](colors/xterm/index.md)
+- [`Corn`](colors/xterm/index.md)
+- [`CornflowerBlue`](colors/xterm/index.md)
+- [`CosmosSalmon`](colors/xterm/index.md)
+- [`CottonCandy`](colors/xterm/index.md)
+- [`CranberryPink`](colors/xterm/index.md)
+- [`CssColors`](#csscolors)
+- [`Cumulus`](colors/xterm/index.md)
+- [`CustomColor`](colors/index.md)
+- [`Cyan`](colors/index.md)
+- [`Cyan`](colors/xterm/index.md)
+- [`Dandelion`](colors/xterm/index.md)
+- [`DarkAlto`](colors/xterm/index.md)
+- [`DarkAnakiwaBlue`](colors/xterm/index.md)
+- [`DarkAquamarine`](colors/xterm/index.md)
+- [`DarkBlue`](colors/xterm/index.md)
+- [`DarkBrightGreen`](colors/xterm/index.md)
+- [`DarkCodGray`](colors/xterm/index.md)
+- [`DarkCorn`](colors/xterm/index.md)
+- [`DarkCornflowerBlue`](colors/xterm/index.md)
+- [`DarkDoveGray`](colors/xterm/index.md)
+- [`DarkFeijoaGreen`](colors/xterm/index.md)
+- [`DarkFlirt`](colors/xterm/index.md)
+- [`DarkFreshEggplant`](colors/xterm/index.md)
+- [`DarkGray`](colors/xterm/index.md)
+- [`DarkGreen`](colors/xterm/index.md)
+- [`DarkHeliotropePurple`](colors/xterm/index.md)
+- [`DarkHotPink`](colors/xterm/index.md)
+- [`DarkLavenderRose`](colors/xterm/index.md)
+- [`DarkLimeade`](colors/xterm/index.md)
+- [`DarkMalibuBlue`](colors/xterm/index.md)
+- [`DarkMediumPurple`](colors/xterm/index.md)
+- [`DarkMineShaft`](colors/xterm/index.md)
+- [`DarkMintGreen`](colors/xterm/index.md)
+- [`DarkPastelGreen`](colors/xterm/index.md)
+- [`DarkPurplePizzazz`](colors/xterm/index.md)
+- [`DarkPurple`](colors/xterm/index.md)
+- [`DarkRose`](colors/xterm/index.md)
+- [`DarkScreaminGreen`](colors/xterm/index.md)
+- [`DarkSilverChalice`](colors/xterm/index.md)
+- [`DarkSilver`](colors/xterm/index.md)
+- [`DarkSpringGreen`](colors/xterm/index.md)
+- [`DarkTachaOrange`](colors/xterm/index.md)
+- [`DarkTundora`](colors/xterm/index.md)
+- [`DarkViolet`](colors/xterm/index.md)
+- [`DecoOrange`](colors/xterm/index.md)
+- [`DeepCerulean`](colors/xterm/index.md)
+- [`DeepSeaGreen`](colors/xterm/index.md)
+- [`Default`](colors/index.md)
+- [`DelugePurple`](colors/xterm/index.md)
+- [`DimDisplay`](styles/index.md)
+- [`DollyYellow`](colors/xterm/index.md)
+- [`DoveGray`](colors/xterm/index.md)
+- [`DownyTeal`](colors/xterm/index.md)
+- [`DustyGray`](colors/xterm/index.md)
+- [`DynColors`](#dyncolors)
+- [`Effect`](#effect)
+- [`ElectricIndigo`](colors/xterm/index.md)
+- [`ElectricPurple`](colors/xterm/index.md)
+- [`ElectricViolet`](colors/xterm/index.md)
+- [`EndeavourBlue`](colors/xterm/index.md)
+- [`Feijoa`](colors/xterm/index.md)
+- [`FernGreen`](colors/xterm/index.md)
+- [`FgColorDisplay`](#fgcolordisplay)
+- [`FgDynColorDisplay`](#fgdyncolordisplay)
+- [`Flirt`](colors/xterm/index.md)
+- [`FlushOrange`](colors/xterm/index.md)
+- [`FogPink`](colors/xterm/index.md)
+- [`FrenchPassLightBlue`](colors/xterm/index.md)
+- [`FuchsiaPink`](colors/xterm/index.md)
+- [`Fuchsia`](colors/xterm/index.md)
+- [`GalleryGray`](colors/xterm/index.md)
+- [`GladeGreen`](colors/xterm/index.md)
+- [`Gold`](colors/xterm/index.md)
+- [`GrandisCaramel`](colors/xterm/index.md)
+- [`Gray`](colors/xterm/index.md)
+- [`GreenYellow`](colors/xterm/index.md)
+- [`Green`](colors/index.md)
+- [`Green`](colors/xterm/index.md)
+- [`GuardsmanRed`](colors/xterm/index.md)
+- [`GulfStream`](colors/xterm/index.md)
+- [`HavelockBlue`](colors/xterm/index.md)
+- [`Heliotrope`](colors/xterm/index.md)
+- [`HiddenDisplay`](styles/index.md)
+- [`HillaryOlive`](colors/xterm/index.md)
+- [`HippieBlue`](colors/xterm/index.md)
+- [`HollywoodCerise`](colors/xterm/index.md)
+- [`Honeysuckle`](colors/xterm/index.md)
+- [`HopbushPink`](colors/xterm/index.md)
+- [`HotPink`](colors/xterm/index.md)
+- [`Indigo`](colors/xterm/index.md)
+- [`ItalicDisplay`](styles/index.md)
+- [`Jade`](colors/xterm/index.md)
+- [`JapaneseLaurel`](colors/xterm/index.md)
+- [`JungleMist`](colors/xterm/index.md)
+- [`JuniperGreen`](colors/xterm/index.md)
+- [`LaserLemon`](colors/xterm/index.md)
+- [`LavenderRose`](colors/xterm/index.md)
+- [`Lavender`](colors/xterm/index.md)
+- [`LightAnakiwaBlue`](colors/xterm/index.md)
+- [`LightAquamarine`](colors/xterm/index.md)
+- [`LightAzureRadiance`](colors/xterm/index.md)
+- [`LightCaribbeanGreen`](colors/xterm/index.md)
+- [`LightCodGray`](colors/xterm/index.md)
+- [`LightElectricViolet`](colors/xterm/index.md)
+- [`LightFlirt`](colors/xterm/index.md)
+- [`LightFreshEggplant`](colors/xterm/index.md)
+- [`LightGray`](colors/xterm/index.md)
+- [`LightHeliotrope`](colors/xterm/index.md)
+- [`LightHollywoodCerise`](colors/xterm/index.md)
+- [`LightJapaneseLaurel`](colors/xterm/index.md)
+- [`LightLimeade`](colors/xterm/index.md)
+- [`LightMalibuBlue`](colors/xterm/index.md)
+- [`LightMineShaft`](colors/xterm/index.md)
+- [`LightMintGreen`](colors/xterm/index.md)
+- [`LightOrchid`](colors/xterm/index.md)
+- [`LightPastelGreen`](colors/xterm/index.md)
+- [`LightScreaminGreen`](colors/xterm/index.md)
+- [`LightSilverChalice`](colors/xterm/index.md)
+- [`LightSpringGreen`](colors/xterm/index.md)
+- [`LighterAquamarine`](colors/xterm/index.md)
+- [`LighterHeliotrope`](colors/xterm/index.md)
+- [`Lilac`](colors/xterm/index.md)
+- [`Lime`](colors/xterm/index.md)
+- [`Limeade`](colors/xterm/index.md)
+- [`LochmaraBlue`](colors/xterm/index.md)
+- [`Magenta`](colors/index.md)
+- [`Malachite`](colors/xterm/index.md)
+- [`MalibuBlue`](colors/xterm/index.md)
+- [`MangoTango`](colors/xterm/index.md)
+- [`Maroon`](colors/xterm/index.md)
+- [`MatrixPink`](colors/xterm/index.md)
+- [`Mauve`](colors/xterm/index.md)
+- [`MediumPurple`](colors/xterm/index.md)
+- [`MediumVioletRed`](colors/xterm/index.md)
+- [`MelroseLilac`](colors/xterm/index.md)
+- [`Mercury`](colors/xterm/index.md)
+- [`MidnightBlue`](colors/xterm/index.md)
+- [`MineShaft`](colors/xterm/index.md)
+- [`MintGreen`](colors/xterm/index.md)
+- [`MuesliOrange`](colors/xterm/index.md)
+- [`NavyBlue`](colors/xterm/index.md)
+- [`NobelGray`](colors/xterm/index.md)
+- [`OliveGreen`](colors/xterm/index.md)
+- [`Olive`](colors/xterm/index.md)
+- [`Orchid`](colors/xterm/index.md)
+- [`OrientBlue`](colors/xterm/index.md)
+- [`OysterBay`](colors/xterm/index.md)
+- [`PaleGoldenrod`](colors/xterm/index.md)
+- [`ParseColorError`](#parsecolorerror)
+- [`PastelGreen`](colors/xterm/index.md)
+- [`PersianGreen`](colors/xterm/index.md)
+- [`PharlapPink`](colors/xterm/index.md)
+- [`PigmentIndigo`](colors/xterm/index.md)
+- [`PinkFlamingo`](colors/xterm/index.md)
+- [`PinkLace`](colors/xterm/index.md)
+- [`PinkSalmon`](colors/xterm/index.md)
+- [`PirateGold`](colors/xterm/index.md)
+- [`Pistachio`](colors/xterm/index.md)
+- [`PixieGreen`](colors/xterm/index.md)
+- [`Plane`](colors/custom/index.md)
+- [`PoloBlue`](colors/xterm/index.md)
+- [`PompadourMagenta`](colors/xterm/index.md)
+- [`PortafinoYellow`](colors/xterm/index.md)
+- [`PurplePizzazz`](colors/xterm/index.md)
+- [`Purple`](colors/xterm/index.md)
+- [`RazzmatazzCerise`](colors/xterm/index.md)
+- [`Red`](colors/index.md)
+- [`Red`](colors/xterm/index.md)
+- [`ReefPaleYellow`](colors/xterm/index.md)
+- [`ReversedDisplay`](styles/index.md)
+- [`Rgb`](#rgb)
+- [`RioGrandeGreen`](colors/xterm/index.md)
+- [`RobinEggBlue`](colors/xterm/index.md)
+- [`RomanOrange`](colors/xterm/index.md)
+- [`Rose`](colors/xterm/index.md)
+- [`RoseofSharonOrange`](colors/xterm/index.md)
+- [`Rosewood`](colors/xterm/index.md)
+- [`Salmon`](colors/xterm/index.md)
+- [`ScampiIndigo`](colors/xterm/index.md)
+- [`ScienceBlue`](colors/xterm/index.md)
+- [`ScorpionGray`](colors/xterm/index.md)
+- [`ScorpionOlive`](colors/xterm/index.md)
+- [`ScreaminGreen`](colors/xterm/index.md)
+- [`SeaPink`](colors/xterm/index.md)
+- [`ShakespeareBlue`](colors/xterm/index.md)
+- [`SilverChalice`](colors/xterm/index.md)
+- [`SilverTree`](colors/xterm/index.md)
+- [`Silver`](colors/xterm/index.md)
+- [`SlateBlue`](colors/xterm/index.md)
+- [`SnowyMint`](colors/xterm/index.md)
+- [`SpringGreen`](colors/xterm/index.md)
+- [`StratosBlue`](colors/xterm/index.md)
+- [`StrikeThroughDisplay`](styles/index.md)
+- [`StrikemasterPurple`](colors/xterm/index.md)
+- [`StyleFlags`](dyn_styles/index.md)
+- [`StylePrefixFormatter`](#styleprefixformatter)
+- [`StyleSuffixFormatter`](#stylesuffixformatter)
+- [`Style`](#style)
+- [`StyledList`](#styledlist)
+- [`Styled`](#styled)
+- [`Sundown`](colors/xterm/index.md)
+- [`Tacao`](colors/xterm/index.md)
+- [`TachaOrange`](colors/xterm/index.md)
+- [`TanBeige`](colors/xterm/index.md)
+- [`TapestryPink`](colors/xterm/index.md)
+- [`Teal`](colors/xterm/index.md)
+- [`TennOrange`](colors/xterm/index.md)
+- [`TexasRose`](colors/xterm/index.md)
+- [`ThistlePink`](colors/xterm/index.md)
+- [`Tradewind`](colors/xterm/index.md)
+- [`Transition`](styled_list/index.md)
+- [`Tundora`](colors/xterm/index.md)
+- [`UnderlineDisplay`](styles/index.md)
+- [`UserBlack`](colors/xterm/index.md)
+- [`UserBlue`](colors/xterm/index.md)
+- [`UserBrightBlack`](colors/xterm/index.md)
+- [`UserBrightBlue`](colors/xterm/index.md)
+- [`UserBrightCyan`](colors/xterm/index.md)
+- [`UserBrightGreen`](colors/xterm/index.md)
+- [`UserBrightMagenta`](colors/xterm/index.md)
+- [`UserBrightRed`](colors/xterm/index.md)
+- [`UserBrightWhite`](colors/xterm/index.md)
+- [`UserBrightYellow`](colors/xterm/index.md)
+- [`UserCyan`](colors/xterm/index.md)
+- [`UserGreen`](colors/xterm/index.md)
+- [`UserMagenta`](colors/xterm/index.md)
+- [`UserRed`](colors/xterm/index.md)
+- [`UserWhite`](colors/xterm/index.md)
+- [`UserYellow`](colors/xterm/index.md)
+- [`VerdunGreen`](colors/xterm/index.md)
+- [`Viking`](colors/xterm/index.md)
+- [`VistaBlue`](colors/xterm/index.md)
+- [`VividTangerine`](colors/xterm/index.md)
+- [`White`](colors/index.md)
+- [`White`](colors/xterm/index.md)
+- [`WildBlueYonder`](colors/xterm/index.md)
+- [`WildWatermelon`](colors/xterm/index.md)
+- [`WistfulLilac`](colors/xterm/index.md)
+- [`XtermColors`](#xtermcolors)
+- [`YellowSea`](colors/xterm/index.md)
+- [`Yellow`](colors/index.md)
+- [`Yellow`](colors/xterm/index.md)
+- `D`
 
 ## Functions
 

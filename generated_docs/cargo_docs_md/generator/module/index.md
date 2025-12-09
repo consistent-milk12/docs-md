@@ -68,9 +68,9 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 - <span id="modulerenderer-render-all-sections"></span>`fn render_all_sections(&self, md: &mut String, items: &CategorizedItems<'_>)` — [`CategorizedItems`](#categorizeditems)
 
-- <span id="modulerenderer-build-toc-entries"></span>`fn build_toc_entries(&self, items: &CategorizedItems<'_>) -> Vec<TocEntry>` — [`CategorizedItems`](#categorizeditems), [`TocEntry`](../index.md)
+- <span id="modulerenderer-build-toc-entries"></span>`fn build_toc_entries(items: &CategorizedItems<'_>) -> Vec<TocEntry>` — [`CategorizedItems`](#categorizeditems), [`TocEntry`](../index.md)
 
-- <span id="modulerenderer-build-quick-ref-entries"></span>`fn build_quick_ref_entries(&self, items: &CategorizedItems<'_>) -> Vec<QuickRefEntry>` — [`CategorizedItems`](#categorizeditems), [`QuickRefEntry`](../index.md)
+- <span id="modulerenderer-build-quick-ref-entries"></span>`fn build_quick_ref_entries(items: &CategorizedItems<'_>) -> Vec<QuickRefEntry>` — [`CategorizedItems`](#categorizeditems), [`QuickRefEntry`](../index.md)
 
 - <span id="modulerenderer-render-modules-section"></span>`fn render_modules_section(&self, md: &mut String, modules: &[(&Id, &Item)])`
 

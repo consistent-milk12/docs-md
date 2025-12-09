@@ -16,18 +16,18 @@ generation capabilities programmatically.
   - [`parser`](#parser)
   - [`types`](#types)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`Generator`](#generator)
+  - [`MarkdownCapture`](#markdowncapture)
+  - [`RenderConfig`](#renderconfig)
+  - [`SourceConfig`](#sourceconfig)
+  - [`LinkRegistry`](#linkregistry)
+  - [`CrateCollection`](#cratecollection)
+  - [`MultiCrateContext`](#multicratecontext)
+  - [`MultiCrateGenerator`](#multicrategenerator)
+  - [`MultiCrateParser`](#multicrateparser)
+  - [`SearchIndex`](#searchindex)
+  - [`SearchIndexGenerator`](#searchindexgenerator)
+  - [`UnifiedLinkRegistry`](#unifiedlinkregistry)
   - [`Cli`](#cli)
   - [`DocsArgs`](#docsargs)
   - [`GenerateArgs`](#generateargs)
@@ -37,7 +37,7 @@ generation capabilities programmatically.
   - [`Command`](#command)
   - [`CliOutputFormat`](#clioutputformat)
 - [Functions](#functions)
-  - [`unnamed`](#unnamed)
+  - [`slugify_anchor`](#slugify_anchor)
 - [Type Aliases](#type-aliases)
   - [`Args`](#args)
 
@@ -51,18 +51,18 @@ generation capabilities programmatically.
 | [`multi_crate`](#multi_crate) | mod | Multi-crate documentation generation. |
 | [`parser`](#parser) | mod | Rustdoc JSON parsing module. |
 | [`types`](#types) | mod | Type rendering utilities for converting rustdoc types to string representations. |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
+| [`Generator`](#generator) | struct |  |
+| [`MarkdownCapture`](#markdowncapture) | struct |  |
+| [`RenderConfig`](#renderconfig) | struct |  |
+| [`SourceConfig`](#sourceconfig) | struct |  |
+| [`LinkRegistry`](#linkregistry) | struct |  |
+| [`CrateCollection`](#cratecollection) | struct |  |
+| [`MultiCrateContext`](#multicratecontext) | struct |  |
+| [`MultiCrateGenerator`](#multicrategenerator) | struct |  |
+| [`MultiCrateParser`](#multicrateparser) | struct |  |
+| [`SearchIndex`](#searchindex) | struct |  |
+| [`SearchIndexGenerator`](#searchindexgenerator) | struct |  |
+| [`UnifiedLinkRegistry`](#unifiedlinkregistry) | struct |  |
 | [`Cli`](#cli) | struct | Top-level CLI for docs-md. |
 | [`DocsArgs`](#docsargs) | struct | Arguments for the `docs` subcommand (build + generate). |
 | [`GenerateArgs`](#generateargs) | struct | Command-line arguments for direct generation (no subcommand). |
@@ -70,17 +70,17 @@ generation capabilities programmatically.
 | [`Cargo`](#cargo) | enum | Cargo wrapper for subcommand invocation. |
 | [`Command`](#command) | enum | Available subcommands |
 | [`CliOutputFormat`](#clioutputformat) | enum | CLI-compatible output format enum (for clap `ValueEnum` derive). |
-| [`unnamed`](#unnamed) | fn |  |
+| [`slugify_anchor`](#slugify_anchor) | fn |  |
 | [`Args`](#args) | type | Backwards-compatible type alias for existing code. |
 
 ## Modules
 
-- [`error`](error/index.md) - Error types for docs-md.
-- [`generator`](generator/index.md) - Markdown documentation generator for rustdoc JSON.
-- [`linker`](linker/index.md) - Cross-reference linking for markdown documentation.
-- [`multi_crate`](multi_crate/index.md) - Multi-crate documentation generation.
-- [`parser`](parser/index.md) - Rustdoc JSON parsing module.
-- [`types`](types/index.md) - Type rendering utilities for converting rustdoc types to string representations.
+- [`error`](error/index.md) — Error types for docs-md.
+- [`generator`](generator/index.md) — Markdown documentation generator for rustdoc JSON.
+- [`linker`](linker/index.md) — Cross-reference linking for markdown documentation.
+- [`multi_crate`](multi_crate/index.md) — Multi-crate documentation generation.
+- [`parser`](parser/index.md) — Rustdoc JSON parsing module.
+- [`types`](types/index.md) — Type rendering utilities for converting rustdoc types to string representations.
 
 ## Structs
 
@@ -130,6 +130,8 @@ generator.generate()?;
 - <span id="generator-create-progress-bar"></span>`fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](error/index.md)
 
 - <span id="generator-generate-to-capture"></span>`fn generate_to_capture(krate: &Crate, format: CliOutputFormat, include_private: bool) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](#clioutputformat), [`MarkdownCapture`](#markdowncapture), [`Error`](error/index.md)
+
+- <span id="generator-generate-to-capture-with-config"></span>`fn generate_to_capture_with_config(krate: &Crate, format: CliOutputFormat, include_private: bool, config: RenderConfig) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](#clioutputformat), [`RenderConfig`](#renderconfig), [`MarkdownCapture`](#markdowncapture), [`Error`](error/index.md)
 
 - <span id="generator-generate-flat-to-capture"></span>`fn generate_flat_to_capture(ctx: &GeneratorContext<'_>, root: &Item, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](generator/index.md), [`MarkdownCapture`](#markdowncapture), [`Error`](error/index.md)
 
@@ -342,7 +344,7 @@ Requires the `source-parsing` feature to have any effect.
 
 - **`source_locations`**: `bool`
 
-  Add file:line references to items.
+  Add <file:line> references to items.
 
 #### Trait Implementations
 
@@ -356,7 +358,7 @@ Requires the `source-parsing` feature to have any effect.
 
 ##### `impl Default for SourceConfig`
 
-- <span id="sourceconfig-default"></span>`fn default() -> Self`
+- <span id="sourceconfig-default"></span>`fn default() -> SourceConfig` — [`SourceConfig`](#sourceconfig)
 
 ##### `impl<T> Instrument for SourceConfig`
 

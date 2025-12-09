@@ -15,8 +15,8 @@
 
 ## Modules
 
-- [`exponent`](exponent/index.md) - 
-- [`mantissa`](mantissa/index.md) - 
+- [`exponent`](exponent/index.md)
+- [`mantissa`](mantissa/index.md)
 
 ## Functions
 

@@ -75,7 +75,13 @@ Extension trait for slices of tags.
 
   Fills the control with the given tag.
 
+#### Provided Methods
+
 - `fn fill_empty(&mut self)`
 
   Clears out the control.
+
+#### Implementors
+
+- `[Tag]`
 

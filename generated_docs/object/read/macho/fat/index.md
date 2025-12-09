@@ -7,9 +7,9 @@
 ## Contents
 
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`FatArch32`](#fatarch32)
+  - [`FatArch64`](#fatarch64)
+  - [`FatHeader`](#fatheader)
   - [`MachOFatFile`](#machofatfile)
 - [Traits](#traits)
   - [`FatArch`](#fatarch)
@@ -21,9 +21,9 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
+| [`FatArch32`](#fatarch32) | struct |  |
+| [`FatArch64`](#fatarch64) | struct |  |
+| [`FatHeader`](#fatheader) | struct |  |
 | [`MachOFatFile`](#machofatfile) | struct | A Mach-O universal binary. |
 | [`FatArch`](#fatarch) | trait | A trait for generic access to [`macho::FatArch32`] and [`macho::FatArch64`]. |
 | [`MachOFatFile32`](#machofatfile32) | type | A 32-bit Mach-O universal binary. |
@@ -239,11 +239,15 @@ trait FatArch: Pod { ... }
 
 A trait for generic access to [`macho::FatArch32`](../../../macho/index.md) and [`macho::FatArch64`](../../../macho/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
 
+#### Associated Constants
+
 - `const MAGIC: u32`
+
+#### Required Methods
 
 - `fn cputype(&self) -> u32`
 
@@ -255,11 +259,18 @@ A trait for generic access to [`macho::FatArch32`](../../../macho/index.md) and 
 
 - `fn align(&self) -> u32`
 
+#### Provided Methods
+
 - `fn architecture(&self) -> Architecture`
 
 - `fn file_range(&self) -> (u64, u64)`
 
 - `fn data<'data, R: ReadRef<'data>>(&self, file: R) -> Result<&'data [u8]>`
+
+#### Implementors
+
+- [`FatArch32`](../../../macho/index.md)
+- [`FatArch64`](../../../macho/index.md)
 
 ## Type Aliases
 

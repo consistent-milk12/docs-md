@@ -58,7 +58,7 @@ diagnostic error code: ruget::api::bad_json
 ## Features
 
 - Generic [`Diagnostic`](#diagnostic) protocol, compatible (and dependent on)
-  [`std::error::Error`](../addr2line/index.md).
+  [`std::error::Error`](../cargo_docs_md/error/index.md).
 - Unique error codes on every [`Diagnostic`](#diagnostic).
 - Custom links to get more details on error codes.
 - Super handy derive macro for defining diagnostic metadata.
@@ -182,7 +182,7 @@ diagnostic help: try doing it better next time?">
 
 `miette` is _fully compatible_ with library usage. Consumers who don't know
 about, or don't want, `miette` features can safely use its error types as
-regular [`std::error::Error`](../addr2line/index.md).
+regular [`std::error::Error`](../cargo_docs_md/error/index.md).
 
 We highly recommend using something like [`thiserror`](https://docs.rs/thiserror)
 to define unique error types and error wrappers for your library.
@@ -941,33 +941,33 @@ under the Apache License. Some code is taken from
 
 ## Modules
 
-- [`chain`](chain/index.md) - Iterate over error `.source()` chains.
-- [`diagnostic_chain`](diagnostic_chain/index.md) - Iterate over error `.diagnostic_source()` chains.
-- [`diagnostic_impls`](diagnostic_impls/index.md) - Default trait implementations for [`Diagnostic`].
-- [`error`](error/index.md) - 
-- [`eyreish`](eyreish/index.md) - 
-- [`handler`](handler/index.md) - 
-- [`handlers`](handlers/index.md) - Reporters included with `miette`.
-- [`highlighters`](highlighters/index.md) - This module provides a trait for creating custom syntax highlighters that
-- [`miette_diagnostic`](miette_diagnostic/index.md) - 
-- [`named_source`](named_source/index.md) - 
-- [`panic`](panic/index.md) - 
-- [`protocol`](protocol/index.md) - This module defines the core of the miette protocol: a series of types and
-- [`source_impls`](source_impls/index.md) - Default trait implementations for [`SourceCode`].
-- [`context`](context/index.md) - 
-- [`error`](error/index.md) - 
-- [`fmt`](fmt/index.md) - 
-- [`into_diagnostic`](into_diagnostic/index.md) - 
-- [`kind`](kind/index.md) - 
-- [`macros`](macros/index.md) - 
-- [`ptr`](ptr/index.md) - 
-- [`wrapper`](wrapper/index.md) - 
-- [`syscall`](syscall/index.md) - 
-- [`debug`](debug/index.md) - 
-- [`graphical`](graphical/index.md) - 
-- [`json`](json/index.md) - 
-- [`narratable`](narratable/index.md) - 
-- [`theme`](theme/index.md) - 
+- [`chain`](chain/index.md) — Iterate over error `.source()` chains.
+- [`diagnostic_chain`](diagnostic_chain/index.md) — Iterate over error `.diagnostic_source()` chains.
+- [`diagnostic_impls`](diagnostic_impls/index.md) — Default trait implementations for [`Diagnostic`].
+- [`error`](error/index.md)
+- [`eyreish`](eyreish/index.md)
+- [`handler`](handler/index.md)
+- [`handlers`](handlers/index.md) — Reporters included with `miette`.
+- [`highlighters`](highlighters/index.md) — This module provides a trait for creating custom syntax highlighters that
+- [`miette_diagnostic`](miette_diagnostic/index.md)
+- [`named_source`](named_source/index.md)
+- [`panic`](panic/index.md)
+- [`protocol`](protocol/index.md) — This module defines the core of the miette protocol: a series of types and
+- [`source_impls`](source_impls/index.md) — Default trait implementations for [`SourceCode`].
+- [`context`](context/index.md)
+- [`error`](error/index.md)
+- [`fmt`](fmt/index.md)
+- [`into_diagnostic`](into_diagnostic/index.md)
+- [`kind`](kind/index.md)
+- [`macros`](macros/index.md)
+- [`ptr`](ptr/index.md)
+- [`wrapper`](wrapper/index.md)
+- [`syscall`](syscall/index.md)
+- [`debug`](debug/index.md)
+- [`graphical`](graphical/index.md)
+- [`json`](json/index.md)
+- [`narratable`](narratable/index.md)
+- [`theme`](theme/index.md)
 
 ## Structs
 
@@ -1031,7 +1031,7 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 ##### `impl AsRef for super::Report`
 
-- <span id="superreport-as-ref"></span>`fn as_ref(&self) -> &dyn Diagnostic` — [`Diagnostic`](#diagnostic)
+- <span id="superreport-as-ref"></span>`fn as_ref(&self) -> &dyn Diagnostic + Send + Sync` — [`Diagnostic`](#diagnostic)
 
 ##### `impl Debug for super::Report`
 
@@ -1715,7 +1715,7 @@ Error enum for miette. Used by certain operations in the protocol.
 
 - **`IoError`**
 
-  Wrapper around [`std::io::Error`](../addr2line/index.md). This is returned when something went
+  Wrapper around [`std::io::Error`](../cargo_docs_md/error/index.md). This is returned when something went
   wrong while reading a [`SourceCode`](crate::SourceCode).
 
 - **`OutOfBounds`**
@@ -1909,6 +1909,8 @@ Error Report Handler trait for customizing `miette::Report`
 
   Define the report format
 
+#### Provided Methods
+
 - `fn display(&self, error: &dyn StdError, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
   Override for the `Display` format
@@ -1916,6 +1918,14 @@ Error Report Handler trait for customizing `miette::Report`
 - `fn track_caller(&mut self, location: &'static std::panic::Location<'static>)`
 
   Store the location of the caller who constructed this error report
+
+#### Implementors
+
+- [`DebugReportHandler`](handlers/index.md)
+- [`GraphicalReportHandler`](handlers/index.md)
+- [`JSONReportHandler`](handlers/index.md)
+- [`MietteHandler`](#miettehandler)
+- [`NarratableReportHandler`](handlers/index.md)
 
 ### `WrapErr<T, E>`
 
@@ -2116,6 +2126,11 @@ supports both of the following use cases:
 
   Compatibility re-export of `wrap_err_with()` for interop with `anyhow`
 
+#### Implementors
+
+- `Option<T>`
+- `Result<T, E>`
+
 ### `Diagnostic`
 
 ```rust
@@ -2126,7 +2141,7 @@ Adds rich metadata to your Error that can be used by
 [`Report`](crate::Report) to print really nice and human-friendly error
 messages.
 
-#### Required Methods
+#### Provided Methods
 
 - `fn code<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
@@ -2160,6 +2175,20 @@ messages.
 
   The cause of the error.
 
+#### Implementors
+
+- [`BoxedError`](eyreish/wrapper/index.md)
+- [`ContextError`](eyreish/error/index.md)
+- [`DiagnosticError`](eyreish/into_diagnostic/index.md)
+- [`DisplayError`](eyreish/wrapper/index.md)
+- [`InstallError`](#installerror)
+- [`MessageError`](eyreish/wrapper/index.md)
+- [`MietteDiagnostic`](#miettediagnostic)
+- [`MietteError`](#mietteerror)
+- [`Panic`](panic/index.md)
+- [`WithSourceCode`](eyreish/wrapper/index.md)
+- `std::convert::Infallible`
+
 ### `SourceCode`
 
 ```rust
@@ -2182,6 +2211,18 @@ gigabytes or larger in size.
 
   Read the bytes for a specific span from this `SourceCode`, keeping a
 
+#### Implementors
+
+- [`NamedSource`](#namedsource)
+- `&[u8]`
+- `&str`
+- `String`
+- `Vec<u8>`
+- `[u8]`
+- `std::borrow::Cow<'_, T>`
+- `std::sync::Arc<T>`
+- `str`
+
 ### `SpanContents<'a>`
 
 ```rust
@@ -2202,10 +2243,6 @@ Includes line and column information to optimize highlight calculations.
 
   [`SourceSpan`](#sourcespan) representing the span covered by this `SpanContents`.
 
-- `fn name(&self) -> Option<&str>`
-
-  An optional (file?) name for the container of this `SpanContents`.
-
 - `fn line(&self) -> usize`
 
   The 0-indexed line in the associated [`SourceCode`](#sourcecode) where the data
@@ -2218,9 +2255,19 @@ Includes line and column information to optimize highlight calculations.
 
   Total number of lines covered by this `SpanContents`.
 
+#### Provided Methods
+
+- `fn name(&self) -> Option<&str>`
+
+  An optional (file?) name for the container of this `SpanContents`.
+
 - `fn language(&self) -> Option<&str>`
 
   Optional method. The language name for this source code, if any.
+
+#### Implementors
+
+- [`MietteSpanContents`](#miettespancontents)
 
 ## Functions
 

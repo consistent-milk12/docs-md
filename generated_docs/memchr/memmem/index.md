@@ -81,7 +81,7 @@ assert_eq!(None, finder.find(b"quux baz bar"));
   - [`FinderRev`](#finderrev)
   - [`FinderBuilder`](#finderbuilder)
 - [Enums](#enums)
-  - [`unnamed`](#unnamed)
+  - [`Prefilter`](#prefilter)
 - [Functions](#functions)
   - [`find_iter`](#find_iter)
   - [`rfind_iter`](#rfind_iter)
@@ -98,7 +98,7 @@ assert_eq!(None, finder.find(b"quux baz bar"));
 | [`Finder`](#finder) | struct | A single substring searcher fixed to a particular needle. |
 | [`FinderRev`](#finderrev) | struct | A single substring reverse searcher fixed to a particular needle. |
 | [`FinderBuilder`](#finderbuilder) | struct | A builder for constructing non-default forward or reverse memmem finders. |
-| [`unnamed`](#unnamed) | enum |  |
+| [`Prefilter`](#prefilter) | enum |  |
 | [`find_iter`](#find_iter) | fn | Returns an iterator over all non-overlapping occurrences of a substring in |
 | [`rfind_iter`](#rfind_iter) | fn | Returns a reverse iterator over all non-overlapping occurrences of a |
 | [`find`](#find) | fn | Returns the index of the first occurrence of the given needle. |
@@ -106,7 +106,7 @@ assert_eq!(None, finder.find(b"quux baz bar"));
 
 ## Modules
 
-- [`searcher`](searcher/index.md) - 
+- [`searcher`](searcher/index.md)
 
 ## Structs
 

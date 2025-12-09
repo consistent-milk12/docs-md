@@ -58,8 +58,8 @@
 
 ## Modules
 
-- [`generated`](generated/index.md) - 
-- [`ptr`](ptr/index.md) - 
+- [`generated`](generated/index.md)
+- [`ptr`](ptr/index.md)
 
 ## Structs
 

@@ -112,7 +112,7 @@ impl<'a> ModuleRenderer<'a> {
 
             // === Table of Contents (if above threshold) ===
             let toc_gen = TocGenerator::new(config.toc_threshold);
-            let toc_entries = self.build_toc_entries(&categorized);
+            let toc_entries = Self::build_toc_entries(&categorized);
             if let Some(toc) = toc_gen.generate(&toc_entries) {
                 md.push_str(&toc);
             }
@@ -260,10 +260,14 @@ impl<'a> ModuleRenderer<'a> {
     ///
     /// Creates a hierarchical structure for the table of contents, with
     /// section headings as top-level entries and individual items as children.
-    fn build_toc_entries(&self, items: &CategorizedItems) -> Vec<TocEntry> {
+    fn build_toc_entries(items: &CategorizedItems) -> Vec<TocEntry> {
         let mut entries = Vec::new();
 
         // Helper to create item entries
+        #[expect(
+            clippy::items_after_statements,
+            reason = "Consider rewriting as a struct"
+        )]
         fn item_entries(items: &[(&Id, &Item)]) -> Vec<TocEntry> {
             items
                 .iter()
@@ -274,6 +278,10 @@ impl<'a> ModuleRenderer<'a> {
                 .collect()
         }
 
+        #[expect(
+            clippy::items_after_statements,
+            reason = "Consider rewriting as a struct"
+        )]
         fn simple_item_entries(items: &[&Item]) -> Vec<TocEntry> {
             items
                 .iter()
@@ -356,51 +364,137 @@ impl<'a> ModuleRenderer<'a> {
     ///
     /// Creates a flat list of entries for the quick reference table,
     /// including all item types with their names, kinds, and summaries.
+    /// For re-exports, uses the target item's docs when the re-export lacks its own.
     fn build_quick_ref_entries(&self, items: &CategorizedItems) -> Vec<QuickRefEntry> {
         let mut entries = Vec::new();
 
-        // Helper to create entries from items with IDs
-        fn add_entries_with_id(
-            entries: &mut Vec<QuickRefEntry>,
-            items: &[(&Id, &Item)],
-            kind: &'static str,
-        ) {
-            for (_, item) in items {
-                if let Some(name) = item.name.as_deref() {
-                    entries.push(QuickRefEntry::new(
-                        name,
-                        kind,
-                        slugify_anchor(name),
-                        extract_summary(item.docs.as_deref()),
-                    ));
-                }
+        // Add entries from items with IDs (supports re-export doc fallback)
+        for (id, item) in &items.modules {
+            if let Some(name) = item.name.as_deref() {
+                entries.push(QuickRefEntry::new(
+                    name,
+                    "mod",
+                    slugify_anchor(name),
+                    self.get_item_summary(item, **id),
+                ));
             }
         }
 
-        // Helper to create entries from items without IDs
-        fn add_simple_entries(entries: &mut Vec<QuickRefEntry>, items: &[&Item], kind: &'static str) {
-            for item in items {
-                if let Some(name) = item.name.as_deref() {
-                    entries.push(QuickRefEntry::new(
-                        name,
-                        kind,
-                        slugify_anchor(name),
-                        extract_summary(item.docs.as_deref()),
-                    ));
-                }
+        for (id, item) in &items.structs {
+            if let Some(name) = item.name.as_deref() {
+                entries.push(QuickRefEntry::new(
+                    name,
+                    "struct",
+                    slugify_anchor(name),
+                    self.get_item_summary(item, **id),
+                ));
             }
         }
 
-        // Add all item types (skip modules - they have their own section with links)
-        add_entries_with_id(&mut entries, &items.structs, "struct");
-        add_entries_with_id(&mut entries, &items.enums, "enum");
-        add_entries_with_id(&mut entries, &items.traits, "trait");
-        add_simple_entries(&mut entries, &items.functions, "fn");
-        add_simple_entries(&mut entries, &items.macros, "macro");
-        add_simple_entries(&mut entries, &items.constants, "const");
-        add_simple_entries(&mut entries, &items.type_aliases, "type");
+        for (id, item) in &items.enums {
+            if let Some(name) = item.name.as_deref() {
+                entries.push(QuickRefEntry::new(
+                    name,
+                    "enum",
+                    slugify_anchor(name),
+                    self.get_item_summary(item, **id),
+                ));
+            }
+        }
+
+        for (id, item) in &items.traits {
+            if let Some(name) = item.name.as_deref() {
+                entries.push(QuickRefEntry::new(
+                    name,
+                    "trait",
+                    slugify_anchor(name),
+                    self.get_item_summary(item, **id),
+                ));
+            }
+        }
+
+        // Simple entries (functions, macros, constants, type aliases)
+        // These don't have IDs in categorization, so use direct docs only
+        for item in &items.functions {
+            if let Some(name) = item.name.as_deref() {
+                entries.push(QuickRefEntry::new(
+                    name,
+                    "fn",
+                    slugify_anchor(name),
+                    extract_summary(item.docs.as_deref()),
+                ));
+            }
+        }
+
+        for item in &items.macros {
+            if let Some(name) = item.name.as_deref() {
+                entries.push(QuickRefEntry::new(
+                    name,
+                    "macro",
+                    slugify_anchor(name),
+                    extract_summary(item.docs.as_deref()),
+                ));
+            }
+        }
+
+        for item in &items.constants {
+            if let Some(name) = item.name.as_deref() {
+                entries.push(QuickRefEntry::new(
+                    name,
+                    "const",
+                    slugify_anchor(name),
+                    extract_summary(item.docs.as_deref()),
+                ));
+            }
+        }
+
+        for item in &items.type_aliases {
+            if let Some(name) = item.name.as_deref() {
+                entries.push(QuickRefEntry::new(
+                    name,
+                    "type",
+                    slugify_anchor(name),
+                    extract_summary(item.docs.as_deref()),
+                ));
+            }
+        }
 
         entries
+    }
+
+    /// Get summary for an item, with fallback for re-exports.
+    ///
+    /// For re-exports (`ItemEnum::Use`), if the item has no docs, falls back
+    /// to the target item's documentation.
+    fn get_item_summary(&self, item: &Item, item_id: Id) -> String {
+        // First try the item's own docs
+        let summary = extract_summary(item.docs.as_deref());
+        if !summary.is_empty() {
+            return summary;
+        }
+
+        // For re-exports, try to get the target's docs
+        if let ItemEnum::Use(use_item) = &item.inner
+            && let Some(target_id) = &use_item.id
+            && let Some(target_item) = self.ctx.krate().index.get(target_id)
+        {
+            let target_summary = extract_summary(target_item.docs.as_deref());
+            if !target_summary.is_empty() {
+                return target_summary;
+            }
+        }
+
+        // Also check if item_id points to a different item (for non-Use re-exports)
+        if let Some(target_item) = self.ctx.krate().index.get(&item_id)
+            && target_item.id != item.id
+        {
+            let target_summary = extract_summary(target_item.docs.as_deref());
+            if !target_summary.is_empty() {
+                return target_summary;
+            }
+        }
+
+        String::new()
     }
 
     /// Render the Modules section with links to submodules.
@@ -419,14 +513,46 @@ impl<'a> ModuleRenderer<'a> {
                 _ = write!(md, "- **`{module_name}`**");
             }
 
-            if let Some(docs) = &module_item.docs
-                && let Some(first_line) = docs.lines().next()
-            {
-                _ = write!(md, " - {first_line}");
+            // Get summary: try item's own docs, then fall back to target's docs for re-exports
+            let summary = self.get_module_summary(module_item, **module_id);
+            if !summary.is_empty() {
+                _ = write!(md, " — {summary}");
             }
             md.push('\n');
         }
         md.push('\n');
+    }
+
+    /// Get summary for a module, with fallback for re-exports.
+    fn get_module_summary(&self, item: &Item, item_id: Id) -> String {
+        // First try the item's own docs
+        if let Some(docs) = &item.docs
+            && let Some(first_line) = docs.lines().next()
+            && !first_line.trim().is_empty()
+        {
+            return first_line.to_string();
+        }
+
+        // For re-exports, try to get the target's docs
+        if let ItemEnum::Use(use_item) = &item.inner
+            && let Some(target_id) = &use_item.id
+            && let Some(target_item) = self.ctx.krate().index.get(target_id)
+            && let Some(docs) = &target_item.docs
+            && let Some(first_line) = docs.lines().next()
+        {
+            return first_line.to_string();
+        }
+
+        // Also check if item_id points to a different item (for non-Use re-exports)
+        if let Some(target_item) = self.ctx.krate().index.get(&item_id)
+            && target_item.id != item.id
+            && let Some(docs) = &target_item.docs
+            && let Some(first_line) = docs.lines().next()
+        {
+            return first_line.to_string();
+        }
+
+        String::new()
     }
 
     /// Render the Structs section.
@@ -462,9 +588,10 @@ impl<'a> ModuleRenderer<'a> {
         }
 
         md.push_str("## Traits\n\n");
+
         let renderer = ItemRenderer::new(self.ctx, self.current_file);
-        for (_item_id, trait_item) in traits {
-            renderer.render_trait(md, trait_item);
+        for (item_id, trait_item) in traits {
+            renderer.render_trait(md, **item_id, trait_item);
         }
     }
 

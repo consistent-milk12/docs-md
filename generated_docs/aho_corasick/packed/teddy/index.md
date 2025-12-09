@@ -13,6 +13,6 @@
 
 ## Modules
 
-- [`builder`](builder/index.md) - 
-- [`generic`](generic/index.md) - 
+- [`builder`](builder/index.md)
+- [`generic`](generic/index.md)
 

@@ -274,19 +274,19 @@ fn main() -> Result<(), Box<dyn Error>> {
 
 ## Modules
 
-- [`read_ref`](read_ref/index.md) - 
-- [`read_cache`](read_cache/index.md) - 
-- [`util`](util/index.md) - 
-- [`gnu_compression`](gnu_compression/index.md) - 
-- [`any`](any/index.md) - 
-- [`archive`](archive/index.md) - Support for archive files.
-- [`coff`](coff/index.md) - Support for reading Windows COFF files.
-- [`elf`](elf/index.md) - Support for reading ELF files.
-- [`macho`](macho/index.md) - Support for reading Mach-O files.
-- [`pe`](pe/index.md) - Support for reading PE files.
-- [`xcoff`](xcoff/index.md) - Support for reading AIX XCOFF files.
-- [`traits`](traits/index.md) - 
-- [`private`](private/index.md) - 
+- [`read_ref`](read_ref/index.md)
+- [`read_cache`](read_cache/index.md)
+- [`util`](util/index.md)
+- [`gnu_compression`](gnu_compression/index.md)
+- [`any`](any/index.md)
+- [`archive`](archive/index.md) — Support for archive files.
+- [`coff`](coff/index.md) — Support for reading Windows COFF files.
+- [`elf`](elf/index.md) — Support for reading ELF files.
+- [`macho`](macho/index.md) — Support for reading Mach-O files.
+- [`pe`](pe/index.md) — Support for reading PE files.
+- [`xcoff`](xcoff/index.md) — Support for reading AIX XCOFF files.
+- [`traits`](traits/index.md)
+- [`private`](private/index.md)
 
 ## Structs
 
@@ -3657,6 +3657,12 @@ trait ReadError<T> { ... }
 
 - `fn read_error(self, error: &'static str) -> Result<T>`
 
+#### Implementors
+
+- `Option<T>`
+- `result::Result<T, ()>`
+- `result::Result<T, Error>`
+
 ### `SymbolMapEntry`
 
 ```rust
@@ -3670,6 +3676,11 @@ An entry in a [`SymbolMap`](../index.md).
 - `fn address(&self) -> u64`
 
   The symbol address.
+
+#### Implementors
+
+- [`ObjectMapEntry`](../index.md)
+- [`SymbolMapName`](../index.md)
 
 ### `ReadRef<'a>`
 
@@ -3726,6 +3737,8 @@ the size that was read.
 
   Get a reference to a delimited `u8` slice which starts at range.start.
 
+#### Provided Methods
+
 - `fn read_bytes(self, offset: &mut u64, size: u64) -> result::Result<&'a [u8], ()>`
 
   Get a reference to a `u8` slice at the given offset, and update the offset.
@@ -3745,6 +3758,12 @@ the size that was read.
 - `fn read_slice_at<T: Pod>(self, offset: u64, count: usize) -> result::Result<&'a [T], ()>`
 
   Get a reference to a slice of a `Pod` type at the given offset.
+
+#### Implementors
+
+- [`ReadCacheRange`](#readcacherange)
+- `&'a ReadCache<R>`
+- `&'a [u8]`
 
 ### `ReadCacheOps`
 
@@ -3786,7 +3805,7 @@ An object file.
 
 This is the primary trait for the unified read API.
 
-#### Required Methods
+#### Associated Types
 
 - `type Segment: 1`
 
@@ -3808,17 +3827,11 @@ This is the primary trait for the unified read API.
 
 - `type DynamicRelocationIterator: 1`
 
+#### Required Methods
+
 - `fn architecture(&self) -> Architecture`
 
   Get the architecture type of the file.
-
-- `fn sub_architecture(&self) -> Option<SubArchitecture>`
-
-  Get the sub-architecture type of the file if known.
-
-- `fn endianness(&self) -> Endianness`
-
-  Get the endianness of the file.
 
 - `fn is_little_endian(&self) -> bool`
 
@@ -3835,10 +3848,6 @@ This is the primary trait for the unified read API.
 - `fn segments(&self) -> <Self as >::SegmentIterator`
 
   Get an iterator for the loadable segments in the file.
-
-- `fn section_by_name(&self, section_name: &str) -> Option<<Self as >::Section>`
-
-  Get the section named `section_name`, if such a section exists.
 
 - `fn section_by_name_bytes<'file>(self: &'file Self, section_name: &[u8]) -> Option<<Self as >::Section>`
 
@@ -3868,14 +3877,6 @@ This is the primary trait for the unified read API.
 
   Get an iterator for the debugging symbols in the file.
 
-- `fn symbol_by_name<'file>(self: &'file Self, symbol_name: &str) -> Option<<Self as >::Symbol>`
-
-  Get the symbol named `symbol_name`, if the symbol exists.
-
-- `fn symbol_by_name_bytes<'file>(self: &'file Self, symbol_name: &[u8]) -> Option<<Self as >::Symbol>`
-
-  Like `Self::symbol_by_name`, but allows names that are not UTF-8.
-
 - `fn dynamic_symbol_table(&self) -> Option<<Self as >::SymbolTable>`
 
   Get the dynamic linking symbol table, if any.
@@ -3888,14 +3889,6 @@ This is the primary trait for the unified read API.
 
   Get the dynamic relocations for this file.
 
-- `fn symbol_map(&self) -> SymbolMap<SymbolMapName<'data>>`
-
-  Construct a map from addresses to symbol names.
-
-- `fn object_map(&self) -> ObjectMap<'data>`
-
-  Construct a map from addresses to symbol names and object file names.
-
 - `fn imports(&self) -> Result<Vec<Import<'data>>>`
 
   Get the imported symbols.
@@ -3907,6 +3900,48 @@ This is the primary trait for the unified read API.
 - `fn has_debug_symbols(&self) -> bool`
 
   Return true if the file contains DWARF debug information sections, false if not.
+
+- `fn relative_address_base(&self) -> u64`
+
+  Get the base address used for relative virtual addresses.
+
+- `fn entry(&self) -> u64`
+
+  Get the virtual address of the entry point of the binary.
+
+- `fn flags(&self) -> FileFlags`
+
+  File flags that are specific to each file format.
+
+#### Provided Methods
+
+- `fn sub_architecture(&self) -> Option<SubArchitecture>`
+
+  Get the sub-architecture type of the file if known.
+
+- `fn endianness(&self) -> Endianness`
+
+  Get the endianness of the file.
+
+- `fn section_by_name(&self, section_name: &str) -> Option<<Self as >::Section>`
+
+  Get the section named `section_name`, if such a section exists.
+
+- `fn symbol_by_name<'file>(self: &'file Self, symbol_name: &str) -> Option<<Self as >::Symbol>`
+
+  Get the symbol named `symbol_name`, if the symbol exists.
+
+- `fn symbol_by_name_bytes<'file>(self: &'file Self, symbol_name: &[u8]) -> Option<<Self as >::Symbol>`
+
+  Like `Self::symbol_by_name`, but allows names that are not UTF-8.
+
+- `fn symbol_map(&self) -> SymbolMap<SymbolMapName<'data>>`
+
+  Construct a map from addresses to symbol names.
+
+- `fn object_map(&self) -> ObjectMap<'data>`
+
+  Construct a map from addresses to symbol names and object file names.
 
 - `fn mach_uuid(&self) -> Result<Option<[u8; 16]>>`
 
@@ -3928,17 +3963,14 @@ This is the primary trait for the unified read API.
 
   The filename and GUID from the PE CodeView section.
 
-- `fn relative_address_base(&self) -> u64`
+#### Implementors
 
-  Get the base address used for relative virtual addresses.
-
-- `fn entry(&self) -> u64`
-
-  Get the virtual address of the entry point of the binary.
-
-- `fn flags(&self) -> FileFlags`
-
-  File flags that are specific to each file format.
+- [`CoffFile`](coff/index.md)
+- [`ElfFile`](elf/index.md)
+- [`File`](#file)
+- [`MachOFile`](macho/index.md)
+- [`PeFile`](pe/index.md)
+- [`XcoffFile`](xcoff/index.md)
 
 ### `ObjectSegment<'data>`
 
@@ -3988,6 +4020,15 @@ This trait is part of the unified read API.
 
   Return the flags of segment.
 
+#### Implementors
+
+- [`CoffSegment`](coff/index.md)
+- [`ElfSegment`](elf/index.md)
+- [`MachOSegment`](macho/index.md)
+- [`PeSegment`](pe/index.md)
+- [`Segment`](#segment)
+- [`XcoffSegment`](xcoff/index.md)
+
 ### `ObjectSection<'data>`
 
 ```rust
@@ -3998,9 +4039,11 @@ A section in an [`Object`](#object).
 
 This trait is part of the unified read API.
 
-#### Required Methods
+#### Associated Types
 
 - `type RelocationIterator: 1`
+
+#### Required Methods
 
 - `fn index(&self) -> SectionIndex`
 
@@ -4038,10 +4081,6 @@ This trait is part of the unified read API.
 
   Returns the potentially compressed contents of the section,
 
-- `fn uncompressed_data(&self) -> Result<Cow<'data, [u8]>>`
-
-  Returns the uncompressed contents of the section.
-
 - `fn name_bytes(&self) -> Result<&'data [u8]>`
 
   Returns the name of the section.
@@ -4074,6 +4113,21 @@ This trait is part of the unified read API.
 
   Section flags that are specific to each file format.
 
+#### Provided Methods
+
+- `fn uncompressed_data(&self) -> Result<Cow<'data, [u8]>>`
+
+  Returns the uncompressed contents of the section.
+
+#### Implementors
+
+- [`CoffSection`](coff/index.md)
+- [`ElfSection`](elf/index.md)
+- [`MachOSection`](macho/index.md)
+- [`PeSection`](pe/index.md)
+- [`Section`](#section)
+- [`XcoffSection`](xcoff/index.md)
+
 ### `ObjectComdat<'data>`
 
 ```rust
@@ -4084,9 +4138,11 @@ A COMDAT section group in an [`Object`](#object).
 
 This trait is part of the unified read API.
 
-#### Required Methods
+#### Associated Types
 
 - `type SectionIterator: 1`
+
+#### Required Methods
 
 - `fn kind(&self) -> ComdatKind`
 
@@ -4108,6 +4164,15 @@ This trait is part of the unified read API.
 
   Get the sections in this section group.
 
+#### Implementors
+
+- [`CoffComdat`](coff/index.md)
+- [`Comdat`](#comdat)
+- [`ElfComdat`](elf/index.md)
+- [`MachOComdat`](macho/index.md)
+- [`PeComdat`](pe/index.md)
+- [`XcoffComdat`](xcoff/index.md)
+
 ### `ObjectSymbolTable<'data>`
 
 ```rust
@@ -4118,11 +4183,13 @@ A symbol table in an [`Object`](#object).
 
 This trait is part of the unified read API.
 
-#### Required Methods
+#### Associated Types
 
 - `type Symbol: 1`
 
 - `type SymbolIterator: 1`
+
+#### Required Methods
 
 - `fn symbols(&self) -> <Self as >::SymbolIterator`
 
@@ -4131,6 +4198,14 @@ This trait is part of the unified read API.
 - `fn symbol_by_index(&self, index: SymbolIndex) -> Result<<Self as >::Symbol>`
 
   Get the symbol at the given index.
+
+#### Implementors
+
+- [`CoffSymbolTable`](coff/index.md)
+- [`ElfSymbolTable`](elf/index.md)
+- [`MachOSymbolTable`](macho/index.md)
+- [`SymbolTable`](#symboltable)
+- [`XcoffSymbolTable`](xcoff/index.md)
 
 ### `ObjectSymbol<'data>`
 
@@ -4172,10 +4247,6 @@ This trait is part of the unified read API.
 
   Returns the section where the symbol is defined.
 
-- `fn section_index(&self) -> Option<SectionIndex>`
-
-  Returns the section index for the section containing this symbol.
-
 - `fn is_undefined(&self) -> bool`
 
   Return true if the symbol is undefined.
@@ -4207,6 +4278,20 @@ This trait is part of the unified read API.
 - `fn flags(&self) -> SymbolFlags<SectionIndex, SymbolIndex>`
 
   Symbol flags that are specific to each file format.
+
+#### Provided Methods
+
+- `fn section_index(&self) -> Option<SectionIndex>`
+
+  Returns the section index for the section containing this symbol.
+
+#### Implementors
+
+- [`CoffSymbol`](coff/index.md)
+- [`ElfSymbol`](elf/index.md)
+- [`MachOSymbol`](macho/index.md)
+- [`Symbol`](#symbol)
+- [`XcoffSymbol`](xcoff/index.md)
 
 ## Functions
 

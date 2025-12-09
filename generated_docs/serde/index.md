@@ -102,8 +102,8 @@ for Serde by the community.
 
 ## Modules
 
-- [`lib`](lib/index.md) - A facade around all the types we need from the `std`, `core`, and `alloc`
-- [`integer128`](integer128/index.md) - 
+- [`lib`](lib/index.md) — A facade around all the types we need from the `std`, `core`, and `alloc`
+- [`integer128`](integer128/index.md)
 
 ## Macros
 

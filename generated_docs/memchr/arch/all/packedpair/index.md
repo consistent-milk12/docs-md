@@ -27,7 +27,7 @@ however can be good enough in many circumstances.
 
 ## Modules
 
-- [`default_rank`](default_rank/index.md) - 
+- [`default_rank`](default_rank/index.md)
 
 ## Structs
 
@@ -223,4 +223,9 @@ assert!(finder.find(b"\x00\x00\x00\xdd\xdd").is_some());
 - `fn rank(&self, byte: u8) -> u8`
 
   Return the heuristic frequency rank of the given byte. A lower rank
+
+#### Implementors
+
+- [`DefaultFrequencyRank`](#defaultfrequencyrank)
+- `&'a R`
 

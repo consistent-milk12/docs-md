@@ -14,5 +14,5 @@ OS-specific functionality.
 
 ## Modules
 
-- [`unix`](unix/index.md) - Platform-specific extensions for Unix platforms.
+- [`unix`](unix/index.md) — Platform-specific extensions for Unix platforms.
 

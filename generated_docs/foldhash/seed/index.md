@@ -15,7 +15,7 @@
 
 ## Modules
 
-- [`global`](global/index.md) - 
+- [`global`](global/index.md)
 
 ## Structs
 

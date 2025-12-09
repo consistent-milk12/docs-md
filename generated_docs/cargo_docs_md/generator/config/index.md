@@ -126,7 +126,7 @@ Requires the `source-parsing` feature to have any effect.
 
 - **`source_locations`**: `bool`
 
-  Add file:line references to items.
+  Add <file:line> references to items.
 
 #### Trait Implementations
 
@@ -140,7 +140,7 @@ Requires the `source-parsing` feature to have any effect.
 
 ##### `impl Default for SourceConfig`
 
-- <span id="sourceconfig-default"></span>`fn default() -> Self`
+- <span id="sourceconfig-default"></span>`fn default() -> SourceConfig` — [`SourceConfig`](../../index.md)
 
 ##### `impl<T> Instrument for SourceConfig`
 

@@ -47,3 +47,13 @@ struct NoDrop<T: ?Sized>(std::mem::ManuallyDrop<T>);
 trait TrivialDrop { ... }
 ```
 
+#### Implementors
+
+- [`PrivateIterMut`](../punctuated/index.md)
+- [`PrivateIter`](../punctuated/index.md)
+- `iter::Empty<T>`
+- `option::IntoIter<&T>`
+- `option::IntoIter<&mut T>`
+- `slice::Iter<'_, T>`
+- `slice::IterMut<'_, T>`
+

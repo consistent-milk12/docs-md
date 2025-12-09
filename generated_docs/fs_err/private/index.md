@@ -18,3 +18,9 @@
 trait Sealed { ... }
 ```
 
+#### Implementors
+
+- [`File`](../index.md)
+- [`OpenOptions`](../index.md)
+- `std::path::Path`
+

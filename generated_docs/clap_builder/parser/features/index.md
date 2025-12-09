@@ -12,5 +12,5 @@
 
 ## Modules
 
-- [`suggestions`](suggestions/index.md) - 
+- [`suggestions`](suggestions/index.md)
 

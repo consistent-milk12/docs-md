@@ -13,7 +13,7 @@
 
 ## Modules
 
-- [`inner`](inner/index.md) - 
+- [`inner`](inner/index.md)
 
 ## Structs
 
@@ -46,7 +46,7 @@ feature
 
 ##### `impl AsRef for Str`
 
-- <span id="str-as-ref"></span>`fn as_ref(&self) -> &[u8]`
+- <span id="str-as-ref"></span>`fn as_ref(&self) -> &std::path::Path`
 
 ##### `impl Clone for Str`
 
@@ -78,7 +78,7 @@ feature
 
 ##### `impl<I> IntoResettable for Str`
 
-- <span id="str-into-resettable"></span>`fn into_resettable(self) -> Resettable<Str>` — [`Resettable`](../index.md), [`Str`](../index.md)
+- <span id="str-into-resettable"></span>`fn into_resettable(self) -> Resettable<OsStr>` — [`Resettable`](../index.md), [`OsStr`](../index.md)
 
 ##### `impl Ord for Str`
 
@@ -86,7 +86,7 @@ feature
 
 ##### `impl PartialEq for Str`
 
-- <span id="str-eq"></span>`fn eq(&self, other: &String) -> bool`
+- <span id="str-eq"></span>`fn eq(&self, other: &str) -> bool`
 
 ##### `impl PartialOrd for Str`
 

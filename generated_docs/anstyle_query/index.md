@@ -32,7 +32,7 @@ Low level terminal capability lookups
 
 ## Modules
 
-- [`windows`](windows/index.md) - Windows-specific style queries
+- [`windows`](windows/index.md) — Windows-specific style queries
 
 ## Functions
 

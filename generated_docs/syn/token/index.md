@@ -325,7 +325,7 @@ Every keyword and punctuation token supports the following operations.
 
 ## Modules
 
-- [`private`](private/index.md) - 
+- [`private`](private/index.md)
 
 ## Structs
 
@@ -490,7 +490,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="abstract-eq"></span>`fn eq(&self, _other: &Abstract) -> bool` — [`Abstract`](#abstract)
 
-##### `impl<T> Sealed for Abstract`
+##### `impl Sealed for Abstract`
 
 ##### `impl<T> Spanned for Abstract`
 
@@ -602,7 +602,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="async-eq"></span>`fn eq(&self, _other: &Async) -> bool` — [`Async`](#async)
 
-##### `impl Sealed for Async`
+##### `impl<T> Sealed for Async`
 
 ##### `impl<T> Spanned for Async`
 
@@ -658,7 +658,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="auto-eq"></span>`fn eq(&self, _other: &Auto) -> bool` — [`Auto`](#auto)
 
-##### `impl Sealed for Auto`
+##### `impl<T> Sealed for Auto`
 
 ##### `impl<T> Spanned for Auto`
 
@@ -770,7 +770,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="become-eq"></span>`fn eq(&self, _other: &Become) -> bool` — [`Become`](#become)
 
-##### `impl<T> Sealed for Become`
+##### `impl Sealed for Become`
 
 ##### `impl<T> Spanned for Become`
 
@@ -826,7 +826,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="box-eq"></span>`fn eq(&self, _other: &Box) -> bool` — [`Box`](#box)
 
-##### `impl<T> Sealed for Box`
+##### `impl Sealed for Box`
 
 ##### `impl<T> Spanned for Box`
 
@@ -994,7 +994,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="continue-eq"></span>`fn eq(&self, _other: &Continue) -> bool` — [`Continue`](#continue)
 
-##### `impl Sealed for Continue`
+##### `impl<T> Sealed for Continue`
 
 ##### `impl<T> Spanned for Continue`
 
@@ -1106,7 +1106,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="default-eq"></span>`fn eq(&self, _other: &Default) -> bool` — [`Default`](#default)
 
-##### `impl Sealed for Default`
+##### `impl<T> Sealed for Default`
 
 ##### `impl<T> Spanned for Default`
 
@@ -1218,7 +1218,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="dyn-eq"></span>`fn eq(&self, _other: &Dyn) -> bool` — [`Dyn`](#dyn)
 
-##### `impl<T> Sealed for Dyn`
+##### `impl Sealed for Dyn`
 
 ##### `impl<T> Spanned for Dyn`
 
@@ -1386,7 +1386,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="extern-eq"></span>`fn eq(&self, _other: &Extern) -> bool` — [`Extern`](#extern)
 
-##### `impl<T> Sealed for Extern`
+##### `impl Sealed for Extern`
 
 ##### `impl<T> Spanned for Extern`
 
@@ -1554,7 +1554,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="for-eq"></span>`fn eq(&self, _other: &For) -> bool` — [`For`](#for)
 
-##### `impl Sealed for For`
+##### `impl<T> Sealed for For`
 
 ##### `impl<T> Spanned for For`
 
@@ -1610,7 +1610,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="if-eq"></span>`fn eq(&self, _other: &If) -> bool` — [`If`](#if)
 
-##### `impl Sealed for If`
+##### `impl<T> Sealed for If`
 
 ##### `impl<T> Spanned for If`
 
@@ -1722,7 +1722,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="in-eq"></span>`fn eq(&self, _other: &In) -> bool` — [`In`](#in)
 
-##### `impl Sealed for In`
+##### `impl<T> Sealed for In`
 
 ##### `impl<T> Spanned for In`
 
@@ -1778,7 +1778,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="let-eq"></span>`fn eq(&self, _other: &Let) -> bool` — [`Let`](#let)
 
-##### `impl Sealed for Let`
+##### `impl<T> Sealed for Let`
 
 ##### `impl<T> Spanned for Let`
 
@@ -2058,7 +2058,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="move-eq"></span>`fn eq(&self, _other: &Move) -> bool` — [`Move`](#move)
 
-##### `impl<T> Sealed for Move`
+##### `impl Sealed for Move`
 
 ##### `impl<T> Spanned for Move`
 
@@ -2114,7 +2114,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="mut-eq"></span>`fn eq(&self, _other: &Mut) -> bool` — [`Mut`](#mut)
 
-##### `impl<T> Sealed for Mut`
+##### `impl Sealed for Mut`
 
 ##### `impl<T> Spanned for Mut`
 
@@ -2226,7 +2226,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="priv-eq"></span>`fn eq(&self, _other: &Priv) -> bool` — [`Priv`](#priv)
 
-##### `impl<T> Sealed for Priv`
+##### `impl Sealed for Priv`
 
 ##### `impl<T> Spanned for Priv`
 
@@ -2338,7 +2338,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="raw-eq"></span>`fn eq(&self, _other: &Raw) -> bool` — [`Raw`](#raw)
 
-##### `impl Sealed for Raw`
+##### `impl<T> Sealed for Raw`
 
 ##### `impl<T> Spanned for Raw`
 
@@ -2394,7 +2394,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="ref-eq"></span>`fn eq(&self, _other: &Ref) -> bool` — [`Ref`](#ref)
 
-##### `impl<T> Sealed for Ref`
+##### `impl Sealed for Ref`
 
 ##### `impl<T> Spanned for Ref`
 
@@ -2506,7 +2506,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="selftype-eq"></span>`fn eq(&self, _other: &SelfType) -> bool` — [`SelfType`](#selftype)
 
-##### `impl<T> Sealed for SelfType`
+##### `impl Sealed for SelfType`
 
 ##### `impl<T> Spanned for SelfType`
 
@@ -2562,7 +2562,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="selfvalue-eq"></span>`fn eq(&self, _other: &SelfValue) -> bool` — [`SelfValue`](#selfvalue)
 
-##### `impl<T> Sealed for SelfValue`
+##### `impl Sealed for SelfValue`
 
 ##### `impl<T> Spanned for SelfValue`
 
@@ -2730,7 +2730,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="super-eq"></span>`fn eq(&self, _other: &Super) -> bool` — [`Super`](#super)
 
-##### `impl<T> Sealed for Super`
+##### `impl Sealed for Super`
 
 ##### `impl<T> Spanned for Super`
 
@@ -2842,7 +2842,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="try-eq"></span>`fn eq(&self, _other: &Try) -> bool` — [`Try`](#try)
 
-##### `impl<T> Sealed for Try`
+##### `impl Sealed for Try`
 
 ##### `impl<T> Spanned for Try`
 
@@ -3010,7 +3010,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="union-eq"></span>`fn eq(&self, _other: &Union) -> bool` — [`Union`](#union)
 
-##### `impl Sealed for Union`
+##### `impl<T> Sealed for Union`
 
 ##### `impl<T> Spanned for Union`
 
@@ -3066,7 +3066,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="unsafe-eq"></span>`fn eq(&self, _other: &Unsafe) -> bool` — [`Unsafe`](#unsafe)
 
-##### `impl Sealed for Unsafe`
+##### `impl<T> Sealed for Unsafe`
 
 ##### `impl<T> Spanned for Unsafe`
 
@@ -3178,7 +3178,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="use-eq"></span>`fn eq(&self, _other: &Use) -> bool` — [`Use`](#use)
 
-##### `impl Sealed for Use`
+##### `impl<T> Sealed for Use`
 
 ##### `impl<T> Spanned for Use`
 
@@ -3234,7 +3234,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="virtual-eq"></span>`fn eq(&self, _other: &Virtual) -> bool` — [`Virtual`](#virtual)
 
-##### `impl<T> Sealed for Virtual`
+##### `impl Sealed for Virtual`
 
 ##### `impl<T> Spanned for Virtual`
 
@@ -3346,7 +3346,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="while-eq"></span>`fn eq(&self, _other: &While) -> bool` — [`While`](#while)
 
-##### `impl Sealed for While`
+##### `impl<T> Sealed for While`
 
 ##### `impl<T> Spanned for While`
 
@@ -3402,7 +3402,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="yield-eq"></span>`fn eq(&self, _other: &Yield) -> bool` — [`Yield`](#yield)
 
-##### `impl<T> Sealed for Yield`
+##### `impl Sealed for Yield`
 
 ##### `impl<T> Spanned for Yield`
 
@@ -3798,7 +3798,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="careteq-eq"></span>`fn eq(&self, _other: &CaretEq) -> bool` — [`CaretEq`](#careteq)
 
-##### `impl<T> Sealed for CaretEq`
+##### `impl Sealed for CaretEq`
 
 ##### `impl<T> Spanned for CaretEq`
 
@@ -3944,7 +3944,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="comma-target"></span>`type Target = T`
 
-##### `impl<T> Sealed for Comma`
+##### `impl Sealed for Comma`
 
 ##### `impl<T> Spanned for Comma`
 
@@ -4017,7 +4017,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="dollar-target"></span>`type Target = T`
 
-##### `impl Sealed for Dollar`
+##### `impl<T> Sealed for Dollar`
 
 ##### `impl<T> Spanned for Dollar`
 
@@ -4090,7 +4090,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="dot-target"></span>`type Target = T`
 
-##### `impl Sealed for Dot`
+##### `impl<T> Sealed for Dot`
 
 ##### `impl<T> Spanned for Dot`
 
@@ -4267,7 +4267,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="dotdoteq-eq"></span>`fn eq(&self, _other: &DotDotEq) -> bool` — [`DotDotEq`](#dotdoteq)
 
-##### `impl<T> Sealed for DotDotEq`
+##### `impl Sealed for DotDotEq`
 
 ##### `impl<T> Spanned for DotDotEq`
 
@@ -4399,7 +4399,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="eqeq-eq"></span>`fn eq(&self, _other: &EqEq) -> bool` — [`EqEq`](#eqeq)
 
-##### `impl<T> Sealed for EqEq`
+##### `impl Sealed for EqEq`
 
 ##### `impl<T> Spanned for EqEq`
 
@@ -4458,7 +4458,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="fatarrow-eq"></span>`fn eq(&self, _other: &FatArrow) -> bool` — [`FatArrow`](#fatarrow)
 
-##### `impl<T> Sealed for FatArrow`
+##### `impl Sealed for FatArrow`
 
 ##### `impl<T> Spanned for FatArrow`
 
@@ -4517,7 +4517,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="ge-eq"></span>`fn eq(&self, _other: &Ge) -> bool` — [`Ge`](#ge)
 
-##### `impl Sealed for Ge`
+##### `impl<T> Sealed for Ge`
 
 ##### `impl<T> Spanned for Ge`
 
@@ -4649,7 +4649,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="larrow-eq"></span>`fn eq(&self, _other: &LArrow) -> bool` — [`LArrow`](#larrow)
 
-##### `impl Sealed for LArrow`
+##### `impl<T> Sealed for LArrow`
 
 ##### `impl<T> Spanned for LArrow`
 
@@ -4913,7 +4913,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="minuseq-eq"></span>`fn eq(&self, _other: &MinusEq) -> bool` — [`MinusEq`](#minuseq)
 
-##### `impl Sealed for MinusEq`
+##### `impl<T> Sealed for MinusEq`
 
 ##### `impl<T> Spanned for MinusEq`
 
@@ -4972,7 +4972,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="ne-eq"></span>`fn eq(&self, _other: &Ne) -> bool` — [`Ne`](#ne)
 
-##### `impl<T> Sealed for Ne`
+##### `impl Sealed for Ne`
 
 ##### `impl<T> Spanned for Ne`
 
@@ -5118,7 +5118,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="or-target"></span>`type Target = T`
 
-##### `impl<T> Sealed for Or`
+##### `impl Sealed for Or`
 
 ##### `impl<T> Spanned for Or`
 
@@ -5177,7 +5177,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="oreq-eq"></span>`fn eq(&self, _other: &OrEq) -> bool` — [`OrEq`](#oreq)
 
-##### `impl Sealed for OrEq`
+##### `impl<T> Sealed for OrEq`
 
 ##### `impl<T> Spanned for OrEq`
 
@@ -5295,7 +5295,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="pathsep-eq"></span>`fn eq(&self, _other: &PathSep) -> bool` — [`PathSep`](#pathsep)
 
-##### `impl Sealed for PathSep`
+##### `impl<T> Sealed for PathSep`
 
 ##### `impl<T> Spanned for PathSep`
 
@@ -5427,7 +5427,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="percenteq-eq"></span>`fn eq(&self, _other: &PercentEq) -> bool` — [`PercentEq`](#percenteq)
 
-##### `impl<T> Sealed for PercentEq`
+##### `impl Sealed for PercentEq`
 
 ##### `impl<T> Spanned for PercentEq`
 
@@ -5500,7 +5500,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="plus-target"></span>`type Target = T`
 
-##### `impl<T> Sealed for Plus`
+##### `impl Sealed for Plus`
 
 ##### `impl<T> Spanned for Plus`
 
@@ -5559,7 +5559,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="pluseq-eq"></span>`fn eq(&self, _other: &PlusEq) -> bool` — [`PlusEq`](#pluseq)
 
-##### `impl Sealed for PlusEq`
+##### `impl<T> Sealed for PlusEq`
 
 ##### `impl<T> Spanned for PlusEq`
 
@@ -5632,7 +5632,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="pound-target"></span>`type Target = T`
 
-##### `impl<T> Sealed for Pound`
+##### `impl Sealed for Pound`
 
 ##### `impl<T> Spanned for Pound`
 
@@ -5705,7 +5705,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="question-target"></span>`type Target = T`
 
-##### `impl<T> Sealed for Question`
+##### `impl Sealed for Question`
 
 ##### `impl<T> Spanned for Question`
 
@@ -5764,7 +5764,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="rarrow-eq"></span>`fn eq(&self, _other: &RArrow) -> bool` — [`RArrow`](#rarrow)
 
-##### `impl<T> Sealed for RArrow`
+##### `impl Sealed for RArrow`
 
 ##### `impl<T> Spanned for RArrow`
 
@@ -5837,7 +5837,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="semi-target"></span>`type Target = T`
 
-##### `impl<T> Sealed for Semi`
+##### `impl Sealed for Semi`
 
 ##### `impl<T> Spanned for Semi`
 
@@ -5955,7 +5955,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="shleq-eq"></span>`fn eq(&self, _other: &ShlEq) -> bool` — [`ShlEq`](#shleq)
 
-##### `impl<T> Sealed for ShlEq`
+##### `impl Sealed for ShlEq`
 
 ##### `impl<T> Spanned for ShlEq`
 
@@ -6146,7 +6146,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="slash-target"></span>`type Target = T`
 
-##### `impl Sealed for Slash`
+##### `impl<T> Sealed for Slash`
 
 ##### `impl<T> Spanned for Slash`
 
@@ -6278,7 +6278,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="star-target"></span>`type Target = T`
 
-##### `impl<T> Sealed for Star`
+##### `impl Sealed for Star`
 
 ##### `impl<T> Spanned for Star`
 
@@ -6410,7 +6410,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - <span id="tilde-target"></span>`type Target = T`
 
-##### `impl<T> Sealed for Tilde`
+##### `impl Sealed for Tilde`
 
 ##### `impl<T> Spanned for Tilde`
 
@@ -6565,6 +6565,131 @@ trait Token: private::Sealed { ... }
 Marker trait for types that represent single tokens.
 
 This trait is sealed and cannot be implemented for types outside of Syn.
+
+#### Implementors
+
+- [`Abstract`](#abstract)
+- [`AndAnd`](#andand)
+- [`AndEq`](#andeq)
+- [`And`](#and)
+- [`As`](#as)
+- [`Async`](#async)
+- [`At`](#at)
+- [`Auto`](#auto)
+- [`Await`](#await)
+- [`Become`](#become)
+- [`Box`](#box)
+- [`Brace`](#brace)
+- [`Bracket`](#bracket)
+- [`Break`](#break)
+- [`CaretEq`](#careteq)
+- [`Caret`](#caret)
+- [`Colon`](#colon)
+- [`Comma`](#comma)
+- [`Const`](#const)
+- [`Continue`](#continue)
+- [`Crate`](#crate)
+- [`Default`](#default)
+- [`Do`](#do)
+- [`Dollar`](#dollar)
+- [`DotDotDot`](#dotdotdot)
+- [`DotDotEq`](#dotdoteq)
+- [`DotDot`](#dotdot)
+- [`Dot`](#dot)
+- [`Dyn`](#dyn)
+- [`Else`](#else)
+- [`End`](../parse/index.md)
+- [`Enum`](#enum)
+- [`EqEq`](#eqeq)
+- [`Eq`](#eq)
+- [`Extern`](#extern)
+- [`FatArrow`](#fatarrow)
+- [`Final`](#final)
+- [`Fn`](#fn)
+- [`For`](#for)
+- [`Ge`](#ge)
+- [`Group`](#group)
+- [`Gt`](#gt)
+- [`IdentAny`](../ext/private/index.md)
+- [`Ident`](../index.md)
+- [`If`](#if)
+- [`Impl`](#impl)
+- [`In`](#in)
+- [`LArrow`](#larrow)
+- [`Le`](#le)
+- [`Let`](#let)
+- [`Lifetime`](../index.md)
+- [`LitBool`](../index.md)
+- [`LitByteStr`](../index.md)
+- [`LitByte`](../index.md)
+- [`LitCStr`](../index.md)
+- [`LitChar`](../index.md)
+- [`LitFloat`](../index.md)
+- [`LitInt`](../index.md)
+- [`LitStr`](../index.md)
+- [`Lit`](../index.md)
+- [`Loop`](#loop)
+- [`Lt`](#lt)
+- [`Macro`](#macro)
+- [`Match`](#match)
+- [`MinusEq`](#minuseq)
+- [`Minus`](#minus)
+- [`Mod`](#mod)
+- [`Move`](#move)
+- [`Mut`](#mut)
+- [`Ne`](#ne)
+- [`Not`](#not)
+- [`OrEq`](#oreq)
+- [`OrOr`](#oror)
+- [`Or`](#or)
+- [`Override`](#override)
+- [`Paren`](#paren)
+- [`PathSep`](#pathsep)
+- [`PercentEq`](#percenteq)
+- [`Percent`](#percent)
+- [`PlusEq`](#pluseq)
+- [`Plus`](#plus)
+- [`Pound`](#pound)
+- [`Priv`](#priv)
+- [`Pub`](#pub)
+- [`Question`](#question)
+- [`RArrow`](#rarrow)
+- [`Raw`](#raw)
+- [`Ref`](#ref)
+- [`Return`](#return)
+- [`SelfType`](#selftype)
+- [`SelfValue`](#selfvalue)
+- [`Semi`](#semi)
+- [`ShlEq`](#shleq)
+- [`Shl`](#shl)
+- [`ShrEq`](#shreq)
+- [`Shr`](#shr)
+- [`SlashEq`](#slasheq)
+- [`Slash`](#slash)
+- [`StarEq`](#stareq)
+- [`Star`](#star)
+- [`Static`](#static)
+- [`Struct`](#struct)
+- [`Super`](#super)
+- [`Tilde`](#tilde)
+- [`Trait`](#trait)
+- [`Try`](#try)
+- [`Type`](#type)
+- [`Typeof`](#typeof)
+- [`Underscore`](#underscore)
+- [`Union`](#union)
+- [`Unsafe`](#unsafe)
+- [`Unsized`](#unsized)
+- [`Use`](#use)
+- [`Virtual`](#virtual)
+- [`Where`](#where)
+- [`While`](#while)
+- [`Yield`](#yield)
+- `T`
+- `proc_macro2::Group`
+- `proc_macro2::Literal`
+- `proc_macro2::Punct`
+- `proc_macro2::TokenTree`
 
 ## Macros
 

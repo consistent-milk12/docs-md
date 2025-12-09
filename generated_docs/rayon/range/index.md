@@ -49,7 +49,7 @@ assert_eq!((0..100).sum::<u64>(), r);
 
 ## Modules
 
-- [`private`](private/index.md) - These traits help drive integer type inference. Without them, an unknown `{integer}` type only
+- [`private`](private/index.md) — These traits help drive integer type inference. Without them, an unknown `{integer}` type only
 
 ## Structs
 
@@ -111,9 +111,9 @@ assert_eq!(p, s);
 
 - <span id="iter-into-par-iter"></span>`fn into_par_iter(self) -> T`
 
-##### `impl ParallelIterator for Iter<char>`
+##### `impl<T: RangeInteger> ParallelIterator for Iter<T>`
 
-- <span id="iter-item"></span>`type Item = char`
+- <span id="iter-item"></span>`type Item = T`
 
 - <span id="iter-drive-unindexed"></span>`fn drive_unindexed<C>(self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
@@ -167,19 +167,19 @@ struct IterProducer<T> {
 
 - <span id="iterproducer-drop"></span>`unsafe fn drop(ptr: usize)`
 
-##### `impl Producer for IterProducer<usize>`
+##### `impl Producer for IterProducer<i32>`
 
-- <span id="iterproducer-item"></span>`type Item = <Range<usize> as Iterator>::Item`
+- <span id="iterproducer-item"></span>`type Item = <Range<i32> as Iterator>::Item`
 
-- <span id="iterproducer-intoiter"></span>`type IntoIter = Range<usize>`
+- <span id="iterproducer-intoiter"></span>`type IntoIter = Range<i32>`
 
 - <span id="iterproducer-into-iter"></span>`fn into_iter(self) -> <Self as >::IntoIter` — [`Producer`](../iter/plumbing/index.md)
 
 - <span id="iterproducer-split-at"></span>`fn split_at(self, index: usize) -> (Self, Self)`
 
-##### `impl UnindexedProducer for IterProducer<i128>`
+##### `impl UnindexedProducer for IterProducer<u128>`
 
-- <span id="iterproducer-item"></span>`type Item = i128`
+- <span id="iterproducer-item"></span>`type Item = u128`
 
 - <span id="iterproducer-split"></span>`fn split(self) -> (Self, Option<Self>)`
 
@@ -196,6 +196,13 @@ trait UnindexedRangeLen<L> { ... }
 #### Required Methods
 
 - `fn unindexed_len(&self) -> L`
+
+#### Implementors
+
+- `Range<i128>`
+- `Range<i64>`
+- `Range<u128>`
+- `Range<u64>`
 
 ## Macros
 

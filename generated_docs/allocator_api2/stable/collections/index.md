@@ -8,8 +8,8 @@
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | enum |  |
+| [`TryReserveError`](#tryreserveerror) | struct |  |
+| [`TryReserveErrorKind`](#tryreserveerrorkind) | enum |  |
 
 ## Structs
 

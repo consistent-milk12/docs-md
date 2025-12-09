@@ -133,14 +133,14 @@ a different thread.
 
 ## Modules
 
-- [`marker`](marker/index.md) - 
-- [`parse`](parse/index.md) - 
-- [`probe`](probe/index.md) - 
-- [`rcvec`](rcvec/index.md) - 
-- [`detection`](detection/index.md) - 
-- [`extra`](extra/index.md) - Items which do not have a correspondence to any API in the proc_macro crate,
-- [`imp`](imp/index.md) - 
-- [`token_stream`](token_stream/index.md) - Public implementation details for the `TokenStream` type, such as iterators.
+- [`marker`](marker/index.md)
+- [`parse`](parse/index.md)
+- [`probe`](probe/index.md)
+- [`rcvec`](rcvec/index.md)
+- [`detection`](detection/index.md)
+- [`extra`](extra/index.md) — Items which do not have a correspondence to any API in the proc_macro crate,
+- [`imp`](imp/index.md)
+- [`token_stream`](token_stream/index.md) — Public implementation details for the `TokenStream` type, such as iterators.
 
 ## Structs
 
@@ -543,9 +543,9 @@ if ident_string.len() > 60 {
 
 ##### `impl Parse for proc_macro2::Ident`
 
-##### `impl<T> PartialEq for Ident`
+##### `impl PartialEq for Ident`
 
-- <span id="ident-eq"></span>`fn eq(&self, other: &T) -> bool`
+- <span id="ident-eq"></span>`fn eq(&self, other: &Ident) -> bool` — [`Ident`](#ident)
 
 ##### `impl PartialOrd for Ident`
 

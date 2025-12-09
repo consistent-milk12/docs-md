@@ -518,6 +518,10 @@ there is no borrowed data. Without these, the main `AhoCorasick` type would
 not be able to meaningfully impl `Debug` or the marker traits without also
 requiring that all impls of `Automaton` do so, which would be not great.
 
+#### Implementors
+
+- `A`
+
 ## Functions
 
 ### `enforce_anchored_consistency`

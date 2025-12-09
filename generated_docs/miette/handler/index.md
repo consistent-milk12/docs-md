@@ -16,7 +16,7 @@
 
 ## Modules
 
-- [`syscall`](syscall/index.md) - 
+- [`syscall`](syscall/index.md)
 
 ## Structs
 

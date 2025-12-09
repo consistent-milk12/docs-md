@@ -282,210 +282,210 @@ are available.
   - [`verbatim`](#verbatim)
   - [`whitespace`](#whitespace)
   - [`gen`](#gen)
-  - [`unnamed`](#unnamed)
+  - [`visit_mut`](#visit_mut)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`Attribute`](#attribute)
+  - [`MetaList`](#metalist)
+  - [`MetaNameValue`](#metanamevalue)
+  - [`Field`](#field)
+  - [`FieldsNamed`](#fieldsnamed)
+  - [`FieldsUnnamed`](#fieldsunnamed)
+  - [`Variant`](#variant)
+  - [`DataEnum`](#dataenum)
+  - [`DataStruct`](#datastruct)
+  - [`DataUnion`](#dataunion)
+  - [`DeriveInput`](#deriveinput)
+  - [`Error`](#error)
+  - [`Arm`](#arm)
+  - [`Label`](#label)
+  - [`ExprBinary`](#exprbinary)
+  - [`ExprCall`](#exprcall)
+  - [`ExprCast`](#exprcast)
+  - [`ExprField`](#exprfield)
+  - [`ExprIndex`](#exprindex)
+  - [`ExprLit`](#exprlit)
+  - [`ExprMacro`](#exprmacro)
+  - [`ExprMethodCall`](#exprmethodcall)
+  - [`ExprParen`](#exprparen)
+  - [`ExprPath`](#exprpath)
+  - [`ExprReference`](#exprreference)
+  - [`ExprStruct`](#exprstruct)
+  - [`ExprUnary`](#exprunary)
+  - [`FieldValue`](#fieldvalue)
+  - [`Index`](#index)
+  - [`ExprArray`](#exprarray)
+  - [`ExprAssign`](#exprassign)
+  - [`ExprAsync`](#exprasync)
+  - [`ExprAwait`](#exprawait)
+  - [`ExprBlock`](#exprblock)
+  - [`ExprBreak`](#exprbreak)
+  - [`ExprClosure`](#exprclosure)
+  - [`ExprConst`](#exprconst)
+  - [`ExprContinue`](#exprcontinue)
+  - [`ExprForLoop`](#exprforloop)
+  - [`ExprGroup`](#exprgroup)
+  - [`ExprIf`](#exprif)
+  - [`ExprInfer`](#exprinfer)
+  - [`ExprLet`](#exprlet)
+  - [`ExprLoop`](#exprloop)
+  - [`ExprMatch`](#exprmatch)
+  - [`ExprRange`](#exprrange)
+  - [`ExprRawAddr`](#exprrawaddr)
+  - [`ExprRepeat`](#exprrepeat)
+  - [`ExprReturn`](#exprreturn)
+  - [`ExprTry`](#exprtry)
+  - [`ExprTryBlock`](#exprtryblock)
+  - [`ExprTuple`](#exprtuple)
+  - [`ExprUnsafe`](#exprunsafe)
+  - [`ExprWhile`](#exprwhile)
+  - [`ExprYield`](#expryield)
+  - [`File`](#file)
+  - [`BoundLifetimes`](#boundlifetimes)
+  - [`ConstParam`](#constparam)
+  - [`Generics`](#generics)
+  - [`LifetimeParam`](#lifetimeparam)
+  - [`PredicateLifetime`](#predicatelifetime)
+  - [`PredicateType`](#predicatetype)
+  - [`TraitBound`](#traitbound)
+  - [`TypeParam`](#typeparam)
+  - [`WhereClause`](#whereclause)
+  - [`PreciseCapture`](#precisecapture)
+  - [`ImplGenerics`](#implgenerics)
+  - [`Turbofish`](#turbofish)
+  - [`TypeGenerics`](#typegenerics)
+  - [`ForeignItemFn`](#foreignitemfn)
+  - [`ForeignItemMacro`](#foreignitemmacro)
+  - [`ForeignItemStatic`](#foreignitemstatic)
+  - [`ForeignItemType`](#foreignitemtype)
+  - [`ImplItemConst`](#implitemconst)
+  - [`ImplItemFn`](#implitemfn)
+  - [`ImplItemMacro`](#implitemmacro)
+  - [`ImplItemType`](#implitemtype)
+  - [`ItemConst`](#itemconst)
+  - [`ItemEnum`](#itemenum)
+  - [`ItemExternCrate`](#itemexterncrate)
+  - [`ItemFn`](#itemfn)
+  - [`ItemForeignMod`](#itemforeignmod)
+  - [`ItemImpl`](#itemimpl)
+  - [`ItemMacro`](#itemmacro)
+  - [`ItemMod`](#itemmod)
+  - [`ItemStatic`](#itemstatic)
+  - [`ItemStruct`](#itemstruct)
+  - [`ItemTrait`](#itemtrait)
+  - [`ItemTraitAlias`](#itemtraitalias)
+  - [`ItemType`](#itemtype)
+  - [`ItemUnion`](#itemunion)
+  - [`ItemUse`](#itemuse)
+  - [`Receiver`](#receiver)
+  - [`Signature`](#signature)
+  - [`TraitItemConst`](#traititemconst)
+  - [`TraitItemFn`](#traititemfn)
+  - [`TraitItemMacro`](#traititemmacro)
+  - [`TraitItemType`](#traititemtype)
+  - [`UseGlob`](#useglob)
+  - [`UseGroup`](#usegroup)
+  - [`UseName`](#usename)
+  - [`UsePath`](#usepath)
+  - [`UseRename`](#userename)
+  - [`Variadic`](#variadic)
+  - [`Lifetime`](#lifetime)
+  - [`LitBool`](#litbool)
+  - [`LitByte`](#litbyte)
+  - [`LitByteStr`](#litbytestr)
+  - [`LitCStr`](#litcstr)
+  - [`LitChar`](#litchar)
+  - [`LitFloat`](#litfloat)
+  - [`LitInt`](#litint)
+  - [`LitStr`](#litstr)
+  - [`Macro`](#macro)
+  - [`FieldPat`](#fieldpat)
+  - [`PatConst`](#patconst)
+  - [`PatIdent`](#patident)
+  - [`PatLit`](#patlit)
+  - [`PatMacro`](#patmacro)
+  - [`PatOr`](#pator)
+  - [`PatParen`](#patparen)
+  - [`PatPath`](#patpath)
+  - [`PatRange`](#patrange)
+  - [`PatReference`](#patreference)
+  - [`PatRest`](#patrest)
+  - [`PatSlice`](#patslice)
+  - [`PatStruct`](#patstruct)
+  - [`PatTuple`](#pattuple)
+  - [`PatTupleStruct`](#pattuplestruct)
+  - [`PatType`](#pattype)
+  - [`PatWild`](#patwild)
+  - [`AngleBracketedGenericArguments`](#anglebracketedgenericarguments)
+  - [`AssocConst`](#assocconst)
+  - [`AssocType`](#assoctype)
+  - [`Constraint`](#constraint)
+  - [`ParenthesizedGenericArguments`](#parenthesizedgenericarguments)
+  - [`Path`](#path)
+  - [`PathSegment`](#pathsegment)
+  - [`QSelf`](#qself)
+  - [`VisRestricted`](#visrestricted)
+  - [`Block`](#block)
+  - [`Local`](#local)
+  - [`LocalInit`](#localinit)
+  - [`StmtMacro`](#stmtmacro)
+  - [`Abi`](#abi)
+  - [`BareFnArg`](#barefnarg)
+  - [`BareVariadic`](#barevariadic)
+  - [`TypeArray`](#typearray)
+  - [`TypeBareFn`](#typebarefn)
+  - [`TypeGroup`](#typegroup)
+  - [`TypeImplTrait`](#typeimpltrait)
+  - [`TypeInfer`](#typeinfer)
+  - [`TypeMacro`](#typemacro)
+  - [`TypeNever`](#typenever)
+  - [`TypeParen`](#typeparen)
+  - [`TypePath`](#typepath)
+  - [`TypePtr`](#typeptr)
+  - [`TypeReference`](#typereference)
+  - [`TypeSlice`](#typeslice)
+  - [`TypeTraitObject`](#typetraitobject)
+  - [`TypeTuple`](#typetuple)
 - [Enums](#enums)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`AttrStyle`](#attrstyle)
+  - [`Meta`](#meta)
+  - [`Fields`](#fields)
+  - [`Data`](#data)
+  - [`PointerMutability`](#pointermutability)
+  - [`RangeLimits`](#rangelimits)
+  - [`Expr`](#expr)
+  - [`Member`](#member)
+  - [`GenericParam`](#genericparam)
+  - [`TraitBoundModifier`](#traitboundmodifier)
+  - [`TypeParamBound`](#typeparambound)
+  - [`WherePredicate`](#wherepredicate)
+  - [`CapturedParam`](#capturedparam)
+  - [`FnArg`](#fnarg)
+  - [`ForeignItem`](#foreignitem)
+  - [`ImplItem`](#implitem)
+  - [`ImplRestriction`](#implrestriction)
+  - [`Item`](#item)
+  - [`StaticMutability`](#staticmutability)
+  - [`TraitItem`](#traititem)
+  - [`UseTree`](#usetree)
+  - [`Lit`](#lit)
+  - [`MacroDelimiter`](#macrodelimiter)
+  - [`BinOp`](#binop)
+  - [`UnOp`](#unop)
+  - [`Pat`](#pat)
+  - [`GenericArgument`](#genericargument)
+  - [`PathArguments`](#patharguments)
+  - [`FieldMutability`](#fieldmutability)
+  - [`Visibility`](#visibility)
+  - [`Stmt`](#stmt)
+  - [`ReturnType`](#returntype)
+  - [`Type`](#type)
 - [Functions](#functions)
   - [`parse`](#parse)
   - [`parse2`](#parse2)
   - [`parse_str`](#parse_str)
   - [`parse_file`](#parse_file)
 - [Type Aliases](#type-aliases)
-  - [`unnamed`](#unnamed)
+  - [`Result`](#result)
 - [Macros](#macros)
   - [`parenthesized!`](#parenthesized)
   - [`braced!`](#braced)
@@ -546,206 +546,206 @@ are available.
 | [`verbatim`](#verbatim) | mod |  |
 | [`whitespace`](#whitespace) | mod |  |
 | [`gen`](#gen) | mod |  |
-| [`unnamed`](#unnamed) | mod |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
+| [`visit_mut`](#visit_mut) | mod |  |
+| [`Attribute`](#attribute) | struct |  |
+| [`MetaList`](#metalist) | struct |  |
+| [`MetaNameValue`](#metanamevalue) | struct |  |
+| [`Field`](#field) | struct |  |
+| [`FieldsNamed`](#fieldsnamed) | struct |  |
+| [`FieldsUnnamed`](#fieldsunnamed) | struct |  |
+| [`Variant`](#variant) | struct |  |
+| [`DataEnum`](#dataenum) | struct |  |
+| [`DataStruct`](#datastruct) | struct |  |
+| [`DataUnion`](#dataunion) | struct |  |
+| [`DeriveInput`](#deriveinput) | struct |  |
+| [`Error`](#error) | struct |  |
+| [`Arm`](#arm) | struct |  |
+| [`Label`](#label) | struct |  |
+| [`ExprBinary`](#exprbinary) | struct |  |
+| [`ExprCall`](#exprcall) | struct |  |
+| [`ExprCast`](#exprcast) | struct |  |
+| [`ExprField`](#exprfield) | struct |  |
+| [`ExprIndex`](#exprindex) | struct |  |
+| [`ExprLit`](#exprlit) | struct |  |
+| [`ExprMacro`](#exprmacro) | struct |  |
+| [`ExprMethodCall`](#exprmethodcall) | struct |  |
+| [`ExprParen`](#exprparen) | struct |  |
+| [`ExprPath`](#exprpath) | struct |  |
+| [`ExprReference`](#exprreference) | struct |  |
+| [`ExprStruct`](#exprstruct) | struct |  |
+| [`ExprUnary`](#exprunary) | struct |  |
+| [`FieldValue`](#fieldvalue) | struct |  |
+| [`Index`](#index) | struct |  |
+| [`ExprArray`](#exprarray) | struct |  |
+| [`ExprAssign`](#exprassign) | struct |  |
+| [`ExprAsync`](#exprasync) | struct |  |
+| [`ExprAwait`](#exprawait) | struct |  |
+| [`ExprBlock`](#exprblock) | struct |  |
+| [`ExprBreak`](#exprbreak) | struct |  |
+| [`ExprClosure`](#exprclosure) | struct |  |
+| [`ExprConst`](#exprconst) | struct |  |
+| [`ExprContinue`](#exprcontinue) | struct |  |
+| [`ExprForLoop`](#exprforloop) | struct |  |
+| [`ExprGroup`](#exprgroup) | struct |  |
+| [`ExprIf`](#exprif) | struct |  |
+| [`ExprInfer`](#exprinfer) | struct |  |
+| [`ExprLet`](#exprlet) | struct |  |
+| [`ExprLoop`](#exprloop) | struct |  |
+| [`ExprMatch`](#exprmatch) | struct |  |
+| [`ExprRange`](#exprrange) | struct |  |
+| [`ExprRawAddr`](#exprrawaddr) | struct |  |
+| [`ExprRepeat`](#exprrepeat) | struct |  |
+| [`ExprReturn`](#exprreturn) | struct |  |
+| [`ExprTry`](#exprtry) | struct |  |
+| [`ExprTryBlock`](#exprtryblock) | struct |  |
+| [`ExprTuple`](#exprtuple) | struct |  |
+| [`ExprUnsafe`](#exprunsafe) | struct |  |
+| [`ExprWhile`](#exprwhile) | struct |  |
+| [`ExprYield`](#expryield) | struct |  |
+| [`File`](#file) | struct |  |
+| [`BoundLifetimes`](#boundlifetimes) | struct |  |
+| [`ConstParam`](#constparam) | struct |  |
+| [`Generics`](#generics) | struct |  |
+| [`LifetimeParam`](#lifetimeparam) | struct |  |
+| [`PredicateLifetime`](#predicatelifetime) | struct |  |
+| [`PredicateType`](#predicatetype) | struct |  |
+| [`TraitBound`](#traitbound) | struct |  |
+| [`TypeParam`](#typeparam) | struct |  |
+| [`WhereClause`](#whereclause) | struct |  |
+| [`PreciseCapture`](#precisecapture) | struct |  |
+| [`ImplGenerics`](#implgenerics) | struct |  |
+| [`Turbofish`](#turbofish) | struct |  |
+| [`TypeGenerics`](#typegenerics) | struct |  |
+| [`ForeignItemFn`](#foreignitemfn) | struct |  |
+| [`ForeignItemMacro`](#foreignitemmacro) | struct |  |
+| [`ForeignItemStatic`](#foreignitemstatic) | struct |  |
+| [`ForeignItemType`](#foreignitemtype) | struct |  |
+| [`ImplItemConst`](#implitemconst) | struct |  |
+| [`ImplItemFn`](#implitemfn) | struct |  |
+| [`ImplItemMacro`](#implitemmacro) | struct |  |
+| [`ImplItemType`](#implitemtype) | struct |  |
+| [`ItemConst`](#itemconst) | struct |  |
+| [`ItemEnum`](#itemenum) | struct |  |
+| [`ItemExternCrate`](#itemexterncrate) | struct |  |
+| [`ItemFn`](#itemfn) | struct |  |
+| [`ItemForeignMod`](#itemforeignmod) | struct |  |
+| [`ItemImpl`](#itemimpl) | struct |  |
+| [`ItemMacro`](#itemmacro) | struct |  |
+| [`ItemMod`](#itemmod) | struct |  |
+| [`ItemStatic`](#itemstatic) | struct |  |
+| [`ItemStruct`](#itemstruct) | struct |  |
+| [`ItemTrait`](#itemtrait) | struct |  |
+| [`ItemTraitAlias`](#itemtraitalias) | struct |  |
+| [`ItemType`](#itemtype) | struct |  |
+| [`ItemUnion`](#itemunion) | struct |  |
+| [`ItemUse`](#itemuse) | struct |  |
+| [`Receiver`](#receiver) | struct |  |
+| [`Signature`](#signature) | struct |  |
+| [`TraitItemConst`](#traititemconst) | struct |  |
+| [`TraitItemFn`](#traititemfn) | struct |  |
+| [`TraitItemMacro`](#traititemmacro) | struct |  |
+| [`TraitItemType`](#traititemtype) | struct |  |
+| [`UseGlob`](#useglob) | struct |  |
+| [`UseGroup`](#usegroup) | struct |  |
+| [`UseName`](#usename) | struct |  |
+| [`UsePath`](#usepath) | struct |  |
+| [`UseRename`](#userename) | struct |  |
+| [`Variadic`](#variadic) | struct |  |
+| [`Lifetime`](#lifetime) | struct |  |
+| [`LitBool`](#litbool) | struct |  |
+| [`LitByte`](#litbyte) | struct |  |
+| [`LitByteStr`](#litbytestr) | struct |  |
+| [`LitCStr`](#litcstr) | struct |  |
+| [`LitChar`](#litchar) | struct |  |
+| [`LitFloat`](#litfloat) | struct |  |
+| [`LitInt`](#litint) | struct |  |
+| [`LitStr`](#litstr) | struct |  |
+| [`Macro`](#macro) | struct |  |
+| [`FieldPat`](#fieldpat) | struct |  |
+| [`PatConst`](#patconst) | struct |  |
+| [`PatIdent`](#patident) | struct |  |
+| [`PatLit`](#patlit) | struct |  |
+| [`PatMacro`](#patmacro) | struct |  |
+| [`PatOr`](#pator) | struct |  |
+| [`PatParen`](#patparen) | struct |  |
+| [`PatPath`](#patpath) | struct |  |
+| [`PatRange`](#patrange) | struct |  |
+| [`PatReference`](#patreference) | struct |  |
+| [`PatRest`](#patrest) | struct |  |
+| [`PatSlice`](#patslice) | struct |  |
+| [`PatStruct`](#patstruct) | struct |  |
+| [`PatTuple`](#pattuple) | struct |  |
+| [`PatTupleStruct`](#pattuplestruct) | struct |  |
+| [`PatType`](#pattype) | struct |  |
+| [`PatWild`](#patwild) | struct |  |
+| [`AngleBracketedGenericArguments`](#anglebracketedgenericarguments) | struct |  |
+| [`AssocConst`](#assocconst) | struct |  |
+| [`AssocType`](#assoctype) | struct |  |
+| [`Constraint`](#constraint) | struct |  |
+| [`ParenthesizedGenericArguments`](#parenthesizedgenericarguments) | struct |  |
+| [`Path`](#path) | struct |  |
+| [`PathSegment`](#pathsegment) | struct |  |
+| [`QSelf`](#qself) | struct |  |
+| [`VisRestricted`](#visrestricted) | struct |  |
+| [`Block`](#block) | struct |  |
+| [`Local`](#local) | struct |  |
+| [`LocalInit`](#localinit) | struct |  |
+| [`StmtMacro`](#stmtmacro) | struct |  |
+| [`Abi`](#abi) | struct |  |
+| [`BareFnArg`](#barefnarg) | struct |  |
+| [`BareVariadic`](#barevariadic) | struct |  |
+| [`TypeArray`](#typearray) | struct |  |
+| [`TypeBareFn`](#typebarefn) | struct |  |
+| [`TypeGroup`](#typegroup) | struct |  |
+| [`TypeImplTrait`](#typeimpltrait) | struct |  |
+| [`TypeInfer`](#typeinfer) | struct |  |
+| [`TypeMacro`](#typemacro) | struct |  |
+| [`TypeNever`](#typenever) | struct |  |
+| [`TypeParen`](#typeparen) | struct |  |
+| [`TypePath`](#typepath) | struct |  |
+| [`TypePtr`](#typeptr) | struct |  |
+| [`TypeReference`](#typereference) | struct |  |
+| [`TypeSlice`](#typeslice) | struct |  |
+| [`TypeTraitObject`](#typetraitobject) | struct |  |
+| [`TypeTuple`](#typetuple) | struct |  |
+| [`AttrStyle`](#attrstyle) | enum |  |
+| [`Meta`](#meta) | enum |  |
+| [`Fields`](#fields) | enum |  |
+| [`Data`](#data) | enum |  |
+| [`PointerMutability`](#pointermutability) | enum |  |
+| [`RangeLimits`](#rangelimits) | enum |  |
+| [`Expr`](#expr) | enum |  |
+| [`Member`](#member) | enum |  |
+| [`GenericParam`](#genericparam) | enum |  |
+| [`TraitBoundModifier`](#traitboundmodifier) | enum |  |
+| [`TypeParamBound`](#typeparambound) | enum |  |
+| [`WherePredicate`](#wherepredicate) | enum |  |
+| [`CapturedParam`](#capturedparam) | enum |  |
+| [`FnArg`](#fnarg) | enum |  |
+| [`ForeignItem`](#foreignitem) | enum |  |
+| [`ImplItem`](#implitem) | enum |  |
+| [`ImplRestriction`](#implrestriction) | enum |  |
+| [`Item`](#item) | enum |  |
+| [`StaticMutability`](#staticmutability) | enum |  |
+| [`TraitItem`](#traititem) | enum |  |
+| [`UseTree`](#usetree) | enum |  |
+| [`Lit`](#lit) | enum |  |
+| [`MacroDelimiter`](#macrodelimiter) | enum |  |
+| [`BinOp`](#binop) | enum |  |
+| [`UnOp`](#unop) | enum |  |
+| [`Pat`](#pat) | enum |  |
+| [`GenericArgument`](#genericargument) | enum |  |
+| [`PathArguments`](#patharguments) | enum |  |
+| [`FieldMutability`](#fieldmutability) | enum |  |
+| [`Visibility`](#visibility) | enum |  |
+| [`Stmt`](#stmt) | enum |  |
+| [`ReturnType`](#returntype) | enum |  |
+| [`Type`](#type) | enum |  |
 | [`parse`](#parse) | fn | Parse tokens of source code into the chosen syntax tree node. |
 | [`parse2`](#parse2) | fn | Parse a proc-macro2 token stream into the chosen syntax tree node. |
 | [`parse_str`](#parse_str) | fn | Parse a string of Rust code into the chosen syntax tree node. |
 | [`parse_file`](#parse_file) | fn | Parse the content of a file of Rust code. |
-| [`unnamed`](#unnamed) | type |  |
+| [`Result`](#result) | type |  |
 | [`parenthesized!`](#parenthesized) | macro | Parse a set of parentheses and expose their content to subsequent parsers. |
 | [`braced!`](#braced) | macro | Parse a set of curly braces and expose their content to subsequent parsers. |
 | [`bracketed!`](#bracketed) | macro | Parse a set of square brackets and expose their content to subsequent |
@@ -758,52 +758,52 @@ are available.
 
 ## Modules
 
-- [`macros`](macros/index.md) - 
-- [`group`](group/index.md) - 
-- [`token`](token/index.md) - Tokens representing Rust punctuation, keywords, and delimiters.
-- [`attr`](attr/index.md) - 
-- [`bigint`](bigint/index.md) - 
-- [`buffer`](buffer/index.md) - A stably addressed token buffer supporting efficient traversal based on a
-- [`classify`](classify/index.md) - 
-- [`custom_keyword`](custom_keyword/index.md) - 
-- [`custom_punctuation`](custom_punctuation/index.md) - 
-- [`data`](data/index.md) - 
-- [`derive`](derive/index.md) - 
-- [`drops`](drops/index.md) - 
-- [`error`](error/index.md) - 
-- [`expr`](expr/index.md) - 
-- [`ext`](ext/index.md) - Extension traits to provide parsing methods on foreign types.
-- [`file`](file/index.md) - 
-- [`fixup`](fixup/index.md) - 
-- [`generics`](generics/index.md) - 
-- [`ident`](ident/index.md) - 
-- [`item`](item/index.md) - 
-- [`lifetime`](lifetime/index.md) - 
-- [`lit`](lit/index.md) - 
-- [`lookahead`](lookahead/index.md) - 
-- [`mac`](mac/index.md) - 
-- [`meta`](meta/index.md) - Facility for interpreting structured content inside of an `Attribute`.
-- [`op`](op/index.md) - 
-- [`parse`](parse/index.md) - Parsing interface for parsing a token stream into a syntax tree node.
-- [`parse_macro_input`](parse_macro_input/index.md) - 
-- [`parse_quote`](parse_quote/index.md) - 
-- [`pat`](pat/index.md) - 
-- [`path`](path/index.md) - 
-- [`precedence`](precedence/index.md) - 
-- [`print`](print/index.md) - 
-- [`punctuated`](punctuated/index.md) - A punctuated sequence of syntax tree nodes separated by punctuation.
-- [`restriction`](restriction/index.md) - 
-- [`sealed`](sealed/index.md) - 
-- [`span`](span/index.md) - 
-- [`spanned`](spanned/index.md) - A trait that can provide the `Span` of the complete contents of a syntax
-- [`stmt`](stmt/index.md) - 
-- [`thread`](thread/index.md) - 
-- [`tt`](tt/index.md) - 
-- [`ty`](ty/index.md) - 
-- [`verbatim`](verbatim/index.md) - 
-- [`whitespace`](whitespace/index.md) - 
-- [`gen`](gen/index.md) - 
-- [`visit_mut`](visit_mut/index.md) - 
+- [`macros`](macros/index.md)
+- [`group`](group/index.md)
+- [`token`](token/index.md) — Tokens representing Rust punctuation, keywords, and delimiters.
+- [`attr`](attr/index.md)
+- [`bigint`](bigint/index.md)
+- [`buffer`](buffer/index.md) — A stably addressed token buffer supporting efficient traversal based on a
+- [`classify`](classify/index.md)
+- [`custom_keyword`](custom_keyword/index.md)
+- [`custom_punctuation`](custom_punctuation/index.md)
+- [`data`](data/index.md)
+- [`derive`](derive/index.md)
+- [`drops`](drops/index.md)
+- [`error`](error/index.md)
+- [`expr`](expr/index.md)
+- [`ext`](ext/index.md) — Extension traits to provide parsing methods on foreign types.
+- [`file`](file/index.md)
+- [`fixup`](fixup/index.md)
+- [`generics`](generics/index.md)
+- [`ident`](ident/index.md)
+- [`item`](item/index.md)
+- [`lifetime`](lifetime/index.md)
+- [`lit`](lit/index.md)
+- [`lookahead`](lookahead/index.md)
+- [`mac`](mac/index.md)
+- [`meta`](meta/index.md) — Facility for interpreting structured content inside of an `Attribute`.
+- [`op`](op/index.md)
+- [`parse`](parse/index.md) — Parsing interface for parsing a token stream into a syntax tree node.
+- [`parse_macro_input`](parse_macro_input/index.md)
+- [`parse_quote`](parse_quote/index.md)
+- [`pat`](pat/index.md)
+- [`path`](path/index.md)
+- [`precedence`](precedence/index.md)
+- [`print`](print/index.md)
+- [`punctuated`](punctuated/index.md) — A punctuated sequence of syntax tree nodes separated by punctuation.
+- [`restriction`](restriction/index.md)
+- [`sealed`](sealed/index.md)
+- [`span`](span/index.md)
+- [`spanned`](spanned/index.md) — A trait that can provide the `Span` of the complete contents of a syntax
+- [`stmt`](stmt/index.md)
+- [`thread`](thread/index.md)
+- [`tt`](tt/index.md)
+- [`ty`](ty/index.md)
+- [`verbatim`](verbatim/index.md)
+- [`whitespace`](whitespace/index.md)
+- [`gen`](gen/index.md)
+- [`visit_mut`](visit_mut/index.md) — Syntax tree traversal to mutate an exclusive borrow of a syntax tree in
 
 ## Structs
 
@@ -6471,11 +6471,7 @@ Lifetime names must conform to the following rules:
 
 #### Implementations
 
-- <span id="lifetime-new"></span>`fn new(symbol: &str, span: Span) -> Self`
-
-- <span id="lifetime-span"></span>`fn span(&self) -> Span`
-
-- <span id="lifetime-set-span"></span>`fn set_span(&mut self, span: Span)`
+- <span id="cratelifetime-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
@@ -6542,15 +6538,7 @@ A boolean literal: `true` or `false`.
 
 #### Implementations
 
-- <span id="litbool-new"></span>`fn new(value: bool, span: Span) -> Self`
-
-- <span id="litbool-value"></span>`fn value(&self) -> bool`
-
-- <span id="litbool-span"></span>`fn span(&self) -> Span`
-
-- <span id="litbool-set-span"></span>`fn set_span(&mut self, span: Span)`
-
-- <span id="litbool-token"></span>`fn token(&self) -> Ident` — [`Ident`](#ident)
+- <span id="cratelitlitbool-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
@@ -6626,7 +6614,7 @@ A byte literal: `b'f'`.
 
 - <span id="litbyte-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl Sealed for crate::lit::LitByte`
+##### `impl<T> Sealed for LitByte`
 
 ##### `impl<T> Spanned for LitByte`
 
@@ -6710,17 +6698,7 @@ A nul-terminated C-string literal: `c"foo"`.
 
 #### Implementations
 
-- <span id="litcstr-new"></span>`fn new(value: &CStr, span: Span) -> Self`
-
-- <span id="litcstr-value"></span>`fn value(&self) -> CString`
-
-- <span id="litcstr-span"></span>`fn span(&self) -> Span`
-
-- <span id="litcstr-set-span"></span>`fn set_span(&mut self, span: Span)`
-
-- <span id="litcstr-suffix"></span>`fn suffix(&self) -> &str`
-
-- <span id="litcstr-token"></span>`fn token(&self) -> Literal`
+- <span id="cratelitlitcstr-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
@@ -6746,7 +6724,7 @@ A nul-terminated C-string literal: `c"foo"`.
 
 - <span id="litcstr-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for LitCStr`
+##### `impl Sealed for crate::lit::LitCStr`
 
 ##### `impl<T> Spanned for LitCStr`
 
@@ -6770,17 +6748,7 @@ A character literal: `'a'`.
 
 #### Implementations
 
-- <span id="litchar-new"></span>`fn new(value: char, span: Span) -> Self`
-
-- <span id="litchar-value"></span>`fn value(&self) -> char`
-
-- <span id="litchar-span"></span>`fn span(&self) -> Span`
-
-- <span id="litchar-set-span"></span>`fn set_span(&mut self, span: Span)`
-
-- <span id="litchar-suffix"></span>`fn suffix(&self) -> &str`
-
-- <span id="litchar-token"></span>`fn token(&self) -> Literal`
+- <span id="cratelitlitchar-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
@@ -6932,7 +6900,7 @@ An integer literal: `1` or `1u16`.
 
 - <span id="litint-eq"></span>`fn eq(&self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for LitInt`
+##### `impl Sealed for crate::lit::LitInt`
 
 ##### `impl<T> Spanned for LitInt`
 
@@ -6960,21 +6928,7 @@ A UTF-8 string literal: `"foo"`.
 
 #### Implementations
 
-- <span id="litstr-new"></span>`fn new(value: &str, span: Span) -> Self`
-
-- <span id="litstr-value"></span>`fn value(&self) -> String`
-
-- <span id="litstr-parse"></span>`fn parse<T: Parse>(&self) -> Result<T>` — [`Result`](#result)
-
-- <span id="litstr-parse-with"></span>`fn parse_with<F: Parser>(&self, parser: F) -> Result<<F as >::Output>` — [`Result`](#result), [`Parser`](parse/index.md)
-
-- <span id="litstr-span"></span>`fn span(&self) -> Span`
-
-- <span id="litstr-set-span"></span>`fn set_span(&mut self, span: Span)`
-
-- <span id="litstr-suffix"></span>`fn suffix(&self) -> &str`
-
-- <span id="litstr-token"></span>`fn token(&self) -> Literal`
+- <span id="cratelitlitstr-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
@@ -9268,7 +9222,11 @@ trait or a lifetime.
 
 #### Implementations
 
-- <span id="cratetypetraitobject-debug"></span>`fn debug(&self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- <span id="cratetytypetraitobject-without-plus"></span>`fn without_plus(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+
+- <span id="cratetytypetraitobject-parse"></span>`fn parse(input: ParseStream<'_>, allow_plus: bool) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+
+- <span id="cratetytypetraitobject-parse-bounds"></span>`fn parse_bounds(dyn_span: Span, input: ParseStream<'_>, allow_plus: bool) -> Result<Punctuated<TypeParamBound, token::Plus>>` — [`ParseStream`](parse/index.md), [`Result`](#result), [`Punctuated`](punctuated/index.md), [`TypeParamBound`](#typeparambound), [`Plus`](token/index.md)
 
 #### Trait Implementations
 

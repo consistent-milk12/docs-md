@@ -18,3 +18,10 @@
 trait Sealed { ... }
 ```
 
+#### Implementors
+
+- `&T`
+- `alloc::string::String`
+- `str`
+- `usize`
+

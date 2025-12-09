@@ -133,15 +133,29 @@ instrumentation.
 
 | Item | Kind | Description |
 |------|------|-------------|
-| [`unnamed`](#unnamed) | mod |  |
-| [`unnamed`](#unnamed) | trait |  |
-| [`unnamed`](#unnamed) | type |  |
+| [`with_default`](#with_default) | mod |  |
+| [`DefaultGuard`](#defaultguard) | trait |  |
+| [`set_default`](#set_default) | type |  |
 
 ## Modules
 
-- [`with_default`](with_default/index.md) - 
+- [`with_default`](with_default/index.md)
 
 ## Traits
+
+### `DefaultGuard`
+
+```rust
+trait DefaultGuard: Automaton + Debug + Send + Sync + UnwindSafe + RefUnwindSafe + 'static { ... }
+```
+
+A trait that effectively gives us practical dynamic dispatch over anything
+that impls `Automaton`, but without needing to add a bunch of bounds to
+the core `Automaton` trait. Basically, we provide all of the marker traits
+that our automatons have, in addition to `Debug` impls and requiring that
+there is no borrowed data. Without these, the main `AhoCorasick` type would
+not be able to meaningfully impl `Debug` or the marker traits without also
+requiring that all impls of `Automaton` do so, which would be not great.
 
 ## Type Aliases
 

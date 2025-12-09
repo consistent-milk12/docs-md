@@ -38,7 +38,7 @@ for their field names rather than printing them.
 
 `tracing`'s [`Value`](#value) trait is intentionally minimalist: it supports only a small
 number of Rust primitives as typed values, and only permits recording
-user-defined types with their [`fmt::Debug`](../../object/index.md) or [`fmt::Display`](../../miette_derive/fmt/index.md)
+user-defined types with their [`fmt::Debug`](../../object/index.md) or [`fmt::Display`](../../miette_derive/index.md)
 implementations. However, there are some cases where it may be useful to record
 nested values (such as arrays, `Vec`s, or `HashMap`s containing values), or
 user-defined `struct` and `enum` types without having to format them as
@@ -165,7 +165,7 @@ be forwarded to the visitor's `record_debug` method.
 
 ## Modules
 
-- [`private`](private/index.md) - 
+- [`private`](private/index.md)
 
 ## Structs
 
@@ -587,6 +587,12 @@ available when the Rust standard library is present, as it requires the
 
 #### Required Methods
 
+- `fn record_debug(&mut self, field: &Field, value: &dyn fmt::Debug)`
+
+  Visit a value implementing `fmt::Debug`.
+
+#### Provided Methods
+
 - `fn record_f64(&mut self, field: &Field, value: f64)`
 
   Visit a double-precision floating point value.
@@ -623,9 +629,11 @@ available when the Rust standard library is present, as it requires the
 
   Records a type implementing `Error`.
 
-- `fn record_debug(&mut self, field: &Field, value: &dyn fmt::Debug)`
+#### Implementors
 
-  Visit a value implementing `fmt::Debug`.
+- `F`
+- `fmt::DebugMap<'_, '_>`
+- `fmt::DebugStruct<'_, '_>`
 
 ### `Value`
 
@@ -645,6 +653,52 @@ their data should be recorded.
 - `fn record(&self, key: &Field, visitor: &mut dyn Visit)`
 
   Visits this value with the given `Visitor`.
+
+#### Implementors
+
+- [`DebugValue`](#debugvalue)
+- [`DisplayValue`](#displayvalue)
+- [`Empty`](#empty)
+- `&'a T`
+- `&'a mut T`
+- `NonZeroI128`
+- `NonZeroI16`
+- `NonZeroI32`
+- `NonZeroI64`
+- `NonZeroI8`
+- `NonZeroIsize`
+- `NonZeroU128`
+- `NonZeroU16`
+- `NonZeroU32`
+- `NonZeroU64`
+- `NonZeroU8`
+- `NonZeroUsize`
+- `Option<T>`
+- `Wrapping<T>`
+- `[u8]`
+- `alloc::boxed::Box<T>`
+- `alloc::string::String`
+- `bool`
+- `dyn std::error::Error + Send + Sync`
+- `dyn std::error::Error + Send`
+- `dyn std::error::Error + Sync`
+- `dyn std::error::Error`
+- `f32`
+- `f64`
+- `fmt::Arguments<'_>`
+- `i128`
+- `i16`
+- `i32`
+- `i64`
+- `i8`
+- `isize`
+- `str`
+- `u128`
+- `u16`
+- `u32`
+- `u64`
+- `u8`
+- `usize`
 
 ## Functions
 

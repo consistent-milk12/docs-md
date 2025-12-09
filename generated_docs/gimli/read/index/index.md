@@ -45,7 +45,7 @@ This section contains the compilation unit index.
 
 #### Implementations
 
-- <span id="debugcuindex-borrow"></span>`fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugCuIndex<R>` — [`DebugCuIndex`](../index.md)
+- <span id="debugcuindex-index"></span>`fn index(self) -> Result<UnitIndex<R>>` — [`Result`](../../index.md), [`UnitIndex`](../index.md)
 
 #### Trait Implementations
 
@@ -83,7 +83,7 @@ This section contains the type unit index.
 
 #### Implementations
 
-- <span id="debugtuindex-index"></span>`fn index(self) -> Result<UnitIndex<R>>` — [`Result`](../../index.md), [`UnitIndex`](../index.md)
+- <span id="debugtuindex-new"></span>`fn new(section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 

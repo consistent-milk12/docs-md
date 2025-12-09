@@ -81,21 +81,21 @@ Atomic loads use the `Acquire` ordering and atomic stores use the `Release` orde
 
 #### Implementations
 
-- <span id="atomiccell-fetch-add"></span>`fn fetch_add(&self, val: u128) -> u128`
+- <span id="atomiccell-fetch-add"></span>`fn fetch_add(&self, val: i32) -> i32`
 
-- <span id="atomiccell-fetch-sub"></span>`fn fetch_sub(&self, val: u128) -> u128`
+- <span id="atomiccell-fetch-sub"></span>`fn fetch_sub(&self, val: i32) -> i32`
 
-- <span id="atomiccell-fetch-and"></span>`fn fetch_and(&self, val: u128) -> u128`
+- <span id="atomiccell-fetch-and"></span>`fn fetch_and(&self, val: i32) -> i32`
 
-- <span id="atomiccell-fetch-nand"></span>`fn fetch_nand(&self, val: u128) -> u128`
+- <span id="atomiccell-fetch-nand"></span>`fn fetch_nand(&self, val: i32) -> i32`
 
-- <span id="atomiccell-fetch-or"></span>`fn fetch_or(&self, val: u128) -> u128`
+- <span id="atomiccell-fetch-or"></span>`fn fetch_or(&self, val: i32) -> i32`
 
-- <span id="atomiccell-fetch-xor"></span>`fn fetch_xor(&self, val: u128) -> u128`
+- <span id="atomiccell-fetch-xor"></span>`fn fetch_xor(&self, val: i32) -> i32`
 
-- <span id="atomiccell-fetch-max"></span>`fn fetch_max(&self, val: u128) -> u128`
+- <span id="atomiccell-fetch-max"></span>`fn fetch_max(&self, val: i32) -> i32`
 
-- <span id="atomiccell-fetch-min"></span>`fn fetch_min(&self, val: u128) -> u128`
+- <span id="atomiccell-fetch-min"></span>`fn fetch_min(&self, val: i32) -> i32`
 
 #### Trait Implementations
 

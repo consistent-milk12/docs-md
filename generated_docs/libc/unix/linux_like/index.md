@@ -9282,9 +9282,9 @@
 
 ## Modules
 
-- [`linux`](linux/index.md) - Linux-specific definitions for linux-like values
-- [`gnu`](gnu/index.md) - 
-- [`arch`](arch/index.md) - 
+- [`linux`](linux/index.md) — Linux-specific definitions for linux-like values
+- [`gnu`](gnu/index.md)
+- [`arch`](arch/index.md)
 
 ## Structs
 

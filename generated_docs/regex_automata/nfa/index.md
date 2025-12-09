@@ -63,5 +63,5 @@ But currently, this crate only provides a Thompson NFA.
 
 ## Modules
 
-- [`thompson`](thompson/index.md) - Defines a Thompson NFA and provides the [`PikeVM`](pikevm::PikeVM) and
+- [`thompson`](thompson/index.md) — Defines a Thompson NFA and provides the [`PikeVM`](pikevm::PikeVM) and
 

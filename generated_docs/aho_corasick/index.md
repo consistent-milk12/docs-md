@@ -235,24 +235,24 @@ this crate can be used without the standard library.
   - [`packed`](#packed)
   - [`util`](#util)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`StreamFindIter`](#streamfinditer)
+  - [`AhoCorasick`](#ahocorasick)
+  - [`AhoCorasickBuilder`](#ahocorasickbuilder)
+  - [`FindIter`](#finditer)
+  - [`FindOverlappingIter`](#findoverlappingiter)
+  - [`BuildError`](#builderror)
+  - [`MatchError`](#matcherror)
+  - [`PatternID`](#patternid)
+  - [`PatternIDError`](#patterniderror)
+  - [`Input`](#input)
+  - [`Match`](#match)
+  - [`Span`](#span)
 - [Enums](#enums)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`AhoCorasickKind`](#ahocorasickkind)
+  - [`MatchErrorKind`](#matcherrorkind)
+  - [`Anchored`](#anchored)
+  - [`MatchKind`](#matchkind)
+  - [`StartKind`](#startkind)
 
 ## Quick Reference
 
@@ -265,33 +265,33 @@ this crate can be used without the standard library.
 | [`nfa`](#nfa) | mod | Provides direct access to NFA implementations of Aho-Corasick. |
 | [`packed`](#packed) | mod | Provides packed multiple substring search, principally for a small number of |
 | [`util`](#util) | mod |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
+| [`StreamFindIter`](#streamfinditer) | struct |  |
+| [`AhoCorasick`](#ahocorasick) | struct |  |
+| [`AhoCorasickBuilder`](#ahocorasickbuilder) | struct |  |
+| [`FindIter`](#finditer) | struct |  |
+| [`FindOverlappingIter`](#findoverlappingiter) | struct |  |
+| [`BuildError`](#builderror) | struct |  |
+| [`MatchError`](#matcherror) | struct |  |
+| [`PatternID`](#patternid) | struct |  |
+| [`PatternIDError`](#patterniderror) | struct |  |
+| [`Input`](#input) | struct |  |
+| [`Match`](#match) | struct |  |
+| [`Span`](#span) | struct |  |
+| [`AhoCorasickKind`](#ahocorasickkind) | enum |  |
+| [`MatchErrorKind`](#matcherrorkind) | enum |  |
+| [`Anchored`](#anchored) | enum |  |
+| [`MatchKind`](#matchkind) | enum |  |
+| [`StartKind`](#startkind) | enum |  |
 
 ## Modules
 
-- [`macros`](macros/index.md) - 
-- [`ahocorasick`](ahocorasick/index.md) - 
-- [`automaton`](automaton/index.md) - Provides [`Automaton`] trait for abstracting over Aho-Corasick automata.
-- [`dfa`](dfa/index.md) - Provides direct access to a DFA implementation of Aho-Corasick.
-- [`nfa`](nfa/index.md) - Provides direct access to NFA implementations of Aho-Corasick.
-- [`packed`](packed/index.md) - Provides packed multiple substring search, principally for a small number of
-- [`util`](util/index.md) - 
+- [`macros`](macros/index.md)
+- [`ahocorasick`](ahocorasick/index.md)
+- [`automaton`](automaton/index.md) — Provides [`Automaton`] trait for abstracting over Aho-Corasick automata.
+- [`dfa`](dfa/index.md) — Provides direct access to a DFA implementation of Aho-Corasick.
+- [`nfa`](nfa/index.md) — Provides direct access to NFA implementations of Aho-Corasick.
+- [`packed`](packed/index.md) — Provides packed multiple substring search, principally for a small number of
+- [`util`](util/index.md)
 
 ## Structs
 
@@ -1255,7 +1255,7 @@ to create a span where `start > end`.
 
 ##### `impl PartialEq for Span`
 
-- <span id="span-eq"></span>`fn eq(&self, range: &Range<usize>) -> bool`
+- <span id="span-eq"></span>`fn eq(&self, other: &Span) -> bool` — [`Span`](#span)
 
 ##### `impl StructuralPartialEq for Span`
 

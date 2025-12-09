@@ -20,15 +20,19 @@ trait Dyn: Debug + Pod { ... }
 
 A trait for generic access to [`elf::Dyn32`](../../../elf/index.md) and [`elf::Dyn64`](../../../elf/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
 
 - `type Endian: 1`
 
+#### Required Methods
+
 - `fn d_tag(&self, endian: <Self as >::Endian) -> <Self as >::Word`
 
 - `fn d_val(&self, endian: <Self as >::Endian) -> <Self as >::Word`
+
+#### Provided Methods
 
 - `fn tag32(&self, endian: <Self as >::Endian) -> Option<u32>`
 
@@ -49,4 +53,9 @@ A trait for generic access to [`elf::Dyn32`](../../../elf/index.md) and [`elf::D
 - `fn is_address(&self, endian: <Self as >::Endian) -> bool`
 
   Return true if the value is an address.
+
+#### Implementors
+
+- [`Dyn32`](../../../elf/index.md)
+- [`Dyn64`](../../../elf/index.md)
 

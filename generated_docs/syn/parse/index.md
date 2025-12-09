@@ -116,7 +116,7 @@ The `parse_quote!` macro also uses this approach.
 
 Some types can be parsed in several ways depending on context. For example
 an [`Attribute`](../index.md) can be either "outer" like `#[...]` or "inner" like
-`#![...]` and parsing the wrong one would be a bug. Similarly [`Punctuated`](../index.md)
+`#![...]` and parsing the wrong one would be a bug. Similarly [`Punctuated`](../punctuated/index.md)
 may or may not allow trailing punctuation, and parsing it the wrong way
 would either reject valid input or accept invalid input.
 
@@ -180,16 +180,16 @@ fn call_some_parser_methods(input: TokenStream) -> Result<()> {
 - [Modules](#modules)
   - [`discouraged`](#discouraged)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`Error`](#error)
+  - [`End`](#end)
+  - [`Lookahead1`](#lookahead1)
   - [`ParseBuffer`](#parsebuffer)
   - [`StepCursor`](#stepcursor)
   - [`Nothing`](#nothing)
 - [Enums](#enums)
   - [`Unexpected`](#unexpected)
 - [Traits](#traits)
-  - [`unnamed`](#unnamed)
+  - [`Peek`](#peek)
   - [`Parse`](#parse)
   - [`Parser`](#parser)
 - [Functions](#functions)
@@ -203,7 +203,7 @@ fn call_some_parser_methods(input: TokenStream) -> Result<()> {
   - [`parse_scoped`](#parse_scoped)
   - [`err_unexpected_token`](#err_unexpected_token)
 - [Type Aliases](#type-aliases)
-  - [`unnamed`](#unnamed)
+  - [`Result`](#result)
   - [`ParseStream`](#parsestream)
 
 ## Quick Reference
@@ -211,14 +211,14 @@ fn call_some_parser_methods(input: TokenStream) -> Result<()> {
 | Item | Kind | Description |
 |------|------|-------------|
 | [`discouraged`](#discouraged) | mod | Extensions to the parsing API with niche applicability. |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
+| [`Error`](#error) | struct |  |
+| [`End`](#end) | struct |  |
+| [`Lookahead1`](#lookahead1) | struct |  |
 | [`ParseBuffer`](#parsebuffer) | struct | Cursor position within a buffered token stream. |
 | [`StepCursor`](#stepcursor) | struct | Cursor state associated with speculative parsing. |
 | [`Nothing`](#nothing) | struct | An empty syntax tree node that consumes no tokens when parsed. |
 | [`Unexpected`](#unexpected) | enum |  |
-| [`unnamed`](#unnamed) | trait |  |
+| [`Peek`](#peek) | trait |  |
 | [`Parse`](#parse) | trait | Parsing interface implemented by all types that can be parsed in a default |
 | [`Parser`](#parser) | trait | Parser that can parse Rust tokens into a particular syntax tree node. |
 | [`advance_step_cursor`](#advance_step_cursor) | fn |  |
@@ -230,12 +230,12 @@ fn call_some_parser_methods(input: TokenStream) -> Result<()> {
 | [`tokens_to_parse_buffer`](#tokens_to_parse_buffer) | fn |  |
 | [`parse_scoped`](#parse_scoped) | fn |  |
 | [`err_unexpected_token`](#err_unexpected_token) | fn |  |
-| [`unnamed`](#unnamed) | type |  |
+| [`Result`](#result) | type |  |
 | [`ParseStream`](#parsestream) | type | Input to a Syn parser function. |
 
 ## Modules
 
-- [`discouraged`](discouraged/index.md) - Extensions to the parsing API with niche applicability.
+- [`discouraged`](discouraged/index.md) — Extensions to the parsing API with niche applicability.
 
 ## Structs
 
@@ -519,7 +519,7 @@ Ok(())
 
 ##### `impl Peek for End`
 
-##### `impl Sealed for End`
+##### `impl<T> Sealed for End`
 
 ##### `impl<T> Token for End`
 
@@ -858,6 +858,26 @@ enum Unexpected {
 
 ## Traits
 
+### `Peek`
+
+```rust
+trait Peek: Sealed { ... }
+```
+
+Types that can be parsed by looking at just one token.
+
+Use `ParseStream::peek` to peek one of these types in a parse stream
+without consuming it from the stream.
+
+This trait is sealed and cannot be implemented for types outside of Syn.
+
+
+#### Implementors
+
+- [`End`](#end)
+- [`PeekFn`](../ext/private/index.md)
+- `F`
+
 ### `Parse`
 
 ```rust
@@ -875,6 +895,265 @@ the `Parse` trait.
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>`
 
+#### Implementors
+
+- [`Abi`](../index.md)
+- [`Abstract`](../token/index.md)
+- [`AndAnd`](../token/index.md)
+- [`AndEq`](../token/index.md)
+- [`And`](../token/index.md)
+- [`AngleBracketedGenericArguments`](../index.md)
+- [`Arm`](../index.md)
+- [`As`](../token/index.md)
+- [`Async`](../token/index.md)
+- [`At`](../token/index.md)
+- [`Auto`](../token/index.md)
+- [`Await`](../token/index.md)
+- [`BareFnArg`](../index.md)
+- [`Become`](../token/index.md)
+- [`BinOp`](../index.md)
+- [`Block`](../index.md)
+- [`BoundLifetimes`](../index.md)
+- [`Box`](../token/index.md)
+- [`Break`](../token/index.md)
+- [`CapturedParam`](../index.md)
+- [`CaretEq`](../token/index.md)
+- [`Caret`](../token/index.md)
+- [`Colon`](../token/index.md)
+- [`Comma`](../token/index.md)
+- [`ConstParam`](../index.md)
+- [`Const`](../token/index.md)
+- [`Continue`](../token/index.md)
+- [`Crate`](../token/index.md)
+- [`Default`](../token/index.md)
+- [`DeriveInput`](../index.md)
+- [`Do`](../token/index.md)
+- [`Dollar`](../token/index.md)
+- [`DotDotDot`](../token/index.md)
+- [`DotDotEq`](../token/index.md)
+- [`DotDot`](../token/index.md)
+- [`Dot`](../token/index.md)
+- [`Dyn`](../token/index.md)
+- [`Else`](../token/index.md)
+- [`Enum`](../token/index.md)
+- [`EqEq`](../token/index.md)
+- [`Eq`](../token/index.md)
+- [`ExprArray`](../index.md)
+- [`ExprAssign`](../index.md)
+- [`ExprAsync`](../index.md)
+- [`ExprAwait`](../index.md)
+- [`ExprBinary`](../index.md)
+- [`ExprBlock`](../index.md)
+- [`ExprBreak`](../index.md)
+- [`ExprCall`](../index.md)
+- [`ExprCast`](../index.md)
+- [`ExprClosure`](../index.md)
+- [`ExprContinue`](../index.md)
+- [`ExprField`](../index.md)
+- [`ExprForLoop`](../index.md)
+- [`ExprIf`](../index.md)
+- [`ExprIndex`](../index.md)
+- [`ExprInfer`](../index.md)
+- [`ExprLet`](../index.md)
+- [`ExprLoop`](../index.md)
+- [`ExprMatch`](../index.md)
+- [`ExprMethodCall`](../index.md)
+- [`ExprParen`](../index.md)
+- [`ExprRawAddr`](../index.md)
+- [`ExprReference`](../index.md)
+- [`ExprRepeat`](../index.md)
+- [`ExprReturn`](../index.md)
+- [`ExprStruct`](../index.md)
+- [`ExprTryBlock`](../index.md)
+- [`ExprTry`](../index.md)
+- [`ExprTuple`](../index.md)
+- [`ExprUnary`](../index.md)
+- [`ExprUnsafe`](../index.md)
+- [`ExprWhile`](../index.md)
+- [`ExprYield`](../index.md)
+- [`Expr`](../index.md)
+- [`Extern`](../token/index.md)
+- [`FatArrow`](../token/index.md)
+- [`FieldValue`](../index.md)
+- [`FieldsNamed`](../index.md)
+- [`FieldsUnnamed`](../index.md)
+- [`File`](../index.md)
+- [`Final`](../token/index.md)
+- [`FnArg`](../index.md)
+- [`Fn`](../token/index.md)
+- [`For`](../token/index.md)
+- [`ForeignItemFn`](../index.md)
+- [`ForeignItemMacro`](../index.md)
+- [`ForeignItemStatic`](../index.md)
+- [`ForeignItemType`](../index.md)
+- [`ForeignItem`](../index.md)
+- [`Ge`](../token/index.md)
+- [`GenericArgument`](../index.md)
+- [`GenericParam`](../index.md)
+- [`Generics`](../index.md)
+- [`Gt`](../token/index.md)
+- [`Ident`](../index.md)
+- [`If`](../token/index.md)
+- [`ImplItemConst`](../index.md)
+- [`ImplItemFn`](../index.md)
+- [`ImplItemMacro`](../index.md)
+- [`ImplItemType`](../index.md)
+- [`ImplItem`](../index.md)
+- [`Impl`](../token/index.md)
+- [`In`](../token/index.md)
+- [`Index`](../index.md)
+- [`ItemConst`](../index.md)
+- [`ItemEnum`](../index.md)
+- [`ItemExternCrate`](../index.md)
+- [`ItemFn`](../index.md)
+- [`ItemForeignMod`](../index.md)
+- [`ItemImpl`](../index.md)
+- [`ItemMacro`](../index.md)
+- [`ItemMod`](../index.md)
+- [`ItemStatic`](../index.md)
+- [`ItemStruct`](../index.md)
+- [`ItemTraitAlias`](../index.md)
+- [`ItemTrait`](../index.md)
+- [`ItemType`](../index.md)
+- [`ItemUnion`](../index.md)
+- [`ItemUse`](../index.md)
+- [`Item`](../index.md)
+- [`LArrow`](../token/index.md)
+- [`Label`](../index.md)
+- [`Le`](../token/index.md)
+- [`Let`](../token/index.md)
+- [`LifetimeParam`](../index.md)
+- [`Lifetime`](../index.md)
+- [`LitBool`](../index.md)
+- [`LitByteStr`](../index.md)
+- [`LitByte`](../index.md)
+- [`LitCStr`](../index.md)
+- [`LitChar`](../index.md)
+- [`LitFloat`](../index.md)
+- [`LitInt`](../index.md)
+- [`LitStr`](../index.md)
+- [`Lit`](../index.md)
+- [`Loop`](../token/index.md)
+- [`Lt`](../token/index.md)
+- [`Macro`](../index.md)
+- [`Macro`](../token/index.md)
+- [`Match`](../token/index.md)
+- [`Member`](../index.md)
+- [`MetaList`](../index.md)
+- [`MetaNameValue`](../index.md)
+- [`Meta`](../index.md)
+- [`MinusEq`](../token/index.md)
+- [`Minus`](../token/index.md)
+- [`Mod`](../token/index.md)
+- [`Move`](../token/index.md)
+- [`Mut`](../token/index.md)
+- [`Ne`](../token/index.md)
+- [`Not`](../token/index.md)
+- [`Nothing`](#nothing)
+- [`OrEq`](../token/index.md)
+- [`OrOr`](../token/index.md)
+- [`Or`](../token/index.md)
+- [`Override`](../token/index.md)
+- [`ParenthesizedGenericArguments`](../index.md)
+- [`PatConst`](../index.md)
+- [`PatLit`](../index.md)
+- [`PatMacro`](../index.md)
+- [`PatPath`](../index.md)
+- [`PatRange`](../index.md)
+- [`PatType`](../index.md)
+- [`PathSegment`](../index.md)
+- [`PathSep`](../token/index.md)
+- [`Path`](../index.md)
+- [`PercentEq`](../token/index.md)
+- [`Percent`](../token/index.md)
+- [`PlusEq`](../token/index.md)
+- [`Plus`](../token/index.md)
+- [`PointerMutability`](../index.md)
+- [`Pound`](../token/index.md)
+- [`PreciseCapture`](../index.md)
+- [`Priv`](../token/index.md)
+- [`Pub`](../token/index.md)
+- [`Question`](../token/index.md)
+- [`RArrow`](../token/index.md)
+- [`RangeLimits`](../index.md)
+- [`Raw`](../token/index.md)
+- [`Receiver`](../index.md)
+- [`Ref`](../token/index.md)
+- [`ReturnType`](../index.md)
+- [`Return`](../token/index.md)
+- [`SelfType`](../token/index.md)
+- [`SelfValue`](../token/index.md)
+- [`Semi`](../token/index.md)
+- [`ShlEq`](../token/index.md)
+- [`Shl`](../token/index.md)
+- [`ShrEq`](../token/index.md)
+- [`Shr`](../token/index.md)
+- [`Signature`](../index.md)
+- [`SlashEq`](../token/index.md)
+- [`Slash`](../token/index.md)
+- [`StarEq`](../token/index.md)
+- [`Star`](../token/index.md)
+- [`StaticMutability`](../index.md)
+- [`Static`](../token/index.md)
+- [`Stmt`](../index.md)
+- [`Struct`](../token/index.md)
+- [`Super`](../token/index.md)
+- [`Tilde`](../token/index.md)
+- [`TraitBoundModifier`](../index.md)
+- [`TraitBound`](../index.md)
+- [`TraitItemConst`](../index.md)
+- [`TraitItemFn`](../index.md)
+- [`TraitItemMacro`](../index.md)
+- [`TraitItemType`](../index.md)
+- [`TraitItem`](../index.md)
+- [`Trait`](../token/index.md)
+- [`Try`](../token/index.md)
+- [`TypeArray`](../index.md)
+- [`TypeBareFn`](../index.md)
+- [`TypeGroup`](../index.md)
+- [`TypeImplTrait`](../index.md)
+- [`TypeInfer`](../index.md)
+- [`TypeMacro`](../index.md)
+- [`TypeNever`](../index.md)
+- [`TypeParamBound`](../index.md)
+- [`TypeParam`](../index.md)
+- [`TypeParen`](../index.md)
+- [`TypePath`](../index.md)
+- [`TypePtr`](../index.md)
+- [`TypeReference`](../index.md)
+- [`TypeSlice`](../index.md)
+- [`TypeTraitObject`](../index.md)
+- [`TypeTuple`](../index.md)
+- [`Type`](../index.md)
+- [`Type`](../token/index.md)
+- [`Typeof`](../token/index.md)
+- [`UnOp`](../index.md)
+- [`Underscore`](../token/index.md)
+- [`Union`](../token/index.md)
+- [`Unsafe`](../token/index.md)
+- [`Unsized`](../token/index.md)
+- [`UseTree`](../index.md)
+- [`Use`](../token/index.md)
+- [`Variant`](../index.md)
+- [`Virtual`](../token/index.md)
+- [`Visibility`](../index.md)
+- [`WhereClause`](../index.md)
+- [`WherePredicate`](../index.md)
+- [`Where`](../token/index.md)
+- [`While`](../token/index.md)
+- [`Yield`](../token/index.md)
+- `Box<T>`
+- `Option<T>`
+- `Option<crate::expr::Label>`
+- `Option<crate::generics::BoundLifetimes>`
+- `Option<crate::generics::WhereClause>`
+- `Option<crate::ty::Abi>`
+- `proc_macro2::Group`
+- `proc_macro2::Literal`
+- `proc_macro2::Punct`
+- `proc_macro2::TokenStream`
+- `proc_macro2::TokenTree`
+
 ### `Parser`
 
 ```rust
@@ -886,13 +1165,17 @@ Parser that can parse Rust tokens into a particular syntax tree node.
 Refer to the [module documentation] for details about parsing in Syn.
 
 
-#### Required Methods
+#### Associated Types
 
 - `type Output`
+
+#### Required Methods
 
 - `fn parse2(self, tokens: TokenStream) -> Result<<Self as >::Output>`
 
   Parse a proc-macro2 token stream into the chosen syntax tree node.
+
+#### Provided Methods
 
 - `fn parse(self, tokens: proc_macro::TokenStream) -> Result<<Self as >::Output>`
 
@@ -901,6 +1184,10 @@ Refer to the [module documentation] for details about parsing in Syn.
 - `fn parse_str(self, s: &str) -> Result<<Self as >::Output>`
 
   Parse a string of Rust code into the chosen syntax tree node.
+
+#### Implementors
+
+- `F`
 
 ## Functions
 

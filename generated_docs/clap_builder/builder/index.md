@@ -28,39 +28,39 @@ Define [`Command`](../index.md) line [arguments][`Arg`](../index.md)
   - [`debug_asserts`](#debug_asserts)
   - [`styling`](#styling)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`Str`](#str)
+  - [`Arg`](#arg)
+  - [`ArgGroup`](#arggroup)
+  - [`Command`](#command)
+  - [`OsStr`](#osstr)
+  - [`PossibleValue`](#possiblevalue)
+  - [`ValueRange`](#valuerange)
+  - [`StyledStr`](#styledstr)
+  - [`Styles`](#styles)
+  - [`BoolValueParser`](#boolvalueparser)
+  - [`BoolishValueParser`](#boolishvalueparser)
+  - [`EnumValueParser`](#enumvalueparser)
+  - [`FalseyValueParser`](#falseyvalueparser)
+  - [`MapValueParser`](#mapvalueparser)
+  - [`NonEmptyStringValueParser`](#nonemptystringvalueparser)
+  - [`OsStringValueParser`](#osstringvalueparser)
+  - [`PathBufValueParser`](#pathbufvalueparser)
+  - [`PossibleValuesParser`](#possiblevaluesparser)
+  - [`RangedI64ValueParser`](#rangedi64valueparser)
+  - [`RangedU64ValueParser`](#rangedu64valueparser)
+  - [`StringValueParser`](#stringvalueparser)
+  - [`TryMapValueParser`](#trymapvalueparser)
+  - [`UnknownArgumentValueParser`](#unknownargumentvalueparser)
+  - [`ValueParser`](#valueparser)
 - [Enums](#enums)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`ArgAction`](#argaction)
+  - [`ArgPredicate`](#argpredicate)
+  - [`Resettable`](#resettable)
+  - [`ValueHint`](#valuehint)
 - [Traits](#traits)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`IntoResettable`](#intoresettable)
+  - [`TypedValueParser`](#typedvalueparser)
+  - [`ValueParserFactory`](#valueparserfactory)
 
 ## Quick Reference
 
@@ -84,58 +84,58 @@ Define [`Command`](../index.md) line [arguments][`Arg`](../index.md)
 | [`value_parser`](#value_parser) | mod |  |
 | [`debug_asserts`](#debug_asserts) | mod |  |
 | [`styling`](#styling) | mod | Terminal [`Styles`] for help and error output |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | enum |  |
-| [`unnamed`](#unnamed) | trait |  |
-| [`unnamed`](#unnamed) | trait |  |
-| [`unnamed`](#unnamed) | trait |  |
+| [`Str`](#str) | struct |  |
+| [`Arg`](#arg) | struct |  |
+| [`ArgGroup`](#arggroup) | struct |  |
+| [`Command`](#command) | struct |  |
+| [`OsStr`](#osstr) | struct |  |
+| [`PossibleValue`](#possiblevalue) | struct |  |
+| [`ValueRange`](#valuerange) | struct |  |
+| [`StyledStr`](#styledstr) | struct |  |
+| [`Styles`](#styles) | struct |  |
+| [`BoolValueParser`](#boolvalueparser) | struct |  |
+| [`BoolishValueParser`](#boolishvalueparser) | struct |  |
+| [`EnumValueParser`](#enumvalueparser) | struct |  |
+| [`FalseyValueParser`](#falseyvalueparser) | struct |  |
+| [`MapValueParser`](#mapvalueparser) | struct |  |
+| [`NonEmptyStringValueParser`](#nonemptystringvalueparser) | struct |  |
+| [`OsStringValueParser`](#osstringvalueparser) | struct |  |
+| [`PathBufValueParser`](#pathbufvalueparser) | struct |  |
+| [`PossibleValuesParser`](#possiblevaluesparser) | struct |  |
+| [`RangedI64ValueParser`](#rangedi64valueparser) | struct |  |
+| [`RangedU64ValueParser`](#rangedu64valueparser) | struct |  |
+| [`StringValueParser`](#stringvalueparser) | struct |  |
+| [`TryMapValueParser`](#trymapvalueparser) | struct |  |
+| [`UnknownArgumentValueParser`](#unknownargumentvalueparser) | struct |  |
+| [`ValueParser`](#valueparser) | struct |  |
+| [`ArgAction`](#argaction) | enum |  |
+| [`ArgPredicate`](#argpredicate) | enum |  |
+| [`Resettable`](#resettable) | enum |  |
+| [`ValueHint`](#valuehint) | enum |  |
+| [`IntoResettable`](#intoresettable) | trait |  |
+| [`TypedValueParser`](#typedvalueparser) | trait |  |
+| [`ValueParserFactory`](#valueparserfactory) | trait |  |
 
 ## Modules
 
-- [`action`](action/index.md) - 
-- [`app_settings`](app_settings/index.md) - 
-- [`arg`](arg/index.md) - 
-- [`arg_group`](arg_group/index.md) - 
-- [`arg_predicate`](arg_predicate/index.md) - 
-- [`arg_settings`](arg_settings/index.md) - 
-- [`command`](command/index.md) - 
-- [`ext`](ext/index.md) - 
-- [`os_str`](os_str/index.md) - 
-- [`possible_value`](possible_value/index.md) - 
-- [`range`](range/index.md) - 
-- [`resettable`](resettable/index.md) - 
-- [`str`](str/index.md) - 
-- [`styled_str`](styled_str/index.md) - 
-- [`value_hint`](value_hint/index.md) - 
-- [`value_parser`](value_parser/index.md) - 
-- [`debug_asserts`](debug_asserts/index.md) - 
-- [`styling`](styling/index.md) - Terminal [`Styles`] for help and error output
+- [`action`](action/index.md)
+- [`app_settings`](app_settings/index.md)
+- [`arg`](arg/index.md)
+- [`arg_group`](arg_group/index.md)
+- [`arg_predicate`](arg_predicate/index.md)
+- [`arg_settings`](arg_settings/index.md)
+- [`command`](command/index.md)
+- [`ext`](ext/index.md)
+- [`os_str`](os_str/index.md)
+- [`possible_value`](possible_value/index.md)
+- [`range`](range/index.md)
+- [`resettable`](resettable/index.md)
+- [`str`](str/index.md)
+- [`styled_str`](styled_str/index.md)
+- [`value_hint`](value_hint/index.md)
+- [`value_parser`](value_parser/index.md)
+- [`debug_asserts`](debug_asserts/index.md)
+- [`styling`](styling/index.md) — Terminal [`Styles`] for help and error output
 
 ## Structs
 
@@ -168,7 +168,7 @@ feature
 
 ##### `impl AsRef for Str`
 
-- <span id="str-as-ref"></span>`fn as_ref(&self) -> &[u8]`
+- <span id="str-as-ref"></span>`fn as_ref(&self) -> &std::path::Path`
 
 ##### `impl Clone for Str`
 
@@ -200,7 +200,7 @@ feature
 
 ##### `impl<I> IntoResettable for Str`
 
-- <span id="str-into-resettable"></span>`fn into_resettable(self) -> Resettable<Str>` — [`Resettable`](#resettable), [`Str`](#str)
+- <span id="str-into-resettable"></span>`fn into_resettable(self) -> Resettable<OsStr>` — [`Resettable`](#resettable), [`OsStr`](#osstr)
 
 ##### `impl Ord for Str`
 
@@ -208,7 +208,7 @@ feature
 
 ##### `impl PartialEq for Str`
 
-- <span id="str-eq"></span>`fn eq(&self, other: &String) -> bool`
+- <span id="str-eq"></span>`fn eq(&self, other: &str) -> bool`
 
 ##### `impl PartialOrd for Str`
 
@@ -291,41 +291,91 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 
 #### Implementations
 
-- <span id="arg-group"></span>`fn group(self, group_id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](#intoresettable), [`Id`](../index.md)
+- <span id="arg-get-id"></span>`fn get_id(&self) -> &Id` — [`Id`](../index.md)
 
-- <span id="arg-groups"></span>`fn groups(self, group_ids: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../index.md)
+- <span id="arg-get-help"></span>`fn get_help(&self) -> Option<&StyledStr>` — [`StyledStr`](#styledstr)
 
-- <span id="arg-default-value-if"></span>`fn default_value_if(self, arg_id: impl Into<Id>, predicate: impl Into<ArgPredicate>, default: impl IntoResettable<OsStr>) -> Self` — [`Id`](../index.md), [`ArgPredicate`](#argpredicate), [`IntoResettable`](#intoresettable), [`OsStr`](#osstr)
+- <span id="arg-get-long-help"></span>`fn get_long_help(&self) -> Option<&StyledStr>` — [`StyledStr`](#styledstr)
 
-- <span id="arg-default-values-if"></span>`fn default_values_if(self, arg_id: impl Into<Id>, predicate: impl Into<ArgPredicate>, defaults: impl IntoIterator<Item = impl Into<OsStr>>) -> Self` — [`Id`](../index.md), [`ArgPredicate`](#argpredicate), [`OsStr`](#osstr)
+- <span id="arg-get-display-order"></span>`fn get_display_order(&self) -> usize`
 
-- <span id="arg-default-value-ifs"></span>`fn default_value_ifs(self, ifs: impl IntoIterator<Item = (impl Into<Id>, impl Into<ArgPredicate>, impl IntoResettable<OsStr>)>) -> Self` — [`Id`](../index.md), [`ArgPredicate`](#argpredicate), [`IntoResettable`](#intoresettable), [`OsStr`](#osstr)
+- <span id="arg-get-help-heading"></span>`fn get_help_heading(&self) -> Option<&str>`
 
-- <span id="arg-default-values-ifs"></span>`fn default_values_ifs(self, ifs: impl IntoIterator<Item = (impl Into<Id>, impl Into<ArgPredicate>, impl IntoIterator<Item = impl Into<OsStr>>)>) -> Self` — [`Id`](../index.md), [`ArgPredicate`](#argpredicate), [`OsStr`](#osstr)
+- <span id="arg-get-short"></span>`fn get_short(&self) -> Option<char>`
 
-- <span id="arg-required-unless-present"></span>`fn required_unless_present(self, arg_id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](#intoresettable), [`Id`](../index.md)
+- <span id="arg-get-visible-short-aliases"></span>`fn get_visible_short_aliases(&self) -> Option<Vec<char>>`
 
-- <span id="arg-required-unless-present-all"></span>`fn required_unless_present_all(self, names: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../index.md)
+- <span id="arg-get-all-short-aliases"></span>`fn get_all_short_aliases(&self) -> Option<Vec<char>>`
 
-- <span id="arg-required-unless-present-any"></span>`fn required_unless_present_any(self, names: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../index.md)
+- <span id="arg-get-short-and-visible-aliases"></span>`fn get_short_and_visible_aliases(&self) -> Option<Vec<char>>`
 
-- <span id="arg-required-if-eq"></span>`fn required_if_eq(self, arg_id: impl Into<Id>, val: impl Into<OsStr>) -> Self` — [`Id`](../index.md), [`OsStr`](#osstr)
+- <span id="arg-get-long"></span>`fn get_long(&self) -> Option<&str>`
 
-- <span id="arg-required-if-eq-any"></span>`fn required_if_eq_any(self, ifs: impl IntoIterator<Item = (impl Into<Id>, impl Into<OsStr>)>) -> Self` — [`Id`](../index.md), [`OsStr`](#osstr)
+- <span id="arg-get-visible-aliases"></span>`fn get_visible_aliases(&self) -> Option<Vec<&str>>`
 
-- <span id="arg-required-if-eq-all"></span>`fn required_if_eq_all(self, ifs: impl IntoIterator<Item = (impl Into<Id>, impl Into<OsStr>)>) -> Self` — [`Id`](../index.md), [`OsStr`](#osstr)
+- <span id="arg-get-all-aliases"></span>`fn get_all_aliases(&self) -> Option<Vec<&str>>`
 
-- <span id="arg-requires-if"></span>`fn requires_if(self, val: impl Into<ArgPredicate>, arg_id: impl Into<Id>) -> Self` — [`ArgPredicate`](#argpredicate), [`Id`](../index.md)
+- <span id="arg-get-long-and-visible-aliases"></span>`fn get_long_and_visible_aliases(&self) -> Option<Vec<&str>>`
 
-- <span id="arg-requires-ifs"></span>`fn requires_ifs(self, ifs: impl IntoIterator<Item = (impl Into<ArgPredicate>, impl Into<Id>)>) -> Self` — [`ArgPredicate`](#argpredicate), [`Id`](../index.md)
+- <span id="arg-get-aliases"></span>`fn get_aliases(&self) -> Option<Vec<&str>>`
 
-- <span id="arg-conflicts-with"></span>`fn conflicts_with(self, arg_id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](#intoresettable), [`Id`](../index.md)
+- <span id="arg-get-possible-values"></span>`fn get_possible_values(&self) -> Vec<PossibleValue>` — [`PossibleValue`](#possiblevalue)
 
-- <span id="arg-conflicts-with-all"></span>`fn conflicts_with_all(self, names: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../index.md)
+- <span id="arg-get-value-names"></span>`fn get_value_names(&self) -> Option<&[Str]>` — [`Str`](#str)
 
-- <span id="arg-overrides-with"></span>`fn overrides_with(self, arg_id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](#intoresettable), [`Id`](../index.md)
+- <span id="arg-get-num-args"></span>`fn get_num_args(&self) -> Option<ValueRange>` — [`ValueRange`](#valuerange)
 
-- <span id="arg-overrides-with-all"></span>`fn overrides_with_all(self, names: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../index.md)
+- <span id="arg-get-min-vals"></span>`fn get_min_vals(&self) -> usize`
+
+- <span id="arg-get-value-delimiter"></span>`fn get_value_delimiter(&self) -> Option<char>`
+
+- <span id="arg-get-value-terminator"></span>`fn get_value_terminator(&self) -> Option<&Str>` — [`Str`](#str)
+
+- <span id="arg-get-index"></span>`fn get_index(&self) -> Option<usize>`
+
+- <span id="arg-get-value-hint"></span>`fn get_value_hint(&self) -> ValueHint` — [`ValueHint`](../index.md)
+
+- <span id="arg-get-default-values"></span>`fn get_default_values(&self) -> &[OsStr]` — [`OsStr`](#osstr)
+
+- <span id="arg-is-positional"></span>`fn is_positional(&self) -> bool`
+
+- <span id="arg-is-required-set"></span>`fn is_required_set(&self) -> bool`
+
+- <span id="arg-is-multiple-values-set"></span>`fn is_multiple_values_set(&self) -> bool`
+
+- <span id="arg-is-takes-value-set"></span>`fn is_takes_value_set(&self) -> bool`
+
+- <span id="arg-is-allow-hyphen-values-set"></span>`fn is_allow_hyphen_values_set(&self) -> bool`
+
+- <span id="arg-is-allow-negative-numbers-set"></span>`fn is_allow_negative_numbers_set(&self) -> bool`
+
+- <span id="arg-get-action"></span>`fn get_action(&self) -> &ArgAction` — [`ArgAction`](../index.md)
+
+- <span id="arg-get-value-parser"></span>`fn get_value_parser(&self) -> &super::ValueParser` — [`ValueParser`](#valueparser)
+
+- <span id="arg-is-global-set"></span>`fn is_global_set(&self) -> bool`
+
+- <span id="arg-is-next-line-help-set"></span>`fn is_next_line_help_set(&self) -> bool`
+
+- <span id="arg-is-hide-set"></span>`fn is_hide_set(&self) -> bool`
+
+- <span id="arg-is-hide-default-value-set"></span>`fn is_hide_default_value_set(&self) -> bool`
+
+- <span id="arg-is-hide-possible-values-set"></span>`fn is_hide_possible_values_set(&self) -> bool`
+
+- <span id="arg-is-hide-short-help-set"></span>`fn is_hide_short_help_set(&self) -> bool`
+
+- <span id="arg-is-hide-long-help-set"></span>`fn is_hide_long_help_set(&self) -> bool`
+
+- <span id="arg-is-require-equals-set"></span>`fn is_require_equals_set(&self) -> bool`
+
+- <span id="arg-is-exclusive-set"></span>`fn is_exclusive_set(&self) -> bool`
+
+- <span id="arg-is-trailing-var-arg-set"></span>`fn is_trailing_var_arg_set(&self) -> bool`
+
+- <span id="arg-is-last-set"></span>`fn is_last_set(&self) -> bool`
+
+- <span id="arg-is-ignore-case-set"></span>`fn is_ignore_case_set(&self) -> bool`
 
 #### Trait Implementations
 
@@ -441,29 +491,9 @@ assert_eq!(matches
 
 #### Implementations
 
-- <span id="arggroup-new"></span>`fn new(id: impl Into<Id>) -> Self` — [`Id`](../index.md)
+- <span id="arggroup-get-id"></span>`fn get_id(&self) -> &Id` — [`Id`](../index.md)
 
-- <span id="arggroup-id"></span>`fn id(self, id: impl Into<Id>) -> Self` — [`Id`](../index.md)
-
-- <span id="arggroup-arg"></span>`fn arg(self, arg_id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](#intoresettable), [`Id`](../index.md)
-
-- <span id="arggroup-args"></span>`fn args(self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../index.md)
-
-- <span id="arggroup-get-args"></span>`fn get_args(&self) -> impl Iterator<Item = &Id>` — [`Id`](../index.md)
-
-- <span id="arggroup-multiple"></span>`fn multiple(self, yes: bool) -> Self`
-
-- <span id="arggroup-is-multiple"></span>`fn is_multiple(&mut self) -> bool`
-
-- <span id="arggroup-required"></span>`fn required(self, yes: bool) -> Self`
-
-- <span id="arggroup-requires"></span>`fn requires(self, id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](#intoresettable), [`Id`](../index.md)
-
-- <span id="arggroup-requires-all"></span>`fn requires_all(self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../index.md)
-
-- <span id="arggroup-conflicts-with"></span>`fn conflicts_with(self, id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](#intoresettable), [`Id`](../index.md)
-
-- <span id="arggroup-conflicts-with-all"></span>`fn conflicts_with_all(self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../index.md)
+- <span id="arggroup-is-required-set"></span>`fn is_required_set(&self) -> bool`
 
 #### Trait Implementations
 
@@ -569,143 +599,41 @@ let m = Command::new("My Program")
 
 #### Implementations
 
-- <span id="command-get-usage-name"></span>`fn get_usage_name(&self) -> Option<&str>`
+- <span id="command-no-binary-name"></span>`fn no_binary_name(self, yes: bool) -> Self`
 
-- <span id="command-get-usage-name-fallback"></span>`fn get_usage_name_fallback(&self) -> &str`
+- <span id="command-ignore-errors"></span>`fn ignore_errors(self, yes: bool) -> Self`
 
-- <span id="command-get-display-name"></span>`fn get_display_name(&self) -> Option<&str>`
+- <span id="command-args-override-self"></span>`fn args_override_self(self, yes: bool) -> Self`
 
-- <span id="command-get-bin-name"></span>`fn get_bin_name(&self) -> Option<&str>`
+- <span id="command-dont-delimit-trailing-values"></span>`fn dont_delimit_trailing_values(self, yes: bool) -> Self`
 
-- <span id="command-get-bin-name-fallback"></span>`fn get_bin_name_fallback(&self) -> &str`
+- <span id="command-color"></span>`fn color(self, color: ColorChoice) -> Self` — [`ColorChoice`](../index.md)
 
-- <span id="command-set-bin-name"></span>`fn set_bin_name(&mut self, name: impl Into<String>)`
+- <span id="command-styles"></span>`fn styles(self, styles: Styles) -> Self` — [`Styles`](#styles)
 
-- <span id="command-get-name"></span>`fn get_name(&self) -> &str`
+- <span id="command-term-width"></span>`fn term_width(self, width: usize) -> Self`
 
-- <span id="command-get-name-str"></span>`fn get_name_str(&self) -> &Str` — [`Str`](#str)
+- <span id="command-max-term-width"></span>`fn max_term_width(self, width: usize) -> Self`
 
-- <span id="command-get-name-and-visible-aliases"></span>`fn get_name_and_visible_aliases(&self) -> Vec<&str>`
+- <span id="command-disable-version-flag"></span>`fn disable_version_flag(self, yes: bool) -> Self`
 
-- <span id="command-get-version"></span>`fn get_version(&self) -> Option<&str>`
+- <span id="command-propagate-version"></span>`fn propagate_version(self, yes: bool) -> Self`
 
-- <span id="command-get-long-version"></span>`fn get_long_version(&self) -> Option<&str>`
+- <span id="command-next-line-help"></span>`fn next_line_help(self, yes: bool) -> Self`
 
-- <span id="command-get-display-order"></span>`fn get_display_order(&self) -> usize`
+- <span id="command-disable-help-flag"></span>`fn disable_help_flag(self, yes: bool) -> Self`
 
-- <span id="command-get-author"></span>`fn get_author(&self) -> Option<&str>`
+- <span id="command-disable-help-subcommand"></span>`fn disable_help_subcommand(self, yes: bool) -> Self`
 
-- <span id="command-get-short-flag"></span>`fn get_short_flag(&self) -> Option<char>`
+- <span id="command-disable-colored-help"></span>`fn disable_colored_help(self, yes: bool) -> Self`
 
-- <span id="command-get-long-flag"></span>`fn get_long_flag(&self) -> Option<&str>`
+- <span id="command-help-expected"></span>`fn help_expected(self, yes: bool) -> Self`
 
-- <span id="command-get-about"></span>`fn get_about(&self) -> Option<&StyledStr>` — [`StyledStr`](#styledstr)
+- <span id="command-hide-possible-values"></span>`fn hide_possible_values(self, yes: bool) -> Self`
 
-- <span id="command-get-long-about"></span>`fn get_long_about(&self) -> Option<&StyledStr>` — [`StyledStr`](#styledstr)
+- <span id="command-infer-long-args"></span>`fn infer_long_args(self, yes: bool) -> Self`
 
-- <span id="command-is-flatten-help-set"></span>`fn is_flatten_help_set(&self) -> bool`
-
-- <span id="command-get-next-help-heading"></span>`fn get_next_help_heading(&self) -> Option<&str>`
-
-- <span id="command-get-visible-aliases"></span>`fn get_visible_aliases(&self) -> impl Iterator<Item = &str> + '_`
-
-- <span id="command-get-visible-short-flag-aliases"></span>`fn get_visible_short_flag_aliases(&self) -> impl Iterator<Item = char> + '_`
-
-- <span id="command-get-visible-long-flag-aliases"></span>`fn get_visible_long_flag_aliases(&self) -> impl Iterator<Item = &str> + '_`
-
-- <span id="command-get-all-aliases"></span>`fn get_all_aliases(&self) -> impl Iterator<Item = &str> + '_`
-
-- <span id="command-get-all-short-flag-aliases"></span>`fn get_all_short_flag_aliases(&self) -> impl Iterator<Item = char> + '_`
-
-- <span id="command-get-all-long-flag-aliases"></span>`fn get_all_long_flag_aliases(&self) -> impl Iterator<Item = &str> + '_`
-
-- <span id="command-get-aliases"></span>`fn get_aliases(&self) -> impl Iterator<Item = &str> + '_`
-
-- <span id="command-is-set"></span>`fn is_set(&self, s: AppSettings) -> bool` — [`AppSettings`](app_settings/index.md)
-
-- <span id="command-get-color"></span>`fn get_color(&self) -> ColorChoice` — [`ColorChoice`](../index.md)
-
-- <span id="command-get-styles"></span>`fn get_styles(&self) -> &Styles` — [`Styles`](#styles)
-
-- <span id="command-get-subcommands"></span>`fn get_subcommands(&self) -> impl Iterator<Item = &Command>` — [`Command`](../index.md)
-
-- <span id="command-get-subcommands-mut"></span>`fn get_subcommands_mut(&mut self) -> impl Iterator<Item = &mut Command>` — [`Command`](../index.md)
-
-- <span id="command-has-subcommands"></span>`fn has_subcommands(&self) -> bool`
-
-- <span id="command-get-subcommand-help-heading"></span>`fn get_subcommand_help_heading(&self) -> Option<&str>`
-
-- <span id="command-get-subcommand-value-name"></span>`fn get_subcommand_value_name(&self) -> Option<&str>`
-
-- <span id="command-get-before-help"></span>`fn get_before_help(&self) -> Option<&StyledStr>` — [`StyledStr`](#styledstr)
-
-- <span id="command-get-before-long-help"></span>`fn get_before_long_help(&self) -> Option<&StyledStr>` — [`StyledStr`](#styledstr)
-
-- <span id="command-get-after-help"></span>`fn get_after_help(&self) -> Option<&StyledStr>` — [`StyledStr`](#styledstr)
-
-- <span id="command-get-after-long-help"></span>`fn get_after_long_help(&self) -> Option<&StyledStr>` — [`StyledStr`](#styledstr)
-
-- <span id="command-find-subcommand"></span>`fn find_subcommand(&self, name: impl AsRef<std::ffi::OsStr>) -> Option<&Command>` — [`Command`](../index.md)
-
-- <span id="command-find-subcommand-mut"></span>`fn find_subcommand_mut(&mut self, name: impl AsRef<std::ffi::OsStr>) -> Option<&mut Command>` — [`Command`](../index.md)
-
-- <span id="command-get-groups"></span>`fn get_groups(&self) -> impl Iterator<Item = &ArgGroup>` — [`ArgGroup`](../index.md)
-
-- <span id="command-get-arguments"></span>`fn get_arguments(&self) -> impl Iterator<Item = &Arg>` — [`Arg`](../index.md)
-
-- <span id="command-get-positionals"></span>`fn get_positionals(&self) -> impl Iterator<Item = &Arg>` — [`Arg`](../index.md)
-
-- <span id="command-get-opts"></span>`fn get_opts(&self) -> impl Iterator<Item = &Arg>` — [`Arg`](../index.md)
-
-- <span id="command-get-arg-conflicts-with"></span>`fn get_arg_conflicts_with(&self, arg: &Arg) -> Vec<&Arg>` — [`Arg`](../index.md)
-
-- <span id="command-get-global-arg-conflicts-with"></span>`fn get_global_arg_conflicts_with(&self, arg: &Arg) -> Vec<&Arg>` — [`Arg`](../index.md)
-
-- <span id="command-get-subcommands-containing"></span>`fn get_subcommands_containing(&self, arg: &Arg) -> Vec<&Self>` — [`Arg`](../index.md)
-
-- <span id="command-is-no-binary-name-set"></span>`fn is_no_binary_name_set(&self) -> bool`
-
-- <span id="command-is-ignore-errors-set"></span>`fn is_ignore_errors_set(&self) -> bool`
-
-- <span id="command-is-dont-delimit-trailing-values-set"></span>`fn is_dont_delimit_trailing_values_set(&self) -> bool`
-
-- <span id="command-is-disable-version-flag-set"></span>`fn is_disable_version_flag_set(&self) -> bool`
-
-- <span id="command-is-propagate-version-set"></span>`fn is_propagate_version_set(&self) -> bool`
-
-- <span id="command-is-next-line-help-set"></span>`fn is_next_line_help_set(&self) -> bool`
-
-- <span id="command-is-disable-help-flag-set"></span>`fn is_disable_help_flag_set(&self) -> bool`
-
-- <span id="command-is-disable-help-subcommand-set"></span>`fn is_disable_help_subcommand_set(&self) -> bool`
-
-- <span id="command-is-disable-colored-help-set"></span>`fn is_disable_colored_help_set(&self) -> bool`
-
-- <span id="command-is-help-expected-set"></span>`fn is_help_expected_set(&self) -> bool`
-
-- <span id="command-is-infer-long-args-set"></span>`fn is_infer_long_args_set(&self) -> bool`
-
-- <span id="command-is-infer-subcommands-set"></span>`fn is_infer_subcommands_set(&self) -> bool`
-
-- <span id="command-is-arg-required-else-help-set"></span>`fn is_arg_required_else_help_set(&self) -> bool`
-
-- <span id="command-is-allow-missing-positional-set"></span>`fn is_allow_missing_positional_set(&self) -> bool`
-
-- <span id="command-is-hide-set"></span>`fn is_hide_set(&self) -> bool`
-
-- <span id="command-is-subcommand-required-set"></span>`fn is_subcommand_required_set(&self) -> bool`
-
-- <span id="command-is-allow-external-subcommands-set"></span>`fn is_allow_external_subcommands_set(&self) -> bool`
-
-- <span id="command-get-external-subcommand-value-parser"></span>`fn get_external_subcommand_value_parser(&self) -> Option<&super::ValueParser>` — [`ValueParser`](#valueparser)
-
-- <span id="command-is-args-conflicts-with-subcommands-set"></span>`fn is_args_conflicts_with_subcommands_set(&self) -> bool`
-
-- <span id="command-is-subcommand-precedence-over-arg-set"></span>`fn is_subcommand_precedence_over_arg_set(&self) -> bool`
-
-- <span id="command-is-subcommand-negates-reqs-set"></span>`fn is_subcommand_negates_reqs_set(&self) -> bool`
-
-- <span id="command-is-multicall-set"></span>`fn is_multicall_set(&self) -> bool`
+- <span id="command-infer-subcommands"></span>`fn infer_subcommands(self, yes: bool) -> Self`
 
 #### Trait Implementations
 
@@ -2107,13 +2035,15 @@ assert_eq!(port, 3001);
 
 #### Implementations
 
-- <span id="valueparser-parse-ref"></span>`fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr, source: ValueSource) -> Result<AnyValue, crate::Error>` — [`Command`](../index.md), [`Arg`](../index.md), [`ValueSource`](../parser/index.md), [`AnyValue`](../util/any_value/index.md), [`Error`](../index.md)
+- <span id="valueparser-new"></span>`fn new<P>(other: P) -> Self`
 
-- <span id="valueparser-type-id"></span>`fn type_id(&self) -> AnyValueId` — [`AnyValueId`](../util/any_value/index.md)
+- <span id="valueparser-bool"></span>`const fn bool() -> Self`
 
-- <span id="valueparser-possible-values"></span>`fn possible_values(&self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>` — [`PossibleValue`](#possiblevalue)
+- <span id="valueparser-string"></span>`const fn string() -> Self`
 
-- <span id="valueparser-any-value-parser"></span>`fn any_value_parser(&self) -> &dyn AnyValueParser` — [`AnyValueParser`](value_parser/index.md)
+- <span id="valueparser-os-string"></span>`const fn os_string() -> Self`
+
+- <span id="valueparser-path-buf"></span>`const fn path_buf() -> Self`
 
 #### Trait Implementations
 
@@ -2810,4 +2740,239 @@ Overview of which hints are supported by which shell:
 ##### `impl StructuralPartialEq for ValueHint`
 
 ## Traits
+
+### `IntoResettable<T>`
+
+```rust
+trait IntoResettable<T> { ... }
+```
+
+Convert to the intended resettable type
+
+#### Required Methods
+
+- `fn into_resettable(self) -> Resettable<T>`
+
+  Convert to the intended resettable type
+
+#### Implementors
+
+- [`ArgAction`](../index.md)
+- [`BoolValueParser`](#boolvalueparser)
+- [`BoolishValueParser`](#boolishvalueparser)
+- [`EnumValueParser`](#enumvalueparser)
+- [`FalseyValueParser`](#falseyvalueparser)
+- [`Id`](../index.md)
+- [`MapValueParser`](#mapvalueparser)
+- [`NonEmptyStringValueParser`](#nonemptystringvalueparser)
+- [`OsStr`](#osstr)
+- [`OsStringValueParser`](#osstringvalueparser)
+- [`PathBufValueParser`](#pathbufvalueparser)
+- [`PossibleValuesParser`](#possiblevaluesparser)
+- [`RangedI64ValueParser`](#rangedi64valueparser)
+- [`RangedU64ValueParser`](#rangedu64valueparser)
+- [`Resettable`](#resettable)
+- [`Str`](#str)
+- [`StringValueParser`](#stringvalueparser)
+- [`StyledStr`](#styledstr)
+- [`TryMapValueParser`](#trymapvalueparser)
+- [`UnknownArgumentValueParser`](#unknownargumentvalueparser)
+- [`ValueHint`](../index.md)
+- [`ValueParser`](#valueparser)
+- [`ValueRange`](#valuerange)
+- `I`
+- `Option<&'static str>`
+- `Option<char>`
+- `Option<crate::builder::ArgAction>`
+- `Option<crate::builder::ValueHint>`
+- `Option<crate::builder::ValueParser>`
+- `Option<usize>`
+- `char`
+- `usize`
+
+### `TypedValueParser`
+
+```rust
+trait TypedValueParser: Clone + Send + Sync + 'static { ... }
+```
+
+Parse/validate argument values
+
+As alternatives to implementing `TypedValueParser`,
+- Use `Fn(&str) -> Result<T, E>` which implements `TypedValueParser`
+- `TypedValueParser::map` or `TypedValueParser::try_map` to adapt an existing `TypedValueParser`
+
+See `ValueParserFactory` to register `TypedValueParser::Value` with
+`value_parser!`.
+
+# Example
+
+```rust
+#[cfg(feature = "error-context")] {
+use clap_builder as clap;
+use clap::error::ErrorKind;
+use clap::error::ContextKind;
+use clap::error::ContextValue;
+#[derive(Clone)]
+struct Custom(u32);
+
+#[derive(Clone)]
+struct CustomValueParser;
+
+impl clap::builder::TypedValueParser for CustomValueParser {
+    type Value = Custom;
+
+    fn parse_ref(
+        &self,
+        cmd: &clap::Command,
+        arg: Option<&clap::Arg>,
+        value: &std::ffi::OsStr,
+    ) -> Result<Self::Value, clap::Error> {
+        let inner = clap::value_parser!(u32);
+        let val = inner.parse_ref(cmd, arg, value)?;
+
+        const INVALID_VALUE: u32 = 10;
+        if val == INVALID_VALUE {
+            let mut err = clap::Error::new(ErrorKind::ValueValidation)
+                .with_cmd(cmd);
+            if let Some(arg) = arg {
+                err.insert(ContextKind::InvalidArg, ContextValue::String(arg.to_string()));
+            }
+            err.insert(ContextKind::InvalidValue, ContextValue::String(INVALID_VALUE.to_string()));
+            return Err(err);
+        }
+
+        Ok(Custom(val))
+    }
+}
+}
+```
+
+#### Associated Types
+
+- `type Value: 3`
+
+#### Required Methods
+
+- `fn parse_ref(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr) -> Result<<Self as >::Value, crate::Error>`
+
+  Parse the argument value
+
+#### Provided Methods
+
+- `fn parse_ref_(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr, _source: ValueSource) -> Result<<Self as >::Value, crate::Error>`
+
+  Parse the argument value
+
+- `fn parse(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: std::ffi::OsString) -> Result<<Self as >::Value, crate::Error>`
+
+  Parse the argument value
+
+- `fn parse_(&self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: std::ffi::OsString, _source: ValueSource) -> Result<<Self as >::Value, crate::Error>`
+
+  Parse the argument value
+
+- `fn possible_values(&self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>`
+
+  Reflect on enumerated value properties
+
+- `fn map<T, F>(self, func: F) -> MapValueParser<Self, F>`
+
+  Adapt a `TypedValueParser` from one value to another
+
+- `fn try_map<T, E, F>(self, func: F) -> TryMapValueParser<Self, F>`
+
+  Adapt a `TypedValueParser` from one value to another
+
+#### Implementors
+
+- [`BoolValueParser`](#boolvalueparser)
+- [`BoolishValueParser`](#boolishvalueparser)
+- [`EnumValueParser`](#enumvalueparser)
+- [`FalseyValueParser`](#falseyvalueparser)
+- [`MapValueParser`](#mapvalueparser)
+- [`NonEmptyStringValueParser`](#nonemptystringvalueparser)
+- [`OsStringValueParser`](#osstringvalueparser)
+- [`PathBufValueParser`](#pathbufvalueparser)
+- [`PossibleValuesParser`](#possiblevaluesparser)
+- [`RangedI64ValueParser`](#rangedi64valueparser)
+- [`RangedU64ValueParser`](#rangedu64valueparser)
+- [`StringValueParser`](#stringvalueparser)
+- [`TryMapValueParser`](#trymapvalueparser)
+- [`UnknownArgumentValueParser`](#unknownargumentvalueparser)
+- `F`
+
+### `ValueParserFactory`
+
+```rust
+trait ValueParserFactory { ... }
+```
+
+Register a type with [`value_parser!`][crate::value_parser!]
+
+# Example
+
+```rust
+use clap_builder as clap;
+#[derive(Copy, Clone, Debug)]
+pub struct Custom(u32);
+
+impl clap::builder::ValueParserFactory for Custom {
+    type Parser = CustomValueParser;
+    fn value_parser() -> Self::Parser {
+        CustomValueParser
+    }
+}
+
+#[derive(Clone, Debug)]
+pub struct CustomValueParser;
+impl clap::builder::TypedValueParser for CustomValueParser {
+    type Value = Custom;
+
+    fn parse_ref(
+        &self,
+        cmd: &clap::Command,
+        arg: Option<&clap::Arg>,
+        value: &std::ffi::OsStr,
+    ) -> Result<Self::Value, clap::Error> {
+        let inner = clap::value_parser!(u32);
+        let val = inner.parse_ref(cmd, arg, value)?;
+        Ok(Custom(val))
+    }
+}
+
+let parser: CustomValueParser = clap::value_parser!(Custom);
+```
+
+#### Associated Types
+
+- `type Parser`
+
+#### Required Methods
+
+- `fn value_parser() -> <Self as >::Parser`
+
+  Create the specified `Self::Parser`
+
+#### Implementors
+
+- `Box<T>`
+- `Box<std::ffi::OsStr>`
+- `Box<std::path::Path>`
+- `Box<str>`
+- `String`
+- `bool`
+- `i16`
+- `i32`
+- `i64`
+- `i8`
+- `std::ffi::OsString`
+- `std::num::Saturating<T>`
+- `std::num::Wrapping<T>`
+- `std::path::PathBuf`
+- `std::sync::Arc<T>`
+- `u16`
+- `u32`
+- `u64`
+- `u8`
 

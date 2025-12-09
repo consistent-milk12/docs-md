@@ -25,9 +25,7 @@ struct Colorizer {
 
 #### Implementations
 
-- <span id="colorizer-new"></span>`fn new(stream: Stream, color_when: ColorChoice) -> Self` — [`Stream`](#stream), [`ColorChoice`](../../index.md)
-
-- <span id="colorizer-with-content"></span>`fn with_content(self, content: StyledStr) -> Self` — [`StyledStr`](../../builder/index.md)
+- <span id="colorizer-print"></span>`fn print(&self) -> std::io::Result<()>`
 
 #### Trait Implementations
 

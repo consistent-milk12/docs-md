@@ -10,11 +10,11 @@
   - [`parsing`](#parsing)
   - [`printing`](#printing)
 - [Structs](#structs)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
-  - [`unnamed`](#unnamed)
+  - [`PatConst`](#patconst)
+  - [`PatLit`](#patlit)
+  - [`PatMacro`](#patmacro)
+  - [`PatPath`](#patpath)
+  - [`PatRange`](#patrange)
   - [`PatIdent`](#patident)
   - [`PatOr`](#pator)
   - [`PatParen`](#patparen)
@@ -36,11 +36,11 @@
 |------|------|-------------|
 | [`parsing`](#parsing) | mod |  |
 | [`printing`](#printing) | mod |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
-| [`unnamed`](#unnamed) | struct |  |
+| [`PatConst`](#patconst) | struct |  |
+| [`PatLit`](#patlit) | struct |  |
+| [`PatMacro`](#patmacro) | struct |  |
+| [`PatPath`](#patpath) | struct |  |
+| [`PatRange`](#patrange) | struct |  |
 | [`PatIdent`](#patident) | struct | A pattern that binds a new variable: `ref mut binding @ SUBPATTERN`. |
 | [`PatOr`](#pator) | struct | A pattern that matches any one of a set of cases. |
 | [`PatParen`](#patparen) | struct | A parenthesized pattern: `(A \| B)`. |
@@ -57,8 +57,8 @@
 
 ## Modules
 
-- [`parsing`](parsing/index.md) - 
-- [`printing`](printing/index.md) - 
+- [`parsing`](parsing/index.md)
+- [`printing`](printing/index.md)
 
 ## Structs
 

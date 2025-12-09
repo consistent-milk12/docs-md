@@ -577,17 +577,27 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- <span id="dfa-is-match"></span>`fn is_match<'h, I: Into<Input<'h>>>(&self, cache: &mut Cache, input: I) -> bool` — [`Cache`](#cache)
+- <span id="dfa-start"></span>`fn start(&self) -> StateID` — [`StateID`](../../util/primitives/index.md)
 
-- <span id="dfa-find"></span>`fn find<'h, I: Into<Input<'h>>>(&self, cache: &mut Cache, input: I) -> Option<Match>` — [`Cache`](#cache), [`Match`](../../index.md)
+- <span id="dfa-start-pattern"></span>`fn start_pattern(&self, pid: PatternID) -> Result<StateID, MatchError>` — [`PatternID`](../../index.md), [`StateID`](../../util/primitives/index.md), [`MatchError`](../../index.md)
 
-- <span id="dfa-captures"></span>`fn captures<'h, I: Into<Input<'h>>>(&self, cache: &mut Cache, input: I, caps: &mut Captures)` — [`Cache`](#cache), [`Captures`](../../util/captures/index.md)
+- <span id="dfa-transition"></span>`fn transition(&self, sid: StateID, byte: u8) -> Transition` — [`StateID`](../../util/primitives/index.md), [`Transition`](#transition)
 
-- <span id="dfa-try-search"></span>`fn try_search(&self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures) -> Result<(), MatchError>` — [`Cache`](#cache), [`Input`](../../index.md), [`Captures`](../../util/captures/index.md), [`MatchError`](../../index.md)
+- <span id="dfa-set-transition"></span>`fn set_transition(&mut self, sid: StateID, byte: u8, to: Transition)` — [`StateID`](../../util/primitives/index.md), [`Transition`](#transition)
 
-- <span id="dfa-try-search-slots"></span>`fn try_search_slots(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<PatternID>, MatchError>` — [`Cache`](#cache), [`Input`](../../index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../index.md), [`MatchError`](../../index.md)
+- <span id="dfa-sparse-transitions"></span>`fn sparse_transitions(&self, sid: StateID) -> SparseTransitionIter<'_>` — [`StateID`](../../util/primitives/index.md), [`SparseTransitionIter`](#sparsetransitioniter)
 
-- <span id="dfa-try-search-slots-imp"></span>`fn try_search_slots_imp(&self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<PatternID>, MatchError>` — [`Cache`](#cache), [`Input`](../../index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../index.md), [`MatchError`](../../index.md)
+- <span id="dfa-pattern-epsilons"></span>`fn pattern_epsilons(&self, sid: StateID) -> PatternEpsilons` — [`StateID`](../../util/primitives/index.md), [`PatternEpsilons`](#patternepsilons)
+
+- <span id="dfa-set-pattern-epsilons"></span>`fn set_pattern_epsilons(&mut self, sid: StateID, pateps: PatternEpsilons)` — [`StateID`](../../util/primitives/index.md), [`PatternEpsilons`](#patternepsilons)
+
+- <span id="dfa-prev-state-id"></span>`fn prev_state_id(&self, id: StateID) -> Option<StateID>` — [`StateID`](../../util/primitives/index.md)
+
+- <span id="dfa-last-state-id"></span>`fn last_state_id(&self) -> StateID` — [`StateID`](../../util/primitives/index.md)
+
+- <span id="dfa-swap-states"></span>`fn swap_states(&mut self, id1: StateID, id2: StateID)` — [`StateID`](../../util/primitives/index.md)
+
+- <span id="dfa-remap"></span>`fn remap(&mut self, map: impl Fn(StateID) -> StateID)` — [`StateID`](../../util/primitives/index.md)
 
 #### Trait Implementations
 

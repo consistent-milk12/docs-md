@@ -12,5 +12,5 @@
 
 ## Modules
 
-- [`fast_atomic_64_macros`](fast_atomic_64_macros/index.md) - 
+- [`fast_atomic_64_macros`](fast_atomic_64_macros/index.md)
 

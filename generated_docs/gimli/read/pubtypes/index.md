@@ -59,7 +59,7 @@ found in the `.debug_info` section.
 
 #### Implementations
 
-- <span id="debugpubtypes-new"></span>`fn new(debug_pubtypes_section: &'input [u8], endian: Endian) -> Self`
+- <span id="debugpubtypes-items"></span>`fn items(&self) -> PubTypesEntryIter<R>` — [`PubTypesEntryIter`](../index.md)
 
 #### Trait Implementations
 

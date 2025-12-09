@@ -40,7 +40,7 @@
 
 ## Modules
 
-- [`gimli`](gimli/index.md) - Support for symbolication using the `gimli` crate on crates.io
+- [`gimli`](gimli/index.md) — Support for symbolication using the `gimli` crate on crates.io
 
 ## Structs
 

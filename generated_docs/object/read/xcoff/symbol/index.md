@@ -286,9 +286,11 @@ trait Symbol: Debug + Pod { ... }
 
 A trait for generic access to [`xcoff::Symbol32`](../../../xcoff/index.md) and [`xcoff::Symbol64`](../../../xcoff/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
+
+#### Required Methods
 
 - `fn n_value(&self) -> <Self as >::Word`
 
@@ -303,6 +305,8 @@ A trait for generic access to [`xcoff::Symbol32`](../../../xcoff/index.md) and [
 - `fn name_offset(&self) -> Option<u32>`
 
 - `fn name<'data, R: ReadRef<'data>>(self: &'data Self, strings: StringTable<'data, R>) -> Result<&'data [u8]>`
+
+#### Provided Methods
 
 - `fn section(&self) -> Option<SectionIndex>`
 
@@ -324,6 +328,11 @@ A trait for generic access to [`xcoff::Symbol32`](../../../xcoff/index.md) and [
 
   Return true if the symbol has csect auxiliary entry.
 
+#### Implementors
+
+- [`Symbol32`](../../../xcoff/index.md)
+- [`Symbol64`](../../../xcoff/index.md)
+
 ### `FileAux`
 
 ```rust
@@ -340,11 +349,18 @@ A trait for generic access to [`xcoff::FileAux32`](../../../xcoff/index.md) and 
 
 - `fn x_auxtype(&self) -> Option<u8>`
 
+#### Provided Methods
+
 - `fn name_offset(&self) -> Option<u32>`
 
 - `fn fname<'data, R: ReadRef<'data>>(self: &'data Self, strings: StringTable<'data, R>) -> Result<&'data [u8]>`
 
   Parse the x_fname field, which may be an inline string or a string table offset.
+
+#### Implementors
+
+- [`FileAux32`](../../../xcoff/index.md)
+- [`FileAux64`](../../../xcoff/index.md)
 
 ### `CsectAux`
 
@@ -372,9 +388,16 @@ A trait for generic access to [`xcoff::CsectAux32`](../../../xcoff/index.md) and
 
 - `fn x_auxtype(&self) -> Option<u8>`
 
+#### Provided Methods
+
 - `fn alignment(&self) -> u8`
 
 - `fn sym_type(&self) -> u8`
+
+#### Implementors
+
+- [`CsectAux32`](../../../xcoff/index.md)
+- [`CsectAux64`](../../../xcoff/index.md)
 
 ## Type Aliases
 

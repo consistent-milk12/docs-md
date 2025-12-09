@@ -12,5 +12,5 @@
 
 ## Modules
 
-- [`x86_64`](x86_64/index.md) - 
+- [`x86_64`](x86_64/index.md)
 

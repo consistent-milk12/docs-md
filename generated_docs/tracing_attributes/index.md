@@ -64,8 +64,8 @@ long as doing so complies with this policy.
 
 ## Modules
 
-- [`attr`](attr/index.md) - 
-- [`expand`](expand/index.md) - 
+- [`attr`](attr/index.md)
+- [`expand`](expand/index.md)
 
 ## Structs
 

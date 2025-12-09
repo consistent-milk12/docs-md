@@ -159,13 +159,15 @@ trait Segment: Debug + Pod { ... }
 
 A trait for generic access to [`macho::SegmentCommand32`](../../../macho/index.md) and [`macho::SegmentCommand64`](../../../macho/index.md).
 
-#### Required Methods
+#### Associated Types
 
 - `type Word: 1`
 
 - `type Endian: 1`
 
 - `type Section: 1`
+
+#### Required Methods
 
 - `fn from_command(command: LoadCommandData<'_, <Self as >::Endian>) -> Result<Option<(&Self, &[u8])>>`
 
@@ -191,6 +193,8 @@ A trait for generic access to [`macho::SegmentCommand32`](../../../macho/index.m
 
 - `fn flags(&self, endian: <Self as >::Endian) -> u32`
 
+#### Provided Methods
+
 - `fn name(&self) -> &[u8]`
 
   Return the `segname` bytes up until the null terminator.
@@ -206,6 +210,11 @@ A trait for generic access to [`macho::SegmentCommand32`](../../../macho/index.m
 - `fn sections<'data, R: ReadRef<'data>>(&self, endian: <Self as >::Endian, section_data: R) -> Result<&'data [<Self as >::Section]>`
 
   Get the array of sections from the data following the segment command.
+
+#### Implementors
+
+- [`SegmentCommand32`](../../../macho/index.md)
+- [`SegmentCommand64`](../../../macho/index.md)
 
 ## Type Aliases
 

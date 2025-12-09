@@ -303,11 +303,19 @@ The family of the terminal.
 trait TermWrite: Write + Debug + AsRawFd + Send { ... }
 ```
 
+#### Implementors
+
+- `T`
+
 ### `TermRead`
 
 ```rust
 trait TermRead: Read + Debug + AsRawFd + Send { ... }
 ```
+
+#### Implementors
+
+- `T`
 
 ## Functions
 

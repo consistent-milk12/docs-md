@@ -57,7 +57,7 @@ struct SlimSSSE3<const BYTES: usize> {
 
 - <span id="slimssse3-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl SearcherT for SlimSSSE3<3>`
+##### `impl SearcherT for SlimSSSE3<4>`
 
 - <span id="slimssse3-find"></span>`unsafe fn find(&self, start: *const u8, end: *const u8) -> Option<Match>` — [`Match`](../../generic/index.md)
 
@@ -86,7 +86,7 @@ struct SlimAVX2<const BYTES: usize> {
 
 - <span id="slimavx2-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl SearcherT for SlimAVX2<2>`
+##### `impl SearcherT for SlimAVX2<3>`
 
 - <span id="slimavx2-find"></span>`unsafe fn find(&self, start: *const u8, end: *const u8) -> Option<Match>` — [`Match`](../../generic/index.md)
 
@@ -114,7 +114,7 @@ struct FatAVX2<const BYTES: usize> {
 
 - <span id="fatavx2-fmt"></span>`fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl SearcherT for FatAVX2<1>`
+##### `impl SearcherT for FatAVX2<2>`
 
 - <span id="fatavx2-find"></span>`unsafe fn find(&self, start: *const u8, end: *const u8) -> Option<Match>` — [`Match`](../../generic/index.md)
 
